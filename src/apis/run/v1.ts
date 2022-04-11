@@ -569,7 +569,7 @@ export namespace run_v1 {
    */
   export interface Schema$ExecutionSpec {
     /**
-     * Optional. Specifies the maximum desired number of tasks the execution should run at any given time. Must be <= task_count. If not specified, defaults to -1. When the job is run, this field is passed to the execution, and if -1 it will be set to the maximum possible value. The actual number of tasks running in steady state will be less than this number when there are fewer tasks waiting to be completed remaining, i.e. when the work left to do is less than max parallelism. +optional
+     * Optional. Specifies the maximum desired number of tasks the execution should run at given time. Must be <= task_count. When the job is run, if this field is 0 or unset, the maximum possible value will be used for that execution. The actual number of tasks running in steady state will be less than this number when there are fewer tasks waiting to be completed remaining, i.e. when the work left to do is less than max parallelism. +optional
      */
     parallelism?: number | null;
     /**
@@ -2428,7 +2428,7 @@ export namespace run_v1 {
      *   const res = await run.namespaces.domainmappings.create({
      *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
      *     dryRun: 'placeholder-value',
-     *     // The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     parent: 'namespaces/my-namespace',
      *
      *     // Request body metadata
@@ -2578,7 +2578,7 @@ export namespace run_v1 {
      *     dryRun: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'namespaces/my-namespace/domainmappings/my-domainmapping',
      *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
      *     propagationPolicy: 'placeholder-value',
@@ -2714,7 +2714,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.domainmappings.get({
-     *     // The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'namespaces/my-namespace/domainmappings/my-domainmapping',
      *   });
      *   console.log(res.data);
@@ -2857,7 +2857,7 @@ export namespace run_v1 {
      *     labelSelector: 'placeholder-value',
      *     // Optional. The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
-     *     // The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     parent: 'namespaces/my-namespace',
      *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
      *     resourceVersion: 'placeholder-value',
@@ -2981,7 +2981,7 @@ export namespace run_v1 {
      */
     dryRun?: string;
     /**
-     * The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     parent?: string;
 
@@ -3005,7 +3005,7 @@ export namespace run_v1 {
      */
     kind?: string;
     /**
-     * The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
     /**
@@ -3016,7 +3016,7 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Domainmappings$Get
     extends StandardParameters {
     /**
-     * The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
   }
@@ -3043,7 +3043,7 @@ export namespace run_v1 {
      */
     limit?: number;
     /**
-     * The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     parent?: string;
     /**
@@ -3093,7 +3093,7 @@ export namespace run_v1 {
      *     apiVersion: 'placeholder-value',
      *     // Optional. Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // Required. The name of the execution to delete. Replace {namespace_id\} with the project ID or number.
+     *     // Required. The name of the execution to delete. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'namespaces/my-namespace/executions/my-execution',
      *     // Optional. Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
      *     propagationPolicy: 'placeholder-value',
@@ -3229,7 +3229,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.executions.get({
-     *     // Required. The name of the execution to retrieve. Replace {namespace_id\} with the project ID or number.
+     *     // Required. The name of the execution to retrieve. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'namespaces/my-namespace/executions/my-execution',
      *   });
      *   console.log(res.data);
@@ -3372,7 +3372,7 @@ export namespace run_v1 {
      *     labelSelector: 'placeholder-value',
      *     // Optional. The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
-     *     // Required. The namespace from which the executions should be listed. Replace {namespace_id\} with the project ID or number.
+     *     // Required. The namespace from which the executions should be listed. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     parent: 'namespaces/my-namespace',
      *     // Optional. The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
      *     resourceVersion: 'placeholder-value',
@@ -3498,7 +3498,7 @@ export namespace run_v1 {
      */
     kind?: string;
     /**
-     * Required. The name of the execution to delete. Replace {namespace_id\} with the project ID or number.
+     * Required. The name of the execution to delete. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
     /**
@@ -3509,7 +3509,7 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Executions$Get
     extends StandardParameters {
     /**
-     * Required. The name of the execution to retrieve. Replace {namespace_id\} with the project ID or number.
+     * Required. The name of the execution to retrieve. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
   }
@@ -3536,7 +3536,7 @@ export namespace run_v1 {
      */
     limit?: number;
     /**
-     * Required. The namespace from which the executions should be listed. Replace {namespace_id\} with the project ID or number.
+     * Required. The namespace from which the executions should be listed. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     parent?: string;
     /**
@@ -3582,7 +3582,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.jobs.create({
-     *     // Required. The namespace in which the job should be created. Replace {namespace_id\} with the project ID or number.
+     *     // Required. The namespace in which the job should be created. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     parent: 'namespaces/my-namespace',
      *
      *     // Request body metadata
@@ -3730,7 +3730,7 @@ export namespace run_v1 {
      *     apiVersion: 'placeholder-value',
      *     // Optional. Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // Required. The name of the job to delete. Replace {namespace_id\} with the project ID or number.
+     *     // Required. The name of the job to delete. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'namespaces/my-namespace/jobs/my-job',
      *     // Optional. Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
      *     propagationPolicy: 'placeholder-value',
@@ -3866,7 +3866,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.jobs.get({
-     *     // Required. The name of the job to retrieve. Replace {namespace_id\} with the project ID or number.
+     *     // Required. The name of the job to retrieve. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'namespaces/my-namespace/jobs/my-job',
      *   });
      *   console.log(res.data);
@@ -4009,7 +4009,7 @@ export namespace run_v1 {
      *     labelSelector: 'placeholder-value',
      *     // Optional. The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
-     *     // Required. The namespace from which the jobs should be listed. Replace {namespace_id\} with the project ID or number.
+     *     // Required. The namespace from which the jobs should be listed. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     parent: 'namespaces/my-namespace',
      *     // Optional. The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
      *     resourceVersion: 'placeholder-value',
@@ -4145,7 +4145,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.jobs.replaceJob({
-     *     // Required. The name of the service being replaced. Replace {namespace_id\} with the project ID or number.
+     *     // Required. The name of the service being replaced. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'namespaces/my-namespace/jobs/my-job',
      *
      *     // Request body metadata
@@ -4290,7 +4290,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.jobs.run({
-     *     // Required. The name of the job to run. Replace {namespace_id\} with the project ID or number.
+     *     // Required. The name of the job to run. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'namespaces/my-namespace/jobs/my-job',
      *
      *     // Request body metadata
@@ -4406,7 +4406,7 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Jobs$Create
     extends StandardParameters {
     /**
-     * Required. The namespace in which the job should be created. Replace {namespace_id\} with the project ID or number.
+     * Required. The namespace in which the job should be created. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     parent?: string;
 
@@ -4426,7 +4426,7 @@ export namespace run_v1 {
      */
     kind?: string;
     /**
-     * Required. The name of the job to delete. Replace {namespace_id\} with the project ID or number.
+     * Required. The name of the job to delete. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
     /**
@@ -4437,7 +4437,7 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Jobs$Get
     extends StandardParameters {
     /**
-     * Required. The name of the job to retrieve. Replace {namespace_id\} with the project ID or number.
+     * Required. The name of the job to retrieve. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
   }
@@ -4464,7 +4464,7 @@ export namespace run_v1 {
      */
     limit?: number;
     /**
-     * Required. The namespace from which the jobs should be listed. Replace {namespace_id\} with the project ID or number.
+     * Required. The namespace from which the jobs should be listed. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     parent?: string;
     /**
@@ -4479,7 +4479,7 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Jobs$Replacejob
     extends StandardParameters {
     /**
-     * Required. The name of the service being replaced. Replace {namespace_id\} with the project ID or number.
+     * Required. The name of the service being replaced. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
 
@@ -4491,7 +4491,7 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Jobs$Run
     extends StandardParameters {
     /**
-     * Required. The name of the job to run. Replace {namespace_id\} with the project ID or number.
+     * Required. The name of the job to run. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
 
@@ -4540,7 +4540,7 @@ export namespace run_v1 {
      *     dryRun: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // The name of the revision to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // The name of the revision to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'namespaces/my-namespace/revisions/my-revision',
      *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
      *     propagationPolicy: 'placeholder-value',
@@ -4676,7 +4676,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.revisions.get({
-     *     // The name of the revision to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // The name of the revision to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'namespaces/my-namespace/revisions/my-revision',
      *   });
      *   console.log(res.data);
@@ -4819,7 +4819,7 @@ export namespace run_v1 {
      *     labelSelector: 'placeholder-value',
      *     // Optional. The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
-     *     // The namespace from which the revisions should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // The namespace from which the revisions should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     parent: 'namespaces/my-namespace',
      *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
      *     resourceVersion: 'placeholder-value',
@@ -4949,7 +4949,7 @@ export namespace run_v1 {
      */
     kind?: string;
     /**
-     * The name of the revision to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * The name of the revision to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
     /**
@@ -4960,7 +4960,7 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Revisions$Get
     extends StandardParameters {
     /**
-     * The name of the revision to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * The name of the revision to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
   }
@@ -4987,7 +4987,7 @@ export namespace run_v1 {
      */
     limit?: number;
     /**
-     * The namespace from which the revisions should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * The namespace from which the revisions should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     parent?: string;
     /**
@@ -5033,7 +5033,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.routes.get({
-     *     // The name of the route to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // The name of the route to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'namespaces/my-namespace/routes/my-route',
      *   });
      *   console.log(res.data);
@@ -5176,7 +5176,7 @@ export namespace run_v1 {
      *     labelSelector: 'placeholder-value',
      *     // Optional. The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
-     *     // The namespace from which the routes should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // The namespace from which the routes should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     parent: 'namespaces/my-namespace',
      *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
      *     resourceVersion: 'placeholder-value',
@@ -5292,7 +5292,7 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Routes$Get
     extends StandardParameters {
     /**
-     * The name of the route to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * The name of the route to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
   }
@@ -5319,7 +5319,7 @@ export namespace run_v1 {
      */
     limit?: number;
     /**
-     * The namespace from which the routes should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * The namespace from which the routes should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     parent?: string;
     /**
@@ -5365,9 +5365,9 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.services.create({
-     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all` LINT.ThenChange(//depot/google3/google/cloud/serverless/v1/internal_service.proto:create_internal_service_request)
      *     dryRun: 'placeholder-value',
-     *     // The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // LINT.IfChange() The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     parent: 'namespaces/my-namespace',
      *
      *     // Request body metadata
@@ -5517,7 +5517,7 @@ export namespace run_v1 {
      *     dryRun: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // The name of the service to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // The name of the service to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'namespaces/my-namespace/services/my-service',
      *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
      *     propagationPolicy: 'placeholder-value',
@@ -5653,7 +5653,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.services.get({
-     *     // The name of the service to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // The name of the service to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'namespaces/my-namespace/services/my-service',
      *   });
      *   console.log(res.data);
@@ -5796,7 +5796,7 @@ export namespace run_v1 {
      *     labelSelector: 'placeholder-value',
      *     // Optional. The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
-     *     // The namespace from which the services should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // The namespace from which the services should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     parent: 'namespaces/my-namespace',
      *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
      *     resourceVersion: 'placeholder-value',
@@ -5937,9 +5937,9 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.services.replaceService({
-     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all` LINT.ThenChange(//depot/google3/google/cloud/serverless/v1/internal_service.proto:replace_internal_service_request)
      *     dryRun: 'placeholder-value',
-     *     // The name of the service being replaced. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // LINT.IfChange() The name of the service being replaced. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'namespaces/my-namespace/services/my-service',
      *
      *     // Request body metadata
@@ -6061,11 +6061,11 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Services$Create
     extends StandardParameters {
     /**
-     * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all` LINT.ThenChange(//depot/google3/google/cloud/serverless/v1/internal_service.proto:create_internal_service_request)
      */
     dryRun?: string;
     /**
-     * The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * LINT.IfChange() The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     parent?: string;
 
@@ -6089,7 +6089,7 @@ export namespace run_v1 {
      */
     kind?: string;
     /**
-     * The name of the service to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * The name of the service to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
     /**
@@ -6100,7 +6100,7 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Services$Get
     extends StandardParameters {
     /**
-     * The name of the service to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * The name of the service to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
   }
@@ -6127,7 +6127,7 @@ export namespace run_v1 {
      */
     limit?: number;
     /**
-     * The namespace from which the services should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * The namespace from which the services should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     parent?: string;
     /**
@@ -6142,11 +6142,11 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Services$Replaceservice
     extends StandardParameters {
     /**
-     * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all` LINT.ThenChange(//depot/google3/google/cloud/serverless/v1/internal_service.proto:replace_internal_service_request)
      */
     dryRun?: string;
     /**
-     * The name of the service being replaced. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * LINT.IfChange() The name of the service being replaced. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
 
@@ -6189,7 +6189,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.tasks.get({
-     *     // Required. The name of the task to retrieve. Replace {namespace_id\} with the project ID or number.
+     *     // Required. The name of the task to retrieve. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'namespaces/my-namespace/tasks/my-task',
      *   });
      *   console.log(res.data);
@@ -6332,7 +6332,7 @@ export namespace run_v1 {
      *     labelSelector: 'placeholder-value',
      *     // Optional. The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
-     *     // Required. The namespace from which the tasks should be listed. Replace {namespace_id\} with the project ID or number.
+     *     // Required. The namespace from which the tasks should be listed. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     parent: 'namespaces/my-namespace',
      *     // Optional. The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
      *     resourceVersion: 'placeholder-value',
@@ -6448,7 +6448,7 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Tasks$Get
     extends StandardParameters {
     /**
-     * Required. The name of the task to retrieve. Replace {namespace_id\} with the project ID or number.
+     * Required. The name of the task to retrieve. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
   }
@@ -6475,7 +6475,7 @@ export namespace run_v1 {
      */
     limit?: number;
     /**
-     * Required. The namespace from which the tasks should be listed. Replace {namespace_id\} with the project ID or number.
+     * Required. The namespace from which the tasks should be listed. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     parent?: string;
     /**
@@ -6719,7 +6719,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.list({
-     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
@@ -6837,7 +6837,7 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
     /**
@@ -7390,7 +7390,7 @@ export namespace run_v1 {
      *   const res = await run.projects.locations.domainmappings.create({
      *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
      *     dryRun: 'placeholder-value',
-     *     // The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -7541,7 +7541,7 @@ export namespace run_v1 {
      *     dryRun: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'projects/my-project/locations/my-location/domainmappings/my-domainmapping',
      *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
      *     propagationPolicy: 'placeholder-value',
@@ -7674,7 +7674,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.domainmappings.get({
-     *     // The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'projects/my-project/locations/my-location/domainmappings/my-domainmapping',
      *   });
      *   console.log(res.data);
@@ -7814,7 +7814,7 @@ export namespace run_v1 {
      *     labelSelector: 'placeholder-value',
      *     // Optional. The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
-     *     // The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     parent: 'projects/my-project/locations/my-location',
      *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
      *     resourceVersion: 'placeholder-value',
@@ -7939,7 +7939,7 @@ export namespace run_v1 {
      */
     dryRun?: string;
     /**
-     * The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     parent?: string;
 
@@ -7963,7 +7963,7 @@ export namespace run_v1 {
      */
     kind?: string;
     /**
-     * The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
     /**
@@ -7974,7 +7974,7 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Domainmappings$Get
     extends StandardParameters {
     /**
-     * The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
   }
@@ -8001,7 +8001,7 @@ export namespace run_v1 {
      */
     limit?: number;
     /**
-     * The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     parent?: string;
     /**
@@ -8516,7 +8516,7 @@ export namespace run_v1 {
      *     dryRun: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // The name of the revision to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // The name of the revision to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'projects/my-project/locations/my-location/revisions/my-revision',
      *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
      *     propagationPolicy: 'placeholder-value',
@@ -8649,7 +8649,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.revisions.get({
-     *     // The name of the revision to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // The name of the revision to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'projects/my-project/locations/my-location/revisions/my-revision',
      *   });
      *   console.log(res.data);
@@ -8789,7 +8789,7 @@ export namespace run_v1 {
      *     labelSelector: 'placeholder-value',
      *     // Optional. The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
-     *     // The namespace from which the revisions should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // The namespace from which the revisions should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     parent: 'projects/my-project/locations/my-location',
      *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
      *     resourceVersion: 'placeholder-value',
@@ -8920,7 +8920,7 @@ export namespace run_v1 {
      */
     kind?: string;
     /**
-     * The name of the revision to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * The name of the revision to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
     /**
@@ -8931,7 +8931,7 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Revisions$Get
     extends StandardParameters {
     /**
-     * The name of the revision to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * The name of the revision to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
   }
@@ -8958,7 +8958,7 @@ export namespace run_v1 {
      */
     limit?: number;
     /**
-     * The namespace from which the revisions should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * The namespace from which the revisions should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     parent?: string;
     /**
@@ -9004,7 +9004,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.routes.get({
-     *     // The name of the route to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // The name of the route to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'projects/my-project/locations/my-location/routes/my-route',
      *   });
      *   console.log(res.data);
@@ -9144,7 +9144,7 @@ export namespace run_v1 {
      *     labelSelector: 'placeholder-value',
      *     // Optional. The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
-     *     // The namespace from which the routes should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // The namespace from which the routes should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     parent: 'projects/my-project/locations/my-location',
      *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
      *     resourceVersion: 'placeholder-value',
@@ -9261,7 +9261,7 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Routes$Get
     extends StandardParameters {
     /**
-     * The name of the route to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * The name of the route to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
   }
@@ -9288,7 +9288,7 @@ export namespace run_v1 {
      */
     limit?: number;
     /**
-     * The namespace from which the routes should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * The namespace from which the routes should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     parent?: string;
     /**
@@ -9334,9 +9334,9 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.create({
-     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all` LINT.ThenChange(//depot/google3/google/cloud/serverless/v1/internal_service.proto:create_internal_service_request)
      *     dryRun: 'placeholder-value',
-     *     // The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // LINT.IfChange() The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -9487,7 +9487,7 @@ export namespace run_v1 {
      *     dryRun: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // The name of the service to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // The name of the service to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'projects/my-project/locations/my-location/services/my-service',
      *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
      *     propagationPolicy: 'placeholder-value',
@@ -9620,7 +9620,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.get({
-     *     // The name of the service to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // The name of the service to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'projects/my-project/locations/my-location/services/my-service',
      *   });
      *   console.log(res.data);
@@ -9894,7 +9894,7 @@ export namespace run_v1 {
      *     labelSelector: 'placeholder-value',
      *     // Optional. The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
-     *     // The namespace from which the services should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // The namespace from which the services should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     parent: 'projects/my-project/locations/my-location',
      *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
      *     resourceVersion: 'placeholder-value',
@@ -10036,9 +10036,9 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.replaceService({
-     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all` LINT.ThenChange(//depot/google3/google/cloud/serverless/v1/internal_service.proto:replace_internal_service_request)
      *     dryRun: 'placeholder-value',
-     *     // The name of the service being replaced. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     // LINT.IfChange() The name of the service being replaced. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'projects/my-project/locations/my-location/services/my-service',
      *
      *     // Request body metadata
@@ -10444,11 +10444,11 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Services$Create
     extends StandardParameters {
     /**
-     * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all` LINT.ThenChange(//depot/google3/google/cloud/serverless/v1/internal_service.proto:create_internal_service_request)
      */
     dryRun?: string;
     /**
-     * The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * LINT.IfChange() The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     parent?: string;
 
@@ -10472,7 +10472,7 @@ export namespace run_v1 {
      */
     kind?: string;
     /**
-     * The name of the service to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * The name of the service to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
     /**
@@ -10483,7 +10483,7 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Services$Get
     extends StandardParameters {
     /**
-     * The name of the service to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * The name of the service to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
   }
@@ -10521,7 +10521,7 @@ export namespace run_v1 {
      */
     limit?: number;
     /**
-     * The namespace from which the services should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * The namespace from which the services should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     parent?: string;
     /**
@@ -10536,11 +10536,11 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Services$Replaceservice
     extends StandardParameters {
     /**
-     * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all` LINT.ThenChange(//depot/google3/google/cloud/serverless/v1/internal_service.proto:replace_internal_service_request)
      */
     dryRun?: string;
     /**
-     * The name of the service being replaced. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     * LINT.IfChange() The name of the service being replaced. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
 
