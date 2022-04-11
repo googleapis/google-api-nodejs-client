@@ -488,7 +488,7 @@
       }
     }
   },
-  "revision": "20220328",
+  "revision": "20220406",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -636,6 +636,51 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementV1AudioStatusReport": {
+      "description": "Audio report.",
+      "id": "GoogleChromeManagementV1AudioStatusReport",
+      "properties": {
+        "inputDevice": {
+          "description": "Output only. Active input device's name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "inputGain": {
+          "description": "Output only. Active input device's gain in [0, 100].",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "inputMute": {
+          "description": "Output only. Is active input device mute or not.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "outputDevice": {
+          "description": "Output only. Active output device's name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "outputMute": {
+          "description": "Output only. Is active output device mute or not.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "outputVolume": {
+          "description": "Output only. Active output device's volume in [0, 100].",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "reportTime": {
+          "description": "Output only. Timestamp of when the sample was collected on device.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementV1BatteryInfo": {
       "description": "Battery info",
       "id": "GoogleChromeManagementV1BatteryInfo",
@@ -769,7 +814,7 @@
           "type": "string"
         },
         "sample": {
-          "description": "Output only. Sampling data for the battery.",
+          "description": "Output only. Sampling data for the battery sorted in a decreasing order of report_time.",
           "items": {
             "$ref": "GoogleChromeManagementV1BatterySampleReport"
           },
@@ -865,8 +910,18 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "isKioskOnly": {
+          "description": "Output only. Whether the app is only for Kiosk mode on Chrome OS devices",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "isTheme": {
           "description": "Output only. Whether the app or extension is a theme.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "kioskEnabled": {
+          "description": "Output only. Whether this app is enabled for Kiosk mode on Chrome OS devices",
           "readOnly": true,
           "type": "boolean"
         },
@@ -1678,6 +1733,14 @@
       "description": "Telemetry data collected from a managed device.",
       "id": "GoogleChromeManagementV1TelemetryDevice",
       "properties": {
+        "audioStatusReport": {
+          "description": "Output only. Audio reports collected periodically sorted in a decreasing order of report_time.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1AudioStatusReport"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "batteryInfo": {
           "description": "Output only. Information on battery specs for the device.",
           "items": {
@@ -1703,7 +1766,7 @@
           "type": "array"
         },
         "cpuStatusReport": {
-          "description": "Output only. CPU status reports collected periodically.",
+          "description": "Output only. CPU status reports collected periodically sorted in a decreasing order of report_time.",
           "items": {
             "$ref": "GoogleChromeManagementV1CpuStatusReport"
           },
@@ -1739,7 +1802,7 @@
           "readOnly": true
         },
         "memoryStatusReport": {
-          "description": "Output only. Memory status reports collected periodically.",
+          "description": "Output only. Memory status reports collected periodically sorted decreasing by report_time.",
           "items": {
             "$ref": "GoogleChromeManagementV1MemoryStatusReport"
           },
