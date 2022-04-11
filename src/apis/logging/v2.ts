@@ -356,6 +356,23 @@ export namespace logging_v2 {
     userAgent?: string | null;
   }
   /**
+   * Configuration for an indexed field.
+   */
+  export interface Schema$IndexConfig {
+    /**
+     * Output only. The timestamp when the index was last modified.This is used to return the timestamp, and will be ignored if supplied during update.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The LogEntry field path to index.Note that some paths are automatically indexed, and other paths are not eligible for indexing. See indexing documentation( https://cloud.google.com/logging/docs/view/advanced-queries#indexed-fields) for details.For example: jsonPayload.request.status
+     */
+    fieldPath?: string | null;
+    /**
+     * Required. The type of data in this index.
+     */
+    type?: string | null;
+  }
+  /**
    * A description of a label.
    */
   export interface Schema$LabelDescriptor {
@@ -589,6 +606,10 @@ export namespace logging_v2 {
      * Describes this bucket.
      */
     description?: string | null;
+    /**
+     * A list of indexed fields and related configuration data.
+     */
+    indexConfigs?: Schema$IndexConfig[];
     /**
      * Output only. The bucket lifecycle state.
      */
@@ -1718,6 +1739,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -3120,6 +3142,7 @@ export namespace logging_v2 {
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
@@ -3136,6 +3159,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -3547,6 +3571,7 @@ export namespace logging_v2 {
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
@@ -3563,6 +3588,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -9240,6 +9266,7 @@ export namespace logging_v2 {
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
@@ -9256,6 +9283,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -9525,6 +9553,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -9806,6 +9835,7 @@ export namespace logging_v2 {
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
@@ -9822,6 +9852,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -13018,6 +13049,7 @@ export namespace logging_v2 {
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
@@ -13034,6 +13066,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -13303,6 +13336,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -13584,6 +13618,7 @@ export namespace logging_v2 {
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
@@ -13600,6 +13635,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -17379,6 +17415,7 @@ export namespace logging_v2 {
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
@@ -17395,6 +17432,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -17664,6 +17702,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -17945,6 +17984,7 @@ export namespace logging_v2 {
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
@@ -17961,6 +18001,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -22249,6 +22290,7 @@ export namespace logging_v2 {
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
@@ -22265,6 +22307,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -22534,6 +22577,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -22815,6 +22859,7 @@ export namespace logging_v2 {
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
@@ -22831,6 +22876,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
