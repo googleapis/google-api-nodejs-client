@@ -965,7 +965,7 @@ export namespace servicemanagement_v1 {
      */
     producerProjectId?: string | null;
     /**
-     * The name of the service. See the [overview](/service-management/overview) for naming requirements.
+     * The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements.
      */
     serviceName?: string | null;
   }
@@ -2194,7 +2194,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.delete({
-     *     // Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     *     // Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      *     serviceName: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2620,7 +2620,7 @@ export namespace servicemanagement_v1 {
      *   const res = await servicemanagement.services.getConfig({
      *     // Required. The id of the service configuration resource. This field must be specified for the server to return all fields, including `SourceInfo`.
      *     configId: 'placeholder-value',
-     *     // Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     *     // Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      *     serviceName: 'placeholder-value',
      *     // Specifies which parts of the Service Config should be returned in the response.
      *     view: 'placeholder-value',
@@ -3365,7 +3365,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.undelete({
-     *     // Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     *     // Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      *     serviceName: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3481,7 +3481,7 @@ export namespace servicemanagement_v1 {
   }
   export interface Params$Resource$Services$Delete extends StandardParameters {
     /**
-     * Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     * Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      */
     serviceName?: string;
   }
@@ -3505,7 +3505,7 @@ export namespace servicemanagement_v1 {
      */
     configId?: string;
     /**
-     * Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     * Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      */
     serviceName?: string;
     /**
@@ -3570,7 +3570,7 @@ export namespace servicemanagement_v1 {
   export interface Params$Resource$Services$Undelete
     extends StandardParameters {
     /**
-     * Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     * Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      */
     serviceName?: string;
   }
@@ -3611,7 +3611,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.configs.create({
-     *     // Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     *     // Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      *     serviceName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3808,7 +3808,7 @@ export namespace servicemanagement_v1 {
      *   const res = await servicemanagement.services.configs.get({
      *     // Required. The id of the service configuration resource. This field must be specified for the server to return all fields, including `SourceInfo`.
      *     configId: 'placeholder-value',
-     *     // Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     *     // Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      *     serviceName: 'placeholder-value',
      *     // Specifies which parts of the Service Config should be returned in the response.
      *     view: 'placeholder-value',
@@ -3974,7 +3974,7 @@ export namespace servicemanagement_v1 {
      *     pageSize: 'placeholder-value',
      *     // The token of the page to retrieve.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     *     // Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      *     serviceName: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4115,7 +4115,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.configs.submit({
-     *     // Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     *     // Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      *     serviceName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4234,7 +4234,7 @@ export namespace servicemanagement_v1 {
   export interface Params$Resource$Services$Configs$Create
     extends StandardParameters {
     /**
-     * Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     * Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      */
     serviceName?: string;
 
@@ -4250,7 +4250,7 @@ export namespace servicemanagement_v1 {
      */
     configId?: string;
     /**
-     * Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     * Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      */
     serviceName?: string;
     /**
@@ -4269,14 +4269,14 @@ export namespace servicemanagement_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     * Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      */
     serviceName?: string;
   }
   export interface Params$Resource$Services$Configs$Submit
     extends StandardParameters {
     /**
-     * Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     * Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      */
     serviceName?: string;
 
@@ -4807,7 +4807,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.rollouts.create({
-     *     // Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     *     // Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      *     serviceName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4962,7 +4962,7 @@ export namespace servicemanagement_v1 {
      *   const res = await servicemanagement.services.rollouts.get({
      *     // Required. The id of the rollout resource.
      *     rolloutId: 'placeholder-value',
-     *     // Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     *     // Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      *     serviceName: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5102,13 +5102,13 @@ export namespace servicemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.rollouts.list({
-     *     // Required. Use `filter` to return subset of rollouts. The following filters are supported: -- To limit the results to only those in [status](google.api.servicemanagement.v1.RolloutStatus) 'SUCCESS', use filter='status=SUCCESS' -- To limit the results to those in [status](google.api.servicemanagement.v1.RolloutStatus) 'CANCELLED' or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
+     *     // Required. Use `filter` to return subset of rollouts. The following filters are supported: -- To limit the results to only those in status 'SUCCESS', use filter='status=SUCCESS' -- To limit the results to those in status 'CANCELLED' or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
      *     filter: 'placeholder-value',
      *     // The max number of items to include in the response list. Page size is 50 if not specified. Maximum value is 100.
      *     pageSize: 'placeholder-value',
      *     // The token of the page to retrieve.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     *     // Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      *     serviceName: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5223,7 +5223,7 @@ export namespace servicemanagement_v1 {
   export interface Params$Resource$Services$Rollouts$Create
     extends StandardParameters {
     /**
-     * Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     * Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      */
     serviceName?: string;
 
@@ -5239,14 +5239,14 @@ export namespace servicemanagement_v1 {
      */
     rolloutId?: string;
     /**
-     * Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     * Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      */
     serviceName?: string;
   }
   export interface Params$Resource$Services$Rollouts$List
     extends StandardParameters {
     /**
-     * Required. Use `filter` to return subset of rollouts. The following filters are supported: -- To limit the results to only those in [status](google.api.servicemanagement.v1.RolloutStatus) 'SUCCESS', use filter='status=SUCCESS' -- To limit the results to those in [status](google.api.servicemanagement.v1.RolloutStatus) 'CANCELLED' or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
+     * Required. Use `filter` to return subset of rollouts. The following filters are supported: -- To limit the results to only those in status 'SUCCESS', use filter='status=SUCCESS' -- To limit the results to those in status 'CANCELLED' or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
      */
     filter?: string;
     /**
@@ -5258,7 +5258,7 @@ export namespace servicemanagement_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     * Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      */
     serviceName?: string;
   }
