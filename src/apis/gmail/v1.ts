@@ -7743,7 +7743,7 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Deletes a filter.
+     * Immediately and permanently deletes the specified filter.
      * @example
      * ```js
      * // Before running the sample:
