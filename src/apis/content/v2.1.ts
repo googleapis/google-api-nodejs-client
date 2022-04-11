@@ -114,7 +114,9 @@ export namespace content_v2_1 {
   export class Content {
     context: APIRequestContext;
     accounts: Resource$Accounts;
+    accountsbyexternalsellerid: Resource$Accountsbyexternalsellerid;
     accountstatuses: Resource$Accountstatuses;
+    accountstatusesbyexternalsellerid: Resource$Accountstatusesbyexternalsellerid;
     accounttax: Resource$Accounttax;
     buyongoogleprograms: Resource$Buyongoogleprograms;
     collections: Resource$Collections;
@@ -154,7 +156,12 @@ export namespace content_v2_1 {
       };
 
       this.accounts = new Resource$Accounts(this.context);
+      this.accountsbyexternalsellerid = new Resource$Accountsbyexternalsellerid(
+        this.context
+      );
       this.accountstatuses = new Resource$Accountstatuses(this.context);
+      this.accountstatusesbyexternalsellerid =
+        new Resource$Accountstatusesbyexternalsellerid(this.context);
       this.accounttax = new Resource$Accounttax(this.context);
       this.buyongoogleprograms = new Resource$Buyongoogleprograms(this.context);
       this.collections = new Resource$Collections(this.context);
@@ -11422,6 +11429,172 @@ export namespace content_v2_1 {
     requestBody?: Schema$AccountReturnCarrier;
   }
 
+  export class Resource$Accountsbyexternalsellerid {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets data of the account with the specified external_seller_id belonging to the MCA with the specified merchant_id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accountsbyexternalsellerid.get({
+     *     // Required. The External Seller ID of the seller account to be retrieved.
+     *     externalSellerId: 'placeholder-value',
+     *     // Required. The ID of the MCA containing the seller.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountManagement": "my_accountManagement",
+     *   //   "adsLinks": [],
+     *   //   "adultContent": false,
+     *   //   "automaticImprovements": {},
+     *   //   "automaticLabelIds": [],
+     *   //   "businessInformation": {},
+     *   //   "cssId": "my_cssId",
+     *   //   "googleMyBusinessLink": {},
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "labelIds": [],
+     *   //   "name": "my_name",
+     *   //   "sellerId": "my_sellerId",
+     *   //   "users": [],
+     *   //   "websiteUrl": "my_websiteUrl",
+     *   //   "youtubeChannelLinks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Accountsbyexternalsellerid$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Accountsbyexternalsellerid$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Account>;
+    get(
+      params: Params$Resource$Accountsbyexternalsellerid$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Accountsbyexternalsellerid$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Account>,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
+    get(
+      params: Params$Resource$Accountsbyexternalsellerid$Get,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Account>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accountsbyexternalsellerid$Get
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accountsbyexternalsellerid$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accountsbyexternalsellerid$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/accountsbyexternalsellerid/{externalSellerId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'externalSellerId'],
+        pathParams: ['externalSellerId', 'merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Account>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Account>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accountsbyexternalsellerid$Get
+    extends StandardParameters {
+    /**
+     * Required. The External Seller ID of the seller account to be retrieved.
+     */
+    externalSellerId?: string;
+    /**
+     * Required. The ID of the MCA containing the seller.
+     */
+    merchantId?: string;
+  }
+
   export class Resource$Accountstatuses {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -11902,6 +12075,168 @@ export namespace content_v2_1 {
      * The token returned by the previous request.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Accountstatusesbyexternalsellerid {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets status of the account with the specified external_seller_id belonging to the MCA with the specified merchant_id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accountstatusesbyexternalsellerid.get({
+     *     // If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
+     *     destinations: 'placeholder-value',
+     *     // Required. The External Seller ID of the seller account to be retrieved.
+     *     externalSellerId: 'placeholder-value',
+     *     // Required. The ID of the MCA containing the seller.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "accountLevelIssues": [],
+     *   //   "accountManagement": "my_accountManagement",
+     *   //   "kind": "my_kind",
+     *   //   "products": [],
+     *   //   "websiteClaimed": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Accountstatusesbyexternalsellerid$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Accountstatusesbyexternalsellerid$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountStatus>;
+    get(
+      params: Params$Resource$Accountstatusesbyexternalsellerid$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Accountstatusesbyexternalsellerid$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AccountStatus>,
+      callback: BodyResponseCallback<Schema$AccountStatus>
+    ): void;
+    get(
+      params: Params$Resource$Accountstatusesbyexternalsellerid$Get,
+      callback: BodyResponseCallback<Schema$AccountStatus>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AccountStatus>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accountstatusesbyexternalsellerid$Get
+        | BodyResponseCallback<Schema$AccountStatus>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccountStatus>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccountStatus>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AccountStatus> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accountstatusesbyexternalsellerid$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accountstatusesbyexternalsellerid$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/accountstatusesbyexternalsellerid/{externalSellerId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'externalSellerId'],
+        pathParams: ['externalSellerId', 'merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccountStatus>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccountStatus>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accountstatusesbyexternalsellerid$Get
+    extends StandardParameters {
+    /**
+     * If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
+     */
+    destinations?: string[];
+    /**
+     * Required. The External Seller ID of the seller account to be retrieved.
+     */
+    externalSellerId?: string;
+    /**
+     * Required. The ID of the MCA containing the seller.
+     */
+    merchantId?: string;
   }
 
   export class Resource$Accounttax {
@@ -12526,7 +12861,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Reactivates the BoG program in your Merchant Center account. Moves the program to the active state when allowed, e.g. when paused. Important: This method is only whitelisted for selected merchants.
+     * Reactivates the BoG program in your Merchant Center account. Moves the program to the active state when allowed, for example, when paused. This method is only available to selected merchants.
      * @example
      * ```js
      * // Before running the sample:
@@ -13100,7 +13435,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Pauses the BoG program in your Merchant Center account. Important: This method is only whitelisted for selected merchants.
+     * Pauses the BoG program in your Merchant Center account. This method is only available to selected merchants.
      * @example
      * ```js
      * // Before running the sample:
@@ -13231,7 +13566,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Requests review and then activates the BoG program in your Merchant Center account for the first time. Moves the program to the REVIEW_PENDING state. Important: This method is only whitelisted for selected merchants.
+     * Requests review and then activates the BoG program in your Merchant Center account for the first time. Moves the program to the REVIEW_PENDING state. This method is only available to selected merchants.
      * @example
      * ```js
      * // Before running the sample:
@@ -16561,7 +16896,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Requests a review of free listings in a specific region Important: This method is only whitelisted for selected merchants.
+     * Requests a review of free listings in a specific region. This method is only available to selected merchants.
      * @example
      * ```js
      * // Before running the sample:
@@ -34353,7 +34688,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Requests a review of Shopping ads in a specific region.
+     * Requests a review of Shopping ads in a specific region. This method is only available to selected merchants.
      * @example
      * ```js
      * // Before running the sample:
