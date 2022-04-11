@@ -225,6 +225,39 @@ export namespace chromemanagement_v1 {
     type?: string | null;
   }
   /**
+   * Audio report.
+   */
+  export interface Schema$GoogleChromeManagementV1AudioStatusReport {
+    /**
+     * Output only. Active input device's name.
+     */
+    inputDevice?: string | null;
+    /**
+     * Output only. Active input device's gain in [0, 100].
+     */
+    inputGain?: number | null;
+    /**
+     * Output only. Is active input device mute or not.
+     */
+    inputMute?: boolean | null;
+    /**
+     * Output only. Active output device's name.
+     */
+    outputDevice?: string | null;
+    /**
+     * Output only. Is active output device mute or not.
+     */
+    outputMute?: boolean | null;
+    /**
+     * Output only. Active output device's volume in [0, 100].
+     */
+    outputVolume?: number | null;
+    /**
+     * Output only. Timestamp of when the sample was collected on device.
+     */
+    reportTime?: string | null;
+  }
+  /**
    * Battery info
    */
   export interface Schema$GoogleChromeManagementV1BatteryInfo {
@@ -311,7 +344,7 @@ export namespace chromemanagement_v1 {
      */
     reportTime?: string | null;
     /**
-     * Output only. Sampling data for the battery.
+     * Output only. Sampling data for the battery sorted in a decreasing order of report_time.
      */
     sample?: Schema$GoogleChromeManagementV1BatterySampleReport[];
     /**
@@ -357,9 +390,17 @@ export namespace chromemanagement_v1 {
      */
     isCwsHosted?: boolean | null;
     /**
+     * Output only. Whether the app is only for Kiosk mode on Chrome OS devices
+     */
+    isKioskOnly?: boolean | null;
+    /**
      * Output only. Whether the app or extension is a theme.
      */
     isTheme?: boolean | null;
+    /**
+     * Output only. Whether this app is enabled for Kiosk mode on Chrome OS devices
+     */
+    kioskEnabled?: boolean | null;
     /**
      * Output only. The minimum number of users using this app.
      */
@@ -888,6 +929,10 @@ export namespace chromemanagement_v1 {
    */
   export interface Schema$GoogleChromeManagementV1TelemetryDevice {
     /**
+     * Output only. Audio reports collected periodically sorted in a decreasing order of report_time.
+     */
+    audioStatusReport?: Schema$GoogleChromeManagementV1AudioStatusReport[];
+    /**
      * Output only. Information on battery specs for the device.
      */
     batteryInfo?: Schema$GoogleChromeManagementV1BatteryInfo[];
@@ -900,7 +945,7 @@ export namespace chromemanagement_v1 {
      */
     cpuInfo?: Schema$GoogleChromeManagementV1CpuInfo[];
     /**
-     * Output only. CPU status reports collected periodically.
+     * Output only. CPU status reports collected periodically sorted in a decreasing order of report_time.
      */
     cpuStatusReport?: Schema$GoogleChromeManagementV1CpuStatusReport[];
     /**
@@ -924,7 +969,7 @@ export namespace chromemanagement_v1 {
      */
     memoryInfo?: Schema$GoogleChromeManagementV1MemoryInfo;
     /**
-     * Output only. Memory status reports collected periodically.
+     * Output only. Memory status reports collected periodically sorted decreasing by report_time.
      */
     memoryStatusReport?: Schema$GoogleChromeManagementV1MemoryStatusReport[];
     /**
