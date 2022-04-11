@@ -147,28 +147,6 @@
                 "$ref": "Empty"
               }
             },
-            "deleteAnswers": {
-              "description": "Deletes the answer written by the current user to a question.",
-              "flatPath": "v1/locations/{locationsId}/questions/{questionsId}/answers",
-              "httpMethod": "DELETE",
-              "id": "mybusinessqanda.locations.questions.deleteAnswers",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "Required. The name of the question to delete an answer for.",
-                  "location": "path",
-                  "pattern": "^locations/[^/]+/questions/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1/{+name}/answers",
-              "response": {
-                "$ref": "Empty"
-              }
-            },
             "list": {
               "description": "Returns the paginated list of questions and some of its answers for a specified location. This operation is only valid if the specified location is verified.",
               "flatPath": "v1/locations/{locationsId}/questions",
@@ -253,6 +231,28 @@
           "resources": {
             "answers": {
               "methods": {
+                "delete": {
+                  "description": "Deletes the answer written by the current user to a question.",
+                  "flatPath": "v1/locations/{locationsId}/questions/{questionsId}/answers:delete",
+                  "httpMethod": "DELETE",
+                  "id": "mybusinessqanda.locations.questions.answers.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the question to delete an answer for.",
+                      "location": "path",
+                      "pattern": "^locations/[^/]+/questions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}/answers:delete",
+                  "response": {
+                    "$ref": "Empty"
+                  }
+                },
                 "list": {
                   "description": "Returns the paginated list of answers for a specified question.",
                   "flatPath": "v1/locations/{locationsId}/questions/{questionsId}/answers",
@@ -281,12 +281,12 @@
                     "parent": {
                       "description": "Required. The name of the question to fetch answers for.",
                       "location": "path",
-                      "pattern": "^locations/[^/]+/questions/[^/]+/answers$",
+                      "pattern": "^locations/[^/]+/questions/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
                   },
-                  "path": "v1/{+parent}",
+                  "path": "v1/{+parent}/answers",
                   "response": {
                     "$ref": "ListAnswersResponse"
                   }
@@ -323,7 +323,7 @@
       }
     }
   },
-  "revision": "20220322",
+  "revision": "20220407",
   "rootUrl": "https://mybusinessqanda.googleapis.com/",
   "schemas": {
     "Answer": {

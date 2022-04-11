@@ -548,134 +548,6 @@ export namespace mybusinessqanda_v1 {
     }
 
     /**
-     * Deletes the answer written by the current user to a question.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/mybusinessqanda.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const mybusinessqanda = google.mybusinessqanda('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await mybusinessqanda.locations.questions.deleteAnswers({
-     *     // Required. The name of the question to delete an answer for.
-     *     name: 'locations/my-location/questions/my-question',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    deleteAnswers(
-      params: Params$Resource$Locations$Questions$Deleteanswers,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    deleteAnswers(
-      params?: Params$Resource$Locations$Questions$Deleteanswers,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
-    deleteAnswers(
-      params: Params$Resource$Locations$Questions$Deleteanswers,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    deleteAnswers(
-      params: Params$Resource$Locations$Questions$Deleteanswers,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    deleteAnswers(
-      params: Params$Resource$Locations$Questions$Deleteanswers,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    deleteAnswers(callback: BodyResponseCallback<Schema$Empty>): void;
-    deleteAnswers(
-      paramsOrCallback?:
-        | Params$Resource$Locations$Questions$Deleteanswers
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Locations$Questions$Deleteanswers;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Locations$Questions$Deleteanswers;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://mybusinessqanda.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}/answers').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Empty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Empty>(parameters);
-      }
-    }
-
-    /**
      * Returns the paginated list of questions and some of its answers for a specified location. This operation is only valid if the specified location is verified.
      * @example
      * ```js
@@ -990,13 +862,6 @@ export namespace mybusinessqanda_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Locations$Questions$Deleteanswers
-    extends StandardParameters {
-    /**
-     * Required. The name of the question to delete an answer for.
-     */
-    name?: string;
-  }
   export interface Params$Resource$Locations$Questions$List
     extends StandardParameters {
     /**
@@ -1048,6 +913,134 @@ export namespace mybusinessqanda_v1 {
     }
 
     /**
+     * Deletes the answer written by the current user to a question.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessqanda.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessqanda = google.mybusinessqanda('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessqanda.locations.questions.answers.delete({
+     *     // Required. The name of the question to delete an answer for.
+     *     name: 'locations/my-location/questions/my-question',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Locations$Questions$Answers$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Locations$Questions$Answers$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Locations$Questions$Answers$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Locations$Questions$Answers$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Locations$Questions$Answers$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Questions$Answers$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Questions$Answers$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Locations$Questions$Answers$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://mybusinessqanda.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/answers:delete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
      * Returns the paginated list of answers for a specified question.
      * @example
      * ```js
@@ -1081,7 +1074,7 @@ export namespace mybusinessqanda_v1 {
      *     // Optional. If specified, the next page of answers is retrieved.
      *     pageToken: 'placeholder-value',
      *     // Required. The name of the question to fetch answers for.
-     *     parent: 'locations/my-location/questions/my-question/answers',
+     *     parent: 'locations/my-location/questions/my-question',
      *   });
      *   console.log(res.data);
      *
@@ -1165,7 +1158,10 @@ export namespace mybusinessqanda_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+parent}/answers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'GET',
           },
           options
@@ -1329,6 +1325,13 @@ export namespace mybusinessqanda_v1 {
     }
   }
 
+  export interface Params$Resource$Locations$Questions$Answers$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the question to delete an answer for.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Locations$Questions$Answers$List
     extends StandardParameters {
     /**
