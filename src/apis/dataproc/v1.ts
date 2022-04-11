@@ -174,6 +174,19 @@ export namespace dataproc_v1 {
     workerConfig?: Schema$InstanceGroupAutoscalingPolicyConfig;
   }
   /**
+   * Auxiliary services configuration for a Cluster.
+   */
+  export interface Schema$AuxiliaryServicesConfig {
+    /**
+     * Optional. The Hive Metastore configuration for this workload.
+     */
+    metastoreConfig?: Schema$MetastoreConfig;
+    /**
+     * Optional. The Spark History Server configuration for the workload.
+     */
+    sparkHistoryServerConfig?: Schema$SparkHistoryServerConfig;
+  }
+  /**
    * Basic algorithm for autoscaling.
    */
   export interface Schema$BasicAutoscalingAlgorithm {
@@ -334,7 +347,7 @@ export namespace dataproc_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Cloud Platform resource. members can have the following values: allUsers: A special identifier that represents anyone who is on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone who is authenticated with a Google account or a service account. user:{emailid\}: An email address that represents a specific Google account. For example, alice@example.com . serviceAccount:{emailid\}: An email address that represents a service account. For example, my-other-app@appspot.gserviceaccount.com. group:{emailid\}: An email address that represents a Google group. For example, admins@example.com. deleted:user:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a user that has been recently deleted. For example, alice@example.com?uid=123456789012345678901. If the user is recovered, this value reverts to user:{emailid\} and the recovered user retains the role in the binding. deleted:serviceAccount:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901. If the service account is undeleted, this value reverts to serviceAccount:{emailid\} and the undeleted service account retains the role in the binding. deleted:group:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, admins@example.com?uid=123456789012345678901. If the group is recovered, this value reverts to group:{emailid\} and the recovered group retains the role in the binding. domain:{domain\}: The G Suite domain (primary) that represents all the users of that domain. For example, google.com or example.com.
+     * Specifies the principals requesting access for a Google Cloud resource. members can have the following values: allUsers: A special identifier that represents anyone who is on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone who is authenticated with a Google account or a service account. user:{emailid\}: An email address that represents a specific Google account. For example, alice@example.com . serviceAccount:{emailid\}: An email address that represents a service account. For example, my-other-app@appspot.gserviceaccount.com. group:{emailid\}: An email address that represents a Google group. For example, admins@example.com. deleted:user:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a user that has been recently deleted. For example, alice@example.com?uid=123456789012345678901. If the user is recovered, this value reverts to user:{emailid\} and the recovered user retains the role in the binding. deleted:serviceAccount:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901. If the service account is undeleted, this value reverts to serviceAccount:{emailid\} and the undeleted service account retains the role in the binding. deleted:group:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, admins@example.com?uid=123456789012345678901. If the group is recovered, this value reverts to group:{emailid\} and the recovered group retains the role in the binding. domain:{domain\}: The G Suite domain (primary) that represents all the users of that domain. For example, google.com or example.com.
      */
     members?: string[] | null;
     /**
@@ -359,7 +372,7 @@ export namespace dataproc_v1 {
      */
     clusterUuid?: string | null;
     /**
-     * Optional. The cluster config for a cluster of Compute Engine Instances. Note that Dataproc may set default values, and values may change when clusters are updated.
+     * Optional. The cluster config for a cluster of Compute Engine Instances. Note that Dataproc may set default values, and values may change when clusters are updated.Exactly one of ClusterConfig or VirtualClusterConfig must be specified.
      */
     config?: Schema$ClusterConfig;
     /**
@@ -382,6 +395,10 @@ export namespace dataproc_v1 {
      * Output only. The previous cluster status.
      */
     statusHistory?: Schema$ClusterStatus[];
+    /**
+     * Optional. The virtual cluster config, used when creating a Dataproc cluster that does not directly control the underlying compute resources, for example, when creating a Dataproc-on-GKE cluster (https://cloud.google.com/dataproc/docs/concepts/jobs/dataproc-gke#create-a-dataproc-on-gke-cluster). Note that Dataproc may set default values, and values may change when clusters are updated. Exactly one of config or virtualClusterConfig must be specified.
+     */
+    virtualClusterConfig?: Schema$VirtualClusterConfig;
   }
   /**
    * The cluster config.
@@ -412,7 +429,7 @@ export namespace dataproc_v1 {
      */
     gceClusterConfig?: Schema$GceClusterConfig;
     /**
-     * Optional. BETA. The Kubernetes Engine config for Dataproc clusters deployed to Kubernetes. Setting this is considered mutually exclusive with Compute Engine-based options such as gce_cluster_config, master_config, worker_config, secondary_worker_config, and autoscaling_config.
+     * Optional. Deprecated. Use VirtualClusterConfig based clusters instead. BETA. The Kubernetes Engine config for Dataproc clusters deployed to Kubernetes. Setting this is considered mutually exclusive with Compute Engine-based options such as gce_cluster_config, master_config, worker_config, secondary_worker_config, and autoscaling_config.
      */
     gkeClusterConfig?: Schema$GkeClusterConfig;
     /**
@@ -791,9 +808,110 @@ export namespace dataproc_v1 {
    */
   export interface Schema$GkeClusterConfig {
     /**
-     * Optional. A target for the deployment.
+     * Optional. A target GKE cluster to deploy to. It must be in the same project and region as the Dataproc cluster (the GKE cluster can be zonal or regional). Format: 'projects/{project\}/locations/{location\}/clusters/{cluster_id\}'
+     */
+    gkeClusterTarget?: string | null;
+    /**
+     * Optional. Deprecated. Use gkeClusterTarget. Used only for the deprecated beta. A target for the deployment.
      */
     namespacedGkeDeploymentTarget?: Schema$NamespacedGkeDeploymentTarget;
+    /**
+     * Optional. GKE NodePools where workloads will be scheduled. At least one node pool must be assigned the 'default' role. Each role can be given to only a single NodePoolTarget. All NodePools must have the same location settings. If a nodePoolTarget is not specified, Dataproc constructs a default nodePoolTarget.
+     */
+    nodePoolTarget?: Schema$GkeNodePoolTarget[];
+  }
+  /**
+   * Parameters that describe cluster nodes.
+   */
+  export interface Schema$GkeNodeConfig {
+    /**
+     * Optional. A list of hardware accelerators (https://cloud.google.com/compute/docs/gpus) to attach to each node.
+     */
+    accelerators?: Schema$GkeNodePoolAcceleratorConfig[];
+    /**
+     * Optional. The number of local SSD disks to attach to the node, which is limited by the maximum number of disks allowable per zone (see Adding Local SSDs (https://cloud.google.com/compute/docs/disks/local-ssd)).
+     */
+    localSsdCount?: number | null;
+    /**
+     * Optional. The name of a Compute Engine machine type (https://cloud.google.com/compute/docs/machine-types).
+     */
+    machineType?: string | null;
+    /**
+     * Optional. Minimum CPU platform (https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform) to be used by this instance. The instance may be scheduled on the specified or a newer CPU platform. Specify the friendly names of CPU platforms, such as "Intel Haswell"` or Intel Sandy Bridge".
+     */
+    minCpuPlatform?: string | null;
+    /**
+     * Optional. Whether the nodes are created as preemptible VM instances (https://cloud.google.com/compute/docs/instances/preemptible).
+     */
+    preemptible?: boolean | null;
+    /**
+     * Optional. Spot flag for enabling Spot VM, which is a rebrand of the existing preemptible flag.
+     */
+    spot?: boolean | null;
+  }
+  /**
+   * A GkeNodeConfigAcceleratorConfig represents a Hardware Accelerator request for a NodePool.
+   */
+  export interface Schema$GkeNodePoolAcceleratorConfig {
+    /**
+     * The number of accelerator cards exposed to an instance.
+     */
+    acceleratorCount?: string | null;
+    /**
+     * The accelerator type resource namename (see GPUs on Compute Engine).
+     */
+    acceleratorType?: string | null;
+    /**
+     * Size of partitions to create on the GPU. Valid values are described in the NVIDIA mig user guide (https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning).
+     */
+    gpuPartitionSize?: string | null;
+  }
+  /**
+   * GkeNodePoolAutoscaling contains information the cluster autoscaler needs to adjust the size of the node pool to the current cluster usage.
+   */
+  export interface Schema$GkeNodePoolAutoscalingConfig {
+    /**
+     * The maximum number of nodes in the NodePool. Must be \>= min_node_count. Note: Quota must be sufficient to scale up the cluster.
+     */
+    maxNodeCount?: number | null;
+    /**
+     * The minimum number of nodes in the NodePool. Must be \>= 0 and <= max_node_count.
+     */
+    minNodeCount?: number | null;
+  }
+  /**
+   * The configuration of a GKE NodePool used by a Dataproc-on-GKE cluster (https://cloud.google.com/dataproc/docs/concepts/jobs/dataproc-gke#create-a-dataproc-on-gke-cluster).
+   */
+  export interface Schema$GkeNodePoolConfig {
+    /**
+     * Optional. The autoscaler configuration for this NodePool. The autoscaler is enabled only when a valid configuration is present.
+     */
+    autoscaling?: Schema$GkeNodePoolAutoscalingConfig;
+    /**
+     * Optional. The node pool configuration.
+     */
+    config?: Schema$GkeNodeConfig;
+    /**
+     * Optional. The list of Compute Engine zones (https://cloud.google.com/compute/docs/zones#available) where NodePool's nodes will be located.Note: Currently, only one zone may be specified.If a location is not specified during NodePool creation, Dataproc will choose a location.
+     */
+    locations?: string[] | null;
+  }
+  /**
+   * GKE NodePools that Dataproc workloads run on.
+   */
+  export interface Schema$GkeNodePoolTarget {
+    /**
+     * Required. The target GKE NodePool. Format: 'projects/{project\}/locations/{location\}/clusters/{cluster\}/nodePools/{node_pool\}'
+     */
+    nodePool?: string | null;
+    /**
+     * Input only. The configuration for the GKE NodePool.If specified, Dataproc attempts to create a NodePool with the specified shape. If one with the same name already exists, it is verified against all specified fields. If a field differs, the virtual cluster creation will fail.If omitted, any NodePool with the specified name is used. If a NodePool with the specified name does not exist, Dataproc create a NodePool with default values.This is an input only field. It will not be returned by the API.
+     */
+    nodePoolConfig?: Schema$GkeNodePoolConfig;
+    /**
+     * Required. The types of role for a GKE NodePool
+     */
+    roles?: string[] | null;
   }
   /**
    * A Dataproc job for running Apache Hadoop MapReduce (https://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html) jobs on Apache Hadoop YARN (https://hadoop.apache.org/docs/r2.7.1/hadoop-yarn/hadoop-yarn-site/YARN.html).
@@ -1219,6 +1337,36 @@ export namespace dataproc_v1 {
     truststoreUri?: string | null;
   }
   /**
+   * The configuration for running the Dataproc cluster on Kubernetes.
+   */
+  export interface Schema$KubernetesClusterConfig {
+    /**
+     * Required. The configuration for running the Dataproc cluster on GKE.
+     */
+    gkeClusterConfig?: Schema$GkeClusterConfig;
+    /**
+     * Optional. A namespace within the Kubernetes cluster to deploy into. If this namespace does not exist, it is created. If it exists, Dataproc verifies that another Dataproc VirtualCluster is not installed into it. If not specified, the name of the Dataproc Cluster is used.
+     */
+    kubernetesNamespace?: string | null;
+    /**
+     * Optional. The software configuration for this Dataproc cluster running on Kubernetes.
+     */
+    kubernetesSoftwareConfig?: Schema$KubernetesSoftwareConfig;
+  }
+  /**
+   * The software configuration for this Dataproc cluster running on Kubernetes.
+   */
+  export interface Schema$KubernetesSoftwareConfig {
+    /**
+     * The components that should be installed in this Dataproc cluster. The key must be a string from the KubernetesComponent enumeration. The value is the version of the software to be installed. At least one entry must be specified.
+     */
+    componentVersion?: {[key: string]: string} | null;
+    /**
+     * The properties to set on daemon config files.Property keys are specified in prefix:property format, for example spark:spark.kubernetes.container.image. The following are supported prefixes and their mappings: spark: spark-defaults.confFor more information, see Cluster properties (https://cloud.google.com/dataproc/docs/concepts/cluster-properties).
+     */
+    properties?: {[key: string]: string} | null;
+  }
+  /**
    * Specifies the cluster auto-delete schedule configuration.
    */
   export interface Schema$LifecycleConfig {
@@ -1379,7 +1527,7 @@ export namespace dataproc_v1 {
     metricSource?: string | null;
   }
   /**
-   * A full, namespace-isolated deployment target for an existing GKE cluster.
+   * Deprecated. Used only for the deprecated beta. A full, namespace-isolated deployment target for an existing GKE cluster.
    */
   export interface Schema$NamespacedGkeDeploymentTarget {
     /**
@@ -1803,7 +1951,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$SetIamPolicyRequest {
     /**
-     * REQUIRED: The complete policy to be applied to the resource. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
+     * REQUIRED: The complete policy to be applied to the resource. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
   }
@@ -2136,7 +2284,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the resource. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see IAM Overview (https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the resource. Permissions with wildcards (such as * or storage.*) are not allowed. For more information see IAM Overview (https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[] | null;
   }
@@ -2157,6 +2305,23 @@ export namespace dataproc_v1 {
      * Required. List of allowed values for the parameter.
      */
     values?: string[] | null;
+  }
+  /**
+   * Dataproc cluster config for a cluster that does not directly control the underlying compute resources, such as a Dataproc-on-GKE cluster (https://cloud.google.com/dataproc/docs/concepts/jobs/dataproc-gke#create-a-dataproc-on-gke-cluster).
+   */
+  export interface Schema$VirtualClusterConfig {
+    /**
+     * Optional. Configuration of auxiliary services used by this cluster.
+     */
+    auxiliaryServicesConfig?: Schema$AuxiliaryServicesConfig;
+    /**
+     * Required. The configuration for running the Dataproc cluster on Kubernetes.
+     */
+    kubernetesClusterConfig?: Schema$KubernetesClusterConfig;
+    /**
+     * Optional. A Storage bucket used to stage job dependencies, config files, and job driver console output. If you do not specify a staging bucket, Cloud Dataproc will determine a Cloud Storage location (US, ASIA, or EU) for your cluster's staging bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket (see Dataproc staging and temp buckets (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)). This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.
+     */
+    stagingBucket?: string | null;
   }
   /**
    * The workflow graph.
@@ -7085,7 +7250,8 @@ export namespace dataproc_v1 {
      *       //   "metrics": {},
      *       //   "projectId": "my_projectId",
      *       //   "status": {},
-     *       //   "statusHistory": []
+     *       //   "statusHistory": [],
+     *       //   "virtualClusterConfig": {}
      *       // }
      *     },
      *   });
@@ -7520,7 +7686,8 @@ export namespace dataproc_v1 {
      *   //   "metrics": {},
      *   //   "projectId": "my_projectId",
      *   //   "status": {},
-     *   //   "statusHistory": []
+     *   //   "statusHistory": [],
+     *   //   "virtualClusterConfig": {}
      *   // }
      * }
      *
@@ -8093,7 +8260,8 @@ export namespace dataproc_v1 {
      *       //   "metrics": {},
      *       //   "projectId": "my_projectId",
      *       //   "status": {},
-     *       //   "statusHistory": []
+     *       //   "statusHistory": [],
+     *       //   "virtualClusterConfig": {}
      *       // }
      *     },
      *   });
