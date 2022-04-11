@@ -528,7 +528,7 @@
       }
     }
   },
-  "revision": "20220317",
+  "revision": "20220404",
   "rootUrl": "https://memcache.googleapis.com/",
   "schemas": {
     "ApplyParametersRequest": {
@@ -760,9 +760,9 @@
         },
         "notificationParameters": {
           "additionalProperties": {
-            "type": "string"
+            "$ref": "GoogleCloudSaasacceleratorManagementProvidersV1NotificationParameter"
           },
-          "description": "Optional. notification_parameters are information that service producers may like to include that is not relevant to Rollout. This parameter will only be passed to Gamma and Cloud Logging for notification/logging purpose.",
+          "description": "Optional. notification_parameter are information that service producers may like to include that is not relevant to Rollout. This parameter will only be passed to Gamma and Cloud Logging for notification/logging purpose.",
           "type": "object"
         },
         "producerMetadata": {
@@ -901,6 +901,20 @@
         "perSliEligibility": {
           "$ref": "GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility",
           "description": "If present, this will override eligibility for the node coming from instance or exclusions for specified SLIs."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSaasacceleratorManagementProvidersV1NotificationParameter": {
+      "description": "Contains notification related data.",
+      "id": "GoogleCloudSaasacceleratorManagementProvidersV1NotificationParameter",
+      "properties": {
+        "values": {
+          "description": "Optional. Array of string values. e.g. instance's replica information.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

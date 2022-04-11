@@ -310,9 +310,13 @@ export namespace memcache_v1beta2 {
      */
     name?: string | null;
     /**
-     * Optional. notification_parameters are information that service producers may like to include that is not relevant to Rollout. This parameter will only be passed to Gamma and Cloud Logging for notification/logging purpose.
+     * Optional. notification_parameter are information that service producers may like to include that is not relevant to Rollout. This parameter will only be passed to Gamma and Cloud Logging for notification/logging purpose.
      */
-    notificationParameters?: {[key: string]: string} | null;
+    notificationParameters?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudSaasacceleratorManagementProvidersV1NotificationParameter;
+    } | null;
     /**
      * Output only. Custom string attributes used primarily to expose producer-specific information in monitoring dashboards. See go/get-instance-metadata.
      */
@@ -404,6 +408,15 @@ export namespace memcache_v1beta2 {
      * If present, this will override eligibility for the node coming from instance or exclusions for specified SLIs.
      */
     perSliEligibility?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility;
+  }
+  /**
+   * Contains notification related data.
+   */
+  export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1NotificationParameter {
+    /**
+     * Optional. Array of string values. e.g. instance's replica information.
+     */
+    values?: string[] | null;
   }
   /**
    * PerSliSloEligibility is a mapping from an SLI name to eligibility.
