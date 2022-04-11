@@ -865,6 +865,42 @@
         }
       }
     },
+    "accountsbyexternalsellerid": {
+      "methods": {
+        "get": {
+          "description": "Gets data of the account with the specified external_seller_id belonging to the MCA with the specified merchant_id.",
+          "flatPath": "{merchantId}/accountsbyexternalsellerid/{externalSellerId}",
+          "httpMethod": "GET",
+          "id": "content.accountsbyexternalsellerid.get",
+          "parameterOrder": [
+            "merchantId",
+            "externalSellerId"
+          ],
+          "parameters": {
+            "externalSellerId": {
+              "description": "Required. The External Seller ID of the seller account to be retrieved.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "merchantId": {
+              "description": "Required. The ID of the MCA containing the seller.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/accountsbyexternalsellerid/{externalSellerId}",
+          "response": {
+            "$ref": "Account"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        }
+      }
+    },
     "accountstatuses": {
       "methods": {
         "custombatch": {
@@ -966,6 +1002,48 @@
           "path": "{merchantId}/accountstatuses",
           "response": {
             "$ref": "AccountstatusesListResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        }
+      }
+    },
+    "accountstatusesbyexternalsellerid": {
+      "methods": {
+        "get": {
+          "description": "Gets status of the account with the specified external_seller_id belonging to the MCA with the specified merchant_id.",
+          "flatPath": "{merchantId}/accountstatusesbyexternalsellerid/{externalSellerId}",
+          "httpMethod": "GET",
+          "id": "content.accountstatusesbyexternalsellerid.get",
+          "parameterOrder": [
+            "merchantId",
+            "externalSellerId"
+          ],
+          "parameters": {
+            "destinations": {
+              "description": "If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.",
+              "location": "query",
+              "repeated": true,
+              "type": "string"
+            },
+            "externalSellerId": {
+              "description": "Required. The External Seller ID of the seller account to be retrieved.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "merchantId": {
+              "description": "Required. The ID of the MCA containing the seller.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/accountstatusesbyexternalsellerid/{externalSellerId}",
+          "response": {
+            "$ref": "AccountStatus"
           },
           "scopes": [
             "https://www.googleapis.com/auth/content"
@@ -1103,7 +1181,7 @@
     "buyongoogleprograms": {
       "methods": {
         "activate": {
-          "description": "Reactivates the BoG program in your Merchant Center account. Moves the program to the active state when allowed, e.g. when paused. Important: This method is only whitelisted for selected merchants.",
+          "description": "Reactivates the BoG program in your Merchant Center account. Moves the program to the active state when allowed, for example, when paused. This method is only available to selected merchants.",
           "flatPath": "{merchantId}/buyongoogleprograms/{regionCode}/activate",
           "httpMethod": "POST",
           "id": "content.buyongoogleprograms.activate",
@@ -1240,7 +1318,7 @@
           ]
         },
         "pause": {
-          "description": "Pauses the BoG program in your Merchant Center account. Important: This method is only whitelisted for selected merchants.",
+          "description": "Pauses the BoG program in your Merchant Center account. This method is only available to selected merchants.",
           "flatPath": "{merchantId}/buyongoogleprograms/{regionCode}/pause",
           "httpMethod": "POST",
           "id": "content.buyongoogleprograms.pause",
@@ -1272,7 +1350,7 @@
           ]
         },
         "requestreview": {
-          "description": "Requests review and then activates the BoG program in your Merchant Center account for the first time. Moves the program to the REVIEW_PENDING state. Important: This method is only whitelisted for selected merchants.",
+          "description": "Requests review and then activates the BoG program in your Merchant Center account for the first time. Moves the program to the REVIEW_PENDING state. This method is only available to selected merchants.",
           "flatPath": "{merchantId}/buyongoogleprograms/{regionCode}/requestreview",
           "httpMethod": "POST",
           "id": "content.buyongoogleprograms.requestreview",
@@ -1962,7 +2040,7 @@
           ]
         },
         "requestreview": {
-          "description": "Requests a review of free listings in a specific region Important: This method is only whitelisted for selected merchants.",
+          "description": "Requests a review of free listings in a specific region. This method is only available to selected merchants.",
           "flatPath": "{merchantId}/freelistingsprogram/requestreview",
           "httpMethod": "POST",
           "id": "content.freelistingsprogram.requestreview",
@@ -5788,7 +5866,7 @@
           ]
         },
         "requestreview": {
-          "description": "Requests a review of Shopping ads in a specific region.",
+          "description": "Requests a review of Shopping ads in a specific region. This method is only available to selected merchants.",
           "flatPath": "{merchantId}/shoppingadsprogram/requestreview",
           "httpMethod": "POST",
           "id": "content.shoppingadsprogram.requestreview",
@@ -5815,7 +5893,7 @@
       }
     }
   },
-  "revision": "20220325",
+  "revision": "20220331",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
