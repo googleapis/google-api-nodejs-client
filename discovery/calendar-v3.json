@@ -1723,7 +1723,7 @@
       }
     }
   },
-  "revision": "20220217",
+  "revision": "20220401",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Acl": {
@@ -2300,7 +2300,7 @@
           "type": "boolean"
         },
         "attachments": {
-          "description": "File attachments for the event. Currently only Google Drive attachments are supported.\nIn order to modify attachments the supportsAttachments request parameter should be set to true.\nThere can be at most 25 attachments per event,",
+          "description": "File attachments for the event.\nIn order to modify attachments the supportsAttachments request parameter should be set to true.\nThere can be at most 25 attachments per event,",
           "items": {
             "$ref": "EventAttachment"
           },
@@ -2627,7 +2627,7 @@
           "type": "string"
         },
         "iconLink": {
-          "description": "URL link to the attachment's icon. Read-only.",
+          "description": "URL link to the attachment's icon. This field can only be modified for custom third-party attachments.",
           "type": "string"
         },
         "mimeType": {
