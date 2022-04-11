@@ -158,10 +158,6 @@ export namespace storage_v1 {
       responseHeader?: string[];
     }> | null;
     /**
-     * The bucket's custom placement configuration for Custom Dual Regions.
-     */
-    customPlacementConfig?: {dataLocations?: string[]} | null;
-    /**
      * The default value for event-based hold on newly created objects in this bucket. Event-based hold is a way to retain objects indefinitely until an event occurs, signified by the hold's release. After being released, such objects will be subject to bucket-level retention (if any). One sample use case of this flag is for banks to hold loan documents for at least 3 years after loan is paid in full. Here, bucket-level retention is 3 years and the event is loan being paid in full. In this example, these objects will be held intact for any number of years until the event has occurred (event-based hold on the object is released) and then 3 more years after that. That means retention duration of the objects begins from the moment event-based hold transitioned from true to false. Objects under event-based hold cannot be deleted, overwritten or archived until the hold is removed.
      */
     defaultEventBasedHold?: boolean | null;
@@ -973,8 +969,6 @@ export namespace storage_v1 {
      *     bucket: 'placeholder-value',
      *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *   });
@@ -1104,8 +1098,6 @@ export namespace storage_v1 {
      *     bucket: 'placeholder-value',
      *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *   });
@@ -1253,8 +1245,6 @@ export namespace storage_v1 {
      *   const res = await storage.bucketAccessControls.insert({
      *     // Name of a bucket.
      *     bucket: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *
@@ -1420,8 +1410,6 @@ export namespace storage_v1 {
      *   const res = await storage.bucketAccessControls.list({
      *     // Name of a bucket.
      *     bucket: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *   });
@@ -1564,8 +1552,6 @@ export namespace storage_v1 {
      *     bucket: 'placeholder-value',
      *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *
@@ -1733,8 +1719,6 @@ export namespace storage_v1 {
      *     bucket: 'placeholder-value',
      *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *
@@ -1880,10 +1864,6 @@ export namespace storage_v1 {
      */
     entity?: string;
     /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
-    /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
@@ -1899,10 +1879,6 @@ export namespace storage_v1 {
      */
     entity?: string;
     /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
-    /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
@@ -1913,10 +1889,6 @@ export namespace storage_v1 {
      * Name of a bucket.
      */
     bucket?: string;
-    /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
@@ -1934,10 +1906,6 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
-    /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
@@ -1952,10 +1920,6 @@ export namespace storage_v1 {
      * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
-    /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
@@ -1976,10 +1940,6 @@ export namespace storage_v1 {
      * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
-    /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
@@ -2034,8 +1994,6 @@ export namespace storage_v1 {
      *     ifMetagenerationMatch: 'placeholder-value',
      *     // If set, only deletes the bucket if its metageneration does not match this value.
      *     ifMetagenerationNotMatch: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *   });
@@ -2171,8 +2129,6 @@ export namespace storage_v1 {
      *     ifMetagenerationNotMatch: 'placeholder-value',
      *     // Set of properties to return. Defaults to noAcl.
      *     projection: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *   });
@@ -2184,7 +2140,6 @@ export namespace storage_v1 {
      *   //   "autoclass": {},
      *   //   "billing": {},
      *   //   "cors": [],
-     *   //   "customPlacementConfig": {},
      *   //   "defaultEventBasedHold": false,
      *   //   "defaultObjectAcl": [],
      *   //   "encryption": {},
@@ -2337,8 +2292,6 @@ export namespace storage_v1 {
      *     bucket: 'placeholder-value',
      *     // The IAM policy format version to be returned. If the optionsRequestedPolicyVersion is for an older version that doesn't support part of the requested IAM policy, the request fails.
      *     optionsRequestedPolicyVersion: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *   });
@@ -2484,8 +2437,6 @@ export namespace storage_v1 {
      *     project: 'placeholder-value',
      *     // Set of properties to return. Defaults to noAcl, unless the bucket resource specifies acl or defaultObjectAcl properties, when it defaults to full.
      *     projection: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request.
      *     userProject: 'placeholder-value',
      *
@@ -2497,7 +2448,6 @@ export namespace storage_v1 {
      *       //   "autoclass": {},
      *       //   "billing": {},
      *       //   "cors": [],
-     *       //   "customPlacementConfig": {},
      *       //   "defaultEventBasedHold": false,
      *       //   "defaultObjectAcl": [],
      *       //   "encryption": {},
@@ -2534,7 +2484,6 @@ export namespace storage_v1 {
      *   //   "autoclass": {},
      *   //   "billing": {},
      *   //   "cors": [],
-     *   //   "customPlacementConfig": {},
      *   //   "defaultEventBasedHold": false,
      *   //   "defaultObjectAcl": [],
      *   //   "encryption": {},
@@ -2693,8 +2642,6 @@ export namespace storage_v1 {
      *     project: 'placeholder-value',
      *     // Set of properties to return. Defaults to noAcl.
      *     projection: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request.
      *     userProject: 'placeholder-value',
      *   });
@@ -2830,8 +2777,6 @@ export namespace storage_v1 {
      *     bucket: 'placeholder-value',
      *     // Makes the operation conditional on whether bucket's current metageneration matches the given value.
      *     ifMetagenerationMatch: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *   });
@@ -2843,7 +2788,6 @@ export namespace storage_v1 {
      *   //   "autoclass": {},
      *   //   "billing": {},
      *   //   "cors": [],
-     *   //   "customPlacementConfig": {},
      *   //   "defaultEventBasedHold": false,
      *   //   "defaultObjectAcl": [],
      *   //   "encryption": {},
@@ -3004,8 +2948,6 @@ export namespace storage_v1 {
      *     predefinedDefaultObjectAcl: 'placeholder-value',
      *     // Set of properties to return. Defaults to full.
      *     projection: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *
@@ -3017,7 +2959,6 @@ export namespace storage_v1 {
      *       //   "autoclass": {},
      *       //   "billing": {},
      *       //   "cors": [],
-     *       //   "customPlacementConfig": {},
      *       //   "defaultEventBasedHold": false,
      *       //   "defaultObjectAcl": [],
      *       //   "encryption": {},
@@ -3054,7 +2995,6 @@ export namespace storage_v1 {
      *   //   "autoclass": {},
      *   //   "billing": {},
      *   //   "cors": [],
-     *   //   "customPlacementConfig": {},
      *   //   "defaultEventBasedHold": false,
      *   //   "defaultObjectAcl": [],
      *   //   "encryption": {},
@@ -3205,8 +3145,6 @@ export namespace storage_v1 {
      *   const res = await storage.buckets.setIamPolicy({
      *     // Name of a bucket.
      *     bucket: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *
@@ -3362,8 +3300,6 @@ export namespace storage_v1 {
      *     bucket: 'placeholder-value',
      *     // Permissions to test.
      *     permissions: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *   });
@@ -3515,8 +3451,6 @@ export namespace storage_v1 {
      *     predefinedDefaultObjectAcl: 'placeholder-value',
      *     // Set of properties to return. Defaults to full.
      *     projection: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *
@@ -3528,7 +3462,6 @@ export namespace storage_v1 {
      *       //   "autoclass": {},
      *       //   "billing": {},
      *       //   "cors": [],
-     *       //   "customPlacementConfig": {},
      *       //   "defaultEventBasedHold": false,
      *       //   "defaultObjectAcl": [],
      *       //   "encryption": {},
@@ -3565,7 +3498,6 @@ export namespace storage_v1 {
      *   //   "autoclass": {},
      *   //   "billing": {},
      *   //   "cors": [],
-     *   //   "customPlacementConfig": {},
      *   //   "defaultEventBasedHold": false,
      *   //   "defaultObjectAcl": [],
      *   //   "encryption": {},
@@ -3699,10 +3631,6 @@ export namespace storage_v1 {
      */
     ifMetagenerationNotMatch?: string;
     /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
-    /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
@@ -3725,10 +3653,6 @@ export namespace storage_v1 {
      */
     projection?: string;
     /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
-    /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
@@ -3743,10 +3667,6 @@ export namespace storage_v1 {
      * The IAM policy format version to be returned. If the optionsRequestedPolicyVersion is for an older version that doesn't support part of the requested IAM policy, the request fails.
      */
     optionsRequestedPolicyVersion?: number;
-    /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
@@ -3769,10 +3689,6 @@ export namespace storage_v1 {
      * Set of properties to return. Defaults to noAcl, unless the bucket resource specifies acl or defaultObjectAcl properties, when it defaults to full.
      */
     projection?: string;
-    /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
     /**
      * The project to be billed for this request.
      */
@@ -3805,10 +3721,6 @@ export namespace storage_v1 {
      */
     projection?: string;
     /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
-    /**
      * The project to be billed for this request.
      */
     userProject?: string;
@@ -3823,10 +3735,6 @@ export namespace storage_v1 {
      * Makes the operation conditional on whether bucket's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
-    /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
@@ -3858,10 +3766,6 @@ export namespace storage_v1 {
      */
     projection?: string;
     /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
-    /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
@@ -3877,10 +3781,6 @@ export namespace storage_v1 {
      * Name of a bucket.
      */
     bucket?: string;
-    /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
@@ -3901,10 +3801,6 @@ export namespace storage_v1 {
      * Permissions to test.
      */
     permissions?: string[];
-    /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
@@ -3935,10 +3831,6 @@ export namespace storage_v1 {
      * Set of properties to return. Defaults to full.
      */
     projection?: string;
-    /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
@@ -4145,8 +4037,6 @@ export namespace storage_v1 {
      *     bucket: 'placeholder-value',
      *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *   });
@@ -4275,8 +4165,6 @@ export namespace storage_v1 {
      *     bucket: 'placeholder-value',
      *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *   });
@@ -4425,8 +4313,6 @@ export namespace storage_v1 {
      *   const res = await storage.defaultObjectAccessControls.insert({
      *     // Name of a bucket.
      *     bucket: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *
@@ -4600,8 +4486,6 @@ export namespace storage_v1 {
      *     ifMetagenerationMatch: 'placeholder-value',
      *     // If present, only return default ACL listing if the bucket's current metageneration does not match the given value.
      *     ifMetagenerationNotMatch: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *   });
@@ -4744,8 +4628,6 @@ export namespace storage_v1 {
      *     bucket: 'placeholder-value',
      *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *
@@ -4916,8 +4798,6 @@ export namespace storage_v1 {
      *     bucket: 'placeholder-value',
      *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      *     entity: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *
@@ -5066,10 +4946,6 @@ export namespace storage_v1 {
      */
     entity?: string;
     /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
-    /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
@@ -5085,10 +4961,6 @@ export namespace storage_v1 {
      */
     entity?: string;
     /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
-    /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
@@ -5099,10 +4971,6 @@ export namespace storage_v1 {
      * Name of a bucket.
      */
     bucket?: string;
-    /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
@@ -5128,10 +4996,6 @@ export namespace storage_v1 {
      */
     ifMetagenerationNotMatch?: string;
     /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
-    /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
@@ -5146,10 +5010,6 @@ export namespace storage_v1 {
      * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
-    /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
@@ -5170,10 +5030,6 @@ export namespace storage_v1 {
      * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
-    /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
@@ -5226,8 +5082,6 @@ export namespace storage_v1 {
      *     bucket: 'placeholder-value',
      *     // ID of the notification to delete.
      *     notification: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *   });
@@ -5360,8 +5214,6 @@ export namespace storage_v1 {
      *     bucket: 'placeholder-value',
      *     // Notification ID
      *     notification: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *   });
@@ -5505,8 +5357,6 @@ export namespace storage_v1 {
      *   const res = await storage.notifications.insert({
      *     // The parent bucket of the notification.
      *     bucket: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *
@@ -5667,8 +5517,6 @@ export namespace storage_v1 {
      *   const res = await storage.notifications.list({
      *     // Name of a Google Cloud Storage bucket.
      *     bucket: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *   });
@@ -5783,10 +5631,6 @@ export namespace storage_v1 {
      */
     notification?: string;
     /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
-    /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
@@ -5802,10 +5646,6 @@ export namespace storage_v1 {
      */
     notification?: string;
     /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
-    /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
@@ -5816,10 +5656,6 @@ export namespace storage_v1 {
      * The parent bucket of the notification.
      */
     bucket?: string;
-    /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
@@ -5836,10 +5672,6 @@ export namespace storage_v1 {
      * Name of a Google Cloud Storage bucket.
      */
     bucket?: string;
-    /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
@@ -5890,8 +5722,6 @@ export namespace storage_v1 {
      *     generation: 'placeholder-value',
      *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      *     object: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *   });
@@ -6024,8 +5854,6 @@ export namespace storage_v1 {
      *     generation: 'placeholder-value',
      *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      *     object: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *   });
@@ -6178,8 +6006,6 @@ export namespace storage_v1 {
      *     generation: 'placeholder-value',
      *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      *     object: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *
@@ -6353,8 +6179,6 @@ export namespace storage_v1 {
      *     generation: 'placeholder-value',
      *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      *     object: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *   });
@@ -6501,8 +6325,6 @@ export namespace storage_v1 {
      *     generation: 'placeholder-value',
      *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      *     object: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *
@@ -6677,8 +6499,6 @@ export namespace storage_v1 {
      *     generation: 'placeholder-value',
      *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      *     object: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *
@@ -6835,10 +6655,6 @@ export namespace storage_v1 {
      */
     object?: string;
     /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
-    /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
@@ -6862,10 +6678,6 @@ export namespace storage_v1 {
      */
     object?: string;
     /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
-    /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
@@ -6884,10 +6696,6 @@ export namespace storage_v1 {
      * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      */
     object?: string;
-    /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
@@ -6913,10 +6721,6 @@ export namespace storage_v1 {
      */
     object?: string;
     /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
-    /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
@@ -6939,10 +6743,6 @@ export namespace storage_v1 {
      * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      */
     object?: string;
-    /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
@@ -6971,10 +6771,6 @@ export namespace storage_v1 {
      * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      */
     object?: string;
-    /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
@@ -7035,8 +6831,6 @@ export namespace storage_v1 {
      *     ifMetagenerationMatch: 'placeholder-value',
      *     // Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
      *     kmsKeyName: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *
@@ -7236,8 +7030,6 @@ export namespace storage_v1 {
      *     ifSourceMetagenerationNotMatch: 'placeholder-value',
      *     // Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
      *     projection: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // Name of the bucket in which to find the source object.
      *     sourceBucket: 'placeholder-value',
      *     // If present, selects a specific revision of the source object (as opposed to the latest version, the default).
@@ -7470,8 +7262,6 @@ export namespace storage_v1 {
      *     ifMetagenerationNotMatch: 'placeholder-value',
      *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      *     object: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *   });
@@ -7615,8 +7405,6 @@ export namespace storage_v1 {
      *     object: 'placeholder-value',
      *     // Set of properties to return. Defaults to noAcl.
      *     projection: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *   });
@@ -7788,8 +7576,6 @@ export namespace storage_v1 {
      *     generation: 'placeholder-value',
      *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      *     object: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *   });
@@ -7947,8 +7733,6 @@ export namespace storage_v1 {
      *     predefinedAcl: 'placeholder-value',
      *     // Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
      *     projection: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *
@@ -8177,8 +7961,6 @@ export namespace storage_v1 {
      *     prefix: 'placeholder-value',
      *     // Set of properties to return. Defaults to noAcl.
      *     projection: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // Filter results to objects whose names are lexicographically equal to or after startOffset. If endOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
      *     startOffset: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
@@ -8335,8 +8117,6 @@ export namespace storage_v1 {
      *     predefinedAcl: 'placeholder-value',
      *     // Set of properties to return. Defaults to full.
      *     projection: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request, for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *
@@ -8567,8 +8347,6 @@ export namespace storage_v1 {
      *     maxBytesRewrittenPerCall: 'placeholder-value',
      *     // Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
      *     projection: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // Include this field (from the previous rewrite response) on each rewrite request after the first one, until the rewrite response 'done' flag is true. Calls that provide a rewriteToken can omit all other request fields, but if included those fields must match the values provided in the first rewrite request.
      *     rewriteToken: 'placeholder-value',
      *     // Name of the bucket in which to find the source object.
@@ -8769,8 +8547,6 @@ export namespace storage_v1 {
      *     generation: 'placeholder-value',
      *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      *     object: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *
@@ -8930,8 +8706,6 @@ export namespace storage_v1 {
      *     object: 'placeholder-value',
      *     // Permissions to test.
      *     permissions: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *   });
@@ -9089,8 +8863,6 @@ export namespace storage_v1 {
      *     predefinedAcl: 'placeholder-value',
      *     // Set of properties to return. Defaults to full.
      *     projection: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
      *
@@ -9311,8 +9083,6 @@ export namespace storage_v1 {
      *     prefix: 'placeholder-value',
      *     // Set of properties to return. Defaults to noAcl.
      *     projection: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // Filter results to objects whose names are lexicographically equal to or after startOffset. If endOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
      *     startOffset: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
@@ -9471,10 +9241,6 @@ export namespace storage_v1 {
      */
     kmsKeyName?: string;
     /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
-    /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
@@ -9538,10 +9304,6 @@ export namespace storage_v1 {
      */
     projection?: string;
     /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
-    /**
      * Name of the bucket in which to find the source object.
      */
     sourceBucket?: string;
@@ -9593,10 +9355,6 @@ export namespace storage_v1 {
      */
     object?: string;
     /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
-    /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
@@ -9635,10 +9393,6 @@ export namespace storage_v1 {
      */
     projection?: string;
     /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
-    /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
@@ -9657,10 +9411,6 @@ export namespace storage_v1 {
      * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      */
     object?: string;
-    /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
@@ -9707,10 +9457,6 @@ export namespace storage_v1 {
      * Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
      */
     projection?: string;
-    /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
@@ -9770,10 +9516,6 @@ export namespace storage_v1 {
      */
     projection?: string;
     /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
-    /**
      * Filter results to objects whose names are lexicographically equal to or after startOffset. If endOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
      */
     startOffset?: string;
@@ -9823,10 +9565,6 @@ export namespace storage_v1 {
      * Set of properties to return. Defaults to full.
      */
     projection?: string;
-    /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
     /**
      * The project to be billed for this request, for Requester Pays buckets.
      */
@@ -9895,10 +9633,6 @@ export namespace storage_v1 {
      */
     projection?: string;
     /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
-    /**
      * Include this field (from the previous rewrite response) on each rewrite request after the first one, until the rewrite response 'done' flag is true. Calls that provide a rewriteToken can omit all other request fields, but if included those fields must match the values provided in the first rewrite request.
      */
     rewriteToken?: string;
@@ -9939,10 +9673,6 @@ export namespace storage_v1 {
      */
     object?: string;
     /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
-    /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
@@ -9970,10 +9700,6 @@ export namespace storage_v1 {
      * Permissions to test.
      */
     permissions?: string[];
-    /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
@@ -10017,10 +9743,6 @@ export namespace storage_v1 {
      */
     projection?: string;
     /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
-    /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
@@ -10063,10 +9785,6 @@ export namespace storage_v1 {
      * Set of properties to return. Defaults to noAcl.
      */
     projection?: string;
-    /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
     /**
      * Filter results to objects whose names are lexicographically equal to or after startOffset. If endOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
      */
@@ -10956,8 +10674,6 @@ export namespace storage_v1 {
      *   const res = await storage.projects.serviceAccount.get({
      *     // Project ID
      *     projectId: 'placeholder-value',
-     *     // The project to be billed for this request if the target bucket is requester-pays bucket.
-     *     provisionalUserProject: 'placeholder-value',
      *     // The project to be billed for this request.
      *     userProject: 'placeholder-value',
      *   });
@@ -11067,10 +10783,6 @@ export namespace storage_v1 {
      * Project ID
      */
     projectId?: string;
-    /**
-     * The project to be billed for this request if the target bucket is requester-pays bucket.
-     */
-    provisionalUserProject?: string;
     /**
      * The project to be billed for this request.
      */
