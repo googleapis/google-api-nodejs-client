@@ -1183,7 +1183,7 @@ export namespace bigquery_v2 {
      */
     attribution?: number | null;
     /**
-     * Full name of the feature. For non-numerical features, will be formatted like .. Overall size of feature name will always be truncated to first 120 characters.
+     * The full feature name. For non-numerical features, will be formatted like `.`. Overall size of feature name will always be truncated to first 120 characters.
      */
     featureName?: string | null;
   }
@@ -1496,7 +1496,7 @@ export namespace bigquery_v2 {
     walsAlpha?: Schema$DoubleHparamSearchSpace;
   }
   /**
-   * Training info of a trial in hyperparameter tuning.
+   * Training info of a trial in [hyperparameter tuning](/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-hp-tuning-overview) models.
    */
   export interface Schema$HparamTuningTrial {
     /**
@@ -2376,7 +2376,7 @@ export namespace bigquery_v2 {
      */
     creationTime?: string | null;
     /**
-     * Output only. The default trial_id to use in TVFs when the trial_id is not passed in. For single-objective hyperparameter tuning, this is the best trial id. For multi-objective hyperparameter tuning, this is the smallest trial id among all Pareto optimal trials.
+     * Output only. The default trial_id to use in TVFs when the trial_id is not passed in. For single-objective [hyperparameter tuning](/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-hp-tuning-overview) models, this is the best trial ID. For multi-objective [hyperparameter tuning](/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-hp-tuning-overview) models, this is the smallest trial ID among all Pareto optimal trials.
      */
     defaultTrialId?: string | null;
     /**
@@ -2408,7 +2408,7 @@ export namespace bigquery_v2 {
      */
     hparamSearchSpaces?: Schema$HparamSearchSpaces;
     /**
-     * Output only. Trials of a hyperparameter tuning model sorted by trial_id.
+     * Output only. Trials of a [hyperparameter tuning](/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-hp-tuning-overview) model sorted by trial_id.
      */
     hparamTrials?: Schema$HparamTuningTrial[];
     /**
@@ -2436,7 +2436,7 @@ export namespace bigquery_v2 {
      */
     modelType?: string | null;
     /**
-     * Output only. For single-objective hyperparameter tuning, it only contains the best trial. For multi-objective hyperparameter tuning, it contains all Pareto optimal trials sorted by trial_id.
+     * Output only. For single-objective [hyperparameter tuning](/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-hp-tuning-overview) models, it only contains the best trial. For multi-objective [hyperparameter tuning](/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-hp-tuning-overview) models, it contains all Pareto optimal trials sorted by trial_id.
      */
     optimalTrialIds?: string[] | null;
     /**
@@ -3171,6 +3171,38 @@ export namespace bigquery_v2 {
      * [Output-only] The number of rows of data in this table, excluding any data in the streaming buffer.
      */
     numRows?: string | null;
+    /**
+     * [Output-only] Number of logical bytes that are less than 90 days old.
+     */
+    num_active_logical_bytes?: string | null;
+    /**
+     * [Output-only] Number of physical bytes less than 90 days old. This data is not kept in real time, and might be delayed by a few seconds to a few minutes.
+     */
+    num_active_physical_bytes?: string | null;
+    /**
+     * [Output-only] Number of logical bytes that are more than 90 days old.
+     */
+    num_long_term_logical_bytes?: string | null;
+    /**
+     * [Output-only] Number of physical bytes more than 90 days old. This data is not kept in real time, and might be delayed by a few seconds to a few minutes.
+     */
+    num_long_term_physical_bytes?: string | null;
+    /**
+     * [Output-only] The number of partitions present in the table or materialized view. This data is not kept in real time, and might be delayed by a few seconds to a few minutes.
+     */
+    num_partitions?: string | null;
+    /**
+     * [Output-only] Number of physical bytes used by time travel storage (deleted or changed data). This data is not kept in real time, and might be delayed by a few seconds to a few minutes.
+     */
+    num_time_travel_physical_bytes?: string | null;
+    /**
+     * [Output-only] Total number of logical bytes in the table or materialized view.
+     */
+    num_total_logical_bytes?: string | null;
+    /**
+     * [Output-only] The physical size of this table in bytes. This also includes storage used for time travel. This data is not kept in real time, and might be delayed by a few seconds to a few minutes.
+     */
+    num_total_physical_bytes?: string | null;
     /**
      * [TrustedTester] Range partitioning specification for this table. Only one of timePartitioning and rangePartitioning should be specified.
      */
@@ -9056,6 +9088,14 @@ export namespace bigquery_v2 {
      *   //   "numLongTermBytes": "my_numLongTermBytes",
      *   //   "numPhysicalBytes": "my_numPhysicalBytes",
      *   //   "numRows": "my_numRows",
+     *   //   "num_active_logical_bytes": "my_num_active_logical_bytes",
+     *   //   "num_active_physical_bytes": "my_num_active_physical_bytes",
+     *   //   "num_long_term_logical_bytes": "my_num_long_term_logical_bytes",
+     *   //   "num_long_term_physical_bytes": "my_num_long_term_physical_bytes",
+     *   //   "num_partitions": "my_num_partitions",
+     *   //   "num_time_travel_physical_bytes": "my_num_time_travel_physical_bytes",
+     *   //   "num_total_logical_bytes": "my_num_total_logical_bytes",
+     *   //   "num_total_physical_bytes": "my_num_total_physical_bytes",
      *   //   "rangePartitioning": {},
      *   //   "requirePartitionFilter": false,
      *   //   "schema": {},
@@ -9363,6 +9403,14 @@ export namespace bigquery_v2 {
      *       //   "numLongTermBytes": "my_numLongTermBytes",
      *       //   "numPhysicalBytes": "my_numPhysicalBytes",
      *       //   "numRows": "my_numRows",
+     *       //   "num_active_logical_bytes": "my_num_active_logical_bytes",
+     *       //   "num_active_physical_bytes": "my_num_active_physical_bytes",
+     *       //   "num_long_term_logical_bytes": "my_num_long_term_logical_bytes",
+     *       //   "num_long_term_physical_bytes": "my_num_long_term_physical_bytes",
+     *       //   "num_partitions": "my_num_partitions",
+     *       //   "num_time_travel_physical_bytes": "my_num_time_travel_physical_bytes",
+     *       //   "num_total_logical_bytes": "my_num_total_logical_bytes",
+     *       //   "num_total_physical_bytes": "my_num_total_physical_bytes",
      *       //   "rangePartitioning": {},
      *       //   "requirePartitionFilter": false,
      *       //   "schema": {},
@@ -9401,6 +9449,14 @@ export namespace bigquery_v2 {
      *   //   "numLongTermBytes": "my_numLongTermBytes",
      *   //   "numPhysicalBytes": "my_numPhysicalBytes",
      *   //   "numRows": "my_numRows",
+     *   //   "num_active_logical_bytes": "my_num_active_logical_bytes",
+     *   //   "num_active_physical_bytes": "my_num_active_physical_bytes",
+     *   //   "num_long_term_logical_bytes": "my_num_long_term_logical_bytes",
+     *   //   "num_long_term_physical_bytes": "my_num_long_term_physical_bytes",
+     *   //   "num_partitions": "my_num_partitions",
+     *   //   "num_time_travel_physical_bytes": "my_num_time_travel_physical_bytes",
+     *   //   "num_total_logical_bytes": "my_num_total_logical_bytes",
+     *   //   "num_total_physical_bytes": "my_num_total_physical_bytes",
      *   //   "rangePartitioning": {},
      *   //   "requirePartitionFilter": false,
      *   //   "schema": {},
@@ -9710,6 +9766,14 @@ export namespace bigquery_v2 {
      *       //   "numLongTermBytes": "my_numLongTermBytes",
      *       //   "numPhysicalBytes": "my_numPhysicalBytes",
      *       //   "numRows": "my_numRows",
+     *       //   "num_active_logical_bytes": "my_num_active_logical_bytes",
+     *       //   "num_active_physical_bytes": "my_num_active_physical_bytes",
+     *       //   "num_long_term_logical_bytes": "my_num_long_term_logical_bytes",
+     *       //   "num_long_term_physical_bytes": "my_num_long_term_physical_bytes",
+     *       //   "num_partitions": "my_num_partitions",
+     *       //   "num_time_travel_physical_bytes": "my_num_time_travel_physical_bytes",
+     *       //   "num_total_logical_bytes": "my_num_total_logical_bytes",
+     *       //   "num_total_physical_bytes": "my_num_total_physical_bytes",
      *       //   "rangePartitioning": {},
      *       //   "requirePartitionFilter": false,
      *       //   "schema": {},
@@ -9748,6 +9812,14 @@ export namespace bigquery_v2 {
      *   //   "numLongTermBytes": "my_numLongTermBytes",
      *   //   "numPhysicalBytes": "my_numPhysicalBytes",
      *   //   "numRows": "my_numRows",
+     *   //   "num_active_logical_bytes": "my_num_active_logical_bytes",
+     *   //   "num_active_physical_bytes": "my_num_active_physical_bytes",
+     *   //   "num_long_term_logical_bytes": "my_num_long_term_logical_bytes",
+     *   //   "num_long_term_physical_bytes": "my_num_long_term_physical_bytes",
+     *   //   "num_partitions": "my_num_partitions",
+     *   //   "num_time_travel_physical_bytes": "my_num_time_travel_physical_bytes",
+     *   //   "num_total_logical_bytes": "my_num_total_logical_bytes",
+     *   //   "num_total_physical_bytes": "my_num_total_physical_bytes",
      *   //   "rangePartitioning": {},
      *   //   "requirePartitionFilter": false,
      *   //   "schema": {},
@@ -10206,6 +10278,14 @@ export namespace bigquery_v2 {
      *       //   "numLongTermBytes": "my_numLongTermBytes",
      *       //   "numPhysicalBytes": "my_numPhysicalBytes",
      *       //   "numRows": "my_numRows",
+     *       //   "num_active_logical_bytes": "my_num_active_logical_bytes",
+     *       //   "num_active_physical_bytes": "my_num_active_physical_bytes",
+     *       //   "num_long_term_logical_bytes": "my_num_long_term_logical_bytes",
+     *       //   "num_long_term_physical_bytes": "my_num_long_term_physical_bytes",
+     *       //   "num_partitions": "my_num_partitions",
+     *       //   "num_time_travel_physical_bytes": "my_num_time_travel_physical_bytes",
+     *       //   "num_total_logical_bytes": "my_num_total_logical_bytes",
+     *       //   "num_total_physical_bytes": "my_num_total_physical_bytes",
      *       //   "rangePartitioning": {},
      *       //   "requirePartitionFilter": false,
      *       //   "schema": {},
@@ -10244,6 +10324,14 @@ export namespace bigquery_v2 {
      *   //   "numLongTermBytes": "my_numLongTermBytes",
      *   //   "numPhysicalBytes": "my_numPhysicalBytes",
      *   //   "numRows": "my_numRows",
+     *   //   "num_active_logical_bytes": "my_num_active_logical_bytes",
+     *   //   "num_active_physical_bytes": "my_num_active_physical_bytes",
+     *   //   "num_long_term_logical_bytes": "my_num_long_term_logical_bytes",
+     *   //   "num_long_term_physical_bytes": "my_num_long_term_physical_bytes",
+     *   //   "num_partitions": "my_num_partitions",
+     *   //   "num_time_travel_physical_bytes": "my_num_time_travel_physical_bytes",
+     *   //   "num_total_logical_bytes": "my_num_total_logical_bytes",
+     *   //   "num_total_physical_bytes": "my_num_total_physical_bytes",
      *   //   "rangePartitioning": {},
      *   //   "requirePartitionFilter": false,
      *   //   "schema": {},
