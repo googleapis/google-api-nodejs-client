@@ -778,41 +778,6 @@
                         "https://www.googleapis.com/auth/bigquery",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
-                    },
-                    "patch": {
-                      "description": "Updates an existing assignment. Only the `priority` field can be updated.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reservations/{reservationsId}/assignments/{assignmentsId}",
-                      "httpMethod": "PATCH",
-                      "id": "bigqueryreservation.projects.locations.reservations.assignments.patch",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Output only. Name of the resource. E.g.: `projects/myproject/locations/US/reservations/team1-prod/assignments/123`. For the assignment id, it must only contain lower case alphanumeric characters or dashes and the max length is 64 characters.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/reservations/[^/]+/assignments/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "updateMask": {
-                          "description": "Standard field mask for the set of fields to be updated.",
-                          "format": "google-fieldmask",
-                          "location": "query",
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}",
-                      "request": {
-                        "$ref": "Assignment"
-                      },
-                      "response": {
-                        "$ref": "Assignment"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/bigquery",
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
                     }
                   }
                 }
@@ -823,7 +788,7 @@
       }
     }
   },
-  "revision": "20220326",
+  "revision": "20220331",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
