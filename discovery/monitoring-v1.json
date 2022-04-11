@@ -679,7 +679,7 @@
       }
     }
   },
-  "revision": "20220322",
+  "revision": "20220402",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -894,6 +894,13 @@
           "$ref": "ColumnLayout",
           "description": "The content is divided into equally spaced columns and the widgets are arranged vertically."
         },
+        "dashboardFilters": {
+          "description": "Filters to reduce the amount of data charted based on the filter criteria.",
+          "items": {
+            "$ref": "DashboardFilter"
+          },
+          "type": "array"
+        },
         "displayName": {
           "description": "Required. The mutable, human-readable name.",
           "type": "string"
@@ -924,6 +931,45 @@
         "rowLayout": {
           "$ref": "RowLayout",
           "description": "The content is divided into equally spaced rows and the widgets are arranged horizontally."
+        }
+      },
+      "type": "object"
+    },
+    "DashboardFilter": {
+      "description": "A filter to reduce the amount of data charted in relevant widgets.",
+      "id": "DashboardFilter",
+      "properties": {
+        "filterType": {
+          "description": "The specified filter type",
+          "enum": [
+            "FILTER_TYPE_UNSPECIFIED",
+            "RESOURCE_LABEL",
+            "METRIC_LABEL",
+            "USER_METADATA_LABEL",
+            "SYSTEM_METADATA_LABEL",
+            "GROUP"
+          ],
+          "enumDescriptions": [
+            "Filter type is unspecified. This is not valid in a well-formed request.",
+            "Filter on a resource label value",
+            "Filter on a metrics label value",
+            "Filter on a user metadata label value",
+            "Filter on a system metadata label value",
+            "Filter on a group id"
+          ],
+          "type": "string"
+        },
+        "labelKey": {
+          "description": "Required. The key for the label",
+          "type": "string"
+        },
+        "stringValue": {
+          "description": "A variable-length string value.",
+          "type": "string"
+        },
+        "templateVariable": {
+          "description": "The placeholder text that can be referenced in a filter string or MQL query. If omitted, the dashboard filter will be applied to all relevant widgets in the dashboard.",
+          "type": "string"
         }
       },
       "type": "object"
