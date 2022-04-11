@@ -351,6 +351,10 @@ export namespace vault_v1 {
    */
   export interface Schema$DriveOptions {
     /**
+     * Set whether the results include only content encrypted with [Google Workspace Client-side encryption](https://support.google.com/a?p=cse_ov) content, only unencrypted content, or both. Defaults to both. Currently supported for Drive.
+     */
+    clientSideEncryptedOption?: string | null;
+    /**
      * Set to **true** to include shared drives.
      */
     includeSharedDrives?: boolean | null;
@@ -364,7 +368,7 @@ export namespace vault_v1 {
     versionDate?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
