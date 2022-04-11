@@ -2494,11 +2494,11 @@
       }
     }
   },
-  "revision": "20220223",
+  "revision": "20220328",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for Empty is empty JSON object {}.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } ",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -3286,6 +3286,13 @@
         "partition": {
           "description": "The name to the partition resource. The name is the fully-qualified resource name.",
           "type": "string"
+        },
+        "sampledDataLocations": {
+          "description": "The locations of the data items (e.g., a Cloud Storage objects) sampled for metadata inference.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "type": {
           "description": "The type of the containing entity resource.",
