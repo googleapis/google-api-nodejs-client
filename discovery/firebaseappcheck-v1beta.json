@@ -287,6 +287,35 @@
                 "https://www.googleapis.com/auth/firebase"
               ]
             },
+            "exchangePlayIntegrityToken": {
+              "description": "Validates an [integrity verdict response token from Play Integrity](https://developer.android.com/google/play/integrity/verdict#decrypt-verify). If valid, returns an AppCheckToken.",
+              "flatPath": "v1beta/projects/{projectsId}/apps/{appsId}:exchangePlayIntegrityToken",
+              "httpMethod": "POST",
+              "id": "firebaseappcheck.projects.apps.exchangePlayIntegrityToken",
+              "parameterOrder": [
+                "app"
+              ],
+              "parameters": {
+                "app": {
+                  "description": "Required. The relative resource name of the Android app, in the format: ``` projects/{project_number}/apps/{app_id} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/apps/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+app}:exchangePlayIntegrityToken",
+              "request": {
+                "$ref": "GoogleFirebaseAppcheckV1betaExchangePlayIntegrityTokenRequest"
+              },
+              "response": {
+                "$ref": "GoogleFirebaseAppcheckV1betaAppCheckToken"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
+              ]
+            },
             "exchangeRecaptchaEnterpriseToken": {
               "description": "Validates a [reCAPTCHA Enterprise response token](https://cloud.google.com/recaptcha-enterprise/docs/create-assessment#retrieve_token). If valid, returns an App Check token AppCheckToken.",
               "flatPath": "v1beta/projects/{projectsId}/apps/{appsId}:exchangeRecaptchaEnterpriseToken",
@@ -426,6 +455,35 @@
               },
               "response": {
                 "$ref": "GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
+              ]
+            },
+            "generatePlayIntegrityChallenge": {
+              "description": "Generates a challenge that protects the integrity of an immediately following integrity verdict request to the Play Integrity API. The next call to ExchangePlayIntegrityToken using the resulting integrity token will verify the presence and validity of the challenge. A challenge should not be reused for multiple calls.",
+              "flatPath": "v1beta/projects/{projectsId}/apps/{appsId}:generatePlayIntegrityChallenge",
+              "httpMethod": "POST",
+              "id": "firebaseappcheck.projects.apps.generatePlayIntegrityChallenge",
+              "parameterOrder": [
+                "app"
+              ],
+              "parameters": {
+                "app": {
+                  "description": "Required. The relative resource name of the app, in the format: ``` projects/{project_number}/apps/{app_id} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/apps/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+app}:generatePlayIntegrityChallenge",
+              "request": {
+                "$ref": "GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeRequest"
+              },
+              "response": {
+                "$ref": "GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeResponse"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform",
@@ -777,6 +835,103 @@
                   },
                   "response": {
                     "$ref": "GoogleFirebaseAppcheckV1betaDeviceCheckConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/firebase"
+                  ]
+                }
+              }
+            },
+            "playIntegrityConfig": {
+              "methods": {
+                "batchGet": {
+                  "description": "Atomically gets the PlayIntegrityConfigs for the specified list of apps.",
+                  "flatPath": "v1beta/projects/{projectsId}/apps/-/playIntegrityConfig:batchGet",
+                  "httpMethod": "GET",
+                  "id": "firebaseappcheck.projects.apps.playIntegrityConfig.batchGet",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "names": {
+                      "description": "Required. The relative resource names of the PlayIntegrityConfigs to retrieve, in the format ``` projects/{project_number}/apps/{app_id}/playIntegrityConfig ``` A maximum of 100 objects can be retrieved in a batch.",
+                      "location": "query",
+                      "repeated": true,
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent project name shared by all PlayIntegrityConfigs being retrieved, in the format ``` projects/{project_number} ``` The parent collection in the `name` field of any resource being retrieved must match this field, or the entire batch fails.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/apps/-/playIntegrityConfig:batchGet",
+                  "response": {
+                    "$ref": "GoogleFirebaseAppcheckV1betaBatchGetPlayIntegrityConfigsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/firebase"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the PlayIntegrityConfig for the specified app.",
+                  "flatPath": "v1beta/projects/{projectsId}/apps/{appsId}/playIntegrityConfig",
+                  "httpMethod": "GET",
+                  "id": "firebaseappcheck.projects.apps.playIntegrityConfig.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The relative resource name of the PlayIntegrityConfig, in the format: ``` projects/{project_number}/apps/{app_id}/playIntegrityConfig ```",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/apps/[^/]+/playIntegrityConfig$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}",
+                  "response": {
+                    "$ref": "GoogleFirebaseAppcheckV1betaPlayIntegrityConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/firebase"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the PlayIntegrityConfig for the specified app. While this configuration is incomplete or invalid, the app will be unable to exchange Play Integrity tokens for App Check tokens.",
+                  "flatPath": "v1beta/projects/{projectsId}/apps/{appsId}/playIntegrityConfig",
+                  "httpMethod": "PATCH",
+                  "id": "firebaseappcheck.projects.apps.playIntegrityConfig.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The relative resource name of the Play Integrity configuration object, in the format: ``` projects/{project_number}/apps/{app_id}/playIntegrityConfig ```",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/apps/[^/]+/playIntegrityConfig$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. A comma-separated list of names of fields in the PlayIntegrityConfig Gets to update. Example: `token_ttl`.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}",
+                  "request": {
+                    "$ref": "GoogleFirebaseAppcheckV1betaPlayIntegrityConfig"
+                  },
+                  "response": {
+                    "$ref": "GoogleFirebaseAppcheckV1betaPlayIntegrityConfig"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform",
@@ -1309,7 +1464,7 @@
       }
     }
   },
-  "revision": "20220325",
+  "revision": "20220404",
   "rootUrl": "https://firebaseappcheck.googleapis.com/",
   "schemas": {
     "GoogleFirebaseAppcheckV1betaAppAttestConfig": {
@@ -1386,6 +1541,20 @@
           "description": "DeviceCheckConfigs retrieved.",
           "items": {
             "$ref": "GoogleFirebaseAppcheckV1betaDeviceCheckConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppcheckV1betaBatchGetPlayIntegrityConfigsResponse": {
+      "description": "Response message for the BatchGetPlayIntegrityConfigs method.",
+      "id": "GoogleFirebaseAppcheckV1betaBatchGetPlayIntegrityConfigsResponse",
+      "properties": {
+        "configs": {
+          "description": "PlayIntegrityConfigs retrieved.",
+          "items": {
+            "$ref": "GoogleFirebaseAppcheckV1betaPlayIntegrityConfig"
           },
           "type": "array"
         }
@@ -1626,6 +1795,17 @@
       },
       "type": "object"
     },
+    "GoogleFirebaseAppcheckV1betaExchangePlayIntegrityTokenRequest": {
+      "description": "Request message for the ExchangePlayIntegrityToken method.",
+      "id": "GoogleFirebaseAppcheckV1betaExchangePlayIntegrityTokenRequest",
+      "properties": {
+        "playIntegrityToken": {
+          "description": "Required. The [integrity verdict response token from Play Integrity](https://developer.android.com/google/play/integrity/verdict#decrypt-verify) issued to your app.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleFirebaseAppcheckV1betaExchangeRecaptchaEnterpriseTokenRequest": {
       "description": "Request message for the ExchangeRecaptchaEnterpriseToken method.",
       "id": "GoogleFirebaseAppcheckV1betaExchangeRecaptchaEnterpriseTokenRequest",
@@ -1693,6 +1873,28 @@
       },
       "type": "object"
     },
+    "GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeRequest": {
+      "description": "Request message for the GeneratePlayIntegrityChallenge method.",
+      "id": "GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeResponse": {
+      "description": "Response message for the GeneratePlayIntegrityChallenge method.",
+      "id": "GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeResponse",
+      "properties": {
+        "challenge": {
+          "description": "A one-time use [challenge](https://developer.android.com/google/play/integrity/verdict#protect-against-replay-attacks) for the client to pass to the Play Integrity API.",
+          "type": "string"
+        },
+        "ttl": {
+          "description": "The duration from the time this challenge is minted until its expiration. This field is intended to ease client-side token management, since the client may have clock skew, but is still able to accurately measure a duration.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleFirebaseAppcheckV1betaListDebugTokensResponse": {
       "description": "Response message for the ListDebugTokens method.",
       "id": "GoogleFirebaseAppcheckV1betaListDebugTokensResponse",
@@ -1725,6 +1927,22 @@
             "$ref": "GoogleFirebaseAppcheckV1betaService"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppcheckV1betaPlayIntegrityConfig": {
+      "description": "An app's Play Integrity configuration object. This configuration controls certain properties of the App Check token returned by ExchangePlayIntegrityToken, such as its ttl. Note that your registered SHA-256 certificate fingerprints are used to validate tokens issued by the Play Integrity API; please register them via the Firebase Console or programmatically via the [Firebase Management Service](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects.androidApps.sha/create).",
+      "id": "GoogleFirebaseAppcheckV1betaPlayIntegrityConfig",
+      "properties": {
+        "name": {
+          "description": "Required. The relative resource name of the Play Integrity configuration object, in the format: ``` projects/{project_number}/apps/{app_id}/playIntegrityConfig ```",
+          "type": "string"
+        },
+        "tokenTtl": {
+          "description": "Specifies the duration for which App Check tokens exchanged from Play Integrity tokens will be valid. If unset, a default value of 1 hour is assumed. Must be between 30 minutes and 7 days, inclusive.",
+          "format": "google-duration",
+          "type": "string"
         }
       },
       "type": "object"
