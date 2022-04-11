@@ -2444,7 +2444,7 @@
       }
     }
   },
-  "revision": "20220324",
+  "revision": "20220404",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2504,6 +2504,21 @@
         "workerConfig": {
           "$ref": "InstanceGroupAutoscalingPolicyConfig",
           "description": "Required. Describes how the autoscaler will operate for primary workers."
+        }
+      },
+      "type": "object"
+    },
+    "AuxiliaryServicesConfig": {
+      "description": "Auxiliary services configuration for a Cluster.",
+      "id": "AuxiliaryServicesConfig",
+      "properties": {
+        "metastoreConfig": {
+          "$ref": "MetastoreConfig",
+          "description": "Optional. The Hive Metastore configuration for this workload."
+        },
+        "sparkHistoryServerConfig": {
+          "$ref": "SparkHistoryServerConfig",
+          "description": "Optional. The Spark History Server configuration for the workload."
         }
       },
       "type": "object"
@@ -2735,7 +2750,7 @@
           "description": "The condition that is associated with this binding.If the condition evaluates to true, then this binding applies to the current request.If the condition evaluates to false, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Cloud Platform resource. members can have the following values: allUsers: A special identifier that represents anyone who is on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone who is authenticated with a Google account or a service account. user:{emailid}: An email address that represents a specific Google account. For example, alice@example.com . serviceAccount:{emailid}: An email address that represents a service account. For example, my-other-app@appspot.gserviceaccount.com. group:{emailid}: An email address that represents a Google group. For example, admins@example.com. deleted:user:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a user that has been recently deleted. For example, alice@example.com?uid=123456789012345678901. If the user is recovered, this value reverts to user:{emailid} and the recovered user retains the role in the binding. deleted:serviceAccount:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901. If the service account is undeleted, this value reverts to serviceAccount:{emailid} and the undeleted service account retains the role in the binding. deleted:group:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, admins@example.com?uid=123456789012345678901. If the group is recovered, this value reverts to group:{emailid} and the recovered group retains the role in the binding. domain:{domain}: The G Suite domain (primary) that represents all the users of that domain. For example, google.com or example.com.",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. members can have the following values: allUsers: A special identifier that represents anyone who is on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone who is authenticated with a Google account or a service account. user:{emailid}: An email address that represents a specific Google account. For example, alice@example.com . serviceAccount:{emailid}: An email address that represents a service account. For example, my-other-app@appspot.gserviceaccount.com. group:{emailid}: An email address that represents a Google group. For example, admins@example.com. deleted:user:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a user that has been recently deleted. For example, alice@example.com?uid=123456789012345678901. If the user is recovered, this value reverts to user:{emailid} and the recovered user retains the role in the binding. deleted:serviceAccount:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901. If the service account is undeleted, this value reverts to serviceAccount:{emailid} and the undeleted service account retains the role in the binding. deleted:group:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, admins@example.com?uid=123456789012345678901. If the group is recovered, this value reverts to group:{emailid} and the recovered group retains the role in the binding. domain:{domain}: The G Suite domain (primary) that represents all the users of that domain. For example, google.com or example.com.",
           "items": {
             "type": "string"
           },
@@ -2769,7 +2784,7 @@
         },
         "config": {
           "$ref": "ClusterConfig",
-          "description": "Optional. The cluster config for a cluster of Compute Engine Instances. Note that Dataproc may set default values, and values may change when clusters are updated."
+          "description": "Optional. The cluster config for a cluster of Compute Engine Instances. Note that Dataproc may set default values, and values may change when clusters are updated.Exactly one of ClusterConfig or VirtualClusterConfig must be specified."
         },
         "labels": {
           "additionalProperties": {
@@ -2799,6 +2814,10 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "virtualClusterConfig": {
+          "$ref": "VirtualClusterConfig",
+          "description": "Optional. The virtual cluster config, used when creating a Dataproc cluster that does not directly control the underlying compute resources, for example, when creating a Dataproc-on-GKE cluster (https://cloud.google.com/dataproc/docs/concepts/jobs/dataproc-gke#create-a-dataproc-on-gke-cluster). Note that Dataproc may set default values, and values may change when clusters are updated. Exactly one of config or virtualClusterConfig must be specified."
         }
       },
       "type": "object"
@@ -2833,7 +2852,7 @@
         },
         "gkeClusterConfig": {
           "$ref": "GkeClusterConfig",
-          "description": "Optional. BETA. The Kubernetes Engine config for Dataproc clusters deployed to Kubernetes. Setting this is considered mutually exclusive with Compute Engine-based options such as gce_cluster_config, master_config, worker_config, secondary_worker_config, and autoscaling_config."
+          "description": "Optional. Deprecated. Use VirtualClusterConfig based clusters instead. BETA. The Kubernetes Engine config for Dataproc clusters deployed to Kubernetes. Setting this is considered mutually exclusive with Compute Engine-based options such as gce_cluster_config, master_config, worker_config, secondary_worker_config, and autoscaling_config."
         },
         "initializationActions": {
           "description": "Optional. Commands to execute on each node after config is completed. By default, executables are run on master and all worker nodes. You can test a node's role metadata to run an executable on a master or worker node, as shown below using curl (you can also use wget): ROLE=$(curl -H Metadata-Flavor:Google http://metadata/computeMetadata/v1/instance/attributes/dataproc-role) if [[ \"${ROLE}\" == 'Master' ]]; then ... master specific actions ... else ... worker specific actions ... fi ",
@@ -3377,9 +3396,150 @@
       "description": "The cluster's GKE config.",
       "id": "GkeClusterConfig",
       "properties": {
+        "gkeClusterTarget": {
+          "description": "Optional. A target GKE cluster to deploy to. It must be in the same project and region as the Dataproc cluster (the GKE cluster can be zonal or regional). Format: 'projects/{project}/locations/{location}/clusters/{cluster_id}'",
+          "type": "string"
+        },
         "namespacedGkeDeploymentTarget": {
           "$ref": "NamespacedGkeDeploymentTarget",
-          "description": "Optional. A target for the deployment."
+          "description": "Optional. Deprecated. Use gkeClusterTarget. Used only for the deprecated beta. A target for the deployment."
+        },
+        "nodePoolTarget": {
+          "description": "Optional. GKE NodePools where workloads will be scheduled. At least one node pool must be assigned the 'default' role. Each role can be given to only a single NodePoolTarget. All NodePools must have the same location settings. If a nodePoolTarget is not specified, Dataproc constructs a default nodePoolTarget.",
+          "items": {
+            "$ref": "GkeNodePoolTarget"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GkeNodeConfig": {
+      "description": "Parameters that describe cluster nodes.",
+      "id": "GkeNodeConfig",
+      "properties": {
+        "accelerators": {
+          "description": "Optional. A list of hardware accelerators (https://cloud.google.com/compute/docs/gpus) to attach to each node.",
+          "items": {
+            "$ref": "GkeNodePoolAcceleratorConfig"
+          },
+          "type": "array"
+        },
+        "localSsdCount": {
+          "description": "Optional. The number of local SSD disks to attach to the node, which is limited by the maximum number of disks allowable per zone (see Adding Local SSDs (https://cloud.google.com/compute/docs/disks/local-ssd)).",
+          "format": "int32",
+          "type": "integer"
+        },
+        "machineType": {
+          "description": "Optional. The name of a Compute Engine machine type (https://cloud.google.com/compute/docs/machine-types).",
+          "type": "string"
+        },
+        "minCpuPlatform": {
+          "description": "Optional. Minimum CPU platform (https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform) to be used by this instance. The instance may be scheduled on the specified or a newer CPU platform. Specify the friendly names of CPU platforms, such as \"Intel Haswell\"` or Intel Sandy Bridge\".",
+          "type": "string"
+        },
+        "preemptible": {
+          "description": "Optional. Whether the nodes are created as preemptible VM instances (https://cloud.google.com/compute/docs/instances/preemptible).",
+          "type": "boolean"
+        },
+        "spot": {
+          "description": "Optional. Spot flag for enabling Spot VM, which is a rebrand of the existing preemptible flag.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GkeNodePoolAcceleratorConfig": {
+      "description": "A GkeNodeConfigAcceleratorConfig represents a Hardware Accelerator request for a NodePool.",
+      "id": "GkeNodePoolAcceleratorConfig",
+      "properties": {
+        "acceleratorCount": {
+          "description": "The number of accelerator cards exposed to an instance.",
+          "format": "int64",
+          "type": "string"
+        },
+        "acceleratorType": {
+          "description": "The accelerator type resource namename (see GPUs on Compute Engine).",
+          "type": "string"
+        },
+        "gpuPartitionSize": {
+          "description": "Size of partitions to create on the GPU. Valid values are described in the NVIDIA mig user guide (https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GkeNodePoolAutoscalingConfig": {
+      "description": "GkeNodePoolAutoscaling contains information the cluster autoscaler needs to adjust the size of the node pool to the current cluster usage.",
+      "id": "GkeNodePoolAutoscalingConfig",
+      "properties": {
+        "maxNodeCount": {
+          "description": "The maximum number of nodes in the NodePool. Must be >= min_node_count. Note: Quota must be sufficient to scale up the cluster.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minNodeCount": {
+          "description": "The minimum number of nodes in the NodePool. Must be >= 0 and <= max_node_count.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GkeNodePoolConfig": {
+      "description": "The configuration of a GKE NodePool used by a Dataproc-on-GKE cluster (https://cloud.google.com/dataproc/docs/concepts/jobs/dataproc-gke#create-a-dataproc-on-gke-cluster).",
+      "id": "GkeNodePoolConfig",
+      "properties": {
+        "autoscaling": {
+          "$ref": "GkeNodePoolAutoscalingConfig",
+          "description": "Optional. The autoscaler configuration for this NodePool. The autoscaler is enabled only when a valid configuration is present."
+        },
+        "config": {
+          "$ref": "GkeNodeConfig",
+          "description": "Optional. The node pool configuration."
+        },
+        "locations": {
+          "description": "Optional. The list of Compute Engine zones (https://cloud.google.com/compute/docs/zones#available) where NodePool's nodes will be located.Note: Currently, only one zone may be specified.If a location is not specified during NodePool creation, Dataproc will choose a location.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GkeNodePoolTarget": {
+      "description": "GKE NodePools that Dataproc workloads run on.",
+      "id": "GkeNodePoolTarget",
+      "properties": {
+        "nodePool": {
+          "description": "Required. The target GKE NodePool. Format: 'projects/{project}/locations/{location}/clusters/{cluster}/nodePools/{node_pool}'",
+          "type": "string"
+        },
+        "nodePoolConfig": {
+          "$ref": "GkeNodePoolConfig",
+          "description": "Input only. The configuration for the GKE NodePool.If specified, Dataproc attempts to create a NodePool with the specified shape. If one with the same name already exists, it is verified against all specified fields. If a field differs, the virtual cluster creation will fail.If omitted, any NodePool with the specified name is used. If a NodePool with the specified name does not exist, Dataproc create a NodePool with default values.This is an input only field. It will not be returned by the API."
+        },
+        "roles": {
+          "description": "Required. The types of role for a GKE NodePool",
+          "items": {
+            "enum": [
+              "ROLE_UNSPECIFIED",
+              "DEFAULT",
+              "CONTROLLER",
+              "SPARK_DRIVER",
+              "SPARK_EXECUTOR"
+            ],
+            "enumDescriptions": [
+              "Role is unspecified.",
+              "Any roles that are not directly assigned to a NodePool run on the default role's NodePool.",
+              "Run controllers and webhooks.",
+              "Run spark driver.",
+              "Run spark executors."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3964,6 +4124,46 @@
       },
       "type": "object"
     },
+    "KubernetesClusterConfig": {
+      "description": "The configuration for running the Dataproc cluster on Kubernetes.",
+      "id": "KubernetesClusterConfig",
+      "properties": {
+        "gkeClusterConfig": {
+          "$ref": "GkeClusterConfig",
+          "description": "Required. The configuration for running the Dataproc cluster on GKE."
+        },
+        "kubernetesNamespace": {
+          "description": "Optional. A namespace within the Kubernetes cluster to deploy into. If this namespace does not exist, it is created. If it exists, Dataproc verifies that another Dataproc VirtualCluster is not installed into it. If not specified, the name of the Dataproc Cluster is used.",
+          "type": "string"
+        },
+        "kubernetesSoftwareConfig": {
+          "$ref": "KubernetesSoftwareConfig",
+          "description": "Optional. The software configuration for this Dataproc cluster running on Kubernetes."
+        }
+      },
+      "type": "object"
+    },
+    "KubernetesSoftwareConfig": {
+      "description": "The software configuration for this Dataproc cluster running on Kubernetes.",
+      "id": "KubernetesSoftwareConfig",
+      "properties": {
+        "componentVersion": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The components that should be installed in this Dataproc cluster. The key must be a string from the KubernetesComponent enumeration. The value is the version of the software to be installed. At least one entry must be specified.",
+          "type": "object"
+        },
+        "properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The properties to set on daemon config files.Property keys are specified in prefix:property format, for example spark:spark.kubernetes.container.image. The following are supported prefixes and their mappings: spark: spark-defaults.confFor more information, see Cluster properties (https://cloud.google.com/dataproc/docs/concepts/cluster-properties).",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "LifecycleConfig": {
       "description": "Specifies the cluster auto-delete schedule configuration.",
       "id": "LifecycleConfig",
@@ -4230,7 +4430,7 @@
       "type": "object"
     },
     "NamespacedGkeDeploymentTarget": {
-      "description": "A full, namespace-isolated deployment target for an existing GKE cluster.",
+      "description": "Deprecated. Used only for the deprecated beta. A full, namespace-isolated deployment target for an existing GKE cluster.",
       "id": "NamespacedGkeDeploymentTarget",
       "properties": {
         "clusterNamespace": {
@@ -4813,7 +5013,7 @@
       "properties": {
         "policy": {
           "$ref": "Policy",
-          "description": "REQUIRED: The complete policy to be applied to the resource. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them."
+          "description": "REQUIRED: The complete policy to be applied to the resource. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them."
         }
       },
       "type": "object"
@@ -5316,7 +5516,7 @@
       "id": "TestIamPermissionsRequest",
       "properties": {
         "permissions": {
-          "description": "The set of permissions to check for the resource. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see IAM Overview (https://cloud.google.com/iam/docs/overview#permissions).",
+          "description": "The set of permissions to check for the resource. Permissions with wildcards (such as * or storage.*) are not allowed. For more information see IAM Overview (https://cloud.google.com/iam/docs/overview#permissions).",
           "items": {
             "type": "string"
           },
@@ -5349,6 +5549,25 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "VirtualClusterConfig": {
+      "description": "Dataproc cluster config for a cluster that does not directly control the underlying compute resources, such as a Dataproc-on-GKE cluster (https://cloud.google.com/dataproc/docs/concepts/jobs/dataproc-gke#create-a-dataproc-on-gke-cluster).",
+      "id": "VirtualClusterConfig",
+      "properties": {
+        "auxiliaryServicesConfig": {
+          "$ref": "AuxiliaryServicesConfig",
+          "description": "Optional. Configuration of auxiliary services used by this cluster."
+        },
+        "kubernetesClusterConfig": {
+          "$ref": "KubernetesClusterConfig",
+          "description": "Required. The configuration for running the Dataproc cluster on Kubernetes."
+        },
+        "stagingBucket": {
+          "description": "Optional. A Storage bucket used to stage job dependencies, config files, and job driver console output. If you do not specify a staging bucket, Cloud Dataproc will determine a Cloud Storage location (US, ASIA, or EU) for your cluster's staging bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket (see Dataproc staging and temp buckets (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)). This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.",
+          "type": "string"
         }
       },
       "type": "object"
