@@ -192,6 +192,10 @@ export namespace datastore_v1 {
    */
   export interface Schema$CommitResponse {
     /**
+     * The transaction commit timestamp. Not set for non-transactional commits.
+     */
+    commitTime?: string | null;
+    /**
      * The number of index entries updated during the commit, or zero if none were updated.
      */
     indexUpdates?: number | null;
@@ -242,6 +246,10 @@ export namespace datastore_v1 {
      * The resulting entity.
      */
     entity?: Schema$Entity;
+    /**
+     * The time at which the entity was last changed. This field is set for `FULL` entity results. If this entity is missing, this field will not be set.
+     */
+    updateTime?: string | null;
     /**
      * The version of the entity, a strictly positive number that monotonically increases with changes to the entity. This field is set for `FULL` entity results. For missing entities in `LookupResponse`, this is the version of the snapshot that was used to look up the entity, and it is always set except for eventually consistent reads.
      */
@@ -779,6 +787,10 @@ export namespace datastore_v1 {
      * Entities not found as `ResultType.KEY_ONLY` entities. The order of results in this field is undefined and has no relation to the order of the keys in the input.
      */
     missing?: Schema$EntityResult[];
+    /**
+     * The time at which these entities were read or found missing.
+     */
+    readTime?: string | null;
   }
   /**
    * A mutation to apply to an entity.
@@ -801,6 +813,10 @@ export namespace datastore_v1 {
      */
     update?: Schema$Entity;
     /**
+     * The update time of the entity that this mutation is being applied to. If this does not match the current update time on the server, the mutation conflicts.
+     */
+    updateTime?: string | null;
+    /**
      * The entity to upsert. The entity may or may not already exist. The entity key's final path element may be incomplete.
      */
     upsert?: Schema$Entity;
@@ -817,6 +833,10 @@ export namespace datastore_v1 {
      * The automatically allocated key. Set only when the mutation allocated a key.
      */
     key?: Schema$Key;
+    /**
+     * The update time of the entity on the server after processing the mutation. If the mutation doesn't change anything on the server, then the timestamp will be the update timestamp of the current entity. This field will not be set after a 'delete'.
+     */
+    updateTime?: string | null;
     /**
      * The version of the entity on the server after processing the mutation. If the mutation doesn't change anything on the server, then the version will be the version of the current entity or, if no entity is present, a version that is strictly greater than the version of any previous entity and less than the version of any possible future entity.
      */
@@ -962,6 +982,10 @@ export namespace datastore_v1 {
      */
     moreResults?: string | null;
     /**
+     * Read timestamp this batch was returned from. This applies to the range of results from the query's `start_cursor` (or the beginning of the query if no cursor was given) to this batch's `end_cursor` (not the query's `end_cursor`). In a single transaction, subsequent query result batches for the same query can have a greater timestamp. Each batch's read timestamp is valid for all preceding batches. This value will not be set for eventually consistent queries in Cloud Datastore.
+     */
+    readTime?: string | null;
+    /**
      * A cursor that points to the position after the last skipped result. Will be set when `skipped_results` != 0.
      */
     skippedCursor?: string | null;
@@ -977,7 +1001,12 @@ export namespace datastore_v1 {
   /**
    * Options specific to read-only transactions.
    */
-  export interface Schema$ReadOnly {}
+  export interface Schema$ReadOnly {
+    /**
+     * Reads entities at the given time. This may not be older than 60 seconds.
+     */
+    readTime?: string | null;
+  }
   /**
    * The options shared by read requests.
    */
@@ -986,6 +1015,10 @@ export namespace datastore_v1 {
      * The non-transactional read consistency to use. Cannot be set to `STRONG` for global queries.
      */
     readConsistency?: string | null;
+    /**
+     * Reads entities as they were at the given time. This may not be older than 270 seconds. This value is only supported for Cloud Firestore in Datastore mode.
+     */
+    readTime?: string | null;
     /**
      * The identifier of the transaction in which to read. A transaction identifier is returned by a call to Datastore.BeginTransaction.
      */
@@ -1500,6 +1533,7 @@ export namespace datastore_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "commitTime": "my_commitTime",
      *   //   "indexUpdates": 0,
      *   //   "mutationResults": []
      *   // }
@@ -1947,7 +1981,8 @@ export namespace datastore_v1 {
      *   // {
      *   //   "deferred": [],
      *   //   "found": [],
-     *   //   "missing": []
+     *   //   "missing": [],
+     *   //   "readTime": "my_readTime"
      *   // }
      * }
      *
