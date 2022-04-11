@@ -744,6 +744,27 @@ export namespace cloudfunctions_v2alpha {
     warnings?: string[] | null;
   }
   /**
+   * Configuration for a secret environment variable. It has the information necessary to fetch the secret value from secret manager and expose it as an environment variable.
+   */
+  export interface Schema$SecretEnvVar {
+    /**
+     * Name of the environment variable.
+     */
+    key?: string | null;
+    /**
+     * Project identifier (preferably project number but can also be the project ID) of the project that contains the secret. If not set, it will be populated with the function's project assuming that the secret exists in the same project as of the function.
+     */
+    projectId?: string | null;
+    /**
+     * Name of the secret in secret manager (not the full resource name).
+     */
+    secret?: string | null;
+    /**
+     * Version of the secret (version number or the string 'latest'). It is recommended to use a numeric version for secret environment variables as any updates to the secret value is not reflected until new instances start.
+     */
+    version?: string | null;
+  }
+  /**
    * Describes the Service being deployed. Currently Supported : Cloud Run (fully managed).
    */
   export interface Schema$ServiceConfig {
@@ -775,6 +796,10 @@ export namespace cloudfunctions_v2alpha {
      * Output only. The name of service revision.
      */
     revision?: string | null;
+    /**
+     * Secret environment variables configuration.
+     */
+    secretEnvironmentVariables?: Schema$SecretEnvVar[];
     /**
      * Output only. Name of the service associated with a Function. The format of this field is `projects/{project\}/locations/{region\}/services/{service\}`
      */
@@ -942,7 +967,7 @@ export namespace cloudfunctions_v2alpha {
      *
      *   // Do the magic
      *   const res = await cloudfunctions.projects.locations.list({
-     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
@@ -1061,7 +1086,7 @@ export namespace cloudfunctions_v2alpha {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
     /**

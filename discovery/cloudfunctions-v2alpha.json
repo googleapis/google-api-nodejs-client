@@ -119,7 +119,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
                   "type": "string"
                 },
@@ -571,7 +571,7 @@
       }
     }
   },
-  "revision": "20220317",
+  "revision": "20220331",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1519,6 +1519,29 @@
       },
       "type": "object"
     },
+    "SecretEnvVar": {
+      "description": "Configuration for a secret environment variable. It has the information necessary to fetch the secret value from secret manager and expose it as an environment variable.",
+      "id": "SecretEnvVar",
+      "properties": {
+        "key": {
+          "description": "Name of the environment variable.",
+          "type": "string"
+        },
+        "projectId": {
+          "description": "Project identifier (preferably project number but can also be the project ID) of the project that contains the secret. If not set, it will be populated with the function's project assuming that the secret exists in the same project as of the function.",
+          "type": "string"
+        },
+        "secret": {
+          "description": "Name of the secret in secret manager (not the full resource name).",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of the secret (version number or the string 'latest'). It is recommended to use a numeric version for secret environment variables as any updates to the secret value is not reflected until new instances start.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ServiceConfig": {
       "description": "Describes the Service being deployed. Currently Supported : Cloud Run (fully managed).",
       "id": "ServiceConfig",
@@ -1568,6 +1591,13 @@
           "description": "Output only. The name of service revision.",
           "readOnly": true,
           "type": "string"
+        },
+        "secretEnvironmentVariables": {
+          "description": "Secret environment variables configuration.",
+          "items": {
+            "$ref": "SecretEnvVar"
+          },
+          "type": "array"
         },
         "service": {
           "description": "Output only. Name of the service associated with a Function. The format of this field is `projects/{project}/locations/{region}/services/{service}`",
