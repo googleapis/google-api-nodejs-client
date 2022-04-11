@@ -150,6 +150,10 @@ export namespace adsense_v2 {
      */
     premium?: boolean | null;
     /**
+     * Output only. State of the account.
+     */
+    state?: string | null;
+    /**
      * The account time zone, as used by reporting. For more information, see [changing the time zone of your reports](https://support.google.com/adsense/answer/9830725).
      */
     timeZone?: Schema$TimeZone;
@@ -170,6 +174,10 @@ export namespace adsense_v2 {
      * Output only. Unique ID of the ad client as used in the `AD_CLIENT_ID` reporting dimension. Present only if the ad client supports reporting.
      */
     reportingDimensionId?: string | null;
+    /**
+     * Output only. State of the ad client.
+     */
+    state?: string | null;
   }
   /**
    * Representation of the AdSense code for a given ad client. For more information, see [About the AdSense code](https://support.google.com/adsense/answer/9274634).
@@ -671,6 +679,7 @@ export namespace adsense_v2 {
      *   //   "name": "my_name",
      *   //   "pendingTasks": [],
      *   //   "premium": false,
+     *   //   "state": "my_state",
      *   //   "timeZone": {}
      *   // }
      * }
