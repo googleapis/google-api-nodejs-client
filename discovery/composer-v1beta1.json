@@ -253,6 +253,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "loadSnapshot": {
+                  "description": "Loads a snapshot of a Cloud Composer environment. As a result of this operation, a snapshot of environment's specified in LoadSnapshotRequest is loaded into the environment.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}:loadSnapshot",
+                  "httpMethod": "POST",
+                  "id": "composer.projects.locations.environments.loadSnapshot",
+                  "parameterOrder": [
+                    "environment"
+                  ],
+                  "parameters": {
+                    "environment": {
+                      "description": "The resource name of the target environment in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/environments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+environment}:loadSnapshot",
+                  "request": {
+                    "$ref": "LoadSnapshotRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "patch": {
                   "description": "Update an environment.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}",
@@ -307,6 +335,34 @@
                   "path": "v1beta1/{+name}:restartWebServer",
                   "request": {
                     "$ref": "RestartWebServerRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "saveSnapshot": {
+                  "description": "Creates a snapshots of a Cloud Composer environment. As a result of this operation, snapshot of environment's state is stored in a location specified in the SaveSnapshotRequest.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}:saveSnapshot",
+                  "httpMethod": "POST",
+                  "id": "composer.projects.locations.environments.saveSnapshot",
+                  "parameterOrder": [
+                    "environment"
+                  ],
+                  "parameters": {
+                    "environment": {
+                      "description": "The resource name of the source environment in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/environments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+environment}:saveSnapshot",
+                  "request": {
+                    "$ref": "SaveSnapshotRequest"
                   },
                   "response": {
                     "$ref": "Operation"
@@ -462,7 +518,7 @@
       }
     }
   },
-  "revision": "20220307",
+  "revision": "20220402",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AllowedIpRange": {
@@ -485,7 +541,7 @@
       "id": "CheckUpgradeRequest",
       "properties": {
         "imageVersion": {
-          "description": "The version of the software running in the environment. This encapsulates both the version of Cloud Composer functionality and the version of Apache Airflow. It must match the regular expression `composer-([0-9]+(\\.[0-9]+\\.[0-9]+(-preview\\.[0-9]+)?)?|latest)-airflow-([0-9]+\\.[0-9]+(\\.[0-9]+)?)`. When used as input, the server also checks if the provided version is supported and denies the request for an unsupported version. The Cloud Composer portion of the image version is a full [semantic version](https://semver.org), or an alias in the form of major version number or `latest`. When an alias is provided, the server replaces it with the current Cloud Composer version that satisfies the alias. The Apache Airflow portion of the image version is a full semantic version that points to one of the supported Apache Airflow versions, or an alias in the form of only major and minor versions specified. When an alias is provided, the server replaces it with the latest Apache Airflow version that satisfies the alias and is supported in the given Cloud Composer version. In all cases, the resolved image version is stored in the same field. See also [version list](/composer/docs/concepts/versioning/composer-versions) and [versioning overview](/composer/docs/concepts/versioning/composer-versioning-overview).",
+          "description": "The version of the software running in the environment. This encapsulates both the version of Cloud Composer functionality and the version of Apache Airflow. It must match the regular expression `composer-([0-9]+(\\.[0-9]+\\.[0-9]+(-preview\\.[0-9]+)?)?|latest)-airflow-([0-9]+(\\.[0-9]+(\\.[0-9]+)?)?)`. When used as input, the server also checks if the provided version is supported and denies the request for an unsupported version. The Cloud Composer portion of the image version is a full [semantic version](https://semver.org), or an alias in the form of major version number or `latest`. When an alias is provided, the server replaces it with the current Cloud Composer version that satisfies the alias. The Apache Airflow portion of the image version is a full semantic version that points to one of the supported Apache Airflow versions, or an alias in the form of only major or major.minor versions specified. When an alias is provided, the server replaces it with the latest Apache Airflow version that satisfies the alias and is supported in the given Cloud Composer version. In all cases, the resolved image version is stored in the same field. See also [version list](/composer/docs/concepts/versioning/composer-versions) and [versioning overview](/composer/docs/concepts/versioning/composer-versioning-overview).",
           "type": "string"
         }
       },
@@ -583,7 +639,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -856,6 +912,21 @@
       },
       "type": "object"
     },
+    "LoadSnapshotRequest": {
+      "description": "Request to load a snapshot into a Cloud Composer environment.",
+      "id": "LoadSnapshotRequest",
+      "properties": {
+        "skipPypiPackagesInstallation": {
+          "description": "Whether or not to skip installing Pypi packages when loading the environment's state.",
+          "type": "boolean"
+        },
+        "snapshotPath": {
+          "description": "A Cloud Storage path to a snapshot to load, e.g.: \"gs://my-bucket/snapshots/project_location_environment_timestamp\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "LoadSnapshotResponse": {
       "description": "Response to LoadSnapshotRequest.",
       "id": "LoadSnapshotResponse",
@@ -906,7 +977,7 @@
       "id": "NodeConfig",
       "properties": {
         "diskSizeGb": {
-          "description": "Optional. The disk size in GB used for node VMs. Minimum size is 20GB. If unspecified, defaults to 100GB. Cannot be updated. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*.",
+          "description": "Optional. The disk size in GB used for node VMs. Minimum size is 30GB. If unspecified, defaults to 100GB. Cannot be updated. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*.",
           "format": "int32",
           "type": "integer"
         },
@@ -1131,6 +1202,17 @@
       "properties": {},
       "type": "object"
     },
+    "SaveSnapshotRequest": {
+      "description": "Request to create a snapshot of a Cloud Composer environment.",
+      "id": "SaveSnapshotRequest",
+      "properties": {
+        "snapshotLocation": {
+          "description": "Location in a Cloud Storage where the snapshot is going to be stored, e.g.: \"gs://my-bucket/snapshots\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SaveSnapshotResponse": {
       "description": "Response to SaveSnapshotRequest.",
       "id": "SaveSnapshotResponse",
@@ -1188,7 +1270,7 @@
           "type": "object"
         },
         "imageVersion": {
-          "description": "The version of the software running in the environment. This encapsulates both the version of Cloud Composer functionality and the version of Apache Airflow. It must match the regular expression `composer-([0-9]+(\\.[0-9]+\\.[0-9]+(-preview\\.[0-9]+)?)?|latest)-airflow-([0-9]+\\.[0-9]+(\\.[0-9]+)?)`. When used as input, the server also checks if the provided version is supported and denies the request for an unsupported version. The Cloud Composer portion of the image version is a full [semantic version](https://semver.org), or an alias in the form of major version number or `latest`. When an alias is provided, the server replaces it with the current Cloud Composer version that satisfies the alias. The Apache Airflow portion of the image version is a full semantic version that points to one of the supported Apache Airflow versions, or an alias in the form of only major and minor versions specified. When an alias is provided, the server replaces it with the latest Apache Airflow version that satisfies the alias and is supported in the given Cloud Composer version. In all cases, the resolved image version is stored in the same field. See also [version list](/composer/docs/concepts/versioning/composer-versions) and [versioning overview](/composer/docs/concepts/versioning/composer-versioning-overview).",
+          "description": "The version of the software running in the environment. This encapsulates both the version of Cloud Composer functionality and the version of Apache Airflow. It must match the regular expression `composer-([0-9]+(\\.[0-9]+\\.[0-9]+(-preview\\.[0-9]+)?)?|latest)-airflow-([0-9]+(\\.[0-9]+(\\.[0-9]+)?)?)`. When used as input, the server also checks if the provided version is supported and denies the request for an unsupported version. The Cloud Composer portion of the image version is a full [semantic version](https://semver.org), or an alias in the form of major version number or `latest`. When an alias is provided, the server replaces it with the current Cloud Composer version that satisfies the alias. The Apache Airflow portion of the image version is a full semantic version that points to one of the supported Apache Airflow versions, or an alias in the form of only major or major.minor versions specified. When an alias is provided, the server replaces it with the latest Apache Airflow version that satisfies the alias and is supported in the given Cloud Composer version. In all cases, the resolved image version is stored in the same field. See also [version list](/composer/docs/concepts/versioning/composer-versions) and [versioning overview](/composer/docs/concepts/versioning/composer-versioning-overview).",
           "type": "string"
         },
         "pypiPackages": {
