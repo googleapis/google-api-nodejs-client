@@ -170,34 +170,6 @@
           "resources": {
             "keys": {
               "methods": {
-                "clone": {
-                  "description": "DEPRECATED: API customers can call `GetKey` and then `CreateKey` methods to create a copy of an existing key. Retire `CloneKey` method to eliminate the unnessary method from API Keys API. Clones the existing key's restriction and display name to a new API key. The service account must have the `apikeys.keys.get` and `apikeys.keys.create` permissions in the project. NOTE: Key is a global resource; hence the only supported value for location is `global`.",
-                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/keys/{keysId}:clone",
-                  "httpMethod": "POST",
-                  "id": "apikeys.projects.locations.keys.clone",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. The resource name of the API key to be cloned in the same project.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/keys/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v2/{+name}:clone",
-                  "request": {
-                    "$ref": "V2CloneKeyRequest"
-                  },
-                  "response": {
-                    "$ref": "Operation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "create": {
                   "description": "Creates a new API key. NOTE: Key is a global resource; hence the only supported value for location is `global`.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/keys",
@@ -322,11 +294,6 @@
                     "parent"
                   ],
                   "parameters": {
-                    "filter": {
-                      "description": "Optional. Deprecated: Use `show_deleted` instead. Only list keys that conform to the specified filter. The allowed filter strings are `state:ACTIVE` and `state:DELETED`. By default, ListKeys returns only active keys.",
-                      "location": "query",
-                      "type": "string"
-                    },
                     "pageSize": {
                       "description": "Optional. Specifies the maximum number of results to be returned at a time.",
                       "format": "int32",
@@ -346,7 +313,7 @@
                       "type": "string"
                     },
                     "showDeleted": {
-                      "description": "Optional. Indicate that keys are marked as deleted within 30 days should also be returned. Normally only active keys are returned.",
+                      "description": "Optional. Indicate that keys deleted in the past 30 days should also be returned.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -429,7 +396,7 @@
       }
     }
   },
-  "revision": "20220321",
+  "revision": "20220406",
   "rootUrl": "https://apikeys.googleapis.com/",
   "schemas": {
     "Operation": {
@@ -551,17 +518,6 @@
             "type": "string"
           },
           "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "V2CloneKeyRequest": {
-      "description": "Request message for `CloneKey` method.",
-      "id": "V2CloneKeyRequest",
-      "properties": {
-        "keyId": {
-          "description": "User specified key id (optional). If specified, it will become the final component of the key resource name. The id must be unique within the project, must conform with RFC-1034, is restricted to lower-cased letters, and has a maximum length of 63 characters. In another word, the id must match the regular expression: `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`. The id must NOT be a UUID-like string.",
-          "type": "string"
         }
       },
       "type": "object"
