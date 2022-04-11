@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.5.2](https://github.com/googleapis/google-api-nodejs-client/compare/eventarc-v2.5.1...eventarc-v2.5.2) (2022-04-11)
+
+
+### Bug Fixes
+
+* **eventarc:** update the API ([5a689bc](https://github.com/googleapis/google-api-nodejs-client/commit/5a689bccfd2d2ca5925e62b8ad750ec117abc226))
+
 ### [2.5.1](https://github.com/googleapis/google-api-nodejs-client/compare/eventarc-v2.5.0...eventarc-v2.5.1) (2022-04-01)
 
 
