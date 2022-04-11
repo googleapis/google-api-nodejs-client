@@ -314,6 +314,35 @@
                     "https://www.googleapis.com/auth/cloud-platform",
                     "https://www.googleapis.com/auth/firebase"
                   ]
+                },
+                "undelete": {
+                  "description": "Restores a DatabaseInstance that was previously marked to be deleted. This may only be used on a DatabaseInstance in the DELETED state. Purged DatabaseInstance's may not be recovered.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:undelete",
+                  "httpMethod": "POST",
+                  "id": "firebasedatabase.projects.locations.instances.undelete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The fully qualified resource name of the database instance, in the form: `projects/{project-number}/locations/{location-id}/instances/{database-id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}:undelete",
+                  "request": {
+                    "$ref": "UndeleteDatabaseInstanceRequest"
+                  },
+                  "response": {
+                    "$ref": "DatabaseInstance"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/firebase"
+                  ]
                 }
               }
             }
@@ -322,7 +351,7 @@
       }
     }
   },
-  "revision": "20220328",
+  "revision": "20220407",
   "rootUrl": "https://firebasedatabase.googleapis.com/",
   "schemas": {
     "DatabaseInstance": {
@@ -401,6 +430,12 @@
     "ReenableDatabaseInstanceRequest": {
       "description": "The request sent to the ReenableDatabaseInstance method.",
       "id": "ReenableDatabaseInstanceRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "UndeleteDatabaseInstanceRequest": {
+      "description": "The request sent to UndeleteDatabaseInstance method.",
+      "id": "UndeleteDatabaseInstanceRequest",
       "properties": {},
       "type": "object"
     }
