@@ -120,7 +120,7 @@
               "type": "string"
             },
             "threadKey": {
-              "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+              "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves Chat apps and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
               "location": "query",
               "type": "string"
             }
@@ -155,7 +155,7 @@
               "type": "string"
             },
             "threadKey": {
-              "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+              "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves Chat apps and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
               "location": "query",
               "type": "string"
             }
@@ -194,7 +194,7 @@
                   "type": "string"
                 },
                 "threadKey": {
-                  "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+                  "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves Chat apps and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
                   "location": "query",
                   "type": "string"
                 }
@@ -262,7 +262,7 @@
               "type": "string"
             },
             "threadKey": {
-              "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+              "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves Chat apps and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
               "location": "query",
               "type": "string"
             }
@@ -297,7 +297,7 @@
               "type": "string"
             },
             "threadKey": {
-              "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+              "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves Chat apps and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
               "location": "query",
               "type": "string"
             }
@@ -336,7 +336,7 @@
                   "type": "string"
                 },
                 "threadKey": {
-                  "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+                  "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves Chat apps and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
                   "location": "query",
                   "type": "string"
                 }
@@ -356,7 +356,7 @@
     "spaces": {
       "methods": {
         "get": {
-          "description": "Returns a space.",
+          "description": "Returns a space. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).",
           "flatPath": "v1/spaces/{spacesId}",
           "httpMethod": "GET",
           "id": "chat.spaces.get",
@@ -378,7 +378,7 @@
           }
         },
         "list": {
-          "description": "Lists spaces the caller is a member of.",
+          "description": "Lists spaces the caller is a member of. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).",
           "flatPath": "v1/spaces",
           "httpMethod": "GET",
           "id": "chat.spaces.list",
@@ -423,7 +423,7 @@
               "type": "string"
             },
             "threadKey": {
-              "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+              "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves Chat apps and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
               "location": "query",
               "type": "string"
             }
@@ -441,7 +441,7 @@
         "members": {
           "methods": {
             "get": {
-              "description": "Returns a membership.",
+              "description": "Returns a membership. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).",
               "flatPath": "v1/spaces/{spacesId}/members/{membersId}",
               "httpMethod": "GET",
               "id": "chat.spaces.members.get",
@@ -463,7 +463,7 @@
               }
             },
             "list": {
-              "description": "Lists human memberships in a space.",
+              "description": "Lists human memberships in a space. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).",
               "flatPath": "v1/spaces/{spacesId}/members",
               "httpMethod": "GET",
               "id": "chat.spaces.members.list",
@@ -500,7 +500,7 @@
         "messages": {
           "methods": {
             "create": {
-              "description": "Creates a message.",
+              "description": "Creates a message. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).",
               "flatPath": "v1/spaces/{spacesId}/messages",
               "httpMethod": "POST",
               "id": "chat.spaces.messages.create",
@@ -521,7 +521,7 @@
                   "type": "string"
                 },
                 "threadKey": {
-                  "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+                  "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves Chat apps and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
                   "location": "query",
                   "type": "string"
                 }
@@ -535,7 +535,7 @@
               }
             },
             "delete": {
-              "description": "Deletes a message.",
+              "description": "Deletes a message. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).",
               "flatPath": "v1/spaces/{spacesId}/messages/{messagesId}",
               "httpMethod": "DELETE",
               "id": "chat.spaces.messages.delete",
@@ -557,7 +557,7 @@
               }
             },
             "get": {
-              "description": "Returns a message.",
+              "description": "Returns a message. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).",
               "flatPath": "v1/spaces/{spacesId}/messages/{messagesId}",
               "httpMethod": "GET",
               "id": "chat.spaces.messages.get",
@@ -579,7 +579,7 @@
               }
             },
             "update": {
-              "description": "Updates a message.",
+              "description": "Updates a message. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).",
               "flatPath": "v1/spaces/{spacesId}/messages/{messagesId}",
               "httpMethod": "PUT",
               "id": "chat.spaces.messages.update",
@@ -614,7 +614,7 @@
             "attachments": {
               "methods": {
                 "get": {
-                  "description": "Gets the metadata of a message attachment. The attachment data is fetched using the media API.",
+                  "description": "Gets the metadata of a message attachment. The attachment data is fetched using the media API. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).",
                   "flatPath": "v1/spaces/{spacesId}/messages/{messagesId}/attachments/{attachmentsId}",
                   "httpMethod": "GET",
                   "id": "chat.spaces.messages.attachments.get",
@@ -642,7 +642,7 @@
       }
     }
   },
-  "revision": "20220319",
+  "revision": "20220405",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -661,15 +661,15 @@
       "type": "object"
     },
     "ActionResponse": {
-      "description": "Parameters that a bot can use to configure how it's response is posted.",
+      "description": "Parameters that a Chat app can use to configure how it's response is posted.",
       "id": "ActionResponse",
       "properties": {
         "dialogAction": {
           "$ref": "DialogAction",
-          "description": "A response to an event related to a [dialog](https://developers.google.com/chat/how-tos/bot-dialogs). Must be accompanied by `ResponseType.Dialog`."
+          "description": "Input only. A response to an event related to a [dialog](https://developers.google.com/chat/how-tos/dialogs). Must be accompanied by `ResponseType.Dialog`."
         },
         "type": {
-          "description": "The type of bot response.",
+          "description": "Input only. The type of Chat app response.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "NEW_MESSAGE",
@@ -681,22 +681,22 @@
           "enumDescriptions": [
             "Default type; will be handled as NEW_MESSAGE.",
             "Post as a new message in the topic.",
-            "Update the bot's message. This is only permitted on a CARD_CLICKED event where the message sender type is BOT.",
+            "Update the Chat app's message. This is only permitted on a CARD_CLICKED event where the message sender type is BOT.",
             "Update the cards on a user's message. This is only permitted as a response to a MESSAGE event with a matched url, or a CARD_CLICKED event where the message sender type is HUMAN. Text will be ignored.",
             "Privately ask the user for additional auth or config.",
-            "Presents a [dialog](https://developers.google.com/chat/how-tos/bot-dialogs)."
+            "Presents a [dialog](https://developers.google.com/chat/how-tos/dialogs)."
           ],
           "type": "string"
         },
         "url": {
-          "description": "URL for users to auth or config. (Only for REQUEST_CONFIG response types.)",
+          "description": "Input only. URL for users to auth or config. (Only for REQUEST_CONFIG response types.)",
           "type": "string"
         }
       },
       "type": "object"
     },
     "ActionStatus": {
-      "description": "Represents the status of a request.",
+      "description": "Represents the status for a request to either invoke or submit a [dialog](https://developers.google.com/chat/how-tos/dialogs).",
       "id": "ActionStatus",
       "properties": {
         "statusCode": {
@@ -804,7 +804,8 @@
           "type": "string"
         },
         "downloadUri": {
-          "description": "Output only. The download URL which should be used to allow a human user to download the attachment. Bots should not use this URL to download attachment content.",
+          "description": "Output only. The download URL which should be used to allow a human user to download the attachment. Chat apps should not use this URL to download attachment content.",
+          "readOnly": true,
           "type": "string"
         },
         "driveDataRef": {
@@ -830,7 +831,8 @@
           "type": "string"
         },
         "thumbnailUri": {
-          "description": "Output only. The thumbnail URL which should be used to preview the attachment to a human user. Bots should not use this URL to download attachment content.",
+          "description": "Output only. The thumbnail URL which should be used to preview the attachment to a human user. Chat apps should not use this URL to download attachment content.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -966,14 +968,14 @@
       "type": "object"
     },
     "CommonEventObject": {
-      "description": "Represents information about the user's client, such as locale, host app, and platform. For Chat apps, `CommonEventObject` includes data submitted by users interacting with cards, like data entered in [dialogs](https://developers.google.com/chat/how-tos/bot-dialogs).",
+      "description": "Represents information about the user's client, such as locale, host app, and platform. For Chat apps, `CommonEventObject` includes data submitted by users interacting with cards, like data entered in [dialogs](https://developers.google.com/chat/how-tos/dialogs).",
       "id": "CommonEventObject",
       "properties": {
         "formInputs": {
           "additionalProperties": {
             "$ref": "Inputs"
           },
-          "description": "A map containing the current values of the widgets in a card. The map keys are the string IDs assigned to each widget, and the values represent inputs to the widget. Depending on the input data type, a different object represents each input: For single-value widgets, `StringInput`. For multi-value widgets, an array of `StringInput` objects. For a date-time picker, a `DateTimeInput`. For a date-only picker, a `DateInput`. For a time-only picker, a `TimeInput`. Corresponds with the data entered by a user on a card in a [dialog](https://developers.google.com/chat/how-tos/bot-dialogs).",
+          "description": "A map containing the current values of the widgets in a card. The map keys are the string IDs assigned to each widget, and the values represent inputs to the widget. Depending on the input data type, a different object represents each input: For single-value widgets, `StringInput`. For multi-value widgets, an array of `StringInput` objects. For a date-time picker, a `DateTimeInput`. For a date-only picker, a `DateInput`. For a time-only picker, a `TimeInput`. Corresponds with the data entered by a user on a card in a [dialog](https://developers.google.com/chat/how-tos/dialogs).",
           "type": "object"
         },
         "hostApp": {
@@ -1084,14 +1086,14 @@
         },
         "common": {
           "$ref": "CommonEventObject",
-          "description": "Represents information about the user's client, such as locale, host app, and platform. For Chat apps, `CommonEventObject` includes information submitted by users interacting with [dialogs](https://developers.google.com/chat/how-tos/bot-dialogs), like data entered on a card."
+          "description": "Represents information about the user's client, such as locale, host app, and platform. For Chat apps, `CommonEventObject` includes information submitted by users interacting with [dialogs](https://developers.google.com/chat/how-tos/dialogs), like data entered on a card."
         },
         "configCompleteRedirectUrl": {
-          "description": "The URL the bot should redirect the user to after they have completed an authorization or configuration flow outside of Google Chat. See the [Authorizing access to 3p services guide](/chat/how-tos/auth-3p) for more information.",
+          "description": "The URL the Chat app should redirect the user to after they have completed an authorization or configuration flow outside of Google Chat. See the [Authorizing access to 3p services guide](/chat/how-tos/auth-3p) for more information.",
           "type": "string"
         },
         "dialogEventType": {
-          "description": "The type of [dialog](https://developers.google.com/chat/how-tos/bot-dialogs) event received.",
+          "description": "The type of [dialog](https://developers.google.com/chat/how-tos/dialogs) event received.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "REQUEST_DIALOG",
@@ -1100,9 +1102,9 @@
           ],
           "enumDescriptions": [
             "This could be used when the corresponding event is not dialog related. For example an @mention.",
-            "Any user action that opens a [dialog](https://developers.google.com/chat/how-tos/bot-dialogs).",
-            "A card click event from a [dialog](https://developers.google.com/chat/how-tos/bot-dialogs).",
-            "The [dialog](https://developers.google.com/chat/how-tos/bot-dialogs) was cancelled."
+            "Any user action that opens a [dialog](https://developers.google.com/chat/how-tos/dialogs).",
+            "A card click event from a [dialog](https://developers.google.com/chat/how-tos/dialogs).",
+            "The [dialog](https://developers.google.com/chat/how-tos/dialogs) was cancelled."
           ],
           "type": "string"
         },
@@ -1112,7 +1114,7 @@
           "type": "string"
         },
         "isDialogEvent": {
-          "description": "True when the event is related to [dialogs](https://developers.google.com/chat/how-tos/bot-dialogs).",
+          "description": "True when the event is related to [dialogs](https://developers.google.com/chat/how-tos/dialogs).",
           "type": "boolean"
         },
         "message": {
@@ -1124,11 +1126,11 @@
           "description": "The space in which the event occurred."
         },
         "threadKey": {
-          "description": "The bot-defined key for the thread related to the event. See the thread_key field of the `spaces.message.create` request for more information.",
+          "description": "The Chat app-defined key for the thread related to the event. See the thread_key field of the `spaces.message.create` request for more information.",
           "type": "string"
         },
         "token": {
-          "description": "A secret value that bots can use to verify if a request is from Google. The token is randomly generated by Google, remains static, and can be obtained from the Google Chat API configuration page in the Cloud Console. Developers can revoke/regenerate it if needed from the same page.",
+          "description": "A secret value that legacy Chat apps can use to verify if a request is from Google. Google randomly generates the token, and its value remains static. You can obtain, revoke, or regenerate the token from the [Chat API configuration page](https://console.cloud.google.com/apis/api/chat.googleapis.com/hangouts-chat) in the Google Cloud Console. Modern Chat apps don't use this field. It is absent from API responses and the [Chat API configuration page](https://console.cloud.google.com/apis/api/chat.googleapis.com/hangouts-chat).",
           "type": "string"
         },
         "type": {
@@ -1143,9 +1145,9 @@
           "enumDescriptions": [
             "Default value for the enum. DO NOT USE.",
             "A message was sent in a space.",
-            "The bot was added to a space.",
-            "The bot was removed from a space.",
-            "The bot's interactive card was clicked."
+            "The Chat app was added to a space.",
+            "The Chat app was removed from a space.",
+            "The Chat app's interactive card was clicked."
           ],
           "type": "string"
         },
@@ -1162,22 +1164,22 @@
       "properties": {
         "body": {
           "$ref": "GoogleAppsCardV1Card",
-          "description": "Body of the dialog, which is rendered in a modal. Google Chat apps do not support the following card entities: `DateTimePicker`, `OnChangeAction`."
+          "description": "Input only. Body of the dialog, which is rendered in a modal. Google Chat apps do not support the following card entities: `DateTimePicker`, `OnChangeAction`."
         }
       },
       "type": "object"
     },
     "DialogAction": {
-      "description": "Contains a [dialog](https://developers.google.com/chat/how-tos/bot-dialogs) and request status code.",
+      "description": "Contains a [dialog](https://developers.google.com/chat/how-tos/dialogs) and request status code.",
       "id": "DialogAction",
       "properties": {
         "actionStatus": {
           "$ref": "ActionStatus",
-          "description": "Status for a request to either invoke or submit a [dialog](https://developers.google.com/chat/how-tos/bot-dialogs). Displays a status and message to users, if necessary. For example, in case of an error or success."
+          "description": "Input only. Status for a request to either invoke or submit a [dialog](https://developers.google.com/chat/how-tos/dialogs). Displays a status and message to users, if necessary. For example, in case of an error or success."
         },
         "dialog": {
           "$ref": "Dialog",
-          "description": "[Dialog](https://developers.google.com/chat/how-tos/bot-dialogs) for the request."
+          "description": "Input only. [Dialog](https://developers.google.com/chat/how-tos/dialogs) for the request."
         }
       },
       "type": "object"
@@ -1223,7 +1225,7 @@
       "id": "FormAction",
       "properties": {
         "actionMethodName": {
-          "description": "The method name is used to identify which part of the form triggered the form submission. This information is echoed back to the bot as part of the card click event. The same method name can be used for several elements that trigger a common behavior if desired.",
+          "description": "The method name is used to identify which part of the form triggered the form submission. This information is echoed back to the Chat app as part of the card click event. The same method name can be used for several elements that trigger a common behavior if desired.",
           "type": "string"
         },
         "parameters": {
@@ -2355,11 +2357,12 @@
       "type": "object"
     },
     "MatchedUrl": {
-      "description": "A matched url in a Chat message. Chat bots can unfurl matched URLs. For more information, refer to [Unfurl links](/chat/how-tos/link-unfurling).",
+      "description": "A matched url in a Chat message. Chat apps can unfurl matched URLs. For more information, refer to [Unfurl links](https://developers.google.com/chat/how-tos/link-unfurling).",
       "id": "MatchedUrl",
       "properties": {
         "url": {
-          "description": "The url that was matched.",
+          "description": "Output only. The url that was matched.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2388,7 +2391,8 @@
         },
         "member": {
           "$ref": "User",
-          "description": "A user in Google Chat. Represents a [person](https://developers.google.com/people/api/rest/v1/people) in the People API or a [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Admin SDK Directory API. Format: `users/{user}`"
+          "description": "Output only. A user in Google Chat. Represents a [person](https://developers.google.com/people/api/rest/v1/people) in the People API or a [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Admin SDK Directory API. Format: `users/{user}`",
+          "readOnly": true
         },
         "name": {
           "type": "string"
@@ -2419,17 +2423,18 @@
       "properties": {
         "actionResponse": {
           "$ref": "ActionResponse",
-          "description": "Input only. Parameters that a bot can use to configure how its response is posted."
+          "description": "Input only. Parameters that a Chat app can use to configure how its response is posted."
         },
         "annotations": {
           "description": "Output only. Annotations associated with the text in this message.",
           "items": {
             "$ref": "Annotation"
           },
+          "readOnly": true,
           "type": "array"
         },
         "argumentText": {
-          "description": "Plain-text body of the message with all bot mentions stripped out.",
+          "description": "Plain-text body of the message with all Chat app mentions stripped out.",
           "type": "string"
         },
         "attachment": {
@@ -2464,30 +2469,29 @@
         },
         "matchedUrl": {
           "$ref": "MatchedUrl",
-          "description": "A URL in `spaces.messages.text` that matches a link unfurling pattern. For more information, refer to [Unfurl links](/chat/how-tos/link-unfurling)."
+          "description": "Output only. A URL in `spaces.messages.text` that matches a link unfurling pattern. For more information, refer to [Unfurl links](https://developers.google.com/chat/how-tos/link-unfurling).",
+          "readOnly": true
         },
         "name": {
           "description": "Resource name in the form `spaces/*/messages/*`. Example: `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`",
           "type": "string"
         },
-        "previewText": {
-          "description": "Text for generating preview chips. This text will not be displayed to the user, but any links to images, web pages, videos, etc. included here will generate preview chips.",
-          "type": "string"
-        },
         "sender": {
           "$ref": "User",
-          "description": "The user who created the message."
+          "description": "Output only. The user who created the message.",
+          "readOnly": true
         },
         "slashCommand": {
           "$ref": "SlashCommand",
-          "description": "Slash command information, if applicable."
+          "description": "Output only. Slash command information, if applicable.",
+          "readOnly": true
         },
         "space": {
           "$ref": "Space",
           "description": "The space the message belongs to."
         },
         "text": {
-          "description": "Plain-text body of the message.",
+          "description": "Plain-text body of the message. The first link to an image, video, web page, or other preview-able item generates a preview chip.",
           "type": "string"
         },
         "thread": {
@@ -2559,7 +2563,7 @@
       "properties": {
         "bot": {
           "$ref": "User",
-          "description": "The bot whose command was invoked."
+          "description": "The Chat app whose command was invoked."
         },
         "commandId": {
           "description": "The command id of the invoked slash command.",
@@ -2583,7 +2587,7 @@
           ],
           "enumDescriptions": [
             "Default value for the enum. DO NOT USE.",
-            "Add bot to space.",
+            "Add Chat app to space.",
             "Invoke slash command in space."
           ],
           "type": "string"
@@ -2592,7 +2596,7 @@
       "type": "object"
     },
     "Space": {
-      "description": "A space in Google Chat. Spaces are conversations between two or more users or 1:1 messages between a user and a Chat bot.",
+      "description": "A space in Google Chat. Spaces are conversations between two or more users or 1:1 messages between a user and a Chat app.",
       "id": "Space",
       "properties": {
         "displayName": {
@@ -2604,17 +2608,17 @@
           "type": "string"
         },
         "singleUserBotDm": {
-          "description": "Output only. Whether the space is a DM between a bot and a single human.",
+          "description": "Output only. Whether the space is a DM between a Chat app and a single human.",
           "readOnly": true,
           "type": "boolean"
         },
         "threaded": {
-          "description": "Output only. Whether the messages are threaded in this space.",
+          "description": "Output only. Output only. Whether the messages are threaded in this space.",
           "readOnly": true,
           "type": "boolean"
         },
         "type": {
-          "description": "Deprecated. Use `single_user_bot_dm` instead. Output only. The type of a space.",
+          "description": "Output only. Deprecated: Use `single_user_bot_dm` instead. Output only. The type of a space.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "ROOM",
@@ -2623,8 +2627,9 @@
           "enumDescriptions": [
             "",
             "Conversations between two or more humans.",
-            "1:1 Direct Message between a human and a Chat bot, where all messages are flat. Note that this does not include direct messages between two humans."
+            "1:1 Direct Message between a human and a Chat app, where all messages are flat. Note that this does not include direct messages between two humans."
           ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2745,7 +2750,8 @@
       "id": "User",
       "properties": {
         "displayName": {
-          "description": "The user's display name.",
+          "description": "Output only. The user's display name.",
+          "readOnly": true,
           "type": "string"
         },
         "domainId": {
@@ -2753,7 +2759,8 @@
           "type": "string"
         },
         "isAnonymous": {
-          "description": "When `true`, the user is deleted or their profile is not visible.",
+          "description": "Output only. When `true`, the user is deleted or their profile is not visible.",
+          "readOnly": true,
           "type": "boolean"
         },
         "name": {
@@ -2770,7 +2777,7 @@
           "enumDescriptions": [
             "Default value for the enum. DO NOT USE.",
             "Human user.",
-            "Bot user."
+            "Chat app user."
           ],
           "type": "string"
         }
