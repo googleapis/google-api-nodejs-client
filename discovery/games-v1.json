@@ -1229,7 +1229,7 @@
       }
     }
   },
-  "revision": "20220317",
+  "revision": "20220330",
   "rootUrl": "https://games.googleapis.com/",
   "schemas": {
     "AchievementDefinition": {
@@ -2428,6 +2428,10 @@
             "There is no relationship between the players.",
             "The player and requester are friends."
           ],
+          "type": "string"
+        },
+        "gamePlayerId": {
+          "description": "Per-application unique player identifier.",
           "type": "string"
         },
         "kind": {
