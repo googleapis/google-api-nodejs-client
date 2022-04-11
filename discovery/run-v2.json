@@ -590,7 +590,7 @@
       }
     }
   },
-  "revision": "20220318",
+  "revision": "20220401",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -599,6 +599,10 @@
       "properties": {
         "breakglassJustification": {
           "description": "If present, indicates to use Breakglass using this justification. If use_default is False, then it must be empty. For more information on breakglass, see https://cloud.google.com/binary-authorization/docs/using-breakglass",
+          "type": "string"
+        },
+        "policy": {
+          "description": "The path to a binary authorization policy. Format: projects/{project}/platforms/cloudRun/{policy-name}",
           "type": "string"
         },
         "useDefault": {
@@ -1022,12 +1026,12 @@
           "description": "The execution environment being used to host this Revision.",
           "enum": [
             "EXECUTION_ENVIRONMENT_UNSPECIFIED",
-            "EXECUTION_ENVIRONMENT_DEFAULT",
+            "EXECUTION_ENVIRONMENT_GEN1",
             "EXECUTION_ENVIRONMENT_GEN2"
           ],
           "enumDescriptions": [
             "Unspecified",
-            "Uses the Google-default environment.",
+            "Uses the First Generation environment.",
             "Uses Second Generation environment."
           ],
           "type": "string"
@@ -1191,12 +1195,12 @@
           "description": "The sandbox environment to host this Revision.",
           "enum": [
             "EXECUTION_ENVIRONMENT_UNSPECIFIED",
-            "EXECUTION_ENVIRONMENT_DEFAULT",
+            "EXECUTION_ENVIRONMENT_GEN1",
             "EXECUTION_ENVIRONMENT_GEN2"
           ],
           "enumDescriptions": [
             "Unspecified",
-            "Uses the Google-default environment.",
+            "Uses the First Generation environment.",
             "Uses Second Generation environment."
           ],
           "type": "string"
