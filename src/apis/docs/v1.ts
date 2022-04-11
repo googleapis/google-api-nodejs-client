@@ -1080,7 +1080,7 @@ export namespace docs_v1 {
      */
     inlineObjectProperties?: Schema$InlineObjectProperties;
     /**
-     * The ID of this inline object.
+     * The ID of this inline object. Can be used to update an object’s properties.
      */
     objectId?: string | null;
     /**
@@ -2031,7 +2031,7 @@ export namespace docs_v1 {
    */
   export interface Schema$ReplaceImageRequest {
     /**
-     * The ID of the existing image that will be replaced.
+     * The ID of the existing image that will be replaced. The ID can be retrieved from the response of a get request.
      */
     imageObjectId?: string | null;
     /**
@@ -2039,7 +2039,7 @@ export namespace docs_v1 {
      */
     imageReplaceMethod?: string | null;
     /**
-     * The URI of the new image. The image is fetched once at insertion time and a copy is stored for display inside the document. Images must be less than 50MB in size, cannot exceed 25 megapixels, and must be in one of PNG, JPEG, or GIF format. The provided URI can be at most 2 kB in length. The URI itself is saved with the image, and exposed via the ImageProperties.source_uri field.
+     * The URI of the new image. The image is fetched once at insertion time and a copy is stored for display inside the document. Images must be less than 50MB, cannot exceed 25 megapixels, and must be in PNG, JPEG, or GIF format. The provided URI can't surpass 2 KB in length. The URI is saved with the image, and exposed through the ImageProperties.source_uri field.
      */
     uri?: string | null;
   }

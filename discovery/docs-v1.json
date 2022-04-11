@@ -216,7 +216,7 @@
       }
     }
   },
-  "revision": "20220325",
+  "revision": "20220331",
   "rootUrl": "https://docs.googleapis.com/",
   "schemas": {
     "AutoText": {
@@ -1459,7 +1459,7 @@
           "description": "The properties of this inline object."
         },
         "objectId": {
-          "description": "The ID of this inline object.",
+          "description": "The ID of this inline object. Can be used to update an object’s properties.",
           "type": "string"
         },
         "suggestedDeletionIds": {
@@ -2764,7 +2764,7 @@
       "id": "ReplaceImageRequest",
       "properties": {
         "imageObjectId": {
-          "description": "The ID of the existing image that will be replaced.",
+          "description": "The ID of the existing image that will be replaced. The ID can be retrieved from the response of a get request.",
           "type": "string"
         },
         "imageReplaceMethod": {
@@ -2775,12 +2775,12 @@
           ],
           "enumDescriptions": [
             "Unspecified image replace method. This value must not be used.",
-            "Scales and centers the image to fill the bounds of the original image. The image may be cropped in order to fill the original image's bounds. The rendered size of the image will be the same as that of the original image."
+            "Scales and centers the image to fill the bounds of the original image. The image may be cropped in order to fill the original image's bounds. The rendered size of the image will be the same as the original image."
           ],
           "type": "string"
         },
         "uri": {
-          "description": "The URI of the new image. The image is fetched once at insertion time and a copy is stored for display inside the document. Images must be less than 50MB in size, cannot exceed 25 megapixels, and must be in one of PNG, JPEG, or GIF format. The provided URI can be at most 2 kB in length. The URI itself is saved with the image, and exposed via the ImageProperties.source_uri field.",
+          "description": "The URI of the new image. The image is fetched once at insertion time and a copy is stored for display inside the document. Images must be less than 50MB, cannot exceed 25 megapixels, and must be in PNG, JPEG, or GIF format. The provided URI can't surpass 2 KB in length. The URI is saved with the image, and exposed through the ImageProperties.source_uri field.",
           "type": "string"
         }
       },
