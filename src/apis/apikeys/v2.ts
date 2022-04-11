@@ -216,15 +216,6 @@ export namespace apikeys_v2 {
     allowedReferrers?: string[] | null;
   }
   /**
-   * Request message for `CloneKey` method.
-   */
-  export interface Schema$V2CloneKeyRequest {
-    /**
-     * User specified key id (optional). If specified, it will become the final component of the key resource name. The id must be unique within the project, must conform with RFC-1034, is restricted to lower-cased letters, and has a maximum length of 63 characters. In another word, the id must match the regular expression: `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`. The id must NOT be a UUID-like string.
-     */
-    keyId?: string | null;
-  }
-  /**
    * Response message for `GetKeyString` method.
    */
   export interface Schema$V2GetKeyStringResponse {
@@ -666,144 +657,6 @@ export namespace apikeys_v2 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
-    }
-
-    /**
-     * DEPRECATED: API customers can call `GetKey` and then `CreateKey` methods to create a copy of an existing key. Retire `CloneKey` method to eliminate the unnessary method from API Keys API. Clones the existing key's restriction and display name to a new API key. The service account must have the `apikeys.keys.get` and `apikeys.keys.create` permissions in the project. NOTE: Key is a global resource; hence the only supported value for location is `global`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/apikeys.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const apikeys = google.apikeys('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await apikeys.projects.locations.keys.clone({
-     *     // Required. The resource name of the API key to be cloned in the same project.
-     *     name: 'projects/my-project/locations/my-location/keys/my-key',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "keyId": "my_keyId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    clone(
-      params: Params$Resource$Projects$Locations$Keys$Clone,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    clone(
-      params?: Params$Resource$Projects$Locations$Keys$Clone,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    clone(
-      params: Params$Resource$Projects$Locations$Keys$Clone,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    clone(
-      params: Params$Resource$Projects$Locations$Keys$Clone,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    clone(
-      params: Params$Resource$Projects$Locations$Keys$Clone,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    clone(callback: BodyResponseCallback<Schema$Operation>): void;
-    clone(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Keys$Clone
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Keys$Clone;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keys$Clone;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://apikeys.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/{+name}:clone').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
     }
 
     /**
@@ -1394,15 +1247,13 @@ export namespace apikeys_v2 {
      *
      *   // Do the magic
      *   const res = await apikeys.projects.locations.keys.list({
-     *     // Optional. Deprecated: Use `show_deleted` instead. Only list keys that conform to the specified filter. The allowed filter strings are `state:ACTIVE` and `state:DELETED`. By default, ListKeys returns only active keys.
-     *     filter: 'placeholder-value',
      *     // Optional. Specifies the maximum number of results to be returned at a time.
      *     pageSize: 'placeholder-value',
      *     // Optional. Requests a specific page of results.
      *     pageToken: 'placeholder-value',
      *     // Required. Lists all API keys associated with this project.
      *     parent: 'projects/my-project/locations/my-location',
-     *     // Optional. Indicate that keys are marked as deleted within 30 days should also be returned. Normally only active keys are returned.
+     *     // Optional. Indicate that keys deleted in the past 30 days should also be returned.
      *     showDeleted: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1794,18 +1645,6 @@ export namespace apikeys_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Keys$Clone
-    extends StandardParameters {
-    /**
-     * Required. The resource name of the API key to be cloned in the same project.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$V2CloneKeyRequest;
-  }
   export interface Params$Resource$Projects$Locations$Keys$Create
     extends StandardParameters {
     /**
@@ -1850,10 +1689,6 @@ export namespace apikeys_v2 {
   export interface Params$Resource$Projects$Locations$Keys$List
     extends StandardParameters {
     /**
-     * Optional. Deprecated: Use `show_deleted` instead. Only list keys that conform to the specified filter. The allowed filter strings are `state:ACTIVE` and `state:DELETED`. By default, ListKeys returns only active keys.
-     */
-    filter?: string;
-    /**
      * Optional. Specifies the maximum number of results to be returned at a time.
      */
     pageSize?: number;
@@ -1866,7 +1701,7 @@ export namespace apikeys_v2 {
      */
     parent?: string;
     /**
-     * Optional. Indicate that keys are marked as deleted within 30 days should also be returned. Normally only active keys are returned.
+     * Optional. Indicate that keys deleted in the past 30 days should also be returned.
      */
     showDeleted?: boolean;
   }
