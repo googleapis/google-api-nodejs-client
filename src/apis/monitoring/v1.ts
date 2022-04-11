@@ -221,6 +221,10 @@ export namespace monitoring_v1 {
      */
     columnLayout?: Schema$ColumnLayout;
     /**
+     * Filters to reduce the amount of data charted based on the filter criteria.
+     */
+    dashboardFilters?: Schema$DashboardFilter[];
+    /**
      * Required. The mutable, human-readable name.
      */
     displayName?: string | null;
@@ -248,6 +252,27 @@ export namespace monitoring_v1 {
      * The content is divided into equally spaced rows and the widgets are arranged horizontally.
      */
     rowLayout?: Schema$RowLayout;
+  }
+  /**
+   * A filter to reduce the amount of data charted in relevant widgets.
+   */
+  export interface Schema$DashboardFilter {
+    /**
+     * The specified filter type
+     */
+    filterType?: string | null;
+    /**
+     * Required. The key for the label
+     */
+    labelKey?: string | null;
+    /**
+     * A variable-length string value.
+     */
+    stringValue?: string | null;
+    /**
+     * The placeholder text that can be referenced in a filter string or MQL query. If omitted, the dashboard filter will be applied to all relevant widgets in the dashboard.
+     */
+    templateVariable?: string | null;
   }
   /**
    * Groups a time series query definition with charting options.
@@ -1817,6 +1842,7 @@ export namespace monitoring_v1 {
      *       // request body parameters
      *       // {
      *       //   "columnLayout": {},
+     *       //   "dashboardFilters": [],
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",
      *       //   "gridLayout": {},
@@ -1832,6 +1858,7 @@ export namespace monitoring_v1 {
      *   // Example response
      *   // {
      *   //   "columnLayout": {},
+     *   //   "dashboardFilters": [],
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
      *   //   "gridLayout": {},
@@ -2100,6 +2127,7 @@ export namespace monitoring_v1 {
      *   // Example response
      *   // {
      *   //   "columnLayout": {},
+     *   //   "dashboardFilters": [],
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
      *   //   "gridLayout": {},
@@ -2382,6 +2410,7 @@ export namespace monitoring_v1 {
      *       // request body parameters
      *       // {
      *       //   "columnLayout": {},
+     *       //   "dashboardFilters": [],
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",
      *       //   "gridLayout": {},
@@ -2397,6 +2426,7 @@ export namespace monitoring_v1 {
      *   // Example response
      *   // {
      *   //   "columnLayout": {},
+     *   //   "dashboardFilters": [],
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
      *   //   "gridLayout": {},
