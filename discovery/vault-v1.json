@@ -1193,7 +1193,7 @@
       }
     }
   },
-  "revision": "20220316",
+  "revision": "20220331",
   "rootUrl": "https://vault.googleapis.com/",
   "schemas": {
     "AccountCount": {
@@ -1499,6 +1499,22 @@
       "description": "Additional options for Drive search",
       "id": "DriveOptions",
       "properties": {
+        "clientSideEncryptedOption": {
+          "description": "Set whether the results include only content encrypted with [Google Workspace Client-side encryption](https://support.google.com/a?p=cse_ov) content, only unencrypted content, or both. Defaults to both. Currently supported for Drive.",
+          "enum": [
+            "CLIENT_SIDE_ENCRYPTED_OPTION_UNSPECIFIED",
+            "CLIENT_SIDE_ENCRYPTED_OPTION_ANY",
+            "CLIENT_SIDE_ENCRYPTED_OPTION_ENCRYPTED",
+            "CLIENT_SIDE_ENCRYPTED_OPTION_UNENCRYPTED"
+          ],
+          "enumDescriptions": [
+            "Encryption status unspecified. Results include both client-side encrypted and non-encrypted content.",
+            "Include both client-side encrypted and unencrypted content in results.",
+            "Include client-side encrypted content only.",
+            "Include unencrypted content only."
+          ],
+          "type": "string"
+        },
         "includeSharedDrives": {
           "description": "Set to **true** to include shared drives.",
           "type": "boolean"
@@ -1516,7 +1532,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
       "type": "object"
