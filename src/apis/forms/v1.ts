@@ -1044,6 +1044,7 @@ export namespace forms_v1 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/drive',
      *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/forms.body',
      *     ],
      *   });
      *
@@ -1195,6 +1196,7 @@ export namespace forms_v1 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/drive',
      *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/forms.body',
      *     ],
      *   });
      *
@@ -1341,6 +1343,8 @@ export namespace forms_v1 {
      *       'https://www.googleapis.com/auth/drive',
      *       'https://www.googleapis.com/auth/drive.file',
      *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/forms.body',
+     *       'https://www.googleapis.com/auth/forms.body.readonly',
      *     ],
      *   });
      *
@@ -1507,6 +1511,7 @@ export namespace forms_v1 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/drive',
      *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/forms.responses.readonly',
      *     ],
      *   });
      *
@@ -1646,6 +1651,7 @@ export namespace forms_v1 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/drive',
      *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/forms.responses.readonly',
      *     ],
      *   });
      *
@@ -1831,6 +1837,9 @@ export namespace forms_v1 {
      *       'https://www.googleapis.com/auth/drive',
      *       'https://www.googleapis.com/auth/drive.file',
      *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/forms.body',
+     *       'https://www.googleapis.com/auth/forms.body.readonly',
+     *       'https://www.googleapis.com/auth/forms.responses.readonly',
      *     ],
      *   });
      *
@@ -1979,6 +1988,9 @@ export namespace forms_v1 {
      *       'https://www.googleapis.com/auth/drive',
      *       'https://www.googleapis.com/auth/drive.file',
      *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/forms.body',
+     *       'https://www.googleapis.com/auth/forms.body.readonly',
+     *       'https://www.googleapis.com/auth/forms.responses.readonly',
      *     ],
      *   });
      *
@@ -2112,6 +2124,9 @@ export namespace forms_v1 {
      *       'https://www.googleapis.com/auth/drive',
      *       'https://www.googleapis.com/auth/drive.file',
      *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/forms.body',
+     *       'https://www.googleapis.com/auth/forms.body.readonly',
+     *       'https://www.googleapis.com/auth/forms.responses.readonly',
      *     ],
      *   });
      *
@@ -2248,6 +2263,9 @@ export namespace forms_v1 {
      *       'https://www.googleapis.com/auth/drive',
      *       'https://www.googleapis.com/auth/drive.file',
      *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/forms.body',
+     *       'https://www.googleapis.com/auth/forms.body.readonly',
+     *       'https://www.googleapis.com/auth/forms.responses.readonly',
      *     ],
      *   });
      *
