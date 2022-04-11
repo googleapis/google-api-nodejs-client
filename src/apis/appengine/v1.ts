@@ -511,7 +511,7 @@ export namespace appengine_v1 {
     sslSettings?: Schema$SslSettings;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for Empty is empty JSON object {\}.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -1454,6 +1454,10 @@ export namespace appengine_v1 {
      * Serving configuration for Google Cloud Endpoints (https://cloud.google.com/appengine/docs/python/endpoints/).Only returned in GET requests if view=FULL is set.
      */
     apiConfig?: Schema$ApiConfigHandler;
+    /**
+     * app_engine_apis allows second generation runtimes to access the App Engine APIs.
+     */
+    appEngineApis?: boolean | null;
     /**
      * Automatic scaling is based on request rate, response latencies, and other application metrics. Instances are dynamically created and destroyed as needed in order to handle traffic.
      */
@@ -6367,6 +6371,7 @@ export namespace appengine_v1 {
      *       // request body parameters
      *       // {
      *       //   "apiConfig": {},
+     *       //   "appEngineApis": false,
      *       //   "automaticScaling": {},
      *       //   "basicScaling": {},
      *       //   "betaSettings": {},
@@ -6692,6 +6697,7 @@ export namespace appengine_v1 {
      *   // Example response
      *   // {
      *   //   "apiConfig": {},
+     *   //   "appEngineApis": false,
      *   //   "automaticScaling": {},
      *   //   "basicScaling": {},
      *   //   "betaSettings": {},
@@ -7011,6 +7017,7 @@ export namespace appengine_v1 {
      *       // request body parameters
      *       // {
      *       //   "apiConfig": {},
+     *       //   "appEngineApis": false,
      *       //   "automaticScaling": {},
      *       //   "basicScaling": {},
      *       //   "betaSettings": {},
