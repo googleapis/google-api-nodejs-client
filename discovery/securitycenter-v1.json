@@ -3058,7 +3058,7 @@
       }
     }
   },
-  "revision": "20220324",
+  "revision": "20220407",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -3505,6 +3505,13 @@
           ],
           "type": "string"
         },
+        "iamBindings": {
+          "description": "Represents IAM bindings associated with the Finding.",
+          "items": {
+            "$ref": "IamBinding"
+          },
+          "type": "array"
+        },
         "indicator": {
           "$ref": "Indicator",
           "description": "Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise"
@@ -3541,6 +3548,10 @@
         },
         "name": {
           "description": "The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}\"",
+          "type": "string"
+        },
+        "nextSteps": {
+          "description": "Next steps associate to the finding.",
           "type": "string"
         },
         "parent": {
@@ -4234,6 +4245,35 @@
           },
           "description": "Properties matching the groupBy fields in the request.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "IamBinding": {
+      "description": "Represents a particular IAM binding, which captures a member's role addition, removal, or state.",
+      "id": "IamBinding",
+      "properties": {
+        "action": {
+          "description": "The action that was performed on a Binding.",
+          "enum": [
+            "ACTION_UNSPECIFIED",
+            "ADD",
+            "REMOVE"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Addition of a Binding.",
+            "Removal of a Binding."
+          ],
+          "type": "string"
+        },
+        "member": {
+          "description": "A single identity requesting access for a Cloud Platform resource, e.g. \"foo@google.com\".",
+          "type": "string"
+        },
+        "role": {
+          "description": "Role that is assigned to \"members\". For example, \"roles/viewer\", \"roles/editor\", or \"roles/owner\".",
+          "type": "string"
         }
       },
       "type": "object"

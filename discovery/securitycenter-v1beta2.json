@@ -157,6 +157,31 @@
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
+        "getOnboardingState": {
+          "description": "Retrieve the OnboardingState of a resource.",
+          "flatPath": "v1beta2/folders/{foldersId}/onboardingState",
+          "httpMethod": "GET",
+          "id": "securitycenter.folders.getOnboardingState",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the OnboardingState to retrieve. Formats: * organizations/{organization}/onboardingState * folders/{folder}/onboardingState * projects/{project}/onboardingState",
+              "location": "path",
+              "pattern": "^folders/[^/]+/onboardingState$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta2/{+name}",
+          "response": {
+            "$ref": "OnboardingState"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
         "getSecurityHealthAnalyticsSettings": {
           "description": "Get the SecurityHealthAnalyticsSettings resource.",
           "flatPath": "v1beta2/folders/{foldersId}/securityHealthAnalyticsSettings",
@@ -598,6 +623,31 @@
           "path": "v1beta2/{+name}",
           "response": {
             "$ref": "EventThreatDetectionSettings"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "getOnboardingState": {
+          "description": "Retrieve the OnboardingState of a resource.",
+          "flatPath": "v1beta2/organizations/{organizationsId}/onboardingState",
+          "httpMethod": "GET",
+          "id": "securitycenter.organizations.getOnboardingState",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the OnboardingState to retrieve. Formats: * organizations/{organization}/onboardingState * folders/{folder}/onboardingState * projects/{project}/onboardingState",
+              "location": "path",
+              "pattern": "^organizations/[^/]+/onboardingState$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta2/{+name}",
+          "response": {
+            "$ref": "OnboardingState"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform"
@@ -1099,6 +1149,31 @@
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
+        "getOnboardingState": {
+          "description": "Retrieve the OnboardingState of a resource.",
+          "flatPath": "v1beta2/projects/{projectsId}/onboardingState",
+          "httpMethod": "GET",
+          "id": "securitycenter.projects.getOnboardingState",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the OnboardingState to retrieve. Formats: * organizations/{organization}/onboardingState * folders/{folder}/onboardingState * projects/{project}/onboardingState",
+              "location": "path",
+              "pattern": "^projects/[^/]+/onboardingState$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta2/{+name}",
+          "response": {
+            "$ref": "OnboardingState"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
         "getSecurityHealthAnalyticsSettings": {
           "description": "Get the SecurityHealthAnalyticsSettings resource.",
           "flatPath": "v1beta2/projects/{projectsId}/securityHealthAnalyticsSettings",
@@ -1592,7 +1667,7 @@
       }
     }
   },
-  "revision": "20220324",
+  "revision": "20220407",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -1997,6 +2072,13 @@
           ],
           "type": "string"
         },
+        "iamBindings": {
+          "description": "Represents IAM bindings associated with the Finding.",
+          "items": {
+            "$ref": "IamBinding"
+          },
+          "type": "array"
+        },
         "indicator": {
           "$ref": "Indicator",
           "description": "Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise"
@@ -2033,6 +2115,10 @@
         },
         "name": {
           "description": "The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}\"",
+          "type": "string"
+        },
+        "nextSteps": {
+          "description": "Next steps associate to the finding.",
           "type": "string"
         },
         "parent": {
@@ -2564,6 +2650,35 @@
       },
       "type": "object"
     },
+    "IamBinding": {
+      "description": "Represents a particular IAM binding, which captures a member's role addition, removal, or state.",
+      "id": "IamBinding",
+      "properties": {
+        "action": {
+          "description": "The action that was performed on a Binding.",
+          "enum": [
+            "ACTION_UNSPECIFIED",
+            "ADD",
+            "REMOVE"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Addition of a Binding.",
+            "Removal of a Binding."
+          ],
+          "type": "string"
+        },
+        "member": {
+          "description": "A single identity requesting access for a Cloud Platform resource, e.g. \"foo@google.com\".",
+          "type": "string"
+        },
+        "role": {
+          "description": "Role that is assigned to \"members\". For example, \"roles/viewer\", \"roles/editor\", or \"roles/owner\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Indicator": {
       "description": "Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise",
       "id": "Indicator",
@@ -2812,6 +2927,31 @@
         },
         "version": {
           "description": "The MITRE ATT&CK version referenced by the above fields. E.g. \"8\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OnboardingState": {
+      "description": "Resource capturing onboarding information for a given CRM resource.",
+      "id": "OnboardingState",
+      "properties": {
+        "name": {
+          "description": "The resource name of the OnboardingState. Format: organizations/{organization}/onboardingState Format: folders/{folder}/onboardingState Format: projects/{project}/onboardingState",
+          "type": "string"
+        },
+        "onboardingLevel": {
+          "description": "Describes the level a given organization, folder, or project is onboarded with SCC. If the resource wasn't onboarded, NOT_FOUND would have been thrown.",
+          "enum": [
+            "ONBOARDING_LEVEL_UNSPECIFIED",
+            "ONBOARDING_LEVEL_PROJECT",
+            "ONBOARDING_LEVEL_ORGANIZATION"
+          ],
+          "enumDescriptions": [
+            "Unused.",
+            "This resource is onboarded at the project level. Only possible for projects.",
+            "This resource is onboarded at the organization level. Possible for organizations, folders, and projects."
+          ],
           "type": "string"
         }
       },
