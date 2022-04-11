@@ -3398,7 +3398,7 @@
               "video/*",
               "application/octet-stream"
             ],
-            "maxSize": "137438953472",
+            "maxSize": "274877906944",
             "protocols": {
               "resumable": {
                 "multipart": true,
@@ -3789,7 +3789,7 @@
       }
     }
   },
-  "revision": "20220321",
+  "revision": "20220406",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {

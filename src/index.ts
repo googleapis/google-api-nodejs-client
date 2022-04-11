@@ -228,6 +228,7 @@ export {gameservices_v1beta} from './apis/gameservices/v1beta';
 export {genomics_v1} from './apis/genomics/v1';
 export {genomics_v1alpha2} from './apis/genomics/v1alpha2';
 export {genomics_v2alpha1} from './apis/genomics/v2alpha1';
+export {gkebackup_v1} from './apis/gkebackup/v1';
 export {gkehub_v1} from './apis/gkehub/v1';
 export {gkehub_v1alpha} from './apis/gkehub/v1alpha';
 export {gkehub_v1alpha2} from './apis/gkehub/v1alpha2';

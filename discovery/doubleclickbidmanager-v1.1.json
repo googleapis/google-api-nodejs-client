@@ -280,7 +280,7 @@
       }
     }
   },
-  "revision": "20211109",
+  "revision": "20220329",
   "rootUrl": "https://doubleclickbidmanager.googleapis.com/",
   "schemas": {
     "ChannelGrouping": {
@@ -1986,7 +1986,6 @@
               "METRIC_INVALID_CLICKS",
               "METRIC_INVALID_IMPRESSIONS",
               "METRIC_INVALID_TRACKED_ADS",
-              "METRIC_MEDIA_COST_ADVERTISER_CURRENCY_PER_STORE_VISIT_ADX_ONLY",
               "METRIC_MIDPOINT_AUDIO",
               "METRIC_ORIGINAL_AUDIENCE_FREQUENCY",
               "METRIC_PAUSES_AUDIO",
@@ -2002,11 +2001,9 @@
               "METRIC_REFUND_BILLABLE_COST_ADVERTISER_CURRENCY",
               "METRIC_REFUND_MEDIA_COST_ADVERTISER_CURRENCY",
               "METRIC_REFUND_PLATFORM_FEE_ADVERTISER_CURRENCY",
-              "METRIC_REVENUE_ADVERTISER_CURRENCY_PER_STORE_VISIT_ADX_ONLY",
               "METRIC_RICH_MEDIA_ENGAGEMENTS",
               "METRIC_STARTS_AUDIO",
               "METRIC_STOPS_AUDIO",
-              "METRIC_STORE_VISITS_ADX_ONLY",
               "METRIC_STORE_VISIT_CONVERSIONS",
               "METRIC_THIRD_QUARTILE_AUDIO",
               "METRIC_TIMERS",
@@ -2015,7 +2012,6 @@
               "METRIC_TOTAL_DISPLAY_TIME",
               "METRIC_TOTAL_IMPRESSION_CUSTOM_VALUE",
               "METRIC_TOTAL_INTERACTION_TIME",
-              "METRIC_TOTAL_MEDIA_COST_ADVERTISER_CURRENCY_PER_STORE_VISIT_ADX_ONLY",
               "METRIC_TOTAL_USERS",
               "METRIC_TRACKED_ADS",
               "METRIC_TRUEVIEW_GENERAL_INVALID_TRAFFIC_GIVT_VIEWS",
@@ -2077,10 +2073,6 @@
               "METRIC_TRUEVIEW_ALL_AD_SEQUENCE_IMPRESSIONS"
             ],
             "enumDescriptions": [
-              "",
-              "",
-              "",
-              "",
               "",
               "",
               "",
