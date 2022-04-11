@@ -822,6 +822,97 @@ export namespace dlp_v2 {
     surrogateType?: Schema$GooglePrivacyDlpV2SurrogateType;
   }
   /**
+   * A task to execute when a data profile has been generated.
+   */
+  export interface Schema$GooglePrivacyDlpV2DataProfileAction {
+    /**
+     * Export data profiles into a provided location.
+     */
+    exportData?: Schema$GooglePrivacyDlpV2Export;
+    /**
+     * Publish a message into the Pub/Sub topic.
+     */
+    pubSubNotification?: Schema$GooglePrivacyDlpV2PubSubNotification;
+  }
+  /**
+   * Snapshot of the configurations used to generate the profile.
+   */
+  export interface Schema$GooglePrivacyDlpV2DataProfileConfigSnapshot {
+    /**
+     * A copy of the configuration used to generate this profile.
+     */
+    dataProfileJob?: Schema$GooglePrivacyDlpV2DataProfileJobConfig;
+    /**
+     * A copy of the inspection config used to generate this profile. This is a copy of the inspect_template specified in `DataProfileJobConfig`.
+     */
+    inspectConfig?: Schema$GooglePrivacyDlpV2InspectConfig;
+  }
+  /**
+   * Configuration for setting up a job to scan resources for profile generation. Only one data profile configuration may exist per organization, folder, or project. The generated data profiles are retained according to the [data retention policy] (https://cloud.google.com/dlp/docs/data-profiles#retention).
+   */
+  export interface Schema$GooglePrivacyDlpV2DataProfileJobConfig {
+    /**
+     * Actions to execute at the completion of the job.
+     */
+    dataProfileActions?: Schema$GooglePrivacyDlpV2DataProfileAction[];
+    /**
+     * Detection logic for profile generation. Not all template features are used by profiles. FindingLimits, include_quote and exclude_info_types have no impact on data profiling. Multiple templates may be provided if there is data in multiple regions. At most one template must be specified per-region (including "global"). Each region is scanned using the applicable template. If no region-specific template is specified, but a "global" template is specified, it will be copied to that region and used instead. If no global or region-specific template is provided for a region with data, that region's data will not be scanned. For more information, see https://cloud.google.com/dlp/docs/data-profiles#data_residency.
+     */
+    inspectTemplates?: string[] | null;
+    /**
+     * The data to scan.
+     */
+    location?: Schema$GooglePrivacyDlpV2DataProfileLocation;
+    /**
+     * The project that will run the scan. The DLP service account that exists within this project must have access to all resources that are profiled, and the Cloud DLP API must be enabled.
+     */
+    projectId?: string | null;
+  }
+  /**
+   * The data that will be profiled.
+   */
+  export interface Schema$GooglePrivacyDlpV2DataProfileLocation {
+    /**
+     * The ID of the Folder within an organization to scan.
+     */
+    folderId?: string | null;
+    /**
+     * The ID of an organization to scan.
+     */
+    organizationId?: string | null;
+  }
+  /**
+   * A condition for determining whether a PubSub should be triggered.
+   */
+  export interface Schema$GooglePrivacyDlpV2DataProfilePubSubCondition {
+    /**
+     * An expression.
+     */
+    expressions?: Schema$GooglePrivacyDlpV2PubSubExpressions;
+  }
+  /**
+   * The message that will be published to a Pub/Sub topic. To receive a message of protocol buffer schema type, convert the message data to an object of this proto class. https://cloud.google.com/pubsub/docs/samples/pubsub-subscribe-proto-messages
+   */
+  export interface Schema$GooglePrivacyDlpV2DataProfilePubSubMessage {
+    /**
+     * The event that caused the Pub/Sub message to be sent.
+     */
+    event?: string | null;
+    /**
+     * If `DetailLevel` is `TABLE_PROFILE` this will be fully populated. Otherwise, if `DetailLevel` is `RESOURCE_NAME`, then only `name` and `full_resource` will be populated.
+     */
+    profile?: Schema$GooglePrivacyDlpV2TableDataProfile;
+  }
+  /**
+   * Score is a summary of all elements in the data profile. A higher number means more risky.
+   */
+  export interface Schema$GooglePrivacyDlpV2DataRiskLevel {
+    /**
+     * The score applied to the resource.
+     */
+    score?: string | null;
+  }
+  /**
    * Record key for a finding in Cloud Datastore.
    */
   export interface Schema$GooglePrivacyDlpV2DatastoreKey {
@@ -1164,6 +1255,15 @@ export namespace dlp_v2 {
      * Regular expression which defines the rule.
      */
     regex?: Schema$GooglePrivacyDlpV2Regex;
+  }
+  /**
+   * If set, the detailed data profiles will be persisted to the location of your choice whenever updated.
+   */
+  export interface Schema$GooglePrivacyDlpV2Export {
+    /**
+     * Store all table and column profiles in an existing table or a new table in an existing dataset. Each re-generation will result in a new row in BigQuery.
+     */
+    profileTable?: Schema$GooglePrivacyDlpV2BigQueryTable;
   }
   /**
    * An expression, consisting or an operator and conditions.
@@ -1514,6 +1614,15 @@ export namespace dlp_v2 {
     count?: string | null;
     /**
      * The type of finding this stat is for.
+     */
+    infoType?: Schema$GooglePrivacyDlpV2InfoType;
+  }
+  /**
+   * The infoType details for this column.
+   */
+  export interface Schema$GooglePrivacyDlpV2InfoTypeSummary {
+    /**
+     * The infoType.
      */
     infoType?: Schema$GooglePrivacyDlpV2InfoType;
   }
@@ -2166,6 +2275,15 @@ export namespace dlp_v2 {
     quantileValues?: Schema$GooglePrivacyDlpV2Value[];
   }
   /**
+   * Infotype details for other infoTypes found within a column.
+   */
+  export interface Schema$GooglePrivacyDlpV2OtherInfoTypeSummary {
+    /**
+     * The other infoType.
+     */
+    infoType?: Schema$GooglePrivacyDlpV2InfoType;
+  }
+  /**
    * Cloud repository for storing output.
    */
   export interface Schema$GooglePrivacyDlpV2OutputStorageConfig {
@@ -2290,6 +2408,16 @@ export namespace dlp_v2 {
      */
     numericalStatsConfig?: Schema$GooglePrivacyDlpV2NumericalStatsConfig;
   }
+  export interface Schema$GooglePrivacyDlpV2ProfileStatus {
+    /**
+     * Profiling status code and optional message
+     */
+    status?: Schema$GoogleRpcStatus;
+    /**
+     * Time when the profile generation status was updated
+     */
+    timestamp?: string | null;
+  }
   /**
    * Message for specifying a window around a finding to apply a detection rule.
    */
@@ -2324,6 +2452,53 @@ export namespace dlp_v2 {
    * Enable Stackdriver metric dlp.googleapis.com/finding_count. This will publish a metric to stack driver on each infotype requested and how many findings were found for it. CustomDetectors will be bucketed as 'Custom' under the Stackdriver label 'info_type'.
    */
   export interface Schema$GooglePrivacyDlpV2PublishToStackdriver {}
+  /**
+   * A condition consisting of a value.
+   */
+  export interface Schema$GooglePrivacyDlpV2PubSubCondition {
+    /**
+     * The minimum data risk score that triggers the condition.
+     */
+    minimumRiskScore?: string | null;
+    /**
+     * The minimum sensitivity level that triggers the condition.
+     */
+    minimumSensitivityScore?: string | null;
+  }
+  /**
+   * An expression, consisting of an operator and conditions.
+   */
+  export interface Schema$GooglePrivacyDlpV2PubSubExpressions {
+    /**
+     * Conditions to apply to the expression.
+     */
+    conditions?: Schema$GooglePrivacyDlpV2PubSubCondition[];
+    /**
+     * The operator to apply to the collection of conditions.
+     */
+    logicalOperator?: string | null;
+  }
+  /**
+   * Send a Pub/Sub message into the given Pub/Sub topic to connect other systems to data profile generation. The message payload data will be the byte serialization of `DataProfilePubSubMessage`.
+   */
+  export interface Schema$GooglePrivacyDlpV2PubSubNotification {
+    /**
+     * How much data to include in the Pub/Sub message. If the user wishes to limit the size of the message, they can use resource_name and fetch the profile fields they wish to. Per table profile (not per column).
+     */
+    detailOfMessage?: string | null;
+    /**
+     * The type of event that triggers a Pub/Sub. At most one `PubSubNotification` per EventType is permitted.
+     */
+    event?: string | null;
+    /**
+     * Conditions (e.g., data risk or sensitivity level) for triggering a Pub/Sub.
+     */
+    pubsubCondition?: Schema$GooglePrivacyDlpV2DataProfilePubSubCondition;
+    /**
+     * Cloud Pub/Sub topic to send notifications to. Format is projects/{project\}/topics/{topic\}.
+     */
+    topic?: string | null;
+  }
   /**
    * A column with a semantic tag attached.
    */
@@ -2663,6 +2838,15 @@ export namespace dlp_v2 {
     recurrencePeriodDuration?: string | null;
   }
   /**
+   * Score is a summary of all elements in the data profile. A higher number means more sensitive.
+   */
+  export interface Schema$GooglePrivacyDlpV2SensitivityScore {
+    /**
+     * The score applied to the resource.
+     */
+    score?: string | null;
+  }
+  /**
    * An auxiliary table containing statistical information on the relative frequency of different quasi-identifiers values. It has one or several quasi-identifiers columns, and one column that indicates the relative frequency of each quasi-identifier tuple. If a tuple is present in the data but not in the auxiliary table, the corresponding relative frequency is assumed to be zero (and thus, the tuple is highly reidentifiable).
    */
   export interface Schema$GooglePrivacyDlpV2StatisticalTable {
@@ -2829,6 +3013,111 @@ export namespace dlp_v2 {
      * Rows of the table.
      */
     rows?: Schema$GooglePrivacyDlpV2Row[];
+  }
+  /**
+   * The profile for a scanned table.
+   */
+  export interface Schema$GooglePrivacyDlpV2TableDataProfile {
+    /**
+     * The snapshot of the configurations used to generate the profile.
+     */
+    configSnapshot?: Schema$GooglePrivacyDlpV2DataProfileConfigSnapshot;
+    /**
+     * The time at which the table was created.
+     */
+    createTime?: string | null;
+    /**
+     * The data risk level of this table.
+     */
+    dataRiskLevel?: Schema$GooglePrivacyDlpV2DataRiskLevel;
+    /**
+     * The BigQuery dataset ID.
+     */
+    datasetId?: string | null;
+    /**
+     * The BigQuery location where the dataset's data is stored. See https://cloud.google.com/bigquery/docs/locations for supported locations.
+     */
+    datasetLocation?: string | null;
+    /**
+     * The GCP project ID that owns the BigQuery dataset.
+     */
+    datasetProjectId?: string | null;
+    /**
+     * How the table is encrypted.
+     */
+    encryptionStatus?: string | null;
+    /**
+     * Optional. The time when this table expires.
+     */
+    expirationTime?: string | null;
+    /**
+     * The number of columns skipped in the table because of an error.
+     */
+    failedColumnCount?: string | null;
+    /**
+     * The resource name of the table. https://cloud.google.com/apis/design/resource_names#full_resource_name
+     */
+    fullResource?: string | null;
+    /**
+     * The time when this table was last modified
+     */
+    lastModifiedTime?: string | null;
+    /**
+     * The name of the profile.
+     */
+    name?: string | null;
+    /**
+     * Other infoTypes found in this table's data.
+     */
+    otherInfoTypes?: Schema$GooglePrivacyDlpV2OtherInfoTypeSummary[];
+    /**
+     * The infoTypes predicted from this table's data.
+     */
+    predictedInfoTypes?: Schema$GooglePrivacyDlpV2InfoTypeSummary[];
+    /**
+     * The last time the profile was generated.
+     */
+    profileLastGenerated?: string | null;
+    /**
+     * Success or error status from the most recent profile generation attempt. May be empty if the profile is still being generated.
+     */
+    profileStatus?: Schema$GooglePrivacyDlpV2ProfileStatus;
+    /**
+     * The resource name to the project data profile for this table.
+     */
+    projectDataProfile?: string | null;
+    /**
+     * The labels applied to the resource at the time the profile was generated.
+     */
+    resourceLabels?: {[key: string]: string} | null;
+    /**
+     * How broadly a resource has been shared.
+     */
+    resourceVisibility?: string | null;
+    /**
+     * Number of rows in the table when the profile was generated.
+     */
+    rowCount?: string | null;
+    /**
+     * The number of columns profiled in the table.
+     */
+    scannedColumnCount?: string | null;
+    /**
+     * The sensitivity score of this table.
+     */
+    sensitivityScore?: Schema$GooglePrivacyDlpV2SensitivityScore;
+    /**
+     * State of a profile.
+     */
+    state?: string | null;
+    /**
+     * The BigQuery table ID.
+     */
+    tableId?: string | null;
+    /**
+     * The size of the table when the profile was generated.
+     */
+    tableSizeBytes?: string | null;
   }
   /**
    * Location of a finding within a table.
