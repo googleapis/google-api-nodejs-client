@@ -546,6 +546,15 @@ export namespace androidenterprise_v1 {
      */
     accountEmail?: string | null;
   }
+  /**
+   * An authentication URL configuration for the authenticator app of an identity provider.
+   */
+  export interface Schema$EnterpriseAuthenticationAppLinkConfig {
+    /**
+     * An authentication url.
+     */
+    uri?: string | null;
+  }
   export interface Schema$EnterprisesListResponse {
     /**
      * An enterprise.
@@ -1143,6 +1152,10 @@ export namespace androidenterprise_v1 {
      * The auto-update mode for the product.
      */
     autoUpdateMode?: string | null;
+    /**
+     * An authentication URL configuration for the authenticator app of an identity provider. This helps to launch the identity provider's authenticator app during the authentication happening in a private app using Android WebView. Authenticator app should already be the [default handler](https://developer.android.com/training/app-links/verify-site-associations) for the authentication url on the device.
+     */
+    enterpriseAuthenticationAppLinkConfigs?: Schema$EnterpriseAuthenticationAppLinkConfig[];
     /**
      * The managed configuration for the product.
      */
