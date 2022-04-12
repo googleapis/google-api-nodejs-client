@@ -3789,7 +3789,7 @@
       }
     }
   },
-  "revision": "20220406",
+  "revision": "20220409",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -6728,6 +6728,7 @@
             "mibacUnspecified",
             "mibacT",
             "mibacVap",
+            "mibacVm6",
             "mibacVm12",
             "mibacVm14",
             "mibacVm16",
@@ -6735,6 +6736,7 @@
             "mibacUnrated"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
