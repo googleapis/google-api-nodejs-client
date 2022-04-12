@@ -136,7 +136,7 @@
             "items": {
               "methods": {
                 "checkAccess": {
-                  "description": "Checks whether an item is accessible by specified principal. **Note:** This API requires an admin account to execute.",
+                  "description": "Checks whether an item is accessible by specified principal. Principal must be a user; groups and domain values aren't supported. **Note:** This API requires an admin account to execute.",
                   "flatPath": "v1/debug/datasources/{datasourcesId}/items/{itemsId}:checkAccess",
                   "httpMethod": "POST",
                   "id": "cloudsearch.debug.datasources.items.checkAccess",
@@ -1994,7 +1994,7 @@
       }
     }
   },
-  "revision": "20220322",
+  "revision": "20220404",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "AclInfo": {
@@ -2064,11 +2064,10 @@
             "SHEETS_APP",
             "SLIDES_APP",
             "MEET_APP",
-            "FILE_SUGGESTION_APP",
+            "ASSISTIVE_SUGGESTION_APP",
             "CONTACTS_APP",
             "ACTIVITY_FEED_APP",
-            "DRIVE_APP",
-            "ASSISTIVE_SUGGESTION_APP"
+            "DRIVE_APP"
           ],
           "enumDescriptions": [
             "",
@@ -2081,8 +2080,7 @@
             "Powered by Bullseye",
             "",
             "",
-            "",
-            "TODO (b/220205747): replace the above FILE_SUGGESTION_APP in the future."
+            ""
           ],
           "type": "string"
         },

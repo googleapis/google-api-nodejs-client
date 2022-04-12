@@ -2652,7 +2652,7 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * Checks whether an item is accessible by specified principal. **Note:** This API requires an admin account to execute.
+     * Checks whether an item is accessible by specified principal. Principal must be a user; groups and domain values aren't supported. **Note:** This API requires an admin account to execute.
      * @example
      * ```js
      * // Before running the sample:

@@ -2610,7 +2610,7 @@
       }
     }
   },
-  "revision": "20210804",
+  "revision": "20220407",
   "rootUrl": "https://androidenterprise.googleapis.com/",
   "schemas": {
     "Administrator": {
@@ -3236,6 +3236,17 @@
       "properties": {
         "accountEmail": {
           "description": "The email address of the service account.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseAuthenticationAppLinkConfig": {
+      "description": "An authentication URL configuration for the authenticator app of an identity provider.",
+      "id": "EnterpriseAuthenticationAppLinkConfig",
+      "properties": {
+        "uri": {
+          "description": "An authentication url.",
           "type": "string"
         }
       },
@@ -4231,6 +4242,13 @@
             "The app is updated as soon as possible. No constraints are applied. The device is notified immediately about a new app update after it is published by the developer."
           ],
           "type": "string"
+        },
+        "enterpriseAuthenticationAppLinkConfigs": {
+          "description": "An authentication URL configuration for the authenticator app of an identity provider. This helps to launch the identity provider's authenticator app during the authentication happening in a private app using Android WebView. Authenticator app should already be the [default handler](https://developer.android.com/training/app-links/verify-site-associations) for the authentication url on the device.",
+          "items": {
+            "$ref": "EnterpriseAuthenticationAppLinkConfig"
+          },
+          "type": "array"
         },
         "managedConfiguration": {
           "$ref": "ManagedConfiguration",
