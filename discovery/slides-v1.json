@@ -313,7 +313,7 @@
       }
     }
   },
-  "revision": "20220322",
+  "revision": "20220404",
   "rootUrl": "https://slides.googleapis.com/",
   "schemas": {
     "AffineTransform": {
@@ -2523,7 +2523,7 @@
           "enumDescriptions": [
             "Unspecified image replace method. This value must not be used.",
             "Scales and centers the image to fit within the bounds of the original shape and maintains the image's aspect ratio. The rendered size of the image may be smaller than the size of the shape. This is the default method when one is not specified.",
-            "Scales and centers the image to fill the bounds of the original shape. The image may be cropped in order to fill the shape. The rendered size of the image will be the same as that of the original shape."
+            "Scales and centers the image to fill the bounds of the original shape. The image may be cropped in order to fill the shape. The rendered size of the image will be the same as the original shape."
           ],
           "type": "string"
         },
@@ -2655,7 +2655,7 @@
       "id": "ReplaceImageRequest",
       "properties": {
         "imageObjectId": {
-          "description": "The ID of the existing image that will be replaced.",
+          "description": "The ID of the existing image that will be replaced. The ID can be retrieved from the response of a get request.",
           "type": "string"
         },
         "imageReplaceMethod": {
@@ -2668,12 +2668,12 @@
           "enumDescriptions": [
             "Unspecified image replace method. This value must not be used.",
             "Scales and centers the image to fit within the bounds of the original shape and maintains the image's aspect ratio. The rendered size of the image may be smaller than the size of the shape. This is the default method when one is not specified.",
-            "Scales and centers the image to fill the bounds of the original shape. The image may be cropped in order to fill the shape. The rendered size of the image will be the same as that of the original shape."
+            "Scales and centers the image to fill the bounds of the original shape. The image may be cropped in order to fill the shape. The rendered size of the image will be the same as the original shape."
           ],
           "type": "string"
         },
         "url": {
-          "description": "The image URL. The image is fetched once at insertion time and a copy is stored for display inside the presentation. Images must be less than 50MB in size, cannot exceed 25 megapixels, and must be in one of PNG, JPEG, or GIF format. The provided URL can be at most 2 kB in length. The URL itself is saved with the image, and exposed via the Image.source_url field.",
+          "description": "The image URL. The image is fetched once at insertion time and a copy is stored for display inside the presentation. Images must be less than 50MB, cannot exceed 25 megapixels, and must be in PNG, JPEG, or GIF format. The provided URL can't surpass 2 KB in length. The URL is saved with the image, and exposed through the Image.source_url field.",
           "type": "string"
         }
       },
