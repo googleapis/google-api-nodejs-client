@@ -115,12 +115,12 @@
           "parameterOrder": [],
           "parameters": {
             "agreementAccepted": {
-              "description": "Whether the enterprise admin has seen and agreed to the managed Google Play Agreement (https://www.android.com/enterprise/terms/). Always set this to true when creating an EMM-managed enterprise. Do not create the enterprise until the admin has viewed and accepted the agreement.",
+              "description": "Whether the enterprise admin has seen and agreed to the managed Google Play Agreement (https://www.android.com/enterprise/terms/). Do not set this field for any customer-managed enterprise (https://developers.google.com/android/management/create-enterprise#customer-managed_enterprises). Set this to field to true for all EMM-managed enterprises (https://developers.google.com/android/management/create-enterprise#emm-managed_enterprises).",
               "location": "query",
               "type": "boolean"
             },
             "enterpriseToken": {
-              "description": "The enterprise token appended to the callback URL. Only set this when creating a customer-managed enterprise.",
+              "description": "The enterprise token appended to the callback URL. Set this when creating a customer-managed enterprise (https://developers.google.com/android/management/create-enterprise#customer-managed_enterprises) and not when creating a deprecated EMM-managed enterprise (https://developers.google.com/android/management/create-enterprise#emm-managed_enterprises).",
               "location": "query",
               "type": "string"
             },
@@ -130,7 +130,7 @@
               "type": "string"
             },
             "signupUrlName": {
-              "description": "The name of the SignupUrl used to sign up for the enterprise. Only set this when creating a customer-managed enterprise.",
+              "description": "The name of the SignupUrl used to sign up for the enterprise. Set this when creating a customer-managed enterprise (https://developers.google.com/android/management/create-enterprise#customer-managed_enterprises) and not when creating a deprecated EMM-managed enterprise (https://developers.google.com/android/management/create-enterprise#emm-managed_enterprises).",
               "location": "query",
               "type": "string"
             }
@@ -1004,7 +1004,7 @@
       }
     }
   },
-  "revision": "20220330",
+  "revision": "20220404",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdvancedSecurityOverrides": {
@@ -1126,11 +1126,11 @@
       "id": "AppVersion",
       "properties": {
         "production": {
-          "description": "True if this version is a production track.",
+          "description": "If the value is True, it indicates that this version is a production track.",
           "type": "boolean"
         },
         "trackIds": {
-          "description": "Track ids that the app version is published in. This doesn't include the production track (see production instead).",
+          "description": "Track identifiers that the app version is published in. This does not include the production track (see production instead).",
           "items": {
             "type": "string"
           },
@@ -1257,7 +1257,7 @@
           "type": "string"
         },
         "iconUrl": {
-          "description": "A link to an image that can be used as an icon for the app. This image is suitable for use at up to 512px x 512px",
+          "description": "A link to an image that can be used as an icon for the app. This image is suitable for use up to a pixel size of 512 x 512.",
           "type": "string"
         },
         "managedProperties": {
@@ -1299,7 +1299,7 @@
           "type": "array"
         },
         "smallIconUrl": {
-          "description": "A link to a smaller image that can be used as an icon for the app. This image is suitable for use at up to 128px x 128px.",
+          "description": "A link to a smaller image that can be used as an icon for the app. This image is suitable for use up to a pixel size of 128 x 128.",
           "type": "string"
         },
         "title": {
@@ -2354,14 +2354,16 @@
               "ENROLLMENT",
               "COMPLIANCE_REPORT",
               "STATUS_REPORT",
-              "COMMAND"
+              "COMMAND",
+              "USAGE_LOGS"
             ],
             "enumDescriptions": [
               "This value is ignored.",
               "A notification sent when a device enrolls.",
               "Deprecated.",
               "A notification sent when a device issues a status report.",
-              "A notification sent when a device command has completed."
+              "A notification sent when a device command has completed.",
+              "A notification sent when device sends BatchUsageLogEvents."
             ],
             "type": "string"
           },
@@ -2385,7 +2387,7 @@
           "type": "integer"
         },
         "pubsubTopic": {
-          "description": "The topic that Cloud Pub/Sub notifications are published to, in the form projects/{project}/topics/{topic}. This field is only required if Pub/Sub notifications are enabled.",
+          "description": "The topic which Pub/Sub notifications are published to, in the form projects/{project}/topics/{topic}. This field is only required if Pub/Sub notifications are enabled.",
           "type": "string"
         },
         "signinDetails": {
@@ -2414,7 +2416,7 @@
           "type": "string"
         },
         "signingKeyFingerprintsSha256": {
-          "description": "Hex-encoded SHA256 hash of the signing certificate of the extension app. Only hexadecimal string representations of 64 characters are valid.If not specified, the signature for the corresponding package name is obtained from the Play Store instead.If this list is empty, the signature of the extension app on the device must match the signature obtained from the Play Store for the app to be able to communicate with Android Device Policy.If this list is not empty, the signature of the extension app on the device must match one of the entries in this list for the app to be able to communicate with Android Device Policy.In production use cases, it is recommended to leave this empty.",
+          "description": "Hex-encoded SHA-256 hash of the signing certificate of the extension app. Only hexadecimal string representations of 64 characters are valid.If not specified, the signature for the corresponding package name is obtained from the Play Store instead.If this list is empty, the signature of the extension app on the device must match the signature obtained from the Play Store for the app to be able to communicate with Android Device Policy.If this list is not empty, the signature of the extension app on the device must match one of the entries in this list for the app to be able to communicate with Android Device Policy.In production use cases, it is recommended to leave this empty.",
           "items": {
             "type": "string"
           },
@@ -3995,6 +3997,10 @@
           "description": "If microphone_access is set to any value other than MICROPHONE_ACCESS_UNSPECIFIED, this has no effect. Otherwise this field controls whether microphones are disabled: If true, all microphones are disabled, otherwise they are available. This is available only on fully managed devices.",
           "type": "boolean"
         },
+        "usageLog": {
+          "$ref": "UsageLog",
+          "description": "Configuration of device activity logging."
+        },
         "usbFileTransferDisabled": {
           "description": "Whether transferring files over USB is disabled.",
           "type": "boolean"
@@ -4462,6 +4468,47 @@
         "header": {
           "$ref": "UserFacingMessage",
           "description": "A short header which appears above the HTML content."
+        }
+      },
+      "type": "object"
+    },
+    "UsageLog": {
+      "description": "Controls types of device activity logs collected from the device and reported via Pub/Sub notification (https://developers.google.com/android/management/notifications).",
+      "id": "UsageLog",
+      "properties": {
+        "enabledLogTypes": {
+          "description": "Specifies which log types are enabled. Note that users will receive on-device messaging when usage logging is enabled.",
+          "items": {
+            "enum": [
+              "LOG_TYPE_UNSPECIFIED",
+              "SECURITY_LOGS",
+              "NETWORK_ACTIVITY_LOGS"
+            ],
+            "enumDescriptions": [
+              "This value is not used.",
+              "Enable logging of on-device security events, like when the device password is incorrectly entered or removable storage is mounted. See event for a complete description of the logged security events. Supported for fully managed devices on Android 7.0 and above. Supported for company-owned devices with a work profile on Android 12 and above, on which only security events from the work profile are logged.",
+              "Enable logging of on-device network events, like DNS lookups and TCP connections. See event for a complete description of the logged network events. Supported for fully managed devices on Android 8 and above. Supported for company-owned devices with a work profile on Android 12 and above, on which only network events from the work profile are logged."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "uploadOnCellularAllowed": {
+          "description": "Specifies which of the enabled log types can be uploaded over mobile data. By default logs are queued for upload when the device connects to WiFi.",
+          "items": {
+            "enum": [
+              "LOG_TYPE_UNSPECIFIED",
+              "SECURITY_LOGS",
+              "NETWORK_ACTIVITY_LOGS"
+            ],
+            "enumDescriptions": [
+              "This value is not used.",
+              "Enable logging of on-device security events, like when the device password is incorrectly entered or removable storage is mounted. See event for a complete description of the logged security events. Supported for fully managed devices on Android 7.0 and above. Supported for company-owned devices with a work profile on Android 12 and above, on which only security events from the work profile are logged.",
+              "Enable logging of on-device network events, like DNS lookups and TCP connections. See event for a complete description of the logged network events. Supported for fully managed devices on Android 8 and above. Supported for company-owned devices with a work profile on Android 12 and above, on which only network events from the work profile are logged."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

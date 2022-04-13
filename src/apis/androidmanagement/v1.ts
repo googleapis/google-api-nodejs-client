@@ -223,7 +223,7 @@ export namespace androidmanagement_v1 {
      */
     fullDescription?: string | null;
     /**
-     * A link to an image that can be used as an icon for the app. This image is suitable for use at up to 512px x 512px
+     * A link to an image that can be used as an icon for the app. This image is suitable for use up to a pixel size of 512 x 512.
      */
     iconUrl?: string | null;
     /**
@@ -255,7 +255,7 @@ export namespace androidmanagement_v1 {
      */
     screenshotUrls?: string[] | null;
     /**
-     * A link to a smaller image that can be used as an icon for the app. This image is suitable for use at up to 128px x 128px.
+     * A link to a smaller image that can be used as an icon for the app. This image is suitable for use up to a pixel size of 128 x 128.
      */
     smallIconUrl?: string | null;
     /**
@@ -438,11 +438,11 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$AppVersion {
     /**
-     * True if this version is a production track.
+     * If the value is True, it indicates that this version is a production track.
      */
     production?: boolean | null;
     /**
-     * Track ids that the app version is published in. This doesn't include the production track (see production instead).
+     * Track identifiers that the app version is published in. This does not include the production track (see production instead).
      */
     trackIds?: string[] | null;
     /**
@@ -924,7 +924,7 @@ export namespace androidmanagement_v1 {
      */
     primaryColor?: number | null;
     /**
-     * The topic that Cloud Pub/Sub notifications are published to, in the form projects/{project\}/topics/{topic\}. This field is only required if Pub/Sub notifications are enabled.
+     * The topic which Pub/Sub notifications are published to, in the form projects/{project\}/topics/{topic\}. This field is only required if Pub/Sub notifications are enabled.
      */
     pubsubTopic?: string | null;
     /**
@@ -945,7 +945,7 @@ export namespace androidmanagement_v1 {
      */
     notificationReceiver?: string | null;
     /**
-     * Hex-encoded SHA256 hash of the signing certificate of the extension app. Only hexadecimal string representations of 64 characters are valid.If not specified, the signature for the corresponding package name is obtained from the Play Store instead.If this list is empty, the signature of the extension app on the device must match the signature obtained from the Play Store for the app to be able to communicate with Android Device Policy.If this list is not empty, the signature of the extension app on the device must match one of the entries in this list for the app to be able to communicate with Android Device Policy.In production use cases, it is recommended to leave this empty.
+     * Hex-encoded SHA-256 hash of the signing certificate of the extension app. Only hexadecimal string representations of 64 characters are valid.If not specified, the signature for the corresponding package name is obtained from the Play Store instead.If this list is empty, the signature of the extension app on the device must match the signature obtained from the Play Store for the app to be able to communicate with Android Device Policy.If this list is not empty, the signature of the extension app on the device must match one of the entries in this list for the app to be able to communicate with Android Device Policy.In production use cases, it is recommended to leave this empty.
      */
     signingKeyFingerprintsSha256?: string[] | null;
   }
@@ -1870,6 +1870,10 @@ export namespace androidmanagement_v1 {
      */
     unmuteMicrophoneDisabled?: boolean | null;
     /**
+     * Configuration of device activity logging.
+     */
+    usageLog?: Schema$UsageLog;
+    /**
      * Whether transferring files over USB is disabled.
      */
     usbFileTransferDisabled?: boolean | null;
@@ -2202,6 +2206,19 @@ export namespace androidmanagement_v1 {
     header?: Schema$UserFacingMessage;
   }
   /**
+   * Controls types of device activity logs collected from the device and reported via Pub/Sub notification (https://developers.google.com/android/management/notifications).
+   */
+  export interface Schema$UsageLog {
+    /**
+     * Specifies which log types are enabled. Note that users will receive on-device messaging when usage logging is enabled.
+     */
+    enabledLogTypes?: string[] | null;
+    /**
+     * Specifies which of the enabled log types can be uploaded over mobile data. By default logs are queued for upload when the device connects to WiFi.
+     */
+    uploadOnCellularAllowed?: string[] | null;
+  }
+  /**
    * A user belonging to an enterprise.
    */
   export interface Schema$User {
@@ -2347,13 +2364,13 @@ export namespace androidmanagement_v1 {
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.create({
-     *     // Whether the enterprise admin has seen and agreed to the managed Google Play Agreement (https://www.android.com/enterprise/terms/). Always set this to true when creating an EMM-managed enterprise. Do not create the enterprise until the admin has viewed and accepted the agreement.
+     *     // Whether the enterprise admin has seen and agreed to the managed Google Play Agreement (https://www.android.com/enterprise/terms/). Do not set this field for any customer-managed enterprise (https://developers.google.com/android/management/create-enterprise#customer-managed_enterprises). Set this to field to true for all EMM-managed enterprises (https://developers.google.com/android/management/create-enterprise#emm-managed_enterprises).
      *     agreementAccepted: 'placeholder-value',
-     *     // The enterprise token appended to the callback URL. Only set this when creating a customer-managed enterprise.
+     *     // The enterprise token appended to the callback URL. Set this when creating a customer-managed enterprise (https://developers.google.com/android/management/create-enterprise#customer-managed_enterprises) and not when creating a deprecated EMM-managed enterprise (https://developers.google.com/android/management/create-enterprise#emm-managed_enterprises).
      *     enterpriseToken: 'placeholder-value',
      *     // The ID of the Google Cloud Platform project which will own the enterprise.
      *     projectId: 'placeholder-value',
-     *     // The name of the SignupUrl used to sign up for the enterprise. Only set this when creating a customer-managed enterprise.
+     *     // The name of the SignupUrl used to sign up for the enterprise. Set this when creating a customer-managed enterprise (https://developers.google.com/android/management/create-enterprise#customer-managed_enterprises) and not when creating a deprecated EMM-managed enterprise (https://developers.google.com/android/management/create-enterprise#emm-managed_enterprises).
      *     signupUrlName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3036,11 +3053,11 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Create
     extends StandardParameters {
     /**
-     * Whether the enterprise admin has seen and agreed to the managed Google Play Agreement (https://www.android.com/enterprise/terms/). Always set this to true when creating an EMM-managed enterprise. Do not create the enterprise until the admin has viewed and accepted the agreement.
+     * Whether the enterprise admin has seen and agreed to the managed Google Play Agreement (https://www.android.com/enterprise/terms/). Do not set this field for any customer-managed enterprise (https://developers.google.com/android/management/create-enterprise#customer-managed_enterprises). Set this to field to true for all EMM-managed enterprises (https://developers.google.com/android/management/create-enterprise#emm-managed_enterprises).
      */
     agreementAccepted?: boolean;
     /**
-     * The enterprise token appended to the callback URL. Only set this when creating a customer-managed enterprise.
+     * The enterprise token appended to the callback URL. Set this when creating a customer-managed enterprise (https://developers.google.com/android/management/create-enterprise#customer-managed_enterprises) and not when creating a deprecated EMM-managed enterprise (https://developers.google.com/android/management/create-enterprise#emm-managed_enterprises).
      */
     enterpriseToken?: string;
     /**
@@ -3048,7 +3065,7 @@ export namespace androidmanagement_v1 {
      */
     projectId?: string;
     /**
-     * The name of the SignupUrl used to sign up for the enterprise. Only set this when creating a customer-managed enterprise.
+     * The name of the SignupUrl used to sign up for the enterprise. Set this when creating a customer-managed enterprise (https://developers.google.com/android/management/create-enterprise#customer-managed_enterprises) and not when creating a deprecated EMM-managed enterprise (https://developers.google.com/android/management/create-enterprise#emm-managed_enterprises).
      */
     signupUrlName?: string;
 
@@ -5254,6 +5271,7 @@ export namespace androidmanagement_v1 {
      *   //   "tetheringConfigDisabled": false,
      *   //   "uninstallAppsDisabled": false,
      *   //   "unmuteMicrophoneDisabled": false,
+     *   //   "usageLog": {},
      *   //   "usbFileTransferDisabled": false,
      *   //   "usbMassStorageEnabled": false,
      *   //   "version": "my_version",
@@ -5609,6 +5627,7 @@ export namespace androidmanagement_v1 {
      *       //   "tetheringConfigDisabled": false,
      *       //   "uninstallAppsDisabled": false,
      *       //   "unmuteMicrophoneDisabled": false,
+     *       //   "usageLog": {},
      *       //   "usbFileTransferDisabled": false,
      *       //   "usbMassStorageEnabled": false,
      *       //   "version": "my_version",
@@ -5703,6 +5722,7 @@ export namespace androidmanagement_v1 {
      *   //   "tetheringConfigDisabled": false,
      *   //   "uninstallAppsDisabled": false,
      *   //   "unmuteMicrophoneDisabled": false,
+     *   //   "usageLog": {},
      *   //   "usbFileTransferDisabled": false,
      *   //   "usbMassStorageEnabled": false,
      *   //   "version": "my_version",
