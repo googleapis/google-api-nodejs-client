@@ -741,11 +741,11 @@ export namespace androidpublisher_v3 {
      */
     appLevelPermissions?: string[] | null;
     /**
-     * Required. Resource name for this grant, following the pattern "developers/{developer\}/users/{email\}/grants/{package_name\}".
+     * Required. Resource name for this grant, following the pattern "developers/{developer\}/users/{email\}/grants/{package_name\}". If this grant is for a draft app, the app ID will be used in this resource name instead of the package name.
      */
     name?: string | null;
     /**
-     * Immutable. The package name of the app.
+     * Immutable. The package name of the app. This will be empty for draft apps.
      */
     packageName?: string | null;
   }
@@ -1571,7 +1571,7 @@ export namespace androidpublisher_v3 {
      */
     email?: string | null;
     /**
-     * The time at which the user's access expires, if set.
+     * The time at which the user's access expires, if set. When setting this value, it must always be in the future.
      */
     expirationTime?: string | null;
     /**
@@ -1583,7 +1583,7 @@ export namespace androidpublisher_v3 {
      */
     name?: string | null;
     /**
-     * Output only. Whether there are more permissions for the user that are not represented here.
+     * Output only. Whether there are more permissions for the user that are not represented here. This can happen if the caller does not have permission to manage all apps in the account. This is also `true` if this user is the account owner. If this field is `true`, it should be taken as a signal that this user cannot be fully managed via the API. That is, the API caller is not be able to manage all of the permissions this user holds, either because it doesn't know about them or because the user is the account owner.
      */
     partial?: boolean | null;
   }
@@ -8691,7 +8691,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.grants.patch({
-     *     // Required. Resource name for this grant, following the pattern "developers/{developer\}/users/{email\}/grants/{package_name\}".
+     *     // Required. Resource name for this grant, following the pattern "developers/{developer\}/users/{email\}/grants/{package_name\}". If this grant is for a draft app, the app ID will be used in this resource name instead of the package name.
      *     name: 'developers/my-developer/users/my-user/grants/my-grant',
      *     // Optional. The list of fields to be updated.
      *     updateMask: 'placeholder-value',
@@ -8827,7 +8827,7 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Grants$Patch extends StandardParameters {
     /**
-     * Required. Resource name for this grant, following the pattern "developers/{developer\}/users/{email\}/grants/{package_name\}".
+     * Required. Resource name for this grant, following the pattern "developers/{developer\}/users/{email\}/grants/{package_name\}". If this grant is for a draft app, the app ID will be used in this resource name instead of the package name.
      */
     name?: string;
     /**
