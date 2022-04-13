@@ -278,6 +278,10 @@ export namespace datastream_v1alpha1 {
     oracleRdbms?: Schema$OracleRdbms;
   }
   /**
+   * Configuration to drop large object values.
+   */
+  export interface Schema$DropLargeObjects {}
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -791,10 +795,6 @@ export namespace datastream_v1alpha1 {
     scale?: number | null;
   }
   /**
-   * Configuration to drop large object values.
-   */
-  export interface Schema$OracleDropLargeObjects {}
-  /**
    * Oracle data source object identifier.
    */
   export interface Schema$OracleObjectIdentifier {
@@ -869,7 +869,7 @@ export namespace datastream_v1alpha1 {
     /**
      * Drop large object values.
      */
-    dropLargeObjects?: Schema$OracleDropLargeObjects;
+    dropLargeObjects?: Schema$DropLargeObjects;
     /**
      * Oracle objects to exclude from the stream.
      */
@@ -1503,7 +1503,7 @@ export namespace datastream_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await datastream.projects.locations.list({
-     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
@@ -1643,7 +1643,7 @@ export namespace datastream_v1alpha1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
     /**
