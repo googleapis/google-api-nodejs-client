@@ -338,7 +338,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$AgeRangeAssignedTargetingOptionDetails {
     /**
-     * The age range of an audience. We only support targeting a continuous age range of an audience. Thus, the age range represented in this field can be 1) targeted solely, or, 2) part of a larger continuous age range. The reach of a continuous age range targeting can be expanded by also targeting an audience of an unknown age. Output only in v1. Required in v2.
+     * The age range of an audience. We only support targeting a continuous age range of an audience. Thus, the age range represented in this field can be 1) targeted solely, or, 2) part of a larger continuous age range. The reach of a continuous age range targeting can be expanded by also targeting an audience of an unknown age. Output only in v1.
      */
     ageRange?: string | null;
     /**
@@ -718,7 +718,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$AudioContentTypeAssignedTargetingOptionDetails {
     /**
-     * The audio content type. Output only in v1. Required in v2.
+     * The audio content type. Output only in v1.
      */
     audioContentType?: string | null;
     /**
@@ -1542,7 +1542,7 @@ export namespace displayvideo_v1 {
      */
     adType?: string | null;
     /**
-     * The content instream position for video or audio ads. Output only in v1. Required in v2.
+     * The content instream position for video or audio ads. Output only in v1.
      */
     contentInstreamPosition?: string | null;
     /**
@@ -1568,7 +1568,7 @@ export namespace displayvideo_v1 {
      */
     adType?: string | null;
     /**
-     * The content outstream position. Output only in v1. Required in v2.
+     * The content outstream position. Output only in v1.
      */
     contentOutstreamPosition?: string | null;
     /**
@@ -2124,7 +2124,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$DeviceTypeAssignedTargetingOptionDetails {
     /**
-     * The display name of the device type. Output only in v1. Required in v2.
+     * The display name of the device type. Output only in v1.
      */
     deviceType?: string | null;
     /**
@@ -2317,7 +2317,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$EnvironmentAssignedTargetingOptionDetails {
     /**
-     * The serving environment. Output only in v1. Required in v2.
+     * The serving environment. Output only in v1.
      */
     environment?: string | null;
     /**
@@ -2562,7 +2562,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$FrequencyCap {
     /**
-     * The maximum number of times a user may be shown the same ad during this period. Must be greater than 0. Required when unlimited is `false` and max_views is not set.
+     * The maximum number of times a user may be shown the same ad during this period. Must be greater than 0. Required when unlimited is `false`.
      */
     maxImpressions?: number | null;
     /**
@@ -2583,7 +2583,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$GenderAssignedTargetingOptionDetails {
     /**
-     * The gender of the audience. Output only in v1. Required in v2.
+     * The gender of the audience. Output only in v1.
      */
     gender?: string | null;
     /**
@@ -3786,7 +3786,7 @@ export namespace displayvideo_v1 {
      */
     performanceGoalType?: string | null;
     /**
-     * Controls whether the strategy takes deal floor prices into account.
+     * Whether the strategy takes deal floor prices into account.
      */
     raiseBidForDeals?: boolean | null;
   }
@@ -3855,7 +3855,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$NativeContentPositionAssignedTargetingOptionDetails {
     /**
-     * The content position. Output only in v1. Required in v2.
+     * The content position. Output only in v1.
      */
     contentPosition?: string | null;
     /**
@@ -3961,7 +3961,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$OmidAssignedTargetingOptionDetails {
     /**
-     * The type of Open Measurement enabled inventory. Output only in v1. Required in v2.
+     * The type of Open Measurement enabled inventory. Output only in v1.
      */
     omid?: string | null;
     /**
@@ -4596,7 +4596,7 @@ export namespace displayvideo_v1 {
      */
     excludedTargetingOptionId?: string | null;
     /**
-     * An enum for the DV360 Sensitive category content classifier. Output only in v1. Required in v2.
+     * An enum for the DV360 Sensitive category content classifier. Output only in v1.
      */
     sensitiveCategory?: string | null;
   }
@@ -5024,7 +5024,7 @@ export namespace displayvideo_v1 {
      */
     targetingOptionId?: string | null;
     /**
-     * The video player size. Output only in v1. Required in v2.
+     * The video player size. Output only in v1.
      */
     videoPlayerSize?: string | null;
   }
@@ -5046,7 +5046,7 @@ export namespace displayvideo_v1 {
      */
     targetingOptionId?: string | null;
     /**
-     * The predicted viewability percentage. Output only in v1. Required in v2.
+     * The predicted viewability percentage. Output only in v1.
      */
     viewability?: string | null;
   }
@@ -13251,7 +13251,7 @@ export namespace displayvideo_v1 {
      *     advertiserId: '[^/]+',
      *     // Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operator used on `updateTime` must be `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)`. * The operator used on `warningMessages` must be `HAS (:)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported properties: - `campaignId` - `displayName` - `insertionOrderId` - `entityStatus` - `lineItemId` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) - `warningMessages` - `flight.triggerId` - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) - `targetedChannelId` - `targetedNegativeKeywordListId` Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<"2019-03-28"` * All line items that have `NO_VALID_CREATIVE` in `warningMessages`: `warningMessages:"NO_VALID_CREATIVE"` * All line items with an update time less than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime<="2020-11-04T18:54:47Z"` * All line items with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime\>="2020-11-04T18:54:47Z"` * All line items that are using both the specified channel and specified negative keyword list in their targeting: `targetedNegativeKeywordListId=789 AND targetedChannelId=12345` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * "displayName" (default) * "entityStatus" * “flight.dateRange.endDate” * "updateTime" The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` * `flight.dateRange.endDate` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
      *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
@@ -13652,7 +13652,7 @@ export namespace displayvideo_v1 {
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are: * "displayName" (default) * "entityStatus" * “flight.dateRange.endDate” * "updateTime" The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     * Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` * `flight.dateRange.endDate` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      */
     orderBy?: string;
     /**

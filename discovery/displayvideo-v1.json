@@ -2508,7 +2508,7 @@
                   "type": "string"
                 },
                 "orderBy": {
-                  "description": "Field by which to sort the list. Acceptable values are: * \"displayName\" (default) * \"entityStatus\" * “flight.dateRange.endDate” * \"updateTime\" The default sorting order is ascending. To specify descending order for a field, a suffix \"desc\" should be added to the field name. Example: `displayName desc`.",
+                  "description": "Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` * `flight.dateRange.endDate` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix \"desc\" should be added to the field name. Example: `displayName desc`.",
                   "location": "query",
                   "type": "string"
                 },
@@ -7844,7 +7844,7 @@
       }
     }
   },
-  "revision": "20220324",
+  "revision": "20220411",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -8186,7 +8186,7 @@
       "id": "AgeRangeAssignedTargetingOptionDetails",
       "properties": {
         "ageRange": {
-          "description": "The age range of an audience. We only support targeting a continuous age range of an audience. Thus, the age range represented in this field can be 1) targeted solely, or, 2) part of a larger continuous age range. The reach of a continuous age range targeting can be expanded by also targeting an audience of an unknown age. Output only in v1. Required in v2.",
+          "description": "The age range of an audience. We only support targeting a continuous age range of an audience. Thus, the age range represented in this field can be 1) targeted solely, or, 2) part of a larger continuous age range. The reach of a continuous age range targeting can be expanded by also targeting an audience of an unknown age. Output only in v1.",
           "enum": [
             "AGE_RANGE_UNSPECIFIED",
             "AGE_RANGE_18_24",
@@ -8851,7 +8851,7 @@
       "id": "AudioContentTypeAssignedTargetingOptionDetails",
       "properties": {
         "audioContentType": {
-          "description": "The audio content type. Output only in v1. Required in v2.",
+          "description": "The audio content type. Output only in v1.",
           "enum": [
             "AUDIO_CONTENT_TYPE_UNSPECIFIED",
             "AUDIO_CONTENT_TYPE_UNKNOWN",
@@ -10202,7 +10202,7 @@
           "type": "string"
         },
         "contentInstreamPosition": {
-          "description": "The content instream position for video or audio ads. Output only in v1. Required in v2.",
+          "description": "The content instream position for video or audio ads. Output only in v1.",
           "enum": [
             "CONTENT_INSTREAM_POSITION_UNSPECIFIED",
             "CONTENT_INSTREAM_POSITION_PRE_ROLL",
@@ -10274,7 +10274,7 @@
           "type": "string"
         },
         "contentOutstreamPosition": {
-          "description": "The content outstream position. Output only in v1. Required in v2.",
+          "description": "The content outstream position. Output only in v1.",
           "enum": [
             "CONTENT_OUTSTREAM_POSITION_UNSPECIFIED",
             "CONTENT_OUTSTREAM_POSITION_UNKNOWN",
@@ -11480,7 +11480,7 @@
       "id": "DeviceTypeAssignedTargetingOptionDetails",
       "properties": {
         "deviceType": {
-          "description": "The display name of the device type. Output only in v1. Required in v2.",
+          "description": "The display name of the device type. Output only in v1.",
           "enum": [
             "DEVICE_TYPE_UNSPECIFIED",
             "DEVICE_TYPE_COMPUTER",
@@ -11996,7 +11996,7 @@
       "id": "EnvironmentAssignedTargetingOptionDetails",
       "properties": {
         "environment": {
-          "description": "The serving environment. Output only in v1. Required in v2.",
+          "description": "The serving environment. Output only in v1.",
           "enum": [
             "ENVIRONMENT_UNSPECIFIED",
             "ENVIRONMENT_WEB_OPTIMIZED",
@@ -12886,7 +12886,7 @@
       "id": "FrequencyCap",
       "properties": {
         "maxImpressions": {
-          "description": "The maximum number of times a user may be shown the same ad during this period. Must be greater than 0. Required when unlimited is `false` and max_views is not set.",
+          "description": "The maximum number of times a user may be shown the same ad during this period. Must be greater than 0. Required when unlimited is `false`.",
           "format": "int32",
           "type": "integer"
         },
@@ -12929,7 +12929,7 @@
       "id": "GenderAssignedTargetingOptionDetails",
       "properties": {
         "gender": {
-          "description": "The gender of the audience. Output only in v1. Required in v2.",
+          "description": "The gender of the audience. Output only in v1.",
           "enum": [
             "GENDER_UNSPECIFIED",
             "GENDER_MALE",
@@ -15356,7 +15356,7 @@
           "type": "string"
         },
         "raiseBidForDeals": {
-          "description": "Controls whether the strategy takes deal floor prices into account.",
+          "description": "Whether the strategy takes deal floor prices into account.",
           "type": "boolean"
         }
       },
@@ -15453,7 +15453,7 @@
       "id": "NativeContentPositionAssignedTargetingOptionDetails",
       "properties": {
         "contentPosition": {
-          "description": "The content position. Output only in v1. Required in v2.",
+          "description": "The content position. Output only in v1.",
           "enum": [
             "NATIVE_CONTENT_POSITION_UNSPECIFIED",
             "NATIVE_CONTENT_POSITION_UNKNOWN",
@@ -15627,7 +15627,7 @@
       "id": "OmidAssignedTargetingOptionDetails",
       "properties": {
         "omid": {
-          "description": "The type of Open Measurement enabled inventory. Output only in v1. Required in v2.",
+          "description": "The type of Open Measurement enabled inventory. Output only in v1.",
           "enum": [
             "OMID_UNSPECIFIED",
             "OMID_FOR_MOBILE_DISPLAY_ADS"
@@ -16887,7 +16887,7 @@
           "type": "string"
         },
         "sensitiveCategory": {
-          "description": "An enum for the DV360 Sensitive category content classifier. Output only in v1. Required in v2.",
+          "description": "An enum for the DV360 Sensitive category content classifier. Output only in v1.",
           "enum": [
             "SENSITIVE_CATEGORY_UNSPECIFIED",
             "SENSITIVE_CATEGORY_ADULT",
@@ -17653,7 +17653,7 @@
           "type": "string"
         },
         "videoPlayerSize": {
-          "description": "The video player size. Output only in v1. Required in v2.",
+          "description": "The video player size. Output only in v1.",
           "enum": [
             "VIDEO_PLAYER_SIZE_UNSPECIFIED",
             "VIDEO_PLAYER_SIZE_SMALL",
@@ -17708,7 +17708,7 @@
           "type": "string"
         },
         "viewability": {
-          "description": "The predicted viewability percentage. Output only in v1. Required in v2.",
+          "description": "The predicted viewability percentage. Output only in v1.",
           "enum": [
             "VIEWABILITY_UNSPECIFIED",
             "VIEWABILITY_10_PERCENT_OR_MORE",
