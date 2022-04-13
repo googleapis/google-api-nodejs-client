@@ -1421,7 +1421,7 @@ export namespace slides_v1 {
    */
   export interface Schema$ReplaceImageRequest {
     /**
-     * The ID of the existing image that will be replaced.
+     * The ID of the existing image that will be replaced. The ID can be retrieved from the response of a get request.
      */
     imageObjectId?: string | null;
     /**
@@ -1429,7 +1429,7 @@ export namespace slides_v1 {
      */
     imageReplaceMethod?: string | null;
     /**
-     * The image URL. The image is fetched once at insertion time and a copy is stored for display inside the presentation. Images must be less than 50MB in size, cannot exceed 25 megapixels, and must be in one of PNG, JPEG, or GIF format. The provided URL can be at most 2 kB in length. The URL itself is saved with the image, and exposed via the Image.source_url field.
+     * The image URL. The image is fetched once at insertion time and a copy is stored for display inside the presentation. Images must be less than 50MB, cannot exceed 25 megapixels, and must be in PNG, JPEG, or GIF format. The provided URL can't surpass 2 KB in length. The URL is saved with the image, and exposed through the Image.source_url field.
      */
     url?: string | null;
   }
