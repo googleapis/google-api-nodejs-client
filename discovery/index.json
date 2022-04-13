@@ -558,11 +558,26 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "baremetalsolution:v1alpha1",
+      "name": "baremetalsolution",
+      "version": "v1alpha1",
+      "title": "Bare Metal Solution API",
+      "description": "Provides ways to manage Bare Metal Solution hardware installed in a regional extension located near a Google Cloud data center.",
+      "discoveryRestUrl": "https://baremetalsolution.googleapis.com/$discovery/rest?version=v1alpha1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/bare-metal",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "baremetalsolution:v1",
       "name": "baremetalsolution",
       "version": "v1",
       "title": "Bare Metal Solution API",
-      "description": "Bare Metal Solution provides hardware to run specialized workloads with low latency on Google Cloud.",
+      "description": "Provides ways to manage Bare Metal Solution hardware installed in a regional extension located near a Google Cloud data center.",
       "discoveryRestUrl": "https://baremetalsolution.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -577,7 +592,7 @@
       "name": "baremetalsolution",
       "version": "v2",
       "title": "Bare Metal Solution API",
-      "description": "Bare Metal Solution provides hardware to run specialized workloads with low latency on Google Cloud.",
+      "description": "Provides ways to manage Bare Metal Solution hardware installed in a regional extension located near a Google Cloud data center.",
       "discoveryRestUrl": "https://baremetalsolution.googleapis.com/$discovery/rest?version=v2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
