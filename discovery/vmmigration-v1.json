@@ -1886,7 +1886,7 @@
       }
     }
   },
-  "revision": "20220401",
+  "revision": "20220408",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AddGroupMigrationRequest": {
@@ -1961,6 +1961,27 @@
         "newDeployableAppliance": {
           "$ref": "ApplianceVersion",
           "description": "The newest deployable version of the appliance. The current appliance can't be updated into this version, and the owner must manually deploy this OVA to a new appliance."
+        }
+      },
+      "type": "object"
+    },
+    "AwsSourceVmDetails": {
+      "description": "Represent the source AWS VM details.",
+      "id": "AwsSourceVmDetails",
+      "properties": {
+        "firmware": {
+          "description": "The firmware type of the source VM.",
+          "enum": [
+            "FIRMWARE_UNSPECIFIED",
+            "EFI",
+            "BIOS"
+          ],
+          "enumDescriptions": [
+            "The firmware is unknown.",
+            "The firmware is EFI.",
+            "The firmware is BIOS."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -2897,6 +2918,11 @@
       "description": "MigratingVm describes the VM that will be migrated from a Source environment and its replication state.",
       "id": "MigratingVm",
       "properties": {
+        "awsSourceVmDetails": {
+          "$ref": "AwsSourceVmDetails",
+          "description": "Output only. Details of the VM from an AWS source.",
+          "readOnly": true
+        },
         "computeEngineTargetDefaults": {
           "$ref": "ComputeEngineTargetDefaults",
           "description": "Details of the target VM in Compute Engine."
