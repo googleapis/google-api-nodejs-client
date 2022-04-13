@@ -182,6 +182,15 @@ export namespace vmmigration_v1alpha1 {
     newDeployableAppliance?: Schema$ApplianceVersion;
   }
   /**
+   * Represent the source AWS VM details.
+   */
+  export interface Schema$AwsSourceVmDetails {
+    /**
+     * The firmware type of the source VM.
+     */
+    firmware?: string | null;
+  }
+  /**
    * Request message for 'CancelCloneJob' request.
    */
   export interface Schema$CancelCloneJobRequest {}
@@ -800,6 +809,10 @@ export namespace vmmigration_v1alpha1 {
    * MigratingVm describes the VM that will be migrated from a Source environment and its replication state.
    */
   export interface Schema$MigratingVm {
+    /**
+     * Output only. Details of the VM from an AWS source.
+     */
+    awsSourceVmDetails?: Schema$AwsSourceVmDetails;
     /**
      * Details of the target VM in Compute Engine.
      */
@@ -5344,6 +5357,7 @@ export namespace vmmigration_v1alpha1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "awsSourceVmDetails": {},
      *       //   "computeEngineTargetDefaults": {},
      *       //   "computeEngineVmDefaults": {},
      *       //   "createTime": "my_createTime",
@@ -5780,6 +5794,7 @@ export namespace vmmigration_v1alpha1 {
      *
      *   // Example response
      *   // {
+     *   //   "awsSourceVmDetails": {},
      *   //   "computeEngineTargetDefaults": {},
      *   //   "computeEngineVmDefaults": {},
      *   //   "createTime": "my_createTime",
@@ -6076,6 +6091,7 @@ export namespace vmmigration_v1alpha1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "awsSourceVmDetails": {},
      *       //   "computeEngineTargetDefaults": {},
      *       //   "computeEngineVmDefaults": {},
      *       //   "createTime": "my_createTime",
