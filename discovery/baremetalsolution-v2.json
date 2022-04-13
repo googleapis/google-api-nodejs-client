@@ -143,7 +143,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
                   "type": "string"
                 },
@@ -176,6 +176,35 @@
             }
           },
           "resources": {
+            "instanceProvisioningSettings": {
+              "methods": {
+                "fetch": {
+                  "description": "Get instance provisioning settings for a given project. This is hidden method used by UI only.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instanceProvisioningSettings:fetch",
+                  "httpMethod": "GET",
+                  "id": "baremetalsolution.projects.locations.instanceProvisioningSettings.fetch",
+                  "parameterOrder": [
+                    "location"
+                  ],
+                  "parameters": {
+                    "location": {
+                      "description": "Required. The parent project and location containing the ProvisioningSettings.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+location}/instanceProvisioningSettings:fetch",
+                  "response": {
+                    "$ref": "FetchInstanceProvisioningSettingsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "instances": {
               "methods": {
                 "get": {
@@ -1222,7 +1251,7 @@
       }
     }
   },
-  "revision": "20220322",
+  "revision": "20220405",
   "rootUrl": "https://baremetalsolution.googleapis.com/",
   "schemas": {
     "AllowedClient": {
@@ -1274,6 +1303,20 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "FetchInstanceProvisioningSettingsResponse": {
+      "description": "Response with all provisioning settings.",
+      "id": "FetchInstanceProvisioningSettingsResponse",
+      "properties": {
+        "images": {
+          "description": "The OS images available.",
+          "items": {
+            "$ref": "OSImage"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "Instance": {
@@ -1689,6 +1732,35 @@
       },
       "type": "object"
     },
+    "LogicalInterface": {
+      "description": "Logical interface.",
+      "id": "LogicalInterface",
+      "properties": {
+        "name": {
+          "description": "Interface name. This is not a globally unique identifier. Name is unique only inside the ServerNetworkTemplate.",
+          "type": "string"
+        },
+        "required": {
+          "description": "If true, interface must have network connected.",
+          "type": "boolean"
+        },
+        "type": {
+          "description": "Interface type.",
+          "enum": [
+            "INTERFACE_TYPE_UNSPECIFIED",
+            "BOND",
+            "NIC"
+          ],
+          "enumDescriptions": [
+            "Unspecified value.",
+            "Bond interface type.",
+            "NIC interface ytpe."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Lun": {
       "description": "A storage volume logical unit number (LUN).",
       "id": "Lun",
@@ -2083,6 +2155,40 @@
       },
       "type": "object"
     },
+    "OSImage": {
+      "description": "Operation System image.",
+      "id": "OSImage",
+      "properties": {
+        "applicableInstanceTypes": {
+          "description": "Instance types this image is applicable to. [Available types](https://cloud.google.com/bare-metal/docs/bms-planning#server_configurations)",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "code": {
+          "description": "OS Image code.",
+          "type": "string"
+        },
+        "description": {
+          "description": "OS Image description.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. OS Image's unique name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "supportedNetworkTemplates": {
+          "description": "Network templates that can be used with this OS Image.",
+          "items": {
+            "$ref": "ServerNetworkTemplate"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Operation": {
       "description": "This resource represents a long-running operation that is the result of a network API call.",
       "id": "Operation",
@@ -2293,6 +2399,32 @@
           "description": "The maximum number of snapshots to retain in this schedule.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ServerNetworkTemplate": {
+      "description": "Network template.",
+      "id": "ServerNetworkTemplate",
+      "properties": {
+        "applicableInstanceTypes": {
+          "description": "Instance types this template is applicable to.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "logicalInterfaces": {
+          "description": "Logical interfaces.",
+          "items": {
+            "$ref": "LogicalInterface"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. Template's unique name.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"

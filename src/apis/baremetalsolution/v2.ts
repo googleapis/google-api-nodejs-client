@@ -163,6 +163,15 @@ export namespace baremetalsolution_v2 {
    */
   export interface Schema$Empty {}
   /**
+   * Response with all provisioning settings.
+   */
+  export interface Schema$FetchInstanceProvisioningSettingsResponse {
+    /**
+     * The OS images available.
+     */
+    images?: Schema$OSImage[];
+  }
+  /**
    * A server.
    */
   export interface Schema$Instance {
@@ -462,6 +471,23 @@ export namespace baremetalsolution_v2 {
     name?: string | null;
   }
   /**
+   * Logical interface.
+   */
+  export interface Schema$LogicalInterface {
+    /**
+     * Interface name. This is not a globally unique identifier. Name is unique only inside the ServerNetworkTemplate.
+     */
+    name?: string | null;
+    /**
+     * If true, interface must have network connected.
+     */
+    required?: boolean | null;
+    /**
+     * Interface type.
+     */
+    type?: string | null;
+  }
+  /**
    * A storage volume logical unit number (LUN).
    */
   export interface Schema$Lun {
@@ -731,6 +757,31 @@ export namespace baremetalsolution_v2 {
     response?: {[key: string]: any} | null;
   }
   /**
+   * Operation System image.
+   */
+  export interface Schema$OSImage {
+    /**
+     * Instance types this image is applicable to. [Available types](https://cloud.google.com/bare-metal/docs/bms-planning#server_configurations)
+     */
+    applicableInstanceTypes?: string[] | null;
+    /**
+     * OS Image code.
+     */
+    code?: string | null;
+    /**
+     * OS Image description.
+     */
+    description?: string | null;
+    /**
+     * Output only. OS Image's unique name.
+     */
+    name?: string | null;
+    /**
+     * Network templates that can be used with this OS Image.
+     */
+    supportedNetworkTemplates?: Schema$ServerNetworkTemplate[];
+  }
+  /**
    * A provisioning configuration.
    */
   export interface Schema$ProvisioningConfig {
@@ -853,6 +904,23 @@ export namespace baremetalsolution_v2 {
      * The maximum number of snapshots to retain in this schedule.
      */
     retentionCount?: number | null;
+  }
+  /**
+   * Network template.
+   */
+  export interface Schema$ServerNetworkTemplate {
+    /**
+     * Instance types this template is applicable to.
+     */
+    applicableInstanceTypes?: string[] | null;
+    /**
+     * Logical interfaces.
+     */
+    logicalInterfaces?: Schema$LogicalInterface[];
+    /**
+     * Output only. Template's unique name.
+     */
+    name?: string | null;
   }
   /**
    * Details about snapshot space reservation and usage on the storage volume.
@@ -1132,6 +1200,7 @@ export namespace baremetalsolution_v2 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    instanceProvisioningSettings: Resource$Projects$Locations$Instanceprovisioningsettings;
     instances: Resource$Projects$Locations$Instances;
     networks: Resource$Projects$Locations$Networks;
     nfsShares: Resource$Projects$Locations$Nfsshares;
@@ -1141,6 +1210,10 @@ export namespace baremetalsolution_v2 {
     volumes: Resource$Projects$Locations$Volumes;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.instanceProvisioningSettings =
+        new Resource$Projects$Locations$Instanceprovisioningsettings(
+          this.context
+        );
       this.instances = new Resource$Projects$Locations$Instances(this.context);
       this.networks = new Resource$Projects$Locations$Networks(this.context);
       this.nfsShares = new Resource$Projects$Locations$Nfsshares(this.context);
@@ -1311,7 +1384,7 @@ export namespace baremetalsolution_v2 {
      *
      *   // Do the magic
      *   const res = await baremetalsolution.projects.locations.list({
-     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
@@ -1437,7 +1510,7 @@ export namespace baremetalsolution_v2 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
     /**
@@ -1452,6 +1525,163 @@ export namespace baremetalsolution_v2 {
      * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Instanceprovisioningsettings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Get instance provisioning settings for a given project. This is hidden method used by UI only.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/baremetalsolution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const baremetalsolution = google.baremetalsolution('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await baremetalsolution.projects.locations.instanceProvisioningSettings.fetch(
+     *       {
+     *         // Required. The parent project and location containing the ProvisioningSettings.
+     *         location: 'projects/my-project/locations/my-location',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "images": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetch(
+      params: Params$Resource$Projects$Locations$Instanceprovisioningsettings$Fetch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetch(
+      params?: Params$Resource$Projects$Locations$Instanceprovisioningsettings$Fetch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FetchInstanceProvisioningSettingsResponse>;
+    fetch(
+      params: Params$Resource$Projects$Locations$Instanceprovisioningsettings$Fetch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetch(
+      params: Params$Resource$Projects$Locations$Instanceprovisioningsettings$Fetch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchInstanceProvisioningSettingsResponse>,
+      callback: BodyResponseCallback<Schema$FetchInstanceProvisioningSettingsResponse>
+    ): void;
+    fetch(
+      params: Params$Resource$Projects$Locations$Instanceprovisioningsettings$Fetch,
+      callback: BodyResponseCallback<Schema$FetchInstanceProvisioningSettingsResponse>
+    ): void;
+    fetch(
+      callback: BodyResponseCallback<Schema$FetchInstanceProvisioningSettingsResponse>
+    ): void;
+    fetch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instanceprovisioningsettings$Fetch
+        | BodyResponseCallback<Schema$FetchInstanceProvisioningSettingsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchInstanceProvisioningSettingsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchInstanceProvisioningSettingsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FetchInstanceProvisioningSettingsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instanceprovisioningsettings$Fetch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instanceprovisioningsettings$Fetch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://baremetalsolution.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2/{+location}/instanceProvisioningSettings:fetch'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['location'],
+        pathParams: ['location'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchInstanceProvisioningSettingsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchInstanceProvisioningSettingsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Instanceprovisioningsettings$Fetch
+    extends StandardParameters {
+    /**
+     * Required. The parent project and location containing the ProvisioningSettings.
+     */
+    location?: string;
   }
 
   export class Resource$Projects$Locations$Instances {
