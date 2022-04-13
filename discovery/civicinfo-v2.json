@@ -352,7 +352,7 @@
       }
     }
   },
-  "revision": "20211211",
+  "revision": "20220412",
   "rootUrl": "https://civicinfo.googleapis.com/",
   "schemas": {
     "AdministrationRegion": {
@@ -946,7 +946,7 @@
             "typeTransitDeparture",
             "typeTransitLeg",
             "typeTransitLine",
-            "typeTransitAgency",
+            "typeTransitAgencyDeprecatedValue",
             "typeTransitTransfer",
             "typeSegmentPath",
             "typeRoadSign",
@@ -1202,6 +1202,8 @@
             "typePhoneNumberAreaCode",
             "typeBusinessCorridor",
             "typeAddressTemplate",
+            "typeTransitAgency",
+            "typeFutureGeometry",
             "typeEvent",
             "typeEarthquake",
             "typeHurricane",
@@ -1315,7 +1317,7 @@
             "DEPRECATED",
             "DEPRECATED",
             "A transit line is a collection of transit legs, associated with some invariant properties of the trips that run over the legs. See also transitline.proto",
-            "A transit agency operates a number of lines, typically all in the same city, region or country. See also transitagency.proto",
+            "TYPE_TRANSIT_AGENCY was moved to 0xC91. This deprecated enum value still exists for debugging purposes only.",
             "DEPRECATED",
             "ABSTRACT",
             "Road sign features have names, point geometry, etc. They also have segment_path data (see below) which lists the segments that refer to the sign. See segment.proto for the reference from the segment to the road sign.",
@@ -1571,6 +1573,8 @@
             "A phone number area code is a prefix which also coincides with the area code, or national destination code, of a particular region.",
             "A Business Corridor is a dense cluster of semantically similar establishments. TYPE_BUSINESS_CORRIDOR features are distinguished from TYPE_COLLOQUIAL_AREA features because the corridors are not under the political hierarchy, are allowed to be nameless, and may not correspond to well-known real world locations. For more details, see go/geo-corridors-schema.",
             "An address template feature provides region-specific conventions for structuring addresses. These features aren't necessarily defined by physical geographic features, so they are classified as meta-features.",
+            "A transit agency operates a number of lines, typically all in the same city, region or country. See also transitagency.proto",
+            "A feature whose geometry is planned to replace the geometry on another feature.",
             "DEPRECATED",
             "DEPRECATED",
             "DEPRECATED",
@@ -1877,6 +1881,87 @@
       },
       "type": "object"
     },
+    "Precinct": {
+      "id": "Precinct",
+      "properties": {
+        "administrationRegionId": {
+          "description": "ID of the AdministrationRegion message for this precinct. Corresponds to LocalityId xml tag.",
+          "type": "string"
+        },
+        "contestId": {
+          "description": "ID(s) of the Contest message(s) for this precinct.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "datasetId": {
+          "description": "Required. Dataset ID. What datasets our Precincts come from.",
+          "format": "int64",
+          "type": "string"
+        },
+        "earlyVoteSiteId": {
+          "description": "ID(s) of the PollingLocation message(s) for this precinct.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "electoralDistrictId": {
+          "description": "ID(s) of the ElectoralDistrict message(s) for this precinct.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "Required. A unique identifier for this precinct.",
+          "type": "string"
+        },
+        "mailOnly": {
+          "description": "Specifies if the precinct runs mail-only elections.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Required. The name of the precinct.",
+          "type": "string"
+        },
+        "number": {
+          "description": "The number of the precinct.",
+          "type": "string"
+        },
+        "ocdId": {
+          "description": "Encouraged. The OCD ID of the precinct",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "pollingLocationId": {
+          "description": "ID(s) of the PollingLocation message(s) for this precinct.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "spatialBoundaryId": {
+          "description": "ID(s) of the SpatialBoundary message(s) for this precinct. Used to specify a geometrical boundary of the precinct.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "splitName": {
+          "description": "If present, this proto corresponds to one portion of split precinct. Other portions of this precinct are guaranteed to have the same `name`. If not present, this proto represents a full precicnt.",
+          "type": "string"
+        },
+        "ward": {
+          "description": "Specifies the ward the precinct is contained within.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RepresentativeInfoData": {
       "id": "RepresentativeInfoData",
       "properties": {
@@ -2049,6 +2134,13 @@
         },
         "precinctId": {
           "type": "string"
+        },
+        "precincts": {
+          "description": "The precincts that match this voter's address. Will only be returned for project IDs which have been whitelisted as \"partner projects\".",
+          "items": {
+            "$ref": "Precinct"
+          },
+          "type": "array"
         },
         "state": {
           "description": "Local Election Information for the state that the voter votes in. For the US, there will only be one element in this array.",
