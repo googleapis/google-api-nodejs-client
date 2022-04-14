@@ -1,0 +1,17 @@
+branchProtectionRules:
+  - pattern: main
+    isAdminEnforced: true
+    requiredApprovingReviewCount: 1
+    requiresCodeOwnerReviews: true
+    requiresStrictStatusChecks: false
+    requiredStatusCheckContexts:
+      - "ci/kokoro: Samples test"
+      - "ci/kokoro: System test"
+      - docs
+      - lint
+      - test (10)
+      - test (12)
+      - test (14)
+      - cla/google
+      - windows
+      - OwlBot Post Processor
