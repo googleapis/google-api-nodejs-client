@@ -57,7 +57,7 @@ const spawnOpts: cp.SpawnSyncOptions = {
  */
 describe('kitchen sink', async () => {
   it('should be able to use the d.ts', async function () {
-    this.timeout(160000);
+    this.timeout(320000);
     console.log(`${__filename} staging area: ${stagingPath}`);
     cp.spawnSync('npm', ['pack'], spawnOpts);
     // Sleeping here should absolutely not be necessary, but prevents a
