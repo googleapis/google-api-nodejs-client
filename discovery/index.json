@@ -408,6 +408,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "apigeeregistry:v1",
+      "name": "apigeeregistry",
+      "version": "v1",
+      "title": "Apigee Registry API",
+      "description": "",
+      "discoveryRestUrl": "https://apigeeregistry.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/apigee/docs/api-hub/what-is-api-hub",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "apikeys:v2",
       "name": "apikeys",
       "version": "v2",
@@ -558,26 +573,11 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "baremetalsolution:v1alpha1",
-      "name": "baremetalsolution",
-      "version": "v1alpha1",
-      "title": "Bare Metal Solution API",
-      "description": "Provides ways to manage Bare Metal Solution hardware installed in a regional extension located near a Google Cloud data center.",
-      "discoveryRestUrl": "https://baremetalsolution.googleapis.com/$discovery/rest?version=v1alpha1",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/bare-metal",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
       "id": "baremetalsolution:v1",
       "name": "baremetalsolution",
       "version": "v1",
       "title": "Bare Metal Solution API",
-      "description": "Provides ways to manage Bare Metal Solution hardware installed in a regional extension located near a Google Cloud data center.",
+      "description": "Bare Metal Solution provides hardware to run specialized workloads with low latency on Google Cloud.",
       "discoveryRestUrl": "https://baremetalsolution.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -592,7 +592,7 @@
       "name": "baremetalsolution",
       "version": "v2",
       "title": "Bare Metal Solution API",
-      "description": "Provides ways to manage Bare Metal Solution hardware installed in a regional extension located near a Google Cloud data center.",
+      "description": "Bare Metal Solution provides hardware to run specialized workloads with low latency on Google Cloud.",
       "discoveryRestUrl": "https://baremetalsolution.googleapis.com/$discovery/rest?version=v2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -1179,6 +1179,21 @@
       "title": "Cloud Functions API",
       "description": "Manages lightweight user-provided functions executed in response to events.",
       "discoveryRestUrl": "https://cloudfunctions.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/functions",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "cloudfunctions:v2",
+      "name": "cloudfunctions",
+      "version": "v2",
+      "title": "Cloud Functions API",
+      "description": "Manages lightweight user-provided functions executed in response to events.",
+      "discoveryRestUrl": "https://cloudfunctions.googleapis.com/$discovery/rest?version=v2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -2412,7 +2427,7 @@
       "name": "eventarc",
       "version": "v1beta1",
       "title": "Eventarc API",
-      "description": "",
+      "description": "Build event-driven applications on Google Cloud Platform.",
       "discoveryRestUrl": "https://eventarc.googleapis.com/$discovery/rest?version=v1beta1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -2427,7 +2442,7 @@
       "name": "eventarc",
       "version": "v1",
       "title": "Eventarc API",
-      "description": "",
+      "description": "Build event-driven applications on Google Cloud Platform.",
       "discoveryRestUrl": "https://eventarc.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -2534,6 +2549,21 @@
       "title": "Firebase App Check API",
       "description": "Firebase App Check works alongside other Firebase services to help protect your backend resources from abuse, such as billing fraud or phishing.",
       "discoveryRestUrl": "https://firebaseappcheck.googleapis.com/$discovery/rest?version=v1beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://firebase.google.com/docs/app-check",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "firebaseappcheck:v1",
+      "name": "firebaseappcheck",
+      "version": "v1",
+      "title": "Firebase App Check API",
+      "description": "Firebase App Check works alongside other Firebase services to help protect your backend resources from abuse, such as billing fraud or phishing.",
+      "discoveryRestUrl": "https://firebaseappcheck.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -3053,6 +3083,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "iam:v2beta",
+      "name": "iam",
+      "version": "v2beta",
+      "title": "Identity and Access Management (IAM) API",
+      "description": "Manages identity and access control for Google Cloud Platform resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls.",
+      "discoveryRestUrl": "https://iam.googleapis.com/$discovery/rest?version=v2beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/iam/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "iam:v1",
       "name": "iam",
       "version": "v1",
@@ -3327,7 +3372,7 @@
       "name": "licensing",
       "version": "v1",
       "title": "Enterprise License Manager API",
-      "description": "The Google Enterprise License Manager API's allows you to license apps for all the users of a domain managed by you.",
+      "description": "The Google Enterprise License Manager API lets you manage Google Workspace and related licenses for all users of a customer that you manage.",
       "discoveryRestUrl": "https://licensing.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -5325,6 +5370,21 @@
       "title": "Chrome Verified Access API",
       "description": "API for Verified Access chrome extension to provide credential verification for chrome devices connecting to an enterprise network",
       "discoveryRestUrl": "https://verifiedaccess.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/chrome/verified-access",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "verifiedaccess:v2",
+      "name": "verifiedaccess",
+      "version": "v2",
+      "title": "Chrome Verified Access API",
+      "description": "API for Verified Access chrome extension to provide credential verification for chrome devices connecting to an enterprise network",
+      "discoveryRestUrl": "https://verifiedaccess.googleapis.com/$discovery/rest?version=v2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"

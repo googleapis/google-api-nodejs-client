@@ -1004,7 +1004,7 @@
       }
     }
   },
-  "revision": "20220404",
+  "revision": "20220425",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdvancedSecurityOverrides": {
@@ -4064,12 +4064,14 @@
           "enum": [
             "SECURITY_RISK_UNSPECIFIED",
             "UNKNOWN_OS",
-            "COMPROMISED_OS"
+            "COMPROMISED_OS",
+            "HARDWARE_BACKED_EVALUATION_FAILED"
           ],
           "enumDescriptions": [
             "Unspecified.",
             "SafetyNet detects that the device is running an unknown OS (basicIntegrity check succeeds but ctsProfileMatch fails).",
-            "SafetyNet detects that the device is running a compromised OS (basicIntegrity check fails)."
+            "SafetyNet detects that the device is running a compromised OS (basicIntegrity check fails).",
+            "SafetyNet detects that the device does not have a strong guarantee of system integrity, such as a hardware-backed keystore (https://developer.android.com/training/articles/security-key-attestation)."
           ],
           "type": "string"
         }
