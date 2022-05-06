@@ -139,6 +139,19 @@ export namespace dataproc_v1 {
     acceleratorTypeUri?: string | null;
   }
   /**
+   * Configuration for using injectable credentials or service account
+   */
+  export interface Schema$AuthenticationConfig {
+    /**
+     * Authentication type for session execution.
+     */
+    authenticationType?: string | null;
+    /**
+     * Configuration for using end user authentication
+     */
+    injectableCredentialsConfig?: Schema$InjectableCredentialsConfig;
+  }
+  /**
    * Autoscaling Policy config associated with the cluster.
    */
   export interface Schema$AutoscalingConfig {
@@ -396,7 +409,7 @@ export namespace dataproc_v1 {
      */
     statusHistory?: Schema$ClusterStatus[];
     /**
-     * Optional. The virtual cluster config, used when creating a Dataproc cluster that does not directly control the underlying compute resources, for example, when creating a Dataproc-on-GKE cluster (https://cloud.google.com/dataproc/docs/concepts/jobs/dataproc-gke#create-a-dataproc-on-gke-cluster). Note that Dataproc may set default values, and values may change when clusters are updated. Exactly one of config or virtualClusterConfig must be specified.
+     * Optional. The virtual cluster config is used when creating a Dataproc cluster that does not directly control the underlying compute resources, for example, when creating a Dataproc-on-GKE cluster (https://cloud.google.com/dataproc/docs/guides/dpgke/dataproc-gke). Dataproc may set default values, and values may change when clusters are updated. Exactly one of config or virtual_cluster_config must be specified.
      */
     virtualClusterConfig?: Schema$VirtualClusterConfig;
   }
@@ -413,7 +426,7 @@ export namespace dataproc_v1 {
      */
     configBucket?: string | null;
     /**
-     * Optional. The configuration(s) for a dataproc metric(s).
+     * Optional. The config for Dataproc metrics.
      */
     dataprocMetricConfig?: Schema$DataprocMetricConfig;
     /**
@@ -429,7 +442,7 @@ export namespace dataproc_v1 {
      */
     gceClusterConfig?: Schema$GceClusterConfig;
     /**
-     * Optional. Deprecated. Use VirtualClusterConfig based clusters instead. BETA. The Kubernetes Engine config for Dataproc clusters deployed to Kubernetes. Setting this is considered mutually exclusive with Compute Engine-based options such as gce_cluster_config, master_config, worker_config, secondary_worker_config, and autoscaling_config.
+     * Optional. BETA. The Kubernetes Engine config for Dataproc clusters deployed to The Kubernetes Engine config for Dataproc clusters deployed to Kubernetes. These config settings are mutually exclusive with Compute Engine-based options, such as gce_cluster_config, master_config, worker_config, secondary_worker_config, and autoscaling_config.
      */
     gkeClusterConfig?: Schema$GkeClusterConfig;
     /**
@@ -478,7 +491,7 @@ export namespace dataproc_v1 {
      */
     hdfsMetrics?: {[key: string]: string} | null;
     /**
-     * The YARN metrics.
+     * YARN metrics.
      */
     yarnMetrics?: {[key: string]: string} | null;
   }
@@ -601,11 +614,11 @@ export namespace dataproc_v1 {
     enableConfidentialCompute?: boolean | null;
   }
   /**
-   * Contains dataproc metric config.
+   * Dataproc metric config.
    */
   export interface Schema$DataprocMetricConfig {
     /**
-     * Required. Metrics to be enabled.
+     * Required. Metrics to enable.
      */
     metrics?: Schema$Metric[];
   }
@@ -816,7 +829,7 @@ export namespace dataproc_v1 {
      */
     namespacedGkeDeploymentTarget?: Schema$NamespacedGkeDeploymentTarget;
     /**
-     * Optional. GKE NodePools where workloads will be scheduled. At least one node pool must be assigned the 'default' role. Each role can be given to only a single NodePoolTarget. All NodePools must have the same location settings. If a nodePoolTarget is not specified, Dataproc constructs a default nodePoolTarget.
+     * Optional. GKE node pools where workloads will be scheduled. At least one node pool must be assigned the DEFAULT GkeNodePoolTarget.Role. If a GkeNodePoolTarget is not specified, Dataproc constructs a DEFAULT GkeNodePoolTarget. Each role can be given to only one GkeNodePoolTarget. All node pools must have the same location settings.
      */
     nodePoolTarget?: Schema$GkeNodePoolTarget[];
   }
@@ -841,7 +854,7 @@ export namespace dataproc_v1 {
      */
     minCpuPlatform?: string | null;
     /**
-     * Optional. Whether the nodes are created as preemptible VM instances (https://cloud.google.com/compute/docs/instances/preemptible).
+     * Optional. Whether the nodes are created as preemptible VM instances (https://cloud.google.com/compute/docs/instances/preemptible). Preemptible nodes cannot be used in a node pool with the CONTROLLER role or in the DEFAULT node pool if the CONTROLLER role is not assigned (the DEFAULT node pool will assume the CONTROLLER role).
      */
     preemptible?: boolean | null;
     /**
@@ -850,7 +863,7 @@ export namespace dataproc_v1 {
     spot?: boolean | null;
   }
   /**
-   * A GkeNodeConfigAcceleratorConfig represents a Hardware Accelerator request for a NodePool.
+   * A GkeNodeConfigAcceleratorConfig represents a Hardware Accelerator request for a node pool.
    */
   export interface Schema$GkeNodePoolAcceleratorConfig {
     /**
@@ -871,20 +884,20 @@ export namespace dataproc_v1 {
    */
   export interface Schema$GkeNodePoolAutoscalingConfig {
     /**
-     * The maximum number of nodes in the NodePool. Must be \>= min_node_count. Note: Quota must be sufficient to scale up the cluster.
+     * The maximum number of nodes in the node pool. Must be \>= min_node_count, and must be \> 0. Note: Quota must be sufficient to scale up the cluster.
      */
     maxNodeCount?: number | null;
     /**
-     * The minimum number of nodes in the NodePool. Must be \>= 0 and <= max_node_count.
+     * The minimum number of nodes in the node pool. Must be \>= 0 and <= max_node_count.
      */
     minNodeCount?: number | null;
   }
   /**
-   * The configuration of a GKE NodePool used by a Dataproc-on-GKE cluster (https://cloud.google.com/dataproc/docs/concepts/jobs/dataproc-gke#create-a-dataproc-on-gke-cluster).
+   * The configuration of a GKE node pool used by a Dataproc-on-GKE cluster (https://cloud.google.com/dataproc/docs/concepts/jobs/dataproc-gke#create-a-dataproc-on-gke-cluster).
    */
   export interface Schema$GkeNodePoolConfig {
     /**
-     * Optional. The autoscaler configuration for this NodePool. The autoscaler is enabled only when a valid configuration is present.
+     * Optional. The autoscaler configuration for this node pool. The autoscaler is enabled only when a valid configuration is present.
      */
     autoscaling?: Schema$GkeNodePoolAutoscalingConfig;
     /**
@@ -892,24 +905,24 @@ export namespace dataproc_v1 {
      */
     config?: Schema$GkeNodeConfig;
     /**
-     * Optional. The list of Compute Engine zones (https://cloud.google.com/compute/docs/zones#available) where NodePool's nodes will be located.Note: Currently, only one zone may be specified.If a location is not specified during NodePool creation, Dataproc will choose a location.
+     * Optional. The list of Compute Engine zones (https://cloud.google.com/compute/docs/zones#available) where node pool nodes associated with a Dataproc on GKE virtual cluster will be located.Note: All node pools associated with a virtual cluster must be located in the same region as the virtual cluster, and they must be located in the same zone within that region.If a location is not specified during node pool creation, Dataproc on GKE will choose the zone.
      */
     locations?: string[] | null;
   }
   /**
-   * GKE NodePools that Dataproc workloads run on.
+   * GKE node pools that Dataproc workloads run on.
    */
   export interface Schema$GkeNodePoolTarget {
     /**
-     * Required. The target GKE NodePool. Format: 'projects/{project\}/locations/{location\}/clusters/{cluster\}/nodePools/{node_pool\}'
+     * Required. The target GKE node pool. Format: 'projects/{project\}/locations/{location\}/clusters/{cluster\}/nodePools/{node_pool\}'
      */
     nodePool?: string | null;
     /**
-     * Input only. The configuration for the GKE NodePool.If specified, Dataproc attempts to create a NodePool with the specified shape. If one with the same name already exists, it is verified against all specified fields. If a field differs, the virtual cluster creation will fail.If omitted, any NodePool with the specified name is used. If a NodePool with the specified name does not exist, Dataproc create a NodePool with default values.This is an input only field. It will not be returned by the API.
+     * Input only. The configuration for the GKE node pool.If specified, Dataproc attempts to create a node pool with the specified shape. If one with the same name already exists, it is verified against all specified fields. If a field differs, the virtual cluster creation will fail.If omitted, any node pool with the specified name is used. If a node pool with the specified name does not exist, Dataproc create a node pool with default values.This is an input only field. It will not be returned by the API.
      */
     nodePoolConfig?: Schema$GkeNodePoolConfig;
     /**
-     * Required. The types of role for a GKE NodePool
+     * Required. The roles associated with the GKE node pool.
      */
     roles?: string[] | null;
   }
@@ -988,6 +1001,10 @@ export namespace dataproc_v1 {
      */
     userServiceAccountMapping?: {[key: string]: string} | null;
   }
+  /**
+   * Specific injectable credentials authentication parameters
+   */
+  export interface Schema$InjectableCredentialsConfig {}
   /**
    * A request to inject credentials into a cluster.
    */
@@ -1514,15 +1531,15 @@ export namespace dataproc_v1 {
     dataprocMetastoreService?: string | null;
   }
   /**
-   * Metric source to enable along with any optional metrics for this source that override the dataproc defaults
+   * The metric source to enable, with any optional metrics, to override Dataproc default metrics.
    */
   export interface Schema$Metric {
     /**
-     * Optional. Optional Metrics to override the dataproc default metrics configured for the metric source
+     * Optional. Optional Metrics to override the Dataproc default metrics configured for the metric source.
      */
     metricOverrides?: string[] | null;
     /**
-     * Required. MetricSource that should be enabled
+     * Required. MetricSource to enable.
      */
     metricSource?: string | null;
   }
@@ -1874,6 +1891,10 @@ export namespace dataproc_v1 {
      * Optional. A mapping of property names to values, which are used to configure workload execution.
      */
     properties?: {[key: string]: string} | null;
+    /**
+     * Optional. Authentication configuration for the session execution.
+     */
+    sessionAuthenticationConfig?: Schema$AuthenticationConfig;
     /**
      * Optional. Version of the batch runtime.
      */
@@ -2307,7 +2328,7 @@ export namespace dataproc_v1 {
     values?: string[] | null;
   }
   /**
-   * Dataproc cluster config for a cluster that does not directly control the underlying compute resources, such as a Dataproc-on-GKE cluster (https://cloud.google.com/dataproc/docs/concepts/jobs/dataproc-gke#create-a-dataproc-on-gke-cluster).
+   * The Dataproc cluster config for a cluster that does not directly control the underlying compute resources, such as a Dataproc-on-GKE cluster (https://cloud.google.com/dataproc/docs/guides/dpgke/dataproc-gke).
    */
   export interface Schema$VirtualClusterConfig {
     /**
@@ -2319,7 +2340,7 @@ export namespace dataproc_v1 {
      */
     kubernetesClusterConfig?: Schema$KubernetesClusterConfig;
     /**
-     * Optional. A Storage bucket used to stage job dependencies, config files, and job driver console output. If you do not specify a staging bucket, Cloud Dataproc will determine a Cloud Storage location (US, ASIA, or EU) for your cluster's staging bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket (see Dataproc staging and temp buckets (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)). This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.
+     * Optional. A Cloud Storage bucket used to stage job dependencies, config files, and job driver console output. If you do not specify a staging bucket, Cloud Dataproc will determine a Cloud Storage location (US, ASIA, or EU) for your cluster's staging bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket (see Dataproc staging and temp buckets (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)). This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.
      */
     stagingBucket?: string | null;
   }
