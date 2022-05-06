@@ -3147,7 +3147,7 @@
       }
     }
   },
-  "revision": "20220411",
+  "revision": "20220505",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Apk": {
@@ -4410,7 +4410,7 @@
           "type": "string"
         },
         "productId": {
-          "description": "The inapp product SKU.",
+          "description": "The inapp product SKU. May not be present.",
           "type": "string"
         },
         "purchaseState": {
@@ -4424,7 +4424,7 @@
           "type": "string"
         },
         "purchaseToken": {
-          "description": "The purchase token generated to identify this purchase.",
+          "description": "The purchase token generated to identify this purchase. May not be present.",
           "type": "string"
         },
         "purchaseType": {
@@ -4433,7 +4433,7 @@
           "type": "integer"
         },
         "quantity": {
-          "description": "The quantity associated with the purchase of the inapp product.",
+          "description": "The quantity associated with the purchase of the inapp product. If not present, the quantity is 1.",
           "format": "int32",
           "type": "integer"
         },

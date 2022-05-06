@@ -1102,7 +1102,7 @@ export namespace androidpublisher_v3 {
      */
     orderId?: string | null;
     /**
-     * The inapp product SKU.
+     * The inapp product SKU. May not be present.
      */
     productId?: string | null;
     /**
@@ -1114,7 +1114,7 @@ export namespace androidpublisher_v3 {
      */
     purchaseTimeMillis?: string | null;
     /**
-     * The purchase token generated to identify this purchase.
+     * The purchase token generated to identify this purchase. May not be present.
      */
     purchaseToken?: string | null;
     /**
@@ -1122,7 +1122,7 @@ export namespace androidpublisher_v3 {
      */
     purchaseType?: number | null;
     /**
-     * The quantity associated with the purchase of the inapp product.
+     * The quantity associated with the purchase of the inapp product. If not present, the quantity is 1.
      */
     quantity?: number | null;
     /**
