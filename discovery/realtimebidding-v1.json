@@ -723,6 +723,137 @@
               ]
             }
           }
+        },
+        "publisherConnections": {
+          "methods": {
+            "batchApprove": {
+              "description": "Batch approves multiple publisher connections.",
+              "flatPath": "v1/bidders/{biddersId}/publisherConnections:batchApprove",
+              "httpMethod": "POST",
+              "id": "realtimebidding.bidders.publisherConnections.batchApprove",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The bidder for whom publisher connections will be approved. Format: `bidders/{bidder}` where `{bidder}` is the account ID of the bidder.",
+                  "location": "path",
+                  "pattern": "^bidders/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/publisherConnections:batchApprove",
+              "request": {
+                "$ref": "BatchApprovePublisherConnectionsRequest"
+              },
+              "response": {
+                "$ref": "BatchApprovePublisherConnectionsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/realtime-bidding"
+              ]
+            },
+            "batchReject": {
+              "description": "Batch rejects multiple publisher connections.",
+              "flatPath": "v1/bidders/{biddersId}/publisherConnections:batchReject",
+              "httpMethod": "POST",
+              "id": "realtimebidding.bidders.publisherConnections.batchReject",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The bidder for whom publisher connections will be rejected. Format: `bidders/{bidder}` where `{bidder}` is the account ID of the bidder.",
+                  "location": "path",
+                  "pattern": "^bidders/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/publisherConnections:batchReject",
+              "request": {
+                "$ref": "BatchRejectPublisherConnectionsRequest"
+              },
+              "response": {
+                "$ref": "BatchRejectPublisherConnectionsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/realtime-bidding"
+              ]
+            },
+            "get": {
+              "description": "Gets a publisher connection.",
+              "flatPath": "v1/bidders/{biddersId}/publisherConnections/{publisherConnectionsId}",
+              "httpMethod": "GET",
+              "id": "realtimebidding.bidders.publisherConnections.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the publisher whose connection information is to be retrieved. In the pattern `bidders/{bidder}/publisherConnections/{publisher}` where `{bidder}` is the account ID of the bidder, and `{publisher}` is the ads.txt/app-ads.txt publisher ID. See publisherConnection.name.",
+                  "location": "path",
+                  "pattern": "^bidders/[^/]+/publisherConnections/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "PublisherConnection"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/realtime-bidding"
+              ]
+            },
+            "list": {
+              "description": "Lists publisher connections for a given bidder.",
+              "flatPath": "v1/bidders/{biddersId}/publisherConnections",
+              "httpMethod": "GET",
+              "id": "realtimebidding.bidders.publisherConnections.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "Query string to filter publisher connections. Connections can be filtered by `displayName`, `publisherPlatform`, and `biddingState`. If no filter is specified, all publisher connections will be returned. Example: 'displayName=\"Great Publisher*\" AND publisherPlatform=ADMOB AND biddingState != PENDING' See https://google.aip.dev/160 for more information about filtering syntax.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Order specification by which results should be sorted. If no sort order is specified, the results will be returned in an arbitrary order. Currently results can be sorted by `createTime`. Example: 'createTime DESC'.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Requested page size. The server may return fewer results than requested (due to timeout constraint) even if more are available via another call. If unspecified, the server will pick an appropriate default. Acceptable values are 1 to 5000, inclusive.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A token identifying a page of results the server should return. Typically, this is the value of ListPublisherConnectionsResponse.nextPageToken returned from the previous call to the 'ListPublisherConnections' method.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Name of the bidder for which publishers have initiated connections. The pattern for this resource is `bidders/{bidder}` where `{bidder}` represents the account ID of the bidder.",
+                  "location": "path",
+                  "pattern": "^bidders/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/publisherConnections",
+              "response": {
+                "$ref": "ListPublisherConnectionsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/realtime-bidding"
+              ]
+            }
+          }
         }
       }
     },
@@ -1174,7 +1305,7 @@
       }
     }
   },
-  "revision": "20220322",
+  "revision": "20220505",
   "rootUrl": "https://realtimebidding.googleapis.com/",
   "schemas": {
     "ActivatePretargetingConfigRequest": {
@@ -1188,7 +1319,7 @@
       "id": "AdTechnologyProviders",
       "properties": {
         "detectedGvlIds": {
-          "description": "The detected IAB Global Vendor List (GVL) IDs for this creative. See the IAB Global Vendor List at https://vendorlist.consensu.org/v2/vendor-list.json for details about the vendors.",
+          "description": "The detected IAB Global Vendor List (GVL) IDs for this creative. See the IAB Global Vendor List at https://vendor-list.consensu.org/v2/vendor-list.json for details about the vendors.",
           "items": {
             "format": "int64",
             "type": "string"
@@ -1333,6 +1464,62 @@
         "mobileAppTargeting": {
           "$ref": "StringTargetingDimension",
           "description": "Targeted app IDs. App IDs can refer to those found in an app store or ones that are not published in an app store. A maximum of 30,000 app IDs can be targeted."
+        }
+      },
+      "type": "object"
+    },
+    "BatchApprovePublisherConnectionsRequest": {
+      "description": "A request to approve a batch of publisher connections.",
+      "id": "BatchApprovePublisherConnectionsRequest",
+      "properties": {
+        "names": {
+          "description": "Required. The names of the publishers with which connections will be approved. In the pattern `bidders/{bidder}/publisherConnections/{publisher}` where `{bidder}` is the account ID of the bidder, and `{publisher}` is the ads.txt/app-ads.txt publisher ID.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchApprovePublisherConnectionsResponse": {
+      "description": "A response for the request to approve a batch of publisher connections.",
+      "id": "BatchApprovePublisherConnectionsResponse",
+      "properties": {
+        "publisherConnections": {
+          "description": "The publisher connections that have been approved.",
+          "items": {
+            "$ref": "PublisherConnection"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchRejectPublisherConnectionsRequest": {
+      "description": "A request to reject a batch of publisher connections.",
+      "id": "BatchRejectPublisherConnectionsRequest",
+      "properties": {
+        "names": {
+          "description": "Required. The names of the publishers with whom connection will be rejected. In the pattern `bidders/{bidder}/publisherConnections/{publisher}` where `{bidder}` is the account ID of the bidder, and `{publisher}` is the ads.txt/app-ads.txt publisher ID.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchRejectPublisherConnectionsResponse": {
+      "description": "A response for the request to reject a batch of publisher connections.",
+      "id": "BatchRejectPublisherConnectionsResponse",
+      "properties": {
+        "publisherConnections": {
+          "description": "The publisher connections that have been rejected.",
+          "items": {
+            "$ref": "PublisherConnection"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2303,6 +2490,24 @@
       },
       "type": "object"
     },
+    "ListPublisherConnectionsResponse": {
+      "description": "A response to a request for listing publisher connections.",
+      "id": "ListPublisherConnectionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results. Pass this value in the ListPublisherConnectionsRequest.pageToken field in the subsequent call to the `ListPublisherConnections` method to retrieve the next page of results.",
+          "type": "string"
+        },
+        "publisherConnections": {
+          "description": "The list of publisher connections.",
+          "items": {
+            "$ref": "PublisherConnection"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListUserListsResponse": {
       "description": "The list user list response.",
       "id": "ListUserListsResponse",
@@ -2766,6 +2971,60 @@
         "webTargeting": {
           "$ref": "StringTargetingDimension",
           "description": "Targeting on a subset of site inventory. If WEB is listed in included_environments, the specified targeting is applied. A maximum of 50,000 site URLs can be targeted. An unset value for targeting allows all web-based bid requests to be sent. Sites can either be targeting positively (bid requests will be sent only if the destination site is listed in the targeting dimension) or negatively (bid requests will be sent only if the destination site is not listed in the pretargeting configuration)."
+        }
+      },
+      "type": "object"
+    },
+    "PublisherConnection": {
+      "description": "An Open Bidding exchange's connection to a publisher. This is initiated by the publisher for the bidder to review. If approved by the bidder, this means that the bidder agrees to receive bid requests from the publisher.",
+      "id": "PublisherConnection",
+      "properties": {
+        "biddingState": {
+          "description": "Whether the publisher has been approved by the bidder.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "REJECTED",
+            "APPROVED"
+          ],
+          "enumDescriptions": [
+            "An unspecified bidding status.",
+            "Indicates a request for connection from the publisher that the bidder needs to review.",
+            "Indicates that the publisher was rejected.",
+            "Indicates that the publisher was approved."
+          ],
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time at which the publisher initiated a connection with the bidder (irrespective of if or when the bidder approves it). This is subsequently updated if the publisher revokes and re-initiates the connection.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. Publisher display name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Name of the publisher connection. This follows the pattern `bidders/{bidder}/publisherConnections/{publisher}`, where `{bidder}` represents the account ID of the bidder, and `{publisher}` is the ads.txt/app-ads.txt publisher ID.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "publisherPlatform": {
+          "description": "Output only. Whether the publisher is an Ad Manager or AdMob publisher.",
+          "enum": [
+            "PUBLISHER_PLATFORM_UNSPECIFIED",
+            "GOOGLE_AD_MANAGER",
+            "ADMOB"
+          ],
+          "enumDescriptions": [
+            "An unspecified publisher platform.",
+            "A Google Ad Manager publisher.",
+            "An AdMob publisher."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"

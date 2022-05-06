@@ -175,7 +175,7 @@ export namespace realtimebidding_v1 {
    */
   export interface Schema$AdTechnologyProviders {
     /**
-     * The detected IAB Global Vendor List (GVL) IDs for this creative. See the IAB Global Vendor List at https://vendorlist.consensu.org/v2/vendor-list.json for details about the vendors.
+     * The detected IAB Global Vendor List (GVL) IDs for this creative. See the IAB Global Vendor List at https://vendor-list.consensu.org/v2/vendor-list.json for details about the vendors.
      */
     detectedGvlIds?: string[] | null;
     /**
@@ -220,6 +220,42 @@ export namespace realtimebidding_v1 {
      * Targeted app IDs. App IDs can refer to those found in an app store or ones that are not published in an app store. A maximum of 30,000 app IDs can be targeted.
      */
     mobileAppTargeting?: Schema$StringTargetingDimension;
+  }
+  /**
+   * A request to approve a batch of publisher connections.
+   */
+  export interface Schema$BatchApprovePublisherConnectionsRequest {
+    /**
+     * Required. The names of the publishers with which connections will be approved. In the pattern `bidders/{bidder\}/publisherConnections/{publisher\}` where `{bidder\}` is the account ID of the bidder, and `{publisher\}` is the ads.txt/app-ads.txt publisher ID.
+     */
+    names?: string[] | null;
+  }
+  /**
+   * A response for the request to approve a batch of publisher connections.
+   */
+  export interface Schema$BatchApprovePublisherConnectionsResponse {
+    /**
+     * The publisher connections that have been approved.
+     */
+    publisherConnections?: Schema$PublisherConnection[];
+  }
+  /**
+   * A request to reject a batch of publisher connections.
+   */
+  export interface Schema$BatchRejectPublisherConnectionsRequest {
+    /**
+     * Required. The names of the publishers with whom connection will be rejected. In the pattern `bidders/{bidder\}/publisherConnections/{publisher\}` where `{bidder\}` is the account ID of the bidder, and `{publisher\}` is the ads.txt/app-ads.txt publisher ID.
+     */
+    names?: string[] | null;
+  }
+  /**
+   * A response for the request to reject a batch of publisher connections.
+   */
+  export interface Schema$BatchRejectPublisherConnectionsResponse {
+    /**
+     * The publisher connections that have been rejected.
+     */
+    publisherConnections?: Schema$PublisherConnection[];
   }
   /**
    * Bidder settings.
@@ -721,6 +757,19 @@ export namespace realtimebidding_v1 {
     pretargetingConfigs?: Schema$PretargetingConfig[];
   }
   /**
+   * A response to a request for listing publisher connections.
+   */
+  export interface Schema$ListPublisherConnectionsResponse {
+    /**
+     * A token to retrieve the next page of results. Pass this value in the ListPublisherConnectionsRequest.pageToken field in the subsequent call to the `ListPublisherConnections` method to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of publisher connections.
+     */
+    publisherConnections?: Schema$PublisherConnection[];
+  }
+  /**
    * The list user list response.
    */
   export interface Schema$ListUserListsResponse {
@@ -981,6 +1030,31 @@ export namespace realtimebidding_v1 {
     webTargeting?: Schema$StringTargetingDimension;
   }
   /**
+   * An Open Bidding exchange's connection to a publisher. This is initiated by the publisher for the bidder to review. If approved by the bidder, this means that the bidder agrees to receive bid requests from the publisher.
+   */
+  export interface Schema$PublisherConnection {
+    /**
+     * Whether the publisher has been approved by the bidder.
+     */
+    biddingState?: string | null;
+    /**
+     * Output only. The time at which the publisher initiated a connection with the bidder (irrespective of if or when the bidder approves it). This is subsequently updated if the publisher revokes and re-initiates the connection.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Publisher display name.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Name of the publisher connection. This follows the pattern `bidders/{bidder\}/publisherConnections/{publisher\}`, where `{bidder\}` represents the account ID of the bidder, and `{publisher\}` is the ads.txt/app-ads.txt publisher ID.
+     */
+    name?: string | null;
+    /**
+     * Output only. Whether the publisher is an Ad Manager or AdMob publisher.
+     */
+    publisherPlatform?: string | null;
+  }
+  /**
    * A request to stop targeting the provided apps in a specific pretargeting configuration. The pretargeting configuration itself specifies how these apps are targeted. in PretargetingConfig.appTargeting.mobileAppTargeting.
    */
   export interface Schema$RemoveTargetedAppsRequest {
@@ -1156,11 +1230,15 @@ export namespace realtimebidding_v1 {
     creatives: Resource$Bidders$Creatives;
     endpoints: Resource$Bidders$Endpoints;
     pretargetingConfigs: Resource$Bidders$Pretargetingconfigs;
+    publisherConnections: Resource$Bidders$Publisherconnections;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.creatives = new Resource$Bidders$Creatives(this.context);
       this.endpoints = new Resource$Bidders$Endpoints(this.context);
       this.pretargetingConfigs = new Resource$Bidders$Pretargetingconfigs(
+        this.context
+      );
+      this.publisherConnections = new Resource$Bidders$Publisherconnections(
         this.context
       );
     }
@@ -4513,6 +4591,643 @@ export namespace realtimebidding_v1 {
      * Request body metadata
      */
     requestBody?: Schema$SuspendPretargetingConfigRequest;
+  }
+
+  export class Resource$Bidders$Publisherconnections {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Batch approves multiple publisher connections.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const realtimebidding = google.realtimebidding('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await realtimebidding.bidders.publisherConnections.batchApprove({
+     *     // Required. The bidder for whom publisher connections will be approved. Format: `bidders/{bidder\}` where `{bidder\}` is the account ID of the bidder.
+     *     parent: 'bidders/my-bidder',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "names": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "publisherConnections": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchApprove(
+      params: Params$Resource$Bidders$Publisherconnections$Batchapprove,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchApprove(
+      params?: Params$Resource$Bidders$Publisherconnections$Batchapprove,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchApprovePublisherConnectionsResponse>;
+    batchApprove(
+      params: Params$Resource$Bidders$Publisherconnections$Batchapprove,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchApprove(
+      params: Params$Resource$Bidders$Publisherconnections$Batchapprove,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchApprovePublisherConnectionsResponse>,
+      callback: BodyResponseCallback<Schema$BatchApprovePublisherConnectionsResponse>
+    ): void;
+    batchApprove(
+      params: Params$Resource$Bidders$Publisherconnections$Batchapprove,
+      callback: BodyResponseCallback<Schema$BatchApprovePublisherConnectionsResponse>
+    ): void;
+    batchApprove(
+      callback: BodyResponseCallback<Schema$BatchApprovePublisherConnectionsResponse>
+    ): void;
+    batchApprove(
+      paramsOrCallback?:
+        | Params$Resource$Bidders$Publisherconnections$Batchapprove
+        | BodyResponseCallback<Schema$BatchApprovePublisherConnectionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchApprovePublisherConnectionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchApprovePublisherConnectionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchApprovePublisherConnectionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bidders$Publisherconnections$Batchapprove;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Bidders$Publisherconnections$Batchapprove;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://realtimebidding.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/publisherConnections:batchApprove'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchApprovePublisherConnectionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchApprovePublisherConnectionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Batch rejects multiple publisher connections.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const realtimebidding = google.realtimebidding('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await realtimebidding.bidders.publisherConnections.batchReject({
+     *     // Required. The bidder for whom publisher connections will be rejected. Format: `bidders/{bidder\}` where `{bidder\}` is the account ID of the bidder.
+     *     parent: 'bidders/my-bidder',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "names": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "publisherConnections": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchReject(
+      params: Params$Resource$Bidders$Publisherconnections$Batchreject,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchReject(
+      params?: Params$Resource$Bidders$Publisherconnections$Batchreject,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchRejectPublisherConnectionsResponse>;
+    batchReject(
+      params: Params$Resource$Bidders$Publisherconnections$Batchreject,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchReject(
+      params: Params$Resource$Bidders$Publisherconnections$Batchreject,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchRejectPublisherConnectionsResponse>,
+      callback: BodyResponseCallback<Schema$BatchRejectPublisherConnectionsResponse>
+    ): void;
+    batchReject(
+      params: Params$Resource$Bidders$Publisherconnections$Batchreject,
+      callback: BodyResponseCallback<Schema$BatchRejectPublisherConnectionsResponse>
+    ): void;
+    batchReject(
+      callback: BodyResponseCallback<Schema$BatchRejectPublisherConnectionsResponse>
+    ): void;
+    batchReject(
+      paramsOrCallback?:
+        | Params$Resource$Bidders$Publisherconnections$Batchreject
+        | BodyResponseCallback<Schema$BatchRejectPublisherConnectionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchRejectPublisherConnectionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchRejectPublisherConnectionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchRejectPublisherConnectionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bidders$Publisherconnections$Batchreject;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Publisherconnections$Batchreject;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://realtimebidding.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/publisherConnections:batchReject'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchRejectPublisherConnectionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchRejectPublisherConnectionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets a publisher connection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const realtimebidding = google.realtimebidding('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await realtimebidding.bidders.publisherConnections.get({
+     *     // Required. Name of the publisher whose connection information is to be retrieved. In the pattern `bidders/{bidder\}/publisherConnections/{publisher\}` where `{bidder\}` is the account ID of the bidder, and `{publisher\}` is the ads.txt/app-ads.txt publisher ID. See publisherConnection.name.
+     *     name: 'bidders/my-bidder/publisherConnections/my-publisherConnection',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "biddingState": "my_biddingState",
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "publisherPlatform": "my_publisherPlatform"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Bidders$Publisherconnections$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Bidders$Publisherconnections$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PublisherConnection>;
+    get(
+      params: Params$Resource$Bidders$Publisherconnections$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Bidders$Publisherconnections$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$PublisherConnection>,
+      callback: BodyResponseCallback<Schema$PublisherConnection>
+    ): void;
+    get(
+      params: Params$Resource$Bidders$Publisherconnections$Get,
+      callback: BodyResponseCallback<Schema$PublisherConnection>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$PublisherConnection>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Bidders$Publisherconnections$Get
+        | BodyResponseCallback<Schema$PublisherConnection>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PublisherConnection>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PublisherConnection>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PublisherConnection>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bidders$Publisherconnections$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Publisherconnections$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://realtimebidding.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PublisherConnection>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PublisherConnection>(parameters);
+      }
+    }
+
+    /**
+     * Lists publisher connections for a given bidder.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const realtimebidding = google.realtimebidding('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await realtimebidding.bidders.publisherConnections.list({
+     *     // Query string to filter publisher connections. Connections can be filtered by `displayName`, `publisherPlatform`, and `biddingState`. If no filter is specified, all publisher connections will be returned. Example: 'displayName="Great Publisher*" AND publisherPlatform=ADMOB AND biddingState != PENDING' See https://google.aip.dev/160 for more information about filtering syntax.
+     *     filter: 'placeholder-value',
+     *     // Order specification by which results should be sorted. If no sort order is specified, the results will be returned in an arbitrary order. Currently results can be sorted by `createTime`. Example: 'createTime DESC'.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. The server may return fewer results than requested (due to timeout constraint) even if more are available via another call. If unspecified, the server will pick an appropriate default. Acceptable values are 1 to 5000, inclusive.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of ListPublisherConnectionsResponse.nextPageToken returned from the previous call to the 'ListPublisherConnections' method.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Name of the bidder for which publishers have initiated connections. The pattern for this resource is `bidders/{bidder\}` where `{bidder\}` represents the account ID of the bidder.
+     *     parent: 'bidders/my-bidder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "publisherConnections": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Bidders$Publisherconnections$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Bidders$Publisherconnections$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListPublisherConnectionsResponse>;
+    list(
+      params: Params$Resource$Bidders$Publisherconnections$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Bidders$Publisherconnections$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPublisherConnectionsResponse>,
+      callback: BodyResponseCallback<Schema$ListPublisherConnectionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Bidders$Publisherconnections$List,
+      callback: BodyResponseCallback<Schema$ListPublisherConnectionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListPublisherConnectionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Bidders$Publisherconnections$List
+        | BodyResponseCallback<Schema$ListPublisherConnectionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPublisherConnectionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPublisherConnectionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListPublisherConnectionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bidders$Publisherconnections$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Publisherconnections$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://realtimebidding.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/publisherConnections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListPublisherConnectionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListPublisherConnectionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Bidders$Publisherconnections$Batchapprove
+    extends StandardParameters {
+    /**
+     * Required. The bidder for whom publisher connections will be approved. Format: `bidders/{bidder\}` where `{bidder\}` is the account ID of the bidder.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchApprovePublisherConnectionsRequest;
+  }
+  export interface Params$Resource$Bidders$Publisherconnections$Batchreject
+    extends StandardParameters {
+    /**
+     * Required. The bidder for whom publisher connections will be rejected. Format: `bidders/{bidder\}` where `{bidder\}` is the account ID of the bidder.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchRejectPublisherConnectionsRequest;
+  }
+  export interface Params$Resource$Bidders$Publisherconnections$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the publisher whose connection information is to be retrieved. In the pattern `bidders/{bidder\}/publisherConnections/{publisher\}` where `{bidder\}` is the account ID of the bidder, and `{publisher\}` is the ads.txt/app-ads.txt publisher ID. See publisherConnection.name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Bidders$Publisherconnections$List
+    extends StandardParameters {
+    /**
+     * Query string to filter publisher connections. Connections can be filtered by `displayName`, `publisherPlatform`, and `biddingState`. If no filter is specified, all publisher connections will be returned. Example: 'displayName="Great Publisher*" AND publisherPlatform=ADMOB AND biddingState != PENDING' See https://google.aip.dev/160 for more information about filtering syntax.
+     */
+    filter?: string;
+    /**
+     * Order specification by which results should be sorted. If no sort order is specified, the results will be returned in an arbitrary order. Currently results can be sorted by `createTime`. Example: 'createTime DESC'.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested (due to timeout constraint) even if more are available via another call. If unspecified, the server will pick an appropriate default. Acceptable values are 1 to 5000, inclusive.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of ListPublisherConnectionsResponse.nextPageToken returned from the previous call to the 'ListPublisherConnections' method.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the bidder for which publishers have initiated connections. The pattern for this resource is `bidders/{bidder\}` where `{bidder\}` represents the account ID of the bidder.
+     */
+    parent?: string;
   }
 
   export class Resource$Buyers {
