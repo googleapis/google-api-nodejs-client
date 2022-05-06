@@ -254,7 +254,7 @@ export namespace mybusinessverifications_v1 {
      */
     name?: string | null;
     /**
-     * Required. Id of the category that best describes the core business this location engages in.
+     * Required. Id of the category that best describes the core business this location engages in. e.g. gcid:bakery.
      */
     primaryCategoryId?: string | null;
     /**
