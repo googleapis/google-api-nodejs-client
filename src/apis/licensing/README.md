@@ -2,7 +2,7 @@
 
 # licensing
 
-> The Google Enterprise License Manager API&#39;s allows you to license apps for all the users of a domain managed by you.
+> The Google Enterprise License Manager API lets you manage Google Workspace and related licenses for all users of a customer that you manage.
 
 ## Installation
 
