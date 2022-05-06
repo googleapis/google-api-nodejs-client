@@ -513,6 +513,10 @@ export namespace servicenetworking_v1 {
      */
     reservedRanges?: Schema$GoogleCloudServicenetworkingV1ConsumerConfigReservedRange[];
     /**
+     * Output only. The IP ranges already in use by consumer or producer
+     */
+    usedIpRanges?: string[] | null;
+    /**
      * Output only. Indicates whether the VPC Service Controls reference architecture is configured for the producer VPC host network.
      */
     vpcScReferenceArchitectureEnabled?: boolean | null;
@@ -4829,6 +4833,8 @@ export namespace servicenetworking_v1 {
      *
      *   // Do the magic
      *   const res = await servicenetworking.services.projects.global.networks.get({
+     *     // Optional. When true, include the used IP ranges as part of the GetConsumerConfig output. This includes routes created inside the service networking network, consumer network, peers of the consumer network, and reserved ranges inside the service networking network. By default, this is false
+     *     includeUsedIpRanges: 'placeholder-value',
      *     // Required. Name of the consumer config to retrieve in the format: `services/{service\}/projects/{project\}/global/networks/{network\}`. {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project\} is a project number e.g. `12345` that contains the service consumer's VPC network. {network\} is the name of the service consumer's VPC network.
      *     name: 'services/my-service/projects/my-project/global/networks/my-network',
      *   });
@@ -4846,6 +4852,7 @@ export namespace servicenetworking_v1 {
      *   //   "producerImportSubnetRoutesWithPublicIp": false,
      *   //   "producerNetwork": "my_producerNetwork",
      *   //   "reservedRanges": [],
+     *   //   "usedIpRanges": [],
      *   //   "vpcScReferenceArchitectureEnabled": false
      *   // }
      * }
@@ -5094,6 +5101,10 @@ export namespace servicenetworking_v1 {
 
   export interface Params$Resource$Services$Projects$Global$Networks$Get
     extends StandardParameters {
+    /**
+     * Optional. When true, include the used IP ranges as part of the GetConsumerConfig output. This includes routes created inside the service networking network, consumer network, peers of the consumer network, and reserved ranges inside the service networking network. By default, this is false
+     */
+    includeUsedIpRanges?: boolean;
     /**
      * Required. Name of the consumer config to retrieve in the format: `services/{service\}/projects/{project\}/global/networks/{network\}`. {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project\} is a project number e.g. `12345` that contains the service consumer's VPC network. {network\} is the name of the service consumer's VPC network.
      */
