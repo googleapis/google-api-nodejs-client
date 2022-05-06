@@ -424,7 +424,7 @@
               "type": "boolean"
             },
             "sources": {
-              "description": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT if not set.",
+              "description": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT if not set. Possible values for this field are: * READ_SOURCE_TYPE_CONTACT * READ_SOURCE_TYPE_CONTACT,READ_SOURCE_TYPE_PROFILE Specifying READ_SOURCE_TYPE_PROFILE without specifying READ_SOURCE_TYPE_CONTACT is not permitted.",
               "enum": [
                 "READ_SOURCE_TYPE_UNSPECIFIED",
                 "READ_SOURCE_TYPE_PROFILE",
@@ -1172,7 +1172,7 @@
       }
     }
   },
-  "revision": "20220321",
+  "revision": "20220504",
   "rootUrl": "https://people.googleapis.com/",
   "schemas": {
     "Address": {
