@@ -147,7 +147,7 @@ export namespace cloudtrace_v2beta1 {
    */
   export interface Schema$OutputConfig {
     /**
-     * The destination for writing trace data. Currently only BigQuery is supported. E.g.: "bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]"
+     * The destination for writing trace data. Supported formats include: "bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]"
      */
     destination?: string | null;
   }

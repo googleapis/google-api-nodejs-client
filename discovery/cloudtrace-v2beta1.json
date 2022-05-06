@@ -273,7 +273,7 @@
       }
     }
   },
-  "revision": "20220330",
+  "revision": "20220428",
   "rootUrl": "https://cloudtrace.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -305,7 +305,7 @@
       "id": "OutputConfig",
       "properties": {
         "destination": {
-          "description": "The destination for writing trace data. Currently only BigQuery is supported. E.g.: \"bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]\"",
+          "description": "The destination for writing trace data. Supported formats include: \"bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]\"",
           "type": "string"
         }
       },
