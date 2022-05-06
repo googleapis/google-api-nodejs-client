@@ -335,6 +335,10 @@ export namespace doubleclicksearch_v2 {
     value?: number | null;
   }
   /**
+   * File returned to https://developers.google.com/search-ads/v2/reference/reports/getIdMappingFile.
+   */
+  export interface Schema$IdMappingFile {}
+  /**
    * A DoubleClick Search report. This object contains the report request, some report metadata such as currency code, and the generated report rows or report files.
    */
   export interface Schema$Report {
@@ -1625,6 +1629,138 @@ export namespace doubleclicksearch_v2 {
     }
 
     /**
+     * Downloads a csv file(encoded in UTF-8) that contains ID mappings between legacy SA360 and new SA360. The file includes all children entities of the given advertiser(e.g. engine accounts, campaigns, ad groups, etc.) that exist in both legacy SA360 and new SA360.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const doubleclicksearch = google.doubleclicksearch('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await doubleclicksearch.reports.getIdMappingFile({
+     *     // Legacy SA360 advertiser ID.
+     *     advertiserId: 'placeholder-value',
+     *     // Legacy SA360 agency ID.
+     *     agencyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIdMappingFile(
+      params: Params$Resource$Reports$Getidmappingfile,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIdMappingFile(
+      params?: Params$Resource$Reports$Getidmappingfile,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$IdMappingFile>;
+    getIdMappingFile(
+      params: Params$Resource$Reports$Getidmappingfile,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIdMappingFile(
+      params: Params$Resource$Reports$Getidmappingfile,
+      options: MethodOptions | BodyResponseCallback<Schema$IdMappingFile>,
+      callback: BodyResponseCallback<Schema$IdMappingFile>
+    ): void;
+    getIdMappingFile(
+      params: Params$Resource$Reports$Getidmappingfile,
+      callback: BodyResponseCallback<Schema$IdMappingFile>
+    ): void;
+    getIdMappingFile(
+      callback: BodyResponseCallback<Schema$IdMappingFile>
+    ): void;
+    getIdMappingFile(
+      paramsOrCallback?:
+        | Params$Resource$Reports$Getidmappingfile
+        | BodyResponseCallback<Schema$IdMappingFile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$IdMappingFile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$IdMappingFile>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$IdMappingFile> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Reports$Getidmappingfile;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reports$Getidmappingfile;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://doubleclicksearch.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/idmapping'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['agencyId', 'advertiserId'],
+        pathParams: ['advertiserId', 'agencyId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$IdMappingFile>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$IdMappingFile>(parameters);
+      }
+    }
+
+    /**
      * Inserts a report request into the reporting system.
      * @example
      * ```js
@@ -1801,6 +1937,17 @@ export namespace doubleclicksearch_v2 {
      * ID of the report.
      */
     reportId?: string;
+  }
+  export interface Params$Resource$Reports$Getidmappingfile
+    extends StandardParameters {
+    /**
+     * Legacy SA360 advertiser ID.
+     */
+    advertiserId?: string;
+    /**
+     * Legacy SA360 agency ID.
+     */
+    agencyId?: string;
   }
   export interface Params$Resource$Reports$Request extends StandardParameters {
     /**
