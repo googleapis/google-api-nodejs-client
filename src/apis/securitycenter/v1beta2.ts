@@ -172,6 +172,31 @@ export namespace securitycenter_v1beta2 {
     value?: {[key: string]: any} | null;
   }
   /**
+   * Contains information about the IP connection associated with the finding.
+   */
+  export interface Schema$Connection {
+    /**
+     * Destination IP address. Not present for sockets that are listening and not connected.
+     */
+    destinationIp?: string | null;
+    /**
+     * Destination port. Not present for sockets that are listening and not connected.
+     */
+    destinationPort?: number | null;
+    /**
+     * IANA Internet Protocol Number such as TCP(6) and UDP(17).
+     */
+    protocol?: string | null;
+    /**
+     * Source IP address.
+     */
+    sourceIp?: string | null;
+    /**
+     * Source port.
+     */
+    sourcePort?: number | null;
+  }
+  /**
    * Resource capturing the settings for the Container Threat Detection service.
    */
   export interface Schema$ContainerThreatDetectionSettings {
@@ -313,9 +338,17 @@ export namespace securitycenter_v1beta2 {
      */
     category?: string | null;
     /**
+     * Contains information about the IP connection associated with the finding.
+     */
+    connections?: Schema$Connection[];
+    /**
      * The time at which the finding was created in Security Command Center.
      */
     createTime?: string | null;
+    /**
+     * Contains more detail about the finding.
+     */
+    description?: string | null;
     /**
      * The time the finding was first detected. If an existing finding is updated, then this is the time the update occurred. For example, if the finding represents an open firewall, this property captures the time the detector believes the firewall became open. The accuracy is determined by the detector. If the finding is later resolved, then this time reflects when the finding was resolved. This must not be set to a value greater than the current timestamp.
      */

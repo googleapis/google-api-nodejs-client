@@ -1667,7 +1667,7 @@
       }
     }
   },
-  "revision": "20220408",
+  "revision": "20220428",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -1728,6 +1728,51 @@
           },
           "description": "The configuration value for the module. The absence of this field implies its inheritance from the parent.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "Connection": {
+      "description": "Contains information about the IP connection associated with the finding.",
+      "id": "Connection",
+      "properties": {
+        "destinationIp": {
+          "description": "Destination IP address. Not present for sockets that are listening and not connected.",
+          "type": "string"
+        },
+        "destinationPort": {
+          "description": "Destination port. Not present for sockets that are listening and not connected.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "protocol": {
+          "description": "IANA Internet Protocol Number such as TCP(6) and UDP(17).",
+          "enum": [
+            "PROTOCOL_UNSPECIFIED",
+            "ICMP",
+            "TCP",
+            "UDP",
+            "GRE",
+            "ESP"
+          ],
+          "enumDescriptions": [
+            "Unspecified protocol (not HOPOPT).",
+            "Internet Control Message Protocol.",
+            "Transmission Control Protocol.",
+            "User Datagram Protocol.",
+            "Generic Routing Encapsulation.",
+            "Encap Security Payload."
+          ],
+          "type": "string"
+        },
+        "sourceIp": {
+          "description": "Source IP address.",
+          "type": "string"
+        },
+        "sourcePort": {
+          "description": "Source port.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -2030,9 +2075,20 @@
           "description": "The additional taxonomy group within findings from a given source. This field is immutable after creation time. Example: \"XSS_FLASH_INJECTION\"",
           "type": "string"
         },
+        "connections": {
+          "description": "Contains information about the IP connection associated with the finding.",
+          "items": {
+            "$ref": "Connection"
+          },
+          "type": "array"
+        },
         "createTime": {
           "description": "The time at which the finding was created in Security Command Center.",
           "format": "google-datetime",
+          "type": "string"
+        },
+        "description": {
+          "description": "Contains more detail about the finding.",
           "type": "string"
         },
         "eventTime": {
