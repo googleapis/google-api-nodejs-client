@@ -866,10 +866,10 @@ export namespace calendar_v3 {
     resource?: boolean | null;
     /**
      * The attendee's response status. Possible values are:
-     * - "needsAction" - The attendee has not responded to the invitation.
+     * - "needsAction" - The attendee has not responded to the invitation (recommended for new events).
      * - "declined" - The attendee has declined the invitation.
      * - "tentative" - The attendee has tentatively accepted the invitation.
-     * - "accepted" - The attendee has accepted the invitation.
+     * - "accepted" - The attendee has accepted the invitation.  Warning: If you add an event using the values declined, tentative, or accepted, attendees with the "Add invitations to my calendar" setting set to "When I respond to invitation in email" won't see an event on their calendar unless they choose to change their invitation response in the event invitation email.
      */
     responseStatus?: string | null;
     /**
