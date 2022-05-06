@@ -312,7 +312,7 @@ export namespace testing_v1 {
      */
     tags?: string[] | null;
     /**
-     * URL of a thumbnail image (photo) of the device. e.g. https://lh3.googleusercontent.com/90WcauuJiCYABEl8U0lcZeuS5STUbf2yW...
+     * URL of a thumbnail image (photo) of the device.
      */
     thumbnailUrl?: string | null;
   }
@@ -1070,7 +1070,7 @@ export namespace testing_v1 {
      */
     shardIndex?: number | null;
     /**
-     * Output only. Test targets for each shard.
+     * Output only. Test targets for each shard. Only set for manual sharding.
      */
     testTargetsForShard?: Schema$TestTargetsForShard;
   }
