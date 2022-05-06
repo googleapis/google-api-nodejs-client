@@ -796,7 +796,7 @@
       }
     }
   },
-  "revision": "20220401",
+  "revision": "20220429",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata": {
@@ -805,6 +805,28 @@
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
           "description": "The basic metadata of the long running operation."
+        },
+        "individualBatchDeleteStatuses": {
+          "description": "The list of response details of each document.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadataIndividualBatchDeleteStatus"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadataIndividualBatchDeleteStatus": {
+      "description": "The status of each individual document in the batch delete process.",
+      "id": "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadataIndividualBatchDeleteStatus",
+      "properties": {
+        "documentId": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentId",
+          "description": "The document id of the document."
+        },
+        "status": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The status of deleting the document."
         }
       },
       "type": "object"
@@ -933,6 +955,17 @@
     "GoogleCloudDocumentaiUiv1beta3CreateLabelerPoolOperationMetadata": {
       "description": "The long running operation metadata for CreateLabelerPool.",
       "id": "GoogleCloudDocumentaiUiv1beta3CreateLabelerPoolOperationMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3DeleteDataLabelingJobOperationMetadata": {
+      "description": "The long running operation metadata for DeleteDataLabelingJob.",
+      "id": "GoogleCloudDocumentaiUiv1beta3DeleteDataLabelingJobOperationMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
@@ -5762,6 +5795,10 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "deprecationInfo": {
+          "$ref": "GoogleCloudDocumentaiV1beta3ProcessorVersionDeprecationInfo",
+          "description": "If set, information about the eventual deprecation of this version."
+        },
         "displayName": {
           "description": "The display name of the processor version.",
           "type": "string"
@@ -5804,6 +5841,22 @@
             "The processor version is being deleted.",
             "The processor version failed and is in an indeterminate state."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3ProcessorVersionDeprecationInfo": {
+      "description": "Information about the upcoming deprecation of this processor version.",
+      "id": "GoogleCloudDocumentaiV1beta3ProcessorVersionDeprecationInfo",
+      "properties": {
+        "deprecationTime": {
+          "description": "The time at which this processor version will be deprecated.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "replacementProcessorVersion": {
+          "description": "If set, the processor version that will be used as a replacement.",
           "type": "string"
         }
       },
