@@ -905,7 +905,7 @@
       }
     }
   },
-  "revision": "20220401",
+  "revision": "20220422",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -1008,7 +1008,7 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
           "items": {
             "type": "string"
           },
@@ -1941,6 +1941,133 @@
       },
       "type": "object"
     },
+    "IdentityServiceAuthMethod": {
+      "description": "Configuration of an auth method for a member/cluster. Only one authentication method (e.g., OIDC and LDAP) can be set per AuthMethod.",
+      "id": "IdentityServiceAuthMethod",
+      "properties": {
+        "name": {
+          "description": "Identifier for auth config.",
+          "type": "string"
+        },
+        "oidcConfig": {
+          "$ref": "IdentityServiceOidcConfig",
+          "description": "OIDC specific configuration."
+        },
+        "proxy": {
+          "description": "Proxy server address to use for auth method.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IdentityServiceMembershipSpec": {
+      "description": "**Anthos Identity Service**: Configuration for a single Membership.",
+      "id": "IdentityServiceMembershipSpec",
+      "properties": {
+        "authMethods": {
+          "description": "A member may support multiple auth methods.",
+          "items": {
+            "$ref": "IdentityServiceAuthMethod"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "IdentityServiceMembershipState": {
+      "description": "**Anthos Identity Service**: State for a single Membership.",
+      "id": "IdentityServiceMembershipState",
+      "properties": {
+        "failureReason": {
+          "description": "The reason of the failure.",
+          "type": "string"
+        },
+        "installedVersion": {
+          "description": "Installed AIS version. This is the AIS version installed on this member. The values makes sense iff state is OK.",
+          "type": "string"
+        },
+        "memberConfig": {
+          "$ref": "IdentityServiceMembershipSpec",
+          "description": "Last reconciled membership configuration"
+        },
+        "state": {
+          "description": "Deployment state on this member",
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "OK",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Unspecified state",
+            "deployment succeeds",
+            "Failure with error."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IdentityServiceOidcConfig": {
+      "description": "Configuration for OIDC Auth flow.",
+      "id": "IdentityServiceOidcConfig",
+      "properties": {
+        "certificateAuthorityData": {
+          "description": "PEM-encoded CA for OIDC provider.",
+          "type": "string"
+        },
+        "clientId": {
+          "description": "ID for OIDC client application.",
+          "type": "string"
+        },
+        "clientSecret": {
+          "description": "Input only. Unencrypted OIDC client secret will be passed to the GKE Hub CLH.",
+          "type": "string"
+        },
+        "deployCloudConsoleProxy": {
+          "description": "Flag to denote if reverse proxy is used to connect to auth provider. This flag should be set to true when provider is not reachable by Google Cloud Console.",
+          "type": "boolean"
+        },
+        "encryptedClientSecret": {
+          "description": "Output only. Encrypted OIDC Client secret",
+          "format": "byte",
+          "readOnly": true,
+          "type": "string"
+        },
+        "extraParams": {
+          "description": "Comma-separated list of key-value pairs.",
+          "type": "string"
+        },
+        "groupPrefix": {
+          "description": "Prefix to prepend to group name.",
+          "type": "string"
+        },
+        "groupsClaim": {
+          "description": "Claim in OIDC ID token that holds group information.",
+          "type": "string"
+        },
+        "issuerUri": {
+          "description": "URI for the OIDC provider. This should point to the level below .well-known/openid-configuration.",
+          "type": "string"
+        },
+        "kubectlRedirectUri": {
+          "description": "Registered redirect uri to redirect users going through OAuth flow using kubectl plugin.",
+          "type": "string"
+        },
+        "scopes": {
+          "description": "Comma-separated list of identifiers.",
+          "type": "string"
+        },
+        "userClaim": {
+          "description": "Claim in OIDC ID token that holds username.",
+          "type": "string"
+        },
+        "userPrefix": {
+          "description": "Prefix to prepend to user name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "KubernetesMetadata": {
       "description": "KubernetesMetadata provides informational metadata for Memberships representing Kubernetes clusters.",
       "id": "KubernetesMetadata",
@@ -2235,6 +2362,14 @@
         "configmanagement": {
           "$ref": "ConfigManagementMembershipSpec",
           "description": "Config Management-specific spec."
+        },
+        "identityservice": {
+          "$ref": "IdentityServiceMembershipSpec",
+          "description": "Identity Service-specific spec."
+        },
+        "mesh": {
+          "$ref": "ServiceMeshMembershipSpec",
+          "description": "Anthos Service Mesh-specific spec"
         }
       },
       "type": "object"
@@ -2250,6 +2385,14 @@
         "configmanagement": {
           "$ref": "ConfigManagementMembershipState",
           "description": "Config Management-specific state."
+        },
+        "identityservice": {
+          "$ref": "IdentityServiceMembershipState",
+          "description": "Identity Service-specific state."
+        },
+        "servicemesh": {
+          "$ref": "ServiceMeshMembershipState",
+          "description": "Service Mesh-specific state."
         },
         "state": {
           "$ref": "FeatureState",
@@ -2477,13 +2620,99 @@
       },
       "type": "object"
     },
+    "ServiceMeshControlPlaneManagement": {
+      "description": "Status of control plane management.",
+      "id": "ServiceMeshControlPlaneManagement",
+      "properties": {
+        "details": {
+          "description": "Explanation of state.",
+          "items": {
+            "$ref": "ServiceMeshStatusDetails"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "LifecycleState of control plane management.",
+          "enum": [
+            "LIFECYCLE_STATE_UNSPECIFIED",
+            "DISABLED",
+            "FAILED_PRECONDITION",
+            "PROVISIONING",
+            "ACTIVE",
+            "STALLED",
+            "NEEDS_ATTENTION",
+            "DEGRADED"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "DISABLED means that the component is not enabled.",
+            "FAILED_PRECONDITION means that provisioning cannot proceed because of some characteristic of the member cluster.",
+            "PROVISIONING means that provisioning is in progress.",
+            "ACTIVE means that the component is ready for use.",
+            "STALLED means that provisioning could not be done.",
+            "NEEDS_ATTENTION means that the component is ready, but some user intervention is required. (For example that the user should migrate workloads to a new control plane revision.)",
+            "DEGRADED means that the component is ready, but operating in a degraded state."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ServiceMeshMembershipSpec": {
+      "description": "**Service Mesh**: Spec for a single Membership for the servicemesh feature",
+      "id": "ServiceMeshMembershipSpec",
+      "properties": {
+        "controlPlane": {
+          "description": "Enables automatic control plane management.",
+          "enum": [
+            "CONTROL_PLANE_MANAGEMENT_UNSPECIFIED",
+            "AUTOMATIC",
+            "MANUAL"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "Google should provision a control plane revision and make it available in the cluster. Google will enroll this revision in a release channel and keep it up to date. The control plane revision may be a managed service, or a managed install.",
+            "User will manually configure the control plane (e.g. via CLI, or via the ControlPlaneRevision KRM API)"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ServiceMeshMembershipState": {
+      "description": "**Service Mesh**: State for a single Membership, as analyzed by the Service Mesh Hub Controller.",
+      "id": "ServiceMeshMembershipState",
+      "properties": {
+        "controlPlaneManagement": {
+          "$ref": "ServiceMeshControlPlaneManagement",
+          "description": "Output only. Status of control plane management",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "ServiceMeshStatusDetails": {
+      "description": "Structured and human-readable details for a status.",
+      "id": "ServiceMeshStatusDetails",
+      "properties": {
+        "code": {
+          "description": "A machine-readable code that further describes a broad status.",
+          "type": "string"
+        },
+        "details": {
+          "description": "Human-readable explanation of code.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SetIamPolicyRequest": {
       "description": "Request message for `SetIamPolicy` method.",
       "id": "SetIamPolicyRequest",
       "properties": {
         "policy": {
           "$ref": "Policy",
-          "description": "REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them."
+          "description": "REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them."
         },
         "updateMask": {
           "description": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: \"bindings, etag\"`",
@@ -2525,7 +2754,7 @@
       "id": "TestIamPermissionsRequest",
       "properties": {
         "permissions": {
-          "description": "The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).",
+          "description": "The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).",
           "items": {
             "type": "string"
           },

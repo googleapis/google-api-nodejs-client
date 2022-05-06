@@ -194,7 +194,7 @@ export namespace gkehub_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -815,6 +815,110 @@ export namespace gkehub_v1 {
     message?: string | null;
   }
   /**
+   * Configuration of an auth method for a member/cluster. Only one authentication method (e.g., OIDC and LDAP) can be set per AuthMethod.
+   */
+  export interface Schema$IdentityServiceAuthMethod {
+    /**
+     * Identifier for auth config.
+     */
+    name?: string | null;
+    /**
+     * OIDC specific configuration.
+     */
+    oidcConfig?: Schema$IdentityServiceOidcConfig;
+    /**
+     * Proxy server address to use for auth method.
+     */
+    proxy?: string | null;
+  }
+  /**
+   * **Anthos Identity Service**: Configuration for a single Membership.
+   */
+  export interface Schema$IdentityServiceMembershipSpec {
+    /**
+     * A member may support multiple auth methods.
+     */
+    authMethods?: Schema$IdentityServiceAuthMethod[];
+  }
+  /**
+   * **Anthos Identity Service**: State for a single Membership.
+   */
+  export interface Schema$IdentityServiceMembershipState {
+    /**
+     * The reason of the failure.
+     */
+    failureReason?: string | null;
+    /**
+     * Installed AIS version. This is the AIS version installed on this member. The values makes sense iff state is OK.
+     */
+    installedVersion?: string | null;
+    /**
+     * Last reconciled membership configuration
+     */
+    memberConfig?: Schema$IdentityServiceMembershipSpec;
+    /**
+     * Deployment state on this member
+     */
+    state?: string | null;
+  }
+  /**
+   * Configuration for OIDC Auth flow.
+   */
+  export interface Schema$IdentityServiceOidcConfig {
+    /**
+     * PEM-encoded CA for OIDC provider.
+     */
+    certificateAuthorityData?: string | null;
+    /**
+     * ID for OIDC client application.
+     */
+    clientId?: string | null;
+    /**
+     * Input only. Unencrypted OIDC client secret will be passed to the GKE Hub CLH.
+     */
+    clientSecret?: string | null;
+    /**
+     * Flag to denote if reverse proxy is used to connect to auth provider. This flag should be set to true when provider is not reachable by Google Cloud Console.
+     */
+    deployCloudConsoleProxy?: boolean | null;
+    /**
+     * Output only. Encrypted OIDC Client secret
+     */
+    encryptedClientSecret?: string | null;
+    /**
+     * Comma-separated list of key-value pairs.
+     */
+    extraParams?: string | null;
+    /**
+     * Prefix to prepend to group name.
+     */
+    groupPrefix?: string | null;
+    /**
+     * Claim in OIDC ID token that holds group information.
+     */
+    groupsClaim?: string | null;
+    /**
+     * URI for the OIDC provider. This should point to the level below .well-known/openid-configuration.
+     */
+    issuerUri?: string | null;
+    /**
+     * Registered redirect uri to redirect users going through OAuth flow using kubectl plugin.
+     */
+    kubectlRedirectUri?: string | null;
+    /**
+     * Comma-separated list of identifiers.
+     */
+    scopes?: string | null;
+    /**
+     * Claim in OIDC ID token that holds username.
+     */
+    userClaim?: string | null;
+    /**
+     * Prefix to prepend to user name.
+     */
+    userPrefix?: string | null;
+  }
+  /**
    * KubernetesMetadata provides informational metadata for Memberships representing Kubernetes clusters.
    */
   export interface Schema$KubernetesMetadata {
@@ -1035,6 +1139,14 @@ export namespace gkehub_v1 {
      * Config Management-specific spec.
      */
     configmanagement?: Schema$ConfigManagementMembershipSpec;
+    /**
+     * Identity Service-specific spec.
+     */
+    identityservice?: Schema$IdentityServiceMembershipSpec;
+    /**
+     * Anthos Service Mesh-specific spec
+     */
+    mesh?: Schema$ServiceMeshMembershipSpec;
   }
   /**
    * MembershipFeatureState contains Feature status information for a single Membership.
@@ -1048,6 +1160,14 @@ export namespace gkehub_v1 {
      * Config Management-specific state.
      */
     configmanagement?: Schema$ConfigManagementMembershipState;
+    /**
+     * Identity Service-specific state.
+     */
+    identityservice?: Schema$IdentityServiceMembershipState;
+    /**
+     * Service Mesh-specific state.
+     */
+    servicemesh?: Schema$ServiceMeshMembershipState;
     /**
      * The high-level state of this Feature for a single membership.
      */
@@ -1211,11 +1331,55 @@ export namespace gkehub_v1 {
     v1beta1Crd?: boolean | null;
   }
   /**
+   * Status of control plane management.
+   */
+  export interface Schema$ServiceMeshControlPlaneManagement {
+    /**
+     * Explanation of state.
+     */
+    details?: Schema$ServiceMeshStatusDetails[];
+    /**
+     * LifecycleState of control plane management.
+     */
+    state?: string | null;
+  }
+  /**
+   * **Service Mesh**: Spec for a single Membership for the servicemesh feature
+   */
+  export interface Schema$ServiceMeshMembershipSpec {
+    /**
+     * Enables automatic control plane management.
+     */
+    controlPlane?: string | null;
+  }
+  /**
+   * **Service Mesh**: State for a single Membership, as analyzed by the Service Mesh Hub Controller.
+   */
+  export interface Schema$ServiceMeshMembershipState {
+    /**
+     * Output only. Status of control plane management
+     */
+    controlPlaneManagement?: Schema$ServiceMeshControlPlaneManagement;
+  }
+  /**
+   * Structured and human-readable details for a status.
+   */
+  export interface Schema$ServiceMeshStatusDetails {
+    /**
+     * A machine-readable code that further describes a broad status.
+     */
+    code?: string | null;
+    /**
+     * Human-readable explanation of code.
+     */
+    details?: string | null;
+  }
+  /**
    * Request message for `SetIamPolicy` method.
    */
   export interface Schema$SetIamPolicyRequest {
     /**
-     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
+     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
     /**
@@ -1241,7 +1405,7 @@ export namespace gkehub_v1 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[] | null;
   }
