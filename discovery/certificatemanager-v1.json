@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
                   "type": "string"
                 },
@@ -975,7 +975,7 @@
       }
     }
   },
-  "revision": "20220329",
+  "revision": "20220418",
   "rootUrl": "https://certificatemanager.googleapis.com/",
   "schemas": {
     "AuthorizationAttemptInfo": {
@@ -1643,6 +1643,26 @@
             "Certificate provisioning failed due to an issue with one or more of the domains on the certificate. For details of which domains failed, consult the `authorization_attempt_info` field.",
             "Exceeded Certificate Authority quotas or internal rate limits of the system. Provisioning may take longer to complete."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ResourcesCount": {
+      "id": "ResourcesCount",
+      "properties": {
+        "certificates": {
+          "description": "The count of certificates.",
+          "format": "uint64",
+          "type": "string"
+        },
+        "computeTime": {
+          "description": "Required. Input only. The time of the computation. The field is input only, used in Create and Update calls. For Update call, new values of selected resources are set if their compute_time is younger than the persisted ones, e.g.: If you support 3 types of resources: A, B and C, and you have: 'A' resource count computed at timestamp = 3 'B' resource count computed at timestamp = 10 'C' resource count computed at timestamp = 5 And you're going to update all of them with compute_time = 8, only 'A' and 'C' will be updated, as 'B' already has fresher data. For Get call a ResourcesCount instance contains the freshest values for every type.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "name": {
+          "description": "The singleton resource of the resources count. Must be in the format `projects/*/locations/*/resourcesCounts/single`.",
           "type": "string"
         }
       },
