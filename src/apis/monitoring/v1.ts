@@ -882,7 +882,7 @@ export namespace monitoring_v1 {
      */
     timeSeriesFilterRatio?: Schema$TimeSeriesFilterRatio;
     /**
-     * A query used to fetch time series.
+     * A query used to fetch time series with MQL.
      */
     timeSeriesQueryLanguage?: string | null;
     /**
