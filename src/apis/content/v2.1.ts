@@ -133,6 +133,7 @@ export namespace content_v2_1 {
     orders: Resource$Orders;
     ordertrackingsignals: Resource$Ordertrackingsignals;
     pos: Resource$Pos;
+    productdeliverytime: Resource$Productdeliverytime;
     products: Resource$Products;
     productstatuses: Resource$Productstatuses;
     promotions: Resource$Promotions;
@@ -180,6 +181,7 @@ export namespace content_v2_1 {
         this.context
       );
       this.pos = new Resource$Pos(this.context);
+      this.productdeliverytime = new Resource$Productdeliverytime(this.context);
       this.products = new Resource$Products(this.context);
       this.productstatuses = new Resource$Productstatuses(this.context);
       this.promotions = new Resource$Promotions(this.context);
@@ -1813,6 +1815,36 @@ export namespace content_v2_1 {
      */
     year?: number | null;
   }
+  /**
+   * A delivery area for the product. Only one of `countryCode` or `postalCodeRange` must be set.
+   */
+  export interface Schema$DeliveryArea {
+    /**
+     * Required. The country that the product can be delivered to. Submit a [unicode CLDR region](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) such as `US` or `CH`.
+     */
+    countryCode?: string | null;
+    /**
+     * A postal code, postal code range or postal code prefix that defines this area. Limited to US and AUS.
+     */
+    postalCodeRange?: Schema$DeliveryAreaPostalCodeRange;
+    /**
+     * A state, territory, or prefecture. This is supported for the United States, Australia, and Japan. Provide a subdivision code from the ISO 3166-2 code tables ([US](https://en.wikipedia.org/wiki/ISO_3166-2:US), [AU](https://en.wikipedia.org/wiki/ISO_3166-2:AU), or [JP](https://en.wikipedia.org/wiki/ISO_3166-2:JP)) without country prefix (for example, `"NY"`, `"NSW"`, `"03"`).
+     */
+    regionCode?: string | null;
+  }
+  /**
+   * A range of postal codes that defines the delivery area. Only set `firstPostalCode` when specifying a single postal code.
+   */
+  export interface Schema$DeliveryAreaPostalCodeRange {
+    /**
+     * Required. A postal code or a pattern of the form prefix* denoting the inclusive lower bound of the range defining the area. Examples values: `"94108"`, `"9410*"`, `"9*"`.
+     */
+    firstPostalCode?: string | null;
+    /**
+     * A postal code or a pattern of the form prefix* denoting the inclusive upper bound of the range defining the area (for example [070* - 078*] results in the range [07000 - 07899]). It must have the same length as `firstPostalCode`: if `firstPostalCode` is a postal code then `lastPostalCode` must be a postal code too; if firstPostalCode is a pattern then `lastPostalCode` must be a pattern with the same prefix length. Ignored if not set, then the area is defined as being all the postal codes matching `firstPostalCode`.
+     */
+    lastPostalCode?: string | null;
+  }
   export interface Schema$DeliveryTime {
     /**
      * Business days cutoff time definition. If not configured the cutoff time will be defaulted to 8AM PST.
@@ -2726,6 +2758,18 @@ export namespace content_v2_1 {
      * Number of clicks.
      */
     clicks?: string | null;
+    /**
+     * Number of conversions divided by the number of clicks, reported on the impression date. The metric is currently available only for the FREE_PRODUCT_LISTING program.
+     */
+    conversionRate?: number | null;
+    /**
+     * Number of conversions attributed to the product, reported on the conversion date. Depending on the attribution model, a conversion might be distributed across multiple clicks, where each click gets its own credit assigned. This metric is a sum of all such credits. The metric is currently available only for the FREE_PRODUCT_LISTING program.
+     */
+    conversions?: number | null;
+    /**
+     * Value of conversions in micros attributed to the product, reported on the conversion date. The metric is currently available only for the FREE_PRODUCT_LISTING program. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response.
+     */
+    conversionValueMicros?: string | null;
     /**
      * Click-through rate - the number of clicks merchant's products receive (clicks) divided by the number of times the products are shown (impressions).
      */
@@ -5244,6 +5288,10 @@ export namespace content_v2_1 {
      */
     pattern?: string | null;
     /**
+     * Publication of this item should be temporarily paused. Acceptable values are: - "`ads`"
+     */
+    pause?: string | null;
+    /**
      * The pick up option for the item. Acceptable values are: - "`buy`" - "`reserve`" - "`ship to store`" - "`not supported`"
      */
     pickupMethod?: string | null;
@@ -5390,6 +5438,53 @@ export namespace content_v2_1 {
      */
     taxAmount?: Schema$Price;
   }
+  /**
+   * The estimated days to deliver a product after an order is placed. Only authorized shipping signals partners working with a merchant can use this resource. Merchants should use the [`products`](https://developers.google.com/shopping-content/reference/rest/v2.1/products#productshipping) resource instead.
+   */
+  export interface Schema$ProductDeliveryTime {
+    /**
+     * Required. A set of associations between `DeliveryArea` and `DeliveryTime` entries. The total number of `areaDeliveryTimes` can be at most 100.
+     */
+    areaDeliveryTimes?: Schema$ProductDeliveryTimeAreaDeliveryTime[];
+    /**
+     * Required. The `id` of the product.
+     */
+    productId?: Schema$ProductId;
+  }
+  /**
+   * A pairing of `DeliveryArea` associated with a `DeliveryTime` for this product.
+   */
+  export interface Schema$ProductDeliveryTimeAreaDeliveryTime {
+    /**
+     * Required. The delivery area associated with `deliveryTime` for this product.
+     */
+    deliveryArea?: Schema$DeliveryArea;
+    /**
+     * Required. The delivery time associated with `deliveryArea` for this product.
+     */
+    deliveryTime?: Schema$ProductDeliveryTimeAreaDeliveryTimeDeliveryTime;
+  }
+  /**
+   * A delivery time for this product.
+   */
+  export interface Schema$ProductDeliveryTimeAreaDeliveryTimeDeliveryTime {
+    /**
+     * Required. The maximum number of business days (inclusive) between when an order is placed and when the product ships. If a product ships in the same day, set this value to 0.
+     */
+    maxHandlingTimeDays?: number | null;
+    /**
+     * Required. The maximum number of business days (inclusive) between when the product ships and when the product is delivered.
+     */
+    maxTransitTimeDays?: number | null;
+    /**
+     * Required. The minimum number of business days (inclusive) between when an order is placed and when the product ships. If a product ships in the same day, set this value to 0.
+     */
+    minHandlingTimeDays?: number | null;
+    /**
+     * Required. The minimum number of business days (inclusive) between when the product ships and when the product is delivered.
+     */
+    minTransitTimeDays?: number | null;
+  }
   export interface Schema$ProductDimension {
     /**
      * Required. The length units. Acceptable values are: - "`in`" - "`cm`"
@@ -5399,6 +5494,15 @@ export namespace content_v2_1 {
      * Required. The length value represented as a number. The value can have a maximum precision of four decimal places.
      */
     value?: number | null;
+  }
+  /**
+   * The Content API ID of the product.
+   */
+  export interface Schema$ProductId {
+    /**
+     * The Content API ID of the product, in the form `channel:contentLanguage:targetCountry:offerId`.
+     */
+    productId?: string | null;
   }
   export interface Schema$ProductProductDetail {
     /**
@@ -5810,7 +5914,7 @@ export namespace content_v2_1 {
     value?: number | null;
   }
   /**
-   *  The Promotions feature is currently in alpha and is not yet publicly available in Content API for Shopping. This documentation is provided for reference only may be subject to change. Represents a promotion. See the following articles for more details. * [Promotions feed specification](https://support.google.com/merchants/answer/2906014) * [Local promotions feed specification](https://support.google.com/merchants/answer/10146130) * [Promotions on Buy on Google product data specification](https://support.google.com/merchants/answer/9173673)
+   *  The Promotions feature is publicly available for the US and CA locale (en language only) in Content API for Shopping. Represents a promotion. See the following articles for more details. * [Promotions feed specification](https://support.google.com/merchants/answer/2906014) * [Local promotions feed specification](https://support.google.com/merchants/answer/10146130) * [Promotions on Buy on Google product data specification](https://support.google.com/merchants/answer/9173673)
    */
   export interface Schema$Promotion {
     /**
@@ -5850,7 +5954,7 @@ export namespace content_v2_1 {
      */
     getThisQuantityDiscounted?: number | null;
     /**
-     * Required. Output only. The REST promotion id to uniquely identify the promotion. Content API methods that operate on promotions take this as their promotionId parameter. The REST ID for a promotion is of the form channel:contentLanguage:targetCountry:promotionId The channel field will have a value of "online", "in_store", or "online_in_store".
+     * Required. Output only. The REST promotion id to uniquely identify the promotion. Content API methods that operate on promotions take this as their promotionId parameter. The REST ID for a promotion is of the form [channel]:contentLanguage:targetCountry:promotionId The channel field will have a value of "online", "in_store", or "online_in_store".
      */
     id?: string | null;
     /**
@@ -5878,7 +5982,7 @@ export namespace content_v2_1 {
      */
     limitValue?: Schema$PriceAmount;
     /**
-     * Long title for the promotion.
+     * Required. Long title for the promotion.
      */
     longTitle?: string | null;
     /**
@@ -25648,6 +25752,451 @@ export namespace content_v2_1 {
     requestBody?: Schema$PosSaleRequest;
   }
 
+  export class Resource$Productdeliverytime {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates or updates the delivery time of a product.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.productdeliverytime.create({
+     *     // The Google merchant ID of the account that contains the product. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "areaDeliveryTimes": [],
+     *       //   "productId": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "areaDeliveryTimes": [],
+     *   //   "productId": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Productdeliverytime$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Productdeliverytime$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProductDeliveryTime>;
+    create(
+      params: Params$Resource$Productdeliverytime$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Productdeliverytime$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$ProductDeliveryTime>,
+      callback: BodyResponseCallback<Schema$ProductDeliveryTime>
+    ): void;
+    create(
+      params: Params$Resource$Productdeliverytime$Create,
+      callback: BodyResponseCallback<Schema$ProductDeliveryTime>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$ProductDeliveryTime>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Productdeliverytime$Create
+        | BodyResponseCallback<Schema$ProductDeliveryTime>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ProductDeliveryTime>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ProductDeliveryTime>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ProductDeliveryTime>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Productdeliverytime$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Productdeliverytime$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/productdeliverytime'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ProductDeliveryTime>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ProductDeliveryTime>(parameters);
+      }
+    }
+
+    /**
+     * Deletes the delivery time of a product.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.productdeliverytime.delete({
+     *     // Required. The Google merchant ID of the account that contains the product. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // Required. The Content API ID of the product, in the form `channel:contentLanguage:targetCountry:offerId`.
+     *     productId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Productdeliverytime$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Productdeliverytime$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Productdeliverytime$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Productdeliverytime$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Productdeliverytime$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Productdeliverytime$Delete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Productdeliverytime$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Productdeliverytime$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/productdeliverytime/{productId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'productId'],
+        pathParams: ['merchantId', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Gets `productDeliveryTime` by `productId`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.productdeliverytime.get({
+     *     // Required. The Google merchant ID of the account that contains the product. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // Required. The Content API ID of the product, in the form `channel:contentLanguage:targetCountry:offerId`.
+     *     productId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "areaDeliveryTimes": [],
+     *   //   "productId": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Productdeliverytime$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Productdeliverytime$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProductDeliveryTime>;
+    get(
+      params: Params$Resource$Productdeliverytime$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Productdeliverytime$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ProductDeliveryTime>,
+      callback: BodyResponseCallback<Schema$ProductDeliveryTime>
+    ): void;
+    get(
+      params: Params$Resource$Productdeliverytime$Get,
+      callback: BodyResponseCallback<Schema$ProductDeliveryTime>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ProductDeliveryTime>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Productdeliverytime$Get
+        | BodyResponseCallback<Schema$ProductDeliveryTime>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ProductDeliveryTime>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ProductDeliveryTime>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ProductDeliveryTime>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Productdeliverytime$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Productdeliverytime$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/productdeliverytime/{productId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'productId'],
+        pathParams: ['merchantId', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ProductDeliveryTime>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ProductDeliveryTime>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Productdeliverytime$Create
+    extends StandardParameters {
+    /**
+     * The Google merchant ID of the account that contains the product. This account cannot be a multi-client account.
+     */
+    merchantId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ProductDeliveryTime;
+  }
+  export interface Params$Resource$Productdeliverytime$Delete
+    extends StandardParameters {
+    /**
+     * Required. The Google merchant ID of the account that contains the product. This account cannot be a multi-client account.
+     */
+    merchantId?: string;
+    /**
+     * Required. The Content API ID of the product, in the form `channel:contentLanguage:targetCountry:offerId`.
+     */
+    productId?: string;
+  }
+  export interface Params$Resource$Productdeliverytime$Get
+    extends StandardParameters {
+    /**
+     * Required. The Google merchant ID of the account that contains the product. This account cannot be a multi-client account.
+     */
+    merchantId?: string;
+    /**
+     * Required. The Content API ID of the product, in the form `channel:contentLanguage:targetCountry:offerId`.
+     */
+    productId?: string;
+  }
+
   export class Resource$Products {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -26015,6 +26564,7 @@ export namespace content_v2_1 {
      *   //   "multipack": "my_multipack",
      *   //   "offerId": "my_offerId",
      *   //   "pattern": "my_pattern",
+     *   //   "pause": "my_pause",
      *   //   "pickupMethod": "my_pickupMethod",
      *   //   "pickupSla": "my_pickupSla",
      *   //   "price": {},
@@ -26234,6 +26784,7 @@ export namespace content_v2_1 {
      *       //   "multipack": "my_multipack",
      *       //   "offerId": "my_offerId",
      *       //   "pattern": "my_pattern",
+     *       //   "pause": "my_pause",
      *       //   "pickupMethod": "my_pickupMethod",
      *       //   "pickupSla": "my_pickupSla",
      *       //   "price": {},
@@ -26331,6 +26882,7 @@ export namespace content_v2_1 {
      *   //   "multipack": "my_multipack",
      *   //   "offerId": "my_offerId",
      *   //   "pattern": "my_pattern",
+     *   //   "pause": "my_pause",
      *   //   "pickupMethod": "my_pickupMethod",
      *   //   "pickupSla": "my_pickupSla",
      *   //   "price": {},
@@ -26693,6 +27245,7 @@ export namespace content_v2_1 {
      *       //   "multipack": "my_multipack",
      *       //   "offerId": "my_offerId",
      *       //   "pattern": "my_pattern",
+     *       //   "pause": "my_pause",
      *       //   "pickupMethod": "my_pickupMethod",
      *       //   "pickupSla": "my_pickupSla",
      *       //   "price": {},
@@ -26790,6 +27343,7 @@ export namespace content_v2_1 {
      *   //   "multipack": "my_multipack",
      *   //   "offerId": "my_offerId",
      *   //   "pattern": "my_pattern",
+     *   //   "pause": "my_pause",
      *   //   "pickupMethod": "my_pickupMethod",
      *   //   "pickupSla": "my_pickupSla",
      *   //   "price": {},
