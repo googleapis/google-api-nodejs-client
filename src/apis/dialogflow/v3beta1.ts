@@ -1057,7 +1057,7 @@ export namespace dialogflow_v3beta1 {
      */
     transitionRouteGroups?: string[] | null;
     /**
-     * A flow's transition routes serve two purposes: * They are responsible for matching the user's first utterances in the flow. * They are inherited by every page's transition routes and can support use cases such as the user saying "help" or "can I talk to a human?", which can be handled in a common way regardless of the current page. Transition routes defined in the page have higher priority than those defined in the flow. TransitionRoutes are evalauted in the following order: * TransitionRoutes with intent specified.. * TransitionRoutes with only condition specified. TransitionRoutes with intent specified are inherited by pages in the flow.
+     * A flow's transition routes serve two purposes: * They are responsible for matching the user's first utterances in the flow. * They are inherited by every page's transition routes and can support use cases such as the user saying "help" or "can I talk to a human?", which can be handled in a common way regardless of the current page. Transition routes defined in the page have higher priority than those defined in the flow. TransitionRoutes are evalauted in the following order: * TransitionRoutes with intent specified. * TransitionRoutes with only condition specified. TransitionRoutes with intent specified are inherited by pages in the flow.
      */
     transitionRoutes?: Schema$GoogleCloudDialogflowCxV3beta1TransitionRoute[];
   }
@@ -1192,7 +1192,7 @@ export namespace dialogflow_v3beta1 {
      */
     setParameterActions?: Schema$GoogleCloudDialogflowCxV3beta1FulfillmentSetParameterAction[];
     /**
-     * The tag used by the webhook to identify which fulfillment is being called. This field is required if `webhook` is specified.
+     * The value of this field will be populated in the WebhookRequest `fulfillmentInfo.tag` field by Dialogflow when the associated webhook is called. The tag is typically used by the webhook service to identify which fulfillment is being called, but it could be used for other purposes. This field is required if `webhook` is specified.
      */
     tag?: string | null;
     /**
@@ -1841,7 +1841,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1Page {
     /**
-     * Required. The human-readable name of the page, unique within the agent.
+     * Required. The human-readable name of the page, unique within the flow.
      */
     displayName?: string | null;
     /**
@@ -2003,7 +2003,7 @@ export namespace dialogflow_v3beta1 {
      */
     currentPage?: Schema$GoogleCloudDialogflowCxV3beta1Page;
     /**
-     * The free-form diagnostic info. For example, this field could contain webhook call latency. The string keys of the Struct's fields map can change without notice.
+     * The free-form diagnostic info. For example, this field could contain webhook call latency. The fields of this data can change without notice, so you should not write code that depends on its structure. One of the fields is called "Alternative Matched Intents", which may aid with debugging. The following describes these intent results: - The list is empty if no intent was matched to end-user input. - Only intents that are referenced in the currently active flow are included. - The matched intent is included. - Other intents that could have matched end-user input, but did not match because they are referenced by intent routes that are out of [scope](https://cloud.google.com/dialogflow/cx/docs/concept/handler#scope), are included. - Other intents referenced by intent routes in scope that matched end-user input, but had a lower confidence score.
      */
     diagnosticInfo?: {[key: string]: any} | null;
     /**
@@ -2343,6 +2343,10 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings {
     /**
+     * Controls audio export settings for post-conversation analytics when ingesting audio to conversations via Participants.AnalyzeContent or Participants.StreamingAnalyzeContent. If retention_strategy is set to REMOVE_AFTER_CONVERSATION or audio_export_settings.gcs_bucket is empty, audio export is disabled. If audio export is enabled, audio is recorded and saved to audio_export_settings.gcs_bucket, subject to retention policy of audio_export_settings.gcs_bucket. This setting won't effect audio input for implicit sessions via Sessions.DetectIntent or Sessions.StreamingDetectIntent.
+     */
+    audioExportSettings?: Schema$GoogleCloudDialogflowCxV3beta1SecuritySettingsAudioExportSettings;
+    /**
      * [DLP](https://cloud.google.com/dlp/docs) deidentify template name. Use this template to define de-identification configuration for the content. The `DLP De-identify Templates Reader` role is needed on the Dialogflow service identity service account (has the form `service-PROJECT_NUMBER@gcp-sa-dialogflow.iam.gserviceaccount.com`) for your agent's project. If empty, Dialogflow replaces sensitive info with `[redacted]` text. The template name will have one of the following formats: `projects//locations//deidentifyTemplates/` OR `organizations//locations//deidentifyTemplates/` Note: `deidentify_template` must be located in the same region as the `SecuritySettings`.
      */
     deidentifyTemplate?: string | null;
@@ -2378,6 +2382,27 @@ export namespace dialogflow_v3beta1 {
      * Retains data in interaction logging for the specified number of days. This does not apply to Cloud logging, which is owned by the user - not Dialogflow. User must set a value lower than Dialogflow's default 365d TTL. Setting a value higher than that has no effect. A missing value or setting to 0 also means we use Dialogflow's default TTL. Note: Interaction logging is a limited access feature. Talk to your Google representative to check availability for you.
      */
     retentionWindowDays?: number | null;
+  }
+  /**
+   * Settings for exporting audio.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1SecuritySettingsAudioExportSettings {
+    /**
+     * Filename pattern for exported audio.
+     */
+    audioExportPattern?: string | null;
+    /**
+     * File format for exported audio file. Currently only in telephony recordings.
+     */
+    audioFormat?: string | null;
+    /**
+     * Enable audio redaction if it is true.
+     */
+    enableAudioRedaction?: boolean | null;
+    /**
+     * Cloud Storage bucket to export audio record to. You need to grant `service-@gcp-sa-dialogflow.iam.gserviceaccount.com` the `Storage Object Admin` role in this bucket.
+     */
+    gcsBucket?: string | null;
   }
   /**
    * Settings for exporting conversations to [Insights](https://cloud.google.com/contact-center/insights/docs).
@@ -2697,7 +2722,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup {
     /**
-     * Required. The human-readable name of the transition route group, unique within the Agent. The display name can be no longer than 30 characters.
+     * Required. The human-readable name of the transition route group, unique within the flow. The display name can be no longer than 30 characters.
      */
     displayName?: string | null;
     /**
@@ -3001,7 +3026,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookRequestFulfillmentInfo {
     /**
-     * Always present. The tag used to identify which fulfillment is being called.
+     * Always present. The value of the Fulfillment.tag field will be populated in this field by Dialogflow when the associated webhook is called. The tag is typically used by the webhook service to identify which fulfillment is being called, but it could be used for other purposes.
      */
     tag?: string | null;
   }
@@ -3469,7 +3494,7 @@ export namespace dialogflow_v3beta1 {
      */
     setParameterActions?: Schema$GoogleCloudDialogflowCxV3FulfillmentSetParameterAction[];
     /**
-     * The tag used by the webhook to identify which fulfillment is being called. This field is required if `webhook` is specified.
+     * The value of this field will be populated in the WebhookRequest `fulfillmentInfo.tag` field by Dialogflow when the associated webhook is called. The tag is typically used by the webhook service to identify which fulfillment is being called, but it could be used for other purposes. This field is required if `webhook` is specified.
      */
     tag?: string | null;
     /**
@@ -3714,7 +3739,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3Page {
     /**
-     * Required. The human-readable name of the page, unique within the agent.
+     * Required. The human-readable name of the page, unique within the flow.
      */
     displayName?: string | null;
     /**
@@ -4247,7 +4272,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3WebhookRequestFulfillmentInfo {
     /**
-     * Always present. The tag used to identify which fulfillment is being called.
+     * Always present. The value of the Fulfillment.tag field will be populated in this field by Dialogflow when the associated webhook is called. The tag is typically used by the webhook service to identify which fulfillment is being called, but it could be used for other purposes.
      */
     tag?: string | null;
   }
@@ -22449,7 +22474,7 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * Imports the test cases from a Cloud Storage bucket or a local file. It always creates new test cases and won't overwite any existing ones. The provided ID in the imported test case is neglected. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: ImportTestCasesMetadata - `response`: ImportTestCasesResponse
+     * Imports the test cases from a Cloud Storage bucket or a local file. It always creates new test cases and won't overwrite any existing ones. The provided ID in the imported test case is neglected. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: ImportTestCasesMetadata - `response`: ImportTestCasesResponse
      * @example
      * ```js
      * // Before running the sample:
@@ -24833,6 +24858,7 @@ export namespace dialogflow_v3beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "audioExportSettings": {},
      *       //   "deidentifyTemplate": "my_deidentifyTemplate",
      *       //   "displayName": "my_displayName",
      *       //   "insightsExportSettings": {},
@@ -24849,6 +24875,7 @@ export namespace dialogflow_v3beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "audioExportSettings": {},
      *   //   "deidentifyTemplate": "my_deidentifyTemplate",
      *   //   "displayName": "my_displayName",
      *   //   "insightsExportSettings": {},
@@ -25130,6 +25157,7 @@ export namespace dialogflow_v3beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "audioExportSettings": {},
      *   //   "deidentifyTemplate": "my_deidentifyTemplate",
      *   //   "displayName": "my_displayName",
      *   //   "insightsExportSettings": {},
@@ -25424,6 +25452,7 @@ export namespace dialogflow_v3beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "audioExportSettings": {},
      *       //   "deidentifyTemplate": "my_deidentifyTemplate",
      *       //   "displayName": "my_displayName",
      *       //   "insightsExportSettings": {},
@@ -25440,6 +25469,7 @@ export namespace dialogflow_v3beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "audioExportSettings": {},
      *   //   "deidentifyTemplate": "my_deidentifyTemplate",
      *   //   "displayName": "my_displayName",
      *   //   "insightsExportSettings": {},

@@ -7431,7 +7431,7 @@
       }
     }
   },
-  "revision": "20220408",
+  "revision": "20220502",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -7943,7 +7943,7 @@
           "type": "array"
         },
         "tag": {
-          "description": "The tag used by the webhook to identify which fulfillment is being called. This field is required if `webhook` is specified.",
+          "description": "The value of this field will be populated in the WebhookRequest `fulfillmentInfo.tag` field by Dialogflow when the associated webhook is called. The tag is typically used by the webhook service to identify which fulfillment is being called, but it could be used for other purposes. This field is required if `webhook` is specified.",
           "type": "string"
         },
         "webhook": {
@@ -8300,7 +8300,7 @@
       "id": "GoogleCloudDialogflowCxV3Page",
       "properties": {
         "displayName": {
-          "description": "Required. The human-readable name of the page, unique within the agent.",
+          "description": "Required. The human-readable name of the page, unique within the flow.",
           "type": "string"
         },
         "entryFulfillment": {
@@ -8998,7 +8998,7 @@
       "id": "GoogleCloudDialogflowCxV3WebhookRequestFulfillmentInfo",
       "properties": {
         "tag": {
-          "description": "Always present. The tag used to identify which fulfillment is being called.",
+          "description": "Always present. The value of the Fulfillment.tag field will be populated in this field by Dialogflow when the associated webhook is called. The tag is typically used by the webhook service to identify which fulfillment is being called, but it could be used for other purposes.",
           "type": "string"
         }
       },
@@ -9635,7 +9635,7 @@
           "type": "array"
         },
         "tag": {
-          "description": "The tag used by the webhook to identify which fulfillment is being called. This field is required if `webhook` is specified.",
+          "description": "The value of this field will be populated in the WebhookRequest `fulfillmentInfo.tag` field by Dialogflow when the associated webhook is called. The tag is typically used by the webhook service to identify which fulfillment is being called, but it could be used for other purposes. This field is required if `webhook` is specified.",
           "type": "string"
         },
         "webhook": {
@@ -9992,7 +9992,7 @@
       "id": "GoogleCloudDialogflowCxV3beta1Page",
       "properties": {
         "displayName": {
-          "description": "Required. The human-readable name of the page, unique within the agent.",
+          "description": "Required. The human-readable name of the page, unique within the flow.",
           "type": "string"
         },
         "entryFulfillment": {
@@ -10690,7 +10690,7 @@
       "id": "GoogleCloudDialogflowCxV3beta1WebhookRequestFulfillmentInfo",
       "properties": {
         "tag": {
-          "description": "Always present. The tag used to identify which fulfillment is being called.",
+          "description": "Always present. The value of the Fulfillment.tag field will be populated in this field by Dialogflow when the associated webhook is called. The tag is typically used by the webhook service to identify which fulfillment is being called, but it could be used for other purposes.",
           "type": "string"
         }
       },
@@ -13134,6 +13134,14 @@
         "assistQueryParams": {
           "$ref": "GoogleCloudDialogflowV2beta1AssistQueryParameters",
           "description": "Parameters for a human assist query."
+        },
+        "cxParameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Additional parameters to be put into Dialogflow CX session parameters. To remove a parameter from the session, clients should explicitly set the parameter value to null. Note: this field should only be used if you are connecting to a Dialogflow CX agent.",
+          "type": "object"
         },
         "eventInput": {
           "$ref": "GoogleCloudDialogflowV2beta1EventInput",
@@ -17017,6 +17025,10 @@
           "$ref": "GoogleCloudDialogflowV2beta1ResponseMessageLiveAgentHandoff",
           "description": "Hands off conversation to a live agent."
         },
+        "mixedAudio": {
+          "$ref": "GoogleCloudDialogflowV2beta1ResponseMessageMixedAudio",
+          "description": "An audio response message composed of both the synthesized Dialogflow agent responses and the audios hosted in places known to the client."
+        },
         "payload": {
           "additionalProperties": {
             "description": "Properties of the object.",
@@ -17053,6 +17065,40 @@
           },
           "description": "Custom metadata for your handoff procedure. Dialogflow doesn't impose any structure on this.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1ResponseMessageMixedAudio": {
+      "description": "Represents an audio message that is composed of both segments synthesized from the Dialogflow agent prompts and ones hosted externally at the specified URIs.",
+      "id": "GoogleCloudDialogflowV2beta1ResponseMessageMixedAudio",
+      "properties": {
+        "segments": {
+          "description": "Segments this audio response is composed of.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1ResponseMessageMixedAudioSegment"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1ResponseMessageMixedAudioSegment": {
+      "description": "Represents one segment of audio.",
+      "id": "GoogleCloudDialogflowV2beta1ResponseMessageMixedAudioSegment",
+      "properties": {
+        "allowPlaybackInterruption": {
+          "description": "Whether the playback of this segment can be interrupted by the end user's speech and the client should then start the next Dialogflow request.",
+          "type": "boolean"
+        },
+        "audio": {
+          "description": "Raw audio synthesized from the Dialogflow agent's response using the output config specified in the request.",
+          "format": "byte",
+          "type": "string"
+        },
+        "uri": {
+          "description": "Client-specific URI that points to an audio clip accessible to the client.",
+          "type": "string"
         }
       },
       "type": "object"
