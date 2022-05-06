@@ -134,6 +134,23 @@ export namespace documentai_v1 {
      * The basic metadata of the long running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
+    /**
+     * The list of response details of each document.
+     */
+    individualBatchDeleteStatuses?: Schema$GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadataIndividualBatchDeleteStatus[];
+  }
+  /**
+   * The status of each individual document in the batch delete process.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadataIndividualBatchDeleteStatus {
+    /**
+     * The document id of the document.
+     */
+    documentId?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentId;
+    /**
+     * The status of deleting the document.
+     */
+    status?: Schema$GoogleRpcStatus;
   }
   /**
    * Response of the delete documents operation.
@@ -203,6 +220,15 @@ export namespace documentai_v1 {
    * The long running operation metadata for CreateLabelerPool.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3CreateLabelerPoolOperationMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
+  }
+  /**
+   * The long running operation metadata for DeleteDataLabelingJob.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3DeleteDataLabelingJobOperationMetadata {
     /**
      * The basic metadata of the long running operation.
      */
@@ -3639,6 +3665,10 @@ export namespace documentai_v1 {
      */
     createTime?: string | null;
     /**
+     * If set, information about the eventual deprecation of this version.
+     */
+    deprecationInfo?: Schema$GoogleCloudDocumentaiV1ProcessorVersionDeprecationInfo;
+    /**
      * The display name of the processor version.
      */
     displayName?: string | null;
@@ -3662,6 +3692,19 @@ export namespace documentai_v1 {
      * The state of the processor version.
      */
     state?: string | null;
+  }
+  /**
+   * Information about the upcoming deprecation of this processor version.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1ProcessorVersionDeprecationInfo {
+    /**
+     * The time at which this processor version will be deprecated.
+     */
+    deprecationTime?: string | null;
+    /**
+     * If set, the processor version that will be used as a replacement.
+     */
+    replacementProcessorVersion?: string | null;
   }
   /**
    * Request message for the process document method.
@@ -7217,6 +7260,7 @@ export namespace documentai_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "deprecationInfo": {},
      *   //   "displayName": "my_displayName",
      *   //   "googleManaged": false,
      *   //   "kmsKeyName": "my_kmsKeyName",

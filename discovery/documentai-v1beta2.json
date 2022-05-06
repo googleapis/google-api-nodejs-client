@@ -292,7 +292,7 @@
       }
     }
   },
-  "revision": "20220326",
+  "revision": "20220429",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata": {
@@ -301,6 +301,28 @@
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
           "description": "The basic metadata of the long running operation."
+        },
+        "individualBatchDeleteStatuses": {
+          "description": "The list of response details of each document.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadataIndividualBatchDeleteStatus"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadataIndividualBatchDeleteStatus": {
+      "description": "The status of each individual document in the batch delete process.",
+      "id": "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadataIndividualBatchDeleteStatus",
+      "properties": {
+        "documentId": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentId",
+          "description": "The document id of the document."
+        },
+        "status": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The status of deleting the document."
         }
       },
       "type": "object"
@@ -429,6 +451,17 @@
     "GoogleCloudDocumentaiUiv1beta3CreateLabelerPoolOperationMetadata": {
       "description": "The long running operation metadata for CreateLabelerPool.",
       "id": "GoogleCloudDocumentaiUiv1beta3CreateLabelerPoolOperationMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3DeleteDataLabelingJobOperationMetadata": {
+      "description": "The long running operation metadata for DeleteDataLabelingJob.",
+      "id": "GoogleCloudDocumentaiUiv1beta3DeleteDataLabelingJobOperationMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
