@@ -4071,6 +4071,99 @@
         }
       }
     },
+    "productdeliverytime": {
+      "methods": {
+        "create": {
+          "description": "Creates or updates the delivery time of a product.",
+          "flatPath": "{merchantId}/productdeliverytime",
+          "httpMethod": "POST",
+          "id": "content.productdeliverytime.create",
+          "parameterOrder": [
+            "merchantId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "The Google merchant ID of the account that contains the product. This account cannot be a multi-client account.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/productdeliverytime",
+          "request": {
+            "$ref": "ProductDeliveryTime"
+          },
+          "response": {
+            "$ref": "ProductDeliveryTime"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
+        "delete": {
+          "description": "Deletes the delivery time of a product.",
+          "flatPath": "{merchantId}/productdeliverytime/{productId}",
+          "httpMethod": "DELETE",
+          "id": "content.productdeliverytime.delete",
+          "parameterOrder": [
+            "merchantId",
+            "productId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "Required. The Google merchant ID of the account that contains the product. This account cannot be a multi-client account.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "productId": {
+              "description": "Required. The Content API ID of the product, in the form `channel:contentLanguage:targetCountry:offerId`.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/productdeliverytime/{productId}",
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
+        "get": {
+          "description": "Gets `productDeliveryTime` by `productId`.",
+          "flatPath": "{merchantId}/productdeliverytime/{productId}",
+          "httpMethod": "GET",
+          "id": "content.productdeliverytime.get",
+          "parameterOrder": [
+            "merchantId",
+            "productId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "Required. The Google merchant ID of the account that contains the product. This account cannot be a multi-client account.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "productId": {
+              "description": "Required. The Content API ID of the product, in the form `channel:contentLanguage:targetCountry:offerId`.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/productdeliverytime/{productId}",
+          "response": {
+            "$ref": "ProductDeliveryTime"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        }
+      }
+    },
     "products": {
       "methods": {
         "custombatch": {
@@ -5893,7 +5986,7 @@
       }
     }
   },
-  "revision": "20220331",
+  "revision": "20220428",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -8096,6 +8189,40 @@
       },
       "type": "object"
     },
+    "DeliveryArea": {
+      "description": "A delivery area for the product. Only one of `countryCode` or `postalCodeRange` must be set.",
+      "id": "DeliveryArea",
+      "properties": {
+        "countryCode": {
+          "description": "Required. The country that the product can be delivered to. Submit a [unicode CLDR region](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) such as `US` or `CH`.",
+          "type": "string"
+        },
+        "postalCodeRange": {
+          "$ref": "DeliveryAreaPostalCodeRange",
+          "description": "A postal code, postal code range or postal code prefix that defines this area. Limited to US and AUS."
+        },
+        "regionCode": {
+          "description": "A state, territory, or prefecture. This is supported for the United States, Australia, and Japan. Provide a subdivision code from the ISO 3166-2 code tables ([US](https://en.wikipedia.org/wiki/ISO_3166-2:US), [AU](https://en.wikipedia.org/wiki/ISO_3166-2:AU), or [JP](https://en.wikipedia.org/wiki/ISO_3166-2:JP)) without country prefix (for example, `\"NY\"`, `\"NSW\"`, `\"03\"`).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DeliveryAreaPostalCodeRange": {
+      "description": "A range of postal codes that defines the delivery area. Only set `firstPostalCode` when specifying a single postal code.",
+      "id": "DeliveryAreaPostalCodeRange",
+      "properties": {
+        "firstPostalCode": {
+          "description": "Required. A postal code or a pattern of the form prefix* denoting the inclusive lower bound of the range defining the area. Examples values: `\"94108\"`, `\"9410*\"`, `\"9*\"`.",
+          "type": "string"
+        },
+        "lastPostalCode": {
+          "description": "A postal code or a pattern of the form prefix* denoting the inclusive upper bound of the range defining the area (for example [070* - 078*] results in the range [07000 - 07899]). It must have the same length as `firstPostalCode`: if `firstPostalCode` is a postal code then `lastPostalCode` must be a postal code too; if firstPostalCode is a pattern then `lastPostalCode` must be a pattern with the same prefix length. Ignored if not set, then the area is defined as being all the postal codes matching `firstPostalCode`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DeliveryTime": {
       "id": "DeliveryTime",
       "properties": {
@@ -9417,6 +9544,21 @@
           "description": "Number of clicks.",
           "format": "int64",
           "type": "string"
+        },
+        "conversionRate": {
+          "description": "Number of conversions divided by the number of clicks, reported on the impression date. The metric is currently available only for the FREE_PRODUCT_LISTING program.",
+          "format": "double",
+          "type": "number"
+        },
+        "conversionValueMicros": {
+          "description": "Value of conversions in micros attributed to the product, reported on the conversion date. The metric is currently available only for the FREE_PRODUCT_LISTING program. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response.",
+          "format": "int64",
+          "type": "string"
+        },
+        "conversions": {
+          "description": "Number of conversions attributed to the product, reported on the conversion date. Depending on the attribution model, a conversion might be distributed across multiple clicks, where each click gets its own credit assigned. This metric is a sum of all such credits. The metric is currently available only for the FREE_PRODUCT_LISTING program.",
+          "format": "double",
+          "type": "number"
         },
         "ctr": {
           "description": "Click-through rate - the number of clicks merchant's products receive (clicks) divided by the number of times the products are shown (impressions).",
@@ -12609,6 +12751,10 @@
           "description": "The item's pattern (for example, polka dots).",
           "type": "string"
         },
+        "pause": {
+          "description": "Publication of this item should be temporarily paused. Acceptable values are: - \"`ads`\" ",
+          "type": "string"
+        },
         "pickupMethod": {
           "description": "The pick up option for the item. Acceptable values are: - \"`buy`\" - \"`reserve`\" - \"`ship to store`\" - \"`not supported`\" ",
           "type": "string"
@@ -12787,6 +12933,66 @@
       },
       "type": "object"
     },
+    "ProductDeliveryTime": {
+      "description": "The estimated days to deliver a product after an order is placed. Only authorized shipping signals partners working with a merchant can use this resource. Merchants should use the [`products`](https://developers.google.com/shopping-content/reference/rest/v2.1/products#productshipping) resource instead.",
+      "id": "ProductDeliveryTime",
+      "properties": {
+        "areaDeliveryTimes": {
+          "description": "Required. A set of associations between `DeliveryArea` and `DeliveryTime` entries. The total number of `areaDeliveryTimes` can be at most 100.",
+          "items": {
+            "$ref": "ProductDeliveryTimeAreaDeliveryTime"
+          },
+          "type": "array"
+        },
+        "productId": {
+          "$ref": "ProductId",
+          "description": "Required. The `id` of the product."
+        }
+      },
+      "type": "object"
+    },
+    "ProductDeliveryTimeAreaDeliveryTime": {
+      "description": "A pairing of `DeliveryArea` associated with a `DeliveryTime` for this product.",
+      "id": "ProductDeliveryTimeAreaDeliveryTime",
+      "properties": {
+        "deliveryArea": {
+          "$ref": "DeliveryArea",
+          "description": "Required. The delivery area associated with `deliveryTime` for this product."
+        },
+        "deliveryTime": {
+          "$ref": "ProductDeliveryTimeAreaDeliveryTimeDeliveryTime",
+          "description": "Required. The delivery time associated with `deliveryArea` for this product."
+        }
+      },
+      "type": "object"
+    },
+    "ProductDeliveryTimeAreaDeliveryTimeDeliveryTime": {
+      "description": "A delivery time for this product.",
+      "id": "ProductDeliveryTimeAreaDeliveryTimeDeliveryTime",
+      "properties": {
+        "maxHandlingTimeDays": {
+          "description": "Required. The maximum number of business days (inclusive) between when an order is placed and when the product ships. If a product ships in the same day, set this value to 0.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxTransitTimeDays": {
+          "description": "Required. The maximum number of business days (inclusive) between when the product ships and when the product is delivered.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minHandlingTimeDays": {
+          "description": "Required. The minimum number of business days (inclusive) between when an order is placed and when the product ships. If a product ships in the same day, set this value to 0.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minTransitTimeDays": {
+          "description": "Required. The minimum number of business days (inclusive) between when the product ships and when the product is delivered.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "ProductDimension": {
       "id": "ProductDimension",
       "properties": {
@@ -12798,6 +13004,17 @@
           "description": "Required. The length value represented as a number. The value can have a maximum precision of four decimal places.",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "ProductId": {
+      "description": "The Content API ID of the product.",
+      "id": "ProductId",
+      "properties": {
+        "productId": {
+          "description": "The Content API ID of the product, in the form `channel:contentLanguage:targetCountry:offerId`.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -13354,7 +13571,7 @@
       "type": "object"
     },
     "Promotion": {
-      "description": " The Promotions feature is currently in alpha and is not yet publicly available in Content API for Shopping. This documentation is provided for reference only may be subject to change. Represents a promotion. See the following articles for more details. * [Promotions feed specification](https://support.google.com/merchants/answer/2906014) * [Local promotions feed specification](https://support.google.com/merchants/answer/10146130) * [Promotions on Buy on Google product data specification](https://support.google.com/merchants/answer/9173673)",
+      "description": " The Promotions feature is publicly available for the US and CA locale (en language only) in Content API for Shopping. Represents a promotion. See the following articles for more details. * [Promotions feed specification](https://support.google.com/merchants/answer/2906014) * [Local promotions feed specification](https://support.google.com/merchants/answer/10146130) * [Promotions on Buy on Google product data specification](https://support.google.com/merchants/answer/9173673)",
       "id": "Promotion",
       "properties": {
         "brand": {
@@ -13431,7 +13648,7 @@
           "type": "integer"
         },
         "id": {
-          "description": "Required. Output only. The REST promotion id to uniquely identify the promotion. Content API methods that operate on promotions take this as their promotionId parameter. The REST ID for a promotion is of the form channel:contentLanguage:targetCountry:promotionId The channel field will have a value of \"online\", \"in_store\", or \"online_in_store\".",
+          "description": "Required. Output only. The REST promotion id to uniquely identify the promotion. Content API methods that operate on promotions take this as their promotionId parameter. The REST ID for a promotion is of the form [channel]:contentLanguage:targetCountry:promotionId The channel field will have a value of \"online\", \"in_store\", or \"online_in_store\".",
           "readOnly": true,
           "type": "string"
         },
@@ -13473,7 +13690,7 @@
           "description": "Maximum purchase value for the promotion."
         },
         "longTitle": {
-          "description": "Long title for the promotion.",
+          "description": "Required. Long title for the promotion.",
           "type": "string"
         },
         "minimumPurchaseAmount": {
