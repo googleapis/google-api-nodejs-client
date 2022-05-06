@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
                   "type": "string"
                 },
@@ -398,6 +398,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "rescheduleMaintenance": {
+                  "description": "Performs the apply phase of the RescheduleMaintenance verb.",
+                  "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:rescheduleMaintenance",
+                  "httpMethod": "POST",
+                  "id": "memcache.projects.locations.instances.rescheduleMaintenance",
+                  "parameterOrder": [
+                    "instance"
+                  ],
+                  "parameters": {
+                    "instance": {
+                      "description": "Required. Memcache instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta2/{+instance}:rescheduleMaintenance",
+                  "request": {
+                    "$ref": "RescheduleMaintenanceRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "updateParameters": {
                   "description": "Updates the defined Memcached parameters for an existing instance. This method only stages the parameters, it must be followed by `ApplyParameters` to apply the parameters to nodes of the Memcached instance.",
                   "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:updateParameters",
@@ -556,7 +584,7 @@
       }
     }
   },
-  "revision": "20220404",
+  "revision": "20220502",
   "rootUrl": "https://memcache.googleapis.com/",
   "schemas": {
     "ApplyParametersRequest": {
@@ -659,7 +687,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -772,7 +800,7 @@
           "type": "string"
         },
         "instanceType": {
-          "description": "Optional. The instance_type of this instance of format: projects/{project_id}/locations/{location_id}/instanceTypes/{instance_type_id}. Instance Type represents a high-level tier or SKU of the service that this instance belong to. When enabled(eg: Maintenance Rollout), Rollout uses 'instance_type' along with 'software_versions' to determine whether instance needs an update or not.",
+          "description": "Optional. The instance_type of this instance of format: projects/{project_number}/locations/{location_id}/instanceTypes/{instance_type_id}. Instance Type represents a high-level tier or SKU of the service that this instance belong to. When enabled(eg: Maintenance Rollout), Rollout uses 'instance_type' along with 'software_versions' to determine whether instance needs an update or not.",
           "type": "string"
         },
         "labels": {
@@ -801,7 +829,7 @@
           "description": "Optional. The MaintenanceSettings associated with instance."
         },
         "name": {
-          "description": "Unique name of the resource. It uses the form: `projects/{project_id|project_number}/locations/{location_id}/instances/{instance_id}` Note: Either project_id or project_number can be used, but keep it consistent with other APIs (e.g. RescheduleUpdate)",
+          "description": "Unique name of the resource. It uses the form: `projects/{project_number}/locations/{location_id}/instances/{instance_id}` Note: This name is passed, stored and logged across the rollout system. So use of consumer project_id or any other consumer PII in the name is strongly discouraged for wipeout (go/wipeout) compliance. See go/elysium/project_ids#storage-guidance for more details.",
           "type": "string"
         },
         "notificationParameters": {
@@ -1547,6 +1575,34 @@
         "verb": {
           "description": "Output only. Name of the verb executed by the operation.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RescheduleMaintenanceRequest": {
+      "description": "Request for RescheduleMaintenance.",
+      "id": "RescheduleMaintenanceRequest",
+      "properties": {
+        "rescheduleType": {
+          "description": "Required. If reschedule type is SPECIFIC_TIME, must set up schedule_time as well.",
+          "enum": [
+            "RESCHEDULE_TYPE_UNSPECIFIED",
+            "IMMEDIATE",
+            "NEXT_AVAILABLE_WINDOW",
+            "SPECIFIC_TIME"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "If the user wants to schedule the maintenance to happen now.",
+            "If the user wants to use the existing maintenance policy to find the next available window.",
+            "If the user wants to reschedule the maintenance to a specific time."
+          ],
+          "type": "string"
+        },
+        "scheduleTime": {
+          "description": "Timestamp when the maintenance shall be rescheduled to if reschedule_type=SPECIFIC_TIME, in RFC 3339 format, for example `2012-11-15T16:19:00.094Z`.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
