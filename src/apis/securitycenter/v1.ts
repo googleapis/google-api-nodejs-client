@@ -213,7 +213,7 @@ export namespace securitycenter_v1 {
     projectIds?: string[] | null;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -267,6 +267,31 @@ export namespace securitycenter_v1 {
      * This can be a mute configuration name or any identifier for mute/unmute of findings based on the filter.
      */
     muteAnnotation?: string | null;
+  }
+  /**
+   * Contains information about the IP connection associated with the finding.
+   */
+  export interface Schema$Connection {
+    /**
+     * Destination IP address. Not present for sockets that are listening and not connected.
+     */
+    destinationIp?: string | null;
+    /**
+     * Destination port. Not present for sockets that are listening and not connected.
+     */
+    destinationPort?: number | null;
+    /**
+     * IANA Internet Protocol Number such as TCP(6) and UDP(17).
+     */
+    protocol?: string | null;
+    /**
+     * Source IP address.
+     */
+    sourceIp?: string | null;
+    /**
+     * Source port.
+     */
+    sourcePort?: number | null;
   }
   /**
    * CVE stands for Common Vulnerabilities and Exposures. More information: https://cve.mitre.org
@@ -372,9 +397,17 @@ export namespace securitycenter_v1 {
      */
     category?: string | null;
     /**
+     * Contains information about the IP connection associated with the finding.
+     */
+    connections?: Schema$Connection[];
+    /**
      * The time at which the finding was created in Security Command Center.
      */
     createTime?: string | null;
+    /**
+     * Contains more detail about the finding.
+     */
+    description?: string | null;
     /**
      * The time the finding was first detected. If an existing finding is updated, then this is the time the update occurred. For example, if the finding represents an open firewall, this property captures the time the detector believes the firewall became open. The accuracy is determined by the detector. If the finding is later resolved, then this time reflects when the finding was resolved. This must not be set to a value greater than the current timestamp.
      */
@@ -4249,7 +4282,9 @@ export namespace securitycenter_v1 {
      *       //   "access": {},
      *       //   "canonicalName": "my_canonicalName",
      *       //   "category": "my_category",
+     *       //   "connections": [],
      *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
      *       //   "eventTime": "my_eventTime",
      *       //   "externalSystems": {},
      *       //   "externalUri": "my_externalUri",
@@ -4279,7 +4314,9 @@ export namespace securitycenter_v1 {
      *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
+     *   //   "connections": [],
      *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
      *   //   "eventTime": "my_eventTime",
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
@@ -4436,7 +4473,9 @@ export namespace securitycenter_v1 {
      *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
+     *   //   "connections": [],
      *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
      *   //   "eventTime": "my_eventTime",
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
@@ -4597,7 +4636,9 @@ export namespace securitycenter_v1 {
      *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
+     *   //   "connections": [],
      *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
      *   //   "eventTime": "my_eventTime",
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
@@ -10381,7 +10422,9 @@ export namespace securitycenter_v1 {
      *       //   "access": {},
      *       //   "canonicalName": "my_canonicalName",
      *       //   "category": "my_category",
+     *       //   "connections": [],
      *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
      *       //   "eventTime": "my_eventTime",
      *       //   "externalSystems": {},
      *       //   "externalUri": "my_externalUri",
@@ -10411,7 +10454,9 @@ export namespace securitycenter_v1 {
      *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
+     *   //   "connections": [],
      *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
      *   //   "eventTime": "my_eventTime",
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
@@ -10868,7 +10913,9 @@ export namespace securitycenter_v1 {
      *       //   "access": {},
      *       //   "canonicalName": "my_canonicalName",
      *       //   "category": "my_category",
+     *       //   "connections": [],
      *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
      *       //   "eventTime": "my_eventTime",
      *       //   "externalSystems": {},
      *       //   "externalUri": "my_externalUri",
@@ -10898,7 +10945,9 @@ export namespace securitycenter_v1 {
      *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
+     *   //   "connections": [],
      *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
      *   //   "eventTime": "my_eventTime",
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
@@ -11055,7 +11104,9 @@ export namespace securitycenter_v1 {
      *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
+     *   //   "connections": [],
      *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
      *   //   "eventTime": "my_eventTime",
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
@@ -11216,7 +11267,9 @@ export namespace securitycenter_v1 {
      *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
+     *   //   "connections": [],
      *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
      *   //   "eventTime": "my_eventTime",
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
@@ -14595,7 +14648,9 @@ export namespace securitycenter_v1 {
      *       //   "access": {},
      *       //   "canonicalName": "my_canonicalName",
      *       //   "category": "my_category",
+     *       //   "connections": [],
      *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
      *       //   "eventTime": "my_eventTime",
      *       //   "externalSystems": {},
      *       //   "externalUri": "my_externalUri",
@@ -14625,7 +14680,9 @@ export namespace securitycenter_v1 {
      *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
+     *   //   "connections": [],
      *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
      *   //   "eventTime": "my_eventTime",
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
@@ -14782,7 +14839,9 @@ export namespace securitycenter_v1 {
      *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
+     *   //   "connections": [],
      *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
      *   //   "eventTime": "my_eventTime",
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
@@ -14943,7 +15002,9 @@ export namespace securitycenter_v1 {
      *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
+     *   //   "connections": [],
      *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
      *   //   "eventTime": "my_eventTime",
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
