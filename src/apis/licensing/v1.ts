@@ -103,7 +103,7 @@ export namespace licensing_v1 {
   /**
    * Enterprise License Manager API
    *
-   * The Google Enterprise License Manager API&#39;s allows you to license apps for all the users of a domain managed by you.
+   * The Google Enterprise License Manager API lets you manage Google Workspace and related licenses for all users of a customer that you manage.
    *
    * @example
    * ```js
@@ -650,7 +650,7 @@ export namespace licensing_v1 {
      *
      *   // Do the magic
      *   const res = await licensing.licenseAssignments.listForProduct({
-     *     // Customer's `customerId`. A previous version of this API accepted the primary domain name as a value for this field. If the customer is suspended, the server returns an error.
+     *     // The customer's unique ID as defined in the Admin console, such as `C00000000`. If the customer is suspended, the server returns an error.
      *     customerId: 'placeholder-value',
      *     // The `maxResults` query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number.
      *     maxResults: 'placeholder-value',
@@ -794,7 +794,7 @@ export namespace licensing_v1 {
      *
      *   // Do the magic
      *   const res = await licensing.licenseAssignments.listForProductAndSku({
-     *     // Customer's `customerId`. A previous version of this API accepted the primary domain name as a value for this field. If the customer is suspended, the server returns an error.
+     *     // The customer's unique ID as defined in the Admin console, such as `C00000000`. If the customer is suspended, the server returns an error.
      *     customerId: 'placeholder-value',
      *     // The `maxResults` query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number.
      *     maxResults: 'placeholder-value',
@@ -1280,7 +1280,7 @@ export namespace licensing_v1 {
   export interface Params$Resource$Licenseassignments$Listforproduct
     extends StandardParameters {
     /**
-     * Customer's `customerId`. A previous version of this API accepted the primary domain name as a value for this field. If the customer is suspended, the server returns an error.
+     * The customer's unique ID as defined in the Admin console, such as `C00000000`. If the customer is suspended, the server returns an error.
      */
     customerId?: string;
     /**
@@ -1299,7 +1299,7 @@ export namespace licensing_v1 {
   export interface Params$Resource$Licenseassignments$Listforproductandsku
     extends StandardParameters {
     /**
-     * Customer's `customerId`. A previous version of this API accepted the primary domain name as a value for this field. If the customer is suspended, the server returns an error.
+     * The customer's unique ID as defined in the Admin console, such as `C00000000`. If the customer is suspended, the server returns an error.
      */
     customerId?: string;
     /**
