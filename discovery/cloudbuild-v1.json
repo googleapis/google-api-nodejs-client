@@ -745,7 +745,7 @@
                   ]
                 },
                 "removeBitbucketServerConnectedRepository": {
-                  "description": "Remove a Bitbucket Server repository from an given BitbucketServerConfig’s connected repositories. This API is experimental.",
+                  "description": "Remove a Bitbucket Server repository from a given BitbucketServerConfig's connected repositories. This API is experimental.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/bitbucketServerConfigs/{bitbucketServerConfigsId}:removeBitbucketServerConnectedRepository",
                   "httpMethod": "POST",
                   "id": "cloudbuild.projects.locations.bitbucketServerConfigs.removeBitbucketServerConnectedRepository",
@@ -2011,7 +2011,7 @@
       }
     }
   },
-  "revision": "20220322",
+  "revision": "20220428",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ApprovalConfig": {
