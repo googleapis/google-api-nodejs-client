@@ -14,27 +14,44 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {firebaseappcheck_v1} from './v1';
 import {firebaseappcheck_v1beta} from './v1beta';
 
 export const VERSIONS = {
+  v1: firebaseappcheck_v1.Firebaseappcheck,
   v1beta: firebaseappcheck_v1beta.Firebaseappcheck,
 };
 
+export function firebaseappcheck(
+  version: 'v1'
+): firebaseappcheck_v1.Firebaseappcheck;
+export function firebaseappcheck(
+  options: firebaseappcheck_v1.Options
+): firebaseappcheck_v1.Firebaseappcheck;
 export function firebaseappcheck(
   version: 'v1beta'
 ): firebaseappcheck_v1beta.Firebaseappcheck;
 export function firebaseappcheck(
   options: firebaseappcheck_v1beta.Options
 ): firebaseappcheck_v1beta.Firebaseappcheck;
-export function firebaseappcheck<T = firebaseappcheck_v1beta.Firebaseappcheck>(
+export function firebaseappcheck<
+  T =
+    | firebaseappcheck_v1.Firebaseappcheck
+    | firebaseappcheck_v1beta.Firebaseappcheck
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1beta' | firebaseappcheck_v1beta.Options
+  versionOrOptions:
+    | 'v1'
+    | firebaseappcheck_v1.Options
+    | 'v1beta'
+    | firebaseappcheck_v1beta.Options
 ) {
   return getAPI<T>('firebaseappcheck', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
+export {firebaseappcheck_v1};
 export {firebaseappcheck_v1beta};
 export {
   AuthPlus,
