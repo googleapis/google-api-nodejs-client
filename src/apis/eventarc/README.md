@@ -2,7 +2,7 @@
 
 # eventarc
 
-> 
+> Build event-driven applications on Google Cloud Platform.
 
 ## Support status
 **Note**: Google provides multiple libraries for this service. This library is in
