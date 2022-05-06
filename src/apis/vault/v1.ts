@@ -909,6 +909,10 @@ export namespace vault_v1 {
      */
     sharedDriveInfo?: Schema$SharedDriveInfo;
     /**
+     * Required when **SearchMethod** is **SITES_URL**.
+     */
+    sitesUrlInfo?: Schema$SitesUrlInfo;
+    /**
      * The start time for the search query. Specify in GMT. The value is rounded to 12 AM on the specified date.
      */
     startTime?: string | null;
@@ -1002,6 +1006,15 @@ export namespace vault_v1 {
      * A list of shared drive IDs, as provided by the [Drive API](https://developers.google.com/drive).
      */
     sharedDriveIds?: string[] | null;
+  }
+  /**
+   * The published site URLs of new Google Sites to search
+   */
+  export interface Schema$SitesUrlInfo {
+    /**
+     * A list of published site URLs.
+     */
+    urls?: string[] | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
