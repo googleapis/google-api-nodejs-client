@@ -3789,7 +3789,7 @@
       }
     }
   },
-  "revision": "20220409",
+  "revision": "20220504",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -5742,6 +5742,9 @@
             "cbfcUnspecified",
             "cbfcU",
             "cbfcUA",
+            "cbfcUA7plus",
+            "cbfcUA13plus",
+            "cbfcUA16plus",
             "cbfcA",
             "cbfcS",
             "cbfcUnrated"
@@ -5750,6 +5753,9 @@
             "",
             "U",
             "U/A",
+            "U/A 7+",
+            "U/A 13+",
+            "U/A 16+",
             "A",
             "S",
             ""
