@@ -3194,8 +3194,12 @@ export namespace drive_v3 {
      *
      *   // Do the magic
      *   const res = await drive.drives.delete({
+     *     // Whether any items inside the shared drive should also be deleted. This option is only supported when useDomainAdminAccess is also set to true.
+     *     allowItemDeletion: 'placeholder-value',
      *     // The ID of the shared drive.
      *     driveId: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the shared drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      * }
@@ -4020,9 +4024,17 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Drives$Delete extends StandardParameters {
     /**
+     * Whether any items inside the shared drive should also be deleted. This option is only supported when useDomainAdminAccess is also set to true.
+     */
+    allowItemDeletion?: boolean;
+    /**
      * The ID of the shared drive.
      */
     driveId?: string;
+    /**
+     * Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the shared drive belongs.
+     */
+    useDomainAdminAccess?: boolean;
   }
   export interface Params$Resource$Drives$Get extends StandardParameters {
     /**
@@ -5799,7 +5811,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Subscribes to changes to a file. While you can establish a channel forchanges to a file on a shared drive, a change to a shared drive file won't create a notification.
+     * Subscribes to changes to a file. While you can establish a channel for changes to a file on a shared drive, a change to a shared drive file won't create a notification.
      * @example
      * ```js
      * // Before running the sample:
