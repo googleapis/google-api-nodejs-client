@@ -341,6 +341,41 @@
           "supportsMediaDownload": true,
           "useMediaDownloadService": true
         },
+        "getIdMappingFile": {
+          "description": "Downloads a csv file(encoded in UTF-8) that contains ID mappings between legacy SA360 and new SA360. The file includes all children entities of the given advertiser(e.g. engine accounts, campaigns, ad groups, etc.) that exist in both legacy SA360 and new SA360.",
+          "flatPath": "doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/idmapping",
+          "httpMethod": "GET",
+          "id": "doubleclicksearch.reports.getIdMappingFile",
+          "parameterOrder": [
+            "agencyId",
+            "advertiserId"
+          ],
+          "parameters": {
+            "advertiserId": {
+              "description": "Legacy SA360 advertiser ID.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "agencyId": {
+              "description": "Legacy SA360 agency ID.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/idmapping",
+          "response": {
+            "$ref": "IdMappingFile"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/doubleclicksearch"
+          ],
+          "supportsMediaDownload": true,
+          "useMediaDownloadService": true
+        },
         "request": {
           "description": "Inserts a report request into the reporting system.",
           "flatPath": "doubleclicksearch/v2/reports",
@@ -399,7 +434,7 @@
       }
     }
   },
-  "revision": "20200929",
+  "revision": "20220503",
   "rootUrl": "https://doubleclicksearch.googleapis.com/",
   "schemas": {
     "Availability": {
@@ -678,6 +713,12 @@
           "type": "number"
         }
       },
+      "type": "object"
+    },
+    "IdMappingFile": {
+      "description": "File returned to https://developers.google.com/search-ads/v2/reference/reports/getIdMappingFile.",
+      "id": "IdMappingFile",
+      "properties": {},
       "type": "object"
     },
     "Report": {
