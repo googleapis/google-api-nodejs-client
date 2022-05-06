@@ -1241,10 +1241,6 @@ export namespace networkservices_v1beta1 {
      */
     description?: string | null;
     /**
-     * Optional. Gateways defines a list of gateways this TcpRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/x/locations/global/gateways/`
-     */
-    gateways?: string[] | null;
-    /**
      * Optional. Set of label tags associated with the TcpRoute resource.
      */
     labels?: {[key: string]: string} | null;
@@ -8764,7 +8760,6 @@ export namespace networkservices_v1beta1 {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
-     *       //   "gateways": [],
      *       //   "labels": {},
      *       //   "meshes": [],
      *       //   "name": "my_name",
@@ -9045,7 +9040,6 @@ export namespace networkservices_v1beta1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
-     *   //   "gateways": [],
      *   //   "labels": {},
      *   //   "meshes": [],
      *   //   "name": "my_name",
@@ -9322,7 +9316,6 @@ export namespace networkservices_v1beta1 {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
-     *       //   "gateways": [],
      *       //   "labels": {},
      *       //   "meshes": [],
      *       //   "name": "my_name",
