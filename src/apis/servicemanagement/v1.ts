@@ -170,7 +170,7 @@ export namespace servicemanagement_v1 {
     version?: string | null;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -969,7 +969,7 @@ export namespace servicemanagement_v1 {
      */
     producerProjectId?: string | null;
     /**
-     * The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements.
+     * The name of the service. See the [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.
      */
     serviceName?: string | null;
   }
@@ -5106,7 +5106,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.rollouts.list({
-     *     // Required. Use `filter` to return subset of rollouts. The following filters are supported: -- To limit the results to only those in status 'SUCCESS', use filter='status=SUCCESS' -- To limit the results to those in status 'CANCELLED' or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
+     *     // Required. Use `filter` to return subset of rollouts. The following filters are supported: -- By status. For example, `filter='status=SUCCESS'` -- By strategy. For example, `filter='strategy=TrafficPercentStrategy'`
      *     filter: 'placeholder-value',
      *     // The max number of items to include in the response list. Page size is 50 if not specified. Maximum value is 100.
      *     pageSize: 'placeholder-value',
@@ -5250,7 +5250,7 @@ export namespace servicemanagement_v1 {
   export interface Params$Resource$Services$Rollouts$List
     extends StandardParameters {
     /**
-     * Required. Use `filter` to return subset of rollouts. The following filters are supported: -- To limit the results to only those in status 'SUCCESS', use filter='status=SUCCESS' -- To limit the results to those in status 'CANCELLED' or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
+     * Required. Use `filter` to return subset of rollouts. The following filters are supported: -- By status. For example, `filter='status=SUCCESS'` -- By strategy. For example, `filter='strategy=TrafficPercentStrategy'`
      */
     filter?: string;
     /**
