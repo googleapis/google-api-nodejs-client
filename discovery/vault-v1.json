@@ -1193,7 +1193,7 @@
       }
     }
   },
-  "revision": "20220331",
+  "revision": "20220423",
   "rootUrl": "https://vault.googleapis.com/",
   "schemas": {
     "AccountCount": {
@@ -2329,6 +2329,7 @@
             "TEAM_DRIVE",
             "ENTIRE_ORG",
             "ROOM",
+            "SITES_URL",
             "SHARED_DRIVE"
           ],
           "enumDescriptions": [
@@ -2338,6 +2339,7 @@
             "Search the data in the Team Drive specified in **team_drive_info**.",
             "Search the data of all accounts in the organization. Supported only for Gmail. When specified, you don't need to specify **AccountInfo** or **OrgUnitInfo**.",
             "Search messages in the Chat spaces specified in [HangoutsChatInfo](https://developers.google.com/vault/reference/rest/v1/Query#hangoutschatinfo).",
+            "Search for sites by the published site URLs specified in [SitesUrlInfo](https://developers.google.com/vault/reference/rest/v1/Query#sitesurlinfo).",
             "Search the files in the shared drives specified in [SharedDriveInfo](https://developers.google.com/vault/reference/rest/v1/Query#shareddriveinfo)."
           ],
           "type": "string"
@@ -2355,6 +2357,7 @@
             "TEAM_DRIVE",
             "ENTIRE_ORG",
             "ROOM",
+            "SITES_URL",
             "SHARED_DRIVE"
           ],
           "enumDescriptions": [
@@ -2364,6 +2367,7 @@
             "Search the data in the Team Drive specified in **team_drive_info**.",
             "Search the data of all accounts in the organization. Supported only for Gmail. When specified, you don't need to specify **AccountInfo** or **OrgUnitInfo**.",
             "Search messages in the Chat spaces specified in [HangoutsChatInfo](https://developers.google.com/vault/reference/rest/v1/Query#hangoutschatinfo).",
+            "Search for sites by the published site URLs specified in [SitesUrlInfo](https://developers.google.com/vault/reference/rest/v1/Query#sitesurlinfo).",
             "Search the files in the shared drives specified in [SharedDriveInfo](https://developers.google.com/vault/reference/rest/v1/Query#shareddriveinfo)."
           ],
           "type": "string"
@@ -2371,6 +2375,10 @@
         "sharedDriveInfo": {
           "$ref": "SharedDriveInfo",
           "description": "Required when **SearchMethod** is **SHARED_DRIVE**."
+        },
+        "sitesUrlInfo": {
+          "$ref": "SitesUrlInfo",
+          "description": "Required when **SearchMethod** is **SITES_URL**."
         },
         "startTime": {
           "description": "The start time for the search query. Specify in GMT. The value is rounded to 12 AM on the specified date.",
@@ -2486,6 +2494,20 @@
       "properties": {
         "sharedDriveIds": {
           "description": "A list of shared drive IDs, as provided by the [Drive API](https://developers.google.com/drive).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SitesUrlInfo": {
+      "description": "The published site URLs of new Google Sites to search",
+      "id": "SitesUrlInfo",
+      "properties": {
+        "urls": {
+          "description": "A list of published site URLs.",
           "items": {
             "type": "string"
           },
