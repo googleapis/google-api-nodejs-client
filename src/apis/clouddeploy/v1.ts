@@ -182,7 +182,7 @@ export namespace clouddeploy_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -298,6 +298,23 @@ export namespace clouddeploy_v1 {
      * Output only. Most recent time at which the pipeline was updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Payload proto for "clouddeploy.googleapis.com/deliverypipeline_notification" Platform Log event that describes the failure to send delivery pipeline status change Pub/Sub notification.
+   */
+  export interface Schema$DeliveryPipelineNotificationEvent {
+    /**
+     * The name of the `Delivery Pipeline`.
+     */
+    deliveryPipeline?: string | null;
+    /**
+     * Debug message for when a notification fails to send.
+     */
+    message?: string | null;
+    /**
+     * Type of this notification, e.g. for a Pub/Sub failure.
+     */
+    type?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -685,6 +702,36 @@ export namespace clouddeploy_v1 {
     uid?: string | null;
   }
   /**
+   * Payload proto for "clouddeploy.googleapis.com/release_notification" Platform Log event that describes the failure to send release status change Pub/Sub notification.
+   */
+  export interface Schema$ReleaseNotificationEvent {
+    /**
+     * Debug message for when a notification fails to send.
+     */
+    message?: string | null;
+    /**
+     * The name of the `Release`.
+     */
+    release?: string | null;
+    /**
+     * Type of this notification, e.g. for a Pub/Sub failure.
+     */
+    type?: string | null;
+  }
+  /**
+   * Payload proto for "clouddeploy.googleapis.com/release_render" Platform Log event that describes the render status change.
+   */
+  export interface Schema$ReleaseRenderEvent {
+    /**
+     * Debug message for when a render transition occurs. Provides further details as rendering progresses through render states.
+     */
+    message?: string | null;
+    /**
+     * The name of the `Release`.
+     */
+    release?: string | null;
+  }
+  /**
    * A `Rollout` resource in the Google Cloud Deploy API. A `Rollout` contains information around a specific deployment to a `Target`.
    */
   export interface Schema$Rollout {
@@ -758,6 +805,35 @@ export namespace clouddeploy_v1 {
     uid?: string | null;
   }
   /**
+   * Payload proto for "clouddeploy.googleapis.com/rollout_notification" Platform Log event that describes the failure to send rollout status change Pub/Sub notification.
+   */
+  export interface Schema$RolloutNotificationEvent {
+    /**
+     * Debug message for when a notification fails to send.
+     */
+    message?: string | null;
+    /**
+     * Unique identifier of the `DeliveryPipeline`.
+     */
+    pipelineUid?: string | null;
+    /**
+     * Unique identifier of the `Release`.
+     */
+    releaseUid?: string | null;
+    /**
+     * The name of the `Rollout`.
+     */
+    rollout?: string | null;
+    /**
+     * ID of the `Target` that the rollout is deployed to.
+     */
+    targetId?: string | null;
+    /**
+     * Type of this notification, e.g. for a Pub/Sub failure.
+     */
+    type?: string | null;
+  }
+  /**
    * SerialPipeline defines a sequential set of stages for a `DeliveryPipeline`.
    */
   export interface Schema$SerialPipeline {
@@ -771,7 +847,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$SetIamPolicyRequest {
     /**
-     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
+     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
     /**
@@ -897,6 +973,23 @@ export namespace clouddeploy_v1 {
     skaffoldConfigPath?: string | null;
   }
   /**
+   * Payload proto for "clouddeploy.googleapis.com/target_notification" Platform Log event that describes the failure to send target status change Pub/Sub notification.
+   */
+  export interface Schema$TargetNotificationEvent {
+    /**
+     * Debug message for when a notification fails to send.
+     */
+    message?: string | null;
+    /**
+     * The name of the `Target`.
+     */
+    target?: string | null;
+    /**
+     * Type of this notification, e.g. for a Pub/Sub failure.
+     */
+    type?: string | null;
+  }
+  /**
    * Details of rendering for a single target.
    */
   export interface Schema$TargetRender {
@@ -935,7 +1028,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[] | null;
   }
@@ -1258,7 +1351,7 @@ export namespace clouddeploy_v1 {
      *
      *   // Do the magic
      *   const res = await clouddeploy.projects.locations.list({
-     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
@@ -1390,7 +1483,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
     /**
