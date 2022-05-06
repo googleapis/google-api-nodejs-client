@@ -937,7 +937,7 @@ export namespace datastore_v1beta3 {
    */
   export interface Schema$RunQueryRequest {
     /**
-     * The GQL query to run.
+     * The GQL query to run. This query must be a non-aggregation query.
      */
     gqlQuery?: Schema$GqlQuery;
     /**

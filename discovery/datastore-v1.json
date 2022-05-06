@@ -626,7 +626,7 @@
       }
     }
   },
-  "revision": "20220402",
+  "revision": "20220428",
   "rootUrl": "https://datastore.googleapis.com/",
   "schemas": {
     "AllocateIdsRequest": {
@@ -2111,7 +2111,7 @@
       "properties": {
         "gqlQuery": {
           "$ref": "GqlQuery",
-          "description": "The GQL query to run."
+          "description": "The GQL query to run. This query must be a non-aggregation query."
         },
         "partitionId": {
           "$ref": "PartitionId",
