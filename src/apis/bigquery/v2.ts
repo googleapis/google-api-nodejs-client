@@ -357,7 +357,7 @@ export namespace bigquery_v2 {
     timeSeriesIds?: string[] | null;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -548,7 +548,7 @@ export namespace bigquery_v2 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -827,7 +827,7 @@ export namespace bigquery_v2 {
     /**
      * [Output-only] Reserved for future use.
      */
-    satisfiesPZS?: boolean | null;
+    satisfiesPzs?: boolean | null;
     /**
      * [Output-only] A URL that can be used to access the resource again. You can use this URL in Get or Update requests to the resource.
      */
@@ -2348,6 +2348,10 @@ export namespace bigquery_v2 {
      */
     lastRefreshTime?: string | null;
     /**
+     * [Optional] Max staleness of data that could be returned when materizlized view is queried (formatted as Google SQL Interval type).
+     */
+    maxStaleness?: string | null;
+    /**
      * [Required] A query whose result is persisted.
      */
     query?: string | null;
@@ -2820,6 +2824,27 @@ export namespace bigquery_v2 {
     rSquared?: number | null;
   }
   /**
+   * Options for a remote user-defined function.
+   */
+  export interface Schema$RemoteFunctionOptions {
+    /**
+     * Fully qualified name of the user-provided connection object which holds the authentication information to send requests to the remote service. projects/{project_id\}/locations/{location_id\}/connections/{connection_id\}
+     */
+    connection?: string | null;
+    /**
+     * Endpoint of the user-provided remote service (e.g. a function url in Google Cloud Functions).
+     */
+    endpoint?: string | null;
+    /**
+     * Max number of rows in each batch sent to the remote service. If absent or if 0, it means no limit.
+     */
+    maxBatchingRows?: string | null;
+    /**
+     * User-defined context as a set of key/value pairs, which will be sent as function invocation context together with batched arguments in the requests to the remote service. The total number of bytes of keys and values must be less than 8KB.
+     */
+    userDefinedContext?: {[key: string]: string} | null;
+  }
+  /**
    * A user-defined function or a stored procedure.
    */
   export interface Schema$Routine {
@@ -2859,6 +2884,10 @@ export namespace bigquery_v2 {
      * Output only. The time when this routine was last modified, in milliseconds since the epoch.
      */
     lastModifiedTime?: string | null;
+    /**
+     * Optional. Remote function specific options.
+     */
+    remoteFunctionOptions?: Schema$RemoteFunctionOptions;
     /**
      * Optional. Can be set only if routine_type = "TABLE_VALUED_FUNCTION". If absent, the return table type is inferred from definition_body at query time in each query that references this routine. If present, then the columns in the evaluated table result will be cast to match the column types specificed in return table type, at query time.
      */
@@ -3003,7 +3032,7 @@ export namespace bigquery_v2 {
    */
   export interface Schema$SetIamPolicyRequest {
     /**
-     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
+     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
     /**
@@ -3309,7 +3338,11 @@ export namespace bigquery_v2 {
     /**
      * Optional. Collation specification of the field. It only can be set on string type field.
      */
-    collationSpec?: string | null;
+    collation?: string | null;
+    /**
+     * Optional. A SQL expression to specify the default value for this field. It can only be set for top level fields (columns). You can use struct or array expression to specify default value for the entire struct or array. The valid SQL expressions are: - Literals for all data types, including STRUCT and ARRAY. - Following functions: - CURRENT_TIMESTAMP - CURRENT_TIME - CURRENT_DATE - CURRENT_DATETIME - GENERATE_UUID - RAND - SESSION_USER - ST_GEOGPOINT - Struct or array composed with the above allowed functions, for example, [CURRENT_DATE(), DATE '2020-01-01']
+     */
+    defaultValueExpression?: string | null;
     /**
      * [Optional] The field description. The maximum length is 1,024 characters.
      */
@@ -3410,7 +3443,7 @@ export namespace bigquery_v2 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[] | null;
   }
@@ -3960,7 +3993,7 @@ export namespace bigquery_v2 {
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
      *   //   "maxTimeTravelHours": "my_maxTimeTravelHours",
-     *   //   "satisfiesPZS": false,
+     *   //   "satisfiesPzs": false,
      *   //   "selfLink": "my_selfLink",
      *   //   "tags": []
      *   // }
@@ -4109,7 +4142,7 @@ export namespace bigquery_v2 {
      *       //   "lastModifiedTime": "my_lastModifiedTime",
      *       //   "location": "my_location",
      *       //   "maxTimeTravelHours": "my_maxTimeTravelHours",
-     *       //   "satisfiesPZS": false,
+     *       //   "satisfiesPzs": false,
      *       //   "selfLink": "my_selfLink",
      *       //   "tags": []
      *       // }
@@ -4136,7 +4169,7 @@ export namespace bigquery_v2 {
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
      *   //   "maxTimeTravelHours": "my_maxTimeTravelHours",
-     *   //   "satisfiesPZS": false,
+     *   //   "satisfiesPzs": false,
      *   //   "selfLink": "my_selfLink",
      *   //   "tags": []
      *   // }
@@ -4429,7 +4462,7 @@ export namespace bigquery_v2 {
      *       //   "lastModifiedTime": "my_lastModifiedTime",
      *       //   "location": "my_location",
      *       //   "maxTimeTravelHours": "my_maxTimeTravelHours",
-     *       //   "satisfiesPZS": false,
+     *       //   "satisfiesPzs": false,
      *       //   "selfLink": "my_selfLink",
      *       //   "tags": []
      *       // }
@@ -4456,7 +4489,7 @@ export namespace bigquery_v2 {
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
      *   //   "maxTimeTravelHours": "my_maxTimeTravelHours",
-     *   //   "satisfiesPZS": false,
+     *   //   "satisfiesPzs": false,
      *   //   "selfLink": "my_selfLink",
      *   //   "tags": []
      *   // }
@@ -4607,7 +4640,7 @@ export namespace bigquery_v2 {
      *       //   "lastModifiedTime": "my_lastModifiedTime",
      *       //   "location": "my_location",
      *       //   "maxTimeTravelHours": "my_maxTimeTravelHours",
-     *       //   "satisfiesPZS": false,
+     *       //   "satisfiesPzs": false,
      *       //   "selfLink": "my_selfLink",
      *       //   "tags": []
      *       // }
@@ -4634,7 +4667,7 @@ export namespace bigquery_v2 {
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
      *   //   "maxTimeTravelHours": "my_maxTimeTravelHours",
-     *   //   "satisfiesPZS": false,
+     *   //   "satisfiesPzs": false,
      *   //   "selfLink": "my_selfLink",
      *   //   "tags": []
      *   // }
@@ -7194,6 +7227,7 @@ export namespace bigquery_v2 {
      *   //   "importedLibraries": [],
      *   //   "language": "my_language",
      *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "remoteFunctionOptions": {},
      *   //   "returnTableType": {},
      *   //   "returnType": {},
      *   //   "routineReference": {},
@@ -7340,6 +7374,7 @@ export namespace bigquery_v2 {
      *       //   "importedLibraries": [],
      *       //   "language": "my_language",
      *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "remoteFunctionOptions": {},
      *       //   "returnTableType": {},
      *       //   "returnType": {},
      *       //   "routineReference": {},
@@ -7361,6 +7396,7 @@ export namespace bigquery_v2 {
      *   //   "importedLibraries": [],
      *   //   "language": "my_language",
      *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "remoteFunctionOptions": {},
      *   //   "returnTableType": {},
      *   //   "returnType": {},
      *   //   "routineReference": {},
@@ -7657,6 +7693,7 @@ export namespace bigquery_v2 {
      *       //   "importedLibraries": [],
      *       //   "language": "my_language",
      *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "remoteFunctionOptions": {},
      *       //   "returnTableType": {},
      *       //   "returnType": {},
      *       //   "routineReference": {},
@@ -7678,6 +7715,7 @@ export namespace bigquery_v2 {
      *   //   "importedLibraries": [],
      *   //   "language": "my_language",
      *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "remoteFunctionOptions": {},
      *   //   "returnTableType": {},
      *   //   "returnType": {},
      *   //   "routineReference": {},
