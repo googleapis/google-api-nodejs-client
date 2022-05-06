@@ -126,6 +126,23 @@ export namespace admob_v1beta {
   }
 
   /**
+   * Definition of a mediation ad source.
+   */
+  export interface Schema$AdSource {
+    /**
+     * ID of this ad source.
+     */
+    adSourceId?: string | null;
+    /**
+     * Resource name of this ad source. Format is: accounts/{publisher_id\}/adSources/{ad_source_id\}
+     */
+    name?: string | null;
+    /**
+     * Display name of this ad source.
+     */
+    title?: string | null;
+  }
+  /**
    * Describes an AdMob ad unit.
    */
   export interface Schema$AdUnit {
@@ -282,6 +299,19 @@ export namespace admob_v1beta {
      * Actual report data.
      */
     row?: Schema$ReportRow;
+  }
+  /**
+   * Response for the ListAdSourcesRequest.
+   */
+  export interface Schema$ListAdSourcesResponse {
+    /**
+     * The ad sources.
+     */
+    adSources?: Schema$AdSource[];
+    /**
+     * Used to set the `page_token` in the `ListAdSourcesRequest` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * Response for the ad units list request.
@@ -588,12 +618,14 @@ export namespace admob_v1beta {
 
   export class Resource$Accounts {
     context: APIRequestContext;
+    adSources: Resource$Accounts$Adsources;
     adUnits: Resource$Accounts$Adunits;
     apps: Resource$Accounts$Apps;
     mediationReport: Resource$Accounts$Mediationreport;
     networkReport: Resource$Accounts$Networkreport;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.adSources = new Resource$Accounts$Adsources(this.context);
       this.adUnits = new Resource$Accounts$Adunits(this.context);
       this.apps = new Resource$Accounts$Apps(this.context);
       this.mediationReport = new Resource$Accounts$Mediationreport(
@@ -889,6 +921,168 @@ export namespace admob_v1beta {
      * The value returned by the last `ListPublisherAccountsResponse`; indicates that this is a continuation of a prior `ListPublisherAccounts` call, and that the system should return the next page of data.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Accounts$Adsources {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * List the ad sources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admob.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admob = google.admob('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await admob.accounts.adSources.list({
+     *     // The maximum number of ad sources to return. If unspecified or 0, at most 1000 ad sources will be returned. The maximum value is 10,000; values above 10,000 will be coerced to 10,000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListAdSources` call. Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent which owns this collection of ad sources. Format: accounts/{publisher_id\}
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adSources": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Accounts$Adsources$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Accounts$Adsources$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAdSourcesResponse>;
+    list(
+      params: Params$Resource$Accounts$Adsources$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Adsources$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAdSourcesResponse>,
+      callback: BodyResponseCallback<Schema$ListAdSourcesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Adsources$List,
+      callback: BodyResponseCallback<Schema$ListAdSourcesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListAdSourcesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Adsources$List
+        | BodyResponseCallback<Schema$ListAdSourcesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAdSourcesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAdSourcesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAdSourcesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Adsources$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Adsources$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://admob.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/adSources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAdSourcesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAdSourcesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Adsources$List
+    extends StandardParameters {
+    /**
+     * The maximum number of ad sources to return. If unspecified or 0, at most 1000 ad sources will be returned. The maximum value is 10,000; values above 10,000 will be coerced to 10,000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListAdSources` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent which owns this collection of ad sources. Format: accounts/{publisher_id\}
+     */
+    parent?: string;
   }
 
   export class Resource$Accounts$Adunits {
