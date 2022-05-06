@@ -1994,7 +1994,7 @@
       }
     }
   },
-  "revision": "20220404",
+  "revision": "20220419",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "AclInfo": {
@@ -5500,6 +5500,10 @@
         },
         "groupId": {
           "$ref": "GroupId"
+        },
+        "inviterEmail": {
+          "description": "The email address of the user that invited the calling user to the room, if available. This field will only be populated for direct invites, it will be empty if the user was indirectly invited to the group.",
+          "type": "string"
         },
         "isExternal": {
           "description": "Whether this is a space that enables guest access",

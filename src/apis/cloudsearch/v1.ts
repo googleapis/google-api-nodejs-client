@@ -2322,6 +2322,10 @@ export namespace cloudsearch_v1 {
     description?: string | null;
     groupId?: Schema$GroupId;
     /**
+     * The email address of the user that invited the calling user to the room, if available. This field will only be populated for direct invites, it will be empty if the user was indirectly invited to the group.
+     */
+    inviterEmail?: string | null;
+    /**
      * Whether this is a space that enables guest access
      */
     isExternal?: boolean | null;
