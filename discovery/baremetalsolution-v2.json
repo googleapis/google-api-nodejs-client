@@ -290,7 +290,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "The list of fields to update. The only currently supported fields are: `labels`",
+                      "description": "The list of fields to update. The only currently supported fields are: `labels` `hyperthreading_enabled`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -355,6 +355,34 @@
                   "path": "v2/{+name}:start",
                   "request": {
                     "$ref": "StartInstanceRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "stop": {
+                  "description": "Stop a running server.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:stop",
+                  "httpMethod": "POST",
+                  "id": "baremetalsolution.projects.locations.instances.stop",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:stop",
+                  "request": {
+                    "$ref": "StopInstanceRequest"
                   },
                   "response": {
                     "$ref": "Operation"
@@ -1251,7 +1279,7 @@
       }
     }
   },
-  "revision": "20220405",
+  "revision": "20220418",
   "rootUrl": "https://baremetalsolution.googleapis.com/",
   "schemas": {
     "AllowedClient": {
@@ -1370,6 +1398,10 @@
             "$ref": "Network"
           },
           "type": "array"
+        },
+        "osImage": {
+          "description": "The OS image currently installed on the server.",
+          "type": "string"
         },
         "state": {
           "description": "The state of the server.",
@@ -2269,12 +2301,20 @@
           "enum": [
             "STATE_UNSPECIFIED",
             "DRAFT",
-            "SUBMITTED"
+            "SUBMITTED",
+            "PROVISIONING",
+            "PROVISIONED",
+            "VALIDATED",
+            "CANCELLED"
           ],
           "enumDescriptions": [
             "State wasn't specified.",
             "ProvisioningConfig is a draft and can be freely modified.",
-            "ProvisioningConfig was already submitted and cannot be modified."
+            "ProvisioningConfig was already submitted and cannot be modified.",
+            "ProvisioningConfig was in the provisioning state. Initially this state comes from the work order table in big query when SNOW is used. Later this field can be set by the work order API.",
+            "ProvisioningConfig was provisioned, meaning the resources exist.",
+            "ProvisioningConfig was validated. A validation tool will be run to set this state.",
+            "ProvisioningConfig was canceled."
           ],
           "readOnly": true,
           "type": "string"
@@ -2535,6 +2575,12 @@
       },
       "type": "object"
     },
+    "StopInstanceRequest": {
+      "description": "Message requesting to stop a server.",
+      "id": "StopInstanceRequest",
+      "properties": {},
+      "type": "object"
+    },
     "SubmitProvisioningConfigRequest": {
       "description": "Request for SubmitProvisioningConfig.",
       "id": "SubmitProvisioningConfigRequest",
@@ -2628,6 +2674,11 @@
         },
         "currentSizeGib": {
           "description": "The current size of this storage volume, in GiB, including space reserved for snapshots. This size might be different than the requested size if the storage volume has been configured with auto grow or auto shrink.",
+          "format": "int64",
+          "type": "string"
+        },
+        "emergencySizeGib": {
+          "description": "Additional emergency size that was requested for this Volume, in GiB. current_size_gib includes this value.",
           "format": "int64",
           "type": "string"
         },

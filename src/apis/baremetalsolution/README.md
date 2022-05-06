@@ -2,7 +2,7 @@
 
 # baremetalsolution
 
-> Provides ways to manage Bare Metal Solution hardware installed in a regional extension located near a Google Cloud data center.
+> Bare Metal Solution provides hardware to run specialized workloads with low latency on Google Cloud.
 
 ## Installation
 
