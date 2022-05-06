@@ -679,7 +679,7 @@
       }
     }
   },
-  "revision": "20220402",
+  "revision": "20220426",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1920,7 +1920,7 @@
           "description": "Parameters to fetch a ratio between two time series filters."
         },
         "timeSeriesQueryLanguage": {
-          "description": "A query used to fetch time series.",
+          "description": "A query used to fetch time series with MQL.",
           "type": "string"
         },
         "unitOverride": {
