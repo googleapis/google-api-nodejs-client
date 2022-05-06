@@ -545,7 +545,7 @@ export namespace dialogflow_v2 {
      */
     setParameterActions?: Schema$GoogleCloudDialogflowCxV3beta1FulfillmentSetParameterAction[];
     /**
-     * The tag used by the webhook to identify which fulfillment is being called. This field is required if `webhook` is specified.
+     * The value of this field will be populated in the WebhookRequest `fulfillmentInfo.tag` field by Dialogflow when the associated webhook is called. The tag is typically used by the webhook service to identify which fulfillment is being called, but it could be used for other purposes. This field is required if `webhook` is specified.
      */
     tag?: string | null;
     /**
@@ -790,7 +790,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1Page {
     /**
-     * Required. The human-readable name of the page, unique within the agent.
+     * Required. The human-readable name of the page, unique within the flow.
      */
     displayName?: string | null;
     /**
@@ -1323,7 +1323,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookRequestFulfillmentInfo {
     /**
-     * Always present. The tag used to identify which fulfillment is being called.
+     * Always present. The value of the Fulfillment.tag field will be populated in this field by Dialogflow when the associated webhook is called. The tag is typically used by the webhook service to identify which fulfillment is being called, but it could be used for other purposes.
      */
     tag?: string | null;
   }
@@ -1778,7 +1778,7 @@ export namespace dialogflow_v2 {
      */
     setParameterActions?: Schema$GoogleCloudDialogflowCxV3FulfillmentSetParameterAction[];
     /**
-     * The tag used by the webhook to identify which fulfillment is being called. This field is required if `webhook` is specified.
+     * The value of this field will be populated in the WebhookRequest `fulfillmentInfo.tag` field by Dialogflow when the associated webhook is called. The tag is typically used by the webhook service to identify which fulfillment is being called, but it could be used for other purposes. This field is required if `webhook` is specified.
      */
     tag?: string | null;
     /**
@@ -2023,7 +2023,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3Page {
     /**
-     * Required. The human-readable name of the page, unique within the agent.
+     * Required. The human-readable name of the page, unique within the flow.
      */
     displayName?: string | null;
     /**
@@ -2556,7 +2556,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3WebhookRequestFulfillmentInfo {
     /**
-     * Always present. The tag used to identify which fulfillment is being called.
+     * Always present. The value of the Fulfillment.tag field will be populated in this field by Dialogflow when the associated webhook is called. The tag is typically used by the webhook service to identify which fulfillment is being called, but it could be used for other purposes.
      */
     tag?: string | null;
   }
@@ -2744,6 +2744,10 @@ export namespace dialogflow_v2 {
      * Parameters for a human assist query.
      */
     assistQueryParams?: Schema$GoogleCloudDialogflowV2AssistQueryParameters;
+    /**
+     * Additional parameters to be put into Dialogflow CX session parameters. To remove a parameter from the session, clients should explicitly set the parameter value to null. Note: this field should only be used if you are connecting to a Dialogflow CX agent.
+     */
+    cxParameters?: {[key: string]: any} | null;
     /**
      * An input event to send to Dialogflow.
      */
@@ -24231,6 +24235,7 @@ export namespace dialogflow_v2 {
      *         // request body parameters
      *         // {
      *         //   "assistQueryParams": {},
+     *         //   "cxParameters": {},
      *         //   "eventInput": {},
      *         //   "queryParams": {},
      *         //   "replyAudioConfig": {},
@@ -43304,6 +43309,7 @@ export namespace dialogflow_v2 {
      *           // request body parameters
      *           // {
      *           //   "assistQueryParams": {},
+     *           //   "cxParameters": {},
      *           //   "eventInput": {},
      *           //   "queryParams": {},
      *           //   "replyAudioConfig": {},

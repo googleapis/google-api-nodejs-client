@@ -8077,7 +8077,7 @@
       }
     }
   },
-  "revision": "20220408",
+  "revision": "20220502",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -8589,7 +8589,7 @@
           "type": "array"
         },
         "tag": {
-          "description": "The tag used by the webhook to identify which fulfillment is being called. This field is required if `webhook` is specified.",
+          "description": "The value of this field will be populated in the WebhookRequest `fulfillmentInfo.tag` field by Dialogflow when the associated webhook is called. The tag is typically used by the webhook service to identify which fulfillment is being called, but it could be used for other purposes. This field is required if `webhook` is specified.",
           "type": "string"
         },
         "webhook": {
@@ -8946,7 +8946,7 @@
       "id": "GoogleCloudDialogflowCxV3Page",
       "properties": {
         "displayName": {
-          "description": "Required. The human-readable name of the page, unique within the agent.",
+          "description": "Required. The human-readable name of the page, unique within the flow.",
           "type": "string"
         },
         "entryFulfillment": {
@@ -9644,7 +9644,7 @@
       "id": "GoogleCloudDialogflowCxV3WebhookRequestFulfillmentInfo",
       "properties": {
         "tag": {
-          "description": "Always present. The tag used to identify which fulfillment is being called.",
+          "description": "Always present. The value of the Fulfillment.tag field will be populated in this field by Dialogflow when the associated webhook is called. The tag is typically used by the webhook service to identify which fulfillment is being called, but it could be used for other purposes.",
           "type": "string"
         }
       },
@@ -10281,7 +10281,7 @@
           "type": "array"
         },
         "tag": {
-          "description": "The tag used by the webhook to identify which fulfillment is being called. This field is required if `webhook` is specified.",
+          "description": "The value of this field will be populated in the WebhookRequest `fulfillmentInfo.tag` field by Dialogflow when the associated webhook is called. The tag is typically used by the webhook service to identify which fulfillment is being called, but it could be used for other purposes. This field is required if `webhook` is specified.",
           "type": "string"
         },
         "webhook": {
@@ -10638,7 +10638,7 @@
       "id": "GoogleCloudDialogflowCxV3beta1Page",
       "properties": {
         "displayName": {
-          "description": "Required. The human-readable name of the page, unique within the agent.",
+          "description": "Required. The human-readable name of the page, unique within the flow.",
           "type": "string"
         },
         "entryFulfillment": {
@@ -11336,7 +11336,7 @@
       "id": "GoogleCloudDialogflowCxV3beta1WebhookRequestFulfillmentInfo",
       "properties": {
         "tag": {
-          "description": "Always present. The tag used to identify which fulfillment is being called.",
+          "description": "Always present. The value of the Fulfillment.tag field will be populated in this field by Dialogflow when the associated webhook is called. The tag is typically used by the webhook service to identify which fulfillment is being called, but it could be used for other purposes.",
           "type": "string"
         }
       },
@@ -11630,6 +11630,14 @@
         "assistQueryParams": {
           "$ref": "GoogleCloudDialogflowV2AssistQueryParameters",
           "description": "Parameters for a human assist query."
+        },
+        "cxParameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Additional parameters to be put into Dialogflow CX session parameters. To remove a parameter from the session, clients should explicitly set the parameter value to null. Note: this field should only be used if you are connecting to a Dialogflow CX agent.",
+          "type": "object"
         },
         "eventInput": {
           "$ref": "GoogleCloudDialogflowV2EventInput",
