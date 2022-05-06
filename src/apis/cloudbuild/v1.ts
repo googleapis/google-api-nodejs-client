@@ -5114,7 +5114,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Remove a Bitbucket Server repository from an given BitbucketServerConfig’s connected repositories. This API is experimental.
+     * Remove a Bitbucket Server repository from a given BitbucketServerConfig's connected repositories. This API is experimental.
      * @example
      * ```js
      * // Before running the sample:
