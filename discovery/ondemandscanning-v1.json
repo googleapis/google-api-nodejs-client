@@ -339,7 +339,7 @@
       }
     }
   },
-  "revision": "20220326",
+  "revision": "20220430",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -597,7 +597,7 @@
       "type": "object"
     },
     "CVSS": {
-      "description": "Common Vulnerability Scoring System. For details, see https://www.first.org/cvss/specification-document This is a message we will try to use for storing multiple versions of CVSS. The intention is that as new versions of CVSS scores get added, we will be able to modify this message rather than adding new protos for each new version of the score.",
+      "description": "Common Vulnerability Scoring System. For details, see https://www.first.org/cvss/specification-document This is a message we will try to use for storing various versions of CVSS rather than making a separate proto for storing a specific version.",
       "id": "CVSS",
       "properties": {
         "attackComplexity": {
@@ -1036,6 +1036,17 @@
       },
       "type": "object"
     },
+    "FileLocation": {
+      "description": "Indicates the location at which a package was found.",
+      "id": "FileLocation",
+      "properties": {
+        "filePath": {
+          "description": "For jars that are contained inside .war files, this filepath can indicate the path to war file combined with the path to jar file.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Fingerprint": {
       "description": "A set of properties that uniquely identify a given Docker image.",
       "id": "Fingerprint",
@@ -1091,6 +1102,17 @@
         },
         "url": {
           "description": "Git repository URL.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GrafeasV1FileLocation": {
+      "description": "Indicates the location at which a package was found.",
+      "id": "GrafeasV1FileLocation",
+      "properties": {
+        "filePath": {
+          "description": "For jars that are contained inside .war files, this filepath can indicate the path to war file combined with the path to jar file.",
           "type": "string"
         }
       },
@@ -1498,6 +1520,17 @@
           "description": "The cpe_uri in [cpe format] (https://cpe.mitre.org/specification/) in which the vulnerability may manifest. Examples include distro or storage location for vulnerable jar.",
           "type": "string"
         },
+        "fileLocation": {
+          "description": "The path to the jar file / go binary file.",
+          "items": {
+            "$ref": "FileLocation"
+          },
+          "type": "array"
+        },
+        "hashDigest": {
+          "description": "HashDigest stores the SHA512 hash digest of the jar file if the package is of type Maven. This field will be unset for non Maven packages.",
+          "type": "string"
+        },
         "os": {
           "description": "The OS affected by a vulnerability This field is deprecated and the information is in cpe_uri",
           "type": "string"
@@ -1574,6 +1607,13 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "fileLocation": {
+          "description": "The location at which this package was found.",
+          "items": {
+            "$ref": "GrafeasV1FileLocation"
+          },
+          "type": "array"
         },
         "fixAvailable": {
           "description": "Output only. Whether a fix is available for this package.",

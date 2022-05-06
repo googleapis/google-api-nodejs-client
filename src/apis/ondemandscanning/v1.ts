@@ -398,7 +398,7 @@ export namespace ondemandscanning_v1 {
     nonCompliantFiles?: Schema$NonCompliantFile[];
   }
   /**
-   * Common Vulnerability Scoring System. For details, see https://www.first.org/cvss/specification-document This is a message we will try to use for storing multiple versions of CVSS. The intention is that as new versions of CVSS scores get added, we will be able to modify this message rather than adding new protos for each new version of the score.
+   * Common Vulnerability Scoring System. For details, see https://www.first.org/cvss/specification-document This is a message we will try to use for storing various versions of CVSS rather than making a separate proto for storing a specific version.
    */
   export interface Schema$CVSS {
     attackComplexity?: string | null;
@@ -518,6 +518,15 @@ export namespace ondemandscanning_v1 {
     fileHash?: Schema$Hash[];
   }
   /**
+   * Indicates the location at which a package was found.
+   */
+  export interface Schema$FileLocation {
+    /**
+     * For jars that are contained inside .war files, this filepath can indicate the path to war file combined with the path to jar file.
+     */
+    filePath?: string | null;
+  }
+  /**
    * A set of properties that uniquely identify a given Docker image.
    */
   export interface Schema$Fingerprint {
@@ -567,6 +576,15 @@ export namespace ondemandscanning_v1 {
      * Git repository URL.
      */
     url?: string | null;
+  }
+  /**
+   * Indicates the location at which a package was found.
+   */
+  export interface Schema$GrafeasV1FileLocation {
+    /**
+     * For jars that are contained inside .war files, this filepath can indicate the path to war file combined with the path to jar file.
+     */
+    filePath?: string | null;
   }
   /**
    * Container message for hash values.
@@ -862,6 +880,14 @@ export namespace ondemandscanning_v1 {
      */
     cpeUri?: string | null;
     /**
+     * The path to the jar file / go binary file.
+     */
+    fileLocation?: Schema$FileLocation[];
+    /**
+     * HashDigest stores the SHA512 hash digest of the jar file if the package is of type Maven. This field will be unset for non Maven packages.
+     */
+    hashDigest?: string | null;
+    /**
      * The OS affected by a vulnerability This field is deprecated and the information is in cpe_uri
      */
     os?: string | null;
@@ -903,6 +929,10 @@ export namespace ondemandscanning_v1 {
      * Output only. The distro or language system assigned severity for this vulnerability when that is available and note provider assigned severity when it is not available.
      */
     effectiveSeverity?: string | null;
+    /**
+     * The location at which this package was found.
+     */
+    fileLocation?: Schema$GrafeasV1FileLocation[];
     /**
      * Output only. Whether a fix is available for this package.
      */
