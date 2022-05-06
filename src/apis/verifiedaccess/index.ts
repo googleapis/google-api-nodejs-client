@@ -15,18 +15,30 @@
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {verifiedaccess_v1} from './v1';
+import {verifiedaccess_v2} from './v2';
 
 export const VERSIONS = {
   v1: verifiedaccess_v1.Verifiedaccess,
+  v2: verifiedaccess_v2.Verifiedaccess,
 };
 
 export function verifiedaccess(version: 'v1'): verifiedaccess_v1.Verifiedaccess;
 export function verifiedaccess(
   options: verifiedaccess_v1.Options
 ): verifiedaccess_v1.Verifiedaccess;
-export function verifiedaccess<T = verifiedaccess_v1.Verifiedaccess>(
+export function verifiedaccess(version: 'v2'): verifiedaccess_v2.Verifiedaccess;
+export function verifiedaccess(
+  options: verifiedaccess_v2.Options
+): verifiedaccess_v2.Verifiedaccess;
+export function verifiedaccess<
+  T = verifiedaccess_v1.Verifiedaccess | verifiedaccess_v2.Verifiedaccess
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1' | verifiedaccess_v1.Options
+  versionOrOptions:
+    | 'v1'
+    | verifiedaccess_v1.Options
+    | 'v2'
+    | verifiedaccess_v2.Options
 ) {
   return getAPI<T>('verifiedaccess', versionOrOptions, VERSIONS, this);
 }
@@ -34,6 +46,7 @@ export function verifiedaccess<T = verifiedaccess_v1.Verifiedaccess>(
 const auth = new AuthPlus();
 export {auth};
 export {verifiedaccess_v1};
+export {verifiedaccess_v2};
 export {
   AuthPlus,
   GlobalOptions,
