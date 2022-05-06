@@ -355,7 +355,7 @@ export namespace iap_v1 {
    */
   export interface Schema$ListTunnelDestGroupsResponse {
     /**
-     * A token, which can be send as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     * A token that you can send as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
     /**
@@ -1774,9 +1774,9 @@ export namespace iap_v1 {
      *
      *   // Do the magic
      *   const res = await iap.projects.iap_tunnel.locations.destGroups.create({
-     *     // Required. GCP Project number/id and location. In the following format: projects/{project_number/id\}/iap_tunnel/locations/{location\}.
+     *     // Required. Google Cloud Project ID and location. In the following format: `projects/{project_number/id\}/iap_tunnel/locations/{location\}`.
      *     parent: 'projects/my-project/iap_tunnel/locations/my-location',
-     *     // Required. The ID to use for the TunnelDestGroup, which will become the final component of the resource name. This value should be 4-63 characters, and valid characters are /a-z-/.
+     *     // Required. The ID to use for the TunnelDestGroup, which becomes the final component of the resource name. This value must be 4-63 characters, and valid characters are `a-z-`.
      *     tunnelDestGroupId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1918,7 +1918,7 @@ export namespace iap_v1 {
      *
      *   // Do the magic
      *   const res = await iap.projects.iap_tunnel.locations.destGroups.delete({
-     *     // Required. Name of the TunnelDestGroup to be deleted. In the following format: projects/{project_number/id\}/iap_tunnel/locations/{location\}/destGroups/{dest_group\}.
+     *     // Required. Name of the TunnelDestGroup to delete. In the following format: `projects/{project_number/id\}/iap_tunnel/locations/{location\}/destGroups/{dest_group\}`.
      *     name: 'projects/my-project/iap_tunnel/locations/my-location/destGroups/my-destGroup',
      *   });
      *   console.log(res.data);
@@ -2043,7 +2043,7 @@ export namespace iap_v1 {
      *
      *   // Do the magic
      *   const res = await iap.projects.iap_tunnel.locations.destGroups.get({
-     *     // Required. Name of the TunnelDestGroup to be fetched. In the following format: projects/{project_number/id\}/iap_tunnel/locations/{location\}/destGroups/{dest_group\}.
+     *     // Required. Name of the TunnelDestGroup to be fetched. In the following format: `projects/{project_number/id\}/iap_tunnel/locations/{location\}/destGroups/{dest_group\}`.
      *     name: 'projects/my-project/iap_tunnel/locations/my-location/destGroups/my-destGroup',
      *   });
      *   console.log(res.data);
@@ -2146,7 +2146,7 @@ export namespace iap_v1 {
     }
 
     /**
-     * Lists the existing TunnelDestGroups. To group across all locations, use a `-` as the location ID. For example: /v1/projects/123/iap_tunnel/locations/-/destGroups
+     * Lists the existing TunnelDestGroups. To group across all locations, use a `-` as the location ID. For example: `/v1/projects/123/iap_tunnel/locations/-/destGroups`
      * @example
      * ```js
      * // Before running the sample:
@@ -2172,11 +2172,11 @@ export namespace iap_v1 {
      *
      *   // Do the magic
      *   const res = await iap.projects.iap_tunnel.locations.destGroups.list({
-     *     // The maximum number of groups to return. The service may return fewer than this value. If unspecified, at most 100 groups will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     // The maximum number of groups to return. The service might return fewer than this value. If unspecified, at most 100 groups are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
      *     pageSize: 'placeholder-value',
      *     // A page token, received from a previous `ListTunnelDestGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTunnelDestGroups` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. GCP Project number/id and location. In the following format: projects/{project_number/id\}/iap_tunnel/locations/{location\}. A `-` can be used for the location to group across all locations.
+     *     // Required. Google Cloud Project ID and location. In the following format: `projects/{project_number/id\}/iap_tunnel/locations/{location\}`. A `-` can be used for the location to group across all locations.
      *     parent: 'projects/my-project/iap_tunnel/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -2318,7 +2318,7 @@ export namespace iap_v1 {
      *   const res = await iap.projects.iap_tunnel.locations.destGroups.patch({
      *     // Required. Immutable. Identifier for the TunnelDestGroup. Must be unique within the project.
      *     name: 'projects/my-project/iap_tunnel/locations/my-location/destGroups/my-destGroup',
-     *     // The field mask specifying which IAP settings should be updated. If omitted, then all of the settings are updated. See https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *     // A field mask that specifies which IAP settings to update. If omitted, then all of the settings are updated. See https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2434,11 +2434,11 @@ export namespace iap_v1 {
   export interface Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Create
     extends StandardParameters {
     /**
-     * Required. GCP Project number/id and location. In the following format: projects/{project_number/id\}/iap_tunnel/locations/{location\}.
+     * Required. Google Cloud Project ID and location. In the following format: `projects/{project_number/id\}/iap_tunnel/locations/{location\}`.
      */
     parent?: string;
     /**
-     * Required. The ID to use for the TunnelDestGroup, which will become the final component of the resource name. This value should be 4-63 characters, and valid characters are /a-z-/.
+     * Required. The ID to use for the TunnelDestGroup, which becomes the final component of the resource name. This value must be 4-63 characters, and valid characters are `a-z-`.
      */
     tunnelDestGroupId?: string;
 
@@ -2450,21 +2450,21 @@ export namespace iap_v1 {
   export interface Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the TunnelDestGroup to be deleted. In the following format: projects/{project_number/id\}/iap_tunnel/locations/{location\}/destGroups/{dest_group\}.
+     * Required. Name of the TunnelDestGroup to delete. In the following format: `projects/{project_number/id\}/iap_tunnel/locations/{location\}/destGroups/{dest_group\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Get
     extends StandardParameters {
     /**
-     * Required. Name of the TunnelDestGroup to be fetched. In the following format: projects/{project_number/id\}/iap_tunnel/locations/{location\}/destGroups/{dest_group\}.
+     * Required. Name of the TunnelDestGroup to be fetched. In the following format: `projects/{project_number/id\}/iap_tunnel/locations/{location\}/destGroups/{dest_group\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$List
     extends StandardParameters {
     /**
-     * The maximum number of groups to return. The service may return fewer than this value. If unspecified, at most 100 groups will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * The maximum number of groups to return. The service might return fewer than this value. If unspecified, at most 100 groups are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
      */
     pageSize?: number;
     /**
@@ -2472,7 +2472,7 @@ export namespace iap_v1 {
      */
     pageToken?: string;
     /**
-     * Required. GCP Project number/id and location. In the following format: projects/{project_number/id\}/iap_tunnel/locations/{location\}. A `-` can be used for the location to group across all locations.
+     * Required. Google Cloud Project ID and location. In the following format: `projects/{project_number/id\}/iap_tunnel/locations/{location\}`. A `-` can be used for the location to group across all locations.
      */
     parent?: string;
   }
@@ -2483,7 +2483,7 @@ export namespace iap_v1 {
      */
     name?: string;
     /**
-     * The field mask specifying which IAP settings should be updated. If omitted, then all of the settings are updated. See https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * A field mask that specifies which IAP settings to update. If omitted, then all of the settings are updated. See https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      */
     updateMask?: string;
 
