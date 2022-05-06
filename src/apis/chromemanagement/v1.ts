@@ -390,7 +390,7 @@ export namespace chromemanagement_v1 {
      */
     isCwsHosted?: boolean | null;
     /**
-     * Output only. Whether the app is only for Kiosk mode on Chrome OS devices
+     * Output only. Whether the app is only for Kiosk mode on ChromeOS devices
      */
     isKioskOnly?: boolean | null;
     /**
@@ -398,7 +398,7 @@ export namespace chromemanagement_v1 {
      */
     isTheme?: boolean | null;
     /**
-     * Output only. Whether this app is enabled for Kiosk mode on Chrome OS devices
+     * Output only. Whether this app is enabled for Kiosk mode on ChromeOS devices
      */
     kioskEnabled?: boolean | null;
     /**
@@ -916,7 +916,7 @@ export namespace chromemanagement_v1 {
    */
   export interface Schema$GoogleChromeManagementV1StorageStatusReport {
     /**
-     * Output only. Reports on disk
+     * Output only. Reports on disk.
      */
     disk?: Schema$GoogleChromeManagementV1DiskInfo[];
     /**
@@ -953,7 +953,7 @@ export namespace chromemanagement_v1 {
      */
     customer?: string | null;
     /**
-     * Output only. The unique Directory API ID of the device. This value is the same as the Admin Console's Directory API ID in the Chrome OS Devices tab
+     * Output only. The unique Directory API ID of the device. This value is the same as the Admin Console's Directory API ID in the ChromeOS Devices tab
      */
     deviceId?: string | null;
     /**
@@ -989,7 +989,7 @@ export namespace chromemanagement_v1 {
      */
     osUpdateStatus?: Schema$GoogleChromeManagementV1OsUpdateStatus[];
     /**
-     * Output only. Device serial number. This value is the same as the Admin Console's Serial Number in the Chrome OS Devices tab.
+     * Output only. Device serial number. This value is the same as the Admin Console's Serial Number in the ChromeOS Devices tab.
      */
     serialNumber?: string | null;
     /**

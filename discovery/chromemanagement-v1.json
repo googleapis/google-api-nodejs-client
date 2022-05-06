@@ -488,7 +488,7 @@
       }
     }
   },
-  "revision": "20220406",
+  "revision": "20220503",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -880,7 +880,7 @@
             "Other operating system.",
             "Android operating system.",
             "Apple iOS operating system.",
-            "Chrome OS operating system.",
+            "ChromeOS operating system.",
             "Microsoft Windows operating system.",
             "Apple macOS operating system.",
             "Linux operating system."
@@ -911,7 +911,7 @@
           "type": "boolean"
         },
         "isKioskOnly": {
-          "description": "Output only. Whether the app is only for Kiosk mode on Chrome OS devices",
+          "description": "Output only. Whether the app is only for Kiosk mode on ChromeOS devices",
           "readOnly": true,
           "type": "boolean"
         },
@@ -921,7 +921,7 @@
           "type": "boolean"
         },
         "kioskEnabled": {
-          "description": "Output only. Whether this app is enabled for Kiosk mode on Chrome OS devices",
+          "description": "Output only. Whether this app is enabled for Kiosk mode on ChromeOS devices",
           "readOnly": true,
           "type": "boolean"
         },
@@ -1713,7 +1713,7 @@
       "id": "GoogleChromeManagementV1StorageStatusReport",
       "properties": {
         "disk": {
-          "description": "Output only. Reports on disk",
+          "description": "Output only. Reports on disk.",
           "items": {
             "$ref": "GoogleChromeManagementV1DiskInfo"
           },
@@ -1779,7 +1779,7 @@
           "type": "string"
         },
         "deviceId": {
-          "description": "Output only. The unique Directory API ID of the device. This value is the same as the Admin Console's Directory API ID in the Chrome OS Devices tab",
+          "description": "Output only. The unique Directory API ID of the device. This value is the same as the Admin Console's Directory API ID in the ChromeOS Devices tab",
           "readOnly": true,
           "type": "string"
         },
@@ -1836,7 +1836,7 @@
           "type": "array"
         },
         "serialNumber": {
-          "description": "Output only. Device serial number. This value is the same as the Admin Console's Serial Number in the Chrome OS Devices tab.",
+          "description": "Output only. Device serial number. This value is the same as the Admin Console's Serial Number in the ChromeOS Devices tab.",
           "readOnly": true,
           "type": "string"
         },
