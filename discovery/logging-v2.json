@@ -783,6 +783,57 @@
                         "https://www.googleapis.com/auth/logging.admin"
                       ]
                     }
+                  },
+                  "resources": {
+                    "logs": {
+                      "methods": {
+                        "list": {
+                          "description": "Lists the logs in projects, organizations, folders, or billing accounts. Only logs that have entries are listed.",
+                          "flatPath": "v2/billingAccounts/{billingAccountsId}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}/logs",
+                          "httpMethod": "GET",
+                          "id": "logging.billingAccounts.locations.buckets.views.logs.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "pageSize": {
+                              "description": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The resource name that owns the logs: projects/[PROJECT_ID] organizations/[ORGANIZATION_ID] billingAccounts/[BILLING_ACCOUNT_ID] folders/[FOLDER_ID]",
+                              "location": "path",
+                              "pattern": "^billingAccounts/[^/]+/locations/[^/]+/buckets/[^/]+/views/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "resourceNames": {
+                              "description": "Optional. The resource name that owns the logs: projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]To support legacy queries, it could also be: projects/[PROJECT_ID] organizations/[ORGANIZATION_ID] billingAccounts/[BILLING_ACCOUNT_ID] folders/[FOLDER_ID]",
+                              "location": "query",
+                              "repeated": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v2/{+parent}/logs",
+                          "response": {
+                            "$ref": "ListLogsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/cloud-platform.read-only",
+                            "https://www.googleapis.com/auth/logging.admin",
+                            "https://www.googleapis.com/auth/logging.read"
+                          ]
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -2122,6 +2173,57 @@
                         "https://www.googleapis.com/auth/cloud-platform",
                         "https://www.googleapis.com/auth/logging.admin"
                       ]
+                    }
+                  },
+                  "resources": {
+                    "logs": {
+                      "methods": {
+                        "list": {
+                          "description": "Lists the logs in projects, organizations, folders, or billing accounts. Only logs that have entries are listed.",
+                          "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}/logs",
+                          "httpMethod": "GET",
+                          "id": "logging.folders.locations.buckets.views.logs.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "pageSize": {
+                              "description": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The resource name that owns the logs: projects/[PROJECT_ID] organizations/[ORGANIZATION_ID] billingAccounts/[BILLING_ACCOUNT_ID] folders/[FOLDER_ID]",
+                              "location": "path",
+                              "pattern": "^folders/[^/]+/locations/[^/]+/buckets/[^/]+/views/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "resourceNames": {
+                              "description": "Optional. The resource name that owns the logs: projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]To support legacy queries, it could also be: projects/[PROJECT_ID] organizations/[ORGANIZATION_ID] billingAccounts/[BILLING_ACCOUNT_ID] folders/[FOLDER_ID]",
+                              "location": "query",
+                              "repeated": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v2/{+parent}/logs",
+                          "response": {
+                            "$ref": "ListLogsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/cloud-platform.read-only",
+                            "https://www.googleapis.com/auth/logging.admin",
+                            "https://www.googleapis.com/auth/logging.read"
+                          ]
+                        }
+                      }
                     }
                   }
                 }
@@ -3903,6 +4005,57 @@
                         "https://www.googleapis.com/auth/logging.admin"
                       ]
                     }
+                  },
+                  "resources": {
+                    "logs": {
+                      "methods": {
+                        "list": {
+                          "description": "Lists the logs in projects, organizations, folders, or billing accounts. Only logs that have entries are listed.",
+                          "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}/logs",
+                          "httpMethod": "GET",
+                          "id": "logging.organizations.locations.buckets.views.logs.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "pageSize": {
+                              "description": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The resource name that owns the logs: projects/[PROJECT_ID] organizations/[ORGANIZATION_ID] billingAccounts/[BILLING_ACCOUNT_ID] folders/[FOLDER_ID]",
+                              "location": "path",
+                              "pattern": "^organizations/[^/]+/locations/[^/]+/buckets/[^/]+/views/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "resourceNames": {
+                              "description": "Optional. The resource name that owns the logs: projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]To support legacy queries, it could also be: projects/[PROJECT_ID] organizations/[ORGANIZATION_ID] billingAccounts/[BILLING_ACCOUNT_ID] folders/[FOLDER_ID]",
+                              "location": "query",
+                              "repeated": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v2/{+parent}/logs",
+                          "response": {
+                            "$ref": "ListLogsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/cloud-platform.read-only",
+                            "https://www.googleapis.com/auth/logging.admin",
+                            "https://www.googleapis.com/auth/logging.read"
+                          ]
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -4958,6 +5111,57 @@
                         "https://www.googleapis.com/auth/logging.admin"
                       ]
                     }
+                  },
+                  "resources": {
+                    "logs": {
+                      "methods": {
+                        "list": {
+                          "description": "Lists the logs in projects, organizations, folders, or billing accounts. Only logs that have entries are listed.",
+                          "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}/logs",
+                          "httpMethod": "GET",
+                          "id": "logging.projects.locations.buckets.views.logs.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "pageSize": {
+                              "description": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The resource name that owns the logs: projects/[PROJECT_ID] organizations/[ORGANIZATION_ID] billingAccounts/[BILLING_ACCOUNT_ID] folders/[FOLDER_ID]",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/buckets/[^/]+/views/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "resourceNames": {
+                              "description": "Optional. The resource name that owns the logs: projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]To support legacy queries, it could also be: projects/[PROJECT_ID] organizations/[ORGANIZATION_ID] billingAccounts/[BILLING_ACCOUNT_ID] folders/[FOLDER_ID]",
+                              "location": "query",
+                              "repeated": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v2/{+parent}/logs",
+                          "response": {
+                            "$ref": "ListLogsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/cloud-platform.read-only",
+                            "https://www.googleapis.com/auth/logging.admin",
+                            "https://www.googleapis.com/auth/logging.read"
+                          ]
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -5817,7 +6021,7 @@
       }
     }
   },
-  "revision": "20220401",
+  "revision": "20220414",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "BigQueryOptions": {
@@ -7548,7 +7752,7 @@
           "type": "string"
         },
         "partialSuccess": {
-          "description": "Optional. Whether valid entries should be written even if some other entries fail due to INVALID_ARGUMENT or PERMISSION_DENIED errors. If any entry is not written, then the response status is the error associated with one of the failed entries and the response includes error details keyed by the entries' zero-based index in the entries.write method.",
+          "description": "Optional. Whether a batch's valid entries should be written even if some other entry failed due to a permanent error such as INVALID_ARGUMENT or PERMISSION_DENIED. If any entry failed, then the response status is the response status is the status of one of the failed entries. The response will include error details keyed by the entries' zero-based index in the entries.write method.",
           "type": "boolean"
         },
         "resource": {
