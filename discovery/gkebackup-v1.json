@@ -214,12 +214,12 @@
                   ],
                   "parameters": {
                     "backupPlanId": {
-                      "description": "Required. The client-provided short name for the BackupPlan resource. This name must: a. be between 1 and 63 characters long (inclusive) b. consist of only lower-case ASCII letters, numbers, and dashes c. start with a lower-case letter d. end with a lower-case letter or number e. be unique within the set of BackupPlans in this location",
+                      "description": "Required. The client-provided short name for the BackupPlan resource. This name must: - be between 1 and 63 characters long (inclusive) - consist of only lower-case ASCII letters, numbers, and dashes - start with a lower-case letter - end with a lower-case letter or number - be unique within the set of BackupPlans in this location",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The location within which to create the BackupPlan. Format: projects/{project}/locations/{location}",
+                      "description": "Required. The location within which to create the BackupPlan. Format: projects/*/locations/*",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -247,12 +247,12 @@
                   ],
                   "parameters": {
                     "etag": {
-                      "description": "If provided, this value must match the value currently assigned to the target resource.",
+                      "description": "If provided, this value must match the current value of the target BackupPlan's etag field or the request is rejected.",
                       "location": "query",
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. Fully qualified BackupPlan name. Format: projects/{project}/locations/{location}/backupPlans/{backup_plan}",
+                      "description": "Required. Fully qualified BackupPlan name. Format: projects/*/locations/*/backupPlans/*",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+$",
                       "required": true,
@@ -277,7 +277,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Fully qualified BackupPlan name. Format: projects/{project}/locations/{location}/backupPlans/{backup_plan}",
+                      "description": "Required. Fully qualified BackupPlan name. Format: projects/*/locations/*/backupPlans/*",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+$",
                       "required": true,
@@ -333,12 +333,12 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "List filter.",
+                      "description": "Field match expression used to filter the results.",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Sort results.",
+                      "description": "Field by which to sort the results.",
                       "location": "query",
                       "type": "string"
                     },
@@ -354,7 +354,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The location that contains the BackupPlans to list. Format: projects/{project}/locations/{location}",
+                      "description": "Required. The location that contains the BackupPlans to list. Format: projects/*/locations/*",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -379,7 +379,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. [Output Only] The full name of the BackupPlan resource. Format: projects/*/locations/*/backupPlans/*",
+                      "description": "Output only. The full name of the BackupPlan resource. Format: projects/*/locations/*/backupPlans/*",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+$",
                       "required": true,
@@ -473,12 +473,12 @@
                       ],
                       "parameters": {
                         "backupId": {
-                          "description": "The client-provided short name for the Backup resource. This name must: a. be between 1 and 63 characters long (inclusive) b. consist of only lower-case ASCII letters, numbers, and dashes c. start with a lower-case letter d. end with a lower-case letter or number e. be unique within the set of Backups in this BackupPlan",
+                          "description": "The client-provided short name for the Backup resource. This name must: - be between 1 and 63 characters long (inclusive) - consist of only lower-case ASCII letters, numbers, and dashes - start with a lower-case letter - end with a lower-case letter or number - be unique within the set of Backups in this BackupPlan",
                           "location": "query",
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The BackupPlan within which to create the Backup. Format: projects/{project}/locations/{location}/backupPlans/{backup_plan}",
+                          "description": "Required. The BackupPlan within which to create the Backup. Format: projects/*/locations/*/backupPlans/*",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+$",
                           "required": true,
@@ -506,17 +506,17 @@
                       ],
                       "parameters": {
                         "etag": {
-                          "description": "etag, if provided, it must match the server's etag for the delete to happen.",
+                          "description": "If provided, this value must match the current value of the target Backup's etag field or the request is rejected.",
                           "location": "query",
                           "type": "string"
                         },
                         "force": {
-                          "description": "If set to true, any volumeBackups below this backup will also be deleted. Otherwise, the request will only succeed if the backup has no volumeBackups.",
+                          "description": "If set to true, any VolumeBackups below this Backup will also be deleted. Otherwise, the request will only succeed if the Backup has no VolumeBackups.",
                           "location": "query",
                           "type": "boolean"
                         },
                         "name": {
-                          "description": "Required. Name of the Backup resource. Format: projects/{project}/locations/{location}/backupPlans/{backup_plan}/backups/{backup}",
+                          "description": "Required. Name of the Backup resource. Format: projects/*/locations/*/backupPlans/*/backups/*",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+/backups/[^/]+$",
                           "required": true,
@@ -541,7 +541,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Full name of the Backup resource. Format: projects/{project}/locations/{location}/backupPlans/{backup_plan}/backups/{backup}",
+                          "description": "Required. Full name of the Backup resource. Format: projects/*/locations/*/backupPlans/*/backups/*",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+/backups/[^/]+$",
                           "required": true,
@@ -597,12 +597,12 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "List filter.",
+                          "description": "Field match expression used to filter the results.",
                           "location": "query",
                           "type": "string"
                         },
                         "orderBy": {
-                          "description": "Sort results.",
+                          "description": "Field by which to sort the results.",
                           "location": "query",
                           "type": "string"
                         },
@@ -618,7 +618,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The BackupPlan that contains the Backups to list. Format: projects/{project}/locations/{location}/backupPlans/{backup_plan}",
+                          "description": "Required. The BackupPlan that contains the Backups to list. Format: projects/*/locations/*/backupPlans/*",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+$",
                           "required": true,
@@ -737,7 +737,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. Full name of the VolumeBackup resource. Format: projects/{project}/locations/{location}/backupPlans/{backup_plan}/backups/{backup}/volumeBackups/{volume_backup}",
+                              "description": "Required. Full name of the VolumeBackup resource. Format: projects/*/locations/*/backupPlans/*/backups/*/volumeBackups/*",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+/backups/[^/]+/volumeBackups/[^/]+$",
                               "required": true,
@@ -793,12 +793,12 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "List filter.",
+                              "description": "Field match expression used to filter the results.",
                               "location": "query",
                               "type": "string"
                             },
                             "orderBy": {
-                              "description": "Sort results.",
+                              "description": "Field by which to sort the results.",
                               "location": "query",
                               "type": "string"
                             },
@@ -814,7 +814,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The Backup that contains the VolumeBackups to list. Format: projects/{project}/locations/{location}/backupPlans/{backup_plan}/backups/{backup}",
+                              "description": "Required. The Backup that contains the VolumeBackups to list. Format: projects/*/locations/*/backupPlans/*/backups/*",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+/backups/[^/]+$",
                               "required": true,
@@ -1001,14 +1001,14 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The location within which to create the RestorePlan. Format: projects/{project}/locations/{location}",
+                      "description": "Required. The location within which to create the RestorePlan. Format: projects/*/locations/*",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "restorePlanId": {
-                      "description": "Required. The client-provided short name for the RestorePlan resource. This name must: a. be between 1 and 63 characters long (inclusive) b. consist of only lower-case ASCII letters, numbers, and dashes c. start with a lower-case letter d. end with a lower-case letter or number e. be unique within the set of RestorePlans in this location",
+                      "description": "Required. The client-provided short name for the RestorePlan resource. This name must: - be between 1 and 63 characters long (inclusive) - consist of only lower-case ASCII letters, numbers, and dashes - start with a lower-case letter - end with a lower-case letter or number - be unique within the set of RestorePlans in this location",
                       "location": "query",
                       "type": "string"
                     }
@@ -1034,17 +1034,17 @@
                   ],
                   "parameters": {
                     "etag": {
-                      "description": "If provided, this value must match the value currently assigned to the target resource.",
+                      "description": "If provided, this value must match the current value of the target RestorePlan's etag field or the request is rejected.",
                       "location": "query",
                       "type": "string"
                     },
                     "force": {
-                      "description": "If set to true, any restores below this restorePlan will also be deleted. Otherwise, the request will only succeed if the restorePlan has no restores.",
+                      "description": "If set to true, any Restores below this RestorePlan will also be deleted. Otherwise, the request will only succeed if the RestorePlan has no Restores.",
                       "location": "query",
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "Required. Fully qualified RestorePlan name. Format: projects/{project}/locations/{location}/restorePlans/{restore_plan}",
+                      "description": "Required. Fully qualified RestorePlan name. Format: projects/*/locations/*/restorePlans/*",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/restorePlans/[^/]+$",
                       "required": true,
@@ -1069,7 +1069,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Fully qualified RestorePlan name. Format: projects/{project}/locations/{location}/restorePlans/{restore_plan}",
+                      "description": "Required. Fully qualified RestorePlan name. Format: projects/*/locations/*/restorePlans/*",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/restorePlans/[^/]+$",
                       "required": true,
@@ -1125,12 +1125,12 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "List filter.",
+                      "description": "Field match expression used to filter the results.",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Sort results.",
+                      "description": "Field by which to sort the results.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1146,7 +1146,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The location that contains the RestorePlans to list. Format: projects/{project}/locations/{location}",
+                      "description": "Required. The location that contains the RestorePlans to list. Format: projects/*/locations/*",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1171,7 +1171,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. [Output Only] The full name of the RestorePlan resource. Format: projects/*/locations/*/restorePlans/*",
+                      "description": "Output only. The full name of the RestorePlan resource. Format: projects/*/locations/*/restorePlans/*.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/restorePlans/[^/]+$",
                       "required": true,
@@ -1265,14 +1265,14 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. The RestorePlan within which to create the Restore. Format: projects/{project}/locations/{location}/restorePlans/{restore_plan}",
+                          "description": "Required. The RestorePlan within which to create the Restore. Format: projects/*/locations/*/restorePlans/*",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/restorePlans/[^/]+$",
                           "required": true,
                           "type": "string"
                         },
                         "restoreId": {
-                          "description": "Required. The client-provided short name for the Restore resource. This name must: a. be between 1 and 63 characters long (inclusive) b. consist of only lower-case ASCII letters, numbers, and dashes c. start with a lower-case letter d. end with a lower-case letter or number e. be unique within the set of Restores in this RestorePlan.",
+                          "description": "Required. The client-provided short name for the Restore resource. This name must: - be between 1 and 63 characters long (inclusive) - consist of only lower-case ASCII letters, numbers, and dashes - start with a lower-case letter - end with a lower-case letter or number - be unique within the set of Restores in this RestorePlan.",
                           "location": "query",
                           "type": "string"
                         }
@@ -1298,17 +1298,17 @@
                       ],
                       "parameters": {
                         "etag": {
-                          "description": "etag, if provided, it must match the server's etag for delete to happen.",
+                          "description": "If provided, this value must match the current value of the target Restore's etag field or the request is rejected.",
                           "location": "query",
                           "type": "string"
                         },
                         "force": {
-                          "description": "If set to true, any volumeRestores below this restore will also be deleted. Otherwise, the request will only succeed if the restore has no volumeRestores.",
+                          "description": "If set to true, any VolumeRestores below this restore will also be deleted. Otherwise, the request will only succeed if the restore has no VolumeRestores.",
                           "location": "query",
                           "type": "boolean"
                         },
                         "name": {
-                          "description": "Required. Full name of the Restore Format: projects/{project}/locations/{location}/restorePlans/{restore_plan}/restores/{restore}",
+                          "description": "Required. Full name of the Restore Format: projects/*/locations/*/restorePlans/*/restores/*",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/restorePlans/[^/]+/restores/[^/]+$",
                           "required": true,
@@ -1333,7 +1333,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Name of the restore resource. Format: projects/{project}/locations/{location}/restorePlans/{restore_plan}/restores/{restore}",
+                          "description": "Required. Name of the restore resource. Format: projects/*/locations/*/restorePlans/*/restores/*",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/restorePlans/[^/]+/restores/[^/]+$",
                           "required": true,
@@ -1389,12 +1389,12 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "List filter.",
+                          "description": "Field match expression used to filter the results.",
                           "location": "query",
                           "type": "string"
                         },
                         "orderBy": {
-                          "description": "Sort results.",
+                          "description": "Field by which to sort the results.",
                           "location": "query",
                           "type": "string"
                         },
@@ -1410,7 +1410,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The RestorePlan that contains the Restores to list. Format: projects/{project}/locations/{location}/restorePlans/{restore_plan}",
+                          "description": "Required. The RestorePlan that contains the Restores to list. Format: projects/*/locations/*/restorePlans/*",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/restorePlans/[^/]+$",
                           "required": true,
@@ -1529,7 +1529,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. Full name of the VolumeRestore resource. Format: projects/{project}/locations/{location}/restorePlans/{restore_plan}/restores/{restore}/volumeRestores/{volume_restore}",
+                              "description": "Required. Full name of the VolumeRestore resource. Format: projects/*/locations/*/restorePlans/*/restores/*/volumeRestores/*",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/restorePlans/[^/]+/restores/[^/]+/volumeRestores/[^/]+$",
                               "required": true,
@@ -1585,12 +1585,12 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "List filter.",
+                              "description": "Field match expression used to filter the results.",
                               "location": "query",
                               "type": "string"
                             },
                             "orderBy": {
-                              "description": "Sort results.",
+                              "description": "Field by which to sort the results.",
                               "location": "query",
                               "type": "string"
                             },
@@ -1606,7 +1606,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The Restore that contains the VolumeRestores to list. Format: projects/{project}/locations/{location}/restorePlans/{restore_plan}/restores/{restore}",
+                              "description": "Required. The Restore that contains the VolumeRestores to list. Format: projects/*/locations/*/restorePlans/*/restores/*",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/restorePlans/[^/]+/restores/[^/]+$",
                               "required": true,
@@ -1688,7 +1688,7 @@
       }
     }
   },
-  "revision": "20220406",
+  "revision": "20220413",
   "rootUrl": "https://gkebackup.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1760,29 +1760,29 @@
           "type": "string"
         },
         "configBackupSizeBytes": {
-          "description": "Output only. cluster config backup size in bytes.",
+          "description": "Output only. The size of the config backup in bytes.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
         },
         "containsSecrets": {
-          "description": "Output only. Whether or not the Backup contains Kubernetes Secrets. Inherited from the parent BackupPlan's backup_config.include_secrets.",
+          "description": "Output only. Whether or not the Backup contains Kubernetes Secrets. Controlled by the parent BackupPlan's include_secrets value.",
           "readOnly": true,
           "type": "boolean"
         },
         "containsVolumeData": {
-          "description": "Output only. Whether or not the Backup contains volume data. Inherited from the parent BackupPlan's backup_config.include_volume_data.",
+          "description": "Output only. Whether or not the Backup contains volume data. Controlled by the parent BackupPlan's include_volume_data value.",
           "readOnly": true,
           "type": "boolean"
         },
         "createTime": {
-          "description": "Output only. [Output Only] The timestamp when this Backup resource was created - can be converted to and from [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)",
+          "description": "Output only. The timestamp when this Backup resource was created.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "deleteLockDays": {
-          "description": "Minimum age for this Backup (in days). If this field is set to a non-zero value, the Backup will be \"locked\" against deletion (either manual or automatic deletion) for the number of days provided (measured from the creation time of the Backup). This value is inherited from the parent BackupPlan's retention_policy.backup_delete_lock_days value and may only be increased (either at creation time or in a subsequent update). This field MUST be an integer value between 0-90 (inclusive). Default: inherited from BackupPlan.",
+          "description": "Minimum age for this Backup (in days). If this field is set to a non-zero value, the Backup will be \"locked\" against deletion (either manual or automatic deletion) for the number of days provided (measured from the creation time of the Backup). MUST be an integer value between 0-90 (inclusive). Defaults to parent BackupPlan's backup_delete_lock_days setting and may only be increased (either at creation time or in a subsequent update).",
           "format": "int32",
           "type": "integer"
         },
@@ -1798,11 +1798,11 @@
         },
         "encryptionKey": {
           "$ref": "EncryptionKey",
-          "description": "Output only. The customer managed encryption key that was used to encrypt the Backup's artifacts. Inherited from the parent BackupPlan's backup_config.encryption_key.",
+          "description": "Output only. The customer managed encryption key that was used to encrypt the Backup's artifacts. Inherited from the parent BackupPlan's encryption_key value.",
           "readOnly": true
         },
         "etag": {
-          "description": "Output only. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a backup from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform backup updates in order to avoid race conditions: An `etag` is returned in the response to `GetBackup`, and systems are expected to put that etag in the request to `UpdateBackup` to ensure that their change will be applied to the same version.",
+          "description": "Output only. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a backup from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform backup updates in order to avoid race conditions: An `etag` is returned in the response to `GetBackup`, and systems are expected to put that etag in the request to `UpdateBackup` or `DeleteBackup` to ensure that their change will be applied to the same version of the resource.",
           "readOnly": true,
           "type": "string"
         },
@@ -1836,7 +1836,7 @@
           "type": "integer"
         },
         "retainDays": {
-          "description": "The age (in days) after which this Backup will be automatically deleted. If not specified at Backup creation time, this value is inherited from the parent BackupPlan's retention_policy.backup_retain_days value. Once a Backup is created, this value may only be increased. This must be an integer value >= 0. If 0, no automatic deletion will occur for this Backup. If not 0, this must be >= delete_lock_days. Default: inherited from BackupPlan.",
+          "description": "The age (in days) after which this Backup will be automatically deleted. Must be an integer value >= 0: - If 0, no automatic deletion will occur for this Backup. - If not 0, this must be >= delete_lock_days. Once a Backup is created, this value may only be increased. Defaults to the parent BackupPlan's backup_retain_days value.",
           "format": "int32",
           "type": "integer"
         },
@@ -1889,12 +1889,12 @@
           "type": "string"
         },
         "uid": {
-          "description": "Output only. [Output Only] Server generated global unique identifier of [UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier)",
+          "description": "Output only. Server generated global unique identifier of [UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier)",
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. [Output Only] The timestamp when this Backup resource was last updated - can be converted to and from [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)",
+          "description": "Output only. The timestamp when this Backup resource was last updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -1918,7 +1918,7 @@
         },
         "encryptionKey": {
           "$ref": "EncryptionKey",
-          "description": "This defines a customer managed encryption key that will be used to encrypt the Backup artifacts for Backups created via this BackupPlan."
+          "description": "This defines a customer managed encryption key that will be used to encrypt the \"config\" portion (the Kubernetes resources) of Backups created via this plan. Default (empty): Config backup artifacts will not be encrypted."
         },
         "includeSecrets": {
           "description": "This flag specifies whether Kubernetes Secret resources should be included when they fall into the scope of Backups. Default: False",
@@ -1934,7 +1934,7 @@
         },
         "selectedNamespaces": {
           "$ref": "Namespaces",
-          "description": "If set, include just the resources in the listed namespaces"
+          "description": "If set, include just the resources in the listed namespaces."
         }
       },
       "type": "object"
@@ -1952,17 +1952,17 @@
           "description": "Defines a schedule for automatic Backup creation via this BackupPlan."
         },
         "cluster": {
-          "description": "Required. Immutable. The source cluster from which Backups will be created via this BackupPlan. Possible formats: 1. projects/*/locations/*/clusters/* 2. projects/*/zones/*/clusters/*",
+          "description": "Required. Immutable. The source cluster from which Backups will be created via this BackupPlan. Valid formats: - projects/*/locations/*/clusters/* - projects/*/zones/*/clusters/*",
           "type": "string"
         },
         "createTime": {
-          "description": "Output only. [Output Only] The timestamp when this BackupPlan resource was created - can be converted to and from [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)",
+          "description": "Output only. The timestamp when this BackupPlan resource was created.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "deactivated": {
-          "description": "This flag indicates whether this BackupPlan has been deactivated. Setting this field to True locks the BackupPlan such that no further updates will be allowed, including the deactivated field. It also prevents any new Backups from being created via this BackupPlan (including scheduled Backups). Default: False",
+          "description": "This flag indicates whether this BackupPlan has been deactivated. Setting this field to True locks the BackupPlan such that no further updates will be allowed (except deletes), including the deactivated field itself. It also prevents any new Backups from being created via this BackupPlan (including scheduled Backups). Default: False",
           "type": "boolean"
         },
         "description": {
@@ -1970,7 +1970,7 @@
           "type": "string"
         },
         "etag": {
-          "description": "Output only. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a backup plan from overwriting each other. It is strongly suggested that systems make use of the 'etag' in the read-modify-write cycle to perform BackupPlan updates in order to avoid race conditions: An `etag` is returned in the response to `GetBackupPlan`, and systems are expected to put that etag in the request to `UpdateBackupPlan` to ensure that their change will be applied to the same version.",
+          "description": "Output only. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a backup plan from overwriting each other. It is strongly suggested that systems make use of the 'etag' in the read-modify-write cycle to perform BackupPlan updates in order to avoid race conditions: An `etag` is returned in the response to `GetBackupPlan`, and systems are expected to put that etag in the request to `UpdateBackupPlan` or `DeleteBackupPlan` to ensure that their change will be applied to the same version of the resource.",
           "readOnly": true,
           "type": "string"
         },
@@ -1982,12 +1982,12 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. [Output Only] The full name of the BackupPlan resource. Format: projects/*/locations/*/backupPlans/*",
+          "description": "Output only. The full name of the BackupPlan resource. Format: projects/*/locations/*/backupPlans/*",
           "readOnly": true,
           "type": "string"
         },
         "protectedPodCount": {
-          "description": "Output only. [Output Only] Represents the number of Kubernetes Pods backed up in the last successful Backup created underneath this BackupPlan.",
+          "description": "Output only. The number of Kubernetes Pods backed up in the last successful Backup created via this BackupPlan.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
@@ -1997,12 +1997,12 @@
           "description": "RetentionPolicy governs lifecycle of Backups created under this plan."
         },
         "uid": {
-          "description": "Output only. [Output Only] Server generated global unique identifier of [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.",
+          "description": "Output only. Server generated global unique identifier of [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.",
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. [Output Only] The timestamp when this BackupPlan resource was last updated - can be converted to and from [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)",
+          "description": "Output only. The timestamp when this BackupPlan resource was last updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2048,7 +2048,7 @@
           "type": "object"
         },
         "cluster": {
-          "description": "The source cluster from which this Backup was created. Possible formats: 1. projects/*/locations/*/clusters/* 2. projects/*/zones/*/clusters/* This will be the same value as the parent BackupPlan's cluster field.",
+          "description": "The source cluster from which this Backup was created. Valid formats: - projects/*/locations/*/clusters/* - projects/*/zones/*/clusters/* This is inherited from the parent BackupPlan's cluster field.",
           "type": "string"
         },
         "gkeVersion": {
@@ -2087,7 +2087,7 @@
       "id": "EncryptionKey",
       "properties": {
         "gcpKmsEncryptionKey": {
-          "description": "Google Cloud KMS encryption key. Format: projects//locations//keyRings//cryptoKeys/",
+          "description": "Google Cloud KMS encryption key. Format: projects/*/locations/*/keyRings/*/cryptoKeys/*",
           "type": "string"
         }
       },
@@ -2222,14 +2222,14 @@
       "id": "ListBackupPlansResponse",
       "properties": {
         "backupPlans": {
-          "description": "The list of BackupPlans.",
+          "description": "The list of BackupPlans matching the given criteria.",
           "items": {
             "$ref": "BackupPlan"
           },
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A token which may be sent as `page_token` in a subsequent `ListBackupPlans` call to retrieve the next page of results. If this field is omitted or empty, then there are no more results to return.",
+          "description": "A token which may be sent as page_token in a subsequent `ListBackupPlans` call to retrieve the next page of results. If this field is omitted or empty, then there are no more results to return.",
           "type": "string"
         },
         "unreachable": {
@@ -2247,14 +2247,14 @@
       "id": "ListBackupsResponse",
       "properties": {
         "backups": {
-          "description": "The list of restore resources within the parent.",
+          "description": "The list of Backups matching the given criteria.",
           "items": {
             "$ref": "Backup"
           },
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A token which may be sent as `page_token` in a subsequent `ListBackups` call to retrieve the next page of results. If this field is omitted or empty, then there are no more results to return.",
+          "description": "A token which may be sent as page_token in a subsequent `ListBackups` call to retrieve the next page of results. If this field is omitted or empty, then there are no more results to return.",
           "type": "string"
         }
       },
@@ -2283,11 +2283,11 @@
       "id": "ListRestorePlansResponse",
       "properties": {
         "nextPageToken": {
-          "description": "A token which may be sent as `page_token` in a subsequent `ListRestorePlans` call to retrieve the next page of results. If this field is omitted or empty, then there are no more results to return.",
+          "description": "A token which may be sent as page_token in a subsequent `ListRestorePlans` call to retrieve the next page of results. If this field is omitted or empty, then there are no more results to return.",
           "type": "string"
         },
         "restorePlans": {
-          "description": "The list of RestorePlans.",
+          "description": "The list of RestorePlans matching the given criteria.",
           "items": {
             "$ref": "RestorePlan"
           },
@@ -2308,11 +2308,11 @@
       "id": "ListRestoresResponse",
       "properties": {
         "nextPageToken": {
-          "description": "A token which may be sent as `page_token` in a subsequent `ListRestores` call to retrieve the next page of results. If this field is omitted or empty, then there are no more results to return.",
+          "description": "A token which may be sent as page_token in a subsequent `ListRestores` call to retrieve the next page of results. If this field is omitted or empty, then there are no more results to return.",
           "type": "string"
         },
         "restores": {
-          "description": "The list of restore resources within the parent.",
+          "description": "The list of Restores matching the given criteria.",
           "items": {
             "$ref": "Restore"
           },
@@ -2333,11 +2333,11 @@
       "id": "ListVolumeBackupsResponse",
       "properties": {
         "nextPageToken": {
-          "description": "A token which may be sent as `page_token` in a subsequent `ListVolumeBackups` call to retrieve the next page of results. If this field is omitted or empty, then there are no more results to return.",
+          "description": "A token which may be sent as page_token in a subsequent `ListVolumeBackups` call to retrieve the next page of results. If this field is omitted or empty, then there are no more results to return.",
           "type": "string"
         },
         "volumeBackups": {
-          "description": "The list of VolumeBackups resources within the parent.",
+          "description": "The list of VolumeBackups matching the given criteria.",
           "items": {
             "$ref": "VolumeBackup"
           },
@@ -2351,11 +2351,11 @@
       "id": "ListVolumeRestoresResponse",
       "properties": {
         "nextPageToken": {
-          "description": "A token which may be sent as `page_token` in a subsequent `ListVolumeRestores` call to retrieve the next page of results. If this field is omitted or empty, then there are no more results to return.",
+          "description": "A token which may be sent as page_token in a subsequent `ListVolumeRestores` call to retrieve the next page of results. If this field is omitted or empty, then there are no more results to return.",
           "type": "string"
         },
         "volumeRestores": {
-          "description": "The list of VolumeRestores resources within the parent.",
+          "description": "The list of VolumeRestores matching the given criteria.",
           "items": {
             "$ref": "VolumeRestore"
           },
@@ -2521,22 +2521,22 @@
       "id": "Restore",
       "properties": {
         "backup": {
-          "description": "Required. Immutable. The Backup used as the source from which this Restore will restore. Note that this Backup must be a sub-resource of the RestorePlan's backup_plan. Format: projects/*/locations/*/backupPlans/*/backups/*.",
+          "description": "Required. Immutable. A reference to the Backup used as the source from which this Restore will restore. Note that this Backup must be a sub-resource of the RestorePlan's backup_plan. Format: projects/*/locations/*/backupPlans/*/backups/*.",
           "type": "string"
         },
         "cluster": {
-          "description": "Output only. The target cluster into which this Restore will restore data. Possible formats: 1. projects/*/locations/*/clusters/* 2. projects/*/zones/*/clusters/* Inherited from parent RestorePlan's cluster field.",
+          "description": "Output only. The target cluster into which this Restore will restore data. Valid formats: - projects/*/locations/*/clusters/* - projects/*/zones/*/clusters/* Inherited from parent RestorePlan's cluster value.",
           "readOnly": true,
           "type": "string"
         },
         "completeTime": {
-          "description": "Output only. When the restore operation either successfully completed or failed.",
+          "description": "Output only. Timestamp of when the restore operation completed.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "createTime": {
-          "description": "Output only. [Output Only] The timestamp when this Restore resource was created - can be converted to and from [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)",
+          "description": "Output only. The timestamp when this Restore resource was created.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2546,7 +2546,7 @@
           "type": "string"
         },
         "etag": {
-          "description": "Output only. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a restore from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform restore updates in order to avoid race conditions: An `etag` is returned in the response to `GetRestore`, and systems are expected to put that etag in the request to `UpdateRestore` to ensure that their change will be applied to the same version.",
+          "description": "Output only. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a restore from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform restore updates in order to avoid race conditions: An `etag` is returned in the response to `GetRestore`, and systems are expected to put that etag in the request to `UpdateRestore` or `DeleteRestore` to ensure that their change will be applied to the same version of the resource.",
           "readOnly": true,
           "type": "string"
         },
@@ -2554,7 +2554,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "GCP Labels.",
+          "description": "A set of custom labels supplied by user.",
           "type": "object"
         },
         "name": {
@@ -2563,19 +2563,19 @@
           "type": "string"
         },
         "resourcesExcludedCount": {
-          "description": "Output only. Number of resources excluded in this restore action.",
+          "description": "Output only. Number of resources excluded during the restore execution.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
         },
         "resourcesFailedCount": {
-          "description": "Output only. Number of resources failed to be restored in this restore action.",
+          "description": "Output only. Number of resources that failed to be restored during the restore execution.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
         },
         "resourcesRestoredCount": {
-          "description": "Output only. Number of resources restored in this restore action.",
+          "description": "Output only. Number of resources restored during the restore execution.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
@@ -2612,18 +2612,18 @@
           "type": "string"
         },
         "uid": {
-          "description": "Output only. [Output Only] Server generated global unique identifier of [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.",
+          "description": "Output only. Server generated global unique identifier of [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.",
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. [Output Only] The timestamp when this Restore resource was last updated - can be converted to and from [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)",
+          "description": "Output only. The timestamp when this Restore resource was last updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "volumesRestoredCount": {
-          "description": "Output only. Number of volumes restored in this restore action.",
+          "description": "Output only. Number of volumes restored during the restore execution.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
@@ -2658,14 +2658,14 @@
           "description": "Identifies the cluster-scoped resources to restore from the Backup. Not specifying it means NO cluster resource will be restored."
         },
         "namespacedResourceRestoreMode": {
-          "description": "Defines the behavior for handling the situation where sets of namespaced resources being restored already exist in the target cluster. This MUST be set to a value other than NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED if any namespaced restoration is configured via namespaced_resource_restore_scope .",
+          "description": "Defines the behavior for handling the situation where sets of namespaced resources being restored already exist in the target cluster. This MUST be set to a value other than NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED.",
           "enum": [
             "NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED",
             "DELETE_AND_RESTORE",
             "FAIL_ON_CONFLICT"
           ],
           "enumDescriptions": [
-            "Unspecified. Only allowed if no namespaced resources will be restored.",
+            "Unspecified (invalid).",
             "When conflicting top-level resources (either Namespaces or ProtectedApplications, depending upon the scope) are encountered, this will first trigger a delete of the conflicting resource AND ALL OF ITS REFERENCED RESOURCES (e.g., all resources in the Namespace or all resources referenced by the ProtectedApplication) before restoring the resources from the Backup. This mode should only be used when you are intending to revert some portion of a cluster to an earlier state.",
             "If conflicting top-level resources (either Namespaces or ProtectedApplications, depending upon the scope) are encountered at the beginning of a restore process, the Restore will fail. If a conflict occurs during the restore process itself (e.g., because an out of band process creates conflicting resources), a conflict will be reported."
           ],
@@ -2695,7 +2695,7 @@
             "NO_VOLUME_DATA_RESTORATION"
           ],
           "enumDescriptions": [
-            "unspecified, default value",
+            "Unspecified (illegal).",
             "For each PVC to be restored, will create a new underlying volume (and PV) from the corresponding VolumeBackup contained within the Backup.",
             "For each PVC to be restored, attempt to reuse the original PV contained in the Backup (with its original underlying volume). Note that option is likely only usable when restoring a workload to its original cluster.",
             "For each PVC to be restored, PVCs will be created without any particular action to restore data. In this case, the normal Kubernetes provisioning logic would kick in, and this would likely result in either dynamically provisioning blank PVs or binding to statically provisioned PVs."
@@ -2710,15 +2710,15 @@
       "id": "RestorePlan",
       "properties": {
         "backupPlan": {
-          "description": "Required. Immutable. The BackupPlan from which Backups may be used as the source for Restores created via this RestorePlan. Format: projects/*/locations/*/backupPlans/*.",
+          "description": "Required. Immutable. A reference to the BackupPlan from which Backups may be used as the source for Restores created via this RestorePlan. Format: projects/*/locations/*/backupPlans/*.",
           "type": "string"
         },
         "cluster": {
-          "description": "Required. Immutable. The target cluster into which Restores created via this RestorePlan will restore data. NOTE: the cluster's region must be the same as the RestorePlan. Possible formats: 1. projects/*/locations/*/clusters/* 2. projects/*/zones/*/clusters/*",
+          "description": "Required. Immutable. The target cluster into which Restores created via this RestorePlan will restore data. NOTE: the cluster's region must be the same as the RestorePlan. Valid formats: - projects/*/locations/*/clusters/* - projects/*/zones/*/clusters/*",
           "type": "string"
         },
         "createTime": {
-          "description": "Output only. [Output Only] The timestamp when this RestorePlan resource was created - can be converted to and from [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)",
+          "description": "Output only. The timestamp when this RestorePlan resource was created.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2728,7 +2728,7 @@
           "type": "string"
         },
         "etag": {
-          "description": "Output only. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a restore from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform restore updates in order to avoid race conditions: An `etag` is returned in the response to `GetRestorePlan`, and systems are expected to put that etag in the request to `UpdateRestorePlan` to ensure that their change will be applied to the same version.",
+          "description": "Output only. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a restore from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform restore updates in order to avoid race conditions: An `etag` is returned in the response to `GetRestorePlan`, and systems are expected to put that etag in the request to `UpdateRestorePlan` or `DeleteRestorePlan` to ensure that their change will be applied to the same version of the resource.",
           "readOnly": true,
           "type": "string"
         },
@@ -2740,7 +2740,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. [Output Only] The full name of the RestorePlan resource. Format: projects/*/locations/*/restorePlans/*",
+          "description": "Output only. The full name of the RestorePlan resource. Format: projects/*/locations/*/restorePlans/*.",
           "readOnly": true,
           "type": "string"
         },
@@ -2749,12 +2749,12 @@
           "description": "Required. Configuration of Restores created via this RestorePlan."
         },
         "uid": {
-          "description": "Output only. [Output Only] Server generated global unique identifier of [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.",
+          "description": "Output only. Server generated global unique identifier of [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.",
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. [Output Only] The timestamp when this RestorePlan resource was last updated - can be converted to and from [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)",
+          "description": "Output only. The timestamp when this RestorePlan resource was last updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2763,16 +2763,16 @@
       "type": "object"
     },
     "RetentionPolicy": {
-      "description": "RentionPolicy is an inner message type to define: 1. Minimum age for Backups created via this BackupPlan - deletion (either manual or automatic) of Backups younger than this age will be blocked 2. Default maximum age of Backups created via this BackupPlan, after which automatic deletion will occur 3. Lock to disallow any changes to any RetentionPolicy settings",
+      "description": "RetentionPolicy defines a Backup retention policy for a BackupPlan.",
       "id": "RetentionPolicy",
       "properties": {
         "backupDeleteLockDays": {
-          "description": "Minimum age for Backups created via this BackupPlan (in days). This field MUST be an integer value between 0-90(inclusive). A Backup created under this BackupPlan will NOT be deletable until it reaches Backup's create_time + backup_delete_lock_days. Updating this field of a BackupPlan does NOT affect existing Backups under it. Backups created AFTER a successful update will inherit the new value. Default: 0 (no delete blocking)",
+          "description": "Minimum age for Backups created via this BackupPlan (in days). This field MUST be an integer value between 0-90 (inclusive). A Backup created under this BackupPlan will NOT be deletable until it reaches Backup's (create_time + backup_delete_lock_days). Updating this field of a BackupPlan does NOT affect existing Backups under it. Backups created AFTER a successful update will inherit the new value. Default: 0 (no delete blocking)",
           "format": "int32",
           "type": "integer"
         },
         "backupRetainDays": {
-          "description": "The default maximum age of a Backup created via this BackupPlan. This field MUST be an integer value >= 0. If specified, a Backup created under this BackupPlan will be automatically deleted after its age reaches create_time + backup_retain_days. If not specified, Backups created under this BackupPlan will NOT be subject to automatic deletion. Updating this field does NOT affect existing Backups under it. Backups created AFTER a successful update will automatically pick up the new value. NOTE: Specifying a backup_retain_days smaller than backup_delete_lock_days at creation/updating time will be considered as invalid, and the request will be rejected immediately. Default: 0 (no automatic deletion)",
+          "description": "The default maximum age of a Backup created via this BackupPlan. This field MUST be an integer value >= 0. If specified, a Backup created under this BackupPlan will be automatically deleted after its age reaches (create_time + backup_retain_days). If not specified, Backups created under this BackupPlan will NOT be subject to automatic deletion. Updating this field does NOT affect existing Backups under it. Backups created AFTER a successful update will automatically pick up the new value. NOTE: backup_retain_days must be >= backup_delete_lock_days. Default: 0 (no automatic deletion)",
           "format": "int32",
           "type": "integer"
         },
@@ -2788,7 +2788,7 @@
       "id": "Schedule",
       "properties": {
         "cronSchedule": {
-          "description": "A standard cron-style string that defines a repeating schedule for creating Backups via this BackupPlan.",
+          "description": "A standard [cron](https://wikipedia.com/wiki/cron) string that defines a repeating schedule for creating Backups via this BackupPlan. Default (empty): no automatic backup creation will occur.",
           "type": "string"
         },
         "paused": {
@@ -2880,13 +2880,13 @@
       "id": "VolumeBackup",
       "properties": {
         "completeTime": {
-          "description": "Output only. [Output Only] The timestamp when the associated underlying volume backup operation completes - can be converted to and from [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)",
+          "description": "Output only. The timestamp when the associated underlying volume backup operation completed.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "createTime": {
-          "description": "Output only. [Output Only] The timestamp when this VolumeBackup resource was created - can be converted to and from [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)",
+          "description": "Output only. The timestamp when this VolumeBackup resource was created.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2898,7 +2898,7 @@
           "type": "string"
         },
         "etag": {
-          "description": "Output only. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a volume backup from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform volume backup updates in order to avoid race conditions: An `etag` is returned in the response to `GetVolumeBackup', and systems are expected to put that etag in the request to `UpdateVolumeBackup` to ensure that their change will be applied to the same version.",
+          "description": "Output only. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a volume backup from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform volume backup updates in order to avoid race conditions.",
           "readOnly": true,
           "type": "string"
         },
@@ -2916,7 +2916,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. [Output Only] The full name of the VolumeBackup resource. Format: projects/*/locations/*/backupPlans/*/backups/*/volumeBackups/* Note that the last segment of the name will have the format: 'pvc-'.",
+          "description": "Output only. The full name of the VolumeBackup resource. Format: projects/*/locations/*/backupPlans/*/backups/*/volumeBackups/*.",
           "readOnly": true,
           "type": "string"
         },
@@ -2960,18 +2960,18 @@
           "type": "string"
         },
         "uid": {
-          "description": "Output only. [Output Only] Server generated global unique identifier of [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.",
+          "description": "Output only. Server generated global unique identifier of [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.",
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. [Output Only] The timestamp when this VolumeBackup resource was last updated - can be converted to and from [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)",
+          "description": "Output only. The timestamp when this VolumeBackup resource was last updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "volumeBackupHandle": {
-          "description": "Output only. A storage system-specific opaque handle to the underlying volume backup. This field is interpreted by the volume backup and restore drivers running in the GKE cluster and not by the service.",
+          "description": "Output only. A storage system-specific opaque handle to the underlying volume backup.",
           "readOnly": true,
           "type": "string"
         }
@@ -2983,29 +2983,29 @@
       "id": "VolumeRestore",
       "properties": {
         "completeTime": {
-          "description": "Output only. [Output Only] The timestamp when the associated underlying volume restoration completed - can be converted to and from [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)",
+          "description": "Output only. The timestamp when the associated underlying volume restoration completed.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "createTime": {
-          "description": "Output only. [Output Only] The timestamp when this VolumeRestore resource was created - can be converted to and from [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)",
+          "description": "Output only. The timestamp when this VolumeRestore resource was created.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "etag": {
-          "description": "Output only. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a volume restore from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform volume restore updates in order to avoid race conditions: An `etag` is returned in the response to `GetVolumeRestore', and systems are expected to put that etag in the request to `UpdateVolumeRestore` to ensure that their change will be applied to the same version.",
+          "description": "Output only. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a volume restore from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform volume restore updates in order to avoid race conditions.",
           "readOnly": true,
           "type": "string"
         },
         "name": {
-          "description": "Output only. Full name of the VolumeRestore resource. Format: projects/*/locations/*/restorePlans/*/restores/*/volumeRestores/* Note that the last segment of the name will have the format: 'pvc-'.",
+          "description": "Output only. Full name of the VolumeRestore resource. Format: projects/*/locations/*/restorePlans/*/restores/*/volumeRestores/*.",
           "readOnly": true,
           "type": "string"
         },
         "state": {
-          "description": "Output only. The current state of this VolumeRestore",
+          "description": "Output only. The current state of this VolumeRestore.",
           "enum": [
             "STATE_UNSPECIFIED",
             "CREATING",
@@ -3036,23 +3036,23 @@
           "readOnly": true
         },
         "uid": {
-          "description": "Output only. [Output Only] Server generated global unique identifier of [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.",
+          "description": "Output only. Server generated global unique identifier of [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.",
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. [Output Only] The timestamp when this VolumeRestore resource was last updated - can be converted to and from [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)",
+          "description": "Output only. The timestamp when this VolumeRestore resource was last updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "volumeBackup": {
-          "description": "Output only. The full name of the VolumeBackup from which the volume will be restored. Format: projects/*/locations/*/backupPlans/*/backups/*/volumeBackups/*",
+          "description": "Output only. The full name of the VolumeBackup from which the volume will be restored. Format: projects/*/locations/*/backupPlans/*/backups/*/volumeBackups/*.",
           "readOnly": true,
           "type": "string"
         },
         "volumeHandle": {
-          "description": "Output only. A storage system-specific opaque handler to the underlying volume created for the target PVC from the volume backup. This field is interpreted by the volume backup and restore drivers running in the GKE cluster and not by the service.",
+          "description": "Output only. A storage system-specific opaque handler to the underlying volume created for the target PVC from the volume backup.",
           "readOnly": true,
           "type": "string"
         },
