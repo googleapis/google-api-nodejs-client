@@ -685,6 +685,11 @@
                         "name"
                       ],
                       "parameters": {
+                        "includeUsedIpRanges": {
+                          "description": "Optional. When true, include the used IP ranges as part of the GetConsumerConfig output. This includes routes created inside the service networking network, consumer network, peers of the consumer network, and reserved ranges inside the service networking network. By default, this is false",
+                          "location": "query",
+                          "type": "boolean"
+                        },
                         "name": {
                           "description": "Required. Name of the consumer config to retrieve in the format: `services/{service}/projects/{project}/global/networks/{network}`. {service} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project} is a project number e.g. `12345` that contains the service consumer's VPC network. {network} is the name of the service consumer's VPC network.",
                           "location": "path",
@@ -860,7 +865,7 @@
       }
     }
   },
-  "revision": "20220406",
+  "revision": "20220504",
   "rootUrl": "https://servicenetworking.googleapis.com/",
   "schemas": {
     "AddDnsRecordSetMetadata": {
@@ -1362,6 +1367,14 @@
           "description": "Output only. The reserved ranges associated with this private service access connection.",
           "items": {
             "$ref": "GoogleCloudServicenetworkingV1ConsumerConfigReservedRange"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "usedIpRanges": {
+          "description": "Output only. The IP ranges already in use by consumer or producer",
+          "items": {
+            "type": "string"
           },
           "readOnly": true,
           "type": "array"

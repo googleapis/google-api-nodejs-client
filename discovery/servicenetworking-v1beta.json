@@ -307,7 +307,7 @@
       }
     }
   },
-  "revision": "20220406",
+  "revision": "20220504",
   "rootUrl": "https://servicenetworking.googleapis.com/",
   "schemas": {
     "AddDnsRecordSetMetadata": {
@@ -717,6 +717,14 @@
           "description": "Output only. The reserved ranges associated with this private service access connection.",
           "items": {
             "$ref": "GoogleCloudServicenetworkingV1ConsumerConfigReservedRange"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "usedIpRanges": {
+          "description": "Output only. The IP ranges already in use by consumer or producer",
+          "items": {
+            "type": "string"
           },
           "readOnly": true,
           "type": "array"

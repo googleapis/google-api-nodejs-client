@@ -438,6 +438,10 @@ export namespace servicenetworking_v1beta {
      */
     reservedRanges?: Schema$GoogleCloudServicenetworkingV1ConsumerConfigReservedRange[];
     /**
+     * Output only. The IP ranges already in use by consumer or producer
+     */
+    usedIpRanges?: string[] | null;
+    /**
      * Output only. Indicates whether the VPC Service Controls reference architecture is configured for the producer VPC host network.
      */
     vpcScReferenceArchitectureEnabled?: boolean | null;
