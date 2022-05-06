@@ -38,7 +38,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/nxVAmwaVO7xvSkfptpY1dgInvmw\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/0LIEhBUgEcdGRkvKOYkvu8pQ7oA\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -932,11 +932,23 @@
             "driveId"
           ],
           "parameters": {
+            "allowItemDeletion": {
+              "default": "false",
+              "description": "Whether any items inside the shared drive should also be deleted. This option is only supported when useDomainAdminAccess is also set to true.",
+              "location": "query",
+              "type": "boolean"
+            },
             "driveId": {
               "description": "The ID of the shared drive.",
               "location": "path",
               "required": true,
               "type": "string"
+            },
+            "useDomainAdminAccess": {
+              "default": "false",
+              "description": "Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the shared drive belongs.",
+              "location": "query",
+              "type": "boolean"
             }
           },
           "path": "drives/{driveId}",
@@ -2090,7 +2102,7 @@
           "supportsMediaUpload": true
         },
         "watch": {
-          "description": "Subscribe to changes on a file",
+          "description": "Subscribes to changes to a file. While you can establish a channel for changes to a file on a shared drive, a change to a shared drive file won't create a notification.",
           "httpMethod": "POST",
           "id": "drive.files.watch",
           "parameterOrder": [
@@ -3527,7 +3539,7 @@
       }
     }
   },
-  "revision": "20220130",
+  "revision": "20220428",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
