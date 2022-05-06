@@ -203,6 +203,32 @@
       "resources": {
         "adclients": {
           "methods": {
+            "get": {
+              "description": "Gets the ad client from the given resource name.",
+              "flatPath": "v2/accounts/{accountsId}/adclients/{adclientsId}",
+              "httpMethod": "GET",
+              "id": "adsense.accounts.adclients.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the ad client to retrieve. Format: accounts/{account}/adclients/{adclient}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/adclients/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+name}",
+              "response": {
+                "$ref": "AdClient"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/adsense",
+                "https://www.googleapis.com/auth/adsense.readonly"
+              ]
+            },
             "getAdcode": {
               "description": "Gets the AdSense code for a given ad client. This returns what was previously known as the 'auto ad code'. This is only supported for ad clients with a product_code of AFC. For more information, see [About the AdSense code](https://support.google.com/adsense/answer/9274634).",
               "flatPath": "v2/accounts/{accountsId}/adclients/{adclientsId}/adcode",
@@ -504,6 +530,32 @@
             },
             "urlchannels": {
               "methods": {
+                "get": {
+                  "description": "Gets information about the selected url channel.",
+                  "flatPath": "v2/accounts/{accountsId}/adclients/{adclientsId}/urlchannels/{urlchannelsId}",
+                  "httpMethod": "GET",
+                  "id": "adsense.accounts.adclients.urlchannels.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the url channel to retrieve. Format: accounts/{account}/adclients/{adclient}/urlchannels/{urlchannel}",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/adclients/[^/]+/urlchannels/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "UrlChannel"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/adsense",
+                    "https://www.googleapis.com/auth/adsense.readonly"
+                  ]
+                },
                 "list": {
                   "description": "Lists active url channels.",
                   "flatPath": "v2/accounts/{accountsId}/adclients/{adclientsId}/urlchannels",
@@ -1227,6 +1279,32 @@
                 "https://www.googleapis.com/auth/adsense",
                 "https://www.googleapis.com/auth/adsense.readonly"
               ]
+            },
+            "getSaved": {
+              "description": "Gets the saved report from the given resource name.",
+              "flatPath": "v2/accounts/{accountsId}/reports/{reportsId}/saved",
+              "httpMethod": "GET",
+              "id": "adsense.accounts.reports.getSaved",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the saved report to retrieve. Format: accounts/{account}/reports/{report}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/reports/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+name}/saved",
+              "response": {
+                "$ref": "SavedReport"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/adsense",
+                "https://www.googleapis.com/auth/adsense.readonly"
+              ]
             }
           },
           "resources": {
@@ -1567,7 +1645,7 @@
       }
     }
   },
-  "revision": "20220407",
+  "revision": "20220505",
   "rootUrl": "https://adsense.googleapis.com/",
   "schemas": {
     "Account": {
@@ -1635,7 +1713,7 @@
           "type": "string"
         },
         "productCode": {
-          "description": "Output only. Product code of the ad client. For example, \"AFC\" for AdSense for Content.",
+          "description": "Output only. Reporting product code of the ad client. For example, \"AFC\" for AdSense for Content. Corresponds to the `PRODUCT_CODE` dimension, and present only if the ad client supports reporting.",
           "readOnly": true,
           "type": "string"
         },
@@ -1692,14 +1770,14 @@
       "properties": {
         "contentAdsSettings": {
           "$ref": "ContentAdsSettings",
-          "description": "Settings specific to content ads (AFC)."
+          "description": "Required. Settings specific to content ads (AFC)."
         },
         "displayName": {
           "description": "Required. Display name of the ad unit, as provided when the ad unit was created.",
           "type": "string"
         },
         "name": {
-          "description": "Required. Resource name of the ad unit. Format: accounts/{account}/adclients/{adclient}/adunits/{adunit}",
+          "description": "Resource name of the ad unit. Format: accounts/{account}/adclients/{adclient}/adunits/{adunit}",
           "type": "string"
         },
         "reportingDimensionId": {
@@ -1790,11 +1868,11 @@
       "id": "ContentAdsSettings",
       "properties": {
         "size": {
-          "description": "Size of the ad unit. e.g. \"728x90\", \"1x3\" (for responsive ad units).",
+          "description": "Required. Size of the ad unit. e.g. \"728x90\", \"1x3\" (for responsive ad units).",
           "type": "string"
         },
         "type": {
-          "description": "Type of the ad unit.",
+          "description": "Required. Type of the ad unit.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "DISPLAY",
@@ -1821,7 +1899,7 @@
       "id": "CustomChannel",
       "properties": {
         "displayName": {
-          "description": "Display name of the custom channel.",
+          "description": "Required. Display name of the custom channel.",
           "type": "string"
         },
         "name": {
