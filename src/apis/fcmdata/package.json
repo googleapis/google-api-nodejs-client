@@ -28,7 +28,7 @@
     "webpack": "webpack"
   },
   "dependencies": {
-    "googleapis-common": "^5.0.1"
+    "googleapis-common": "^6.0.0"
   },
   "devDependencies": {
     "@microsoft/api-documenter": "^7.8.10",
