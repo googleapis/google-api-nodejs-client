@@ -7,7 +7,7 @@
   "main": "./build/src/index.js",
   "types": "./build/src/index.d.ts",
   "engines": {
-    "node": ">=10"
+    "node": ">=12.0.0"
   },
   "files": [
     "build/src",
@@ -54,7 +54,7 @@
     "client library"
   ],
   "dependencies": {
-    "google-auth-library": "^7.0.2",
+    "google-auth-library": "^8.0.2",
     "googleapis-common": "^5.0.2"
   },
   "devDependencies": {
@@ -82,7 +82,7 @@
     "js-green-licenses": "^3.0.0",
     "linkinator": "^2.0.0",
     "mkdirp": "^1.0.0",
-    "mocha": "^9.0.0",
+    "mocha": "^9.2.2",
     "mv": "^2.1.1",
     "ncp": "^2.0.0",
     "nock": "^13.0.0",
@@ -95,7 +95,7 @@
     "server-destroy": "^1.0.1",
     "sinon": "^14.0.0",
     "tmp": "^0.2.0",
-    "typescript": "^3.8.3",
+    "typescript": "^4.6.4",
     "yargs-parser": "^20.2.0"
   }
 }
