@@ -78,7 +78,7 @@
     "cross-env": "^7.0.3",
     "execa": "^5.0.0",
     "gaxios": "^4.0.0",
-    "gts": "^2.0.0",
+    "gts": "^3.1.0",
     "js-green-licenses": "^3.0.0",
     "linkinator": "^2.0.0",
     "mkdirp": "^1.0.0",
