@@ -63,7 +63,7 @@ describe('API key', () => {
   let remoteDrive: APIEndpoint;
   let localBlogger: blogger_v3.Blogger;
   let remoteBlogger: APIEndpoint;
-  let authClient: OAuth2Client;
+  let authClient;
 
   before(async () => {
     nock.disableNetConnect();
