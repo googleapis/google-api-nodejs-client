@@ -305,7 +305,7 @@ describe('Options', () => {
     const auth = new GoogleAuth();
     const stub = sandbox.stub(auth, 'request').resolves({} as GaxiosResponse);
     // global options
-    google.options({auth: auth as unknown as GoogleAuth<JSONClient>});
+    google.options({auth: auth as GoogleAuth<JSONClient>});
     // per-API options
     const drive = google.drive({version: 'v3', auth});
     // per-call options
