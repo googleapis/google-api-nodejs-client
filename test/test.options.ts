@@ -20,7 +20,7 @@ import {Utils} from './utils';
 import {GoogleAuth} from 'google-auth-library';
 import * as sinon from 'sinon';
 import {GaxiosResponse} from 'gaxios';
-import { JSONClient } from 'google-auth-library/build/src/auth/googleauth';
+import {JSONClient} from 'google-auth-library/build/src/auth/googleauth';
 
 function createNock(path?: string) {
   const p = path || '/drive/v2/files/woot';
