@@ -114,10 +114,10 @@ export async function synth(options: SynthOptions = {}) {
       },
     });
   } catch (e) {
-    if (e.response?.data) {
-      console.error(e.response.data);
-      if (e.response?.data?.errors) {
-        for (const err of e.response.data.errors) {
+    if ((e as gaxios.GaxiosError).response?.data) {
+      console.error((e as gaxios.GaxiosError).response?.data);
+      if ((e as gaxios.GaxiosError).response?.data?.errors) {
+        for (const err of (e as gaxios.GaxiosError).response?.data.errors) {
           console.error(err);
         }
       }

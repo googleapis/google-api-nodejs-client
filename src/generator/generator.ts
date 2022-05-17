@@ -21,7 +21,7 @@ import * as util from 'util';
 import Q from 'p-queue';
 import * as prettier from 'prettier';
 import * as minimist from 'yargs-parser';
-import {request} from 'gaxios';
+import {GaxiosError, request} from 'gaxios';
 import {DISCOVERY_URL} from './download';
 import {downloadDiscoveryDocs, ChangeSet} from './download';
 import * as filters from './filters';
@@ -240,7 +240,7 @@ export class Generator {
       const pkg = JSON.parse(pkgRaw);
       packageData.version = pkg.version;
     } catch (err) {
-      if (err.code === 'ENOENT') {
+      if ((err as NodeJS.ErrnoException).code === 'ENOENT') {
         console.info(`${pkgPath} not found`);
       } else {
         throw err;
