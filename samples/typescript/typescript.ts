@@ -17,6 +17,7 @@ import {
   Auth, // Namespace for auth related types
   Common, // General types used throughout the library
 } from 'googleapis';
+import {GaxiosError} from 'googleapis-common';
 
 async function main() {
   // Note: using explicit types like `Auth.GoogleAuth` is only here for
@@ -39,7 +40,7 @@ async function main() {
   } catch (e) {
     // In many cases, errors from the API will come back as `GaxiosError`.
     // These will include the full HTTP Response (you should check for it first)
-    if (e.response) {
+    if ((e as GaxiosError).response) {
       const err = e as Common.GaxiosError;
       console.error(err.response);
       throw err;
