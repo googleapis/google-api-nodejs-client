@@ -216,7 +216,7 @@ describe('Clients', () => {
     );
   });
 
-  it.only('should pass eslint for a given client', () => {
+  it('should pass eslint for a given client', () => {
     execSync('npx eslint --no-ignore src/apis/youtube/*.ts');
   });
 });
