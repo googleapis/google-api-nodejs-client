@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/civicinfo-v0.4.0...civicinfo-v0.5.0) (2022-06-13)
+
+
+### Features
+
+* **civicinfo:** update the API ([ce252e7](https://github.com/googleapis/google-api-nodejs-client/commit/ce252e7f713dc624f9b028b6f1dfd15a181a38c5))
+* regenerate index files ([43ae576](https://github.com/googleapis/google-api-nodejs-client/commit/43ae57651332bdf31af52ea3abb9e2934798a404))
+
 ## [0.4.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/civicinfo-v0.3.0...civicinfo-v0.4.0) (2021-12-30)
 
 

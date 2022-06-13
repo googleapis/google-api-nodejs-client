@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/servicenetworking",
-  "version": "4.4.1",
+  "version": "4.5.0",
   "description": "servicenetworking",
   "main": "build/index.js",
   "types": "build/index.d.ts",

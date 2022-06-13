@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v6.1.0...content-v6.2.0) (2022-06-13)
+
+
+### Features
+
+* **content:** update the API ([0919741](https://github.com/googleapis/google-api-nodejs-client/commit/09197412f9b82771aa3099f5c8195547d17ee50c))
+
 ## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v6.0.1...content-v6.1.0) (2022-04-11)
 
 

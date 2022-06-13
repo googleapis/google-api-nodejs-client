@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/file-v2.3.1...file-v3.0.0) (2022-06-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* **file:** This release has breaking changes.
+
+### Features
+
+* **file:** update the API ([9c7e170](https://github.com/googleapis/google-api-nodejs-client/commit/9c7e170e862005f1e5d7456b063af6a0df243fa8))
+
 ### [2.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/file-v2.3.0...file-v2.3.1) (2022-03-23)
 
 

@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v2.4.0...androidpublisher-v2.5.0) (2022-06-13)
+
+
+### Features
+
+* regenerate index files ([43ae576](https://github.com/googleapis/google-api-nodejs-client/commit/43ae57651332bdf31af52ea3abb9e2934798a404))
+
+
+### Bug Fixes
+
+* **androidpublisher:** update the API ([3f6d9cf](https://github.com/googleapis/google-api-nodejs-client/commit/3f6d9cf24b5fc79850bdaa43e7343143877e8a78))
+* **androidpublisher:** update the API ([c4cf1e2](https://github.com/googleapis/google-api-nodejs-client/commit/c4cf1e2547ecf5441db2892c2aa704b7e48f19f1))
+
 ## [2.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v2.3.2...androidpublisher-v2.4.0) (2022-04-01)
 
 

@@ -1,5 +1,16 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v8.1.0...run-v9.0.0) (2022-06-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* **run:** This release has breaking changes.
+
+### Features
+
+* **run:** update the API ([77e7a57](https://github.com/googleapis/google-api-nodejs-client/commit/77e7a5795e9ee0f648fa78d1dd9862f37ce7892e))
+
 ## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v8.0.2...run-v8.1.0) (2022-04-11)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.2](https://github.com/googleapis/google-api-nodejs-client/compare/recommendationengine-v0.3.1...recommendationengine-v0.3.2) (2022-06-13)
+
+
+### Bug Fixes
+
+* **recommendationengine:** update the API ([775fce4](https://github.com/googleapis/google-api-nodejs-client/commit/775fce4b44a0a13ceb737c4a330e2a089b471f11))
+
 ### [0.3.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/recommendationengine-v0.3.0...recommendationengine-v0.3.1) (2021-12-30)
 
 

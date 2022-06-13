@@ -1,5 +1,14 @@
 # Changelog
 
+## [4.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v4.4.1...servicenetworking-v4.5.0) (2022-06-13)
+
+
+### Features
+
+* regenerate index files ([6cda0e8](https://github.com/googleapis/google-api-nodejs-client/commit/6cda0e8b567506ae9f7d96288efe8d935b54e66e))
+* **servicenetworking:** update the API ([ebb9931](https://github.com/googleapis/google-api-nodejs-client/commit/ebb9931d8cbced0213b20f26dda13ed25692124f))
+* **servicenetworking:** update the API ([281cb60](https://github.com/googleapis/google-api-nodejs-client/commit/281cb604113fb1812845239e302ddbefee65f773))
+
 ### [4.4.1](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v4.4.0...servicenetworking-v4.4.1) (2022-03-23)
 
 
