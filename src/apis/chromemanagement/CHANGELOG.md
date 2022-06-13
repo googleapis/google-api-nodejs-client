@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v1.3.0...chromemanagement-v1.3.1) (2022-06-13)
+
+
+### Bug Fixes
+
+* **chromemanagement:** update the API ([c386f9d](https://github.com/googleapis/google-api-nodejs-client/commit/c386f9d86fd4e76bf43a22cae77071f49df3d3be))
+
 ## [1.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v1.2.3...chromemanagement-v1.3.0) (2022-04-11)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v3.3.0...dataflow-v3.4.0) (2022-06-13)
+
+
+### Features
+
+* **dataflow:** update the API ([28dee3f](https://github.com/googleapis/google-api-nodejs-client/commit/28dee3f866e02b2a02c5fd8941ac2b64bb66a2f8))
+
 ## [3.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v3.2.0...dataflow-v3.3.0) (2022-03-14)
 
 

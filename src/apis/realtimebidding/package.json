@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/realtimebidding",
-  "version": "2.1.3",
+  "version": "2.2.0",
   "description": "realtimebidding",
   "main": "build/index.js",
   "types": "build/index.d.ts",

@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.7.0](https://github.com/googleapis/google-api-nodejs-client/compare/slides-v0.6.1...slides-v0.7.0) (2022-06-13)
+
+
+### Features
+
+* regenerate index files ([43ae576](https://github.com/googleapis/google-api-nodejs-client/commit/43ae57651332bdf31af52ea3abb9e2934798a404))
+
+
+### Bug Fixes
+
+* **slides:** update the API ([8d26226](https://github.com/googleapis/google-api-nodejs-client/commit/8d262269dc9465f8ed74a7c4b9ecfcc7a6545c08))
+
 ### [0.6.1](https://github.com/googleapis/google-api-nodejs-client/compare/slides-v0.6.0...slides-v0.6.1) (2022-04-01)
 
 

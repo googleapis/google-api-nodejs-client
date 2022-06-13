@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v1.1.1...testing-v1.1.2) (2022-06-13)
+
+
+### Bug Fixes
+
+* **testing:** update the API ([b6eacf3](https://github.com/googleapis/google-api-nodejs-client/commit/b6eacf34685191ca017e8ed34f98ffae3e00de2f))
+
 ### [1.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v1.1.0...testing-v1.1.1) (2022-04-01)
 
 

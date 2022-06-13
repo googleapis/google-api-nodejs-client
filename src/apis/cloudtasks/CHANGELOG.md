@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudtasks-v0.3.4...cloudtasks-v0.4.0) (2022-06-13)
+
+
+### Features
+
+* regenerate index files ([43ae576](https://github.com/googleapis/google-api-nodejs-client/commit/43ae57651332bdf31af52ea3abb9e2934798a404))
+
+
+### Bug Fixes
+
+* **cloudtasks:** update the API ([05f7130](https://github.com/googleapis/google-api-nodejs-client/commit/05f71303abd5594e63a7f8d0d84f55d76e217aa9))
+
 ### [0.3.4](https://github.com/googleapis/google-api-nodejs-client/compare/cloudtasks-v0.3.3...cloudtasks-v0.3.4) (2022-04-11)
 
 

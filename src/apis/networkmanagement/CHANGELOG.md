@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.2](https://github.com/googleapis/google-api-nodejs-client/compare/networkmanagement-v1.4.1...networkmanagement-v1.4.2) (2022-06-13)
+
+
+### Bug Fixes
+
+* **networkmanagement:** update the API ([96963f3](https://github.com/googleapis/google-api-nodejs-client/commit/96963f32d03ee903c0fc4588342fcf54bb22772c))
+
 ### [1.4.1](https://github.com/googleapis/google-api-nodejs-client/compare/networkmanagement-v1.4.0...networkmanagement-v1.4.1) (2022-04-11)
 
 

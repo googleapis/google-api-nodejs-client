@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v2.3.0...drive-v2.4.0) (2022-06-13)
+
+
+### Features
+
+* **drive:** update the API ([39af9d1](https://github.com/googleapis/google-api-nodejs-client/commit/39af9d149072eb2b431e14fb94ad7050124ff2a9))
+
 ## [2.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v2.2.0...drive-v2.3.0) (2022-03-08)
 
 
