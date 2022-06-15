@@ -36,9 +36,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace dfareporting_v3_5 {
+export namespace dfareporting_v4 {
   export interface Options extends GlobalOptions {
-    version: 'v3.5';
+    version: 'v4';
   }
 
   interface StandardParameters {
@@ -108,7 +108,7 @@ export namespace dfareporting_v3_5 {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const dfareporting = google.dfareporting('v3.5');
+   * const dfareporting = google.dfareporting('v4');
    * ```
    */
   export class Dfareporting {
@@ -120,8 +120,12 @@ export namespace dfareporting_v3_5 {
     accountUserProfiles: Resource$Accountuserprofiles;
     ads: Resource$Ads;
     advertiserGroups: Resource$Advertisergroups;
+    advertiserInvoices: Resource$Advertiserinvoices;
     advertiserLandingPages: Resource$Advertiserlandingpages;
     advertisers: Resource$Advertisers;
+    billingAssignments: Resource$Billingassignments;
+    billingProfiles: Resource$Billingprofiles;
+    billingRates: Resource$Billingrates;
     browsers: Resource$Browsers;
     campaignCreativeAssociations: Resource$Campaigncreativeassociations;
     campaigns: Resource$Campaigns;
@@ -191,10 +195,14 @@ export namespace dfareporting_v3_5 {
       this.accountUserProfiles = new Resource$Accountuserprofiles(this.context);
       this.ads = new Resource$Ads(this.context);
       this.advertiserGroups = new Resource$Advertisergroups(this.context);
+      this.advertiserInvoices = new Resource$Advertiserinvoices(this.context);
       this.advertiserLandingPages = new Resource$Advertiserlandingpages(
         this.context
       );
       this.advertisers = new Resource$Advertisers(this.context);
+      this.billingAssignments = new Resource$Billingassignments(this.context);
+      this.billingProfiles = new Resource$Billingprofiles(this.context);
+      this.billingRates = new Resource$Billingrates(this.context);
       this.browsers = new Resource$Browsers(this.context);
       this.campaignCreativeAssociations =
         new Resource$Campaigncreativeassociations(this.context);
@@ -890,6 +898,23 @@ export namespace dfareporting_v3_5 {
     nextPageToken?: string | null;
   }
   /**
+   * Invoice List Response
+   */
+  export interface Schema$AdvertiserInvoicesListResponse {
+    /**
+     * Invoice collection
+     */
+    invoices?: Schema$Invoice[];
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#advertiserInvoicesListResponse".
+     */
+    kind?: string | null;
+    /**
+     * Pagination token to be used for the next list operation.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Landing Page List Response
    */
   export interface Schema$AdvertiserLandingPagesListResponse {
@@ -956,6 +981,187 @@ export namespace dfareporting_v3_5 {
      * Name of this audience segment group. This is a required field and must be less than 65 characters long.
      */
     name?: string | null;
+  }
+  /**
+   * List account, subaccount, advertiser, and campaign associated with a given Billing Profile.
+   */
+  export interface Schema$BillingAssignment {
+    /**
+     * ID of the account associated with the billing assignment.This is a read-only, auto-generated field.
+     */
+    accountId?: string | null;
+    /**
+     * ID of the advertiser associated with the billing assignment.Wildcard (*) means this assignment is not limited to a single advertiser
+     */
+    advertiserId?: string | null;
+    /**
+     * ID of the campaign associated with the billing assignment. Wildcard (*) means this assignment is not limited to a single campaign
+     */
+    campaignId?: string | null;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#billingAssignment".
+     */
+    kind?: string | null;
+    /**
+     * ID of the subaccount associated with the billing assignment.Wildcard (*) means this assignment is not limited to a single subaccountThis is a read-only, auto-generated field.
+     */
+    subaccountId?: string | null;
+  }
+  /**
+   * Billing assignment List Response
+   */
+  export interface Schema$BillingAssignmentsListResponse {
+    /**
+     * Billing assignments collection.
+     */
+    billingAssignments?: Schema$BillingAssignment[];
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#billingAssignmentsListResponse".
+     */
+    kind?: string | null;
+  }
+  /**
+   * Contains properties of a Campaign Manager Billing Profile.
+   */
+  export interface Schema$BillingProfile {
+    /**
+     * Consolidated invoice option for this billing profile. Used to get a single, consolidated invoice across the chosen invoice level.
+     */
+    consolidatedInvoice?: boolean | null;
+    /**
+     * Country code of this billing profile.This is a read-only field.
+     */
+    countryCode?: string | null;
+    /**
+     * Billing currency code in ISO 4217 format.This is a read-only field.
+     */
+    currencyCode?: string | null;
+    /**
+     * ID of this billing profile. This is a read-only, auto-generated field.
+     */
+    id?: string | null;
+    /**
+     * Invoice level for this billing profile. Used to group fees into separate invoices by account, advertiser, or campaign.
+     */
+    invoiceLevel?: string | null;
+    /**
+     * True if the billing profile is the account default profile. This is a read-only field.
+     */
+    isDefault?: boolean | null;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#billingProfile".
+     */
+    kind?: string | null;
+    /**
+     * Name of this billing profile. This is a required field and must be less than 256 characters long and must be unique among billing profile in the same account.
+     */
+    name?: string | null;
+    /**
+     * The ID of the payment account the billing profile belongs to. This is a read-only field.
+     */
+    paymentsAccountId?: string | null;
+    /**
+     * The ID of the payment customer the billing profile belongs to. This is a read-only field.
+     */
+    paymentsCustomerId?: string | null;
+    /**
+     * Purchase order (PO) for this billing profile. This PO number is used in the invoices for all of the advertisers in this billing profile.
+     */
+    purchaseOrder?: string | null;
+    /**
+     * The ID of the secondary payment customer the billing profile belongs to. This is a read-only field.
+     */
+    secondaryPaymentsCustomerId?: string | null;
+    /**
+     * Status of this billing profile.This is a read-only field.
+     */
+    status?: string | null;
+  }
+  /**
+   * Billing profile List Response
+   */
+  export interface Schema$BillingProfilesListResponse {
+    /**
+     * Billing profiles collection.
+     */
+    billingProfiles?: Schema$BillingProfile[];
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#billingProfilesListResponse".
+     */
+    kind?: string | null;
+    /**
+     * Pagination token to be used for the next list operation.
+     */
+    nextPageToken?: string | null;
+  }
+  export interface Schema$BillingRate {
+    /**
+     * Billing currency code in ISO 4217 format.
+     */
+    currencyCode?: string | null;
+    /**
+     * End date of this billing rate.
+     */
+    endDate?: string | null;
+    /**
+     * ID of this billing rate.
+     */
+    id?: string | null;
+    /**
+     * Name of this billing rate. This must be less than 256 characters long.
+     */
+    name?: string | null;
+    /**
+     * Flat rate in micros of this billing rate. This cannot co-exist with tiered rate.
+     */
+    rateInMicros?: string | null;
+    /**
+     * Start date of this billing rate.
+     */
+    startDate?: string | null;
+    /**
+     * Tiered rate of this billing rate. This cannot co-exist with flat rate.
+     */
+    tieredRates?: Schema$BillingRateTieredRate[];
+    /**
+     * Type of this billing rate.
+     */
+    type?: string | null;
+    /**
+     * Unit of measure for this billing rate.
+     */
+    unitOfMeasure?: string | null;
+  }
+  /**
+   * Billing Rate List Response
+   */
+  export interface Schema$BillingRatesListResponse {
+    /**
+     * Billing rates collection.
+     */
+    billingRates?: Schema$BillingRate[];
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#billingRatesListResponse".
+     */
+    kind?: string | null;
+    /**
+     * Pagination token to be used for the next list operation.
+     */
+    nextPageToken?: string | null;
+  }
+  export interface Schema$BillingRateTieredRate {
+    /**
+     * The maximum for this tier range.
+     */
+    highValue?: string | null;
+    /**
+     * The minimum for this tier range.
+     */
+    lowValue?: string | null;
+    /**
+     * Rate in micros for this tier.
+     */
+    rateInMicros?: string | null;
   }
   /**
    * Contains information about a browser that can be targeted by ads.
@@ -1100,19 +1306,11 @@ export namespace dfareporting_v3_5 {
      * Name of this campaign. This is a required field and must be less than 512 characters long and unique among campaigns of the same advertiser.
      */
     name?: string | null;
-    /**
-     * Whether Nielsen reports are enabled for this campaign.
-     */
-    nielsenOcrEnabled?: boolean | null;
     startDate?: string | null;
     /**
      * Subaccount ID of this campaign. This is a read-only field that can be left blank.
      */
     subaccountId?: string | null;
-    /**
-     * Campaign trafficker contact emails.
-     */
-    traffickerEmails?: string[] | null;
   }
   /**
    * Identifies a creative which has been associated with a given campaign.
@@ -1160,6 +1358,31 @@ export namespace dfareporting_v3_5 {
      * Pagination token to be used for the next list operation.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Represents a summarized campaign information associated with this invoice.
+   */
+  export interface Schema$CampaignSummary {
+    /**
+     * Campaign billing invoice code.
+     */
+    billingInvoiceCode?: string | null;
+    /**
+     * Campaign ID.
+     */
+    campaignId?: string | null;
+    /**
+     * The pre-tax amount for this campaign, in micros of the invoice's currency.
+     */
+    preTaxAmountMicros?: string | null;
+    /**
+     * The tax amount for this campaign, in micros of the invoice's currency.
+     */
+    taxAmountMicros?: string | null;
+    /**
+     * The total amount of charges for this campaign, in micros of the invoice's currency.
+     */
+    totalAmountMicros?: string | null;
   }
   /**
    * Describes a change that a user has made to a resource.
@@ -1531,15 +1754,15 @@ export namespace dfareporting_v3_5 {
      */
     customVariables?: Schema$CustomFloodlightVariable[];
     /**
-     * The display click ID. This field is mutually exclusive with encryptedUserId, encryptedUserIdCandidates[], matchId, mobileDeviceId and gclid. This or encryptedUserId or encryptedUserIdCandidates[] or matchId or mobileDeviceId or gclid is a required field.
+     * The display click ID. This field is mutually exclusive with encryptedUserId, encryptedUserIdCandidates[], matchId, mobileDeviceId, gclid, and impressionId. This or encryptedUserId or encryptedUserIdCandidates[] or matchId or mobileDeviceId or gclid or impressionId is a required field.
      */
     dclid?: string | null;
     /**
-     * The alphanumeric encrypted user ID. When set, encryptionInfo should also be specified. This field is mutually exclusive with encryptedUserIdCandidates[], matchId, mobileDeviceId, gclid and dclid. This or encryptedUserIdCandidates[] or matchId or mobileDeviceId or gclid or dclid is a required field.
+     * The alphanumeric encrypted user ID. When set, encryptionInfo should also be specified. This field is mutually exclusive with encryptedUserIdCandidates[], matchId, mobileDeviceId, gclid, dclid, and impressionId. This or encryptedUserIdCandidates[] or matchId or mobileDeviceId or gclid or dclid or impressionId is a required field.
      */
     encryptedUserId?: string | null;
     /**
-     * A list of the alphanumeric encrypted user IDs. Any user ID with exposure prior to the conversion timestamp will be used in the inserted conversion. If no such user ID is found then the conversion will be rejected with INVALID_ARGUMENT error. When set, encryptionInfo should also be specified. This field may only be used when calling batchinsert; it is not supported by batchupdate. This field is mutually exclusive with encryptedUserId, matchId, mobileDeviceId, gclid and dclid. This or encryptedUserId or matchId or mobileDeviceId or gclid or dclid is a required field.
+     * A list of the alphanumeric encrypted user IDs. Any user ID with exposure prior to the conversion timestamp will be used in the inserted conversion. If no such user ID is found then the conversion will be rejected with INVALID_ARGUMENT error. When set, encryptionInfo should also be specified. This field may only be used when calling batchinsert; it is not supported by batchupdate. This field is mutually exclusive with encryptedUserId, matchId, mobileDeviceId, gclid dclid, and impressionId. This or encryptedUserId or matchId or mobileDeviceId or gclid or dclid or impressionId is a required field.
      */
     encryptedUserIdCandidates?: string[] | null;
     /**
@@ -1551,9 +1774,13 @@ export namespace dfareporting_v3_5 {
      */
     floodlightConfigurationId?: string | null;
     /**
-     * The Google click ID. This field is mutually exclusive with encryptedUserId, encryptedUserIdCandidates[], matchId, mobileDeviceId and dclid. This or encryptedUserId or encryptedUserIdCandidates[] or matchId or mobileDeviceId or dclid is a required field.
+     * The Google click ID. This field is mutually exclusive with encryptedUserId, encryptedUserIdCandidates[], matchId, mobileDeviceId, dclid, and impressionId. This or encryptedUserId or encryptedUserIdCandidates[] or matchId or mobileDeviceId or dclid or impressionId is a required field.
      */
     gclid?: string | null;
+    /**
+     * The impression ID. This field is mutually exclusive with encryptedUserId, encryptedUserIdCandidates[], matchId, mobileDeviceId, and gclid. One of these identifiers must be set.
+     */
+    impressionId?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string "dfareporting#conversion".
      */
@@ -1563,11 +1790,11 @@ export namespace dfareporting_v3_5 {
      */
     limitAdTracking?: boolean | null;
     /**
-     * The match ID field. A match ID is your own first-party identifier that has been synced with Google using the match ID feature in Floodlight. This field is mutually exclusive with encryptedUserId, encryptedUserIdCandidates[],mobileDeviceId, gclid and dclid. This or encryptedUserId or encryptedUserIdCandidates[] or mobileDeviceId or gclid or dclid is a required field.
+     * The match ID field. A match ID is your own first-party identifier that has been synced with Google using the match ID feature in Floodlight. This field is mutually exclusive with encryptedUserId, encryptedUserIdCandidates[],mobileDeviceId, gclid, dclid, and impressionId. This or encryptedUserId orencryptedUserIdCandidates[] or mobileDeviceId or gclid or dclid or impressionIdis a required field.
      */
     matchId?: string | null;
     /**
-     * The mobile device ID. This field is mutually exclusive with encryptedUserId, encryptedUserIdCandidates[], matchId, gclid and dclid. This or encryptedUserId or encryptedUserIdCandidates[] or matchId or gclid or dclid is a required field.
+     * The mobile device ID. This field is mutually exclusive with encryptedUserId, encryptedUserIdCandidates[], matchId, gclid, dclid, and impressionId. This or encryptedUserId or encryptedUserIdCandidates[] or matchId or gclid or dclid or impressionId is a required field.
      */
     mobileDeviceId?: string | null;
     /**
@@ -3816,6 +4043,83 @@ export namespace dfareporting_v3_5 {
     nextPageToken?: string | null;
   }
   /**
+   * Contains information about a single invoice
+   */
+  export interface Schema$Invoice {
+    /**
+     * The list of summarized campaign information associated with this invoice.
+     */
+    campaign_summaries?: Schema$CampaignSummary[];
+    /**
+     * The originally issued invoice that is being adjusted by this invoice, if applicable. May appear on invoice PDF as *Reference invoice number*.
+     */
+    correctedInvoiceId?: string | null;
+    /**
+     * Invoice currency code in ISO 4217 format.
+     */
+    currencyCode?: string | null;
+    /**
+     * The invoice due date.
+     */
+    dueDate?: string | null;
+    /**
+     * ID of this invoice.
+     */
+    id?: string | null;
+    /**
+     * The type of invoice document.
+     */
+    invoiceType?: string | null;
+    /**
+     * The date when the invoice was issued.
+     */
+    issueDate?: string | null;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#invoice".
+     */
+    kind?: string | null;
+    /**
+     * The ID of the payments account the invoice belongs to. Appears on the invoice PDF as *Billing Account Number*.
+     */
+    paymentsAccountId?: string | null;
+    /**
+     * The ID of the payments profile the invoice belongs to. Appears on the invoice PDF as *Billing ID*.
+     */
+    paymentsProfileId?: string | null;
+    /**
+     * The URL to download a PDF copy of the invoice. Note that this URL is user specific and requires a valid OAuth 2.0 access token to access. The access token must be provided in an *Authorization: Bearer* HTTP header. The URL will only be usable for 7 days from when the api is called.
+     */
+    pdfUrl?: string | null;
+    /**
+     * Purchase order number associated with the invoice.
+     */
+    purchaseOrderNumber?: string | null;
+    /**
+     * The originally issued invoice(s) that is being cancelled by this invoice, if applicable. May appear on invoice PDF as *Replaced invoice numbers*. Note: There may be multiple replaced invoices due to consolidation of multiple invoices into a single invoice.
+     */
+    replacedInvoiceIds?: string[] | null;
+    /**
+     * The invoice service end date.
+     */
+    serviceEndDate?: string | null;
+    /**
+     * The invoice service start date.
+     */
+    serviceStartDate?: string | null;
+    /**
+     * The pre-tax subtotal amount, in micros of the invoice's currency.
+     */
+    subtotalAmountMicros?: string | null;
+    /**
+     * The invoice total amount, in micros of the invoice's currency.
+     */
+    totalAmountMicros?: string | null;
+    /**
+     * The sum of all taxes in invoice, in micros of the invoice's currency.
+     */
+    totalTaxAmountMicros?: string | null;
+  }
+  /**
    * Key Value Targeting Expression.
    */
   export interface Schema$KeyValueTargetingExpression {
@@ -4671,6 +4975,10 @@ export namespace dfareporting_v3_5 {
      */
     accountId?: string | null;
     /**
+     * Whether this placement is active, inactive, archived or permanently archived.
+     */
+    activeStatus?: string | null;
+    /**
      * Whether this placement opts out of ad blocking. When true, ad blocking is disabled for this placement. When false, the campaign and site settings take effect.
      */
     adBlockingOptOut?: boolean | null;
@@ -4686,10 +4994,6 @@ export namespace dfareporting_v3_5 {
      * Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
      */
     advertiserIdDimensionValue?: Schema$DimensionValue;
-    /**
-     * Whether this placement is archived.
-     */
-    archived?: boolean | null;
     /**
      * Campaign ID of this placement. This field is a required field on insertion.
      */
@@ -4869,6 +5173,10 @@ export namespace dfareporting_v3_5 {
      */
     accountId?: string | null;
     /**
+     * Whether this placement group is active, inactive, archived or permanently archived.
+     */
+    activeStatus?: string | null;
+    /**
      * Advertiser ID of this placement group. This is a required field on insertion.
      */
     advertiserId?: string | null;
@@ -4876,10 +5184,6 @@ export namespace dfareporting_v3_5 {
      * Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
      */
     advertiserIdDimensionValue?: Schema$DimensionValue;
-    /**
-     * Whether this placement group is archived.
-     */
-    archived?: boolean | null;
     /**
      * Campaign ID of this placement group. This field is required on insertion.
      */
@@ -6020,6 +6324,10 @@ export namespace dfareporting_v3_5 {
      */
     orientation?: string | null;
     /**
+     * Publisher specification ID used to identify site-associated publisher requirements and automatically populate transcode settings. If publisher specification ID is specified, it will take precedence over transcode settings.
+     */
+    publisherSpecificationId?: string | null;
+    /**
      * Settings for the skippability of video creatives served to this site. This will act as default for new placements created under this site.
      */
     skippableSettings?: Schema$SiteSkippableSetting;
@@ -6716,6 +7024,10 @@ export namespace dfareporting_v3_5 {
      */
     orientation?: string | null;
     /**
+     * Publisher specification ID of a video placement.
+     */
+    publisherSpecificationId?: string | null;
+    /**
      * Settings for the skippability of video creatives served to this placement. If this object is provided, the creative-level skippable settings will be overridden.
      */
     skippableSettings?: Schema$SkippableSetting;
@@ -6744,7 +7056,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6850,7 +7162,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/accountActiveAdSummaries/{summaryAccountId}'
+              '/dfareporting/v4/userprofiles/{profileId}/accountActiveAdSummaries/{summaryAccountId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -6903,7 +7215,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7007,7 +7319,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/accountPermissionGroups/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/accountPermissionGroups/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -7041,7 +7353,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7144,7 +7456,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/accountPermissionGroups'
+              '/dfareporting/v4/userprofiles/{profileId}/accountPermissionGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -7206,7 +7518,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7311,7 +7623,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/accountPermissions/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/accountPermissions/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -7345,7 +7657,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7448,7 +7760,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/accountPermissions'
+              '/dfareporting/v4/userprofiles/{profileId}/accountPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -7510,7 +7822,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7624,7 +7936,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/accounts/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/accounts/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -7658,7 +7970,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7772,7 +8084,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/accounts'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/accounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -7806,7 +8118,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7945,7 +8257,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/accounts'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/accounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -7979,7 +8291,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -8116,7 +8428,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/accounts'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/accounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -8228,7 +8540,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -8343,7 +8655,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/accountUserProfiles/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/accountUserProfiles/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -8377,7 +8689,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -8513,7 +8825,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/accountUserProfiles'
+              '/dfareporting/v4/userprofiles/{profileId}/accountUserProfiles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -8547,7 +8859,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -8669,7 +8981,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/accountUserProfiles'
+              '/dfareporting/v4/userprofiles/{profileId}/accountUserProfiles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -8705,7 +9017,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -8843,7 +9155,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/accountUserProfiles'
+              '/dfareporting/v4/userprofiles/{profileId}/accountUserProfiles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -8877,7 +9189,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -9013,7 +9325,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/accountUserProfiles'
+              '/dfareporting/v4/userprofiles/{profileId}/accountUserProfiles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -9149,7 +9461,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -9282,7 +9594,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/ads/{id}'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/ads/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -9316,7 +9628,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -9493,7 +9805,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/ads'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/ads'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -9527,7 +9839,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -9668,7 +9980,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/ads'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/ads'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -9702,7 +10014,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -9881,7 +10193,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/ads'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/ads'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -9915,7 +10227,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -10092,7 +10404,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/ads'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/ads'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -10279,7 +10591,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -10369,7 +10681,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/advertiserGroups/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/advertiserGroups/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -10403,7 +10715,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -10503,7 +10815,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/advertiserGroups/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/advertiserGroups/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -10537,7 +10849,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -10646,7 +10958,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/advertiserGroups'
+              '/dfareporting/v4/userprofiles/{profileId}/advertiserGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -10680,7 +10992,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -10796,7 +11108,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/advertiserGroups'
+              '/dfareporting/v4/userprofiles/{profileId}/advertiserGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -10832,7 +11144,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -10943,7 +11255,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/advertiserGroups'
+              '/dfareporting/v4/userprofiles/{profileId}/advertiserGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -10977,7 +11289,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -11086,7 +11398,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/advertiserGroups'
+              '/dfareporting/v4/userprofiles/{profileId}/advertiserGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -11202,6 +11514,185 @@ export namespace dfareporting_v3_5 {
     requestBody?: Schema$AdvertiserGroup;
   }
 
+  export class Resource$Advertiserinvoices {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves a list of invoices for a particular issue month. The api only works if the billing profile invoice level is set to either advertiser or campaign non-consolidated invoice level.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.advertiserInvoices.list({
+     *     // Advertiser ID of this invoice.
+     *     advertiserId: 'placeholder-value',
+     *     // Month for which invoices are needed in the format YYYYMM. Required field
+     *     issueMonth: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "invoices": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Advertiserinvoices$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Advertiserinvoices$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdvertiserInvoicesListResponse>;
+    list(
+      params: Params$Resource$Advertiserinvoices$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Advertiserinvoices$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AdvertiserInvoicesListResponse>,
+      callback: BodyResponseCallback<Schema$AdvertiserInvoicesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Advertiserinvoices$List,
+      callback: BodyResponseCallback<Schema$AdvertiserInvoicesListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$AdvertiserInvoicesListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Advertiserinvoices$List
+        | BodyResponseCallback<Schema$AdvertiserInvoicesListResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdvertiserInvoicesListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdvertiserInvoicesListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AdvertiserInvoicesListResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertiserinvoices$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertiserinvoices$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v4/userprofiles/{profileId}/advertisers/{advertiserId}/invoices'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['profileId', 'advertiserId'],
+        pathParams: ['advertiserId', 'profileId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AdvertiserInvoicesListResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AdvertiserInvoicesListResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Advertiserinvoices$List
+    extends StandardParameters {
+    /**
+     * Advertiser ID of this invoice.
+     */
+    advertiserId?: string;
+    /**
+     * Month for which invoices are needed in the format YYYYMM. Required field
+     */
+    issueMonth?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+
   export class Resource$Advertiserlandingpages {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -11221,7 +11712,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -11324,7 +11815,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/advertiserLandingPages/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/advertiserLandingPages/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -11358,7 +11849,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -11473,7 +11964,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/advertiserLandingPages'
+              '/dfareporting/v4/userprofiles/{profileId}/advertiserLandingPages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -11507,7 +11998,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -11631,7 +12122,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/advertiserLandingPages'
+              '/dfareporting/v4/userprofiles/{profileId}/advertiserLandingPages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -11667,7 +12158,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -11784,7 +12275,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/advertiserLandingPages'
+              '/dfareporting/v4/userprofiles/{profileId}/advertiserLandingPages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -11818,7 +12309,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -11933,7 +12424,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/advertiserLandingPages'
+              '/dfareporting/v4/userprofiles/{profileId}/advertiserLandingPages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -12073,7 +12564,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -12184,7 +12675,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/advertisers/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/advertisers/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -12218,7 +12709,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -12350,8 +12841,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/advertisers'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/advertisers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -12385,7 +12875,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -12509,8 +12999,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/advertisers'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/advertisers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -12544,7 +13033,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -12678,8 +13167,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/advertisers'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/advertisers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -12713,7 +13201,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -12845,8 +13333,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/advertisers'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/advertisers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -12973,6 +13460,1029 @@ export namespace dfareporting_v3_5 {
     requestBody?: Schema$Advertiser;
   }
 
+  export class Resource$Billingassignments {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Inserts a new billing assignment and returns the new assignment. Only one of advertiser_id or campaign_id is support per request. If the new assignment has no effect (assigning a campaign to the parent advertiser billing profile or assigning an advertiser to the account billing profile), no assignment will be returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.billingAssignments.insert({
+     *     // Billing profile ID of this billing assignment.
+     *     billingProfileId: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "campaignId": "my_campaignId",
+     *       //   "kind": "my_kind",
+     *       //   "subaccountId": "my_subaccountId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "campaignId": "my_campaignId",
+     *   //   "kind": "my_kind",
+     *   //   "subaccountId": "my_subaccountId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    insert(
+      params: Params$Resource$Billingassignments$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
+      params?: Params$Resource$Billingassignments$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BillingAssignment>;
+    insert(
+      params: Params$Resource$Billingassignments$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    insert(
+      params: Params$Resource$Billingassignments$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$BillingAssignment>,
+      callback: BodyResponseCallback<Schema$BillingAssignment>
+    ): void;
+    insert(
+      params: Params$Resource$Billingassignments$Insert,
+      callback: BodyResponseCallback<Schema$BillingAssignment>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$BillingAssignment>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Billingassignments$Insert
+        | BodyResponseCallback<Schema$BillingAssignment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BillingAssignment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BillingAssignment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BillingAssignment>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingassignments$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingassignments$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v4/userprofiles/{profileId}/billingProfiles/{billingProfileId}/billingAssignments'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['profileId', 'billingProfileId'],
+        pathParams: ['billingProfileId', 'profileId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BillingAssignment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BillingAssignment>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a list of billing assignments.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.billingAssignments.list({
+     *     // Billing profile ID of this billing assignment.
+     *     billingProfileId: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingAssignments": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Billingassignments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Billingassignments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BillingAssignmentsListResponse>;
+    list(
+      params: Params$Resource$Billingassignments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Billingassignments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BillingAssignmentsListResponse>,
+      callback: BodyResponseCallback<Schema$BillingAssignmentsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Billingassignments$List,
+      callback: BodyResponseCallback<Schema$BillingAssignmentsListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$BillingAssignmentsListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Billingassignments$List
+        | BodyResponseCallback<Schema$BillingAssignmentsListResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BillingAssignmentsListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BillingAssignmentsListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BillingAssignmentsListResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingassignments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingassignments$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v4/userprofiles/{profileId}/billingProfiles/{billingProfileId}/billingAssignments'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['profileId', 'billingProfileId'],
+        pathParams: ['billingProfileId', 'profileId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BillingAssignmentsListResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BillingAssignmentsListResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Billingassignments$Insert
+    extends StandardParameters {
+    /**
+     * Billing profile ID of this billing assignment.
+     */
+    billingProfileId?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BillingAssignment;
+  }
+  export interface Params$Resource$Billingassignments$List
+    extends StandardParameters {
+    /**
+     * Billing profile ID of this billing assignment.
+     */
+    billingProfileId?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+
+  export class Resource$Billingprofiles {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets one billing profile by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.billingProfiles.get({
+     *     // Billing Profile ID.
+     *     id: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "consolidatedInvoice": false,
+     *   //   "countryCode": "my_countryCode",
+     *   //   "currencyCode": "my_currencyCode",
+     *   //   "id": "my_id",
+     *   //   "invoiceLevel": "my_invoiceLevel",
+     *   //   "isDefault": false,
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "paymentsAccountId": "my_paymentsAccountId",
+     *   //   "paymentsCustomerId": "my_paymentsCustomerId",
+     *   //   "purchaseOrder": "my_purchaseOrder",
+     *   //   "secondaryPaymentsCustomerId": "my_secondaryPaymentsCustomerId",
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Billingprofiles$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Billingprofiles$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BillingProfile>;
+    get(
+      params: Params$Resource$Billingprofiles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Billingprofiles$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$BillingProfile>,
+      callback: BodyResponseCallback<Schema$BillingProfile>
+    ): void;
+    get(
+      params: Params$Resource$Billingprofiles$Get,
+      callback: BodyResponseCallback<Schema$BillingProfile>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$BillingProfile>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Billingprofiles$Get
+        | BodyResponseCallback<Schema$BillingProfile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BillingProfile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BillingProfile>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$BillingProfile> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingprofiles$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingprofiles$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v4/userprofiles/{profileId}/billingProfiles/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['profileId', 'id'],
+        pathParams: ['id', 'profileId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BillingProfile>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BillingProfile>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a list of billing profiles, possibly filtered. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.billingProfiles.list({
+     *     // Select only billing profile with currency.
+     *     currency_code: 'placeholder-value',
+     *     // Select only billing profile with these IDs.
+     *     ids: 'placeholder-value',
+     *     // Maximum number of results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Allows searching for billing profiles by name. Wildcards (*) are allowed. For example, "profile*2020" will return objects with names like "profile June 2020", "profile April 2020", or simply "profile 2020". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "profile" will match objects with name "my profile", "profile 2021", or simply "profile".
+     *     name: 'placeholder-value',
+     *     // Select only billing profile which is suggested for the currency_code & subaccount_id using the Billing Suggestion API.
+     *     onlySuggestion: 'placeholder-value',
+     *     // Value of the nextPageToken from the previous result page.
+     *     pageToken: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     sortField: 'placeholder-value',
+     *     // Order of sorted results.
+     *     sortOrder: 'placeholder-value',
+     *     // Select only billing profile with the specified status.
+     *     status: 'placeholder-value',
+     *     // Select only billing profile with the specified subaccount.When only_suggestion is true, only a single subaccount_id is supported.
+     *     subaccountIds: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingProfiles": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Billingprofiles$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Billingprofiles$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BillingProfilesListResponse>;
+    list(
+      params: Params$Resource$Billingprofiles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Billingprofiles$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BillingProfilesListResponse>,
+      callback: BodyResponseCallback<Schema$BillingProfilesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Billingprofiles$List,
+      callback: BodyResponseCallback<Schema$BillingProfilesListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$BillingProfilesListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Billingprofiles$List
+        | BodyResponseCallback<Schema$BillingProfilesListResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BillingProfilesListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BillingProfilesListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BillingProfilesListResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingprofiles$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingprofiles$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v4/userprofiles/{profileId}/billingProfiles'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['profileId'],
+        pathParams: ['profileId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BillingProfilesListResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BillingProfilesListResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates an existing billing profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.billingProfiles.update({
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "consolidatedInvoice": false,
+     *       //   "countryCode": "my_countryCode",
+     *       //   "currencyCode": "my_currencyCode",
+     *       //   "id": "my_id",
+     *       //   "invoiceLevel": "my_invoiceLevel",
+     *       //   "isDefault": false,
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "paymentsAccountId": "my_paymentsAccountId",
+     *       //   "paymentsCustomerId": "my_paymentsCustomerId",
+     *       //   "purchaseOrder": "my_purchaseOrder",
+     *       //   "secondaryPaymentsCustomerId": "my_secondaryPaymentsCustomerId",
+     *       //   "status": "my_status"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "consolidatedInvoice": false,
+     *   //   "countryCode": "my_countryCode",
+     *   //   "currencyCode": "my_currencyCode",
+     *   //   "id": "my_id",
+     *   //   "invoiceLevel": "my_invoiceLevel",
+     *   //   "isDefault": false,
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "paymentsAccountId": "my_paymentsAccountId",
+     *   //   "paymentsCustomerId": "my_paymentsCustomerId",
+     *   //   "purchaseOrder": "my_purchaseOrder",
+     *   //   "secondaryPaymentsCustomerId": "my_secondaryPaymentsCustomerId",
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    update(
+      params: Params$Resource$Billingprofiles$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
+      params?: Params$Resource$Billingprofiles$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BillingProfile>;
+    update(
+      params: Params$Resource$Billingprofiles$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    update(
+      params: Params$Resource$Billingprofiles$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$BillingProfile>,
+      callback: BodyResponseCallback<Schema$BillingProfile>
+    ): void;
+    update(
+      params: Params$Resource$Billingprofiles$Update,
+      callback: BodyResponseCallback<Schema$BillingProfile>
+    ): void;
+    update(callback: BodyResponseCallback<Schema$BillingProfile>): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Billingprofiles$Update
+        | BodyResponseCallback<Schema$BillingProfile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BillingProfile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BillingProfile>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$BillingProfile> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingprofiles$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingprofiles$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v4/userprofiles/{profileId}/billingProfiles'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['profileId'],
+        pathParams: ['profileId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BillingProfile>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BillingProfile>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Billingprofiles$Get
+    extends StandardParameters {
+    /**
+     * Billing Profile ID.
+     */
+    id?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+  export interface Params$Resource$Billingprofiles$List
+    extends StandardParameters {
+    /**
+     * Select only billing profile with currency.
+     */
+    currency_code?: string;
+    /**
+     * Select only billing profile with these IDs.
+     */
+    ids?: string[];
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Allows searching for billing profiles by name. Wildcards (*) are allowed. For example, "profile*2020" will return objects with names like "profile June 2020", "profile April 2020", or simply "profile 2020". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "profile" will match objects with name "my profile", "profile 2021", or simply "profile".
+     */
+    name?: string;
+    /**
+     * Select only billing profile which is suggested for the currency_code & subaccount_id using the Billing Suggestion API.
+     */
+    onlySuggestion?: boolean;
+    /**
+     * Value of the nextPageToken from the previous result page.
+     */
+    pageToken?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+    /**
+     * Field by which to sort the list.
+     */
+    sortField?: string;
+    /**
+     * Order of sorted results.
+     */
+    sortOrder?: string;
+    /**
+     * Select only billing profile with the specified status.
+     */
+    status?: string[];
+    /**
+     * Select only billing profile with the specified subaccount.When only_suggestion is true, only a single subaccount_id is supported.
+     */
+    subaccountIds?: string[];
+  }
+  export interface Params$Resource$Billingprofiles$Update
+    extends StandardParameters {
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BillingProfile;
+  }
+
+  export class Resource$Billingrates {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves a list of billing rates. This method supports paging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.billingRates.list({
+     *     // Billing profile ID of this billing rate.
+     *     billingProfileId: 'placeholder-value',
+     *     // User profile ID associated with this request.
+     *     profileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingRates": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Billingrates$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Billingrates$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BillingRatesListResponse>;
+    list(
+      params: Params$Resource$Billingrates$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Billingrates$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BillingRatesListResponse>,
+      callback: BodyResponseCallback<Schema$BillingRatesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Billingrates$List,
+      callback: BodyResponseCallback<Schema$BillingRatesListResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$BillingRatesListResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Billingrates$List
+        | BodyResponseCallback<Schema$BillingRatesListResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BillingRatesListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BillingRatesListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BillingRatesListResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingrates$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingrates$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v4/userprofiles/{profileId}/billingProfiles/{billingProfileId}/billingRates'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['profileId', 'billingProfileId'],
+        pathParams: ['billingProfileId', 'profileId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BillingRatesListResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BillingRatesListResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Billingrates$List
+    extends StandardParameters {
+    /**
+     * Billing profile ID of this billing rate.
+     */
+    billingProfileId?: string;
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+
   export class Resource$Browsers {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -12992,7 +14502,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -13091,7 +14601,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/browsers'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/browsers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -13139,7 +14649,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -13253,7 +14763,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations'
+              '/dfareporting/v4/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -13287,7 +14797,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -13399,7 +14909,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations'
+              '/dfareporting/v4/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -13482,7 +14992,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -13530,10 +15040,8 @@ export namespace dfareporting_v3_5 {
      *   //   "lastModifiedInfo": {},
      *   //   "measurementPartnerLink": {},
      *   //   "name": "my_name",
-     *   //   "nielsenOcrEnabled": false,
      *   //   "startDate": "my_startDate",
-     *   //   "subaccountId": "my_subaccountId",
-     *   //   "traffickerEmails": []
+     *   //   "subaccountId": "my_subaccountId"
      *   // }
      * }
      *
@@ -13606,7 +15114,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/campaigns/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/campaigns/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -13640,7 +15148,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -13686,10 +15194,8 @@ export namespace dfareporting_v3_5 {
      *       //   "lastModifiedInfo": {},
      *       //   "measurementPartnerLink": {},
      *       //   "name": "my_name",
-     *       //   "nielsenOcrEnabled": false,
      *       //   "startDate": "my_startDate",
-     *       //   "subaccountId": "my_subaccountId",
-     *       //   "traffickerEmails": []
+     *       //   "subaccountId": "my_subaccountId"
      *       // }
      *     },
      *   });
@@ -13722,10 +15228,8 @@ export namespace dfareporting_v3_5 {
      *   //   "lastModifiedInfo": {},
      *   //   "measurementPartnerLink": {},
      *   //   "name": "my_name",
-     *   //   "nielsenOcrEnabled": false,
      *   //   "startDate": "my_startDate",
-     *   //   "subaccountId": "my_subaccountId",
-     *   //   "traffickerEmails": []
+     *   //   "subaccountId": "my_subaccountId"
      *   // }
      * }
      *
@@ -13797,7 +15301,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/campaigns'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/campaigns'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -13831,7 +15335,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -13957,7 +15461,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/campaigns'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/campaigns'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -13991,7 +15495,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -14039,10 +15543,8 @@ export namespace dfareporting_v3_5 {
      *       //   "lastModifiedInfo": {},
      *       //   "measurementPartnerLink": {},
      *       //   "name": "my_name",
-     *       //   "nielsenOcrEnabled": false,
      *       //   "startDate": "my_startDate",
-     *       //   "subaccountId": "my_subaccountId",
-     *       //   "traffickerEmails": []
+     *       //   "subaccountId": "my_subaccountId"
      *       // }
      *     },
      *   });
@@ -14075,10 +15577,8 @@ export namespace dfareporting_v3_5 {
      *   //   "lastModifiedInfo": {},
      *   //   "measurementPartnerLink": {},
      *   //   "name": "my_name",
-     *   //   "nielsenOcrEnabled": false,
      *   //   "startDate": "my_startDate",
-     *   //   "subaccountId": "my_subaccountId",
-     *   //   "traffickerEmails": []
+     *   //   "subaccountId": "my_subaccountId"
      *   // }
      * }
      *
@@ -14150,7 +15650,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/campaigns'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/campaigns'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -14184,7 +15684,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -14230,10 +15730,8 @@ export namespace dfareporting_v3_5 {
      *       //   "lastModifiedInfo": {},
      *       //   "measurementPartnerLink": {},
      *       //   "name": "my_name",
-     *       //   "nielsenOcrEnabled": false,
      *       //   "startDate": "my_startDate",
-     *       //   "subaccountId": "my_subaccountId",
-     *       //   "traffickerEmails": []
+     *       //   "subaccountId": "my_subaccountId"
      *       // }
      *     },
      *   });
@@ -14266,10 +15764,8 @@ export namespace dfareporting_v3_5 {
      *   //   "lastModifiedInfo": {},
      *   //   "measurementPartnerLink": {},
      *   //   "name": "my_name",
-     *   //   "nielsenOcrEnabled": false,
      *   //   "startDate": "my_startDate",
-     *   //   "subaccountId": "my_subaccountId",
-     *   //   "traffickerEmails": []
+     *   //   "subaccountId": "my_subaccountId"
      *   // }
      * }
      *
@@ -14341,7 +15837,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/campaigns'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/campaigns'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -14488,7 +15984,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -14597,7 +16093,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/changeLogs/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/changeLogs/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -14631,7 +16127,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -14751,7 +16247,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/changeLogs'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/changeLogs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -14849,7 +16345,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -14954,7 +16450,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/cities'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/cities'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -15018,7 +16514,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -15117,7 +16613,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/connectionTypes/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/connectionTypes/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -15151,7 +16647,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -15254,7 +16750,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/connectionTypes'
+              '/dfareporting/v4/userprofiles/{profileId}/connectionTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -15314,7 +16810,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -15404,7 +16900,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/contentCategories/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/contentCategories/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -15438,7 +16934,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -15538,7 +17034,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/contentCategories/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/contentCategories/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -15572,7 +17068,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -15681,7 +17177,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/contentCategories'
+              '/dfareporting/v4/userprofiles/{profileId}/contentCategories'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -15715,7 +17211,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -15831,7 +17327,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/contentCategories'
+              '/dfareporting/v4/userprofiles/{profileId}/contentCategories'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -15867,7 +17363,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -15978,7 +17474,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/contentCategories'
+              '/dfareporting/v4/userprofiles/{profileId}/contentCategories'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -16012,7 +17508,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -16121,7 +17617,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/contentCategories'
+              '/dfareporting/v4/userprofiles/{profileId}/contentCategories'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -16256,7 +17752,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -16370,7 +17866,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/conversions/batchinsert'
+              '/dfareporting/v4/userprofiles/{profileId}/conversions/batchinsert'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -16406,7 +17902,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -16520,7 +18016,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/conversions/batchupdate'
+              '/dfareporting/v4/userprofiles/{profileId}/conversions/batchupdate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -16588,7 +18084,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -16688,7 +18184,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/countries/{dartId}'
+              '/dfareporting/v4/userprofiles/{profileId}/countries/{dartId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -16722,7 +18218,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -16821,7 +18317,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/countries'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/countries'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -16879,7 +18375,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -17013,7 +18509,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets'
+              '/dfareporting/v4/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -17022,7 +18518,7 @@ export namespace dfareporting_v3_5 {
         params,
         mediaUrl: (
           rootUrl +
-          '/upload/dfareporting/v3.5/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets'
+          '/upload/dfareporting/v4/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets'
         ).replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['profileId', 'advertiserId'],
         pathParams: ['advertiserId', 'profileId'],
@@ -17090,7 +18586,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -17180,7 +18676,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/creativeFields/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/creativeFields/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -17214,7 +18710,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -17317,7 +18813,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/creativeFields/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/creativeFields/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -17351,7 +18847,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -17466,7 +18962,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/creativeFields'
+              '/dfareporting/v4/userprofiles/{profileId}/creativeFields'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -17500,7 +18996,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -17618,7 +19114,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/creativeFields'
+              '/dfareporting/v4/userprofiles/{profileId}/creativeFields'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -17652,7 +19148,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -17769,7 +19265,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/creativeFields'
+              '/dfareporting/v4/userprofiles/{profileId}/creativeFields'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -17803,7 +19299,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -17918,7 +19414,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/creativeFields'
+              '/dfareporting/v4/userprofiles/{profileId}/creativeFields'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -18057,7 +19553,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -18149,7 +19645,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -18183,7 +19679,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -18287,7 +19783,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -18321,7 +19817,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -18433,7 +19929,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues'
+              '/dfareporting/v4/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -18467,7 +19963,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -18585,7 +20081,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues'
+              '/dfareporting/v4/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -18621,7 +20117,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -18735,7 +20231,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues'
+              '/dfareporting/v4/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -18769,7 +20265,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -18881,7 +20377,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues'
+              '/dfareporting/v4/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -19040,7 +20536,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -19144,7 +20640,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/creativeGroups/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/creativeGroups/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -19178,7 +20674,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -19295,7 +20791,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/creativeGroups'
+              '/dfareporting/v4/userprofiles/{profileId}/creativeGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -19329,7 +20825,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -19449,7 +20945,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/creativeGroups'
+              '/dfareporting/v4/userprofiles/{profileId}/creativeGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -19483,7 +20979,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -19602,7 +21098,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/creativeGroups'
+              '/dfareporting/v4/userprofiles/{profileId}/creativeGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -19636,7 +21132,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -19753,7 +21249,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/creativeGroups'
+              '/dfareporting/v4/userprofiles/{profileId}/creativeGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -19885,7 +21381,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -20045,7 +21541,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/creatives/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/creatives/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -20079,7 +21575,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -20308,7 +21804,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/creatives'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/creatives'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -20342,7 +21838,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -20474,7 +21970,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/creatives'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/creatives'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -20508,7 +22004,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -20739,7 +22235,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/creatives'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/creatives'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -20773,7 +22269,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -21002,7 +22498,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/creatives'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/creatives'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -21161,7 +22657,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -21278,7 +22774,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/dimensionvalues/query'
+              '/dfareporting/v4/userprofiles/{profileId}/dimensionvalues/query'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -21340,7 +22836,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -21444,7 +22940,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/directorySites/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/directorySites/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -21478,7 +22974,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -21595,7 +23091,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/directorySites'
+              '/dfareporting/v4/userprofiles/{profileId}/directorySites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -21629,7 +23125,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -21755,7 +23251,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/directorySites'
+              '/dfareporting/v4/userprofiles/{profileId}/directorySites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -21871,7 +23367,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -21965,7 +23461,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/dynamicTargetingKeys/{objectId}'
+              '/dfareporting/v4/userprofiles/{profileId}/dynamicTargetingKeys/{objectId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -21999,7 +23495,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -22111,7 +23607,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/dynamicTargetingKeys'
+              '/dfareporting/v4/userprofiles/{profileId}/dynamicTargetingKeys'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -22145,7 +23641,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -22256,7 +23752,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/dynamicTargetingKeys'
+              '/dfareporting/v4/userprofiles/{profileId}/dynamicTargetingKeys'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -22354,7 +23850,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -22443,7 +23939,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/eventTags/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/eventTags/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -22477,7 +23973,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -22590,7 +24086,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/eventTags/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/eventTags/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -22624,7 +24120,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -22759,7 +24255,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/eventTags'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/eventTags'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -22793,7 +24289,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -22912,7 +24408,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/eventTags'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/eventTags'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -22946,7 +24442,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -23083,7 +24579,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/eventTags'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/eventTags'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -23117,7 +24613,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -23252,7 +24748,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/eventTags'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/eventTags'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -23397,7 +24893,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -23501,7 +24997,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/reports/{reportId}/files/{fileId}'
+              rootUrl + '/dfareporting/v4/reports/{reportId}/files/{fileId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -23535,7 +25031,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -23641,7 +25137,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/files'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/files'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -23719,7 +25215,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -23809,7 +25305,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/floodlightActivities/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/floodlightActivities/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -23843,7 +25339,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -23949,7 +25445,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/floodlightActivities/generatetag'
+              '/dfareporting/v4/userprofiles/{profileId}/floodlightActivities/generatetag'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -23985,7 +25481,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -24113,7 +25609,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/floodlightActivities/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/floodlightActivities/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -24147,7 +25643,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -24309,7 +25805,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/floodlightActivities'
+              '/dfareporting/v4/userprofiles/{profileId}/floodlightActivities'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -24343,7 +25839,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -24473,7 +25969,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/floodlightActivities'
+              '/dfareporting/v4/userprofiles/{profileId}/floodlightActivities'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -24509,7 +26005,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -24673,7 +26169,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/floodlightActivities'
+              '/dfareporting/v4/userprofiles/{profileId}/floodlightActivities'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -24707,7 +26203,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -24869,7 +26365,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/floodlightActivities'
+              '/dfareporting/v4/userprofiles/{profileId}/floodlightActivities'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -25043,7 +26539,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -25156,7 +26652,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/floodlightActivityGroups/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/floodlightActivityGroups/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -25190,7 +26686,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -25322,7 +26818,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/floodlightActivityGroups'
+              '/dfareporting/v4/userprofiles/{profileId}/floodlightActivityGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -25356,7 +26852,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -25478,7 +26974,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/floodlightActivityGroups'
+              '/dfareporting/v4/userprofiles/{profileId}/floodlightActivityGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -25514,7 +27010,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -25646,7 +27142,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/floodlightActivityGroups'
+              '/dfareporting/v4/userprofiles/{profileId}/floodlightActivityGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -25680,7 +27176,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -25812,7 +27308,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/floodlightActivityGroups'
+              '/dfareporting/v4/userprofiles/{profileId}/floodlightActivityGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -25948,7 +27444,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -26067,7 +27563,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/floodlightConfigurations/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/floodlightConfigurations/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -26101,7 +27597,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -26206,7 +27702,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/floodlightConfigurations'
+              '/dfareporting/v4/userprofiles/{profileId}/floodlightConfigurations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -26242,7 +27738,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -26386,7 +27882,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/floodlightConfigurations'
+              '/dfareporting/v4/userprofiles/{profileId}/floodlightConfigurations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -26420,7 +27916,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -26564,7 +28060,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/floodlightConfigurations'
+              '/dfareporting/v4/userprofiles/{profileId}/floodlightConfigurations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -26656,7 +28152,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -26774,7 +28270,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/projects/{projectId}/inventoryItems/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/projects/{projectId}/inventoryItems/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -26808,7 +28304,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -26932,7 +28428,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/projects/{projectId}/inventoryItems'
+              '/dfareporting/v4/userprofiles/{profileId}/projects/{projectId}/inventoryItems'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -27036,7 +28532,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -27135,7 +28631,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/languages'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/languages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -27183,7 +28679,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -27280,7 +28776,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/metros'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/metros'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -27328,7 +28824,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -27428,7 +28924,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/mobileApps/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/mobileApps/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -27462,7 +28958,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -27572,7 +29068,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/mobileApps'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/mobileApps'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -27650,7 +29146,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -27751,7 +29247,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/mobileCarriers/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/mobileCarriers/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -27785,7 +29281,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -27888,7 +29384,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/mobileCarriers'
+              '/dfareporting/v4/userprofiles/{profileId}/mobileCarriers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -27948,7 +29444,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -28049,7 +29545,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/operatingSystems/{dartId}'
+              '/dfareporting/v4/userprofiles/{profileId}/operatingSystems/{dartId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -28083,7 +29579,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -28186,7 +29682,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/operatingSystems'
+              '/dfareporting/v4/userprofiles/{profileId}/operatingSystems'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -28248,7 +29744,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -28355,7 +29851,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/operatingSystemVersions/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/operatingSystemVersions/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -28389,7 +29885,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -28492,7 +29988,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/operatingSystemVersions'
+              '/dfareporting/v4/userprofiles/{profileId}/operatingSystemVersions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -28554,7 +30050,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -28669,7 +30165,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/projects/{projectId}/orderDocuments/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/projects/{projectId}/orderDocuments/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -28703,7 +30199,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -28827,7 +30323,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/projects/{projectId}/orderDocuments'
+              '/dfareporting/v4/userprofiles/{profileId}/projects/{projectId}/orderDocuments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -28931,7 +30427,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -29048,7 +30544,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/projects/{projectId}/orders/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/projects/{projectId}/orders/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -29082,7 +30578,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -29197,7 +30693,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/projects/{projectId}/orders'
+              '/dfareporting/v4/userprofiles/{profileId}/projects/{projectId}/orders'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -29291,7 +30787,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -29315,9 +30811,9 @@ export namespace dfareporting_v3_5 {
      *   // Example response
      *   // {
      *   //   "accountId": "my_accountId",
+     *   //   "activeStatus": "my_activeStatus",
      *   //   "advertiserId": "my_advertiserId",
      *   //   "advertiserIdDimensionValue": {},
-     *   //   "archived": false,
      *   //   "campaignId": "my_campaignId",
      *   //   "campaignIdDimensionValue": {},
      *   //   "childPlacementIds": [],
@@ -29413,7 +30909,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/placementGroups/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/placementGroups/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -29447,7 +30943,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -29469,9 +30965,9 @@ export namespace dfareporting_v3_5 {
      *       // request body parameters
      *       // {
      *       //   "accountId": "my_accountId",
+     *       //   "activeStatus": "my_activeStatus",
      *       //   "advertiserId": "my_advertiserId",
      *       //   "advertiserIdDimensionValue": {},
-     *       //   "archived": false,
      *       //   "campaignId": "my_campaignId",
      *       //   "campaignIdDimensionValue": {},
      *       //   "childPlacementIds": [],
@@ -29502,9 +30998,9 @@ export namespace dfareporting_v3_5 {
      *   // Example response
      *   // {
      *   //   "accountId": "my_accountId",
+     *   //   "activeStatus": "my_activeStatus",
      *   //   "advertiserId": "my_advertiserId",
      *   //   "advertiserIdDimensionValue": {},
-     *   //   "archived": false,
      *   //   "campaignId": "my_campaignId",
      *   //   "campaignIdDimensionValue": {},
      *   //   "childPlacementIds": [],
@@ -29600,7 +31096,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/placementGroups'
+              '/dfareporting/v4/userprofiles/{profileId}/placementGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -29634,7 +31130,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -29648,10 +31144,10 @@ export namespace dfareporting_v3_5 {
      *
      *   // Do the magic
      *   const res = await dfareporting.placementGroups.list({
+     *     // Select only placements with these active statuses.
+     *     activeStatus: 'placeholder-value',
      *     // Select only placement groups that belong to these advertisers.
      *     advertiserIds: 'placeholder-value',
-     *     // Select only archived placements. Don't set this field to select both archived and non-archived placements.
-     *     archived: 'placeholder-value',
      *     // Select only placement groups that belong to these campaigns.
      *     campaignIds: 'placeholder-value',
      *     // Select only placement groups that are associated with these content categories.
@@ -29776,7 +31272,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/placementGroups'
+              '/dfareporting/v4/userprofiles/{profileId}/placementGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -29810,7 +31306,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -29834,9 +31330,9 @@ export namespace dfareporting_v3_5 {
      *       // request body parameters
      *       // {
      *       //   "accountId": "my_accountId",
+     *       //   "activeStatus": "my_activeStatus",
      *       //   "advertiserId": "my_advertiserId",
      *       //   "advertiserIdDimensionValue": {},
-     *       //   "archived": false,
      *       //   "campaignId": "my_campaignId",
      *       //   "campaignIdDimensionValue": {},
      *       //   "childPlacementIds": [],
@@ -29867,9 +31363,9 @@ export namespace dfareporting_v3_5 {
      *   // Example response
      *   // {
      *   //   "accountId": "my_accountId",
+     *   //   "activeStatus": "my_activeStatus",
      *   //   "advertiserId": "my_advertiserId",
      *   //   "advertiserIdDimensionValue": {},
-     *   //   "archived": false,
      *   //   "campaignId": "my_campaignId",
      *   //   "campaignIdDimensionValue": {},
      *   //   "childPlacementIds": [],
@@ -29965,7 +31461,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/placementGroups'
+              '/dfareporting/v4/userprofiles/{profileId}/placementGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -29999,7 +31495,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -30021,9 +31517,9 @@ export namespace dfareporting_v3_5 {
      *       // request body parameters
      *       // {
      *       //   "accountId": "my_accountId",
+     *       //   "activeStatus": "my_activeStatus",
      *       //   "advertiserId": "my_advertiserId",
      *       //   "advertiserIdDimensionValue": {},
-     *       //   "archived": false,
      *       //   "campaignId": "my_campaignId",
      *       //   "campaignIdDimensionValue": {},
      *       //   "childPlacementIds": [],
@@ -30054,9 +31550,9 @@ export namespace dfareporting_v3_5 {
      *   // Example response
      *   // {
      *   //   "accountId": "my_accountId",
+     *   //   "activeStatus": "my_activeStatus",
      *   //   "advertiserId": "my_advertiserId",
      *   //   "advertiserIdDimensionValue": {},
-     *   //   "archived": false,
      *   //   "campaignId": "my_campaignId",
      *   //   "campaignIdDimensionValue": {},
      *   //   "childPlacementIds": [],
@@ -30152,7 +31648,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/placementGroups'
+              '/dfareporting/v4/userprofiles/{profileId}/placementGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -30200,13 +31696,13 @@ export namespace dfareporting_v3_5 {
   export interface Params$Resource$Placementgroups$List
     extends StandardParameters {
     /**
+     * Select only placements with these active statuses.
+     */
+    activeStatus?: string[];
+    /**
      * Select only placement groups that belong to these advertisers.
      */
     advertiserIds?: string[];
-    /**
-     * Select only archived placements. Don't set this field to select both archived and non-archived placements.
-     */
-    archived?: boolean;
     /**
      * Select only placement groups that belong to these campaigns.
      */
@@ -30328,7 +31824,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -30437,7 +31933,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/placements/generatetags'
+              '/dfareporting/v4/userprofiles/{profileId}/placements/generatetags'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -30473,7 +31969,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -30497,11 +31993,11 @@ export namespace dfareporting_v3_5 {
      *   // Example response
      *   // {
      *   //   "accountId": "my_accountId",
+     *   //   "activeStatus": "my_activeStatus",
      *   //   "adBlockingOptOut": false,
      *   //   "additionalSizes": [],
      *   //   "advertiserId": "my_advertiserId",
      *   //   "advertiserIdDimensionValue": {},
-     *   //   "archived": false,
      *   //   "campaignId": "my_campaignId",
      *   //   "campaignIdDimensionValue": {},
      *   //   "comment": "my_comment",
@@ -30611,7 +32107,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/placements/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/placements/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -30645,7 +32141,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -30667,11 +32163,11 @@ export namespace dfareporting_v3_5 {
      *       // request body parameters
      *       // {
      *       //   "accountId": "my_accountId",
+     *       //   "activeStatus": "my_activeStatus",
      *       //   "adBlockingOptOut": false,
      *       //   "additionalSizes": [],
      *       //   "advertiserId": "my_advertiserId",
      *       //   "advertiserIdDimensionValue": {},
-     *       //   "archived": false,
      *       //   "campaignId": "my_campaignId",
      *       //   "campaignIdDimensionValue": {},
      *       //   "comment": "my_comment",
@@ -30717,11 +32213,11 @@ export namespace dfareporting_v3_5 {
      *   // Example response
      *   // {
      *   //   "accountId": "my_accountId",
+     *   //   "activeStatus": "my_activeStatus",
      *   //   "adBlockingOptOut": false,
      *   //   "additionalSizes": [],
      *   //   "advertiserId": "my_advertiserId",
      *   //   "advertiserIdDimensionValue": {},
-     *   //   "archived": false,
      *   //   "campaignId": "my_campaignId",
      *   //   "campaignIdDimensionValue": {},
      *   //   "comment": "my_comment",
@@ -30831,7 +32327,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/placements'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/placements'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -30865,7 +32361,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -30879,10 +32375,10 @@ export namespace dfareporting_v3_5 {
      *
      *   // Do the magic
      *   const res = await dfareporting.placements.list({
+     *     // Select only placements with these active statuses.
+     *     activeStatus: 'placeholder-value',
      *     // Select only placements that belong to these advertisers.
      *     advertiserIds: 'placeholder-value',
-     *     // Select only archived placements. Don't set this field to select both archived and non-archived placements.
-     *     archived: 'placeholder-value',
      *     // Select only placements that belong to these campaigns.
      *     campaignIds: 'placeholder-value',
      *     // Select only placements that are associated with these compatibilities. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices for regular or interstitial ads respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard.
@@ -31009,7 +32505,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/placements'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/placements'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -31043,7 +32539,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -31067,11 +32563,11 @@ export namespace dfareporting_v3_5 {
      *       // request body parameters
      *       // {
      *       //   "accountId": "my_accountId",
+     *       //   "activeStatus": "my_activeStatus",
      *       //   "adBlockingOptOut": false,
      *       //   "additionalSizes": [],
      *       //   "advertiserId": "my_advertiserId",
      *       //   "advertiserIdDimensionValue": {},
-     *       //   "archived": false,
      *       //   "campaignId": "my_campaignId",
      *       //   "campaignIdDimensionValue": {},
      *       //   "comment": "my_comment",
@@ -31117,11 +32613,11 @@ export namespace dfareporting_v3_5 {
      *   // Example response
      *   // {
      *   //   "accountId": "my_accountId",
+     *   //   "activeStatus": "my_activeStatus",
      *   //   "adBlockingOptOut": false,
      *   //   "additionalSizes": [],
      *   //   "advertiserId": "my_advertiserId",
      *   //   "advertiserIdDimensionValue": {},
-     *   //   "archived": false,
      *   //   "campaignId": "my_campaignId",
      *   //   "campaignIdDimensionValue": {},
      *   //   "comment": "my_comment",
@@ -31230,7 +32726,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/placements'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/placements'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -31264,7 +32760,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -31286,11 +32782,11 @@ export namespace dfareporting_v3_5 {
      *       // request body parameters
      *       // {
      *       //   "accountId": "my_accountId",
+     *       //   "activeStatus": "my_activeStatus",
      *       //   "adBlockingOptOut": false,
      *       //   "additionalSizes": [],
      *       //   "advertiserId": "my_advertiserId",
      *       //   "advertiserIdDimensionValue": {},
-     *       //   "archived": false,
      *       //   "campaignId": "my_campaignId",
      *       //   "campaignIdDimensionValue": {},
      *       //   "comment": "my_comment",
@@ -31336,11 +32832,11 @@ export namespace dfareporting_v3_5 {
      *   // Example response
      *   // {
      *   //   "accountId": "my_accountId",
+     *   //   "activeStatus": "my_activeStatus",
      *   //   "adBlockingOptOut": false,
      *   //   "additionalSizes": [],
      *   //   "advertiserId": "my_advertiserId",
      *   //   "advertiserIdDimensionValue": {},
-     *   //   "archived": false,
      *   //   "campaignId": "my_campaignId",
      *   //   "campaignIdDimensionValue": {},
      *   //   "comment": "my_comment",
@@ -31450,7 +32946,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/placements'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/placements'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -31515,13 +33011,13 @@ export namespace dfareporting_v3_5 {
   }
   export interface Params$Resource$Placements$List extends StandardParameters {
     /**
+     * Select only placements with these active statuses.
+     */
+    activeStatus?: string[];
+    /**
      * Select only placements that belong to these advertisers.
      */
     advertiserIds?: string[];
-    /**
-     * Select only archived placements. Don't set this field to select both archived and non-archived placements.
-     */
-    archived?: boolean;
     /**
      * Select only placements that belong to these campaigns.
      */
@@ -31654,7 +33150,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -31744,7 +33240,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/placementStrategies/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/placementStrategies/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -31778,7 +33274,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -31881,7 +33377,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/placementStrategies/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/placementStrategies/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -31915,7 +33411,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -32027,7 +33523,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/placementStrategies'
+              '/dfareporting/v4/userprofiles/{profileId}/placementStrategies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -32061,7 +33557,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -32177,7 +33673,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/placementStrategies'
+              '/dfareporting/v4/userprofiles/{profileId}/placementStrategies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -32213,7 +33709,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -32327,7 +33823,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/placementStrategies'
+              '/dfareporting/v4/userprofiles/{profileId}/placementStrategies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -32361,7 +33857,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -32473,7 +33969,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/placementStrategies'
+              '/dfareporting/v4/userprofiles/{profileId}/placementStrategies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -32608,7 +34104,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -32707,7 +34203,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/platformTypes/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/platformTypes/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -32741,7 +34237,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -32844,7 +34340,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/platformTypes'
+              '/dfareporting/v4/userprofiles/{profileId}/platformTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -32904,7 +34400,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -33004,7 +34500,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/postalCodes/{code}'
+              '/dfareporting/v4/userprofiles/{profileId}/postalCodes/{code}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -33038,7 +34534,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -33137,8 +34633,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/postalCodes'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/postalCodes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -33196,7 +34691,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -33313,7 +34808,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/projects/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/projects/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -33347,7 +34842,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -33461,7 +34956,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/projects'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/projects'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -33547,7 +35042,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -33644,7 +35139,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/regions'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/regions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -33692,7 +35187,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -33801,7 +35296,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/remarketingLists/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/remarketingLists/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -33835,7 +35330,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -33962,7 +35457,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/remarketingLists'
+              '/dfareporting/v4/userprofiles/{profileId}/remarketingLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -33996,7 +35491,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -34116,7 +35611,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/remarketingLists'
+              '/dfareporting/v4/userprofiles/{profileId}/remarketingLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -34152,7 +35647,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -34281,7 +35776,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/remarketingLists'
+              '/dfareporting/v4/userprofiles/{profileId}/remarketingLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -34315,7 +35810,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -34442,7 +35937,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/remarketingLists'
+              '/dfareporting/v4/userprofiles/{profileId}/remarketingLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -34574,7 +36069,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -34679,7 +36174,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/remarketingListShares/{remarketingListId}'
+              '/dfareporting/v4/userprofiles/{profileId}/remarketingListShares/{remarketingListId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -34713,7 +36208,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -34829,7 +36324,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/remarketingListShares'
+              '/dfareporting/v4/userprofiles/{profileId}/remarketingListShares'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -34863,7 +36358,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -34977,7 +36472,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/remarketingListShares'
+              '/dfareporting/v4/userprofiles/{profileId}/remarketingListShares'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -35064,7 +36559,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -35153,7 +36648,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/reports/{reportId}'
+              '/dfareporting/v4/userprofiles/{profileId}/reports/{reportId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -35187,7 +36682,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -35302,7 +36797,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/reports/{reportId}'
+              '/dfareporting/v4/userprofiles/{profileId}/reports/{reportId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -35336,7 +36831,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -35475,7 +36970,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/reports'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/reports'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -35509,7 +37004,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -35615,7 +37110,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/reports'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/reports'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -35649,7 +37144,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -35791,7 +37286,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/reports/{reportId}'
+              '/dfareporting/v4/userprofiles/{profileId}/reports/{reportId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -35825,7 +37320,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -35932,7 +37427,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/reports/{reportId}/run'
+              '/dfareporting/v4/userprofiles/{profileId}/reports/{reportId}/run'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -35966,7 +37461,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -36108,7 +37603,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/reports/{reportId}'
+              '/dfareporting/v4/userprofiles/{profileId}/reports/{reportId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -36251,7 +37746,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -36380,7 +37875,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/reports/compatiblefields/query'
+              '/dfareporting/v4/userprofiles/{profileId}/reports/compatiblefields/query'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -36434,7 +37929,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -36542,7 +38037,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/reports/{reportId}/files/{fileId}'
+              '/dfareporting/v4/userprofiles/{profileId}/reports/{reportId}/files/{fileId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -36576,7 +38071,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -36684,7 +38179,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/reports/{reportId}/files'
+              '/dfareporting/v4/userprofiles/{profileId}/reports/{reportId}/files'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -36768,7 +38263,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -36875,7 +38370,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/sites/{id}'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/sites/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -36909,7 +38404,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -37034,7 +38529,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/sites'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -37068,7 +38563,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -37196,7 +38691,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/sites'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -37230,7 +38725,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -37357,7 +38852,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/sites'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -37391,7 +38886,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -37516,7 +39011,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/sites'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -37671,7 +39166,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -37770,7 +39265,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/sizes/{id}'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/sizes/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -37804,7 +39299,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -37913,7 +39408,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/sizes'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/sizes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -37947,7 +39442,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -38052,7 +39547,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/sizes'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/sizes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -38137,7 +39632,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -38237,7 +39732,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/subaccounts/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/subaccounts/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -38271,7 +39766,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -38381,8 +39876,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/subaccounts'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/subaccounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -38416,7 +39910,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -38528,8 +40022,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/subaccounts'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/subaccounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -38563,7 +40056,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -38675,8 +40168,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/subaccounts'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/subaccounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -38710,7 +40202,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -38820,8 +40312,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/subaccounts'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/subaccounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -38943,7 +40434,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -39056,7 +40547,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/targetableRemarketingLists/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/targetableRemarketingLists/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -39090,7 +40581,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -39208,7 +40699,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/targetableRemarketingLists'
+              '/dfareporting/v4/userprofiles/{profileId}/targetableRemarketingLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -39298,7 +40789,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -39410,7 +40901,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/targetingTemplates/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/targetingTemplates/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -39444,7 +40935,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -39574,7 +41065,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/targetingTemplates'
+              '/dfareporting/v4/userprofiles/{profileId}/targetingTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -39608,7 +41099,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -39726,7 +41217,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/targetingTemplates'
+              '/dfareporting/v4/userprofiles/{profileId}/targetingTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -39762,7 +41253,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -39894,7 +41385,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/targetingTemplates'
+              '/dfareporting/v4/userprofiles/{profileId}/targetingTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -39928,7 +41419,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -40058,7 +41549,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/targetingTemplates'
+              '/dfareporting/v4/userprofiles/{profileId}/targetingTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -40186,7 +41677,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -40290,7 +41781,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -40324,7 +41815,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -40420,7 +41911,7 @@ export namespace dfareporting_v3_5 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/dfareporting/v3.5/userprofiles').replace(
+            url: (rootUrl + '/dfareporting/v4/userprofiles').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -40472,7 +41963,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -40576,7 +42067,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/userRolePermissionGroups/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/userRolePermissionGroups/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -40610,7 +42101,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -40713,7 +42204,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/userRolePermissionGroups'
+              '/dfareporting/v4/userprofiles/{profileId}/userRolePermissionGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -40775,7 +42266,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -40879,7 +42370,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/userRolePermissions/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/userRolePermissions/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -40913,7 +42404,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -41018,7 +42509,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/userRolePermissions'
+              '/dfareporting/v4/userprofiles/{profileId}/userRolePermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -41084,7 +42575,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -41173,7 +42664,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/userRoles/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/userRoles/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -41207,7 +42698,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -41310,7 +42801,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/userRoles/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/userRoles/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -41344,7 +42835,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -41459,7 +42950,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/userRoles'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/userRoles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -41493,7 +42984,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -41609,7 +43100,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/userRoles'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/userRoles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -41643,7 +43134,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -41760,7 +43251,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/userRoles'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/userRoles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -41794,7 +43285,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -41909,7 +43400,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.5/userprofiles/{profileId}/userRoles'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/userRoles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -42046,7 +43537,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -42146,7 +43637,7 @@ export namespace dfareporting_v3_5 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/videoFormats/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/videoFormats/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -42180,7 +43671,7 @@ export namespace dfareporting_v3_5 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v3.5');
+     * const dfareporting = google.dfareporting('v4');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -42280,8 +43771,7 @@ export namespace dfareporting_v3_5 {
         options: Object.assign(
           {
             url: (
-              rootUrl +
-              '/dfareporting/v3.5/userprofiles/{profileId}/videoFormats'
+              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/videoFormats'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
