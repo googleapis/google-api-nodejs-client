@@ -165,6 +165,19 @@ export namespace cloudchannel_v1 {
     baseEntitlement?: string | null;
   }
   /**
+   * Represents Pub/Sub messages about updates to a Channel Partner. You can retrieve updated values through the ChannelPartnerLinks API.
+   */
+  export interface Schema$GoogleCloudChannelV1alpha1ChannelPartnerEvent {
+    /**
+     * Resource name for the Channel Partner Link. Channel_partner uses the format: accounts/{account_id\}/channelPartnerLinks/{channel_partner_id\}
+     */
+    channelPartner?: string | null;
+    /**
+     * Type of event performed on the Channel Partner.
+     */
+    eventType?: string | null;
+  }
+  /**
    * Commitment settings for commitment-based offers.
    */
   export interface Schema$GoogleCloudChannelV1alpha1CommitmentSettings {
@@ -365,6 +378,10 @@ export namespace cloudchannel_v1 {
    * Represents information which resellers will get as part of notification from Pub/Sub.
    */
   export interface Schema$GoogleCloudChannelV1alpha1SubscriberEvent {
+    /**
+     * Channel Partner event sent as part of Pub/Sub event to partners.
+     */
+    channelPartnerEvent?: Schema$GoogleCloudChannelV1alpha1ChannelPartnerEvent;
     /**
      * Customer event sent as part of Pub/Sub event to partners.
      */

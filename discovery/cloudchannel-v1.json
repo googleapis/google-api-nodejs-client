@@ -1901,7 +1901,7 @@
       }
     }
   },
-  "revision": "20220505",
+  "revision": "20220612",
   "rootUrl": "https://cloudchannel.googleapis.com/",
   "schemas": {
     "GoogleCloudChannelV1ActivateEntitlementRequest": {
@@ -3864,6 +3864,31 @@
       },
       "type": "object"
     },
+    "GoogleCloudChannelV1alpha1ChannelPartnerEvent": {
+      "description": "Represents Pub/Sub messages about updates to a Channel Partner. You can retrieve updated values through the ChannelPartnerLinks API.",
+      "id": "GoogleCloudChannelV1alpha1ChannelPartnerEvent",
+      "properties": {
+        "channelPartner": {
+          "description": "Resource name for the Channel Partner Link. Channel_partner uses the format: accounts/{account_id}/channelPartnerLinks/{channel_partner_id}",
+          "type": "string"
+        },
+        "eventType": {
+          "description": "Type of event performed on the Channel Partner.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "LINK_STATE_CHANGED",
+            "PARTNER_ADVANTAGE_INFO_CHANGED"
+          ],
+          "enumDescriptions": [
+            "Default value. Does not display if there are no errors.",
+            "The Channel Partner link state changed.",
+            "The Channel Partner's Partner Advantage information changed. This can entail the Channel Partner's authorization to sell a product in a particular region."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudChannelV1alpha1CommitmentSettings": {
       "description": "Commitment settings for commitment-based offers.",
       "id": "GoogleCloudChannelV1alpha1CommitmentSettings",
@@ -4254,6 +4279,10 @@
       "description": "Represents information which resellers will get as part of notification from Pub/Sub.",
       "id": "GoogleCloudChannelV1alpha1SubscriberEvent",
       "properties": {
+        "channelPartnerEvent": {
+          "$ref": "GoogleCloudChannelV1alpha1ChannelPartnerEvent",
+          "description": "Channel Partner event sent as part of Pub/Sub event to partners."
+        },
         "customerEvent": {
           "$ref": "GoogleCloudChannelV1alpha1CustomerEvent",
           "description": "Customer event sent as part of Pub/Sub event to partners."
