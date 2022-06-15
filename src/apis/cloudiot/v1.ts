@@ -1269,7 +1269,7 @@ export namespace cloudiot_v1 {
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/locations/my-location/registries/my-registrie',
      *
@@ -1712,7 +1712,7 @@ export namespace cloudiot_v1 {
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/locations/my-location/registries/my-registrie',
      *
@@ -1856,7 +1856,7 @@ export namespace cloudiot_v1 {
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/locations/my-location/registries/my-registrie',
      *
@@ -2168,7 +2168,7 @@ export namespace cloudiot_v1 {
   export interface Params$Resource$Projects$Locations$Registries$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -2211,7 +2211,7 @@ export namespace cloudiot_v1 {
   export interface Params$Resource$Projects$Locations$Registries$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -2223,7 +2223,7 @@ export namespace cloudiot_v1 {
   export interface Params$Resource$Projects$Locations$Registries$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3803,7 +3803,7 @@ export namespace cloudiot_v1 {
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.groups.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/locations/my-location/registries/my-registrie/groups/my-group',
      *
@@ -3947,7 +3947,7 @@ export namespace cloudiot_v1 {
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.groups.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/locations/my-location/registries/my-registrie/groups/my-group',
      *
@@ -4092,7 +4092,7 @@ export namespace cloudiot_v1 {
      *   // Do the magic
      *   const res =
      *     await cloudiot.projects.locations.registries.groups.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/registries/my-registrie/groups/my-group',
      *
@@ -4215,7 +4215,7 @@ export namespace cloudiot_v1 {
   export interface Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -4227,7 +4227,7 @@ export namespace cloudiot_v1 {
   export interface Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -4239,7 +4239,7 @@ export namespace cloudiot_v1 {
   export interface Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
