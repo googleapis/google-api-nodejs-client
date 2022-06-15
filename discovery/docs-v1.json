@@ -216,7 +216,7 @@
       }
     }
   },
-  "revision": "20220331",
+  "revision": "20220609",
   "rootUrl": "https://docs.googleapis.com/",
   "schemas": {
     "AutoText": {
@@ -2410,6 +2410,10 @@
           ],
           "type": "string"
         },
+        "pageBreakBefore": {
+          "description": "Whether the current paragraph should always start at the beginning of a page. If unset, the value is inherited from the parent. Attempting to update page_break_before for paragraphs in unsupported regions, including Table, Header, Footer and Footnote, can result in an invalid document state which returns a 400 bad request error.",
+          "type": "boolean"
+        },
         "shading": {
           "$ref": "Shading",
           "description": "The shading of the paragraph. If unset, the value is inherited from the parent."
@@ -2514,6 +2518,10 @@
           "description": "Indicates if there was a suggested change to named_style_type.",
           "type": "boolean"
         },
+        "pageBreakBeforeSuggested": {
+          "description": "Indicates if there was a suggested change to page_break_before.",
+          "type": "boolean"
+        },
         "shadingSuggestionState": {
           "$ref": "ShadingSuggestionState",
           "description": "A mask that indicates which of the fields in shading have been changed in this suggestion."
@@ -2588,6 +2596,22 @@
           "description": "Output only. The name of the person if it is displayed in the link text instead of the person's email address.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PinTableHeaderRowsRequest": {
+      "description": "Updates the number of pinned table header rows in a table.",
+      "id": "PinTableHeaderRowsRequest",
+      "properties": {
+        "pinnedHeaderRowsCount": {
+          "description": "The number of table rows to pin, where 0 implies that all rows are unpinned.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "tableStartLocation": {
+          "$ref": "Location",
+          "description": "The location where the table starts in the document."
         }
       },
       "type": "object"
@@ -2892,6 +2916,10 @@
         "mergeTableCells": {
           "$ref": "MergeTableCellsRequest",
           "description": "Merges cells in a table."
+        },
+        "pinTableHeaderRows": {
+          "$ref": "PinTableHeaderRowsRequest",
+          "description": "Updates the number of pinned header rows in a table."
         },
         "replaceAllText": {
           "$ref": "ReplaceAllTextRequest",
@@ -3426,7 +3454,7 @@
       "properties": {
         "paragraphStyle": {
           "$ref": "ParagraphStyle",
-          "description": "A ParagraphStyle that only includes the changes made in this suggestion. This can be used along with the paragraph_suggestion_state to see which fields have changed and their new values."
+          "description": "A ParagraphStyle that only includes the changes made in this suggestion. This can be used along with the paragraph_style_suggestion_state to see which fields have changed and their new values."
         },
         "paragraphStyleSuggestionState": {
           "$ref": "ParagraphStyleSuggestionState",
@@ -3921,6 +3949,14 @@
         "minRowHeight": {
           "$ref": "Dimension",
           "description": "The minimum height of the row. The row will be rendered in the Docs editor at a height equal to or greater than this value in order to show all the content in the row's cells."
+        },
+        "preventOverflow": {
+          "description": "Whether the row cannot overflow across page or column boundaries.",
+          "type": "boolean"
+        },
+        "tableHeader": {
+          "description": "Whether the row is a table header.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -4132,7 +4168,7 @@
       "id": "UpdateParagraphStyleRequest",
       "properties": {
         "fields": {
-          "description": "The fields that should be updated. At least one field must be specified. The root `paragraph_style` is implied and should not be specified. For example, to update the paragraph style's alignment property, set `fields` to `\"alignment\"`. To reset a property to its default value, include its field name in the field mask but leave the field itself unset.",
+          "description": "The fields that should be updated. At least one field must be specified. The root `paragraph_style` is implied and should not be specified. A single `\"*\"` can be used as short-hand for listing every field. For example, to update the paragraph style's alignment property, set `fields` to `\"alignment\"`. To reset a property to its default value, include its field name in the field mask but leave the field itself unset.",
           "format": "google-fieldmask",
           "type": "string"
         },
