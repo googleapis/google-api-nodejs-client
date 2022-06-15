@@ -290,7 +290,7 @@ export namespace chromepolicy_v1 {
      */
     field?: string | null;
     /**
-     * Output only. Provides a list of fields and the values they must have for this field to be allowed to be set.
+     * Output only. Provides a list of fields and values. At least one of the fields must have the corresponding value in order for this field to be allowed to be set.
      */
     fieldDependencies?: Schema$GoogleChromePolicyV1PolicySchemaFieldDependencies[];
     /**
@@ -417,7 +417,7 @@ export namespace chromepolicy_v1 {
      */
     pageToken?: string | null;
     /**
-     * The schema filter to apply to the resolve request. Specify a schema name to view a particular schema, for example: chrome.users.ShowLogoutButton Wildcards are supported, but only in the leaf portion of the schema name. Wildcards cannot be used in namespace directly. Please read https://developers.google.com/chrome/chrome-management/guides/policyapi for details on schema namepsaces. For example: Valid: "chrome.users.*", "chrome.users.apps.*", "chrome.printers.*" Invalid: "*", "*.users", "chrome.*", "chrome.*.apps.*"
+     * The schema filter to apply to the resolve request. Specify a schema name to view a particular schema, for example: chrome.users.ShowLogoutButton Wildcards are supported, but only in the leaf portion of the schema name. Wildcards cannot be used in namespace directly. Please read https://developers.google.com/chrome/policy/guides/policy-schemas for details on schema namepsaces. For example: Valid: "chrome.users.*", "chrome.users.apps.*", "chrome.printers.*" Invalid: "*", "*.users", "chrome.*", "chrome.*.apps.*"
      */
     policySchemaFilter?: string | null;
     /**
