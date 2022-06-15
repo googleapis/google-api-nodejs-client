@@ -1681,7 +1681,7 @@ export namespace sqladmin_v1beta4 {
     sqlOutOfDiskState?: string | null;
   }
   /**
-   * Any scheduled maintenancce for this instance.
+   * Any scheduled maintenance for this instance.
    */
   export interface Schema$SqlScheduledMaintenance {
     canDefer?: boolean | null;
@@ -5658,7 +5658,7 @@ export namespace sqladmin_v1beta4 {
      *   const res = await sql.instances.list({
      *     // A filter expression that filters resources listed in the response. The expression is in the form of field:value. For example, 'instanceType:CLOUD_SQL_INSTANCE'. Fields can be nested as needed as per their JSON representation, such as 'settings.userLabels.auto_start:true'. Multiple filter queries are space-separated. For example. 'state:RUNNABLE instanceType:CLOUD_SQL_INSTANCE'. By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly.
      *     filter: 'placeholder-value',
-     *     // The maximum number of results to return per response.
+     *     // The maximum number of instances to return. The service may return fewer than this value. If unspecified, at most 500 instances are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
      *     maxResults: 'placeholder-value',
      *     // A previously-returned page token representing part of the larger set of results to view.
      *     pageToken: 'placeholder-value',
@@ -7637,7 +7637,7 @@ export namespace sqladmin_v1beta4 {
      */
     filter?: string;
     /**
-     * The maximum number of results to return per response.
+     * The maximum number of instances to return. The service may return fewer than this value. If unspecified, at most 500 instances are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
      */
     maxResults?: number;
     /**

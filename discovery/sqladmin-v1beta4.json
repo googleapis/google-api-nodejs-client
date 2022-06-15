@@ -920,7 +920,7 @@
               "type": "string"
             },
             "maxResults": {
-              "description": "The maximum number of results to return per response.",
+              "description": "The maximum number of instances to return. The service may return fewer than this value. If unspecified, at most 500 instances are returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
               "format": "uint32",
               "location": "query",
               "type": "integer"
@@ -1877,7 +1877,7 @@
       }
     }
   },
-  "revision": "20220323",
+  "revision": "20220609",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -1912,11 +1912,13 @@
           "description": "Code to uniquely identify the warning type.",
           "enum": [
             "SQL_API_WARNING_CODE_UNSPECIFIED",
-            "REGION_UNREACHABLE"
+            "REGION_UNREACHABLE",
+            "MAX_RESULTS_EXCEEDS_LIMIT"
           ],
           "enumDescriptions": [
             "An unknown or unset warning type from Cloud SQL API.",
-            "Warning when one or more regions are not reachable. The returned result set may be incomplete."
+            "Warning when one or more regions are not reachable. The returned result set may be incomplete.",
+            "Warning when user provided maxResults parameter exceeds the limit. The returned result set may be incomplete."
           ],
           "type": "string"
         },
@@ -2251,6 +2253,7 @@
             "MYSQL_8_0_26",
             "MYSQL_8_0_27",
             "MYSQL_8_0_28",
+            "MYSQL_8_0_29",
             "POSTGRES_13",
             "POSTGRES_14",
             "SQLSERVER_2019_STANDARD",
@@ -2277,6 +2280,7 @@
             "The database major version is MySQL 8.0 and the minor version is 26.",
             "The database major version is MySQL 8.0 and the minor version is 27.",
             "The database major version is MySQL 8.0 and the minor version is 28.",
+            "The database major version is MySQL 8.0 and the minor version is 29.",
             "The database version is PostgreSQL 13.",
             "The database version is PostgreSQL 14.",
             "The database version is SQL Server 2019 Standard.",
@@ -2433,6 +2437,7 @@
             "MYSQL_8_0_26",
             "MYSQL_8_0_27",
             "MYSQL_8_0_28",
+            "MYSQL_8_0_29",
             "POSTGRES_13",
             "POSTGRES_14",
             "SQLSERVER_2019_STANDARD",
@@ -2459,6 +2464,7 @@
             "The database major version is MySQL 8.0 and the minor version is 26.",
             "The database major version is MySQL 8.0 and the minor version is 27.",
             "The database major version is MySQL 8.0 and the minor version is 28.",
+            "The database major version is MySQL 8.0 and the minor version is 29.",
             "The database version is PostgreSQL 13.",
             "The database version is PostgreSQL 14.",
             "The database version is SQL Server 2019 Standard.",
@@ -2946,6 +2952,7 @@
               "MYSQL_8_0_26",
               "MYSQL_8_0_27",
               "MYSQL_8_0_28",
+              "MYSQL_8_0_29",
               "POSTGRES_13",
               "POSTGRES_14",
               "SQLSERVER_2019_STANDARD",
@@ -2972,6 +2979,7 @@
               "The database major version is MySQL 8.0 and the minor version is 26.",
               "The database major version is MySQL 8.0 and the minor version is 27.",
               "The database major version is MySQL 8.0 and the minor version is 28.",
+              "The database major version is MySQL 8.0 and the minor version is 29.",
               "The database version is PostgreSQL 13.",
               "The database version is PostgreSQL 14.",
               "The database version is SQL Server 2019 Standard.",
@@ -3678,7 +3686,8 @@
             "DEFER_MAINTENANCE",
             "CREATE_CLONE",
             "RESCHEDULE_MAINTENANCE",
-            "START_EXTERNAL_SYNC"
+            "START_EXTERNAL_SYNC",
+            "LOG_CLEANUP"
           ],
           "enumDescriptions": [
             "Unknown operation type.",
@@ -3715,7 +3724,8 @@
             "",
             "Creates clone instance.",
             "Reschedule maintenance to another time.",
-            "Starts external sync of a Cloud SQL EM replica to an external primary instance."
+            "Starts external sync of a Cloud SQL EM replica to an external primary instance.",
+            "Recovers logs from an instance's old data disk."
           ],
           "type": "string"
         },
@@ -4200,7 +4210,8 @@
             "PRIMARY_ALREADY_SETUP",
             "UNSUPPORTED_BINLOG_FORMAT",
             "BINLOG_RETENTION_SETTING",
-            "UNSUPPORTED_STORAGE_ENGINE"
+            "UNSUPPORTED_STORAGE_ENGINE",
+            "LIMITED_SUPPORT_TABLES"
           ],
           "enumDescriptions": [
             "",
@@ -4229,7 +4240,8 @@
             "The primary instance has been setup and will fail the setup.",
             "The primary instance has unsupported binary log format.",
             "The primary instance's binary log retention setting.",
-            "The primary instance has tables with unsupported storage engine."
+            "The primary instance has tables with unsupported storage engine.",
+            "Source has tables with limited support eg: PostgreSQL tables without primary keys"
           ],
           "type": "string"
         }
@@ -4359,7 +4371,7 @@
       "type": "object"
     },
     "SqlScheduledMaintenance": {
-      "description": "Any scheduled maintenancce for this instance.",
+      "description": "Any scheduled maintenance for this instance.",
       "id": "SqlScheduledMaintenance",
       "properties": {
         "canDefer": {
