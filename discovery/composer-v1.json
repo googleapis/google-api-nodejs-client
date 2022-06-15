@@ -406,7 +406,7 @@
       }
     }
   },
-  "revision": "20220402",
+  "revision": "20220606",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AllowedIpRange": {
@@ -463,6 +463,21 @@
           },
           "description": "Pypi dependencies specified in the environment configuration, at the time when the build was triggered.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "CidrBlock": {
+      "description": "CIDR block with an optional name.",
+      "id": "CidrBlock",
+      "properties": {
+        "cidrBlock": {
+          "description": "CIDR block that must be specified in CIDR notation.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "User-defined name that identifies the CIDR block.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -616,6 +631,10 @@
         "maintenanceWindow": {
           "$ref": "MaintenanceWindow",
           "description": "Optional. The maintenance window is the period when Cloud Composer components may undergo maintenance. It is defined so that maintenance is not executed during peak hours or critical time periods. The system will not be under maintenance for every occurrence of this window, but when maintenance is planned, it will be scheduled during the window. The maintenance window period must encompass at least 12 hours per week. This may be split into multiple chunks, each with a size of at least 4 hours. If this value is omitted, the default value for maintenance window will be applied. The default value is Saturday and Sunday 00-06 GMT."
+        },
+        "masterAuthorizedNetworksConfig": {
+          "$ref": "MasterAuthorizedNetworksConfig",
+          "description": "Optional. The configuration options for GKE cluster master authorized networks. By default master authorized networks feature is: - in case of private environment: enabled with no external networks allowlisted. - in case of public environment: disabled."
         },
         "nodeConfig": {
           "$ref": "NodeConfig",
@@ -785,6 +804,24 @@
       },
       "type": "object"
     },
+    "MasterAuthorizedNetworksConfig": {
+      "description": "Configuration options for the master authorized networks feature. Enabled master authorized networks will disallow all external traffic to access Kubernetes master through HTTPS except traffic from the given CIDR blocks, Google Compute Engine Public IPs and Google Prod IPs.",
+      "id": "MasterAuthorizedNetworksConfig",
+      "properties": {
+        "cidrBlocks": {
+          "description": "Up to 50 external networks that could access Kubernetes master through HTTPS.",
+          "items": {
+            "$ref": "CidrBlock"
+          },
+          "type": "array"
+        },
+        "enabled": {
+          "description": "Whether or not master authorized networks feature is enabled.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "NodeConfig": {
       "description": "The configuration information for the Kubernetes Engine nodes running the Apache Airflow software.",
       "id": "NodeConfig",
@@ -793,6 +830,10 @@
           "description": "Optional. The disk size in GB used for node VMs. Minimum size is 30GB. If unspecified, defaults to 100GB. Cannot be updated. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*.",
           "format": "int32",
           "type": "integer"
+        },
+        "enableIpMasqAgent": {
+          "description": "Optional. Deploys 'ip-masq-agent' daemon set in the GKE cluster and defines nonMasqueradeCIDRs equals to pod IP range so IP masquerading is used for all destination addresses, except between pods traffic. See: https://cloud.google.com/kubernetes-engine/docs/how-to/ip-masquerade-agent",
+          "type": "boolean"
         },
         "ipAllocationPolicy": {
           "$ref": "IPAllocationPolicy",
@@ -980,6 +1021,10 @@
         },
         "enablePrivateEnvironment": {
           "description": "Optional. If `true`, a Private IP Cloud Composer environment is created. If this field is set to true, `IPAllocationPolicy.use_ip_aliases` must be set to true for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*.",
+          "type": "boolean"
+        },
+        "enablePrivatelyUsedPublicIps": {
+          "description": "Optional. When enabled, IPs from public (non-RFC1918) ranges can be used for `IPAllocationPolicy.cluster_ipv4_cidr_block` and `IPAllocationPolicy.service_ipv4_cidr_block`.",
           "type": "boolean"
         },
         "privateClusterConfig": {

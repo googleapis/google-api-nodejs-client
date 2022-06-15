@@ -173,15 +173,15 @@ export namespace composer_v1beta1 {
     pypiDependencies?: {[key: string]: string} | null;
   }
   /**
-   * CidrBlock contains an optional name and one CIDR block.
+   * CIDR block with an optional name.
    */
   export interface Schema$CidrBlock {
     /**
-     * cidr_block must be specified in CIDR notation.
+     * CIDR block that must be specified in CIDR notation.
      */
     cidrBlock?: string | null;
     /**
-     * display_name is a field for users to identify CIDR blocks.
+     * User-defined name that identifies the CIDR block.
      */
     displayName?: string | null;
   }
@@ -290,7 +290,7 @@ export namespace composer_v1beta1 {
      */
     maintenanceWindow?: Schema$MaintenanceWindow;
     /**
-     * Optional. The configuration options for GKE clusters master authorized networks. By default master authorized networks feature is: - in case of private environment: enabled with no external networks allowlisted. - in case of public environment: disabled.
+     * Optional. The configuration options for GKE cluster master authorized networks. By default master authorized networks feature is: - in case of private environment: enabled with no external networks allowlisted. - in case of public environment: disabled.
      */
     masterAuthorizedNetworksConfig?: Schema$MasterAuthorizedNetworksConfig;
     /**
@@ -454,11 +454,11 @@ export namespace composer_v1beta1 {
    */
   export interface Schema$MasterAuthorizedNetworksConfig {
     /**
-     * cidr_blocks define up to 50 external networks that could access Kubernetes master through HTTPS.
+     * Up to 50 external networks that could access Kubernetes master through HTTPS.
      */
     cidrBlocks?: Schema$CidrBlock[];
     /**
-     * Whether or not master authorized networks is enabled.
+     * Whether or not master authorized networks feature is enabled.
      */
     enabled?: boolean | null;
   }

@@ -518,7 +518,7 @@
       }
     }
   },
-  "revision": "20220402",
+  "revision": "20220606",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AllowedIpRange": {
@@ -591,15 +591,15 @@
       "type": "object"
     },
     "CidrBlock": {
-      "description": "CidrBlock contains an optional name and one CIDR block.",
+      "description": "CIDR block with an optional name.",
       "id": "CidrBlock",
       "properties": {
         "cidrBlock": {
-          "description": "cidr_block must be specified in CIDR notation.",
+          "description": "CIDR block that must be specified in CIDR notation.",
           "type": "string"
         },
         "displayName": {
-          "description": "display_name is a field for users to identify CIDR blocks.",
+          "description": "User-defined name that identifies the CIDR block.",
           "type": "string"
         }
       },
@@ -763,7 +763,7 @@
         },
         "masterAuthorizedNetworksConfig": {
           "$ref": "MasterAuthorizedNetworksConfig",
-          "description": "Optional. The configuration options for GKE clusters master authorized networks. By default master authorized networks feature is: - in case of private environment: enabled with no external networks allowlisted. - in case of public environment: disabled."
+          "description": "Optional. The configuration options for GKE cluster master authorized networks. By default master authorized networks feature is: - in case of private environment: enabled with no external networks allowlisted. - in case of public environment: disabled."
         },
         "nodeConfig": {
           "$ref": "NodeConfig",
@@ -959,14 +959,14 @@
       "id": "MasterAuthorizedNetworksConfig",
       "properties": {
         "cidrBlocks": {
-          "description": "cidr_blocks define up to 50 external networks that could access Kubernetes master through HTTPS.",
+          "description": "Up to 50 external networks that could access Kubernetes master through HTTPS.",
           "items": {
             "$ref": "CidrBlock"
           },
           "type": "array"
         },
         "enabled": {
-          "description": "Whether or not master authorized networks is enabled.",
+          "description": "Whether or not master authorized networks feature is enabled.",
           "type": "boolean"
         }
       },
