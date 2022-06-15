@@ -385,7 +385,7 @@
       }
     }
   },
-  "revision": "20220330",
+  "revision": "20220602",
   "rootUrl": "https://transcoder.googleapis.com/",
   "schemas": {
     "AdBreak": {
@@ -1082,7 +1082,7 @@
           "description": "Destination on Pub/Sub."
         },
         "spriteSheets": {
-          "description": "List of output sprite sheets.",
+          "description": "List of output sprite sheets. Spritesheets require at least one VideoStream in the Jobconfig.",
           "items": {
             "$ref": "SpriteSheet"
           },

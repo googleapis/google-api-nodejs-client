@@ -669,7 +669,7 @@ export namespace transcoder_v1 {
      */
     pubsubDestination?: Schema$PubsubDestination;
     /**
-     * List of output sprite sheets.
+     * List of output sprite sheets. Spritesheets require at least one VideoStream in the Jobconfig.
      */
     spriteSheets?: Schema$SpriteSheet[];
   }
