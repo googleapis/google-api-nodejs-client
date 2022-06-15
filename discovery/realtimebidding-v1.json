@@ -164,7 +164,7 @@
         "creatives": {
           "methods": {
             "list": {
-              "description": "Lists creatives.",
+              "description": "Lists creatives as they are at the time of the initial request. This call may take multiple hours to complete. For large, paginated requests, this method returns a snapshot of creatives at the time of request for the first page. `lastStatusUpdate` and `creativeServingDecision` may be outdated for creatives on sequential pages. We recommend [Google Cloud Pub/Sub](//cloud.google.com/pubsub/docs/overview) to view the latest status.",
               "flatPath": "v1/bidders/{biddersId}/creatives",
               "httpMethod": "GET",
               "id": "realtimebidding.bidders.creatives.list",
@@ -1009,7 +1009,7 @@
               ]
             },
             "list": {
-              "description": "Lists creatives.",
+              "description": "Lists creatives as they are at the time of the initial request. This call may take multiple hours to complete. For large, paginated requests, this method returns a snapshot of creatives at the time of request for the first page. `lastStatusUpdate` and `creativeServingDecision` may be outdated for creatives on sequential pages. We recommend [Google Cloud Pub/Sub](//cloud.google.com/pubsub/docs/overview) to view the latest status.",
               "flatPath": "v1/buyers/{buyersId}/creatives",
               "httpMethod": "GET",
               "id": "realtimebidding.buyers.creatives.list",
@@ -1305,7 +1305,7 @@
       }
     }
   },
-  "revision": "20220505",
+  "revision": "20220613",
   "rootUrl": "https://realtimebidding.googleapis.com/",
   "schemas": {
     "ActivatePretargetingConfigRequest": {

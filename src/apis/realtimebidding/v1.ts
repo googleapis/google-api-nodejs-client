@@ -1530,7 +1530,7 @@ export namespace realtimebidding_v1 {
     }
 
     /**
-     * Lists creatives.
+     * Lists creatives as they are at the time of the initial request. This call may take multiple hours to complete. For large, paginated requests, this method returns a snapshot of creatives at the time of request for the first page. `lastStatusUpdate` and `creativeServingDecision` may be outdated for creatives on sequential pages. We recommend [Google Cloud Pub/Sub](//cloud.google.com/pubsub/docs/overview) to view the latest status.
      * @example
      * ```js
      * // Before running the sample:
@@ -5996,7 +5996,7 @@ export namespace realtimebidding_v1 {
     }
 
     /**
-     * Lists creatives.
+     * Lists creatives as they are at the time of the initial request. This call may take multiple hours to complete. For large, paginated requests, this method returns a snapshot of creatives at the time of request for the first page. `lastStatusUpdate` and `creativeServingDecision` may be outdated for creatives on sequential pages. We recommend [Google Cloud Pub/Sub](//cloud.google.com/pubsub/docs/overview) to view the latest status.
      * @example
      * ```js
      * // Before running the sample:
