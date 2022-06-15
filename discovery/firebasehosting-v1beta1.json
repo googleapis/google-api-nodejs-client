@@ -1939,7 +1939,7 @@
       }
     }
   },
-  "revision": "20220322",
+  "revision": "20220601",
   "rootUrl": "https://firebasehosting.googleapis.com/",
   "schemas": {
     "ActingUser": {
@@ -2530,6 +2530,10 @@
         },
         "function": {
           "description": "The function to proxy requests to. Must match the exported function name exactly.",
+          "type": "string"
+        },
+        "functionRegion": {
+          "description": "Optional. Specify a Cloud region for rewritten Functions invocations. If not provided, defaults to us-central1.",
           "type": "string"
         },
         "glob": {

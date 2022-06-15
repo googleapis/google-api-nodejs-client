@@ -523,6 +523,10 @@ export namespace firebasehosting_v1beta1 {
      */
     function?: string | null;
     /**
+     * Optional. Specify a Cloud region for rewritten Functions invocations. If not provided, defaults to us-central1.
+     */
+    functionRegion?: string | null;
+    /**
      * The user-supplied [glob](https://firebase.google.com/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
      */
     glob?: string | null;
