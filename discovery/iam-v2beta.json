@@ -293,7 +293,7 @@
       }
     }
   },
-  "revision": "20220428",
+  "revision": "20220602",
   "rootUrl": "https://iam.googleapis.com/",
   "schemas": {
     "GoogleIamAdminV1AuditData": {
@@ -384,6 +384,12 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "GoogleIamV1betaWorkloadIdentityPoolOperationMetadata": {
+      "description": "Metadata for long-running WorkloadIdentityPool operations.",
+      "id": "GoogleIamV1betaWorkloadIdentityPoolOperationMetadata",
+      "properties": {},
       "type": "object"
     },
     "GoogleIamV2betaDenyRule": {
