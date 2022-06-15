@@ -1374,7 +1374,7 @@
           "parameterOrder": [],
           "parameters": {
             "customer": {
-              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, fill this field instead of domain. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users)",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, fill in this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. Either the `customer` or the `domain` parameter must be provided.",
               "location": "query",
               "type": "string"
             },
@@ -4407,7 +4407,7 @@
       }
     }
   },
-  "revision": "20220325",
+  "revision": "20220606",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -5910,11 +5910,11 @@
       "id": "Group",
       "properties": {
         "adminCreated": {
-          "description": "Value is `true` if this group was created by an administrator rather than a user.",
+          "description": "Read-only. Value is `true` if this group was created by an administrator rather than a user.",
           "type": "boolean"
         },
         "aliases": {
-          "description": "List of a group's alias email addresses.",
+          "description": "Read-only. A list of a group's alias email addresses.",
           "items": {
             "type": "string"
           },
@@ -5943,7 +5943,7 @@
           "type": "string"
         },
         "id": {
-          "description": "The unique ID of a group. A group `id` can be used as a group request URI's `groupKey`.",
+          "description": "Read-only. The unique ID of a group. A group `id` can be used as a group request URI's `groupKey`.",
           "type": "string"
         },
         "kind": {
@@ -5956,7 +5956,7 @@
           "type": "string"
         },
         "nonEditableAliases": {
-          "description": "List of the group's non-editable alias email addresses that are outside of the account's primary domain or subdomains. These are functioning email addresses used by the group. This is a read-only property returned in the API's response for a group. If edited in a group's POST or PUT request, the edit is ignored by the API service.",
+          "description": "Read-only. A list of the group's non-editable alias email addresses that are outside of the account's primary domain or subdomains. These are functioning email addresses used by the group. This is a read-only property returned in the API's response for a group. If edited in a group's POST or PUT request, the edit is ignored by the API service.",
           "items": {
             "type": "string"
           },
