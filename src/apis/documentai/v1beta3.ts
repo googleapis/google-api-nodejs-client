@@ -3578,6 +3578,10 @@ export namespace documentai_v1beta3 {
      */
     document?: Schema$GoogleCloudDocumentaiV1beta3Document;
     /**
+     * Specifies which fields to include in ProcessResponse's document.
+     */
+    fieldMask?: string | null;
+    /**
      * An inline document proto.
      */
     inlineDocument?: Schema$GoogleCloudDocumentaiV1beta3Document;
@@ -3693,7 +3697,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionRequest {
     /**
-     * Required. The resource name of child ProcessorVersion to use as default.
+     * Required. The resource name of child ProcessorVersion to use as default. Format: `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{version\}`
      */
     defaultProcessorVersion?: string | null;
   }
@@ -6140,6 +6144,7 @@ export namespace documentai_v1beta3 {
      *       // request body parameters
      *       // {
      *       //   "document": {},
+     *       //   "fieldMask": "my_fieldMask",
      *       //   "inlineDocument": {},
      *       //   "rawDocument": {},
      *       //   "skipHumanReview": false
@@ -7459,6 +7464,7 @@ export namespace documentai_v1beta3 {
      *         // request body parameters
      *         // {
      *         //   "document": {},
+     *         //   "fieldMask": "my_fieldMask",
      *         //   "inlineDocument": {},
      *         //   "rawDocument": {},
      *         //   "skipHumanReview": false
