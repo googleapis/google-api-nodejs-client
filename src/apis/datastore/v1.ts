@@ -130,6 +130,10 @@ export namespace datastore_v1 {
    */
   export interface Schema$AllocateIdsRequest {
     /**
+     * If not empty, the ID of the database against which to make the request.
+     */
+    databaseId?: string | null;
+    /**
      * Required. A list of keys with incomplete key paths for which to allocate IDs. No key may be reserved/read-only.
      */
     keys?: Schema$Key[];
@@ -157,6 +161,10 @@ export namespace datastore_v1 {
    */
   export interface Schema$BeginTransactionRequest {
     /**
+     * If not empty, the ID of the database against which to make the request.
+     */
+    databaseId?: string | null;
+    /**
      * Options for a new transaction.
      */
     transactionOptions?: Schema$TransactionOptions;
@@ -174,6 +182,10 @@ export namespace datastore_v1 {
    * The request for Datastore.Commit.
    */
   export interface Schema$CommitRequest {
+    /**
+     * If not empty, the ID of the database against which to make the request.
+     */
+    databaseId?: string | null;
     /**
      * The type of commit to perform. Defaults to `TRANSACTIONAL`.
      */
@@ -209,7 +221,7 @@ export namespace datastore_v1 {
    */
   export interface Schema$CompositeFilter {
     /**
-     * The list of filters to combine. Must contain at least one filter.
+     * The list of filters to combine. Requires: * At least one filter is present.
      */
     filters?: Schema$Filter[];
     /**
@@ -763,6 +775,10 @@ export namespace datastore_v1 {
    */
   export interface Schema$LookupRequest {
     /**
+     * If not empty, the ID of the database against which to make the request.
+     */
+    databaseId?: string | null;
+    /**
      * Required. Keys of entities to look up.
      */
     keys?: Schema$Key[];
@@ -847,6 +863,10 @@ export namespace datastore_v1 {
    */
   export interface Schema$PartitionId {
     /**
+     * If not empty, the ID of the database to which the entities belong.
+     */
+    databaseId?: string | null;
+    /**
      * If not empty, the ID of the namespace to which the entities belong.
      */
     namespaceId?: string | null;
@@ -864,11 +884,11 @@ export namespace datastore_v1 {
      */
     id?: string | null;
     /**
-     * The kind of the entity. A kind matching regex `__.*__` is reserved/read-only. A kind must not contain more than 1500 bytes when UTF-8 encoded. Cannot be `""`.
+     * The kind of the entity. A kind matching regex `__.*__` is reserved/read-only. A kind must not contain more than 1500 bytes when UTF-8 encoded. Cannot be `""`. Must be valid UTF-8 bytes. Legacy values that are not valid UTF-8 are encoded as `__bytes__` where `` is the base-64 encoding of the bytes.
      */
     kind?: string | null;
     /**
-     * The name of the entity. A name matching regex `__.*__` is reserved/read-only. A name must not be more than 1500 bytes when UTF-8 encoded. Cannot be `""`.
+     * The name of the entity. A name matching regex `__.*__` is reserved/read-only. A name must not be more than 1500 bytes when UTF-8 encoded. Cannot be `""`. Must be valid UTF-8 bytes. Legacy values that are not valid UTF-8 are encoded as `__bytes__` where `` is the base-64 encoding of the bytes.
      */
     name?: string | null;
   }
@@ -1055,6 +1075,10 @@ export namespace datastore_v1 {
    */
   export interface Schema$RollbackRequest {
     /**
+     * If not empty, the ID of the database against which to make the request.
+     */
+    databaseId?: string | null;
+    /**
      * Required. The transaction identifier, returned by a call to Datastore.BeginTransaction.
      */
     transaction?: string | null;
@@ -1067,6 +1091,10 @@ export namespace datastore_v1 {
    * The request for Datastore.RunQuery.
    */
   export interface Schema$RunQueryRequest {
+    /**
+     * If not empty, the ID of the database against which to make the request.
+     */
+    databaseId?: string | null;
     /**
      * The GQL query to run. This query must be a non-aggregation query.
      */
@@ -1232,6 +1260,7 @@ export namespace datastore_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "databaseId": "my_databaseId",
      *       //   "keys": []
      *       // }
      *     },
@@ -1377,6 +1406,7 @@ export namespace datastore_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "databaseId": "my_databaseId",
      *       //   "transactionOptions": {}
      *       // }
      *     },
@@ -1523,6 +1553,7 @@ export namespace datastore_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "databaseId": "my_databaseId",
      *       //   "mode": "my_mode",
      *       //   "mutations": [],
      *       //   "transaction": "my_transaction"
@@ -1970,6 +2001,7 @@ export namespace datastore_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "databaseId": "my_databaseId",
      *       //   "keys": [],
      *       //   "readOptions": {}
      *       // }
@@ -2255,6 +2287,7 @@ export namespace datastore_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "databaseId": "my_databaseId",
      *       //   "transaction": "my_transaction"
      *       // }
      *     },
@@ -2393,6 +2426,7 @@ export namespace datastore_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "databaseId": "my_databaseId",
      *       //   "gqlQuery": {},
      *       //   "partitionId": {},
      *       //   "query": {},

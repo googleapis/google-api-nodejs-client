@@ -626,13 +626,17 @@
       }
     }
   },
-  "revision": "20220428",
+  "revision": "20220604",
   "rootUrl": "https://datastore.googleapis.com/",
   "schemas": {
     "AllocateIdsRequest": {
       "description": "The request for Datastore.AllocateIds.",
       "id": "AllocateIdsRequest",
       "properties": {
+        "databaseId": {
+          "description": "If not empty, the ID of the database against which to make the request.",
+          "type": "string"
+        },
         "keys": {
           "description": "Required. A list of keys with incomplete key paths for which to allocate IDs. No key may be reserved/read-only.",
           "items": {
@@ -675,6 +679,10 @@
       "description": "The request for Datastore.BeginTransaction.",
       "id": "BeginTransactionRequest",
       "properties": {
+        "databaseId": {
+          "description": "If not empty, the ID of the database against which to make the request.",
+          "type": "string"
+        },
         "transactionOptions": {
           "$ref": "TransactionOptions",
           "description": "Options for a new transaction."
@@ -698,6 +706,10 @@
       "description": "The request for Datastore.Commit.",
       "id": "CommitRequest",
       "properties": {
+        "databaseId": {
+          "description": "If not empty, the ID of the database against which to make the request.",
+          "type": "string"
+        },
         "mode": {
           "description": "The type of commit to perform. Defaults to `TRANSACTIONAL`.",
           "enum": [
@@ -756,7 +768,7 @@
       "id": "CompositeFilter",
       "properties": {
         "filters": {
-          "description": "The list of filters to combine. Must contain at least one filter.",
+          "description": "The list of filters to combine. Requires: * At least one filter is present.",
           "items": {
             "$ref": "Filter"
           },
@@ -1646,6 +1658,10 @@
       "description": "The request for Datastore.Lookup.",
       "id": "LookupRequest",
       "properties": {
+        "databaseId": {
+          "description": "If not empty, the ID of the database against which to make the request.",
+          "type": "string"
+        },
         "keys": {
           "description": "Required. Keys of entities to look up.",
           "items": {
@@ -1755,6 +1771,10 @@
       "description": "A partition ID identifies a grouping of entities. The grouping is always by project and namespace, however the namespace ID may be empty. A partition ID contains several dimensions: project ID and namespace ID. Partition dimensions: - May be `\"\"`. - Must be valid UTF-8 bytes. - Must have values that match regex `[A-Za-z\\d\\.\\-_]{1,100}` If the value of any dimension matches regex `__.*__`, the partition is reserved/read-only. A reserved/read-only partition ID is forbidden in certain documented contexts. Foreign partition IDs (in which the project ID does not match the context project ID ) are discouraged. Reads and writes of foreign partition IDs may fail if the project is not in an active state.",
       "id": "PartitionId",
       "properties": {
+        "databaseId": {
+          "description": "If not empty, the ID of the database to which the entities belong.",
+          "type": "string"
+        },
         "namespaceId": {
           "description": "If not empty, the ID of the namespace to which the entities belong.",
           "type": "string"
@@ -1776,11 +1796,11 @@
           "type": "string"
         },
         "kind": {
-          "description": "The kind of the entity. A kind matching regex `__.*__` is reserved/read-only. A kind must not contain more than 1500 bytes when UTF-8 encoded. Cannot be `\"\"`.",
+          "description": "The kind of the entity. A kind matching regex `__.*__` is reserved/read-only. A kind must not contain more than 1500 bytes when UTF-8 encoded. Cannot be `\"\"`. Must be valid UTF-8 bytes. Legacy values that are not valid UTF-8 are encoded as `__bytes__` where `` is the base-64 encoding of the bytes.",
           "type": "string"
         },
         "name": {
-          "description": "The name of the entity. A name matching regex `__.*__` is reserved/read-only. A name must not be more than 1500 bytes when UTF-8 encoded. Cannot be `\"\"`.",
+          "description": "The name of the entity. A name matching regex `__.*__` is reserved/read-only. A name must not be more than 1500 bytes when UTF-8 encoded. Cannot be `\"\"`. Must be valid UTF-8 bytes. Legacy values that are not valid UTF-8 are encoded as `__bytes__` where `` is the base-64 encoding of the bytes.",
           "type": "string"
         }
       },
@@ -2091,6 +2111,10 @@
       "description": "The request for Datastore.Rollback.",
       "id": "RollbackRequest",
       "properties": {
+        "databaseId": {
+          "description": "If not empty, the ID of the database against which to make the request.",
+          "type": "string"
+        },
         "transaction": {
           "description": "Required. The transaction identifier, returned by a call to Datastore.BeginTransaction.",
           "format": "byte",
@@ -2109,6 +2133,10 @@
       "description": "The request for Datastore.RunQuery.",
       "id": "RunQueryRequest",
       "properties": {
+        "databaseId": {
+          "description": "If not empty, the ID of the database against which to make the request.",
+          "type": "string"
+        },
         "gqlQuery": {
           "$ref": "GqlQuery",
           "description": "The GQL query to run. This query must be a non-aggregation query."
