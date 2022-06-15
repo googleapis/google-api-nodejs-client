@@ -130,7 +130,7 @@ export namespace firebasedatabase_v1beta {
    */
   export interface Schema$DatabaseInstance {
     /**
-     * Immutable. The globally unique hostname of the database.
+     * Output only. Output Only. The globally unique hostname of the database.
      */
     databaseUrl?: string | null;
     /**
@@ -138,15 +138,15 @@ export namespace firebasedatabase_v1beta {
      */
     name?: string | null;
     /**
-     * The resource name of the project this instance belongs to. For example: `projects/{project-number\}`.
+     * Output only. The resource name of the project this instance belongs to. For example: `projects/{project-number\}`.
      */
     project?: string | null;
     /**
-     * The database's lifecycle state. Read-only.
+     * Output only. The database's lifecycle state. Read-only.
      */
     state?: string | null;
     /**
-     * The database instance type. On creation only USER_DATABASE is allowed, which is also the default when omitted.
+     * Immutable. The database instance type. On creation only USER_DATABASE is allowed, which is also the default when omitted.
      */
     type?: string | null;
   }
