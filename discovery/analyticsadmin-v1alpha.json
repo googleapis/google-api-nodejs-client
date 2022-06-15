@@ -739,6 +739,32 @@
             "https://www.googleapis.com/auth/analytics.readonly"
           ]
         },
+        "getAttributionSettings": {
+          "description": "Lookup for a AttributionSettings singleton.",
+          "flatPath": "v1alpha/properties/{propertiesId}/attributionSettings",
+          "httpMethod": "GET",
+          "id": "analyticsadmin.properties.getAttributionSettings",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the attribution settings to retrieve. Format: properties/{property}/attributionSettings",
+              "location": "path",
+              "pattern": "^properties/[^/]+/attributionSettings$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1alpha/{+name}",
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaAttributionSettings"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit",
+            "https://www.googleapis.com/auth/analytics.readonly"
+          ]
+        },
         "getDataRetentionSettings": {
           "description": "Returns the singleton data retention settings for this property.",
           "flatPath": "v1alpha/properties/{propertiesId}/dataRetentionSettings",
@@ -858,6 +884,40 @@
           },
           "response": {
             "$ref": "GoogleAnalyticsAdminV1alphaProperty"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit"
+          ]
+        },
+        "updateAttributionSettings": {
+          "description": "Updates attribution settings on a property.",
+          "flatPath": "v1alpha/properties/{propertiesId}/attributionSettings",
+          "httpMethod": "PATCH",
+          "id": "analyticsadmin.properties.updateAttributionSettings",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Output only. Resource name of this attribution settings resource. Format: properties/{property_id}/attributionSettings Example: \"properties/1000/attributionSettings\"",
+              "location": "path",
+              "pattern": "^properties/[^/]+/attributionSettings$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Required. The list of fields to be updated. Field names must be in snake case (e.g., \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1alpha/{+name}",
+          "request": {
+            "$ref": "GoogleAnalyticsAdminV1alphaAttributionSettings"
+          },
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaAttributionSettings"
           },
           "scopes": [
             "https://www.googleapis.com/auth/analytics.edit"
@@ -2556,7 +2616,7 @@
       }
     }
   },
-  "revision": "20220322",
+  "revision": "20220613",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccount": {
@@ -2666,6 +2726,72 @@
       "description": "Request message for ArchiveCustomMetric RPC.",
       "id": "GoogleAnalyticsAdminV1alphaArchiveCustomMetricRequest",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaAttributionSettings": {
+      "description": "The attribution settings used for a given property. This is a singleton resource.",
+      "id": "GoogleAnalyticsAdminV1alphaAttributionSettings",
+      "properties": {
+        "acquisitionConversionEventLookbackWindow": {
+          "description": "Required. The lookback window configuration for acquisition conversion events. The default window size is 30 days.",
+          "enum": [
+            "ACQUISITION_CONVERSION_EVENT_LOOKBACK_WINDOW_UNSPECIFIED",
+            "ACQUISITION_CONVERSION_EVENT_LOOKBACK_WINDOW_7_DAYS",
+            "ACQUISITION_CONVERSION_EVENT_LOOKBACK_WINDOW_30_DAYS"
+          ],
+          "enumDescriptions": [
+            "Lookback window size unspecified.",
+            "7-day lookback window.",
+            "30-day lookback window."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Resource name of this attribution settings resource. Format: properties/{property_id}/attributionSettings Example: \"properties/1000/attributionSettings\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "otherConversionEventLookbackWindow": {
+          "description": "Required. The lookback window for all other, non-acquisition conversion events. The default window size is 90 days.",
+          "enum": [
+            "OTHER_CONVERSION_EVENT_LOOKBACK_WINDOW_UNSPECIFIED",
+            "OTHER_CONVERSION_EVENT_LOOKBACK_WINDOW_30_DAYS",
+            "OTHER_CONVERSION_EVENT_LOOKBACK_WINDOW_60_DAYS",
+            "OTHER_CONVERSION_EVENT_LOOKBACK_WINDOW_90_DAYS"
+          ],
+          "enumDescriptions": [
+            "Lookback window size unspecified.",
+            "30-day lookback window.",
+            "60-day lookback window.",
+            "90-day lookback window."
+          ],
+          "type": "string"
+        },
+        "reportingAttributionModel": {
+          "description": "Required. The reporting attribution model used to calculate conversion credit in this property's reports. Changing the attribution model will apply to both historical and future data. These changes will be reflected in reports with conversion and revenue data. User and session data will be unaffected.",
+          "enum": [
+            "REPORTING_ATTRIBUTION_MODEL_UNSPECIFIED",
+            "CROSS_CHANNEL_DATA_DRIVEN",
+            "CROSS_CHANNEL_LAST_CLICK",
+            "CROSS_CHANNEL_FIRST_CLICK",
+            "CROSS_CHANNEL_LINEAR",
+            "CROSS_CHANNEL_POSITION_BASED",
+            "CROSS_CHANNEL_TIME_DECAY",
+            "ADS_PREFERRED_LAST_CLICK"
+          ],
+          "enumDescriptions": [
+            "Reporting attribution model unspecified.",
+            "Data-driven attribution distributes credit for the conversion based on data for each conversion event. Each Data-driven model is specific to each advertiser and each conversion event.",
+            "Ignores direct traffic and attributes 100% of the conversion value to the last channel that the customer clicked through (or engaged view through for YouTube) before converting.",
+            "Gives all credit for the conversion to the first channel that a customer clicked (or engaged view through for YouTube) before converting.",
+            "Distributes the credit for the conversion equally across all the channels a customer clicked (or engaged view through for YouTube) before converting.",
+            "Attributes 40% credit to the first and last interaction, and the remaining 20% credit is distributed evenly to the middle interactions.",
+            "Gives more credit to the touchpoints that happened closer in time to the conversion.",
+            "Attributes 100% of the conversion value to the last Google Ads channel that the customer clicked through before converting."
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaAuditUserLink": {
@@ -2867,6 +2993,10 @@
         "account": {
           "$ref": "GoogleAnalyticsAdminV1alphaAccount",
           "description": "A snapshot of an Account resource in change history."
+        },
+        "attributionSettings": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAttributionSettings",
+          "description": "A snapshot of AttributionSettings resource in change history."
         },
         "conversionEvent": {
           "$ref": "GoogleAnalyticsAdminV1alphaConversionEvent",
@@ -4111,7 +4241,8 @@
               "DATA_RETENTION_SETTINGS",
               "DISPLAY_VIDEO_360_ADVERTISER_LINK",
               "DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL",
-              "DATA_STREAM"
+              "DATA_STREAM",
+              "ATTRIBUTION_SETTINGS"
             ],
             "enumDescriptions": [
               "Resource type unknown or not specified.",
@@ -4127,7 +4258,8 @@
               "DataRetentionSettings resource",
               "DisplayVideo360AdvertiserLink resource",
               "DisplayVideo360AdvertiserLinkProposal resource",
-              "DataStream resource"
+              "DataStream resource",
+              "AttributionSettings resource"
             ],
             "type": "string"
           },
