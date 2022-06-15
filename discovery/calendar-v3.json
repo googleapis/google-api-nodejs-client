@@ -1132,7 +1132,7 @@
               "type": "string"
             },
             "q": {
-              "description": "Free text search terms to find events that match these terms in any field, except for extended properties. Optional.",
+              "description": "Free text search terms to find events that match these terms in the following fields: summary, description, location, attendee's displayName, attendee's email. Optional.",
               "location": "query",
               "type": "string"
             },
@@ -1529,7 +1529,7 @@
               "type": "string"
             },
             "q": {
-              "description": "Free text search terms to find events that match these terms in any field, except for extended properties. Optional.",
+              "description": "Free text search terms to find events that match these terms in the following fields: summary, description, location, attendee's displayName, attendee's email. Optional.",
               "location": "query",
               "type": "string"
             },
@@ -1723,7 +1723,7 @@
       }
     }
   },
-  "revision": "20220429",
+  "revision": "20220603",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Acl": {
