@@ -199,7 +199,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/autoscalingPolicies/[^/]+$",
                       "required": true,
@@ -263,7 +263,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/autoscalingPolicies/[^/]+$",
                       "required": true,
@@ -291,7 +291,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/autoscalingPolicies/[^/]+$",
                       "required": true,
@@ -569,7 +569,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/workflowTemplates/[^/]+$",
                       "required": true,
@@ -694,7 +694,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/workflowTemplates/[^/]+$",
                       "required": true,
@@ -722,7 +722,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/workflowTemplates/[^/]+$",
                       "required": true,
@@ -864,7 +864,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/autoscalingPolicies/[^/]+$",
                       "required": true,
@@ -928,7 +928,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/autoscalingPolicies/[^/]+$",
                       "required": true,
@@ -956,7 +956,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/autoscalingPolicies/[^/]+$",
                       "required": true,
@@ -1197,7 +1197,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/clusters/[^/]+$",
                       "required": true,
@@ -1415,7 +1415,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/clusters/[^/]+$",
                       "required": true,
@@ -1525,7 +1525,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/clusters/[^/]+$",
                       "required": true,
@@ -1674,7 +1674,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/jobs/[^/]+$",
                       "required": true,
@@ -1816,7 +1816,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/jobs/[^/]+$",
                       "required": true,
@@ -1912,7 +1912,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/jobs/[^/]+$",
                       "required": true,
@@ -2019,7 +2019,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/operations/[^/]+$",
                       "required": true,
@@ -2088,7 +2088,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/operations/[^/]+$",
                       "required": true,
@@ -2116,7 +2116,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/operations/[^/]+$",
                       "required": true,
@@ -2238,7 +2238,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/workflowTemplates/[^/]+$",
                       "required": true,
@@ -2363,7 +2363,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/workflowTemplates/[^/]+$",
                       "required": true,
@@ -2391,7 +2391,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/workflowTemplates/[^/]+$",
                       "required": true,
@@ -2444,7 +2444,7 @@
       }
     }
   },
-  "revision": "20220429",
+  "revision": "20220526",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2459,31 +2459,6 @@
         "acceleratorTypeUri": {
           "description": "Full URL, partial URI, or short name of the accelerator type resource to expose to this instance. See Compute Engine AcceleratorTypes (https://cloud.google.com/compute/docs/reference/beta/acceleratorTypes).Examples: https://www.googleapis.com/compute/beta/projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80 projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80 nvidia-tesla-k80Auto Zone Exception: If you are using the Dataproc Auto Zone Placement (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement) feature, you must use the short name of the accelerator type resource, for example, nvidia-tesla-k80.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "AuthenticationConfig": {
-      "description": "Configuration for using injectable credentials or service account",
-      "id": "AuthenticationConfig",
-      "properties": {
-        "authenticationType": {
-          "description": "Authentication type for session execution.",
-          "enum": [
-            "AUTHENTICATION_TYPE_UNSPECIFIED",
-            "SERVICE_ACCOUNT",
-            "INJECTABLE_CREDENTIALS"
-          ],
-          "enumDescriptions": [
-            "If AuthenticationType is unspecified, SERVICE_ACCOUNT is used",
-            "Defaults to using service account credentials",
-            "Injectable credentials authentication type"
-          ],
-          "type": "string"
-        },
-        "injectableCredentialsConfig": {
-          "$ref": "InjectableCredentialsConfig",
-          "description": "Configuration for using end user authentication"
         }
       },
       "type": "object"
@@ -2799,7 +2774,7 @@
       "id": "Cluster",
       "properties": {
         "clusterName": {
-          "description": "Required. The cluster name. Cluster names within a project must be unique. Names of deleted clusters can be reused.",
+          "description": "Required. The cluster name, which must be unique within a project. The name must start with a lowercase letter, and can contain up to 51 lowercase letters, numbers, and hyphens. It cannot end with a hyphen. The name of a deleted cluster can be reused.",
           "type": "string"
         },
         "clusterUuid": {
@@ -3450,6 +3425,10 @@
           },
           "type": "array"
         },
+        "bootDiskKmsKey": {
+          "description": "Optional. The Customer Managed Encryption Key (CMEK) (https://cloud.google.com/compute/docs/disks/customer-managed-encryption) used to encrypt the boot disk attached to each node in the node pool. Specify the key using the following format: projects/KEY_PROJECT_ID /locations/LOCATION/keyRings/RING_NAME/cryptoKeys/KEY_NAME.",
+          "type": "string"
+        },
         "localSsdCount": {
           "description": "Optional. The number of local SSD disks to attach to the node, which is limited by the maximum number of disks allowable per zone (see Adding Local SSDs (https://cloud.google.com/compute/docs/disks/local-ssd)).",
           "format": "int32",
@@ -3690,12 +3669,6 @@
           "type": "string"
         }
       },
-      "type": "object"
-    },
-    "InjectableCredentialsConfig": {
-      "description": "Specific injectable credentials authentication parameters",
-      "id": "InjectableCredentialsConfig",
-      "properties": {},
       "type": "object"
     },
     "InstanceGroupAutoscalingPolicyConfig": {
@@ -4502,6 +4475,36 @@
       },
       "type": "object"
     },
+    "NodePool": {
+      "description": "indicating a list of workers of same type",
+      "id": "NodePool",
+      "properties": {
+        "id": {
+          "description": "Required. A unique id of the node pool. Primary and Secondary workers can be specified using special reserved ids PRIMARY_WORKER_POOL and SECONDARY_WORKER_POOL respectively. Aux node pools can be referenced using corresponding pool id.",
+          "type": "string"
+        },
+        "instanceNames": {
+          "description": "Name of instances to be repaired. These instances must belong to specified node pool.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "repairAction": {
+          "description": "Required. Repair action to take on specified resources of the node pool.",
+          "enum": [
+            "REPAIR_ACTION_UNSPECIFIED",
+            "DELETE"
+          ],
+          "enumDescriptions": [
+            "No action will be taken by default.",
+            "delete the specified list of nodes."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Operation": {
       "description": "This resource represents a long-running operation that is the result of a network API call.",
       "id": "Operation",
@@ -4876,6 +4879,13 @@
           "description": "Optional. Specifying the cluster_uuid means the RPC will fail (with error NOT_FOUND) if a cluster with the specified UUID does not exist.",
           "type": "string"
         },
+        "nodePools": {
+          "description": "Optional. Node pools and corresponding repair action to be taken. All node pools should be unique in this request. i.e. Multiple entries for the same node pool id are not allowed.",
+          "items": {
+            "$ref": "NodePool"
+          },
+          "type": "array"
+        },
         "requestId": {
           "description": "Optional. A unique ID used to identify the request. If the server receives two RepairClusterRequests with the same ID, the second request is ignored, and the first google.longrunning.Operation created and stored in the backend is returned.Recommendation: Set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
           "type": "string"
@@ -4931,10 +4941,6 @@
           },
           "description": "Optional. A mapping of property names to values, which are used to configure workload execution.",
           "type": "object"
-        },
-        "sessionAuthenticationConfig": {
-          "$ref": "AuthenticationConfig",
-          "description": "Optional. Authentication configuration for the session execution."
         },
         "version": {
           "description": "Optional. Version of the batch runtime.",
