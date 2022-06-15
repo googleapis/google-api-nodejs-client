@@ -135,7 +135,7 @@ export namespace datafusion_v1beta1 {
     acceleratorType?: string | null;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -169,7 +169,7 @@ export namespace datafusion_v1beta1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -216,9 +216,22 @@ export namespace datafusion_v1beta1 {
     targetProject?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * Confirguration of PubSubEventWriter.
+   */
+  export interface Schema$EventPublishConfig {
+    /**
+     * Required. Option to enable Event Publishing.
+     */
+    enabled?: boolean | null;
+    /**
+     * Required. The resource name of the Pub/Sub topic. Format: projects/{project_id\}/topics/{topic_id\}
+     */
+    topic?: string | null;
+  }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
@@ -305,6 +318,10 @@ export namespace datafusion_v1beta1 {
      * Option to enable Stackdriver Monitoring.
      */
     enableStackdriverMonitoring?: boolean | null;
+    /**
+     * Option to enable and pass metadata for event publishing.
+     */
+    eventPublishConfig?: Schema$EventPublishConfig;
     /**
      * Output only. Cloud Storage bucket generated by Data Fusion in the customer project.
      */
@@ -599,7 +616,7 @@ export namespace datafusion_v1beta1 {
    */
   export interface Schema$SetIamPolicyRequest {
     /**
-     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
+     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
     /**
@@ -629,7 +646,7 @@ export namespace datafusion_v1beta1 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[] | null;
   }
@@ -848,7 +865,7 @@ export namespace datafusion_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datafusion.projects.locations.list({
-     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
      *     // If true, the returned list will include locations which are not yet revealed.
      *     includeUnrevealedLocations: 'placeholder-value',
@@ -1115,7 +1132,7 @@ export namespace datafusion_v1beta1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
     /**
@@ -1210,6 +1227,7 @@ export namespace datafusion_v1beta1 {
      *       //   "enableRbac": false,
      *       //   "enableStackdriverLogging": false,
      *       //   "enableStackdriverMonitoring": false,
+     *       //   "eventPublishConfig": {},
      *       //   "gcsBucket": "my_gcsBucket",
      *       //   "labels": {},
      *       //   "name": "my_name",
@@ -1508,6 +1526,7 @@ export namespace datafusion_v1beta1 {
      *   //   "enableRbac": false,
      *   //   "enableStackdriverLogging": false,
      *   //   "enableStackdriverMonitoring": false,
+     *   //   "eventPublishConfig": {},
      *   //   "gcsBucket": "my_gcsBucket",
      *   //   "labels": {},
      *   //   "name": "my_name",
@@ -1644,7 +1663,7 @@ export namespace datafusion_v1beta1 {
      *   const res = await datafusion.projects.locations.instances.getIamPolicy({
      *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/instances/my-instance',
      *   });
      *   console.log(res.data);
@@ -1942,6 +1961,7 @@ export namespace datafusion_v1beta1 {
      *       //   "enableRbac": false,
      *       //   "enableStackdriverLogging": false,
      *       //   "enableStackdriverMonitoring": false,
+     *       //   "eventPublishConfig": {},
      *       //   "gcsBucket": "my_gcsBucket",
      *       //   "labels": {},
      *       //   "name": "my_name",
@@ -2227,7 +2247,7 @@ export namespace datafusion_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datafusion.projects.locations.instances.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/instances/my-instance',
      *
      *     // Request body metadata
@@ -2369,7 +2389,7 @@ export namespace datafusion_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datafusion.projects.locations.instances.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/instances/my-instance',
      *
      *     // Request body metadata
@@ -2664,7 +2684,7 @@ export namespace datafusion_v1beta1 {
      */
     'options.requestedPolicyVersion'?: number;
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -2722,7 +2742,7 @@ export namespace datafusion_v1beta1 {
   export interface Params$Resource$Projects$Locations$Instances$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -2734,7 +2754,7 @@ export namespace datafusion_v1beta1 {
   export interface Params$Resource$Projects$Locations$Instances$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -2763,7 +2783,7 @@ export namespace datafusion_v1beta1 {
     }
 
     /**
-     * Add DNS peering on the given resource.
+     * Creates DNS peering on the given resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -2789,6 +2809,8 @@ export namespace datafusion_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datafusion.projects.locations.instances.dnsPeerings.create({
+     *     // Required. The name of the peering to create.
+     *     dnsPeeringId: 'placeholder-value',
      *     // Required. The resource on which DNS peering will be created.
      *     parent: 'projects/my-project/locations/my-location/instances/my-instance',
      *
@@ -2909,7 +2931,7 @@ export namespace datafusion_v1beta1 {
     }
 
     /**
-     * Remove DNS peering on the given resource.
+     * Deletes DNS peering on the given resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -3034,7 +3056,7 @@ export namespace datafusion_v1beta1 {
     }
 
     /**
-     * List DNS peering for a given resource.
+     * Lists DNS peerings for a given resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -3060,7 +3082,7 @@ export namespace datafusion_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datafusion.projects.locations.instances.dnsPeerings.list({
-     *     // The maximum number of dns peerings to return. The service may return fewer than this value. If unspecified, at most 10 dns peerings will be returned. The maximum value is 50; values above 50 will be coerced to 50.
+     *     // The maximum number of dns peerings to return. The service may return fewer than this value. If unspecified, at most 50 dns peerings will be returned. The maximum value is 200; values above 200 will be coerced to 200.
      *     pageSize: 'placeholder-value',
      *     // A page token, received from a previous `ListDnsPeerings` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDnsPeerings` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
@@ -3177,6 +3199,10 @@ export namespace datafusion_v1beta1 {
   export interface Params$Resource$Projects$Locations$Instances$Dnspeerings$Create
     extends StandardParameters {
     /**
+     * Required. The name of the peering to create.
+     */
+    dnsPeeringId?: string;
+    /**
      * Required. The resource on which DNS peering will be created.
      */
     parent?: string;
@@ -3196,7 +3222,7 @@ export namespace datafusion_v1beta1 {
   export interface Params$Resource$Projects$Locations$Instances$Dnspeerings$List
     extends StandardParameters {
     /**
-     * The maximum number of dns peerings to return. The service may return fewer than this value. If unspecified, at most 10 dns peerings will be returned. The maximum value is 50; values above 50 will be coerced to 50.
+     * The maximum number of dns peerings to return. The service may return fewer than this value. If unspecified, at most 50 dns peerings will be returned. The maximum value is 200; values above 200 will be coerced to 200.
      */
     pageSize?: number;
     /**
@@ -3245,7 +3271,7 @@ export namespace datafusion_v1beta1 {
      *     await datafusion.projects.locations.instances.namespaces.getIamPolicy({
      *       // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/instances/my-instance/namespaces/my-namespace',
      *     });
@@ -3522,7 +3548,7 @@ export namespace datafusion_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await datafusion.projects.locations.instances.namespaces.setIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/instances/my-instance/namespaces/my-namespace',
      *
@@ -3667,7 +3693,7 @@ export namespace datafusion_v1beta1 {
      *   const res =
      *     await datafusion.projects.locations.instances.namespaces.testIamPermissions(
      *       {
-     *         // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *         // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *         resource:
      *           'projects/my-project/locations/my-location/instances/my-instance/namespaces/my-namespace',
      *
@@ -3795,7 +3821,7 @@ export namespace datafusion_v1beta1 {
      */
     'options.requestedPolicyVersion'?: number;
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -3821,7 +3847,7 @@ export namespace datafusion_v1beta1 {
   export interface Params$Resource$Projects$Locations$Instances$Namespaces$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3833,7 +3859,7 @@ export namespace datafusion_v1beta1 {
   export interface Params$Resource$Projects$Locations$Instances$Namespaces$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
