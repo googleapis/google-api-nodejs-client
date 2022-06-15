@@ -583,23 +583,6 @@ export namespace cloudbuild_v1alpha2 {
     githubEnterpriseConfig?: string | null;
   }
   /**
-   * Metadata for `CreateGitLabConfig` operation.
-   */
-  export interface Schema$CreateGitLabConfigOperationMetadata {
-    /**
-     * Time the operation was completed.
-     */
-    completeTime?: string | null;
-    /**
-     * Time the operation was created.
-     */
-    createTime?: string | null;
-    /**
-     * The resource name of the GitLabConfig to be created. Format: `projects/{project\}/locations/{location\}/gitlabConfigs/{id\}`.
-     */
-    gitlabConfig?: string | null;
-  }
-  /**
    * Metadata for the `CreateWorkerPool` operation.
    */
   export interface Schema$CreateWorkerPoolOperationMetadata {
@@ -649,23 +632,6 @@ export namespace cloudbuild_v1alpha2 {
      * The resource name of the GitHubEnterprise to be deleted. Format: `projects/{project\}/locations/{location\}/githubEnterpriseConfigs/{id\}`.
      */
     githubEnterpriseConfig?: string | null;
-  }
-  /**
-   * Metadata for `DeleteGitLabConfig` operation.
-   */
-  export interface Schema$DeleteGitLabConfigOperationMetadata {
-    /**
-     * Time the operation was completed.
-     */
-    completeTime?: string | null;
-    /**
-     * Time the operation was created.
-     */
-    createTime?: string | null;
-    /**
-     * The resource name of the GitLabConfig to be created. Format: `projects/{project\}/locations/{location\}/gitlabConfigs/{id\}`.
-     */
-    gitlabConfig?: string | null;
   }
   /**
    * Metadata for the `DeleteWorkerPool` operation.
@@ -1285,23 +1251,6 @@ export namespace cloudbuild_v1alpha2 {
      * The resource name of the GitHubEnterprise to be updated. Format: `projects/{project\}/locations/{location\}/githubEnterpriseConfigs/{id\}`.
      */
     githubEnterpriseConfig?: string | null;
-  }
-  /**
-   * Metadata for `UpdateGitLabConfig` operation.
-   */
-  export interface Schema$UpdateGitLabConfigOperationMetadata {
-    /**
-     * Time the operation was completed.
-     */
-    completeTime?: string | null;
-    /**
-     * Time the operation was created.
-     */
-    createTime?: string | null;
-    /**
-     * The resource name of the GitLabConfig to be created. Format: `projects/{project\}/locations/{location\}/gitlabConfigs/{id\}`.
-     */
-    gitlabConfig?: string | null;
   }
   /**
    * Metadata for the `UpdateWorkerPool` operation.
