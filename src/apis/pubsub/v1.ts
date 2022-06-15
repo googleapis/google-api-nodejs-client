@@ -135,6 +135,31 @@ export namespace pubsub_v1 {
     ackIds?: string[] | null;
   }
   /**
+   * Configuration for a BigQuery subscription.
+   */
+  export interface Schema$BigQueryConfig {
+    /**
+     * When true and use_topic_schema is true, any fields that are a part of the topic schema that are not part of the BigQuery table schema are dropped when writing to BigQuery. Otherwise, the schemas must be kept in sync and any messages with extra fields are not written and remain in the subscription's backlog.
+     */
+    dropUnknownFields?: boolean | null;
+    /**
+     * Output only. An output-only field that indicates whether or not the subscription can receive messages.
+     */
+    state?: string | null;
+    /**
+     * The name of the table to which to write data, of the form {projectId\}.{datasetId\}.{tableId\}
+     */
+    table?: string | null;
+    /**
+     * When true, use the topic's schema as the columns to write to in BigQuery, if it exists.
+     */
+    useTopicSchema?: boolean | null;
+    /**
+     * When true, write the subscription name, message_id, publish_time, attributes, and ordering_key to additional columns in the table. The subscription name, message_id, and publish_time fields are put in their own columns while all other message properties (other than data) are written to a JSON object in the attributes column.
+     */
+    writeMetadata?: boolean | null;
+  }
+  /**
    * Associates `members`, or principals, with a `role`.
    */
   export interface Schema$Binding {
@@ -497,6 +522,14 @@ export namespace pubsub_v1 {
      */
     encoding?: string | null;
     /**
+     * The minimum (inclusive) revision allowed for validating messages. If empty or not present, allow any revision to be validated against last_revision or any revision created before.
+     */
+    firstRevisionId?: string | null;
+    /**
+     * The maximum (inclusive) revision allowed for validating messages. If empty or not present, allow any revision to be validated against first_revision or any revision created after.
+     */
+    lastRevisionId?: string | null;
+    /**
      * Required. The name of the schema that messages published should be validated against. Format is `projects/{project\}/schemas/{schema\}`. The value of this field will be `_deleted-schema_` if the schema has been deleted.
      */
     schema?: string | null;
@@ -557,6 +590,10 @@ export namespace pubsub_v1 {
      */
     ackDeadlineSeconds?: number | null;
     /**
+     * If delivery to BigQuery is used with this subscription, this field is used to configure it. Either `pushConfig` or `bigQueryConfig` can be set, but not both. If both are empty, then the subscriber will pull and ack messages using API methods.
+     */
+    bigqueryConfig?: Schema$BigQueryConfig;
+    /**
      * A policy that specifies the conditions for dead lettering messages in this subscription. If dead_letter_policy is not set, dead lettering is disabled. The Cloud Pub/Sub service account associated with this subscriptions's parent project (i.e., service-{project_number\}@gcp-sa-pubsub.iam.gserviceaccount.com) must have permission to Acknowledge() messages on this subscription.
      */
     deadLetterPolicy?: Schema$DeadLetterPolicy;
@@ -593,7 +630,7 @@ export namespace pubsub_v1 {
      */
     name?: string | null;
     /**
-     * If push delivery is used with this subscription, this field is used to configure it. At most one of `pushConfig` and `bigQueryConfig` can be set. If both are empty, then the subscriber will pull and ack messages using API methods.
+     * If push delivery is used with this subscription, this field is used to configure it. Either `pushConfig` or `bigQueryConfig` can be set, but not both. If both are empty, then the subscriber will pull and ack messages using API methods.
      */
     pushConfig?: Schema$PushConfig;
     /**
@@ -1211,7 +1248,7 @@ export namespace pubsub_v1 {
      *   const res = await pubsub.projects.schemas.getIamPolicy({
      *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/schemas/my-schema',
      *   });
      *   console.log(res.data);
@@ -1487,7 +1524,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.schemas.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/schemas/my-schema',
      *
      *     // Request body metadata
@@ -1629,7 +1666,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.schemas.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/schemas/my-schema',
      *
      *     // Request body metadata
@@ -2081,7 +2118,7 @@ export namespace pubsub_v1 {
      */
     'options.requestedPolicyVersion'?: number;
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -2107,7 +2144,7 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Schemas$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -2119,7 +2156,7 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Schemas$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -2591,7 +2628,7 @@ export namespace pubsub_v1 {
      *   const res = await pubsub.projects.snapshots.getIamPolicy({
      *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/snapshots/my-snapshot',
      *   });
      *   console.log(res.data);
@@ -3008,7 +3045,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/snapshots/my-snapshot',
      *
      *     // Request body metadata
@@ -3150,7 +3187,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/snapshots/my-snapshot',
      *
      *     // Request body metadata
@@ -3301,7 +3338,7 @@ export namespace pubsub_v1 {
      */
     'options.requestedPolicyVersion'?: number;
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -3335,7 +3372,7 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Snapshots$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3347,7 +3384,7 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Snapshots$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3539,6 +3576,7 @@ export namespace pubsub_v1 {
      *       // request body parameters
      *       // {
      *       //   "ackDeadlineSeconds": 0,
+     *       //   "bigqueryConfig": {},
      *       //   "deadLetterPolicy": {},
      *       //   "detached": false,
      *       //   "enableExactlyOnceDelivery": false,
@@ -3562,6 +3600,7 @@ export namespace pubsub_v1 {
      *   // Example response
      *   // {
      *   //   "ackDeadlineSeconds": 0,
+     *   //   "bigqueryConfig": {},
      *   //   "deadLetterPolicy": {},
      *   //   "detached": false,
      *   //   "enableExactlyOnceDelivery": false,
@@ -3973,6 +4012,7 @@ export namespace pubsub_v1 {
      *   // Example response
      *   // {
      *   //   "ackDeadlineSeconds": 0,
+     *   //   "bigqueryConfig": {},
      *   //   "deadLetterPolicy": {},
      *   //   "detached": false,
      *   //   "enableExactlyOnceDelivery": false,
@@ -4114,7 +4154,7 @@ export namespace pubsub_v1 {
      *   const res = await pubsub.projects.subscriptions.getIamPolicy({
      *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/subscriptions/my-subscription',
      *   });
      *   console.log(res.data);
@@ -4686,6 +4726,7 @@ export namespace pubsub_v1 {
      *   // Example response
      *   // {
      *   //   "ackDeadlineSeconds": 0,
+     *   //   "bigqueryConfig": {},
      *   //   "deadLetterPolicy": {},
      *   //   "detached": false,
      *   //   "enableExactlyOnceDelivery": false,
@@ -5102,7 +5143,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/subscriptions/my-subscription',
      *
      *     // Request body metadata
@@ -5244,7 +5285,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/subscriptions/my-subscription',
      *
      *     // Request body metadata
@@ -5415,7 +5456,7 @@ export namespace pubsub_v1 {
      */
     'options.requestedPolicyVersion'?: number;
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -5497,7 +5538,7 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Subscriptions$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -5509,7 +5550,7 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Subscriptions$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -5974,7 +6015,7 @@ export namespace pubsub_v1 {
      *   const res = await pubsub.projects.topics.getIamPolicy({
      *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/topics/my-topic',
      *   });
      *   console.log(res.data);
@@ -6532,7 +6573,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/topics/my-topic',
      *
      *     // Request body metadata
@@ -6674,7 +6715,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/topics/my-topic',
      *
      *     // Request body metadata
@@ -6825,7 +6866,7 @@ export namespace pubsub_v1 {
      */
     'options.requestedPolicyVersion'?: number;
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -6871,7 +6912,7 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Topics$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -6883,7 +6924,7 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Topics$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
