@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/ml-v0.6.2...ml-v1.0.0) (2022-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#2971](https://github.com/googleapis/google-api-nodejs-client/issues/2971)) ([adddf01](https://github.com/googleapis/google-api-nodejs-client/commit/adddf018e7cb73adab7341053dd80d72c5a6248d))
+
 ## [0.6.2](https://github.com/googleapis/google-api-nodejs-client/compare/ml-v0.6.1...ml-v0.6.2) (2022-06-13)
 
 

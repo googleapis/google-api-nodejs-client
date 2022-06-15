@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/iam",
-  "version": "2.4.0",
+  "version": "3.0.0",
   "description": "iam",
   "main": "build/index.js",
   "types": "build/index.d.ts",
