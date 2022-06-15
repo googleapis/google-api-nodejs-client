@@ -349,6 +349,19 @@ export namespace run_v1alpha1 {
     message?: string | null;
   }
   /**
+   * Not supported by Cloud Run GRPCAction describes an action involving a GRPC port.
+   */
+  export interface Schema$GRPCAction {
+    /**
+     * Port number of the gRPC service. Number must be in the range 1 to 65535.
+     */
+    port?: number | null;
+    /**
+     * Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC.
+     */
+    service?: string | null;
+  }
+  /**
    * Not supported by Cloud Run HTTPGetAction describes an action based on HTTP Get requests.
    */
   export interface Schema$HTTPGetAction {
@@ -772,6 +785,10 @@ export namespace run_v1alpha1 {
      * (Optional) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
      */
     failureThreshold?: number | null;
+    /**
+     * (Optional) GRPCAction specifies an action involving a GRPC port. A field inlined from the Handler message.
+     */
+    grpc?: Schema$GRPCAction;
     /**
      * (Optional) HTTPGet specifies the http request to perform. A field inlined from the Handler message.
      */

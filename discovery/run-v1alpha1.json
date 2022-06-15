@@ -268,7 +268,7 @@
       }
     }
   },
-  "revision": "20220422",
+  "revision": "20220603",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "ConfigMapEnvSource": {
@@ -521,6 +521,22 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GRPCAction": {
+      "description": "Not supported by Cloud Run GRPCAction describes an action involving a GRPC port.",
+      "id": "GRPCAction",
+      "properties": {
+        "port": {
+          "description": "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "service": {
+          "description": "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1068,6 +1084,10 @@
           "description": "(Optional) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
           "format": "int32",
           "type": "integer"
+        },
+        "grpc": {
+          "$ref": "GRPCAction",
+          "description": "(Optional) GRPCAction specifies an action involving a GRPC port. A field inlined from the Handler message."
         },
         "httpGet": {
           "$ref": "HTTPGetAction",
