@@ -272,7 +272,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+$",
                       "required": true,
@@ -370,7 +370,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+$",
                       "required": true,
@@ -398,7 +398,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+$",
                       "required": true,
@@ -513,7 +513,7 @@
                       ],
                       "parameters": {
                         "resource": {
-                          "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                          "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/entries/[^/]+$",
                           "required": true,
@@ -701,7 +701,7 @@
                       ],
                       "parameters": {
                         "resource": {
-                          "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                          "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/entries/[^/]+$",
                           "required": true,
@@ -1107,7 +1107,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/tagTemplates/[^/]+$",
                       "required": true,
@@ -1169,7 +1169,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/tagTemplates/[^/]+$",
                       "required": true,
@@ -1197,7 +1197,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/tagTemplates/[^/]+$",
                       "required": true,
@@ -1508,7 +1508,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/taxonomies/[^/]+$",
                       "required": true,
@@ -1662,7 +1662,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/taxonomies/[^/]+$",
                       "required": true,
@@ -1690,7 +1690,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/taxonomies/[^/]+$",
                       "required": true,
@@ -1800,7 +1800,7 @@
                       ],
                       "parameters": {
                         "resource": {
-                          "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                          "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/taxonomies/[^/]+/policyTags/[^/]+$",
                           "required": true,
@@ -1898,7 +1898,7 @@
                       ],
                       "parameters": {
                         "resource": {
-                          "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                          "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/taxonomies/[^/]+/policyTags/[^/]+$",
                           "required": true,
@@ -1926,7 +1926,7 @@
                       ],
                       "parameters": {
                         "resource": {
-                          "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                          "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/taxonomies/[^/]+/policyTags/[^/]+$",
                           "required": true,
@@ -1953,7 +1953,7 @@
       }
     }
   },
-  "revision": "20220429",
+  "revision": "20220530",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -2296,7 +2296,8 @@
       "properties": {
         "dataplexTable": {
           "$ref": "GoogleCloudDatacatalogV1DataplexTableSpec",
-          "description": "Fields specific to a Dataplex table and present only in the Dataplex table entries."
+          "description": "Output only. Fields specific to a Dataplex table and present only in the Dataplex table entries.",
+          "readOnly": true
         },
         "type": {
           "description": "Type of this table.",
@@ -2414,11 +2415,13 @@
       "properties": {
         "bigqueryDateShardedSpec": {
           "$ref": "GoogleCloudDatacatalogV1BigQueryDateShardedSpec",
-          "description": "Specification for a group of BigQuery tables with the `[prefix]YYYYMMDD` name pattern. For more information, see [Introduction to partitioned tables] (https://cloud.google.com/bigquery/docs/partitioned-tables#partitioning_versus_sharding)."
+          "description": "Output only. Specification for a group of BigQuery tables with the `[prefix]YYYYMMDD` name pattern. For more information, see [Introduction to partitioned tables] (https://cloud.google.com/bigquery/docs/partitioned-tables#partitioning_versus_sharding).",
+          "readOnly": true
         },
         "bigqueryTableSpec": {
           "$ref": "GoogleCloudDatacatalogV1BigQueryTableSpec",
-          "description": "Specification that applies to a BigQuery table. Valid only for entries with the `TABLE` type."
+          "description": "Output only. Specification that applies to a BigQuery table. Valid only for entries with the `TABLE` type.",
+          "readOnly": true
         },
         "businessContext": {
           "$ref": "GoogleCloudDatacatalogV1BusinessContext",
@@ -2527,7 +2530,7 @@
           ],
           "enumDescriptions": [
             "Default unknown type.",
-            "Output only. The entry type that has a GoogleSQL schema, including logical views.",
+            "The entry type that has a GoogleSQL schema, including logical views.",
             "Output only. The type of models. For more information, see [Supported models in BigQuery ML] (https://cloud.google.com/bigquery-ml/docs/introduction#supported_models_in).",
             "An entry type for streaming entries. For example, a Pub/Sub topic.",
             "An entry type for a set of files or objects. For example, a Cloud Storage fileset.",
