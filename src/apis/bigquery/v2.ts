@@ -1540,6 +1540,24 @@ export namespace bigquery_v2 {
      */
     trialId?: string | null;
   }
+  export interface Schema$IndexUnusedReason {
+    /**
+     * [Output-only] Specifies the base table involved in the reason that no search index was used.
+     */
+    base_table?: Schema$TableReference;
+    /**
+     * [Output-only] Specifies the high-level reason for the scenario when no search index was used.
+     */
+    code?: string | null;
+    /**
+     * [Output-only] Specifies the name of the unused search index, if available.
+     */
+    index_name?: string | null;
+    /**
+     * [Output-only] Free form human-readable reason for the scenario when no search index was used.
+     */
+    message?: string | null;
+  }
   /**
    * An array of int.
    */
@@ -2202,6 +2220,10 @@ export namespace bigquery_v2 {
      * [Output-only] The schema of the results. Present only for successful dry run of non-legacy SQL queries.
      */
     schema?: Schema$TableSchema;
+    /**
+     * [Output-only] Search query specific statistics.
+     */
+    searchStatistics?: Schema$SearchStatistics;
     /**
      * The type of query statement, if valid. Possible values (new values might be added in the future): "SELECT": SELECT query. "INSERT": INSERT query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. "UPDATE": UPDATE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. "DELETE": DELETE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. "MERGE": MERGE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. "ALTER_TABLE": ALTER TABLE query. "ALTER_VIEW": ALTER VIEW query. "ASSERT": ASSERT condition AS 'description'. "CREATE_FUNCTION": CREATE FUNCTION query. "CREATE_MODEL": CREATE [OR REPLACE] MODEL ... AS SELECT ... . "CREATE_PROCEDURE": CREATE PROCEDURE query. "CREATE_TABLE": CREATE [OR REPLACE] TABLE without AS SELECT. "CREATE_TABLE_AS_SELECT": CREATE [OR REPLACE] TABLE ... AS SELECT ... . "CREATE_VIEW": CREATE [OR REPLACE] VIEW ... AS SELECT ... . "DROP_FUNCTION" : DROP FUNCTION query. "DROP_PROCEDURE": DROP PROCEDURE query. "DROP_TABLE": DROP TABLE query. "DROP_VIEW": DROP VIEW query.
      */
@@ -3020,6 +3042,16 @@ export namespace bigquery_v2 {
      * Stack trace showing the line/column/procedure name of each frame on the stack at the point where the current evaluation happened. The leaf frame is first, the primary script is last. Never empty.
      */
     stackFrames?: Schema$ScriptStackFrame[];
+  }
+  export interface Schema$SearchStatistics {
+    /**
+     * When index_usage_mode is UNUSED or PARTIALLY_USED, this field explains why index was not used in all or part of the search query. If index_usage_mode is FULLLY_USED, this field is not populated.
+     */
+    indexUnusedReason?: Schema$IndexUnusedReason[];
+    /**
+     * Specifies index usage mode for the query.
+     */
+    indexUsageMode?: string | null;
   }
   export interface Schema$SessionInfo {
     /**
@@ -7945,7 +7977,7 @@ export namespace bigquery_v2 {
      *
      *   // Do the magic
      *   const res = await bigquery.rowAccessPolicies.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/datasets/my-dataset/tables/my-table/rowAccessPolicies/my-rowAccessPolicie',
      *
@@ -8240,7 +8272,7 @@ export namespace bigquery_v2 {
      *
      *   // Do the magic
      *   const res = await bigquery.rowAccessPolicies.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/datasets/my-dataset/tables/my-table/rowAccessPolicies/my-rowAccessPolicie',
      *
@@ -8386,7 +8418,7 @@ export namespace bigquery_v2 {
      *
      *   // Do the magic
      *   const res = await bigquery.rowAccessPolicies.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/datasets/my-dataset/tables/my-table/rowAccessPolicies/my-rowAccessPolicie',
      *
@@ -8507,7 +8539,7 @@ export namespace bigquery_v2 {
   export interface Params$Resource$Rowaccesspolicies$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -8542,7 +8574,7 @@ export namespace bigquery_v2 {
   export interface Params$Resource$Rowaccesspolicies$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -8554,7 +8586,7 @@ export namespace bigquery_v2 {
   export interface Params$Resource$Rowaccesspolicies$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -9100,6 +9132,8 @@ export namespace bigquery_v2 {
      *     selectedFields: 'placeholder-value',
      *     // Table ID of the requested table
      *     tableId: 'placeholder-value',
+     *     // Specifies the view that determines which table information is returned. By default, basic table information and storage statistics (STORAGE_STATS) are returned.
+     *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -9268,7 +9302,7 @@ export namespace bigquery_v2 {
      *
      *   // Do the magic
      *   const res = await bigquery.tables.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/datasets/my-dataset/tables/my-table',
      *
      *     // Request body metadata
@@ -9991,7 +10025,7 @@ export namespace bigquery_v2 {
      *
      *   // Do the magic
      *   const res = await bigquery.tables.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/datasets/my-dataset/tables/my-table',
      *
      *     // Request body metadata
@@ -10136,7 +10170,7 @@ export namespace bigquery_v2 {
      *
      *   // Do the magic
      *   const res = await bigquery.tables.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/datasets/my-dataset/tables/my-table',
      *
      *     // Request body metadata
@@ -10505,11 +10539,15 @@ export namespace bigquery_v2 {
      * Table ID of the requested table
      */
     tableId?: string;
+    /**
+     * Specifies the view that determines which table information is returned. By default, basic table information and storage statistics (STORAGE_STATS) are returned.
+     */
+    view?: string;
   }
   export interface Params$Resource$Tables$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -10577,7 +10615,7 @@ export namespace bigquery_v2 {
   export interface Params$Resource$Tables$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -10589,7 +10627,7 @@ export namespace bigquery_v2 {
   export interface Params$Resource$Tables$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
