@@ -884,6 +884,10 @@ export namespace serviceconsumermanagement_v1 {
    */
   export interface Schema$MetricRule {
     /**
+     * Metrics to update when the selected methods are called. The key of the map is the metric name, the value is the DynamicCostType to specify how to calculate the cost from the request. The cost amount will be increased for the metric against which the quota limits are defined. It is only implemented in CloudESF(go/cloudesf)
+     */
+    dynamicMetricCosts?: {[key: string]: string} | null;
+    /**
      * Metrics to update when the selected methods are called, and the associated cost applied to each metric. The key of the map is the metric name, and the values are the amount increased for the metric against which the quota limits are defined. The value must not be negative.
      */
     metricCosts?: {[key: string]: string} | null;
@@ -1367,16 +1371,16 @@ export namespace serviceconsumermanagement_v1 {
      */
     services?: string[] | null;
     /**
-     * Describes ownership and policies for the new tenant project. Required.
+     * Describes ownership and policies for the new tenant project.
      */
     tenantProjectPolicy?: Schema$TenantProjectPolicy;
   }
   /**
-   * Describes policy settings that need to be applied to a newly created tenant project.
+   * Describes policy settings that can be applied to a newly created tenant project.
    */
   export interface Schema$TenantProjectPolicy {
     /**
-     * Policy bindings to be applied to the tenant project, in addition to the 'roles/owner' role granted to the Service Consumer Management service account. At least one binding must have the role `roles/owner`.
+     * Policy bindings to be applied to the tenant project, in addition to the 'roles/owner' role granted to the Service Consumer Management service account.
      */
     policyBindings?: Schema$PolicyBinding[];
   }
