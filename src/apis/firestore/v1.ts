@@ -582,6 +582,10 @@ export namespace firestore_v1 {
      * Required. A field name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/fields/{field_path\}` A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: (Note: Comments here are written in markdown syntax, so there is an additional layer of backticks to represent a code block) `\`address.city\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\`*\`` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id\}/databases/{database_id\}/collectionGroups/__default__/fields/x` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
      */
     name?: string | null;
+    /**
+     * The TTL configuration for this `Field`. Setting or unsetting this will enable or disable the TTL for documents that have this `Field`.
+     */
+    ttlConfig?: Schema$GoogleFirestoreAdminV1TtlConfig;
   }
   /**
    * Metadata for google.longrunning.Operation results from FirestoreAdmin.UpdateField.
@@ -615,6 +619,10 @@ export namespace firestore_v1 {
      * The state of the operation.
      */
     state?: string | null;
+    /**
+     * Describes the deltas of TTL configuration.
+     */
+    ttlConfigDelta?: Schema$GoogleFirestoreAdminV1TtlConfigDelta;
   }
   /**
    * Metadata for google.longrunning.Operation results from FirestoreAdmin.ImportDocuments.
@@ -816,6 +824,24 @@ export namespace firestore_v1 {
     estimatedWork?: string | null;
   }
   /**
+   * The TTL (time-to-live) configuration for documents that have this `Field` set. Storing a timestamp value into a TTL-enabled field will be treated as the document's absolute expiration time. Using any other data type or leaving the field absent will disable the TTL for the individual document.
+   */
+  export interface Schema$GoogleFirestoreAdminV1TtlConfig {
+    /**
+     * Output only. The state of the TTL configuration.
+     */
+    state?: string | null;
+  }
+  /**
+   * Information about an TTL configuration change.
+   */
+  export interface Schema$GoogleFirestoreAdminV1TtlConfigDelta {
+    /**
+     * Specifies how the TTL configuration is changing.
+     */
+    changeType?: string | null;
+  }
+  /**
    * Metadata related to the update database operation.
    */
   export interface Schema$GoogleFirestoreAdminV1UpdateDatabaseMetadata {}
@@ -886,6 +912,10 @@ export namespace firestore_v1 {
      * A page token. Must be a value from ListCollectionIdsResponse.
      */
     pageToken?: string | null;
+    /**
+     * Reads documents as they were at the given time. This may not be older than 270 seconds.
+     */
+    readTime?: string | null;
   }
   /**
    * The response from Firestore.ListCollectionIds.
@@ -1031,6 +1061,10 @@ export namespace firestore_v1 {
      * The desired maximum number of partition points. The partitions may be returned across multiple pages of results. The number must be positive. The actual number of partitions returned may be fewer. For example, this may be set to one fewer than the number of parallel queries to be run, or in running a data pipeline job, one fewer than the number of workers or compute instances available.
      */
     partitionCount?: string | null;
+    /**
+     * Reads documents as they were at the given time. This may not be older than 270 seconds.
+     */
+    readTime?: string | null;
     /**
      * A structured query. Query must specify collection with all descendants and be ordered by name ascending. Other filters, order bys, limits, offsets, and start/end cursors are not supported.
      */
@@ -1450,6 +1484,167 @@ export namespace firestore_v1 {
       this.operations = new Resource$Projects$Databases$Operations(
         this.context
       );
+    }
+
+    /**
+     * Create a database.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firestore = google.firestore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firestore.projects.databases.create({
+     *     // Required. The ID to use for the database, which will become the final component of the database's resource name. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8\}(-[0-9a-f]{4\}){3\}-[0-9a-f]{12\}/. "(default)" database id is also valid.
+     *     databaseId: 'placeholder-value',
+     *     // Required. A parent name of the form `projects/{project_id\}`
+     *     parent: 'projects/my-project',
+     *     // If set, validate the request and preview the response, but do not actually create the database.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appEngineIntegrationMode": "my_appEngineIntegrationMode",
+     *       //   "concurrencyMode": "my_concurrencyMode",
+     *       //   "etag": "my_etag",
+     *       //   "keyPrefix": "my_keyPrefix",
+     *       //   "locationId": "my_locationId",
+     *       //   "name": "my_name",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Databases$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Databases$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Projects$Databases$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Databases$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Databases$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/databases').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
     }
 
     /**
@@ -2198,6 +2393,26 @@ export namespace firestore_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Databases$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID to use for the database, which will become the final component of the database's resource name. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8\}(-[0-9a-f]{4\}){3\}-[0-9a-f]{12\}/. "(default)" database id is also valid.
+     */
+    databaseId?: string;
+    /**
+     * Required. A parent name of the form `projects/{project_id\}`
+     */
+    parent?: string;
+    /**
+     * If set, validate the request and preview the response, but do not actually create the database.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirestoreAdminV1Database;
+  }
   export interface Params$Resource$Projects$Databases$Exportdocuments
     extends StandardParameters {
     /**
@@ -2312,7 +2527,8 @@ export namespace firestore_v1 {
      *   // Example response
      *   // {
      *   //   "indexConfig": {},
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "ttlConfig": {}
      *   // }
      * }
      *
@@ -2602,7 +2818,8 @@ export namespace firestore_v1 {
      *       // request body parameters
      *       // {
      *       //   "indexConfig": {},
-     *       //   "name": "my_name"
+     *       //   "name": "my_name",
+     *       //   "ttlConfig": {}
      *       // }
      *     },
      *   });
@@ -4597,7 +4814,8 @@ export namespace firestore_v1 {
      *       // request body parameters
      *       // {
      *       //   "pageSize": 0,
-     *       //   "pageToken": "my_pageToken"
+     *       //   "pageToken": "my_pageToken",
+     *       //   "readTime": "my_readTime"
      *       // }
      *     },
      *   });
@@ -5053,6 +5271,7 @@ export namespace firestore_v1 {
      *       //   "pageSize": 0,
      *       //   "pageToken": "my_pageToken",
      *       //   "partitionCount": "my_partitionCount",
+     *       //   "readTime": "my_readTime",
      *       //   "structuredQuery": {}
      *       // }
      *     },
