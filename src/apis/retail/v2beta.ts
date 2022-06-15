@@ -245,35 +245,35 @@ export namespace retail_v2beta {
     functionName?: string | null;
   }
   /**
-   * Metadata related to the progress of the AddFulfillmentPlaces operation. Currently empty because there is no meaningful metadata populated from the AddFulfillmentPlaces method.
+   * Metadata related to the progress of the AddFulfillmentPlaces operation. Currently empty because there is no meaningful metadata populated from the ProductService.AddFulfillmentPlaces method.
    */
   export interface Schema$GoogleCloudRetailV2AddFulfillmentPlacesMetadata {}
   /**
-   * Response of the AddFulfillmentPlacesRequest. Currently empty because there is no meaningful response populated from the AddFulfillmentPlaces method.
+   * Response of the AddFulfillmentPlacesRequest. Currently empty because there is no meaningful response populated from the ProductService.AddFulfillmentPlaces method.
    */
   export interface Schema$GoogleCloudRetailV2AddFulfillmentPlacesResponse {}
   /**
-   * Metadata related to the progress of the AddLocalInventories operation. Currently empty because there is no meaningful metadata populated from the AddLocalInventories method.
+   * Metadata related to the progress of the AddLocalInventories operation. Currently empty because there is no meaningful metadata populated from the ProductService.AddLocalInventories method.
    */
   export interface Schema$GoogleCloudRetailV2AddLocalInventoriesMetadata {}
   /**
-   * Response of the AddLocalInventories API. Currently empty because there is no meaningful response populated from the AddLocalInventories method.
+   * Response of the ProductService.AddLocalInventories API. Currently empty because there is no meaningful response populated from the ProductService.AddLocalInventories method.
    */
   export interface Schema$GoogleCloudRetailV2AddLocalInventoriesResponse {}
   /**
-   * Metadata related to the progress of the AddFulfillmentPlaces operation. Currently empty because there is no meaningful metadata populated from the AddFulfillmentPlaces method.
+   * Metadata related to the progress of the AddFulfillmentPlaces operation. Currently empty because there is no meaningful metadata populated from the ProductService.AddFulfillmentPlaces method.
    */
   export interface Schema$GoogleCloudRetailV2alphaAddFulfillmentPlacesMetadata {}
   /**
-   * Response of the AddFulfillmentPlacesRequest. Currently empty because there is no meaningful response populated from the AddFulfillmentPlaces method.
+   * Response of the AddFulfillmentPlacesRequest. Currently empty because there is no meaningful response populated from the ProductService.AddFulfillmentPlaces method.
    */
   export interface Schema$GoogleCloudRetailV2alphaAddFulfillmentPlacesResponse {}
   /**
-   * Metadata related to the progress of the AddLocalInventories operation. Currently empty because there is no meaningful metadata populated from the AddLocalInventories method.
+   * Metadata related to the progress of the AddLocalInventories operation. Currently empty because there is no meaningful metadata populated from the ProductService.AddLocalInventories method.
    */
   export interface Schema$GoogleCloudRetailV2alphaAddLocalInventoriesMetadata {}
   /**
-   * Response of the AddLocalInventories API. Currently empty because there is no meaningful response populated from the AddLocalInventories method.
+   * Response of the ProductService.AddLocalInventories API. Currently empty because there is no meaningful response populated from the ProductService.AddLocalInventories method.
    */
   export interface Schema$GoogleCloudRetailV2alphaAddLocalInventoriesResponse {}
   /**
@@ -307,7 +307,7 @@ export namespace retail_v2beta {
      */
     errorSamples?: Schema$GoogleRpcStatus[];
     /**
-     * Echoes the destination for the complete errors in the request if set.
+     * This field is never set.
      */
     errorsConfig?: Schema$GoogleCloudRetailV2alphaExportErrorsConfig;
   }
@@ -320,7 +320,7 @@ export namespace retail_v2beta {
      */
     errorSamples?: Schema$GoogleRpcStatus[];
     /**
-     * Echoes the destination for the complete errors if this field was set in the request.
+     * This field is never set.
      */
     errorsConfig?: Schema$GoogleCloudRetailV2alphaExportErrorsConfig;
   }
@@ -517,11 +517,11 @@ export namespace retail_v2beta {
     controlId?: string | null;
   }
   /**
-   * Metadata related to the progress of the AddFulfillmentPlaces operation. Currently empty because there is no meaningful metadata populated from the AddFulfillmentPlaces method.
+   * Metadata related to the progress of the AddFulfillmentPlaces operation. Currently empty because there is no meaningful metadata populated from the ProductService.AddFulfillmentPlaces method.
    */
   export interface Schema$GoogleCloudRetailV2betaAddFulfillmentPlacesMetadata {}
   /**
-   * Request message for AddFulfillmentPlaces method.
+   * Request message for ProductService.AddFulfillmentPlaces method.
    */
   export interface Schema$GoogleCloudRetailV2betaAddFulfillmentPlacesRequest {
     /**
@@ -542,15 +542,15 @@ export namespace retail_v2beta {
     type?: string | null;
   }
   /**
-   * Response of the AddFulfillmentPlacesRequest. Currently empty because there is no meaningful response populated from the AddFulfillmentPlaces method.
+   * Response of the AddFulfillmentPlacesRequest. Currently empty because there is no meaningful response populated from the ProductService.AddFulfillmentPlaces method.
    */
   export interface Schema$GoogleCloudRetailV2betaAddFulfillmentPlacesResponse {}
   /**
-   * Metadata related to the progress of the AddLocalInventories operation. Currently empty because there is no meaningful metadata populated from the AddLocalInventories method.
+   * Metadata related to the progress of the AddLocalInventories operation. Currently empty because there is no meaningful metadata populated from the ProductService.AddLocalInventories method.
    */
   export interface Schema$GoogleCloudRetailV2betaAddLocalInventoriesMetadata {}
   /**
-   * Request message for AddLocalInventories method.
+   * Request message for ProductService.AddLocalInventories method.
    */
   export interface Schema$GoogleCloudRetailV2betaAddLocalInventoriesRequest {
     /**
@@ -571,7 +571,7 @@ export namespace retail_v2beta {
     localInventories?: Schema$GoogleCloudRetailV2betaLocalInventory[];
   }
   /**
-   * Response of the AddLocalInventories API. Currently empty because there is no meaningful response populated from the AddLocalInventories method.
+   * Response of the ProductService.AddLocalInventories API. Currently empty because there is no meaningful response populated from the ProductService.AddLocalInventories method.
    */
   export interface Schema$GoogleCloudRetailV2betaAddLocalInventoriesResponse {}
   /**
@@ -589,7 +589,7 @@ export namespace retail_v2beta {
       [key: string]: Schema$GoogleCloudRetailV2betaCatalogAttribute;
     } | null;
     /**
-     * Required. Immutable. The fully qualified resource name of the attribute config. Format: "projects/x/locations/x/catalogs/x/attributesConfig"
+     * Required. Immutable. The fully qualified resource name of the attribute config. Format: `projects/x/locations/x/catalogs/x/attributesConfig`
      */
     name?: string | null;
   }
@@ -669,7 +669,7 @@ export namespace retail_v2beta {
      */
     indexableOption?: string | null;
     /**
-     * Output only. Indicates whether this attribute has been used by any products. `True` if at least one Product is using this attribute in Product.attributes. Otherwise, this field is `False`. CatalogAttribute can be pre-loaded by using AddCatalogAttribute, ImportCatalogAttributes, or UpdateAttributesConfig APIs. This field is `False` for pre-loaded CatalogAttributes. Only CatalogAttributes that are not in use by products can be deleted. CatalogAttributes that are in use by products cannot be deleted; however, their configuration properties will reset to default values upon removal request. After catalog changes, it takes about 10 minutes for this field to update.
+     * Output only. Indicates whether this attribute has been used by any products. `True` if at least one Product is using this attribute in Product.attributes. Otherwise, this field is `False`. CatalogAttribute can be pre-loaded by using CatalogService.AddCatalogAttribute, CatalogService.ImportCatalogAttributes, or CatalogService.UpdateAttributesConfig APIs. This field is `False` for pre-loaded CatalogAttributes. Only CatalogAttributes that are not in use by products can be deleted. CatalogAttributes that are in use by products cannot be deleted; however, their configuration properties will reset to default values upon removal request. After catalog changes, it takes about 10 minutes for this field to update.
      */
     inUse?: boolean | null;
     /**
@@ -720,7 +720,7 @@ export namespace retail_v2beta {
    */
   export interface Schema$GoogleCloudRetailV2betaCompleteQueryResponseCompletionResult {
     /**
-     * Custom attributes for the suggestion term. * For "user-data", the attributes are additional custom attributes ingested through BigQuery. * For "cloud-retail", the attributes are product attributes generated by Cloud Retail.
+     * Custom attributes for the suggestion term. * For "user-data", the attributes are additional custom attributes ingested through BigQuery. * For "cloud-retail", the attributes are product attributes generated by Cloud Retail. This is an experimental feature. Contact Retail Search support team if you are interested in enabling it.
      */
     attributes?: {
       [key: string]: Schema$GoogleCloudRetailV2betaCustomAttribute;
@@ -780,7 +780,7 @@ export namespace retail_v2beta {
      */
     minPrefixLength?: number | null;
     /**
-     * Required. Immutable. Fully qualified name projects/x/locations/x/catalogs/x/completionConfig
+     * Required. Immutable. Fully qualified name `projects/x/locations/x/catalogs/x/completionConfig`
      */
     name?: string | null;
     /**
@@ -870,7 +870,7 @@ export namespace retail_v2beta {
      */
     facetSpec?: Schema$GoogleCloudRetailV2betaSearchRequestFacetSpec;
     /**
-     * Immutable. Fully qualified name projects/x/locations/global/catalogs/x/controls/x
+     * Immutable. Fully qualified name `projects/x/locations/global/catalogs/x/controls/x`
      */
     name?: string | null;
     /**
@@ -887,7 +887,7 @@ export namespace retail_v2beta {
    */
   export interface Schema$GoogleCloudRetailV2betaCustomAttribute {
     /**
-     * This field is normally ignored unless AttributesConfig.attribute_config_level of the Catalog is set to the deprecated 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG' mode. You may learn more on [configuration mode] (https://cloud.google.com/retail/docs/attribute-config#config-modes). if true, custom attribute values are indexed, so that it can be filtered, faceted or boosted in SearchService.Search. This field is ignored in a UserEvent. See SearchRequest.filter, SearchRequest.facet_specs and SearchRequest.boost_spec for more details.
+     * This field is normally ignored unless AttributesConfig.attribute_config_level of the Catalog is set to the deprecated 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG' mode. For information about product-level attribute configuration, see [Configuration modes](https://cloud.google.com/retail/docs/attribute-config#config-modes). If true, custom attribute values are indexed, so that they can be filtered, faceted or boosted in SearchService.Search. This field is ignored in a UserEvent. See SearchRequest.filter, SearchRequest.facet_specs and SearchRequest.boost_spec for more details.
      */
     indexable?: boolean | null;
     /**
@@ -895,7 +895,7 @@ export namespace retail_v2beta {
      */
     numbers?: number[] | null;
     /**
-     * This field is normally ignored unless AttributesConfig.attribute_config_level of the Catalog is set to the deprecated 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG' mode. You may learn more on [configuration mode] (https://cloud.google.com/retail/docs/attribute-config#config-modes). If true, custom attribute values are searchable by text queries in SearchService.Search. This field is ignored in a UserEvent. Only set if type text is set. Otherwise, a INVALID_ARGUMENT error is returned.
+     * This field is normally ignored unless AttributesConfig.attribute_config_level of the Catalog is set to the deprecated 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG' mode. For information about product-level attribute configuration, see [Configuration modes](https://cloud.google.com/retail/docs/attribute-config#config-modes). If true, custom attribute values are searchable by text queries in SearchService.Search. This field is ignored in a UserEvent. Only set if type text is set. Otherwise, a INVALID_ARGUMENT error is returned.
      */
     searchable?: boolean | null;
     /**
@@ -934,7 +934,7 @@ export namespace retail_v2beta {
      */
     errorSamples?: Schema$GoogleRpcStatus[];
     /**
-     * Echoes the destination for the complete errors in the request if set.
+     * This field is never set.
      */
     errorsConfig?: Schema$GoogleCloudRetailV2betaExportErrorsConfig;
   }
@@ -947,7 +947,7 @@ export namespace retail_v2beta {
      */
     errorSamples?: Schema$GoogleRpcStatus[];
     /**
-     * Echoes the destination for the complete errors if this field was set in the request.
+     * This field is never set.
      */
     errorsConfig?: Schema$GoogleCloudRetailV2betaExportErrorsConfig;
   }
@@ -1282,7 +1282,7 @@ export namespace retail_v2beta {
      */
     filter?: string | null;
     /**
-     * The labels applied to a resource must meet the following requirements: * Each resource can have multiple labels, up to a maximum of 64. * Each label must be a key-value pair. * Keys have a minimum length of 1 character and a maximum length of 63 characters, and cannot be empty. Values can be empty, and have a maximum length of 63 characters. * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. All characters must use UTF-8 encoding, and international characters are allowed. * The key portion of a label must be unique. However, you can use the same key with multiple resources. * Keys must start with a lowercase letter or international character. See [Google Cloud Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements) for more details.
+     * The labels applied to a resource must meet the following requirements: * Each resource can have multiple labels, up to a maximum of 64. * Each label must be a key-value pair. * Keys have a minimum length of 1 character and a maximum length of 63 characters and cannot be empty. Values can be empty and have a maximum length of 63 characters. * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. All characters must use UTF-8 encoding, and international characters are allowed. * The key portion of a label must be unique. However, you can use the same key with multiple resources. * Keys must start with a lowercase letter or international character. See [Google Cloud Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements) for more details.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -1336,7 +1336,7 @@ export namespace retail_v2beta {
      */
     id?: string | null;
     /**
-     * Additional product metadata / annotations. Possible values: * `product`: JSON representation of the product. Will be set if `returnProduct` is set to true in `PredictRequest.params`. * `score`: Prediction score in double value. Will be set if `returnScore` is set to true in `PredictRequest.params`.
+     * Additional product metadata / annotations. Possible values: * `product`: JSON representation of the product. Is set if `returnProduct` is set to true in `PredictRequest.params`. * `score`: Prediction score in double value. Is set if `returnScore` is set to true in `PredictRequest.params`.
      */
     metadata?: {[key: string]: any} | null;
   }
@@ -1493,7 +1493,7 @@ export namespace retail_v2beta {
      */
     rating?: Schema$GoogleCloudRetailV2betaRating;
     /**
-     * Indicates which fields in the Products are returned in SearchResponse. Supported fields for all types: * audience * availability * brands * color_info * conditions * gtin * materials * name * patterns * price_info * rating * sizes * title * uri Supported fields only for Type.PRIMARY and Type.COLLECTION: * categories * description * images Supported fields only for Type.VARIANT: * Only the first image in images To mark attributes as retrievable, include paths of the form "attributes.key" where "key" is the key of a custom attribute, as specified in attributes. For Type.PRIMARY and Type.COLLECTION, the following fields are always returned in SearchResponse by default: * name For Type.VARIANT, the following fields are always returned in by default: * name * color_info Maximum number of paths is 30. Otherwise, an INVALID_ARGUMENT error is returned. Note: Returning more fields in SearchResponse may increase response payload size and serving latency.
+     * Indicates which fields in the Products are returned in SearchResponse. Supported fields for all types: * audience * availability * brands * color_info * conditions * gtin * materials * name * patterns * price_info * rating * sizes * title * uri Supported fields only for Type.PRIMARY and Type.COLLECTION: * categories * description * images Supported fields only for Type.VARIANT: * Only the first image in images To mark attributes as retrievable, include paths of the form "attributes.key" where "key" is the key of a custom attribute, as specified in attributes. For Type.PRIMARY and Type.COLLECTION, the following fields are always returned in SearchResponse by default: * name For Type.VARIANT, the following fields are always returned in by default: * name * color_info The maximum number of paths is 30. Otherwise, an INVALID_ARGUMENT error is returned. Note: Returning more fields in SearchResponse can increase response payload size and serving latency.
      */
     retrievableFields?: string | null;
     /**
@@ -1578,11 +1578,11 @@ export namespace retail_v2beta {
     merchantCenterProductIdField?: string | null;
   }
   /**
-   * Promotion information.
+   * Promotion specification.
    */
   export interface Schema$GoogleCloudRetailV2betaPromotion {
     /**
-     * ID of the promotion. For example, "free gift". The value must be a UTF-8 encoded string with a length limit of 128 characters, and match the pattern: `a-zA-Z*`. For example, id0LikeThis or ID_1_LIKE_THIS. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [promotion](https://support.google.com/merchants/answer/7050148).
+     * Promotion identifier, which is the final component of name. For example, this field is "free_gift", if name is `projects/x/locations/global/catalogs/default_catalog/promotions/free_gift`. The value must be a UTF-8 encoded string with a length limit of 128 characters, and match the pattern: `a-zA-Z*`. For example, id0LikeThis or ID_1_LIKE_THIS. Otherwise, an INVALID_ARGUMENT error is returned. Corresponds to Google Merchant Center property [promotion_id](https://support.google.com/merchants/answer/7050148).
      */
     promotionId?: string | null;
   }
@@ -1907,7 +1907,7 @@ export namespace retail_v2beta {
    */
   export interface Schema$GoogleCloudRetailV2betaSearchRequest {
     /**
-     * Boost specification to boost certain products. See more details at this [user guide](https://cloud.google.com/retail/docs/boosting). Notice that if both ServingConfig.boost_control_ids and [SearchRequest.boost_spec] are set, the boost conditions from both places are evaluated. If a search request matches multiple boost conditions, the final boost score is equal to the sum of the boost scores from all matched boost conditions.
+     * Boost specification to boost certain products. See more details at this [user guide](https://cloud.google.com/retail/docs/boosting). Notice that if both ServingConfig.boost_control_ids and SearchRequest.boost_spec are set, the boost conditions from both places are evaluated. If a search request matches multiple boost conditions, the final boost score is equal to the sum of the boost scores from all matched boost conditions.
      */
     boostSpec?: Schema$GoogleCloudRetailV2betaSearchRequestBoostSpec;
     /**
@@ -1931,7 +1931,7 @@ export namespace retail_v2beta {
      */
     filter?: string | null;
     /**
-     * The labels applied to a resource must meet the following requirements: * Each resource can have multiple labels, up to a maximum of 64. * Each label must be a key-value pair. * Keys have a minimum length of 1 character and a maximum length of 63 characters, and cannot be empty. Values can be empty, and have a maximum length of 63 characters. * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. All characters must use UTF-8 encoding, and international characters are allowed. * The key portion of a label must be unique. However, you can use the same key with multiple resources. * Keys must start with a lowercase letter or international character. See [Google Cloud Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements) for more details.
+     * The labels applied to a resource must meet the following requirements: * Each resource can have multiple labels, up to a maximum of 64. * Each label must be a key-value pair. * Keys have a minimum length of 1 character and a maximum length of 63 characters and cannot be empty. Values can be empty and have a maximum length of 63 characters. * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. All characters must use UTF-8 encoding, and international characters are allowed. * The key portion of a label must be unique. However, you can use the same key with multiple resources. * Keys must start with a lowercase letter or international character. See [Google Cloud Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements) for more details.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -1971,11 +1971,15 @@ export namespace retail_v2beta {
      */
     searchMode?: string | null;
     /**
+     * The spell correction specification that specifies the mode under which spell correction will take effect.
+     */
+    spellCorrectionSpec?: Schema$GoogleCloudRetailV2betaSearchRequestSpellCorrectionSpec;
+    /**
      * User information.
      */
     userInfo?: Schema$GoogleCloudRetailV2betaUserInfo;
     /**
-     * The keys to fetch and rollup the matching variant Products attributes, FulfillmentInfo or LocalInventorys attributes. The attributes from all the matching variant Products or LocalInventorys are merged and de-duplicated. Notice that rollup attributes will lead to extra query latency. Maximum number of keys is 30. For FulfillmentInfo, a fulfillment type and a fulfillment ID must be provided in the format of "fulfillmentType.fulfillmentId". E.g., in "pickupInStore.store123", "pickupInStore" is fulfillment type and "store123" is the store ID. Supported keys are: * colorFamilies * price * originalPrice * discount * variantId * inventory(place_id,price) * inventory(place_id,original_price) * inventory(place_id,attributes.key), where key is any key in the Product.inventories.attributes map. * attributes.key, where key is any key in the Product.attributes map. * pickupInStore.id, where id is any FulfillmentInfo.place_ids for FulfillmentInfo.type "pickup-in-store". * shipToStore.id, where id is any FulfillmentInfo.place_ids for FulfillmentInfo.type "ship-to-store". * sameDayDelivery.id, where id is any FulfillmentInfo.place_ids for FulfillmentInfo.type "same-day-delivery". * nextDayDelivery.id, where id is any FulfillmentInfo.place_ids for FulfillmentInfo.type "next-day-delivery". * customFulfillment1.id, where id is any FulfillmentInfo.place_ids for FulfillmentInfo.type "custom-type-1". * customFulfillment2.id, where id is any FulfillmentInfo.place_ids for FulfillmentInfo.type "custom-type-2". * customFulfillment3.id, where id is any FulfillmentInfo.place_ids for FulfillmentInfo.type "custom-type-3". * customFulfillment4.id, where id is any FulfillmentInfo.place_ids for FulfillmentInfo.type "custom-type-4". * customFulfillment5.id, where id is any FulfillmentInfo.place_ids for FulfillmentInfo.type "custom-type-5". If this field is set to an invalid value other than these, an INVALID_ARGUMENT error is returned.
+     * The keys to fetch and rollup the matching variant Products attributes, FulfillmentInfo or LocalInventorys attributes. The attributes from all the matching variant Products or LocalInventorys are merged and de-duplicated. Notice that rollup attributes will lead to extra query latency. Maximum number of keys is 30. For FulfillmentInfo, a fulfillment type and a fulfillment ID must be provided in the format of "fulfillmentType.fulfillmentId". E.g., in "pickupInStore.store123", "pickupInStore" is fulfillment type and "store123" is the store ID. Supported keys are: * colorFamilies * price * originalPrice * discount * variantId * inventory(place_id,price) * inventory(place_id,original_price) * inventory(place_id,attributes.key), where key is any key in the Product.local_inventories.attributes map. * attributes.key, where key is any key in the Product.attributes map. * pickupInStore.id, where id is any FulfillmentInfo.place_ids for FulfillmentInfo.type "pickup-in-store". * shipToStore.id, where id is any FulfillmentInfo.place_ids for FulfillmentInfo.type "ship-to-store". * sameDayDelivery.id, where id is any FulfillmentInfo.place_ids for FulfillmentInfo.type "same-day-delivery". * nextDayDelivery.id, where id is any FulfillmentInfo.place_ids for FulfillmentInfo.type "next-day-delivery". * customFulfillment1.id, where id is any FulfillmentInfo.place_ids for FulfillmentInfo.type "custom-type-1". * customFulfillment2.id, where id is any FulfillmentInfo.place_ids for FulfillmentInfo.type "custom-type-2". * customFulfillment3.id, where id is any FulfillmentInfo.place_ids for FulfillmentInfo.type "custom-type-3". * customFulfillment4.id, where id is any FulfillmentInfo.place_ids for FulfillmentInfo.type "custom-type-4". * customFulfillment5.id, where id is any FulfillmentInfo.place_ids for FulfillmentInfo.type "custom-type-5". If this field is set to an invalid value other than these, an INVALID_ARGUMENT error is returned.
      */
     variantRollupKeys?: string[] | null;
     /**
@@ -1988,7 +1992,7 @@ export namespace retail_v2beta {
    */
   export interface Schema$GoogleCloudRetailV2betaSearchRequestBoostSpec {
     /**
-     * Condition boost specifications. If a product matches multiple conditions in the specifictions, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 10.
+     * Condition boost specifications. If a product matches multiple conditions in the specifictions, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.
      */
     conditionBoostSpecs?: Schema$GoogleCloudRetailV2betaSearchRequestBoostSpecConditionBoostSpec[];
     /**
@@ -2027,7 +2031,7 @@ export namespace retail_v2beta {
      */
     enableDynamicPosition?: boolean | null;
     /**
-     * List of keys to exclude when faceting. By default, FacetKey.key is not excluded from the filter unless it is listed in this field. For example, suppose there are 100 products with color facet "Red" and 200 products with color facet "Blue". A query containing the filter "colorFamilies:ANY("Red")" and have "colorFamilies" as FacetKey.key will by default return the "Red" with count 100. If this field contains "colorFamilies", then the query returns both the "Red" with count 100 and "Blue" with count 200, because the "colorFamilies" key is now excluded from the filter. A maximum of 100 values are allowed. Otherwise, an INVALID_ARGUMENT error is returned.
+     * List of keys to exclude when faceting. By default, FacetKey.key is not excluded from the filter unless it is listed in this field. Listing a facet key in this field allows its values to appear as facet results, even when they are filtered out of search results. Using this field does not affect what search results are returned. For example, suppose there are 100 products with the color facet "Red" and 200 products with the color facet "Blue". A query containing the filter "colorFamilies:ANY("Red")" and having "colorFamilies" as FacetKey.key would by default return only "Red" products in the search results, and also return "Red" with count 100 as the only color facet. Although there are also blue products available, "Blue" would not be shown as an available facet value. If "colorFamilies" is listed in "excludedFilterKeys", then the query returns the facet values "Red" with count 100 and "Blue" with count 200, because the "colorFamilies" key is now excluded from the filter. Because this field doesn't affect search results, the search results are still correctly filtered to return only "Red" products. A maximum of 100 values are allowed. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     excludedFilterKeys?: string[] | null;
     /**
@@ -2043,6 +2047,10 @@ export namespace retail_v2beta {
    * Specifies how a facet is computed.
    */
   export interface Schema$GoogleCloudRetailV2betaSearchRequestFacetSpecFacetKey {
+    /**
+     * Whether to make facet keys case insensitive when getting faceting values with prefixes or contains.
+     */
+    caseInsensitive?: boolean | null;
     /**
      * Only get facet values that contains the given strings. For example, suppose "categories" has three values "Women \> Shoe", "Women \> Dress" and "Men \> Shoe". If set "contains" to "Shoe", the "categories" facet will give only "Women \> Shoe" and "Men \> Shoe". Only supported on textual fields. Maximum is 10.
      */
@@ -2068,7 +2076,7 @@ export namespace retail_v2beta {
      */
     query?: string | null;
     /**
-     * Only get facet for the given restricted values. For example, when using "pickupInStore" as key and set restricted values to ["store123", "store456"], only facets for "store123" and "store456" are returned. Only supported on textual fields and fulfillments. Maximum is 20. Must be set for the fulfillment facet keys: * pickupInStore * shipToStore * sameDayDelivery * nextDayDelivery * customFulfillment1 * customFulfillment2 * customFulfillment3 * customFulfillment4 * customFulfillment5
+     * Only get facet for the given restricted values. For example, when using "pickupInStore" as key and set restricted values to ["store123", "store456"], only facets for "store123" and "store456" are returned. Only supported on predefined textual fields, custom textual attributes and fulfillments. Maximum is 20. Must be set for the fulfillment facet keys: * pickupInStore * shipToStore * sameDayDelivery * nextDayDelivery * customFulfillment1 * customFulfillment2 * customFulfillment3 * customFulfillment4 * customFulfillment5
      */
     restrictedValues?: string[] | null;
   }
@@ -2095,6 +2103,15 @@ export namespace retail_v2beta {
     pinUnexpandedResults?: boolean | null;
   }
   /**
+   * The specification for query spell correction.
+   */
+  export interface Schema$GoogleCloudRetailV2betaSearchRequestSpellCorrectionSpec {
+    /**
+     * The mode under which spell correction should take effect to replace the original search query. Default to Mode.AUTO.
+     */
+    mode?: string | null;
+  }
+  /**
    * Response message for SearchService.Search method.
    */
   export interface Schema$GoogleCloudRetailV2betaSearchResponse {
@@ -2107,7 +2124,7 @@ export namespace retail_v2beta {
      */
     attributionToken?: string | null;
     /**
-     * Contains the spell corrected query, if found. If the spell correction type is AUTOMATIC, then the search results will be based on corrected_query, otherwise the original query will be used for search.
+     * Contains the spell corrected query, if found. If the spell correction type is AUTOMATIC, then the search results are based on corrected_query. Otherwise the original query will be used for search.
      */
     correctedQuery?: string | null;
     /**
@@ -2127,7 +2144,7 @@ export namespace retail_v2beta {
      */
     queryExpansionInfo?: Schema$GoogleCloudRetailV2betaSearchResponseQueryExpansionInfo;
     /**
-     * The URI of a customer-defined redirect page. If redirect action is triggered, no search will be performed, and only redirect_uri and attribution_token will be set in the response.
+     * The URI of a customer-defined redirect page. If redirect action is triggered, no search is performed, and only redirect_uri and attribution_token are set in the response.
      */
     redirectUri?: string | null;
     /**
@@ -2216,7 +2233,7 @@ export namespace retail_v2beta {
    */
   export interface Schema$GoogleCloudRetailV2betaServingConfig {
     /**
-     * Condition boost specifications. If a product matches multiple conditions in the specifications, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 100. Notice that if both ServingConfig.boost_control_ids and [SearchRequest.boost_spec] are set, the boost conditions from both places are evaluated. If a search request matches multiple boost conditions, the final boost score is equal to the sum of the boost scores from all matched boost conditions. Can only be set if solution_types is SOLUTION_TYPE_SEARCH.
+     * Condition boost specifications. If a product matches multiple conditions in the specifications, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 100. Notice that if both ServingConfig.boost_control_ids and SearchRequest.boost_spec are set, the boost conditions from both places are evaluated. If a search request matches multiple boost conditions, the final boost score is equal to the sum of the boost scores from all matched boost conditions. Can only be set if solution_types is SOLUTION_TYPE_SEARCH.
      */
     boostControlIds?: string[] | null;
     /**
@@ -2256,7 +2273,7 @@ export namespace retail_v2beta {
      */
     modelId?: string | null;
     /**
-     * Immutable. Fully qualified name projects/x/locations/global/catalogs/x/servingConfig/x
+     * Immutable. Fully qualified name `projects/x/locations/global/catalogs/x/servingConfig/x`
      */
     name?: string | null;
     /**
@@ -2413,7 +2430,7 @@ export namespace retail_v2beta {
      */
     userInfo?: Schema$GoogleCloudRetailV2betaUserInfo;
     /**
-     * Required. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor log in/out of the website. Don't set the field to the same fixed ID for different users. This mixes the event history of those users together, which results in degraded model quality. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. The field should not contain PII or user-data. We recommend to use Google Analystics [Client ID](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#clientId) for this field.
+     * Required. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor log in/out of the website. Don't set the field to the same fixed ID for different users. This mixes the event history of those users together, which results in degraded model quality. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. The field should not contain PII or user-data. We recommend to use Google Analytics [Client ID](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#clientId) for this field.
      */
     visitorId?: string | null;
   }
@@ -2933,7 +2950,7 @@ export namespace retail_v2beta {
      *
      *   // Do the magic
      *   const res = await retail.projects.locations.catalogs.getAttributesConfig({
-     *     // Required. Full AttributesConfig resource name. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/attributesConfig
+     *     // Required. Full AttributesConfig resource name. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/attributesConfig`
      *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/attributesConfig',
      *   });
      *   console.log(res.data);
@@ -3795,7 +3812,7 @@ export namespace retail_v2beta {
      *
      *   // Do the magic
      *   const res = await retail.projects.locations.catalogs.updateAttributesConfig({
-     *     // Required. Immutable. The fully qualified resource name of the attribute config. Format: "projects/x/locations/x/catalogs/x/attributesConfig"
+     *     // Required. Immutable. The fully qualified resource name of the attribute config. Format: `projects/x/locations/x/catalogs/x/attributesConfig`
      *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/attributesConfig',
      *     // Indicates which fields in the provided AttributesConfig to update. The following is the only supported field: * AttributesConfig.catalog_attributes If not set, all supported fields are updated.
      *     updateMask: 'placeholder-value',
@@ -3945,7 +3962,7 @@ export namespace retail_v2beta {
      *
      *   // Do the magic
      *   const res = await retail.projects.locations.catalogs.updateCompletionConfig({
-     *     // Required. Immutable. Fully qualified name projects/x/locations/x/catalogs/x/completionConfig
+     *     // Required. Immutable. Fully qualified name `projects/x/locations/x/catalogs/x/completionConfig`
      *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/completionConfig',
      *     // Indicates which fields in the provided CompletionConfig to update. The following are the only supported fields: * CompletionConfig.matching_order * CompletionConfig.max_suggestions * CompletionConfig.min_prefix_length * CompletionConfig.auto_learning If not set, all supported fields are updated.
      *     updateMask: 'placeholder-value',
@@ -4119,7 +4136,7 @@ export namespace retail_v2beta {
   export interface Params$Resource$Projects$Locations$Catalogs$Getattributesconfig
     extends StandardParameters {
     /**
-     * Required. Full AttributesConfig resource name. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/attributesConfig
+     * Required. Full AttributesConfig resource name. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/attributesConfig`
      */
     name?: string;
   }
@@ -4183,7 +4200,7 @@ export namespace retail_v2beta {
   export interface Params$Resource$Projects$Locations$Catalogs$Updateattributesconfig
     extends StandardParameters {
     /**
-     * Required. Immutable. The fully qualified resource name of the attribute config. Format: "projects/x/locations/x/catalogs/x/attributesConfig"
+     * Required. Immutable. The fully qualified resource name of the attribute config. Format: `projects/x/locations/x/catalogs/x/attributesConfig`
      */
     name?: string;
     /**
@@ -4199,7 +4216,7 @@ export namespace retail_v2beta {
   export interface Params$Resource$Projects$Locations$Catalogs$Updatecompletionconfig
     extends StandardParameters {
     /**
-     * Required. Immutable. Fully qualified name projects/x/locations/x/catalogs/x/completionConfig
+     * Required. Immutable. Fully qualified name `projects/x/locations/x/catalogs/x/completionConfig`
      */
     name?: string;
     /**
@@ -4248,7 +4265,7 @@ export namespace retail_v2beta {
      *   const res =
      *     await retail.projects.locations.catalogs.attributesConfig.addCatalogAttribute(
      *       {
-     *         // Required. Full AttributesConfig resource name. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/attributesConfig
+     *         // Required. Full AttributesConfig resource name. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/attributesConfig`
      *         attributesConfig:
      *           'projects/my-project/locations/my-location/catalogs/my-catalog/attributesConfig',
      *
@@ -4400,7 +4417,7 @@ export namespace retail_v2beta {
      *   const res =
      *     await retail.projects.locations.catalogs.attributesConfig.removeCatalogAttribute(
      *       {
-     *         // Required. Full AttributesConfig resource name. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/attributesConfig
+     *         // Required. Full AttributesConfig resource name. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/attributesConfig`
      *         attributesConfig:
      *           'projects/my-project/locations/my-location/catalogs/my-catalog/attributesConfig',
      *
@@ -4552,7 +4569,7 @@ export namespace retail_v2beta {
      *   const res =
      *     await retail.projects.locations.catalogs.attributesConfig.replaceCatalogAttribute(
      *       {
-     *         // Required. Full AttributesConfig resource name. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/attributesConfig
+     *         // Required. Full AttributesConfig resource name. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/attributesConfig`
      *         attributesConfig:
      *           'projects/my-project/locations/my-location/catalogs/my-catalog/attributesConfig',
      *
@@ -4680,7 +4697,7 @@ export namespace retail_v2beta {
   export interface Params$Resource$Projects$Locations$Catalogs$Attributesconfig$Addcatalogattribute
     extends StandardParameters {
     /**
-     * Required. Full AttributesConfig resource name. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/attributesConfig
+     * Required. Full AttributesConfig resource name. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/attributesConfig`
      */
     attributesConfig?: string;
 
@@ -4692,7 +4709,7 @@ export namespace retail_v2beta {
   export interface Params$Resource$Projects$Locations$Catalogs$Attributesconfig$Removecatalogattribute
     extends StandardParameters {
     /**
-     * Required. Full AttributesConfig resource name. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/attributesConfig
+     * Required. Full AttributesConfig resource name. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/attributesConfig`
      */
     attributesConfig?: string;
 
@@ -4704,7 +4721,7 @@ export namespace retail_v2beta {
   export interface Params$Resource$Projects$Locations$Catalogs$Attributesconfig$Replacecatalogattribute
     extends StandardParameters {
     /**
-     * Required. Full AttributesConfig resource name. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/attributesConfig
+     * Required. Full AttributesConfig resource name. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/attributesConfig`
      */
     attributesConfig?: string;
 
@@ -5717,7 +5734,7 @@ export namespace retail_v2beta {
     }
 
     /**
-     * Bulk import of multiple Products. Request processing may be synchronous. No partial updating is supported. Non-existing items are created. Note that it is possible for a subset of the Products to be successfully updated.
+     * Bulk import of multiple Products. Request processing may be synchronous. Non-existing items are created. Note that it is possible for a subset of the Products to be successfully updated.
      * @example
      * ```js
      * // Before running the sample:
@@ -6544,7 +6561,7 @@ export namespace retail_v2beta {
     }
 
     /**
-     * Updates inventory information for a Product while respecting the last update timestamps of each inventory field. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, updates are not immediately manifested in the Product queried by GetProduct or ListProducts. When inventory is updated with CreateProduct and UpdateProduct, the specified inventory field value(s) will overwrite any existing value(s) while ignoring the last update time for this field. Furthermore, the last update time for the specified inventory fields will be overwritten to the time of the CreateProduct or UpdateProduct request. If no inventory fields are set in CreateProductRequest.product, then any pre-existing inventory information for this product will be used. If no inventory fields are set in SetInventoryRequest.set_mask, then any existing inventory information will be preserved. Pre-existing inventory information can only be updated with SetInventory, AddFulfillmentPlaces, and RemoveFulfillmentPlaces. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.
+     * Updates inventory information for a Product while respecting the last update timestamps of each inventory field. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, updates are not immediately manifested in the Product queried by GetProduct or ListProducts. When inventory is updated with CreateProduct and UpdateProduct, the specified inventory field value(s) will overwrite any existing value(s) while ignoring the last update time for this field. Furthermore, the last update time for the specified inventory fields will be overwritten to the time of the CreateProduct or UpdateProduct request. If no inventory fields are set in CreateProductRequest.product, then any pre-existing inventory information for this product will be used. If no inventory fields are set in SetInventoryRequest.set_mask, then any existing inventory information will be preserved. Pre-existing inventory information can only be updated with SetInventory, ProductService.AddFulfillmentPlaces, and RemoveFulfillmentPlaces. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.
      * @example
      * ```js
      * // Before running the sample:
@@ -7048,7 +7065,7 @@ export namespace retail_v2beta {
      *   const res = await retail.projects.locations.catalogs.controls.create({
      *     // Required. The ID to use for the Control, which will become the final component of the Control's resource name. This value should be 4-63 characters, and valid characters are /a-z-_/.
      *     controlId: 'placeholder-value',
-     *     // Required. Full resource name of parent catalog. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}
+     *     // Required. Full resource name of parent catalog. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}`
      *     parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
      *
      *     // Request body metadata
@@ -7205,7 +7222,7 @@ export namespace retail_v2beta {
      *
      *   // Do the magic
      *   const res = await retail.projects.locations.catalogs.controls.delete({
-     *     // Required. The resource name of the Control to delete. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/controls/{control_id\}
+     *     // Required. The resource name of the Control to delete. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/controls/{control_id\}`
      *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/controls/my-control',
      *   });
      *   console.log(res.data);
@@ -7333,7 +7350,7 @@ export namespace retail_v2beta {
      *
      *   // Do the magic
      *   const res = await retail.projects.locations.catalogs.controls.get({
-     *     // Required. The resource name of the Control to delete. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/controls/{control_id\}
+     *     // Required. The resource name of the Control to delete. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/controls/{control_id\}`
      *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/controls/my-control',
      *   });
      *   console.log(res.data);
@@ -7479,7 +7496,7 @@ export namespace retail_v2beta {
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token, received from a previous `ListControls` call. Provide this to retrieve the subsequent page.
      *     pageToken: 'placeholder-value',
-     *     // Required. The catalog resource name. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}
+     *     // Required. The catalog resource name. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}`
      *     parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
      *   });
      *   console.log(res.data);
@@ -7619,7 +7636,7 @@ export namespace retail_v2beta {
      *
      *   // Do the magic
      *   const res = await retail.projects.locations.catalogs.controls.patch({
-     *     // Immutable. Fully qualified name projects/x/locations/global/catalogs/x/controls/x
+     *     // Immutable. Fully qualified name `projects/x/locations/global/catalogs/x/controls/x`
      *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/controls/my-control',
      *     // Indicates which fields in the provided Control to update. The following are NOT supported: * Control.name If not set or empty, all supported fields are updated.
      *     updateMask: 'placeholder-value',
@@ -7756,7 +7773,7 @@ export namespace retail_v2beta {
      */
     controlId?: string;
     /**
-     * Required. Full resource name of parent catalog. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}
+     * Required. Full resource name of parent catalog. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}`
      */
     parent?: string;
 
@@ -7768,14 +7785,14 @@ export namespace retail_v2beta {
   export interface Params$Resource$Projects$Locations$Catalogs$Controls$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the Control to delete. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/controls/{control_id\}
+     * Required. The resource name of the Control to delete. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/controls/{control_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Catalogs$Controls$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the Control to delete. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/controls/{control_id\}
+     * Required. The resource name of the Control to delete. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/controls/{control_id\}`
      */
     name?: string;
   }
@@ -7794,14 +7811,14 @@ export namespace retail_v2beta {
      */
     pageToken?: string;
     /**
-     * Required. The catalog resource name. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}
+     * Required. The catalog resource name. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}`
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Catalogs$Controls$Patch
     extends StandardParameters {
     /**
-     * Immutable. Fully qualified name projects/x/locations/global/catalogs/x/controls/x
+     * Immutable. Fully qualified name `projects/x/locations/global/catalogs/x/controls/x`
      */
     name?: string;
     /**
@@ -8166,7 +8183,7 @@ export namespace retail_v2beta {
      *
      *   // Do the magic
      *   const res = await retail.projects.locations.catalogs.placements.predict({
-     *     // Required. Full resource name of the format: {name=projects/x/locations/global/catalogs/default_catalog/placements/x\} The ID of the Recommendations AI placement. Before you can request predictions from your model, you must create at least one placement for it. For more information, see [Managing placements](https://cloud.google.com/retail/recommendations-ai/docs/manage-placements). The full list of available placements can be seen at https://console.cloud.google.com/recommendation/catalogs/default_catalog/placements
+     *     // Required. Full resource name of the format: `{name=projects/x/locations/global/catalogs/default_catalog/placements/x\}` The ID of the Recommendations AI placement. Before you can request predictions from your model, you must create at least one placement for it. For more information, see [Managing placements](https://cloud.google.com/retail/recommendations-ai/docs/manage-placements). The full list of available placements can be seen at https://console.cloud.google.com/recommendation/catalogs/default_catalog/placements
      *     placement:
      *       'projects/my-project/locations/my-location/catalogs/my-catalog/placements/my-placement',
      *
@@ -8347,6 +8364,7 @@ export namespace retail_v2beta {
      *       //   "query": "my_query",
      *       //   "queryExpansionSpec": {},
      *       //   "searchMode": "my_searchMode",
+     *       //   "spellCorrectionSpec": {},
      *       //   "userInfo": {},
      *       //   "variantRollupKeys": [],
      *       //   "visitorId": "my_visitorId"
@@ -8475,7 +8493,7 @@ export namespace retail_v2beta {
   export interface Params$Resource$Projects$Locations$Catalogs$Placements$Predict
     extends StandardParameters {
     /**
-     * Required. Full resource name of the format: {name=projects/x/locations/global/catalogs/default_catalog/placements/x\} The ID of the Recommendations AI placement. Before you can request predictions from your model, you must create at least one placement for it. For more information, see [Managing placements](https://cloud.google.com/retail/recommendations-ai/docs/manage-placements). The full list of available placements can be seen at https://console.cloud.google.com/recommendation/catalogs/default_catalog/placements
+     * Required. Full resource name of the format: `{name=projects/x/locations/global/catalogs/default_catalog/placements/x\}` The ID of the Recommendations AI placement. Before you can request predictions from your model, you must create at least one placement for it. For more information, see [Managing placements](https://cloud.google.com/retail/recommendations-ai/docs/manage-placements). The full list of available placements can be seen at https://console.cloud.google.com/recommendation/catalogs/default_catalog/placements
      */
     placement?: string;
 
@@ -8695,7 +8713,7 @@ export namespace retail_v2beta {
      *
      *   // Do the magic
      *   const res = await retail.projects.locations.catalogs.servingConfigs.create({
-     *     // Required. Full resource name of parent. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}
+     *     // Required. Full resource name of parent. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}`
      *     parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
      *     // Required. The ID to use for the ServingConfig, which will become the final component of the ServingConfig's resource name. This value should be 4-63 characters, and valid characters are /a-z-_/.
      *     servingConfigId: 'placeholder-value',
@@ -9300,7 +9318,7 @@ export namespace retail_v2beta {
      *
      *   // Do the magic
      *   const res = await retail.projects.locations.catalogs.servingConfigs.patch({
-     *     // Immutable. Fully qualified name projects/x/locations/global/catalogs/x/servingConfig/x
+     *     // Immutable. Fully qualified name `projects/x/locations/global/catalogs/x/servingConfig/x`
      *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/servingConfigs/my-servingConfig',
      *     // Indicates which fields in the provided ServingConfig to update. The following are NOT supported: * ServingConfig.name If not set, all supported fields are updated.
      *     updateMask: 'placeholder-value',
@@ -9632,7 +9650,7 @@ export namespace retail_v2beta {
   export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Create
     extends StandardParameters {
     /**
-     * Required. Full resource name of parent. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}
+     * Required. Full resource name of parent. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}`
      */
     parent?: string;
     /**
@@ -9677,7 +9695,7 @@ export namespace retail_v2beta {
   export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Patch
     extends StandardParameters {
     /**
-     * Immutable. Fully qualified name projects/x/locations/global/catalogs/x/servingConfig/x
+     * Immutable. Fully qualified name `projects/x/locations/global/catalogs/x/servingConfig/x`
      */
     name?: string;
     /**
