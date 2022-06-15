@@ -1062,26 +1062,50 @@ export namespace containeranalysis_v1alpha1 {
     operationId?: string | null;
   }
   /**
-   * Common Vulnerability Scoring System.
+   * Common Vulnerability Scoring System. This message is compatible with CVSS v2 and v3. For CVSS v2 details, see https://www.first.org/cvss/v2/guide CVSS v2 calculator: https://nvd.nist.gov/vuln-metrics/cvss/v2-calculator For CVSS v3 details, see https://www.first.org/cvss/specification-document CVSS v3 calculator: https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator
    */
   export interface Schema$CVSS {
+    /**
+     * Defined in CVSS v3, CVSS v2
+     */
     attackComplexity?: string | null;
     /**
-     * Base Metrics Represents the intrinsic characteristics of a vulnerability that are constant over time and across user environments.
+     * Base Metrics Represents the intrinsic characteristics of a vulnerability that are constant over time and across user environments. Defined in CVSS v3, CVSS v2
      */
     attackVector?: string | null;
+    /**
+     * Defined in CVSS v2
+     */
     authentication?: string | null;
+    /**
+     * Defined in CVSS v3, CVSS v2
+     */
     availabilityImpact?: string | null;
     /**
      * The base score is a function of the base metric scores.
      */
     baseScore?: number | null;
+    /**
+     * Defined in CVSS v3, CVSS v2
+     */
     confidentialityImpact?: string | null;
     exploitabilityScore?: number | null;
     impactScore?: number | null;
+    /**
+     * Defined in CVSS v3, CVSS v2
+     */
     integrityImpact?: string | null;
+    /**
+     * Defined in CVSS v3
+     */
     privilegesRequired?: string | null;
+    /**
+     * Defined in CVSS v3
+     */
     scope?: string | null;
+    /**
+     * Defined in CVSS v3
+     */
     userInteraction?: string | null;
   }
   /**
@@ -1195,6 +1219,19 @@ export namespace containeranalysis_v1alpha1 {
      * The vendor of the product. e.g. "google"
      */
     vendor?: string | null;
+  }
+  /**
+   * Digest information.
+   */
+  export interface Schema$Digest {
+    /**
+     * `SHA1`, `SHA512` etc.
+     */
+    algo?: string | null;
+    /**
+     * Value of the digest.
+     */
+    digestBytes?: string | null;
   }
   /**
    * Provides information about the scan status of a discovered resource.
@@ -1435,6 +1472,15 @@ export namespace containeranalysis_v1alpha1 {
     fileHash?: Schema$Hash[];
   }
   /**
+   * Indicates the location at which a package was found.
+   */
+  export interface Schema$FileLocation {
+    /**
+     * For jars that are contained inside .war files, this filepath can indicate the path to war file combined with the path to jar file.
+     */
+    filePath?: string | null;
+  }
+  /**
    * FileNote represents an SPDX File Information section: https://spdx.github.io/spdx-spec/4-file-information/
    */
   export interface Schema$FileNote {
@@ -1636,6 +1682,104 @@ export namespace containeranalysis_v1alpha1 {
     uid?: string | null;
   }
   /**
+   * Identifies the entity that executed the recipe, which is trusted to have correctly performed the operation and populated this provenance.
+   */
+  export interface Schema$GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaBuilder {
+    /**
+     * URI indicating the builder’s identity.
+     */
+    id?: string | null;
+  }
+  /**
+   * Indicates that the builder claims certain fields in this message to be complete.
+   */
+  export interface Schema$GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaCompleteness {
+    /**
+     * If true, the builder claims that invocation.environment is complete.
+     */
+    environment?: boolean | null;
+    /**
+     * If true, the builder claims that materials is complete.
+     */
+    materials?: boolean | null;
+    /**
+     * If true, the builder claims that invocation.parameters is complete.
+     */
+    parameters?: boolean | null;
+  }
+  /**
+   * Describes where the config file that kicked off the build came from. This is effectively a pointer to the source where buildConfig came from.
+   */
+  export interface Schema$GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaConfigSource {
+    /**
+     * Collection of cryptographic digests for the contents of the artifact specified by invocation.configSource.uri.
+     */
+    digest?: {[key: string]: string} | null;
+    /**
+     * String identifying the entry point into the build.
+     */
+    entryPoint?: string | null;
+    /**
+     * URI indicating the identity of the source of the config.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Identifies the event that kicked off the build.
+   */
+  export interface Schema$GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaInvocation {
+    /**
+     * Describes where the config file that kicked off the build came from.
+     */
+    configSource?: Schema$GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaConfigSource;
+    /**
+     * Any other builder-controlled inputs necessary for correctly evaluating the build.
+     */
+    environment?: {[key: string]: any} | null;
+    /**
+     * Collection of all external inputs that influenced the build on top of invocation.configSource.
+     */
+    parameters?: {[key: string]: any} | null;
+  }
+  /**
+   * The collection of artifacts that influenced the build including sources, dependencies, build tools, base images, and so on.
+   */
+  export interface Schema$GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaMaterial {
+    /**
+     * Collection of cryptographic digests for the contents of this artifact.
+     */
+    digest?: {[key: string]: string} | null;
+    /**
+     * The method by which this artifact was referenced during the build.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Other properties of the build.
+   */
+  export interface Schema$GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaMetadata {
+    /**
+     * The timestamp of when the build completed.
+     */
+    buildFinishedOn?: string | null;
+    /**
+     * Identifies this particular build invocation, which can be useful for finding associated logs or other ad-hoc analysis.
+     */
+    buildInvocationId?: string | null;
+    /**
+     * The timestamp of when the build started.
+     */
+    buildStartedOn?: string | null;
+    /**
+     * Indicates that the builder claims certain fields in this message to be complete.
+     */
+    completeness?: Schema$GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaCompleteness;
+    /**
+     * If true, the builder claims that running invocation on materials will produce bit-for-bit identical output.
+     */
+    reproducible?: boolean | null;
+  }
+  /**
    * A SourceContext is a reference to a tree of files. A SourceContext together with a path point to a unique revision of a single file or directory.
    */
   export interface Schema$GoogleDevtoolsContaineranalysisV1alpha1SourceContext {
@@ -1674,6 +1818,18 @@ export namespace containeranalysis_v1alpha1 {
    */
   export interface Schema$Installation {
     /**
+     * Output only. The CPU architecture for which packages in this distribution channel were built. Architecture will be blank for language packages.
+     */
+    architecture?: string | null;
+    /**
+     * Output only. The cpe_uri in [CPE format](https://cpe.mitre.org/specification/) denoting the package manager version distributing a package. The cpe_uri will be blank for language packages.
+     */
+    cpeUri?: string | null;
+    /**
+     * Licenses that have been declared by the authors of the package.
+     */
+    license?: Schema$License;
+    /**
      * All of the places within the filesystem versions of this package have been found.
      */
     location?: Schema$Location[];
@@ -1681,6 +1837,14 @@ export namespace containeranalysis_v1alpha1 {
      * Output only. The name of the installed package.
      */
     name?: string | null;
+    /**
+     * Output only. The type of package; whether native or non native (e.g., ruby gems, node.js packages, etc.).
+     */
+    packageType?: string | null;
+    /**
+     * Output only. The version of the package.
+     */
+    version?: Schema$Version;
   }
   export interface Schema$InTotoProvenance {
     /**
@@ -1706,13 +1870,17 @@ export namespace containeranalysis_v1alpha1 {
      */
     predicateType?: string | null;
     /**
-     * provenance is a predicate of type intotoprovenance
+     * Generic Grafeas provenance.
      */
     provenance?: Schema$InTotoProvenance;
     /**
-     * slsa_provenance is a predicate of type slsaProvenance
+     * SLSA 0.1 provenance.
      */
     slsaProvenance?: Schema$SlsaProvenance;
+    /**
+     * SLSA 0.2 provenance.
+     */
+    slsaProvenanceZeroTwo?: Schema$SlsaProvenanceZeroTwo;
     /**
      * subject is the subjects of the intoto statement
      */
@@ -1736,7 +1904,7 @@ export namespace containeranalysis_v1alpha1 {
     directive?: string | null;
   }
   /**
-   * License information: https://spdx.github.io/spdx-spec/3-package-information/#315-declared-license
+   * License information.
    */
   export interface Schema$License {
     /**
@@ -1744,7 +1912,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     comments?: string | null;
     /**
-     * Expression: https://spdx.github.io/spdx-spec/appendix-IV-SPDX-license-expressions/
+     * Often a single license can be used to represent the licensing terms. Sometimes it is necessary to include a choice of one or more licenses or some combination of license identifiers. Examples: "LGPL-2.1-only OR MIT", "LGPL-2.1-only AND MIT", "GPL-2.0-or-later WITH Bison-exception-2.2".
      */
     expression?: string | null;
   }
@@ -1805,7 +1973,7 @@ export namespace containeranalysis_v1alpha1 {
    */
   export interface Schema$Location {
     /**
-     * The cpe_uri in [cpe format](https://cpe.mitre.org/specification/) denoting the package manager version distributing a package.
+     * Deprecated. The cpe_uri in [cpe format](https://cpe.mitre.org/specification/) denoting the package manager version distributing a package.
      */
     cpeUri?: string | null;
     /**
@@ -1813,7 +1981,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     path?: string | null;
     /**
-     * The version installed at this location.
+     * Deprecated. The version installed at this location.
      */
     version?: Schema$Version;
   }
@@ -2092,13 +2260,49 @@ export namespace containeranalysis_v1alpha1 {
    */
   export interface Schema$Package {
     /**
+     * The CPU architecture for which packages in this distribution channel were built. Architecture will be blank for language packages.
+     */
+    architecture?: string | null;
+    /**
+     * The cpe_uri in [CPE format](https://cpe.mitre.org/specification/) denoting the package manager version distributing a package. The cpe_uri will be blank for language packages.
+     */
+    cpeUri?: string | null;
+    /**
+     * The description of this package.
+     */
+    description?: string | null;
+    /**
+     * Hash value, typically a file digest, that allows unique identification a specific package.
+     */
+    digest?: Schema$Digest[];
+    /**
      * The various channels by which a package is distributed.
      */
     distribution?: Schema$Distribution[];
     /**
+     * Licenses that have been declared by the authors of the package.
+     */
+    license?: Schema$License;
+    /**
+     * A freeform text denoting the maintainer of this package.
+     */
+    maintainer?: string | null;
+    /**
      * The name of the package.
      */
     name?: string | null;
+    /**
+     * The type of package; whether native or non native (e.g., ruby gems, node.js packages, etc.).
+     */
+    packageType?: string | null;
+    /**
+     * The homepage for this package.
+     */
+    url?: string | null;
+    /**
+     * The version of the package.
+     */
+    version?: Schema$Version;
   }
   /**
    * PackageInfoNote represents an SPDX Package Information section: https://spdx.github.io/spdx-spec/3-package-information/
@@ -2504,6 +2708,35 @@ export namespace containeranalysis_v1alpha1 {
     recipe?: Schema$SlsaRecipe;
   }
   /**
+   * SlsaProvenanceZeroTwo is the slsa provenance as defined by the slsa spec. See full explanation of fields at slsa.dev/provenance/v0.2.
+   */
+  export interface Schema$SlsaProvenanceZeroTwo {
+    /**
+     * Lists the steps in the build.
+     */
+    buildConfig?: {[key: string]: any} | null;
+    /**
+     * Identifies the entity that executed the recipe, which is trusted to have correctly performed the operation and populated this provenance.
+     */
+    builder?: Schema$GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaBuilder;
+    /**
+     * URI indicating what type of build was performed.
+     */
+    buildType?: string | null;
+    /**
+     * Identifies the event that kicked off the build.
+     */
+    invocation?: Schema$GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaInvocation;
+    /**
+     * The collection of artifacts that influenced the build including sources, dependencies, build tools, base images, and so on.
+     */
+    materials?: Schema$GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaMaterial[];
+    /**
+     * Other properties of the build.
+     */
+    metadata?: Schema$GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaMetadata;
+  }
+  /**
    * Steps taken to build the artifact. For a TaskRun, typically each container corresponds to one step in the recipe.
    */
   export interface Schema$SlsaRecipe {
@@ -2753,6 +2986,10 @@ export namespace containeranalysis_v1alpha1 {
      */
     cpeUri?: string | null;
     /**
+     * The file location at which this package was found.
+     */
+    fileLocation?: Schema$FileLocation[];
+    /**
      * The package being described.
      */
     package?: string | null;
@@ -2769,6 +3006,14 @@ export namespace containeranalysis_v1alpha1 {
      * The CVSS score for this Vulnerability.
      */
     cvssScore?: number | null;
+    /**
+     * The full description of the CVSS for version 2.
+     */
+    cvssV2?: Schema$CVSS;
+    /**
+     * A list of CWE for this vulnerability. For details, see: https://cwe.mitre.org/index.html
+     */
+    cwe?: string[] | null;
     /**
      * All information about the package to specifically identify this vulnerability. One entry per (version range and cpe_uri) the package vulnerability has manifested in.
      */
@@ -3286,7 +3531,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/notes/my-note',
      *
      *     // Request body metadata
@@ -3747,7 +3992,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/notes/my-note',
      *
      *     // Request body metadata
@@ -3887,7 +4132,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/notes/my-note',
      *
      *     // Request body metadata
@@ -4043,7 +4288,7 @@ export namespace containeranalysis_v1alpha1 {
   export interface Params$Resource$Projects$Notes$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -4094,7 +4339,7 @@ export namespace containeranalysis_v1alpha1 {
   export interface Params$Resource$Projects$Notes$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -4106,7 +4351,7 @@ export namespace containeranalysis_v1alpha1 {
   export interface Params$Resource$Projects$Notes$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -4778,7 +5023,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/occurrences/my-occurrence',
      *
      *     // Request body metadata
@@ -5538,7 +5783,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/occurrences/my-occurrence',
      *
      *     // Request body metadata
@@ -5678,7 +5923,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/occurrences/my-occurrence',
      *
      *     // Request body metadata
@@ -5830,7 +6075,7 @@ export namespace containeranalysis_v1alpha1 {
   export interface Params$Resource$Projects$Occurrences$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -5903,7 +6148,7 @@ export namespace containeranalysis_v1alpha1 {
   export interface Params$Resource$Projects$Occurrences$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -5915,7 +6160,7 @@ export namespace containeranalysis_v1alpha1 {
   export interface Params$Resource$Projects$Occurrences$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -7209,7 +7454,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.providers.notes.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'providers/my-provider/notes/my-note',
      *
      *     // Request body metadata
@@ -7670,7 +7915,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.providers.notes.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'providers/my-provider/notes/my-note',
      *
      *     // Request body metadata
@@ -7810,7 +8055,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.providers.notes.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'providers/my-provider/notes/my-note',
      *
      *     // Request body metadata
@@ -7966,7 +8211,7 @@ export namespace containeranalysis_v1alpha1 {
   export interface Params$Resource$Providers$Notes$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -8017,7 +8262,7 @@ export namespace containeranalysis_v1alpha1 {
   export interface Params$Resource$Providers$Notes$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -8029,7 +8274,7 @@ export namespace containeranalysis_v1alpha1 {
   export interface Params$Resource$Providers$Notes$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
