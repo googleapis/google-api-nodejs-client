@@ -301,6 +301,34 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "invalidate": {
+              "description": "Invalidates an existing ApprovalRequest. Returns the updated ApprovalRequest. NOTE: This does not deny access to the resource if another request has been made and approved. It only invalidates a single approval. Returns FAILED_PRECONDITION if the request exists but is not in an approved state.",
+              "flatPath": "v1/folders/{foldersId}/approvalRequests/{approvalRequestsId}:invalidate",
+              "httpMethod": "POST",
+              "id": "accessapproval.folders.approvalRequests.invalidate",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Name of the ApprovalRequest to invalidate.",
+                  "location": "path",
+                  "pattern": "^folders/[^/]+/approvalRequests/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:invalidate",
+              "request": {
+                "$ref": "InvalidateApprovalRequestMessage"
+              },
+              "response": {
+                "$ref": "ApprovalRequest"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "list": {
               "description": "Lists approval requests associated with a project, folder, or organization. Approval requests can be filtered by state (pending, active, dismissed). The order is reverse chronological.",
               "flatPath": "v1/folders/{foldersId}/approvalRequests",
@@ -535,6 +563,34 @@
                 }
               },
               "path": "v1/{+name}",
+              "response": {
+                "$ref": "ApprovalRequest"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "invalidate": {
+              "description": "Invalidates an existing ApprovalRequest. Returns the updated ApprovalRequest. NOTE: This does not deny access to the resource if another request has been made and approved. It only invalidates a single approval. Returns FAILED_PRECONDITION if the request exists but is not in an approved state.",
+              "flatPath": "v1/organizations/{organizationsId}/approvalRequests/{approvalRequestsId}:invalidate",
+              "httpMethod": "POST",
+              "id": "accessapproval.organizations.approvalRequests.invalidate",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Name of the ApprovalRequest to invalidate.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/approvalRequests/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:invalidate",
+              "request": {
+                "$ref": "InvalidateApprovalRequestMessage"
+              },
               "response": {
                 "$ref": "ApprovalRequest"
               },
@@ -783,6 +839,34 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "invalidate": {
+              "description": "Invalidates an existing ApprovalRequest. Returns the updated ApprovalRequest. NOTE: This does not deny access to the resource if another request has been made and approved. It only invalidates a single approval. Returns FAILED_PRECONDITION if the request exists but is not in an approved state.",
+              "flatPath": "v1/projects/{projectsId}/approvalRequests/{approvalRequestsId}:invalidate",
+              "httpMethod": "POST",
+              "id": "accessapproval.projects.approvalRequests.invalidate",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Name of the ApprovalRequest to invalidate.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/approvalRequests/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:invalidate",
+              "request": {
+                "$ref": "InvalidateApprovalRequestMessage"
+              },
+              "response": {
+                "$ref": "ApprovalRequest"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "list": {
               "description": "Lists approval requests associated with a project, folder, or organization. Approval requests can be filtered by state (pending, active, dismissed). The order is reverse chronological.",
               "flatPath": "v1/projects/{projectsId}/approvalRequests",
@@ -829,7 +913,7 @@
       }
     }
   },
-  "revision": "20220317",
+  "revision": "20220610",
   "rootUrl": "https://accessapproval.googleapis.com/",
   "schemas": {
     "AccessApprovalServiceAccount": {
@@ -1011,6 +1095,11 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "invalidateTime": {
+          "description": "If set, denotes the timestamp at which the approval is invalidated.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "signatureInfo": {
           "$ref": "SignatureInfo",
           "description": "The signature for the ApprovalRequest and details on how it was signed."
@@ -1067,6 +1156,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "InvalidateApprovalRequestMessage": {
+      "description": "Request to invalidate an existing approval.",
+      "id": "InvalidateApprovalRequestMessage",
+      "properties": {},
       "type": "object"
     },
     "ListApprovalRequestsResponse": {
