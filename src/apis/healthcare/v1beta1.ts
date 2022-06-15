@@ -287,7 +287,7 @@ export namespace healthcare_v1beta1 {
     name?: string | null;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -1028,6 +1028,19 @@ export namespace healthcare_v1beta1 {
     resources?: Schema$Resources;
   }
   /**
+   * Contains the configuration for FHIR notifications.
+   */
+  export interface Schema$FhirNotificationConfig {
+    /**
+     * The [Pub/Sub](https://cloud.google.com/pubsub/docs/) topic that notifications of changes are published on. Supplied by the client. The notification is a `PubsubMessage` with the following fields: * `PubsubMessage.Data` contains the resource name. * `PubsubMessage.MessageId` is the ID of this notification. It is guaranteed to be unique within the topic. * `PubsubMessage.PublishTime` is the time when the message was published. Note that notifications are only sent if the topic is non-empty. [Topic names](https://cloud.google.com/pubsub/docs/overview#names) must be scoped to a project. The Cloud Healthcare API service account, service-@gcp-sa-healthcare.iam.gserviceaccount.com, must have publisher permissions on the given Pub/Sub topic. Not having adequate permissions causes the calls that send notifications to fail. If a notification can't be published to Pub/Sub, errors are logged to Cloud Logging. For more information, see [Viewing error logs in Cloud Logging](https://cloud.google.com/healthcare-api/docs/how-tos/logging).
+     */
+    pubsubTopic?: string | null;
+    /**
+     * Whether to send full FHIR resource to this Pub/Sub topic for Create and Update operation. Note that setting this to true does not guarantee that all resources will be sent in the format of full FHIR resource. When a resource change is too large or during heavy traffic, only the resource name will be sent. Clients should always check the "payloadType" label from a Pub/Sub message to determine whether it needs to fetch the full resource as a separate operation.
+     */
+    sendFullResource?: boolean | null;
+  }
+  /**
    * Details about the FHIR store to write the output to.
    */
   export interface Schema$FhirOutput {
@@ -1040,6 +1053,10 @@ export namespace healthcare_v1beta1 {
    * Represents a FHIR store.
    */
   export interface Schema$FhirStore {
+    /**
+     * Enable parsing of references within complex FHIR data types such as Extensions. If this value is set to ENABLED, then features like referential integrity and Bundle reference rewriting apply to all references. If this flag has not been specified the behavior of the FHIR store will not change, references in complex data types will not be parsed. New stores will have this value set to ENABLED after a notification period. Warning: turning on this flag causes processing existing resources to fail if they contain references to non-existent resources.
+     */
+    complexDataTypeReferenceParsing?: string | null;
     /**
      * If true, overrides the default search behavior for this FHIR store to `handling=strict` which returns an error for unrecognized search parameters. If false, uses the FHIR specification default `handling=lenient` which ignores unrecognized search parameters. The handling can always be changed from the default on an individual API call by setting the HTTP header `Prefer: handling=strict` or `Prefer: handling=lenient`.
      */
@@ -1068,6 +1085,10 @@ export namespace healthcare_v1beta1 {
      * If non-empty, publish all resource modifications of this FHIR store to this destination. The Pub/Sub message attributes contain a map with a string describing the action that has triggered the notification. For example, "action":"CreateResource".
      */
     notificationConfig?: Schema$NotificationConfig;
+    /**
+     * Specifies where and whether to send notifications upon changes to a Fhir store.
+     */
+    notificationConfigs?: Schema$FhirNotificationConfig[];
     /**
      * Configuration for how FHIR resources can be searched.
      */
@@ -1395,7 +1416,7 @@ export namespace healthcare_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Resource name of the HL7v2 store, of the form `projects/{project_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7v2_store_id\}`.
+     * Resource name of the HL7v2 store, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7v2_store_id\}`.
      */
     name?: string | null;
     /**
@@ -1583,7 +1604,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$KmsWrappedCryptoKey {
     /**
-     * Required. The resource name of the KMS CryptoKey to use for unwrapping.
+     * Required. The resource name of the KMS CryptoKey to use for unwrapping. For example, `projects/{project_id\}/locations/{location_id\}/keyRings/{keyring\}/cryptoKeys/{key\}`.
      */
     cryptoKey?: string | null;
     /**
@@ -1823,7 +1844,7 @@ export namespace healthcare_v1beta1 {
      */
     messageType?: string | null;
     /**
-     * Resource name of the Message, of the form `projects/{project_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7_v2_store_id\}/messages/{message_id\}`. Assigned by the server.
+     * Resource name of the Message, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7_v2_store_id\}/messages/{message_id\}`. Assigned by the server.
      */
     name?: string | null;
     /**
@@ -3348,7 +3369,7 @@ export namespace healthcare_v1beta1 {
      *   const res = await healthcare.projects.locations.datasets.getIamPolicy({
      *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/datasets/my-dataset',
      *   });
      *   console.log(res.data);
@@ -3757,7 +3778,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/datasets/my-dataset',
      *
      *     // Request body metadata
@@ -3898,7 +3919,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/datasets/my-dataset',
      *
      *     // Request body metadata
@@ -4066,7 +4087,7 @@ export namespace healthcare_v1beta1 {
      */
     'options.requestedPolicyVersion'?: number;
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -4104,7 +4125,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -4116,7 +4137,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -4857,7 +4878,7 @@ export namespace healthcare_v1beta1 {
      *     await healthcare.projects.locations.datasets.annotationStores.getIamPolicy({
      *       // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore',
      *     });
@@ -5422,7 +5443,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await healthcare.projects.locations.datasets.annotationStores.setIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore',
      *
@@ -5567,7 +5588,7 @@ export namespace healthcare_v1beta1 {
      *   const res =
      *     await healthcare.projects.locations.datasets.annotationStores.testIamPermissions(
      *       {
-     *         // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *         // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *         resource:
      *           'projects/my-project/locations/my-location/datasets/my-dataset/annotationStores/my-annotationStore',
      *
@@ -5749,7 +5770,7 @@ export namespace healthcare_v1beta1 {
      */
     'options.requestedPolicyVersion'?: number;
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -5803,7 +5824,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -5815,7 +5836,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -7380,7 +7401,7 @@ export namespace healthcare_v1beta1 {
      *     await healthcare.projects.locations.datasets.consentStores.getIamPolicy({
      *       // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
      *     });
@@ -7949,7 +7970,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await healthcare.projects.locations.datasets.consentStores.setIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
      *
@@ -8094,7 +8115,7 @@ export namespace healthcare_v1beta1 {
      *   const res =
      *     await healthcare.projects.locations.datasets.consentStores.testIamPermissions(
      *       {
-     *         // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *         // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *         resource:
      *           'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
      *
@@ -8276,7 +8297,7 @@ export namespace healthcare_v1beta1 {
      */
     'options.requestedPolicyVersion'?: number;
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -8330,7 +8351,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -8342,7 +8363,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -13030,7 +13051,7 @@ export namespace healthcare_v1beta1 {
      *     await healthcare.projects.locations.datasets.dicomStores.getIamPolicy({
      *       // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *     });
@@ -13999,7 +14020,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await healthcare.projects.locations.datasets.dicomStores.setIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *
@@ -14289,7 +14310,7 @@ export namespace healthcare_v1beta1 {
      *   const res =
      *     await healthcare.projects.locations.datasets.dicomStores.testIamPermissions(
      *       {
-     *         // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *         // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *         resource:
      *           'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *
@@ -14471,7 +14492,7 @@ export namespace healthcare_v1beta1 {
      */
     'options.requestedPolicyVersion'?: number;
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -14558,7 +14579,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -14586,7 +14607,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -17218,6 +17239,7 @@ export namespace healthcare_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "complexDataTypeReferenceParsing": "my_complexDataTypeReferenceParsing",
      *       //   "defaultSearchHandlingStrict": false,
      *       //   "disableReferentialIntegrity": false,
      *       //   "disableResourceVersioning": false,
@@ -17225,6 +17247,7 @@ export namespace healthcare_v1beta1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "notificationConfig": {},
+     *       //   "notificationConfigs": [],
      *       //   "searchConfig": {},
      *       //   "streamConfigs": [],
      *       //   "validationConfig": {},
@@ -17236,6 +17259,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "complexDataTypeReferenceParsing": "my_complexDataTypeReferenceParsing",
      *   //   "defaultSearchHandlingStrict": false,
      *   //   "disableReferentialIntegrity": false,
      *   //   "disableResourceVersioning": false,
@@ -17243,6 +17267,7 @@ export namespace healthcare_v1beta1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "notificationConfig": {},
+     *   //   "notificationConfigs": [],
      *   //   "searchConfig": {},
      *   //   "streamConfigs": [],
      *   //   "validationConfig": {},
@@ -17793,6 +17818,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "complexDataTypeReferenceParsing": "my_complexDataTypeReferenceParsing",
      *   //   "defaultSearchHandlingStrict": false,
      *   //   "disableReferentialIntegrity": false,
      *   //   "disableResourceVersioning": false,
@@ -17800,6 +17826,7 @@ export namespace healthcare_v1beta1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "notificationConfig": {},
+     *   //   "notificationConfigs": [],
      *   //   "searchConfig": {},
      *   //   "streamConfigs": [],
      *   //   "validationConfig": {},
@@ -17926,7 +17953,7 @@ export namespace healthcare_v1beta1 {
      *     await healthcare.projects.locations.datasets.fhirStores.getIamPolicy({
      *       // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
      *     });
@@ -18354,6 +18381,7 @@ export namespace healthcare_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "complexDataTypeReferenceParsing": "my_complexDataTypeReferenceParsing",
      *       //   "defaultSearchHandlingStrict": false,
      *       //   "disableReferentialIntegrity": false,
      *       //   "disableResourceVersioning": false,
@@ -18361,6 +18389,7 @@ export namespace healthcare_v1beta1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "notificationConfig": {},
+     *       //   "notificationConfigs": [],
      *       //   "searchConfig": {},
      *       //   "streamConfigs": [],
      *       //   "validationConfig": {},
@@ -18372,6 +18401,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "complexDataTypeReferenceParsing": "my_complexDataTypeReferenceParsing",
      *   //   "defaultSearchHandlingStrict": false,
      *   //   "disableReferentialIntegrity": false,
      *   //   "disableResourceVersioning": false,
@@ -18379,6 +18409,7 @@ export namespace healthcare_v1beta1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "notificationConfig": {},
+     *   //   "notificationConfigs": [],
      *   //   "searchConfig": {},
      *   //   "streamConfigs": [],
      *   //   "validationConfig": {},
@@ -18503,7 +18534,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await healthcare.projects.locations.datasets.fhirStores.setIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
      *
@@ -18647,7 +18678,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await healthcare.projects.locations.datasets.fhirStores.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
      *
@@ -18840,7 +18871,7 @@ export namespace healthcare_v1beta1 {
      */
     'options.requestedPolicyVersion'?: number;
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -18894,7 +18925,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -18906,7 +18937,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -20638,11 +20669,11 @@ export namespace healthcare_v1beta1 {
      *   const res =
      *     (await healthcare.projects.locations.datasets.fhirStores.fhir.Patient) -
      *     everything({
-     *       // The response includes records prior to the end date. If no end date is provided, all records subsequent to the start date are in scope.
+     *       // The response includes records prior to the end date. The date uses the format YYYY-MM-DD. If no end date is provided, all records subsequent to the start date are in scope.
      *       end: 'placeholder-value',
      *       // Name of the `Patient` resource for which the information is required.
      *       name: 'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore/fhir/Patient/[^/]+',
-     *       // The response includes records subsequent to the start date. If no start date is provided, all records prior to the end date are in scope.
+     *       // The response includes records subsequent to the start date. The date uses the format YYYY-MM-DD. If no start date is provided, all records prior to the end date are in scope.
      *       start: 'placeholder-value',
      *       // Maximum number of resources in a page. If not specified, 100 is used. May not be larger than 1000.
      *       _count: 'placeholder-value',
@@ -21048,7 +21079,7 @@ export namespace healthcare_v1beta1 {
      *       // The name of the FHIR store that holds the profiles being used for validation.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
-     *       // A profile that this resource should be validated against.
+     *       // The canonical URL of a profile that this resource should be validated against. For example, to validate a Patient resource against the US Core Patient profile this parameter would be `http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient`. A StructureDefinition with this canonical URL must exist in the FHIR store.
      *       profile: 'placeholder-value',
      *       // The FHIR resource type of the resource being validated. For a complete list, see the FHIR Resource Index ([DSTU2](http://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](http://hl7.org/implement/standards/fhir/STU3/resourcelist.html), or [R4](http://hl7.org/implement/standards/fhir/R4/resourcelist.html)). Must match the resource type in the provided content.
      *       type: '[^/]+',
@@ -21901,7 +21932,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patienteverything
     extends StandardParameters {
     /**
-     * The response includes records prior to the end date. If no end date is provided, all records subsequent to the start date are in scope.
+     * The response includes records prior to the end date. The date uses the format YYYY-MM-DD. If no end date is provided, all records subsequent to the start date are in scope.
      */
     end?: string;
     /**
@@ -21909,7 +21940,7 @@ export namespace healthcare_v1beta1 {
      */
     name?: string;
     /**
-     * The response includes records subsequent to the start date. If no start date is provided, all records prior to the end date are in scope.
+     * The response includes records subsequent to the start date. The date uses the format YYYY-MM-DD. If no start date is provided, all records prior to the end date are in scope.
      */
     start?: string;
     /**
@@ -21950,7 +21981,7 @@ export namespace healthcare_v1beta1 {
      */
     parent?: string;
     /**
-     * A profile that this resource should be validated against.
+     * The canonical URL of a profile that this resource should be validated against. For example, to validate a Patient resource against the US Core Patient profile this parameter would be `http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient`. A StructureDefinition with this canonical URL must exist in the FHIR store.
      */
     profile?: string;
     /**
@@ -22603,7 +22634,7 @@ export namespace healthcare_v1beta1 {
      *     await healthcare.projects.locations.datasets.hl7V2Stores.getIamPolicy({
      *       // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store',
      *     });
@@ -23021,7 +23052,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.patch({
-     *     // Resource name of the HL7v2 store, of the form `projects/{project_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7v2_store_id\}`.
+     *     // Resource name of the HL7v2 store, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7v2_store_id\}`.
      *     name: 'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store',
      *     // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *     updateMask: 'placeholder-value',
@@ -23169,7 +23200,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await healthcare.projects.locations.datasets.hl7V2Stores.setIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store',
      *
@@ -23314,7 +23345,7 @@ export namespace healthcare_v1beta1 {
      *   const res =
      *     await healthcare.projects.locations.datasets.hl7V2Stores.testIamPermissions(
      *       {
-     *         // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *         // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *         resource:
      *           'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store',
      *
@@ -23484,7 +23515,7 @@ export namespace healthcare_v1beta1 {
      */
     'options.requestedPolicyVersion'?: number;
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -23522,7 +23553,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Patch
     extends StandardParameters {
     /**
-     * Resource name of the HL7v2 store, of the form `projects/{project_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7v2_store_id\}`.
+     * Resource name of the HL7v2 store, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7v2_store_id\}`.
      */
     name?: string;
     /**
@@ -23538,7 +23569,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -23550,7 +23581,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -24445,7 +24476,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await healthcare.projects.locations.datasets.hl7V2Stores.messages.patch({
-     *       // Resource name of the Message, of the form `projects/{project_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7_v2_store_id\}/messages/{message_id\}`. Assigned by the server.
+     *       // Resource name of the Message, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7_v2_store_id\}/messages/{message_id\}`. Assigned by the server.
      *       name: 'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store/messages/my-message',
      *       // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *       updateMask: 'placeholder-value',
@@ -24661,7 +24692,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Patch
     extends StandardParameters {
     /**
-     * Resource name of the Message, of the form `projects/{project_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7_v2_store_id\}/messages/{message_id\}`. Assigned by the server.
+     * Resource name of the Message, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7_v2_store_id\}/messages/{message_id\}`. Assigned by the server.
      */
     name?: string;
     /**
