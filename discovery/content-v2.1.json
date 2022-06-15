@@ -865,42 +865,6 @@
         }
       }
     },
-    "accountsbyexternalsellerid": {
-      "methods": {
-        "get": {
-          "description": "Gets data of the account with the specified external_seller_id belonging to the MCA with the specified merchant_id.",
-          "flatPath": "{merchantId}/accountsbyexternalsellerid/{externalSellerId}",
-          "httpMethod": "GET",
-          "id": "content.accountsbyexternalsellerid.get",
-          "parameterOrder": [
-            "merchantId",
-            "externalSellerId"
-          ],
-          "parameters": {
-            "externalSellerId": {
-              "description": "Required. The External Seller ID of the seller account to be retrieved.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "merchantId": {
-              "description": "Required. The ID of the MCA containing the seller.",
-              "format": "int64",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "{merchantId}/accountsbyexternalsellerid/{externalSellerId}",
-          "response": {
-            "$ref": "Account"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/content"
-          ]
-        }
-      }
-    },
     "accountstatuses": {
       "methods": {
         "custombatch": {
@@ -1744,7 +1708,7 @@
           ]
         },
         "fetchnow": {
-          "description": "Invokes a fetch for the datafeed in your Merchant Center account. If you need to call this method more than once per day, we recommend you use the Products service to update your product data.",
+          "description": "Invokes a fetch for the datafeed in your Merchant Center account. If you need to call this method more than once per day, we recommend you use the [Products service](https://developers.google.com/shopping-content/reference/rest/v2.1/products) to update your product data.",
           "flatPath": "{merchantId}/datafeeds/{datafeedId}/fetchNow",
           "httpMethod": "POST",
           "id": "content.datafeeds.fetchnow",
@@ -4533,7 +4497,7 @@
     "promotions": {
       "methods": {
         "create": {
-          "description": "Inserts a promotion for your Merchant Center account. If the promotion already exists, then it will update the promotion instead.",
+          "description": "Inserts a promotion for your Merchant Center account. If the promotion already exists, then it updates the promotion instead.",
           "flatPath": "{merchantId}/promotions",
           "httpMethod": "POST",
           "id": "content.promotions.create",
@@ -4672,7 +4636,7 @@
           ]
         },
         "insert": {
-          "description": "Update the regional inventory of a product in your Merchant Center account. If a regional inventory with the same region ID already exists, this method updates that entry.",
+          "description": "Updates the regional inventory of a product in your Merchant Center account. If a regional inventory with the same region ID already exists, this method updates that entry.",
           "flatPath": "{merchantId}/products/{productId}/regionalinventory",
           "httpMethod": "POST",
           "id": "content.regionalinventory.insert",
@@ -5986,7 +5950,7 @@
       }
     }
   },
-  "revision": "20220428",
+  "revision": "20220602",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -6100,7 +6064,7 @@
           "type": "string"
         },
         "streetAddress": {
-          "description": "Street-level part of the address.",
+          "description": "Street-level part of the address. Use `\\n` to add a second line.",
           "type": "string"
         }
       },
@@ -6145,7 +6109,7 @@
       "properties": {
         "address": {
           "$ref": "AccountAddress",
-          "description": "The address of the business."
+          "description": "The address of the business. Use `\\n` to add a second address line."
         },
         "customerService": {
           "$ref": "AccountCustomerService",
@@ -6653,6 +6617,10 @@
         },
         "paymentsManager": {
           "description": "Whether user can manage payment settings.",
+          "type": "boolean"
+        },
+        "reportingManager": {
+          "description": "Whether user is a reporting manager.",
           "type": "boolean"
         }
       },
@@ -7173,7 +7141,7 @@
           "type": "string"
         },
         "streetAddress": {
-          "description": "Street-level part of the address.",
+          "description": "Street-level part of the address. Use `\\n` to add a second line.",
           "type": "string"
         }
       },
@@ -9848,7 +9816,7 @@
           "type": "string"
         },
         "streetAddress": {
-          "description": "Street-level part of the address.",
+          "description": "Street-level part of the address. Use `\\n` to add a second line.",
           "items": {
             "type": "string"
           },
@@ -10516,7 +10484,7 @@
       "id": "OrderShipment",
       "properties": {
         "carrier": {
-          "description": "The carrier handling the shipment. For supported carriers, Google includes the carrier name and tracking URL in emails to customers. For select supported carriers, Google also automatically updates the shipment status based on the provided shipment ID. *Note:* You can also use unsupported carriers, but emails to customers won't include the carrier name or tracking URL, and there will be no automatic order status updates. Supported carriers for \"US\" are: - \"`ups`\" (United Parcel Service) *automatic status updates* - \"`usps`\" (United States Postal Service) *automatic status updates* - \"`fedex`\" (FedEx) *automatic status updates * - \"`dhl`\" (DHL eCommerce) *automatic status updates* (US only) - \"`ontrac`\" (OnTrac) *automatic status updates * - \"`dhl express`\" (DHL Express) - \"`deliv`\" (Deliv) - \"`dynamex`\" (TForce) - \"`lasership`\" (LaserShip) - \"`mpx`\" (Military Parcel Xpress) - \"`uds`\" (United Delivery Service) - \"`efw`\" (Estes Forwarding Worldwide) - \"`jd logistics`\" (JD Logistics) - \"`yunexpress`\" (YunExpress) - \"`china post`\" (China Post) - \"`china ems`\" (China Post Express Mail Service) - \"`singapore post`\" (Singapore Post) - \"`pos malaysia`\" (Pos Malaysia) - \"`postnl`\" (PostNL) - \"`ptt`\" (PTT Turkish Post) - \"`eub`\" (ePacket) - \"`chukou1`\" (Chukou1 Logistics) - \"`bestex`\" (Best Express) - \"`canada post`\" (Canada Post) - \"`purolator`\" (Purolator) - \"`canpar`\" (Canpar) - \"`india post`\" (India Post) - \"`blue dart`\" (Blue Dart) - \"`delhivery`\" (Delhivery) - \"`dtdc`\" (DTDC) - \"`tpc india`\" (TPC India) - \"`lso`\" (Lone Star Overnight) - \"`tww`\" (Team Worldwide) Supported carriers for FR are: - \"`la poste`\" (La Poste) *automatic status updates * - \"`colissimo`\" (Colissimo by La Poste) *automatic status updates* - \"`ups`\" (United Parcel Service) *automatic status updates * - \"`chronopost`\" (Chronopost by La Poste) - \"`gls`\" (General Logistics Systems France) - \"`dpd`\" (DPD Group by GeoPost) - \"`bpost`\" (Belgian Post Group) - \"`colis prive`\" (Colis Privé) - \"`boxtal`\" (Boxtal) - \"`geodis`\" (GEODIS) - \"`tnt`\" (TNT) - \"`db schenker`\" (DB Schenker) - \"`aramex`\" (Aramex) ",
+          "description": "The carrier handling the shipment. For supported carriers, Google includes the carrier name and tracking URL in emails to customers. For select supported carriers, Google also automatically updates the shipment status based on the provided shipment ID. *Note:* You can also use unsupported carriers, but emails to customers won't include the carrier name or tracking URL, and there will be no automatic order status updates. Supported carriers for \"US\" are: - \"`ups`\" (United Parcel Service) *automatic status updates* - \"`usps`\" (United States Postal Service) *automatic status updates* - \"`fedex`\" (FedEx) *automatic status updates * - \"`dhl`\" (DHL eCommerce) *automatic status updates* (US only) - \"`ontrac`\" (OnTrac) *automatic status updates * - \"`dhl express`\" (DHL Express) - \"`deliv`\" (Deliv) - \"`dynamex`\" (TForce) - \"`lasership`\" (LaserShip) - \"`mpx`\" (Military Parcel Xpress) - \"`uds`\" (United Delivery Service) - \"`efw`\" (Estes Forwarding Worldwide) - \"`jd logistics`\" (JD Logistics) - \"`yunexpress`\" (YunExpress) - \"`china post`\" (China Post) - \"`china ems`\" (China Post Express Mail Service) - \"`singapore post`\" (Singapore Post) - \"`pos malaysia`\" (Pos Malaysia) - \"`postnl`\" (PostNL) - \"`ptt`\" (PTT Turkish Post) - \"`eub`\" (ePacket) - \"`chukou1`\" (Chukou1 Logistics) - \"`bestex`\" (Best Express) - \"`canada post`\" (Canada Post) - \"`purolator`\" (Purolator) - \"`canpar`\" (Canpar) - \"`india post`\" (India Post) - \"`blue dart`\" (Blue Dart) - \"`delhivery`\" (Delhivery) - \"`dtdc`\" (DTDC) - \"`tpc india`\" (TPC India) - \"`lso`\" (Lone Star Overnight) - \"`tww`\" (Team Worldwide) - \"`deliver-it`\" (Deliver-IT) - \"`cdl last mile`\" (CDL Last Mile) Supported carriers for FR are: - \"`la poste`\" (La Poste) *automatic status updates * - \"`colissimo`\" (Colissimo by La Poste) *automatic status updates* - \"`ups`\" (United Parcel Service) *automatic status updates * - \"`chronopost`\" (Chronopost by La Poste) - \"`gls`\" (General Logistics Systems France) - \"`dpd`\" (DPD Group by GeoPost) - \"`bpost`\" (Belgian Post Group) - \"`colis prive`\" (Colis Privé) - \"`boxtal`\" (Boxtal) - \"`geodis`\" (GEODIS) - \"`tnt`\" (TNT) - \"`db schenker`\" (DB Schenker) - \"`aramex`\" (Aramex) ",
           "type": "string"
         },
         "creationDate": {
@@ -13571,7 +13539,7 @@
       "type": "object"
     },
     "Promotion": {
-      "description": " The Promotions feature is publicly available for the US and CA locale (en language only) in Content API for Shopping. Represents a promotion. See the following articles for more details. * [Promotions feed specification](https://support.google.com/merchants/answer/2906014) * [Local promotions feed specification](https://support.google.com/merchants/answer/10146130) * [Promotions on Buy on Google product data specification](https://support.google.com/merchants/answer/9173673)",
+      "description": "The Promotions feature is available for `AU`, `CA`, `DE`, `FR`, `GB`, `IN` and `US` target countries, and `en` content language. Represents a promotion. See the following articles for more details. * [Promotions feed specification](https://support.google.com/merchants/answer/2906014) * [Local promotions feed specification](https://support.google.com/merchants/answer/10146130) * [Promotions on Buy on Google product data specification](https://support.google.com/merchants/answer/9173673)",
       "id": "Promotion",
       "properties": {
         "brand": {
@@ -13589,7 +13557,7 @@
           "type": "array"
         },
         "contentLanguage": {
-          "description": "Required. The content language used as part of the unique identifier. Currently only en value is supported.",
+          "description": "Required. The content language used as part of the unique identifier. Currently only `en` value is supported.",
           "type": "string"
         },
         "couponValueType": {
@@ -13613,13 +13581,13 @@
             "Indicates that the coupon value type is unspecified.",
             "Money off coupon value type.",
             "Percent off coupon value type.",
-            "Buy M quantity, get N money off coupon value type. buy_this_quantity and get_this_quantity must be present. money_off_amount must also be present.",
-            "Buy M quantity, get N percent off coupon value type. buy_this_quantity and get_this_quantity must be present. percent_off_percentage must also be present.",
-            "Buy M quantity, get money off. buy_this_quantity and money_off_amount must be present.",
-            "Buy M quantity, get money off. buy_this_quantity and percent_off_percentage must be present.",
-            "Free gift with description only",
+            "Buy M quantity, get N money off coupon value type. `buy_this_quantity` and `get_this_quantity` must be present. `money_off_amount` must also be present.",
+            "Buy M quantity, get N percent off coupon value type. `buy_this_quantity` and `get_this_quantity` must be present. `percent_off_percentage` must also be present.",
+            "Buy M quantity, get money off. `buy_this_quantity` and `money_off_amount` must be present.",
+            "Buy M quantity, get money off. `buy_this_quantity` and `percent_off_percentage` must be present.",
+            "Free gift with description only.",
             "Free gift with value (description is optional).",
-            "Free gift with item id (description is optional).",
+            "Free gift with item ID (description is optional).",
             "Standard free shipping coupon value type.",
             "Overnight free shipping coupon value type.",
             "Two day free shipping coupon value type."
@@ -13631,7 +13599,7 @@
           "type": "string"
         },
         "freeGiftItemId": {
-          "description": "Free gift item id for the promotion.",
+          "description": "Free gift item ID for the promotion.",
           "type": "string"
         },
         "freeGiftValue": {
@@ -13639,7 +13607,7 @@
           "description": "Free gift value for the promotion."
         },
         "genericRedemptionCode": {
-          "description": "Generic redemption code for the promotion. To be used with the above field.",
+          "description": "Generic redemption code for the promotion. To be used with the `offerType` field.",
           "type": "string"
         },
         "getThisQuantityDiscounted": {
@@ -13648,33 +13616,33 @@
           "type": "integer"
         },
         "id": {
-          "description": "Required. Output only. The REST promotion id to uniquely identify the promotion. Content API methods that operate on promotions take this as their promotionId parameter. The REST ID for a promotion is of the form [channel]:contentLanguage:targetCountry:promotionId The channel field will have a value of \"online\", \"in_store\", or \"online_in_store\".",
+          "description": "Required. Output only. The REST promotion ID to uniquely identify the promotion. Content API methods that operate on promotions take this as their `promotionId` parameter. The REST ID for a promotion is of the form channel:contentLanguage:targetCountry:promotionId The `channel` field has a value of `\"online\"`, `\"in_store\"`, or `\"online_in_store\"`.",
           "readOnly": true,
           "type": "string"
         },
         "itemGroupId": {
-          "description": "Product filter by item group id for the promotion.",
+          "description": "Product filter by item group ID for the promotion.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "itemGroupIdExclusion": {
-          "description": "Product filter by item group id exclusion for the promotion.",
+          "description": "Product filter by item group ID exclusion for the promotion.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "itemId": {
-          "description": "Product filter by item id for the promotion.",
+          "description": "Product filter by item ID for the promotion.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "itemIdExclusion": {
-          "description": "Product filter by item id exclusion for the promotion.",
+          "description": "Product filter by item ID exclusion for the promotion.",
           "items": {
             "type": "string"
           },
@@ -13704,7 +13672,7 @@
         },
         "moneyBudget": {
           "$ref": "PriceAmount",
-          "description": "Promotion cost cap of the promotion."
+          "description": "Cost cap for the promotion."
         },
         "moneyOffAmount": {
           "$ref": "PriceAmount",
@@ -13742,7 +13710,7 @@
             "SPECIFIC_PRODUCTS"
           ],
           "enumDescriptions": [
-            "Unknown product applicability.",
+            "Which products the promotion applies to is unknown.",
             "Applicable to all products.",
             "Applicable to only a single product or list of products."
           ],
@@ -13770,23 +13738,23 @@
           "type": "array"
         },
         "promotionDisplayDates": {
-          "description": "String representation of the promotion display dates (deprecated: Use promotion_display_time_period instead).",
+          "description": "String representation of the promotion display dates. Deprecated. Use `promotion_display_time_period` instead.",
           "type": "string"
         },
         "promotionDisplayTimePeriod": {
           "$ref": "TimePeriod",
-          "description": "TimePeriod representation of the promotion display dates."
+          "description": "`TimePeriod` representation of the promotion's display dates."
         },
         "promotionEffectiveDates": {
-          "description": "String representation of the promotion effective dates (deprecated: Use promotion_effective_time_period instead).",
+          "description": "String representation of the promotion effective dates. Deprecated. Use `promotion_effective_time_period` instead.",
           "type": "string"
         },
         "promotionEffectiveTimePeriod": {
           "$ref": "TimePeriod",
-          "description": "Required. TimePeriod representation of the promotion effective dates."
+          "description": "Required. `TimePeriod` representation of the promotion's effective dates."
         },
         "promotionId": {
-          "description": "Required. The user provided promotion id to uniquely identify the promotion.",
+          "description": "Required. The user provided promotion ID to uniquely identify the promotion.",
           "type": "string"
         },
         "redemptionChannel": {
@@ -13807,14 +13775,14 @@
           "type": "array"
         },
         "shippingServiceNames": {
-          "description": "Shipping service names for thse promotion.",
+          "description": "Shipping service names for the promotion.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "targetCountry": {
-          "description": "Required. The target country used as part of the unique identifier. Currently only US and CA are supported.",
+          "description": "Required. The target country used as part of the unique identifier. Can be `AU`, `CA`, `DE`, `FR`, `GB`, `IN` or `US`.",
           "type": "string"
         }
       },
@@ -16111,7 +16079,7 @@
           "type": "string"
         },
         "streetAddress": {
-          "description": "Street-level part of the address.",
+          "description": "Street-level part of the address. Use `\\n` to add a second line.",
           "items": {
             "type": "string"
           },
