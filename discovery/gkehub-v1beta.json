@@ -293,7 +293,7 @@
                       "type": "integer"
                     },
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/features/[^/]+$",
                       "required": true,
@@ -403,7 +403,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/features/[^/]+$",
                       "required": true,
@@ -431,7 +431,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/features/[^/]+$",
                       "required": true,
@@ -469,7 +469,7 @@
                       "type": "integer"
                     },
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/memberships/[^/]+$",
                       "required": true,
@@ -494,7 +494,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/memberships/[^/]+$",
                       "required": true,
@@ -522,7 +522,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/memberships/[^/]+$",
                       "required": true,
@@ -670,7 +670,7 @@
       }
     }
   },
-  "revision": "20220422",
+  "revision": "20220603",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -703,6 +703,92 @@
       },
       "type": "object"
     },
+    "AnthosVMMembershipSpec": {
+      "description": "AnthosVMMembershipSpec contains the AnthosVM feature configuration for a membership/cluster.",
+      "id": "AnthosVMMembershipSpec",
+      "properties": {
+        "subfeaturesSpec": {
+          "description": "List of configurations of the Anthos For VM subfeatures that are to be enabled",
+          "items": {
+            "$ref": "AnthosVMSubFeatureSpec"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AnthosVMMembershipState": {
+      "description": "AnthosVMFeatureState contains the state of the AnthosVM feature. It represents the actual state in the cluster, while the AnthosVMMembershipSpec represents the desired state.",
+      "id": "AnthosVMMembershipState",
+      "properties": {
+        "localControllerState": {
+          "$ref": "LocalControllerState",
+          "description": "State of the local PE-controller inside the cluster"
+        },
+        "subfeatureState": {
+          "description": "List of AnthosVM subfeature states",
+          "items": {
+            "$ref": "AnthosVMSubFeatureState"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AnthosVMSubFeatureSpec": {
+      "description": "AnthosVMSubFeatureSpec contains the subfeature configuration for a membership/cluster.",
+      "id": "AnthosVMSubFeatureSpec",
+      "properties": {
+        "enabled": {
+          "description": "Indicates whether the subfeature should be enabled on the cluster or not. If set to true, the subfeature's control plane and resources will be installed in the cluster. If set to false, the oneof spec if present will be ignored and nothing will be installed in the cluster.",
+          "type": "boolean"
+        },
+        "migrateSpec": {
+          "$ref": "MigrateSpec",
+          "description": "MigrateSpec repsents the configuration for Migrate subfeature."
+        },
+        "serviceMeshSpec": {
+          "$ref": "ServiceMeshSpec",
+          "description": "ServiceMeshSpec repsents the configuration for Service Mesh subfeature."
+        }
+      },
+      "type": "object"
+    },
+    "AnthosVMSubFeatureState": {
+      "description": "AnthosVMSubFeatureState contains the state of the AnthosVM subfeatures.",
+      "id": "AnthosVMSubFeatureState",
+      "properties": {
+        "description": {
+          "description": "Description represents human readable description of the subfeature state. If the deployment failed, this should also contain the reason for the failure.",
+          "type": "string"
+        },
+        "installationState": {
+          "description": "InstallationState represents the state of installation of the subfeature in the cluster.",
+          "enum": [
+            "INSTALLATION_STATE_UNSPECIFIED",
+            "INSTALLATION_STATE_NOT_INSTALLED",
+            "INSTALLATION_STATE_INSTALLED",
+            "INSTALLATION_STATE_FAILED"
+          ],
+          "enumDescriptions": [
+            "state of installation is unknown",
+            "component is not installed",
+            "component is successfully installed",
+            "installation failed"
+          ],
+          "type": "string"
+        },
+        "migrateState": {
+          "$ref": "MigrateState",
+          "description": "MigrateState represents the state of the Migrate subfeature."
+        },
+        "serviceMeshState": {
+          "$ref": "ServiceMeshState",
+          "description": "ServiceMeshState represents the state of the Service Mesh subfeature."
+        }
+      },
+      "type": "object"
+    },
     "AppDevExperienceFeatureSpec": {
       "description": "Spec for App Dev Experience Feature.",
       "id": "AppDevExperienceFeatureSpec",
@@ -721,7 +807,7 @@
       "type": "object"
     },
     "AuditConfig": {
-      "description": "Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { \"audit_configs\": [ { \"service\": \"allServices\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" }, { \"log_type\": \"ADMIN_READ\" } ] }, { \"service\": \"sampleservice.googleapis.com\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\" }, { \"log_type\": \"DATA_WRITE\", \"exempted_members\": [ \"user:aliya@example.com\" ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.",
+      "description": "Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { \"audit_configs\": [ { \"service\": \"allServices\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" }, { \"log_type\": \"ADMIN_READ\" } ] }, { \"service\": \"sampleservice.googleapis.com\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\" }, { \"log_type\": \"DATA_WRITE\", \"exempted_members\": [ \"user:aliya@example.com\" ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.",
       "id": "AuditConfig",
       "properties": {
         "auditLogConfigs": {
@@ -891,6 +977,10 @@
         "git": {
           "$ref": "ConfigManagementGitConfig",
           "description": "Git repo configuration for the cluster."
+        },
+        "oci": {
+          "$ref": "ConfigManagementOciConfig",
+          "description": "OCI repo configuration for the cluster"
         },
         "preventDrift": {
           "description": "Set to true to enable the Config Sync admission webhook to prevent drifts. If set to `false`, disables the Config Sync admission webhook and does not prevent drifts.",
@@ -1358,6 +1448,34 @@
       },
       "type": "object"
     },
+    "ConfigManagementOciConfig": {
+      "description": "OCI repo configuration for a single cluster",
+      "id": "ConfigManagementOciConfig",
+      "properties": {
+        "gcpServiceAccountEmail": {
+          "description": "The GCP Service Account Email used for auth when secret_type is gcpServiceAccount.",
+          "type": "string"
+        },
+        "policyDir": {
+          "description": "The absolute path of the directory that contains the local resources. Default: the root directory of the image.",
+          "type": "string"
+        },
+        "secretType": {
+          "description": "Type of secret configured for access to the Git repo.",
+          "type": "string"
+        },
+        "syncRepo": {
+          "description": "The OCI image repository URL for the package to sync from. e.g. `LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY_NAME/PACKAGE_NAME`.",
+          "type": "string"
+        },
+        "syncWaitSecs": {
+          "description": "Period in seconds between consecutive syncs. Default: 15.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ConfigManagementOperatorState": {
       "description": "State information for an ACM's Operator",
       "id": "ConfigManagementOperatorState",
@@ -1416,6 +1534,10 @@
           "description": "Logs all denies and dry run failures.",
           "type": "boolean"
         },
+        "monitoring": {
+          "$ref": "ConfigManagementPolicyControllerMonitoring",
+          "description": "Monitoring specifies the configuration of monitoring."
+        },
         "referentialRulesEnabled": {
           "description": "Enables the ability to use Constraint Templates that reference to objects other than the object currently being evaluated.",
           "type": "boolean"
@@ -1423,6 +1545,30 @@
         "templateLibraryInstalled": {
           "description": "Installs the default template library along with Policy Controller.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ConfigManagementPolicyControllerMonitoring": {
+      "description": "PolicyControllerMonitoring specifies the backends Policy Controller should export metrics to. For example, to specify metrics should be exported to Cloud Monitoring and Prometheus, specify backends: [\"cloudmonitoring\", \"prometheus\"]",
+      "id": "ConfigManagementPolicyControllerMonitoring",
+      "properties": {
+        "backends": {
+          "description": "Specifies the list of backends Policy Controller will export to. An empty list would effectively disable metrics export.",
+          "items": {
+            "enum": [
+              "MONITORING_BACKEND_UNSPECIFIED",
+              "PROMETHEUS",
+              "CLOUD_MONITORING"
+            ],
+            "enumDescriptions": [
+              "Backend cannot be determined",
+              "Prometheus backend for monitoring",
+              "Stackdriver/Cloud Monitoring backend for monitoring"
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1896,6 +2042,33 @@
       },
       "type": "object"
     },
+    "LocalControllerState": {
+      "description": "LocalControllerState contains the state of the local controller deployed in the cluster.",
+      "id": "LocalControllerState",
+      "properties": {
+        "description": {
+          "description": "Description represents the human readable description of the current state of the local PE controller",
+          "type": "string"
+        },
+        "installationState": {
+          "description": "InstallationState represents the state of deployment of the local PE controller in the cluster.",
+          "enum": [
+            "INSTALLATION_STATE_UNSPECIFIED",
+            "INSTALLATION_STATE_NOT_INSTALLED",
+            "INSTALLATION_STATE_INSTALLED",
+            "INSTALLATION_STATE_FAILED"
+          ],
+          "enumDescriptions": [
+            "state of installation is unknown",
+            "component is not installed",
+            "component is successfully installed",
+            "installation failed"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Location": {
       "description": "A resource that represents Google Cloud Platform location.",
       "id": "Location",
@@ -1938,6 +2111,10 @@
           "$ref": "AnthosObservabilityMembershipSpec",
           "description": "Anthos Observability-specific spec"
         },
+        "anthosvm": {
+          "$ref": "AnthosVMMembershipSpec",
+          "description": "AnthosVM spec."
+        },
         "cloudbuild": {
           "$ref": "MembershipSpec",
           "description": "Cloud Build-specific spec"
@@ -1965,6 +2142,10 @@
       "description": "MembershipFeatureState contains Feature status information for a single Membership.",
       "id": "MembershipFeatureState",
       "properties": {
+        "anthosvm": {
+          "$ref": "AnthosVMMembershipState",
+          "description": "AnthosVM state."
+        },
         "appdevexperience": {
           "$ref": "AppDevExperienceFeatureState",
           "description": "Appdevexperience specific state."
@@ -2036,6 +2217,18 @@
           "type": "number"
         }
       },
+      "type": "object"
+    },
+    "MigrateSpec": {
+      "description": "MigrateSpec contains the migrate subfeature configuration.",
+      "id": "MigrateSpec",
+      "properties": {},
+      "type": "object"
+    },
+    "MigrateState": {
+      "description": "MigrateState contains the state of Migrate subfeature",
+      "id": "MigrateState",
+      "properties": {},
       "type": "object"
     },
     "MultiClusterIngressFeatureSpec": {
@@ -2399,6 +2592,18 @@
           "readOnly": true
         }
       },
+      "type": "object"
+    },
+    "ServiceMeshSpec": {
+      "description": "ServiceMeshSpec contains the serviceMesh subfeature configuration.",
+      "id": "ServiceMeshSpec",
+      "properties": {},
+      "type": "object"
+    },
+    "ServiceMeshState": {
+      "description": "ServiceMeshState contains the state of Service Mesh subfeature",
+      "id": "ServiceMeshState",
+      "properties": {},
       "type": "object"
     },
     "ServiceMeshStatusDetails": {

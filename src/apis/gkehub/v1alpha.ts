@@ -154,6 +154,66 @@ export namespace gkehub_v1alpha {
     version?: string | null;
   }
   /**
+   * AnthosVMMembershipSpec contains the AnthosVM feature configuration for a membership/cluster.
+   */
+  export interface Schema$AnthosVMMembershipSpec {
+    /**
+     * List of configurations of the Anthos For VM subfeatures that are to be enabled
+     */
+    subfeaturesSpec?: Schema$AnthosVMSubFeatureSpec[];
+  }
+  /**
+   * AnthosVMFeatureState contains the state of the AnthosVM feature. It represents the actual state in the cluster, while the AnthosVMMembershipSpec represents the desired state.
+   */
+  export interface Schema$AnthosVMMembershipState {
+    /**
+     * State of the local PE-controller inside the cluster
+     */
+    localControllerState?: Schema$LocalControllerState;
+    /**
+     * List of AnthosVM subfeature states
+     */
+    subfeatureState?: Schema$AnthosVMSubFeatureState[];
+  }
+  /**
+   * AnthosVMSubFeatureSpec contains the subfeature configuration for a membership/cluster.
+   */
+  export interface Schema$AnthosVMSubFeatureSpec {
+    /**
+     * Indicates whether the subfeature should be enabled on the cluster or not. If set to true, the subfeature's control plane and resources will be installed in the cluster. If set to false, the oneof spec if present will be ignored and nothing will be installed in the cluster.
+     */
+    enabled?: boolean | null;
+    /**
+     * MigrateSpec repsents the configuration for Migrate subfeature.
+     */
+    migrateSpec?: Schema$MigrateSpec;
+    /**
+     * ServiceMeshSpec repsents the configuration for Service Mesh subfeature.
+     */
+    serviceMeshSpec?: Schema$ServiceMeshSpec;
+  }
+  /**
+   * AnthosVMSubFeatureState contains the state of the AnthosVM subfeatures.
+   */
+  export interface Schema$AnthosVMSubFeatureState {
+    /**
+     * Description represents human readable description of the subfeature state. If the deployment failed, this should also contain the reason for the failure.
+     */
+    description?: string | null;
+    /**
+     * InstallationState represents the state of installation of the subfeature in the cluster.
+     */
+    installationState?: string | null;
+    /**
+     * MigrateState represents the state of the Migrate subfeature.
+     */
+    migrateState?: Schema$MigrateState;
+    /**
+     * ServiceMeshState represents the state of the Service Mesh subfeature.
+     */
+    serviceMeshState?: Schema$ServiceMeshState;
+  }
+  /**
    * Spec for App Dev Experience Feature.
    */
   export interface Schema$AppDevExperienceFeatureSpec {}
@@ -167,7 +227,16 @@ export namespace gkehub_v1alpha {
     networkingInstallSucceeded?: Schema$Status;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * ApplianceCluster contains information specific to GDC Edge Appliance Clusters.
+   */
+  export interface Schema$ApplianceCluster {
+    /**
+     * Immutable. Self-link of the GCP resource for the Appliance Cluster. For example: //transferappliance.googleapis.com/projects/my-project/locations/us-west1-a/appliances/my-appliance
+     */
+    resourceLink?: string | null;
+  }
+  /**
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -341,6 +410,10 @@ export namespace gkehub_v1alpha {
      * Git repo configuration for the cluster.
      */
     git?: Schema$ConfigManagementGitConfig;
+    /**
+     * OCI repo configuration for the cluster
+     */
+    oci?: Schema$ConfigManagementOciConfig;
     /**
      * Set to true to enable the Config Sync admission webhook to prevent drifts. If set to `false`, disables the Config Sync admission webhook and does not prevent drifts.
      */
@@ -649,6 +722,31 @@ export namespace gkehub_v1alpha {
     policyControllerState?: Schema$ConfigManagementPolicyControllerState;
   }
   /**
+   * OCI repo configuration for a single cluster
+   */
+  export interface Schema$ConfigManagementOciConfig {
+    /**
+     * The GCP Service Account Email used for auth when secret_type is gcpServiceAccount.
+     */
+    gcpServiceAccountEmail?: string | null;
+    /**
+     * The absolute path of the directory that contains the local resources. Default: the root directory of the image.
+     */
+    policyDir?: string | null;
+    /**
+     * Type of secret configured for access to the Git repo.
+     */
+    secretType?: string | null;
+    /**
+     * The OCI image repository URL for the package to sync from. e.g. `LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY_NAME/PACKAGE_NAME`.
+     */
+    syncRepo?: string | null;
+    /**
+     * Period in seconds between consecutive syncs. Default: 15.
+     */
+    syncWaitSecs?: string | null;
+  }
+  /**
    * State information for an ACM's Operator
    */
   export interface Schema$ConfigManagementOperatorState {
@@ -686,6 +784,10 @@ export namespace gkehub_v1alpha {
      */
     logDeniesEnabled?: boolean | null;
     /**
+     * Monitoring specifies the configuration of monitoring.
+     */
+    monitoring?: Schema$ConfigManagementPolicyControllerMonitoring;
+    /**
      * Enable users to try out mutation for PolicyController.
      */
     mutationEnabled?: boolean | null;
@@ -697,6 +799,15 @@ export namespace gkehub_v1alpha {
      * Installs the default template library along with Policy Controller.
      */
     templateLibraryInstalled?: boolean | null;
+  }
+  /**
+   * PolicyControllerMonitoring specifies the backends Policy Controller should export metrics to. For example, to specify metrics should be exported to Cloud Monitoring and Prometheus, specify backends: ["cloudmonitoring", "prometheus"]
+   */
+  export interface Schema$ConfigManagementPolicyControllerMonitoring {
+    /**
+     * Specifies the list of backends Policy Controller will export to. An empty list would effectively disable metrics export.
+     */
+    backends?: string[] | null;
   }
   /**
    * State for PolicyControllerState.
@@ -1041,6 +1152,10 @@ export namespace gkehub_v1alpha {
      */
     deployCloudConsoleProxy?: boolean | null;
     /**
+     * Enable access token.
+     */
+    enableAccessToken?: boolean | null;
+    /**
      * Output only. Encrypted OIDC Client secret
      */
     encryptedClientSecret?: string | null;
@@ -1214,6 +1329,19 @@ export namespace gkehub_v1alpha {
     operations?: Schema$Operation[];
   }
   /**
+   * LocalControllerState contains the state of the local controller deployed in the cluster.
+   */
+  export interface Schema$LocalControllerState {
+    /**
+     * Description represents the human readable description of the current state of the local PE controller
+     */
+    description?: string | null;
+    /**
+     * InstallationState represents the state of deployment of the local PE controller in the cluster.
+     */
+    installationState?: string | null;
+  }
+  /**
    * A resource that represents Google Cloud Platform location.
    */
   export interface Schema$Location {
@@ -1296,6 +1424,10 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$MembershipEndpoint {
     /**
+     * Optional. Specific information for a GDC Edge Appliance cluster.
+     */
+    applianceCluster?: Schema$ApplianceCluster;
+    /**
      * Optional. Specific information for a Google Edge cluster.
      */
     edgeCluster?: Schema$EdgeCluster;
@@ -1329,6 +1461,10 @@ export namespace gkehub_v1alpha {
      */
     anthosobservability?: Schema$AnthosObservabilityMembershipSpec;
     /**
+     * AnthosVM spec.
+     */
+    anthosvm?: Schema$AnthosVMMembershipSpec;
+    /**
      * Cloud Build-specific spec
      */
     cloudbuild?: Schema$CloudBuildMembershipSpec;
@@ -1357,6 +1493,10 @@ export namespace gkehub_v1alpha {
    * MembershipFeatureState contains Feature status information for a single Membership.
    */
   export interface Schema$MembershipFeatureState {
+    /**
+     * AnthosVM state.
+     */
+    anthosvm?: Schema$AnthosVMMembershipState;
     /**
      * Appdevexperience specific state.
      */
@@ -1417,6 +1557,14 @@ export namespace gkehub_v1alpha {
      */
     preciseLastMeasuredClusterVcpuCapacity?: number | null;
   }
+  /**
+   * MigrateSpec contains the migrate subfeature configuration.
+   */
+  export interface Schema$MigrateSpec {}
+  /**
+   * MigrateState contains the state of Migrate subfeature
+   */
+  export interface Schema$MigrateState {}
   /**
    * MultiCloudCluster contains information specific to GKE Multi-Cloud clusters.
    */
@@ -1719,6 +1867,19 @@ export namespace gkehub_v1alpha {
     state?: string | null;
   }
   /**
+   * Status of data plane management. Only reported per-member.
+   */
+  export interface Schema$ServiceMeshDataPlaneManagement {
+    /**
+     * Explanation of the status.
+     */
+    details?: Schema$ServiceMeshStatusDetails[];
+    /**
+     * Lifecycle status of data plane management.
+     */
+    state?: string | null;
+  }
+  /**
    * **Service Mesh**: State for the whole Hub, as analyzed by the Service Mesh Hub Controller.
    */
   export interface Schema$ServiceMeshFeatureState {
@@ -1756,7 +1917,19 @@ export namespace gkehub_v1alpha {
      * Output only. Status of control plane management
      */
     controlPlaneManagement?: Schema$ServiceMeshControlPlaneManagement;
+    /**
+     * Output only. Status of data plane management.
+     */
+    dataPlaneManagement?: Schema$ServiceMeshDataPlaneManagement;
   }
+  /**
+   * ServiceMeshSpec contains the serviceMesh subfeature configuration.
+   */
+  export interface Schema$ServiceMeshSpec {}
+  /**
+   * ServiceMeshState contains the state of Service Mesh subfeature
+   */
+  export interface Schema$ServiceMeshState {}
   /**
    * Structured and human-readable details for a status.
    */
@@ -2803,7 +2976,7 @@ export namespace gkehub_v1alpha {
      *   const res = await gkehub.projects.locations.features.getIamPolicy({
      *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/features/my-feature',
      *   });
      *   console.log(res.data);
@@ -3229,7 +3402,7 @@ export namespace gkehub_v1alpha {
      *
      *   // Do the magic
      *   const res = await gkehub.projects.locations.features.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/features/my-feature',
      *
      *     // Request body metadata
@@ -3370,7 +3543,7 @@ export namespace gkehub_v1alpha {
      *
      *   // Do the magic
      *   const res = await gkehub.projects.locations.features.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/features/my-feature',
      *
      *     // Request body metadata
@@ -3538,7 +3711,7 @@ export namespace gkehub_v1alpha {
      */
     'options.requestedPolicyVersion'?: number;
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -3588,7 +3761,7 @@ export namespace gkehub_v1alpha {
   export interface Params$Resource$Projects$Locations$Features$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3600,7 +3773,7 @@ export namespace gkehub_v1alpha {
   export interface Params$Resource$Projects$Locations$Features$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -4977,7 +5150,7 @@ export namespace gkehub_v1alpha {
      *   const res = await gkehub.projects.locations.memberships.getIamPolicy({
      *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/locations/my-location/memberships/my-membership',
      *   });
@@ -5556,7 +5729,7 @@ export namespace gkehub_v1alpha {
      *
      *   // Do the magic
      *   const res = await gkehub.projects.locations.memberships.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/locations/my-location/memberships/my-membership',
      *
@@ -5699,7 +5872,7 @@ export namespace gkehub_v1alpha {
      *
      *   // Do the magic
      *   const res = await gkehub.projects.locations.memberships.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/locations/my-location/memberships/my-membership',
      *
@@ -5895,7 +6068,7 @@ export namespace gkehub_v1alpha {
      */
     'options.requestedPolicyVersion'?: number;
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -5968,7 +6141,7 @@ export namespace gkehub_v1alpha {
   export interface Params$Resource$Projects$Locations$Memberships$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -5980,7 +6153,7 @@ export namespace gkehub_v1alpha {
   export interface Params$Resource$Projects$Locations$Memberships$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
