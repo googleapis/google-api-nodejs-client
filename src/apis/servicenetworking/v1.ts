@@ -217,6 +217,10 @@ export namespace servicenetworking_v1 {
      */
     checkServiceNetworkingUsePermission?: boolean | null;
     /**
+     * Optional. Specifies a custom time bucket for Arcus subnetwork request idempotency. If two equivalent concurrent requests are made, Arcus will know to ignore the request if it has already been completed or is in progress. Only requests with matching compute_idempotency_window have guaranteed idempotency. Changing this time window between requests results in undefined behavior. Zero (or empty) value with custom_compute_idempotency_window=true specifies no idempotency (i.e. no request ID is provided to Arcus). Maximum value of 14 days (enforced by Arcus limit). For more information on how to use, see: go/revisit-sn-idempotency-window
+     */
+    computeIdempotencyWindow?: string | null;
+    /**
      * Required. A resource that represents the service consumer, such as `projects/123456`. The project number can be different from the value in the consumer network parameter. For example, the network might be part of a Shared VPC network. In those cases, Service Networking validates that this resource belongs to that Shared VPC.
      */
     consumer?: string | null;
@@ -265,9 +269,13 @@ export namespace servicenetworking_v1 {
      */
     subnetwork?: string | null;
     /**
-     * A list of members that are granted the `compute.networkUser` role on the subnet.
+     * A list of members that are granted the `roles/servicenetworking.subnetworkAdmin` role on the subnet.
      */
     subnetworkUsers?: string[] | null;
+    /**
+     * Optional. Specifies if Service Networking should use a custom time bucket for Arcus idempotency. If false, Service Networking uses a 300 second (5 minute) Arcus idempotency window. If true, Service Networking uses a custom idempotency window provided by the user in field compute_idempotency_window. For more information on how to use, see: go/revisit-sn-idempotency-window
+     */
+    useCustomComputeIdempotencyWindow?: boolean | null;
   }
   /**
    * Api is a light-weight descriptor for an API Interface. Interfaces are also described as "protocol buffer services" in some contexts, such as by the "service" keyword in a .proto file, but they are different from API Services, which represent a concrete implementation of an interface as opposed to simply a description of methods and bindings. They are also sometimes simply referred to as "APIs" in other contexts, such as the name of this message itself. See https://cloud.google.com/apis/design/glossary for detailed terminology.
@@ -1175,6 +1183,10 @@ export namespace servicenetworking_v1 {
    * Bind API methods to metrics. Binding a method to a metric causes that metric's configured quota behaviors to apply to the method call.
    */
   export interface Schema$MetricRule {
+    /**
+     * Metrics to update when the selected methods are called. The key of the map is the metric name, the value is the DynamicCostType to specify how to calculate the cost from the request. The cost amount will be increased for the metric against which the quota limits are defined. It is only implemented in CloudESF(go/cloudesf)
+     */
+    dynamicMetricCosts?: {[key: string]: string} | null;
     /**
      * Metrics to update when the selected methods are called, and the associated cost applied to each metric. The key of the map is the metric name, and the values are the amount increased for the metric against which the quota limits are defined. The value must not be negative.
      */
@@ -2541,6 +2553,7 @@ export namespace servicenetworking_v1 {
      *       // request body parameters
      *       // {
      *       //   "checkServiceNetworkingUsePermission": false,
+     *       //   "computeIdempotencyWindow": "my_computeIdempotencyWindow",
      *       //   "consumer": "my_consumer",
      *       //   "consumerNetwork": "my_consumerNetwork",
      *       //   "description": "my_description",
@@ -2553,7 +2566,8 @@ export namespace servicenetworking_v1 {
      *       //   "requestedRanges": [],
      *       //   "secondaryIpRangeSpecs": [],
      *       //   "subnetwork": "my_subnetwork",
-     *       //   "subnetworkUsers": []
+     *       //   "subnetworkUsers": [],
+     *       //   "useCustomComputeIdempotencyWindow": false
      *       // }
      *     },
      *   });

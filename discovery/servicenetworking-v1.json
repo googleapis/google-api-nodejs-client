@@ -865,7 +865,7 @@
       }
     }
   },
-  "revision": "20220504",
+  "revision": "20220613",
   "rootUrl": "https://servicenetworking.googleapis.com/",
   "schemas": {
     "AddDnsRecordSetMetadata": {
@@ -979,6 +979,11 @@
           "description": "Optional. The IAM permission check determines whether the consumer project has 'servicenetworking.services.use' permission or not.",
           "type": "boolean"
         },
+        "computeIdempotencyWindow": {
+          "description": "Optional. Specifies a custom time bucket for Arcus subnetwork request idempotency. If two equivalent concurrent requests are made, Arcus will know to ignore the request if it has already been completed or is in progress. Only requests with matching compute_idempotency_window have guaranteed idempotency. Changing this time window between requests results in undefined behavior. Zero (or empty) value with custom_compute_idempotency_window=true specifies no idempotency (i.e. no request ID is provided to Arcus). Maximum value of 14 days (enforced by Arcus limit). For more information on how to use, see: go/revisit-sn-idempotency-window",
+          "format": "google-duration",
+          "type": "string"
+        },
         "consumer": {
           "description": "Required. A resource that represents the service consumer, such as `projects/123456`. The project number can be different from the value in the consumer network parameter. For example, the network might be part of a Shared VPC network. In those cases, Service Networking validates that this resource belongs to that Shared VPC.",
           "type": "string"
@@ -1035,11 +1040,15 @@
           "type": "string"
         },
         "subnetworkUsers": {
-          "description": "A list of members that are granted the `compute.networkUser` role on the subnet.",
+          "description": "A list of members that are granted the `roles/servicenetworking.subnetworkAdmin` role on the subnet.",
           "items": {
             "type": "string"
           },
           "type": "array"
+        },
+        "useCustomComputeIdempotencyWindow": {
+          "description": "Optional. Specifies if Service Networking should use a custom time bucket for Arcus idempotency. If false, Service Networking uses a 300 second (5 minute) Arcus idempotency window. If true, Service Networking uses a custom idempotency window provided by the user in field compute_idempotency_window. For more information on how to use, see: go/revisit-sn-idempotency-window",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -2356,6 +2365,27 @@
       "description": "Bind API methods to metrics. Binding a method to a metric causes that metric's configured quota behaviors to apply to the method call.",
       "id": "MetricRule",
       "properties": {
+        "dynamicMetricCosts": {
+          "additionalProperties": {
+            "enum": [
+              "DYNAMIC_COST_TYPE_UNSPECIFIED",
+              "REQUEST_BODY_BYTES",
+              "REQUEST_BODY_AND_HEADER_BYTES",
+              "RESPONSE_BODY_BYTES",
+              "RESPONSE_BODY_AND_HEADER_BYTES"
+            ],
+            "enumDescriptions": [
+              "Unspecified dynamic cost type.",
+              "Cost is the request body bytes",
+              "Cost is the request body and HTTP header bytes",
+              "Cost is the response body bytes",
+              "Cost is the response body and header bytes"
+            ],
+            "type": "string"
+          },
+          "description": "Metrics to update when the selected methods are called. The key of the map is the metric name, the value is the DynamicCostType to specify how to calculate the cost from the request. The cost amount will be increased for the metric against which the quota limits are defined. It is only implemented in CloudESF(go/cloudesf)",
+          "type": "object"
+        },
         "metricCosts": {
           "additionalProperties": {
             "format": "int64",
