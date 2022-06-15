@@ -141,6 +141,10 @@ export namespace container_v1 {
      * Size of partitions to create on the GPU. Valid values are described in the NVIDIA [mig user guide](https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning).
      */
     gpuPartitionSize?: string | null;
+    /**
+     * The configuration for GPU sharing options.
+     */
+    gpuSharingConfig?: Schema$GPUSharingConfig;
   }
   /**
    * Configuration for the addons that can be automatically spun up in the cluster, enabling additional functionality.
@@ -289,6 +293,10 @@ export namespace container_v1 {
      * Enable Binary Authorization for this cluster. If enabled, all container images will be validated by Binary Authorization.
      */
     enabled?: boolean | null;
+    /**
+     * Mode of operation for binauthz policy evaluation. Currently the only options are equivalent to enable/disable. If unspecified, defaults to DISABLED.
+     */
+    evaluationMode?: string | null;
   }
   /**
    * CancelOperationRequest cancels a single operation.
@@ -1007,6 +1015,19 @@ export namespace container_v1 {
     subject_types_supported?: string[] | null;
   }
   /**
+   * GPUSharingConfig represents the GPU sharing configuration for Hardware Accelerators.
+   */
+  export interface Schema$GPUSharingConfig {
+    /**
+     * The type of GPU sharing strategy to enable on the GPU node.
+     */
+    gpuSharingStrategy?: string | null;
+    /**
+     * The max number of containers that can share a physical GPU.
+     */
+    maxSharedClientsPerGpu?: string | null;
+  }
+  /**
    * Configuration options for the horizontal pod autoscaling feature, which increases or decreases the number of replica pods a replication controller has based on the resource usage of the existing pods.
    */
   export interface Schema$HorizontalPodAutoscaling {
@@ -1492,7 +1513,7 @@ export namespace container_v1 {
     tags?: string[] | null;
   }
   /**
-   * Parameters that describe the nodes in a cluster. *Note: *GKE Autopilot clusters do not recognize parameters in `NodeConfig`. Use AutoprovisioningNodePoolDefaults instead.
+   * Parameters that describe the nodes in a cluster. GKE Autopilot clusters do not recognize parameters in `NodeConfig`. Use AutoprovisioningNodePoolDefaults instead.
    */
   export interface Schema$NodeConfig {
     /**
@@ -1507,6 +1528,10 @@ export namespace container_v1 {
      *  The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://cloud.google.com/compute/docs/disks/customer-managed-encryption
      */
     bootDiskKmsKey?: string | null;
+    /**
+     * Confidential nodes config. All the nodes in the node pool will be Confidential VM once enabled.
+     */
+    confidentialNodes?: Schema$ConfidentialNodes;
     /**
      * Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 10GB. If unspecified, the default disk size is 100GB.
      */
@@ -2648,6 +2673,10 @@ export namespace container_v1 {
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string | null;
+    /**
+     * Confidential nodes config. All the nodes in the node pool will be Confidential VM once enabled.
+     */
+    confidentialNodes?: Schema$ConfidentialNodes;
     /**
      * GCFS config.
      */
@@ -7515,6 +7544,7 @@ export namespace container_v1 {
      *       // request body parameters
      *       // {
      *       //   "clusterId": "my_clusterId",
+     *       //   "confidentialNodes": {},
      *       //   "gcfsConfig": {},
      *       //   "gvnic": {},
      *       //   "imageType": "my_imageType",
@@ -12933,6 +12963,7 @@ export namespace container_v1 {
      *       // request body parameters
      *       // {
      *       //   "clusterId": "my_clusterId",
+     *       //   "confidentialNodes": {},
      *       //   "gcfsConfig": {},
      *       //   "gvnic": {},
      *       //   "imageType": "my_imageType",

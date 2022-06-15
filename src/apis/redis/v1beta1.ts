@@ -248,6 +248,10 @@ export namespace redis_v1beta1 {
      */
     authorizedNetwork?: string | null;
     /**
+     * Optional. The available maintenance versions that an instance could update to.
+     */
+    availableMaintenanceVersions?: string[] | null;
+    /**
      * Optional. The network connect mode of the Redis instance. If not provided, the connect mode defaults to DIRECT_PEERING.
      */
     connectMode?: string | null;
@@ -259,6 +263,10 @@ export namespace redis_v1beta1 {
      * Output only. The current zone where the Redis primary node is located. In basic tier, this will always be the same as [location_id]. In standard tier, this can be the zone of any node in the instance.
      */
     currentLocationId?: string | null;
+    /**
+     * Optional. The KMS key reference that the customer provides when trying to create the instance.
+     */
+    customerManagedKey?: string | null;
     /**
      * An arbitrary and optional user-provided name for the instance.
      */
@@ -283,6 +291,10 @@ export namespace redis_v1beta1 {
      * Output only. Date and time of upcoming maintenance events which have been scheduled.
      */
     maintenanceSchedule?: Schema$MaintenanceSchedule;
+    /**
+     * Optional. The self service update maintenance version. The version is date based such as "20210712_00_00".
+     */
+    maintenanceVersion?: string | null;
     /**
      * Required. Redis memory size in GiB.
      */
@@ -351,6 +363,10 @@ export namespace redis_v1beta1 {
      * Output only. Additional information about the current status of this instance, if available.
      */
     statusMessage?: string | null;
+    /**
+     * Optional. reasons that causes instance in "SUSPENDED" state.
+     */
+    suspensionReasons?: string[] | null;
     /**
      * Required. The service tier of the instance.
      */
@@ -1015,15 +1031,18 @@ export namespace redis_v1beta1 {
      *       //   "alternativeLocationId": "my_alternativeLocationId",
      *       //   "authEnabled": false,
      *       //   "authorizedNetwork": "my_authorizedNetwork",
+     *       //   "availableMaintenanceVersions": [],
      *       //   "connectMode": "my_connectMode",
      *       //   "createTime": "my_createTime",
      *       //   "currentLocationId": "my_currentLocationId",
+     *       //   "customerManagedKey": "my_customerManagedKey",
      *       //   "displayName": "my_displayName",
      *       //   "host": "my_host",
      *       //   "labels": {},
      *       //   "locationId": "my_locationId",
      *       //   "maintenancePolicy": {},
      *       //   "maintenanceSchedule": {},
+     *       //   "maintenanceVersion": "my_maintenanceVersion",
      *       //   "memorySizeGb": 0,
      *       //   "name": "my_name",
      *       //   "nodes": [],
@@ -1041,6 +1060,7 @@ export namespace redis_v1beta1 {
      *       //   "serverCaCerts": [],
      *       //   "state": "my_state",
      *       //   "statusMessage": "my_statusMessage",
+     *       //   "suspensionReasons": [],
      *       //   "tier": "my_tier",
      *       //   "transitEncryptionMode": "my_transitEncryptionMode"
      *       // }
@@ -1598,15 +1618,18 @@ export namespace redis_v1beta1 {
      *   //   "alternativeLocationId": "my_alternativeLocationId",
      *   //   "authEnabled": false,
      *   //   "authorizedNetwork": "my_authorizedNetwork",
+     *   //   "availableMaintenanceVersions": [],
      *   //   "connectMode": "my_connectMode",
      *   //   "createTime": "my_createTime",
      *   //   "currentLocationId": "my_currentLocationId",
+     *   //   "customerManagedKey": "my_customerManagedKey",
      *   //   "displayName": "my_displayName",
      *   //   "host": "my_host",
      *   //   "labels": {},
      *   //   "locationId": "my_locationId",
      *   //   "maintenancePolicy": {},
      *   //   "maintenanceSchedule": {},
+     *   //   "maintenanceVersion": "my_maintenanceVersion",
      *   //   "memorySizeGb": 0,
      *   //   "name": "my_name",
      *   //   "nodes": [],
@@ -1624,6 +1647,7 @@ export namespace redis_v1beta1 {
      *   //   "serverCaCerts": [],
      *   //   "state": "my_state",
      *   //   "statusMessage": "my_statusMessage",
+     *   //   "suspensionReasons": [],
      *   //   "tier": "my_tier",
      *   //   "transitEncryptionMode": "my_transitEncryptionMode"
      *   // }
@@ -2172,15 +2196,18 @@ export namespace redis_v1beta1 {
      *       //   "alternativeLocationId": "my_alternativeLocationId",
      *       //   "authEnabled": false,
      *       //   "authorizedNetwork": "my_authorizedNetwork",
+     *       //   "availableMaintenanceVersions": [],
      *       //   "connectMode": "my_connectMode",
      *       //   "createTime": "my_createTime",
      *       //   "currentLocationId": "my_currentLocationId",
+     *       //   "customerManagedKey": "my_customerManagedKey",
      *       //   "displayName": "my_displayName",
      *       //   "host": "my_host",
      *       //   "labels": {},
      *       //   "locationId": "my_locationId",
      *       //   "maintenancePolicy": {},
      *       //   "maintenanceSchedule": {},
+     *       //   "maintenanceVersion": "my_maintenanceVersion",
      *       //   "memorySizeGb": 0,
      *       //   "name": "my_name",
      *       //   "nodes": [],
@@ -2198,6 +2225,7 @@ export namespace redis_v1beta1 {
      *       //   "serverCaCerts": [],
      *       //   "state": "my_state",
      *       //   "statusMessage": "my_statusMessage",
+     *       //   "suspensionReasons": [],
      *       //   "tier": "my_tier",
      *       //   "transitEncryptionMode": "my_transitEncryptionMode"
      *       // }

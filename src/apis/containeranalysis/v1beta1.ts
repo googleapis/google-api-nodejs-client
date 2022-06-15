@@ -1012,7 +1012,54 @@ export namespace containeranalysis_v1beta1 {
     path?: string | null;
   }
   /**
-   * Common Vulnerability Scoring System version 3. For details, see https://www.first.org/cvss/specification-document
+   * Common Vulnerability Scoring System. This message is compatible with CVSS v2 and v3. For CVSS v2 details, see https://www.first.org/cvss/v2/guide CVSS v2 calculator: https://nvd.nist.gov/vuln-metrics/cvss/v2-calculator For CVSS v3 details, see https://www.first.org/cvss/specification-document CVSS v3 calculator: https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator
+   */
+  export interface Schema$CVSS {
+    /**
+     * Defined in CVSS v3, CVSS v2
+     */
+    attackComplexity?: string | null;
+    /**
+     * Base Metrics Represents the intrinsic characteristics of a vulnerability that are constant over time and across user environments. Defined in CVSS v3, CVSS v2
+     */
+    attackVector?: string | null;
+    /**
+     * Defined in CVSS v2
+     */
+    authentication?: string | null;
+    /**
+     * Defined in CVSS v3, CVSS v2
+     */
+    availabilityImpact?: string | null;
+    /**
+     * The base score is a function of the base metric scores.
+     */
+    baseScore?: number | null;
+    /**
+     * Defined in CVSS v3, CVSS v2
+     */
+    confidentialityImpact?: string | null;
+    exploitabilityScore?: number | null;
+    impactScore?: number | null;
+    /**
+     * Defined in CVSS v3, CVSS v2
+     */
+    integrityImpact?: string | null;
+    /**
+     * Defined in CVSS v3
+     */
+    privilegesRequired?: string | null;
+    /**
+     * Defined in CVSS v3
+     */
+    scope?: string | null;
+    /**
+     * Defined in CVSS v3
+     */
+    userInteraction?: string | null;
+  }
+  /**
+   * Deprecated. Common Vulnerability Scoring System version 3. For details, see https://www.first.org/cvss/specification-document
    */
   export interface Schema$CVSSv3 {
     attackComplexity?: string | null;
@@ -1159,6 +1206,19 @@ export namespace containeranalysis_v1beta1 {
     attestation?: Schema$Attestation;
   }
   /**
+   * Digest information.
+   */
+  export interface Schema$Digest {
+    /**
+     * `SHA1`, `SHA512` etc.
+     */
+    algo?: string | null;
+    /**
+     * Value of the digest.
+     */
+    digestBytes?: string | null;
+  }
+  /**
    * Provides information about the analysis status of a discovered resource.
    */
   export interface Schema$Discovered {
@@ -1218,7 +1278,7 @@ export namespace containeranalysis_v1beta1 {
     url?: string | null;
   }
   /**
-   * DocumentNote represents an SPDX Document Creation Infromation section: https://spdx.github.io/spdx-spec/2-document-creation-information/
+   * DocumentNote represents an SPDX Document Creation Information section: https://spdx.github.io/spdx-spec/2-document-creation-information/
    */
   export interface Schema$DocumentNote {
     /**
@@ -1275,6 +1335,18 @@ export namespace containeranalysis_v1beta1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * MUST match https://github.com/secure-systems-lab/dsse/blob/master/envelope.proto. An authenticated message of arbitrary type.
+   */
+  export interface Schema$Envelope {
+    payload?: string | null;
+    payloadType?: string | null;
+    signatures?: Schema$EnvelopeSignature[];
+  }
+  export interface Schema$EnvelopeSignature {
+    keyid?: string | null;
+    sig?: string | null;
+  }
   /**
    * Defines an object for the environment field in in-toto links. The suggested fields are "variables", "filesystem", and "workdir".
    */
@@ -1637,13 +1709,33 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$Installation {
     /**
-     * Required. All of the places within the filesystem versions of this package have been found.
+     * Output only. The CPU architecture for which packages in this distribution channel were built. Architecture will be blank for language packages.
+     */
+    architecture?: string | null;
+    /**
+     * Output only. The cpe_uri in [CPE format](https://cpe.mitre.org/specification/) denoting the package manager version distributing a package. The cpe_uri will be blank for language packages.
+     */
+    cpeUri?: string | null;
+    /**
+     * Licenses that have been declared by the authors of the package.
+     */
+    license?: Schema$License;
+    /**
+     * All of the places within the filesystem versions of this package have been found.
      */
     location?: Schema$Location[];
     /**
-     * Output only. The name of the installed package.
+     * Required. Output only. The name of the installed package.
      */
     name?: string | null;
+    /**
+     * Output only. The type of package; whether native or non native (e.g., ruby gems, node.js packages, etc.).
+     */
+    packageType?: string | null;
+    /**
+     * Output only. The version of the package.
+     */
+    version?: Schema$Version;
   }
   /**
    * This contains the fields corresponding to the definition of a software supply chain step in an in-toto layout. This information goes into a Grafeas note.
@@ -1695,7 +1787,7 @@ export namespace containeranalysis_v1beta1 {
     directive?: string | null;
   }
   /**
-   * License information: https://spdx.github.io/spdx-spec/3-package-information/#315-declared-license
+   * License information.
    */
   export interface Schema$License {
     /**
@@ -1703,7 +1795,7 @@ export namespace containeranalysis_v1beta1 {
      */
     comments?: string | null;
     /**
-     * Expression: https://spdx.github.io/spdx-spec/appendix-IV-SPDX-license-expressions/
+     * Often a single license can be used to represent the licensing terms. Sometimes it is necessary to include a choice of one or more licenses or some combination of license identifiers. Examples: "LGPL-2.1-only OR MIT", "LGPL-2.1-only AND MIT", "GPL-2.0-or-later WITH Bison-exception-2.2".
      */
     expression?: string | null;
   }
@@ -1789,7 +1881,7 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$Location {
     /**
-     * Required. The CPE URI in [CPE format](https://cpe.mitre.org/specification/) denoting the package manager version distributing a package.
+     * Deprecated. The CPE URI in [CPE format](https://cpe.mitre.org/specification/) denoting the package manager version distributing a package.
      */
     cpeUri?: string | null;
     /**
@@ -1797,7 +1889,7 @@ export namespace containeranalysis_v1beta1 {
      */
     path?: string | null;
     /**
-     * The version installed at this location.
+     * Deprecated. The version installed at this location.
      */
     version?: Schema$Version;
   }
@@ -1919,6 +2011,10 @@ export namespace containeranalysis_v1beta1 {
      */
     discovered?: Schema$GrafeasV1beta1DiscoveryDetails;
     /**
+     * https://github.com/secure-systems-lab/dsse
+     */
+    envelope?: Schema$Envelope;
+    /**
      * Describes the installation of a package on the linked resource.
      */
     installation?: Schema$GrafeasV1beta1PackageDetails;
@@ -1972,17 +2068,53 @@ export namespace containeranalysis_v1beta1 {
     vulnerability?: Schema$GrafeasV1beta1VulnerabilityDetails;
   }
   /**
-   * This represents a particular package that is distributed over various channels. E.g., glibc (aka libc6) is distributed by many, at various versions.
+   * Package represents a particular package version.
    */
   export interface Schema$Package {
+    /**
+     * The CPU architecture for which packages in this distribution channel were built. Architecture will be blank for language packages.
+     */
+    architecture?: string | null;
+    /**
+     * The cpe_uri in [CPE format](https://cpe.mitre.org/specification/) denoting the package manager version distributing a package. The cpe_uri will be blank for language packages.
+     */
+    cpeUri?: string | null;
+    /**
+     * The description of this package.
+     */
+    description?: string | null;
+    /**
+     * Hash value, typically a file digest, that allows unique identification a specific package.
+     */
+    digest?: Schema$Digest[];
     /**
      * The various channels by which a package is distributed.
      */
     distribution?: Schema$Distribution[];
     /**
+     * Licenses that have been declared by the authors of the package.
+     */
+    license?: Schema$License;
+    /**
+     * A freeform text denoting the maintainer of this package.
+     */
+    maintainer?: string | null;
+    /**
      * Required. Immutable. The name of the package.
      */
     name?: string | null;
+    /**
+     * The type of package; whether native or non native (e.g., ruby gems, node.js packages, etc.).
+     */
+    packageType?: string | null;
+    /**
+     * The homepage for this package.
+     */
+    url?: string | null;
+    /**
+     * The version of the package.
+     */
+    version?: Schema$Version;
   }
   /**
    * PackageInfoNote represents an SPDX Package Information section: https://spdx.github.io/spdx-spec/3-package-information/
@@ -2136,7 +2268,7 @@ export namespace containeranalysis_v1beta1 {
      */
     contentType?: string | null;
     /**
-     * The cryptographic fingerprint of the key used to generate the signature, as output by, e.g. `gpg --list-keys`. This should be the version 4, full 160-bit fingerprint, expressed as a 40 character hexidecimal string. See https://tools.ietf.org/html/rfc4880#section-12.2 for details. Implementations may choose to acknowledge "LONG", "SHORT", or other abbreviated key IDs, but only the full fingerprint is guaranteed to work. In gpg, the full fingerprint can be retrieved from the `fpr` field returned when calling --list-keys with --with-colons. For example: ``` gpg --with-colons --with-fingerprint --force-v4-certs \ --list-keys attester@example.com tru::1:1513631572:0:3:1:5 pub:...... fpr:::::::::24FF6481B76AC91E66A00AC657A93A81EF3AE6FB: ``` Above, the fingerprint is `24FF6481B76AC91E66A00AC657A93A81EF3AE6FB`.
+     * The cryptographic fingerprint of the key used to generate the signature, as output by, e.g. `gpg --list-keys`. This should be the version 4, full 160-bit fingerprint, expressed as a 40 character hexadecimal string. See https://tools.ietf.org/html/rfc4880#section-12.2 for details. Implementations may choose to acknowledge "LONG", "SHORT", or other abbreviated key IDs, but only the full fingerprint is guaranteed to work. In gpg, the full fingerprint can be retrieved from the `fpr` field returned when calling --list-keys with --with-colons. For example: ``` gpg --with-colons --with-fingerprint --force-v4-certs \ --list-keys attester@example.com tru::1:1513631572:0:3:1:5 pub:...... fpr:::::::::24FF6481B76AC91E66A00AC657A93A81EF3AE6FB: ``` Above, the fingerprint is `24FF6481B76AC91E66A00AC657A93A81EF3AE6FB`.
      */
     pgpKeyId?: string | null;
     /**
@@ -2426,9 +2558,17 @@ export namespace containeranalysis_v1beta1 {
      */
     cvssScore?: number | null;
     /**
-     * The full description of the CVSSv3.
+     * The full description of the CVSS for version 2.
+     */
+    cvssV2?: Schema$CVSS;
+    /**
+     * The full description of the CVSS for version 3.
      */
     cvssV3?: Schema$CVSSv3;
+    /**
+     * A list of CWE for this vulnerability. For details, see: https://cwe.mitre.org/index.html
+     */
+    cwe?: string[] | null;
     /**
      * All information about the package to specifically identify this vulnerability. One entry per (version range and cpe_uri) the package vulnerability has manifested in.
      */
@@ -3136,7 +3276,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/notes/my-note',
      *
      *     // Request body metadata
@@ -3593,7 +3733,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/notes/my-note',
      *
      *     // Request body metadata
@@ -3733,7 +3873,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/notes/my-note',
      *
      *     // Request body metadata
@@ -3897,7 +4037,7 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Notes$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3944,7 +4084,7 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Notes$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3956,7 +4096,7 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Notes$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -4329,6 +4469,7 @@ export namespace containeranalysis_v1beta1 {
      *       //   "deployment": {},
      *       //   "derivedImage": {},
      *       //   "discovered": {},
+     *       //   "envelope": {},
      *       //   "installation": {},
      *       //   "intoto": {},
      *       //   "kind": "my_kind",
@@ -4355,6 +4496,7 @@ export namespace containeranalysis_v1beta1 {
      *   //   "deployment": {},
      *   //   "derivedImage": {},
      *   //   "discovered": {},
+     *   //   "envelope": {},
      *   //   "installation": {},
      *   //   "intoto": {},
      *   //   "kind": "my_kind",
@@ -4628,6 +4770,7 @@ export namespace containeranalysis_v1beta1 {
      *   //   "deployment": {},
      *   //   "derivedImage": {},
      *   //   "discovered": {},
+     *   //   "envelope": {},
      *   //   "installation": {},
      *   //   "intoto": {},
      *   //   "kind": "my_kind",
@@ -4760,7 +4903,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/occurrences/my-occurrence',
      *
      *     // Request body metadata
@@ -5349,6 +5492,7 @@ export namespace containeranalysis_v1beta1 {
      *       //   "deployment": {},
      *       //   "derivedImage": {},
      *       //   "discovered": {},
+     *       //   "envelope": {},
      *       //   "installation": {},
      *       //   "intoto": {},
      *       //   "kind": "my_kind",
@@ -5375,6 +5519,7 @@ export namespace containeranalysis_v1beta1 {
      *   //   "deployment": {},
      *   //   "derivedImage": {},
      *   //   "discovered": {},
+     *   //   "envelope": {},
      *   //   "installation": {},
      *   //   "intoto": {},
      *   //   "kind": "my_kind",
@@ -5507,7 +5652,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/occurrences/my-occurrence',
      *
      *     // Request body metadata
@@ -5647,7 +5792,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/occurrences/my-occurrence',
      *
      *     // Request body metadata
@@ -5807,7 +5952,7 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Occurrences$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -5872,7 +6017,7 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Occurrences$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -5884,7 +6029,7 @@ export namespace containeranalysis_v1beta1 {
   export interface Params$Resource$Projects$Occurrences$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 

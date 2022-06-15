@@ -347,7 +347,7 @@
       }
     }
   },
-  "revision": "20220309",
+  "revision": "20220612",
   "rootUrl": "https://playdeveloperreporting.googleapis.com/",
   "schemas": {
     "GooglePlayDeveloperReportingV1beta1Anomaly": {
@@ -425,6 +425,10 @@
         },
         "stringValue": {
           "description": "Actual value, represented as a string.",
+          "type": "string"
+        },
+        "valueLabel": {
+          "description": "Optional. Human-friendly label for the value, always in English. For example, 'Spain' for the 'ES' country code. Whereas the dimension value is stable, this value label is subject to change. Do not assume that the (value, value_label) relationship is stable. For example, the ISO country code 'MK' changed its name recently to 'North Macedonia'.",
           "type": "string"
         }
       },

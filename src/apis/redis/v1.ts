@@ -260,6 +260,10 @@ export namespace redis_v1 {
      */
     currentLocationId?: string | null;
     /**
+     * Optional. The KMS key reference that the customer provides when trying to create the instance.
+     */
+    customerManagedKey?: string | null;
+    /**
      * An arbitrary and optional user-provided name for the instance.
      */
     displayName?: string | null;
@@ -351,6 +355,10 @@ export namespace redis_v1 {
      * Output only. Additional information about the current status of this instance, if available.
      */
     statusMessage?: string | null;
+    /**
+     * Optional. reasons that causes instance in "SUSPENDED" state.
+     */
+    suspensionReasons?: string[] | null;
     /**
      * Required. The service tier of the instance.
      */
@@ -1018,6 +1026,7 @@ export namespace redis_v1 {
      *       //   "connectMode": "my_connectMode",
      *       //   "createTime": "my_createTime",
      *       //   "currentLocationId": "my_currentLocationId",
+     *       //   "customerManagedKey": "my_customerManagedKey",
      *       //   "displayName": "my_displayName",
      *       //   "host": "my_host",
      *       //   "labels": {},
@@ -1041,6 +1050,7 @@ export namespace redis_v1 {
      *       //   "serverCaCerts": [],
      *       //   "state": "my_state",
      *       //   "statusMessage": "my_statusMessage",
+     *       //   "suspensionReasons": [],
      *       //   "tier": "my_tier",
      *       //   "transitEncryptionMode": "my_transitEncryptionMode"
      *       // }
@@ -1598,6 +1608,7 @@ export namespace redis_v1 {
      *   //   "connectMode": "my_connectMode",
      *   //   "createTime": "my_createTime",
      *   //   "currentLocationId": "my_currentLocationId",
+     *   //   "customerManagedKey": "my_customerManagedKey",
      *   //   "displayName": "my_displayName",
      *   //   "host": "my_host",
      *   //   "labels": {},
@@ -1621,6 +1632,7 @@ export namespace redis_v1 {
      *   //   "serverCaCerts": [],
      *   //   "state": "my_state",
      *   //   "statusMessage": "my_statusMessage",
+     *   //   "suspensionReasons": [],
      *   //   "tier": "my_tier",
      *   //   "transitEncryptionMode": "my_transitEncryptionMode"
      *   // }
@@ -2169,6 +2181,7 @@ export namespace redis_v1 {
      *       //   "connectMode": "my_connectMode",
      *       //   "createTime": "my_createTime",
      *       //   "currentLocationId": "my_currentLocationId",
+     *       //   "customerManagedKey": "my_customerManagedKey",
      *       //   "displayName": "my_displayName",
      *       //   "host": "my_host",
      *       //   "labels": {},
@@ -2192,6 +2205,7 @@ export namespace redis_v1 {
      *       //   "serverCaCerts": [],
      *       //   "state": "my_state",
      *       //   "statusMessage": "my_statusMessage",
+     *       //   "suspensionReasons": [],
      *       //   "tier": "my_tier",
      *       //   "transitEncryptionMode": "my_transitEncryptionMode"
      *       // }

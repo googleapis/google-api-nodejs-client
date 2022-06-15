@@ -1029,7 +1029,7 @@
       }
     }
   },
-  "revision": "20220429",
+  "revision": "20220602",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata": {
@@ -3054,6 +3054,11 @@
       "description": "Request message for the process document method.",
       "id": "GoogleCloudDocumentaiV1ProcessRequest",
       "properties": {
+        "fieldMask": {
+          "description": "Specifies which fields to include in ProcessResponse's document.",
+          "format": "google-fieldmask",
+          "type": "string"
+        },
         "inlineDocument": {
           "$ref": "GoogleCloudDocumentaiV1Document",
           "description": "An inline document proto."
@@ -3373,7 +3378,7 @@
       "id": "GoogleCloudDocumentaiV1SetDefaultProcessorVersionRequest",
       "properties": {
         "defaultProcessorVersion": {
-          "description": "Required. The resource name of child ProcessorVersion to use as default.",
+          "description": "Required. The resource name of child ProcessorVersion to use as default. Format: `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{version}`",
           "type": "string"
         }
       },

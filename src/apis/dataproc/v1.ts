@@ -139,19 +139,6 @@ export namespace dataproc_v1 {
     acceleratorTypeUri?: string | null;
   }
   /**
-   * Configuration for using injectable credentials or service account
-   */
-  export interface Schema$AuthenticationConfig {
-    /**
-     * Authentication type for session execution.
-     */
-    authenticationType?: string | null;
-    /**
-     * Configuration for using end user authentication
-     */
-    injectableCredentialsConfig?: Schema$InjectableCredentialsConfig;
-  }
-  /**
    * Autoscaling Policy config associated with the cluster.
    */
   export interface Schema$AutoscalingConfig {
@@ -377,7 +364,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$Cluster {
     /**
-     * Required. The cluster name. Cluster names within a project must be unique. Names of deleted clusters can be reused.
+     * Required. The cluster name, which must be unique within a project. The name must start with a lowercase letter, and can contain up to 51 lowercase letters, numbers, and hyphens. It cannot end with a hyphen. The name of a deleted cluster can be reused.
      */
     clusterName?: string | null;
     /**
@@ -842,6 +829,10 @@ export namespace dataproc_v1 {
      */
     accelerators?: Schema$GkeNodePoolAcceleratorConfig[];
     /**
+     * Optional. The Customer Managed Encryption Key (CMEK) (https://cloud.google.com/compute/docs/disks/customer-managed-encryption) used to encrypt the boot disk attached to each node in the node pool. Specify the key using the following format: projects/KEY_PROJECT_ID /locations/LOCATION/keyRings/RING_NAME/cryptoKeys/KEY_NAME.
+     */
+    bootDiskKmsKey?: string | null;
+    /**
      * Optional. The number of local SSD disks to attach to the node, which is limited by the maximum number of disks allowable per zone (see Adding Local SSDs (https://cloud.google.com/compute/docs/disks/local-ssd)).
      */
     localSsdCount?: number | null;
@@ -1001,10 +992,6 @@ export namespace dataproc_v1 {
      */
     userServiceAccountMapping?: {[key: string]: string} | null;
   }
-  /**
-   * Specific injectable credentials authentication parameters
-   */
-  export interface Schema$InjectableCredentialsConfig {}
   /**
    * A request to inject credentials into a cluster.
    */
@@ -1579,6 +1566,23 @@ export namespace dataproc_v1 {
     executionTimeout?: string | null;
   }
   /**
+   * indicating a list of workers of same type
+   */
+  export interface Schema$NodePool {
+    /**
+     * Required. A unique id of the node pool. Primary and Secondary workers can be specified using special reserved ids PRIMARY_WORKER_POOL and SECONDARY_WORKER_POOL respectively. Aux node pools can be referenced using corresponding pool id.
+     */
+    id?: string | null;
+    /**
+     * Name of instances to be repaired. These instances must belong to specified node pool.
+     */
+    instanceNames?: string[] | null;
+    /**
+     * Required. Repair action to take on specified resources of the node pool.
+     */
+    repairAction?: string | null;
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -1858,6 +1862,10 @@ export namespace dataproc_v1 {
      */
     clusterUuid?: string | null;
     /**
+     * Optional. Node pools and corresponding repair action to be taken. All node pools should be unique in this request. i.e. Multiple entries for the same node pool id are not allowed.
+     */
+    nodePools?: Schema$NodePool[];
+    /**
      * Optional. A unique ID used to identify the request. If the server receives two RepairClusterRequests with the same ID, the second request is ignored, and the first google.longrunning.Operation created and stored in the backend is returned.Recommendation: Set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      */
     requestId?: string | null;
@@ -1891,10 +1899,6 @@ export namespace dataproc_v1 {
      * Optional. A mapping of property names to values, which are used to configure workload execution.
      */
     properties?: {[key: string]: string} | null;
-    /**
-     * Optional. Authentication configuration for the session execution.
-     */
-    sessionAuthenticationConfig?: Schema$AuthenticationConfig;
     /**
      * Optional. Version of the batch runtime.
      */
@@ -2987,7 +2991,7 @@ export namespace dataproc_v1 {
      *   // Do the magic
      *   const res =
      *     await dataproc.projects.locations.autoscalingPolicies.getIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/autoscalingPolicies/my-autoscalingPolicie',
      *
@@ -3273,7 +3277,7 @@ export namespace dataproc_v1 {
      *   // Do the magic
      *   const res =
      *     await dataproc.projects.locations.autoscalingPolicies.setIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/autoscalingPolicies/my-autoscalingPolicie',
      *
@@ -3415,7 +3419,7 @@ export namespace dataproc_v1 {
      *   // Do the magic
      *   const res =
      *     await dataproc.projects.locations.autoscalingPolicies.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/autoscalingPolicies/my-autoscalingPolicie',
      *
@@ -3712,7 +3716,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3739,7 +3743,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3751,7 +3755,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -4847,7 +4851,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.locations.workflowTemplates.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/locations/my-location/workflowTemplates/my-workflowTemplate',
      *
@@ -5429,7 +5433,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.locations.workflowTemplates.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/locations/my-location/workflowTemplates/my-workflowTemplate',
      *
@@ -5571,7 +5575,7 @@ export namespace dataproc_v1 {
      *   // Do the magic
      *   const res =
      *     await dataproc.projects.locations.workflowTemplates.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/workflowTemplates/my-workflowTemplate',
      *
@@ -5881,7 +5885,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -5936,7 +5940,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -5948,7 +5952,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -6433,7 +6437,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.autoscalingPolicies.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/regions/my-region/autoscalingPolicies/my-autoscalingPolicie',
      *
@@ -6718,7 +6722,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.autoscalingPolicies.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/regions/my-region/autoscalingPolicies/my-autoscalingPolicie',
      *
@@ -6860,7 +6864,7 @@ export namespace dataproc_v1 {
      *   // Do the magic
      *   const res =
      *     await dataproc.projects.regions.autoscalingPolicies.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/regions/my-region/autoscalingPolicies/my-autoscalingPolicie',
      *
@@ -7157,7 +7161,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -7184,7 +7188,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -7196,7 +7200,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -7830,7 +7834,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.clusters.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/regions/my-region/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -8428,6 +8432,7 @@ export namespace dataproc_v1 {
      *       // request body parameters
      *       // {
      *       //   "clusterUuid": "my_clusterUuid",
+     *       //   "nodePools": [],
      *       //   "requestId": "my_requestId"
      *       // }
      *     },
@@ -8562,7 +8567,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.clusters.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/regions/my-region/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -8993,7 +8998,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.clusters.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/regions/my-region/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -9197,7 +9202,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Clusters$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -9304,7 +9309,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Clusters$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -9356,7 +9361,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Clusters$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -9836,7 +9841,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.jobs.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/regions/my-region/jobs/my-job',
      *
      *     // Request body metadata
@@ -10294,7 +10299,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.jobs.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/regions/my-region/jobs/my-job',
      *
      *     // Request body metadata
@@ -10734,7 +10739,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.jobs.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/regions/my-region/jobs/my-job',
      *
      *     // Request body metadata
@@ -10905,7 +10910,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Jobs$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -10972,7 +10977,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Jobs$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -11016,7 +11021,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Jobs$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -11437,7 +11442,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.operations.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/regions/my-region/operations/my-operation',
      *
      *     // Request body metadata
@@ -11714,7 +11719,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.operations.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/regions/my-region/operations/my-operation',
      *
      *     // Request body metadata
@@ -11853,7 +11858,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.operations.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/regions/my-region/operations/my-operation',
      *
      *     // Request body metadata
@@ -11996,7 +12001,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Operations$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -12027,7 +12032,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Operations$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -12039,7 +12044,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Operations$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -12502,7 +12507,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.workflowTemplates.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/regions/my-region/workflowTemplates/my-workflowTemplate',
      *
@@ -13083,7 +13088,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.workflowTemplates.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/regions/my-region/workflowTemplates/my-workflowTemplate',
      *
@@ -13225,7 +13230,7 @@ export namespace dataproc_v1 {
      *   // Do the magic
      *   const res =
      *     await dataproc.projects.regions.workflowTemplates.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/regions/my-region/workflowTemplates/my-workflowTemplate',
      *
@@ -13535,7 +13540,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -13590,7 +13595,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -13602,7 +13607,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 

@@ -752,7 +752,7 @@ export namespace jobs_v3 {
      */
     commuteFilter?: Schema$CommuteFilter;
     /**
-     * Optional. This filter specifies the company Company.display_name of the jobs to search against. The company name must match the value exactly. Alternatively, if the value being searched for is wrapped in `SUBSTRING_MATCH([value])`, the company name must contain a case insensitive substring match of the value. Using this function may increase latency. Sample Value: `SUBSTRING_MATCH(google)` If a value isn't specified, jobs within the search results are associated with any company. If multiple values are specified, jobs within the search results may be associated with any of the specified companies. At most 20 company display name filters are allowed.
+     * Optional. This filter specifies the company Company.display_name of the jobs to search against. The company name must match the value exactly. Alternatively, the value being searched for can be wrapped in different match operators. `SUBSTRING_MATCH([value])` The company name must contain a case insensitive substring match of the value. Using this function may increase latency. Sample Value: `SUBSTRING_MATCH(google)` `MULTI_WORD_TOKEN_MATCH([value])` The value will be treated as a multi word token and the company name must contain a case insensitive match of the value. Using this function may increase latency. Sample Value: `MULTI_WORD_TOKEN_MATCH(google)` If a value isn't specified, jobs within the search results are associated with any company. If multiple values are specified, jobs within the search results may be associated with any of the specified companies. At most 20 company display name filters are allowed.
      */
     companyDisplayNames?: string[] | null;
     /**
@@ -945,7 +945,7 @@ export namespace jobs_v3 {
     units?: string | null;
   }
   /**
-   * Next ID: 15
+   * Next ID: 16
    */
   export interface Schema$NamespacedDebugInput {
     /**
@@ -1004,6 +1004,10 @@ export namespace jobs_v3 {
      * Rollouts to force in a particular experiment state. Map from rollout name to rollout value.
      */
     forcedRollouts?: {[key: string]: boolean} | null;
+    /**
+     * If set to ALL_OFF, organic selection will be disabled; if set to ALL_ON, organic selection will be disabled, and only select launch experiments will receive traffic. See go/mendel-aoao-runtime-design.
+     */
+    testingMode?: string | null;
   }
   /**
    * Input only. Use this field to specify bucketing option for the histogram search response.

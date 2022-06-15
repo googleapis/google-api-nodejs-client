@@ -809,6 +809,7 @@ export namespace drive_v2 {
       canReadRevisions?: boolean;
       canRename?: boolean;
       canRenameDrive?: boolean;
+      canResetDriveRestrictions?: boolean;
       canShare?: boolean;
       canTrashChildren?: boolean;
     } | null;
@@ -1689,6 +1690,7 @@ export namespace drive_v2 {
       canRemoveChildren?: boolean;
       canRename?: boolean;
       canRenameTeamDrive?: boolean;
+      canResetTeamDriveRestrictions?: boolean;
       canShare?: boolean;
       canTrashChildren?: boolean;
     } | null;

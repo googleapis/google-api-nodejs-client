@@ -309,7 +309,7 @@
                       "type": "integer"
                     },
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/functions/[^/]+$",
                       "required": true,
@@ -414,7 +414,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/functions/[^/]+$",
                       "required": true,
@@ -442,7 +442,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/functions/[^/]+$",
                       "required": true,
@@ -571,7 +571,7 @@
       }
     }
   },
-  "revision": "20220428",
+  "revision": "20220602",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1532,7 +1532,7 @@
           "type": "string"
         },
         "projectId": {
-          "description": "Project identifier (preferably project number but can also be the project ID) of the project that contains the secret. If not set, it will be populated with the function's project assuming that the secret exists in the same project as of the function.",
+          "description": "Project identifier (preferably project number but can also be the project ID) of the project that contains the secret. If not set, it is assumed that the secret is in the same project as the function.",
           "type": "string"
         },
         "secret": {
@@ -1542,6 +1542,47 @@
         "version": {
           "description": "Version of the secret (version number or the string 'latest'). It is recommended to use a numeric version for secret environment variables as any updates to the secret value is not reflected until new instances start.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SecretVersion": {
+      "description": "Configuration for a single version.",
+      "id": "SecretVersion",
+      "properties": {
+        "path": {
+          "description": "Relative path of the file under the mount path where the secret value for this version will be fetched and made available. For example, setting the mount_path as '/etc/secrets' and path as `secret_foo` would mount the secret value file at `/etc/secrets/secret_foo`.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of the secret (version number or the string 'latest'). It is preferable to use `latest` version with secret volumes as secret value changes are reflected immediately.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SecretVolume": {
+      "description": "Configuration for a secret volume. It has the information necessary to fetch the secret value from secret manager and make it available as files mounted at the requested paths within the application container.",
+      "id": "SecretVolume",
+      "properties": {
+        "mountPath": {
+          "description": "The path within the container to mount the secret volume. For example, setting the mount_path as `/etc/secrets` would mount the secret value files under the `/etc/secrets` directory. This directory will also be completely shadowed and unavailable to mount any other secrets. Recommended mount path: /etc/secrets",
+          "type": "string"
+        },
+        "projectId": {
+          "description": "Project identifier (preferably project number but can also be the project ID) of the project that contains the secret. If not set, it is assumed that the secret is in the same project as the function.",
+          "type": "string"
+        },
+        "secret": {
+          "description": "Name of the secret in secret manager (not the full resource name).",
+          "type": "string"
+        },
+        "versions": {
+          "description": "List of secret versions to mount for this secret. If empty, the `latest` version of the secret will be made available in a file named after the secret under the mount point.",
+          "items": {
+            "$ref": "SecretVersion"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1600,6 +1641,13 @@
           "description": "Secret environment variables configuration.",
           "items": {
             "$ref": "SecretEnvVar"
+          },
+          "type": "array"
+        },
+        "secretVolumes": {
+          "description": "Secret volumes configuration.",
+          "items": {
+            "$ref": "SecretVolume"
           },
           "type": "array"
         },

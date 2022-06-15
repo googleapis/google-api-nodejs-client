@@ -178,7 +178,7 @@ export namespace iap_v1 {
      */
     cookieDomain?: string | null;
     /**
-     * Settings to configure IAP's behavior for a CSM mesh.
+     * Settings to configure IAP's behavior for a service mesh.
      */
     csmSettings?: Schema$CsmSettings;
   }
@@ -230,7 +230,7 @@ export namespace iap_v1 {
     allowHttpOptions?: boolean | null;
   }
   /**
-   * Configuration for RCTokens generated for CSM workloads protected by IAP. RCTokens are IAP generated JWTs that can be verified at the application. The RCToken is primarily used for ISTIO deployments, and can be scoped to a single mesh by configuring the audience field accordingly
+   * Configuration for RCTokens generated for service mesh workloads protected by IAP. RCTokens are IAP generated JWTs that can be verified at the application. The RCToken is primarily used for service mesh deployments, and can be scoped to a single mesh by configuring the audience field accordingly
    */
   export interface Schema$CsmSettings {
     /**
@@ -436,7 +436,7 @@ export namespace iap_v1 {
      */
     maxAge?: string | null;
     /**
-     * Reauth method required by the policy.
+     * Reauth method requested.
      */
     method?: string | null;
     /**
@@ -506,7 +506,7 @@ export namespace iap_v1 {
      */
     fqdns?: string[] | null;
     /**
-     * Required. Immutable. Identifier for the TunnelDestGroup. Must be unique within the project.
+     * Required. Immutable. Identifier for the TunnelDestGroup. Must be unique within the project and contain only lower case letters (a-z) and dashes (-).
      */
     name?: string | null;
   }
@@ -1776,7 +1776,7 @@ export namespace iap_v1 {
      *   const res = await iap.projects.iap_tunnel.locations.destGroups.create({
      *     // Required. Google Cloud Project ID and location. In the following format: `projects/{project_number/id\}/iap_tunnel/locations/{location\}`.
      *     parent: 'projects/my-project/iap_tunnel/locations/my-location',
-     *     // Required. The ID to use for the TunnelDestGroup, which becomes the final component of the resource name. This value must be 4-63 characters, and valid characters are `a-z-`.
+     *     // Required. The ID to use for the TunnelDestGroup, which becomes the final component of the resource name. This value must be 4-63 characters, and valid characters are `[a-z]-`.
      *     tunnelDestGroupId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2316,7 +2316,7 @@ export namespace iap_v1 {
      *
      *   // Do the magic
      *   const res = await iap.projects.iap_tunnel.locations.destGroups.patch({
-     *     // Required. Immutable. Identifier for the TunnelDestGroup. Must be unique within the project.
+     *     // Required. Immutable. Identifier for the TunnelDestGroup. Must be unique within the project and contain only lower case letters (a-z) and dashes (-).
      *     name: 'projects/my-project/iap_tunnel/locations/my-location/destGroups/my-destGroup',
      *     // A field mask that specifies which IAP settings to update. If omitted, then all of the settings are updated. See https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *     updateMask: 'placeholder-value',
@@ -2438,7 +2438,7 @@ export namespace iap_v1 {
      */
     parent?: string;
     /**
-     * Required. The ID to use for the TunnelDestGroup, which becomes the final component of the resource name. This value must be 4-63 characters, and valid characters are `a-z-`.
+     * Required. The ID to use for the TunnelDestGroup, which becomes the final component of the resource name. This value must be 4-63 characters, and valid characters are `[a-z]-`.
      */
     tunnelDestGroupId?: string;
 
@@ -2479,7 +2479,7 @@ export namespace iap_v1 {
   export interface Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Patch
     extends StandardParameters {
     /**
-     * Required. Immutable. Identifier for the TunnelDestGroup. Must be unique within the project.
+     * Required. Immutable. Identifier for the TunnelDestGroup. Must be unique within the project and contain only lower case letters (a-z) and dashes (-).
      */
     name?: string;
     /**
@@ -2526,7 +2526,7 @@ export namespace iap_v1 {
      *
      *   // Do the magic
      *   const res = await iap.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: '.*',
      *
      *     // Request body metadata
@@ -2795,7 +2795,7 @@ export namespace iap_v1 {
      *
      *   // Do the magic
      *   const res = await iap.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: '.*',
      *
      *     // Request body metadata
@@ -2933,7 +2933,7 @@ export namespace iap_v1 {
      *
      *   // Do the magic
      *   const res = await iap.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: '.*',
      *
      *     // Request body metadata
@@ -3196,7 +3196,7 @@ export namespace iap_v1 {
 
   export interface Params$Resource$V1$Getiampolicy extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3214,7 +3214,7 @@ export namespace iap_v1 {
   }
   export interface Params$Resource$V1$Setiampolicy extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3226,7 +3226,7 @@ export namespace iap_v1 {
   export interface Params$Resource$V1$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 

@@ -244,6 +244,23 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * Contains compliance information about a security standard indicating unmet recommendations.
+   */
+  export interface Schema$Compliance {
+    /**
+     * Policies within the standard/benchmark e.g. A.12.4.1
+     */
+    ids?: string[] | null;
+    /**
+     * Refers to industry wide standards or benchmarks e.g. "cis", "pci", "owasp", etc.
+     */
+    standard?: string | null;
+    /**
+     * Version of the standard/benchmark e.g. 1.1
+     */
+    version?: string | null;
+  }
+  /**
    * Contains information about the IP connection associated with the finding.
    */
   export interface Schema$Connection {
@@ -267,6 +284,24 @@ export namespace securitycenter_v1beta1 {
      * Source port.
      */
     sourcePort?: number | null;
+  }
+  /**
+   * Representa a single contact's email address
+   */
+  export interface Schema$Contact {
+    /**
+     * An email address e.g. "person123@company.com"
+     */
+    email?: string | null;
+  }
+  /**
+   * The details pertaining to specific contacts
+   */
+  export interface Schema$ContactDetails {
+    /**
+     * A list of contacts
+     */
+    contacts?: Schema$Contact[];
   }
   /**
    * CVE stands for Common Vulnerabilities and Exposures. More information: https://cve.mitre.org
@@ -331,9 +366,61 @@ export namespace securitycenter_v1beta1 {
     userInteraction?: string | null;
   }
   /**
+   * Memory hash detection contributing to the binary family match.
+   */
+  export interface Schema$Detection {
+    /**
+     * The name of the binary associated with the memory hash signature detection.
+     */
+    binary?: string | null;
+    /**
+     * The percentage of memory page hashes in the signature that were matched.
+     */
+    percentPagesMatched?: number | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * EnvironmentVariable is a name-value pair to store environment variables for Process.
+   */
+  export interface Schema$EnvironmentVariable {
+    /**
+     * Environment variable name as a JSON encoded string.
+     */
+    name?: string | null;
+    /**
+     * Environment variable value as a JSON encoded string.
+     */
+    val?: string | null;
+  }
+  /**
+   * Resource that has been exfiltrated or exfiltrated_to.
+   */
+  export interface Schema$ExfilResource {
+    /**
+     * Subcomponents of the asset that is exfiltrated - these could be URIs used during exfiltration, table names, databases, filenames, etc. For example, multiple tables may be exfiltrated from the same CloudSQL instance, or multiple files from the same Cloud Storage bucket.
+     */
+    components?: string[] | null;
+    /**
+     * Resource's URI (https://google.aip.dev/122#full-resource-names)
+     */
+    name?: string | null;
+  }
+  /**
+   * Exfiltration represents a data exfiltration attempt of one or more sources to one or more targets. Sources represent the source of data that is exfiltrated, and Targets represents the destination the data was copied to.
+   */
+  export interface Schema$Exfiltration {
+    /**
+     * If there are multiple sources, then the data is considered "joined" between them. For instance, BigQuery can join multiple tables, and each table would be considered a source.
+     */
+    sources?: Schema$ExfilResource[];
+    /**
+     * If there are multiple targets, each target would get a complete copy of the "joined" source data.
+     */
+    targets?: Schema$ExfilResource[];
+  }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
@@ -356,6 +443,35 @@ export namespace securitycenter_v1beta1 {
     title?: string | null;
   }
   /**
+   * File information about the related binary/library used by an executable, or the script used by a script interpreter
+   */
+  export interface Schema$File {
+    /**
+     * Prefix of the file contents as a JSON encoded string. (Currently only populated for Malicious Script Executed findings.)
+     */
+    contents?: string | null;
+    /**
+     * The length in bytes of the file prefix that was hashed. If hashed_size == size, any hashes reported represent the entire file.
+     */
+    hashedSize?: string | null;
+    /**
+     * True when the hash covers only a prefix of the file.
+     */
+    partiallyHashed?: boolean | null;
+    /**
+     * Absolute path of the file as a JSON encoded string.
+     */
+    path?: string | null;
+    /**
+     * SHA256 hash of the first hashed_size bytes of the file encoded as a hex string. If hashed_size == size, sha256 represents the SHA256 hash of the entire file.
+     */
+    sha256?: string | null;
+    /**
+     * Size of the file in bytes.
+     */
+    size?: string | null;
+  }
+  /**
    * Security Command Center finding. A finding is a record of assessment data like security, risk, health, or privacy, that is ingested into Security Command Center for presentation, notification, analysis, policy testing, and enforcement. For example, a cross-site scripting (XSS) vulnerability in an App Engine application is a finding.
    */
   export interface Schema$Finding {
@@ -372,9 +488,17 @@ export namespace securitycenter_v1beta1 {
      */
     category?: string | null;
     /**
+     * Contains compliance information for security standards associated to the finding.
+     */
+    compliances?: Schema$Compliance[];
+    /**
      * Contains information about the IP connection associated with the finding.
      */
     connections?: Schema$Connection[];
+    /**
+     * Output only. Map containing the point of contacts for the given finding. The key represents the type of contact, while the value contains a list of all the contacts that pertain. Please refer to: https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories { “security”: {contact: {email: “person1@company.com”\} contact: {email: “person2@company.com”\} \}
+     */
+    contacts?: {[key: string]: Schema$ContactDetails} | null;
     /**
      * The time at which the finding was created in Security Command Center.
      */
@@ -387,6 +511,10 @@ export namespace securitycenter_v1beta1 {
      * The time the finding was first detected. If an existing finding is updated, then this is the time the update occurred. For example, if the finding represents an open firewall, this property captures the time the detector believes the firewall became open. The accuracy is determined by the detector. If the finding is later resolved, then this time reflects when the finding was resolved. This must not be set to a value greater than the current timestamp.
      */
     eventTime?: string | null;
+    /**
+     * Represents exfiltration associated with the Finding.
+     */
+    exfiltration?: Schema$Exfiltration;
     /**
      * Output only. Third party SIEM/SOAR fields within SCC, contains external system information and external system finding fields.
      */
@@ -437,6 +565,10 @@ export namespace securitycenter_v1beta1 {
      * The relative resource name of the source the finding belongs to. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name This field is immutable after creation time. For example: "organizations/{organization_id\}/sources/{source_id\}"
      */
     parent?: string | null;
+    /**
+     * Represents operating system processes associated with the Finding.
+     */
+    processes?: Schema$Process[];
     /**
      * For findings on Google Cloud resources, the full resource name of the Google Cloud resource this finding is for. See: https://cloud.google.com/apis/design/resource_names#full_resource_name When the finding is for a non-Google Cloud resource, the resourceName can be a customer or partner defined string. This field is immutable after creation time.
      */
@@ -1011,6 +1143,10 @@ export namespace securitycenter_v1beta1 {
      * List of ip addresses associated to the Finding.
      */
     ipAddresses?: string[] | null;
+    /**
+     * The list of matched signatures indicating that the given process is present in the environment.
+     */
+    signatures?: Schema$ProcessSignature[];
   }
   /**
    * Response message for listing assets.
@@ -1092,6 +1228,19 @@ export namespace securitycenter_v1beta1 {
      * Sources belonging to the requested parent.
      */
     sources?: Schema$Source[];
+  }
+  /**
+   * A signature corresponding to memory page hashes.
+   */
+  export interface Schema$MemoryHashSignature {
+    /**
+     * The binary family.
+     */
+    binaryFamily?: string | null;
+    /**
+     * The list of memory hash detections contributing to the binary family match.
+     */
+    detections?: Schema$Detection[];
   }
   /**
    * MITRE ATT&CK tactics and techniques related to this finding. See: https://attack.mitre.org
@@ -1180,6 +1329,64 @@ export namespace securitycenter_v1beta1 {
      * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
+  }
+  /**
+   * Represents an operating system process.
+   */
+  export interface Schema$Process {
+    /**
+     * Process arguments as JSON encoded strings.
+     */
+    args?: string[] | null;
+    /**
+     * True if `args` is incomplete.
+     */
+    argumentsTruncated?: boolean | null;
+    /**
+     * File information for the process executable.
+     */
+    binary?: Schema$File;
+    /**
+     * Process environment variables.
+     */
+    envVariables?: Schema$EnvironmentVariable[];
+    /**
+     * True if `env_variables` is incomplete.
+     */
+    envVariablesTruncated?: boolean | null;
+    /**
+     * File information for libraries loaded by the process.
+     */
+    libraries?: Schema$File[];
+    /**
+     * The process name visible in utilities like top and ps; it can be accessed via /proc/[pid]/comm and changed with prctl(PR_SET_NAME).
+     */
+    name?: string | null;
+    /**
+     * The parent process id.
+     */
+    parentPid?: string | null;
+    /**
+     * The process id.
+     */
+    pid?: string | null;
+    /**
+     * When the process represents the invocation of a script, `binary` provides information about the interpreter while `script` provides information about the script file provided to the interpreter.
+     */
+    script?: Schema$File;
+  }
+  /**
+   * Indicates what signature matched this process.
+   */
+  export interface Schema$ProcessSignature {
+    /**
+     * Signature indicating that a binary family was matched.
+     */
+    memoryHashSignature?: Schema$MemoryHashSignature;
+    /**
+     * Signature indicating that a YARA rule was matched.
+     */
+    yaraRuleSignature?: Schema$YaraRuleSignature;
   }
   /**
    * Additional Links
@@ -1326,6 +1533,15 @@ export namespace securitycenter_v1beta1 {
      * CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)
      */
     cve?: Schema$Cve;
+  }
+  /**
+   * A signature corresponding to a YARA rule.
+   */
+  export interface Schema$YaraRuleSignature {
+    /**
+     * The name of the YARA rule.
+     */
+    yaraRule?: string | null;
   }
 
   export class Resource$Organizations {
@@ -3212,7 +3428,7 @@ export namespace securitycenter_v1beta1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'organizations/my-organization/sources/my-source',
      *
      *     // Request body metadata
@@ -3632,7 +3848,7 @@ export namespace securitycenter_v1beta1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'organizations/my-organization/sources/my-source',
      *
      *     // Request body metadata
@@ -3774,7 +3990,7 @@ export namespace securitycenter_v1beta1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'organizations/my-organization/sources/my-source',
      *
      *     // Request body metadata
@@ -3915,7 +4131,7 @@ export namespace securitycenter_v1beta1 {
   export interface Params$Resource$Organizations$Sources$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3958,7 +4174,7 @@ export namespace securitycenter_v1beta1 {
   export interface Params$Resource$Organizations$Sources$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3970,7 +4186,7 @@ export namespace securitycenter_v1beta1 {
   export interface Params$Resource$Organizations$Sources$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 

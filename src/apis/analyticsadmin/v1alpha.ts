@@ -214,6 +214,27 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaArchiveCustomMetricRequest {}
   /**
+   * The attribution settings used for a given property. This is a singleton resource.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaAttributionSettings {
+    /**
+     * Required. The lookback window configuration for acquisition conversion events. The default window size is 30 days.
+     */
+    acquisitionConversionEventLookbackWindow?: string | null;
+    /**
+     * Output only. Resource name of this attribution settings resource. Format: properties/{property_id\}/attributionSettings Example: "properties/1000/attributionSettings"
+     */
+    name?: string | null;
+    /**
+     * Required. The lookback window for all other, non-acquisition conversion events. The default window size is 90 days.
+     */
+    otherConversionEventLookbackWindow?: string | null;
+    /**
+     * Required. The reporting attribution model used to calculate conversion credit in this property's reports. Changing the attribution model will apply to both historical and future data. These changes will be reflected in reports with conversion and revenue data. User and session data will be unaffected.
+     */
+    reportingAttributionModel?: string | null;
+  }
+  /**
    * Read-only resource used to summarize a principal's effective roles.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaAuditUserLink {
@@ -351,6 +372,10 @@ export namespace analyticsadmin_v1alpha {
      * A snapshot of an Account resource in change history.
      */
     account?: Schema$GoogleAnalyticsAdminV1alphaAccount;
+    /**
+     * A snapshot of AttributionSettings resource in change history.
+     */
+    attributionSettings?: Schema$GoogleAnalyticsAdminV1alphaAttributionSettings;
     /**
      * A snapshot of a ConversionEvent resource in change history.
      */
@@ -4668,6 +4693,148 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
+     * Lookup for a AttributionSettings singleton.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.getAttributionSettings({
+     *     // Required. The name of the attribution settings to retrieve. Format: properties/{property\}/attributionSettings
+     *     name: 'properties/my-propertie/attributionSettings',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquisitionConversionEventLookbackWindow": "my_acquisitionConversionEventLookbackWindow",
+     *   //   "name": "my_name",
+     *   //   "otherConversionEventLookbackWindow": "my_otherConversionEventLookbackWindow",
+     *   //   "reportingAttributionModel": "my_reportingAttributionModel"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getAttributionSettings(
+      params: Params$Resource$Properties$Getattributionsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAttributionSettings(
+      params?: Params$Resource$Properties$Getattributionsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAttributionSettings>;
+    getAttributionSettings(
+      params: Params$Resource$Properties$Getattributionsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getAttributionSettings(
+      params: Params$Resource$Properties$Getattributionsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAttributionSettings>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAttributionSettings>
+    ): void;
+    getAttributionSettings(
+      params: Params$Resource$Properties$Getattributionsettings,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAttributionSettings>
+    ): void;
+    getAttributionSettings(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAttributionSettings>
+    ): void;
+    getAttributionSettings(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Getattributionsettings
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAttributionSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAttributionSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAttributionSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAttributionSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Getattributionsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Getattributionsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAttributionSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAttributionSettings>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Returns the singleton data retention settings for this property.
      * @example
      * ```js
@@ -5267,6 +5434,158 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
+     * Updates attribution settings on a property.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.updateAttributionSettings({
+     *     // Output only. Resource name of this attribution settings resource. Format: properties/{property_id\}/attributionSettings Example: "properties/1000/attributionSettings"
+     *     name: 'properties/my-propertie/attributionSettings',
+     *     // Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "acquisitionConversionEventLookbackWindow": "my_acquisitionConversionEventLookbackWindow",
+     *       //   "name": "my_name",
+     *       //   "otherConversionEventLookbackWindow": "my_otherConversionEventLookbackWindow",
+     *       //   "reportingAttributionModel": "my_reportingAttributionModel"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquisitionConversionEventLookbackWindow": "my_acquisitionConversionEventLookbackWindow",
+     *   //   "name": "my_name",
+     *   //   "otherConversionEventLookbackWindow": "my_otherConversionEventLookbackWindow",
+     *   //   "reportingAttributionModel": "my_reportingAttributionModel"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateAttributionSettings(
+      params: Params$Resource$Properties$Updateattributionsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateAttributionSettings(
+      params?: Params$Resource$Properties$Updateattributionsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAttributionSettings>;
+    updateAttributionSettings(
+      params: Params$Resource$Properties$Updateattributionsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateAttributionSettings(
+      params: Params$Resource$Properties$Updateattributionsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAttributionSettings>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAttributionSettings>
+    ): void;
+    updateAttributionSettings(
+      params: Params$Resource$Properties$Updateattributionsettings,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAttributionSettings>
+    ): void;
+    updateAttributionSettings(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAttributionSettings>
+    ): void;
+    updateAttributionSettings(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Updateattributionsettings
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAttributionSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAttributionSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAttributionSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAttributionSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Updateattributionsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Updateattributionsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAttributionSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAttributionSettings>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates the singleton data retention settings for this property.
      * @example
      * ```js
@@ -5599,6 +5918,13 @@ export namespace analyticsadmin_v1alpha {
      */
     name?: string;
   }
+  export interface Params$Resource$Properties$Getattributionsettings
+    extends StandardParameters {
+    /**
+     * Required. The name of the attribution settings to retrieve. Format: properties/{property\}/attributionSettings
+     */
+    name?: string;
+  }
   export interface Params$Resource$Properties$Getdataretentionsettings
     extends StandardParameters {
     /**
@@ -5645,6 +5971,22 @@ export namespace analyticsadmin_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaProperty;
+  }
+  export interface Params$Resource$Properties$Updateattributionsettings
+    extends StandardParameters {
+    /**
+     * Output only. Resource name of this attribution settings resource. Format: properties/{property_id\}/attributionSettings Example: "properties/1000/attributionSettings"
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaAttributionSettings;
   }
   export interface Params$Resource$Properties$Updatedataretentionsettings
     extends StandardParameters {

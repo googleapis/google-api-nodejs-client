@@ -218,7 +218,7 @@
       "name": "alertcenter",
       "version": "v1beta1",
       "title": "Google Workspace Alert Center API",
-      "description": "Manages alerts on issues affecting your domain.",
+      "description": "Manages alerts on issues affecting your domain. Note: The current version of this API (v1beta1) is available to all Google Workspace customers.",
       "discoveryRestUrl": "https://alertcenter.googleapis.com/$discovery/rest?version=v1beta1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -603,6 +603,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "beyondcorp:v1alpha",
+      "name": "beyondcorp",
+      "version": "v1alpha",
+      "title": "BeyondCorp API",
+      "description": "Beyondcorp Enterprise provides identity and context aware access controls for enterprise resources and enables zero-trust access. Using the Beyondcorp Enterprise APIs, enterprises can set up multi-cloud and on-prem connectivity using the App Connector hybrid connectivity solution.",
+      "discoveryRestUrl": "https://beyondcorp.googleapis.com/$discovery/rest?version=v1alpha",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "bigquery:v2",
       "name": "bigquery",
       "version": "v2",
@@ -798,6 +813,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "businessprofileperformance:v1",
+      "name": "businessprofileperformance",
+      "version": "v1",
+      "title": "Business Profile Performance API",
+      "description": "The Business Profile Performance API allows merchants to fetch performance reports about their business profile on Google.",
+      "discoveryRestUrl": "https://businessprofileperformance.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/my-business/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "calendar:v3",
       "name": "calendar",
       "version": "v3",
@@ -832,7 +862,7 @@
       "name": "chat",
       "version": "v1",
       "title": "Google Chat API",
-      "description": "Enables apps to fetch information and perform actions in Google Chat. Authentication using a service account is a prerequisite for using the Google Chat REST API.",
+      "description": "Enables apps to fetch information and perform actions in Google Chat. Authentication is a prerequisite for using the Google Chat REST API.",
       "discoveryRestUrl": "https://chat.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -1701,21 +1731,6 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "content:v2",
-      "name": "content",
-      "version": "v2",
-      "title": "Content API for Shopping",
-      "description": "Manage your product listings and accounts for Google Shopping",
-      "discoveryRestUrl": "https://shoppingcontent.googleapis.com/$discovery/rest?version=v2",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://developers.google.com/shopping-content/v2/",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
       "id": "content:v2.1",
       "name": "content",
       "version": "v2.1",
@@ -2042,6 +2057,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/doubleclick-advertisers/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "dfareporting:v4",
+      "name": "dfareporting",
+      "version": "v4",
+      "title": "Campaign Manager 360 API",
+      "description": "Build applications to efficiently manage large or complex trafficking, reporting, and attribution workflows for Campaign Manager 360.",
+      "discoveryRestUrl": "https://dfareporting.googleapis.com/$discovery/rest?version=v4",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/doubleclick-advertisers/",
       "preferred": true
     },
     {
@@ -2192,21 +2222,6 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/dns/docs",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "dns:v2",
-      "name": "dns",
-      "version": "v2",
-      "title": "Cloud DNS API",
-      "description": "",
-      "discoveryRestUrl": "https://dns.googleapis.com/$discovery/rest?version=v2",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/dns/docs",
       "preferred": true
     },
     {
@@ -2337,6 +2352,21 @@
       "title": "DoubleClick Bid Manager API",
       "description": "DoubleClick Bid Manager API allows users to manage and create campaigns and reports.",
       "discoveryRestUrl": "https://doubleclickbidmanager.googleapis.com/$discovery/rest?version=v1.1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/bid-manager/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "doubleclickbidmanager:v2",
+      "name": "doubleclickbidmanager",
+      "version": "v2",
+      "title": "DoubleClick Bid Manager API",
+      "description": "DoubleClick Bid Manager API allows users to manage and create campaigns and reports.",
+      "discoveryRestUrl": "https://doubleclickbidmanager.googleapis.com/$discovery/rest?version=v2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"

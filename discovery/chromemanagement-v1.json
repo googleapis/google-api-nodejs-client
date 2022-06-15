@@ -434,6 +434,37 @@
           "resources": {
             "devices": {
               "methods": {
+                "get": {
+                  "description": "Get telemetry device.",
+                  "flatPath": "v1/customers/{customersId}/telemetry/devices/{devicesId}",
+                  "httpMethod": "GET",
+                  "id": "chromemanagement.customers.telemetry.devices.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the `TelemetryDevice` to return.",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+/telemetry/devices/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "readMask": {
+                      "description": "Required. Read mask to specify which fields to return.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleChromeManagementV1TelemetryDevice"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.telemetry.readonly"
+                  ]
+                },
                 "list": {
                   "description": "List all telemetry devices.",
                   "flatPath": "v1/customers/{customersId}/telemetry/devices",
@@ -449,7 +480,7 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Maximum number of results to return. Default value is 100. Maximum value is 200.",
+                      "description": "Maximum number of results to return. Default value is 100. Maximum value is 1000.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -488,7 +519,7 @@
       }
     }
   },
-  "revision": "20220503",
+  "revision": "20220613",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {

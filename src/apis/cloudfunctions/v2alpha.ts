@@ -756,7 +756,7 @@ export namespace cloudfunctions_v2alpha {
      */
     key?: string | null;
     /**
-     * Project identifier (preferably project number but can also be the project ID) of the project that contains the secret. If not set, it will be populated with the function's project assuming that the secret exists in the same project as of the function.
+     * Project identifier (preferably project number but can also be the project ID) of the project that contains the secret. If not set, it is assumed that the secret is in the same project as the function.
      */
     projectId?: string | null;
     /**
@@ -767,6 +767,40 @@ export namespace cloudfunctions_v2alpha {
      * Version of the secret (version number or the string 'latest'). It is recommended to use a numeric version for secret environment variables as any updates to the secret value is not reflected until new instances start.
      */
     version?: string | null;
+  }
+  /**
+   * Configuration for a single version.
+   */
+  export interface Schema$SecretVersion {
+    /**
+     * Relative path of the file under the mount path where the secret value for this version will be fetched and made available. For example, setting the mount_path as '/etc/secrets' and path as `secret_foo` would mount the secret value file at `/etc/secrets/secret_foo`.
+     */
+    path?: string | null;
+    /**
+     * Version of the secret (version number or the string 'latest'). It is preferable to use `latest` version with secret volumes as secret value changes are reflected immediately.
+     */
+    version?: string | null;
+  }
+  /**
+   * Configuration for a secret volume. It has the information necessary to fetch the secret value from secret manager and make it available as files mounted at the requested paths within the application container.
+   */
+  export interface Schema$SecretVolume {
+    /**
+     * The path within the container to mount the secret volume. For example, setting the mount_path as `/etc/secrets` would mount the secret value files under the `/etc/secrets` directory. This directory will also be completely shadowed and unavailable to mount any other secrets. Recommended mount path: /etc/secrets
+     */
+    mountPath?: string | null;
+    /**
+     * Project identifier (preferably project number but can also be the project ID) of the project that contains the secret. If not set, it is assumed that the secret is in the same project as the function.
+     */
+    projectId?: string | null;
+    /**
+     * Name of the secret in secret manager (not the full resource name).
+     */
+    secret?: string | null;
+    /**
+     * List of secret versions to mount for this secret. If empty, the `latest` version of the secret will be made available in a file named after the secret under the mount point.
+     */
+    versions?: Schema$SecretVersion[];
   }
   /**
    * Describes the Service being deployed. Currently Supported : Cloud Run (fully managed).
@@ -804,6 +838,10 @@ export namespace cloudfunctions_v2alpha {
      * Secret environment variables configuration.
      */
     secretEnvironmentVariables?: Schema$SecretEnvVar[];
+    /**
+     * Secret volumes configuration.
+     */
+    secretVolumes?: Schema$SecretVolume[];
     /**
      * Output only. Name of the service associated with a Function. The format of this field is `projects/{project\}/locations/{region\}/services/{service\}`
      */
@@ -1852,7 +1890,7 @@ export namespace cloudfunctions_v2alpha {
      *   const res = await cloudfunctions.projects.locations.functions.getIamPolicy({
      *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/functions/my-function',
      *   });
      *   console.log(res.data);
@@ -2281,7 +2319,7 @@ export namespace cloudfunctions_v2alpha {
      *
      *   // Do the magic
      *   const res = await cloudfunctions.projects.locations.functions.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/functions/my-function',
      *
      *     // Request body metadata
@@ -2425,7 +2463,7 @@ export namespace cloudfunctions_v2alpha {
      *   // Do the magic
      *   const res =
      *     await cloudfunctions.projects.locations.functions.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/functions/my-function',
      *
@@ -2607,7 +2645,7 @@ export namespace cloudfunctions_v2alpha {
      */
     'options.requestedPolicyVersion'?: number;
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -2653,7 +2691,7 @@ export namespace cloudfunctions_v2alpha {
   export interface Params$Resource$Projects$Locations$Functions$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -2665,7 +2703,7 @@ export namespace cloudfunctions_v2alpha {
   export interface Params$Resource$Projects$Locations$Functions$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 

@@ -975,7 +975,7 @@
       }
     }
   },
-  "revision": "20220418",
+  "revision": "20220602",
   "rootUrl": "https://certificatemanager.googleapis.com/",
   "schemas": {
     "AuthorizationAttemptInfo": {
@@ -1302,11 +1302,11 @@
           "type": "array"
         },
         "targetHttpsProxy": {
-          "description": "A name must be in the format `projects/*/locations/*/targetHttpsProxies/*`.",
+          "description": "This field returns the resource name in the following format: `//compute.googleapis.com/projects/*/global/targetHttpsProxies/*`.",
           "type": "string"
         },
         "targetSslProxy": {
-          "description": "A name must be in the format `projects/*/locations/*/targetSslProxies/*`.",
+          "description": "This field returns the resource name in the following format: `//compute.googleapis.com/projects/*/global/targetSslProxies/*`.",
           "type": "string"
         }
       },
@@ -1649,6 +1649,7 @@
       "type": "object"
     },
     "ResourcesCount": {
+      "description": "ResourcesCount represents the resource that stores aggregated project's info in the given location, e.g.: total number of certificates assigned to the project.",
       "id": "ResourcesCount",
       "properties": {
         "certificates": {

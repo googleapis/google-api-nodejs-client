@@ -600,7 +600,7 @@ export namespace firebase_v1beta1 {
      */
     apiKeyId?: string | null;
     /**
-     * Immutable. The globally unique, Firebase-assigned identifier for the `WebApp`. This identifier should be treated as an opaque token, as the data format is not specified.
+     * Output only. Immutable. The globally unique, Firebase-assigned identifier for the `WebApp`. This identifier should be treated as an opaque token, as the data format is not specified.
      */
     appId?: string | null;
     /**
@@ -616,7 +616,7 @@ export namespace firebase_v1beta1 {
      */
     name?: string | null;
     /**
-     * Immutable. A user-assigned unique identifier of the parent FirebaseProject for the `WebApp`.
+     * Output only. Immutable. A user-assigned unique identifier of the parent FirebaseProject for the `WebApp`.
      */
     projectId?: string | null;
     /**

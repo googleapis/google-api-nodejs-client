@@ -365,6 +365,10 @@ export namespace dialogflow_v2beta1 {
      * Required. A list of configurations for flow versions. You should include version configs for all flows that are reachable from `Start Flow` in the agent. Otherwise, an error will be returned.
      */
     versionConfigs?: Schema$GoogleCloudDialogflowCxV3beta1EnvironmentVersionConfig[];
+    /**
+     * The webhook configuration for this environment.
+     */
+    webhookConfig?: Schema$GoogleCloudDialogflowCxV3beta1EnvironmentWebhookConfig;
   }
   /**
    * The configuration for continuous tests.
@@ -391,6 +395,15 @@ export namespace dialogflow_v2beta1 {
      * Required. Format: projects//locations//agents//flows//versions/.
      */
     version?: string | null;
+  }
+  /**
+   * Configuration for webhooks.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1EnvironmentWebhookConfig {
+    /**
+     * The list of webhooks to override for the agent environment. The webhook must exist in the agent. You can override fields in `generic_web_service` and `service_directory`.
+     */
+    webhookOverrides?: Schema$GoogleCloudDialogflowCxV3beta1Webhook[];
   }
   /**
    * An event handler specifies an event that can be handled during a session. When the specified event happens, the following actions are taken in order: * If there is a `trigger_fulfillment` associated with the event, it will be called. * If there is a `target_page` associated with the event, the session will transition into the specified page. * If there is a `target_flow` associated with the event, the session will transition into the specified flow.
@@ -1262,6 +1275,60 @@ export namespace dialogflow_v2beta1 {
     genericMetadata?: Schema$GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata;
   }
   /**
+   * Webhooks host the developer's business logic. During a session, webhooks allow the developer to use the data extracted by Dialogflow's natural language processing to generate dynamic responses, validate collected data, or trigger actions on the backend.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1Webhook {
+    /**
+     * Indicates whether the webhook is disabled.
+     */
+    disabled?: boolean | null;
+    /**
+     * Required. The human-readable name of the webhook, unique within the agent.
+     */
+    displayName?: string | null;
+    /**
+     * Configuration for a generic web service.
+     */
+    genericWebService?: Schema$GoogleCloudDialogflowCxV3beta1WebhookGenericWebService;
+    /**
+     * The unique identifier of the webhook. Required for the Webhooks.UpdateWebhook method. Webhooks.CreateWebhook populates the name automatically. Format: `projects//locations//agents//webhooks/`.
+     */
+    name?: string | null;
+    /**
+     * Configuration for a [Service Directory](https://cloud.google.com/service-directory) service.
+     */
+    serviceDirectory?: Schema$GoogleCloudDialogflowCxV3beta1WebhookServiceDirectoryConfig;
+    /**
+     * Webhook execution timeout. Execution is considered failed if Dialogflow doesn't receive a response from webhook at the end of the timeout period. Defaults to 5 seconds, maximum allowed timeout is 30 seconds.
+     */
+    timeout?: string | null;
+  }
+  /**
+   * Represents configuration for a generic web service.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookGenericWebService {
+    /**
+     * Optional. Specifies a list of allowed custom CA certificates (in DER format) for HTTPS verification. This overrides the default SSL trust store. If this is empty or unspecified, Dialogflow will use Google's default trust store to verify certificates. N.B. Make sure the HTTPS server certificates are signed with "subject alt name". For instance a certificate can be self-signed using the following command, ``` openssl x509 -req -days 200 -in example.com.csr \ -signkey example.com.key \ -out example.com.crt \ -extfile <(printf "\nsubjectAltName='DNS:www.example.com'") ```
+     */
+    allowedCaCerts?: string[] | null;
+    /**
+     * The password for HTTP Basic authentication.
+     */
+    password?: string | null;
+    /**
+     * The HTTP request headers to send together with webhook requests.
+     */
+    requestHeaders?: {[key: string]: string} | null;
+    /**
+     * Required. The webhook URI for receiving POST requests. It must use https protocol.
+     */
+    uri?: string | null;
+    /**
+     * The user name for HTTP Basic authentication.
+     */
+    username?: string | null;
+  }
+  /**
    * The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookRequest {
@@ -1419,6 +1486,19 @@ export namespace dialogflow_v2beta1 {
      * The list of rich message responses to present to the user.
      */
     messages?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessage[];
+  }
+  /**
+   * Represents configuration for a [Service Directory](https://cloud.google.com/service-directory) service.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookServiceDirectoryConfig {
+    /**
+     * Generic Service configuration of this webhook.
+     */
+    genericWebService?: Schema$GoogleCloudDialogflowCxV3beta1WebhookGenericWebService;
+    /**
+     * Required. The name of [Service Directory](https://cloud.google.com/service-directory) service. Format: `projects//locations//namespaces//services/`. `Location ID` of the service directory must be the same as the location of the agent.
+     */
+    service?: string | null;
   }
   /**
    * Represents a result from running a test case in an agent environment.
@@ -1598,6 +1678,10 @@ export namespace dialogflow_v2beta1 {
      * Required. A list of configurations for flow versions. You should include version configs for all flows that are reachable from `Start Flow` in the agent. Otherwise, an error will be returned.
      */
     versionConfigs?: Schema$GoogleCloudDialogflowCxV3EnvironmentVersionConfig[];
+    /**
+     * The webhook configuration for this environment.
+     */
+    webhookConfig?: Schema$GoogleCloudDialogflowCxV3EnvironmentWebhookConfig;
   }
   /**
    * The configuration for continuous tests.
@@ -1624,6 +1708,15 @@ export namespace dialogflow_v2beta1 {
      * Required. Format: projects//locations//agents//flows//versions/.
      */
     version?: string | null;
+  }
+  /**
+   * Configuration for webhooks.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3EnvironmentWebhookConfig {
+    /**
+     * The list of webhooks to override for the agent environment. The webhook must exist in the agent. You can override fields in `generic_web_service` and `service_directory`.
+     */
+    webhookOverrides?: Schema$GoogleCloudDialogflowCxV3Webhook[];
   }
   /**
    * An event handler specifies an event that can be handled during a session. When the specified event happens, the following actions are taken in order: * If there is a `trigger_fulfillment` associated with the event, it will be called. * If there is a `target_page` associated with the event, the session will transition into the specified page. * If there is a `target_flow` associated with the event, the session will transition into the specified flow.
@@ -2495,6 +2588,60 @@ export namespace dialogflow_v2beta1 {
     genericMetadata?: Schema$GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata;
   }
   /**
+   * Webhooks host the developer's business logic. During a session, webhooks allow the developer to use the data extracted by Dialogflow's natural language processing to generate dynamic responses, validate collected data, or trigger actions on the backend.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3Webhook {
+    /**
+     * Indicates whether the webhook is disabled.
+     */
+    disabled?: boolean | null;
+    /**
+     * Required. The human-readable name of the webhook, unique within the agent.
+     */
+    displayName?: string | null;
+    /**
+     * Configuration for a generic web service.
+     */
+    genericWebService?: Schema$GoogleCloudDialogflowCxV3WebhookGenericWebService;
+    /**
+     * The unique identifier of the webhook. Required for the Webhooks.UpdateWebhook method. Webhooks.CreateWebhook populates the name automatically. Format: `projects//locations//agents//webhooks/`.
+     */
+    name?: string | null;
+    /**
+     * Configuration for a [Service Directory](https://cloud.google.com/service-directory) service.
+     */
+    serviceDirectory?: Schema$GoogleCloudDialogflowCxV3WebhookServiceDirectoryConfig;
+    /**
+     * Webhook execution timeout. Execution is considered failed if Dialogflow doesn't receive a response from webhook at the end of the timeout period. Defaults to 5 seconds, maximum allowed timeout is 30 seconds.
+     */
+    timeout?: string | null;
+  }
+  /**
+   * Represents configuration for a generic web service.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3WebhookGenericWebService {
+    /**
+     * Optional. Specifies a list of allowed custom CA certificates (in DER format) for HTTPS verification. This overrides the default SSL trust store. If this is empty or unspecified, Dialogflow will use Google's default trust store to verify certificates. N.B. Make sure the HTTPS server certificates are signed with "subject alt name". For instance a certificate can be self-signed using the following command, ``` openssl x509 -req -days 200 -in example.com.csr \ -signkey example.com.key \ -out example.com.crt \ -extfile <(printf "\nsubjectAltName='DNS:www.example.com'") ```
+     */
+    allowedCaCerts?: string[] | null;
+    /**
+     * The password for HTTP Basic authentication.
+     */
+    password?: string | null;
+    /**
+     * The HTTP request headers to send together with webhook requests.
+     */
+    requestHeaders?: {[key: string]: string} | null;
+    /**
+     * Required. The webhook URI for receiving POST requests. It must use https protocol.
+     */
+    uri?: string | null;
+    /**
+     * The user name for HTTP Basic authentication.
+     */
+    username?: string | null;
+  }
+  /**
    * The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases.
    */
   export interface Schema$GoogleCloudDialogflowCxV3WebhookRequest {
@@ -2652,6 +2799,19 @@ export namespace dialogflow_v2beta1 {
      * The list of rich message responses to present to the user.
      */
     messages?: Schema$GoogleCloudDialogflowCxV3ResponseMessage[];
+  }
+  /**
+   * Represents configuration for a [Service Directory](https://cloud.google.com/service-directory) service.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3WebhookServiceDirectoryConfig {
+    /**
+     * Generic Service configuration of this webhook.
+     */
+    genericWebService?: Schema$GoogleCloudDialogflowCxV3WebhookGenericWebService;
+    /**
+     * Required. The name of [Service Directory](https://cloud.google.com/service-directory) service. Format: `projects//locations//namespaces//services/`. `Location ID` of the service directory must be the same as the location of the agent.
+     */
+    service?: string | null;
   }
   /**
    * Represents a part of a message possibly annotated with an entity. The part can be an entity or purely a part of the message between two entities or message start/end.
@@ -2839,6 +2999,14 @@ export namespace dialogflow_v2beta1 {
      */
     assistQueryParams?: Schema$GoogleCloudDialogflowV2beta1AssistQueryParameters;
     /**
+     * The natural language speech audio to be processed.
+     */
+    audioInput?: Schema$GoogleCloudDialogflowV2beta1AudioInput;
+    /**
+     * The unique identifier of the CX page to override the `current_page` in the session. Format: `projects//locations//agents//flows//pages/`. If `cx_current_page` is specified, the previous state of the session will be ignored by Dialogflow CX, including the previous page and the previous session parameters. In most cases, `cx_current_page` and `cx_parameters` should be configured together to direct a session to a specific state. Note: this field should only be used if you are connecting to a Dialogflow CX agent.
+     */
+    cxCurrentPage?: string | null;
+    /**
      * Additional parameters to be put into Dialogflow CX session parameters. To remove a parameter from the session, clients should explicitly set the parameter value to null. Note: this field should only be used if you are connecting to a Dialogflow CX agent.
      */
     cxParameters?: {[key: string]: any} | null;
@@ -2996,6 +3164,19 @@ export namespace dialogflow_v2beta1 {
      * Key-value filters on the metadata of documents returned by article suggestion. If specified, article suggestion only returns suggested documents that match all filters in their Document.metadata. Multiple values for a metadata key should be concatenated by comma. For example, filters to match all documents that have 'US' or 'CA' in their market metadata values and 'agent' in their user metadata values will be ``` documents_metadata_filters { key: "market" value: "US,CA" \} documents_metadata_filters { key: "user" value: "agent" \} ```
      */
     documentsMetadataFilters?: {[key: string]: string} | null;
+  }
+  /**
+   * Represents the natural language speech audio to be processed.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1AudioInput {
+    /**
+     * Required. The natural language speech audio to be processed. A single request can contain up to 1 minute of speech audio data. The transcribed text cannot contain more than 256 bytes.
+     */
+    audio?: string | null;
+    /**
+     * Required. Instructs the speech recognizer how to process the speech audio.
+     */
+    config?: Schema$GoogleCloudDialogflowV2beta1InputAudioConfig;
   }
   /**
    * Defines the Automated Agent to connect to a conversation.
@@ -3840,7 +4021,7 @@ export namespace dialogflow_v2beta1 {
     notificationConfig?: Schema$GoogleCloudDialogflowV2beta1NotificationConfig;
   }
   /**
-   * Custom conversation models used in agent assist feature. Supported feature: ARTICLE_SUGGESTION, SMART_COMPOSE, SMART_REPLY.
+   * Custom conversation models used in agent assist feature. Supported feature: ARTICLE_SUGGESTION, SMART_COMPOSE, SMART_REPLY, CONVERSATION_SUMMARIZATION.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationModelConfig {
     /**
@@ -22891,6 +23072,8 @@ export namespace dialogflow_v2beta1 {
      *         // request body parameters
      *         // {
      *         //   "assistQueryParams": {},
+     *         //   "audioInput": {},
+     *         //   "cxCurrentPage": "my_cxCurrentPage",
      *         //   "cxParameters": {},
      *         //   "eventInput": {},
      *         //   "messageSendTime": "my_messageSendTime",
@@ -40192,6 +40375,8 @@ export namespace dialogflow_v2beta1 {
      *           // request body parameters
      *           // {
      *           //   "assistQueryParams": {},
+     *           //   "audioInput": {},
+     *           //   "cxCurrentPage": "my_cxCurrentPage",
      *           //   "cxParameters": {},
      *           //   "eventInput": {},
      *           //   "messageSendTime": "my_messageSendTime",

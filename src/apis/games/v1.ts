@@ -1404,6 +1404,19 @@ export namespace games_v1 {
     revisionStatus?: string | null;
   }
   /**
+   * Scoped player identifiers.
+   */
+  export interface Schema$ScopedPlayerIds {
+    /**
+     * Identifier of the player across all games of the given developer. Every player has the same developer_player_key in all games of one developer. Developer player key changes for the game if the game is transferred to another developer. Note that game_player_id will stay unchanged.
+     */
+    developerPlayerKey?: string | null;
+    /**
+     * Game-scoped player identifier. This is the same id that is returned in GetPlayer game_player_id field.
+     */
+    gamePlayerId?: string | null;
+  }
+  /**
    * A request to submit a score to leaderboards.
    */
   export interface Schema$ScoreSubmission {
@@ -4474,6 +4487,135 @@ export namespace games_v1 {
     }
 
     /**
+     * Retrieves scoped player identifiers for currently authenticated user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.players.getScopedPlayerIds({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "developerPlayerKey": "my_developerPlayerKey",
+     *   //   "gamePlayerId": "my_gamePlayerId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getScopedPlayerIds(
+      params: Params$Resource$Players$Getscopedplayerids,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getScopedPlayerIds(
+      params?: Params$Resource$Players$Getscopedplayerids,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ScopedPlayerIds>;
+    getScopedPlayerIds(
+      params: Params$Resource$Players$Getscopedplayerids,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getScopedPlayerIds(
+      params: Params$Resource$Players$Getscopedplayerids,
+      options: MethodOptions | BodyResponseCallback<Schema$ScopedPlayerIds>,
+      callback: BodyResponseCallback<Schema$ScopedPlayerIds>
+    ): void;
+    getScopedPlayerIds(
+      params: Params$Resource$Players$Getscopedplayerids,
+      callback: BodyResponseCallback<Schema$ScopedPlayerIds>
+    ): void;
+    getScopedPlayerIds(
+      callback: BodyResponseCallback<Schema$ScopedPlayerIds>
+    ): void;
+    getScopedPlayerIds(
+      paramsOrCallback?:
+        | Params$Resource$Players$Getscopedplayerids
+        | BodyResponseCallback<Schema$ScopedPlayerIds>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ScopedPlayerIds>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ScopedPlayerIds>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ScopedPlayerIds> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Players$Getscopedplayerids;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Players$Getscopedplayerids;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/games/v1/players/me/scopedIds').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ScopedPlayerIds>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ScopedPlayerIds>(parameters);
+      }
+    }
+
+    /**
      * Get the collection of players for the currently authenticated user.
      * @example
      * ```js
@@ -4626,6 +4768,8 @@ export namespace games_v1 {
      */
     playerIdConsistencyToken?: string;
   }
+  export interface Params$Resource$Players$Getscopedplayerids
+    extends StandardParameters {}
   export interface Params$Resource$Players$List extends StandardParameters {
     /**
      * Collection of players being retrieved

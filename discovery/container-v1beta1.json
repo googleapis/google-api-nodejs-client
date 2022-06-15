@@ -2484,7 +2484,7 @@
       }
     }
   },
-  "revision": "20220419",
+  "revision": "20220518",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2502,6 +2502,15 @@
         },
         "gpuPartitionSize": {
           "description": "Size of partitions to create on the GPU. Valid values are described in the NVIDIA [mig user guide](https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning).",
+          "type": "string"
+        },
+        "gpuSharingConfig": {
+          "$ref": "GPUSharingConfig",
+          "description": "The configuration for GPU sharing options."
+        },
+        "maxTimeSharedClientsPerGpu": {
+          "description": "The number of time-shared GPU resources to expose for each physical GPU.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -2699,6 +2708,20 @@
         "enabled": {
           "description": "Enable Binary Authorization for this cluster. If enabled, all container images will be validated by Binary Authorization.",
           "type": "boolean"
+        },
+        "evaluationMode": {
+          "description": "Mode of operation for binauthz policy evaluation. Currently the only options are equivalent to enable/disable. If unspecified, defaults to DISABLED.",
+          "enum": [
+            "EVALUATION_MODE_UNSPECIFIED",
+            "DISABLED",
+            "PROJECT_SINGLETON_POLICY_ENFORCE"
+          ],
+          "enumDescriptions": [
+            "Default value, equivalent to DISABLED.",
+            "Disable BinaryAuthorization",
+            "If enabled, enforce Kubernetes admission requests with BinAuthz using the project's singleton policy. Equivalent to bool enabled=true."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -3009,6 +3032,10 @@
           "$ref": "PrivateClusterConfig",
           "description": "Configuration for private cluster."
         },
+        "protectConfig": {
+          "$ref": "ProtectConfig",
+          "description": "Enable/Disable Protect API features for the cluster."
+        },
         "releaseChannel": {
           "$ref": "ReleaseChannel",
           "description": "Release channel configuration."
@@ -3315,6 +3342,10 @@
             "Enables priate IPv6 access to and from Google Services"
           ],
           "type": "string"
+        },
+        "desiredProtectConfig": {
+          "$ref": "ProtectConfig",
+          "description": "Enable/Disable Protect API features for the cluster."
         },
         "desiredReleaseChannel": {
           "$ref": "ReleaseChannel",
@@ -3628,6 +3659,30 @@
       },
       "type": "object"
     },
+    "GPUSharingConfig": {
+      "description": "GPUSharingConfig represents the GPU sharing configuration for Hardware Accelerators.",
+      "id": "GPUSharingConfig",
+      "properties": {
+        "gpuSharingStrategy": {
+          "description": "The type of GPU sharing strategy to enable on the GPU node.",
+          "enum": [
+            "GPU_SHARING_STRATEGY_UNSPECIFIED",
+            "TIME_SHARING"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "GPUs are time-shared between containers."
+          ],
+          "type": "string"
+        },
+        "maxSharedClientsPerGpu": {
+          "description": "The max number of containers that can share a physical GPU.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GcePersistentDiskCsiDriverConfig": {
       "description": "Configuration for the Compute Engine PD CSI driver.",
       "id": "GcePersistentDiskCsiDriverConfig",
@@ -3821,6 +3876,20 @@
           "description": "Whether a new subnetwork will be created automatically for the cluster. This field is only applicable when `use_ip_aliases` is true.",
           "type": "boolean"
         },
+        "ipv6AccessType": {
+          "description": "The ipv6 access type (internal or external) when create_subnetwork is true",
+          "enum": [
+            "IPV6_ACCESS_TYPE_UNSPECIFIED",
+            "INTERNAL",
+            "EXTERNAL"
+          ],
+          "enumDescriptions": [
+            "Default value, will be defaulted as type external.",
+            "Access type internal (all v6 addresses are internal IPs)",
+            "Access type external (all v6 addresses are external IPs)"
+          ],
+          "type": "string"
+        },
         "nodeIpv4Cidr": {
           "description": "This field is deprecated, use node_ipv4_cidr_block.",
           "type": "string"
@@ -3839,6 +3908,20 @@
         },
         "servicesSecondaryRangeName": {
           "description": "The name of the secondary range to be used as for the services CIDR block. The secondary range will be used for service ClusterIPs. This must be an existing secondary range associated with the cluster subnetwork. This field is only applicable with use_ip_aliases and create_subnetwork is false.",
+          "type": "string"
+        },
+        "stackType": {
+          "description": "IP stack type",
+          "enum": [
+            "STACK_TYPE_UNSPECIFIED",
+            "IPV4",
+            "IPV4_IPV6"
+          ],
+          "enumDescriptions": [
+            "By default, the clusters will be IPV4 only",
+            "The value used if the cluster is a IPV4 only",
+            "The value used if the cluster is a dual stack cluster"
+          ],
           "type": "string"
         },
         "subnetworkName": {
@@ -4506,7 +4589,7 @@
       "type": "object"
     },
     "NodeConfig": {
-      "description": "Parameters that describe the nodes in a cluster. *Note:* GKE Autopilot clusters do not recognize parameters in `NodeConfig`. Use AutoprovisioningNodePoolDefaults instead.",
+      "description": "Parameters that describe the nodes in a cluster. GKE Autopilot clusters do not recognize parameters in `NodeConfig`. Use AutoprovisioningNodePoolDefaults instead.",
       "id": "NodeConfig",
       "properties": {
         "accelerators": {
@@ -5184,6 +5267,17 @@
         "enabled": {
           "description": "Whenever master is accessible globally or not.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ProtectConfig": {
+      "description": "ProtectConfig defines the flags needed to enable/disable features for the Protect API.",
+      "id": "ProtectConfig",
+      "properties": {
+        "workloadConfig": {
+          "$ref": "WorkloadConfig",
+          "description": "WorkloadConfig defines which actions are enabled for a cluster's workload configurations."
         }
       },
       "type": "object"
@@ -6452,6 +6546,31 @@
         "enableCertificates": {
           "description": "enable_certificates controls issuance of workload mTLS certificates. If set, the GKE Workload Identity Certificates controller and node agent will be deployed in the cluster, which can then be configured by creating a WorkloadCertificateConfig Custom Resource. Requires Workload Identity (workload_pool must be non-empty).",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "WorkloadConfig": {
+      "description": "WorkloadConfig defines the flags to enable or disable the workload configurations for the cluster.",
+      "id": "WorkloadConfig",
+      "properties": {
+        "auditMode": {
+          "description": "Sets which mode of auditing should be used for the cluster's workloads.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "DISABLED",
+            "BASIC",
+            "BASELINE",
+            "RESTRICTED"
+          ],
+          "enumDescriptions": [
+            "Default value meaning that no mode has been specified.",
+            "This disables Workload Configuration auditing on the cluster, meaning that nothing is surfaced.",
+            "Applies the default set of policy auditing to a cluster's workloads.",
+            "Surfaces configurations that are not in line with the Pod Security Standard Baseline policy.",
+            "Surfaces configurations that are not in line with the Pod Security Standard Restricted policy."
+          ],
+          "type": "string"
         }
       },
       "type": "object"

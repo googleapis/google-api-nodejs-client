@@ -583,6 +583,53 @@ export namespace ondemandscanning_v1beta1 {
     filePath?: string | null;
   }
   /**
+   * Identifies the entity that executed the recipe, which is trusted to have correctly performed the operation and populated this provenance.
+   */
+  export interface Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaBuilder {
+    id?: string | null;
+  }
+  /**
+   * Indicates that the builder claims certain fields in this message to be complete.
+   */
+  export interface Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaCompleteness {
+    environment?: boolean | null;
+    materials?: boolean | null;
+    parameters?: boolean | null;
+  }
+  /**
+   * Describes where the config file that kicked off the build came from. This is effectively a pointer to the source where buildConfig came from.
+   */
+  export interface Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaConfigSource {
+    digest?: {[key: string]: string} | null;
+    entryPoint?: string | null;
+    uri?: string | null;
+  }
+  /**
+   * Identifies the event that kicked off the build.
+   */
+  export interface Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaInvocation {
+    configSource?: Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaConfigSource;
+    environment?: {[key: string]: any} | null;
+    parameters?: {[key: string]: any} | null;
+  }
+  /**
+   * The collection of artifacts that influenced the build including sources, dependencies, build tools, base images, and so on.
+   */
+  export interface Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaMaterial {
+    digest?: {[key: string]: string} | null;
+    uri?: string | null;
+  }
+  /**
+   * Other properties of the build.
+   */
+  export interface Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaMetadata {
+    buildFinishedOn?: string | null;
+    buildInvocationId?: string | null;
+    buildStartedOn?: string | null;
+    completeness?: Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaCompleteness;
+    reproducible?: boolean | null;
+  }
+  /**
    * Container message for hash values.
    */
   export interface Schema$Hash {
@@ -654,6 +701,7 @@ export namespace ondemandscanning_v1beta1 {
     predicateType?: string | null;
     provenance?: Schema$InTotoProvenance;
     slsaProvenance?: Schema$SlsaProvenance;
+    slsaProvenanceZeroTwo?: Schema$SlsaProvenanceZeroTwo;
     subject?: Schema$Subject[];
     /**
      * Always `https://in-toto.io/Statement/v0.1`.
@@ -678,6 +726,19 @@ export namespace ondemandscanning_v1beta1 {
      * Required. The recovered Dockerfile directive used to construct this layer. See https://docs.docker.com/engine/reference/builder/ for more information.
      */
     directive?: string | null;
+  }
+  /**
+   * License information.
+   */
+  export interface Schema$License {
+    /**
+     * Comments
+     */
+    comments?: string | null;
+    /**
+     * Often a single license can be used to represent the licensing terms. Sometimes it is necessary to include a choice of one or more licenses or some combination of license identifiers. Examples: "LGPL-2.1-only OR MIT", "LGPL-2.1-only AND MIT", "GPL-2.0-or-later WITH Bison-exception-2.2".
+     */
+    expression?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -710,7 +771,7 @@ export namespace ondemandscanning_v1beta1 {
    */
   export interface Schema$Location {
     /**
-     * Required. The CPE URI in [CPE format](https://cpe.mitre.org/specification/) denoting the package manager version distributing a package.
+     * Deprecated. The CPE URI in [CPE format](https://cpe.mitre.org/specification/)
      */
     cpeUri?: string | null;
     /**
@@ -718,7 +779,7 @@ export namespace ondemandscanning_v1beta1 {
      */
     path?: string | null;
     /**
-     * The version installed at this location.
+     * Deprecated. The version installed at this location.
      */
     version?: Schema$Version;
   }
@@ -899,6 +960,10 @@ export namespace ondemandscanning_v1beta1 {
      * The type of package: os, maven, go, etc.
      */
     packageType?: string | null;
+    /**
+     * CVEs that this package is no longer vulnerable to go/drydock-dd-custom-binary-scanning
+     */
+    patchedCve?: string[] | null;
     unused?: string | null;
     /**
      * The version of the package being analysed
@@ -955,13 +1020,33 @@ export namespace ondemandscanning_v1beta1 {
    */
   export interface Schema$PackageOccurrence {
     /**
-     * Required. All of the places within the filesystem versions of this package have been found.
+     * Output only. The CPU architecture for which packages in this distribution channel were built. Architecture will be blank for language packages.
+     */
+    architecture?: string | null;
+    /**
+     * Output only. The cpe_uri in [CPE format](https://cpe.mitre.org/specification/) denoting the package manager version distributing a package. The cpe_uri will be blank for language packages.
+     */
+    cpeUri?: string | null;
+    /**
+     * Licenses that have been declared by the authors of the package.
+     */
+    license?: Schema$License;
+    /**
+     * All of the places within the filesystem versions of this package have been found.
      */
     location?: Schema$Location[];
     /**
-     * Output only. The name of the installed package.
+     * Required. Output only. The name of the installed package.
      */
     name?: string | null;
+    /**
+     * Output only. The type of package; whether native or non native (e.g., ruby gems, node.js packages, etc.).
+     */
+    packageType?: string | null;
+    /**
+     * Output only. The version of the package.
+     */
+    version?: Schema$Version;
   }
   /**
    * Selects a repo using a Google Cloud Platform project ID (e.g., winged-cargo-31) and a repo name within that project.
@@ -1099,6 +1184,17 @@ export namespace ondemandscanning_v1beta1 {
      * Identifies the configuration used for the build. When combined with materials, this SHOULD fully describe the build, such that re-running this recipe results in bit-for-bit identical output (if the build is reproducible). required
      */
     recipe?: Schema$SlsaRecipe;
+  }
+  /**
+   * See full explanation of fields at slsa.dev/provenance/v0.2.
+   */
+  export interface Schema$SlsaProvenanceZeroTwo {
+    buildConfig?: {[key: string]: any} | null;
+    builder?: Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaBuilder;
+    buildType?: string | null;
+    invocation?: Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaInvocation;
+    materials?: Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaMaterial[];
+    metadata?: Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaMetadata;
   }
   /**
    * Steps taken to build the artifact. For a TaskRun, typically each container corresponds to one step in the recipe.

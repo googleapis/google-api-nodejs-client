@@ -1187,6 +1187,10 @@ export namespace logging_v2 {
      */
     sourceReference?: Schema$SourceReference[];
     /**
+     * Stackdriver Trace span identifier for this request.
+     */
+    spanId?: string | null;
+    /**
      * Time when the request started.
      */
     startTime?: string | null;

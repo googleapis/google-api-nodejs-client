@@ -1455,7 +1455,7 @@ export namespace appengine_v1 {
      */
     apiConfig?: Schema$ApiConfigHandler;
     /**
-     * app_engine_apis allows second generation runtimes to access the App Engine APIs.
+     * Allows App Engine second generation runtimes to access the legacy bundled services.
      */
     appEngineApis?: boolean | null;
     /**

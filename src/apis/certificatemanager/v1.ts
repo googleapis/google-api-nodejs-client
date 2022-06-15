@@ -332,11 +332,11 @@ export namespace certificatemanager_v1 {
      */
     ipConfigs?: Schema$IpConfig[];
     /**
-     * A name must be in the format `projects/x/locations/x/targetHttpsProxies/x`.
+     * This field returns the resource name in the following format: `//compute.googleapis.com/projects/x/global/targetHttpsProxies/x`.
      */
     targetHttpsProxy?: string | null;
     /**
-     * A name must be in the format `projects/x/locations/x/targetSslProxies/x`.
+     * This field returns the resource name in the following format: `//compute.googleapis.com/projects/x/global/targetSslProxies/x`.
      */
     targetSslProxy?: string | null;
   }
@@ -568,6 +568,9 @@ export namespace certificatemanager_v1 {
      */
     reason?: string | null;
   }
+  /**
+   * ResourcesCount represents the resource that stores aggregated project's info in the given location, e.g.: total number of certificates assigned to the project.
+   */
   export interface Schema$ResourcesCount {
     /**
      * The count of certificates.

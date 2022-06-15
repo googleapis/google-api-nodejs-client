@@ -1536,7 +1536,7 @@
       }
     }
   },
-  "revision": "20220404",
+  "revision": "20220518",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AndroidAttributes": {
@@ -2314,21 +2314,6 @@
       },
       "type": "object"
     },
-    "FirstAdminInvitationInfo": {
-      "description": "Message containing first admin invitation info for customers",
-      "id": "FirstAdminInvitationInfo",
-      "properties": {
-        "isFirstAdmin": {
-          "description": "Optional. To enable First Admin Invitation for Domained Customer",
-          "type": "boolean"
-        },
-        "primaryDomain": {
-          "description": "Optional. Domain information of first admin invited",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GetMembershipGraphResponse": {
       "description": "The response message for MembershipsService.GetMembershipGraph.",
       "id": "GetMembershipGraphResponse",
@@ -2656,6 +2641,10 @@
           "description": "Output only. When the Company-Owned device was imported. This field is empty for BYOD devices.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "deviceId": {
+          "description": "Unique identifier for the device.",
           "type": "string"
         },
         "deviceType": {
@@ -3703,12 +3692,7 @@
     "SendUserInvitationRequest": {
       "description": "A request to send email for inviting target user corresponding to the UserInvitation.",
       "id": "SendUserInvitationRequest",
-      "properties": {
-        "firstAdminInvitationInfo": {
-          "$ref": "FirstAdminInvitationInfo",
-          "description": "Optional. First admin invitation info for customers"
-        }
-      },
+      "properties": {},
       "type": "object"
     },
     "Status": {

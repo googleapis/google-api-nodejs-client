@@ -525,7 +525,7 @@ export namespace contactcenterinsights_v1 {
      */
     metadata?: {[key: string]: string} | null;
     /**
-     * Name of the query record. Format: projects/{project\}/locations/{location\}/queryRecords/{query_record\}
+     * The name of the answer record. Format: projects/{project\}/locations/{location\}/answerRecords/{answer_record\}
      */
     queryRecord?: string | null;
     /**
@@ -1162,7 +1162,7 @@ export namespace contactcenterinsights_v1 {
      */
     metadata?: {[key: string]: string} | null;
     /**
-     * Name of the query record. Format: projects/{project\}/locations/{location\}/queryRecords/{query_record\}.
+     * The name of the answer record. Format: projects/{project\}/locations/{location\}/answerRecords/{answer_record\}
      */
     queryRecord?: string | null;
     /**
@@ -1644,7 +1644,7 @@ export namespace contactcenterinsights_v1 {
      */
     metadata?: {[key: string]: string} | null;
     /**
-     * Name of the query record. Format: projects/{project\}/locations/{location\}/queryRecords/{query_record\}
+     * The name of the answer record. Format: projects/{project\}/locations/{location\}/answerRecords/{answer_record\}
      */
     queryRecord?: string | null;
     /**
@@ -1665,7 +1665,7 @@ export namespace contactcenterinsights_v1 {
      */
     metadata?: {[key: string]: string} | null;
     /**
-     * Name of the query record. Format: projects/{project\}/locations/{location\}/queryRecords/{query_record\}
+     * The name of the answer record. Format: projects/{project\}/locations/{location\}/answerRecords/{answer_record\}
      */
     queryRecord?: string | null;
     /**

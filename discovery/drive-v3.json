@@ -35,7 +35,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/S9N_pdwuh2mw4As-E7hymPbzYSw\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/F_yVF1e68aDr3b66xDvSNFk9bqs\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -2203,7 +2203,7 @@
       }
     }
   },
-  "revision": "20220428",
+  "revision": "20220606",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -2701,6 +2701,10 @@
             },
             "canRenameDrive": {
               "description": "Whether the current user can rename this shared drive.",
+              "type": "boolean"
+            },
+            "canResetDriveRestrictions": {
+              "description": "Whether the current user can reset the shared drive restrictions to defaults.",
               "type": "boolean"
             },
             "canShare": {
@@ -3885,6 +3889,10 @@
             },
             "canRenameTeamDrive": {
               "description": "Whether the current user can rename this Team Drive.",
+              "type": "boolean"
+            },
+            "canResetTeamDriveRestrictions": {
+              "description": "Whether the current user can reset the Team Drive restrictions to defaults.",
               "type": "boolean"
             },
             "canShare": {

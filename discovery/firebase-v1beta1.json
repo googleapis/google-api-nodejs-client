@@ -1121,7 +1121,7 @@
       }
     }
   },
-  "revision": "20220319",
+  "revision": "20220612",
   "rootUrl": "https://firebase.googleapis.com/",
   "schemas": {
     "AddFirebaseRequest": {
@@ -1793,7 +1793,8 @@
           "type": "string"
         },
         "appId": {
-          "description": "Immutable. The globally unique, Firebase-assigned identifier for the `WebApp`. This identifier should be treated as an opaque token, as the data format is not specified.",
+          "description": "Output only. Immutable. The globally unique, Firebase-assigned identifier for the `WebApp`. This identifier should be treated as an opaque token, as the data format is not specified.",
+          "readOnly": true,
           "type": "string"
         },
         "appUrls": {
@@ -1812,7 +1813,8 @@
           "type": "string"
         },
         "projectId": {
-          "description": "Immutable. A user-assigned unique identifier of the parent FirebaseProject for the `WebApp`.",
+          "description": "Output only. Immutable. A user-assigned unique identifier of the parent FirebaseProject for the `WebApp`.",
+          "readOnly": true,
           "type": "string"
         },
         "webId": {

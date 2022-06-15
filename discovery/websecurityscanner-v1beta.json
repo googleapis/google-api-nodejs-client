@@ -526,7 +526,7 @@
       }
     }
   },
-  "revision": "20220429",
+  "revision": "20220604",
   "rootUrl": "https://websecurityscanner.googleapis.com/",
   "schemas": {
     "Authentication": {
@@ -969,13 +969,15 @@
               "TARGET_PLATFORM_UNSPECIFIED",
               "APP_ENGINE",
               "COMPUTE",
-              "CLOUD_RUN"
+              "CLOUD_RUN",
+              "CLOUD_FUNCTIONS"
             ],
             "enumDescriptions": [
               "The target platform is unknown. Requests with this enum value will be rejected with INVALID_ARGUMENT error.",
               "Google App Engine service.",
               "Google Compute Engine service.",
-              "Google Cloud Run service."
+              "Google Cloud Run service.",
+              "Google Cloud Function service."
             ],
             "type": "string"
           },

@@ -1348,7 +1348,7 @@
                   "type": "integer"
                 },
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/serviceAccounts/[^/]+$",
                   "required": true,
@@ -1437,7 +1437,7 @@
               ],
               "parameters": {
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/serviceAccounts/[^/]+$",
                   "required": true,
@@ -1521,7 +1521,7 @@
               ],
               "parameters": {
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/serviceAccounts/[^/]+$",
                   "required": true,
@@ -1653,7 +1653,7 @@
                   ]
                 },
                 "disable": {
-                  "description": "Disable a ServiceAccountKey. A disabled service account key can be enabled through EnableServiceAccountKey.",
+                  "description": "Disable a ServiceAccountKey. A disabled service account key can be re-enabled with EnableServiceAccountKey.",
                   "flatPath": "v1/projects/{projectsId}/serviceAccounts/{serviceAccountsId}/keys/{keysId}:disable",
                   "httpMethod": "POST",
                   "id": "iam.projects.serviceAccounts.keys.disable",
@@ -1921,7 +1921,7 @@
       }
     }
   },
-  "revision": "20220428",
+  "revision": "20220602",
   "rootUrl": "https://iam.googleapis.com/",
   "schemas": {
     "AdminAuditData": {
@@ -2414,7 +2414,7 @@
       "type": "object"
     },
     "PatchServiceAccountRequest": {
-      "description": "The request for PatchServiceAccount. You can patch only the `display_name` and `description` fields. You must use the `update_mask` field to specify which of these fields you want to patch. Only the fields specified in the request are guaranteed to be returned in the response. Other fields may be empty in the response.",
+      "description": "The service account patch request. You can patch only the `display_name` and `description` fields. You must use the `update_mask` field to specify which of these fields you want to patch. Only the fields specified in the request are guaranteed to be returned in the response. Other fields may be empty in the response.",
       "id": "PatchServiceAccountRequest",
       "properties": {
         "serviceAccount": {
@@ -3085,6 +3085,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "WorkloadIdentityPoolOperationMetadata": {
+      "description": "Metadata for long-running WorkloadIdentityPool operations.",
+      "id": "WorkloadIdentityPoolOperationMetadata",
+      "properties": {},
       "type": "object"
     },
     "WorkloadIdentityPoolProvider": {

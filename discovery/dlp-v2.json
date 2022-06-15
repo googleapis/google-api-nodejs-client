@@ -3412,7 +3412,7 @@
       }
     }
   },
-  "revision": "20220402",
+  "revision": "20220604",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -5503,6 +5503,11 @@
       "description": "The infoType details for this column.",
       "id": "GooglePrivacyDlpV2InfoTypeSummary",
       "properties": {
+        "estimatedPrevalence": {
+          "description": "Approximate percentage of non-null rows that contained data detected by this infotype.",
+          "format": "int32",
+          "type": "integer"
+        },
         "infoType": {
           "$ref": "GooglePrivacyDlpV2InfoType",
           "description": "The infoType."
@@ -6446,6 +6451,11 @@
       "description": "Infotype details for other infoTypes found within a column.",
       "id": "GooglePrivacyDlpV2OtherInfoTypeSummary",
       "properties": {
+        "estimatedPrevalence": {
+          "description": "Approximate percentage of non-null rows that contained data detected by this infotype.",
+          "format": "int32",
+          "type": "integer"
+        },
         "infoType": {
           "$ref": "GooglePrivacyDlpV2InfoType",
           "description": "The other infoType."

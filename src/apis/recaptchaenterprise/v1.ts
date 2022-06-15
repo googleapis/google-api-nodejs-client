@@ -185,6 +185,10 @@ export namespace recaptchaenterprise_v1 {
      */
     name?: string | null;
     /**
+     * The private password leak verification field contains the parameters used to check for leaks privately without sharing user credentials.
+     */
+    privatePasswordLeakVerification?: Schema$GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification;
+    /**
      * Output only. The risk analysis result for the event being assessed.
      */
     riskAnalysis?: Schema$GoogleCloudRecaptchaenterpriseV1RiskAnalysis;
@@ -358,6 +362,27 @@ export namespace recaptchaenterprise_v1 {
    * The migrate key request message.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest {}
+  /**
+   * Private password leak verification info.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification {
+    /**
+     * Output only. List of prefixes of the encrypted potential password leaks that matched the given parameters. They should be compared with the client-side decryption prefix of `reencrypted_user_credentials_hash`
+     */
+    encryptedLeakMatchPrefixes?: string[] | null;
+    /**
+     * Optional. Encrypted Scrypt hash of the canonicalized username+password. It is re-encrypted by the server and returned through `reencrypted_user_credentials_hash`.
+     */
+    encryptedUserCredentialsHash?: string | null;
+    /**
+     * Optional. Exactly 26-bit prefix of the SHA-256 hash of the canonicalized username. It is used to look up password leaks associated with that hash prefix.
+     */
+    lookupHashPrefix?: string | null;
+    /**
+     * Output only. Corresponds to the re-encryption of the `encrypted_user_credentials_hash` field. Used to match potential password leaks within `encrypted_leak_match_prefixes`.
+     */
+    reencryptedUserCredentialsHash?: string | null;
+  }
   /**
    * A group of related accounts.
    */
@@ -733,6 +758,7 @@ export namespace recaptchaenterprise_v1 {
      *       //   "accountDefenderAssessment": {},
      *       //   "event": {},
      *       //   "name": "my_name",
+     *       //   "privatePasswordLeakVerification": {},
      *       //   "riskAnalysis": {},
      *       //   "tokenProperties": {}
      *       // }
@@ -745,6 +771,7 @@ export namespace recaptchaenterprise_v1 {
      *   //   "accountDefenderAssessment": {},
      *   //   "event": {},
      *   //   "name": "my_name",
+     *   //   "privatePasswordLeakVerification": {},
      *   //   "riskAnalysis": {},
      *   //   "tokenProperties": {}
      *   // }

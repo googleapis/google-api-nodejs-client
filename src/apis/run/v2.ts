@@ -152,17 +152,9 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2Condition {
     /**
-     * A reason for the domain mapping condition.
-     */
-    domainMappingReason?: string | null;
-    /**
      * A reason for the execution condition.
      */
     executionReason?: string | null;
-    /**
-     * A reason for the internal condition.
-     */
-    internalReason?: string | null;
     /**
      * Last time the condition transitioned from one status to another.
      */
@@ -209,7 +201,7 @@ export namespace run_v2 {
      */
     env?: Schema$GoogleCloudRunV2EnvVar[];
     /**
-     * Required. URL of the Container image in Google Container Registry or Docker More info: https://kubernetes.io/docs/concepts/containers/images
+     * Required. URL of the Container image in Google Container Registry or Google Artifact Registry. More info: https://kubernetes.io/docs/concepts/containers/images
      */
     image?: string | null;
     /**
@@ -239,19 +231,6 @@ export namespace run_v2 {
     containerPort?: number | null;
     /**
      * If specified, used to specify which protocol to use. Allowed values are "http1" and "h2c".
-     */
-    name?: string | null;
-  }
-  /**
-   * ContainerStatus holds the information of container name and image digest value.
-   */
-  export interface Schema$GoogleCloudRunV2ContainerStatus {
-    /**
-     * ImageDigest holds the resolved digest for the image specified, regardless of whether a tag or digest was originally specified in the Container object.
-     */
-    imageDigest?: string | null;
-    /**
-     * The name of the container, if specified.
      */
     name?: string | null;
   }
@@ -385,6 +364,10 @@ export namespace run_v2 {
     /**
      * Creation timestamp of the execution.
      */
+    completionTime?: string | null;
+    /**
+     * Creation timestamp of the execution.
+     */
     createTime?: string | null;
     /**
      * Name of the execution.
@@ -440,10 +423,6 @@ export namespace run_v2 {
      * Output only. The Conditions of all other associated sub-resources. They contain additional diagnostics information in case the Job does not reach its desired state. See comments in `reconciling` for additional information on reconciliation process in Cloud Run.
      */
     conditions?: Schema$GoogleCloudRunV2Condition[];
-    /**
-     * Output only. Status information for each of the containers specified.
-     */
-    containerStatuses?: Schema$GoogleCloudRunV2ContainerStatus[];
     /**
      * Output only. The creation time.
      */
@@ -608,14 +587,6 @@ export namespace run_v2 {
      */
     conditions?: Schema$GoogleCloudRunV2Condition[];
     /**
-     * Indicates whether Confidential Cloud Run is enabled in this Revision.
-     */
-    confidential?: boolean | null;
-    /**
-     * Sets the maximum number of requests that each serving instance can receive.
-     */
-    containerConcurrency?: number | null;
-    /**
      * Holds the single container that defines the unit of execution for this Revision.
      */
     containers?: Schema$GoogleCloudRunV2Container[];
@@ -659,6 +630,10 @@ export namespace run_v2 {
      * Output only. The Google Console URI to obtain logs for the Revision.
      */
     logUri?: string | null;
+    /**
+     * Sets the maximum number of requests that each serving instance can receive.
+     */
+    maxInstanceRequestConcurrency?: number | null;
     /**
      * Output only. The unique name of this Revision.
      */
@@ -726,14 +701,6 @@ export namespace run_v2 {
      */
     annotations?: {[key: string]: string} | null;
     /**
-     * Enables Confidential Cloud Run in Revisions created using this template.
-     */
-    confidential?: boolean | null;
-    /**
-     * Sets the maximum number of requests that each serving instance can receive.
-     */
-    containerConcurrency?: number | null;
-    /**
      * Holds the single container that defines the unit of execution for this Revision.
      */
     containers?: Schema$GoogleCloudRunV2Container[];
@@ -749,6 +716,10 @@ export namespace run_v2 {
      * KRM-style labels for the resource.
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Sets the maximum number of requests that each serving instance can receive.
+     */
+    maxInstanceRequestConcurrency?: number | null;
     /**
      * The unique name for the revision. If this field is omitted, it will be automatically generated based on the Service name.
      */
@@ -866,7 +837,7 @@ export namespace run_v2 {
      */
     expireTime?: string | null;
     /**
-     * Output only. A number that monotonically increases every time the user modifies the desired state.
+     * Output only. A number that monotonically increases every time the user modifies the desired state. Please note that unlike v1, this is an int64 value. As with most Google APIs, its JSON representation will be a `string` instead of an `integer`.
      */
     generation?: string | null;
     /**
@@ -898,7 +869,7 @@ export namespace run_v2 {
      */
     name?: string | null;
     /**
-     * Output only. The generation of this Service currently serving traffic. See comments in `reconciling` for additional information on reconciliation process in Cloud Run.
+     * Output only. The generation of this Service currently serving traffic. See comments in `reconciling` for additional information on reconciliation process in Cloud Run. Please note that unlike v1, this is an int64 value. As with most Google APIs, its JSON representation will be a `string` instead of an `integer`.
      */
     observedGeneration?: string | null;
     /**
@@ -1212,7 +1183,7 @@ export namespace run_v2 {
     egress?: string | null;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$GoogleIamV1AuditConfig {
     /**
@@ -1464,7 +1435,6 @@ export namespace run_v2 {
      *       //   "client": "my_client",
      *       //   "clientVersion": "my_clientVersion",
      *       //   "conditions": [],
-     *       //   "containerStatuses": [],
      *       //   "createTime": "my_createTime",
      *       //   "creator": "my_creator",
      *       //   "deleteTime": "my_deleteTime",
@@ -1775,7 +1745,6 @@ export namespace run_v2 {
      *   //   "client": "my_client",
      *   //   "clientVersion": "my_clientVersion",
      *   //   "conditions": [],
-     *   //   "containerStatuses": [],
      *   //   "createTime": "my_createTime",
      *   //   "creator": "my_creator",
      *   //   "deleteTime": "my_deleteTime",
@@ -1917,7 +1886,7 @@ export namespace run_v2 {
      *   const res = await run.projects.locations.jobs.getIamPolicy({
      *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/jobs/my-job',
      *   });
      *   console.log(res.data);
@@ -2212,7 +2181,6 @@ export namespace run_v2 {
      *       //   "client": "my_client",
      *       //   "clientVersion": "my_clientVersion",
      *       //   "conditions": [],
-     *       //   "containerStatuses": [],
      *       //   "createTime": "my_createTime",
      *       //   "creator": "my_creator",
      *       //   "deleteTime": "my_deleteTime",
@@ -2514,7 +2482,7 @@ export namespace run_v2 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.jobs.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/jobs/my-job',
      *
      *     // Request body metadata
@@ -2660,7 +2628,7 @@ export namespace run_v2 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.jobs.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/jobs/my-job',
      *
      *     // Request body metadata
@@ -2834,7 +2802,7 @@ export namespace run_v2 {
      */
     'options.requestedPolicyVersion'?: number;
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -2892,7 +2860,7 @@ export namespace run_v2 {
   export interface Params$Resource$Projects$Locations$Jobs$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -2904,7 +2872,7 @@ export namespace run_v2 {
   export interface Params$Resource$Projects$Locations$Jobs$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -4715,7 +4683,7 @@ export namespace run_v2 {
      *   const res = await run.projects.locations.services.getIamPolicy({
      *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/services/my-service',
      *   });
      *   console.log(res.data);
@@ -5173,7 +5141,7 @@ export namespace run_v2 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/services/my-service',
      *
      *     // Request body metadata
@@ -5319,7 +5287,7 @@ export namespace run_v2 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/services/my-service',
      *
      *     // Request body metadata
@@ -5489,7 +5457,7 @@ export namespace run_v2 {
      */
     'options.requestedPolicyVersion'?: number;
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -5535,7 +5503,7 @@ export namespace run_v2 {
   export interface Params$Resource$Projects$Locations$Services$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -5547,7 +5515,7 @@ export namespace run_v2 {
   export interface Params$Resource$Projects$Locations$Services$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -5741,8 +5709,6 @@ export namespace run_v2 {
      *   // {
      *   //   "annotations": {},
      *   //   "conditions": [],
-     *   //   "confidential": false,
-     *   //   "containerConcurrency": 0,
      *   //   "containers": [],
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
@@ -5754,6 +5720,7 @@ export namespace run_v2 {
      *   //   "labels": {},
      *   //   "launchStage": "my_launchStage",
      *   //   "logUri": "my_logUri",
+     *   //   "maxInstanceRequestConcurrency": 0,
      *   //   "name": "my_name",
      *   //   "observedGeneration": "my_observedGeneration",
      *   //   "reconciling": false,

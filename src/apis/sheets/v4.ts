@@ -411,7 +411,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BandingProperties {
     /**
-     * The first color that is alternating. (Required)
+     * The first color that is alternating. (Required) Deprecated: Use first_band_color_style.
      */
     firstBandColor?: Schema$Color;
     /**
@@ -419,7 +419,7 @@ export namespace sheets_v4 {
      */
     firstBandColorStyle?: Schema$ColorStyle;
     /**
-     * The color of the last row or column. If this field is not set, the last row or column is filled with either first_band_color or second_band_color, depending on the color of the previous row or column.
+     * The color of the last row or column. If this field is not set, the last row or column is filled with either first_band_color or second_band_color, depending on the color of the previous row or column. Deprecated: Use footer_color_style.
      */
     footerColor?: Schema$Color;
     /**
@@ -427,7 +427,7 @@ export namespace sheets_v4 {
      */
     footerColorStyle?: Schema$ColorStyle;
     /**
-     * The color of the first row or column. If this field is set, the first row or column is filled with this color and the colors alternate between first_band_color and second_band_color starting from the second row or column. Otherwise, the first row or column is filled with first_band_color and the colors proceed to alternate as they normally would.
+     * The color of the first row or column. If this field is set, the first row or column is filled with this color and the colors alternate between first_band_color and second_band_color starting from the second row or column. Otherwise, the first row or column is filled with first_band_color and the colors proceed to alternate as they normally would. Deprecated: Use header_color_style.
      */
     headerColor?: Schema$Color;
     /**
@@ -435,7 +435,7 @@ export namespace sheets_v4 {
      */
     headerColorStyle?: Schema$ColorStyle;
     /**
-     * The second color that is alternating. (Required)
+     * The second color that is alternating. (Required) Deprecated: Use second_band_color_style.
      */
     secondBandColor?: Schema$Color;
     /**
@@ -456,7 +456,7 @@ export namespace sheets_v4 {
      */
     description?: string | null;
     /**
-     * Color to be used, in case baseline value represents a negative change for key value. This field is optional.
+     * Color to be used, in case baseline value represents a negative change for key value. This field is optional. Deprecated: Use negative_color_style.
      */
     negativeColor?: Schema$Color;
     /**
@@ -468,7 +468,7 @@ export namespace sheets_v4 {
      */
     position?: Schema$TextPosition;
     /**
-     * Color to be used, in case baseline value represents a positive change for key value. This field is optional.
+     * Color to be used, in case baseline value represents a positive change for key value. This field is optional. Deprecated: Use positive_color_style.
      */
     positiveColor?: Schema$Color;
     /**
@@ -523,7 +523,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BasicChartSeries {
     /**
-     * The color for elements (such as bars, lines, and points) associated with this series. If empty, a default color is used.
+     * The color for elements (such as bars, lines, and points) associated with this series. If empty, a default color is used. Deprecated: Use color_style.
      */
     color?: Schema$Color;
     /**
@@ -638,7 +638,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BasicSeriesDataPointStyleOverride {
     /**
-     * Color of the series data point. If empty, the series default is used.
+     * Color of the series data point. If empty, the series default is used. Deprecated: Use color_style.
      */
     color?: Schema$Color;
     /**
@@ -965,7 +965,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$Border {
     /**
-     * The color of the border.
+     * The color of the border. Deprecated: Use [color_style].
      */
     color?: Schema$Color;
     /**
@@ -1007,7 +1007,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BubbleChartSpec {
     /**
-     * The bubble border color.
+     * The bubble border color. Deprecated: Use bubble_border_color_style.
      */
     bubbleBorderColor?: Schema$Color;
     /**
@@ -1169,7 +1169,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$CellFormat {
     /**
-     * The background color of the cell.
+     * The background color of the cell. Deprecated: Use background_color_style.
      */
     backgroundColor?: Schema$Color;
     /**
@@ -1325,7 +1325,7 @@ export namespace sheets_v4 {
      */
     altText?: string | null;
     /**
-     * The background color of the entire chart. Not applicable to Org charts.
+     * The background color of the entire chart. Not applicable to Org charts. Deprecated: Use background_color_style.
      */
     backgroundColor?: Schema$Color;
     /**
@@ -2336,7 +2336,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$EmbeddedObjectBorder {
     /**
-     * The color of the border.
+     * The color of the border. Deprecated: Use color_style.
      */
     color?: Schema$Color;
     /**
@@ -2412,7 +2412,7 @@ export namespace sheets_v4 {
      */
     hiddenValues?: string[] | null;
     /**
-     * The background fill color to filter by; only cells with this fill color are shown. Mutually exclusive with visible_foreground_color.
+     * The background fill color to filter by; only cells with this fill color are shown. Mutually exclusive with visible_foreground_color. Deprecated: Use visible_background_color_style.
      */
     visibleBackgroundColor?: Schema$Color;
     /**
@@ -2420,7 +2420,7 @@ export namespace sheets_v4 {
      */
     visibleBackgroundColorStyle?: Schema$ColorStyle;
     /**
-     * The foreground color to filter by; only cells with this foreground color are shown. Mutually exclusive with visible_background_color.
+     * The foreground color to filter by; only cells with this foreground color are shown. Mutually exclusive with visible_background_color. Deprecated: Use visible_foreground_color_style.
      */
     visibleForegroundColor?: Schema$Color;
     /**
@@ -2721,7 +2721,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$HistogramSeries {
     /**
-     * The color of the column representing this series in each bucket. This field is optional.
+     * The color of the column representing this series in each bucket. This field is optional. Deprecated: Use bar_color_style.
      */
     barColor?: Schema$Color;
     /**
@@ -2764,7 +2764,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$InterpolationPoint {
     /**
-     * The color this interpolation point should use.
+     * The color this interpolation point should use. Deprecated: Use color_style.
      */
     color?: Schema$Color;
     /**
@@ -2954,7 +2954,7 @@ export namespace sheets_v4 {
      */
     labels?: Schema$ChartData;
     /**
-     * The color of the org chart nodes.
+     * The color of the org chart nodes. Deprecated: Use node_color_style.
      */
     nodeColor?: Schema$Color;
     /**
@@ -2970,7 +2970,7 @@ export namespace sheets_v4 {
      */
     parentLabels?: Schema$ChartData;
     /**
-     * The color of the selected org chart nodes.
+     * The color of the selected org chart nodes. Deprecated: Use selected_node_color_style.
      */
     selectedNodeColor?: Schema$Color;
     /**
@@ -3940,7 +3940,7 @@ export namespace sheets_v4 {
      */
     sheetType?: string | null;
     /**
-     * The color of the tab in the UI.
+     * The color of the tab in the UI. Deprecated: Use tab_color_style.
      */
     tabColor?: Schema$Color;
     /**
@@ -3978,7 +3978,7 @@ export namespace sheets_v4 {
      */
     applyToPivotTables?: boolean | null;
     /**
-     * The background color of the slicer.
+     * The background color of the slicer. Deprecated: Use background_color_style.
      */
     backgroundColor?: Schema$Color;
     /**
@@ -4028,7 +4028,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$SortSpec {
     /**
-     * The background fill color to sort by; cells with this fill color are sorted to the top. Mutually exclusive with foreground_color.
+     * The background fill color to sort by; cells with this fill color are sorted to the top. Mutually exclusive with foreground_color. Deprecated: Use background_color_style.
      */
     backgroundColor?: Schema$Color;
     /**
@@ -4044,7 +4044,7 @@ export namespace sheets_v4 {
      */
     dimensionIndex?: number | null;
     /**
-     * The foreground color to sort by; cells with this foreground color are sorted to the top. Mutually exclusive with background_color.
+     * The foreground color to sort by; cells with this foreground color are sorted to the top. Mutually exclusive with background_color. Deprecated: Use foreground_color_style.
      */
     foregroundColor?: Schema$Color;
     /**
@@ -4173,7 +4173,7 @@ export namespace sheets_v4 {
      */
     fontSize?: number | null;
     /**
-     * The foreground color of the text.
+     * The foreground color of the text. Deprecated: Use foreground_color_style.
      */
     foregroundColor?: Schema$Color;
     /**
@@ -4288,7 +4288,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$TreemapChartColorScale {
     /**
-     * The background color for cells with a color value greater than or equal to maxValue. Defaults to #109618 if not specified.
+     * The background color for cells with a color value greater than or equal to maxValue. Defaults to #109618 if not specified. Deprecated: Use max_value_color_style.
      */
     maxValueColor?: Schema$Color;
     /**
@@ -4296,7 +4296,7 @@ export namespace sheets_v4 {
      */
     maxValueColorStyle?: Schema$ColorStyle;
     /**
-     * The background color for cells with a color value at the midpoint between minValue and maxValue. Defaults to #efe6dc if not specified.
+     * The background color for cells with a color value at the midpoint between minValue and maxValue. Defaults to #efe6dc if not specified. Deprecated: Use mid_value_color_style.
      */
     midValueColor?: Schema$Color;
     /**
@@ -4304,7 +4304,7 @@ export namespace sheets_v4 {
      */
     midValueColorStyle?: Schema$ColorStyle;
     /**
-     * The background color for cells with a color value less than or equal to minValue. Defaults to #dc3912 if not specified.
+     * The background color for cells with a color value less than or equal to minValue. Defaults to #dc3912 if not specified. Deprecated: Use min_value_color_style.
      */
     minValueColor?: Schema$Color;
     /**
@@ -4312,7 +4312,7 @@ export namespace sheets_v4 {
      */
     minValueColorStyle?: Schema$ColorStyle;
     /**
-     * The background color for cells that have no color data associated with them. Defaults to #000000 if not specified.
+     * The background color for cells that have no color data associated with them. Defaults to #000000 if not specified. Deprecated: Use no_data_color_style.
      */
     noDataColor?: Schema$Color;
     /**
@@ -4333,7 +4333,7 @@ export namespace sheets_v4 {
      */
     colorScale?: Schema$TreemapChartColorScale;
     /**
-     * The background color for header cells.
+     * The background color for header cells. Deprecated: Use header_color_style.
      */
     headerColor?: Schema$Color;
     /**
@@ -4817,7 +4817,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$WaterfallChartColumnStyle {
     /**
-     * The color of the column.
+     * The color of the column. Deprecated: Use color_style.
      */
     color?: Schema$Color;
     /**

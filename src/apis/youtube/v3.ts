@@ -1656,6 +1656,28 @@ export namespace youtube_v3 {
      */
     ytRating?: string | null;
   }
+  /**
+   * Note that there may be a 5-second end-point resolution issue. For instance, if a cuepoint comes in for 22:03:27, we may stuff the cuepoint into 22:03:25 or 22:03:30, depending. This is an artifact of HLS.
+   */
+  export interface Schema$Cuepoint {
+    cueType?: string | null;
+    /**
+     * The duration of this cuepoint.
+     */
+    durationSecs?: number | null;
+    /**
+     * The identifier for cuepoint resource.
+     */
+    id?: string | null;
+    /**
+     * The time when the cuepoint should be inserted by offset to the broadcast actual start time.
+     */
+    insertionOffsetTimeMs?: string | null;
+    /**
+     * The wall clock time at which the cuepoint should be inserted. Only one of insertion_offset_time_ms and walltime_ms may be set at a time.
+     */
+    walltimeMs?: string | null;
+  }
   export interface Schema$Entity {
     id?: string | null;
     typeId?: string | null;
@@ -3608,6 +3630,17 @@ export namespace youtube_v3 {
      * The status object contains information about the status of the link.
      */
     status?: Schema$ThirdPartyLinkStatus;
+  }
+  export interface Schema$ThirdPartyLinkListResponse {
+    /**
+     * Etag of this resource.
+     */
+    etag?: string | null;
+    items?: Schema$ThirdPartyLink[];
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string "youtube#thirdPartyLinkListResponse".
+     */
+    kind?: string | null;
   }
   /**
    * Basic information about a third party account link, including its type and type-specific information.
@@ -14825,10 +14858,8 @@ export namespace youtube_v3 {
      *   // Example response
      *   // {
      *   //   "etag": "my_etag",
-     *   //   "kind": "my_kind",
-     *   //   "linkingToken": "my_linkingToken",
-     *   //   "snippet": {},
-     *   //   "status": {}
+     *   //   "items": [],
+     *   //   "kind": "my_kind"
      *   // }
      * }
      *
@@ -14851,7 +14882,7 @@ export namespace youtube_v3 {
     list(
       params?: Params$Resource$Thirdpartylinks$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ThirdPartyLink>;
+    ): GaxiosPromise<Schema$ThirdPartyLinkListResponse>;
     list(
       params: Params$Resource$Thirdpartylinks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14859,28 +14890,35 @@ export namespace youtube_v3 {
     ): void;
     list(
       params: Params$Resource$Thirdpartylinks$List,
-      options: MethodOptions | BodyResponseCallback<Schema$ThirdPartyLink>,
-      callback: BodyResponseCallback<Schema$ThirdPartyLink>
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ThirdPartyLinkListResponse>,
+      callback: BodyResponseCallback<Schema$ThirdPartyLinkListResponse>
     ): void;
     list(
       params: Params$Resource$Thirdpartylinks$List,
-      callback: BodyResponseCallback<Schema$ThirdPartyLink>
+      callback: BodyResponseCallback<Schema$ThirdPartyLinkListResponse>
     ): void;
-    list(callback: BodyResponseCallback<Schema$ThirdPartyLink>): void;
+    list(
+      callback: BodyResponseCallback<Schema$ThirdPartyLinkListResponse>
+    ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Thirdpartylinks$List
-        | BodyResponseCallback<Schema$ThirdPartyLink>
+        | BodyResponseCallback<Schema$ThirdPartyLinkListResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$ThirdPartyLink>
+        | BodyResponseCallback<Schema$ThirdPartyLinkListResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ThirdPartyLink>
+        | BodyResponseCallback<Schema$ThirdPartyLinkListResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ThirdPartyLink> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosPromise<Schema$ThirdPartyLinkListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Thirdpartylinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14914,12 +14952,12 @@ export namespace youtube_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ThirdPartyLink>(
+        createAPIRequest<Schema$ThirdPartyLinkListResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$ThirdPartyLink>(parameters);
+        return createAPIRequest<Schema$ThirdPartyLinkListResponse>(parameters);
       }
     }
 
@@ -17239,8 +17277,12 @@ export namespace youtube_v3 {
 
   export class Resource$Youtube$V3 {
     context: APIRequestContext;
+    liveBroadcasts: Resource$Youtube$V3$Livebroadcasts;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.liveBroadcasts = new Resource$Youtube$V3$Livebroadcasts(
+        this.context
+      );
     }
 
     /**
@@ -17402,5 +17444,213 @@ export namespace youtube_v3 {
      * Request body metadata
      */
     requestBody?: Schema$CommentThread;
+  }
+
+  export class Resource$Youtube$V3$Livebroadcasts {
+    context: APIRequestContext;
+    cuepoint: Resource$Youtube$V3$Livebroadcasts$Cuepoint;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.cuepoint = new Resource$Youtube$V3$Livebroadcasts$Cuepoint(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Youtube$V3$Livebroadcasts$Cuepoint {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Insert cuepoints in a broadcast
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.youtube.v3.liveBroadcasts.cuepoint.create({
+     *     // Broadcast to insert ads to, or equivalently `external_video_id` for internal use.
+     *     id: 'placeholder-value',
+     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     *     onBehalfOfContentOwner: 'placeholder-value',
+     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
+     *     // The *part* parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
+     *     part: 'placeholder-value',
+     *
+     *     'resource.cueType': 'placeholder-value',
+     *     // The duration of this cuepoint.
+     *     'resource.durationSecs': 'placeholder-value',
+     *     // The identifier for cuepoint resource.
+     *     'resource.id': 'placeholder-value',
+     *     // The time when the cuepoint should be inserted by offset to the broadcast actual start time.
+     *     'resource.insertionOffsetTimeMs': 'placeholder-value',
+     *     // The wall clock time at which the cuepoint should be inserted. Only one of insertion_offset_time_ms and walltime_ms may be set at a time.
+     *     'resource.walltimeMs': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cueType": "my_cueType",
+     *   //   "durationSecs": 0,
+     *   //   "id": "my_id",
+     *   //   "insertionOffsetTimeMs": "my_insertionOffsetTimeMs",
+     *   //   "walltimeMs": "my_walltimeMs"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Youtube$V3$Livebroadcasts$Cuepoint$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Youtube$V3$Livebroadcasts$Cuepoint$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Cuepoint>;
+    create(
+      params: Params$Resource$Youtube$V3$Livebroadcasts$Cuepoint$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Youtube$V3$Livebroadcasts$Cuepoint$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Cuepoint>,
+      callback: BodyResponseCallback<Schema$Cuepoint>
+    ): void;
+    create(
+      params: Params$Resource$Youtube$V3$Livebroadcasts$Cuepoint$Create,
+      callback: BodyResponseCallback<Schema$Cuepoint>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Cuepoint>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Youtube$V3$Livebroadcasts$Cuepoint$Create
+        | BodyResponseCallback<Schema$Cuepoint>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Cuepoint>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Cuepoint>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Cuepoint> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Youtube$V3$Livebroadcasts$Cuepoint$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Youtube$V3$Livebroadcasts$Cuepoint$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://youtube.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/liveBroadcasts/cuepoint').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Cuepoint>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Cuepoint>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Youtube$V3$Livebroadcasts$Cuepoint$Create
+    extends StandardParameters {
+    /**
+     * Broadcast to insert ads to, or equivalently `external_video_id` for internal use.
+     */
+    id?: string;
+    /**
+     * *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     */
+    onBehalfOfContentOwner?: string;
+    /**
+     * This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+     */
+    onBehalfOfContentOwnerChannel?: string;
+    /**
+     * The *part* parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
+     */
+    part?: string[];
+    /**
+     *
+     */
+    'resource.cueType'?: string;
+    /**
+     * The duration of this cuepoint.
+     */
+    'resource.durationSecs'?: number;
+    /**
+     * The identifier for cuepoint resource.
+     */
+    'resource.id'?: string;
+    /**
+     * The time when the cuepoint should be inserted by offset to the broadcast actual start time.
+     */
+    'resource.insertionOffsetTimeMs'?: string;
+    /**
+     * The wall clock time at which the cuepoint should be inserted. Only one of insertion_offset_time_ms and walltime_ms may be set at a time.
+     */
+    'resource.walltimeMs'?: string;
   }
 }

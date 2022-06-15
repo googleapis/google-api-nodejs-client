@@ -5623,7 +5623,7 @@ export namespace calendar_v3 {
      *     pageToken: 'placeholder-value',
      *     // Extended properties constraint specified as propertyName=value. Matches only private properties. This parameter might be repeated multiple times to return events that match all given constraints.
      *     privateExtendedProperty: 'placeholder-value',
-     *     // Free text search terms to find events that match these terms in any field, except for extended properties. Optional.
+     *     // Free text search terms to find events that match these terms in the following fields: summary, description, location, attendee's displayName, attendee's email. Optional.
      *     q: 'placeholder-value',
      *     // Extended properties constraint specified as propertyName=value. Matches only shared properties. This parameter might be repeated multiple times to return events that match all given constraints.
      *     sharedExtendedProperty: 'placeholder-value',
@@ -6627,7 +6627,7 @@ export namespace calendar_v3 {
      *     pageToken: 'placeholder-value',
      *     // Extended properties constraint specified as propertyName=value. Matches only private properties. This parameter might be repeated multiple times to return events that match all given constraints.
      *     privateExtendedProperty: 'placeholder-value',
-     *     // Free text search terms to find events that match these terms in any field, except for extended properties. Optional.
+     *     // Free text search terms to find events that match these terms in the following fields: summary, description, location, attendee's displayName, attendee's email. Optional.
      *     q: 'placeholder-value',
      *     // Extended properties constraint specified as propertyName=value. Matches only shared properties. This parameter might be repeated multiple times to return events that match all given constraints.
      *     sharedExtendedProperty: 'placeholder-value',
@@ -6959,7 +6959,7 @@ export namespace calendar_v3 {
      */
     privateExtendedProperty?: string[];
     /**
-     * Free text search terms to find events that match these terms in any field, except for extended properties. Optional.
+     * Free text search terms to find events that match these terms in the following fields: summary, description, location, attendee's displayName, attendee's email. Optional.
      */
     q?: string;
     /**
@@ -7172,7 +7172,7 @@ export namespace calendar_v3 {
      */
     privateExtendedProperty?: string[];
     /**
-     * Free text search terms to find events that match these terms in any field, except for extended properties. Optional.
+     * Free text search terms to find events that match these terms in the following fields: summary, description, location, attendee's displayName, attendee's email. Optional.
      */
     q?: string;
     /**

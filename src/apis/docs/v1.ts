@@ -1751,6 +1751,10 @@ export namespace docs_v1 {
      */
     namedStyleType?: string | null;
     /**
+     * Whether the current paragraph should always start at the beginning of a page. If unset, the value is inherited from the parent. Attempting to update page_break_before for paragraphs in unsupported regions, including Table, Header, Footer and Footnote, can result in an invalid document state which returns a 400 bad request error.
+     */
+    pageBreakBefore?: boolean | null;
+    /**
      * The shading of the paragraph. If unset, the value is inherited from the parent.
      */
     shading?: Schema$Shading;
@@ -1840,6 +1844,10 @@ export namespace docs_v1 {
      */
     namedStyleTypeSuggested?: boolean | null;
     /**
+     * Indicates if there was a suggested change to page_break_before.
+     */
+    pageBreakBeforeSuggested?: boolean | null;
+    /**
      * A mask that indicates which of the fields in shading have been changed in this suggestion.
      */
     shadingSuggestionState?: Schema$ShadingSuggestionState;
@@ -1899,6 +1907,19 @@ export namespace docs_v1 {
      * Output only. The name of the person if it is displayed in the link text instead of the person's email address.
      */
     name?: string | null;
+  }
+  /**
+   * Updates the number of pinned table header rows in a table.
+   */
+  export interface Schema$PinTableHeaderRowsRequest {
+    /**
+     * The number of table rows to pin, where 0 implies that all rows are unpinned.
+     */
+    pinnedHeaderRowsCount?: number | null;
+    /**
+     * The location where the table starts in the document.
+     */
+    tableStartLocation?: Schema$Location;
   }
   /**
    * An object that is tethered to a Paragraph and positioned relative to the beginning of the paragraph. A PositionedObject contains an EmbeddedObject such as an image.
@@ -2148,6 +2169,10 @@ export namespace docs_v1 {
      * Merges cells in a table.
      */
     mergeTableCells?: Schema$MergeTableCellsRequest;
+    /**
+     * Updates the number of pinned header rows in a table.
+     */
+    pinTableHeaderRows?: Schema$PinTableHeaderRowsRequest;
     /**
      * Replaces all instances of the specified text.
      */
@@ -2580,7 +2605,7 @@ export namespace docs_v1 {
    */
   export interface Schema$SuggestedParagraphStyle {
     /**
-     * A ParagraphStyle that only includes the changes made in this suggestion. This can be used along with the paragraph_suggestion_state to see which fields have changed and their new values.
+     * A ParagraphStyle that only includes the changes made in this suggestion. This can be used along with the paragraph_style_suggestion_state to see which fields have changed and their new values.
      */
     paragraphStyle?: Schema$ParagraphStyle;
     /**
@@ -2934,6 +2959,14 @@ export namespace docs_v1 {
      * The minimum height of the row. The row will be rendered in the Docs editor at a height equal to or greater than this value in order to show all the content in the row's cells.
      */
     minRowHeight?: Schema$Dimension;
+    /**
+     * Whether the row cannot overflow across page or column boundaries.
+     */
+    preventOverflow?: boolean | null;
+    /**
+     * Whether the row is a table header.
+     */
+    tableHeader?: boolean | null;
   }
   /**
    * A mask that indicates which of the fields on the base TableRowStyle have been changed in this suggestion. For any field set to true, there is a new suggested value.
@@ -3118,7 +3151,7 @@ export namespace docs_v1 {
    */
   export interface Schema$UpdateParagraphStyleRequest {
     /**
-     * The fields that should be updated. At least one field must be specified. The root `paragraph_style` is implied and should not be specified. For example, to update the paragraph style's alignment property, set `fields` to `"alignment"`. To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
+     * The fields that should be updated. At least one field must be specified. The root `paragraph_style` is implied and should not be specified. A single `"*"` can be used as short-hand for listing every field. For example, to update the paragraph style's alignment property, set `fields` to `"alignment"`. To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
      */
     fields?: string | null;
     /**

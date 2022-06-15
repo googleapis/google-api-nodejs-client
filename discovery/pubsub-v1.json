@@ -228,7 +228,7 @@
                   "type": "integer"
                 },
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/schemas/[^/]+$",
                   "required": true,
@@ -306,7 +306,7 @@
               ],
               "parameters": {
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/schemas/[^/]+$",
                   "required": true,
@@ -335,7 +335,7 @@
               ],
               "parameters": {
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/schemas/[^/]+$",
                   "required": true,
@@ -513,7 +513,7 @@
                   "type": "integer"
                 },
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/snapshots/[^/]+$",
                   "required": true,
@@ -605,7 +605,7 @@
               ],
               "parameters": {
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/snapshots/[^/]+$",
                   "required": true,
@@ -634,7 +634,7 @@
               ],
               "parameters": {
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/snapshots/[^/]+$",
                   "required": true,
@@ -809,7 +809,7 @@
                   "type": "integer"
                 },
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/subscriptions/[^/]+$",
                   "required": true,
@@ -1017,7 +1017,7 @@
               ],
               "parameters": {
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/subscriptions/[^/]+$",
                   "required": true,
@@ -1046,7 +1046,7 @@
               ],
               "parameters": {
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/subscriptions/[^/]+$",
                   "required": true,
@@ -1166,7 +1166,7 @@
                   "type": "integer"
                 },
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/topics/[^/]+$",
                   "required": true,
@@ -1287,7 +1287,7 @@
               ],
               "parameters": {
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/topics/[^/]+$",
                   "required": true,
@@ -1316,7 +1316,7 @@
               ],
               "parameters": {
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/topics/[^/]+$",
                   "required": true,
@@ -1424,7 +1424,7 @@
       }
     }
   },
-  "revision": "20220421",
+  "revision": "20220606",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {
@@ -1437,6 +1437,48 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BigQueryConfig": {
+      "description": "Configuration for a BigQuery subscription.",
+      "id": "BigQueryConfig",
+      "properties": {
+        "dropUnknownFields": {
+          "description": "When true and use_topic_schema is true, any fields that are a part of the topic schema that are not part of the BigQuery table schema are dropped when writing to BigQuery. Otherwise, the schemas must be kept in sync and any messages with extra fields are not written and remain in the subscription's backlog.",
+          "type": "boolean"
+        },
+        "state": {
+          "description": "Output only. An output-only field that indicates whether or not the subscription can receive messages.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "PERMISSION_DENIED",
+            "NOT_FOUND",
+            "SCHEMA_MISMATCH"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The subscription can actively send messages to BigQuery",
+            "Cannot write to the BigQuery table because of permission denied errors.",
+            "Cannot write to the BigQuery table because it does not exist.",
+            "Cannot write to the BigQuery table due to a schema mismatch."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "table": {
+          "description": "The name of the table to which to write data, of the form {projectId}.{datasetId}.{tableId}",
+          "type": "string"
+        },
+        "useTopicSchema": {
+          "description": "When true, use the topic's schema as the columns to write to in BigQuery, if it exists.",
+          "type": "boolean"
+        },
+        "writeMetadata": {
+          "description": "When true, write the subscription name, message_id, publish_time, attributes, and ordering_key to additional columns in the table. The subscription name, message_id, and publish_time fields are put in their own columns while all other message properties (other than data) are written to a JSON object in the attributes column.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1941,6 +1983,14 @@
           ],
           "type": "string"
         },
+        "firstRevisionId": {
+          "description": "The minimum (inclusive) revision allowed for validating messages. If empty or not present, allow any revision to be validated against last_revision or any revision created before.",
+          "type": "string"
+        },
+        "lastRevisionId": {
+          "description": "The maximum (inclusive) revision allowed for validating messages. If empty or not present, allow any revision to be validated against first_revision or any revision created after.",
+          "type": "string"
+        },
         "schema": {
           "description": "Required. The name of the schema that messages published should be validated against. Format is `projects/{project}/schemas/{schema}`. The value of this field will be `_deleted-schema_` if the schema has been deleted.",
           "type": "string"
@@ -2017,6 +2067,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "bigqueryConfig": {
+          "$ref": "BigQueryConfig",
+          "description": "If delivery to BigQuery is used with this subscription, this field is used to configure it. Either `pushConfig` or `bigQueryConfig` can be set, but not both. If both are empty, then the subscriber will pull and ack messages using API methods."
+        },
         "deadLetterPolicy": {
           "$ref": "DeadLetterPolicy",
           "description": "A policy that specifies the conditions for dead lettering messages in this subscription. If dead_letter_policy is not set, dead lettering is disabled. The Cloud Pub/Sub service account associated with this subscriptions's parent project (i.e., service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have permission to Acknowledge() messages on this subscription."
@@ -2059,7 +2113,7 @@
         },
         "pushConfig": {
           "$ref": "PushConfig",
-          "description": "If push delivery is used with this subscription, this field is used to configure it. At most one of `pushConfig` and `bigQueryConfig` can be set. If both are empty, then the subscriber will pull and ack messages using API methods."
+          "description": "If push delivery is used with this subscription, this field is used to configure it. Either `pushConfig` or `bigQueryConfig` can be set, but not both. If both are empty, then the subscriber will pull and ack messages using API methods."
         },
         "retainAckedMessages": {
           "description": "Indicates whether to retain acknowledged messages. If true, then messages are not expunged from the subscription's backlog, even if they are acknowledged, until they fall out of the `message_retention_duration` window. This must be true if you would like to [`Seek` to a timestamp] (https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time) in the past to replay previously-acknowledged messages.",

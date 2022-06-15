@@ -600,7 +600,7 @@
       }
     }
   },
-  "revision": "20220324",
+  "revision": "20220603",
   "rootUrl": "https://storagetransfer.googleapis.com/",
   "schemas": {
     "AgentPool": {
@@ -1642,7 +1642,7 @@
           "type": "boolean"
         },
         "overwriteWhen": {
-          "description": "When to overwrite objects that already exist in the sink. If not set overwrite behavior is determined by overwrite_objects_already_existing_in_sink.",
+          "description": "When to overwrite objects that already exist in the sink. If not set, overwrite behavior is determined by overwrite_objects_already_existing_in_sink.",
           "enum": [
             "OVERWRITE_WHEN_UNSPECIFIED",
             "DIFFERENT",
@@ -1650,10 +1650,10 @@
             "ALWAYS"
           ],
           "enumDescriptions": [
-            "Indicate the option is not set.",
-            "Overwrite destination object with source if the two objects are different.",
-            "Never overwrite destination object.",
-            "Always overwrite destination object."
+            "Overwrite behavior is unspecified.",
+            "Overwrites destination objects with the source objects, only if the objects have the same name but different HTTP ETags or checksum values.",
+            "Never overwrites a destination object if a source object has the same name. In this case, the source object is not transferred.",
+            "Always overwrite the destination object with the source object, even if the HTTP Etags or checksum values are the same."
           ],
           "type": "string"
         }

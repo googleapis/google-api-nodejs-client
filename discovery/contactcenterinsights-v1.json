@@ -1275,7 +1275,7 @@
       }
     }
   },
-  "revision": "20220319",
+  "revision": "20220604",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -1433,7 +1433,7 @@
           "type": "object"
         },
         "queryRecord": {
-          "description": "Name of the query record. Format: projects/{project}/locations/{location}/queryRecords/{query_record}",
+          "description": "The name of the answer record. Format: projects/{project}/locations/{location}/answerRecords/{answer_record}",
           "type": "string"
         },
         "source": {
@@ -2302,7 +2302,7 @@
           "type": "object"
         },
         "queryRecord": {
-          "description": "Name of the query record. Format: projects/{project}/locations/{location}/queryRecords/{query_record}.",
+          "description": "The name of the answer record. Format: projects/{project}/locations/{location}/answerRecords/{answer_record}",
           "type": "string"
         },
         "question": {
@@ -2967,7 +2967,7 @@
           "type": "object"
         },
         "queryRecord": {
-          "description": "Name of the query record. Format: projects/{project}/locations/{location}/queryRecords/{query_record}",
+          "description": "The name of the answer record. Format: projects/{project}/locations/{location}/answerRecords/{answer_record}",
           "type": "string"
         },
         "suggestion": {
@@ -2994,7 +2994,7 @@
           "type": "object"
         },
         "queryRecord": {
-          "description": "Name of the query record. Format: projects/{project}/locations/{location}/queryRecords/{query_record}",
+          "description": "The name of the answer record. Format: projects/{project}/locations/{location}/answerRecords/{answer_record}",
           "type": "string"
         },
         "reply": {

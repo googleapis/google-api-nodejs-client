@@ -209,7 +209,7 @@ export namespace datastore_v1beta3 {
    */
   export interface Schema$CompositeFilter {
     /**
-     * The list of filters to combine. Must contain at least one filter.
+     * The list of filters to combine. Requires: * At least one filter is present.
      */
     filters?: Schema$Filter[];
     /**
@@ -733,11 +733,11 @@ export namespace datastore_v1beta3 {
      */
     id?: string | null;
     /**
-     * The kind of the entity. A kind matching regex `__.*__` is reserved/read-only. A kind must not contain more than 1500 bytes when UTF-8 encoded. Cannot be `""`.
+     * The kind of the entity. A kind matching regex `__.*__` is reserved/read-only. A kind must not contain more than 1500 bytes when UTF-8 encoded. Cannot be `""`. Must be valid UTF-8 bytes. Legacy values that are not valid UTF-8 are encoded as `__bytes__` where `` is the base-64 encoding of the bytes.
      */
     kind?: string | null;
     /**
-     * The name of the entity. A name matching regex `__.*__` is reserved/read-only. A name must not be more than 1500 bytes when UTF-8 encoded. Cannot be `""`.
+     * The name of the entity. A name matching regex `__.*__` is reserved/read-only. A name must not be more than 1500 bytes when UTF-8 encoded. Cannot be `""`. Must be valid UTF-8 bytes. Legacy values that are not valid UTF-8 are encoded as `__bytes__` where `` is the base-64 encoding of the bytes.
      */
     name?: string | null;
   }

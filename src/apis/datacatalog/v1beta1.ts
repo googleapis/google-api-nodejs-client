@@ -1745,7 +1745,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
      *
@@ -2180,7 +2180,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
      *
@@ -2322,7 +2322,7 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await datacatalog.projects.locations.entryGroups.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
      *
@@ -2483,7 +2483,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -2526,7 +2526,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -2538,7 +2538,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3036,7 +3036,7 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await datacatalog.projects.locations.entryGroups.entries.getIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
      *
@@ -3498,7 +3498,7 @@ export namespace datacatalog_v1beta1 {
      *   const res =
      *     await datacatalog.projects.locations.entryGroups.entries.testIamPermissions(
      *       {
-     *         // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *         // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *         resource:
      *           'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
      *
@@ -3652,7 +3652,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3699,7 +3699,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -5440,7 +5440,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate',
      *
@@ -5730,7 +5730,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate',
      *
@@ -5872,7 +5872,7 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await datacatalog.projects.locations.tagTemplates.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate',
      *
@@ -6029,7 +6029,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Tagtemplates$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -6057,7 +6057,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Tagtemplates$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -6069,7 +6069,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Tagtemplates$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -7514,7 +7514,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/locations/my-location/taxonomies/my-taxonomie',
      *
@@ -8099,7 +8099,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/locations/my-location/taxonomies/my-taxonomie',
      *
@@ -8241,7 +8241,7 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await datacatalog.projects.locations.taxonomies.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/taxonomies/my-taxonomie',
      *
@@ -8405,7 +8405,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Taxonomies$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -8460,7 +8460,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Taxonomies$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -8472,7 +8472,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Taxonomies$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -8941,7 +8941,7 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await datacatalog.projects.locations.taxonomies.policyTags.getIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/taxonomies/my-taxonomie/policyTags/my-policyTag',
      *
@@ -9381,7 +9381,7 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await datacatalog.projects.locations.taxonomies.policyTags.setIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/taxonomies/my-taxonomie/policyTags/my-policyTag',
      *
@@ -9524,7 +9524,7 @@ export namespace datacatalog_v1beta1 {
      *   const res =
      *     await datacatalog.projects.locations.taxonomies.policyTags.testIamPermissions(
      *       {
-     *         // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *         // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *         resource:
      *           'projects/my-project/locations/my-location/taxonomies/my-taxonomie/policyTags/my-policyTag',
      *
@@ -9674,7 +9674,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -9717,7 +9717,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -9729,7 +9729,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 

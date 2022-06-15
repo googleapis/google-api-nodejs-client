@@ -141,6 +141,14 @@ export namespace container_v1beta1 {
      * Size of partitions to create on the GPU. Valid values are described in the NVIDIA [mig user guide](https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning).
      */
     gpuPartitionSize?: string | null;
+    /**
+     * The configuration for GPU sharing options.
+     */
+    gpuSharingConfig?: Schema$GPUSharingConfig;
+    /**
+     * The number of time-shared GPU resources to expose for each physical GPU.
+     */
+    maxTimeSharedClientsPerGpu?: string | null;
   }
   /**
    * Configuration for the addons that can be automatically spun up in the cluster, enabling additional functionality.
@@ -314,6 +322,10 @@ export namespace container_v1beta1 {
      * Enable Binary Authorization for this cluster. If enabled, all container images will be validated by Binary Authorization.
      */
     enabled?: boolean | null;
+    /**
+     * Mode of operation for binauthz policy evaluation. Currently the only options are equivalent to enable/disable. If unspecified, defaults to DISABLED.
+     */
+    evaluationMode?: string | null;
   }
   /**
    * CancelOperationRequest cancels a single operation.
@@ -588,6 +600,10 @@ export namespace container_v1beta1 {
      */
     privateClusterConfig?: Schema$PrivateClusterConfig;
     /**
+     * Enable/Disable Protect API features for the cluster.
+     */
+    protectConfig?: Schema$ProtectConfig;
+    /**
      * Release channel configuration.
      */
     releaseChannel?: Schema$ReleaseChannel;
@@ -814,6 +830,10 @@ export namespace container_v1beta1 {
      * The desired state of IPv6 connectivity to Google Services.
      */
     desiredPrivateIpv6GoogleAccess?: string | null;
+    /**
+     * Enable/Disable Protect API features for the cluster.
+     */
+    desiredProtectConfig?: Schema$ProtectConfig;
     /**
      * The desired release channel configuration.
      */
@@ -1132,6 +1152,19 @@ export namespace container_v1beta1 {
     enabled?: boolean | null;
   }
   /**
+   * GPUSharingConfig represents the GPU sharing configuration for Hardware Accelerators.
+   */
+  export interface Schema$GPUSharingConfig {
+    /**
+     * The type of GPU sharing strategy to enable on the GPU node.
+     */
+    gpuSharingStrategy?: string | null;
+    /**
+     * The max number of containers that can share a physical GPU.
+     */
+    maxSharedClientsPerGpu?: string | null;
+  }
+  /**
    * Configuration options for the horizontal pod autoscaling feature, which increases or decreases the number of replica pods a replication controller has based on the resource usage of the existing pods.
    */
   export interface Schema$HorizontalPodAutoscaling {
@@ -1218,6 +1251,10 @@ export namespace container_v1beta1 {
      */
     createSubnetwork?: boolean | null;
     /**
+     * The ipv6 access type (internal or external) when create_subnetwork is true
+     */
+    ipv6AccessType?: string | null;
+    /**
      * This field is deprecated, use node_ipv4_cidr_block.
      */
     nodeIpv4Cidr?: string | null;
@@ -1237,6 +1274,10 @@ export namespace container_v1beta1 {
      * The name of the secondary range to be used as for the services CIDR block. The secondary range will be used for service ClusterIPs. This must be an existing secondary range associated with the cluster subnetwork. This field is only applicable with use_ip_aliases and create_subnetwork is false.
      */
     servicesSecondaryRangeName?: string | null;
+    /**
+     * IP stack type
+     */
+    stackType?: string | null;
     /**
      * A custom subnetwork name to be used if `create_subnetwork` is true. If this field is empty, then an automatic name will be chosen for the new subnetwork.
      */
@@ -1678,7 +1719,7 @@ export namespace container_v1beta1 {
     tags?: string[] | null;
   }
   /**
-   * Parameters that describe the nodes in a cluster. *Note:* GKE Autopilot clusters do not recognize parameters in `NodeConfig`. Use AutoprovisioningNodePoolDefaults instead.
+   * Parameters that describe the nodes in a cluster. GKE Autopilot clusters do not recognize parameters in `NodeConfig`. Use AutoprovisioningNodePoolDefaults instead.
    */
   export interface Schema$NodeConfig {
     /**
@@ -2163,6 +2204,15 @@ export namespace container_v1beta1 {
      * Whenever master is accessible globally or not.
      */
     enabled?: boolean | null;
+  }
+  /**
+   * ProtectConfig defines the flags needed to enable/disable features for the Protect API.
+   */
+  export interface Schema$ProtectConfig {
+    /**
+     * WorkloadConfig defines which actions are enabled for a cluster's workload configurations.
+     */
+    workloadConfig?: Schema$WorkloadConfig;
   }
   /**
    * Pub/Sub specific notification config.
@@ -3129,6 +3179,15 @@ export namespace container_v1beta1 {
      * enable_certificates controls issuance of workload mTLS certificates. If set, the GKE Workload Identity Certificates controller and node agent will be deployed in the cluster, which can then be configured by creating a WorkloadCertificateConfig Custom Resource. Requires Workload Identity (workload_pool must be non-empty).
      */
     enableCertificates?: boolean | null;
+  }
+  /**
+   * WorkloadConfig defines the flags to enable or disable the workload configurations for the cluster.
+   */
+  export interface Schema$WorkloadConfig {
+    /**
+     * Sets which mode of auditing should be used for the cluster's workloads.
+     */
+    auditMode?: string | null;
   }
   /**
    * Configuration for the use of Kubernetes Service Accounts in GCP IAM policies.
@@ -4228,6 +4287,7 @@ export namespace container_v1beta1 {
      *   //   "podSecurityPolicyConfig": {},
      *   //   "privateCluster": false,
      *   //   "privateClusterConfig": {},
+     *   //   "protectConfig": {},
      *   //   "releaseChannel": {},
      *   //   "resourceLabels": {},
      *   //   "resourceUsageExportConfig": {},
@@ -9775,6 +9835,7 @@ export namespace container_v1beta1 {
      *   //   "podSecurityPolicyConfig": {},
      *   //   "privateCluster": false,
      *   //   "privateClusterConfig": {},
+     *   //   "protectConfig": {},
      *   //   "releaseChannel": {},
      *   //   "resourceLabels": {},
      *   //   "resourceUsageExportConfig": {},

@@ -148,6 +148,10 @@ export namespace iam_v2beta {
     removedPermissions?: string[] | null;
   }
   /**
+   * Metadata for long-running WorkloadIdentityPool operations.
+   */
+  export interface Schema$GoogleIamV1betaWorkloadIdentityPoolOperationMetadata {}
+  /**
    * One delta entry for Binding. Each individual change (only one member in each entry) to a binding will be a separate entry.
    */
   export interface Schema$GoogleIamV1BindingDelta {

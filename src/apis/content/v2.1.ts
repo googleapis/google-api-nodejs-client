@@ -114,7 +114,6 @@ export namespace content_v2_1 {
   export class Content {
     context: APIRequestContext;
     accounts: Resource$Accounts;
-    accountsbyexternalsellerid: Resource$Accountsbyexternalsellerid;
     accountstatuses: Resource$Accountstatuses;
     accountstatusesbyexternalsellerid: Resource$Accountstatusesbyexternalsellerid;
     accounttax: Resource$Accounttax;
@@ -157,9 +156,6 @@ export namespace content_v2_1 {
       };
 
       this.accounts = new Resource$Accounts(this.context);
-      this.accountsbyexternalsellerid = new Resource$Accountsbyexternalsellerid(
-        this.context
-      );
       this.accountstatuses = new Resource$Accountstatuses(this.context);
       this.accountstatusesbyexternalsellerid =
         new Resource$Accountstatusesbyexternalsellerid(this.context);
@@ -291,7 +287,7 @@ export namespace content_v2_1 {
      */
     region?: string | null;
     /**
-     * Street-level part of the address.
+     * Street-level part of the address. Use `\n` to add a second line.
      */
     streetAddress?: string | null;
   }
@@ -324,7 +320,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccountBusinessInformation {
     /**
-     * The address of the business.
+     * The address of the business. Use `\n` to add a second address line.
      */
     address?: Schema$AccountAddress;
     /**
@@ -1045,6 +1041,10 @@ export namespace content_v2_1 {
      * Whether user can manage payment settings.
      */
     paymentsManager?: boolean | null;
+    /**
+     * Whether user is a reporting manager.
+     */
+    reportingManager?: boolean | null;
   }
   export interface Schema$AccountYouTubeChannelLink {
     /**
@@ -1078,7 +1078,7 @@ export namespace content_v2_1 {
      */
     postalCode?: string | null;
     /**
-     * Street-level part of the address.
+     * Street-level part of the address. Use `\n` to add a second line.
      */
     streetAddress?: string | null;
   }
@@ -2994,7 +2994,7 @@ export namespace content_v2_1 {
      */
     region?: string | null;
     /**
-     * Street-level part of the address.
+     * Street-level part of the address. Use `\n` to add a second line.
      */
     streetAddress?: string[] | null;
   }
@@ -4013,7 +4013,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderShipment {
     /**
-     * The carrier handling the shipment. For supported carriers, Google includes the carrier name and tracking URL in emails to customers. For select supported carriers, Google also automatically updates the shipment status based on the provided shipment ID. *Note:* You can also use unsupported carriers, but emails to customers won't include the carrier name or tracking URL, and there will be no automatic order status updates. Supported carriers for "US" are: - "`ups`" (United Parcel Service) *automatic status updates* - "`usps`" (United States Postal Service) *automatic status updates* - "`fedex`" (FedEx) *automatic status updates * - "`dhl`" (DHL eCommerce) *automatic status updates* (US only) - "`ontrac`" (OnTrac) *automatic status updates * - "`dhl express`" (DHL Express) - "`deliv`" (Deliv) - "`dynamex`" (TForce) - "`lasership`" (LaserShip) - "`mpx`" (Military Parcel Xpress) - "`uds`" (United Delivery Service) - "`efw`" (Estes Forwarding Worldwide) - "`jd logistics`" (JD Logistics) - "`yunexpress`" (YunExpress) - "`china post`" (China Post) - "`china ems`" (China Post Express Mail Service) - "`singapore post`" (Singapore Post) - "`pos malaysia`" (Pos Malaysia) - "`postnl`" (PostNL) - "`ptt`" (PTT Turkish Post) - "`eub`" (ePacket) - "`chukou1`" (Chukou1 Logistics) - "`bestex`" (Best Express) - "`canada post`" (Canada Post) - "`purolator`" (Purolator) - "`canpar`" (Canpar) - "`india post`" (India Post) - "`blue dart`" (Blue Dart) - "`delhivery`" (Delhivery) - "`dtdc`" (DTDC) - "`tpc india`" (TPC India) - "`lso`" (Lone Star Overnight) - "`tww`" (Team Worldwide) Supported carriers for FR are: - "`la poste`" (La Poste) *automatic status updates * - "`colissimo`" (Colissimo by La Poste) *automatic status updates* - "`ups`" (United Parcel Service) *automatic status updates * - "`chronopost`" (Chronopost by La Poste) - "`gls`" (General Logistics Systems France) - "`dpd`" (DPD Group by GeoPost) - "`bpost`" (Belgian Post Group) - "`colis prive`" (Colis Privé) - "`boxtal`" (Boxtal) - "`geodis`" (GEODIS) - "`tnt`" (TNT) - "`db schenker`" (DB Schenker) - "`aramex`" (Aramex)
+     * The carrier handling the shipment. For supported carriers, Google includes the carrier name and tracking URL in emails to customers. For select supported carriers, Google also automatically updates the shipment status based on the provided shipment ID. *Note:* You can also use unsupported carriers, but emails to customers won't include the carrier name or tracking URL, and there will be no automatic order status updates. Supported carriers for "US" are: - "`ups`" (United Parcel Service) *automatic status updates* - "`usps`" (United States Postal Service) *automatic status updates* - "`fedex`" (FedEx) *automatic status updates * - "`dhl`" (DHL eCommerce) *automatic status updates* (US only) - "`ontrac`" (OnTrac) *automatic status updates * - "`dhl express`" (DHL Express) - "`deliv`" (Deliv) - "`dynamex`" (TForce) - "`lasership`" (LaserShip) - "`mpx`" (Military Parcel Xpress) - "`uds`" (United Delivery Service) - "`efw`" (Estes Forwarding Worldwide) - "`jd logistics`" (JD Logistics) - "`yunexpress`" (YunExpress) - "`china post`" (China Post) - "`china ems`" (China Post Express Mail Service) - "`singapore post`" (Singapore Post) - "`pos malaysia`" (Pos Malaysia) - "`postnl`" (PostNL) - "`ptt`" (PTT Turkish Post) - "`eub`" (ePacket) - "`chukou1`" (Chukou1 Logistics) - "`bestex`" (Best Express) - "`canada post`" (Canada Post) - "`purolator`" (Purolator) - "`canpar`" (Canpar) - "`india post`" (India Post) - "`blue dart`" (Blue Dart) - "`delhivery`" (Delhivery) - "`dtdc`" (DTDC) - "`tpc india`" (TPC India) - "`lso`" (Lone Star Overnight) - "`tww`" (Team Worldwide) - "`deliver-it`" (Deliver-IT) - "`cdl last mile`" (CDL Last Mile) Supported carriers for FR are: - "`la poste`" (La Poste) *automatic status updates * - "`colissimo`" (Colissimo by La Poste) *automatic status updates* - "`ups`" (United Parcel Service) *automatic status updates * - "`chronopost`" (Chronopost by La Poste) - "`gls`" (General Logistics Systems France) - "`dpd`" (DPD Group by GeoPost) - "`bpost`" (Belgian Post Group) - "`colis prive`" (Colis Privé) - "`boxtal`" (Boxtal) - "`geodis`" (GEODIS) - "`tnt`" (TNT) - "`db schenker`" (DB Schenker) - "`aramex`" (Aramex)
      */
     carrier?: string | null;
     /**
@@ -5914,7 +5914,7 @@ export namespace content_v2_1 {
     value?: number | null;
   }
   /**
-   *  The Promotions feature is publicly available for the US and CA locale (en language only) in Content API for Shopping. Represents a promotion. See the following articles for more details. * [Promotions feed specification](https://support.google.com/merchants/answer/2906014) * [Local promotions feed specification](https://support.google.com/merchants/answer/10146130) * [Promotions on Buy on Google product data specification](https://support.google.com/merchants/answer/9173673)
+   * The Promotions feature is available for `AU`, `CA`, `DE`, `FR`, `GB`, `IN` and `US` target countries, and `en` content language. Represents a promotion. See the following articles for more details. * [Promotions feed specification](https://support.google.com/merchants/answer/2906014) * [Local promotions feed specification](https://support.google.com/merchants/answer/10146130) * [Promotions on Buy on Google product data specification](https://support.google.com/merchants/answer/9173673)
    */
   export interface Schema$Promotion {
     /**
@@ -5926,7 +5926,7 @@ export namespace content_v2_1 {
      */
     brandExclusion?: string[] | null;
     /**
-     * Required. The content language used as part of the unique identifier. Currently only en value is supported.
+     * Required. The content language used as part of the unique identifier. Currently only `en` value is supported.
      */
     contentLanguage?: string | null;
     /**
@@ -5938,7 +5938,7 @@ export namespace content_v2_1 {
      */
     freeGiftDescription?: string | null;
     /**
-     * Free gift item id for the promotion.
+     * Free gift item ID for the promotion.
      */
     freeGiftItemId?: string | null;
     /**
@@ -5946,7 +5946,7 @@ export namespace content_v2_1 {
      */
     freeGiftValue?: Schema$PriceAmount;
     /**
-     * Generic redemption code for the promotion. To be used with the above field.
+     * Generic redemption code for the promotion. To be used with the `offerType` field.
      */
     genericRedemptionCode?: string | null;
     /**
@@ -5954,23 +5954,23 @@ export namespace content_v2_1 {
      */
     getThisQuantityDiscounted?: number | null;
     /**
-     * Required. Output only. The REST promotion id to uniquely identify the promotion. Content API methods that operate on promotions take this as their promotionId parameter. The REST ID for a promotion is of the form [channel]:contentLanguage:targetCountry:promotionId The channel field will have a value of "online", "in_store", or "online_in_store".
+     * Required. Output only. The REST promotion ID to uniquely identify the promotion. Content API methods that operate on promotions take this as their `promotionId` parameter. The REST ID for a promotion is of the form channel:contentLanguage:targetCountry:promotionId The `channel` field has a value of `"online"`, `"in_store"`, or `"online_in_store"`.
      */
     id?: string | null;
     /**
-     * Product filter by item group id for the promotion.
+     * Product filter by item group ID for the promotion.
      */
     itemGroupId?: string[] | null;
     /**
-     * Product filter by item group id exclusion for the promotion.
+     * Product filter by item group ID exclusion for the promotion.
      */
     itemGroupIdExclusion?: string[] | null;
     /**
-     * Product filter by item id for the promotion.
+     * Product filter by item ID for the promotion.
      */
     itemId?: string[] | null;
     /**
-     * Product filter by item id exclusion for the promotion.
+     * Product filter by item ID exclusion for the promotion.
      */
     itemIdExclusion?: string[] | null;
     /**
@@ -5994,7 +5994,7 @@ export namespace content_v2_1 {
      */
     minimumPurchaseQuantity?: number | null;
     /**
-     * Promotion cost cap of the promotion.
+     * Cost cap for the promotion.
      */
     moneyBudget?: Schema$PriceAmount;
     /**
@@ -6030,23 +6030,23 @@ export namespace content_v2_1 {
      */
     promotionDestinationIds?: string[] | null;
     /**
-     * String representation of the promotion display dates (deprecated: Use promotion_display_time_period instead).
+     * String representation of the promotion display dates. Deprecated. Use `promotion_display_time_period` instead.
      */
     promotionDisplayDates?: string | null;
     /**
-     * TimePeriod representation of the promotion display dates.
+     * `TimePeriod` representation of the promotion's display dates.
      */
     promotionDisplayTimePeriod?: Schema$TimePeriod;
     /**
-     * String representation of the promotion effective dates (deprecated: Use promotion_effective_time_period instead).
+     * String representation of the promotion effective dates. Deprecated. Use `promotion_effective_time_period` instead.
      */
     promotionEffectiveDates?: string | null;
     /**
-     * Required. TimePeriod representation of the promotion effective dates.
+     * Required. `TimePeriod` representation of the promotion's effective dates.
      */
     promotionEffectiveTimePeriod?: Schema$TimePeriod;
     /**
-     * Required. The user provided promotion id to uniquely identify the promotion.
+     * Required. The user provided promotion ID to uniquely identify the promotion.
      */
     promotionId?: string | null;
     /**
@@ -6054,11 +6054,11 @@ export namespace content_v2_1 {
      */
     redemptionChannel?: string[] | null;
     /**
-     * Shipping service names for thse promotion.
+     * Shipping service names for the promotion.
      */
     shippingServiceNames?: string[] | null;
     /**
-     * Required. The target country used as part of the unique identifier. Currently only US and CA are supported.
+     * Required. The target country used as part of the unique identifier. Can be `AU`, `CA`, `DE`, `FR`, `GB`, `IN` or `US`.
      */
     targetCountry?: string | null;
   }
@@ -7680,7 +7680,7 @@ export namespace content_v2_1 {
      */
     region?: string | null;
     /**
-     * Street-level part of the address.
+     * Street-level part of the address. Use `\n` to add a second line.
      */
     streetAddress?: string[] | null;
   }
@@ -11531,172 +11531,6 @@ export namespace content_v2_1 {
      * Request body metadata
      */
     requestBody?: Schema$AccountReturnCarrier;
-  }
-
-  export class Resource$Accountsbyexternalsellerid {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Gets data of the account with the specified external_seller_id belonging to the MCA with the specified merchant_id.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accountsbyexternalsellerid.get({
-     *     // Required. The External Seller ID of the seller account to be retrieved.
-     *     externalSellerId: 'placeholder-value',
-     *     // Required. The ID of the MCA containing the seller.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountManagement": "my_accountManagement",
-     *   //   "adsLinks": [],
-     *   //   "adultContent": false,
-     *   //   "automaticImprovements": {},
-     *   //   "automaticLabelIds": [],
-     *   //   "businessInformation": {},
-     *   //   "cssId": "my_cssId",
-     *   //   "googleMyBusinessLink": {},
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "labelIds": [],
-     *   //   "name": "my_name",
-     *   //   "sellerId": "my_sellerId",
-     *   //   "users": [],
-     *   //   "websiteUrl": "my_websiteUrl",
-     *   //   "youtubeChannelLinks": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Accountsbyexternalsellerid$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Accountsbyexternalsellerid$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Account>;
-    get(
-      params: Params$Resource$Accountsbyexternalsellerid$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Accountsbyexternalsellerid$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$Account>,
-      callback: BodyResponseCallback<Schema$Account>
-    ): void;
-    get(
-      params: Params$Resource$Accountsbyexternalsellerid$Get,
-      callback: BodyResponseCallback<Schema$Account>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$Account>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Accountsbyexternalsellerid$Get
-        | BodyResponseCallback<Schema$Account>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Account>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Account>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accountsbyexternalsellerid$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accountsbyexternalsellerid$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/content/v2.1/{merchantId}/accountsbyexternalsellerid/{externalSellerId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['merchantId', 'externalSellerId'],
-        pathParams: ['externalSellerId', 'merchantId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Account>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Account>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Accountsbyexternalsellerid$Get
-    extends StandardParameters {
-    /**
-     * Required. The External Seller ID of the seller account to be retrieved.
-     */
-    externalSellerId?: string;
-    /**
-     * Required. The ID of the MCA containing the seller.
-     */
-    merchantId?: string;
   }
 
   export class Resource$Accountstatuses {
@@ -15572,7 +15406,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Invokes a fetch for the datafeed in your Merchant Center account. If you need to call this method more than once per day, we recommend you use the Products service to update your product data.
+     * Invokes a fetch for the datafeed in your Merchant Center account. If you need to call this method more than once per day, we recommend you use the [Products service](https://developers.google.com/shopping-content/reference/rest/v2.1/products) to update your product data.
      * @example
      * ```js
      * // Before running the sample:
@@ -28232,7 +28066,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Inserts a promotion for your Merchant Center account. If the promotion already exists, then it will update the promotion instead.
+     * Inserts a promotion for your Merchant Center account. If the promotion already exists, then it updates the promotion instead.
      * @example
      * ```js
      * // Before running the sample:
@@ -29093,7 +28927,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Update the regional inventory of a product in your Merchant Center account. If a regional inventory with the same region ID already exists, this method updates that entry.
+     * Updates the regional inventory of a product in your Merchant Center account. If a regional inventory with the same region ID already exists, this method updates that entry.
      * @example
      * ```js
      * // Before running the sample:

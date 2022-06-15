@@ -145,7 +145,7 @@ export namespace firebaseappcheck_v1beta {
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaAppCheckToken {
     /**
-     * This field has been renamed to `token`. An App Check token. App Check tokens are signed [JWTs](https://tools.ietf.org/html/rfc7519) containing claims that identify the attested app and Firebase project. This token is used to access Firebase services protected by App Check.
+     * An App Check token. App Check tokens are signed [JWTs](https://tools.ietf.org/html/rfc7519) containing claims that identify the attested app and Firebase project. This token is used to access Firebase services protected by App Check.
      */
     attestationToken?: string | null;
     /**
@@ -344,7 +344,7 @@ export namespace firebaseappcheck_v1beta {
      */
     artifact?: string | null;
     /**
-     * This field has been renamed to `app_check_token`. Encapsulates an App Check token.
+     * Encapsulates an App Check token.
      */
     attestationToken?: Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse;
   }
@@ -532,7 +532,7 @@ export namespace firebaseappcheck_v1beta {
     keys?: Schema$GoogleFirebaseAppcheckV1betaPublicJwk[];
   }
   /**
-   * This REST resource has been renamed to RecaptchaV3Config. An app's reCAPTCHA v3 configuration object. This configuration is used by ExchangeRecaptchaToken to validate reCAPTCHA tokens issued to apps by reCAPTCHA v3. It also controls certain properties of the returned `AppCheckToken`, such as its ttl.
+   * An app's reCAPTCHA v3 configuration object. This configuration is used by ExchangeRecaptchaToken to validate reCAPTCHA tokens issued to apps by reCAPTCHA v3. It also controls certain properties of the returned `AppCheckToken`, such as its ttl.
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaRecaptchaConfig {
     /**
@@ -1902,7 +1902,7 @@ export namespace firebaseappcheck_v1beta {
     }
 
     /**
-     * This method has been renamed to ExchangeRecaptchaV3Token. Validates a [reCAPTCHA v3 response token](https://developers.google.com/recaptcha/docs/v3). If valid, returns an AppCheckToken.
+     * Validates a [reCAPTCHA v3 response token](https://developers.google.com/recaptcha/docs/v3). If valid, returns an AppCheckToken.
      * @example
      * ```js
      * // Before running the sample:
@@ -5039,7 +5039,7 @@ export namespace firebaseappcheck_v1beta {
     }
 
     /**
-     * The RecaptchaConfig REST resource has been renamed to RecaptchaV3Config. Please use BatchGetRecaptchaV3Configs instead. Atomically gets the RecaptchaConfigs for the specified list of apps. For security reasons, the `site_secret` field is never populated in the response.
+     * Atomically gets the RecaptchaConfigs for the specified list of apps. For security reasons, the `site_secret` field is never populated in the response.
      * @example
      * ```js
      * // Before running the sample:
@@ -5182,7 +5182,7 @@ export namespace firebaseappcheck_v1beta {
     }
 
     /**
-     * The RecaptchaConfig REST resource has been renamed to RecaptchaV3Config. Please use GetRecaptchaV3Config instead. Gets the RecaptchaConfig for the specified app. For security reasons, the `site_secret` field is never populated in the response.
+     * Gets the RecaptchaConfig for the specified app. For security reasons, the `site_secret` field is never populated in the response.
      * @example
      * ```js
      * // Before running the sample:
@@ -5324,7 +5324,7 @@ export namespace firebaseappcheck_v1beta {
     }
 
     /**
-     * The RecaptchaConfig REST resource has been renamed to RecaptchaV3Config. Please use UpdateRecaptchaV3Config instead. Updates the RecaptchaConfig for the specified app. While this configuration is incomplete or invalid, the app will be unable to exchange reCAPTCHA tokens for App Check tokens. For security reasons, the `site_secret` field is never populated in the response.
+     * Updates the RecaptchaConfig for the specified app. While this configuration is incomplete or invalid, the app will be unable to exchange reCAPTCHA tokens for App Check tokens. For security reasons, the `site_secret` field is never populated in the response.
      * @example
      * ```js
      * // Before running the sample:

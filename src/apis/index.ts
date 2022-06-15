@@ -103,6 +103,7 @@ import {
   VERSIONS as baremetalsolutionVersions,
   baremetalsolution,
 } from './baremetalsolution';
+import {VERSIONS as beyondcorpVersions, beyondcorp} from './beyondcorp';
 import {VERSIONS as bigqueryVersions, bigquery} from './bigquery';
 import {
   VERSIONS as bigqueryconnectionVersions,
@@ -130,6 +131,10 @@ import {
 } from './binaryauthorization';
 import {VERSIONS as bloggerVersions, blogger} from './blogger';
 import {VERSIONS as booksVersions, books} from './books';
+import {
+  VERSIONS as businessprofileperformanceVersions,
+  businessprofileperformance,
+} from './businessprofileperformance';
 import {VERSIONS as calendarVersions, calendar} from './calendar';
 import {
   VERSIONS as certificatemanagerVersions,
@@ -633,6 +638,7 @@ export const APIS: APIList = {
   assuredworkloads: assuredworkloadsVersions,
   authorizedbuyersmarketplace: authorizedbuyersmarketplaceVersions,
   baremetalsolution: baremetalsolutionVersions,
+  beyondcorp: beyondcorpVersions,
   bigquery: bigqueryVersions,
   bigqueryconnection: bigqueryconnectionVersions,
   bigquerydatatransfer: bigquerydatatransferVersions,
@@ -642,6 +648,7 @@ export const APIS: APIList = {
   binaryauthorization: binaryauthorizationVersions,
   blogger: bloggerVersions,
   books: booksVersions,
+  businessprofileperformance: businessprofileperformanceVersions,
   calendar: calendarVersions,
   certificatemanager: certificatemanagerVersions,
   chat: chatVersions,
@@ -883,6 +890,7 @@ export class GeneratedAPIs {
   assuredworkloads = assuredworkloads;
   authorizedbuyersmarketplace = authorizedbuyersmarketplace;
   baremetalsolution = baremetalsolution;
+  beyondcorp = beyondcorp;
   bigquery = bigquery;
   bigqueryconnection = bigqueryconnection;
   bigquerydatatransfer = bigquerydatatransfer;
@@ -892,6 +900,7 @@ export class GeneratedAPIs {
   binaryauthorization = binaryauthorization;
   blogger = blogger;
   books = books;
+  businessprofileperformance = businessprofileperformance;
   calendar = calendar;
   certificatemanager = certificatemanager;
   chat = chat;

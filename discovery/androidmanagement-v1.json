@@ -609,7 +609,7 @@
         "enrollmentTokens": {
           "methods": {
             "create": {
-              "description": "Creates an enrollment token for a given enterprise.",
+              "description": "Creates an enrollment token for a given enterprise. It's up to the caller's responsibility to manage the lifecycle of newly created tokens and deleting them when they're not intended to be used anymore. Once an enrollment token has been created, it's not possible to retrieve the token's content anymore using AM API. It is recommended for EMMs to securely store the token if it's intended to be reused.",
               "flatPath": "v1/enterprises/{enterprisesId}/enrollmentTokens",
               "httpMethod": "POST",
               "id": "androidmanagement.enterprises.enrollmentTokens.create",
@@ -656,6 +656,67 @@
               "path": "v1/{+name}",
               "response": {
                 "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidmanagement"
+              ]
+            },
+            "get": {
+              "description": "Gets an active, unexpired enrollment token. Only a partial view of EnrollmentToken is returned: all the fields but name and expiration_timestamp are empty. This method is meant to help manage active enrollment tokens lifecycle. For security reasons, it's recommended to delete active enrollment tokens as soon as they're not intended to be used anymore.",
+              "flatPath": "v1/enterprises/{enterprisesId}/enrollmentTokens/{enrollmentTokensId}",
+              "httpMethod": "GET",
+              "id": "androidmanagement.enterprises.enrollmentTokens.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the enrollment token in the form enterprises/{enterpriseId}/enrollmentTokens/{enrollmentTokenId}.",
+                  "location": "path",
+                  "pattern": "^enterprises/[^/]+/enrollmentTokens/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "EnrollmentToken"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidmanagement"
+              ]
+            },
+            "list": {
+              "description": "Lists active, unexpired enrollment tokens for a given enterprise. The list items contain only a partial view of EnrollmentToken: all the fields but name and expiration_timestamp are empty. This method is meant to help manage active enrollment tokens lifecycle. For security reasons, it's recommended to delete active enrollment tokens as soon as they're not intended to be used anymore.",
+              "flatPath": "v1/enterprises/{enterprisesId}/enrollmentTokens",
+              "httpMethod": "GET",
+              "id": "androidmanagement.enterprises.enrollmentTokens.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The requested page size. The service may return fewer than this value. If unspecified, at most 10 items will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A token identifying a page of results returned by the server.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The name of the enterprise in the form enterprises/{enterpriseId}.",
+                  "location": "path",
+                  "pattern": "^enterprises/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/enrollmentTokens",
+              "response": {
+                "$ref": "ListEnrollmentTokensResponse"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/androidmanagement"
@@ -1004,7 +1065,7 @@
       }
     }
   },
-  "revision": "20220425",
+  "revision": "20220601",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdvancedSecurityOverrides": {
@@ -1675,10 +1736,47 @@
       },
       "type": "object"
     },
+    "ClearAppsDataParams": {
+      "description": "Parameters associated with the CLEAR_APP_DATA command to clear the data of specified apps from the device.",
+      "id": "ClearAppsDataParams",
+      "properties": {
+        "packageNames": {
+          "description": "The package names of the apps whose data will be cleared when the command is executed.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ClearAppsDataStatus": {
+      "description": "Status of the CLEAR_APP_DATA command to clear the data of specified apps from the device.",
+      "id": "ClearAppsDataStatus",
+      "properties": {
+        "results": {
+          "additionalProperties": {
+            "$ref": "PerAppResult"
+          },
+          "description": "The per-app results, a mapping from package names to the respective clearing result.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "Command": {
       "description": "A command.",
       "id": "Command",
       "properties": {
+        "clearAppsDataParams": {
+          "$ref": "ClearAppsDataParams",
+          "description": "Parameters for the CLEAR_APP_DATA command to clear the data of specified apps from the device. See ClearAppsDataParams. If this is set, then it is suggested that type should not be set. In this case, the server automatically sets it to CLEAR_APP_DATA. It is also acceptable to explicitly set type to CLEAR_APP_DATA."
+        },
+        "clearAppsDataStatus": {
+          "$ref": "ClearAppsDataStatus",
+          "description": "Output only. Status of the CLEAR_APP_DATA command to clear the data of specified apps from the device. See ClearAppsDataStatus.",
+          "readOnly": true
+        },
         "createTime": {
           "description": "The timestamp at which the command was created. The timestamp is automatically generated by the server.",
           "format": "google-datetime",
@@ -1739,14 +1837,16 @@
             "LOCK",
             "RESET_PASSWORD",
             "REBOOT",
-            "RELINQUISH_OWNERSHIP"
+            "RELINQUISH_OWNERSHIP",
+            "CLEAR_APP_DATA"
           ],
           "enumDescriptions": [
             "This value is disallowed.",
             "Lock the device, as if the lock screen timeout had expired.",
             "Reset the user's password.",
             "Reboot the device. Only supported on fully managed devices running Android 7.0 (API level 24) or higher.",
-            "Removes the work profile and all policies from a company-owned Android 8.0+ device, relinquishing the device for personal use. Apps and data associated with the personal profile(s) are preserved. The device will be deleted from the server after it acknowledges the command."
+            "Removes the work profile and all policies from a company-owned Android 8.0+ device, relinquishing the device for personal use. Apps and data associated with the personal profile(s) are preserved. The device will be deleted from the server after it acknowledges the command.",
+            "Clears the application data of specified apps. This is supported on Android 9 and above. Note that an application can store data outside of its application data, for example in external storage or in a user dictionary. See also clear_apps_data_params."
           ],
           "type": "string"
         },
@@ -2774,6 +2874,24 @@
       },
       "type": "object"
     },
+    "ListEnrollmentTokensResponse": {
+      "description": "Response to a request to list enrollment tokens for a given enterprise.",
+      "id": "ListEnrollmentTokensResponse",
+      "properties": {
+        "enrollmentTokens": {
+          "description": "The list of enrollment tokens.",
+          "items": {
+            "$ref": "EnrollmentToken"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "If there are more results, a token to retrieve next page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListEnterprisesResponse": {
       "description": "Response to a request to list enterprises.",
       "id": "ListEnterprisesResponse",
@@ -3105,6 +3223,28 @@
         "settingName": {
           "description": "The name of the policy setting. This is the JSON field name of a top-level Policy field.",
           "type": "string"
+        },
+        "specificNonComplianceContext": {
+          "$ref": "SpecificNonComplianceContext",
+          "description": "Additional context for specific_non_compliance_reason."
+        },
+        "specificNonComplianceReason": {
+          "description": "The policy-specific reason the device is not in compliance with the setting.",
+          "enum": [
+            "SPECIFIC_NON_COMPLIANCE_REASON_UNSPECIFIED",
+            "PASSWORD_POLICIES_USER_CREDENTIALS_CONFIRMATION_REQUIRED",
+            "PASSWORD_POLICIES_PASSWORD_EXPIRED",
+            "PASSWORD_POLICIES_PASSWORD_NOT_SUFFICIENT",
+            "ONC_WIFI_INVALID_VALUE"
+          ],
+          "enumDescriptions": [
+            "Specific non-compliance reason is not specified. Fields in specific_non_compliance_context are not set.",
+            "User needs to confirm credentials by entering the screen lock. Fields in specific_non_compliance_context are not set. nonComplianceReason is set to USER_ACTION.",
+            "The device or profile password has expired. passwordPoliciesContext is set. nonComplianceReason is set to USER_ACTION.",
+            "The device password does not satisfy password requirements. passwordPoliciesContext is set. nonComplianceReason is set to USER_ACTION.",
+            "There is an incorrect value in ONC Wi-Fi configuration. fieldPath specifies which field value is incorrect. oncWifiContext is set. nonComplianceReason is set to INVALID_VALUE."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -3172,6 +3312,17 @@
       },
       "type": "object"
     },
+    "OncWifiContext": {
+      "description": "Additional context for non-compliance related to Wi-Fi configuration.",
+      "id": "OncWifiContext",
+      "properties": {
+        "wifiGuid": {
+          "description": "The GUID of non-compliant Wi-Fi configuration.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Operation": {
       "description": "This resource represents a long-running operation that is the result of a network API call.",
       "id": "Operation",
@@ -3217,6 +3368,27 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PasswordPoliciesContext": {
+      "description": "Additional context for non-compliance related to password policies.",
+      "id": "PasswordPoliciesContext",
+      "properties": {
+        "passwordPolicyScope": {
+          "description": "The scope of non-compliant password.",
+          "enum": [
+            "SCOPE_UNSPECIFIED",
+            "SCOPE_DEVICE",
+            "SCOPE_PROFILE"
+          ],
+          "enumDescriptions": [
+            "The scope is unspecified. The password requirements are applied to the work profile for work profile devices and the whole device for fully managed or dedicated devices.",
+            "The password requirements are only applied to the device.",
+            "The password requirements are only applied to the work profile."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -3330,6 +3502,45 @@
             "Unspecified. Defaults to USE_DEFAULT_DEVICE_TIMEOUT.",
             "The timeout period is set to the device’s default.",
             "The timeout period is set to 24 hours."
+          ],
+          "type": "string"
+        },
+        "unifiedLockSettings": {
+          "description": "Controls whether a unified lock is allowed for the device and the work profile, on devices running Android 9 and above with a work profile. This can be set only if password_scope is set to SCOPE_PROFILE, the policy will be rejected otherwise. If user has not set a separate work lock and this field is set to REQUIRE_SEPARATE_WORK_LOCK, a NonComplianceDetail is reported with nonComplianceReason set to USER_ACTION.",
+          "enum": [
+            "UNIFIED_LOCK_SETTINGS_UNSPECIFIED",
+            "ALLOW_UNIFIED_WORK_AND_PERSONAL_LOCK",
+            "REQUIRE_SEPARATE_WORK_LOCK"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to ALLOW_UNIFIED_WORK_AND_PERSONAL_LOCK.",
+            "A common lock for the device and the work profile is allowed.",
+            "A separate lock for the work profile is required."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PerAppResult": {
+      "description": "The result of an attempt to clear the data of a single app.",
+      "id": "PerAppResult",
+      "properties": {
+        "clearingResult": {
+          "description": "The result of an attempt to clear the data of a single app.",
+          "enum": [
+            "CLEARING_RESULT_UNSPECIFIED",
+            "SUCCESS",
+            "APP_NOT_FOUND",
+            "APP_PROTECTED",
+            "API_LEVEL"
+          ],
+          "enumDescriptions": [
+            "Unspecified result.",
+            "This app’s data was successfully cleared.",
+            "This app’s data could not be cleared because the app was not found.",
+            "This app’s data could not be cleared because the app is protected. For example, this may apply to apps critical to the functioning of the device, such as Google Play Store.",
+            "This app’s data could not be cleared because the device API level does not support this command."
           ],
           "type": "string"
         }
@@ -3840,7 +4051,7 @@
         },
         "passwordRequirements": {
           "$ref": "PasswordRequirements",
-          "description": "Password requirements. The field password_requirements.require_password_unlock must not be set. DEPRECATED - Use passwordPolicies.Note:Complexity-based values of PasswordQuality, that is, COMPLEXITY_LOW, COMPLEXITY_MEDIUM, and COMPLEXITY_HIGH, cannot be used here."
+          "description": "Password requirements. The field password_requirements.require_password_unlock must not be set. DEPRECATED - Use passwordPolicies.Note:Complexity-based values of PasswordQuality, that is, COMPLEXITY_LOW, COMPLEXITY_MEDIUM, and COMPLEXITY_HIGH, cannot be used here. unified_lock_settings cannot be used here."
         },
         "permissionGrants": {
           "description": "Explicit permission or group grants or denials for all apps. These values override the default_permission_policy.",
@@ -4296,6 +4507,21 @@
       },
       "type": "object"
     },
+    "SpecificNonComplianceContext": {
+      "description": "Additional context for SpecificNonComplianceReason.",
+      "id": "SpecificNonComplianceContext",
+      "properties": {
+        "oncWifiContext": {
+          "$ref": "OncWifiContext",
+          "description": "Additional context for non-compliance related to Wi-Fi configuration. See ONC_WIFI_INVALID_VALUE."
+        },
+        "passwordPoliciesContext": {
+          "$ref": "PasswordPoliciesContext",
+          "description": "Additional context for non-compliance related to password policies. See PASSWORD_POLICIES_PASSWORD_EXPIRED and PASSWORD_POLICIES_PASSWORD_NOT_SUFFICIENT."
+        }
+      },
+      "type": "object"
+    },
     "Status": {
       "description": "The Status type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by gRPC (https://github.com/grpc). Each Status message contains three pieces of data: error code, error message, and error details.You can find out more about this error model and how to work with it in the API Design Guide (https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -4488,7 +4714,7 @@
             ],
             "enumDescriptions": [
               "This value is not used.",
-              "Enable logging of on-device security events, like when the device password is incorrectly entered or removable storage is mounted. See event for a complete description of the logged security events. Supported for fully managed devices on Android 7.0 and above. Supported for company-owned devices with a work profile on Android 12 and above, on which only security events from the work profile are logged.",
+              "Enable logging of on-device security events, like when the device password is incorrectly entered or removable storage is mounted. See event for a complete description of the logged security events. Supported for fully managed devices on Android 7 and above. Supported for company-owned devices with a work profile on Android 12 and above, on which only security events from the work profile are logged.",
               "Enable logging of on-device network events, like DNS lookups and TCP connections. See event for a complete description of the logged network events. Supported for fully managed devices on Android 8 and above. Supported for company-owned devices with a work profile on Android 12 and above, on which only network events from the work profile are logged."
             ],
             "type": "string"
@@ -4505,7 +4731,7 @@
             ],
             "enumDescriptions": [
               "This value is not used.",
-              "Enable logging of on-device security events, like when the device password is incorrectly entered or removable storage is mounted. See event for a complete description of the logged security events. Supported for fully managed devices on Android 7.0 and above. Supported for company-owned devices with a work profile on Android 12 and above, on which only security events from the work profile are logged.",
+              "Enable logging of on-device security events, like when the device password is incorrectly entered or removable storage is mounted. See event for a complete description of the logged security events. Supported for fully managed devices on Android 7 and above. Supported for company-owned devices with a work profile on Android 12 and above, on which only security events from the work profile are logged.",
               "Enable logging of on-device network events, like DNS lookups and TCP connections. See event for a complete description of the logged network events. Supported for fully managed devices on Android 8 and above. Supported for company-owned devices with a work profile on Android 12 and above, on which only network events from the work profile are logged."
             ],
             "type": "string"

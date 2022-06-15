@@ -577,6 +577,173 @@
                 }
               },
               "resources": {
+                "shares": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a share.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/shares",
+                      "httpMethod": "POST",
+                      "id": "file.projects.locations.instances.shares.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The Filestore Instance to create the share for, in the format `projects/{project_id}/locations/{location}/instances/{instance_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "shareId": {
+                          "description": "Required. The ID to use for the share. The ID must be unique within the specified instance. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/shares",
+                      "request": {
+                        "$ref": "Share"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a share.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/shares/{sharesId}",
+                      "httpMethod": "DELETE",
+                      "id": "file.projects.locations.instances.shares.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The share resource name, in the format `projects/{project_id}/locations/{location}/instances/{instance_id}/share/{share_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+/shares/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets the details of a specific share.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/shares/{sharesId}",
+                      "httpMethod": "GET",
+                      "id": "file.projects.locations.instances.shares.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The share resource name, in the format `projects/{project_id}/locations/{location}/instances/{instance_id}/shares/{share_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+/shares/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "Share"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all shares for a specified instance.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/shares",
+                      "httpMethod": "GET",
+                      "id": "file.projects.locations.instances.shares.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "List filter.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Sort results. Supported values are \"name\", \"name desc\" or \"\" (unsorted).",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The maximum number of items to return.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The next_page_token value to use if there are additional results to retrieve for this list request.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The instance for which to retrieve share information, in the format `projects/{project_id}/locations/{location}/instances/{instance_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/shares",
+                      "response": {
+                        "$ref": "ListSharesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates the settings of a specific share.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/shares/{sharesId}",
+                      "httpMethod": "PATCH",
+                      "id": "file.projects.locations.instances.shares.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Output only. The resource name of the share, in the format `projects/{project_id}/locations/{location_id}/instances/{instance_id}/shares/{share_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+/shares/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields: * \"description\" * \"capacity_gb\" * \"labels\" * \"nfs_export_options\"",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "request": {
+                        "$ref": "Share"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
                 "snapshots": {
                   "methods": {
                     "create": {
@@ -874,7 +1041,7 @@
       }
     }
   },
-  "revision": "20220407",
+  "revision": "20220602",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -901,6 +1068,10 @@
           "description": "Output only. Amount of bytes that will be downloaded if the backup is restored",
           "format": "int64",
           "readOnly": true,
+          "type": "string"
+        },
+        "kmsKeyName": {
+          "description": "Immutable. KMS key name used for data encryption.",
           "type": "string"
         },
         "labels": {
@@ -1352,6 +1523,17 @@
       "description": "A Cloud Filestore instance.",
       "id": "Instance",
       "properties": {
+        "capacityGb": {
+          "description": "The storage capacity of the instance in gigabytes (GB = 1024^3 bytes). This capacity can be increased up to `max_capacity_gb` GB in multipliers of `capacity_step_size_gb` GB.",
+          "format": "int64",
+          "type": "string"
+        },
+        "capacityStepSizeGb": {
+          "description": "Output only. The increase/decrease capacity step size.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "createTime": {
           "description": "Output only. The time when the instance was created.",
           "format": "google-datetime",
@@ -1383,6 +1565,22 @@
           },
           "description": "Resource labels to represent user provided metadata.",
           "type": "object"
+        },
+        "maxCapacityGb": {
+          "description": "Output only. The max capacity of the instance.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "maxShareCount": {
+          "description": "Output only. The max number of shares allowed.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "multiShareEnabled": {
+          "description": "Indicates whether this instance uses a multi-share configuration with which it can have more than one file-share or none at all. File-shares are added, updated and removed through the separate file-share APIs.",
+          "type": "boolean"
         },
         "name": {
           "description": "Output only. The resource name of the instance, in the format `projects/{project_id}/locations/{location_id}/instances/{instance_id}`.",
@@ -1554,6 +1752,31 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "Operation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListSharesResponse": {
+      "description": "ListSharesResponse is the result of ListSharesRequest.",
+      "id": "ListSharesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The token you can use to retrieve the next page of results. Not returned if there are no more results in the list.",
+          "type": "string"
+        },
+        "shares": {
+          "description": "A list of shares in the project for the specified instance.",
+          "items": {
+            "$ref": "Share"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -1926,6 +2149,68 @@
         "startTime": {
           "$ref": "TimeOfDay",
           "description": "Time within the window to start the operations."
+        }
+      },
+      "type": "object"
+    },
+    "Share": {
+      "description": "A Cloud Filestore share.",
+      "id": "Share",
+      "properties": {
+        "capacityGb": {
+          "description": "File share capacity in gigabytes (GB). Cloud Filestore defines 1 GB as 1024^3 bytes. Must be greater than 0.",
+          "format": "int64",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time when the share was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "A description of the share with 2048 characters or less. Requests with longer descriptions will be rejected.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Resource labels to represent user provided metadata.",
+          "type": "object"
+        },
+        "mountName": {
+          "description": "The mount name of the share. Must be 63 characters or less and consist of uppercase or lowercase letters, numbers, and underscores.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name of the share, in the format `projects/{project_id}/locations/{location_id}/instances/{instance_id}/shares/{share_id}`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "nfsExportOptions": {
+          "description": "Nfs Export Options. There is a limit of 10 export options per file share.",
+          "items": {
+            "$ref": "NfsExportOptions"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "Output only. The share state.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "State not set.",
+            "Share is being created.",
+            "Share is ready for use.",
+            "Share is being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"

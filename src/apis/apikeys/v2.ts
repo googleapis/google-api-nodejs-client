@@ -1385,7 +1385,7 @@ export namespace apikeys_v2 {
      *   const res = await apikeys.projects.locations.keys.patch({
      *     // Output only. The resource name of the key. The `name` has the form: `projects//locations/global/keys/`. For example: `projects/123456867718/locations/global/keys/b7ff1f9f-8275-410a-94dd-3855ee9b5dd2` NOTE: Key is a global resource; hence the only supported value for location is `global`.
      *     name: 'projects/my-project/locations/my-location/keys/my-key',
-     *     // The field mask specifies which fields to be updated as part of this request. All other fields are ignored. Mutable fields are: `display_name`,`restrictions` and `annotations`. If an update mask is not provided, the service treats it as an implied mask equivalent to all allowed fields that are set on the wire. If the field mask has a special value "*", the service treats it equivalent to replace all allowed mutable fields.
+     *     // The field mask specifies which fields to be updated as part of this request. All other fields are ignored. Mutable fields are: `display_name`, `restrictions`, and `annotations`. If an update mask is not provided, the service treats it as an implied mask equivalent to all allowed fields that are set on the wire. If the field mask has a special value "*", the service treats it equivalent to replace all allowed mutable fields.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1712,7 +1712,7 @@ export namespace apikeys_v2 {
      */
     name?: string;
     /**
-     * The field mask specifies which fields to be updated as part of this request. All other fields are ignored. Mutable fields are: `display_name`,`restrictions` and `annotations`. If an update mask is not provided, the service treats it as an implied mask equivalent to all allowed fields that are set on the wire. If the field mask has a special value "*", the service treats it equivalent to replace all allowed mutable fields.
+     * The field mask specifies which fields to be updated as part of this request. All other fields are ignored. Mutable fields are: `display_name`, `restrictions`, and `annotations`. If an update mask is not provided, the service treats it as an implied mask equivalent to all allowed fields that are set on the wire. If the field mask has a special value "*", the service treats it equivalent to replace all allowed mutable fields.
      */
     updateMask?: string;
 

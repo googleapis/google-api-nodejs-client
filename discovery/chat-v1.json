@@ -3,7 +3,7 @@
   "baseUrl": "https://chat.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Hangouts Chat",
-  "description": "Enables apps to fetch information and perform actions in Google Chat. Authentication using a service account is a prerequisite for using the Google Chat REST API.",
+  "description": "Enables apps to fetch information and perform actions in Google Chat. Authentication is a prerequisite for using the Google Chat REST API.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/hangouts/chat",
   "fullyEncodeReservedExpansion": true,
@@ -365,7 +365,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. Resource name of the space, in the form \"spaces/*\". Example: spaces/AAAAAAAAAAAA",
+              "description": "Required. Resource name of the space, in the form \"spaces/*\". Format: spaces/{space}",
               "location": "path",
               "pattern": "^spaces/[^/]+$",
               "required": true,
@@ -450,7 +450,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Resource name of the membership to be retrieved, in the form \"spaces/*/members/*\". Example: spaces/AAAAAAAAAAAA/members/111111111111111111111",
+                  "description": "Required. Resource name of the membership to retrieve. Format: spaces/{space}/members/{member}",
                   "location": "path",
                   "pattern": "^spaces/[^/]+/members/[^/]+$",
                   "required": true,
@@ -483,7 +483,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The resource name of the space for which membership list is to be fetched, in the form \"spaces/*\". Example: spaces/AAAAAAAAAAAA",
+                  "description": "Required. The resource name of the space for which to fetch a membership list. Format: spaces/{space}",
                   "location": "path",
                   "pattern": "^spaces/[^/]+$",
                   "required": true,
@@ -642,7 +642,7 @@
       }
     }
   },
-  "revision": "20220429",
+  "revision": "20220608",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -945,7 +945,7 @@
       "id": "ChatAppLogEntry",
       "properties": {
         "deployment": {
-          "description": "The deployment that caused the error. For Chat bots built in Apps Script, this is the deployment ID defined by Apps Script.",
+          "description": "The deployment that caused the error. For Chat apps built in Apps Script, this is the deployment ID defined by Apps Script.",
           "type": "string"
         },
         "deploymentFunction": {
@@ -2357,7 +2357,7 @@
       "type": "object"
     },
     "MatchedUrl": {
-      "description": "A matched url in a Chat message. Chat apps can unfurl matched URLs. For more information, refer to [Unfurl links](https://developers.google.com/chat/how-tos/link-unfurling).",
+      "description": "A matched url in a Chat message. Chat apps can preview matched URLs. For more information, refer to [Preview links](https://developers.google.com/chat/how-tos/preview-links).",
       "id": "MatchedUrl",
       "properties": {
         "url": {
@@ -2380,20 +2380,21 @@
       "type": "object"
     },
     "Membership": {
-      "description": "Represents a membership relation in Google Chat.",
+      "description": "Represents a membership relation in Google Chat, such as whether a user or Chat app is invited to, part of, or absent from a space.",
       "id": "Membership",
       "properties": {
         "createTime": {
-          "description": "Output only. The creation time of the membership a.k.a. the time at which the member joined the space, if applicable.",
+          "description": "Output only. The creation time of the membership, such as when a member joined or was invited to join a space.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "member": {
           "$ref": "User",
-          "description": "A Google Chat user or app. Format: `users/{person}` or `users/app` When `users/{person}`, represents a [person](https://developers.google.com/people/api/rest/v1/people) in the People API or a [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Admin SDK Directory API. Format: `users/{user}` When `users/app`, represents a Chat app creating membership for itself. Creating membership is available as a [developer preview](https://developers.google.com/workspace/preview)."
+          "description": "A Google Chat user or app. Format: `users/{user}` or `users/app` When `users/{user}`, represents a [person](https://developers.google.com/people/api/rest/v1/people) in the People API or a [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Admin SDK Directory API. When `users/app`, represents a Chat app creating membership for itself."
         },
         "name": {
+          "description": "Resource name of the membership. Format: spaces/{space}/members/{member}",
           "type": "string"
         },
         "state": {
@@ -2461,14 +2462,14 @@
           "type": "string"
         },
         "lastUpdateTime": {
-          "description": "Output only. The time at which the message was last updated in Google Chat server. If the message was never updated, this field will be same as create_time.",
+          "description": "Output only. The time at which the message was last updated. If the message was never updated, this field matches `create_time`.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "matchedUrl": {
           "$ref": "MatchedUrl",
-          "description": "Output only. A URL in `spaces.messages.text` that matches a link unfurling pattern. For more information, refer to [Unfurl links](https://developers.google.com/chat/how-tos/link-unfurling).",
+          "description": "Output only. A URL in `spaces.messages.text` that matches a link preview pattern. For more information, refer to [Preview links](https://developers.google.com/chat/how-tos/preview-links).",
           "readOnly": true
         },
         "name": {
@@ -2603,7 +2604,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Resource name of the space, in the form \"spaces/*\". Example: spaces/AAAAAAAAAAAA",
+          "description": "Resource name of the space. Format: spaces/{space}",
           "type": "string"
         },
         "singleUserBotDm": {
@@ -2612,12 +2613,12 @@
           "type": "boolean"
         },
         "threaded": {
-          "description": "Output only. Output only. Whether the messages are threaded in this space.",
+          "description": "Output only. Whether messages are threaded in this space.",
           "readOnly": true,
           "type": "boolean"
         },
         "type": {
-          "description": "Output only. Deprecated: Use `single_user_bot_dm` instead. Output only. The type of a space.",
+          "description": "Output only. Deprecated: Use `single_user_bot_dm` or `space_type` (developer preview) instead. The type of a space.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "ROOM",

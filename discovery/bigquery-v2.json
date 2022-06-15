@@ -1109,7 +1109,7 @@
           ],
           "parameters": {
             "resource": {
-              "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+              "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
               "location": "path",
               "pattern": "^projects/[^/]+/datasets/[^/]+/tables/[^/]+/rowAccessPolicies/[^/]+$",
               "required": true,
@@ -1193,7 +1193,7 @@
           ],
           "parameters": {
             "resource": {
-              "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+              "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
               "location": "path",
               "pattern": "^projects/[^/]+/datasets/[^/]+/tables/[^/]+/rowAccessPolicies/[^/]+$",
               "required": true,
@@ -1222,7 +1222,7 @@
           ],
           "parameters": {
             "resource": {
-              "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+              "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
               "location": "path",
               "pattern": "^projects/[^/]+/datasets/[^/]+/tables/[^/]+/rowAccessPolicies/[^/]+$",
               "required": true,
@@ -1420,6 +1420,23 @@
               "location": "path",
               "required": true,
               "type": "string"
+            },
+            "view": {
+              "description": "Specifies the view that determines which table information is returned. By default, basic table information and storage statistics (STORAGE_STATS) are returned.",
+              "enum": [
+                "BASIC",
+                "FULL",
+                "STORAGE_STATS",
+                "TABLE_METADATA_VIEW_UNSPECIFIED"
+              ],
+              "enumDescriptions": [
+                "Includes basic table information including schema and partitioning specification. This view does not include storage statistics such as numRows or numBytes. This view is significantly more efficient and should be used to support high query rates.",
+                "Includes all table information, including storage statistics. It returns same information as STORAGE_STATS view, but may contain additional information in the future.",
+                "Includes all information in the BASIC view as well as storage statistics (numBytes, numLongTermBytes, numRows and lastModifiedTime).",
+                "The default value. Default to the STORAGE_STATS view."
+              ],
+              "location": "query",
+              "type": "string"
             }
           },
           "path": "projects/{projectId}/datasets/{datasetId}/tables/{tableId}",
@@ -1442,7 +1459,7 @@
           ],
           "parameters": {
             "resource": {
-              "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+              "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
               "location": "path",
               "pattern": "^projects/[^/]+/datasets/[^/]+/tables/[^/]+$",
               "required": true,
@@ -1595,7 +1612,7 @@
           ],
           "parameters": {
             "resource": {
-              "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+              "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
               "location": "path",
               "pattern": "^projects/[^/]+/datasets/[^/]+/tables/[^/]+$",
               "required": true,
@@ -1624,7 +1641,7 @@
           ],
           "parameters": {
             "resource": {
-              "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+              "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
               "location": "path",
               "pattern": "^projects/[^/]+/datasets/[^/]+/tables/[^/]+$",
               "required": true,
@@ -1693,7 +1710,7 @@
       }
     }
   },
-  "revision": "20220429",
+  "revision": "20220528",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -3763,6 +3780,31 @@
       },
       "type": "object"
     },
+    "IndexUnusedReason": {
+      "id": "IndexUnusedReason",
+      "properties": {
+        "base_table": {
+          "$ref": "TableReference",
+          "description": "[Output-only] Specifies the base table involved in the reason that no search index was used."
+        },
+        "code": {
+          "default": "$(reason.code)",
+          "description": "[Output-only] Specifies the high-level reason for the scenario when no search index was used.",
+          "type": "string"
+        },
+        "index_name": {
+          "default": "$(reason.index_name)",
+          "description": "[Output-only] Specifies the name of the unused search index, if available.",
+          "type": "string"
+        },
+        "message": {
+          "default": "$(reason.message)",
+          "description": "[Output-only] Free form human-readable reason for the scenario when no search index was used.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "IntArray": {
       "description": "An array of int.",
       "id": "IntArray",
@@ -4645,6 +4687,10 @@
         "schema": {
           "$ref": "TableSchema",
           "description": "[Output-only] The schema of the results. Present only for successful dry run of non-legacy SQL queries."
+        },
+        "searchStatistics": {
+          "$ref": "SearchStatistics",
+          "description": "[Output-only] Search query specific statistics."
         },
         "statementType": {
           "description": "The type of query statement, if valid. Possible values (new values might be added in the future): \"SELECT\": SELECT query. \"INSERT\": INSERT query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. \"UPDATE\": UPDATE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. \"DELETE\": DELETE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. \"MERGE\": MERGE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. \"ALTER_TABLE\": ALTER TABLE query. \"ALTER_VIEW\": ALTER VIEW query. \"ASSERT\": ASSERT condition AS 'description'. \"CREATE_FUNCTION\": CREATE FUNCTION query. \"CREATE_MODEL\": CREATE [OR REPLACE] MODEL ... AS SELECT ... . \"CREATE_PROCEDURE\": CREATE PROCEDURE query. \"CREATE_TABLE\": CREATE [OR REPLACE] TABLE without AS SELECT. \"CREATE_TABLE_AS_SELECT\": CREATE [OR REPLACE] TABLE ... AS SELECT ... . \"CREATE_VIEW\": CREATE [OR REPLACE] VIEW ... AS SELECT ... . \"DROP_FUNCTION\" : DROP FUNCTION query. \"DROP_PROCEDURE\": DROP PROCEDURE query. \"DROP_TABLE\": DROP TABLE query. \"DROP_VIEW\": DROP VIEW query.",
@@ -5902,6 +5948,23 @@
             "$ref": "ScriptStackFrame"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SearchStatistics": {
+      "id": "SearchStatistics",
+      "properties": {
+        "indexUnusedReason": {
+          "description": "When index_usage_mode is UNUSED or PARTIALLY_USED, this field explains why index was not used in all or part of the search query. If index_usage_mode is FULLLY_USED, this field is not populated.",
+          "items": {
+            "$ref": "IndexUnusedReason"
+          },
+          "type": "array"
+        },
+        "indexUsageMode": {
+          "description": "Specifies index usage mode for the query.",
+          "type": "string"
         }
       },
       "type": "object"

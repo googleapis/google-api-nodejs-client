@@ -624,7 +624,7 @@
       }
     }
   },
-  "revision": "20220331",
+  "revision": "20220601",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -808,6 +808,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "customerManagedKey": {
+          "description": "Optional. The KMS key reference that the customer provides when trying to create the instance.",
+          "type": "string"
+        },
         "displayName": {
           "description": "An arbitrary and optional user-provided name for the instance.",
           "type": "string"
@@ -957,6 +961,21 @@
           "description": "Output only. Additional information about the current status of this instance, if available.",
           "readOnly": true,
           "type": "string"
+        },
+        "suspensionReasons": {
+          "description": "Optional. reasons that causes instance in \"SUSPENDED\" state.",
+          "items": {
+            "enum": [
+              "SUSPENSION_REASON_UNSPECIFIED",
+              "CUSTOMER_MANAGED_KEY_ISSUE"
+            ],
+            "enumDescriptions": [
+              "Not set.",
+              "Something wrong with the CMEK key provided by customer."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         },
         "tier": {
           "description": "Required. The service tier of the instance.",

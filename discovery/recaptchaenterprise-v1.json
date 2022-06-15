@@ -489,7 +489,7 @@
       }
     }
   },
-  "revision": "20220319",
+  "revision": "20220612",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -621,6 +621,10 @@
           "description": "Output only. The resource name for the Assessment in the format \"projects/{project}/assessments/{assessment}\".",
           "readOnly": true,
           "type": "string"
+        },
+        "privatePasswordLeakVerification": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification",
+          "description": "The private password leak verification field contains the parameters used to check for leaks privately without sharing user credentials."
         },
         "riskAnalysis": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1RiskAnalysis",
@@ -847,6 +851,38 @@
       "description": "The migrate key request message.",
       "id": "GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification": {
+      "description": "Private password leak verification info.",
+      "id": "GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification",
+      "properties": {
+        "encryptedLeakMatchPrefixes": {
+          "description": "Output only. List of prefixes of the encrypted potential password leaks that matched the given parameters. They should be compared with the client-side decryption prefix of `reencrypted_user_credentials_hash`",
+          "items": {
+            "format": "byte",
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "encryptedUserCredentialsHash": {
+          "description": "Optional. Encrypted Scrypt hash of the canonicalized username+password. It is re-encrypted by the server and returned through `reencrypted_user_credentials_hash`.",
+          "format": "byte",
+          "type": "string"
+        },
+        "lookupHashPrefix": {
+          "description": "Optional. Exactly 26-bit prefix of the SHA-256 hash of the canonicalized username. It is used to look up password leaks associated with that hash prefix.",
+          "format": "byte",
+          "type": "string"
+        },
+        "reencryptedUserCredentialsHash": {
+          "description": "Output only. Corresponds to the re-encryption of the `encrypted_user_credentials_hash` field. Used to match potential password leaks within `encrypted_leak_match_prefixes`.",
+          "format": "byte",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudRecaptchaenterpriseV1RelatedAccountGroup": {

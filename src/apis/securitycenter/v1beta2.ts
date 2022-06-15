@@ -159,6 +159,23 @@ export namespace securitycenter_v1beta2 {
     userAgentFamily?: string | null;
   }
   /**
+   * Contains compliance information about a security standard indicating unmet recommendations.
+   */
+  export interface Schema$Compliance {
+    /**
+     * Policies within the standard/benchmark e.g. A.12.4.1
+     */
+    ids?: string[] | null;
+    /**
+     * Refers to industry wide standards or benchmarks e.g. "cis", "pci", "owasp", etc.
+     */
+    standard?: string | null;
+    /**
+     * Version of the standard/benchmark e.g. 1.1
+     */
+    version?: string | null;
+  }
+  /**
    * Configuration of a module.
    */
   export interface Schema$Config {
@@ -195,6 +212,24 @@ export namespace securitycenter_v1beta2 {
      * Source port.
      */
     sourcePort?: number | null;
+  }
+  /**
+   * Representa a single contact's email address
+   */
+  export interface Schema$Contact {
+    /**
+     * An email address e.g. "person123@company.com"
+     */
+    email?: string | null;
+  }
+  /**
+   * The details pertaining to specific contacts
+   */
+  export interface Schema$ContactDetails {
+    /**
+     * A list of contacts
+     */
+    contacts?: Schema$Contact[];
   }
   /**
    * Resource capturing the settings for the Container Threat Detection service.
@@ -301,6 +336,32 @@ export namespace securitycenter_v1beta2 {
     type?: string | null;
   }
   /**
+   * Memory hash detection contributing to the binary family match.
+   */
+  export interface Schema$Detection {
+    /**
+     * The name of the binary associated with the memory hash signature detection.
+     */
+    binary?: string | null;
+    /**
+     * The percentage of memory page hashes in the signature that were matched.
+     */
+    percentPagesMatched?: number | null;
+  }
+  /**
+   * EnvironmentVariable is a name-value pair to store environment variables for Process.
+   */
+  export interface Schema$EnvironmentVariable {
+    /**
+     * Environment variable name as a JSON encoded string.
+     */
+    name?: string | null;
+    /**
+     * Environment variable value as a JSON encoded string.
+     */
+    val?: string | null;
+  }
+  /**
    * Resource capturing the settings for the Event Threat Detection service.
    */
   export interface Schema$EventThreatDetectionSettings {
@@ -322,6 +383,61 @@ export namespace securitycenter_v1beta2 {
     updateTime?: string | null;
   }
   /**
+   * Resource that has been exfiltrated or exfiltrated_to.
+   */
+  export interface Schema$ExfilResource {
+    /**
+     * Subcomponents of the asset that is exfiltrated - these could be URIs used during exfiltration, table names, databases, filenames, etc. For example, multiple tables may be exfiltrated from the same CloudSQL instance, or multiple files from the same Cloud Storage bucket.
+     */
+    components?: string[] | null;
+    /**
+     * Resource's URI (https://google.aip.dev/122#full-resource-names)
+     */
+    name?: string | null;
+  }
+  /**
+   * Exfiltration represents a data exfiltration attempt of one or more sources to one or more targets. Sources represent the source of data that is exfiltrated, and Targets represents the destination the data was copied to.
+   */
+  export interface Schema$Exfiltration {
+    /**
+     * If there are multiple sources, then the data is considered "joined" between them. For instance, BigQuery can join multiple tables, and each table would be considered a source.
+     */
+    sources?: Schema$ExfilResource[];
+    /**
+     * If there are multiple targets, each target would get a complete copy of the "joined" source data.
+     */
+    targets?: Schema$ExfilResource[];
+  }
+  /**
+   * File information about the related binary/library used by an executable, or the script used by a script interpreter
+   */
+  export interface Schema$File {
+    /**
+     * Prefix of the file contents as a JSON encoded string. (Currently only populated for Malicious Script Executed findings.)
+     */
+    contents?: string | null;
+    /**
+     * The length in bytes of the file prefix that was hashed. If hashed_size == size, any hashes reported represent the entire file.
+     */
+    hashedSize?: string | null;
+    /**
+     * True when the hash covers only a prefix of the file.
+     */
+    partiallyHashed?: boolean | null;
+    /**
+     * Absolute path of the file as a JSON encoded string.
+     */
+    path?: string | null;
+    /**
+     * SHA256 hash of the first hashed_size bytes of the file encoded as a hex string. If hashed_size == size, sha256 represents the SHA256 hash of the entire file.
+     */
+    sha256?: string | null;
+    /**
+     * Size of the file in bytes.
+     */
+    size?: string | null;
+  }
+  /**
    * Security Command Center finding. A finding is a record of assessment data like security, risk, health, or privacy, that is ingested into Security Command Center for presentation, notification, analysis, policy testing, and enforcement. For example, a cross-site scripting (XSS) vulnerability in an App Engine application is a finding.
    */
   export interface Schema$Finding {
@@ -338,9 +454,17 @@ export namespace securitycenter_v1beta2 {
      */
     category?: string | null;
     /**
+     * Contains compliance information for security standards associated to the finding.
+     */
+    compliances?: Schema$Compliance[];
+    /**
      * Contains information about the IP connection associated with the finding.
      */
     connections?: Schema$Connection[];
+    /**
+     * Output only. Map containing the point of contacts for the given finding. The key represents the type of contact, while the value contains a list of all the contacts that pertain. Please refer to: https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories { “security”: {contact: {email: “person1@company.com”\} contact: {email: “person2@company.com”\} \}
+     */
+    contacts?: {[key: string]: Schema$ContactDetails} | null;
     /**
      * The time at which the finding was created in Security Command Center.
      */
@@ -353,6 +477,10 @@ export namespace securitycenter_v1beta2 {
      * The time the finding was first detected. If an existing finding is updated, then this is the time the update occurred. For example, if the finding represents an open firewall, this property captures the time the detector believes the firewall became open. The accuracy is determined by the detector. If the finding is later resolved, then this time reflects when the finding was resolved. This must not be set to a value greater than the current timestamp.
      */
     eventTime?: string | null;
+    /**
+     * Represents exfiltration associated with the Finding.
+     */
+    exfiltration?: Schema$Exfiltration;
     /**
      * Output only. Third party SIEM/SOAR fields within SCC, contains external system information and external system finding fields.
      */
@@ -403,6 +531,10 @@ export namespace securitycenter_v1beta2 {
      * The relative resource name of the source the finding belongs to. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name This field is immutable after creation time. For example: "organizations/{organization_id\}/sources/{source_id\}"
      */
     parent?: string | null;
+    /**
+     * Represents operating system processes associated with the Finding.
+     */
+    processes?: Schema$Process[];
     /**
      * For findings on Google Cloud resources, the full resource name of the Google Cloud resource this finding is for. See: https://cloud.google.com/apis/design/resource_names#full_resource_name When the finding is for a non-Google Cloud resource, the resourceName can be a customer or partner defined string. This field is immutable after creation time.
      */
@@ -800,6 +932,23 @@ export namespace securitycenter_v1beta2 {
      * List of ip addresses associated to the Finding.
      */
     ipAddresses?: string[] | null;
+    /**
+     * The list of matched signatures indicating that the given process is present in the environment.
+     */
+    signatures?: Schema$ProcessSignature[];
+  }
+  /**
+   * A signature corresponding to memory page hashes.
+   */
+  export interface Schema$MemoryHashSignature {
+    /**
+     * The binary family.
+     */
+    binaryFamily?: string | null;
+    /**
+     * The list of memory hash detections contributing to the binary family match.
+     */
+    detections?: Schema$Detection[];
   }
   /**
    * MITRE ATT&CK tactics and techniques related to this finding. See: https://attack.mitre.org
@@ -840,6 +989,64 @@ export namespace securitycenter_v1beta2 {
     onboardingLevel?: string | null;
   }
   /**
+   * Represents an operating system process.
+   */
+  export interface Schema$Process {
+    /**
+     * Process arguments as JSON encoded strings.
+     */
+    args?: string[] | null;
+    /**
+     * True if `args` is incomplete.
+     */
+    argumentsTruncated?: boolean | null;
+    /**
+     * File information for the process executable.
+     */
+    binary?: Schema$File;
+    /**
+     * Process environment variables.
+     */
+    envVariables?: Schema$EnvironmentVariable[];
+    /**
+     * True if `env_variables` is incomplete.
+     */
+    envVariablesTruncated?: boolean | null;
+    /**
+     * File information for libraries loaded by the process.
+     */
+    libraries?: Schema$File[];
+    /**
+     * The process name visible in utilities like top and ps; it can be accessed via /proc/[pid]/comm and changed with prctl(PR_SET_NAME).
+     */
+    name?: string | null;
+    /**
+     * The parent process id.
+     */
+    parentPid?: string | null;
+    /**
+     * The process id.
+     */
+    pid?: string | null;
+    /**
+     * When the process represents the invocation of a script, `binary` provides information about the interpreter while `script` provides information about the script file provided to the interpreter.
+     */
+    script?: Schema$File;
+  }
+  /**
+   * Indicates what signature matched this process.
+   */
+  export interface Schema$ProcessSignature {
+    /**
+     * Signature indicating that a binary family was matched.
+     */
+    memoryHashSignature?: Schema$MemoryHashSignature;
+    /**
+     * Signature indicating that a YARA rule was matched.
+     */
+    yaraRuleSignature?: Schema$YaraRuleSignature;
+  }
+  /**
    * Additional Links
    */
   export interface Schema$Reference {
@@ -861,9 +1068,13 @@ export namespace securitycenter_v1beta2 {
      */
     logSinkProject?: string | null;
     /**
-     * The resource name of the SecurityCenterSettings. Format: organizations/{organization\}/securityCenterSettings
+     * The resource name of the SecurityCenterSettings. Format: organizations/{organization\}/securityCenterSettings Format: folders/{folder\}/securityCenterSettings Format: projects/{project\}/securityCenterSettings
      */
     name?: string | null;
+    /**
+     * Timestamp of when the customer organization was onboarded to SCC.
+     */
+    onboardingTime?: string | null;
     /**
      * The organization level service account to be used for security center components.
      */
@@ -982,6 +1193,15 @@ export namespace securitycenter_v1beta2 {
      * Output only. The time the settings were last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * A signature corresponding to a YARA rule.
+   */
+  export interface Schema$YaraRuleSignature {
+    /**
+     * The name of the YARA rule.
+     */
+    yaraRule?: string | null;
   }
 
   export class Resource$Folders {
@@ -1414,6 +1634,143 @@ export namespace securitycenter_v1beta2 {
         );
       } else {
         return createAPIRequest<Schema$OnboardingState>(parameters);
+      }
+    }
+
+    /**
+     * Get the SecurityCenterSettings resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.folders.getSecurityCenterSettings({
+     *     // Required. The name of the SecurityCenterSettings to retrieve. Format: organizations/{organization\}/securityCenterSettings Format: folders/{folder\}/securityCenterSettings Format: projects/{project\}/securityCenterSettings
+     *     name: 'folders/my-folder/securityCenterSettings',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "logSinkProject": "my_logSinkProject",
+     *   //   "name": "my_name",
+     *   //   "onboardingTime": "my_onboardingTime",
+     *   //   "orgServiceAccount": "my_orgServiceAccount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getSecurityCenterSettings(
+      params: Params$Resource$Folders$Getsecuritycentersettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getSecurityCenterSettings(
+      params?: Params$Resource$Folders$Getsecuritycentersettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SecurityCenterSettings>;
+    getSecurityCenterSettings(
+      params: Params$Resource$Folders$Getsecuritycentersettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getSecurityCenterSettings(
+      params: Params$Resource$Folders$Getsecuritycentersettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SecurityCenterSettings>,
+      callback: BodyResponseCallback<Schema$SecurityCenterSettings>
+    ): void;
+    getSecurityCenterSettings(
+      params: Params$Resource$Folders$Getsecuritycentersettings,
+      callback: BodyResponseCallback<Schema$SecurityCenterSettings>
+    ): void;
+    getSecurityCenterSettings(
+      callback: BodyResponseCallback<Schema$SecurityCenterSettings>
+    ): void;
+    getSecurityCenterSettings(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Getsecuritycentersettings
+        | BodyResponseCallback<Schema$SecurityCenterSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SecurityCenterSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SecurityCenterSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SecurityCenterSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Getsecuritycentersettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Getsecuritycentersettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SecurityCenterSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SecurityCenterSettings>(parameters);
       }
     }
 
@@ -2627,6 +2984,13 @@ export namespace securitycenter_v1beta2 {
     extends StandardParameters {
     /**
      * Required. The name of the OnboardingState to retrieve. Formats: * organizations/{organization\}/onboardingState * folders/{folder\}/onboardingState * projects/{project\}/onboardingState
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Getsecuritycentersettings
+    extends StandardParameters {
+    /**
+     * Required. The name of the SecurityCenterSettings to retrieve. Format: organizations/{organization\}/securityCenterSettings Format: folders/{folder\}/securityCenterSettings Format: projects/{project\}/securityCenterSettings
      */
     name?: string;
   }
@@ -3998,7 +4362,7 @@ export namespace securitycenter_v1beta2 {
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.getSecurityCenterSettings({
-     *     // Required. The name of the SecurityCenterSettings to retrieve. Format: organizations/{organization\}/securityCenterSettings
+     *     // Required. The name of the SecurityCenterSettings to retrieve. Format: organizations/{organization\}/securityCenterSettings Format: folders/{folder\}/securityCenterSettings Format: projects/{project\}/securityCenterSettings
      *     name: 'organizations/my-organization/securityCenterSettings',
      *   });
      *   console.log(res.data);
@@ -4007,6 +4371,7 @@ export namespace securitycenter_v1beta2 {
      *   // {
      *   //   "logSinkProject": "my_logSinkProject",
      *   //   "name": "my_name",
+     *   //   "onboardingTime": "my_onboardingTime",
      *   //   "orgServiceAccount": "my_orgServiceAccount"
      *   // }
      * }
@@ -5461,7 +5826,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Organizations$Getsecuritycentersettings
     extends StandardParameters {
     /**
-     * Required. The name of the SecurityCenterSettings to retrieve. Format: organizations/{organization\}/securityCenterSettings
+     * Required. The name of the SecurityCenterSettings to retrieve. Format: organizations/{organization\}/securityCenterSettings Format: folders/{folder\}/securityCenterSettings Format: projects/{project\}/securityCenterSettings
      */
     name?: string;
   }
@@ -6814,6 +7179,143 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
+     * Get the SecurityCenterSettings resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.projects.getSecurityCenterSettings({
+     *     // Required. The name of the SecurityCenterSettings to retrieve. Format: organizations/{organization\}/securityCenterSettings Format: folders/{folder\}/securityCenterSettings Format: projects/{project\}/securityCenterSettings
+     *     name: 'projects/my-project/securityCenterSettings',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "logSinkProject": "my_logSinkProject",
+     *   //   "name": "my_name",
+     *   //   "onboardingTime": "my_onboardingTime",
+     *   //   "orgServiceAccount": "my_orgServiceAccount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getSecurityCenterSettings(
+      params: Params$Resource$Projects$Getsecuritycentersettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getSecurityCenterSettings(
+      params?: Params$Resource$Projects$Getsecuritycentersettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SecurityCenterSettings>;
+    getSecurityCenterSettings(
+      params: Params$Resource$Projects$Getsecuritycentersettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getSecurityCenterSettings(
+      params: Params$Resource$Projects$Getsecuritycentersettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SecurityCenterSettings>,
+      callback: BodyResponseCallback<Schema$SecurityCenterSettings>
+    ): void;
+    getSecurityCenterSettings(
+      params: Params$Resource$Projects$Getsecuritycentersettings,
+      callback: BodyResponseCallback<Schema$SecurityCenterSettings>
+    ): void;
+    getSecurityCenterSettings(
+      callback: BodyResponseCallback<Schema$SecurityCenterSettings>
+    ): void;
+    getSecurityCenterSettings(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Getsecuritycentersettings
+        | BodyResponseCallback<Schema$SecurityCenterSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SecurityCenterSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SecurityCenterSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SecurityCenterSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Getsecuritycentersettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Getsecuritycentersettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SecurityCenterSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SecurityCenterSettings>(parameters);
+      }
+    }
+
+    /**
      * Get the SecurityHealthAnalyticsSettings resource.
      * @example
      * ```js
@@ -8024,6 +8526,13 @@ export namespace securitycenter_v1beta2 {
     extends StandardParameters {
     /**
      * Required. The name of the OnboardingState to retrieve. Formats: * organizations/{organization\}/onboardingState * folders/{folder\}/onboardingState * projects/{project\}/onboardingState
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Getsecuritycentersettings
+    extends StandardParameters {
+    /**
+     * Required. The name of the SecurityCenterSettings to retrieve. Format: organizations/{organization\}/securityCenterSettings Format: folders/{folder\}/securityCenterSettings Format: projects/{project\}/securityCenterSettings
      */
     name?: string;
   }
