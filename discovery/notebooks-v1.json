@@ -534,7 +534,7 @@
                       "type": "integer"
                     },
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
                       "required": true,
@@ -804,7 +804,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
                       "required": true,
@@ -944,7 +944,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
                       "required": true,
@@ -1338,7 +1338,7 @@
                       "type": "integer"
                     },
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/runtimes/[^/]+$",
                       "required": true,
@@ -1384,6 +1384,45 @@
                   "path": "v1/{+parent}/runtimes",
                   "response": {
                     "$ref": "ListRuntimesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Update Notebook Runtime configuration.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/runtimes/{runtimesId}",
+                  "httpMethod": "PATCH",
+                  "id": "notebooks.projects.locations.runtimes.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. The resource name of the runtime. Format: `projects/{project}/locations/{location}/runtimes/{runtimeId}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/runtimes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Idempotent request UUID.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Specifies the path, relative to `Runtime`, of the field to update. For example, to change the software configuration kernels, the `update_mask` parameter would be specified as `software_config.kernels`, and the `PATCH` request body would specify the new value, as follows: { \"software_config\":{ \"kernels\": [{ 'repository': 'gcr.io/deeplearning-platform-release/pytorch-gpu', 'tag': 'latest' }], } } Currently, only the following fields can be updated: - software_config.kernels - software_config.post_startup_script - software_config.custom_gpu_driver_path - software_config.idle_shutdown - software_config.idle_shutdown_timeout",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "Runtime"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1483,7 +1522,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/runtimes/[^/]+$",
                       "required": true,
@@ -1595,7 +1634,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/runtimes/[^/]+$",
                       "required": true,
@@ -1781,7 +1820,7 @@
       }
     }
   },
-  "revision": "20220426",
+  "revision": "20220603",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3370,6 +3409,20 @@
           "description": "Path to a Bash script that automatically runs after a notebook instance fully boots up. The path must be a URL or Cloud Storage path (`gs://path-to-file/file-name`).",
           "type": "string"
         },
+        "postStartupScriptBehavior": {
+          "description": "Behavior for the post startup script.",
+          "enum": [
+            "POST_STARTUP_SCRIPT_BEHAVIOR_UNSPECIFIED",
+            "RUN_EVERY_START",
+            "DOWNLOAD_AND_RUN_EVERY_START"
+          ],
+          "enumDescriptions": [
+            "Unspecified post startup script behavior. Will run only once at creation.",
+            "Runs the post startup script provided during creation at every start.",
+            "Downloads and runs the provided post startup script at every start."
+          ],
+          "type": "string"
+        },
         "upgradeable": {
           "description": "Output only. Bool indicating whether an newer image is available in an image family.",
           "readOnly": true,
@@ -4031,7 +4084,7 @@
           "type": "string"
         },
         "project": {
-          "description": "Required. The name of the Google Cloud project that this VM image belongs to. Format: `projects/{project_id}`",
+          "description": "Required. The name of the Google Cloud project that this VM image belongs to. Format: `{project_id}`",
           "type": "string"
         }
       },

@@ -1165,6 +1165,10 @@ export namespace notebooks_v1 {
      */
     postStartupScript?: string | null;
     /**
+     * Behavior for the post startup script.
+     */
+    postStartupScriptBehavior?: string | null;
+    /**
      * Output only. Bool indicating whether an newer image is available in an image family.
      */
     upgradeable?: boolean | null;
@@ -1582,7 +1586,7 @@ export namespace notebooks_v1 {
      */
     imageName?: string | null;
     /**
-     * Required. The name of the Google Cloud project that this VM image belongs to. Format: `projects/{project_id\}`
+     * Required. The name of the Google Cloud project that this VM image belongs to. Format: `{project_id\}`
      */
     project?: string | null;
   }
@@ -3647,7 +3651,7 @@ export namespace notebooks_v1 {
      *   const res = await notebooks.projects.locations.instances.getIamPolicy({
      *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/instances/my-instance',
      *   });
      *   console.log(res.data);
@@ -4902,7 +4906,7 @@ export namespace notebooks_v1 {
      *
      *   // Do the magic
      *   const res = await notebooks.projects.locations.instances.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/instances/my-instance',
      *
      *     // Request body metadata
@@ -5597,7 +5601,7 @@ export namespace notebooks_v1 {
      *
      *   // Do the magic
      *   const res = await notebooks.projects.locations.instances.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/instances/my-instance',
      *
      *     // Request body metadata
@@ -6471,7 +6475,7 @@ export namespace notebooks_v1 {
      */
     'options.requestedPolicyVersion'?: number;
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -6571,7 +6575,7 @@ export namespace notebooks_v1 {
   export interface Params$Resource$Projects$Locations$Instances$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -6631,7 +6635,7 @@ export namespace notebooks_v1 {
   export interface Params$Resource$Projects$Locations$Instances$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -7733,7 +7737,7 @@ export namespace notebooks_v1 {
      *   const res = await notebooks.projects.locations.runtimes.getIamPolicy({
      *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/runtimes/my-runtime',
      *   });
      *   console.log(res.data);
@@ -7974,6 +7978,156 @@ export namespace notebooks_v1 {
         );
       } else {
         return createAPIRequest<Schema$ListRuntimesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Update Notebook Runtime configuration.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.runtimes.patch({
+     *     // Output only. The resource name of the runtime. Format: `projects/{project\}/locations/{location\}/runtimes/{runtimeId\}`
+     *     name: 'projects/my-project/locations/my-location/runtimes/my-runtime',
+     *     // Idempotent request UUID.
+     *     requestId: 'placeholder-value',
+     *     // Required. Specifies the path, relative to `Runtime`, of the field to update. For example, to change the software configuration kernels, the `update_mask` parameter would be specified as `software_config.kernels`, and the `PATCH` request body would specify the new value, as follows: { "software_config":{ "kernels": [{ 'repository': 'gcr.io/deeplearning-platform-release/pytorch-gpu', 'tag': 'latest' \}], \} \} Currently, only the following fields can be updated: - software_config.kernels - software_config.post_startup_script - software_config.custom_gpu_driver_path - software_config.idle_shutdown - software_config.idle_shutdown_timeout
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accessConfig": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "healthState": "my_healthState",
+     *       //   "metrics": {},
+     *       //   "name": "my_name",
+     *       //   "softwareConfig": {},
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "virtualMachine": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Runtimes$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Runtimes$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Runtimes$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Runtimes$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Runtimes$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Runtimes$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Runtimes$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Runtimes$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -8433,7 +8587,7 @@ export namespace notebooks_v1 {
      *
      *   // Do the magic
      *   const res = await notebooks.projects.locations.runtimes.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/runtimes/my-runtime',
      *
      *     // Request body metadata
@@ -8988,7 +9142,7 @@ export namespace notebooks_v1 {
      *
      *   // Do the magic
      *   const res = await notebooks.projects.locations.runtimes.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/runtimes/my-runtime',
      *
      *     // Request body metadata
@@ -9152,7 +9306,7 @@ export namespace notebooks_v1 {
      */
     'options.requestedPolicyVersion'?: number;
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -9170,6 +9324,26 @@ export namespace notebooks_v1 {
      * Required. Format: `parent=projects/{project_id\}/locations/{location\}`
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Runtimes$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The resource name of the runtime. Format: `projects/{project\}/locations/{location\}/runtimes/{runtimeId\}`
+     */
+    name?: string;
+    /**
+     * Idempotent request UUID.
+     */
+    requestId?: string;
+    /**
+     * Required. Specifies the path, relative to `Runtime`, of the field to update. For example, to change the software configuration kernels, the `update_mask` parameter would be specified as `software_config.kernels`, and the `PATCH` request body would specify the new value, as follows: { "software_config":{ "kernels": [{ 'repository': 'gcr.io/deeplearning-platform-release/pytorch-gpu', 'tag': 'latest' \}], \} \} Currently, only the following fields can be updated: - software_config.kernels - software_config.post_startup_script - software_config.custom_gpu_driver_path - software_config.idle_shutdown - software_config.idle_shutdown_timeout
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Runtime;
   }
   export interface Params$Resource$Projects$Locations$Runtimes$Refreshruntimetokeninternal
     extends StandardParameters {
@@ -9210,7 +9384,7 @@ export namespace notebooks_v1 {
   export interface Params$Resource$Projects$Locations$Runtimes$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -9258,7 +9432,7 @@ export namespace notebooks_v1 {
   export interface Params$Resource$Projects$Locations$Runtimes$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
