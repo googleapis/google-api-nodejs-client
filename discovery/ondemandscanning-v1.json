@@ -339,7 +339,7 @@
       }
     }
   },
-  "revision": "20220430",
+  "revision": "20220604",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -1118,6 +1118,115 @@
       },
       "type": "object"
     },
+    "GrafeasV1SlsaProvenanceZeroTwoSlsaBuilder": {
+      "description": "Identifies the entity that executed the recipe, which is trusted to have correctly performed the operation and populated this provenance.",
+      "id": "GrafeasV1SlsaProvenanceZeroTwoSlsaBuilder",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GrafeasV1SlsaProvenanceZeroTwoSlsaCompleteness": {
+      "description": "Indicates that the builder claims certain fields in this message to be complete.",
+      "id": "GrafeasV1SlsaProvenanceZeroTwoSlsaCompleteness",
+      "properties": {
+        "environment": {
+          "type": "boolean"
+        },
+        "materials": {
+          "type": "boolean"
+        },
+        "parameters": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GrafeasV1SlsaProvenanceZeroTwoSlsaConfigSource": {
+      "description": "Describes where the config file that kicked off the build came from. This is effectively a pointer to the source where buildConfig came from.",
+      "id": "GrafeasV1SlsaProvenanceZeroTwoSlsaConfigSource",
+      "properties": {
+        "digest": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "entryPoint": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GrafeasV1SlsaProvenanceZeroTwoSlsaInvocation": {
+      "description": "Identifies the event that kicked off the build.",
+      "id": "GrafeasV1SlsaProvenanceZeroTwoSlsaInvocation",
+      "properties": {
+        "configSource": {
+          "$ref": "GrafeasV1SlsaProvenanceZeroTwoSlsaConfigSource"
+        },
+        "environment": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "type": "object"
+        },
+        "parameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GrafeasV1SlsaProvenanceZeroTwoSlsaMaterial": {
+      "description": "The collection of artifacts that influenced the build including sources, dependencies, build tools, base images, and so on.",
+      "id": "GrafeasV1SlsaProvenanceZeroTwoSlsaMaterial",
+      "properties": {
+        "digest": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GrafeasV1SlsaProvenanceZeroTwoSlsaMetadata": {
+      "description": "Other properties of the build.",
+      "id": "GrafeasV1SlsaProvenanceZeroTwoSlsaMetadata",
+      "properties": {
+        "buildFinishedOn": {
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "buildInvocationId": {
+          "type": "string"
+        },
+        "buildStartedOn": {
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "completeness": {
+          "$ref": "GrafeasV1SlsaProvenanceZeroTwoSlsaCompleteness"
+        },
+        "reproducible": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "Hash": {
       "description": "Container message for hash values.",
       "id": "Hash",
@@ -1219,6 +1328,9 @@
         "slsaProvenance": {
           "$ref": "SlsaProvenance"
         },
+        "slsaProvenanceZeroTwo": {
+          "$ref": "SlsaProvenanceZeroTwo"
+        },
         "subject": {
           "items": {
             "$ref": "Subject"
@@ -1248,6 +1360,21 @@
         },
         "directive": {
           "description": "Required. The recovered Dockerfile directive used to construct this layer. See https://docs.docker.com/engine/reference/builder/ for more information.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "License": {
+      "description": "License information.",
+      "id": "License",
+      "properties": {
+        "comments": {
+          "description": "Comments",
+          "type": "string"
+        },
+        "expression": {
+          "description": "Often a single license can be used to represent the licensing terms. Sometimes it is necessary to include a choice of one or more licenses or some combination of license identifiers. Examples: \"LGPL-2.1-only OR MIT\", \"LGPL-2.1-only AND MIT\", \"GPL-2.0-or-later WITH Bison-exception-2.2\".",
           "type": "string"
         }
       },
@@ -1294,7 +1421,7 @@
       "id": "Location",
       "properties": {
         "cpeUri": {
-          "description": "Required. The CPE URI in [CPE format](https://cpe.mitre.org/specification/) denoting the package manager version distributing a package.",
+          "description": "Deprecated. The CPE URI in [CPE format](https://cpe.mitre.org/specification/)",
           "type": "string"
         },
         "path": {
@@ -1303,7 +1430,7 @@
         },
         "version": {
           "$ref": "Version",
-          "description": "The version installed at this location."
+          "description": "Deprecated. The version installed at this location."
         }
       },
       "type": "object"
@@ -1561,6 +1688,13 @@
           ],
           "type": "string"
         },
+        "patchedCve": {
+          "description": "CVEs that this package is no longer vulnerable to go/drydock-dd-custom-binary-scanning",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "unused": {
           "type": "string"
         },
@@ -1642,16 +1776,51 @@
       "description": "Details on how a particular software package was installed on a system.",
       "id": "PackageOccurrence",
       "properties": {
+        "architecture": {
+          "description": "Output only. The CPU architecture for which packages in this distribution channel were built. Architecture will be blank for language packages.",
+          "enum": [
+            "ARCHITECTURE_UNSPECIFIED",
+            "X86",
+            "X64"
+          ],
+          "enumDescriptions": [
+            "Unknown architecture.",
+            "X86 architecture.",
+            "X64 architecture."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "cpeUri": {
+          "description": "Output only. The cpe_uri in [CPE format](https://cpe.mitre.org/specification/) denoting the package manager version distributing a package. The cpe_uri will be blank for language packages.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "license": {
+          "$ref": "License",
+          "description": "Licenses that have been declared by the authors of the package."
+        },
         "location": {
-          "description": "Required. All of the places within the filesystem versions of this package have been found.",
+          "description": "All of the places within the filesystem versions of this package have been found.",
           "items": {
             "$ref": "Location"
           },
           "type": "array"
         },
         "name": {
-          "description": "Output only. The name of the installed package.",
+          "description": "Required. Output only. The name of the installed package.",
+          "readOnly": true,
           "type": "string"
+        },
+        "packageType": {
+          "description": "Output only. The type of package; whether native or non native (e.g., ruby gems, node.js packages, etc.).",
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "$ref": "Version",
+          "description": "Output only. The version of the package.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -1836,6 +2005,38 @@
         "recipe": {
           "$ref": "SlsaRecipe",
           "description": "Identifies the configuration used for the build. When combined with materials, this SHOULD fully describe the build, such that re-running this recipe results in bit-for-bit identical output (if the build is reproducible). required"
+        }
+      },
+      "type": "object"
+    },
+    "SlsaProvenanceZeroTwo": {
+      "description": "See full explanation of fields at slsa.dev/provenance/v0.2.",
+      "id": "SlsaProvenanceZeroTwo",
+      "properties": {
+        "buildConfig": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "type": "object"
+        },
+        "buildType": {
+          "type": "string"
+        },
+        "builder": {
+          "$ref": "GrafeasV1SlsaProvenanceZeroTwoSlsaBuilder"
+        },
+        "invocation": {
+          "$ref": "GrafeasV1SlsaProvenanceZeroTwoSlsaInvocation"
+        },
+        "materials": {
+          "items": {
+            "$ref": "GrafeasV1SlsaProvenanceZeroTwoSlsaMaterial"
+          },
+          "type": "array"
+        },
+        "metadata": {
+          "$ref": "GrafeasV1SlsaProvenanceZeroTwoSlsaMetadata"
         }
       },
       "type": "object"
