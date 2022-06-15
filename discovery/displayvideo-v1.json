@@ -1525,7 +1525,7 @@
                   "type": "string"
                 },
                 "filter": {
-                  "description": "Allows filtering by creative properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restriction for the same field must be combined by `OR`. * Restriction for different fields must be combined by `AND`. * Between `(` and `)` there can only be restrictions combined by `OR` for the same field. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)` for the following fields: - `entityStatus` - `creativeType`. - `dimensions` - `minDuration` - `maxDuration` - `approvalStatus` - `exchangeReviewStatus` - `dynamic` - `creativeId` - `minModifiedTime` - `maxModifiedTime` * The operator must be `HAS (:)` for the following fields: - `lineItemIds` * For `entityStatus`, `minDuration`, `maxDuration`, `minModifiedTime`, `maxModifiedTime`, and `dynamic`, there may be at most one restriction. * For `dimensions`, the value is in the form of `\"{width}x{height}\"`. * For `exchangeReviewStatus`, the value is in the form of `{exchange}-{reviewStatus}`. * For `minDuration` and `maxDuration`, the value is in the form of `\"{duration}s\"`. Only seconds are supported with millisecond granularity. * For `minModifiedTime` and `maxModifiedTime`, the value is a unix timestamp (GMT) in seconds. The time filtered is against the update_time field in the creative, which includes system updates to the creative (e.g. creative review updates). * There may be multiple `lineItemIds` restrictions in order to search against multiple possible line item IDs. * There may be multiple `creativeId` restrictions in order to search against multiple possible creative IDs. Examples: * All native creatives: `creativeType=\"CREATIVE_TYPE_NATIVE\"` * All active creatives with 300x400 or 50x100 dimensions: `entityStatus=\"ENTITY_STATUS_ACTIVE\" AND (dimensions=\"300x400\" OR dimensions=\"50x100\")` * All dynamic creatives that are approved by AdX or AppNexus, with a minimum duration of 5 seconds and 200ms. `dynamic=\"true\" AND minDuration=\"5.2s\" AND (exchangeReviewStatus=\"EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED\" OR exchangeReviewStatus=\"EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED\")` * All video creatives that are associated with line item ID 1 or 2: `creativeType=\"CREATIVE_TYPE_VIDEO\" AND (lineItemIds:1 OR lineItemIds:2)` * Find creatives by multiple creative IDs: `creativeId=1 OR creativeId=2` The length of this field should be no more than 500 characters.",
+                  "description": "Allows filtering by creative properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restriction for the same field must be combined by `OR`. * Restriction for different fields must be combined by `AND`. * Between `(` and `)` there can only be restrictions combined by `OR` for the same field. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)` for the following fields: - `entityStatus` - `creativeType`. - `dimensions` - `minDuration` - `maxDuration` - `approvalStatus` - `exchangeReviewStatus` - `dynamic` - `creativeId` * The operator must be `HAS (:)` for the following fields: - `lineItemIds` * The operator must be `GREATER THAN OR EQUAL TO (>=)` or `LESS THAN OR EQUAL TO (<=)` for the following fields: - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) * For `entityStatus`, `minDuration`, `maxDuration`, `updateTime`, and `dynamic`, there may be at most one restriction. * For `dimensions`, the value is in the form of `\"{width}x{height}\"`. * For `exchangeReviewStatus`, the value is in the form of `{exchange}-{reviewStatus}`. * For `minDuration` and `maxDuration`, the value is in the form of `\"{duration}s\"`. Only seconds are supported with millisecond granularity. * For `updateTime`, a creative resource's field value reflects the last time that a creative has been updated, which includes updates made by the system (e.g. creative review updates). * There may be multiple `lineItemIds` restrictions in order to search against multiple possible line item IDs. * There may be multiple `creativeId` restrictions in order to search against multiple possible creative IDs. Examples: * All native creatives: `creativeType=\"CREATIVE_TYPE_NATIVE\"` * All active creatives with 300x400 or 50x100 dimensions: `entityStatus=\"ENTITY_STATUS_ACTIVE\" AND (dimensions=\"300x400\" OR dimensions=\"50x100\")` * All dynamic creatives that are approved by AdX or AppNexus, with a minimum duration of 5 seconds and 200ms. `dynamic=\"true\" AND minDuration=\"5.2s\" AND (exchangeReviewStatus=\"EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED\" OR exchangeReviewStatus=\"EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED\")` * All video creatives that are associated with line item ID 1 or 2: `creativeType=\"CREATIVE_TYPE_VIDEO\" AND (lineItemIds:1 OR lineItemIds:2)` * Find creatives by multiple creative IDs: `creativeId=1 OR creativeId=2` * All creatives with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime>=\"2020-11-04T18:54:47Z\"` The length of this field should be no more than 500 characters.",
                   "location": "query",
                   "type": "string"
                 },
@@ -5573,6 +5573,201 @@
         }
       }
     },
+    "guaranteedOrders": {
+      "methods": {
+        "create": {
+          "description": "Creates a new guaranteed order. Returns the newly created guaranteed order if successful.",
+          "flatPath": "v1/guaranteedOrders",
+          "httpMethod": "POST",
+          "id": "displayvideo.guaranteedOrders.create",
+          "parameterOrder": [],
+          "parameters": {
+            "advertiserId": {
+              "description": "The ID of the advertiser that the request is being made within.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
+            "partnerId": {
+              "description": "The ID of the partner that the request is being made within.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/guaranteedOrders",
+          "request": {
+            "$ref": "GuaranteedOrder"
+          },
+          "response": {
+            "$ref": "GuaranteedOrder"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/display-video"
+          ]
+        },
+        "editGuaranteedOrderReadAccessors": {
+          "description": "Edits read advertisers of a guaranteed order.",
+          "flatPath": "v1/guaranteedOrders/{guaranteedOrdersId}:editGuaranteedOrderReadAccessors",
+          "httpMethod": "POST",
+          "id": "displayvideo.guaranteedOrders.editGuaranteedOrderReadAccessors",
+          "parameterOrder": [
+            "guaranteedOrderId"
+          ],
+          "parameters": {
+            "guaranteedOrderId": {
+              "description": "Required. The ID of the guaranteed order to edit. The ID is of the format `{exchange}-{legacy_guaranteed_order_id}`",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/guaranteedOrders/{+guaranteedOrderId}:editGuaranteedOrderReadAccessors",
+          "request": {
+            "$ref": "EditGuaranteedOrderReadAccessorsRequest"
+          },
+          "response": {
+            "$ref": "EditGuaranteedOrderReadAccessorsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/display-video"
+          ]
+        },
+        "get": {
+          "description": "Gets a guaranteed order.",
+          "flatPath": "v1/guaranteedOrders/{guaranteedOrdersId}",
+          "httpMethod": "GET",
+          "id": "displayvideo.guaranteedOrders.get",
+          "parameterOrder": [
+            "guaranteedOrderId"
+          ],
+          "parameters": {
+            "advertiserId": {
+              "description": "The ID of the advertiser that has access to the guaranteed order.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
+            "guaranteedOrderId": {
+              "description": "Required. The ID of the guaranteed order to fetch. The ID is of the format `{exchange}-{legacy_guaranteed_order_id}`",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "partnerId": {
+              "description": "The ID of the partner that has access to the guaranteed order.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/guaranteedOrders/{+guaranteedOrderId}",
+          "response": {
+            "$ref": "GuaranteedOrder"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/display-video"
+          ]
+        },
+        "list": {
+          "description": "Lists guaranteed orders that are accessible to the current user. The order is defined by the order_by parameter. If a filter by entity_status is not specified, guaranteed orders with entity status `ENTITY_STATUS_ARCHIVED` will not be included in the results.",
+          "flatPath": "v1/guaranteedOrders",
+          "httpMethod": "GET",
+          "id": "displayvideo.guaranteedOrders.list",
+          "parameterOrder": [],
+          "parameters": {
+            "advertiserId": {
+              "description": "The ID of the advertiser that has access to the guaranteed order.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
+            "filter": {
+              "description": "Allows filtering by guaranteed order properties. * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `guaranteed_order_id` - `exchange` - `display_name` - `status.entityStatus` Examples: * All active guaranteed orders: `status.entityStatus=\"ENTITY_STATUS_ACTIVE\"` * Guaranteed orders belonging to Google Ad Manager or Rubicon exchanges: `exchange=\"EXCHANGE_GOOGLE_AD_MANAGER\" OR exchange=\"EXCHANGE_RUBICON\"` The length of this field should be no more than 500 characters.",
+              "location": "query",
+              "type": "string"
+            },
+            "orderBy": {
+              "description": "Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix \"desc\" should be added to the field name. For example, `displayName desc`.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "Requested page size. Must be between `1` and `100`. If unspecified or greater than `100` will default to `100`.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListGuaranteedOrders` method. If not specified, the first page of results will be returned.",
+              "location": "query",
+              "type": "string"
+            },
+            "partnerId": {
+              "description": "The ID of the partner that has access to the guaranteed order.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/guaranteedOrders",
+          "response": {
+            "$ref": "ListGuaranteedOrdersResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/display-video"
+          ]
+        },
+        "patch": {
+          "description": "Updates an existing guaranteed order. Returns the updated guaranteed order if successful.",
+          "flatPath": "v1/guaranteedOrders/{guaranteedOrdersId}",
+          "httpMethod": "PATCH",
+          "id": "displayvideo.guaranteedOrders.patch",
+          "parameterOrder": [
+            "guaranteedOrderId"
+          ],
+          "parameters": {
+            "advertiserId": {
+              "description": "The ID of the advertiser that the request is being made within.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
+            "guaranteedOrderId": {
+              "description": "Output only. The unique identifier of the guaranteed order. The guaranteed order IDs have the format `{exchange}-{legacy_guaranteed_order_id}`.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "partnerId": {
+              "description": "The ID of the partner that the request is being made within.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Required. The mask to control which fields to update.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/guaranteedOrders/{+guaranteedOrderId}",
+          "request": {
+            "$ref": "GuaranteedOrder"
+          },
+          "response": {
+            "$ref": "GuaranteedOrder"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/display-video"
+          ]
+        }
+      }
+    },
     "inventorySourceGroups": {
       "methods": {
         "create": {
@@ -5963,6 +6158,66 @@
     },
     "inventorySources": {
       "methods": {
+        "create": {
+          "description": "Creates a new inventory source. Returns the newly created inventory source if successful.",
+          "flatPath": "v1/inventorySources",
+          "httpMethod": "POST",
+          "id": "displayvideo.inventorySources.create",
+          "parameterOrder": [],
+          "parameters": {
+            "advertiserId": {
+              "description": "The ID of the advertiser that the request is being made within.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
+            "partnerId": {
+              "description": "The ID of the partner that the request is being made within.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/inventorySources",
+          "request": {
+            "$ref": "InventorySource"
+          },
+          "response": {
+            "$ref": "InventorySource"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/display-video"
+          ]
+        },
+        "editInventorySourceReadWriteAccessors": {
+          "description": "Edits read/write accessors of an inventory source. Returns the updated read_write_accessors for the inventory source.",
+          "flatPath": "v1/inventorySources/{inventorySourcesId}:editInventorySourceReadWriteAccessors",
+          "httpMethod": "POST",
+          "id": "displayvideo.inventorySources.editInventorySourceReadWriteAccessors",
+          "parameterOrder": [
+            "inventorySourceId"
+          ],
+          "parameters": {
+            "inventorySourceId": {
+              "description": "Required. The ID of inventory source to update.",
+              "format": "int64",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/inventorySources/{+inventorySourceId}:editInventorySourceReadWriteAccessors",
+          "request": {
+            "$ref": "EditInventorySourceReadWriteAccessorsRequest"
+          },
+          "response": {
+            "$ref": "InventorySourceAccessors"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/display-video"
+          ]
+        },
         "get": {
           "description": "Gets an inventory source.",
           "flatPath": "v1/inventorySources/{inventorySourcesId}",
@@ -6039,6 +6294,53 @@
           "path": "v1/inventorySources",
           "response": {
             "$ref": "ListInventorySourcesResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/display-video"
+          ]
+        },
+        "patch": {
+          "description": "Updates an existing inventory source. Returns the updated inventory source if successful.",
+          "flatPath": "v1/inventorySources/{inventorySourcesId}",
+          "httpMethod": "PATCH",
+          "id": "displayvideo.inventorySources.patch",
+          "parameterOrder": [
+            "inventorySourceId"
+          ],
+          "parameters": {
+            "advertiserId": {
+              "description": "The ID of the advertiser that the request is being made within.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
+            "inventorySourceId": {
+              "description": "Output only. The unique ID of the inventory source. Assigned by the system.",
+              "format": "int64",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "partnerId": {
+              "description": "The ID of the partner that the request is being made within.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Required. The mask to control which fields to update.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/inventorySources/{+inventorySourceId}",
+          "request": {
+            "$ref": "InventorySource"
+          },
+          "response": {
+            "$ref": "InventorySource"
           },
           "scopes": [
             "https://www.googleapis.com/auth/display-video"
@@ -7844,7 +8146,7 @@
       }
     }
   },
-  "revision": "20220429",
+  "revision": "20220613",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -8186,7 +8488,7 @@
       "id": "AgeRangeAssignedTargetingOptionDetails",
       "properties": {
         "ageRange": {
-          "description": "The age range of an audience. We only support targeting a continuous age range of an audience. Thus, the age range represented in this field can be 1) targeted solely, or, 2) part of a larger continuous age range. The reach of a continuous age range targeting can be expanded by also targeting an audience of an unknown age. Output only in v1.",
+          "description": "The age range of an audience. We only support targeting a continuous age range of an audience. Thus, the age range represented in this field can be 1) targeted solely, or, 2) part of a larger continuous age range. The reach of a continuous age range targeting can be expanded by also targeting an audience of an unknown age. Output only in v1. Required in v2.",
           "enum": [
             "AGE_RANGE_UNSPECIFIED",
             "AGE_RANGE_18_24",
@@ -8851,7 +9153,7 @@
       "id": "AudioContentTypeAssignedTargetingOptionDetails",
       "properties": {
         "audioContentType": {
-          "description": "The audio content type. Output only in v1.",
+          "description": "The audio content type. Output only in v1. Required in v2.",
           "enum": [
             "AUDIO_CONTENT_TYPE_UNSPECIFIED",
             "AUDIO_CONTENT_TYPE_UNKNOWN",
@@ -10071,7 +10373,7 @@
       "id": "ContactInfoList",
       "properties": {
         "contactInfos": {
-          "description": "A list of ContactInfo objects defining Customer Match audience members. The size of contact_infos mustn't be greater than 500,000.",
+          "description": "A list of ContactInfo objects defining Customer Match audience members. The size of members after splitting the contact_infos mustn't be greater than 500,000.",
           "items": {
             "$ref": "ContactInfo"
           },
@@ -10202,7 +10504,7 @@
           "type": "string"
         },
         "contentInstreamPosition": {
-          "description": "The content instream position for video or audio ads. Output only in v1.",
+          "description": "The content instream position for video or audio ads. Output only in v1. Required in v2.",
           "enum": [
             "CONTENT_INSTREAM_POSITION_UNSPECIFIED",
             "CONTENT_INSTREAM_POSITION_PRE_ROLL",
@@ -10274,7 +10576,7 @@
           "type": "string"
         },
         "contentOutstreamPosition": {
-          "description": "The content outstream position. Output only in v1.",
+          "description": "The content outstream position. Output only in v1. Required in v2.",
           "enum": [
             "CONTENT_OUTSTREAM_POSITION_UNSPECIFIED",
             "CONTENT_OUTSTREAM_POSITION_UNKNOWN",
@@ -10584,7 +10886,8 @@
             "SDF_VERSION_5_1",
             "SDF_VERSION_5_2",
             "SDF_VERSION_5_3",
-            "SDF_VERSION_5_4"
+            "SDF_VERSION_5_4",
+            "SDF_VERSION_5_5"
           ],
           "enumDescriptions": [
             "SDF version value is not specified or is unknown in this version.",
@@ -10596,7 +10899,8 @@
             "SDF version 5.1",
             "SDF version 5.2",
             "SDF version 5.3",
-            "SDF version 5.4"
+            "SDF version 5.4",
+            "SDF version 5.5"
           ],
           "type": "string"
         }
@@ -11086,6 +11390,14 @@
           ],
           "type": "string"
         },
+        "modelReadiness": {
+          "description": "Output only. The state of custom bidding model readiness for each advertiser who has access. This field may only include the state of the queried advertiser if the algorithm [`owner`](/display-video/api/reference/rest/v1/customBiddingAlgorithms#CustomBiddingAlgorithm.FIELDS.oneof_owner) is a partner and is being retrieved using an advertiser [`accessor`](/display-video/api/reference/rest/v1/customBiddingAlgorithms/list#body.QUERY_PARAMETERS.oneof_accessor).",
+          "items": {
+            "$ref": "CustomBiddingModelReadinessState"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "name": {
           "description": "Output only. The resource name of the custom bidding algorithm.",
           "readOnly": true,
@@ -11103,6 +11415,36 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CustomBiddingModelReadinessState": {
+      "description": "The custom bidding algorithm model readiness state for a single shared advertiser.",
+      "id": "CustomBiddingModelReadinessState",
+      "properties": {
+        "advertiserId": {
+          "description": "The unique ID of the relevant advertiser.",
+          "format": "int64",
+          "type": "string"
+        },
+        "readinessState": {
+          "description": "The readiness state of custom bidding model.",
+          "enum": [
+            "READINESS_STATE_UNSPECIFIED",
+            "READINESS_STATE_ACTIVE",
+            "READINESS_STATE_INSUFFICIENT_DATA",
+            "READINESS_STATE_TRAINING",
+            "READINESS_STATE_NO_VALID_SCRIPT"
+          ],
+          "enumDescriptions": [
+            "State is not specified or is unknown in this version.",
+            "The model is trained and ready for serving.",
+            "There is not enough data to train the serving model.",
+            "The model is training and not ready for serving.",
+            "A valid custom bidding script has not been provided with which to train the model. This state will only be applied to algorithms whose `custom_bidding_algorithm_type` is `SCRIPT_BASED`."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -11480,7 +11822,7 @@
       "id": "DeviceTypeAssignedTargetingOptionDetails",
       "properties": {
         "deviceType": {
-          "description": "The display name of the device type. Output only in v1.",
+          "description": "The display name of the device type. Output only in v1. Required in v2.",
           "enum": [
             "DEVICE_TYPE_UNSPECIFIED",
             "DEVICE_TYPE_COMPUTER",
@@ -11985,6 +12327,99 @@
       },
       "type": "object"
     },
+    "EditGuaranteedOrderReadAccessorsRequest": {
+      "description": "Request message for GuaranteedOrderService.EditGuaranteedOrderReadAccessors.",
+      "id": "EditGuaranteedOrderReadAccessorsRequest",
+      "properties": {
+        "addedAdvertisers": {
+          "description": "The advertisers to add as read accessors to the guaranteed order.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "partnerId": {
+          "description": "Required. The partner context in which the change is being made.",
+          "format": "int64",
+          "type": "string"
+        },
+        "readAccessInherited": {
+          "description": "Whether to give all advertisers of the read/write accessor partner read access to the guaranteed order. Only applicable if read_write_partner_id is set in the guaranteed order.",
+          "type": "boolean"
+        },
+        "removedAdvertisers": {
+          "description": "The advertisers to remove as read accessors to the guaranteed order.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EditGuaranteedOrderReadAccessorsResponse": {
+      "id": "EditGuaranteedOrderReadAccessorsResponse",
+      "properties": {
+        "readAccessInherited": {
+          "description": "Whether all advertisers of read_write_partner_id have read access to the guaranteed order.",
+          "type": "boolean"
+        },
+        "readAdvertiserIds": {
+          "description": "The IDs of advertisers with read access to the guaranteed order.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EditInventorySourceReadWriteAccessorsRequest": {
+      "description": "Request message for InventorySourceService.EditInventorySourceReadWriteAccessors.",
+      "id": "EditInventorySourceReadWriteAccessorsRequest",
+      "properties": {
+        "advertisersUpdate": {
+          "$ref": "EditInventorySourceReadWriteAccessorsRequestAdvertisersUpdate",
+          "description": "The advertisers to add or remove from the list of advertisers that have read/write access to the inventory source. This change will remove an existing partner read/write accessor."
+        },
+        "assignPartner": {
+          "description": "Set the partner context as read/write accessor of the inventory source. This will remove all other current read/write advertiser accessors.",
+          "type": "boolean"
+        },
+        "partnerId": {
+          "description": "Required. The partner context by which the accessors change is being made.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EditInventorySourceReadWriteAccessorsRequestAdvertisersUpdate": {
+      "description": "Update to the list of advertisers with read/write access to the inventory source.",
+      "id": "EditInventorySourceReadWriteAccessorsRequestAdvertisersUpdate",
+      "properties": {
+        "addedAdvertisers": {
+          "description": "The advertisers to add.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "removedAdvertisers": {
+          "description": "The advertisers to remove.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
@@ -11996,7 +12431,7 @@
       "id": "EnvironmentAssignedTargetingOptionDetails",
       "properties": {
         "environment": {
-          "description": "The serving environment. Output only in v1.",
+          "description": "The serving environment. Output only in v1. Required in v2.",
           "enum": [
             "ENVIRONMENT_UNSPECIFIED",
             "ENVIRONMENT_WEB_OPTIMIZED",
@@ -12886,7 +13321,7 @@
       "id": "FrequencyCap",
       "properties": {
         "maxImpressions": {
-          "description": "The maximum number of times a user may be shown the same ad during this period. Must be greater than 0. Required when unlimited is `false`.",
+          "description": "The maximum number of times a user may be shown the same ad during this period. Must be greater than 0. Required when unlimited is `false` and max_views is not set.",
           "format": "int32",
           "type": "integer"
         },
@@ -12925,11 +13360,11 @@
       "type": "object"
     },
     "GenderAssignedTargetingOptionDetails": {
-      "description": "Details for assigned gender targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARTGETING_TYPE_GENDER`.",
+      "description": "Details for assigned gender targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_GENDER`.",
       "id": "GenderAssignedTargetingOptionDetails",
       "properties": {
         "gender": {
-          "description": "The gender of the audience. Output only in v1.",
+          "description": "The gender of the audience. Output only in v1. Required in v2.",
           "enum": [
             "GENDER_UNSPECIFIED",
             "GENDER_MALE",
@@ -13281,12 +13716,271 @@
       },
       "type": "object"
     },
+    "GuaranteedOrder": {
+      "description": "A guaranteed order. Guaranteed orders are parent entity of guaranteed inventory sources. When creating a guaranteed inventory source, a guaranteed order ID must be assigned to the inventory source.",
+      "id": "GuaranteedOrder",
+      "properties": {
+        "defaultAdvertiserId": {
+          "description": "Output only. The ID of default advertiser of the guaranteed order. The default advertiser is either the read_write_advertiser_id or, if that is not set, the first advertiser listed in read_advertiser_ids. Otherwise, there is no default advertiser.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "defaultCampaignId": {
+          "description": "The ID of the default campaign that is assigned to the guaranteed order. The default campaign must belong to the default advertiser.",
+          "format": "int64",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The display name of the guaranteed order. Must be UTF-8 encoded with a maximum size of 240 bytes.",
+          "type": "string"
+        },
+        "exchange": {
+          "description": "Required. Immutable. The exchange where the guaranteed order originated.",
+          "enum": [
+            "EXCHANGE_UNSPECIFIED",
+            "EXCHANGE_GOOGLE_AD_MANAGER",
+            "EXCHANGE_APPNEXUS",
+            "EXCHANGE_BRIGHTROLL",
+            "EXCHANGE_ADFORM",
+            "EXCHANGE_ADMETA",
+            "EXCHANGE_ADMIXER",
+            "EXCHANGE_ADSMOGO",
+            "EXCHANGE_ADSWIZZ",
+            "EXCHANGE_BIDSWITCH",
+            "EXCHANGE_BRIGHTROLL_DISPLAY",
+            "EXCHANGE_CADREON",
+            "EXCHANGE_DAILYMOTION",
+            "EXCHANGE_FIVE",
+            "EXCHANGE_FLUCT",
+            "EXCHANGE_FREEWHEEL",
+            "EXCHANGE_GENIEE",
+            "EXCHANGE_GUMGUM",
+            "EXCHANGE_IMOBILE",
+            "EXCHANGE_IBILLBOARD",
+            "EXCHANGE_IMPROVE_DIGITAL",
+            "EXCHANGE_INDEX",
+            "EXCHANGE_KARGO",
+            "EXCHANGE_MICROAD",
+            "EXCHANGE_MOPUB",
+            "EXCHANGE_NEND",
+            "EXCHANGE_ONE_BY_AOL_DISPLAY",
+            "EXCHANGE_ONE_BY_AOL_MOBILE",
+            "EXCHANGE_ONE_BY_AOL_VIDEO",
+            "EXCHANGE_OOYALA",
+            "EXCHANGE_OPENX",
+            "EXCHANGE_PERMODO",
+            "EXCHANGE_PLATFORMONE",
+            "EXCHANGE_PLATFORMID",
+            "EXCHANGE_PUBMATIC",
+            "EXCHANGE_PULSEPOINT",
+            "EXCHANGE_REVENUEMAX",
+            "EXCHANGE_RUBICON",
+            "EXCHANGE_SMARTCLIP",
+            "EXCHANGE_SMARTRTB",
+            "EXCHANGE_SMARTSTREAMTV",
+            "EXCHANGE_SOVRN",
+            "EXCHANGE_SPOTXCHANGE",
+            "EXCHANGE_STROER",
+            "EXCHANGE_TEADSTV",
+            "EXCHANGE_TELARIA",
+            "EXCHANGE_TVN",
+            "EXCHANGE_UNITED",
+            "EXCHANGE_YIELDLAB",
+            "EXCHANGE_YIELDMO",
+            "EXCHANGE_UNRULYX",
+            "EXCHANGE_OPEN8",
+            "EXCHANGE_TRITON",
+            "EXCHANGE_TRIPLELIFT",
+            "EXCHANGE_TABOOLA",
+            "EXCHANGE_INMOBI",
+            "EXCHANGE_SMAATO",
+            "EXCHANGE_AJA",
+            "EXCHANGE_SUPERSHIP",
+            "EXCHANGE_NEXSTAR_DIGITAL",
+            "EXCHANGE_WAZE",
+            "EXCHANGE_SOUNDCAST",
+            "EXCHANGE_SHARETHROUGH",
+            "EXCHANGE_RED_FOR_PUBLISHERS",
+            "EXCHANGE_MEDIANET",
+            "EXCHANGE_TAPJOY"
+          ],
+          "enumDescriptions": [
+            "Exchange is not specified or is unknown in this version.",
+            "Google Ad Manager.",
+            "AppNexus.",
+            "BrightRoll Exchange for Video from Yahoo!.",
+            "Adform.",
+            "Admeta.",
+            "Admixer.",
+            "AdsMogo.",
+            "AdsWizz.",
+            "BidSwitch.",
+            "BrightRoll Exchange for Display from Yahoo!.",
+            "Cadreon.",
+            "Dailymotion.",
+            "Five.",
+            "Fluct.",
+            "FreeWheel SSP.",
+            "Geniee.",
+            "GumGum.",
+            "i-mobile.",
+            "iBILLBOARD.",
+            "Improve Digital.",
+            "Index Exchange.",
+            "Kargo.",
+            "MicroAd.",
+            "MoPub.",
+            "Nend.",
+            "ONE by AOL: Display Market Place.",
+            "ONE by AOL: Mobile.",
+            "ONE by AOL: Video.",
+            "Ooyala.",
+            "OpenX.",
+            "Permodo.",
+            "Platform One.",
+            "PlatformId.",
+            "PubMatic.",
+            "PulsePoint.",
+            "RevenueMax.",
+            "Rubicon.",
+            "SmartClip.",
+            "SmartRTB+.",
+            "SmartstreamTv.",
+            "Sovrn.",
+            "SpotXchange.",
+            "Ströer SSP.",
+            "TeadsTv.",
+            "Telaria.",
+            "TVN.",
+            "United.",
+            "Yieldlab.",
+            "Yieldmo.",
+            "UnrulyX.",
+            "Open8.",
+            "Triton.",
+            "TripleLift.",
+            "Taboola.",
+            "InMobi.",
+            "Smaato.",
+            "Aja.",
+            "Supership.",
+            "Nexstar Digital.",
+            "Waze.",
+            "SoundCast.",
+            "Sharethrough.",
+            "Red For Publishers.",
+            "Media.net.",
+            "Tapjoy."
+          ],
+          "type": "string"
+        },
+        "guaranteedOrderId": {
+          "description": "Output only. The unique identifier of the guaranteed order. The guaranteed order IDs have the format `{exchange}-{legacy_guaranteed_order_id}`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "legacyGuaranteedOrderId": {
+          "description": "Output only. The legacy ID of the guaranteed order. Assigned by the original exchange. The legacy ID is unique within one exchange, but is not guaranteed to be unique across all guaranteed orders. This ID is used in SDF and UI.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name of the guaranteed order.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "publisherName": {
+          "description": "Required. The publisher name of the guaranteed order. Must be UTF-8 encoded with a maximum size of 240 bytes.",
+          "type": "string"
+        },
+        "readAccessInherited": {
+          "description": "Whether all advertisers of read_write_partner_id have read access to the guaranteed order. Only applicable if read_write_partner_id is set. If True, overrides read_advertiser_ids.",
+          "type": "boolean"
+        },
+        "readAdvertiserIds": {
+          "description": "The IDs of advertisers with read access to the guaranteed order. This field must not include the advertiser assigned to read_write_advertiser_id if it is set. All advertisers in this field must belong to read_write_partner_id or the same partner as read_write_advertiser_id.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "readWriteAdvertiserId": {
+          "description": "The advertiser with read/write access to the guaranteed order. This is also the default advertiser of the guaranteed order.",
+          "format": "int64",
+          "type": "string"
+        },
+        "readWritePartnerId": {
+          "description": "The partner with read/write access to the guaranteed order.",
+          "format": "int64",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "GuaranteedOrderStatus",
+          "description": "The status settings of the guaranteed order."
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the guaranteed order was last updated. Assigned by the system.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GuaranteedOrderStatus": {
+      "description": "The status settings of the guaranteed order.",
+      "id": "GuaranteedOrderStatus",
+      "properties": {
+        "configStatus": {
+          "description": "Output only. The configuration status of the guaranteed order. Acceptable values are `PENDING` and `COMPLETED`. A guaranteed order must be configured (fill in the required fields, choose creatives, and select a default campaign) before it can serve. Currently the configuration action can only be performed via UI.",
+          "enum": [
+            "GUARANTEED_ORDER_CONFIG_STATUS_UNSPECIFIED",
+            "PENDING",
+            "COMPLETED"
+          ],
+          "enumDescriptions": [
+            "The approval status is not specified or is unknown in this version.",
+            "The beginning state of a guaranteed order. The guaranteed order in this state needs to be configured before it can serve.",
+            "The state after the buyer configures a guaranteed order."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "entityPauseReason": {
+          "description": "The user-provided reason for pausing this guaranteed order. Must be UTF-8 encoded with a maximum length of 100 bytes. Only applicable when entity_status is set to `ENTITY_STATUS_PAUSED`.",
+          "type": "string"
+        },
+        "entityStatus": {
+          "description": "Whether or not the guaranteed order is servable. Acceptable values are `ENTITY_STATUS_ACTIVE`, `ENTITY_STATUS_ARCHIVED`, and `ENTITY_STATUS_PAUSED`. Default value is `ENTITY_STATUS_ACTIVE`.",
+          "enum": [
+            "ENTITY_STATUS_UNSPECIFIED",
+            "ENTITY_STATUS_ACTIVE",
+            "ENTITY_STATUS_ARCHIVED",
+            "ENTITY_STATUS_DRAFT",
+            "ENTITY_STATUS_PAUSED",
+            "ENTITY_STATUS_SCHEDULED_FOR_DELETION"
+          ],
+          "enumDescriptions": [
+            "Default value when status is not specified or is unknown in this version.",
+            "The entity is enabled to bid and spend budget.",
+            "The entity is archived. Bidding and budget spending are disabled. An entity can be deleted after archived. Deleted entities cannot be retrieved.",
+            "The entity is under draft. Bidding and budget spending are disabled.",
+            "Bidding and budget spending are paused for the entity.",
+            "The entity is scheduled for deletion."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "HouseholdIncomeAssignedTargetingOptionDetails": {
       "description": "Details for assigned household income targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_HOUSEHOLD_INCOME`.",
       "id": "HouseholdIncomeAssignedTargetingOptionDetails",
       "properties": {
         "householdIncome": {
-          "description": "Output only. The household income of the audience.",
+          "description": "The household income of the audience. Output only in v1. Required in v2.",
           "enum": [
             "HOUSEHOLD_INCOME_UNSPECIFIED",
             "HOUSEHOLD_INCOME_UNKNOWN",
@@ -13307,7 +14001,6 @@
             "The audience is in the top 11-20% of U.S. household incomes.",
             "The audience is in the top 10% of U.S. household incomes."
           ],
-          "readOnly": true,
           "type": "string"
         },
         "targetingOptionId": {
@@ -14017,9 +14710,42 @@
           ],
           "type": "string"
         },
+        "guaranteedOrderId": {
+          "description": "Immutable. The ID of the guaranteed order that this inventory source belongs to. Only applicable when commitment is `INVENTORY_SOURCE_COMMITMENT_GUARANTEED`.",
+          "type": "string"
+        },
         "inventorySourceId": {
           "description": "Output only. The unique ID of the inventory source. Assigned by the system.",
           "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "inventorySourceProductType": {
+          "description": "Output only. The product type of the inventory source, denoting the way through which it sells inventory.",
+          "enum": [
+            "INVENTORY_SOURCE_PRODUCT_TYPE_UNSPECIFIED",
+            "PREFERRED_DEAL",
+            "PRIVATE_AUCTION",
+            "PROGRAMMATIC_GUARANTEED",
+            "TAG_GUARANTEED",
+            "YOUTUBE_RESERVE",
+            "INSTANT_RESERVE",
+            "GUARANTEED_PACKAGE",
+            "PROGRAMMATIC_TV",
+            "AUCTION_PACKAGE"
+          ],
+          "enumDescriptions": [
+            "The product type is not specified or is unknown in this version. Modifying inventory sources of this product type are not supported via API.",
+            "The inventory source sells inventory through Preferred Deal.",
+            "The inventory source sells inventory through Private Auction.",
+            "The inventory source sells inventory through Programmatic Guaranteed.",
+            "The inventory source sells inventory through Tag Guaranteed.",
+            "The inventory source sells inventory through YouTube Reserve.",
+            "The inventory source sells inventory through Instant Reserve. Modifying inventory sources of this product type are not supported via API.",
+            "The inventory source sells inventory through Guaranteed Package. Modifying inventory sources of this product type are not supported via API.",
+            "The inventory source sells inventory through Programmtic TV. Modifying inventory sources of this product type are not supported via API.",
+            "The inventory source sells inventory through Auction Package. Modifying inventory sources of this product type are not supported via API."
+          ],
           "readOnly": true,
           "type": "string"
         },
@@ -14050,9 +14776,36 @@
           "$ref": "RateDetails",
           "description": "Required. The rate details of the inventory source."
         },
+        "readAdvertiserIds": {
+          "description": "Output only. The IDs of advertisers with read-only access to the inventory source.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "readPartnerIds": {
+          "description": "Output only. The IDs of partners with read-only access to the inventory source. All advertisers of partners in this field inherit read-only access to the inventory source.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "readWriteAccessors": {
+          "$ref": "InventorySourceAccessors",
+          "description": "The partner or advertisers that have read/write access to the inventory source. Output only when commitment is `INVENTORY_SOURCE_COMMITMENT_GUARANTEED`, in which case the read/write accessors are inherited from the parent guaranteed order. Required when commitment is `INVENTORY_SOURCE_COMMITMENT_NON_GUARANTEED`. If commitment is `INVENTORY_SOURCE_COMMITMENT_NON_GUARANTEED` and a partner is set in this field, all advertisers under this partner will automatically have read-only access to the inventory source. These advertisers will not be included in read_advertiser_ids."
+        },
         "status": {
           "$ref": "InventorySourceStatus",
           "description": "The status settings of the inventory source."
+        },
+        "subSitePropertyId": {
+          "description": "Immutable. The unique ID of the sub-site property assigned to this inventory source.",
+          "format": "int64",
+          "type": "string"
         },
         "timeRange": {
           "$ref": "TimeRange",
@@ -14062,6 +14815,48 @@
           "description": "Output only. The timestamp when the inventory source was last updated. Assigned by the system.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InventorySourceAccessors": {
+      "description": "The partner or advertisers with access to the inventory source.",
+      "id": "InventorySourceAccessors",
+      "properties": {
+        "advertisers": {
+          "$ref": "InventorySourceAccessorsAdvertiserAccessors",
+          "description": "The advertisers with access to the inventory source. All advertisers must belong to the same partner."
+        },
+        "partner": {
+          "$ref": "InventorySourceAccessorsPartnerAccessor",
+          "description": "The partner with access to the inventory source."
+        }
+      },
+      "type": "object"
+    },
+    "InventorySourceAccessorsAdvertiserAccessors": {
+      "description": "The advertisers with access to the inventory source.",
+      "id": "InventorySourceAccessorsAdvertiserAccessors",
+      "properties": {
+        "advertiserIds": {
+          "description": "The IDs of the advertisers.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "InventorySourceAccessorsPartnerAccessor": {
+      "description": "The partner with access to the inventory source.",
+      "id": "InventorySourceAccessorsPartnerAccessor",
+      "properties": {
+        "partnerId": {
+          "description": "The ID of the partner.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -14917,6 +15712,23 @@
       },
       "type": "object"
     },
+    "ListGuaranteedOrdersResponse": {
+      "id": "ListGuaranteedOrdersResponse",
+      "properties": {
+        "guaranteedOrders": {
+          "description": "The list of guaranteed orders. This list will be absent if empty.",
+          "items": {
+            "$ref": "GuaranteedOrder"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListGuaranteedOrders` method to retrieve the next page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListInsertionOrderAssignedTargetingOptionsResponse": {
       "description": "Response message for ListInsertionOrderAssignedTargetingOptions.",
       "id": "ListInsertionOrderAssignedTargetingOptionsResponse",
@@ -15453,7 +16265,7 @@
       "id": "NativeContentPositionAssignedTargetingOptionDetails",
       "properties": {
         "contentPosition": {
-          "description": "The content position. Output only in v1.",
+          "description": "The content position. Output only in v1. Required in v2.",
           "enum": [
             "NATIVE_CONTENT_POSITION_UNSPECIFIED",
             "NATIVE_CONTENT_POSITION_UNKNOWN",
@@ -15627,7 +16439,7 @@
       "id": "OmidAssignedTargetingOptionDetails",
       "properties": {
         "omid": {
-          "description": "The type of Open Measurement enabled inventory. Output only in v1.",
+          "description": "The type of Open Measurement enabled inventory. Output only in v1. Required in v2.",
           "enum": [
             "OMID_UNSPECIFIED",
             "OMID_FOR_MOBILE_DISPLAY_ADS"
@@ -15911,11 +16723,11 @@
       "type": "object"
     },
     "ParentalStatusAssignedTargetingOptionDetails": {
-      "description": "Details for assigned parental status targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARTGETING_TYPE_PARENTAL_STATUS`.",
+      "description": "Details for assigned parental status targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_PARENTAL_STATUS`.",
       "id": "ParentalStatusAssignedTargetingOptionDetails",
       "properties": {
         "parentalStatus": {
-          "description": "Output only. The parental status of the audience.",
+          "description": "The parental status of the audience. Output only in v1. Required in v2.",
           "enum": [
             "PARENTAL_STATUS_UNSPECIFIED",
             "PARENTAL_STATUS_PARENT",
@@ -15928,7 +16740,6 @@
             "The audience is not a parent.",
             "The parental status of the audience is unknown."
           ],
-          "readOnly": true,
           "type": "string"
         },
         "targetingOptionId": {
@@ -16752,7 +17563,8 @@
             "SDF_VERSION_5_1",
             "SDF_VERSION_5_2",
             "SDF_VERSION_5_3",
-            "SDF_VERSION_5_4"
+            "SDF_VERSION_5_4",
+            "SDF_VERSION_5_5"
           ],
           "enumDescriptions": [
             "SDF version value is not specified or is unknown in this version.",
@@ -16764,7 +17576,8 @@
             "SDF version 5.1",
             "SDF version 5.2",
             "SDF version 5.3",
-            "SDF version 5.4"
+            "SDF version 5.4",
+            "SDF version 5.5"
           ],
           "type": "string"
         }
@@ -16808,7 +17621,8 @@
             "SDF_VERSION_5_1",
             "SDF_VERSION_5_2",
             "SDF_VERSION_5_3",
-            "SDF_VERSION_5_4"
+            "SDF_VERSION_5_4",
+            "SDF_VERSION_5_5"
           ],
           "enumDescriptions": [
             "SDF version value is not specified or is unknown in this version.",
@@ -16820,7 +17634,8 @@
             "SDF version 5.1",
             "SDF version 5.2",
             "SDF version 5.3",
-            "SDF version 5.4"
+            "SDF version 5.4",
+            "SDF version 5.5"
           ],
           "type": "string"
         }
@@ -16887,7 +17702,7 @@
           "type": "string"
         },
         "sensitiveCategory": {
-          "description": "An enum for the DV360 Sensitive category content classifier. Output only in v1.",
+          "description": "Output only. An enum for the DV360 Sensitive category content classifier.",
           "enum": [
             "SENSITIVE_CATEGORY_UNSPECIFIED",
             "SENSITIVE_CATEGORY_ADULT",
@@ -16928,6 +17743,7 @@
             "Issues that evoke strong, opposing views and spark debate. These include issues that are controversial in most countries and markets (such as abortion), as well as those that are controversial in specific countries and markets (such as immigration reform in the United States).",
             "Content which may be considered shocking or disturbing, such as violent news stories, stunts, or toilet humor."
           ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -17653,7 +18469,7 @@
           "type": "string"
         },
         "videoPlayerSize": {
-          "description": "The video player size. Output only in v1.",
+          "description": "The video player size. Output only in v1. Required in v2.",
           "enum": [
             "VIDEO_PLAYER_SIZE_UNSPECIFIED",
             "VIDEO_PLAYER_SIZE_SMALL",
@@ -17708,7 +18524,7 @@
           "type": "string"
         },
         "viewability": {
-          "description": "The predicted viewability percentage. Output only in v1.",
+          "description": "The predicted viewability percentage. Output only in v1. Required in v2.",
           "enum": [
             "VIEWABILITY_UNSPECIFIED",
             "VIEWABILITY_10_PERCENT_OR_MORE",

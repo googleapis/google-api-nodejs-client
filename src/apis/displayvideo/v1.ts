@@ -120,6 +120,7 @@ export namespace displayvideo_v1 {
     firstAndThirdPartyAudiences: Resource$Firstandthirdpartyaudiences;
     floodlightGroups: Resource$Floodlightgroups;
     googleAudiences: Resource$Googleaudiences;
+    guaranteedOrders: Resource$Guaranteedorders;
     inventorySourceGroups: Resource$Inventorysourcegroups;
     inventorySources: Resource$Inventorysources;
     media: Resource$Media;
@@ -144,6 +145,7 @@ export namespace displayvideo_v1 {
         new Resource$Firstandthirdpartyaudiences(this.context);
       this.floodlightGroups = new Resource$Floodlightgroups(this.context);
       this.googleAudiences = new Resource$Googleaudiences(this.context);
+      this.guaranteedOrders = new Resource$Guaranteedorders(this.context);
       this.inventorySourceGroups = new Resource$Inventorysourcegroups(
         this.context
       );
@@ -338,7 +340,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$AgeRangeAssignedTargetingOptionDetails {
     /**
-     * The age range of an audience. We only support targeting a continuous age range of an audience. Thus, the age range represented in this field can be 1) targeted solely, or, 2) part of a larger continuous age range. The reach of a continuous age range targeting can be expanded by also targeting an audience of an unknown age. Output only in v1.
+     * The age range of an audience. We only support targeting a continuous age range of an audience. Thus, the age range represented in this field can be 1) targeted solely, or, 2) part of a larger continuous age range. The reach of a continuous age range targeting can be expanded by also targeting an audience of an unknown age. Output only in v1. Required in v2.
      */
     ageRange?: string | null;
     /**
@@ -718,7 +720,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$AudioContentTypeAssignedTargetingOptionDetails {
     /**
-     * The audio content type. Output only in v1.
+     * The audio content type. Output only in v1. Required in v2.
      */
     audioContentType?: string | null;
     /**
@@ -1481,7 +1483,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$ContactInfoList {
     /**
-     * A list of ContactInfo objects defining Customer Match audience members. The size of contact_infos mustn't be greater than 500,000.
+     * A list of ContactInfo objects defining Customer Match audience members. The size of members after splitting the contact_infos mustn't be greater than 500,000.
      */
     contactInfos?: Schema$ContactInfo[];
   }
@@ -1542,7 +1544,7 @@ export namespace displayvideo_v1 {
      */
     adType?: string | null;
     /**
-     * The content instream position for video or audio ads. Output only in v1.
+     * The content instream position for video or audio ads. Output only in v1. Required in v2.
      */
     contentInstreamPosition?: string | null;
     /**
@@ -1568,7 +1570,7 @@ export namespace displayvideo_v1 {
      */
     adType?: string | null;
     /**
-     * The content outstream position. Output only in v1.
+     * The content outstream position. Output only in v1. Required in v2.
      */
     contentOutstreamPosition?: string | null;
     /**
@@ -1932,6 +1934,10 @@ export namespace displayvideo_v1 {
      */
     entityStatus?: string | null;
     /**
+     * Output only. The state of custom bidding model readiness for each advertiser who has access. This field may only include the state of the queried advertiser if the algorithm [`owner`](/display-video/api/reference/rest/v1/customBiddingAlgorithms#CustomBiddingAlgorithm.FIELDS.oneof_owner) is a partner and is being retrieved using an advertiser [`accessor`](/display-video/api/reference/rest/v1/customBiddingAlgorithms/list#body.QUERY_PARAMETERS.oneof_accessor).
+     */
+    modelReadiness?: Schema$CustomBiddingModelReadinessState[];
+    /**
      * Output only. The resource name of the custom bidding algorithm.
      */
     name?: string | null;
@@ -1943,6 +1949,19 @@ export namespace displayvideo_v1 {
      * The IDs of the advertisers who have access to this algorithm. If advertiser_id is set, this field will only consist of that value. This field will not be set if the algorithm [`owner`](/display-video/api/reference/rest/v1/customBiddingAlgorithms#CustomBiddingAlgorithm.FIELDS.oneof_owner) is a partner and is being retrieved using an advertiser [`accessor`](/display-video/api/reference/rest/v1/customBiddingAlgorithms/list#body.QUERY_PARAMETERS.oneof_accessor).
      */
     sharedAdvertiserIds?: string[] | null;
+  }
+  /**
+   * The custom bidding algorithm model readiness state for a single shared advertiser.
+   */
+  export interface Schema$CustomBiddingModelReadinessState {
+    /**
+     * The unique ID of the relevant advertiser.
+     */
+    advertiserId?: string | null;
+    /**
+     * The readiness state of custom bidding model.
+     */
+    readinessState?: string | null;
   }
   /**
    * A single custom bidding script.
@@ -2124,7 +2143,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$DeviceTypeAssignedTargetingOptionDetails {
     /**
-     * The display name of the device type. Output only in v1.
+     * The display name of the device type. Output only in v1. Required in v2.
      */
     deviceType?: string | null;
     /**
@@ -2309,6 +2328,67 @@ export namespace displayvideo_v1 {
     firstAndThirdPartyAudienceId?: string | null;
   }
   /**
+   * Request message for GuaranteedOrderService.EditGuaranteedOrderReadAccessors.
+   */
+  export interface Schema$EditGuaranteedOrderReadAccessorsRequest {
+    /**
+     * The advertisers to add as read accessors to the guaranteed order.
+     */
+    addedAdvertisers?: string[] | null;
+    /**
+     * Required. The partner context in which the change is being made.
+     */
+    partnerId?: string | null;
+    /**
+     * Whether to give all advertisers of the read/write accessor partner read access to the guaranteed order. Only applicable if read_write_partner_id is set in the guaranteed order.
+     */
+    readAccessInherited?: boolean | null;
+    /**
+     * The advertisers to remove as read accessors to the guaranteed order.
+     */
+    removedAdvertisers?: string[] | null;
+  }
+  export interface Schema$EditGuaranteedOrderReadAccessorsResponse {
+    /**
+     * Whether all advertisers of read_write_partner_id have read access to the guaranteed order.
+     */
+    readAccessInherited?: boolean | null;
+    /**
+     * The IDs of advertisers with read access to the guaranteed order.
+     */
+    readAdvertiserIds?: string[] | null;
+  }
+  /**
+   * Request message for InventorySourceService.EditInventorySourceReadWriteAccessors.
+   */
+  export interface Schema$EditInventorySourceReadWriteAccessorsRequest {
+    /**
+     * The advertisers to add or remove from the list of advertisers that have read/write access to the inventory source. This change will remove an existing partner read/write accessor.
+     */
+    advertisersUpdate?: Schema$EditInventorySourceReadWriteAccessorsRequestAdvertisersUpdate;
+    /**
+     * Set the partner context as read/write accessor of the inventory source. This will remove all other current read/write advertiser accessors.
+     */
+    assignPartner?: boolean | null;
+    /**
+     * Required. The partner context by which the accessors change is being made.
+     */
+    partnerId?: string | null;
+  }
+  /**
+   * Update to the list of advertisers with read/write access to the inventory source.
+   */
+  export interface Schema$EditInventorySourceReadWriteAccessorsRequestAdvertisersUpdate {
+    /**
+     * The advertisers to add.
+     */
+    addedAdvertisers?: string[] | null;
+    /**
+     * The advertisers to remove.
+     */
+    removedAdvertisers?: string[] | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -2317,7 +2397,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$EnvironmentAssignedTargetingOptionDetails {
     /**
-     * The serving environment. Output only in v1.
+     * The serving environment. Output only in v1. Required in v2.
      */
     environment?: string | null;
     /**
@@ -2562,7 +2642,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$FrequencyCap {
     /**
-     * The maximum number of times a user may be shown the same ad during this period. Must be greater than 0. Required when unlimited is `false`.
+     * The maximum number of times a user may be shown the same ad during this period. Must be greater than 0. Required when unlimited is `false` and max_views is not set.
      */
     maxImpressions?: number | null;
     /**
@@ -2579,11 +2659,11 @@ export namespace displayvideo_v1 {
     unlimited?: boolean | null;
   }
   /**
-   * Details for assigned gender targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARTGETING_TYPE_GENDER`.
+   * Details for assigned gender targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_GENDER`.
    */
   export interface Schema$GenderAssignedTargetingOptionDetails {
     /**
-     * The gender of the audience. Output only in v1.
+     * The gender of the audience. Output only in v1. Required in v2.
      */
     gender?: string | null;
     /**
@@ -2713,11 +2793,89 @@ export namespace displayvideo_v1 {
     resourceName?: string | null;
   }
   /**
+   * A guaranteed order. Guaranteed orders are parent entity of guaranteed inventory sources. When creating a guaranteed inventory source, a guaranteed order ID must be assigned to the inventory source.
+   */
+  export interface Schema$GuaranteedOrder {
+    /**
+     * Output only. The ID of default advertiser of the guaranteed order. The default advertiser is either the read_write_advertiser_id or, if that is not set, the first advertiser listed in read_advertiser_ids. Otherwise, there is no default advertiser.
+     */
+    defaultAdvertiserId?: string | null;
+    /**
+     * The ID of the default campaign that is assigned to the guaranteed order. The default campaign must belong to the default advertiser.
+     */
+    defaultCampaignId?: string | null;
+    /**
+     * Required. The display name of the guaranteed order. Must be UTF-8 encoded with a maximum size of 240 bytes.
+     */
+    displayName?: string | null;
+    /**
+     * Required. Immutable. The exchange where the guaranteed order originated.
+     */
+    exchange?: string | null;
+    /**
+     * Output only. The unique identifier of the guaranteed order. The guaranteed order IDs have the format `{exchange\}-{legacy_guaranteed_order_id\}`.
+     */
+    guaranteedOrderId?: string | null;
+    /**
+     * Output only. The legacy ID of the guaranteed order. Assigned by the original exchange. The legacy ID is unique within one exchange, but is not guaranteed to be unique across all guaranteed orders. This ID is used in SDF and UI.
+     */
+    legacyGuaranteedOrderId?: string | null;
+    /**
+     * Output only. The resource name of the guaranteed order.
+     */
+    name?: string | null;
+    /**
+     * Required. The publisher name of the guaranteed order. Must be UTF-8 encoded with a maximum size of 240 bytes.
+     */
+    publisherName?: string | null;
+    /**
+     * Whether all advertisers of read_write_partner_id have read access to the guaranteed order. Only applicable if read_write_partner_id is set. If True, overrides read_advertiser_ids.
+     */
+    readAccessInherited?: boolean | null;
+    /**
+     * The IDs of advertisers with read access to the guaranteed order. This field must not include the advertiser assigned to read_write_advertiser_id if it is set. All advertisers in this field must belong to read_write_partner_id or the same partner as read_write_advertiser_id.
+     */
+    readAdvertiserIds?: string[] | null;
+    /**
+     * The advertiser with read/write access to the guaranteed order. This is also the default advertiser of the guaranteed order.
+     */
+    readWriteAdvertiserId?: string | null;
+    /**
+     * The partner with read/write access to the guaranteed order.
+     */
+    readWritePartnerId?: string | null;
+    /**
+     * The status settings of the guaranteed order.
+     */
+    status?: Schema$GuaranteedOrderStatus;
+    /**
+     * Output only. The timestamp when the guaranteed order was last updated. Assigned by the system.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * The status settings of the guaranteed order.
+   */
+  export interface Schema$GuaranteedOrderStatus {
+    /**
+     * Output only. The configuration status of the guaranteed order. Acceptable values are `PENDING` and `COMPLETED`. A guaranteed order must be configured (fill in the required fields, choose creatives, and select a default campaign) before it can serve. Currently the configuration action can only be performed via UI.
+     */
+    configStatus?: string | null;
+    /**
+     * The user-provided reason for pausing this guaranteed order. Must be UTF-8 encoded with a maximum length of 100 bytes. Only applicable when entity_status is set to `ENTITY_STATUS_PAUSED`.
+     */
+    entityPauseReason?: string | null;
+    /**
+     * Whether or not the guaranteed order is servable. Acceptable values are `ENTITY_STATUS_ACTIVE`, `ENTITY_STATUS_ARCHIVED`, and `ENTITY_STATUS_PAUSED`. Default value is `ENTITY_STATUS_ACTIVE`.
+     */
+    entityStatus?: string | null;
+  }
+  /**
    * Details for assigned household income targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_HOUSEHOLD_INCOME`.
    */
   export interface Schema$HouseholdIncomeAssignedTargetingOptionDetails {
     /**
-     * Output only. The household income of the audience.
+     * The household income of the audience. Output only in v1. Required in v2.
      */
     householdIncome?: string | null;
     /**
@@ -2977,9 +3135,17 @@ export namespace displayvideo_v1 {
      */
     exchange?: string | null;
     /**
+     * Immutable. The ID of the guaranteed order that this inventory source belongs to. Only applicable when commitment is `INVENTORY_SOURCE_COMMITMENT_GUARANTEED`.
+     */
+    guaranteedOrderId?: string | null;
+    /**
      * Output only. The unique ID of the inventory source. Assigned by the system.
      */
     inventorySourceId?: string | null;
+    /**
+     * Output only. The product type of the inventory source, denoting the way through which it sells inventory.
+     */
+    inventorySourceProductType?: string | null;
     /**
      * Denotes the type of the inventory source.
      */
@@ -2997,9 +3163,25 @@ export namespace displayvideo_v1 {
      */
     rateDetails?: Schema$RateDetails;
     /**
+     * Output only. The IDs of advertisers with read-only access to the inventory source.
+     */
+    readAdvertiserIds?: string[] | null;
+    /**
+     * Output only. The IDs of partners with read-only access to the inventory source. All advertisers of partners in this field inherit read-only access to the inventory source.
+     */
+    readPartnerIds?: string[] | null;
+    /**
+     * The partner or advertisers that have read/write access to the inventory source. Output only when commitment is `INVENTORY_SOURCE_COMMITMENT_GUARANTEED`, in which case the read/write accessors are inherited from the parent guaranteed order. Required when commitment is `INVENTORY_SOURCE_COMMITMENT_NON_GUARANTEED`. If commitment is `INVENTORY_SOURCE_COMMITMENT_NON_GUARANTEED` and a partner is set in this field, all advertisers under this partner will automatically have read-only access to the inventory source. These advertisers will not be included in read_advertiser_ids.
+     */
+    readWriteAccessors?: Schema$InventorySourceAccessors;
+    /**
      * The status settings of the inventory source.
      */
     status?: Schema$InventorySourceStatus;
+    /**
+     * Immutable. The unique ID of the sub-site property assigned to this inventory source.
+     */
+    subSitePropertyId?: string | null;
     /**
      * The time range when this inventory source starts and stops serving.
      */
@@ -3008,6 +3190,37 @@ export namespace displayvideo_v1 {
      * Output only. The timestamp when the inventory source was last updated. Assigned by the system.
      */
     updateTime?: string | null;
+  }
+  /**
+   * The partner or advertisers with access to the inventory source.
+   */
+  export interface Schema$InventorySourceAccessors {
+    /**
+     * The advertisers with access to the inventory source. All advertisers must belong to the same partner.
+     */
+    advertisers?: Schema$InventorySourceAccessorsAdvertiserAccessors;
+    /**
+     * The partner with access to the inventory source.
+     */
+    partner?: Schema$InventorySourceAccessorsPartnerAccessor;
+  }
+  /**
+   * The advertisers with access to the inventory source.
+   */
+  export interface Schema$InventorySourceAccessorsAdvertiserAccessors {
+    /**
+     * The IDs of the advertisers.
+     */
+    advertiserIds?: string[] | null;
+  }
+  /**
+   * The partner with access to the inventory source.
+   */
+  export interface Schema$InventorySourceAccessorsPartnerAccessor {
+    /**
+     * The ID of the partner.
+     */
+    partnerId?: string | null;
   }
   /**
    * Targeting details for inventory source. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_INVENTORY_SOURCE`.
@@ -3511,6 +3724,16 @@ export namespace displayvideo_v1 {
      */
     nextPageToken?: string | null;
   }
+  export interface Schema$ListGuaranteedOrdersResponse {
+    /**
+     * The list of guaranteed orders. This list will be absent if empty.
+     */
+    guaranteedOrders?: Schema$GuaranteedOrder[];
+    /**
+     * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListGuaranteedOrders` method to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+  }
   /**
    * Response message for ListInsertionOrderAssignedTargetingOptions.
    */
@@ -3855,7 +4078,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$NativeContentPositionAssignedTargetingOptionDetails {
     /**
-     * The content position. Output only in v1.
+     * The content position. Output only in v1. Required in v2.
      */
     contentPosition?: string | null;
     /**
@@ -3961,7 +4184,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$OmidAssignedTargetingOptionDetails {
     /**
-     * The type of Open Measurement enabled inventory. Output only in v1.
+     * The type of Open Measurement enabled inventory. Output only in v1. Required in v2.
      */
     omid?: string | null;
     /**
@@ -4077,11 +4300,11 @@ export namespace displayvideo_v1 {
     pacingType?: string | null;
   }
   /**
-   * Details for assigned parental status targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARTGETING_TYPE_PARENTAL_STATUS`.
+   * Details for assigned parental status targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_PARENTAL_STATUS`.
    */
   export interface Schema$ParentalStatusAssignedTargetingOptionDetails {
     /**
-     * Output only. The parental status of the audience.
+     * The parental status of the audience. Output only in v1. Required in v2.
      */
     parentalStatus?: string | null;
     /**
@@ -4596,7 +4819,7 @@ export namespace displayvideo_v1 {
      */
     excludedTargetingOptionId?: string | null;
     /**
-     * An enum for the DV360 Sensitive category content classifier. Output only in v1.
+     * Output only. An enum for the DV360 Sensitive category content classifier.
      */
     sensitiveCategory?: string | null;
   }
@@ -5024,7 +5247,7 @@ export namespace displayvideo_v1 {
      */
     targetingOptionId?: string | null;
     /**
-     * The video player size. Output only in v1.
+     * The video player size. Output only in v1. Required in v2.
      */
     videoPlayerSize?: string | null;
   }
@@ -5046,7 +5269,7 @@ export namespace displayvideo_v1 {
      */
     targetingOptionId?: string | null;
     /**
-     * The predicted viewability percentage. Output only in v1.
+     * The predicted viewability percentage. Output only in v1. Required in v2.
      */
     viewability?: string | null;
   }
@@ -10059,7 +10282,7 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.advertisers.creatives.list({
      *     // Required. The ID of the advertiser to list creatives for.
      *     advertiserId: '[^/]+',
-     *     // Allows filtering by creative properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restriction for the same field must be combined by `OR`. * Restriction for different fields must be combined by `AND`. * Between `(` and `)` there can only be restrictions combined by `OR` for the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)` for the following fields: - `entityStatus` - `creativeType`. - `dimensions` - `minDuration` - `maxDuration` - `approvalStatus` - `exchangeReviewStatus` - `dynamic` - `creativeId` - `minModifiedTime` - `maxModifiedTime` * The operator must be `HAS (:)` for the following fields: - `lineItemIds` * For `entityStatus`, `minDuration`, `maxDuration`, `minModifiedTime`, `maxModifiedTime`, and `dynamic`, there may be at most one restriction. * For `dimensions`, the value is in the form of `"{width\}x{height\}"`. * For `exchangeReviewStatus`, the value is in the form of `{exchange\}-{reviewStatus\}`. * For `minDuration` and `maxDuration`, the value is in the form of `"{duration\}s"`. Only seconds are supported with millisecond granularity. * For `minModifiedTime` and `maxModifiedTime`, the value is a unix timestamp (GMT) in seconds. The time filtered is against the update_time field in the creative, which includes system updates to the creative (e.g. creative review updates). * There may be multiple `lineItemIds` restrictions in order to search against multiple possible line item IDs. * There may be multiple `creativeId` restrictions in order to search against multiple possible creative IDs. Examples: * All native creatives: `creativeType="CREATIVE_TYPE_NATIVE"` * All active creatives with 300x400 or 50x100 dimensions: `entityStatus="ENTITY_STATUS_ACTIVE" AND (dimensions="300x400" OR dimensions="50x100")` * All dynamic creatives that are approved by AdX or AppNexus, with a minimum duration of 5 seconds and 200ms. `dynamic="true" AND minDuration="5.2s" AND (exchangeReviewStatus="EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED" OR exchangeReviewStatus="EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED")` * All video creatives that are associated with line item ID 1 or 2: `creativeType="CREATIVE_TYPE_VIDEO" AND (lineItemIds:1 OR lineItemIds:2)` * Find creatives by multiple creative IDs: `creativeId=1 OR creativeId=2` The length of this field should be no more than 500 characters.
+     *     // Allows filtering by creative properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restriction for the same field must be combined by `OR`. * Restriction for different fields must be combined by `AND`. * Between `(` and `)` there can only be restrictions combined by `OR` for the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)` for the following fields: - `entityStatus` - `creativeType`. - `dimensions` - `minDuration` - `maxDuration` - `approvalStatus` - `exchangeReviewStatus` - `dynamic` - `creativeId` * The operator must be `HAS (:)` for the following fields: - `lineItemIds` * The operator must be `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)` for the following fields: - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) * For `entityStatus`, `minDuration`, `maxDuration`, `updateTime`, and `dynamic`, there may be at most one restriction. * For `dimensions`, the value is in the form of `"{width\}x{height\}"`. * For `exchangeReviewStatus`, the value is in the form of `{exchange\}-{reviewStatus\}`. * For `minDuration` and `maxDuration`, the value is in the form of `"{duration\}s"`. Only seconds are supported with millisecond granularity. * For `updateTime`, a creative resource's field value reflects the last time that a creative has been updated, which includes updates made by the system (e.g. creative review updates). * There may be multiple `lineItemIds` restrictions in order to search against multiple possible line item IDs. * There may be multiple `creativeId` restrictions in order to search against multiple possible creative IDs. Examples: * All native creatives: `creativeType="CREATIVE_TYPE_NATIVE"` * All active creatives with 300x400 or 50x100 dimensions: `entityStatus="ENTITY_STATUS_ACTIVE" AND (dimensions="300x400" OR dimensions="50x100")` * All dynamic creatives that are approved by AdX or AppNexus, with a minimum duration of 5 seconds and 200ms. `dynamic="true" AND minDuration="5.2s" AND (exchangeReviewStatus="EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED" OR exchangeReviewStatus="EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED")` * All video creatives that are associated with line item ID 1 or 2: `creativeType="CREATIVE_TYPE_VIDEO" AND (lineItemIds:1 OR lineItemIds:2)` * Find creatives by multiple creative IDs: `creativeId=1 OR creativeId=2` * All creatives with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `creativeId` (default) * `createTime` * `mediaDuration` * `dimensions` (sorts by width first, then by height) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `createTime desc`.
      *     orderBy: 'placeholder-value',
@@ -10447,7 +10670,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by creative properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restriction for the same field must be combined by `OR`. * Restriction for different fields must be combined by `AND`. * Between `(` and `)` there can only be restrictions combined by `OR` for the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)` for the following fields: - `entityStatus` - `creativeType`. - `dimensions` - `minDuration` - `maxDuration` - `approvalStatus` - `exchangeReviewStatus` - `dynamic` - `creativeId` - `minModifiedTime` - `maxModifiedTime` * The operator must be `HAS (:)` for the following fields: - `lineItemIds` * For `entityStatus`, `minDuration`, `maxDuration`, `minModifiedTime`, `maxModifiedTime`, and `dynamic`, there may be at most one restriction. * For `dimensions`, the value is in the form of `"{width\}x{height\}"`. * For `exchangeReviewStatus`, the value is in the form of `{exchange\}-{reviewStatus\}`. * For `minDuration` and `maxDuration`, the value is in the form of `"{duration\}s"`. Only seconds are supported with millisecond granularity. * For `minModifiedTime` and `maxModifiedTime`, the value is a unix timestamp (GMT) in seconds. The time filtered is against the update_time field in the creative, which includes system updates to the creative (e.g. creative review updates). * There may be multiple `lineItemIds` restrictions in order to search against multiple possible line item IDs. * There may be multiple `creativeId` restrictions in order to search against multiple possible creative IDs. Examples: * All native creatives: `creativeType="CREATIVE_TYPE_NATIVE"` * All active creatives with 300x400 or 50x100 dimensions: `entityStatus="ENTITY_STATUS_ACTIVE" AND (dimensions="300x400" OR dimensions="50x100")` * All dynamic creatives that are approved by AdX or AppNexus, with a minimum duration of 5 seconds and 200ms. `dynamic="true" AND minDuration="5.2s" AND (exchangeReviewStatus="EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED" OR exchangeReviewStatus="EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED")` * All video creatives that are associated with line item ID 1 or 2: `creativeType="CREATIVE_TYPE_VIDEO" AND (lineItemIds:1 OR lineItemIds:2)` * Find creatives by multiple creative IDs: `creativeId=1 OR creativeId=2` The length of this field should be no more than 500 characters.
+     * Allows filtering by creative properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restriction for the same field must be combined by `OR`. * Restriction for different fields must be combined by `AND`. * Between `(` and `)` there can only be restrictions combined by `OR` for the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)` for the following fields: - `entityStatus` - `creativeType`. - `dimensions` - `minDuration` - `maxDuration` - `approvalStatus` - `exchangeReviewStatus` - `dynamic` - `creativeId` * The operator must be `HAS (:)` for the following fields: - `lineItemIds` * The operator must be `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)` for the following fields: - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) * For `entityStatus`, `minDuration`, `maxDuration`, `updateTime`, and `dynamic`, there may be at most one restriction. * For `dimensions`, the value is in the form of `"{width\}x{height\}"`. * For `exchangeReviewStatus`, the value is in the form of `{exchange\}-{reviewStatus\}`. * For `minDuration` and `maxDuration`, the value is in the form of `"{duration\}s"`. Only seconds are supported with millisecond granularity. * For `updateTime`, a creative resource's field value reflects the last time that a creative has been updated, which includes updates made by the system (e.g. creative review updates). * There may be multiple `lineItemIds` restrictions in order to search against multiple possible line item IDs. * There may be multiple `creativeId` restrictions in order to search against multiple possible creative IDs. Examples: * All native creatives: `creativeType="CREATIVE_TYPE_NATIVE"` * All active creatives with 300x400 or 50x100 dimensions: `entityStatus="ENTITY_STATUS_ACTIVE" AND (dimensions="300x400" OR dimensions="50x100")` * All dynamic creatives that are approved by AdX or AppNexus, with a minimum duration of 5 seconds and 200ms. `dynamic="true" AND minDuration="5.2s" AND (exchangeReviewStatus="EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED" OR exchangeReviewStatus="EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED")` * All video creatives that are associated with line item ID 1 or 2: `creativeType="CREATIVE_TYPE_VIDEO" AND (lineItemIds:1 OR lineItemIds:2)` * Find creatives by multiple creative IDs: `creativeId=1 OR creativeId=2` * All creatives with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -19672,6 +19895,7 @@ export namespace displayvideo_v1 {
      *       //   "customBiddingAlgorithmType": "my_customBiddingAlgorithmType",
      *       //   "displayName": "my_displayName",
      *       //   "entityStatus": "my_entityStatus",
+     *       //   "modelReadiness": [],
      *       //   "name": "my_name",
      *       //   "partnerId": "my_partnerId",
      *       //   "sharedAdvertiserIds": []
@@ -19688,6 +19912,7 @@ export namespace displayvideo_v1 {
      *   //   "customBiddingAlgorithmType": "my_customBiddingAlgorithmType",
      *   //   "displayName": "my_displayName",
      *   //   "entityStatus": "my_entityStatus",
+     *   //   "modelReadiness": [],
      *   //   "name": "my_name",
      *   //   "partnerId": "my_partnerId",
      *   //   "sharedAdvertiserIds": []
@@ -19834,6 +20059,7 @@ export namespace displayvideo_v1 {
      *   //   "customBiddingAlgorithmType": "my_customBiddingAlgorithmType",
      *   //   "displayName": "my_displayName",
      *   //   "entityStatus": "my_entityStatus",
+     *   //   "modelReadiness": [],
      *   //   "name": "my_name",
      *   //   "partnerId": "my_partnerId",
      *   //   "sharedAdvertiserIds": []
@@ -20127,6 +20353,7 @@ export namespace displayvideo_v1 {
      *       //   "customBiddingAlgorithmType": "my_customBiddingAlgorithmType",
      *       //   "displayName": "my_displayName",
      *       //   "entityStatus": "my_entityStatus",
+     *       //   "modelReadiness": [],
      *       //   "name": "my_name",
      *       //   "partnerId": "my_partnerId",
      *       //   "sharedAdvertiserIds": []
@@ -20143,6 +20370,7 @@ export namespace displayvideo_v1 {
      *   //   "customBiddingAlgorithmType": "my_customBiddingAlgorithmType",
      *   //   "displayName": "my_displayName",
      *   //   "entityStatus": "my_entityStatus",
+     *   //   "modelReadiness": [],
      *   //   "name": "my_name",
      *   //   "partnerId": "my_partnerId",
      *   //   "sharedAdvertiserIds": []
@@ -22875,6 +23103,887 @@ export namespace displayvideo_v1 {
     partnerId?: string;
   }
 
+  export class Resource$Guaranteedorders {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new guaranteed order. Returns the newly created guaranteed order if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.guaranteedOrders.create({
+     *     // The ID of the advertiser that the request is being made within.
+     *     advertiserId: 'placeholder-value',
+     *     // The ID of the partner that the request is being made within.
+     *     partnerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "defaultAdvertiserId": "my_defaultAdvertiserId",
+     *       //   "defaultCampaignId": "my_defaultCampaignId",
+     *       //   "displayName": "my_displayName",
+     *       //   "exchange": "my_exchange",
+     *       //   "guaranteedOrderId": "my_guaranteedOrderId",
+     *       //   "legacyGuaranteedOrderId": "my_legacyGuaranteedOrderId",
+     *       //   "name": "my_name",
+     *       //   "publisherName": "my_publisherName",
+     *       //   "readAccessInherited": false,
+     *       //   "readAdvertiserIds": [],
+     *       //   "readWriteAdvertiserId": "my_readWriteAdvertiserId",
+     *       //   "readWritePartnerId": "my_readWritePartnerId",
+     *       //   "status": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "defaultAdvertiserId": "my_defaultAdvertiserId",
+     *   //   "defaultCampaignId": "my_defaultCampaignId",
+     *   //   "displayName": "my_displayName",
+     *   //   "exchange": "my_exchange",
+     *   //   "guaranteedOrderId": "my_guaranteedOrderId",
+     *   //   "legacyGuaranteedOrderId": "my_legacyGuaranteedOrderId",
+     *   //   "name": "my_name",
+     *   //   "publisherName": "my_publisherName",
+     *   //   "readAccessInherited": false,
+     *   //   "readAdvertiserIds": [],
+     *   //   "readWriteAdvertiserId": "my_readWriteAdvertiserId",
+     *   //   "readWritePartnerId": "my_readWritePartnerId",
+     *   //   "status": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Guaranteedorders$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Guaranteedorders$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GuaranteedOrder>;
+    create(
+      params: Params$Resource$Guaranteedorders$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Guaranteedorders$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$GuaranteedOrder>,
+      callback: BodyResponseCallback<Schema$GuaranteedOrder>
+    ): void;
+    create(
+      params: Params$Resource$Guaranteedorders$Create,
+      callback: BodyResponseCallback<Schema$GuaranteedOrder>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$GuaranteedOrder>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Guaranteedorders$Create
+        | BodyResponseCallback<Schema$GuaranteedOrder>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GuaranteedOrder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GuaranteedOrder>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$GuaranteedOrder> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Guaranteedorders$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Guaranteedorders$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/guaranteedOrders').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GuaranteedOrder>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GuaranteedOrder>(parameters);
+      }
+    }
+
+    /**
+     * Edits read advertisers of a guaranteed order.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.guaranteedOrders.editGuaranteedOrderReadAccessors({
+     *       // Required. The ID of the guaranteed order to edit. The ID is of the format `{exchange\}-{legacy_guaranteed_order_id\}`
+     *       guaranteedOrderId: '[^/]+',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "addedAdvertisers": [],
+     *         //   "partnerId": "my_partnerId",
+     *         //   "readAccessInherited": false,
+     *         //   "removedAdvertisers": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "readAccessInherited": false,
+     *   //   "readAdvertiserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    editGuaranteedOrderReadAccessors(
+      params: Params$Resource$Guaranteedorders$Editguaranteedorderreadaccessors,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    editGuaranteedOrderReadAccessors(
+      params?: Params$Resource$Guaranteedorders$Editguaranteedorderreadaccessors,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EditGuaranteedOrderReadAccessorsResponse>;
+    editGuaranteedOrderReadAccessors(
+      params: Params$Resource$Guaranteedorders$Editguaranteedorderreadaccessors,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    editGuaranteedOrderReadAccessors(
+      params: Params$Resource$Guaranteedorders$Editguaranteedorderreadaccessors,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EditGuaranteedOrderReadAccessorsResponse>,
+      callback: BodyResponseCallback<Schema$EditGuaranteedOrderReadAccessorsResponse>
+    ): void;
+    editGuaranteedOrderReadAccessors(
+      params: Params$Resource$Guaranteedorders$Editguaranteedorderreadaccessors,
+      callback: BodyResponseCallback<Schema$EditGuaranteedOrderReadAccessorsResponse>
+    ): void;
+    editGuaranteedOrderReadAccessors(
+      callback: BodyResponseCallback<Schema$EditGuaranteedOrderReadAccessorsResponse>
+    ): void;
+    editGuaranteedOrderReadAccessors(
+      paramsOrCallback?:
+        | Params$Resource$Guaranteedorders$Editguaranteedorderreadaccessors
+        | BodyResponseCallback<Schema$EditGuaranteedOrderReadAccessorsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EditGuaranteedOrderReadAccessorsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EditGuaranteedOrderReadAccessorsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EditGuaranteedOrderReadAccessorsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Guaranteedorders$Editguaranteedorderreadaccessors;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Guaranteedorders$Editguaranteedorderreadaccessors;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/guaranteedOrders/{+guaranteedOrderId}:editGuaranteedOrderReadAccessors'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['guaranteedOrderId'],
+        pathParams: ['guaranteedOrderId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EditGuaranteedOrderReadAccessorsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EditGuaranteedOrderReadAccessorsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets a guaranteed order.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.guaranteedOrders.get({
+     *     // The ID of the advertiser that has access to the guaranteed order.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the guaranteed order to fetch. The ID is of the format `{exchange\}-{legacy_guaranteed_order_id\}`
+     *     guaranteedOrderId: '[^/]+',
+     *     // The ID of the partner that has access to the guaranteed order.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "defaultAdvertiserId": "my_defaultAdvertiserId",
+     *   //   "defaultCampaignId": "my_defaultCampaignId",
+     *   //   "displayName": "my_displayName",
+     *   //   "exchange": "my_exchange",
+     *   //   "guaranteedOrderId": "my_guaranteedOrderId",
+     *   //   "legacyGuaranteedOrderId": "my_legacyGuaranteedOrderId",
+     *   //   "name": "my_name",
+     *   //   "publisherName": "my_publisherName",
+     *   //   "readAccessInherited": false,
+     *   //   "readAdvertiserIds": [],
+     *   //   "readWriteAdvertiserId": "my_readWriteAdvertiserId",
+     *   //   "readWritePartnerId": "my_readWritePartnerId",
+     *   //   "status": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Guaranteedorders$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Guaranteedorders$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GuaranteedOrder>;
+    get(
+      params: Params$Resource$Guaranteedorders$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Guaranteedorders$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$GuaranteedOrder>,
+      callback: BodyResponseCallback<Schema$GuaranteedOrder>
+    ): void;
+    get(
+      params: Params$Resource$Guaranteedorders$Get,
+      callback: BodyResponseCallback<Schema$GuaranteedOrder>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$GuaranteedOrder>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Guaranteedorders$Get
+        | BodyResponseCallback<Schema$GuaranteedOrder>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GuaranteedOrder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GuaranteedOrder>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$GuaranteedOrder> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Guaranteedorders$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Guaranteedorders$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/guaranteedOrders/{+guaranteedOrderId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['guaranteedOrderId'],
+        pathParams: ['guaranteedOrderId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GuaranteedOrder>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GuaranteedOrder>(parameters);
+      }
+    }
+
+    /**
+     * Lists guaranteed orders that are accessible to the current user. The order is defined by the order_by parameter. If a filter by entity_status is not specified, guaranteed orders with entity status `ENTITY_STATUS_ARCHIVED` will not be included in the results.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.guaranteedOrders.list({
+     *     // The ID of the advertiser that has access to the guaranteed order.
+     *     advertiserId: 'placeholder-value',
+     *     // Allows filtering by guaranteed order properties. * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `guaranteed_order_id` - `exchange` - `display_name` - `status.entityStatus` Examples: * All active guaranteed orders: `status.entityStatus="ENTITY_STATUS_ACTIVE"` * Guaranteed orders belonging to Google Ad Manager or Rubicon exchanges: `exchange="EXCHANGE_GOOGLE_AD_MANAGER" OR exchange="EXCHANGE_RUBICON"` The length of this field should be no more than 500 characters.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `100`. If unspecified or greater than `100` will default to `100`.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListGuaranteedOrders` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *     // The ID of the partner that has access to the guaranteed order.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "guaranteedOrders": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Guaranteedorders$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Guaranteedorders$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListGuaranteedOrdersResponse>;
+    list(
+      params: Params$Resource$Guaranteedorders$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Guaranteedorders$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGuaranteedOrdersResponse>,
+      callback: BodyResponseCallback<Schema$ListGuaranteedOrdersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Guaranteedorders$List,
+      callback: BodyResponseCallback<Schema$ListGuaranteedOrdersResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListGuaranteedOrdersResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Guaranteedorders$List
+        | BodyResponseCallback<Schema$ListGuaranteedOrdersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListGuaranteedOrdersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListGuaranteedOrdersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListGuaranteedOrdersResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Guaranteedorders$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Guaranteedorders$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/guaranteedOrders').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListGuaranteedOrdersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListGuaranteedOrdersResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an existing guaranteed order. Returns the updated guaranteed order if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.guaranteedOrders.patch({
+     *     // The ID of the advertiser that the request is being made within.
+     *     advertiserId: 'placeholder-value',
+     *     // Output only. The unique identifier of the guaranteed order. The guaranteed order IDs have the format `{exchange\}-{legacy_guaranteed_order_id\}`.
+     *     guaranteedOrderId: '[^/]+',
+     *     // The ID of the partner that the request is being made within.
+     *     partnerId: 'placeholder-value',
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "defaultAdvertiserId": "my_defaultAdvertiserId",
+     *       //   "defaultCampaignId": "my_defaultCampaignId",
+     *       //   "displayName": "my_displayName",
+     *       //   "exchange": "my_exchange",
+     *       //   "guaranteedOrderId": "my_guaranteedOrderId",
+     *       //   "legacyGuaranteedOrderId": "my_legacyGuaranteedOrderId",
+     *       //   "name": "my_name",
+     *       //   "publisherName": "my_publisherName",
+     *       //   "readAccessInherited": false,
+     *       //   "readAdvertiserIds": [],
+     *       //   "readWriteAdvertiserId": "my_readWriteAdvertiserId",
+     *       //   "readWritePartnerId": "my_readWritePartnerId",
+     *       //   "status": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "defaultAdvertiserId": "my_defaultAdvertiserId",
+     *   //   "defaultCampaignId": "my_defaultCampaignId",
+     *   //   "displayName": "my_displayName",
+     *   //   "exchange": "my_exchange",
+     *   //   "guaranteedOrderId": "my_guaranteedOrderId",
+     *   //   "legacyGuaranteedOrderId": "my_legacyGuaranteedOrderId",
+     *   //   "name": "my_name",
+     *   //   "publisherName": "my_publisherName",
+     *   //   "readAccessInherited": false,
+     *   //   "readAdvertiserIds": [],
+     *   //   "readWriteAdvertiserId": "my_readWriteAdvertiserId",
+     *   //   "readWritePartnerId": "my_readWritePartnerId",
+     *   //   "status": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Guaranteedorders$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Guaranteedorders$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GuaranteedOrder>;
+    patch(
+      params: Params$Resource$Guaranteedorders$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Guaranteedorders$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$GuaranteedOrder>,
+      callback: BodyResponseCallback<Schema$GuaranteedOrder>
+    ): void;
+    patch(
+      params: Params$Resource$Guaranteedorders$Patch,
+      callback: BodyResponseCallback<Schema$GuaranteedOrder>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$GuaranteedOrder>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Guaranteedorders$Patch
+        | BodyResponseCallback<Schema$GuaranteedOrder>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GuaranteedOrder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GuaranteedOrder>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$GuaranteedOrder> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Guaranteedorders$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Guaranteedorders$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/guaranteedOrders/{+guaranteedOrderId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['guaranteedOrderId'],
+        pathParams: ['guaranteedOrderId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GuaranteedOrder>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GuaranteedOrder>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Guaranteedorders$Create
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that the request is being made within.
+     */
+    advertiserId?: string;
+    /**
+     * The ID of the partner that the request is being made within.
+     */
+    partnerId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GuaranteedOrder;
+  }
+  export interface Params$Resource$Guaranteedorders$Editguaranteedorderreadaccessors
+    extends StandardParameters {
+    /**
+     * Required. The ID of the guaranteed order to edit. The ID is of the format `{exchange\}-{legacy_guaranteed_order_id\}`
+     */
+    guaranteedOrderId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EditGuaranteedOrderReadAccessorsRequest;
+  }
+  export interface Params$Resource$Guaranteedorders$Get
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that has access to the guaranteed order.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the guaranteed order to fetch. The ID is of the format `{exchange\}-{legacy_guaranteed_order_id\}`
+     */
+    guaranteedOrderId?: string;
+    /**
+     * The ID of the partner that has access to the guaranteed order.
+     */
+    partnerId?: string;
+  }
+  export interface Params$Resource$Guaranteedorders$List
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that has access to the guaranteed order.
+     */
+    advertiserId?: string;
+    /**
+     * Allows filtering by guaranteed order properties. * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `guaranteed_order_id` - `exchange` - `display_name` - `status.entityStatus` Examples: * All active guaranteed orders: `status.entityStatus="ENTITY_STATUS_ACTIVE"` * Guaranteed orders belonging to Google Ad Manager or Rubicon exchanges: `exchange="EXCHANGE_GOOGLE_AD_MANAGER" OR exchange="EXCHANGE_RUBICON"` The length of this field should be no more than 500 characters.
+     */
+    filter?: string;
+    /**
+     * Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. Must be between `1` and `100`. If unspecified or greater than `100` will default to `100`.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListGuaranteedOrders` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+    /**
+     * The ID of the partner that has access to the guaranteed order.
+     */
+    partnerId?: string;
+  }
+  export interface Params$Resource$Guaranteedorders$Patch
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that the request is being made within.
+     */
+    advertiserId?: string;
+    /**
+     * Output only. The unique identifier of the guaranteed order. The guaranteed order IDs have the format `{exchange\}-{legacy_guaranteed_order_id\}`.
+     */
+    guaranteedOrderId?: string;
+    /**
+     * The ID of the partner that the request is being made within.
+     */
+    partnerId?: string;
+    /**
+     * Required. The mask to control which fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GuaranteedOrder;
+  }
+
   export class Resource$Inventorysourcegroups {
     context: APIRequestContext;
     assignedInventorySources: Resource$Inventorysourcegroups$Assignedinventorysources;
@@ -24392,6 +25501,332 @@ export namespace displayvideo_v1 {
     }
 
     /**
+     * Creates a new inventory source. Returns the newly created inventory source if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.inventorySources.create({
+     *     // The ID of the advertiser that the request is being made within.
+     *     advertiserId: 'placeholder-value',
+     *     // The ID of the partner that the request is being made within.
+     *     partnerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "commitment": "my_commitment",
+     *       //   "creativeConfigs": [],
+     *       //   "dealId": "my_dealId",
+     *       //   "deliveryMethod": "my_deliveryMethod",
+     *       //   "displayName": "my_displayName",
+     *       //   "exchange": "my_exchange",
+     *       //   "guaranteedOrderId": "my_guaranteedOrderId",
+     *       //   "inventorySourceId": "my_inventorySourceId",
+     *       //   "inventorySourceProductType": "my_inventorySourceProductType",
+     *       //   "inventorySourceType": "my_inventorySourceType",
+     *       //   "name": "my_name",
+     *       //   "publisherName": "my_publisherName",
+     *       //   "rateDetails": {},
+     *       //   "readAdvertiserIds": [],
+     *       //   "readPartnerIds": [],
+     *       //   "readWriteAccessors": {},
+     *       //   "status": {},
+     *       //   "subSitePropertyId": "my_subSitePropertyId",
+     *       //   "timeRange": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "commitment": "my_commitment",
+     *   //   "creativeConfigs": [],
+     *   //   "dealId": "my_dealId",
+     *   //   "deliveryMethod": "my_deliveryMethod",
+     *   //   "displayName": "my_displayName",
+     *   //   "exchange": "my_exchange",
+     *   //   "guaranteedOrderId": "my_guaranteedOrderId",
+     *   //   "inventorySourceId": "my_inventorySourceId",
+     *   //   "inventorySourceProductType": "my_inventorySourceProductType",
+     *   //   "inventorySourceType": "my_inventorySourceType",
+     *   //   "name": "my_name",
+     *   //   "publisherName": "my_publisherName",
+     *   //   "rateDetails": {},
+     *   //   "readAdvertiserIds": [],
+     *   //   "readPartnerIds": [],
+     *   //   "readWriteAccessors": {},
+     *   //   "status": {},
+     *   //   "subSitePropertyId": "my_subSitePropertyId",
+     *   //   "timeRange": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Inventorysources$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Inventorysources$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InventorySource>;
+    create(
+      params: Params$Resource$Inventorysources$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Inventorysources$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$InventorySource>,
+      callback: BodyResponseCallback<Schema$InventorySource>
+    ): void;
+    create(
+      params: Params$Resource$Inventorysources$Create,
+      callback: BodyResponseCallback<Schema$InventorySource>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$InventorySource>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Inventorysources$Create
+        | BodyResponseCallback<Schema$InventorySource>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InventorySource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InventorySource>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$InventorySource> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Inventorysources$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Inventorysources$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/inventorySources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$InventorySource>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$InventorySource>(parameters);
+      }
+    }
+
+    /**
+     * Edits read/write accessors of an inventory source. Returns the updated read_write_accessors for the inventory source.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.inventorySources.editInventorySourceReadWriteAccessors({
+     *       // Required. The ID of inventory source to update.
+     *       inventorySourceId: '[^/]+',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "advertisersUpdate": {},
+     *         //   "assignPartner": false,
+     *         //   "partnerId": "my_partnerId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertisers": {},
+     *   //   "partner": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    editInventorySourceReadWriteAccessors(
+      params: Params$Resource$Inventorysources$Editinventorysourcereadwriteaccessors,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    editInventorySourceReadWriteAccessors(
+      params?: Params$Resource$Inventorysources$Editinventorysourcereadwriteaccessors,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InventorySourceAccessors>;
+    editInventorySourceReadWriteAccessors(
+      params: Params$Resource$Inventorysources$Editinventorysourcereadwriteaccessors,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    editInventorySourceReadWriteAccessors(
+      params: Params$Resource$Inventorysources$Editinventorysourcereadwriteaccessors,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InventorySourceAccessors>,
+      callback: BodyResponseCallback<Schema$InventorySourceAccessors>
+    ): void;
+    editInventorySourceReadWriteAccessors(
+      params: Params$Resource$Inventorysources$Editinventorysourcereadwriteaccessors,
+      callback: BodyResponseCallback<Schema$InventorySourceAccessors>
+    ): void;
+    editInventorySourceReadWriteAccessors(
+      callback: BodyResponseCallback<Schema$InventorySourceAccessors>
+    ): void;
+    editInventorySourceReadWriteAccessors(
+      paramsOrCallback?:
+        | Params$Resource$Inventorysources$Editinventorysourcereadwriteaccessors
+        | BodyResponseCallback<Schema$InventorySourceAccessors>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InventorySourceAccessors>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InventorySourceAccessors>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$InventorySourceAccessors>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Inventorysources$Editinventorysourcereadwriteaccessors;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Inventorysources$Editinventorysourcereadwriteaccessors;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/inventorySources/{+inventorySourceId}:editInventorySourceReadWriteAccessors'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['inventorySourceId'],
+        pathParams: ['inventorySourceId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$InventorySourceAccessors>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$InventorySourceAccessors>(parameters);
+      }
+    }
+
+    /**
      * Gets an inventory source.
      * @example
      * ```js
@@ -24433,12 +25868,18 @@ export namespace displayvideo_v1 {
      *   //   "deliveryMethod": "my_deliveryMethod",
      *   //   "displayName": "my_displayName",
      *   //   "exchange": "my_exchange",
+     *   //   "guaranteedOrderId": "my_guaranteedOrderId",
      *   //   "inventorySourceId": "my_inventorySourceId",
+     *   //   "inventorySourceProductType": "my_inventorySourceProductType",
      *   //   "inventorySourceType": "my_inventorySourceType",
      *   //   "name": "my_name",
      *   //   "publisherName": "my_publisherName",
      *   //   "rateDetails": {},
+     *   //   "readAdvertiserIds": [],
+     *   //   "readPartnerIds": [],
+     *   //   "readWriteAccessors": {},
      *   //   "status": {},
+     *   //   "subSitePropertyId": "my_subSitePropertyId",
      *   //   "timeRange": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -24682,8 +26123,216 @@ export namespace displayvideo_v1 {
         );
       }
     }
+
+    /**
+     * Updates an existing inventory source. Returns the updated inventory source if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.inventorySources.patch({
+     *     // The ID of the advertiser that the request is being made within.
+     *     advertiserId: 'placeholder-value',
+     *     // Output only. The unique ID of the inventory source. Assigned by the system.
+     *     inventorySourceId: '[^/]+',
+     *     // The ID of the partner that the request is being made within.
+     *     partnerId: 'placeholder-value',
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "commitment": "my_commitment",
+     *       //   "creativeConfigs": [],
+     *       //   "dealId": "my_dealId",
+     *       //   "deliveryMethod": "my_deliveryMethod",
+     *       //   "displayName": "my_displayName",
+     *       //   "exchange": "my_exchange",
+     *       //   "guaranteedOrderId": "my_guaranteedOrderId",
+     *       //   "inventorySourceId": "my_inventorySourceId",
+     *       //   "inventorySourceProductType": "my_inventorySourceProductType",
+     *       //   "inventorySourceType": "my_inventorySourceType",
+     *       //   "name": "my_name",
+     *       //   "publisherName": "my_publisherName",
+     *       //   "rateDetails": {},
+     *       //   "readAdvertiserIds": [],
+     *       //   "readPartnerIds": [],
+     *       //   "readWriteAccessors": {},
+     *       //   "status": {},
+     *       //   "subSitePropertyId": "my_subSitePropertyId",
+     *       //   "timeRange": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "commitment": "my_commitment",
+     *   //   "creativeConfigs": [],
+     *   //   "dealId": "my_dealId",
+     *   //   "deliveryMethod": "my_deliveryMethod",
+     *   //   "displayName": "my_displayName",
+     *   //   "exchange": "my_exchange",
+     *   //   "guaranteedOrderId": "my_guaranteedOrderId",
+     *   //   "inventorySourceId": "my_inventorySourceId",
+     *   //   "inventorySourceProductType": "my_inventorySourceProductType",
+     *   //   "inventorySourceType": "my_inventorySourceType",
+     *   //   "name": "my_name",
+     *   //   "publisherName": "my_publisherName",
+     *   //   "rateDetails": {},
+     *   //   "readAdvertiserIds": [],
+     *   //   "readPartnerIds": [],
+     *   //   "readWriteAccessors": {},
+     *   //   "status": {},
+     *   //   "subSitePropertyId": "my_subSitePropertyId",
+     *   //   "timeRange": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Inventorysources$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Inventorysources$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InventorySource>;
+    patch(
+      params: Params$Resource$Inventorysources$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Inventorysources$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$InventorySource>,
+      callback: BodyResponseCallback<Schema$InventorySource>
+    ): void;
+    patch(
+      params: Params$Resource$Inventorysources$Patch,
+      callback: BodyResponseCallback<Schema$InventorySource>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$InventorySource>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Inventorysources$Patch
+        | BodyResponseCallback<Schema$InventorySource>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InventorySource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InventorySource>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$InventorySource> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Inventorysources$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Inventorysources$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/inventorySources/{+inventorySourceId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['inventorySourceId'],
+        pathParams: ['inventorySourceId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$InventorySource>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$InventorySource>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Inventorysources$Create
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that the request is being made within.
+     */
+    advertiserId?: string;
+    /**
+     * The ID of the partner that the request is being made within.
+     */
+    partnerId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InventorySource;
+  }
+  export interface Params$Resource$Inventorysources$Editinventorysourcereadwriteaccessors
+    extends StandardParameters {
+    /**
+     * Required. The ID of inventory source to update.
+     */
+    inventorySourceId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EditInventorySourceReadWriteAccessorsRequest;
+  }
   export interface Params$Resource$Inventorysources$Get
     extends StandardParameters {
     /**
@@ -24721,6 +26370,30 @@ export namespace displayvideo_v1 {
      * The ID of the partner that has access to the inventory source.
      */
     partnerId?: string;
+  }
+  export interface Params$Resource$Inventorysources$Patch
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that the request is being made within.
+     */
+    advertiserId?: string;
+    /**
+     * Output only. The unique ID of the inventory source. Assigned by the system.
+     */
+    inventorySourceId?: string;
+    /**
+     * The ID of the partner that the request is being made within.
+     */
+    partnerId?: string;
+    /**
+     * Required. The mask to control which fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InventorySource;
   }
 
   export class Resource$Media {
