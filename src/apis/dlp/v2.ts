@@ -1622,6 +1622,10 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2InfoTypeSummary {
     /**
+     * Approximate percentage of non-null rows that contained data detected by this infotype.
+     */
+    estimatedPrevalence?: number | null;
+    /**
      * The infoType.
      */
     infoType?: Schema$GooglePrivacyDlpV2InfoType;
@@ -2278,6 +2282,10 @@ export namespace dlp_v2 {
    * Infotype details for other infoTypes found within a column.
    */
   export interface Schema$GooglePrivacyDlpV2OtherInfoTypeSummary {
+    /**
+     * Approximate percentage of non-null rows that contained data detected by this infotype.
+     */
+    estimatedPrevalence?: number | null;
     /**
      * The other infoType.
      */
