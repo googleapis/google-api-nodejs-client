@@ -126,7 +126,7 @@ export namespace networkservices_v1beta1 {
   }
 
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -272,7 +272,7 @@ export namespace networkservices_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. Name of the Gateway resource. It matches pattern `projects/x/locations/global/gateways/`.
+     * Required. Name of the Gateway resource. It matches pattern `projects/x/locations/x/gateways/`.
      */
     name?: string | null;
     /**
@@ -1240,6 +1240,10 @@ export namespace networkservices_v1beta1 {
      * Optional. A free-text description of the resource. Max length 1024 characters.
      */
     description?: string | null;
+    /**
+     * Optional. Gateways defines a list of gateways this TcpRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/x/locations/global/gateways/`
+     */
+    gateways?: string[] | null;
     /**
      * Optional. Set of label tags associated with the TcpRoute resource.
      */
@@ -2234,7 +2238,7 @@ export namespace networkservices_v1beta1 {
      *     await networkservices.projects.locations.endpointPolicies.getIamPolicy({
      *       // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/endpointPolicies/my-endpointPolicie',
      *     });
@@ -2666,7 +2670,7 @@ export namespace networkservices_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await networkservices.projects.locations.endpointPolicies.setIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/endpointPolicies/my-endpointPolicie',
      *
@@ -2812,7 +2816,7 @@ export namespace networkservices_v1beta1 {
      *   const res =
      *     await networkservices.projects.locations.endpointPolicies.testIamPermissions(
      *       {
-     *         // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *         // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *         resource:
      *           'projects/my-project/locations/my-location/endpointPolicies/my-endpointPolicie',
      *
@@ -2971,7 +2975,7 @@ export namespace networkservices_v1beta1 {
      */
     'options.requestedPolicyVersion'?: number;
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -3009,7 +3013,7 @@ export namespace networkservices_v1beta1 {
   export interface Params$Resource$Projects$Locations$Endpointpolicies$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3021,7 +3025,7 @@ export namespace networkservices_v1beta1 {
   export interface Params$Resource$Projects$Locations$Endpointpolicies$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3066,7 +3070,7 @@ export namespace networkservices_v1beta1 {
      *   const res = await networkservices.projects.locations.gateways.create({
      *     // Required. Short name of the Gateway resource to be created.
      *     gatewayId: 'placeholder-value',
-     *     // Required. The parent resource of the Gateway. Must be in the format `projects/x/locations/global`.
+     *     // Required. The parent resource of the Gateway. Must be in the format `projects/x/locations/x`.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -3217,7 +3221,7 @@ export namespace networkservices_v1beta1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.gateways.delete({
-     *     // Required. A name of the Gateway to delete. Must be in the format `projects/x/locations/global/gateways/x`.
+     *     // Required. A name of the Gateway to delete. Must be in the format `projects/x/locations/x/gateways/x`.
      *     name: 'projects/my-project/locations/my-location/gateways/my-gateway',
      *   });
      *   console.log(res.data);
@@ -3348,7 +3352,7 @@ export namespace networkservices_v1beta1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.gateways.get({
-     *     // Required. A name of the Gateway to get. Must be in the format `projects/x/locations/global/gateways/x`.
+     *     // Required. A name of the Gateway to get. Must be in the format `projects/x/locations/x/gateways/x`.
      *     name: 'projects/my-project/locations/my-location/gateways/my-gateway',
      *   });
      *   console.log(res.data);
@@ -3486,7 +3490,7 @@ export namespace networkservices_v1beta1 {
      *   const res = await networkservices.projects.locations.gateways.getIamPolicy({
      *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/gateways/my-gateway',
      *   });
      *   console.log(res.data);
@@ -3623,7 +3627,7 @@ export namespace networkservices_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // The value returned by the last `ListGatewaysResponse` Indicates that this is a continuation of a prior `ListGateways` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. The project and location from which the Gateways should be listed, specified in the format `projects/x/locations/global`.
+     *     // Required. The project and location from which the Gateways should be listed, specified in the format `projects/x/locations/x`.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -3759,7 +3763,7 @@ export namespace networkservices_v1beta1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.gateways.patch({
-     *     // Required. Name of the Gateway resource. It matches pattern `projects/x/locations/global/gateways/`.
+     *     // Required. Name of the Gateway resource. It matches pattern `projects/x/locations/x/gateways/`.
      *     name: 'projects/my-project/locations/my-location/gateways/my-gateway',
      *     // Optional. Field mask is used to specify the fields to be overwritten in the Gateway resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      *     updateMask: 'placeholder-value',
@@ -3909,7 +3913,7 @@ export namespace networkservices_v1beta1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.gateways.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/gateways/my-gateway',
      *
      *     // Request body metadata
@@ -4052,7 +4056,7 @@ export namespace networkservices_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await networkservices.projects.locations.gateways.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource: 'projects/my-project/locations/my-location/gateways/my-gateway',
      *
      *       // Request body metadata
@@ -4179,7 +4183,7 @@ export namespace networkservices_v1beta1 {
      */
     gatewayId?: string;
     /**
-     * Required. The parent resource of the Gateway. Must be in the format `projects/x/locations/global`.
+     * Required. The parent resource of the Gateway. Must be in the format `projects/x/locations/x`.
      */
     parent?: string;
 
@@ -4191,14 +4195,14 @@ export namespace networkservices_v1beta1 {
   export interface Params$Resource$Projects$Locations$Gateways$Delete
     extends StandardParameters {
     /**
-     * Required. A name of the Gateway to delete. Must be in the format `projects/x/locations/global/gateways/x`.
+     * Required. A name of the Gateway to delete. Must be in the format `projects/x/locations/x/gateways/x`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Gateways$Get
     extends StandardParameters {
     /**
-     * Required. A name of the Gateway to get. Must be in the format `projects/x/locations/global/gateways/x`.
+     * Required. A name of the Gateway to get. Must be in the format `projects/x/locations/x/gateways/x`.
      */
     name?: string;
   }
@@ -4209,7 +4213,7 @@ export namespace networkservices_v1beta1 {
      */
     'options.requestedPolicyVersion'?: number;
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -4224,14 +4228,14 @@ export namespace networkservices_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The project and location from which the Gateways should be listed, specified in the format `projects/x/locations/global`.
+     * Required. The project and location from which the Gateways should be listed, specified in the format `projects/x/locations/x`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Gateways$Patch
     extends StandardParameters {
     /**
-     * Required. Name of the Gateway resource. It matches pattern `projects/x/locations/global/gateways/`.
+     * Required. Name of the Gateway resource. It matches pattern `projects/x/locations/x/gateways/`.
      */
     name?: string;
     /**
@@ -4247,7 +4251,7 @@ export namespace networkservices_v1beta1 {
   export interface Params$Resource$Projects$Locations$Gateways$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -4259,7 +4263,7 @@ export namespace networkservices_v1beta1 {
   export interface Params$Resource$Projects$Locations$Gateways$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -6276,7 +6280,7 @@ export namespace networkservices_v1beta1 {
      *   const res = await networkservices.projects.locations.meshes.getIamPolicy({
      *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/meshes/my-meshe',
      *   });
      *   console.log(res.data);
@@ -6694,7 +6698,7 @@ export namespace networkservices_v1beta1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.meshes.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/meshes/my-meshe',
      *
      *     // Request body metadata
@@ -6837,7 +6841,7 @@ export namespace networkservices_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await networkservices.projects.locations.meshes.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource: 'projects/my-project/locations/my-location/meshes/my-meshe',
      *
      *       // Request body metadata
@@ -6994,7 +6998,7 @@ export namespace networkservices_v1beta1 {
      */
     'options.requestedPolicyVersion'?: number;
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -7032,7 +7036,7 @@ export namespace networkservices_v1beta1 {
   export interface Params$Resource$Projects$Locations$Meshes$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -7044,7 +7048,7 @@ export namespace networkservices_v1beta1 {
   export interface Params$Resource$Projects$Locations$Meshes$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -8089,7 +8093,7 @@ export namespace networkservices_v1beta1 {
      *     await networkservices.projects.locations.serviceBindings.getIamPolicy({
      *       // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/serviceBindings/my-serviceBinding',
      *     });
@@ -8367,7 +8371,7 @@ export namespace networkservices_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await networkservices.projects.locations.serviceBindings.setIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/serviceBindings/my-serviceBinding',
      *
@@ -8513,7 +8517,7 @@ export namespace networkservices_v1beta1 {
      *   const res =
      *     await networkservices.projects.locations.serviceBindings.testIamPermissions(
      *       {
-     *         // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *         // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *         resource:
      *           'projects/my-project/locations/my-location/serviceBindings/my-serviceBinding',
      *
@@ -8672,7 +8676,7 @@ export namespace networkservices_v1beta1 {
      */
     'options.requestedPolicyVersion'?: number;
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -8694,7 +8698,7 @@ export namespace networkservices_v1beta1 {
   export interface Params$Resource$Projects$Locations$Servicebindings$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -8706,7 +8710,7 @@ export namespace networkservices_v1beta1 {
   export interface Params$Resource$Projects$Locations$Servicebindings$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -8760,6 +8764,7 @@ export namespace networkservices_v1beta1 {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "gateways": [],
      *       //   "labels": {},
      *       //   "meshes": [],
      *       //   "name": "my_name",
@@ -9040,6 +9045,7 @@ export namespace networkservices_v1beta1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "gateways": [],
      *   //   "labels": {},
      *   //   "meshes": [],
      *   //   "name": "my_name",
@@ -9316,6 +9322,7 @@ export namespace networkservices_v1beta1 {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "gateways": [],
      *       //   "labels": {},
      *       //   "meshes": [],
      *       //   "name": "my_name",
