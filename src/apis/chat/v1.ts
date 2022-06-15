@@ -103,7 +103,7 @@ export namespace chat_v1 {
   /**
    * Google Chat API
    *
-   * Enables apps to fetch information and perform actions in Google Chat. Authentication using a service account is a prerequisite for using the Google Chat REST API.
+   * Enables apps to fetch information and perform actions in Google Chat. Authentication is a prerequisite for using the Google Chat REST API.
    *
    * @example
    * ```js
@@ -315,7 +315,7 @@ export namespace chat_v1 {
    */
   export interface Schema$ChatAppLogEntry {
     /**
-     * The deployment that caused the error. For Chat bots built in Apps Script, this is the deployment ID defined by Apps Script.
+     * The deployment that caused the error. For Chat apps built in Apps Script, this is the deployment ID defined by Apps Script.
      */
     deployment?: string | null;
     /**
@@ -1234,7 +1234,7 @@ export namespace chat_v1 {
     spaces?: Schema$Space[];
   }
   /**
-   * A matched url in a Chat message. Chat apps can unfurl matched URLs. For more information, refer to [Unfurl links](https://developers.google.com/chat/how-tos/link-unfurling).
+   * A matched url in a Chat message. Chat apps can preview matched URLs. For more information, refer to [Preview links](https://developers.google.com/chat/how-tos/preview-links).
    */
   export interface Schema$MatchedUrl {
     /**
@@ -1252,17 +1252,20 @@ export namespace chat_v1 {
     resourceName?: string | null;
   }
   /**
-   * Represents a membership relation in Google Chat.
+   * Represents a membership relation in Google Chat, such as whether a user or Chat app is invited to, part of, or absent from a space.
    */
   export interface Schema$Membership {
     /**
-     * Output only. The creation time of the membership a.k.a. the time at which the member joined the space, if applicable.
+     * Output only. The creation time of the membership, such as when a member joined or was invited to join a space.
      */
     createTime?: string | null;
     /**
-     * A Google Chat user or app. Format: `users/{person\}` or `users/app` When `users/{person\}`, represents a [person](https://developers.google.com/people/api/rest/v1/people) in the People API or a [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Admin SDK Directory API. Format: `users/{user\}` When `users/app`, represents a Chat app creating membership for itself. Creating membership is available as a [developer preview](https://developers.google.com/workspace/preview).
+     * A Google Chat user or app. Format: `users/{user\}` or `users/app` When `users/{user\}`, represents a [person](https://developers.google.com/people/api/rest/v1/people) in the People API or a [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Admin SDK Directory API. When `users/app`, represents a Chat app creating membership for itself.
      */
     member?: Schema$User;
+    /**
+     * Resource name of the membership. Format: spaces/{space\}/members/{member\}
+     */
     name?: string | null;
     /**
      * Output only. State of the membership.
@@ -1302,11 +1305,11 @@ export namespace chat_v1 {
      */
     fallbackText?: string | null;
     /**
-     * Output only. The time at which the message was last updated in Google Chat server. If the message was never updated, this field will be same as create_time.
+     * Output only. The time at which the message was last updated. If the message was never updated, this field matches `create_time`.
      */
     lastUpdateTime?: string | null;
     /**
-     * Output only. A URL in `spaces.messages.text` that matches a link unfurling pattern. For more information, refer to [Unfurl links](https://developers.google.com/chat/how-tos/link-unfurling).
+     * Output only. A URL in `spaces.messages.text` that matches a link preview pattern. For more information, refer to [Preview links](https://developers.google.com/chat/how-tos/preview-links).
      */
     matchedUrl?: Schema$MatchedUrl;
     /**
@@ -1412,7 +1415,7 @@ export namespace chat_v1 {
      */
     displayName?: string | null;
     /**
-     * Resource name of the space, in the form "spaces/x". Example: spaces/AAAAAAAAAAAA
+     * Resource name of the space. Format: spaces/{space\}
      */
     name?: string | null;
     /**
@@ -1420,11 +1423,11 @@ export namespace chat_v1 {
      */
     singleUserBotDm?: boolean | null;
     /**
-     * Output only. Output only. Whether the messages are threaded in this space.
+     * Output only. Whether messages are threaded in this space.
      */
     threaded?: boolean | null;
     /**
-     * Output only. Deprecated: Use `single_user_bot_dm` instead. Output only. The type of a space.
+     * Output only. Deprecated: Use `single_user_bot_dm` or `space_type` (developer preview) instead. The type of a space.
      */
     type?: string | null;
   }
@@ -2909,7 +2912,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.get({
-     *     // Required. Resource name of the space, in the form "spaces/x". Example: spaces/AAAAAAAAAAAA
+     *     // Required. Resource name of the space, in the form "spaces/x". Format: spaces/{space\}
      *     name: 'spaces/my-space',
      *   });
      *   console.log(res.data);
@@ -3313,7 +3316,7 @@ export namespace chat_v1 {
 
   export interface Params$Resource$Spaces$Get extends StandardParameters {
     /**
-     * Required. Resource name of the space, in the form "spaces/x". Example: spaces/AAAAAAAAAAAA
+     * Required. Resource name of the space, in the form "spaces/x". Format: spaces/{space\}
      */
     name?: string;
   }
@@ -3380,7 +3383,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.members.get({
-     *     // Required. Resource name of the membership to be retrieved, in the form "spaces/x/members/x". Example: spaces/AAAAAAAAAAAA/members/111111111111111111111
+     *     // Required. Resource name of the membership to retrieve. Format: spaces/{space\}/members/{member\}
      *     name: 'spaces/my-space/members/my-member',
      *   });
      *   console.log(res.data);
@@ -3513,7 +3516,7 @@ export namespace chat_v1 {
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the space for which membership list is to be fetched, in the form "spaces/x". Example: spaces/AAAAAAAAAAAA
+     *     // Required. The resource name of the space for which to fetch a membership list. Format: spaces/{space\}
      *     parent: 'spaces/my-space',
      *   });
      *   console.log(res.data);
@@ -3625,7 +3628,7 @@ export namespace chat_v1 {
   export interface Params$Resource$Spaces$Members$Get
     extends StandardParameters {
     /**
-     * Required. Resource name of the membership to be retrieved, in the form "spaces/x/members/x". Example: spaces/AAAAAAAAAAAA/members/111111111111111111111
+     * Required. Resource name of the membership to retrieve. Format: spaces/{space\}/members/{member\}
      */
     name?: string;
   }
@@ -3640,7 +3643,7 @@ export namespace chat_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the space for which membership list is to be fetched, in the form "spaces/x". Example: spaces/AAAAAAAAAAAA
+     * Required. The resource name of the space for which to fetch a membership list. Format: spaces/{space\}
      */
     parent?: string;
   }
