@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/firebasedatabase",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "description": "firebasedatabase",
   "main": "build/index.js",
   "types": "build/index.d.ts",

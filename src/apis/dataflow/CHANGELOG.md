@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v3.4.0...dataflow-v4.0.0) (2022-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#2971](https://github.com/googleapis/google-api-nodejs-client/issues/2971)) ([adddf01](https://github.com/googleapis/google-api-nodejs-client/commit/adddf018e7cb73adab7341053dd80d72c5a6248d))
+
 ## [3.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v3.3.0...dataflow-v3.4.0) (2022-06-13)
 
 
