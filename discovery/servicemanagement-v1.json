@@ -329,7 +329,7 @@
           ],
           "parameters": {
             "resource": {
-              "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+              "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
               "location": "path",
               "pattern": "^services/[^/]+$",
               "required": true,
@@ -363,7 +363,7 @@
               "type": "string"
             },
             "pageSize": {
-              "description": "The max number of items to include in the response list. Page size is 50 if not specified. Maximum value is 100.",
+              "description": "The max number of items to include in the response list. Page size is 50 if not specified. Maximum value is 500.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -400,7 +400,7 @@
           ],
           "parameters": {
             "resource": {
-              "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+              "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
               "location": "path",
               "pattern": "^services/[^/]+$",
               "required": true,
@@ -429,7 +429,7 @@
           ],
           "parameters": {
             "resource": {
-              "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+              "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
               "location": "path",
               "pattern": "^services/[^/]+$",
               "required": true,
@@ -634,7 +634,7 @@
               ],
               "parameters": {
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^services/[^/]+/consumers/[^/]+$",
                   "required": true,
@@ -665,7 +665,7 @@
               ],
               "parameters": {
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^services/[^/]+/consumers/[^/]+$",
                   "required": true,
@@ -694,7 +694,7 @@
               ],
               "parameters": {
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^services/[^/]+/consumers/[^/]+$",
                   "required": true,
@@ -829,7 +829,7 @@
       }
     }
   },
-  "revision": "20220429",
+  "revision": "20220603",
   "rootUrl": "https://servicemanagement.googleapis.com/",
   "schemas": {
     "Advice": {
@@ -2254,6 +2254,27 @@
       "description": "Bind API methods to metrics. Binding a method to a metric causes that metric's configured quota behaviors to apply to the method call.",
       "id": "MetricRule",
       "properties": {
+        "dynamicMetricCosts": {
+          "additionalProperties": {
+            "enum": [
+              "DYNAMIC_COST_TYPE_UNSPECIFIED",
+              "REQUEST_BODY_BYTES",
+              "REQUEST_BODY_AND_HEADER_BYTES",
+              "RESPONSE_BODY_BYTES",
+              "RESPONSE_BODY_AND_HEADER_BYTES"
+            ],
+            "enumDescriptions": [
+              "Unspecified dynamic cost type.",
+              "Cost is the request body bytes",
+              "Cost is the request body and HTTP header bytes",
+              "Cost is the response body bytes",
+              "Cost is the response body and header bytes"
+            ],
+            "type": "string"
+          },
+          "description": "Metrics to update when the selected methods are called. The key of the map is the metric name, the value is the DynamicCostType to specify how to calculate the cost from the request. The cost amount will be increased for the metric against which the quota limits are defined. It is only implemented in CloudESF(go/cloudesf)",
+          "type": "object"
+        },
         "metricCosts": {
           "additionalProperties": {
             "format": "int64",
