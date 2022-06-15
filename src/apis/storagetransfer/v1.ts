@@ -791,7 +791,7 @@ export namespace storagetransfer_v1 {
      */
     overwriteObjectsAlreadyExistingInSink?: boolean | null;
     /**
-     * When to overwrite objects that already exist in the sink. If not set overwrite behavior is determined by overwrite_objects_already_existing_in_sink.
+     * When to overwrite objects that already exist in the sink. If not set, overwrite behavior is determined by overwrite_objects_already_existing_in_sink.
      */
     overwriteWhen?: string | null;
   }
