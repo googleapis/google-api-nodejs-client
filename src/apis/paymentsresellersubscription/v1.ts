@@ -431,9 +431,13 @@ export namespace paymentsresellersubscription_v1 {
     reason?: string | null;
   }
   /**
-   * Individual line item definition of a subscription. Next id: 5
+   * Individual line item definition of a subscription. Next id: 6
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem {
+    /**
+     * Output only. Description of this line item.
+     */
+    description?: string | null;
     /**
      * Output only. It is set only if the line item has its own free trial applied. End time of the line item free trial period, in ISO 8061 format. For example, "2019-08-31T17:28:54.564Z". It will be set the same as createTime if no free trial promotion is specified.
      */

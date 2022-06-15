@@ -396,7 +396,7 @@
       }
     }
   },
-  "revision": "20220505",
+  "revision": "20220614",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionRequest": {
@@ -921,9 +921,14 @@
       "type": "object"
     },
     "GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem": {
-      "description": "Individual line item definition of a subscription. Next id: 5",
+      "description": "Individual line item definition of a subscription. Next id: 6",
       "id": "GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem",
       "properties": {
+        "description": {
+          "description": "Output only. Description of this line item.",
+          "readOnly": true,
+          "type": "string"
+        },
         "lineItemFreeTrialEndTime": {
           "description": "Output only. It is set only if the line item has its own free trial applied. End time of the line item free trial period, in ISO 8061 format. For example, \"2019-08-31T17:28:54.564Z\". It will be set the same as createTime if no free trial promotion is specified.",
           "format": "google-datetime",
