@@ -207,7 +207,7 @@ export namespace cloudsearch_v1 {
     operatorName?: string | null;
   }
   /**
-   * Options for boolean properties.
+   * The options for boolean properties.
    */
   export interface Schema$BooleanPropertyOptions {
     /**
@@ -245,13 +245,17 @@ export namespace cloudsearch_v1 {
     values?: string[] | null;
   }
   /**
-   * Proto representation of a custom emoji. May be used in both APIs and in Spanner, but certain fields should be restricted to one or the other. See the per-field documentation for details. NEXT_TAG: 11
+   * Proto representation of a custom emoji. May be used in both APIs and in Spanner, but certain fields should be restricted to one or the other. See the per-field documentation for details. NEXT_TAG: 14
    */
   export interface Schema$CustomEmoji {
     /**
      * ID for the underlying image data in Blobstore. This field should *only* be present in Spanner or within the server, but should not be exposed in public APIs.
      */
     blobId?: string | null;
+    /**
+     * Content type of the file used to upload the emoji. Used for takeout. Written to Spanner when the emoji is created.
+     */
+    contentType?: string | null;
     /**
      * Time when the Emoji was created, in microseconds. This field may be present in Spanner, within the server, or in public APIs.
      */
@@ -260,6 +264,14 @@ export namespace cloudsearch_v1 {
      * This field should *never* be persisted to Spanner.
      */
     creatorUserId?: Schema$UserId;
+    /**
+     * Time when the emoji was deleted, in microseconds. This field may be present in Spanner, within the server, or in public APIs. Only present if the emoji has been deleted.
+     */
+    deleteTimeMicros?: string | null;
+    /**
+     * Output only. A short-lived URL clients can use for directly accessing a custom emoji image. This field is intended for API consumption, and should *never* be persisted to Spanner.
+     */
+    ephemeralUrl?: string | null;
     /**
      * This field should *never* be persisted to Spanner.
      */
@@ -293,7 +305,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$CustomerIndexStats {
     /**
-     * Date for which statistics were calculated.
+     * The date for which statistics were calculated.
      */
     date?: Schema$Date;
     /**
@@ -303,7 +315,7 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$CustomerQueryStats {
     /**
-     * Date for which query stats were calculated. Stats calculated on the next day close to midnight are returned.
+     * The date for which query stats were calculated. Stats calculated on the next day close to midnight are returned.
      */
     date?: Schema$Date;
     queryCountByStatus?: Schema$QueryCountByStatus[];
@@ -317,13 +329,13 @@ export namespace cloudsearch_v1 {
      */
     count?: string | null;
     /**
-     * Date for which search application stats were calculated.
+     * The date for which search application stats were calculated.
      */
     date?: Schema$Date;
   }
   export interface Schema$CustomerSessionStats {
     /**
-     * Date for which session stats were calculated. Stats are calculated on the following day, close to midnight PST, and then returned.
+     * The date for which session stats were calculated. Stats are calculated on the following day, close to midnight PST, and then returned.
      */
     date?: Schema$Date;
     /**
@@ -346,7 +358,7 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$CustomerUserStats {
     /**
-     * Date for which session stats were calculated. Stats calculated on the next day close to midnight are returned.
+     * The date for which session stats were calculated. Stats calculated on the next day close to midnight are returned.
      */
     date?: Schema$Date;
     /**
@@ -387,7 +399,7 @@ export namespace cloudsearch_v1 {
      */
     itemsVisibility?: Schema$GSuitePrincipal[];
     /**
-     * Name of the datasource resource. Format: datasources/{source_id\}. The name is ignored when creating a datasource.
+     * The name of the datasource resource. Format: datasources/{source_id\}. The name is ignored when creating a datasource.
      */
     name?: string | null;
     /**
@@ -408,7 +420,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$DataSourceIndexStats {
     /**
-     * Date for which index stats were calculated. If the date of request is not the current date then stats calculated on the next day are returned. Stats are calculated close to mid night in this case. If date of request is current date, then real time stats are returned.
+     * The date for which index stats were calculated. If the date of request is not the current date then stats calculated on the next day are returned. Stats are calculated close to mid night in this case. If date of request is current date, then real time stats are returned.
      */
     date?: Schema$Date;
     /**
@@ -464,7 +476,7 @@ export namespace cloudsearch_v1 {
     operatorName?: string | null;
   }
   /**
-   * Options for date properties.
+   * The options for date properties.
    */
   export interface Schema$DatePropertyOptions {
     /**
@@ -489,7 +501,7 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$DeleteQueueItemsRequest {
     /**
-     * Name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
+     * The name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
      */
     connectorName?: string | null;
     /**
@@ -497,7 +509,7 @@ export namespace cloudsearch_v1 {
      */
     debugOptions?: Schema$DebugOptions;
     /**
-     * Name of a queue to delete items from.
+     * The name of a queue to delete items from.
      */
     queue?: string | null;
   }
@@ -526,7 +538,7 @@ export namespace cloudsearch_v1 {
     operatorName?: string | null;
   }
   /**
-   * Options for double properties.
+   * The options for double properties.
    */
   export interface Schema$DoublePropertyOptions {
     /**
@@ -574,14 +586,15 @@ export namespace cloudsearch_v1 {
     finalScore?: number | null;
     freshnessScore?: number | null;
     joinedSpacesAffinityScore?: number | null;
-    lastMessagePostedTimestampMicros?: string | null;
+    lastMessagePostedTimestampSecs?: string | null;
+    lastReadTimestampSecs?: string | null;
     memberMetadataCount?: number | null;
     messageScore?: number | null;
     numAucContacts?: string | null;
     smallContactListAffinityScore?: number | null;
     smallUnjoinedSpacesAffinityScore?: number | null;
     spaceAgeInDays?: number | null;
-    spaceCreationTimestampMicros?: string | null;
+    spaceCreationTimestampSecs?: string | null;
     topicalityScore?: number | null;
   }
   /**
@@ -613,7 +626,7 @@ export namespace cloudsearch_v1 {
     operatorName?: string | null;
   }
   /**
-   * Options for enum properties, which allow you to define a restricted set of strings to match user queries, set rankings for those string values, and define an operator name to be paired with those strings so that users can narrow results to only items with a specific value. For example, for items in a request tracking system with priority information, you could define *p0* as an allowable enum value and tie this enum to the operator name *priority* so that search users could add *priority:p0* to their query to restrict the set of results to only those items indexed with the value *p0*.
+   * The options for enum properties, which allow you to define a restricted set of strings to match user queries, set rankings for those string values, and define an operator name to be paired with those strings so that users can narrow results to only items with a specific value. For example, for items in a request tracking system with priority information, you could define *p0* as an allowable enum value and tie this enum to the operator name *priority* so that search users could add *priority:p0* to their query to restrict the set of results to only those items indexed with the value *p0*.
    */
   export interface Schema$EnumPropertyOptions {
     /**
@@ -691,7 +704,7 @@ export namespace cloudsearch_v1 {
      */
     objectType?: string | null;
     /**
-     * Name of the operator chosen for faceting. @see cloudsearch.SchemaPropertyOptions
+     * The name of the operator chosen for faceting. @see cloudsearch.SchemaPropertyOptions
      */
     operatorName?: string | null;
     /**
@@ -704,7 +717,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$FacetResult {
     /**
-     * FacetBuckets for values in response containing at least a single result.
+     * FacetBuckets for values in response containing at least a single result with the corresponding filter.
      */
     buckets?: Schema$FacetBucket[];
     /**
@@ -712,7 +725,7 @@ export namespace cloudsearch_v1 {
      */
     objectType?: string | null;
     /**
-     * Name of the operator chosen for faceting. @see cloudsearch.SchemaPropertyOptions
+     * The name of the operator chosen for faceting. @see cloudsearch.SchemaPropertyOptions
      */
     operatorName?: string | null;
     /**
@@ -722,7 +735,7 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$FieldViolation {
     /**
-     * Description of the error.
+     * The description of the error.
      */
     description?: string | null;
     /**
@@ -923,7 +936,7 @@ export namespace cloudsearch_v1 {
     operatorName?: string | null;
   }
   /**
-   * Options for html properties.
+   * The options for html properties.
    */
   export interface Schema$HtmlPropertyOptions {
     /**
@@ -969,7 +982,7 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$IndexItemRequest {
     /**
-     * Name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
+     * The name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
      */
     connectorName?: string | null;
     /**
@@ -978,7 +991,7 @@ export namespace cloudsearch_v1 {
     debugOptions?: Schema$DebugOptions;
     indexItemOptions?: Schema$IndexItemOptions;
     /**
-     * Name of the item. Format: datasources/{source_id\}/items/{item_id\}
+     * The name of the item. Format: datasources/{source_id\}/items/{item_id\}
      */
     item?: Schema$Item;
     /**
@@ -1008,7 +1021,7 @@ export namespace cloudsearch_v1 {
     operatorName?: string | null;
   }
   /**
-   * Options for integer properties.
+   * The options for integer properties.
    */
   export interface Schema$IntegerPropertyOptions {
     /**
@@ -1061,15 +1074,15 @@ export namespace cloudsearch_v1 {
      */
     content?: Schema$ItemContent;
     /**
-     * Type for this item.
+     * The type for this item.
      */
     itemType?: string | null;
     /**
-     * Metadata information.
+     * The metadata information.
      */
     metadata?: Schema$ItemMetadata;
     /**
-     * Name of the Item. Format: datasources/{source_id\}/items/{item_id\} This is a required field. The maximum length is 1536 characters.
+     * The name of the Item. Format: datasources/{source_id\}/items/{item_id\} This is a required field. The maximum length is 1536 characters.
      */
     name?: string | null;
     /**
@@ -1094,7 +1107,7 @@ export namespace cloudsearch_v1 {
     version?: string | null;
   }
   /**
-   * Access control list information for the item. For more information see [Map ACLs](/cloud-search/docs/guides/acls).
+   * Access control list information for the item. For more information see [Map ACLs](https://developers.google.com/cloud-search/docs/guides/acls).
    */
   export interface Schema$ItemAcl {
     /**
@@ -1106,7 +1119,7 @@ export namespace cloudsearch_v1 {
      */
     deniedReaders?: Schema$Principal[];
     /**
-     * Name of the item to inherit the Access Permission List (ACL) from. Note: ACL inheritance *only* provides access permissions to child items and does not define structural relationships, nor does it provide convenient ways to delete large groups of items. Deleting an ACL parent from the index only alters the access permissions of child items that reference the parent in the inheritAclFrom field. The item is still in the index, but may not visible in search results. By contrast, deletion of a container item also deletes all items that reference the container via the containerName field. The maximum length for this field is 1536 characters.
+     * The name of the item to inherit the Access Permission List (ACL) from. Note: ACL inheritance *only* provides access permissions to child items and does not define structural relationships, nor does it provide convenient ways to delete large groups of items. Deleting an ACL parent from the index only alters the access permissions of child items that reference the parent in the inheritAclFrom field. The item is still in the index, but may not visible in search results. By contrast, deletion of a container item also deletes all items that reference the container via the containerName field. The maximum length for this field is 1536 characters.
      */
     inheritAclFrom?: string | null;
     /**
@@ -1369,7 +1382,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$Name {
     /**
-     * The read-only display name formatted according to the locale specified by the viewer's account or the Accept-Language HTTP header.
+     * The read-only display name formatted according to the locale specified by the viewer's account or the `Accept-Language` HTTP header.
      */
     displayName?: string | null;
   }
@@ -1396,7 +1409,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$ObjectDefinition {
     /**
-     * Name for the object, which then defines its type. Item indexing requests should set the objectType field equal to this value. For example, if *name* is *Document*, then indexing requests for items of type Document should set objectType equal to *Document*. Each object definition must be uniquely named within a schema. The name must start with a letter and can only contain letters (A-Z, a-z) or numbers (0-9). The maximum length is 256 characters.
+     * The name for the object, which then defines its type. Item indexing requests should set the objectType field equal to this value. For example, if *name* is *Document*, then indexing requests for items of type Document should set objectType equal to *Document*. Each object definition must be uniquely named within a schema. The name must start with a letter and can only contain letters (A-Z, a-z) or numbers (0-9). The maximum length is 256 characters.
      */
     name?: string | null;
     /**
@@ -1426,7 +1439,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$ObjectOptions {
     /**
-     * Options that determine how the object is displayed in the Cloud Search results page.
+     * The options that determine how the object is displayed in the Cloud Search results page.
      */
     displayOptions?: Schema$ObjectDisplayOptions;
     /**
@@ -1435,7 +1448,7 @@ export namespace cloudsearch_v1 {
     freshnessOptions?: Schema$FreshnessOptions;
   }
   /**
-   * Options for object properties.
+   * The options for object properties.
    */
   export interface Schema$ObjectPropertyOptions {
     /**
@@ -1492,7 +1505,7 @@ export namespace cloudsearch_v1 {
      */
     emailAddresses?: Schema$EmailAddress[];
     /**
-     * The resource name of the person to provide information about. See People.get from Google People API.
+     * The resource name of the person to provide information about. See [`People.get`](https://developers.google.com/people/api/rest/v1/people/get) from the Google People API.
      */
     name?: string | null;
     /**
@@ -1519,7 +1532,7 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$PollItemsRequest {
     /**
-     * Name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
+     * The name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
      */
     connectorName?: string | null;
     /**
@@ -1568,7 +1581,7 @@ export namespace cloudsearch_v1 {
      */
     code?: string | null;
     /**
-     * Description of the error.
+     * The description of the error.
      */
     errorMessage?: string | null;
     /**
@@ -1583,7 +1596,7 @@ export namespace cloudsearch_v1 {
     booleanPropertyOptions?: Schema$BooleanPropertyOptions;
     datePropertyOptions?: Schema$DatePropertyOptions;
     /**
-     * Options that determine how the property is displayed in the Cloud Search results page if it is specified to be displayed in the object's display options .
+     * The options that determine how the property is displayed in the Cloud Search results page if it's specified to be displayed in the object's display options.
      */
     displayOptions?: Schema$PropertyDisplayOptions;
     doublePropertyOptions?: Schema$DoublePropertyOptions;
@@ -1591,7 +1604,7 @@ export namespace cloudsearch_v1 {
     htmlPropertyOptions?: Schema$HtmlPropertyOptions;
     integerPropertyOptions?: Schema$IntegerPropertyOptions;
     /**
-     * Indicates that the property can be used for generating facets. Cannot be true for properties whose type is object. IsReturnable must be true to set this option. Only supported for Boolean, Enum, and Text properties.
+     * Indicates that the property can be used for generating facets. Cannot be true for properties whose type is object. IsReturnable must be true to set this option. Only supported for boolean, enum, and text properties.
      */
     isFacetable?: boolean | null;
     /**
@@ -1603,7 +1616,7 @@ export namespace cloudsearch_v1 {
      */
     isReturnable?: boolean | null;
     /**
-     * Indicates that the property can be used for sorting. Cannot be true for properties that are repeatable. Cannot be true for properties whose type is object. IsReturnable must be true to set this option. Only supported for Boolean, Date, Double, Integer, and Timestamp properties.
+     * Indicates that the property can be used for sorting. Cannot be true for properties that are repeatable. Cannot be true for properties whose type is object. IsReturnable must be true to set this option. Only supported for boolean, date, double, integer, and timestamp properties.
      */
     isSortable?: boolean | null;
     /**
@@ -1640,7 +1653,7 @@ export namespace cloudsearch_v1 {
      */
     contentHash?: string | null;
     /**
-     * Metadata hash of the item according to the repository. If specified, this is used to determine how to modify this item's status. Setting this field and the type field results in argument error. The maximum length is 2048 characters.
+     * The metadata hash of the item according to the repository. If specified, this is used to determine how to modify this item's status. Setting this field and the type field results in argument error. The maximum length is 2048 characters.
      */
     metadataHash?: string | null;
     /**
@@ -1648,7 +1661,7 @@ export namespace cloudsearch_v1 {
      */
     payload?: string | null;
     /**
-     * Queue to which this item belongs to. The default queue is chosen if this field is not specified. The maximum length is 512 characters.
+     * Queue to which this item belongs. The `default` queue is chosen if this field is not specified. The maximum length is 512 characters.
      */
     queue?: string | null;
     /**
@@ -1666,7 +1679,7 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$PushItemRequest {
     /**
-     * Name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
+     * The name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
      */
     connectorName?: string | null;
     /**
@@ -1776,7 +1789,7 @@ export namespace cloudsearch_v1 {
      */
     lessThanOperatorName?: string | null;
     /**
-     * Name of the object corresponding to the operator. This field is only filled for schema-specific operators, and is unset for common operators.
+     * The name of the object corresponding to the operator. This field is only filled for schema-specific operators, and is unset for common operators.
      */
     objectType?: string | null;
     /**
@@ -1784,7 +1797,7 @@ export namespace cloudsearch_v1 {
      */
     operatorName?: string | null;
     /**
-     * Type of the operator.
+     * The type of the operator.
      */
     type?: string | null;
   }
@@ -1805,7 +1818,7 @@ export namespace cloudsearch_v1 {
      */
     shortName?: string | null;
     /**
-     * Name of the source
+     * The name of the source
      */
     source?: Schema$Source;
   }
@@ -1826,7 +1839,7 @@ export namespace cloudsearch_v1 {
      */
     httpStatusCode?: number | null;
     /**
-     * Type of error.
+     * The type of error.
      */
     type?: string | null;
   }
@@ -1990,7 +2003,7 @@ export namespace cloudsearch_v1 {
      */
     enableAuditLog?: boolean | null;
     /**
-     * Name of the Search Application. Format: searchapplications/{application_id\}.
+     * The name of the Search Application. Format: searchapplications/{application_id\}.
      */
     name?: string | null;
     /**
@@ -2019,14 +2032,14 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$SearchApplicationQueryStats {
     /**
-     * Date for which query stats were calculated. Stats calculated on the next day close to midnight are returned.
+     * The date for which query stats were calculated. Stats calculated on the next day close to midnight are returned.
      */
     date?: Schema$Date;
     queryCountByStatus?: Schema$QueryCountByStatus[];
   }
   export interface Schema$SearchApplicationSessionStats {
     /**
-     * Date for which session stats were calculated. Stats are calculated on the following day, close to midnight PST, and then returned.
+     * The date for which session stats were calculated. Stats are calculated on the following day, close to midnight PST, and then returned.
      */
     date?: Schema$Date;
     /**
@@ -2036,7 +2049,7 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$SearchApplicationUserStats {
     /**
-     * Date for which session stats were calculated. Stats calculated on the next day close to midnight are returned.
+     * The date for which session stats were calculated. Stats calculated on the next day close to midnight are returned.
      */
     date?: Schema$Date;
     /**
@@ -2223,7 +2236,7 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$SortOptions {
     /**
-     * Name of the operator corresponding to the field to sort on. The corresponding property must be marked as sortable.
+     * The name of the operator corresponding to the field to sort on. The corresponding property must be marked as sortable.
      */
     operatorName?: string | null;
     /**
@@ -2347,7 +2360,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$StartUploadItemRequest {
     /**
-     * Name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
+     * The name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
      */
     connectorName?: string | null;
     /**
@@ -2442,7 +2455,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$TextOperatorOptions {
     /**
-     * If true, the text value is tokenized as one atomic value in operator searches and facet matches. For example, if the operator name is "genre" and the value is "science-fiction" the query restrictions "genre:science" and "genre:fiction" doesn't match the item; "genre:science-fiction" does. Value matching is case-sensitive and does not remove special characters. If false, the text is tokenized. For example, if the value is "science-fiction" the queries "genre:science" and "genre:fiction" matches the item.
+     * If true, the text value is tokenized as one atomic value in operator searches and facet matches. For example, if the operator name is "genre" and the value is "science-fiction" the query restrictions "genre:science" and "genre:fiction" doesn't match the item; "genre:science-fiction" does. Text value matching is case-sensitive and does not remove special characters. If false, the text is tokenized. For example, if the value is "science-fiction" the queries "genre:science" and "genre:fiction" matches the item.
      */
     exactMatchWithOperator?: boolean | null;
     /**
@@ -2451,7 +2464,7 @@ export namespace cloudsearch_v1 {
     operatorName?: string | null;
   }
   /**
-   * Options for text properties.
+   * The options for text properties.
    */
   export interface Schema$TextPropertyOptions {
     /**
@@ -2490,7 +2503,7 @@ export namespace cloudsearch_v1 {
     operatorName?: string | null;
   }
   /**
-   * Options for timestamp properties.
+   * The options for timestamp properties.
    */
   export interface Schema$TimestampPropertyOptions {
     /**
@@ -2525,7 +2538,7 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$UnreserveItemsRequest {
     /**
-     * Name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
+     * The name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
      */
     connectorName?: string | null;
     /**
@@ -2533,7 +2546,7 @@ export namespace cloudsearch_v1 {
      */
     debugOptions?: Schema$DebugOptions;
     /**
-     * Name of a queue to unreserve items from.
+     * The name of a queue to unreserve items from.
      */
     queue?: string | null;
   }
@@ -2563,7 +2576,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$UploadItemRef {
     /**
-     * Name of the content reference. The maximum length is 2048 characters.
+     * The name of the content reference. The maximum length is 2048 characters.
      */
     name?: string | null;
   }
@@ -3593,7 +3606,7 @@ export namespace cloudsearch_v1 {
      *   const res = await cloudsearch.indexing.datasources.deleteSchema({
      *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // Name of the data source to delete Schema. Format: datasources/{source_id\}
+     *     // The name of the data source to delete Schema. Format: datasources/{source_id\}
      *     name: 'datasources/my-datasource',
      *   });
      *   console.log(res.data);
@@ -3732,7 +3745,7 @@ export namespace cloudsearch_v1 {
      *   const res = await cloudsearch.indexing.datasources.getSchema({
      *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // Name of the data source to get Schema. Format: datasources/{source_id\}
+     *     // The name of the data source to get Schema. Format: datasources/{source_id\}
      *     name: 'datasources/my-datasource',
      *   });
      *   console.log(res.data);
@@ -3866,7 +3879,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.updateSchema({
-     *     // Name of the data source to update Schema. Format: datasources/{source_id\}
+     *     // The name of the data source to update Schema. Format: datasources/{source_id\}
      *     name: 'datasources/my-datasource',
      *
      *     // Request body metadata
@@ -3990,7 +4003,7 @@ export namespace cloudsearch_v1 {
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * Name of the data source to delete Schema. Format: datasources/{source_id\}
+     * The name of the data source to delete Schema. Format: datasources/{source_id\}
      */
     name?: string;
   }
@@ -4001,14 +4014,14 @@ export namespace cloudsearch_v1 {
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * Name of the data source to get Schema. Format: datasources/{source_id\}
+     * The name of the data source to get Schema. Format: datasources/{source_id\}
      */
     name?: string;
   }
   export interface Params$Resource$Indexing$Datasources$Updateschema
     extends StandardParameters {
     /**
-     * Name of the data source to update Schema. Format: datasources/{source_id\}
+     * The name of the data source to update Schema. Format: datasources/{source_id\}
      */
     name?: string;
 
@@ -4054,13 +4067,13 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.delete({
-     *     // Name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
+     *     // The name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
      *     connectorName: 'placeholder-value',
      *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
      *     // Required. The RequestMode for this request.
      *     mode: 'placeholder-value',
-     *     // Required. Name of the item to delete. Format: datasources/{source_id\}/items/{item_id\}
+     *     // Required. The name of the item to delete. Format: datasources/{source_id\}/items/{item_id\}
      *     name: 'datasources/my-datasource/items/my-item',
      *     // Required. The incremented version of the item to delete from the index. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes. For information on how item version affects the deletion process, refer to [Handle revisions after manual deletes](https://developers.google.com/cloud-search/docs/guides/operations).
      *     version: 'placeholder-value',
@@ -4198,7 +4211,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.deleteQueueItems({
-     *     // Name of the Data Source to delete items in a queue. Format: datasources/{source_id\}
+     *     // The name of the Data Source to delete items in a queue. Format: datasources/{source_id\}
      *     name: 'datasources/my-datasource',
      *
      *     // Request body metadata
@@ -4344,11 +4357,11 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.get({
-     *     // Name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
+     *     // The name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
      *     connectorName: 'placeholder-value',
      *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // Name of the item to get info. Format: datasources/{source_id\}/items/{item_id\}
+     *     // The name of the item to get info. Format: datasources/{source_id\}/items/{item_id\}
      *     name: 'datasources/my-datasource/items/my-item',
      *   });
      *   console.log(res.data);
@@ -4489,7 +4502,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.index({
-     *     // Name of the Item. Format: datasources/{source_id\}/items/{item_id\} This is a required field. The maximum length is 1536 characters.
+     *     // The name of the Item. Format: datasources/{source_id\}/items/{item_id\} This is a required field. The maximum length is 1536 characters.
      *     name: 'datasources/my-datasource/items/my-item',
      *
      *     // Request body metadata
@@ -4639,11 +4652,11 @@ export namespace cloudsearch_v1 {
      *   const res = await cloudsearch.indexing.datasources.items.list({
      *     // When set to true, the indexing system only populates the following fields: name, version, queue. metadata.hash, metadata.title, metadata.sourceRepositoryURL, metadata.objectType, metadata.createTime, metadata.updateTime, metadata.contentLanguage, metadata.mimeType, structured_data.hash, content.hash, itemType, itemStatus.code, itemStatus.processingError.code, itemStatus.repositoryError.type, If this value is false, then all the fields are populated in Item.
      *     brief: 'placeholder-value',
-     *     // Name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
+     *     // The name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
      *     connectorName: 'placeholder-value',
      *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // Name of the Data Source to list Items. Format: datasources/{source_id\}
+     *     // The name of the Data Source to list Items. Format: datasources/{source_id\}
      *     name: 'datasources/my-datasource',
      *     // Maximum number of items to fetch in a request. The max value is 1000 when brief is true. The max value is 10 if brief is false. The default value is 10
      *     pageSize: 'placeholder-value',
@@ -4783,7 +4796,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.poll({
-     *     // Name of the Data Source to poll items. Format: datasources/{source_id\}
+     *     // The name of the Data Source to poll items. Format: datasources/{source_id\}
      *     name: 'datasources/my-datasource',
      *
      *     // Request body metadata
@@ -4930,7 +4943,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.push({
-     *     // Name of the item to push into the indexing queue. Format: datasources/{source_id\}/items/{ID\} This is a required field. The maximum length is 1536 characters.
+     *     // The name of the item to push into the indexing queue. Format: datasources/{source_id\}/items/{ID\} This is a required field. The maximum length is 1536 characters.
      *     name: 'datasources/my-datasource/items/my-item',
      *
      *     // Request body metadata
@@ -5081,7 +5094,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.unreserve({
-     *     // Name of the Data Source to unreserve all items. Format: datasources/{source_id\}
+     *     // The name of the Data Source to unreserve all items. Format: datasources/{source_id\}
      *     name: 'datasources/my-datasource',
      *
      *     // Request body metadata
@@ -5227,7 +5240,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.indexing.datasources.items.upload({
-     *     // Name of the Item to start a resumable upload. Format: datasources/{source_id\}/items/{item_id\}. The maximum length is 1536 bytes.
+     *     // The name of the Item to start a resumable upload. Format: datasources/{source_id\}/items/{item_id\}. The maximum length is 1536 bytes.
      *     name: 'datasources/my-datasource/items/my-item',
      *
      *     // Request body metadata
@@ -5342,7 +5355,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Delete
     extends StandardParameters {
     /**
-     * Name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
+     * The name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
      */
     connectorName?: string;
     /**
@@ -5354,7 +5367,7 @@ export namespace cloudsearch_v1 {
      */
     mode?: string;
     /**
-     * Required. Name of the item to delete. Format: datasources/{source_id\}/items/{item_id\}
+     * Required. The name of the item to delete. Format: datasources/{source_id\}/items/{item_id\}
      */
     name?: string;
     /**
@@ -5365,7 +5378,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Deletequeueitems
     extends StandardParameters {
     /**
-     * Name of the Data Source to delete items in a queue. Format: datasources/{source_id\}
+     * The name of the Data Source to delete items in a queue. Format: datasources/{source_id\}
      */
     name?: string;
 
@@ -5377,7 +5390,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Get
     extends StandardParameters {
     /**
-     * Name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
+     * The name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
      */
     connectorName?: string;
     /**
@@ -5385,14 +5398,14 @@ export namespace cloudsearch_v1 {
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * Name of the item to get info. Format: datasources/{source_id\}/items/{item_id\}
+     * The name of the item to get info. Format: datasources/{source_id\}/items/{item_id\}
      */
     name?: string;
   }
   export interface Params$Resource$Indexing$Datasources$Items$Index
     extends StandardParameters {
     /**
-     * Name of the Item. Format: datasources/{source_id\}/items/{item_id\} This is a required field. The maximum length is 1536 characters.
+     * The name of the Item. Format: datasources/{source_id\}/items/{item_id\} This is a required field. The maximum length is 1536 characters.
      */
     name?: string;
 
@@ -5408,7 +5421,7 @@ export namespace cloudsearch_v1 {
      */
     brief?: boolean;
     /**
-     * Name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
+     * The name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
      */
     connectorName?: string;
     /**
@@ -5416,7 +5429,7 @@ export namespace cloudsearch_v1 {
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * Name of the Data Source to list Items. Format: datasources/{source_id\}
+     * The name of the Data Source to list Items. Format: datasources/{source_id\}
      */
     name?: string;
     /**
@@ -5431,7 +5444,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Poll
     extends StandardParameters {
     /**
-     * Name of the Data Source to poll items. Format: datasources/{source_id\}
+     * The name of the Data Source to poll items. Format: datasources/{source_id\}
      */
     name?: string;
 
@@ -5443,7 +5456,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Push
     extends StandardParameters {
     /**
-     * Name of the item to push into the indexing queue. Format: datasources/{source_id\}/items/{ID\} This is a required field. The maximum length is 1536 characters.
+     * The name of the item to push into the indexing queue. Format: datasources/{source_id\}/items/{ID\} This is a required field. The maximum length is 1536 characters.
      */
     name?: string;
 
@@ -5455,7 +5468,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Unreserve
     extends StandardParameters {
     /**
-     * Name of the Data Source to unreserve all items. Format: datasources/{source_id\}
+     * The name of the Data Source to unreserve all items. Format: datasources/{source_id\}
      */
     name?: string;
 
@@ -5467,7 +5480,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Indexing$Datasources$Items$Upload
     extends StandardParameters {
     /**
-     * Name of the Item to start a resumable upload. Format: datasources/{source_id\}/items/{item_id\}. The maximum length is 1536 bytes.
+     * The name of the Item to start a resumable upload. Format: datasources/{source_id\}/items/{item_id\}. The maximum length is 1536 bytes.
      */
     name?: string;
 
@@ -6958,7 +6971,7 @@ export namespace cloudsearch_v1 {
      *   const res = await cloudsearch.settings.datasources.delete({
      *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // Name of the datasource. Format: datasources/{source_id\}.
+     *     // The name of the datasource. Format: datasources/{source_id\}.
      *     name: 'datasources/my-datasource',
      *   });
      *   console.log(res.data);
@@ -7097,7 +7110,7 @@ export namespace cloudsearch_v1 {
      *   const res = await cloudsearch.settings.datasources.get({
      *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // Name of the datasource resource. Format: datasources/{source_id\}.
+     *     // The name of the datasource resource. Format: datasources/{source_id\}.
      *     name: 'datasources/my-datasource',
      *   });
      *   console.log(res.data);
@@ -7381,7 +7394,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.settings.datasources.update({
-     *     // Name of the datasource resource. Format: datasources/{source_id\}. The name is ignored when creating a datasource.
+     *     // The name of the datasource resource. Format: datasources/{source_id\}. The name is ignored when creating a datasource.
      *     name: 'datasources/my-datasource',
      *
      *     // Request body metadata
@@ -7511,7 +7524,7 @@ export namespace cloudsearch_v1 {
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * Name of the datasource. Format: datasources/{source_id\}.
+     * The name of the datasource. Format: datasources/{source_id\}.
      */
     name?: string;
   }
@@ -7522,7 +7535,7 @@ export namespace cloudsearch_v1 {
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * Name of the datasource resource. Format: datasources/{source_id\}.
+     * The name of the datasource resource. Format: datasources/{source_id\}.
      */
     name?: string;
   }
@@ -7544,7 +7557,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Settings$Datasources$Update
     extends StandardParameters {
     /**
-     * Name of the datasource resource. Format: datasources/{source_id\}. The name is ignored when creating a datasource.
+     * The name of the datasource resource. Format: datasources/{source_id\}. The name is ignored when creating a datasource.
      */
     name?: string;
 
@@ -7884,7 +7897,7 @@ export namespace cloudsearch_v1 {
      *   const res = await cloudsearch.settings.searchapplications.get({
      *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // Name of the search application. Format: searchapplications/{application_id\}.
+     *     // The name of the search application. Format: searchapplications/{application_id\}.
      *     name: 'searchapplications/my-searchapplication',
      *   });
      *   console.log(res.data);
@@ -8322,7 +8335,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Do the magic
      *   const res = await cloudsearch.settings.searchapplications.update({
-     *     // Name of the Search Application. Format: searchapplications/{application_id\}.
+     *     // The name of the Search Application. Format: searchapplications/{application_id\}.
      *     name: 'searchapplications/my-searchapplication',
      *
      *     // Request body metadata
@@ -8472,7 +8485,7 @@ export namespace cloudsearch_v1 {
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * Name of the search application. Format: searchapplications/{application_id\}.
+     * The name of the search application. Format: searchapplications/{application_id\}.
      */
     name?: string;
   }
@@ -8506,7 +8519,7 @@ export namespace cloudsearch_v1 {
   export interface Params$Resource$Settings$Searchapplications$Update
     extends StandardParameters {
     /**
-     * Name of the Search Application. Format: searchapplications/{application_id\}.
+     * The name of the Search Application. Format: searchapplications/{application_id\}.
      */
     name?: string;
 
