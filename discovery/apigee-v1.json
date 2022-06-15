@@ -165,7 +165,7 @@
           ]
         },
         "delete": {
-          "description": "Delete an Apigee organization. Only supported for SubscriptionType TRIAL.",
+          "description": "Delete an Apigee organization. For organizations with BillingType EVALUATION, an immediate deletion is performed. For paid organizations, a soft-deletion is performed. The organization can be restored within the soft-deletion period - which can be controlled using the retention field in the request.",
           "flatPath": "v1/organizations/{organizationsId}",
           "httpMethod": "DELETE",
           "id": "apigee.organizations.delete",
@@ -178,6 +178,19 @@
               "location": "path",
               "pattern": "^organizations/[^/]+$",
               "required": true,
+              "type": "string"
+            },
+            "retention": {
+              "description": "Optional. This setting is only applicable for organizations that are soft-deleted (i.e. BillingType is not EVALUATION). It controls how long Organization data will be retained after the initial delete operation completes. During this period, the Organization may be restored to its last known state. After this period, the Organization will no longer be able to be restored.",
+              "enum": [
+                "DELETION_RETENTION_UNSPECIFIED",
+                "MINIMUM"
+              ],
+              "enumDescriptions": [
+                "Default data retention settings will be applied.",
+                "Organization data will be retained for the minimum period of 24 hours."
+              ],
+              "location": "query",
               "type": "string"
             }
           },
@@ -249,6 +262,31 @@
           "path": "v1/{+name}",
           "response": {
             "$ref": "GoogleCloudApigeeV1IngressConfig"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "getProjectMapping": {
+          "description": "Gets the project ID and region for an Apigee organization.",
+          "flatPath": "v1/organizations/{organizationsId}:getProjectMapping",
+          "httpMethod": "GET",
+          "id": "apigee.organizations.getProjectMapping",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. Apigee organization name in the following format: `organizations/{org}`",
+              "location": "path",
+              "pattern": "^organizations/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}:getProjectMapping",
+          "response": {
+            "$ref": "GoogleCloudApigeeV1OrganizationProjectMapping"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform"
@@ -383,34 +421,6 @@
           },
           "response": {
             "$ref": "GoogleCloudApigeeV1SyncAuthorization"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "testIamPermissions": {
-          "description": "Tests the permissions of a user on an organization, and returns a subset of permissions that the user has on the organization. If the organization does not exist, an empty permission set is returned (a NOT_FOUND error is not returned).",
-          "flatPath": "v1/organizations/{organizationsId}:testIamPermissions",
-          "httpMethod": "POST",
-          "id": "apigee.organizations.testIamPermissions",
-          "parameterOrder": [
-            "resource"
-          ],
-          "parameters": {
-            "resource": {
-              "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
-              "location": "path",
-              "pattern": "^organizations/.*$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v1/{+resource}:testIamPermissions",
-          "request": {
-            "$ref": "GoogleIamV1TestIamPermissionsRequest"
-          },
-          "response": {
-            "$ref": "GoogleIamV1TestIamPermissionsResponse"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform"
@@ -1336,6 +1346,126 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                }
+              },
+              "resources": {
+                "entries": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates key value entries in a key value map scoped to an organization, environment, or API proxy.",
+                      "flatPath": "v1/organizations/{organizationsId}/apis/{apisId}/keyvaluemaps/{keyvaluemapsId}/entries",
+                      "httpMethod": "POST",
+                      "id": "apigee.organizations.apis.keyvaluemaps.entries.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. Scope as indicated by the URI in which to create the key value map entry. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`.",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/apis/[^/]+/keyvaluemaps/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/entries",
+                      "request": {
+                        "$ref": "GoogleCloudApigeeV1KeyValueEntry"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudApigeeV1KeyValueEntry"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a key value entry from a key value map scoped to an organization, environment, or API proxy. **Note:** After you delete the key value entry, the policy consuming the entry will continue to function with its cached values for a few minutes. This is expected behavior.",
+                      "flatPath": "v1/organizations/{organizationsId}/apis/{apisId}/keyvaluemaps/{keyvaluemapsId}/entries/{entriesId}",
+                      "httpMethod": "DELETE",
+                      "id": "apigee.organizations.apis.keyvaluemaps.entries.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Scope as indicated by the URI in which to delete the key value map entry. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}/entries/{entry}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}/entries/{entry}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}/entries/{entry}`.",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/apis/[^/]+/keyvaluemaps/[^/]+/entries/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudApigeeV1KeyValueEntry"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Get the Key value entry value for org, env or apis scoped Key value map.",
+                      "flatPath": "v1/organizations/{organizationsId}/apis/{apisId}/keyvaluemaps/{keyvaluemapsId}/entries/{entriesId}",
+                      "httpMethod": "GET",
+                      "id": "apigee.organizations.apis.keyvaluemaps.entries.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Scope as indicated by the URI in which to fetch the key value map entry/value. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}/entries/{entry}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}/entries/{entry}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}/entries/{entry}`.",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/apis/[^/]+/keyvaluemaps/[^/]+/entries/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudApigeeV1KeyValueEntry"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists key value entries for key values maps scoped to an organization, environment, or API proxy.",
+                      "flatPath": "v1/organizations/{organizationsId}/apis/{apisId}/keyvaluemaps/{keyvaluemapsId}/entries",
+                      "httpMethod": "GET",
+                      "id": "apigee.organizations.apis.keyvaluemaps.entries.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. Maximum number of key value entries to return. If unspecified, at most 100 entries will be returned.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. Page token. If provides, must be a valid key value entry returned from a previous call that can be used to retrieve the next page.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Scope as indicated by the URI in which to list key value maps. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`.",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/apis/[^/]+/keyvaluemaps/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/entries",
+                      "response": {
+                        "$ref": "GoogleCloudApigeeV1ListKeyValueEntriesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             },
@@ -3360,7 +3490,7 @@
               ]
             },
             "delete": {
-              "description": "Deletes an environment from an organization.",
+              "description": "Deletes an environment from an organization. **Note**: You must delete all key value maps and key value entries before you can delete an environment.",
               "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}",
               "httpMethod": "DELETE",
               "id": "apigee.organizations.environments.delete",
@@ -3475,7 +3605,7 @@
                   "type": "integer"
                 },
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/environments/[^/]+$",
                   "required": true,
@@ -3525,7 +3655,7 @@
               ],
               "parameters": {
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/environments/[^/]+$",
                   "required": true,
@@ -3578,7 +3708,7 @@
               ],
               "parameters": {
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/environments/[^/]+$",
                   "required": true,
@@ -4924,6 +5054,126 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                }
+              },
+              "resources": {
+                "entries": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates key value entries in a key value map scoped to an organization, environment, or API proxy.",
+                      "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/keyvaluemaps/{keyvaluemapsId}/entries",
+                      "httpMethod": "POST",
+                      "id": "apigee.organizations.environments.keyvaluemaps.entries.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. Scope as indicated by the URI in which to create the key value map entry. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`.",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/environments/[^/]+/keyvaluemaps/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/entries",
+                      "request": {
+                        "$ref": "GoogleCloudApigeeV1KeyValueEntry"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudApigeeV1KeyValueEntry"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a key value entry from a key value map scoped to an organization, environment, or API proxy. **Note:** After you delete the key value entry, the policy consuming the entry will continue to function with its cached values for a few minutes. This is expected behavior.",
+                      "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/keyvaluemaps/{keyvaluemapsId}/entries/{entriesId}",
+                      "httpMethod": "DELETE",
+                      "id": "apigee.organizations.environments.keyvaluemaps.entries.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Scope as indicated by the URI in which to delete the key value map entry. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}/entries/{entry}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}/entries/{entry}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}/entries/{entry}`.",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/environments/[^/]+/keyvaluemaps/[^/]+/entries/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudApigeeV1KeyValueEntry"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Get the Key value entry value for org, env or apis scoped Key value map.",
+                      "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/keyvaluemaps/{keyvaluemapsId}/entries/{entriesId}",
+                      "httpMethod": "GET",
+                      "id": "apigee.organizations.environments.keyvaluemaps.entries.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Scope as indicated by the URI in which to fetch the key value map entry/value. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}/entries/{entry}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}/entries/{entry}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}/entries/{entry}`.",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/environments/[^/]+/keyvaluemaps/[^/]+/entries/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudApigeeV1KeyValueEntry"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists key value entries for key values maps scoped to an organization, environment, or API proxy.",
+                      "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/keyvaluemaps/{keyvaluemapsId}/entries",
+                      "httpMethod": "GET",
+                      "id": "apigee.organizations.environments.keyvaluemaps.entries.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. Maximum number of key value entries to return. If unspecified, at most 100 entries will be returned.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. Page token. If provides, must be a valid key value entry returned from a previous call that can be used to retrieve the next page.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Scope as indicated by the URI in which to list key value maps. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`.",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/environments/[^/]+/keyvaluemaps/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/entries",
+                      "response": {
+                        "$ref": "GoogleCloudApigeeV1ListKeyValueEntriesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             },
@@ -6850,6 +7100,126 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             }
+          },
+          "resources": {
+            "entries": {
+              "methods": {
+                "create": {
+                  "description": "Creates key value entries in a key value map scoped to an organization, environment, or API proxy.",
+                  "flatPath": "v1/organizations/{organizationsId}/keyvaluemaps/{keyvaluemapsId}/entries",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.keyvaluemaps.entries.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Scope as indicated by the URI in which to create the key value map entry. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/keyvaluemaps/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/entries",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1KeyValueEntry"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1KeyValueEntry"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a key value entry from a key value map scoped to an organization, environment, or API proxy. **Note:** After you delete the key value entry, the policy consuming the entry will continue to function with its cached values for a few minutes. This is expected behavior.",
+                  "flatPath": "v1/organizations/{organizationsId}/keyvaluemaps/{keyvaluemapsId}/entries/{entriesId}",
+                  "httpMethod": "DELETE",
+                  "id": "apigee.organizations.keyvaluemaps.entries.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Scope as indicated by the URI in which to delete the key value map entry. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}/entries/{entry}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}/entries/{entry}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}/entries/{entry}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/keyvaluemaps/[^/]+/entries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1KeyValueEntry"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Get the Key value entry value for org, env or apis scoped Key value map.",
+                  "flatPath": "v1/organizations/{organizationsId}/keyvaluemaps/{keyvaluemapsId}/entries/{entriesId}",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.keyvaluemaps.entries.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Scope as indicated by the URI in which to fetch the key value map entry/value. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}/entries/{entry}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}/entries/{entry}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}/entries/{entry}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/keyvaluemaps/[^/]+/entries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1KeyValueEntry"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists key value entries for key values maps scoped to an organization, environment, or API proxy.",
+                  "flatPath": "v1/organizations/{organizationsId}/keyvaluemaps/{keyvaluemapsId}/entries",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.keyvaluemaps.entries.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. Maximum number of key value entries to return. If unspecified, at most 100 entries will be returned.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token. If provides, must be a valid key value entry returned from a previous call that can be used to retrieve the next page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Scope as indicated by the URI in which to list key value maps. Use **one** of the following structures in your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/keyvaluemaps/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/entries",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1ListKeyValueEntriesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
           }
         },
         "operations": {
@@ -7616,7 +7986,7 @@
       }
     }
   },
-  "revision": "20220428",
+  "revision": "20220602",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -9175,21 +9545,21 @@
           "type": "string"
         },
         "errors": {
-          "description": "Errors reported for this deployment. Populated only when state == ERROR. This field is not populated in List APIs.",
+          "description": "Errors reported for this deployment. Populated only when state == ERROR. **Note**: This field is displayed only when viewing deployment status.",
           "items": {
             "$ref": "GoogleRpcStatus"
           },
           "type": "array"
         },
         "instances": {
-          "description": "Status reported by each runtime instance. This field is not populated in List APIs.",
+          "description": "Status reported by each runtime instance. **Note**: This field is displayed only when viewing deployment status.",
           "items": {
             "$ref": "GoogleCloudApigeeV1InstanceDeploymentStatus"
           },
           "type": "array"
         },
         "pods": {
-          "description": "Status reported by runtime pods. This field is not populated for List APIs. **Note**: **This field is deprecated**. Runtime versions 1.3 and above report instance level status rather than pod status.",
+          "description": "Status reported by runtime pods. **Note**: **This field is deprecated**. Runtime versions 1.3 and above report instance level status rather than pod status.",
           "items": {
             "$ref": "GoogleCloudApigeeV1PodStatus"
           },
@@ -9200,7 +9570,7 @@
           "type": "string"
         },
         "routeConflicts": {
-          "description": "Conflicts in the desired state routing configuration. The presence of conflicts does not cause the state to be `ERROR`, but it will mean that some of the deployment's base paths are not routed to its environment. If the conflicts change, the state will transition to `PROGRESSING` until the latest configuration is rolled out to all instances. This field is not populated in List APIs.",
+          "description": "Conflicts in the desired state routing configuration. The presence of conflicts does not cause the state to be `ERROR`, but it will mean that some of the deployment's base paths are not routed to its environment. If the conflicts change, the state will transition to `PROGRESSING` until the latest configuration is rolled out to all instances. **Note**: This field is displayed only when viewing deployment status.",
           "items": {
             "$ref": "GoogleCloudApigeeV1DeploymentChangeReportRoutingConflict"
           },
@@ -9211,7 +9581,7 @@
           "type": "string"
         },
         "state": {
-          "description": "Current state of the deployment. This field is not populated in List APIs.",
+          "description": "Current state of the deployment. **Note**: This field is displayed only when viewing deployment status.",
           "enum": [
             "RUNTIME_STATE_UNSPECIFIED",
             "READY",
@@ -10562,12 +10932,27 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1KeyValueEntry": {
+      "description": "Key value map pair where the value represents the data associated with the corresponding key.",
+      "id": "GoogleCloudApigeeV1KeyValueEntry",
+      "properties": {
+        "name": {
+          "description": "Resource URI that can be used to identify the scope of the key value map entries.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. Data or payload that is being retrieved and associated with the unique key.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1KeyValueMap": {
       "description": "Collection of key/value string pairs.",
       "id": "GoogleCloudApigeeV1KeyValueMap",
       "properties": {
         "encrypted": {
-          "description": "Optional. Flag that specifies whether entry values will be encrypted. Enable to encrypt entry values.",
+          "description": "Optional. Flag that specifies whether entry values will be encrypted. You must set this value to `true`. Apigee X and hybrid do not support unencrytped key value maps.",
           "type": "boolean"
         },
         "name": {
@@ -10945,6 +11330,24 @@
         },
         "nextPageToken": {
           "description": "Page token that you can include in a ListInstance request to retrieve the next page of content. If omitted, no subsequent pages exist.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ListKeyValueEntriesResponse": {
+      "description": "The request structure for listing Key value map keys and its corrresponding values.",
+      "id": "GoogleCloudApigeeV1ListKeyValueEntriesResponse",
+      "properties": {
+        "keyValueEntries": {
+          "description": "One or more key value map keys and values.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1KeyValueEntry"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token that can be sent as `next_page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         }
       },
@@ -11512,6 +11915,11 @@
     "GoogleCloudApigeeV1OrganizationProjectMapping": {
       "id": "GoogleCloudApigeeV1OrganizationProjectMapping",
       "properties": {
+        "location": {
+          "description": "Output only. The Google Cloud region where control plane data is located. For more information, see https://cloud.google.com/about/locations/.",
+          "readOnly": true,
+          "type": "string"
+        },
         "organization": {
           "description": "Name of the Apigee organization.",
           "type": "string"

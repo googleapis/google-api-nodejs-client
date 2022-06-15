@@ -351,7 +351,7 @@
       }
     }
   },
-  "revision": "20220317",
+  "revision": "20220603",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata": {
@@ -370,7 +370,8 @@
             "HIPAA",
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
-            "CA_REGIONS_AND_SUPPORT"
+            "CA_REGIONS_AND_SUPPORT",
+            "ITAR"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -382,7 +383,8 @@
             "Health Insurance Portability and Accountability Act controls",
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
-            "Assured Workloads For Canada Regions and Support controls"
+            "Assured Workloads For Canada Regions and Support controls",
+            "International Traffic in Arms Regulations"
           ],
           "type": "string"
         },
@@ -440,7 +442,8 @@
             "HIPAA",
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
-            "CA_REGIONS_AND_SUPPORT"
+            "CA_REGIONS_AND_SUPPORT",
+            "ITAR"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -452,7 +455,8 @@
             "Health Insurance Portability and Accountability Act controls",
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
-            "Assured Workloads For Canada Regions and Support controls"
+            "Assured Workloads For Canada Regions and Support controls",
+            "International Traffic in Arms Regulations"
           ],
           "type": "string"
         },
@@ -669,7 +673,8 @@
             "HIPAA",
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
-            "CA_REGIONS_AND_SUPPORT"
+            "CA_REGIONS_AND_SUPPORT",
+            "ITAR"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -681,7 +686,8 @@
             "Health Insurance Portability and Accountability Act controls",
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
-            "Assured Workloads For Canada Regions and Support controls"
+            "Assured Workloads For Canada Regions and Support controls",
+            "International Traffic in Arms Regulations"
           ],
           "type": "string"
         },
@@ -732,7 +738,8 @@
             "HIPAA",
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
-            "CA_REGIONS_AND_SUPPORT"
+            "CA_REGIONS_AND_SUPPORT",
+            "ITAR"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -744,7 +751,8 @@
             "Health Insurance Portability and Accountability Act controls",
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
-            "Assured Workloads For Canada Regions and Support controls"
+            "Assured Workloads For Canada Regions and Support controls",
+            "International Traffic in Arms Regulations"
           ],
           "type": "string"
         },
@@ -1017,7 +1025,8 @@
             "HIPAA",
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
-            "CA_REGIONS_AND_SUPPORT"
+            "CA_REGIONS_AND_SUPPORT",
+            "ITAR"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -1029,7 +1038,8 @@
             "Health Insurance Portability and Accountability Act controls",
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
-            "Assured Workloads For Canada Regions and Support controls"
+            "Assured Workloads For Canada Regions and Support controls",
+            "International Traffic in Arms Regulations"
           ],
           "type": "string"
         },
@@ -1080,7 +1090,8 @@
             "HIPAA",
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
-            "CA_REGIONS_AND_SUPPORT"
+            "CA_REGIONS_AND_SUPPORT",
+            "ITAR"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -1092,7 +1103,8 @@
             "Health Insurance Portability and Accountability Act controls",
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
-            "Assured Workloads For Canada Regions and Support controls"
+            "Assured Workloads For Canada Regions and Support controls",
+            "International Traffic in Arms Regulations"
           ],
           "type": "string"
         },
