@@ -207,6 +207,34 @@
             },
             "instances": {
               "methods": {
+                "detachLun": {
+                  "description": "Detach LUN from Instance.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:detachLun",
+                  "httpMethod": "POST",
+                  "id": "baremetalsolution.projects.locations.instances.detachLun",
+                  "parameterOrder": [
+                    "instance"
+                  ],
+                  "parameters": {
+                    "instance": {
+                      "description": "Required. Name of the instance.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+instance}:detachLun",
+                  "request": {
+                    "$ref": "DetachLunRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Get details about a single server.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}",
@@ -290,7 +318,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "The list of fields to update. The only currently supported fields are: `labels` `hyperthreading_enabled`",
+                      "description": "The list of fields to update. The currently supported fields are: `labels` `hyperthreading_enabled` `os_image`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -503,7 +531,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "The list of fields to update. The only currently supported fields are: `labels`",
+                      "description": "The list of fields to update. The only currently supported fields are: `labels`, `reservations`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -795,168 +823,6 @@
                 }
               }
             },
-            "snapshotSchedulePolicies": {
-              "methods": {
-                "create": {
-                  "description": "Create a snapshot schedule policy in the specified project.",
-                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/snapshotSchedulePolicies",
-                  "httpMethod": "POST",
-                  "id": "baremetalsolution.projects.locations.snapshotSchedulePolicies.create",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "parent": {
-                      "description": "Required. The parent project and location containing the SnapshotSchedulePolicy.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "snapshotSchedulePolicyId": {
-                      "description": "Required. Snapshot policy ID",
-                      "location": "query",
-                      "type": "string"
-                    }
-                  },
-                  "path": "v2/{+parent}/snapshotSchedulePolicies",
-                  "request": {
-                    "$ref": "SnapshotSchedulePolicy"
-                  },
-                  "response": {
-                    "$ref": "SnapshotSchedulePolicy"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "delete": {
-                  "description": "Delete a named snapshot schedule policy.",
-                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/snapshotSchedulePolicies/{snapshotSchedulePoliciesId}",
-                  "httpMethod": "DELETE",
-                  "id": "baremetalsolution.projects.locations.snapshotSchedulePolicies.delete",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. The name of the snapshot schedule policy to delete.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/snapshotSchedulePolicies/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v2/{+name}",
-                  "response": {
-                    "$ref": "Empty"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "get": {
-                  "description": "Get details of a single snapshot schedule policy.",
-                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/snapshotSchedulePolicies/{snapshotSchedulePoliciesId}",
-                  "httpMethod": "GET",
-                  "id": "baremetalsolution.projects.locations.snapshotSchedulePolicies.get",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. Name of the resource.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/snapshotSchedulePolicies/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v2/{+name}",
-                  "response": {
-                    "$ref": "SnapshotSchedulePolicy"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "list": {
-                  "description": "List snapshot schedule policies in a given project and location.",
-                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/snapshotSchedulePolicies",
-                  "httpMethod": "GET",
-                  "id": "baremetalsolution.projects.locations.snapshotSchedulePolicies.list",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "filter": {
-                      "description": "List filter.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "pageSize": {
-                      "description": "The maximum number of items to return.",
-                      "format": "int32",
-                      "location": "query",
-                      "type": "integer"
-                    },
-                    "pageToken": {
-                      "description": "The next_page_token value returned from a previous List request, if any.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "parent": {
-                      "description": "Required. The parent project containing the Snapshot Schedule Policies.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v2/{+parent}/snapshotSchedulePolicies",
-                  "response": {
-                    "$ref": "ListSnapshotSchedulePoliciesResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "patch": {
-                  "description": "Update a snapshot schedule policy in the specified project.",
-                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/snapshotSchedulePolicies/{snapshotSchedulePoliciesId}",
-                  "httpMethod": "PATCH",
-                  "id": "baremetalsolution.projects.locations.snapshotSchedulePolicies.patch",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Output only. The name of the snapshot schedule policy.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/snapshotSchedulePolicies/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "updateMask": {
-                      "description": "Required. The list of fields to update.",
-                      "format": "google-fieldmask",
-                      "location": "query",
-                      "type": "string"
-                    }
-                  },
-                  "path": "v2/{+name}",
-                  "request": {
-                    "$ref": "SnapshotSchedulePolicy"
-                  },
-                  "response": {
-                    "$ref": "SnapshotSchedulePolicy"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                }
-              }
-            },
             "volumes": {
               "methods": {
                 "get": {
@@ -1042,7 +908,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "The list of fields to update. The only currently supported fields are: `snapshot_auto_delete_behavior` `snapshot_schedule_policy_name` 'labels' 'requested_size_gib' 'snapshot_enabled' 'snapshot_reservation_detail.reserved_space_percent'",
+                      "description": "The list of fields to update. The only currently supported fields are: `snapshot_auto_delete_behavior` `snapshot_schedule_policy_name` 'labels' 'snapshot_enabled' 'snapshot_reservation_detail.reserved_space_percent'",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -1051,6 +917,34 @@
                   "path": "v2/{+name}",
                   "request": {
                     "$ref": "Volume"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "resize": {
+                  "description": "Emergency Volume resize.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}:resize",
+                  "httpMethod": "POST",
+                  "id": "baremetalsolution.projects.locations.volumes.resize",
+                  "parameterOrder": [
+                    "volume"
+                  ],
+                  "parameters": {
+                    "volume": {
+                      "description": "Required. Volume to resize.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/volumes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+volume}:resize",
+                  "request": {
+                    "$ref": "ResizeVolumeRequest"
                   },
                   "response": {
                     "$ref": "Operation"
@@ -1125,152 +1019,6 @@
                       ]
                     }
                   }
-                },
-                "snapshots": {
-                  "methods": {
-                    "create": {
-                      "description": "Create a storage volume snapshot in a containing volume.",
-                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}/snapshots",
-                      "httpMethod": "POST",
-                      "id": "baremetalsolution.projects.locations.volumes.snapshots.create",
-                      "parameterOrder": [
-                        "parent"
-                      ],
-                      "parameters": {
-                        "parent": {
-                          "description": "Required. The volume to snapshot.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/volumes/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v2/{+parent}/snapshots",
-                      "request": {
-                        "$ref": "VolumeSnapshot"
-                      },
-                      "response": {
-                        "$ref": "VolumeSnapshot"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "delete": {
-                      "description": "Deletes a storage volume snapshot for a given volume.",
-                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}/snapshots/{snapshotsId}",
-                      "httpMethod": "DELETE",
-                      "id": "baremetalsolution.projects.locations.volumes.snapshots.delete",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The name of the snapshot to delete.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/volumes/[^/]+/snapshots/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v2/{+name}",
-                      "response": {
-                        "$ref": "Empty"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "get": {
-                      "description": "Get details of a single storage volume snapshot.",
-                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}/snapshots/{snapshotsId}",
-                      "httpMethod": "GET",
-                      "id": "baremetalsolution.projects.locations.volumes.snapshots.get",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. Name of the resource.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/volumes/[^/]+/snapshots/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v2/{+name}",
-                      "response": {
-                        "$ref": "VolumeSnapshot"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "list": {
-                      "description": "List storage volume snapshots for given storage volume.",
-                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}/snapshots",
-                      "httpMethod": "GET",
-                      "id": "baremetalsolution.projects.locations.volumes.snapshots.list",
-                      "parameterOrder": [
-                        "parent"
-                      ],
-                      "parameters": {
-                        "pageSize": {
-                          "description": "Requested page size. The server might return fewer items than requested. If unspecified, server will pick an appropriate default.",
-                          "format": "int32",
-                          "location": "query",
-                          "type": "integer"
-                        },
-                        "pageToken": {
-                          "description": "A token identifying a page of results from the server.",
-                          "location": "query",
-                          "type": "string"
-                        },
-                        "parent": {
-                          "description": "Required. Parent value for ListVolumesRequest.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/volumes/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v2/{+parent}/snapshots",
-                      "response": {
-                        "$ref": "ListVolumeSnapshotsResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "restoreVolumeSnapshot": {
-                      "description": "Restore a storage volume snapshot to its containing volume.",
-                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}/snapshots/{snapshotsId}:restoreVolumeSnapshot",
-                      "httpMethod": "POST",
-                      "id": "baremetalsolution.projects.locations.volumes.snapshots.restoreVolumeSnapshot",
-                      "parameterOrder": [
-                        "volumeSnapshot"
-                      ],
-                      "parameters": {
-                        "volumeSnapshot": {
-                          "description": "Required. Name of the resource.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/volumes/[^/]+/snapshots/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v2/{+volumeSnapshot}:restoreVolumeSnapshot",
-                      "request": {
-                        "$ref": "RestoreVolumeSnapshotRequest"
-                      },
-                      "response": {
-                        "$ref": "Operation"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    }
-                  }
                 }
               }
             }
@@ -1279,7 +1027,7 @@
       }
     }
   },
-  "revision": "20220418",
+  "revision": "20220603",
   "rootUrl": "https://baremetalsolution.googleapis.com/",
   "schemas": {
     "AllowedClient": {
@@ -1327,10 +1075,15 @@
       },
       "type": "object"
     },
-    "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
-      "id": "Empty",
-      "properties": {},
+    "DetachLunRequest": {
+      "description": "Message for detach specific LUN from an Instance.",
+      "id": "DetachLunRequest",
+      "properties": {
+        "lun": {
+          "description": "Required. Name of the Lun to detach.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "FetchInstanceProvisioningSettingsResponse": {
@@ -1343,6 +1096,58 @@
             "$ref": "OSImage"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBaremetalsolutionV2LogicalInterface": {
+      "description": "Each logical interface represents a logical abstraction of the underlying physical interface (for eg. bond, nic) of the instance. Each logical interface can effectively map to multiple network-IP pairs and still be mapped to one underlying physical interface.",
+      "id": "GoogleCloudBaremetalsolutionV2LogicalInterface",
+      "properties": {
+        "interfaceIndex": {
+          "description": "The index of the logical interface mapping to the index of the hardware bond or nic on the chosen network template. This field is deprecated.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "logicalNetworkInterfaces": {
+          "description": "List of logical network interfaces within a logical interface.",
+          "items": {
+            "$ref": "LogicalNetworkInterface"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Interface name. This is of syntax or and forms part of the network template name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBaremetalsolutionV2ServerNetworkTemplateLogicalInterface": {
+      "description": "Logical interface.",
+      "id": "GoogleCloudBaremetalsolutionV2ServerNetworkTemplateLogicalInterface",
+      "properties": {
+        "name": {
+          "description": "Interface name. This is not a globally unique identifier. Name is unique only inside the ServerNetworkTemplate. This is of syntax or and forms part of the network template name.",
+          "type": "string"
+        },
+        "required": {
+          "description": "If true, interface must have network connected.",
+          "type": "boolean"
+        },
+        "type": {
+          "description": "Interface type.",
+          "enum": [
+            "INTERFACE_TYPE_UNSPECIFIED",
+            "BOND",
+            "NIC"
+          ],
+          "enumDescriptions": [
+            "Unspecified value.",
+            "Bond interface type.",
+            "NIC interface type."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1376,6 +1181,13 @@
           "description": "Labels as key value pairs.",
           "type": "object"
         },
+        "logicalInterfaces": {
+          "description": "List of logical interfaces for the instance. The number of logical interfaces will be the same as number of hardware bond/nic on the chosen network template. For the non-multivlan configurations (for eg, existing servers) that use existing default network template (bondaa-bondaa), both the Instance.networks field and the Instance.logical_interfaces fields will be filled to ensure backward compatibility. For the others, only Instance.logical_interfaces will be filled.",
+          "items": {
+            "$ref": "GoogleCloudBaremetalsolutionV2LogicalInterface"
+          },
+          "type": "array"
+        },
         "luns": {
           "description": "List of LUNs associated with this server.",
           "items": {
@@ -1392,6 +1204,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "networkTemplate": {
+          "description": "Instance network template name. For eg, bondaa-bondaa, bondab-nic, etc. Generally, the template name follows the syntax of \"bond\" or \"nic\".",
+          "type": "string"
+        },
         "networks": {
           "description": "List of networks associated with this server.",
           "items": {
@@ -1401,6 +1217,10 @@
         },
         "osImage": {
           "description": "The OS image currently installed on the server.",
+          "type": "string"
+        },
+        "pod": {
+          "description": "Immutable. Pod name. Pod is an independent part of infrastructure. Instance can be connected to the assets (networks, volumes) allocated in the same pod only.",
           "type": "string"
         },
         "state": {
@@ -1438,7 +1258,7 @@
         },
         "clientNetwork": {
           "$ref": "NetworkAddress",
-          "description": "Client network address."
+          "description": "Client network address. Filled if InstanceConfig.multivlan_config is false."
         },
         "hyperthreading": {
           "description": "Whether the instance should be provisioned with Hyperthreading enabled.",
@@ -1452,9 +1272,34 @@
           "description": "Instance type. [Available types](https://cloud.google.com/bare-metal/docs/bms-planning#server_configurations)",
           "type": "string"
         },
+        "logicalInterfaces": {
+          "description": "List of logical interfaces for the instance. The number of logical interfaces will be the same as number of hardware bond/nic on the chosen network template. Filled if InstanceConfig.multivlan_config is true.",
+          "items": {
+            "$ref": "GoogleCloudBaremetalsolutionV2LogicalInterface"
+          },
+          "type": "array"
+        },
         "name": {
           "description": "Output only. The name of the instance config.",
           "readOnly": true,
+          "type": "string"
+        },
+        "networkConfig": {
+          "description": "The type of network configuration on the instance.",
+          "enum": [
+            "NETWORKCONFIG_UNSPECIFIED",
+            "SINGLE_VLAN",
+            "MULTI_VLAN"
+          ],
+          "enumDescriptions": [
+            "The unspecified network configuration.",
+            "Instance part of single client network and single private network.",
+            "Instance part of multiple (or single) client networks and private networks."
+          ],
+          "type": "string"
+        },
+        "networkTemplate": {
+          "description": "Server network template name. Filled if InstanceConfig.multivlan_config is true.",
           "type": "string"
         },
         "osImage": {
@@ -1463,7 +1308,7 @@
         },
         "privateNetwork": {
           "$ref": "NetworkAddress",
-          "description": "Private network address, if any."
+          "description": "Private network address, if any. Filled if InstanceConfig.multivlan_config is false."
         },
         "userNote": {
           "description": "User note field, it can be used by customers to add additional information for the BMS Ops team .",
@@ -1662,49 +1507,6 @@
       },
       "type": "object"
     },
-    "ListSnapshotSchedulePoliciesResponse": {
-      "description": "Response message containing the list of snapshot schedule policies.",
-      "id": "ListSnapshotSchedulePoliciesResponse",
-      "properties": {
-        "nextPageToken": {
-          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
-          "type": "string"
-        },
-        "snapshotSchedulePolicies": {
-          "description": "The snapshot schedule policies registered in this project.",
-          "items": {
-            "$ref": "SnapshotSchedulePolicy"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "ListVolumeSnapshotsResponse": {
-      "description": "Response message containing the list of storage volume snapshots.",
-      "id": "ListVolumeSnapshotsResponse",
-      "properties": {
-        "nextPageToken": {
-          "description": "A token identifying a page of results from the server.",
-          "type": "string"
-        },
-        "unreachable": {
-          "description": "Locations that could not be reached.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "volumeSnapshots": {
-          "description": "The list of storage volumes.",
-          "items": {
-            "$ref": "VolumeSnapshot"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "ListVolumesResponse": {
       "description": "Response message containing the list of storage volumes.",
       "id": "ListVolumesResponse",
@@ -1764,29 +1566,37 @@
       },
       "type": "object"
     },
-    "LogicalInterface": {
-      "description": "Logical interface.",
-      "id": "LogicalInterface",
+    "LogicalNetworkInterface": {
+      "description": "Each logical network interface is effectively a network and IP pair.",
+      "id": "LogicalNetworkInterface",
       "properties": {
-        "name": {
-          "description": "Interface name. This is not a globally unique identifier. Name is unique only inside the ServerNetworkTemplate.",
-          "type": "string"
-        },
-        "required": {
-          "description": "If true, interface must have network connected.",
+        "defaultGateway": {
+          "description": "Whether this interface is the default gateway for the instance. Only one interface can be the default gateway for the instance.",
           "type": "boolean"
         },
-        "type": {
-          "description": "Interface type.",
+        "id": {
+          "description": "An identifier for the `Network`, generated by the backend.",
+          "type": "string"
+        },
+        "ipAddress": {
+          "description": "IP address in the network",
+          "type": "string"
+        },
+        "network": {
+          "description": "Name of the network",
+          "type": "string"
+        },
+        "networkType": {
+          "description": "Type of network.",
           "enum": [
-            "INTERFACE_TYPE_UNSPECIFIED",
-            "BOND",
-            "NIC"
+            "TYPE_UNSPECIFIED",
+            "CLIENT",
+            "PRIVATE"
           ],
           "enumDescriptions": [
             "Unspecified value.",
-            "Bond interface type.",
-            "NIC interface ytpe."
+            "Client network, a network peered to a Google Cloud VPC.",
+            "Private network, a network local to the Bare Metal Solution environment."
           ],
           "type": "string"
         }
@@ -1926,6 +1736,13 @@
           "readOnly": true,
           "type": "string"
         },
+        "reservations": {
+          "description": "List of IP address reservations in this network. When updating this field, an error will be generated if a reservation conflicts with an IP address already allocated to a physical server.",
+          "items": {
+            "$ref": "NetworkAddressReservation"
+          },
+          "type": "array"
+        },
         "servicesCidr": {
           "description": "IP range for reserved for services (e.g. NFS).",
           "type": "string"
@@ -1988,6 +1805,25 @@
       },
       "type": "object"
     },
+    "NetworkAddressReservation": {
+      "description": "A reservation of one or more addresses in a network.",
+      "id": "NetworkAddressReservation",
+      "properties": {
+        "endAddress": {
+          "description": "The last address of this reservation block, inclusive. I.e., for cases when reservations are only single addresses, end_address and start_address will be the same. Must be specified as a single IPv4 address, e.g. 10.1.2.2.",
+          "type": "string"
+        },
+        "note": {
+          "description": "A note about this reservation, intended for human consumption.",
+          "type": "string"
+        },
+        "startAddress": {
+          "description": "The first address of this reservation block. Must be specified as a single IPv4 address, e.g. 10.1.2.2.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NetworkConfig": {
       "description": "Configuration parameters for a new network.",
       "id": "NetworkConfig",
@@ -2021,6 +1857,10 @@
         "id": {
           "description": "A transient unique identifier to identify a volume within an ProvisioningConfig request.",
           "type": "string"
+        },
+        "jumboFramesEnabled": {
+          "description": "The JumboFramesEnabled option for customer to set.",
+          "type": "boolean"
         },
         "name": {
           "description": "Output only. The name of the network config.",
@@ -2060,7 +1900,7 @@
           "type": "string"
         },
         "userNote": {
-          "description": "User note field, it can be used by customers to add additional information for the BMS Ops team (b/194021617).",
+          "description": "User note field, it can be used by customers to add additional information for the BMS Ops team .",
           "type": "string"
         },
         "vlanAttachments": {
@@ -2166,6 +2006,11 @@
         "nfsShareId": {
           "description": "Output only. An identifier for the NFS share, generated by the backend.",
           "readOnly": true,
+          "type": "string"
+        },
+        "requestedSizeGib": {
+          "description": "The requested size, in GiB.",
+          "format": "int64",
           "type": "string"
         },
         "state": {
@@ -2320,7 +2165,7 @@
           "type": "string"
         },
         "ticketId": {
-          "description": "A generated buganizer id to track provisioning request.",
+          "description": "A generated ticket id to track provisioning request.",
           "type": "string"
         },
         "updateTime": {
@@ -2335,6 +2180,10 @@
             "$ref": "VolumeConfig"
           },
           "type": "array"
+        },
+        "vpcScEnabled": {
+          "description": "If true, VPC SC is enabled for the cluster.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -2417,28 +2266,14 @@
       "properties": {},
       "type": "object"
     },
-    "RestoreVolumeSnapshotRequest": {
-      "description": "Message for restoring a volume snapshot.",
-      "id": "RestoreVolumeSnapshotRequest",
-      "properties": {},
-      "type": "object"
-    },
-    "Schedule": {
-      "description": "A snapshot schedule.",
-      "id": "Schedule",
+    "ResizeVolumeRequest": {
+      "description": "Request for emergency resize Volume.",
+      "id": "ResizeVolumeRequest",
       "properties": {
-        "crontabSpec": {
-          "description": "A crontab-like specification that the schedule uses to take snapshots.",
+        "sizeGib": {
+          "description": "New Volume size, in GiB.",
+          "format": "int64",
           "type": "string"
-        },
-        "prefix": {
-          "description": "A list of snapshot names created in this schedule.",
-          "type": "string"
-        },
-        "retentionCount": {
-          "description": "The maximum number of snapshots to retain in this schedule.",
-          "format": "int32",
-          "type": "integer"
         }
       },
       "type": "object"
@@ -2457,12 +2292,12 @@
         "logicalInterfaces": {
           "description": "Logical interfaces.",
           "items": {
-            "$ref": "LogicalInterface"
+            "$ref": "GoogleCloudBaremetalsolutionV2ServerNetworkTemplateLogicalInterface"
           },
           "type": "array"
         },
         "name": {
-          "description": "Output only. Template's unique name.",
+          "description": "Output only. Template's unique name. The full resource name follows the pattern: `projects/{project}/locations/{location}/serverNetworkTemplate/{server_network_template}` Generally, the {server_network_template} follows the syntax of \"bond\" or \"nic\".",
           "readOnly": true,
           "type": "string"
         }
@@ -2492,52 +2327,6 @@
           "description": "The percent of snapshot space on this storage volume actually being used by the snapshot copies. This value might be higher than 100% if the snapshot copies have overflowed into the data portion of the storage volume.",
           "format": "int32",
           "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "SnapshotSchedulePolicy": {
-      "description": "A snapshot schedule policy.",
-      "id": "SnapshotSchedulePolicy",
-      "properties": {
-        "description": {
-          "description": "The description of the snapshot schedule policy.",
-          "type": "string"
-        },
-        "id": {
-          "description": "An identifier for the snapshot schedule policy, generated by the backend.",
-          "type": "string"
-        },
-        "labels": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "Labels as key value pairs.",
-          "type": "object"
-        },
-        "name": {
-          "description": "Output only. The name of the snapshot schedule policy.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "schedules": {
-          "description": "The snapshot schedules contained in this policy. You can specify a maximum of 5 schedules.",
-          "items": {
-            "$ref": "Schedule"
-          },
-          "type": "array"
-        },
-        "state": {
-          "description": "The state of the snapshot schedule policy.",
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "PROVISIONED"
-          ],
-          "enumDescriptions": [
-            "The policy is in an unknown state.",
-            "The policy is been provisioned."
-          ],
-          "type": "string"
         }
       },
       "type": "object"
@@ -2693,9 +2482,23 @@
           "description": "Labels as key value pairs.",
           "type": "object"
         },
+        "maxSizeGib": {
+          "description": "Maximum size volume can be expanded to in case of evergency, in GiB.",
+          "format": "int64",
+          "type": "string"
+        },
         "name": {
           "description": "Output only. The resource name of this `Volume`. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. Format: `projects/{project}/locations/{location}/volumes/{volume}`",
           "readOnly": true,
+          "type": "string"
+        },
+        "originallyRequestedSizeGib": {
+          "description": "Originally requested size, in GiB.",
+          "format": "int64",
+          "type": "string"
+        },
+        "pod": {
+          "description": "Immutable. Pod name.",
           "type": "string"
         },
         "remainingSpaceGib": {
@@ -2845,42 +2648,7 @@
           "type": "string"
         },
         "userNote": {
-          "description": "User note field, it can be used by customers to add additional information for the BMS Ops team (b/194021617).",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "VolumeSnapshot": {
-      "description": "Snapshot registered for a given storage volume.",
-      "id": "VolumeSnapshot",
-      "properties": {
-        "createTime": {
-          "description": "Output only. The creation time of the storage volume snapshot.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "description": {
-          "description": "The description of the storage volume snapshot.",
-          "type": "string"
-        },
-        "id": {
-          "description": "An identifier for the snapshot, generated by the backend.",
-          "type": "string"
-        },
-        "name": {
-          "description": "Output only. The name of the storage volume snapshot.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "sizeBytes": {
-          "description": "The size of the storage volume snapshot, in bytes.",
-          "format": "int64",
-          "type": "string"
-        },
-        "storageVolume": {
-          "description": "The storage volume this snapshot belongs to.",
+          "description": "User note field, it can be used by customers to add additional information for the BMS Ops team .",
           "type": "string"
         }
       },
