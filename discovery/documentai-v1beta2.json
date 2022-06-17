@@ -292,7 +292,7 @@
       }
     }
   },
-  "revision": "20220429",
+  "revision": "20220610",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata": {
@@ -1119,7 +1119,25 @@
       "id": "GoogleCloudDocumentaiV1ReviewDocumentResponse",
       "properties": {
         "gcsDestination": {
-          "description": "The Cloud Storage uri for the human reviewed document.",
+          "description": "The Cloud Storage uri for the human reviewed document if the review is succeeded.",
+          "type": "string"
+        },
+        "rejectionReason": {
+          "description": "The reason why the review is rejected by reviewer.",
+          "type": "string"
+        },
+        "state": {
+          "description": "The state of the review operation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "REJECTED",
+            "SUCCEEDED"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is used if the state is omitted.",
+            "The review operation is rejected by the reviewer.",
+            "The review operation is succeeded."
+          ],
           "type": "string"
         }
       },
@@ -4097,7 +4115,25 @@
       "id": "GoogleCloudDocumentaiV1beta3ReviewDocumentResponse",
       "properties": {
         "gcsDestination": {
-          "description": "The Cloud Storage uri for the human reviewed document.",
+          "description": "The Cloud Storage uri for the human reviewed document if the review is succeeded.",
+          "type": "string"
+        },
+        "rejectionReason": {
+          "description": "The reason why the review is rejected by reviewer.",
+          "type": "string"
+        },
+        "state": {
+          "description": "The state of the review operation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "REJECTED",
+            "SUCCEEDED"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is used if the state is omitted.",
+            "The review operation is rejected by the reviewer.",
+            "The review operation is succeeded."
+          ],
           "type": "string"
         }
       },

@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -2589,9 +2588,17 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3ReviewDocumentResponse {
     /**
-     * The Cloud Storage uri for the human reviewed document.
+     * The Cloud Storage uri for the human reviewed document if the review is succeeded.
      */
     gcsDestination?: string | null;
+    /**
+     * The reason why the review is rejected by reviewer.
+     */
+    rejectionReason?: string | null;
+    /**
+     * The state of the review operation.
+     */
+    state?: string | null;
   }
   /**
    * The long running operation metadata for set default processor version method.
@@ -3363,6 +3370,91 @@ export namespace documentai_v1 {
     stateMessage?: string | null;
   }
   /**
+   * The schema defines the output of the processed document by a processor.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DocumentSchema {
+    /**
+     * Description of the schema.
+     */
+    description?: string | null;
+    /**
+     * Display name to show to users.
+     */
+    displayName?: string | null;
+    /**
+     * Entity types of the schema.
+     */
+    entityTypes?: Schema$GoogleCloudDocumentaiV1DocumentSchemaEntityType[];
+    /**
+     * Metadata of the schema.
+     */
+    metadata?: Schema$GoogleCloudDocumentaiV1DocumentSchemaMetadata;
+  }
+  /**
+   * EntityType is the wrapper of a label of the corresponding model with detailed attributes and limitations for entity-based processors. Multiple types can also compose a dependency tree to represent nested types.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DocumentSchemaEntityType {
+    /**
+     * The entity type that this type is derived from. For now, one and only one should be set.
+     */
+    baseTypes?: string[] | null;
+    /**
+     * User defined name for the type.
+     */
+    displayName?: string | null;
+    /**
+     * If specified, lists all the possible values for this entity. This should not be more than a handful of values. If the number of values is \>10 or could change frequently use the `EntityType.value_ontology` field and specify a list of all possible values in a value ontology file.
+     */
+    enumValues?: Schema$GoogleCloudDocumentaiV1DocumentSchemaEntityTypeEnumValues;
+    /**
+     * Name of the type. It must be unique within the schema file and cannot be a 'Common Type'. Besides that we use the following naming conventions: - *use snake_casing* - name matching is case-insensitive - Maximum 64 characters. - Must start with a letter. - Allowed characters: ASCII letters [a-z0-9_-]. (For backward compatibility internal infrastructure and tooling can handle any ascii character) - The '/' is sometimes used to denote a property of a type. For example line_item/amount. This convention is deprecated, but will still be honored for backward compatibility.
+     */
+    name?: string | null;
+    /**
+     * Describing the nested structure, or composition of an entity.
+     */
+    properties?: Schema$GoogleCloudDocumentaiV1DocumentSchemaEntityTypeProperty[];
+  }
+  /**
+   * Defines the a list of enum values.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DocumentSchemaEntityTypeEnumValues {
+    /**
+     * The individual values that this enum values type can include.
+     */
+    values?: string[] | null;
+  }
+  /**
+   * Defines properties that can be part of the entity type.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DocumentSchemaEntityTypeProperty {
+    /**
+     * The name of the property. Follows the same guidelines as the EntityType name.
+     */
+    name?: string | null;
+    /**
+     * Occurrence type limits the number of instances an entity type appears in the document.
+     */
+    occurrenceType?: string | null;
+    /**
+     * A reference to the value type of the property. This type is subject to the same conventions as the `Entity.base_types` field.
+     */
+    valueType?: string | null;
+  }
+  /**
+   * Metadata for global schema behavior.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DocumentSchemaMetadata {
+    /**
+     * If true, on a given page, there can be multiple `document` annotations covering it.
+     */
+    documentAllowMultipleLabels?: boolean | null;
+    /**
+     * If true, a `document` entity type can be applied to subdocument ( splitting). Otherwise, it can only be applied to the entire document (classification).
+     */
+    documentSplitter?: boolean | null;
+  }
+  /**
    * For a large document, sharding may be performed to produce several document shards. Each document shard contains this field to detail which shard it is.
    */
   export interface Schema$GoogleCloudDocumentaiV1DocumentShardInfo {
@@ -3771,6 +3863,10 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1ReviewDocumentRequest {
     /**
+     * The document schema of the human review task.
+     */
+    documentSchema?: Schema$GoogleCloudDocumentaiV1DocumentSchema;
+    /**
      * Whether the validation should be performed on the ad-hoc review request.
      */
     enableSchemaValidation?: boolean | null;
@@ -3788,9 +3884,17 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1ReviewDocumentResponse {
     /**
-     * The Cloud Storage uri for the human reviewed document.
+     * The Cloud Storage uri for the human reviewed document if the review is succeeded.
      */
     gcsDestination?: string | null;
+    /**
+     * The reason why the review is rejected by reviewer.
+     */
+    rejectionReason?: string | null;
+    /**
+     * The state of the review operation.
+     */
+    state?: string | null;
   }
   /**
    * The long running operation metadata for set default processor version method.
@@ -6653,6 +6757,7 @@ export namespace documentai_v1 {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "documentSchema": {},
      *           //   "enableSchemaValidation": false,
      *           //   "inlineDocument": {},
      *           //   "priority": "my_priority"

@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -2700,9 +2699,17 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3ReviewDocumentResponse {
     /**
-     * The Cloud Storage uri for the human reviewed document.
+     * The Cloud Storage uri for the human reviewed document if the review is succeeded.
      */
     gcsDestination?: string | null;
+    /**
+     * The reason why the review is rejected by reviewer.
+     */
+    rejectionReason?: string | null;
+    /**
+     * The state of the review operation.
+     */
+    state?: string | null;
   }
   /**
    * The long running operation metadata for set default processor version method.
@@ -2847,9 +2854,17 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiV1ReviewDocumentResponse {
     /**
-     * The Cloud Storage uri for the human reviewed document.
+     * The Cloud Storage uri for the human reviewed document if the review is succeeded.
      */
     gcsDestination?: string | null;
+    /**
+     * The reason why the review is rejected by reviewer.
+     */
+    rejectionReason?: string | null;
+    /**
+     * The state of the review operation.
+     */
+    state?: string | null;
   }
   /**
    * The long running operation metadata for set default processor version method.

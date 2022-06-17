@@ -796,7 +796,7 @@
       }
     }
   },
-  "revision": "20220602",
+  "revision": "20220610",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata": {
@@ -1623,7 +1623,25 @@
       "id": "GoogleCloudDocumentaiV1ReviewDocumentResponse",
       "properties": {
         "gcsDestination": {
-          "description": "The Cloud Storage uri for the human reviewed document.",
+          "description": "The Cloud Storage uri for the human reviewed document if the review is succeeded.",
+          "type": "string"
+        },
+        "rejectionReason": {
+          "description": "The reason why the review is rejected by reviewer.",
+          "type": "string"
+        },
+        "state": {
+          "description": "The state of the review operation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "REJECTED",
+            "SUCCEEDED"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is used if the state is omitted.",
+            "The review operation is rejected by the reviewer.",
+            "The review operation is succeeded."
+          ],
           "type": "string"
         }
       },
@@ -5323,6 +5341,127 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1beta3DocumentSchema": {
+      "description": "The schema defines the output of the processed document by a processor.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentSchema",
+      "properties": {
+        "description": {
+          "description": "Description of the schema.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display name to show to users.",
+          "type": "string"
+        },
+        "entityTypes": {
+          "description": "Entity types of the schema.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta3DocumentSchemaEntityType"
+          },
+          "type": "array"
+        },
+        "metadata": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentSchemaMetadata",
+          "description": "Metadata of the schema."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentSchemaEntityType": {
+      "description": "EntityType is the wrapper of a label of the corresponding model with detailed attributes and limitations for entity-based processors. Multiple types can also compose a dependency tree to represent nested types.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentSchemaEntityType",
+      "properties": {
+        "baseTypes": {
+          "description": "The entity type that this type is derived from. For now, one and only one should be set.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "displayName": {
+          "description": "User defined name for the type.",
+          "type": "string"
+        },
+        "enumValues": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeEnumValues",
+          "description": "If specified, lists all the possible values for this entity. This should not be more than a handful of values. If the number of values is >10 or could change frequently use the `EntityType.value_ontology` field and specify a list of all possible values in a value ontology file."
+        },
+        "name": {
+          "description": "Name of the type. It must be unique within the schema file and cannot be a 'Common Type'. Besides that we use the following naming conventions: - *use snake_casing* - name matching is case-insensitive - Maximum 64 characters. - Must start with a letter. - Allowed characters: ASCII letters [a-z0-9_-]. (For backward compatibility internal infrastructure and tooling can handle any ascii character) - The '/' is sometimes used to denote a property of a type. For example line_item/amount. This convention is deprecated, but will still be honored for backward compatibility.",
+          "type": "string"
+        },
+        "properties": {
+          "description": "Describing the nested structure, or composition of an entity.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeProperty"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeEnumValues": {
+      "description": "Defines the a list of enum values.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeEnumValues",
+      "properties": {
+        "values": {
+          "description": "The individual values that this enum values type can include.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeProperty": {
+      "description": "Defines properties that can be part of the entity type.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeProperty",
+      "properties": {
+        "name": {
+          "description": "The name of the property. Follows the same guidelines as the EntityType name.",
+          "type": "string"
+        },
+        "occurrenceType": {
+          "description": "Occurrence type limits the number of instances an entity type appears in the document.",
+          "enum": [
+            "OCCURRENCE_TYPE_UNSPECIFIED",
+            "OPTIONAL_ONCE",
+            "OPTIONAL_MULTIPLE",
+            "REQUIRED_ONCE",
+            "REQUIRED_MULTIPLE"
+          ],
+          "enumDescriptions": [
+            "Unspecified occurrence type.",
+            "There will be zero or one instance of this entity type.",
+            "The entity type will appear zero or multiple times.",
+            "The entity type will only appear exactly once.",
+            "The entity type will appear once or more times."
+          ],
+          "type": "string"
+        },
+        "valueType": {
+          "description": "A reference to the value type of the property. This type is subject to the same conventions as the `Entity.base_types` field.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentSchemaMetadata": {
+      "description": "Metadata for global schema behavior.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentSchemaMetadata",
+      "properties": {
+        "documentAllowMultipleLabels": {
+          "description": "If true, on a given page, there can be multiple `document` annotations covering it.",
+          "type": "boolean"
+        },
+        "documentSplitter": {
+          "description": "If true, a `document` entity type can be applied to subdocument ( splitting). Otherwise, it can only be applied to the entire document (classification).",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1beta3DocumentShardInfo": {
       "description": "For a large document, sharding may be performed to produce several document shards. Each document shard contains this field to detail which shard it is.",
       "id": "GoogleCloudDocumentaiV1beta3DocumentShardInfo",
@@ -5940,6 +6079,10 @@
           "$ref": "GoogleCloudDocumentaiV1beta3Document",
           "description": "The document that needs human review."
         },
+        "documentSchema": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentSchema",
+          "description": "The document schema of the human review task."
+        },
         "enableSchemaValidation": {
           "description": "Whether the validation should be performed on the ad-hoc review request.",
           "type": "boolean"
@@ -5968,7 +6111,25 @@
       "id": "GoogleCloudDocumentaiV1beta3ReviewDocumentResponse",
       "properties": {
         "gcsDestination": {
-          "description": "The Cloud Storage uri for the human reviewed document.",
+          "description": "The Cloud Storage uri for the human reviewed document if the review is succeeded.",
+          "type": "string"
+        },
+        "rejectionReason": {
+          "description": "The reason why the review is rejected by reviewer.",
+          "type": "string"
+        },
+        "state": {
+          "description": "The state of the review operation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "REJECTED",
+            "SUCCEEDED"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is used if the state is omitted.",
+            "The review operation is rejected by the reviewer.",
+            "The review operation is succeeded."
+          ],
           "type": "string"
         }
       },
