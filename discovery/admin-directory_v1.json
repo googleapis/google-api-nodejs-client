@@ -4407,7 +4407,7 @@
       }
     }
   },
-  "revision": "20220606",
+  "revision": "20220614",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -6626,7 +6626,7 @@
       "id": "RoleAssignment",
       "properties": {
         "assignedTo": {
-          "description": "The unique ID of the user this role is assigned to.",
+          "description": "The unique ID of the entity this role is assigned to—either the `user_id` of a user or the `uniqueId` of a service account, as defined in [Identity and Access Management (IAM)](https://cloud.google.com/iam/docs/reference/rest/v1/projects.serviceAccounts).",
           "type": "string"
         },
         "etag": {
