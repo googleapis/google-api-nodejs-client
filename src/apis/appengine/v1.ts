@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -991,6 +990,10 @@ export namespace appengine_v1 {
      * List of ports, or port pairs, to forward from the virtual machine to the application container. Only applicable in the App Engine flexible environment.
      */
     forwardedPorts?: string[] | null;
+    /**
+     * The IP mode for instances. Only applicable in the App Engine flexible environment.
+     */
+    instanceIpMode?: string | null;
     /**
      * Tag to apply to the instance during creation. Only applicable in the App Engine flexible environment.
      */
