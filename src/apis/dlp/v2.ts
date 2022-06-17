@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -415,7 +414,7 @@ export namespace dlp_v2 {
      */
     maskingCharacter?: string | null;
     /**
-     * Number of characters to mask. If not set, all matching chars will be masked. Skipped characters do not count towards this tally.
+     * Number of characters to mask. If not set, all matching chars will be masked. Skipped characters do not count towards this tally. If `number_to_mask` is negative, this denotes inverse masking. Cloud DLP masks all but a number of characters. For example, suppose you have the following values: - `masking_character` is `*` - `number_to_mask` is `-4` - `reverse_order` is `false` - `CharsToIgnore` includes `-` - Input string is `1234-5678-9012-3456` The resulting de-identified string is `****-****-****-3456`. Cloud DLP masks all but the last four characters. If `reverse_order` is `true`, all but the first four characters are masked as `1234-****-****-****`.
      */
     numberToMask?: number | null;
     /**
@@ -1571,9 +1570,30 @@ export namespace dlp_v2 {
     version?: string | null;
   }
   /**
+   * Classification of infoTypes to organize them according to geographic location, industry, and data type.
+   */
+  export interface Schema$GooglePrivacyDlpV2InfoTypeCategory {
+    /**
+     * The group of relevant businesses where this infoType is commonly used
+     */
+    industryCategory?: string | null;
+    /**
+     * The region or country that issued the ID or document represented by the infoType.
+     */
+    locationCategory?: string | null;
+    /**
+     * The class of identifiers where this infoType belongs
+     */
+    typeCategory?: string | null;
+  }
+  /**
    * InfoType description.
    */
   export interface Schema$GooglePrivacyDlpV2InfoTypeDescription {
+    /**
+     * The category of the infoType.
+     */
+    categories?: Schema$GooglePrivacyDlpV2InfoTypeCategory[];
     /**
      * Description of the infotype. Translated when language is provided in the request.
      */
