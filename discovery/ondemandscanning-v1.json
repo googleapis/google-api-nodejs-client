@@ -339,7 +339,7 @@
       }
     }
   },
-  "revision": "20220604",
+  "revision": "20220612",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -1350,6 +1350,19 @@
       },
       "type": "object"
     },
+    "LanguagePackageDependency": {
+      "description": "Indicates a language package available between this package and the customer's resource artifact.",
+      "id": "LanguagePackageDependency",
+      "properties": {
+        "package": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Layer": {
       "description": "Layer holds metadata specific to a layer of a Docker image.",
       "id": "Layer",
@@ -1646,6 +1659,13 @@
         "cpeUri": {
           "description": "The cpe_uri in [cpe format] (https://cpe.mitre.org/specification/) in which the vulnerability may manifest. Examples include distro or storage location for vulnerable jar.",
           "type": "string"
+        },
+        "dependencyChain": {
+          "description": "The dependency chain between this package and the user's artifact. List in order from the customer's package under review first, to the current package last. Inclusive of the original package and the current package.",
+          "items": {
+            "$ref": "LanguagePackageDependency"
+          },
+          "type": "array"
         },
         "fileLocation": {
           "description": "The path to the jar file / go binary file.",

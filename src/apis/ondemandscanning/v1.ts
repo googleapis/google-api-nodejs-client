@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -719,6 +718,13 @@ export namespace ondemandscanning_v1 {
     compactJwt?: string | null;
   }
   /**
+   * Indicates a language package available between this package and the customer's resource artifact.
+   */
+  export interface Schema$LanguagePackageDependency {
+    package?: string | null;
+    version?: string | null;
+  }
+  /**
    * Layer holds metadata specific to a layer of a Docker image.
    */
   export interface Schema$Layer {
@@ -940,6 +946,10 @@ export namespace ondemandscanning_v1 {
      * The cpe_uri in [cpe format] (https://cpe.mitre.org/specification/) in which the vulnerability may manifest. Examples include distro or storage location for vulnerable jar.
      */
     cpeUri?: string | null;
+    /**
+     * The dependency chain between this package and the user's artifact. List in order from the customer's package under review first, to the current package last. Inclusive of the original package and the current package.
+     */
+    dependencyChain?: Schema$LanguagePackageDependency[];
     /**
      * The path to the jar file / go binary file.
      */
