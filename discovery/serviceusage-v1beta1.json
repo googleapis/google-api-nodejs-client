@@ -959,7 +959,7 @@
       }
     }
   },
-  "revision": "20220613",
+  "revision": "20220615",
   "rootUrl": "https://serviceusage.googleapis.com/",
   "schemas": {
     "AdminQuotaPolicy": {
@@ -2716,27 +2716,6 @@
       "description": "Bind API methods to metrics. Binding a method to a metric causes that metric's configured quota behaviors to apply to the method call.",
       "id": "MetricRule",
       "properties": {
-        "dynamicMetricCosts": {
-          "additionalProperties": {
-            "enum": [
-              "DYNAMIC_COST_TYPE_UNSPECIFIED",
-              "REQUEST_BODY_BYTES",
-              "REQUEST_BODY_AND_HEADER_BYTES",
-              "RESPONSE_BODY_BYTES",
-              "RESPONSE_BODY_AND_HEADER_BYTES"
-            ],
-            "enumDescriptions": [
-              "Unspecified dynamic cost type.",
-              "Cost is the request body bytes",
-              "Cost is the request body and HTTP header bytes",
-              "Cost is the response body bytes",
-              "Cost is the response body and header bytes"
-            ],
-            "type": "string"
-          },
-          "description": "Metrics to update when the selected methods are called. The key of the map is the metric name, the value is the DynamicCostType to specify how to calculate the cost from the request. The cost amount will be increased for the metric against which the quota limits are defined. It is only implemented in CloudESF(go/cloudesf)",
-          "type": "object"
-        },
         "metricCosts": {
           "additionalProperties": {
             "format": "int64",
