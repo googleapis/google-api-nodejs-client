@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -4921,7 +4920,7 @@ export namespace authorizedbuyersmarketplace_v1 {
     }
 
     /**
-     * Sets the given finalized deal as ready to serve. By default, deals are ready to serve as soon as they're finalized. A bidder can opt out of this feature by asking to be included in an allowlist. Once opted out, finalized deals belonging to the bidder and its child seats will not start serving until this method is called. This method is useful to the bidders who prefer to not receive bid requests before the creative is ready. This method only applies to programmatic guaranteed deals.
+     * Sets the given finalized deal as ready to serve. By default, deals are set as ready to serve as soon as they're finalized. If you want to opt out of the default behavior, and manually indicate that deals are ready to serve, ask your Technical Account Manager to add you to the allowlist. If you choose to use this method, finalized deals belonging to the bidder and its child seats don't start serving until after you call `setReadyToServe`, and after the deals become active. For example, you can use this method to delay receiving bid requests until your creative is ready. This method only applies to programmatic guaranteed deals.
      * @example
      * ```js
      * // Before running the sample:
