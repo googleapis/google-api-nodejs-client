@@ -7986,7 +7986,7 @@
       }
     }
   },
-  "revision": "20220602",
+  "revision": "20220609",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -10156,6 +10156,10 @@
           "description": "Optional. Display name for this environment.",
           "type": "string"
         },
+        "forwardProxyUri": {
+          "description": "Optional. Url of the forward proxy to be applied to the runtime instances in this environment. Must be in the format of {scheme}://{hostname}:{port}. Note that scheme must be one of \"http\" or \"https\", and port must be supplied.",
+          "type": "string"
+        },
         "lastModifiedAt": {
           "description": "Output only. Last modification time of this environment as milliseconds since epoch.",
           "format": "int64",
@@ -10235,6 +10239,10 @@
             "$ref": "GoogleCloudApigeeV1FlowHookConfig"
           },
           "type": "array"
+        },
+        "forwardProxyUri": {
+          "description": "The forward proxy's url to be used by the runtime. When set, runtime will send requests to the target via the given forward proxy. This is only used by programmable gateways.",
+          "type": "string"
         },
         "gatewayConfigLocation": {
           "description": "The location for the gateway config blob as a URI, e.g. a Cloud Storage URI. This is only used by Envoy-based gateways.",
