@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -1869,7 +1868,7 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2alphaSearchRequestFacetSpecFacetKey {
     /**
-     * Whether to make facet keys case insensitive when getting faceting values with prefixes or contains.
+     * True to make facet keys case insensitive when getting faceting values with prefixes or contains; false otherwise.
      */
     caseInsensitive?: boolean | null;
     /**
@@ -8379,7 +8378,7 @@ export namespace retail_v2alpha {
      *
      *   // Do the magic
      *   const res = await retail.projects.locations.catalogs.placements.predict({
-     *     // Required. Full resource name of the format: `{name=projects/x/locations/global/catalogs/default_catalog/placements/x\}` The ID of the Recommendations AI placement. Before you can request predictions from your model, you must create at least one placement for it. For more information, see [Managing placements](https://cloud.google.com/retail/recommendations-ai/docs/manage-placements). The full list of available placements can be seen at https://console.cloud.google.com/recommendation/catalogs/default_catalog/placements
+     *     // Required. Full resource name of the format: {placement=projects/x/locations/global/catalogs/default_catalog/servingConfigs/x\} or {placement=projects/x/locations/global/catalogs/default_catalog/placements/x\}. We recommend using the `servingConfigs` resource. `placements` is a legacy resource. The ID of the Recommendations AI serving config or placement. Before you can request predictions from your model, you must create at least one serving config or placement for it. For more information, see [Managing serving configurations] (https://cloud.google.com/retail/docs/manage-configs). The full list of available serving configs can be seen at https://console.cloud.google.com/ai/retail/catalogs/default_catalog/configs
      *     placement:
      *       'projects/my-project/locations/my-location/catalogs/my-catalog/placements/my-placement',
      *
@@ -8536,7 +8535,7 @@ export namespace retail_v2alpha {
      *
      *   // Do the magic
      *   const res = await retail.projects.locations.catalogs.placements.search({
-     *     // Required. The resource name of the search engine placement, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving configuration name and the set of models that will be used to make the search.
+     *     // Required. The resource name of the Retail Search serving config, such as `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` or the name of the legacy placement resource, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving configuration name and the set of models that will be used to make the search.
      *     placement:
      *       'projects/my-project/locations/my-location/catalogs/my-catalog/placements/my-placement',
      *
@@ -8690,7 +8689,7 @@ export namespace retail_v2alpha {
   export interface Params$Resource$Projects$Locations$Catalogs$Placements$Predict
     extends StandardParameters {
     /**
-     * Required. Full resource name of the format: `{name=projects/x/locations/global/catalogs/default_catalog/placements/x\}` The ID of the Recommendations AI placement. Before you can request predictions from your model, you must create at least one placement for it. For more information, see [Managing placements](https://cloud.google.com/retail/recommendations-ai/docs/manage-placements). The full list of available placements can be seen at https://console.cloud.google.com/recommendation/catalogs/default_catalog/placements
+     * Required. Full resource name of the format: {placement=projects/x/locations/global/catalogs/default_catalog/servingConfigs/x\} or {placement=projects/x/locations/global/catalogs/default_catalog/placements/x\}. We recommend using the `servingConfigs` resource. `placements` is a legacy resource. The ID of the Recommendations AI serving config or placement. Before you can request predictions from your model, you must create at least one serving config or placement for it. For more information, see [Managing serving configurations] (https://cloud.google.com/retail/docs/manage-configs). The full list of available serving configs can be seen at https://console.cloud.google.com/ai/retail/catalogs/default_catalog/configs
      */
     placement?: string;
 
@@ -8702,7 +8701,7 @@ export namespace retail_v2alpha {
   export interface Params$Resource$Projects$Locations$Catalogs$Placements$Search
     extends StandardParameters {
     /**
-     * Required. The resource name of the search engine placement, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving configuration name and the set of models that will be used to make the search.
+     * Required. The resource name of the Retail Search serving config, such as `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` or the name of the legacy placement resource, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving configuration name and the set of models that will be used to make the search.
      */
     placement?: string;
 
@@ -9667,6 +9666,163 @@ export namespace retail_v2alpha {
     }
 
     /**
+     * Makes a recommendation prediction.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.servingConfigs.predict({
+     *     // Required. Full resource name of the format: {placement=projects/x/locations/global/catalogs/default_catalog/servingConfigs/x\} or {placement=projects/x/locations/global/catalogs/default_catalog/placements/x\}. We recommend using the `servingConfigs` resource. `placements` is a legacy resource. The ID of the Recommendations AI serving config or placement. Before you can request predictions from your model, you must create at least one serving config or placement for it. For more information, see [Managing serving configurations] (https://cloud.google.com/retail/docs/manage-configs). The full list of available serving configs can be seen at https://console.cloud.google.com/ai/retail/catalogs/default_catalog/configs
+     *     placement:
+     *       'projects/my-project/locations/my-location/catalogs/my-catalog/servingConfigs/my-servingConfig',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "filter": "my_filter",
+     *       //   "labels": {},
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "params": {},
+     *       //   "userEvent": {},
+     *       //   "validateOnly": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributionToken": "my_attributionToken",
+     *   //   "missingIds": [],
+     *   //   "results": [],
+     *   //   "validateOnly": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    predict(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Predict,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    predict(
+      params?: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Predict,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaPredictResponse>;
+    predict(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Predict,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    predict(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Predict,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaPredictResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaPredictResponse>
+    ): void;
+    predict(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Predict,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaPredictResponse>
+    ): void;
+    predict(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaPredictResponse>
+    ): void;
+    predict(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Predict
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaPredictResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaPredictResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaPredictResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaPredictResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Predict;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Predict;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+placement}:predict').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['placement'],
+        pathParams: ['placement'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaPredictResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaPredictResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Disables a Control on the specified ServingConfig. The control is removed from the ServingConfig. Returns a NOT_FOUND error if the Control is not enabled for the ServingConfig.
      * @example
      * ```js
@@ -9830,6 +9986,183 @@ export namespace retail_v2alpha {
         );
       }
     }
+
+    /**
+     * Performs a search. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.servingConfigs.search({
+     *     // Required. The resource name of the Retail Search serving config, such as `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` or the name of the legacy placement resource, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving configuration name and the set of models that will be used to make the search.
+     *     placement:
+     *       'projects/my-project/locations/my-location/catalogs/my-catalog/servingConfigs/my-servingConfig',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "boostSpec": {},
+     *       //   "branch": "my_branch",
+     *       //   "canonicalFilter": "my_canonicalFilter",
+     *       //   "dynamicFacetSpec": {},
+     *       //   "facetSpecs": [],
+     *       //   "filter": "my_filter",
+     *       //   "labels": {},
+     *       //   "offset": 0,
+     *       //   "orderBy": "my_orderBy",
+     *       //   "pageCategories": [],
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "personalizationSpec": {},
+     *       //   "query": "my_query",
+     *       //   "queryExpansionSpec": {},
+     *       //   "relevanceThreshold": "my_relevanceThreshold",
+     *       //   "searchMode": "my_searchMode",
+     *       //   "spellCorrectionSpec": {},
+     *       //   "userInfo": {},
+     *       //   "variantRollupKeys": [],
+     *       //   "visitorId": "my_visitorId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appliedControls": [],
+     *   //   "attributionToken": "my_attributionToken",
+     *   //   "correctedQuery": "my_correctedQuery",
+     *   //   "facets": [],
+     *   //   "invalidConditionBoostSpecs": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "queryExpansionInfo": {},
+     *   //   "redirectUri": "my_redirectUri",
+     *   //   "results": [],
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    search(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
+      params?: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaSearchResponse>;
+    search(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    search(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaSearchResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaSearchResponse>
+    ): void;
+    search(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Search,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaSearchResponse>
+    ): void;
+    search(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaSearchResponse>
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Search
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaSearchResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaSearchResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaSearchResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaSearchResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Search;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+placement}:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['placement'],
+        pathParams: ['placement'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaSearchResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaSearchResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Addcontrol
@@ -9905,6 +10238,18 @@ export namespace retail_v2alpha {
      */
     requestBody?: Schema$GoogleCloudRetailV2alphaServingConfig;
   }
+  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Predict
+    extends StandardParameters {
+    /**
+     * Required. Full resource name of the format: {placement=projects/x/locations/global/catalogs/default_catalog/servingConfigs/x\} or {placement=projects/x/locations/global/catalogs/default_catalog/placements/x\}. We recommend using the `servingConfigs` resource. `placements` is a legacy resource. The ID of the Recommendations AI serving config or placement. Before you can request predictions from your model, you must create at least one serving config or placement for it. For more information, see [Managing serving configurations] (https://cloud.google.com/retail/docs/manage-configs). The full list of available serving configs can be seen at https://console.cloud.google.com/ai/retail/catalogs/default_catalog/configs
+     */
+    placement?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2alphaPredictRequest;
+  }
   export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Removecontrol
     extends StandardParameters {
     /**
@@ -9916,6 +10261,18 @@ export namespace retail_v2alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudRetailV2alphaRemoveControlRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Search
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Retail Search serving config, such as `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` or the name of the legacy placement resource, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving configuration name and the set of models that will be used to make the search.
+     */
+    placement?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2alphaSearchRequest;
   }
 
   export class Resource$Projects$Locations$Catalogs$Userevents {

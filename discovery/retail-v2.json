@@ -781,7 +781,7 @@
                       ],
                       "parameters": {
                         "placement": {
-                          "description": "Required. Full resource name of the format: `{name=projects/*/locations/global/catalogs/default_catalog/placements/*}` The ID of the Recommendations AI placement. Before you can request predictions from your model, you must create at least one placement for it. For more information, see [Managing placements](https://cloud.google.com/retail/recommendations-ai/docs/manage-placements). The full list of available placements can be seen at https://console.cloud.google.com/recommendation/catalogs/default_catalog/placements",
+                          "description": "Required. Full resource name of the format: {placement=projects/*/locations/global/catalogs/default_catalog/servingConfigs/*} or {placement=projects/*/locations/global/catalogs/default_catalog/placements/*}. We recommend using the `servingConfigs` resource. `placements` is a legacy resource. The ID of the Recommendations AI serving config or placement. Before you can request predictions from your model, you must create at least one serving config or placement for it. For more information, see [Managing serving configurations] (https://cloud.google.com/retail/docs/manage-configs). The full list of available serving configs can be seen at https://console.cloud.google.com/ai/retail/catalogs/default_catalog/configs",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/placements/[^/]+$",
                           "required": true,
@@ -809,9 +809,69 @@
                       ],
                       "parameters": {
                         "placement": {
-                          "description": "Required. The resource name of the search engine placement, such as `projects/*/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving configuration name and the set of models that will be used to make the search.",
+                          "description": "Required. The resource name of the Retail Search serving config, such as `projects/*/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` or the name of the legacy placement resource, such as `projects/*/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving configuration name and the set of models that will be used to make the search.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/placements/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+placement}:search",
+                      "request": {
+                        "$ref": "GoogleCloudRetailV2SearchRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudRetailV2SearchResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "servingConfigs": {
+                  "methods": {
+                    "predict": {
+                      "description": "Makes a recommendation prediction.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/servingConfigs/{servingConfigsId}:predict",
+                      "httpMethod": "POST",
+                      "id": "retail.projects.locations.catalogs.servingConfigs.predict",
+                      "parameterOrder": [
+                        "placement"
+                      ],
+                      "parameters": {
+                        "placement": {
+                          "description": "Required. Full resource name of the format: {placement=projects/*/locations/global/catalogs/default_catalog/servingConfigs/*} or {placement=projects/*/locations/global/catalogs/default_catalog/placements/*}. We recommend using the `servingConfigs` resource. `placements` is a legacy resource. The ID of the Recommendations AI serving config or placement. Before you can request predictions from your model, you must create at least one serving config or placement for it. For more information, see [Managing serving configurations] (https://cloud.google.com/retail/docs/manage-configs). The full list of available serving configs can be seen at https://console.cloud.google.com/ai/retail/catalogs/default_catalog/configs",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/servingConfigs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+placement}:predict",
+                      "request": {
+                        "$ref": "GoogleCloudRetailV2PredictRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudRetailV2PredictResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "search": {
+                      "description": "Performs a search. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/servingConfigs/{servingConfigsId}:search",
+                      "httpMethod": "POST",
+                      "id": "retail.projects.locations.catalogs.servingConfigs.search",
+                      "parameterOrder": [
+                        "placement"
+                      ],
+                      "parameters": {
+                        "placement": {
+                          "description": "Required. The resource name of the Retail Search serving config, such as `projects/*/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` or the name of the legacy placement resource, such as `projects/*/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving configuration name and the set of models that will be used to make the search.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/servingConfigs/[^/]+$",
                           "required": true,
                           "type": "string"
                         }
@@ -1133,7 +1193,7 @@
       }
     }
   },
-  "revision": "20220602",
+  "revision": "20220609",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -2743,7 +2803,7 @@
       "id": "GoogleCloudRetailV2SearchRequestFacetSpecFacetKey",
       "properties": {
         "caseInsensitive": {
-          "description": "Whether to make facet keys case insensitive when getting faceting values with prefixes or contains.",
+          "description": "True to make facet keys case insensitive when getting faceting values with prefixes or contains; false otherwise.",
           "type": "boolean"
         },
         "contains": {
