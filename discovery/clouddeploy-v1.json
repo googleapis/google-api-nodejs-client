@@ -508,6 +508,34 @@
               "resources": {
                 "releases": {
                   "methods": {
+                    "abandon": {
+                      "description": "Abandons a Release in the Delivery Pipeline.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deliveryPipelines/{deliveryPipelinesId}/releases/{releasesId}:abandon",
+                      "httpMethod": "POST",
+                      "id": "clouddeploy.projects.locations.deliveryPipelines.releases.abandon",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the Release. Format is projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/ releases/{release}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+/releases/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:abandon",
+                      "request": {
+                        "$ref": "AbandonReleaseRequest"
+                      },
+                      "response": {
+                        "$ref": "AbandonReleaseResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "create": {
                       "description": "Creates a new Release in a given project and location.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deliveryPipelines/{deliveryPipelinesId}/releases",
@@ -1201,9 +1229,21 @@
       }
     }
   },
-  "revision": "20220602",
+  "revision": "20220609",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
+    "AbandonReleaseRequest": {
+      "description": "The request object used by `AbandonRelease`.",
+      "id": "AbandonReleaseRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "AbandonReleaseResponse": {
+      "description": "The response object for `AbandonRelease`.",
+      "id": "AbandonReleaseResponse",
+      "properties": {},
+      "type": "object"
+    },
     "AnthosCluster": {
       "description": "Information specifying an Anthos Cluster.",
       "id": "AnthosCluster",
@@ -1428,6 +1468,10 @@
         "serialPipeline": {
           "$ref": "SerialPipeline",
           "description": "SerialPipeline defines a sequential set of stages for a `DeliveryPipeline`."
+        },
+        "suspended": {
+          "description": "When suspended, no new releases or rollouts can be created, but in-progress ones will complete.",
+          "type": "boolean"
         },
         "uid": {
           "description": "Output only. Unique identifier of the `DeliveryPipeline`.",
@@ -1899,6 +1943,11 @@
       "description": "A `Release` resource in the Google Cloud Deploy API. A `Release` defines a specific Skaffold configuration instance that can be deployed.",
       "id": "Release",
       "properties": {
+        "abandoned": {
+          "description": "Output only. Indicates whether this is an abandoned release.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "annotations": {
           "additionalProperties": {
             "type": "string"
@@ -2115,14 +2164,16 @@
             "CLOUD_BUILD_UNAVAILABLE",
             "EXECUTION_FAILED",
             "DEADLINE_EXCEEDED",
-            "RELEASE_FAILED"
+            "RELEASE_FAILED",
+            "RELEASE_ABANDONED"
           ],
           "enumDescriptions": [
             "No reason for failure is specified.",
             "Cloud Build is not available, either because it is not enabled or because Cloud Deploy has insufficient permissions. See [required permission](/deploy/docs/cloud-deploy-service-account#required_permissions).",
             "The deploy operation did not complete successfully; check Cloud Build logs.",
             "Deployment did not complete within the alloted time.",
-            "Release is in a failed state."
+            "Release is in a failed state.",
+            "Release is abandoned."
           ],
           "readOnly": true,
           "type": "string"
