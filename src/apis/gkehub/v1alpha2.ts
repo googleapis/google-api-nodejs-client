@@ -547,6 +547,10 @@ export namespace gkehub_v1alpha2 {
      */
     clusterMissing?: boolean | null;
     /**
+     * Immutable. The on prem cluster's type.
+     */
+    clusterType?: string | null;
+    /**
      * Immutable. Self-link of the GCP resource for the GKE On-Prem cluster. For example: //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/vmwareClusters/my-cluster //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/bareMetalClusters/my-cluster
      */
     resourceLink?: string | null;
