@@ -179,6 +179,99 @@
           "resources": {
             "federations": {
               "methods": {
+                "create": {
+                  "description": "Creates a metastore federation in a project and location.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/federations",
+                  "httpMethod": "POST",
+                  "id": "metastore.projects.locations.federations.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "federationId": {
+                      "description": "Required. The ID of the metastore federation, which is used as the final component of the metastore federation's name.This value must be between 2 and 63 characters long inclusive, begin with a letter, end with a letter or number, and consist of alpha-numeric ASCII characters or hyphens.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The relative resource name of the location in which to create a federation service, in the following form:projects/{project_number}/locations/{location_id}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/federations",
+                  "request": {
+                    "$ref": "Federation"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single federation.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/federations/{federationsId}",
+                  "httpMethod": "DELETE",
+                  "id": "metastore.projects.locations.federations.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The relative resource name of the metastore federation to delete, in the following form:projects/{project_number}/locations/{location_id}/federations/{federation_id}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/federations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the details of a single federation.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/federations/{federationsId}",
+                  "httpMethod": "GET",
+                  "id": "metastore.projects.locations.federations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The relative resource name of the metastore federation to retrieve, in the following form:projects/{project_number}/locations/{location_id}/federations/{federation_id}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/federations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}",
+                  "response": {
+                    "$ref": "Federation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                   "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/federations/{federationsId}:getIamPolicy",
@@ -205,6 +298,91 @@
                   "path": "v1beta/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists federations in a project and location.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/federations",
+                  "httpMethod": "GET",
+                  "id": "metastore.projects.locations.federations.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. The filter to apply to list results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Specify the ordering of results as described in Sorting Order (https://cloud.google.com/apis/design/design_patterns#sorting_order). If not specified, the results will be sorted in the default order.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of federations to return. The response may contain less than the maximum number. If unspecified, no more than 500 services are returned. The maximum value is 1000; values above 1000 are changed to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous ListFederationServices call. Provide this token to retrieve the subsequent page.To retrieve the first page, supply an empty page token.When paginating, other parameters provided to ListFederationServices must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The relative resource name of the location of metastore federations to list, in the following form: projects/{project_number}/locations/{location_id}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/federations",
+                  "response": {
+                    "$ref": "ListFederationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the fields of a federation.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/federations/{federationsId}",
+                  "httpMethod": "PATCH",
+                  "id": "metastore.projects.locations.federations.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. The relative resource name of the federation, of the form: projects/{project_number}/locations/{location_id}/federations/{federation_id}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/federations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. A field mask used to specify the fields to be overwritten in the metastore federation resource by the update. Fields specified in the update_mask are relative to the resource (not to the full request). A field is overwritten if it is in the mask.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}",
+                  "request": {
+                    "$ref": "Federation"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1289,7 +1467,7 @@
       }
     }
   },
-  "revision": "20220602",
+  "revision": "20220615",
   "rootUrl": "https://metastore.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1358,6 +1536,29 @@
         },
         "version": {
           "description": "The Hive metastore version of the auxiliary service. It must be less than the primary Hive metastore service's version.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BackendMetastore": {
+      "description": "Represents a backend metastore for the federation.",
+      "id": "BackendMetastore",
+      "properties": {
+        "metastoreType": {
+          "description": "The type of the backend metastore.",
+          "enum": [
+            "METASTORE_TYPE_UNSPECIFIED",
+            "DATAPROC_METASTORE"
+          ],
+          "enumDescriptions": [
+            "The metastore type is not set.",
+            "The backend metastore is Dataproc Metastore."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "The relative resource name of the metastore that is being federated. The formats of the relative resource names for the currently supported metastores are listed below: Dataplex: projects/{project_id}/locations/{location}/lakes/{lake_id} BigQuery: projects/{project_id} Dataproc Metastore: projects/{project_id}/locations/{location}/services/{service_id}",
           "type": "string"
         }
       },
@@ -1597,6 +1798,83 @@
       },
       "type": "object"
     },
+    "Federation": {
+      "description": "Represents a federation of multiple backend metastores.",
+      "id": "Federation",
+      "properties": {
+        "backendMetastores": {
+          "additionalProperties": {
+            "$ref": "BackendMetastore"
+          },
+          "description": "A map from BackendMetastore rank to BackendMetastores from which the federation service serves metadata at query time. The map key is an integer that represents the order in which BackendMetastores should be evaluated to resolve database names at query time. A BackendMetastore with a lower number will be evaluated before a BackendMetastore with a higher number.",
+          "type": "object"
+        },
+        "createTime": {
+          "description": "Output only. The time when the metastore federation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endpointUri": {
+          "description": "Output only. The federation endpoint.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "User-defined labels for the metastore federation.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Immutable. The relative resource name of the federation, of the form: projects/{project_number}/locations/{location_id}/federations/{federation_id}`.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the federation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "UPDATING",
+            "DELETING",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "The state of the metastore federation is unknown.",
+            "The metastore federation is in the process of being created.",
+            "The metastore federation is running and ready to serve queries.",
+            "The metastore federation is being updated. It remains usable but cannot accept additional update requests or be deleted at this time.",
+            "The metastore federation is undergoing deletion. It cannot be used.",
+            "The metastore federation has encountered an error and cannot be used. The metastore federation should be deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "stateMessage": {
+          "description": "Output only. Additional information about the current state of the metastore federation, if available.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. The globally unique resource identifier of the metastore federation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time when the metastore federation was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "description": "Immutable. The Apache Hive metastore version of the federation. All backend metastore versions must be compatible with the federation version.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "HiveMetastoreConfig": {
       "description": "Specifies configuration information specific to running Hive metastore software as the metastore service.",
       "id": "HiveMetastoreConfig",
@@ -1693,6 +1971,31 @@
           "description": "The backups of the specified service.",
           "items": {
             "$ref": "Backup"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListFederationsResponse": {
+      "description": "Response message for ListFederations",
+      "id": "ListFederationsResponse",
+      "properties": {
+        "federations": {
+          "description": "The services in the specified location.",
+          "items": {
+            "$ref": "Federation"
           },
           "type": "array"
         },
