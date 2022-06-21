@@ -125,6 +125,14 @@ export namespace clouddeploy_v1 {
   }
 
   /**
+   * The request object used by `AbandonRelease`.
+   */
+  export interface Schema$AbandonReleaseRequest {}
+  /**
+   * The response object for `AbandonRelease`.
+   */
+  export interface Schema$AbandonReleaseResponse {}
+  /**
    * Information specifying an Anthos Cluster.
    */
   export interface Schema$AnthosCluster {
@@ -289,6 +297,10 @@ export namespace clouddeploy_v1 {
      * SerialPipeline defines a sequential set of stages for a `DeliveryPipeline`.
      */
     serialPipeline?: Schema$SerialPipeline;
+    /**
+     * When suspended, no new releases or rollouts can be created, but in-progress ones will complete.
+     */
+    suspended?: boolean | null;
     /**
      * Output only. Unique identifier of the `DeliveryPipeline`.
      */
@@ -631,6 +643,10 @@ export namespace clouddeploy_v1 {
    * A `Release` resource in the Google Cloud Deploy API. A `Release` defines a specific Skaffold configuration instance that can be deployed.
    */
   export interface Schema$Release {
+    /**
+     * Output only. Indicates whether this is an abandoned release.
+     */
+    abandoned?: boolean | null;
     /**
      * User annotations. These attributes can only be set and used by the user, and not by Google Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.
      */
@@ -1562,6 +1578,7 @@ export namespace clouddeploy_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "serialPipeline": {},
+     *       //   "suspended": false,
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -1854,6 +1871,7 @@ export namespace clouddeploy_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "serialPipeline": {},
+     *   //   "suspended": false,
      *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -2283,6 +2301,7 @@ export namespace clouddeploy_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "serialPipeline": {},
+     *       //   "suspended": false,
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -2838,6 +2857,148 @@ export namespace clouddeploy_v1 {
     }
 
     /**
+     * Abandons a Release in the Delivery Pipeline.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.releases.abandon({
+     *       // Required. Name of the Release. Format is projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}.
+     *       name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    abandon(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    abandon(
+      params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AbandonReleaseResponse>;
+    abandon(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    abandon(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AbandonReleaseResponse>,
+      callback: BodyResponseCallback<Schema$AbandonReleaseResponse>
+    ): void;
+    abandon(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon,
+      callback: BodyResponseCallback<Schema$AbandonReleaseResponse>
+    ): void;
+    abandon(
+      callback: BodyResponseCallback<Schema$AbandonReleaseResponse>
+    ): void;
+    abandon(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon
+        | BodyResponseCallback<Schema$AbandonReleaseResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AbandonReleaseResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AbandonReleaseResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AbandonReleaseResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:abandon').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AbandonReleaseResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AbandonReleaseResponse>(parameters);
+      }
+    }
+
+    /**
      * Creates a new Release in a given project and location.
      * @example
      * ```js
@@ -2879,6 +3040,7 @@ export namespace clouddeploy_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "abandoned": false,
      *         //   "annotations": {},
      *         //   "buildArtifacts": [],
      *         //   "createTime": "my_createTime",
@@ -3039,6 +3201,7 @@ export namespace clouddeploy_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "abandoned": false,
      *   //   "annotations": {},
      *   //   "buildArtifacts": [],
      *   //   "createTime": "my_createTime",
@@ -3297,6 +3460,18 @@ export namespace clouddeploy_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon
+    extends StandardParameters {
+    /**
+     * Required. Name of the Release. Format is projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AbandonReleaseRequest;
+  }
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Create
     extends StandardParameters {
     /**
