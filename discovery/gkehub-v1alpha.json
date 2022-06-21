@@ -1151,7 +1151,7 @@
       }
     }
   },
-  "revision": "20220603",
+  "revision": "20220613",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -3275,6 +3275,24 @@
           "description": "Output only. If cluster_missing is set then it denotes that API(gkeonprem.googleapis.com) resource for this GKE On-Prem cluster no longer exists.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "clusterType": {
+          "description": "Immutable. The on prem cluster's type.",
+          "enum": [
+            "CLUSTERTYPE_UNSPECIFIED",
+            "BOOTSTRAP",
+            "HYBRID",
+            "STANDALONE",
+            "USER"
+          ],
+          "enumDescriptions": [
+            "The ClusterType is not set.",
+            "The ClusterType is bootstrap cluster.",
+            "The ClusterType is baremetal hybrid cluster.",
+            "The ClusterType is baremetal standalone cluster.",
+            "The ClusterType is user cluster."
+          ],
+          "type": "string"
         },
         "resourceLink": {
           "description": "Immutable. Self-link of the GCP resource for the GKE On-Prem cluster. For example: //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/vmwareClusters/my-cluster //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/bareMetalClusters/my-cluster",
