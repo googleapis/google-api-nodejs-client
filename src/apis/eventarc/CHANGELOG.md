@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/eventarc-v3.0.0...eventarc-v3.0.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **eventarc:** update the API ([ce1bb7c](https://github.com/googleapis/google-api-nodejs-client/commit/ce1bb7c55ac18ac1e1962c8d09c992e49b1b50d9))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/eventarc-v2.5.3...eventarc-v3.0.0) (2022-06-15)
 
 

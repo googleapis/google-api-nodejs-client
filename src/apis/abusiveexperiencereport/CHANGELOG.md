@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/abusiveexperiencereport-v0.3.0...abusiveexperiencereport-v0.3.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **abusiveexperiencereport:** update the API ([63ef03f](https://github.com/googleapis/google-api-nodejs-client/commit/63ef03fe7e91e31912b2a2198546727516d5204d))
+
 ## [0.3.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/abusiveexperiencereport-v0.2.0...abusiveexperiencereport-v0.3.0) (2021-09-14)
 
 

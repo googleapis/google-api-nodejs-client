@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/genomics",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "genomics",
   "main": "build/index.js",
   "types": "build/index.d.ts",

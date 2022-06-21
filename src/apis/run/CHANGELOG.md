@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/run-v10.0.0...run-v10.0.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **run:** update the API ([c426924](https://github.com/googleapis/google-api-nodejs-client/commit/c426924d75dee0e3e5196bb97cc5fd7450f86f4d))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v9.0.0...run-v10.0.0) (2022-06-15)
 
 

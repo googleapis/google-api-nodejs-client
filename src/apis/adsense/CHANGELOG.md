@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/googleapis/google-api-nodejs-client/compare/adsense-v0.5.0...adsense-v0.5.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **adsense:** update the API ([d0027b8](https://github.com/googleapis/google-api-nodejs-client/commit/d0027b87e073b3c7cdfeec2b775bc52492945c4a))
+
 ## [0.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/adsense-v0.4.0...adsense-v0.5.0) (2022-06-13)
 
 

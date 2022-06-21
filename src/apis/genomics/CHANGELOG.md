@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/genomics-v2.0.1...genomics-v2.0.2) (2022-06-21)
+
+
+### Bug Fixes
+
+* **genomics:** update the API ([6bcb8db](https://github.com/googleapis/google-api-nodejs-client/commit/6bcb8db402974c9e376b01cf4f26a2aee5dde4a5))
+
 ### [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/genomics-v2.0.0...genomics-v2.0.1) (2022-04-01)
 
 

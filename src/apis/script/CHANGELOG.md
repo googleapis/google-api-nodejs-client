@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.2](https://github.com/googleapis/google-api-nodejs-client/compare/script-v0.4.1...script-v0.4.2) (2022-06-21)
+
+
+### Bug Fixes
+
+* **script:** update the API ([0e00cdc](https://github.com/googleapis/google-api-nodejs-client/commit/0e00cdc20295a4516ebd959f2e70b9b1e0e3088a))
+
 ### [0.4.1](https://github.com/googleapis/google-api-nodejs-client/compare/script-v0.4.0...script-v0.4.1) (2022-04-01)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.3](https://github.com/googleapis/google-api-nodejs-client/compare/chromeuxreport-v0.3.2...chromeuxreport-v0.3.3) (2022-06-21)
+
+
+### Bug Fixes
+
+* **chromeuxreport:** update the API ([af0e78d](https://github.com/googleapis/google-api-nodejs-client/commit/af0e78dd53c11e7d2cd95ed74f21e5324d4e9625))
+
 ## [0.3.2](https://github.com/googleapis/google-api-nodejs-client/compare/chromeuxreport-v0.3.1...chromeuxreport-v0.3.2) (2022-06-13)
 
 

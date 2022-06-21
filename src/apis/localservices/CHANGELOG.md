@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/googleapis/google-api-nodejs-client/compare/localservices-v0.5.0...localservices-v0.5.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **localservices:** update the API ([67990b0](https://github.com/googleapis/google-api-nodejs-client/commit/67990b0fbf3403c467225dc7c9f614656095a104))
+
 ## [0.5.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/localservices-v0.4.0...localservices-v0.5.0) (2021-10-18)
 
 
