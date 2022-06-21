@@ -603,6 +603,10 @@ export namespace transcoder_v1 {
      */
     inputUri?: string | null;
     /**
+     * The labels associated with this job. You can use these to organize and group your jobs.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
      * The resource name of the job. Format: `projects/{project_number\}/locations/{location\}/jobs/{job\}`
      */
     name?: string | null;
@@ -680,6 +684,10 @@ export namespace transcoder_v1 {
      * The configuration for this template.
      */
     config?: Schema$JobConfig;
+    /**
+     * The labels associated with this job template. You can use these to organize and group your job templates.
+     */
+    labels?: {[key: string]: string} | null;
     /**
      * The resource name of the job template. Format: `projects/{project_number\}/locations/{location\}/jobTemplates/{job_template\}`
      */
@@ -1094,6 +1102,7 @@ export namespace transcoder_v1 {
      *       //   "endTime": "my_endTime",
      *       //   "error": {},
      *       //   "inputUri": "my_inputUri",
+     *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "outputUri": "my_outputUri",
      *       //   "startTime": "my_startTime",
@@ -1112,6 +1121,7 @@ export namespace transcoder_v1 {
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "inputUri": "my_inputUri",
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "outputUri": "my_outputUri",
      *   //   "startTime": "my_startTime",
@@ -1374,6 +1384,7 @@ export namespace transcoder_v1 {
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "inputUri": "my_inputUri",
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "outputUri": "my_outputUri",
      *   //   "startTime": "my_startTime",
@@ -1705,6 +1716,7 @@ export namespace transcoder_v1 {
      *       // request body parameters
      *       // {
      *       //   "config": {},
+     *       //   "labels": {},
      *       //   "name": "my_name"
      *       // }
      *     },
@@ -1714,6 +1726,7 @@ export namespace transcoder_v1 {
      *   // Example response
      *   // {
      *   //   "config": {},
+     *   //   "labels": {},
      *   //   "name": "my_name"
      *   // }
      * }
@@ -1970,6 +1983,7 @@ export namespace transcoder_v1 {
      *   // Example response
      *   // {
      *   //   "config": {},
+     *   //   "labels": {},
      *   //   "name": "my_name"
      *   // }
      * }
