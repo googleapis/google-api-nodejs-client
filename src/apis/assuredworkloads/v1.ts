@@ -353,6 +353,19 @@ export namespace assuredworkloads_v1 {
     workloads?: Schema$GoogleCloudAssuredworkloadsV1Workload[];
   }
   /**
+   * Request for restricting list of available resources in Workload environment.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesRequest {
+    /**
+     * Required. The type of restriction for using gcp products in the Workload environment.
+     */
+    restrictionType?: string | null;
+  }
+  /**
+   * Response for restricting the list of allowed resources.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse {}
+  /**
    * An Workload object for managing highly regulated workloads of cloud customers.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1Workload {
@@ -1831,6 +1844,155 @@ export namespace assuredworkloads_v1 {
         );
       }
     }
+
+    /**
+     * Restrict the list of resources allowed in the Workload environment. The current list of allowed products can be found at https://cloud.google.com/assured-workloads/docs/supported-products In addition to assuredworkloads.workload.update permission, the user should also have orgpolicy.policy.set permission on the folder resource to use this functionality.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const assuredworkloads = google.assuredworkloads('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await assuredworkloads.organizations.locations.workloads.restrictAllowedResources(
+     *       {
+     *         // Required. The resource name of the Workload. This is the workloads's relative path in the API, formatted as "organizations/{organization_id\}/locations/{location_id\}/workloads/{workload_id\}". For example, "organizations/123/locations/us-east1/workloads/assured-workload-1".
+     *         name: 'organizations/my-organization/locations/my-location/workloads/my-workload',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "restrictionType": "my_restrictionType"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    restrictAllowedResources(
+      params: Params$Resource$Organizations$Locations$Workloads$Restrictallowedresources,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    restrictAllowedResources(
+      params?: Params$Resource$Organizations$Locations$Workloads$Restrictallowedresources,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse>;
+    restrictAllowedResources(
+      params: Params$Resource$Organizations$Locations$Workloads$Restrictallowedresources,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    restrictAllowedResources(
+      params: Params$Resource$Organizations$Locations$Workloads$Restrictallowedresources,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse>
+    ): void;
+    restrictAllowedResources(
+      params: Params$Resource$Organizations$Locations$Workloads$Restrictallowedresources,
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse>
+    ): void;
+    restrictAllowedResources(
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse>
+    ): void;
+    restrictAllowedResources(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Workloads$Restrictallowedresources
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Workloads$Restrictallowedresources;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Workloads$Restrictallowedresources;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:restrictAllowedResources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Organizations$Locations$Workloads$Create
@@ -1901,5 +2063,17 @@ export namespace assuredworkloads_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudAssuredworkloadsV1Workload;
+  }
+  export interface Params$Resource$Organizations$Locations$Workloads$Restrictallowedresources
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Workload. This is the workloads's relative path in the API, formatted as "organizations/{organization_id\}/locations/{location_id\}/workloads/{workload_id\}". For example, "organizations/123/locations/us-east1/workloads/assured-workload-1".
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesRequest;
   }
 }
