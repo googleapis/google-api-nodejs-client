@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/file-v4.0.0...file-v4.0.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **file:** update the API ([5d6a856](https://github.com/googleapis/google-api-nodejs-client/commit/5d6a8569d617d8bc395d70d7e97eb56b3c09fe6c))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/file-v3.0.0...file-v4.0.0) (2022-06-15)
 
 

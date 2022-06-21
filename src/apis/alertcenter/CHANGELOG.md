@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/alertcenter-v6.0.0...alertcenter-v6.0.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **alertcenter:** update the API ([422d029](https://github.com/googleapis/google-api-nodejs-client/commit/422d02934eaa1b2313b4d6dbe3324cf11da56c79))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/alertcenter-v5.3.1...alertcenter-v6.0.0) (2022-06-15)
 
 

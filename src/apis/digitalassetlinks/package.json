@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/digitalassetlinks",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "digitalassetlinks",
   "main": "build/index.js",
   "types": "build/index.d.ts",

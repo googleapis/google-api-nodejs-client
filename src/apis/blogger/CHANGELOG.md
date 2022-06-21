@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/blogger-v0.3.0...blogger-v0.3.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **blogger:** update the API ([d9d44e6](https://github.com/googleapis/google-api-nodejs-client/commit/d9d44e6a7b94b0e61f16c76d28fa5ed1fe720524))
+
 ## [0.3.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/blogger-v0.2.0...blogger-v0.3.0) (2021-09-14)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.1](https://github.com/googleapis/google-api-nodejs-client/compare/vault-v0.6.0...vault-v0.6.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **vault:** update the API ([e5d8e82](https://github.com/googleapis/google-api-nodejs-client/commit/e5d8e8227464d6c52b3441606635da3c0381f80d))
+
 ## [0.6.0](https://github.com/googleapis/google-api-nodejs-client/compare/vault-v0.5.0...vault-v0.6.0) (2022-06-13)
 
 

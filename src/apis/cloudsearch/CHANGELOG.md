@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsearch-v2.0.0...cloudsearch-v2.0.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **cloudsearch:** update the API ([cea5797](https://github.com/googleapis/google-api-nodejs-client/commit/cea57975e8ee3ccc64ccfcff38d73d5088dab52b))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsearch-v1.1.0...cloudsearch-v2.0.0) (2022-06-15)
 
 

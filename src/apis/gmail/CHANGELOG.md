@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.4](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v0.3.3...gmail-v0.3.4) (2022-06-21)
+
+
+### Bug Fixes
+
+* **gmail:** update the API ([92cc465](https://github.com/googleapis/google-api-nodejs-client/commit/92cc46533a1c555da161f856c4e82709ebced078))
+
 ### [0.3.3](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v0.3.2...gmail-v0.3.3) (2022-04-11)
 
 

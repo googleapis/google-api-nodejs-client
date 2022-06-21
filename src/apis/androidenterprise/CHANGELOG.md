@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v0.5.0...androidenterprise-v0.5.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **androidenterprise:** update the API ([d46e9b3](https://github.com/googleapis/google-api-nodejs-client/commit/d46e9b37c482199827458c18149ff93ad582063a))
+
 ## [0.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v0.4.0...androidenterprise-v0.5.0) (2022-06-13)
 
 

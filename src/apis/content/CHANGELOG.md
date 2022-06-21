@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/content-v7.0.0...content-v7.0.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **content:** update the API ([8ef2d03](https://github.com/googleapis/google-api-nodejs-client/commit/8ef2d031020f010a94084356a6ecfb8ba059c68d))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v6.2.0...content-v7.0.0) (2022-06-15)
 
 

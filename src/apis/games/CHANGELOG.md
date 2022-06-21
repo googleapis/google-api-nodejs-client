@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/games-v4.0.0...games-v4.0.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **games:** update the API ([8720aaa](https://github.com/googleapis/google-api-nodejs-client/commit/8720aaa9596f38eff45f43ac4c9c26d4fcaae968))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/games-v3.2.0...games-v4.0.0) (2022-06-15)
 
 

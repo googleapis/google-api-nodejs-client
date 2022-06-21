@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/androiddeviceprovisioning-v2.0.2...androiddeviceprovisioning-v2.0.3) (2022-06-21)
+
+
+### Bug Fixes
+
+* **androiddeviceprovisioning:** update the API ([929f080](https://github.com/googleapis/google-api-nodejs-client/commit/929f080e272d8404ee0c7500f3e70db29f00ae53))
+
 ### [2.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/androiddeviceprovisioning-v2.0.1...androiddeviceprovisioning-v2.0.2) (2022-03-23)
 
 
