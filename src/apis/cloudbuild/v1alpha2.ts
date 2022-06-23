@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -583,23 +582,6 @@ export namespace cloudbuild_v1alpha2 {
     githubEnterpriseConfig?: string | null;
   }
   /**
-   * Metadata for `CreateGitLabConfig` operation.
-   */
-  export interface Schema$CreateGitLabConfigOperationMetadata {
-    /**
-     * Time the operation was completed.
-     */
-    completeTime?: string | null;
-    /**
-     * Time the operation was created.
-     */
-    createTime?: string | null;
-    /**
-     * The resource name of the GitLabConfig to be created. Format: `projects/{project\}/locations/{location\}/gitlabConfigs/{id\}`.
-     */
-    gitlabConfig?: string | null;
-  }
-  /**
    * Metadata for the `CreateWorkerPool` operation.
    */
   export interface Schema$CreateWorkerPoolOperationMetadata {
@@ -651,23 +633,6 @@ export namespace cloudbuild_v1alpha2 {
     githubEnterpriseConfig?: string | null;
   }
   /**
-   * Metadata for `DeleteGitLabConfig` operation.
-   */
-  export interface Schema$DeleteGitLabConfigOperationMetadata {
-    /**
-     * Time the operation was completed.
-     */
-    completeTime?: string | null;
-    /**
-     * Time the operation was created.
-     */
-    createTime?: string | null;
-    /**
-     * The resource name of the GitLabConfig to be created. Format: `projects/{project\}/locations/{location\}/gitlabConfigs/{id\}`.
-     */
-    gitlabConfig?: string | null;
-  }
-  /**
    * Metadata for the `DeleteWorkerPool` operation.
    */
   export interface Schema$DeleteWorkerPoolOperationMetadata {
@@ -685,7 +650,7 @@ export namespace cloudbuild_v1alpha2 {
     workerPool?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -1285,23 +1250,6 @@ export namespace cloudbuild_v1alpha2 {
      * The resource name of the GitHubEnterprise to be updated. Format: `projects/{project\}/locations/{location\}/githubEnterpriseConfigs/{id\}`.
      */
     githubEnterpriseConfig?: string | null;
-  }
-  /**
-   * Metadata for `UpdateGitLabConfig` operation.
-   */
-  export interface Schema$UpdateGitLabConfigOperationMetadata {
-    /**
-     * Time the operation was completed.
-     */
-    completeTime?: string | null;
-    /**
-     * Time the operation was created.
-     */
-    createTime?: string | null;
-    /**
-     * The resource name of the GitLabConfig to be created. Format: `projects/{project\}/locations/{location\}/gitlabConfigs/{id\}`.
-     */
-    gitlabConfig?: string | null;
   }
   /**
    * Metadata for the `UpdateWorkerPool` operation.

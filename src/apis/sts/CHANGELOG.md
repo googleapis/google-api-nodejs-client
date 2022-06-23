@@ -1,5 +1,26 @@
 # Changelog
 
+## [2.1.5](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v2.1.4...sts-v2.1.5) (2022-06-21)
+
+
+### Bug Fixes
+
+* **sts:** update the API ([0282563](https://github.com/googleapis/google-api-nodejs-client/commit/0282563d9d2cbca9286365f80aa5833e68fa7fe6))
+
+## [2.1.4](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v2.1.3...sts-v2.1.4) (2022-06-13)
+
+
+### Bug Fixes
+
+* **sts:** update the API ([32a5ce0](https://github.com/googleapis/google-api-nodejs-client/commit/32a5ce0ce0bfda7775ae88a218d0edb46dace38d))
+
+### [2.1.3](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v2.1.2...sts-v2.1.3) (2022-04-11)
+
+
+### Bug Fixes
+
+* **sts:** update the API ([3bf6a7d](https://github.com/googleapis/google-api-nodejs-client/commit/3bf6a7d0f201a4c6c14dd97764a86c5a726ed2da))
+
 ### [2.1.2](https://www.github.com/googleapis/google-api-nodejs-client/compare/sts-v2.1.1...sts-v2.1.2) (2021-11-25)
 
 

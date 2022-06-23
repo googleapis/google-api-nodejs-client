@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -126,6 +125,44 @@ export namespace artifactregistry_v1 {
   }
 
   /**
+   * A detailed representation of an Apt artifact. Information in the record is derived from the archive's control file. See https://www.debian.org/doc/debian-policy/ch-controlfields.html
+   */
+  export interface Schema$AptArtifact {
+    /**
+     * Output only. Operating system architecture of the artifact.
+     */
+    architecture?: string | null;
+    /**
+     * Output only. Repository component of the artifact.
+     */
+    component?: string | null;
+    /**
+     * Output only. Contents of the artifact's control metadata file.
+     */
+    controlFile?: string | null;
+    /**
+     * Output only. The Artifact Registry resource name of the artifact.
+     */
+    name?: string | null;
+    /**
+     * Output only. The Apt package name of the artifact.
+     */
+    packageName?: string | null;
+    /**
+     * Output only. An artifact is a binary or source package.
+     */
+    packageType?: string | null;
+  }
+  /**
+   * The metadata of an LRO from deleting multiple versions.
+   */
+  export interface Schema$BatchDeleteVersionsMetadata {
+    /**
+     * The versions the operation failed to delete.
+     */
+    failedVersions?: string[] | null;
+  }
+  /**
    * Associates `members`, or principals, with a `role`.
    */
   export interface Schema$Binding {
@@ -134,7 +171,7 @@ export namespace artifactregistry_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -176,7 +213,7 @@ export namespace artifactregistry_v1 {
     uri?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -243,6 +280,19 @@ export namespace artifactregistry_v1 {
     value?: string | null;
   }
   /**
+   * Error information explaining why a package was not imported.
+   */
+  export interface Schema$ImportAptArtifactsErrorInfo {
+    /**
+     * The detailed error status.
+     */
+    error?: Schema$Status;
+    /**
+     * Google Cloud Storage location requested.
+     */
+    gcsSource?: Schema$ImportAptArtifactsGcsSource;
+  }
+  /**
    * Google Cloud Storage location where the artifacts currently reside.
    */
   export interface Schema$ImportAptArtifactsGcsSource {
@@ -256,6 +306,10 @@ export namespace artifactregistry_v1 {
     useWildcards?: boolean | null;
   }
   /**
+   * The operation metadata for importing artifacts.
+   */
+  export interface Schema$ImportAptArtifactsMetadata {}
+  /**
    * The request to import new apt artifacts.
    */
   export interface Schema$ImportAptArtifactsRequest {
@@ -263,6 +317,32 @@ export namespace artifactregistry_v1 {
      * Google Cloud Storage location where input content is located.
      */
     gcsSource?: Schema$ImportAptArtifactsGcsSource;
+  }
+  /**
+   * The response message from importing APT artifacts.
+   */
+  export interface Schema$ImportAptArtifactsResponse {
+    /**
+     * The Apt artifacts imported.
+     */
+    aptArtifacts?: Schema$AptArtifact[];
+    /**
+     * Detailed error info for packages that were not imported.
+     */
+    errors?: Schema$ImportAptArtifactsErrorInfo[];
+  }
+  /**
+   * Error information explaining why a package was not imported.
+   */
+  export interface Schema$ImportYumArtifactsErrorInfo {
+    /**
+     * The detailed error status.
+     */
+    error?: Schema$Status;
+    /**
+     * Google Cloud Storage location requested.
+     */
+    gcsSource?: Schema$ImportYumArtifactsGcsSource;
   }
   /**
    * Google Cloud Storage location where the artifacts currently reside.
@@ -278,6 +358,10 @@ export namespace artifactregistry_v1 {
     useWildcards?: boolean | null;
   }
   /**
+   * The operation metadata for importing artifacts.
+   */
+  export interface Schema$ImportYumArtifactsMetadata {}
+  /**
    * The request to import new yum artifacts.
    */
   export interface Schema$ImportYumArtifactsRequest {
@@ -285,6 +369,19 @@ export namespace artifactregistry_v1 {
      * Google Cloud Storage location where input content is located.
      */
     gcsSource?: Schema$ImportYumArtifactsGcsSource;
+  }
+  /**
+   * The response message from importing YUM artifacts.
+   */
+  export interface Schema$ImportYumArtifactsResponse {
+    /**
+     * Detailed error info for packages that were not imported.
+     */
+    errors?: Schema$ImportYumArtifactsErrorInfo[];
+    /**
+     * The yum artifacts imported.
+     */
+    yumArtifacts?: Schema$YumArtifact[];
   }
   /**
    * The response from listing docker images.
@@ -309,6 +406,19 @@ export namespace artifactregistry_v1 {
     files?: Schema$GoogleDevtoolsArtifactregistryV1File[];
     /**
      * The token to retrieve the next page of files, or empty if there are no more files to return.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * The response message for Locations.ListLocations.
+   */
+  export interface Schema$ListLocationsResponse {
+    /**
+     * A list of locations that matches the specified filter in the request.
+     */
+    locations?: Schema$Location[];
+    /**
+     * The standard List next-page token.
      */
     nextPageToken?: string | null;
   }
@@ -365,6 +475,31 @@ export namespace artifactregistry_v1 {
     versions?: Schema$Version[];
   }
   /**
+   * A resource that represents Google Cloud Platform location.
+   */
+  export interface Schema$Location {
+    /**
+     * The friendly name for this location, typically a nearby city name. For example, "Tokyo".
+     */
+    displayName?: string | null;
+    /**
+     * Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"\}
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * The canonical id for this location. For example: `"us-east1"`.
+     */
+    locationId?: string | null;
+    /**
+     * Service-specific metadata. For example the available capacity at the given location.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
+     */
+    name?: string | null;
+  }
+  /**
    * MavenRepositoryConfig is maven related repository details. Provides additional configuration details for repositories of the maven format type.
    */
   export interface Schema$MavenRepositoryConfig {
@@ -402,6 +537,10 @@ export namespace artifactregistry_v1 {
      */
     response?: {[key: string]: any} | null;
   }
+  /**
+   * Metadata type for longrunning-operations, currently empty.
+   */
+  export interface Schema$OperationMetadata {}
   /**
    * Packages are named collections of versions.
    */
@@ -486,6 +625,10 @@ export namespace artifactregistry_v1 {
      */
     name?: string | null;
     /**
+     * Output only. The size, in bytes, of all artifact storage in this repository. Repositories that are generally available or in public preview use this to calculate storage costs.
+     */
+    sizeBytes?: string | null;
+    /**
      * The time when the repository was last updated.
      */
     updateTime?: string | null;
@@ -495,7 +638,7 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$SetIamPolicyRequest {
     /**
-     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
+     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
   }
@@ -534,7 +677,7 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[] | null;
   }
@@ -557,9 +700,22 @@ export namespace artifactregistry_v1 {
     operation?: Schema$Operation;
   }
   /**
+   * The operation metadata for uploading artifacts.
+   */
+  export interface Schema$UploadAptArtifactMetadata {}
+  /**
    * The request to upload an artifact.
    */
   export interface Schema$UploadAptArtifactRequest {}
+  /**
+   * The response of the completed artifact upload operation. This response is contained in the Operation and available to users.
+   */
+  export interface Schema$UploadAptArtifactResponse {
+    /**
+     * The Apt artifacts updated.
+     */
+    aptArtifacts?: Schema$AptArtifact[];
+  }
   /**
    * The response to upload an artifact.
    */
@@ -570,9 +726,22 @@ export namespace artifactregistry_v1 {
     operation?: Schema$Operation;
   }
   /**
+   * The operation metadata for uploading artifacts.
+   */
+  export interface Schema$UploadYumArtifactMetadata {}
+  /**
    * The request to upload an artifact.
    */
   export interface Schema$UploadYumArtifactRequest {}
+  /**
+   * The response of the completed artifact upload operation. This response is contained in the Operation and available to users.
+   */
+  export interface Schema$UploadYumArtifactResponse {
+    /**
+     * The Apt artifacts updated.
+     */
+    yumArtifacts?: Schema$YumArtifact[];
+  }
   /**
    * The body of a version resource. A version resource represents a collection of components, such as files and other data. This may correspond to a version in many package management schemes.
    */
@@ -601,6 +770,27 @@ export namespace artifactregistry_v1 {
      * The time when the version was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * A detailed representation of a Yum artifact.
+   */
+  export interface Schema$YumArtifact {
+    /**
+     * Output only. Operating system architecture of the artifact.
+     */
+    architecture?: string | null;
+    /**
+     * Output only. The Artifact Registry resource name of the artifact.
+     */
+    name?: string | null;
+    /**
+     * Output only. The yum package name of the artifact.
+     */
+    packageName?: string | null;
+    /**
+     * Output only. An artifact is a binary or source package.
+     */
+    packageType?: string | null;
   }
 
   export class Resource$Projects {
@@ -923,6 +1113,312 @@ export namespace artifactregistry_v1 {
         this.context
       );
     }
+
+    /**
+     * Gets information about a location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await artifactregistry.projects.locations.get({
+     *     // Resource name for the location.
+     *     name: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "locationId": "my_locationId",
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Location>;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Location>,
+      callback: BodyResponseCallback<Schema$Location>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      callback: BodyResponseCallback<Schema$Location>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Location>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Get
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Location>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Location>(parameters);
+      }
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await artifactregistry.projects.locations.list({
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     filter: 'placeholder-value',
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'projects/my-project',
+     *     // The maximum number of results to return. If not set, the service selects a default.
+     *     pageSize: 'placeholder-value',
+     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLocationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$List,
+      callback: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$List
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLocationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/locations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListLocationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListLocationsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Get
+    extends StandardParameters {
+    /**
+     * Resource name for the location.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$List
+    extends StandardParameters {
+    /**
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     */
+    filter?: string;
+    /**
+     * The resource that owns the locations collection, if applicable.
+     */
+    name?: string;
+    /**
+     * The maximum number of results to return. If not set, the service selects a default.
+     */
+    pageSize?: number;
+    /**
+     * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
+     */
+    pageToken?: string;
   }
 
   export class Resource$Projects$Locations$Operations {
@@ -1140,6 +1636,7 @@ export namespace artifactregistry_v1 {
      *       //   "labels": {},
      *       //   "mavenConfig": {},
      *       //   "name": "my_name",
+     *       //   "sizeBytes": "my_sizeBytes",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -1423,6 +1920,7 @@ export namespace artifactregistry_v1 {
      *   //   "labels": {},
      *   //   "mavenConfig": {},
      *   //   "name": "my_name",
+     *   //   "sizeBytes": "my_sizeBytes",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -1549,7 +2047,7 @@ export namespace artifactregistry_v1 {
      *     await artifactregistry.projects.locations.repositories.getIamPolicy({
      *       // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/repositories/my-repositorie',
      *     });
@@ -1842,6 +2340,7 @@ export namespace artifactregistry_v1 {
      *       //   "labels": {},
      *       //   "mavenConfig": {},
      *       //   "name": "my_name",
+     *       //   "sizeBytes": "my_sizeBytes",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -1857,6 +2356,7 @@ export namespace artifactregistry_v1 {
      *   //   "labels": {},
      *   //   "mavenConfig": {},
      *   //   "name": "my_name",
+     *   //   "sizeBytes": "my_sizeBytes",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -1978,7 +2478,7 @@ export namespace artifactregistry_v1 {
      *   // Do the magic
      *   const res =
      *     await artifactregistry.projects.locations.repositories.setIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/repositories/my-repositorie',
      *
@@ -2124,7 +2624,7 @@ export namespace artifactregistry_v1 {
      *   // Do the magic
      *   const res =
      *     await artifactregistry.projects.locations.repositories.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/repositories/my-repositorie',
      *
@@ -2282,7 +2782,7 @@ export namespace artifactregistry_v1 {
      */
     'options.requestedPolicyVersion'?: number;
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -2320,7 +2820,7 @@ export namespace artifactregistry_v1 {
   export interface Params$Resource$Projects$Locations$Repositories$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -2332,7 +2832,7 @@ export namespace artifactregistry_v1 {
   export interface Params$Resource$Projects$Locations$Repositories$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 

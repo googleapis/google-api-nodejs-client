@@ -1,5 +1,55 @@
 # Changelog
 
+## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/run-v10.0.0...run-v10.0.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **run:** update the API ([c426924](https://github.com/googleapis/google-api-nodejs-client/commit/c426924d75dee0e3e5196bb97cc5fd7450f86f4d))
+
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v9.0.0...run-v10.0.0) (2022-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#2971](https://github.com/googleapis/google-api-nodejs-client/issues/2971)) ([adddf01](https://github.com/googleapis/google-api-nodejs-client/commit/adddf018e7cb73adab7341053dd80d72c5a6248d))
+
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v8.1.0...run-v9.0.0) (2022-06-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* **run:** This release has breaking changes.
+
+### Features
+
+* **run:** update the API ([77e7a57](https://github.com/googleapis/google-api-nodejs-client/commit/77e7a5795e9ee0f648fa78d1dd9862f37ce7892e))
+
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v8.0.2...run-v8.1.0) (2022-04-11)
+
+
+### Features
+
+* **run:** update the API ([8c067c5](https://github.com/googleapis/google-api-nodejs-client/commit/8c067c51842e1b103c814a1617ced020222c9609))
+
+### [8.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/run-v8.0.1...run-v8.0.2) (2022-04-01)
+
+
+### Bug Fixes
+
+* **run:** update the API ([8a6b80f](https://github.com/googleapis/google-api-nodejs-client/commit/8a6b80f0b0ff9f840595cb3a193ffecec5c6f94d))
+
+### [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/run-v8.0.0...run-v8.0.1) (2022-03-25)
+
+
+### Bug Fixes
+
+* **run:** update the API ([7b981bf](https://github.com/googleapis/google-api-nodejs-client/commit/7b981bfaa89206d5e11fe06c955eba5ea7924d18))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v7.0.1...run-v8.0.0) (2022-03-14)
 
 

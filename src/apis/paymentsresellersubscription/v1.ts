@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -204,6 +203,33 @@ export namespace paymentsresellersubscription_v1 {
      */
     partnerUserToken?: string | null;
   }
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsRequest {
+    /**
+     * Optional. Specifies the filters for the promotion results. The syntax defined in the EBNF grammar: https://google.aip.dev/assets/misc/ebnf-filtering.txt. An error will be thrown if any specified parameter is not supported. Currently, it can only be used by Youtube partners. Allowed parameters are: - regionCodes - zipCode - eligibilityId - applicableProducts Multiple parameters can be specified, for example: "regionCodes=US zipCode=94043 eligibilityId=2022H1Campaign", or "applicableProducts=partners/p1/products/product2"
+     */
+    filter?: string | null;
+    /**
+     * Optional. The maximum number of promotions to return. The service may return fewer than this value. If unspecified, at most 50 products will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number | null;
+    /**
+     * Optional. A page token, received from a previous `ListPromotions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPromotions` must match the call that provided the page token.
+     */
+    pageToken?: string | null;
+  }
+  /**
+   * Response containing the found promotions for the current user.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is empty, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The promotions for the current user.
+     */
+    promotions?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Promotion[];
+  }
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse {
     /**
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is empty, there are no subsequent pages.
@@ -342,6 +368,10 @@ export namespace paymentsresellersubscription_v1 {
      */
     freeTrialEndTime?: string | null;
     /**
+     * Required. The line items of the subscription.
+     */
+    lineItems?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem[];
+    /**
      * Output only. Response only. Resource name of the subscription. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}"
      */
     name?: string | null;
@@ -354,13 +384,17 @@ export namespace paymentsresellersubscription_v1 {
      */
     processingState?: string | null;
     /**
-     * Required. Required. Resource name that identifies the purchased products. The format will be 'partners/{partner_id\}/products/{product_id\}'.
+     * Required. Deprecated: consider using `line_items` as the input. Required. Resource name that identifies the purchased products. The format will be 'partners/{partner_id\}/products/{product_id\}'.
      */
     products?: string[] | null;
     /**
-     * Optional. Optional. Resource name that identifies one or more promotions that can be applied on the product. A typical promotion for a subscription is Free trial. The format will be 'partners/{partner_id\}/promotions/{promotion_id\}'.
+     * Optional. Deprecated: consider using the top-level `promotion_specs` as the input. Optional. Resource name that identifies one or more promotions that can be applied on the product. A typical promotion for a subscription is Free trial. The format will be 'partners/{partner_id\}/promotions/{promotion_id\}'.
      */
     promotions?: string[] | null;
+    /**
+     * Optional. Subscription-level promotions. Only free trial is supported on this level. It determines the first renewal time of the subscription to be the end of the free trial period. Specify the promotion resource name only when used as input.
+     */
+    promotionSpecs?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionPromotionSpec[];
     /**
      * Output only. The place where partners should redirect the end-user to after creation. This field might also be populated when creation failed. However, Partners should always prepare a default URL to redirect the user in case this field is empty.
      */
@@ -394,6 +428,52 @@ export namespace paymentsresellersubscription_v1 {
      * The reason of the cancellation.
      */
     reason?: string | null;
+  }
+  /**
+   * Individual line item definition of a subscription. Next id: 6
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem {
+    /**
+     * Output only. Description of this line item.
+     */
+    description?: string | null;
+    /**
+     * Output only. It is set only if the line item has its own free trial applied. End time of the line item free trial period, in ISO 8061 format. For example, "2019-08-31T17:28:54.564Z". It will be set the same as createTime if no free trial promotion is specified.
+     */
+    lineItemFreeTrialEndTime?: string | null;
+    /**
+     * Optional. The promotions applied on the line item. It can be: - a free trial promotion, which overrides the subscription-level free trial promotion. - an introductory pricing promotion. When used as input in Create or Provision API, specify its resource name only.
+     */
+    lineItemPromotionSpecs?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionPromotionSpec[];
+    /**
+     * Required. Product resource name that identifies one the line item The format is 'partners/{partner_id\}/products/{product_id\}'.
+     */
+    product?: string | null;
+    /**
+     * Output only. The state of the line item.
+     */
+    state?: string | null;
+  }
+  /**
+   * Describes the spec for one promotion.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionPromotionSpec {
+    /**
+     * Output only. The duration of the free trial if the promotion is of type FREE_TRIAL.
+     */
+    freeTrialDuration?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Duration;
+    /**
+     * Output only. The details of the introductory pricing spec if the promotion is of type INTRODUCTORY_PRICING.
+     */
+    introductoryPricingDetails?: Schema$GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetails;
+    /**
+     * Required. Promotion resource name that identifies a promotion. The format is 'partners/{partner_id\}/promotions/{promotion_id\}'.
+     */
+    promotion?: string | null;
+    /**
+     * Output only. The type of the promotion for the spec.
+     */
+    type?: string | null;
   }
   /**
    * Details about the previous subscription that this new subscription upgrades/downgrades from.
@@ -455,7 +535,7 @@ export namespace paymentsresellersubscription_v1 {
     }
 
     /**
-     * Used by partners to list products that can be resold to their customers. It should be called directly by the partner using service accounts.
+     * To retrieve the products that can be resold by the partner. It should be autenticated with a service account.
      * @example
      * ```js
      * // Before running the sample:
@@ -481,6 +561,8 @@ export namespace paymentsresellersubscription_v1 {
      *
      *   // Do the magic
      *   const res = await paymentsresellersubscription.partners.products.list({
+     *     // Optional. Specifies the filters for the products results. The syntax defined in the EBNF grammar: https://google.aip.dev/assets/misc/ebnf-filtering.txt. An error will be thrown if any specified parameter is not supported. Currently, it can only be used by Youtube partners. Allowed parameters are: - regionCodes - zipCode - eligibilityId Multiple parameters can be specified, for example: "regionCodes=US zipCode=94043 eligibilityId=2022H1Campaign"
+     *     filter: 'placeholder-value',
      *     // Optional. The maximum number of products to return. The service may return fewer than this value. If unspecified, at most 50 products will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token, received from a previous `ListProducts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListProducts` must match the call that provided the page token.
@@ -603,6 +685,10 @@ export namespace paymentsresellersubscription_v1 {
   export interface Params$Resource$Partners$Products$List
     extends StandardParameters {
     /**
+     * Optional. Specifies the filters for the products results. The syntax defined in the EBNF grammar: https://google.aip.dev/assets/misc/ebnf-filtering.txt. An error will be thrown if any specified parameter is not supported. Currently, it can only be used by Youtube partners. Allowed parameters are: - regionCodes - zipCode - eligibilityId Multiple parameters can be specified, for example: "regionCodes=US zipCode=94043 eligibilityId=2022H1Campaign"
+     */
+    filter?: string;
+    /**
      * Optional. The maximum number of products to return. The service may return fewer than this value. If unspecified, at most 50 products will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
@@ -623,7 +709,159 @@ export namespace paymentsresellersubscription_v1 {
     }
 
     /**
-     * Used by partners to list promotions, such as free trial, that can be applied on subscriptions. It should be called directly by the partner using service accounts.
+     * To find eligible promotions for the current user. The API requires user authorization via OAuth. The user is inferred from the authenticated OAuth credential.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/paymentsresellersubscription.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const paymentsresellersubscription = google.paymentsresellersubscription('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await paymentsresellersubscription.partners.promotions.findEligible({
+     *       // Required. The parent, the partner that can resell. Format: partners/{partner\}
+     *       parent: 'partners/my-partner',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "filter": "my_filter",
+     *         //   "pageSize": 0,
+     *         //   "pageToken": "my_pageToken"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "promotions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    findEligible(
+      params: Params$Resource$Partners$Promotions$Findeligible,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    findEligible(
+      params?: Params$Resource$Partners$Promotions$Findeligible,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>;
+    findEligible(
+      params: Params$Resource$Partners$Promotions$Findeligible,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    findEligible(
+      params: Params$Resource$Partners$Promotions$Findeligible,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>
+    ): void;
+    findEligible(
+      params: Params$Resource$Partners$Promotions$Findeligible,
+      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>
+    ): void;
+    findEligible(
+      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>
+    ): void;
+    findEligible(
+      paramsOrCallback?:
+        | Params$Resource$Partners$Promotions$Findeligible
+        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Partners$Promotions$Findeligible;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Partners$Promotions$Findeligible;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl ||
+        'https://paymentsresellersubscription.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/promotions:findEligible').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * To retrieve the promotions, such as free trial, that can be used by the partner. It should be autenticated with a service account.
      * @example
      * ```js
      * // Before running the sample:
@@ -649,7 +887,7 @@ export namespace paymentsresellersubscription_v1 {
      *
      *   // Do the magic
      *   const res = await paymentsresellersubscription.partners.promotions.list({
-     *     // Optional. Specifies the filters for the promotion results. The syntax defined in the EBNF grammar: https://google.aip.dev/assets/misc/ebnf-filtering.txt. Examples: - applicable_products: "sku1" - region_codes: "US" - applicable_products: "sku1" AND region_codes: "US"
+     *     // Optional. Specifies the filters for the promotion results. The syntax defined in the EBNF grammar: https://google.aip.dev/assets/misc/ebnf-filtering.txt. An error will be thrown if the specified parameter(s) is not supported. Currently, it can only be used by Youtube partners. Allowed parameters are: - region_codes: "US" - zip_code: "94043" - eligibility_id: "2022H1Campaign" Multiple parameters can be specified, for example: "region_codes=US zip_code=94043 eligibility_id=2022H1Campaign"
      *     filter: 'placeholder-value',
      *     // Optional. The maximum number of promotions to return. The service may return fewer than this value. If unspecified, at most 50 products will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
@@ -770,10 +1008,22 @@ export namespace paymentsresellersubscription_v1 {
     }
   }
 
+  export interface Params$Resource$Partners$Promotions$Findeligible
+    extends StandardParameters {
+    /**
+     * Required. The parent, the partner that can resell. Format: partners/{partner\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsRequest;
+  }
   export interface Params$Resource$Partners$Promotions$List
     extends StandardParameters {
     /**
-     * Optional. Specifies the filters for the promotion results. The syntax defined in the EBNF grammar: https://google.aip.dev/assets/misc/ebnf-filtering.txt. Examples: - applicable_products: "sku1" - region_codes: "US" - applicable_products: "sku1" AND region_codes: "US"
+     * Optional. Specifies the filters for the promotion results. The syntax defined in the EBNF grammar: https://google.aip.dev/assets/misc/ebnf-filtering.txt. An error will be thrown if the specified parameter(s) is not supported. Currently, it can only be used by Youtube partners. Allowed parameters are: - region_codes: "US" - zip_code: "94043" - eligibility_id: "2022H1Campaign" Multiple parameters can be specified, for example: "region_codes=US zip_code=94043 eligibility_id=2022H1Campaign"
      */
     filter?: string;
     /**
@@ -983,10 +1233,12 @@ export namespace paymentsresellersubscription_v1 {
      *       //   "cycleEndTime": "my_cycleEndTime",
      *       //   "endUserEntitled": false,
      *       //   "freeTrialEndTime": "my_freeTrialEndTime",
+     *       //   "lineItems": [],
      *       //   "name": "my_name",
      *       //   "partnerUserToken": "my_partnerUserToken",
      *       //   "processingState": "my_processingState",
      *       //   "products": [],
+     *       //   "promotionSpecs": [],
      *       //   "promotions": [],
      *       //   "redirectUri": "my_redirectUri",
      *       //   "renewalTime": "my_renewalTime",
@@ -1006,10 +1258,12 @@ export namespace paymentsresellersubscription_v1 {
      *   //   "cycleEndTime": "my_cycleEndTime",
      *   //   "endUserEntitled": false,
      *   //   "freeTrialEndTime": "my_freeTrialEndTime",
+     *   //   "lineItems": [],
      *   //   "name": "my_name",
      *   //   "partnerUserToken": "my_partnerUserToken",
      *   //   "processingState": "my_processingState",
      *   //   "products": [],
+     *   //   "promotionSpecs": [],
      *   //   "promotions": [],
      *   //   "redirectUri": "my_redirectUri",
      *   //   "renewalTime": "my_renewalTime",
@@ -1457,10 +1711,12 @@ export namespace paymentsresellersubscription_v1 {
      *   //   "cycleEndTime": "my_cycleEndTime",
      *   //   "endUserEntitled": false,
      *   //   "freeTrialEndTime": "my_freeTrialEndTime",
+     *   //   "lineItems": [],
      *   //   "name": "my_name",
      *   //   "partnerUserToken": "my_partnerUserToken",
      *   //   "processingState": "my_processingState",
      *   //   "products": [],
+     *   //   "promotionSpecs": [],
      *   //   "promotions": [],
      *   //   "redirectUri": "my_redirectUri",
      *   //   "renewalTime": "my_renewalTime",
@@ -1612,10 +1868,12 @@ export namespace paymentsresellersubscription_v1 {
      *         //   "cycleEndTime": "my_cycleEndTime",
      *         //   "endUserEntitled": false,
      *         //   "freeTrialEndTime": "my_freeTrialEndTime",
+     *         //   "lineItems": [],
      *         //   "name": "my_name",
      *         //   "partnerUserToken": "my_partnerUserToken",
      *         //   "processingState": "my_processingState",
      *         //   "products": [],
+     *         //   "promotionSpecs": [],
      *         //   "promotions": [],
      *         //   "redirectUri": "my_redirectUri",
      *         //   "renewalTime": "my_renewalTime",
@@ -1635,10 +1893,12 @@ export namespace paymentsresellersubscription_v1 {
      *   //   "cycleEndTime": "my_cycleEndTime",
      *   //   "endUserEntitled": false,
      *   //   "freeTrialEndTime": "my_freeTrialEndTime",
+     *   //   "lineItems": [],
      *   //   "name": "my_name",
      *   //   "partnerUserToken": "my_partnerUserToken",
      *   //   "processingState": "my_processingState",
      *   //   "products": [],
+     *   //   "promotionSpecs": [],
      *   //   "promotions": [],
      *   //   "redirectUri": "my_redirectUri",
      *   //   "renewalTime": "my_renewalTime",

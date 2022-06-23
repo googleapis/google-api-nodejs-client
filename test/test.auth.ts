@@ -155,8 +155,11 @@ describe(__filename, () => {
         CLIENT_SECRET,
         REDIRECT_URI
       );
-      await testNoTokens(localBlogger, oauth2client);
-      await testNoTokens(remoteBlogger, oauth2client);
+      await testNoTokens(localBlogger, oauth2client as unknown as OAuth2Client);
+      await testNoTokens(
+        remoteBlogger,
+        oauth2client as unknown as OAuth2Client
+      );
     });
 
     it('should not error if only refresh token is set', () => {
@@ -184,8 +187,11 @@ describe(__filename, () => {
         .get('/v3/blogs/abc123/pages')
         .times(2)
         .reply(200);
-      await testNoBearer(localBlogger, oauth2client);
-      await testNoBearer(remoteBlogger, oauth2client);
+      await testNoBearer(localBlogger, oauth2client as unknown as OAuth2Client);
+      await testNoBearer(
+        remoteBlogger,
+        oauth2client as unknown as OAuth2Client
+      );
       scope.done();
     });
 
@@ -205,7 +211,11 @@ describe(__filename, () => {
         refresh_token: 'abc',
         expiry_date: twoSecondsAgo,
       };
-      await testExpired(localDrive, oauth2client, now);
+      await testExpired(
+        localDrive,
+        oauth2client as unknown as OAuth2Client,
+        now
+      );
       oauth2client = new googleapis.auth.OAuth2(
         CLIENT_ID,
         CLIENT_SECRET,
@@ -217,7 +227,11 @@ describe(__filename, () => {
         refresh_token: 'abc',
         expiry_date: twoSecondsAgo,
       };
-      await testExpired(remoteDrive, oauth2client, now);
+      await testExpired(
+        remoteDrive,
+        oauth2client as unknown as OAuth2Client,
+        now
+      );
       scope.done();
     });
 
@@ -296,10 +310,18 @@ describe(__filename, () => {
       );
       let now = new Date().getTime();
       oauth2client.credentials = {refresh_token: 'abc'};
-      await testNoAccessToken(localDrive, oauth2client, now);
+      await testNoAccessToken(
+        localDrive,
+        oauth2client as unknown as OAuth2Client,
+        now
+      );
       now = new Date().getTime();
       oauth2client.credentials = {refresh_token: 'abc'};
-      await testNoAccessToken(remoteDrive, oauth2client, now);
+      await testNoAccessToken(
+        remoteDrive,
+        oauth2client as unknown as OAuth2Client,
+        now
+      );
       scope.done();
     });
 

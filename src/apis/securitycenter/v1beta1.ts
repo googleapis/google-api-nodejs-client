@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -197,7 +196,7 @@ export namespace securitycenter_v1beta1 {
     projectIds?: string[] | null;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -231,7 +230,7 @@ export namespace securitycenter_v1beta1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -243,6 +242,66 @@ export namespace securitycenter_v1beta1 {
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
+  /**
+   * Contains compliance information about a security standard indicating unmet recommendations.
+   */
+  export interface Schema$Compliance {
+    /**
+     * Policies within the standard/benchmark e.g. A.12.4.1
+     */
+    ids?: string[] | null;
+    /**
+     * Refers to industry wide standards or benchmarks e.g. "cis", "pci", "owasp", etc.
+     */
+    standard?: string | null;
+    /**
+     * Version of the standard/benchmark e.g. 1.1
+     */
+    version?: string | null;
+  }
+  /**
+   * Contains information about the IP connection associated with the finding.
+   */
+  export interface Schema$Connection {
+    /**
+     * Destination IP address. Not present for sockets that are listening and not connected.
+     */
+    destinationIp?: string | null;
+    /**
+     * Destination port. Not present for sockets that are listening and not connected.
+     */
+    destinationPort?: number | null;
+    /**
+     * IANA Internet Protocol Number such as TCP(6) and UDP(17).
+     */
+    protocol?: string | null;
+    /**
+     * Source IP address.
+     */
+    sourceIp?: string | null;
+    /**
+     * Source port.
+     */
+    sourcePort?: number | null;
+  }
+  /**
+   * Representa a single contact's email address
+   */
+  export interface Schema$Contact {
+    /**
+     * An email address e.g. "person123@company.com"
+     */
+    email?: string | null;
+  }
+  /**
+   * The details pertaining to specific contacts
+   */
+  export interface Schema$ContactDetails {
+    /**
+     * A list of contacts
+     */
+    contacts?: Schema$Contact[];
+  }
   /**
    * CVE stands for Common Vulnerabilities and Exposures. More information: https://cve.mitre.org
    */
@@ -306,9 +365,61 @@ export namespace securitycenter_v1beta1 {
     userInteraction?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * Memory hash detection contributing to the binary family match.
+   */
+  export interface Schema$Detection {
+    /**
+     * The name of the binary associated with the memory hash signature detection.
+     */
+    binary?: string | null;
+    /**
+     * The percentage of memory page hashes in the signature that were matched.
+     */
+    percentPagesMatched?: number | null;
+  }
+  /**
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * EnvironmentVariable is a name-value pair to store environment variables for Process.
+   */
+  export interface Schema$EnvironmentVariable {
+    /**
+     * Environment variable name as a JSON encoded string.
+     */
+    name?: string | null;
+    /**
+     * Environment variable value as a JSON encoded string.
+     */
+    val?: string | null;
+  }
+  /**
+   * Resource that has been exfiltrated or exfiltrated_to.
+   */
+  export interface Schema$ExfilResource {
+    /**
+     * Subcomponents of the asset that is exfiltrated - these could be URIs used during exfiltration, table names, databases, filenames, etc. For example, multiple tables may be exfiltrated from the same CloudSQL instance, or multiple files from the same Cloud Storage bucket.
+     */
+    components?: string[] | null;
+    /**
+     * Resource's URI (https://google.aip.dev/122#full-resource-names)
+     */
+    name?: string | null;
+  }
+  /**
+   * Exfiltration represents a data exfiltration attempt of one or more sources to one or more targets. Sources represent the source of data that is exfiltrated, and Targets represents the destination the data was copied to.
+   */
+  export interface Schema$Exfiltration {
+    /**
+     * If there are multiple sources, then the data is considered "joined" between them. For instance, BigQuery can join multiple tables, and each table would be considered a source.
+     */
+    sources?: Schema$ExfilResource[];
+    /**
+     * If there are multiple targets, each target would get a complete copy of the "joined" source data.
+     */
+    targets?: Schema$ExfilResource[];
+  }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
@@ -331,6 +442,35 @@ export namespace securitycenter_v1beta1 {
     title?: string | null;
   }
   /**
+   * File information about the related binary/library used by an executable, or the script used by a script interpreter
+   */
+  export interface Schema$File {
+    /**
+     * Prefix of the file contents as a JSON encoded string. (Currently only populated for Malicious Script Executed findings.)
+     */
+    contents?: string | null;
+    /**
+     * The length in bytes of the file prefix that was hashed. If hashed_size == size, any hashes reported represent the entire file.
+     */
+    hashedSize?: string | null;
+    /**
+     * True when the hash covers only a prefix of the file.
+     */
+    partiallyHashed?: boolean | null;
+    /**
+     * Absolute path of the file as a JSON encoded string.
+     */
+    path?: string | null;
+    /**
+     * SHA256 hash of the first hashed_size bytes of the file encoded as a hex string. If hashed_size == size, sha256 represents the SHA256 hash of the entire file.
+     */
+    sha256?: string | null;
+    /**
+     * Size of the file in bytes.
+     */
+    size?: string | null;
+  }
+  /**
    * Security Command Center finding. A finding is a record of assessment data like security, risk, health, or privacy, that is ingested into Security Command Center for presentation, notification, analysis, policy testing, and enforcement. For example, a cross-site scripting (XSS) vulnerability in an App Engine application is a finding.
    */
   export interface Schema$Finding {
@@ -347,13 +487,33 @@ export namespace securitycenter_v1beta1 {
      */
     category?: string | null;
     /**
+     * Contains compliance information for security standards associated to the finding.
+     */
+    compliances?: Schema$Compliance[];
+    /**
+     * Contains information about the IP connection associated with the finding.
+     */
+    connections?: Schema$Connection[];
+    /**
+     * Output only. Map containing the point of contacts for the given finding. The key represents the type of contact, while the value contains a list of all the contacts that pertain. Please refer to: https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories { “security”: {contact: {email: “person1@company.com”\} contact: {email: “person2@company.com”\} \}
+     */
+    contacts?: {[key: string]: Schema$ContactDetails} | null;
+    /**
      * The time at which the finding was created in Security Command Center.
      */
     createTime?: string | null;
     /**
+     * Contains more detail about the finding.
+     */
+    description?: string | null;
+    /**
      * The time the finding was first detected. If an existing finding is updated, then this is the time the update occurred. For example, if the finding represents an open firewall, this property captures the time the detector believes the firewall became open. The accuracy is determined by the detector. If the finding is later resolved, then this time reflects when the finding was resolved. This must not be set to a value greater than the current timestamp.
      */
     eventTime?: string | null;
+    /**
+     * Represents exfiltration associated with the Finding.
+     */
+    exfiltration?: Schema$Exfiltration;
     /**
      * Output only. Third party SIEM/SOAR fields within SCC, contains external system information and external system finding fields.
      */
@@ -369,6 +529,10 @@ export namespace securitycenter_v1beta1 {
      */
     findingClass?: string | null;
     /**
+     * Represents IAM bindings associated with the Finding.
+     */
+    iamBindings?: Schema$IamBinding[];
+    /**
      * Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
      */
     indicator?: Schema$Indicator;
@@ -377,7 +541,7 @@ export namespace securitycenter_v1beta1 {
      */
     mitreAttack?: Schema$MitreAttack;
     /**
-     * Indicates the mute state of a finding (either unspecified, muted, unmuted or undefined). Unlike other attributes of a finding, a finding provider shouldn't set the value of mute.
+     * Indicates the mute state of a finding (either muted, unmuted or undefined). Unlike other attributes of a finding, a finding provider shouldn't set the value of mute.
      */
     mute?: string | null;
     /**
@@ -393,9 +557,17 @@ export namespace securitycenter_v1beta1 {
      */
     name?: string | null;
     /**
+     * Next steps associate to the finding.
+     */
+    nextSteps?: string | null;
+    /**
      * The relative resource name of the source the finding belongs to. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name This field is immutable after creation time. For example: "organizations/{organization_id\}/sources/{source_id\}"
      */
     parent?: string | null;
+    /**
+     * Represents operating system processes associated with the Finding.
+     */
+    processes?: Schema$Process[];
     /**
      * For findings on Google Cloud resources, the full resource name of the Google Cloud resource this finding is for. See: https://cloud.google.com/apis/design/resource_names#full_resource_name When the finding is for a non-Google Cloud resource, the resourceName can be a customer or partner defined string. This field is immutable after creation time.
      */
@@ -549,7 +721,7 @@ export namespace securitycenter_v1beta1 {
      */
     description?: string | null;
     /**
-     * Expression that defines the filter to apply across create/update events of findings. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`. Restrictions have the form ` ` and may have a `-` character in front of them to indicate negation. The fields map to those defined in the corresponding resource. The supported operators are: * `=` for all value types. * `\>`, `<`, `\>=`, `<=` for integer values. * `:`, meaning substring matching, for strings. The supported value types are: * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes. Please see the proto documentation in the finding (https://source.corp.google.com/piper///depot/google3/google/cloud/securitycenter/v1/finding.proto) and in the ListFindingsRequest for valid filter syntax. (https://source.corp.google.com/piper///depot/google3/google/cloud/securitycenter/v1/securitycenter_service.proto).
+     * Expression that defines the filter to apply across create/update events of findings. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`. Restrictions have the form ` ` and may have a `-` character in front of them to indicate negation. The fields map to those defined in the corresponding resource. The supported operators are: * `=` for all value types. * `\>`, `<`, `\>=`, `<=` for integer values. * `:`, meaning substring matching, for strings. The supported value types are: * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.
      */
     filter?: string | null;
     /**
@@ -819,7 +991,7 @@ export namespace securitycenter_v1beta1 {
      */
     project?: string | null;
     /**
-     * The project id that the resource belongs to.
+     * The project ID that the resource belongs to.
      */
     projectDisplayName?: string | null;
     /**
@@ -942,6 +1114,23 @@ export namespace securitycenter_v1beta1 {
     properties?: {[key: string]: any} | null;
   }
   /**
+   * Represents a particular IAM binding, which captures a member's role addition, removal, or state.
+   */
+  export interface Schema$IamBinding {
+    /**
+     * The action that was performed on a Binding.
+     */
+    action?: string | null;
+    /**
+     * A single identity requesting access for a Cloud Platform resource, e.g. "foo@google.com".
+     */
+    member?: string | null;
+    /**
+     * Role that is assigned to "members". For example, "roles/viewer", "roles/editor", or "roles/owner".
+     */
+    role?: string | null;
+  }
+  /**
    * Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
    */
   export interface Schema$Indicator {
@@ -953,6 +1142,10 @@ export namespace securitycenter_v1beta1 {
      * List of ip addresses associated to the Finding.
      */
     ipAddresses?: string[] | null;
+    /**
+     * The list of matched signatures indicating that the given process is present in the environment.
+     */
+    signatures?: Schema$ProcessSignature[];
   }
   /**
    * Response message for listing assets.
@@ -1034,6 +1227,19 @@ export namespace securitycenter_v1beta1 {
      * Sources belonging to the requested parent.
      */
     sources?: Schema$Source[];
+  }
+  /**
+   * A signature corresponding to memory page hashes.
+   */
+  export interface Schema$MemoryHashSignature {
+    /**
+     * The binary family.
+     */
+    binaryFamily?: string | null;
+    /**
+     * The list of memory hash detections contributing to the binary family match.
+     */
+    detections?: Schema$Detection[];
   }
   /**
    * MITRE ATT&CK tactics and techniques related to this finding. See: https://attack.mitre.org
@@ -1124,6 +1330,64 @@ export namespace securitycenter_v1beta1 {
     version?: number | null;
   }
   /**
+   * Represents an operating system process.
+   */
+  export interface Schema$Process {
+    /**
+     * Process arguments as JSON encoded strings.
+     */
+    args?: string[] | null;
+    /**
+     * True if `args` is incomplete.
+     */
+    argumentsTruncated?: boolean | null;
+    /**
+     * File information for the process executable.
+     */
+    binary?: Schema$File;
+    /**
+     * Process environment variables.
+     */
+    envVariables?: Schema$EnvironmentVariable[];
+    /**
+     * True if `env_variables` is incomplete.
+     */
+    envVariablesTruncated?: boolean | null;
+    /**
+     * File information for libraries loaded by the process.
+     */
+    libraries?: Schema$File[];
+    /**
+     * The process name visible in utilities like top and ps; it can be accessed via /proc/[pid]/comm and changed with prctl(PR_SET_NAME).
+     */
+    name?: string | null;
+    /**
+     * The parent process id.
+     */
+    parentPid?: string | null;
+    /**
+     * The process id.
+     */
+    pid?: string | null;
+    /**
+     * When the process represents the invocation of a script, `binary` provides information about the interpreter while `script` provides information about the script file provided to the interpreter.
+     */
+    script?: Schema$File;
+  }
+  /**
+   * Indicates what signature matched this process.
+   */
+  export interface Schema$ProcessSignature {
+    /**
+     * Signature indicating that a binary family was matched.
+     */
+    memoryHashSignature?: Schema$MemoryHashSignature;
+    /**
+     * Signature indicating that a YARA rule was matched.
+     */
+    yaraRuleSignature?: Schema$YaraRuleSignature;
+  }
+  /**
    * Additional Links
    */
   export interface Schema$Reference {
@@ -1200,7 +1464,7 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$SetIamPolicyRequest {
     /**
-     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
+     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
     /**
@@ -1247,7 +1511,7 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[] | null;
   }
@@ -1268,6 +1532,15 @@ export namespace securitycenter_v1beta1 {
      * CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)
      */
     cve?: Schema$Cve;
+  }
+  /**
+   * A signature corresponding to a YARA rule.
+   */
+  export interface Schema$YaraRuleSignature {
+    /**
+     * The name of the YARA rule.
+     */
+    yaraRule?: string | null;
   }
 
   export class Resource$Organizations {
@@ -3154,7 +3427,7 @@ export namespace securitycenter_v1beta1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'organizations/my-organization/sources/my-source',
      *
      *     // Request body metadata
@@ -3574,7 +3847,7 @@ export namespace securitycenter_v1beta1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'organizations/my-organization/sources/my-source',
      *
      *     // Request body metadata
@@ -3716,7 +3989,7 @@ export namespace securitycenter_v1beta1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'organizations/my-organization/sources/my-source',
      *
      *     // Request body metadata
@@ -3857,7 +4130,7 @@ export namespace securitycenter_v1beta1 {
   export interface Params$Resource$Organizations$Sources$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3900,7 +4173,7 @@ export namespace securitycenter_v1beta1 {
   export interface Params$Resource$Organizations$Sources$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3912,7 +4185,7 @@ export namespace securitycenter_v1beta1 {
   export interface Params$Resource$Organizations$Sources$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 

@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -553,7 +552,7 @@ export namespace appengine_v1beta {
     sslSettings?: Schema$SslSettings;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for Empty is empty JSON object {\}.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -1501,7 +1500,7 @@ export namespace appengine_v1beta {
      */
     apiConfig?: Schema$ApiConfigHandler;
     /**
-     * app_engine_apis allows second generation runtimes to access the App Engine APIs.
+     * Allows App Engine second generation runtimes to access the legacy bundled services.
      */
     appEngineApis?: boolean | null;
     /**

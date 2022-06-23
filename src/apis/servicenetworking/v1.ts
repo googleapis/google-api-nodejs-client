@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -217,6 +216,10 @@ export namespace servicenetworking_v1 {
      */
     checkServiceNetworkingUsePermission?: boolean | null;
     /**
+     * Optional. Specifies a custom time bucket for Arcus subnetwork request idempotency. If two equivalent concurrent requests are made, Arcus will know to ignore the request if it has already been completed or is in progress. Only requests with matching compute_idempotency_window have guaranteed idempotency. Changing this time window between requests results in undefined behavior. Zero (or empty) value with custom_compute_idempotency_window=true specifies no idempotency (i.e. no request ID is provided to Arcus). Maximum value of 14 days (enforced by Arcus limit). For more information on how to use, see: go/revisit-sn-idempotency-window
+     */
+    computeIdempotencyWindow?: string | null;
+    /**
      * Required. A resource that represents the service consumer, such as `projects/123456`. The project number can be different from the value in the consumer network parameter. For example, the network might be part of a Shared VPC network. In those cases, Service Networking validates that this resource belongs to that Shared VPC.
      */
     consumer?: string | null;
@@ -265,9 +268,13 @@ export namespace servicenetworking_v1 {
      */
     subnetwork?: string | null;
     /**
-     * A list of members that are granted the `compute.networkUser` role on the subnet.
+     * A list of members that are granted the `roles/servicenetworking.subnetworkAdmin` role on the subnet.
      */
     subnetworkUsers?: string[] | null;
+    /**
+     * Optional. Specifies if Service Networking should use a custom time bucket for Arcus idempotency. If false, Service Networking uses a 300 second (5 minute) Arcus idempotency window. If true, Service Networking uses a custom idempotency window provided by the user in field compute_idempotency_window. For more information on how to use, see: go/revisit-sn-idempotency-window
+     */
+    useCustomComputeIdempotencyWindow?: boolean | null;
   }
   /**
    * Api is a light-weight descriptor for an API Interface. Interfaces are also described as "protocol buffer services" in some contexts, such as by the "service" keyword in a .proto file, but they are different from API Services, which represent a concrete implementation of an interface as opposed to simply a description of methods and bindings. They are also sometimes simply referred to as "APIs" in other contexts, such as the name of this message itself. See https://cloud.google.com/apis/design/glossary for detailed terminology.
@@ -361,7 +368,7 @@ export namespace servicenetworking_v1 {
      */
     jwksUri?: string | null;
     /**
-     * Defines the locations to extract the JWT. JWT locations can be either from HTTP headers or URL query parameters. The rule is that the first match wins. The checking order is: checking all headers first, then URL query parameters. If not specified, default to use following 3 locations: 1) Authorization: Bearer 2) x-goog-iap-jwt-assertion 3) access_token query parameter Default locations can be specified as followings: jwt_locations: - header: Authorization value_prefix: "Bearer " - header: x-goog-iap-jwt-assertion - query: access_token
+     * Defines the locations to extract the JWT. For now it is only used by the Cloud Endpoints to store the OpenAPI extension [x-google-jwt-locations] (https://cloud.google.com/endpoints/docs/openapi/openapi-extensions#x-google-jwt-locations) JWT locations can be one of HTTP headers, URL query parameters or cookies. The rule is that the first match wins. If not specified, default to use following 3 locations: 1) Authorization: Bearer 2) x-goog-iap-jwt-assertion 3) access_token query parameter Default locations can be specified as followings: jwt_locations: - header: Authorization value_prefix: "Bearer " - header: x-goog-iap-jwt-assertion - query: access_token
      */
     jwtLocations?: Schema$JwtLocation[];
   }
@@ -512,6 +519,10 @@ export namespace servicenetworking_v1 {
      * Output only. The reserved ranges associated with this private service access connection.
      */
     reservedRanges?: Schema$GoogleCloudServicenetworkingV1ConsumerConfigReservedRange[];
+    /**
+     * Output only. The IP ranges already in use by consumer or producer
+     */
+    usedIpRanges?: string[] | null;
     /**
      * Output only. Indicates whether the VPC Service Controls reference architecture is configured for the producer VPC host network.
      */
@@ -719,7 +730,7 @@ export namespace servicenetworking_v1 {
     selector?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -956,6 +967,10 @@ export namespace servicenetworking_v1 {
    * Specifies a location to extract JWT from an API request.
    */
   export interface Schema$JwtLocation {
+    /**
+     * Specifies cookie name to extract JWT token.
+     */
+    cookie?: string | null;
     /**
      * Specifies HTTP header name to extract JWT token.
      */
@@ -2533,6 +2548,7 @@ export namespace servicenetworking_v1 {
      *       // request body parameters
      *       // {
      *       //   "checkServiceNetworkingUsePermission": false,
+     *       //   "computeIdempotencyWindow": "my_computeIdempotencyWindow",
      *       //   "consumer": "my_consumer",
      *       //   "consumerNetwork": "my_consumerNetwork",
      *       //   "description": "my_description",
@@ -2545,7 +2561,8 @@ export namespace servicenetworking_v1 {
      *       //   "requestedRanges": [],
      *       //   "secondaryIpRangeSpecs": [],
      *       //   "subnetwork": "my_subnetwork",
-     *       //   "subnetworkUsers": []
+     *       //   "subnetworkUsers": [],
+     *       //   "useCustomComputeIdempotencyWindow": false
      *       // }
      *     },
      *   });
@@ -4825,6 +4842,8 @@ export namespace servicenetworking_v1 {
      *
      *   // Do the magic
      *   const res = await servicenetworking.services.projects.global.networks.get({
+     *     // Optional. When true, include the used IP ranges as part of the GetConsumerConfig output. This includes routes created inside the service networking network, consumer network, peers of the consumer network, and reserved ranges inside the service networking network. By default, this is false
+     *     includeUsedIpRanges: 'placeholder-value',
      *     // Required. Name of the consumer config to retrieve in the format: `services/{service\}/projects/{project\}/global/networks/{network\}`. {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project\} is a project number e.g. `12345` that contains the service consumer's VPC network. {network\} is the name of the service consumer's VPC network.
      *     name: 'services/my-service/projects/my-project/global/networks/my-network',
      *   });
@@ -4842,6 +4861,7 @@ export namespace servicenetworking_v1 {
      *   //   "producerImportSubnetRoutesWithPublicIp": false,
      *   //   "producerNetwork": "my_producerNetwork",
      *   //   "reservedRanges": [],
+     *   //   "usedIpRanges": [],
      *   //   "vpcScReferenceArchitectureEnabled": false
      *   // }
      * }
@@ -5090,6 +5110,10 @@ export namespace servicenetworking_v1 {
 
   export interface Params$Resource$Services$Projects$Global$Networks$Get
     extends StandardParameters {
+    /**
+     * Optional. When true, include the used IP ranges as part of the GetConsumerConfig output. This includes routes created inside the service networking network, consumer network, peers of the consumer network, and reserved ranges inside the service networking network. By default, this is false
+     */
+    includeUsedIpRanges?: boolean;
     /**
      * Required. Name of the consumer config to retrieve in the format: `services/{service\}/projects/{project\}/global/networks/{network\}`. {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project\} is a project number e.g. `12345` that contains the service consumer's VPC network. {network\} is the name of the service consumer's VPC network.
      */

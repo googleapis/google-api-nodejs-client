@@ -1,5 +1,49 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v4.0.0...androidmanagement-v4.0.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **androidmanagement:** update the API ([135819b](https://github.com/googleapis/google-api-nodejs-client/commit/135819bd5215b2aead64da6141cb65f6160578c9))
+
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v3.1.0...androidmanagement-v4.0.0) (2022-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#2971](https://github.com/googleapis/google-api-nodejs-client/issues/2971)) ([adddf01](https://github.com/googleapis/google-api-nodejs-client/commit/adddf018e7cb73adab7341053dd80d72c5a6248d))
+
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v3.0.1...androidmanagement-v3.1.0) (2022-06-13)
+
+
+### Features
+
+* **androidmanagement:** update the API ([be1cd44](https://github.com/googleapis/google-api-nodejs-client/commit/be1cd447dfadaa2422e6e3845d843c6ba494dc8a))
+* regenerate index files ([43ae576](https://github.com/googleapis/google-api-nodejs-client/commit/43ae57651332bdf31af52ea3abb9e2934798a404))
+
+### [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v3.0.0...androidmanagement-v3.0.1) (2022-04-11)
+
+
+### Bug Fixes
+
+* **androidmanagement:** update the API ([ba62d74](https://github.com/googleapis/google-api-nodejs-client/commit/ba62d7486bb466be8940705b4438d9c171c07eb4))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v2.5.0...androidmanagement-v3.0.0) (2022-03-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* **androidmanagement:** This release has breaking changes.
+
+### Features
+
+* **androidmanagement:** update the API ([2746c26](https://github.com/googleapis/google-api-nodejs-client/commit/2746c26778dab905ebcbd2882ede2d2d15be4713))
+
 ## [2.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v2.4.0...androidmanagement-v2.5.0) (2022-03-08)
 
 

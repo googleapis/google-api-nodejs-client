@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -128,20 +127,7 @@ export namespace firebaseappcheck_v1beta {
   }
 
   /**
-   * Response message for the GenerateAppAttestChallenge method.
-   */
-  export interface Schema$GoogleFirebaseAppcheckV1betaAppAttestChallengeResponse {
-    /**
-     * A one-time use challenge for the client to pass to the App Attest API.
-     */
-    challenge?: string | null;
-    /**
-     * The duration from the time this challenge is minted until its expiration. This field is intended to ease client-side token management, since the client may have clock skew, but is still able to accurately measure a duration.
-     */
-    ttl?: string | null;
-  }
-  /**
-   * An app's App Attest configuration object. This configuration controls certain properties of the App Check token returned by ExchangeAppAttestAttestation and ExchangeAppAttestAssertion, such as its ttl. Note that the Team ID registered with your app is used as part of the validation process. Please register it via the Firebase Console or programmatically via the [Firebase Management Service](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects.iosApps/patch).
+   * An app's App Attest configuration object. This configuration controls certain properties of the `AppCheckToken` returned by ExchangeAppAttestAttestation and ExchangeAppAttestAssertion, such as its ttl. Note that the Team ID registered with your app is used as part of the validation process. Please register it via the Firebase Console or programmatically via the [Firebase Management Service](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects.iosApps/patch).
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaAppAttestConfig {
     /**
@@ -152,6 +138,23 @@ export namespace firebaseappcheck_v1beta {
      * Specifies the duration for which App Check tokens exchanged from App Attest artifacts will be valid. If unset, a default value of 1 hour is assumed. Must be between 30 minutes and 7 days, inclusive.
      */
     tokenTtl?: string | null;
+  }
+  /**
+   * Encapsulates an *App Check token*, which are used to access Firebase services protected by App Check.
+   */
+  export interface Schema$GoogleFirebaseAppcheckV1betaAppCheckToken {
+    /**
+     * An App Check token. App Check tokens are signed [JWTs](https://tools.ietf.org/html/rfc7519) containing claims that identify the attested app and Firebase project. This token is used to access Firebase services protected by App Check.
+     */
+    attestationToken?: string | null;
+    /**
+     * An App Check token. App Check tokens are signed [JWTs](https://tools.ietf.org/html/rfc7519) containing claims that identify the attested app and Firebase project. This token is used to access Firebase services protected by App Check.
+     */
+    token?: string | null;
+    /**
+     * The duration from the time this token is minted until its expiration. This field is intended to ease client-side token management, since the client may have clock skew, but is still able to accurately measure a duration.
+     */
+    ttl?: string | null;
   }
   /**
    * Encapsulates an *App Check token*, which are used to access Firebase services protected by App Check.
@@ -185,6 +188,15 @@ export namespace firebaseappcheck_v1beta {
     configs?: Schema$GoogleFirebaseAppcheckV1betaDeviceCheckConfig[];
   }
   /**
+   * Response message for the BatchGetPlayIntegrityConfigs method.
+   */
+  export interface Schema$GoogleFirebaseAppcheckV1betaBatchGetPlayIntegrityConfigsResponse {
+    /**
+     * PlayIntegrityConfigs retrieved.
+     */
+    configs?: Schema$GoogleFirebaseAppcheckV1betaPlayIntegrityConfig[];
+  }
+  /**
    * Response message for the BatchGetRecaptchaConfigs method.
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaBatchGetRecaptchaConfigsResponse {
@@ -201,6 +213,15 @@ export namespace firebaseappcheck_v1beta {
      * RecaptchaEnterpriseConfigs retrieved.
      */
     configs?: Schema$GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfig[];
+  }
+  /**
+   * Response message for the BatchGetRecaptchaV3Configs method.
+   */
+  export interface Schema$GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponse {
+    /**
+     * RecaptchaV3Configs retrieved.
+     */
+    configs?: Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config[];
   }
   /**
    * Response message for the BatchGetSafetyNetConfigs method.
@@ -251,7 +272,7 @@ export namespace firebaseappcheck_v1beta {
     token?: string | null;
   }
   /**
-   * An app's DeviceCheck configuration object. This configuration is used by ExchangeDeviceCheckToken to validate device tokens issued to apps by DeviceCheck. It also controls certain properties of the returned App Check token, such as its ttl. Note that the Team ID registered with your app is used as part of the validation process. Please register it via the Firebase Console or programmatically via the [Firebase Management Service](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects.iosApps/patch).
+   * An app's DeviceCheck configuration object. This configuration is used by ExchangeDeviceCheckToken to validate device tokens issued to apps by DeviceCheck. It also controls certain properties of the returned `AppCheckToken`, such as its ttl. Note that the Team ID registered with your app is used as part of the validation process. Please register it via the Firebase Console or programmatically via the [Firebase Management Service](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects.iosApps/patch).
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaDeviceCheckConfig {
     /**
@@ -314,6 +335,10 @@ export namespace firebaseappcheck_v1beta {
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaExchangeAppAttestAttestationResponse {
     /**
+     * Encapsulates an App Check token.
+     */
+    appCheckToken?: Schema$GoogleFirebaseAppcheckV1betaAppCheckToken;
+    /**
      * An artifact that can be used in future calls to ExchangeAppAttestAssertion.
      */
     artifact?: string | null;
@@ -350,6 +375,15 @@ export namespace firebaseappcheck_v1beta {
     deviceToken?: string | null;
   }
   /**
+   * Request message for the ExchangePlayIntegrityToken method.
+   */
+  export interface Schema$GoogleFirebaseAppcheckV1betaExchangePlayIntegrityTokenRequest {
+    /**
+     * Required. The [integrity verdict response token from Play Integrity](https://developer.android.com/google/play/integrity/verdict#decrypt-verify) issued to your app.
+     */
+    playIntegrityToken?: string | null;
+  }
+  /**
    * Request message for the ExchangeRecaptchaEnterpriseToken method.
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaExchangeRecaptchaEnterpriseTokenRequest {
@@ -368,6 +402,15 @@ export namespace firebaseappcheck_v1beta {
     recaptchaToken?: string | null;
   }
   /**
+   * Request message for the ExchangeRecaptchaV3Token method.
+   */
+  export interface Schema$GoogleFirebaseAppcheckV1betaExchangeRecaptchaV3TokenRequest {
+    /**
+     * Required. The reCAPTCHA token as returned by the [reCAPTCHA v3 JavaScript API](https://developers.google.com/recaptcha/docs/v3).
+     */
+    recaptchaV3Token?: string | null;
+  }
+  /**
    * Request message for the ExchangeSafetyNetToken method.
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaExchangeSafetyNetTokenRequest {
@@ -380,6 +423,36 @@ export namespace firebaseappcheck_v1beta {
    * Request message for the GenerateAppAttestChallenge method.
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeRequest {}
+  /**
+   * Response message for the GenerateAppAttestChallenge method.
+   */
+  export interface Schema$GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponse {
+    /**
+     * A one-time use challenge for the client to pass to the App Attest API.
+     */
+    challenge?: string | null;
+    /**
+     * The duration from the time this challenge is minted until its expiration. This field is intended to ease client-side token management, since the client may have clock skew, but is still able to accurately measure a duration.
+     */
+    ttl?: string | null;
+  }
+  /**
+   * Request message for the GeneratePlayIntegrityChallenge method.
+   */
+  export interface Schema$GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeRequest {}
+  /**
+   * Response message for the GeneratePlayIntegrityChallenge method.
+   */
+  export interface Schema$GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeResponse {
+    /**
+     * A one-time use [challenge](https://developer.android.com/google/play/integrity/verdict#protect-against-replay-attacks) for the client to pass to the Play Integrity API.
+     */
+    challenge?: string | null;
+    /**
+     * The duration from the time this challenge is minted until its expiration. This field is intended to ease client-side token management, since the client may have clock skew, but is still able to accurately measure a duration.
+     */
+    ttl?: string | null;
+  }
   /**
    * Response message for the ListDebugTokens method.
    */
@@ -405,6 +478,19 @@ export namespace firebaseappcheck_v1beta {
      * The Services retrieved.
      */
     services?: Schema$GoogleFirebaseAppcheckV1betaService[];
+  }
+  /**
+   * An app's Play Integrity configuration object. This configuration controls certain properties of the `AppCheckToken` returned by ExchangePlayIntegrityToken, such as its ttl. Note that your registered SHA-256 certificate fingerprints are used to validate tokens issued by the Play Integrity API; please register them via the Firebase Console or programmatically via the [Firebase Management Service](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects.androidApps.sha/create).
+   */
+  export interface Schema$GoogleFirebaseAppcheckV1betaPlayIntegrityConfig {
+    /**
+     * Required. The relative resource name of the Play Integrity configuration object, in the format: ``` projects/{project_number\}/apps/{app_id\}/playIntegrityConfig ```
+     */
+    name?: string | null;
+    /**
+     * Specifies the duration for which App Check tokens exchanged from Play Integrity tokens will be valid. If unset, a default value of 1 hour is assumed. Must be between 30 minutes and 7 days, inclusive.
+     */
+    tokenTtl?: string | null;
   }
   /**
    * A JWK as specified by [section 4 of RFC 7517](https://tools.ietf.org/html/rfc7517#section-4) and [section 6.3.1 of RFC 7518](https://tools.ietf.org/html/rfc7518#section-6.3.1).
@@ -445,7 +531,7 @@ export namespace firebaseappcheck_v1beta {
     keys?: Schema$GoogleFirebaseAppcheckV1betaPublicJwk[];
   }
   /**
-   * An app's reCAPTCHA v3 configuration object. This configuration is used by ExchangeRecaptchaToken to validate reCAPTCHA tokens issued to apps by reCAPTCHA v3. It also controls certain properties of the returned App Check token, such as its ttl.
+   * An app's reCAPTCHA v3 configuration object. This configuration is used by ExchangeRecaptchaToken to validate reCAPTCHA tokens issued to apps by reCAPTCHA v3. It also controls certain properties of the returned `AppCheckToken`, such as its ttl.
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaRecaptchaConfig {
     /**
@@ -466,7 +552,7 @@ export namespace firebaseappcheck_v1beta {
     tokenTtl?: string | null;
   }
   /**
-   * An app's reCAPTCHA Enterprise configuration object. This configuration is used by ExchangeRecaptchaEnterpriseToken to validate reCAPTCHA tokens issued to apps by reCAPTCHA Enterprise. It also controls certain properties of the returned App Check token, such as its ttl.
+   * An app's reCAPTCHA Enterprise configuration object. This configuration is used by ExchangeRecaptchaEnterpriseToken to validate reCAPTCHA tokens issued to apps by reCAPTCHA Enterprise. It also controls certain properties of the returned `AppCheckToken`, such as its ttl.
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfig {
     /**
@@ -483,7 +569,28 @@ export namespace firebaseappcheck_v1beta {
     tokenTtl?: string | null;
   }
   /**
-   * An app's SafetyNet configuration object. This configuration controls certain properties of the App Check token returned by ExchangeSafetyNetToken, such as its ttl. Note that your registered SHA-256 certificate fingerprints are used to validate tokens issued by SafetyNet; please register them via the Firebase Console or programmatically via the [Firebase Management Service](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects.androidApps.sha/create).
+   * An app's reCAPTCHA v3 configuration object. This configuration is used by ExchangeRecaptchaV3Token to validate reCAPTCHA tokens issued to apps by reCAPTCHA v3. It also controls certain properties of the returned `AppCheckToken`, such as its ttl.
+   */
+  export interface Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config {
+    /**
+     * Required. The relative resource name of the reCAPTCHA v3 configuration object, in the format: ``` projects/{project_number\}/apps/{app_id\}/recaptchaV3Config ```
+     */
+    name?: string | null;
+    /**
+     * Required. Input only. The site secret used to identify your service for reCAPTCHA v3 verification. For security reasons, this field will never be populated in any response.
+     */
+    siteSecret?: string | null;
+    /**
+     * Output only. Whether the `site_secret` field was previously set. Since we will never return the `site_secret` field, this field is the only way to find out whether it was previously set.
+     */
+    siteSecretSet?: boolean | null;
+    /**
+     * Specifies the duration for which App Check tokens exchanged from reCAPTCHA tokens will be valid. If unset, a default value of 1 day is assumed. Must be between 30 minutes and 7 days, inclusive.
+     */
+    tokenTtl?: string | null;
+  }
+  /**
+   * An app's SafetyNet configuration object. This configuration controls certain properties of the `AppCheckToken` returned by ExchangeSafetyNetToken, such as its ttl. Note that your registered SHA-256 certificate fingerprints are used to validate tokens issued by SafetyNet; please register them via the Firebase Console or programmatically via the [Firebase Management Service](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects.androidApps.sha/create).
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaSafetyNetConfig {
     /**
@@ -522,7 +629,7 @@ export namespace firebaseappcheck_v1beta {
     updateMask?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$GoogleProtobufEmpty {}
 
@@ -694,8 +801,10 @@ export namespace firebaseappcheck_v1beta {
     appAttestConfig: Resource$Projects$Apps$Appattestconfig;
     debugTokens: Resource$Projects$Apps$Debugtokens;
     deviceCheckConfig: Resource$Projects$Apps$Devicecheckconfig;
+    playIntegrityConfig: Resource$Projects$Apps$Playintegrityconfig;
     recaptchaConfig: Resource$Projects$Apps$Recaptchaconfig;
     recaptchaEnterpriseConfig: Resource$Projects$Apps$Recaptchaenterpriseconfig;
+    recaptchaV3Config: Resource$Projects$Apps$Recaptchav3config;
     safetyNetConfig: Resource$Projects$Apps$Safetynetconfig;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -706,18 +815,24 @@ export namespace firebaseappcheck_v1beta {
       this.deviceCheckConfig = new Resource$Projects$Apps$Devicecheckconfig(
         this.context
       );
+      this.playIntegrityConfig = new Resource$Projects$Apps$Playintegrityconfig(
+        this.context
+      );
       this.recaptchaConfig = new Resource$Projects$Apps$Recaptchaconfig(
         this.context
       );
       this.recaptchaEnterpriseConfig =
         new Resource$Projects$Apps$Recaptchaenterpriseconfig(this.context);
+      this.recaptchaV3Config = new Resource$Projects$Apps$Recaptchav3config(
+        this.context
+      );
       this.safetyNetConfig = new Resource$Projects$Apps$Safetynetconfig(
         this.context
       );
     }
 
     /**
-     * Accepts an App Attest assertion and an artifact previously obtained from ExchangeAppAttestAttestation and verifies those with Apple. If valid, returns an App Check token encapsulated in an AttestationTokenResponse.
+     * Accepts an App Attest assertion and an artifact previously obtained from ExchangeAppAttestAttestation and verifies those with Apple. If valid, returns an AppCheckToken.
      * @example
      * ```js
      * // Before running the sample:
@@ -764,6 +879,7 @@ export namespace firebaseappcheck_v1beta {
      *   // Example response
      *   // {
      *   //   "attestationToken": "my_attestationToken",
+     *   //   "token": "my_token",
      *   //   "ttl": "my_ttl"
      *   // }
      * }
@@ -787,7 +903,7 @@ export namespace firebaseappcheck_v1beta {
     exchangeAppAttestAssertion(
       params?: Params$Resource$Projects$Apps$Exchangeappattestassertion,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>;
+    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>;
     exchangeAppAttestAssertion(
       params: Params$Resource$Projects$Apps$Exchangeappattestassertion,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -797,32 +913,32 @@ export namespace firebaseappcheck_v1beta {
       params: Params$Resource$Projects$Apps$Exchangeappattestassertion,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
     ): void;
     exchangeAppAttestAssertion(
       params: Params$Resource$Projects$Apps$Exchangeappattestassertion,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
     ): void;
     exchangeAppAttestAssertion(
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
     ): void;
     exchangeAppAttestAssertion(
       paramsOrCallback?:
         | Params$Resource$Projects$Apps$Exchangeappattestassertion
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Exchangeappattestassertion;
@@ -857,19 +973,19 @@ export namespace firebaseappcheck_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>(
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>(
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>(
           parameters
         );
       }
     }
 
     /**
-     * Accepts an App Attest CBOR attestation and verifies it with Apple using your preconfigured team and bundle IDs. If valid, returns an attestation artifact that can later be exchanged for an AttestationTokenResponse using ExchangeAppAttestAssertion. For convenience and performance, this method's response object will also contain an App Check token encapsulated in an AttestationTokenResponse (if the verification is successful).
+     * Accepts an App Attest CBOR attestation and verifies it with Apple using your preconfigured team and bundle IDs. If valid, returns an attestation artifact that can later be exchanged for an AppCheckToken using ExchangeAppAttestAssertion. For convenience and performance, this method's response object will also contain an AppCheckToken (if the verification is successful).
      * @example
      * ```js
      * // Before running the sample:
@@ -917,6 +1033,7 @@ export namespace firebaseappcheck_v1beta {
      *
      *   // Example response
      *   // {
+     *   //   "appCheckToken": {},
      *   //   "artifact": "my_artifact",
      *   //   "attestationToken": {}
      *   // }
@@ -1024,7 +1141,7 @@ export namespace firebaseappcheck_v1beta {
     }
 
     /**
-     * Validates a custom token signed using your project's Admin SDK service account credentials. If valid, returns an App Check token encapsulated in an AttestationTokenResponse.
+     * Validates a custom token signed using your project's Admin SDK service account credentials. If valid, returns an AppCheckToken.
      * @example
      * ```js
      * // Before running the sample:
@@ -1069,6 +1186,7 @@ export namespace firebaseappcheck_v1beta {
      *   // Example response
      *   // {
      *   //   "attestationToken": "my_attestationToken",
+     *   //   "token": "my_token",
      *   //   "ttl": "my_ttl"
      *   // }
      * }
@@ -1092,7 +1210,7 @@ export namespace firebaseappcheck_v1beta {
     exchangeCustomToken(
       params?: Params$Resource$Projects$Apps$Exchangecustomtoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>;
+    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>;
     exchangeCustomToken(
       params: Params$Resource$Projects$Apps$Exchangecustomtoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1102,32 +1220,32 @@ export namespace firebaseappcheck_v1beta {
       params: Params$Resource$Projects$Apps$Exchangecustomtoken,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
     ): void;
     exchangeCustomToken(
       params: Params$Resource$Projects$Apps$Exchangecustomtoken,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
     ): void;
     exchangeCustomToken(
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
     ): void;
     exchangeCustomToken(
       paramsOrCallback?:
         | Params$Resource$Projects$Apps$Exchangecustomtoken
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Exchangecustomtoken;
@@ -1163,19 +1281,19 @@ export namespace firebaseappcheck_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>(
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>(
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>(
           parameters
         );
       }
     }
 
     /**
-     * Validates a debug token secret that you have previously created using CreateDebugToken. If valid, returns an App Check token encapsulated in an AttestationTokenResponse. Note that a restrictive quota is enforced on this method to prevent accidental exposure of the app to abuse.
+     * Validates a debug token secret that you have previously created using CreateDebugToken. If valid, returns an AppCheckToken. Note that a restrictive quota is enforced on this method to prevent accidental exposure of the app to abuse.
      * @example
      * ```js
      * // Before running the sample:
@@ -1220,6 +1338,7 @@ export namespace firebaseappcheck_v1beta {
      *   // Example response
      *   // {
      *   //   "attestationToken": "my_attestationToken",
+     *   //   "token": "my_token",
      *   //   "ttl": "my_ttl"
      *   // }
      * }
@@ -1243,7 +1362,7 @@ export namespace firebaseappcheck_v1beta {
     exchangeDebugToken(
       params?: Params$Resource$Projects$Apps$Exchangedebugtoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>;
+    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>;
     exchangeDebugToken(
       params: Params$Resource$Projects$Apps$Exchangedebugtoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1253,32 +1372,32 @@ export namespace firebaseappcheck_v1beta {
       params: Params$Resource$Projects$Apps$Exchangedebugtoken,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
     ): void;
     exchangeDebugToken(
       params: Params$Resource$Projects$Apps$Exchangedebugtoken,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
     ): void;
     exchangeDebugToken(
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
     ): void;
     exchangeDebugToken(
       paramsOrCallback?:
         | Params$Resource$Projects$Apps$Exchangedebugtoken
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Exchangedebugtoken;
@@ -1314,19 +1433,19 @@ export namespace firebaseappcheck_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>(
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>(
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>(
           parameters
         );
       }
     }
 
     /**
-     * Accepts a [`device_token`](https://developer.apple.com/documentation/devicecheck/dcdevice) issued by DeviceCheck, and attempts to validate it with Apple. If valid, returns an App Check token encapsulated in an AttestationTokenResponse.
+     * Accepts a [`device_token`](https://developer.apple.com/documentation/devicecheck/dcdevice) issued by DeviceCheck, and attempts to validate it with Apple. If valid, returns an AppCheckToken.
      * @example
      * ```js
      * // Before running the sample:
@@ -1371,6 +1490,7 @@ export namespace firebaseappcheck_v1beta {
      *   // Example response
      *   // {
      *   //   "attestationToken": "my_attestationToken",
+     *   //   "token": "my_token",
      *   //   "ttl": "my_ttl"
      *   // }
      * }
@@ -1394,7 +1514,7 @@ export namespace firebaseappcheck_v1beta {
     exchangeDeviceCheckToken(
       params?: Params$Resource$Projects$Apps$Exchangedevicechecktoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>;
+    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>;
     exchangeDeviceCheckToken(
       params: Params$Resource$Projects$Apps$Exchangedevicechecktoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1404,32 +1524,32 @@ export namespace firebaseappcheck_v1beta {
       params: Params$Resource$Projects$Apps$Exchangedevicechecktoken,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
     ): void;
     exchangeDeviceCheckToken(
       params: Params$Resource$Projects$Apps$Exchangedevicechecktoken,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
     ): void;
     exchangeDeviceCheckToken(
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
     ): void;
     exchangeDeviceCheckToken(
       paramsOrCallback?:
         | Params$Resource$Projects$Apps$Exchangedevicechecktoken
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Exchangedevicechecktoken;
@@ -1465,19 +1585,170 @@ export namespace firebaseappcheck_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>(
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>(
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>(
           parameters
         );
       }
     }
 
     /**
-     * Validates a [reCAPTCHA Enterprise response token](https://cloud.google.com/recaptcha-enterprise/docs/create-assessment#retrieve_token). If valid, returns an App Check token encapsulated in an AttestationTokenResponse.
+     * Validates an [integrity verdict response token from Play Integrity](https://developer.android.com/google/play/integrity/verdict#decrypt-verify). If valid, returns an AppCheckToken.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappcheck.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappcheck = google.firebaseappcheck('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappcheck.projects.apps.exchangePlayIntegrityToken({
+     *     // Required. The relative resource name of the Android app, in the format: ``` projects/{project_number\}/apps/{app_id\} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.
+     *     app: 'projects/my-project/apps/my-app',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "playIntegrityToken": "my_playIntegrityToken"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attestationToken": "my_attestationToken",
+     *   //   "token": "my_token",
+     *   //   "ttl": "my_ttl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    exchangePlayIntegrityToken(
+      params: Params$Resource$Projects$Apps$Exchangeplayintegritytoken,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    exchangePlayIntegrityToken(
+      params?: Params$Resource$Projects$Apps$Exchangeplayintegritytoken,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>;
+    exchangePlayIntegrityToken(
+      params: Params$Resource$Projects$Apps$Exchangeplayintegritytoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    exchangePlayIntegrityToken(
+      params: Params$Resource$Projects$Apps$Exchangeplayintegritytoken,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
+    ): void;
+    exchangePlayIntegrityToken(
+      params: Params$Resource$Projects$Apps$Exchangeplayintegritytoken,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
+    ): void;
+    exchangePlayIntegrityToken(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
+    ): void;
+    exchangePlayIntegrityToken(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Apps$Exchangeplayintegritytoken
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Apps$Exchangeplayintegritytoken;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Apps$Exchangeplayintegritytoken;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta/{+app}:exchangePlayIntegrityToken'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['app'],
+        pathParams: ['app'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Validates a [reCAPTCHA Enterprise response token](https://cloud.google.com/recaptcha-enterprise/docs/create-assessment#retrieve_token). If valid, returns an App Check token AppCheckToken.
      * @example
      * ```js
      * // Before running the sample:
@@ -1523,6 +1794,7 @@ export namespace firebaseappcheck_v1beta {
      *   // Example response
      *   // {
      *   //   "attestationToken": "my_attestationToken",
+     *   //   "token": "my_token",
      *   //   "ttl": "my_ttl"
      *   // }
      * }
@@ -1546,7 +1818,7 @@ export namespace firebaseappcheck_v1beta {
     exchangeRecaptchaEnterpriseToken(
       params?: Params$Resource$Projects$Apps$Exchangerecaptchaenterprisetoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>;
+    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>;
     exchangeRecaptchaEnterpriseToken(
       params: Params$Resource$Projects$Apps$Exchangerecaptchaenterprisetoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1556,32 +1828,32 @@ export namespace firebaseappcheck_v1beta {
       params: Params$Resource$Projects$Apps$Exchangerecaptchaenterprisetoken,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
     ): void;
     exchangeRecaptchaEnterpriseToken(
       params: Params$Resource$Projects$Apps$Exchangerecaptchaenterprisetoken,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
     ): void;
     exchangeRecaptchaEnterpriseToken(
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
     ): void;
     exchangeRecaptchaEnterpriseToken(
       paramsOrCallback?:
         | Params$Resource$Projects$Apps$Exchangerecaptchaenterprisetoken
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Exchangerecaptchaenterprisetoken;
@@ -1617,19 +1889,19 @@ export namespace firebaseappcheck_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>(
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>(
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>(
           parameters
         );
       }
     }
 
     /**
-     * Validates a [reCAPTCHA v3 response token](https://developers.google.com/recaptcha/docs/v3). If valid, returns an App Check token encapsulated in an AttestationTokenResponse.
+     * Validates a [reCAPTCHA v3 response token](https://developers.google.com/recaptcha/docs/v3). If valid, returns an AppCheckToken.
      * @example
      * ```js
      * // Before running the sample:
@@ -1674,6 +1946,7 @@ export namespace firebaseappcheck_v1beta {
      *   // Example response
      *   // {
      *   //   "attestationToken": "my_attestationToken",
+     *   //   "token": "my_token",
      *   //   "ttl": "my_ttl"
      *   // }
      * }
@@ -1697,7 +1970,7 @@ export namespace firebaseappcheck_v1beta {
     exchangeRecaptchaToken(
       params?: Params$Resource$Projects$Apps$Exchangerecaptchatoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>;
+    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>;
     exchangeRecaptchaToken(
       params: Params$Resource$Projects$Apps$Exchangerecaptchatoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1707,32 +1980,32 @@ export namespace firebaseappcheck_v1beta {
       params: Params$Resource$Projects$Apps$Exchangerecaptchatoken,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
     ): void;
     exchangeRecaptchaToken(
       params: Params$Resource$Projects$Apps$Exchangerecaptchatoken,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
     ): void;
     exchangeRecaptchaToken(
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
     ): void;
     exchangeRecaptchaToken(
       paramsOrCallback?:
         | Params$Resource$Projects$Apps$Exchangerecaptchatoken
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Exchangerecaptchatoken;
@@ -1768,19 +2041,171 @@ export namespace firebaseappcheck_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>(
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>(
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>(
           parameters
         );
       }
     }
 
     /**
-     * Validates a [SafetyNet token](https://developer.android.com/training/safetynet/attestation#request-attestation-step). If valid, returns an App Check token encapsulated in an AttestationTokenResponse.
+     * Validates a [reCAPTCHA v3 response token](https://developers.google.com/recaptcha/docs/v3). If valid, returns an AppCheckToken.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappcheck.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappcheck = google.firebaseappcheck('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappcheck.projects.apps.exchangeRecaptchaV3Token({
+     *     // Required. The relative resource name of the web app, in the format: ``` projects/{project_number\}/apps/{app_id\} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.
+     *     app: 'projects/my-project/apps/my-app',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "recaptchaV3Token": "my_recaptchaV3Token"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attestationToken": "my_attestationToken",
+     *   //   "token": "my_token",
+     *   //   "ttl": "my_ttl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    exchangeRecaptchaV3Token(
+      params: Params$Resource$Projects$Apps$Exchangerecaptchav3token,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    exchangeRecaptchaV3Token(
+      params?: Params$Resource$Projects$Apps$Exchangerecaptchav3token,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>;
+    exchangeRecaptchaV3Token(
+      params: Params$Resource$Projects$Apps$Exchangerecaptchav3token,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    exchangeRecaptchaV3Token(
+      params: Params$Resource$Projects$Apps$Exchangerecaptchav3token,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
+    ): void;
+    exchangeRecaptchaV3Token(
+      params: Params$Resource$Projects$Apps$Exchangerecaptchav3token,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
+    ): void;
+    exchangeRecaptchaV3Token(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
+    ): void;
+    exchangeRecaptchaV3Token(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Apps$Exchangerecaptchav3token
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Apps$Exchangerecaptchav3token;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Apps$Exchangerecaptchav3token;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+app}:exchangeRecaptchaV3Token').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['app'],
+        pathParams: ['app'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Validates a [SafetyNet token](https://developer.android.com/training/safetynet/attestation#request-attestation-step). If valid, returns an AppCheckToken.
      * @example
      * ```js
      * // Before running the sample:
@@ -1825,6 +2250,7 @@ export namespace firebaseappcheck_v1beta {
      *   // Example response
      *   // {
      *   //   "attestationToken": "my_attestationToken",
+     *   //   "token": "my_token",
      *   //   "ttl": "my_ttl"
      *   // }
      * }
@@ -1848,7 +2274,7 @@ export namespace firebaseappcheck_v1beta {
     exchangeSafetyNetToken(
       params?: Params$Resource$Projects$Apps$Exchangesafetynettoken,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>;
+    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>;
     exchangeSafetyNetToken(
       params: Params$Resource$Projects$Apps$Exchangesafetynettoken,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1858,32 +2284,32 @@ export namespace firebaseappcheck_v1beta {
       params: Params$Resource$Projects$Apps$Exchangesafetynettoken,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
     ): void;
     exchangeSafetyNetToken(
       params: Params$Resource$Projects$Apps$Exchangesafetynettoken,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
     ): void;
     exchangeSafetyNetToken(
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
     ): void;
     exchangeSafetyNetToken(
       paramsOrCallback?:
         | Params$Resource$Projects$Apps$Exchangesafetynettoken
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>
+      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Exchangesafetynettoken;
@@ -1919,12 +2345,12 @@ export namespace firebaseappcheck_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>(
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAttestationTokenResponse>(
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAppCheckToken>(
           parameters
         );
       }
@@ -1997,7 +2423,7 @@ export namespace firebaseappcheck_v1beta {
     generateAppAttestChallenge(
       params?: Params$Resource$Projects$Apps$Generateappattestchallenge,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAppAttestChallengeResponse>;
+    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponse>;
     generateAppAttestChallenge(
       params: Params$Resource$Projects$Apps$Generateappattestchallenge,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2007,32 +2433,32 @@ export namespace firebaseappcheck_v1beta {
       params: Params$Resource$Projects$Apps$Generateappattestchallenge,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppAttestChallengeResponse>,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppAttestChallengeResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponse>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponse>
     ): void;
     generateAppAttestChallenge(
       params: Params$Resource$Projects$Apps$Generateappattestchallenge,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppAttestChallengeResponse>
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponse>
     ): void;
     generateAppAttestChallenge(
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppAttestChallengeResponse>
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponse>
     ): void;
     generateAppAttestChallenge(
       paramsOrCallback?:
         | Params$Resource$Projects$Apps$Generateappattestchallenge
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppAttestChallengeResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppAttestChallengeResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaAppAttestChallengeResponse>
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaAppAttestChallengeResponse>
+      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Apps$Generateappattestchallenge;
@@ -2067,12 +2493,162 @@ export namespace firebaseappcheck_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAppAttestChallengeResponse>(
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaAppAttestChallengeResponse>(
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Generates a challenge that protects the integrity of an immediately following integrity verdict request to the Play Integrity API. The next call to ExchangePlayIntegrityToken using the resulting integrity token will verify the presence and validity of the challenge. A challenge should not be reused for multiple calls.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappcheck.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappcheck = google.firebaseappcheck('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebaseappcheck.projects.apps.generatePlayIntegrityChallenge({
+     *       // Required. The relative resource name of the app, in the format: ``` projects/{project_number\}/apps/{app_id\} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.
+     *       app: 'projects/my-project/apps/my-app',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "challenge": "my_challenge",
+     *   //   "ttl": "my_ttl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generatePlayIntegrityChallenge(
+      params: Params$Resource$Projects$Apps$Generateplayintegritychallenge,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generatePlayIntegrityChallenge(
+      params?: Params$Resource$Projects$Apps$Generateplayintegritychallenge,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeResponse>;
+    generatePlayIntegrityChallenge(
+      params: Params$Resource$Projects$Apps$Generateplayintegritychallenge,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generatePlayIntegrityChallenge(
+      params: Params$Resource$Projects$Apps$Generateplayintegritychallenge,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeResponse>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeResponse>
+    ): void;
+    generatePlayIntegrityChallenge(
+      params: Params$Resource$Projects$Apps$Generateplayintegritychallenge,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeResponse>
+    ): void;
+    generatePlayIntegrityChallenge(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeResponse>
+    ): void;
+    generatePlayIntegrityChallenge(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Apps$Generateplayintegritychallenge
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Apps$Generateplayintegritychallenge;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Apps$Generateplayintegritychallenge;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta/{+app}:generatePlayIntegrityChallenge'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['app'],
+        pathParams: ['app'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeResponse>(
           parameters
         );
       }
@@ -2139,6 +2715,18 @@ export namespace firebaseappcheck_v1beta {
      */
     requestBody?: Schema$GoogleFirebaseAppcheckV1betaExchangeDeviceCheckTokenRequest;
   }
+  export interface Params$Resource$Projects$Apps$Exchangeplayintegritytoken
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of the Android app, in the format: ``` projects/{project_number\}/apps/{app_id\} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.
+     */
+    app?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirebaseAppcheckV1betaExchangePlayIntegrityTokenRequest;
+  }
   export interface Params$Resource$Projects$Apps$Exchangerecaptchaenterprisetoken
     extends StandardParameters {
     /**
@@ -2163,6 +2751,18 @@ export namespace firebaseappcheck_v1beta {
      */
     requestBody?: Schema$GoogleFirebaseAppcheckV1betaExchangeRecaptchaTokenRequest;
   }
+  export interface Params$Resource$Projects$Apps$Exchangerecaptchav3token
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of the web app, in the format: ``` projects/{project_number\}/apps/{app_id\} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.
+     */
+    app?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirebaseAppcheckV1betaExchangeRecaptchaV3TokenRequest;
+  }
   export interface Params$Resource$Projects$Apps$Exchangesafetynettoken
     extends StandardParameters {
     /**
@@ -2186,6 +2786,18 @@ export namespace firebaseappcheck_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeRequest;
+  }
+  export interface Params$Resource$Projects$Apps$Generateplayintegritychallenge
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of the app, in the format: ``` projects/{project_number\}/apps/{app_id\} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.
+     */
+    app?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeRequest;
   }
 
   export class Resource$Projects$Apps$Appattestconfig {
@@ -3940,6 +4552,485 @@ export namespace firebaseappcheck_v1beta {
     requestBody?: Schema$GoogleFirebaseAppcheckV1betaDeviceCheckConfig;
   }
 
+  export class Resource$Projects$Apps$Playintegrityconfig {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Atomically gets the PlayIntegrityConfigs for the specified list of apps.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappcheck.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappcheck = google.firebaseappcheck('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappcheck.projects.apps.playIntegrityConfig.batchGet(
+     *     {
+     *       // Required. The relative resource names of the PlayIntegrityConfigs to retrieve, in the format ``` projects/{project_number\}/apps/{app_id\}/playIntegrityConfig ``` A maximum of 100 objects can be retrieved in a batch.
+     *       names: 'placeholder-value',
+     *       // Required. The parent project name shared by all PlayIntegrityConfigs being retrieved, in the format ``` projects/{project_number\} ``` The parent collection in the `name` field of any resource being retrieved must match this field, or the entire batch fails.
+     *       parent: 'projects/my-project',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "configs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchGet(
+      params: Params$Resource$Projects$Apps$Playintegrityconfig$Batchget,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchGet(
+      params?: Params$Resource$Projects$Apps$Playintegrityconfig$Batchget,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaBatchGetPlayIntegrityConfigsResponse>;
+    batchGet(
+      params: Params$Resource$Projects$Apps$Playintegrityconfig$Batchget,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchGet(
+      params: Params$Resource$Projects$Apps$Playintegrityconfig$Batchget,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchGetPlayIntegrityConfigsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchGetPlayIntegrityConfigsResponse>
+    ): void;
+    batchGet(
+      params: Params$Resource$Projects$Apps$Playintegrityconfig$Batchget,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchGetPlayIntegrityConfigsResponse>
+    ): void;
+    batchGet(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchGetPlayIntegrityConfigsResponse>
+    ): void;
+    batchGet(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Apps$Playintegrityconfig$Batchget
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchGetPlayIntegrityConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchGetPlayIntegrityConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchGetPlayIntegrityConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaBatchGetPlayIntegrityConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Apps$Playintegrityconfig$Batchget;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Apps$Playintegrityconfig$Batchget;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta/{+parent}/apps/-/playIntegrityConfig:batchGet'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaBatchGetPlayIntegrityConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaBatchGetPlayIntegrityConfigsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets the PlayIntegrityConfig for the specified app.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappcheck.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappcheck = google.firebaseappcheck('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappcheck.projects.apps.playIntegrityConfig.get({
+     *     // Required. The relative resource name of the PlayIntegrityConfig, in the format: ``` projects/{project_number\}/apps/{app_id\}/playIntegrityConfig ```
+     *     name: 'projects/my-project/apps/my-app/playIntegrityConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "tokenTtl": "my_tokenTtl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Apps$Playintegrityconfig$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Apps$Playintegrityconfig$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaPlayIntegrityConfig>;
+    get(
+      params: Params$Resource$Projects$Apps$Playintegrityconfig$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Apps$Playintegrityconfig$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaPlayIntegrityConfig>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaPlayIntegrityConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Apps$Playintegrityconfig$Get,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaPlayIntegrityConfig>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaPlayIntegrityConfig>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Apps$Playintegrityconfig$Get
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaPlayIntegrityConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaPlayIntegrityConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaPlayIntegrityConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaPlayIntegrityConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Apps$Playintegrityconfig$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Apps$Playintegrityconfig$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaPlayIntegrityConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaPlayIntegrityConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the PlayIntegrityConfig for the specified app. While this configuration is incomplete or invalid, the app will be unable to exchange Play Integrity tokens for App Check tokens.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappcheck.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappcheck = google.firebaseappcheck('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappcheck.projects.apps.playIntegrityConfig.patch({
+     *     // Required. The relative resource name of the Play Integrity configuration object, in the format: ``` projects/{project_number\}/apps/{app_id\}/playIntegrityConfig ```
+     *     name: 'projects/my-project/apps/my-app/playIntegrityConfig',
+     *     // Required. A comma-separated list of names of fields in the PlayIntegrityConfig Gets to update. Example: `token_ttl`.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "tokenTtl": "my_tokenTtl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "tokenTtl": "my_tokenTtl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Apps$Playintegrityconfig$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Apps$Playintegrityconfig$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaPlayIntegrityConfig>;
+    patch(
+      params: Params$Resource$Projects$Apps$Playintegrityconfig$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Apps$Playintegrityconfig$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaPlayIntegrityConfig>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaPlayIntegrityConfig>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Apps$Playintegrityconfig$Patch,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaPlayIntegrityConfig>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaPlayIntegrityConfig>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Apps$Playintegrityconfig$Patch
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaPlayIntegrityConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaPlayIntegrityConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaPlayIntegrityConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaPlayIntegrityConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Apps$Playintegrityconfig$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Apps$Playintegrityconfig$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaPlayIntegrityConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaPlayIntegrityConfig>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Apps$Playintegrityconfig$Batchget
+    extends StandardParameters {
+    /**
+     * Required. The relative resource names of the PlayIntegrityConfigs to retrieve, in the format ``` projects/{project_number\}/apps/{app_id\}/playIntegrityConfig ``` A maximum of 100 objects can be retrieved in a batch.
+     */
+    names?: string[];
+    /**
+     * Required. The parent project name shared by all PlayIntegrityConfigs being retrieved, in the format ``` projects/{project_number\} ``` The parent collection in the `name` field of any resource being retrieved must match this field, or the entire batch fails.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Apps$Playintegrityconfig$Get
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of the PlayIntegrityConfig, in the format: ``` projects/{project_number\}/apps/{app_id\}/playIntegrityConfig ```
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Apps$Playintegrityconfig$Patch
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of the Play Integrity configuration object, in the format: ``` projects/{project_number\}/apps/{app_id\}/playIntegrityConfig ```
+     */
+    name?: string;
+    /**
+     * Required. A comma-separated list of names of fields in the PlayIntegrityConfig Gets to update. Example: `token_ttl`.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirebaseAppcheckV1betaPlayIntegrityConfig;
+  }
+
   export class Resource$Projects$Apps$Recaptchaconfig {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -4906,6 +5997,488 @@ export namespace firebaseappcheck_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfig;
+  }
+
+  export class Resource$Projects$Apps$Recaptchav3config {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Atomically gets the RecaptchaV3Configs for the specified list of apps. For security reasons, the `site_secret` field is never populated in the response.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappcheck.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappcheck = google.firebaseappcheck('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappcheck.projects.apps.recaptchaV3Config.batchGet({
+     *     // Required. The relative resource names of the RecaptchaV3Configs to retrieve, in the format: ``` projects/{project_number\}/apps/{app_id\}/recaptchaV3Config ``` A maximum of 100 objects can be retrieved in a batch.
+     *     names: 'placeholder-value',
+     *     // Required. The parent project name shared by all RecaptchaV3Configs being retrieved, in the format ``` projects/{project_number\} ``` The parent collection in the `name` field of any resource being retrieved must match this field, or the entire batch fails.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "configs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchGet(
+      params: Params$Resource$Projects$Apps$Recaptchav3config$Batchget,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchGet(
+      params?: Params$Resource$Projects$Apps$Recaptchav3config$Batchget,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponse>;
+    batchGet(
+      params: Params$Resource$Projects$Apps$Recaptchav3config$Batchget,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchGet(
+      params: Params$Resource$Projects$Apps$Recaptchav3config$Batchget,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponse>
+    ): void;
+    batchGet(
+      params: Params$Resource$Projects$Apps$Recaptchav3config$Batchget,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponse>
+    ): void;
+    batchGet(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponse>
+    ): void;
+    batchGet(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Apps$Recaptchav3config$Batchget
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Apps$Recaptchav3config$Batchget;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Apps$Recaptchav3config$Batchget;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta/{+parent}/apps/-/recaptchaV3Config:batchGet'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets the RecaptchaV3Config for the specified app. For security reasons, the `site_secret` field is never populated in the response.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappcheck.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappcheck = google.firebaseappcheck('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappcheck.projects.apps.recaptchaV3Config.get({
+     *     // Required. The relative resource name of the RecaptchaV3Config, in the format: ``` projects/{project_number\}/apps/{app_id\}/recaptchaV3Config ```
+     *     name: 'projects/my-project/apps/my-app/recaptchaV3Config',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "siteSecret": "my_siteSecret",
+     *   //   "siteSecretSet": false,
+     *   //   "tokenTtl": "my_tokenTtl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Apps$Recaptchav3config$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Apps$Recaptchav3config$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>;
+    get(
+      params: Params$Resource$Projects$Apps$Recaptchav3config$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Apps$Recaptchav3config$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Apps$Recaptchav3config$Get,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Apps$Recaptchav3config$Get
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Apps$Recaptchav3config$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Apps$Recaptchav3config$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the RecaptchaV3Config for the specified app. While this configuration is incomplete or invalid, the app will be unable to exchange reCAPTCHA V3 tokens for App Check tokens. For security reasons, the `site_secret` field is never populated in the response.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappcheck.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappcheck = google.firebaseappcheck('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappcheck.projects.apps.recaptchaV3Config.patch({
+     *     // Required. The relative resource name of the reCAPTCHA v3 configuration object, in the format: ``` projects/{project_number\}/apps/{app_id\}/recaptchaV3Config ```
+     *     name: 'projects/my-project/apps/my-app/recaptchaV3Config',
+     *     // Required. A comma-separated list of names of fields in the RecaptchaV3Config to update. Example: `site_secret`.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "siteSecret": "my_siteSecret",
+     *       //   "siteSecretSet": false,
+     *       //   "tokenTtl": "my_tokenTtl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "siteSecret": "my_siteSecret",
+     *   //   "siteSecretSet": false,
+     *   //   "tokenTtl": "my_tokenTtl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Apps$Recaptchav3config$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Apps$Recaptchav3config$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>;
+    patch(
+      params: Params$Resource$Projects$Apps$Recaptchav3config$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Apps$Recaptchav3config$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Apps$Recaptchav3config$Patch,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Apps$Recaptchav3config$Patch
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Apps$Recaptchav3config$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Apps$Recaptchav3config$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Apps$Recaptchav3config$Batchget
+    extends StandardParameters {
+    /**
+     * Required. The relative resource names of the RecaptchaV3Configs to retrieve, in the format: ``` projects/{project_number\}/apps/{app_id\}/recaptchaV3Config ``` A maximum of 100 objects can be retrieved in a batch.
+     */
+    names?: string[];
+    /**
+     * Required. The parent project name shared by all RecaptchaV3Configs being retrieved, in the format ``` projects/{project_number\} ``` The parent collection in the `name` field of any resource being retrieved must match this field, or the entire batch fails.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Apps$Recaptchav3config$Get
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of the RecaptchaV3Config, in the format: ``` projects/{project_number\}/apps/{app_id\}/recaptchaV3Config ```
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Apps$Recaptchav3config$Patch
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of the reCAPTCHA v3 configuration object, in the format: ``` projects/{project_number\}/apps/{app_id\}/recaptchaV3Config ```
+     */
+    name?: string;
+    /**
+     * Required. A comma-separated list of names of fields in the RecaptchaV3Config to update. Example: `site_secret`.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config;
   }
 
   export class Resource$Projects$Apps$Safetynetconfig {

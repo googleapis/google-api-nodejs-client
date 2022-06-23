@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -348,6 +347,18 @@ export namespace dataflow_v1b3 {
      * Name of the docker container image. E.g., gcr.io/project/some-image
      */
     image?: string | null;
+    /**
+     * Cloud Storage path to self-signed certificate of private registry.
+     */
+    imageRepositoryCertPath?: string | null;
+    /**
+     * Secret Manager secret id for password to authenticate to private registry.
+     */
+    imageRepositoryPasswordSecretId?: string | null;
+    /**
+     * Secret Manager secret id for username to authenticate to private registry.
+     */
+    imageRepositoryUsernameSecretId?: string | null;
     /**
      * Metadata describing a template including description and validation rules.
      */
@@ -891,7 +902,7 @@ export namespace dataflow_v1b3 {
      */
     diskSizeGb?: number | null;
     /**
-     * If true, save a heap dump before killing a thread or process which is GC thrashing or out of memory. The location of the heap file will either be echoed back to the user, or the user will be given the opportunity to download the heap file.
+     * If true, when processing time is spent almost entirely on garbage collection (GC), saves a heap dump before ending the thread or process. If false, ends the thread or process without saving a heap dump. Does not save a heap dump when the Java Virtual Machine (JVM) has an out of memory error during processing. The location of the heap file is either echoed back to the user, or the user is given the opportunity to download the heap file.
      */
     dumpHeapOnOom?: boolean | null;
     /**
@@ -931,7 +942,7 @@ export namespace dataflow_v1b3 {
      */
     numWorkers?: number | null;
     /**
-     * Cloud Storage bucket (directory) to upload heap dumps to the given location. Enabling this implies that heap dumps should be generated on OOM (dump_heap_on_oom is set to true).
+     * Cloud Storage bucket (directory) to upload heap dumps to. Enabling this field implies that `dump_heap_on_oom` is set to true.
      */
     saveHeapDumpsToGcsPath?: string | null;
     /**
@@ -1144,7 +1155,7 @@ export namespace dataflow_v1b3 {
     sum?: Schema$SplitInt64;
   }
   /**
-   * Defines a job to be run by the Cloud Dataflow service.
+   * Defines a job to be run by the Cloud Dataflow service. Do not enter confidential information when you supply string values using the API.
    */
   export interface Schema$Job {
     /**
@@ -1192,7 +1203,7 @@ export namespace dataflow_v1b3 {
      */
     location?: string | null;
     /**
-     * The user-specified Cloud Dataflow job name. Only one Job with a given name may exist in a project at any given time. If a caller attempts to create a Job with the same name as an already-existing Job, the attempt returns the existing Job. The name must match the regular expression `[a-z]([-a-z0-9]{0,38\}[a-z0-9])?`
+     * The user-specified Cloud Dataflow job name. Only one Job with a given name can exist in a project within one region at any given time. Jobs in different regions can have the same name. If a caller attempts to create a Job with the same name as an already-existing Job, the attempt returns the existing Job. The name must match the regular expression `[a-z]([-a-z0-9]{0,38\}[a-z0-9])?`
      */
     name?: string | null;
     /**
@@ -1448,7 +1459,7 @@ export namespace dataflow_v1b3 {
     job?: Schema$Job;
   }
   /**
-   * Parameters to provide to the template being launched.
+   * Parameters to provide to the template being launched. Note that the [metadata in the pipeline code] (https://cloud.google.com/dataflow/docs/guides/templates/creating-templates#metadata) determines which runtime parameters are valid.
    */
   export interface Schema$LaunchTemplateParameters {
     /**
@@ -2146,7 +2157,7 @@ export namespace dataflow_v1b3 {
      */
     network?: string | null;
     /**
-     * The initial number of Google Compute Engine instnaces for the job.
+     * The initial number of Google Compute Engine instances for the job.
      */
     numWorkers?: number | null;
     /**
@@ -2188,11 +2199,11 @@ export namespace dataflow_v1b3 {
     sdkInfo?: Schema$SDKInfo;
   }
   /**
-   * Defines a SDK harness container for executing Dataflow pipelines.
+   * Defines an SDK harness container for executing Dataflow pipelines.
    */
   export interface Schema$SdkHarnessContainerImage {
     /**
-     * The set of capabilities enumerated in the above Environment proto. See also https://github.com/apache/beam/blob/master/model/pipeline/src/main/proto/beam_runner_api.proto
+     * The set of capabilities enumerated in the above Environment proto. See also [beam_runner_api.proto](https://github.com/apache/beam/blob/master/model/pipeline/src/main/proto/org/apache/beam/model/pipeline/v1/beam_runner_api.proto)
      */
     capabilities?: string[] | null;
     /**
@@ -4100,7 +4111,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Creates a Cloud Dataflow job. To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`.
+     * Creates a Cloud Dataflow job. To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`. Do not enter confidential information when you supply string values using the API.
      * @example
      * ```js
      * // Before running the sample:
@@ -6532,7 +6543,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Creates a Cloud Dataflow job. To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`.
+     * Creates a Cloud Dataflow job. To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`. Do not enter confidential information when you supply string values using the API.
      * @example
      * ```js
      * // Before running the sample:
@@ -9774,7 +9785,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Creates a Cloud Dataflow job from a template.
+     * Creates a Cloud Dataflow job from a template. Do not enter confidential information when you supply string values using the API.
      * @example
      * ```js
      * // Before running the sample:
@@ -10655,7 +10666,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Creates a Cloud Dataflow job from a template.
+     * Creates a Cloud Dataflow job from a template. Do not enter confidential information when you supply string values using the API.
      * @example
      * ```js
      * // Before running the sample:

@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -210,6 +209,10 @@ export namespace dialogflow_v3beta1 {
      * Indicates if stackdriver logging is enabled for the agent. Please use agent.advanced_settings instead.
      */
     enableStackdriverLogging?: boolean | null;
+    /**
+     * Indicates whether the agent is locked for changes. If the agent is locked, modifications to the agent will be rejected except for RestoreAgent.
+     */
+    locked?: boolean | null;
     /**
      * The unique identifier of the agent. Required for the Agents.UpdateAgent method. Agents.CreateAgent populates the name automatically. Format: `projects//locations//agents/`.
      */
@@ -719,6 +722,10 @@ export namespace dialogflow_v3beta1 {
      * Required. A list of configurations for flow versions. You should include version configs for all flows that are reachable from `Start Flow` in the agent. Otherwise, an error will be returned.
      */
     versionConfigs?: Schema$GoogleCloudDialogflowCxV3beta1EnvironmentVersionConfig[];
+    /**
+     * The webhook configuration for this environment.
+     */
+    webhookConfig?: Schema$GoogleCloudDialogflowCxV3beta1EnvironmentWebhookConfig;
   }
   /**
    * The configuration for continuous tests.
@@ -745,6 +752,15 @@ export namespace dialogflow_v3beta1 {
      * Required. Format: projects//locations//agents//flows//versions/.
      */
     version?: string | null;
+  }
+  /**
+   * Configuration for webhooks.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1EnvironmentWebhookConfig {
+    /**
+     * The list of webhooks to override for the agent environment. The webhook must exist in the agent. You can override fields in `generic_web_service` and `service_directory`.
+     */
+    webhookOverrides?: Schema$GoogleCloudDialogflowCxV3beta1Webhook[];
   }
   /**
    * An event handler specifies an event that can be handled during a session. When the specified event happens, the following actions are taken in order: * If there is a `trigger_fulfillment` associated with the event, it will be called. * If there is a `target_page` associated with the event, the session will transition into the specified page. * If there is a `target_flow` associated with the event, the session will transition into the specified flow.
@@ -943,6 +959,10 @@ export namespace dialogflow_v3beta1 {
      */
     agentUri?: string | null;
     /**
+     * Optional. The data format of the exported agent. If not specified, `BLOB` is assumed.
+     */
+    dataFormat?: string | null;
+    /**
      * Optional. Environment name. If not set, draft environment is assumed. Format: `projects//locations//agents//environments/`.
      */
     environment?: string | null;
@@ -1049,7 +1069,7 @@ export namespace dialogflow_v3beta1 {
      */
     transitionRouteGroups?: string[] | null;
     /**
-     * A flow's transition routes serve two purposes: * They are responsible for matching the user's first utterances in the flow. * They are inherited by every page's transition routes and can support use cases such as the user saying "help" or "can I talk to a human?", which can be handled in a common way regardless of the current page. Transition routes defined in the page have higher priority than those defined in the flow. TransitionRoutes are evalauted in the following order: * TransitionRoutes with intent specified.. * TransitionRoutes with only condition specified. TransitionRoutes with intent specified are inherited by pages in the flow.
+     * A flow's transition routes serve two purposes: * They are responsible for matching the user's first utterances in the flow. * They are inherited by every page's transition routes and can support use cases such as the user saying "help" or "can I talk to a human?", which can be handled in a common way regardless of the current page. Transition routes defined in the page have higher priority than those defined in the flow. TransitionRoutes are evalauted in the following order: * TransitionRoutes with intent specified. * TransitionRoutes with only condition specified. TransitionRoutes with intent specified are inherited by pages in the flow.
      */
     transitionRoutes?: Schema$GoogleCloudDialogflowCxV3beta1TransitionRoute[];
   }
@@ -1184,7 +1204,7 @@ export namespace dialogflow_v3beta1 {
      */
     setParameterActions?: Schema$GoogleCloudDialogflowCxV3beta1FulfillmentSetParameterAction[];
     /**
-     * The tag used by the webhook to identify which fulfillment is being called. This field is required if `webhook` is specified.
+     * The value of this field will be populated in the WebhookRequest `fulfillmentInfo.tag` field by Dialogflow when the associated webhook is called. The tag is typically used by the webhook service to identify which fulfillment is being called, but it could be used for other purposes. This field is required if `webhook` is specified.
      */
     tag?: string | null;
     /**
@@ -1744,7 +1764,7 @@ export namespace dialogflow_v3beta1 {
      */
     matchType?: string | null;
     /**
-     * The collection of parameters extracted from the query. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: depending on parameter value type, could be one of string, number, boolean, null, list or map - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
+     * The collection of parameters extracted from the query. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: * MapKey type: string * MapKey value: parameter name * MapValue type: If parameter's entity type is a composite entity then use map, otherwise, depending on the parameter value type, it could be one of string, number, boolean, null, list or map. * MapValue value: If parameter's entity type is a composite entity then use map from composite entity property names to property values, otherwise, use parameter value.
      */
     parameters?: {[key: string]: any} | null;
     /**
@@ -1833,7 +1853,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1Page {
     /**
-     * Required. The human-readable name of the page, unique within the agent.
+     * Required. The human-readable name of the page, unique within the flow.
      */
     displayName?: string | null;
     /**
@@ -1966,7 +1986,7 @@ export namespace dialogflow_v3beta1 {
      */
     geoLocation?: Schema$GoogleTypeLatLng;
     /**
-     * Additional parameters to be put into session parameters. To remove a parameter from the session, clients should explicitly set the parameter value to null. You can reference the session parameters in the agent with the following format: $session.params.parameter-id. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: depending on parameter value type, could be one of string, number, boolean, null, list or map - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
+     * Additional parameters to be put into session parameters. To remove a parameter from the session, clients should explicitly set the parameter value to null. You can reference the session parameters in the agent with the following format: $session.params.parameter-id. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: * MapKey type: string * MapKey value: parameter name * MapValue type: If parameter's entity type is a composite entity then use map, otherwise, depending on the parameter value type, it could be one of string, number, boolean, null, list or map. * MapValue value: If parameter's entity type is a composite entity then use map from composite entity property names to property values, otherwise, use parameter value.
      */
     parameters?: {[key: string]: any} | null;
     /**
@@ -1995,7 +2015,7 @@ export namespace dialogflow_v3beta1 {
      */
     currentPage?: Schema$GoogleCloudDialogflowCxV3beta1Page;
     /**
-     * The free-form diagnostic info. For example, this field could contain webhook call latency. The string keys of the Struct's fields map can change without notice.
+     * The free-form diagnostic info. For example, this field could contain webhook call latency. The fields of this data can change without notice, so you should not write code that depends on its structure. One of the fields is called "Alternative Matched Intents", which may aid with debugging. The following describes these intent results: - The list is empty if no intent was matched to end-user input. - Only intents that are referenced in the currently active flow are included. - The matched intent is included. - Other intents that could have matched end-user input, but did not match because they are referenced by intent routes that are out of [scope](https://cloud.google.com/dialogflow/cx/docs/concept/handler#scope), are included. - Other intents referenced by intent routes in scope that matched end-user input, but had a lower confidence score.
      */
     diagnosticInfo?: {[key: string]: any} | null;
     /**
@@ -2019,7 +2039,7 @@ export namespace dialogflow_v3beta1 {
      */
     match?: Schema$GoogleCloudDialogflowCxV3beta1Match;
     /**
-     * The collected session parameters. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: depending on parameter value type, could be one of string, number, boolean, null, list or map - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
+     * The collected session parameters. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: * MapKey type: string * MapKey value: parameter name * MapValue type: If parameter's entity type is a composite entity then use map, otherwise, depending on the parameter value type, it could be one of string, number, boolean, null, list or map. * MapValue value: If parameter's entity type is a composite entity then use map from composite entity property names to property values, otherwise, use parameter value.
      */
     parameters?: {[key: string]: any} | null;
     /**
@@ -2335,6 +2355,10 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings {
     /**
+     * Controls audio export settings for post-conversation analytics when ingesting audio to conversations via Participants.AnalyzeContent or Participants.StreamingAnalyzeContent. If retention_strategy is set to REMOVE_AFTER_CONVERSATION or audio_export_settings.gcs_bucket is empty, audio export is disabled. If audio export is enabled, audio is recorded and saved to audio_export_settings.gcs_bucket, subject to retention policy of audio_export_settings.gcs_bucket. This setting won't effect audio input for implicit sessions via Sessions.DetectIntent or Sessions.StreamingDetectIntent.
+     */
+    audioExportSettings?: Schema$GoogleCloudDialogflowCxV3beta1SecuritySettingsAudioExportSettings;
+    /**
      * [DLP](https://cloud.google.com/dlp/docs) deidentify template name. Use this template to define de-identification configuration for the content. The `DLP De-identify Templates Reader` role is needed on the Dialogflow service identity service account (has the form `service-PROJECT_NUMBER@gcp-sa-dialogflow.iam.gserviceaccount.com`) for your agent's project. If empty, Dialogflow replaces sensitive info with `[redacted]` text. The template name will have one of the following formats: `projects//locations//deidentifyTemplates/` OR `organizations//locations//deidentifyTemplates/` Note: `deidentify_template` must be located in the same region as the `SecuritySettings`.
      */
     deidentifyTemplate?: string | null;
@@ -2370,6 +2394,27 @@ export namespace dialogflow_v3beta1 {
      * Retains data in interaction logging for the specified number of days. This does not apply to Cloud logging, which is owned by the user - not Dialogflow. User must set a value lower than Dialogflow's default 365d TTL. Setting a value higher than that has no effect. A missing value or setting to 0 also means we use Dialogflow's default TTL. Note: Interaction logging is a limited access feature. Talk to your Google representative to check availability for you.
      */
     retentionWindowDays?: number | null;
+  }
+  /**
+   * Settings for exporting audio.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1SecuritySettingsAudioExportSettings {
+    /**
+     * Filename pattern for exported audio.
+     */
+    audioExportPattern?: string | null;
+    /**
+     * File format for exported audio file. Currently only in telephony recordings.
+     */
+    audioFormat?: string | null;
+    /**
+     * Enable audio redaction if it is true.
+     */
+    enableAudioRedaction?: boolean | null;
+    /**
+     * Cloud Storage bucket to export audio record to. You need to grant `service-@gcp-sa-dialogflow.iam.gserviceaccount.com` the `Storage Object Admin` role in this bucket.
+     */
+    gcsBucket?: string | null;
   }
   /**
    * Settings for exporting conversations to [Insights](https://cloud.google.com/contact-center/insights/docs).
@@ -2689,7 +2734,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup {
     /**
-     * Required. The human-readable name of the transition route group, unique within the Agent. The display name can be no longer than 30 characters.
+     * Required. The human-readable name of the transition route group, unique within the flow. The display name can be no longer than 30 characters.
      */
     displayName?: string | null;
     /**
@@ -2911,7 +2956,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookGenericWebService {
     /**
-     * Optional. Specifies a list of allowed custom CA certificates (in DER format) for HTTPS verification. This overrides the default SSL trust store. If this is empty or unspecified, Dialogflow will use Google's default trust store to verify certificates. N.B. Make sure the HTTPS server certificates are signed with "subject alt name". For instance a certificate can be self-signed using the following command, openssl x509 -req -days 200 -in example.com.csr \ -signkey example.com.key \ -out example.com.crt \ -extfile <(printf "\nsubjectAltName='DNS:www.example.com'")
+     * Optional. Specifies a list of allowed custom CA certificates (in DER format) for HTTPS verification. This overrides the default SSL trust store. If this is empty or unspecified, Dialogflow will use Google's default trust store to verify certificates. N.B. Make sure the HTTPS server certificates are signed with "subject alt name". For instance a certificate can be self-signed using the following command, ``` openssl x509 -req -days 200 -in example.com.csr \ -signkey example.com.key \ -out example.com.crt \ -extfile <(printf "\nsubjectAltName='DNS:www.example.com'") ```
      */
     allowedCaCerts?: string[] | null;
     /**
@@ -2993,7 +3038,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookRequestFulfillmentInfo {
     /**
-     * Always present. The tag used to identify which fulfillment is being called.
+     * Always present. The value of the Fulfillment.tag field will be populated in this field by Dialogflow when the associated webhook is called. The tag is typically used by the webhook service to identify which fulfillment is being called, but it could be used for other purposes.
      */
     tag?: string | null;
   }
@@ -3281,6 +3326,10 @@ export namespace dialogflow_v3beta1 {
      * Required. A list of configurations for flow versions. You should include version configs for all flows that are reachable from `Start Flow` in the agent. Otherwise, an error will be returned.
      */
     versionConfigs?: Schema$GoogleCloudDialogflowCxV3EnvironmentVersionConfig[];
+    /**
+     * The webhook configuration for this environment.
+     */
+    webhookConfig?: Schema$GoogleCloudDialogflowCxV3EnvironmentWebhookConfig;
   }
   /**
    * The configuration for continuous tests.
@@ -3307,6 +3356,15 @@ export namespace dialogflow_v3beta1 {
      * Required. Format: projects//locations//agents//flows//versions/.
      */
     version?: string | null;
+  }
+  /**
+   * Configuration for webhooks.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3EnvironmentWebhookConfig {
+    /**
+     * The list of webhooks to override for the agent environment. The webhook must exist in the agent. You can override fields in `generic_web_service` and `service_directory`.
+     */
+    webhookOverrides?: Schema$GoogleCloudDialogflowCxV3Webhook[];
   }
   /**
    * An event handler specifies an event that can be handled during a session. When the specified event happens, the following actions are taken in order: * If there is a `trigger_fulfillment` associated with the event, it will be called. * If there is a `target_page` associated with the event, the session will transition into the specified page. * If there is a `target_flow` associated with the event, the session will transition into the specified flow.
@@ -3461,7 +3519,7 @@ export namespace dialogflow_v3beta1 {
      */
     setParameterActions?: Schema$GoogleCloudDialogflowCxV3FulfillmentSetParameterAction[];
     /**
-     * The tag used by the webhook to identify which fulfillment is being called. This field is required if `webhook` is specified.
+     * The value of this field will be populated in the WebhookRequest `fulfillmentInfo.tag` field by Dialogflow when the associated webhook is called. The tag is typically used by the webhook service to identify which fulfillment is being called, but it could be used for other purposes. This field is required if `webhook` is specified.
      */
     tag?: string | null;
     /**
@@ -3706,7 +3764,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3Page {
     /**
-     * Required. The human-readable name of the page, unique within the agent.
+     * Required. The human-readable name of the page, unique within the flow.
      */
     displayName?: string | null;
     /**
@@ -4178,6 +4236,60 @@ export namespace dialogflow_v3beta1 {
     genericMetadata?: Schema$GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata;
   }
   /**
+   * Webhooks host the developer's business logic. During a session, webhooks allow the developer to use the data extracted by Dialogflow's natural language processing to generate dynamic responses, validate collected data, or trigger actions on the backend.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3Webhook {
+    /**
+     * Indicates whether the webhook is disabled.
+     */
+    disabled?: boolean | null;
+    /**
+     * Required. The human-readable name of the webhook, unique within the agent.
+     */
+    displayName?: string | null;
+    /**
+     * Configuration for a generic web service.
+     */
+    genericWebService?: Schema$GoogleCloudDialogflowCxV3WebhookGenericWebService;
+    /**
+     * The unique identifier of the webhook. Required for the Webhooks.UpdateWebhook method. Webhooks.CreateWebhook populates the name automatically. Format: `projects//locations//agents//webhooks/`.
+     */
+    name?: string | null;
+    /**
+     * Configuration for a [Service Directory](https://cloud.google.com/service-directory) service.
+     */
+    serviceDirectory?: Schema$GoogleCloudDialogflowCxV3WebhookServiceDirectoryConfig;
+    /**
+     * Webhook execution timeout. Execution is considered failed if Dialogflow doesn't receive a response from webhook at the end of the timeout period. Defaults to 5 seconds, maximum allowed timeout is 30 seconds.
+     */
+    timeout?: string | null;
+  }
+  /**
+   * Represents configuration for a generic web service.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3WebhookGenericWebService {
+    /**
+     * Optional. Specifies a list of allowed custom CA certificates (in DER format) for HTTPS verification. This overrides the default SSL trust store. If this is empty or unspecified, Dialogflow will use Google's default trust store to verify certificates. N.B. Make sure the HTTPS server certificates are signed with "subject alt name". For instance a certificate can be self-signed using the following command, ``` openssl x509 -req -days 200 -in example.com.csr \ -signkey example.com.key \ -out example.com.crt \ -extfile <(printf "\nsubjectAltName='DNS:www.example.com'") ```
+     */
+    allowedCaCerts?: string[] | null;
+    /**
+     * The password for HTTP Basic authentication.
+     */
+    password?: string | null;
+    /**
+     * The HTTP request headers to send together with webhook requests.
+     */
+    requestHeaders?: {[key: string]: string} | null;
+    /**
+     * Required. The webhook URI for receiving POST requests. It must use https protocol.
+     */
+    uri?: string | null;
+    /**
+     * The user name for HTTP Basic authentication.
+     */
+    username?: string | null;
+  }
+  /**
    * The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases.
    */
   export interface Schema$GoogleCloudDialogflowCxV3WebhookRequest {
@@ -4239,7 +4351,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3WebhookRequestFulfillmentInfo {
     /**
-     * Always present. The tag used to identify which fulfillment is being called.
+     * Always present. The value of the Fulfillment.tag field will be populated in this field by Dialogflow when the associated webhook is called. The tag is typically used by the webhook service to identify which fulfillment is being called, but it could be used for other purposes.
      */
     tag?: string | null;
   }
@@ -4335,6 +4447,19 @@ export namespace dialogflow_v3beta1 {
      * The list of rich message responses to present to the user.
      */
     messages?: Schema$GoogleCloudDialogflowCxV3ResponseMessage[];
+  }
+  /**
+   * Represents configuration for a [Service Directory](https://cloud.google.com/service-directory) service.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3WebhookServiceDirectoryConfig {
+    /**
+     * Generic Service configuration of this webhook.
+     */
+    genericWebService?: Schema$GoogleCloudDialogflowCxV3WebhookGenericWebService;
+    /**
+     * Required. The name of [Service Directory](https://cloud.google.com/service-directory) service. Format: `projects//locations//namespaces//services/`. `Location ID` of the service directory must be the same as the location of the agent.
+     */
+    service?: string | null;
   }
   /**
    * Represents a part of a message possibly annotated with an entity. The part can be an entity or purely a part of the message between two entities or message start/end.
@@ -7468,7 +7593,7 @@ export namespace dialogflow_v3beta1 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$GoogleProtobufEmpty {}
   /**
@@ -7699,7 +7824,7 @@ export namespace dialogflow_v3beta1 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.locations.list({
-     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
@@ -7828,7 +7953,7 @@ export namespace dialogflow_v3beta1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
     /**
@@ -7925,6 +8050,7 @@ export namespace dialogflow_v3beta1 {
      *       //   "displayName": "my_displayName",
      *       //   "enableSpellCorrection": false,
      *       //   "enableStackdriverLogging": false,
+     *       //   "locked": false,
      *       //   "name": "my_name",
      *       //   "securitySettings": "my_securitySettings",
      *       //   "speechToTextSettings": {},
@@ -7945,6 +8071,7 @@ export namespace dialogflow_v3beta1 {
      *   //   "displayName": "my_displayName",
      *   //   "enableSpellCorrection": false,
      *   //   "enableStackdriverLogging": false,
+     *   //   "locked": false,
      *   //   "name": "my_name",
      *   //   "securitySettings": "my_securitySettings",
      *   //   "speechToTextSettings": {},
@@ -8222,6 +8349,7 @@ export namespace dialogflow_v3beta1 {
      *       // request body parameters
      *       // {
      *       //   "agentUri": "my_agentUri",
+     *       //   "dataFormat": "my_dataFormat",
      *       //   "environment": "my_environment"
      *       // }
      *     },
@@ -8380,6 +8508,7 @@ export namespace dialogflow_v3beta1 {
      *   //   "displayName": "my_displayName",
      *   //   "enableSpellCorrection": false,
      *   //   "enableStackdriverLogging": false,
+     *   //   "locked": false,
      *   //   "name": "my_name",
      *   //   "securitySettings": "my_securitySettings",
      *   //   "speechToTextSettings": {},
@@ -8820,6 +8949,7 @@ export namespace dialogflow_v3beta1 {
      *       //   "displayName": "my_displayName",
      *       //   "enableSpellCorrection": false,
      *       //   "enableStackdriverLogging": false,
+     *       //   "locked": false,
      *       //   "name": "my_name",
      *       //   "securitySettings": "my_securitySettings",
      *       //   "speechToTextSettings": {},
@@ -8840,6 +8970,7 @@ export namespace dialogflow_v3beta1 {
      *   //   "displayName": "my_displayName",
      *   //   "enableSpellCorrection": false,
      *   //   "enableStackdriverLogging": false,
+     *   //   "locked": false,
      *   //   "name": "my_name",
      *   //   "securitySettings": "my_securitySettings",
      *   //   "speechToTextSettings": {},
@@ -10596,7 +10727,8 @@ export namespace dialogflow_v3beta1 {
      *       //   "name": "my_name",
      *       //   "testCasesConfig": {},
      *       //   "updateTime": "my_updateTime",
-     *       //   "versionConfigs": []
+     *       //   "versionConfigs": [],
+     *       //   "webhookConfig": {}
      *       // }
      *     },
      *   });
@@ -11038,7 +11170,8 @@ export namespace dialogflow_v3beta1 {
      *   //   "name": "my_name",
      *   //   "testCasesConfig": {},
      *   //   "updateTime": "my_updateTime",
-     *   //   "versionConfigs": []
+     *   //   "versionConfigs": [],
+     *   //   "webhookConfig": {}
      *   // }
      * }
      *
@@ -11480,7 +11613,8 @@ export namespace dialogflow_v3beta1 {
      *       //   "name": "my_name",
      *       //   "testCasesConfig": {},
      *       //   "updateTime": "my_updateTime",
-     *       //   "versionConfigs": []
+     *       //   "versionConfigs": [],
+     *       //   "webhookConfig": {}
      *       // }
      *     },
      *   });
@@ -22435,7 +22569,7 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * Imports the test cases from a Cloud Storage bucket or a local file. It always creates new test cases and won't overwite any existing ones. The provided ID in the imported test case is neglected. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: ImportTestCasesMetadata - `response`: ImportTestCasesResponse
+     * Imports the test cases from a Cloud Storage bucket or a local file. It always creates new test cases and won't overwrite any existing ones. The provided ID in the imported test case is neglected. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: ImportTestCasesMetadata - `response`: ImportTestCasesResponse
      * @example
      * ```js
      * // Before running the sample:
@@ -24819,6 +24953,7 @@ export namespace dialogflow_v3beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "audioExportSettings": {},
      *       //   "deidentifyTemplate": "my_deidentifyTemplate",
      *       //   "displayName": "my_displayName",
      *       //   "insightsExportSettings": {},
@@ -24835,6 +24970,7 @@ export namespace dialogflow_v3beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "audioExportSettings": {},
      *   //   "deidentifyTemplate": "my_deidentifyTemplate",
      *   //   "displayName": "my_displayName",
      *   //   "insightsExportSettings": {},
@@ -25116,6 +25252,7 @@ export namespace dialogflow_v3beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "audioExportSettings": {},
      *   //   "deidentifyTemplate": "my_deidentifyTemplate",
      *   //   "displayName": "my_displayName",
      *   //   "insightsExportSettings": {},
@@ -25410,6 +25547,7 @@ export namespace dialogflow_v3beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "audioExportSettings": {},
      *       //   "deidentifyTemplate": "my_deidentifyTemplate",
      *       //   "displayName": "my_displayName",
      *       //   "insightsExportSettings": {},
@@ -25426,6 +25564,7 @@ export namespace dialogflow_v3beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "audioExportSettings": {},
      *   //   "deidentifyTemplate": "my_deidentifyTemplate",
      *   //   "displayName": "my_displayName",
      *   //   "insightsExportSettings": {},

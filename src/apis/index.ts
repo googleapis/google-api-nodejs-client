@@ -54,6 +54,7 @@ import {
   VERSIONS as analyticsdataVersions,
   analyticsdata,
 } from './analyticsdata';
+import {VERSIONS as analyticshubVersions, analyticshub} from './analyticshub';
 import {
   VERSIONS as analyticsreportingVersions,
   analyticsreporting,
@@ -75,6 +76,10 @@ import {
   androidpublisher,
 } from './androidpublisher';
 import {VERSIONS as apigatewayVersions, apigateway} from './apigateway';
+import {
+  VERSIONS as apigeeregistryVersions,
+  apigeeregistry,
+} from './apigeeregistry';
 import {VERSIONS as apikeysVersions, apikeys} from './apikeys';
 import {VERSIONS as appengineVersions, appengine} from './appengine';
 import {VERSIONS as appsactivityVersions, appsactivity} from './appsactivity';
@@ -98,6 +103,7 @@ import {
   VERSIONS as baremetalsolutionVersions,
   baremetalsolution,
 } from './baremetalsolution';
+import {VERSIONS as beyondcorpVersions, beyondcorp} from './beyondcorp';
 import {VERSIONS as bigqueryVersions, bigquery} from './bigquery';
 import {
   VERSIONS as bigqueryconnectionVersions,
@@ -125,6 +131,10 @@ import {
 } from './binaryauthorization';
 import {VERSIONS as bloggerVersions, blogger} from './blogger';
 import {VERSIONS as booksVersions, books} from './books';
+import {
+  VERSIONS as businessprofileperformanceVersions,
+  businessprofileperformance,
+} from './businessprofileperformance';
 import {VERSIONS as calendarVersions, calendar} from './calendar';
 import {
   VERSIONS as certificatemanagerVersions,
@@ -295,6 +305,7 @@ import {
 } from './gamesManagement';
 import {VERSIONS as gameservicesVersions, gameservices} from './gameservices';
 import {VERSIONS as genomicsVersions, genomics} from './genomics';
+import {VERSIONS as gkebackupVersions, gkebackup} from './gkebackup';
 import {VERSIONS as gkehubVersions, gkehub} from './gkehub';
 import {VERSIONS as gmailVersions, gmail} from './gmail';
 import {
@@ -611,12 +622,14 @@ export const APIS: APIList = {
   analytics: analyticsVersions,
   analyticsadmin: analyticsadminVersions,
   analyticsdata: analyticsdataVersions,
+  analyticshub: analyticshubVersions,
   analyticsreporting: analyticsreportingVersions,
   androiddeviceprovisioning: androiddeviceprovisioningVersions,
   androidenterprise: androidenterpriseVersions,
   androidmanagement: androidmanagementVersions,
   androidpublisher: androidpublisherVersions,
   apigateway: apigatewayVersions,
+  apigeeregistry: apigeeregistryVersions,
   apikeys: apikeysVersions,
   appengine: appengineVersions,
   appsactivity: appsactivityVersions,
@@ -625,6 +638,7 @@ export const APIS: APIList = {
   assuredworkloads: assuredworkloadsVersions,
   authorizedbuyersmarketplace: authorizedbuyersmarketplaceVersions,
   baremetalsolution: baremetalsolutionVersions,
+  beyondcorp: beyondcorpVersions,
   bigquery: bigqueryVersions,
   bigqueryconnection: bigqueryconnectionVersions,
   bigquerydatatransfer: bigquerydatatransferVersions,
@@ -634,6 +648,7 @@ export const APIS: APIList = {
   binaryauthorization: binaryauthorizationVersions,
   blogger: bloggerVersions,
   books: booksVersions,
+  businessprofileperformance: businessprofileperformanceVersions,
   calendar: calendarVersions,
   certificatemanager: certificatemanagerVersions,
   chat: chatVersions,
@@ -717,6 +732,7 @@ export const APIS: APIList = {
   gamesManagement: gamesManagementVersions,
   gameservices: gameservicesVersions,
   genomics: genomicsVersions,
+  gkebackup: gkebackupVersions,
   gkehub: gkehubVersions,
   gmail: gmailVersions,
   gmailpostmastertools: gmailpostmastertoolsVersions,
@@ -858,12 +874,14 @@ export class GeneratedAPIs {
   analytics = analytics;
   analyticsadmin = analyticsadmin;
   analyticsdata = analyticsdata;
+  analyticshub = analyticshub;
   analyticsreporting = analyticsreporting;
   androiddeviceprovisioning = androiddeviceprovisioning;
   androidenterprise = androidenterprise;
   androidmanagement = androidmanagement;
   androidpublisher = androidpublisher;
   apigateway = apigateway;
+  apigeeregistry = apigeeregistry;
   apikeys = apikeys;
   appengine = appengine;
   appsactivity = appsactivity;
@@ -872,6 +890,7 @@ export class GeneratedAPIs {
   assuredworkloads = assuredworkloads;
   authorizedbuyersmarketplace = authorizedbuyersmarketplace;
   baremetalsolution = baremetalsolution;
+  beyondcorp = beyondcorp;
   bigquery = bigquery;
   bigqueryconnection = bigqueryconnection;
   bigquerydatatransfer = bigquerydatatransfer;
@@ -881,6 +900,7 @@ export class GeneratedAPIs {
   binaryauthorization = binaryauthorization;
   blogger = blogger;
   books = books;
+  businessprofileperformance = businessprofileperformance;
   calendar = calendar;
   certificatemanager = certificatemanager;
   chat = chat;
@@ -964,6 +984,7 @@ export class GeneratedAPIs {
   gamesManagement = gamesManagement;
   gameservices = gameservices;
   genomics = genomics;
+  gkebackup = gkebackup;
   gkehub = gkehub;
   gmail = gmail;
   gmailpostmastertools = gmailpostmastertools;

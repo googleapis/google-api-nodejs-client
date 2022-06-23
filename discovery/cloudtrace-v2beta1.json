@@ -273,11 +273,11 @@
       }
     }
   },
-  "revision": "20220303",
+  "revision": "20220428",
   "rootUrl": "https://cloudtrace.googleapis.com/",
   "schemas": {
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -305,7 +305,7 @@
       "id": "OutputConfig",
       "properties": {
         "destination": {
-          "description": "The destination for writing trace data. Currently only BigQuery is supported. E.g.: \"bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]\"",
+          "description": "The destination for writing trace data. Supported formats include: \"bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]\"",
           "type": "string"
         }
       },

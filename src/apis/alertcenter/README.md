@@ -2,7 +2,7 @@
 
 # alertcenter
 
-> Manages alerts on issues affecting your domain.
+> Manages alerts on issues affecting your domain. Note: The current version of this API (v1beta1) is available to all Google Workspace customers.
 
 ## Installation
 

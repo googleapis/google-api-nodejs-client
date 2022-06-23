@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -103,7 +102,7 @@ export namespace authorizedbuyersmarketplace_v1 {
   /**
    * Authorized Buyers Marketplace API
    *
-   * The Authorized Buyers Marketplace API allows buyers programmatically discover inventory; propose, retrieve and negotiate deals with publishers.
+   * The Authorized Buyers Marketplace API lets buyers programmatically discover inventory; propose, retrieve and negotiate deals with publishers.
    *
    * @example
    * ```js
@@ -422,7 +421,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     flightEndTime?: string | null;
     /**
-     * Proposed flight start time of the deal. This will generally be stored in the granularity of one second since deal serving starts at seconds boundary. Any time specified with more granularity (e.g., in milliseconds) will be truncated towards the start of time in seconds.
+     * Proposed flight start time of the deal. This will generally be stored in the granularity of one second since deal serving starts at seconds boundary. Any time specified with more granularity (for example, in milliseconds) will be truncated towards the start of time in seconds.
      */
     flightStartTime?: string | null;
     /**
@@ -484,7 +483,7 @@ export namespace authorizedbuyersmarketplace_v1 {
    */
   export interface Schema$DeliveryControl {
     /**
-     * Output only. Specifies roadblocking in a master companion lineitem.
+     * Output only. Specifies roadblocking in a main companion lineitem.
      */
     companionDeliveryType?: string | null;
     /**
@@ -505,11 +504,11 @@ export namespace authorizedbuyersmarketplace_v1 {
     roadblockingType?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
-   * A finalized deal is a snapshot of the deal when both buyer and seller accept the deal. The buyer or seller can update the deal after it's been finalized and renegotiate on the deal targeting, terms and other fields, while at the same time the finalized snapshot of the deal can still be retrieved via this API. The finalized deal contains a copy of the deal as it existed when most recently finalized, as well as fields related to deal serving such as pause/resume status, RTB metrics, etc.
+   * A finalized deal is a snapshot of the deal when both buyer and seller accept the deal. The buyer or seller can update the deal after it's been finalized and renegotiate on the deal targeting, terms and other fields, while at the same time the finalized snapshot of the deal can still be retrieved using this API. The finalized deal contains a copy of the deal as it existed when most recently finalized, as well as fields related to deal serving such as pause/resume status, RTB metrics, and more.
    */
   export interface Schema$FinalizedDeal {
     /**
@@ -688,15 +687,15 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     inventorySizeTargeting?: Schema$InventorySizeTargeting;
     /**
-     * Output only. Placement targeting information, e.g., URL, mobile applications.
+     * Output only. Placement targeting information, for example, URL, mobile applications.
      */
     placementTargeting?: Schema$PlacementTargeting;
     /**
-     * Output only. Technology targeting information, e.g., operating system, device category.
+     * Output only. Technology targeting information, for example, operating system, device category.
      */
     technologyTargeting?: Schema$TechnologyTargeting;
     /**
-     * Buyer user list targeting information. User lists can be uploaded via https://developers.google.com/authorized-buyers/rtb/bulk-uploader.
+     * Buyer user list targeting information. User lists can be uploaded using https://developers.google.com/authorized-buyers/rtb/bulk-uploader.
      */
     userListTargeting?: Schema$CriteriaTargeting;
     /**
@@ -770,7 +769,7 @@ export namespace authorizedbuyersmarketplace_v1 {
     reason?: string | null;
   }
   /**
-   * Represents targeting about where the ads can appear, e.g., certain sites or mobile applications. Different placement targeting types will be logically OR'ed.
+   * Represents targeting about where the ads can appear, for example, certain sites or mobile applications. Different placement targeting types will be logically OR'ed.
    */
   export interface Schema$PlacementTargeting {
     /**
@@ -997,7 +996,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     samplePageUrl?: string | null;
     /**
-     * Up to three key metrics and rankings. For example "#1 Mobile News Site for 20 Straight Months".
+     * Up to three key metrics and rankings. For example, "#1 Mobile News Site for 20 Straight Months".
      */
     topHeadlines?: string[] | null;
   }
@@ -1194,12 +1193,12 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     deal?: Schema$Deal;
     /**
-     * List of fields to be updated. If empty or unspecified, the service will update all fields populated in the update request excluding the output only fields and primitive fields with default value. Note that explicit field mask is required in order to reset a primitive field back to its default value, e.g. false for boolean fields, 0 for integer fields. A special field mask consisting of a single path "*" can be used to indicate full replacement(the equivalent of PUT method), updatable fields unset or unspecified in the input will be cleared or set to default value. Output only fields will be ignored regardless of the value of updateMask.
+     * List of fields to be updated. If empty or unspecified, the service will update all fields populated in the update request excluding the output only fields and primitive fields with default value. Note that explicit field mask is required in order to reset a primitive field back to its default value, for example, false for boolean fields, 0 for integer fields. A special field mask consisting of a single path "*" can be used to indicate full replacement(the equivalent of PUT method), updatable fields unset or unspecified in the input will be cleared or set to default value. Output only fields will be ignored regardless of the value of updateMask.
      */
     updateMask?: string | null;
   }
   /**
-   * Represents a list of targeted and excluded URLs (e.g., google.com). For Private Auction Deals, URLs are either included or excluded. For Programmatic Guaranteed and Preferred Deals, this doesn't apply.
+   * Represents a list of targeted and excluded URLs (for example, google.com). For Private Auction Deals, URLs are either included or excluded. For Programmatic Guaranteed and Preferred Deals, this doesn't apply.
    */
   export interface Schema$UriTargeting {
     /**
@@ -3117,7 +3116,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      *   const res = await authorizedbuyersmarketplace.buyers.clients.patch({
      *     // Output only. The resource name of the client. Format: `buyers/{accountId\}/clients/{clientAccountId\}`
      *     name: 'buyers/my-buyer/clients/my-client',
-     *     // List of fields to be updated. If empty or unspecified, the service will update all fields populated in the update request excluding the output only fields and primitive fields with default value. Note that explicit field mask is required in order to reset a primitive field back to its default value, e.g. false for boolean fields, 0 for integer fields. A special field mask consisting of a single path "*" can be used to indicate full replacement(the equivalent of PUT method), updatable fields unset or unspecified in the input will be cleared or set to default value. Output only fields will be ignored regardless of the value of updateMask.
+     *     // List of fields to be updated. If empty or unspecified, the service will update all fields populated in the update request excluding the output only fields and primitive fields with default value. Note that explicit field mask is required in order to reset a primitive field back to its default value, for example, false for boolean fields, 0 for integer fields. A special field mask consisting of a single path "*" can be used to indicate full replacement(the equivalent of PUT method), updatable fields unset or unspecified in the input will be cleared or set to default value. Output only fields will be ignored regardless of the value of updateMask.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3306,7 +3305,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     name?: string;
     /**
-     * List of fields to be updated. If empty or unspecified, the service will update all fields populated in the update request excluding the output only fields and primitive fields with default value. Note that explicit field mask is required in order to reset a primitive field back to its default value, e.g. false for boolean fields, 0 for integer fields. A special field mask consisting of a single path "*" can be used to indicate full replacement(the equivalent of PUT method), updatable fields unset or unspecified in the input will be cleared or set to default value. Output only fields will be ignored regardless of the value of updateMask.
+     * List of fields to be updated. If empty or unspecified, the service will update all fields populated in the update request excluding the output only fields and primitive fields with default value. Note that explicit field mask is required in order to reset a primitive field back to its default value, for example, false for boolean fields, 0 for integer fields. A special field mask consisting of a single path "*" can be used to indicate full replacement(the equivalent of PUT method), updatable fields unset or unspecified in the input will be cleared or set to default value. Output only fields will be ignored regardless of the value of updateMask.
      */
     updateMask?: string;
 
@@ -4921,7 +4920,7 @@ export namespace authorizedbuyersmarketplace_v1 {
     }
 
     /**
-     * Sets the given finalized deal as ready to serve. By default, deals are ready to serve as soon as they're finalized. A bidder can opt out of this feature by asking to be included in an allowlist. Once opted out, finalized deals belonging to the bidder and its child seats will not start serving until this method is called. This method is useful to the bidders who prefer to not receive bid requests before the creative is ready. This method only applies to programmatic guaranteed deals.
+     * Sets the given finalized deal as ready to serve. By default, deals are set as ready to serve as soon as they're finalized. If you want to opt out of the default behavior, and manually indicate that deals are ready to serve, ask your Technical Account Manager to add you to the allowlist. If you choose to use this method, finalized deals belonging to the bidder and its child seats don't start serving until after you call `setReadyToServe`, and after the deals become active. For example, you can use this method to delay receiving bid requests until your creative is ready. This method only applies to programmatic guaranteed deals.
      * @example
      * ```js
      * // Before running the sample:
@@ -5936,7 +5935,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      *   const res = await authorizedbuyersmarketplace.buyers.proposals.patch({
      *     // Immutable. The name of the proposal serving as a unique identifier. Format: buyers/{accountId\}/proposals/{proposalId\}
      *     name: 'buyers/my-buyer/proposals/my-proposal',
-     *     // List of fields to be updated. If empty or unspecified, the service will update all fields populated in the update request excluding the output only fields and primitive fields with default value. Note that explicit field mask is required in order to reset a primitive field back to its default value, e.g. false for boolean fields, 0 for integer fields. A special field mask consisting of a single path "*" can be used to indicate full replacement(the equivalent of PUT method), updatable fields unset or unspecified in the input will be cleared or set to default value. Output only fields will be ignored regardless of the value of updateMask.
+     *     // List of fields to be updated. If empty or unspecified, the service will update all fields populated in the update request excluding the output only fields and primitive fields with default value. Note that explicit field mask is required in order to reset a primitive field back to its default value, for example, false for boolean fields, 0 for integer fields. A special field mask consisting of a single path "*" can be used to indicate full replacement(the equivalent of PUT method), updatable fields unset or unspecified in the input will be cleared or set to default value. Output only fields will be ignored regardless of the value of updateMask.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6319,7 +6318,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     name?: string;
     /**
-     * List of fields to be updated. If empty or unspecified, the service will update all fields populated in the update request excluding the output only fields and primitive fields with default value. Note that explicit field mask is required in order to reset a primitive field back to its default value, e.g. false for boolean fields, 0 for integer fields. A special field mask consisting of a single path "*" can be used to indicate full replacement(the equivalent of PUT method), updatable fields unset or unspecified in the input will be cleared or set to default value. Output only fields will be ignored regardless of the value of updateMask.
+     * List of fields to be updated. If empty or unspecified, the service will update all fields populated in the update request excluding the output only fields and primitive fields with default value. Note that explicit field mask is required in order to reset a primitive field back to its default value, for example, false for boolean fields, 0 for integer fields. A special field mask consisting of a single path "*" can be used to indicate full replacement(the equivalent of PUT method), updatable fields unset or unspecified in the input will be cleared or set to default value. Output only fields will be ignored regardless of the value of updateMask.
      */
     updateMask?: string;
 
@@ -6782,7 +6781,7 @@ export namespace authorizedbuyersmarketplace_v1 {
     }
 
     /**
-     * Updates the given deal at the buyer known revision number. If the server revision has advanced since the passed-in proposal.proposal_revision an ABORTED error message will be returned. The revision number is incremented by the server whenever the proposal or its constituent deals are updated. Note: The revision number is kept at a proposal level. The buyer of the API is expected to keep track of the revision number after the last update operation and send it in as part of the next update request. This way, if there are further changes on the server (e.g., seller making new updates), then the server can detect conflicts and reject the proposed changes.
+     * Updates the given deal at the buyer known revision number. If the server revision has advanced since the passed-in proposal.proposal_revision an ABORTED error message will be returned. The revision number is incremented by the server whenever the proposal or its constituent deals are updated. Note: The revision number is kept at a proposal level. The buyer of the API is expected to keep track of the revision number after the last update operation and send it in as part of the next update request. This way, if there are further changes on the server (for example, seller making new updates), then the server can detect conflicts and reject the proposed changes.
      * @example
      * ```js
      * // Before running the sample:
@@ -6810,7 +6809,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      *   const res = await authorizedbuyersmarketplace.buyers.proposals.deals.patch({
      *     // Immutable. The unique identifier of the deal. Auto-generated by the server when a deal is created. Format: buyers/{accountId\}/proposals/{proposalId\}/deals/{dealId\}
      *     name: 'buyers/my-buyer/proposals/my-proposal/deals/my-deal',
-     *     // List of fields to be updated. If empty or unspecified, the service will update all fields populated in the update request excluding the output only fields and primitive fields with default value. Note that explicit field mask is required in order to reset a primitive field back to its default value, e.g. false for boolean fields, 0 for integer fields. A special field mask consisting of a single path "*" can be used to indicate full replacement(the equivalent of PUT method), updatable fields unset or unspecified in the input will be cleared or set to default value. Output only fields will be ignored regardless of the value of updateMask.
+     *     // List of fields to be updated. If empty or unspecified, the service will update all fields populated in the update request excluding the output only fields and primitive fields with default value. Note that explicit field mask is required in order to reset a primitive field back to its default value, for example, false for boolean fields, 0 for integer fields. A special field mask consisting of a single path "*" can be used to indicate full replacement(the equivalent of PUT method), updatable fields unset or unspecified in the input will be cleared or set to default value. Output only fields will be ignored regardless of the value of updateMask.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -7001,7 +7000,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     name?: string;
     /**
-     * List of fields to be updated. If empty or unspecified, the service will update all fields populated in the update request excluding the output only fields and primitive fields with default value. Note that explicit field mask is required in order to reset a primitive field back to its default value, e.g. false for boolean fields, 0 for integer fields. A special field mask consisting of a single path "*" can be used to indicate full replacement(the equivalent of PUT method), updatable fields unset or unspecified in the input will be cleared or set to default value. Output only fields will be ignored regardless of the value of updateMask.
+     * List of fields to be updated. If empty or unspecified, the service will update all fields populated in the update request excluding the output only fields and primitive fields with default value. Note that explicit field mask is required in order to reset a primitive field back to its default value, for example, false for boolean fields, 0 for integer fields. A special field mask consisting of a single path "*" can be used to indicate full replacement(the equivalent of PUT method), updatable fields unset or unspecified in the input will be cleared or set to default value. Output only fields will be ignored regardless of the value of updateMask.
      */
     updateMask?: string;
 

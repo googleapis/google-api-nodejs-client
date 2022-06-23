@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/gmail",
-  "version": "0.3.2",
+  "version": "0.3.4",
   "description": "gmail",
   "main": "build/index.js",
   "types": "build/index.d.ts",

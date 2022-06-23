@@ -112,6 +112,45 @@
       "resources": {
         "databases": {
           "methods": {
+            "create": {
+              "description": "Create a database.",
+              "flatPath": "v1/projects/{projectsId}/databases",
+              "httpMethod": "POST",
+              "id": "firestore.projects.databases.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "databaseId": {
+                  "description": "Required. The ID to use for the database, which will become the final component of the database's resource name. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/. \"(default)\" database id is also valid.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. A parent name of the form `projects/{project_id}`",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "validateOnly": {
+                  "description": "If set, validate the request and preview the response, but do not actually create the database.",
+                  "location": "query",
+                  "type": "boolean"
+                }
+              },
+              "path": "v1/{+parent}/databases",
+              "request": {
+                "$ref": "GoogleFirestoreAdminV1Database"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/datastore"
+              ]
+            },
             "exportDocuments": {
               "description": "Exports a copy of all or a subset of documents from Google Cloud Firestore to another storage system, such as Google Cloud Storage. Recent updates to documents may not be reflected in the export. The export occurs in the background and its progress can be monitored and managed via the Operation resource that is created. The output of an export may only be used once the associated operation is done. If an export operation is cancelled before completion it may leave partial data behind in Google Cloud Storage. For more details on export behavior and output format, refer to: https://cloud.google.com/firestore/docs/manage-data/export-import",
               "flatPath": "v1/projects/{projectsId}/databases/{databasesId}:exportDocuments",
@@ -844,6 +883,78 @@
                     "https://www.googleapis.com/auth/datastore"
                   ]
                 },
+                "listDocuments": {
+                  "description": "Lists documents.",
+                  "flatPath": "v1/projects/{projectsId}/databases/{databasesId}/documents/{collectionId}",
+                  "httpMethod": "GET",
+                  "id": "firestore.projects.databases.documents.listDocuments",
+                  "parameterOrder": [
+                    "parent",
+                    "collectionId"
+                  ],
+                  "parameters": {
+                    "collectionId": {
+                      "description": "Required. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "mask.fieldPaths": {
+                      "description": "The list of field paths in the mask. See Document.fields for a field path syntax reference.",
+                      "location": "query",
+                      "repeated": true,
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "The order to sort results by. For example: `priority desc, name`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of documents to return.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The `next_page_token` value returned from a previous List request, if any.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource name. In the format: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/databases/[^/]+/documents$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "readTime": {
+                      "description": "Reads documents as they were at the given time. This may not be older than 270 seconds.",
+                      "format": "google-datetime",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "showMissing": {
+                      "description": "If the list should show missing documents. A missing document is a document that does not exist but has sub-documents. These documents will be returned with a key but will not have fields, Document.create_time, or Document.update_time set. Requests with `show_missing` may not specify `where` or `order_by`.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "transaction": {
+                      "description": "Reads documents in a transaction.",
+                      "format": "byte",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/{collectionId}",
+                  "response": {
+                    "$ref": "ListDocumentsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/datastore"
+                  ]
+                },
                 "listen": {
                   "description": "Listens to changes.",
                   "flatPath": "v1/projects/{projectsId}/databases/{databasesId}/documents:listen",
@@ -1210,7 +1321,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
                   "type": "string"
                 },
@@ -1247,7 +1358,7 @@
       }
     }
   },
-  "revision": "20220221",
+  "revision": "20220604",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "ArrayValue": {
@@ -1444,7 +1555,7 @@
       "id": "CompositeFilter",
       "properties": {
         "filters": {
-          "description": "The list of filters to combine. Must contain at least one filter.",
+          "description": "The list of filters to combine. Requires: * At least one filter is present.",
           "items": {
             "$ref": "Filter"
           },
@@ -1458,7 +1569,7 @@
           ],
           "enumDescriptions": [
             "Unspecified. This value must not be used.",
-            "The results are required to satisfy each of the combined filters."
+            "Documents are required to satisfy all of the combined filters."
           ],
           "type": "string"
         }
@@ -1633,7 +1744,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -1776,6 +1887,20 @@
       "description": "A Cloud Firestore Database. Currently only one database is allowed per cloud project; this database must have a `database_id` of '(default)'.",
       "id": "GoogleFirestoreAdminV1Database",
       "properties": {
+        "appEngineIntegrationMode": {
+          "description": "The App Engine integration mode to use for this database.",
+          "enum": [
+            "APP_ENGINE_INTEGRATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "Not used.",
+            "If an App Engine application exists in the same region as this database, App Engine configuration will impact this database. This includes disabling of the application & database, as well as disabling writes to the database.",
+            "Appengine has no affect on the ability of this database to serve requests."
+          ],
+          "type": "string"
+        },
         "concurrencyMode": {
           "description": "The concurrency control mode to use for this database.",
           "enum": [
@@ -1786,14 +1911,19 @@
           ],
           "enumDescriptions": [
             "Not used.",
-            "Use optimistic concurrency control by default. This setting is available for Cloud Firestore customers.",
-            "Use pessimistic concurrency control by default. This setting is available for Cloud Firestore customers. This is the default setting for Cloud Firestore.",
-            "Use optimistic concurrency control with entity groups by default. This is the only available setting for Cloud Datastore customers. This is the default setting for Cloud Datastore."
+            "Use optimistic concurrency control by default. This mode is available for Cloud Firestore databases.",
+            "Use pessimistic concurrency control by default. This mode is available for Cloud Firestore databases. This is the default setting for Cloud Firestore.",
+            "Use optimistic concurrency control with entity groups by default. This is the only available mode for Cloud Datastore. This mode is also available for Cloud Firestore with Datastore Mode but is not recommended."
           ],
           "type": "string"
         },
         "etag": {
           "description": "This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "type": "string"
+        },
+        "keyPrefix": {
+          "description": "Output only. The key_prefix for this database. This key_prefix is used, in combination with the project id (\"~\") to construct the application id that is returned from the Cloud Datastore APIs in Google App Engine first generation runtimes. This value may be empty in which case the appid to use for URL-encoded keys is the project_id (eg: foo instead of v~foo).",
+          "readOnly": true,
           "type": "string"
         },
         "locationId": {
@@ -1921,6 +2051,10 @@
         "name": {
           "description": "Required. A field name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}` A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: (Note: Comments here are written in markdown syntax, so there is an additional layer of backticks to represent a code block) `\\`address.city\\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\\`*\\`` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/*` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.",
           "type": "string"
+        },
+        "ttlConfig": {
+          "$ref": "GoogleFirestoreAdminV1TtlConfig",
+          "description": "The TTL configuration for this `Field`. Setting or unsetting this will enable or disable the TTL for documents that have this `Field`."
         }
       },
       "type": "object"
@@ -1981,6 +2115,10 @@
             "Request has finished being cancelled after user called google.longrunning.Operations.CancelOperation."
           ],
           "type": "string"
+        },
+        "ttlConfigDelta": {
+          "$ref": "GoogleFirestoreAdminV1TtlConfigDelta",
+          "description": "Describes the deltas of TTL configuration."
         }
       },
       "type": "object"
@@ -2325,6 +2463,51 @@
       },
       "type": "object"
     },
+    "GoogleFirestoreAdminV1TtlConfig": {
+      "description": "The TTL (time-to-live) configuration for documents that have this `Field` set. Storing a timestamp value into a TTL-enabled field will be treated as the document's absolute expiration time. Using any other data type or leaving the field absent will disable the TTL for the individual document.",
+      "id": "GoogleFirestoreAdminV1TtlConfig",
+      "properties": {
+        "state": {
+          "description": "Output only. The state of the TTL configuration.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "NEEDS_REPAIR"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified or unknown.",
+            "The TTL is being applied. There is an active long-running operation to track the change. Newly written documents will have TTLs applied as requested. Requested TTLs on existing documents are still being processed. When TTLs on all existing documents have been processed, the state will move to 'ACTIVE'.",
+            "The TTL is active for all documents.",
+            "The TTL configuration could not be enabled for all existing documents. Newly written documents will continue to have their TTL applied. The LRO returned when last attempting to enable TTL for this `Field` has failed, and may have more details."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1TtlConfigDelta": {
+      "description": "Information about an TTL configuration change.",
+      "id": "GoogleFirestoreAdminV1TtlConfigDelta",
+      "properties": {
+        "changeType": {
+          "description": "Specifies how the TTL configuration is changing.",
+          "enum": [
+            "CHANGE_TYPE_UNSPECIFIED",
+            "ADD",
+            "REMOVE"
+          ],
+          "enumDescriptions": [
+            "The type of change is not specified or known.",
+            "The TTL config is being added.",
+            "The TTL config is being removed."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleFirestoreAdminV1UpdateDatabaseMetadata": {
       "description": "Metadata related to the update database operation.",
       "id": "GoogleFirestoreAdminV1UpdateDatabaseMetadata",
@@ -2418,6 +2601,11 @@
         },
         "pageToken": {
           "description": "A page token. Must be a value from ListCollectionIdsResponse.",
+          "type": "string"
+        },
+        "readTime": {
+          "description": "Reads documents as they were at the given time. This may not be older than 270 seconds.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
@@ -2618,6 +2806,11 @@
           "format": "int64",
           "type": "string"
         },
+        "readTime": {
+          "description": "Reads documents as they were at the given time. This may not be older than 270 seconds.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "structuredQuery": {
           "$ref": "StructuredQuery",
           "description": "A structured query. Query must specify collection with all descendants and be ordered by name ascending. Other filters, order bys, limits, offsets, and start/end cursors are not supported."
@@ -2756,6 +2949,10 @@
         "document": {
           "$ref": "Document",
           "description": "A query result, not set when reporting partial progress."
+        },
+        "done": {
+          "description": "If present, Firestore has completely finished the request and no more documents will be returned.",
+          "type": "boolean"
         },
         "readTime": {
           "description": "The time at which the document was read. This may be monotonically increasing; in this case, the previous documents in the result stream are guaranteed not to have changed between their `read_time` and this one. If the query returns no results, a response with `read_time` and no `document` will be sent, and this represents the time at which the query was run.",

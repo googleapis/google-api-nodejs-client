@@ -12,7 +12,7 @@
   "baseUrl": "https://alertcenter.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "AlertCenter",
-  "description": "Manages alerts on issues affecting your domain.",
+  "description": "Manages alerts on issues affecting your domain. Note: The current version of this API (v1beta1) is available to all Google Workspace customers. ",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/admin-sdk/alertcenter/",
   "fullyEncodeReservedExpansion": true,
@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20220307",
+  "revision": "20220606",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
     "AccountSuspensionDetails": {
@@ -1086,7 +1086,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -1368,6 +1368,25 @@
       },
       "type": "object"
     },
+    "PrimaryAdminChangedEvent": {
+      "description": "Event occurred when primary admin changed in customer's account. The event are being received from insight forwarder",
+      "id": "PrimaryAdminChangedEvent",
+      "properties": {
+        "domain": {
+          "description": "domain in which actioned occurred",
+          "type": "string"
+        },
+        "previousAdminEmail": {
+          "description": "Email of person who was the primary admin before the action",
+          "type": "string"
+        },
+        "updatedAdminEmail": {
+          "description": "Email of person who is the primary admin after the action",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ReportingRule": {
       "description": "Alerts from Reporting Rules configured by Admin.",
       "id": "ReportingRule",
@@ -1552,6 +1571,79 @@
       },
       "type": "object"
     },
+    "SSOProfileCreatedEvent": {
+      "description": "Event occurred when SSO Profile created in customer's account. The event are being received from insight forwarder",
+      "id": "SSOProfileCreatedEvent",
+      "properties": {
+        "inboundSsoProfileName": {
+          "description": "sso profile name which got created",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SSOProfileDeletedEvent": {
+      "description": "Event occurred when SSO Profile deleted in customer's account. The event are being received from insight forwarder",
+      "id": "SSOProfileDeletedEvent",
+      "properties": {
+        "inboundSsoProfileName": {
+          "description": "sso profile name which got deleted",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SSOProfileUpdatedEvent": {
+      "description": "Event occurred when SSO Profile updated in customer's account. The event are being received from insight forwarder",
+      "id": "SSOProfileUpdatedEvent",
+      "properties": {
+        "inboundSsoProfileChanges": {
+          "description": "changes made to sso profile",
+          "type": "string"
+        },
+        "inboundSsoProfileName": {
+          "description": "sso profile name which got updated",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SensitiveAdminAction": {
+      "description": "Alert that is triggered when Sensitive Admin Action occur in customer account.",
+      "id": "SensitiveAdminAction",
+      "properties": {
+        "actorEmail": {
+          "description": "Email of person who performed the action",
+          "type": "string"
+        },
+        "eventTime": {
+          "description": "The time at which event occurred",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "primaryAdminChangedEvent": {
+          "$ref": "PrimaryAdminChangedEvent",
+          "description": "Event occurred when primary admin changed in customer's account"
+        },
+        "ssoProfileCreatedEvent": {
+          "$ref": "SSOProfileCreatedEvent",
+          "description": "Event occurred when SSO Profile created in customer's account"
+        },
+        "ssoProfileDeletedEvent": {
+          "$ref": "SSOProfileDeletedEvent",
+          "description": "Event occurred when SSO Profile deleted in customer's account"
+        },
+        "ssoProfileUpdatedEvent": {
+          "$ref": "SSOProfileUpdatedEvent",
+          "description": "Event occurred when SSO Profile updated in customer's account"
+        },
+        "superAdminPasswordResetEvent": {
+          "$ref": "SuperAdminPasswordResetEvent",
+          "description": "Event occurred when password was reset for super admin in customer's account"
+        }
+      },
+      "type": "object"
+    },
     "Settings": {
       "description": "Customer-level settings.",
       "id": "Settings",
@@ -1599,6 +1691,17 @@
         },
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SuperAdminPasswordResetEvent": {
+      "description": "Event occurred when password was reset for super admin in customer's account. The event are being received from insight forwarder",
+      "id": "SuperAdminPasswordResetEvent",
+      "properties": {
+        "userEmail": {
+          "description": "email of person whose password was reset",
           "type": "string"
         }
       },

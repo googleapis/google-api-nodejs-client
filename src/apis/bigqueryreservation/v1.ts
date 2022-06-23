@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -138,7 +137,7 @@ export namespace bigqueryreservation_v1 {
      */
     jobType?: string | null;
     /**
-     * Output only. Name of the resource. E.g.: `projects/myproject/locations/US/reservations/team1-prod/assignments/123`. For the assignment id, it must only contain lower case alphanumeric characters or dashes and the max length is 64 characters.
+     * Output only. Name of the resource. E.g.: `projects/myproject/locations/US/reservations/team1-prod/assignments/123`. The assignment_id must only contain lower case alphanumeric characters or dashes and the max length is 64 characters.
      */
     name?: string | null;
     /**
@@ -154,6 +153,10 @@ export namespace bigqueryreservation_v1 {
      * The resource name of the singleton BI reservation. Reservation names have the form `projects/{project_id\}/locations/{location_id\}/biReservation`.
      */
     name?: string | null;
+    /**
+     * Preferred tables to use BI capacity for.
+     */
+    preferredTables?: Schema$TableReference[];
     /**
      * Size of a reservation, in bytes.
      */
@@ -184,7 +187,7 @@ export namespace bigqueryreservation_v1 {
      */
     multiRegionAuxiliary?: boolean | null;
     /**
-     * Output only. The resource name of the capacity commitment, e.g., `projects/myproject/locations/US/capacityCommitments/123` For the commitment id, it must only contain lower case alphanumeric characters or dashes.It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
+     * Output only. The resource name of the capacity commitment, e.g., `projects/myproject/locations/US/capacityCommitments/123` The commitment_id must only contain lower case alphanumeric characters or dashes. It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
      */
     name?: string | null;
     /**
@@ -205,7 +208,7 @@ export namespace bigqueryreservation_v1 {
     state?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -286,11 +289,11 @@ export namespace bigqueryreservation_v1 {
      */
     multiRegionAuxiliary?: boolean | null;
     /**
-     * The resource name of the reservation, e.g., `projects/x/locations/x/reservations/team1-prod`. For the reservation id, it must only contain lower case alphanumeric characters or dashes.It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
+     * The resource name of the reservation, e.g., `projects/x/locations/x/reservations/team1-prod`. The reservation_id must only contain lower case alphanumeric characters or dashes. It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
      */
     name?: string | null;
     /**
-     * Minimum slots available to this reservation. A slot is a unit of computational power in BigQuery, and serves as the unit of parallelism. Queries using this reservation might use more slots during runtime if ignore_idle_slots is set to false. If the new reservation's slot capacity exceed the project's slot capacity or if total slot capacity of the new reservation and its siblings exceeds the project's slot capacity, the request will fail with `google.rpc.Code.RESOURCE_EXHAUSTED`. NOTE: for reservations in US or EU multi-regions slot capacity constraints are checked separately for default and auxiliary regions. See multi_region_auxiliary flag for more details.
+     * Minimum slots available to this reservation. A slot is a unit of computational power in BigQuery, and serves as the unit of parallelism. Queries using this reservation might use more slots during runtime if ignore_idle_slots is set to false. If total slot_capacity of the reservation and its siblings exceeds the total slot_count of all capacity commitments, the request will fail with `google.rpc.Code.RESOURCE_EXHAUSTED`. NOTE: for reservations in US or EU multi-regions, slot capacity constraints are checked separately for default and auxiliary regions. See multi_region_auxiliary flag for more details.
      */
     slotCapacity?: string | null;
     /**
@@ -363,6 +366,23 @@ export namespace bigqueryreservation_v1 {
      */
     message?: string | null;
   }
+  /**
+   * Fully qualified reference to BigQuery table. Internally stored as google.cloud.bi.v1.BqTableReference.
+   */
+  export interface Schema$TableReference {
+    /**
+     * The ID of the dataset in the above project.
+     */
+    datasetId?: string | null;
+    /**
+     * The assigned project ID of the project.
+     */
+    projectId?: string | null;
+    /**
+     * The ID of the table in the above dataset.
+     */
+    tableId?: string | null;
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -424,6 +444,7 @@ export namespace bigqueryreservation_v1 {
      *   // Example response
      *   // {
      *   //   "name": "my_name",
+     *   //   "preferredTables": [],
      *   //   "size": "my_size",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -858,6 +879,7 @@ export namespace bigqueryreservation_v1 {
      *       // request body parameters
      *       // {
      *       //   "name": "my_name",
+     *       //   "preferredTables": [],
      *       //   "size": "my_size",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -868,6 +890,7 @@ export namespace bigqueryreservation_v1 {
      *   // Example response
      *   // {
      *   //   "name": "my_name",
+     *   //   "preferredTables": [],
      *   //   "size": "my_size",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -1808,7 +1831,7 @@ export namespace bigqueryreservation_v1 {
      *   // Do the magic
      *   const res =
      *     await bigqueryreservation.projects.locations.capacityCommitments.patch({
-     *       // Output only. The resource name of the capacity commitment, e.g., `projects/myproject/locations/US/capacityCommitments/123` For the commitment id, it must only contain lower case alphanumeric characters or dashes.It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
+     *       // Output only. The resource name of the capacity commitment, e.g., `projects/myproject/locations/US/capacityCommitments/123` The commitment_id must only contain lower case alphanumeric characters or dashes. It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
      *       name: 'projects/my-project/locations/my-location/capacityCommitments/my-capacityCommitment',
      *       // Standard field mask for the set of fields to be updated.
      *       updateMask: 'placeholder-value',
@@ -1939,7 +1962,7 @@ export namespace bigqueryreservation_v1 {
     }
 
     /**
-     * Splits capacity commitment to two commitments of the same plan and `commitment_end_time`. A common use case is to enable downgrading commitments. For example, in order to downgrade from 10000 slots to 8000, you might split a 10000 capacity commitment into commitments of 2000 and 8000. Then, you would change the plan of the first one to `FLEX` and then delete it.
+     * Splits capacity commitment to two commitments of the same plan and `commitment_end_time`. A common use case is to enable downgrading commitments. For example, in order to downgrade from 10000 slots to 8000, you might split a 10000 capacity commitment into commitments of 2000 and 8000. Then, you delete the first one after the commitment end time passes.
      * @example
      * ```js
      * // Before running the sample:
@@ -2157,7 +2180,7 @@ export namespace bigqueryreservation_v1 {
   export interface Params$Resource$Projects$Locations$Capacitycommitments$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of the capacity commitment, e.g., `projects/myproject/locations/US/capacityCommitments/123` For the commitment id, it must only contain lower case alphanumeric characters or dashes.It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
+     * Output only. The resource name of the capacity commitment, e.g., `projects/myproject/locations/US/capacityCommitments/123` The commitment_id must only contain lower case alphanumeric characters or dashes. It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
      */
     name?: string;
     /**
@@ -2224,7 +2247,7 @@ export namespace bigqueryreservation_v1 {
      *   const res = await bigqueryreservation.projects.locations.reservations.create({
      *     // Required. Project, location. E.g., `projects/myproject/locations/US`
      *     parent: 'projects/my-project/locations/my-location',
-     *     // The reservation ID. It must only contain lower case alphanumeric characters or dashes.It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
+     *     // The reservation ID. It must only contain lower case alphanumeric characters or dashes. It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
      *     reservationId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2784,7 +2807,7 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.patch({
-     *     // The resource name of the reservation, e.g., `projects/x/locations/x/reservations/team1-prod`. For the reservation id, it must only contain lower case alphanumeric characters or dashes.It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
+     *     // The resource name of the reservation, e.g., `projects/x/locations/x/reservations/team1-prod`. The reservation_id must only contain lower case alphanumeric characters or dashes. It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
      *     name: 'projects/my-project/locations/my-location/reservations/my-reservation',
      *     // Standard field mask for the set of fields to be updated.
      *     updateMask: 'placeholder-value',
@@ -2914,7 +2937,7 @@ export namespace bigqueryreservation_v1 {
      */
     parent?: string;
     /**
-     * The reservation ID. It must only contain lower case alphanumeric characters or dashes.It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
+     * The reservation ID. It must only contain lower case alphanumeric characters or dashes. It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
      */
     reservationId?: string;
 
@@ -2955,7 +2978,7 @@ export namespace bigqueryreservation_v1 {
   export interface Params$Resource$Projects$Locations$Reservations$Patch
     extends StandardParameters {
     /**
-     * The resource name of the reservation, e.g., `projects/x/locations/x/reservations/team1-prod`. For the reservation id, it must only contain lower case alphanumeric characters or dashes.It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
+     * The resource name of the reservation, e.g., `projects/x/locations/x/reservations/team1-prod`. The reservation_id must only contain lower case alphanumeric characters or dashes. It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
      */
     name?: string;
     /**
@@ -3549,6 +3572,156 @@ export namespace bigqueryreservation_v1 {
         return createAPIRequest<Schema$Assignment>(parameters);
       }
     }
+
+    /**
+     * Updates an existing assignment. Only the `priority` field can be updated.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await bigqueryreservation.projects.locations.reservations.assignments.patch(
+     *       {
+     *         // Output only. Name of the resource. E.g.: `projects/myproject/locations/US/reservations/team1-prod/assignments/123`. The assignment_id must only contain lower case alphanumeric characters or dashes and the max length is 64 characters.
+     *         name: 'projects/my-project/locations/my-location/reservations/my-reservation/assignments/my-assignment',
+     *         // Standard field mask for the set of fields to be updated.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "assignee": "my_assignee",
+     *           //   "jobType": "my_jobType",
+     *           //   "name": "my_name",
+     *           //   "state": "my_state"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignee": "my_assignee",
+     *   //   "jobType": "my_jobType",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Reservations$Assignments$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Reservations$Assignments$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Assignment>;
+    patch(
+      params: Params$Resource$Projects$Locations$Reservations$Assignments$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Reservations$Assignments$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Assignment>,
+      callback: BodyResponseCallback<Schema$Assignment>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Reservations$Assignments$Patch,
+      callback: BodyResponseCallback<Schema$Assignment>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Assignment>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Reservations$Assignments$Patch
+        | BodyResponseCallback<Schema$Assignment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Assignment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Assignment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Assignment> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Reservations$Assignments$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Reservations$Assignments$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigqueryreservation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Assignment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Assignment>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Reservations$Assignments$Create
@@ -3600,5 +3773,21 @@ export namespace bigqueryreservation_v1 {
      * Request body metadata
      */
     requestBody?: Schema$MoveAssignmentRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Reservations$Assignments$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Name of the resource. E.g.: `projects/myproject/locations/US/reservations/team1-prod/assignments/123`. The assignment_id must only contain lower case alphanumeric characters or dashes and the max length is 64 characters.
+     */
+    name?: string;
+    /**
+     * Standard field mask for the set of fields to be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Assignment;
   }
 }

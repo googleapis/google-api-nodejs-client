@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
                   "type": "string"
                 },
@@ -975,7 +975,7 @@
       }
     }
   },
-  "revision": "20220223",
+  "revision": "20220602",
   "rootUrl": "https://certificatemanager.googleapis.com/",
   "schemas": {
     "AuthorizationAttemptInfo": {
@@ -1073,7 +1073,7 @@
           "type": "string"
         },
         "sanDnsnames": {
-          "description": "Output only. The list of Subject Alternative Names of dnsName type defined in the certificate (see RFC 5280 4.2.1.6)",
+          "description": "Output only. The list of Subject Alternative Names of dnsName type defined in the certificate (see RFC 5280 4.2.1.6). Managed certificates that haven't been provisioned yet have this field populated with a value of the managed.domains field.",
           "items": {
             "type": "string"
           },
@@ -1285,7 +1285,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -1302,11 +1302,11 @@
           "type": "array"
         },
         "targetHttpsProxy": {
-          "description": "A name must be in the format `projects/*/locations/*/targetHttpsProxies/*`.",
+          "description": "This field returns the resource name in the following format: `//compute.googleapis.com/projects/*/global/targetHttpsProxies/*`.",
           "type": "string"
         },
         "targetSslProxy": {
-          "description": "A name must be in the format `projects/*/locations/*/targetSslProxies/*`.",
+          "description": "This field returns the resource name in the following format: `//compute.googleapis.com/projects/*/global/targetSslProxies/*`.",
           "type": "string"
         }
       },
@@ -1643,6 +1643,27 @@
             "Certificate provisioning failed due to an issue with one or more of the domains on the certificate. For details of which domains failed, consult the `authorization_attempt_info` field.",
             "Exceeded Certificate Authority quotas or internal rate limits of the system. Provisioning may take longer to complete."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ResourcesCount": {
+      "description": "ResourcesCount represents the resource that stores aggregated project's info in the given location, e.g.: total number of certificates assigned to the project.",
+      "id": "ResourcesCount",
+      "properties": {
+        "certificates": {
+          "description": "The count of certificates.",
+          "format": "uint64",
+          "type": "string"
+        },
+        "computeTime": {
+          "description": "Required. Input only. The time of the computation. The field is input only, used in Create and Update calls. For Update call, new values of selected resources are set if their compute_time is younger than the persisted ones, e.g.: If you support 3 types of resources: A, B and C, and you have: 'A' resource count computed at timestamp = 3 'B' resource count computed at timestamp = 10 'C' resource count computed at timestamp = 5 And you're going to update all of them with compute_time = 8, only 'A' and 'C' will be updated, as 'B' already has fresher data. For Get call a ResourcesCount instance contains the freshest values for every type.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "name": {
+          "description": "The singleton resource of the resources count. Must be in the format `projects/*/locations/*/resourcesCounts/single`.",
           "type": "string"
         }
       },

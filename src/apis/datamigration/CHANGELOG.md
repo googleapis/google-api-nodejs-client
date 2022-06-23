@@ -1,5 +1,43 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/datamigration-v3.0.0...datamigration-v3.0.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **datamigration:** update the API ([357b7f4](https://github.com/googleapis/google-api-nodejs-client/commit/357b7f47a5e7aac6e29d708e39325d81a707bd78))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datamigration-v2.3.0...datamigration-v3.0.0) (2022-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#2971](https://github.com/googleapis/google-api-nodejs-client/issues/2971)) ([adddf01](https://github.com/googleapis/google-api-nodejs-client/commit/adddf018e7cb73adab7341053dd80d72c5a6248d))
+
+## [2.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/datamigration-v2.2.1...datamigration-v2.3.0) (2022-06-13)
+
+
+### Features
+
+* regenerate index files ([43ae576](https://github.com/googleapis/google-api-nodejs-client/commit/43ae57651332bdf31af52ea3abb9e2934798a404))
+
+
+### Bug Fixes
+
+* **datamigration:** update the API ([26b87b7](https://github.com/googleapis/google-api-nodejs-client/commit/26b87b7ed61af45e957aa1e2d3739189a95d4cd2))
+* **datamigration:** update the API ([3563293](https://github.com/googleapis/google-api-nodejs-client/commit/35632936a96ee55104d39d250607d5d6249a0c7c))
+
+### [2.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/datamigration-v2.2.0...datamigration-v2.2.1) (2022-04-01)
+
+
+### Bug Fixes
+
+* **datamigration:** update the API ([6d1d258](https://github.com/googleapis/google-api-nodejs-client/commit/6d1d25828d16bff2334189a81d797b21cc4874be))
+
 ## [2.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/datamigration-v2.1.1...datamigration-v2.2.0) (2022-03-08)
 
 

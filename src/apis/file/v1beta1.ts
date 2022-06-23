@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -146,6 +145,10 @@ export namespace file_v1beta1 {
      */
     downloadBytes?: string | null;
     /**
+     * Immutable. KMS key name used for data encryption.
+     */
+    kmsKeyName?: string | null;
+    /**
      * Resource labels to represent user provided metadata.
      */
     labels?: {[key: string]: string} | null;
@@ -196,7 +199,7 @@ export namespace file_v1beta1 {
     startTime?: Schema$TimeOfDay;
   }
   /**
-   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day, with a zero year (e.g., an anniversary) * A year on its own, with a zero month and a zero day * A year and month, with a zero day (e.g., a credit card expiration date) Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
    */
   export interface Schema$Date {
     /**
@@ -230,7 +233,7 @@ export namespace file_v1beta1 {
     time?: Schema$TimeOfDay;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -264,7 +267,7 @@ export namespace file_v1beta1 {
      */
     createTime?: string | null;
     /**
-     * Optional. The instance_type of this instance of format: projects/{project_id\}/locations/{location_id\}/instanceTypes/{instance_type_id\}. Instance Type represents a high-level tier or SKU of the service that this instance belong to. When enabled(eg: Maintenance Rollout), Rollout uses 'instance_type' along with 'software_versions' to determine whether instance needs an update or not.
+     * Optional. The instance_type of this instance of format: projects/{project_number\}/locations/{location_id\}/instanceTypes/{instance_type_id\}. Instance Type represents a high-level tier or SKU of the service that this instance belong to. When enabled(eg: Maintenance Rollout), Rollout uses 'instance_type' along with 'software_versions' to determine whether instance needs an update or not.
      */
     instanceType?: string | null;
     /**
@@ -288,13 +291,17 @@ export namespace file_v1beta1 {
      */
     maintenanceSettings?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings;
     /**
-     * Unique name of the resource. It uses the form: `projects/{project_id|project_number\}/locations/{location_id\}/instances/{instance_id\}` Note: Either project_id or project_number can be used, but keep it consistent with other APIs (e.g. RescheduleUpdate)
+     * Unique name of the resource. It uses the form: `projects/{project_number\}/locations/{location_id\}/instances/{instance_id\}` Note: This name is passed, stored and logged across the rollout system. So use of consumer project_id or any other consumer PII in the name is strongly discouraged for wipeout (go/wipeout) compliance. See go/elysium/project_ids#storage-guidance for more details.
      */
     name?: string | null;
     /**
-     * Optional. notification_parameters are information that service producers may like to include that is not relevant to Rollout. This parameter will only be passed to Gamma and Cloud Logging for notification/logging purpose.
+     * Optional. notification_parameter are information that service producers may like to include that is not relevant to Rollout. This parameter will only be passed to Gamma and Cloud Logging for notification/logging purpose.
      */
-    notificationParameters?: {[key: string]: string} | null;
+    notificationParameters?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudSaasacceleratorManagementProvidersV1NotificationParameter;
+    } | null;
     /**
      * Output only. Custom string attributes used primarily to expose producer-specific information in monitoring dashboards. See go/get-instance-metadata.
      */
@@ -388,6 +395,15 @@ export namespace file_v1beta1 {
     perSliEligibility?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility;
   }
   /**
+   * Contains notification related data.
+   */
+  export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1NotificationParameter {
+    /**
+     * Optional. Array of string values. e.g. instance's replica information.
+     */
+    values?: string[] | null;
+  }
+  /**
    * PerSliSloEligibility is a mapping from an SLI name to eligibility.
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility {
@@ -448,6 +464,14 @@ export namespace file_v1beta1 {
    */
   export interface Schema$Instance {
     /**
+     * The storage capacity of the instance in gigabytes (GB = 1024^3 bytes). This capacity can be increased up to `max_capacity_gb` GB in multipliers of `capacity_step_size_gb` GB.
+     */
+    capacityGb?: string | null;
+    /**
+     * Output only. The increase/decrease capacity step size.
+     */
+    capacityStepSizeGb?: string | null;
+    /**
      * Output only. The time when the instance was created.
      */
     createTime?: string | null;
@@ -472,9 +496,17 @@ export namespace file_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
+     * Output only. The max capacity of the instance.
+     */
+    maxCapacityGb?: string | null;
+    /**
      * Output only. The max number of shares allowed.
      */
     maxShareCount?: string | null;
+    /**
+     * Indicates whether this instance uses a multi-share configuration with which it can have more than one file-share or none at all. File-shares are added, updated and removed through the separate file-share APIs.
+     */
+    multiShareEnabled?: boolean | null;
     /**
      * Output only. The resource name of the instance, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`.
      */
@@ -496,7 +528,7 @@ export namespace file_v1beta1 {
      */
     statusMessage?: string | null;
     /**
-     * Output only. field indicates all the reasons the instance is in "SUSPENDED" state.
+     * Output only. Field indicates all the reasons the instance is in "SUSPENDED" state.
      */
     suspensionReasons?: string[] | null;
     /**
@@ -563,6 +595,23 @@ export namespace file_v1beta1 {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$Operation[];
+  }
+  /**
+   * ListSharesResponse is the result of ListSharesRequest.
+   */
+  export interface Schema$ListSharesResponse {
+    /**
+     * The token you can use to retrieve the next page of results. Not returned if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of shares in the project for the specified instance.
+     */
+    shares?: Schema$Share[];
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * ListSnapshotsResponse is the result of ListSnapshotsRequest.
@@ -798,6 +847,43 @@ export namespace file_v1beta1 {
      * Time within the window to start the operations.
      */
     startTime?: Schema$TimeOfDay;
+  }
+  /**
+   * A Cloud Filestore share.
+   */
+  export interface Schema$Share {
+    /**
+     * File share capacity in gigabytes (GB). Cloud Filestore defines 1 GB as 1024^3 bytes. Must be greater than 0.
+     */
+    capacityGb?: string | null;
+    /**
+     * Output only. The time when the share was created.
+     */
+    createTime?: string | null;
+    /**
+     * A description of the share with 2048 characters or less. Requests with longer descriptions will be rejected.
+     */
+    description?: string | null;
+    /**
+     * Resource labels to represent user provided metadata.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * The mount name of the share. Must be 63 characters or less and consist of uppercase or lowercase letters, numbers, and underscores.
+     */
+    mountName?: string | null;
+    /**
+     * Output only. The resource name of the share, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}/shares/{share_id\}`.
+     */
+    name?: string | null;
+    /**
+     * Nfs Export Options. There is a limit of 10 export options per file share.
+     */
+    nfsExportOptions?: Schema$NfsExportOptions[];
+    /**
+     * Output only. The share state.
+     */
+    state?: string | null;
   }
   /**
    * A Cloud Filestore snapshot.
@@ -1073,7 +1159,7 @@ export namespace file_v1beta1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.list({
-     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
      *     // If true, the returned list will include locations which are not yet revealed.
      *     includeUnrevealedLocations: 'placeholder-value',
@@ -1200,7 +1286,7 @@ export namespace file_v1beta1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
     /**
@@ -1267,6 +1353,7 @@ export namespace file_v1beta1 {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "downloadBytes": "my_downloadBytes",
+     *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "satisfiesPzs": false,
@@ -1549,6 +1636,7 @@ export namespace file_v1beta1 {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "downloadBytes": "my_downloadBytes",
+     *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "satisfiesPzs": false,
@@ -1830,6 +1918,7 @@ export namespace file_v1beta1 {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "downloadBytes": "my_downloadBytes",
+     *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "satisfiesPzs": false,
@@ -2014,9 +2103,13 @@ export namespace file_v1beta1 {
 
   export class Resource$Projects$Locations$Instances {
     context: APIRequestContext;
+    shares: Resource$Projects$Locations$Instances$Shares;
     snapshots: Resource$Projects$Locations$Instances$Snapshots;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.shares = new Resource$Projects$Locations$Instances$Shares(
+        this.context
+      );
       this.snapshots = new Resource$Projects$Locations$Instances$Snapshots(
         this.context
       );
@@ -2058,13 +2151,17 @@ export namespace file_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "capacityGb": "my_capacityGb",
+     *       //   "capacityStepSizeGb": "my_capacityStepSizeGb",
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "etag": "my_etag",
      *       //   "fileShares": [],
      *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "labels": {},
+     *       //   "maxCapacityGb": "my_maxCapacityGb",
      *       //   "maxShareCount": "my_maxShareCount",
+     *       //   "multiShareEnabled": false,
      *       //   "name": "my_name",
      *       //   "networks": [],
      *       //   "satisfiesPzs": false,
@@ -2344,13 +2441,17 @@ export namespace file_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "capacityGb": "my_capacityGb",
+     *   //   "capacityStepSizeGb": "my_capacityStepSizeGb",
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "etag": "my_etag",
      *   //   "fileShares": [],
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "labels": {},
+     *   //   "maxCapacityGb": "my_maxCapacityGb",
      *   //   "maxShareCount": "my_maxShareCount",
+     *   //   "multiShareEnabled": false,
      *   //   "name": "my_name",
      *   //   "networks": [],
      *   //   "satisfiesPzs": false,
@@ -2629,13 +2730,17 @@ export namespace file_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "capacityGb": "my_capacityGb",
+     *       //   "capacityStepSizeGb": "my_capacityStepSizeGb",
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "etag": "my_etag",
      *       //   "fileShares": [],
      *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "labels": {},
+     *       //   "maxCapacityGb": "my_maxCapacityGb",
      *       //   "maxShareCount": "my_maxShareCount",
+     *       //   "multiShareEnabled": false,
      *       //   "name": "my_name",
      *       //   "networks": [],
      *       //   "satisfiesPzs": false,
@@ -3127,6 +3232,788 @@ export namespace file_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$RevertInstanceRequest;
+  }
+
+  export class Resource$Projects$Locations$Instances$Shares {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a share.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/file.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const file = google.file('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await file.projects.locations.instances.shares.create({
+     *     // Required. The Filestore Instance to create the share for, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     *     parent: 'projects/my-project/locations/my-location/instances/my-instance',
+     *     // Required. The ID to use for the share. The ID must be unique within the specified instance. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
+     *     shareId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "capacityGb": "my_capacityGb",
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "labels": {},
+     *       //   "mountName": "my_mountName",
+     *       //   "name": "my_name",
+     *       //   "nfsExportOptions": [],
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Instances$Shares$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Instances$Shares$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Instances$Shares$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Instances$Shares$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Instances$Shares$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Shares$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Shares$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Shares$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/shares').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a share.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/file.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const file = google.file('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await file.projects.locations.instances.shares.delete({
+     *     // Required. The share resource name, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}/share/{share_id\}`
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance/shares/my-share',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Instances$Shares$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Instances$Shares$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Instances$Shares$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Instances$Shares$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Instances$Shares$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Shares$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Shares$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Shares$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets the details of a specific share.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/file.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const file = google.file('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await file.projects.locations.instances.shares.get({
+     *     // Required. The share resource name, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}/shares/{share_id\}`
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance/shares/my-share',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "capacityGb": "my_capacityGb",
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "labels": {},
+     *   //   "mountName": "my_mountName",
+     *   //   "name": "my_name",
+     *   //   "nfsExportOptions": [],
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Shares$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Instances$Shares$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Share>;
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Shares$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Shares$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Share>,
+      callback: BodyResponseCallback<Schema$Share>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Shares$Get,
+      callback: BodyResponseCallback<Schema$Share>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Share>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Shares$Get
+        | BodyResponseCallback<Schema$Share>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Share>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Share>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Share> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Shares$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Shares$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Share>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Share>(parameters);
+      }
+    }
+
+    /**
+     * Lists all shares for a specified instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/file.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const file = google.file('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await file.projects.locations.instances.shares.list({
+     *     // List filter.
+     *     filter: 'placeholder-value',
+     *     // Sort results. Supported values are "name", "name desc" or "" (unsorted).
+     *     orderBy: 'placeholder-value',
+     *     // The maximum number of items to return.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value to use if there are additional results to retrieve for this list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The instance for which to retrieve share information, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`.
+     *     parent: 'projects/my-project/locations/my-location/instances/my-instance',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "shares": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Shares$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Instances$Shares$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSharesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Shares$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Shares$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListSharesResponse>,
+      callback: BodyResponseCallback<Schema$ListSharesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Shares$List,
+      callback: BodyResponseCallback<Schema$ListSharesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListSharesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Shares$List
+        | BodyResponseCallback<Schema$ListSharesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSharesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSharesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSharesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Shares$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Shares$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/shares').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSharesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSharesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates the settings of a specific share.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/file.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const file = google.file('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await file.projects.locations.instances.shares.patch({
+     *     // Output only. The resource name of the share, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}/shares/{share_id\}`.
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance/shares/my-share',
+     *     // Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields: * "description" * "capacity_gb" * "labels" * "nfs_export_options"
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "capacityGb": "my_capacityGb",
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "labels": {},
+     *       //   "mountName": "my_mountName",
+     *       //   "name": "my_name",
+     *       //   "nfsExportOptions": [],
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Instances$Shares$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Instances$Shares$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Instances$Shares$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Instances$Shares$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Instances$Shares$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Shares$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Shares$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Shares$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Instances$Shares$Create
+    extends StandardParameters {
+    /**
+     * Required. The Filestore Instance to create the share for, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     */
+    parent?: string;
+    /**
+     * Required. The ID to use for the share. The ID must be unique within the specified instance. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
+     */
+    shareId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Share;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Shares$Delete
+    extends StandardParameters {
+    /**
+     * Required. The share resource name, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}/share/{share_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Shares$Get
+    extends StandardParameters {
+    /**
+     * Required. The share resource name, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}/shares/{share_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Shares$List
+    extends StandardParameters {
+    /**
+     * List filter.
+     */
+    filter?: string;
+    /**
+     * Sort results. Supported values are "name", "name desc" or "" (unsorted).
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of items to return.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value to use if there are additional results to retrieve for this list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The instance for which to retrieve share information, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Shares$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The resource name of the share, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}/shares/{share_id\}`.
+     */
+    name?: string;
+    /**
+     * Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields: * "description" * "capacity_gb" * "labels" * "nfs_export_options"
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Share;
   }
 
   export class Resource$Projects$Locations$Instances$Snapshots {

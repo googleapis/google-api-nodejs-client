@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -335,6 +334,10 @@ export namespace sasportal_v1alpha1 {
      */
     grantId?: string | null;
     /**
+     * The transmit expiration time of the last heartbeat.
+     */
+    lastHeartbeatTransmitExpireTime?: string | null;
+    /**
      * Maximum Equivalent Isotropically Radiated Power (EIRP) permitted by the grant. The maximum EIRP is in units of dBm/MHz. The value of `maxEirp` represents the average (RMS) EIRP that would be measured by the procedure defined in FCC part 96.41(e)(3).
      */
     maxEirp?: number | null;
@@ -415,7 +418,7 @@ export namespace sasportal_v1alpha1 {
     frequencyRange?: Schema$SasPortalFrequencyRange;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$SasPortalEmpty {}
   /**
@@ -611,7 +614,7 @@ export namespace sasportal_v1alpha1 {
     sasUserIds?: string[] | null;
   }
   /**
-   * Information about National Radio Quiet Zone validation. The presence of the field indicates the device has been validated.
+   * Information about National Radio Quiet Zone validation.
    */
   export interface Schema$SasPortalNrqzValidation {
     /**
@@ -630,6 +633,10 @@ export namespace sasportal_v1alpha1 {
      * Device longitude associated with the validation.
      */
     longitude?: number | null;
+    /**
+     * State of the NRQZ validation info.
+     */
+    state?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.

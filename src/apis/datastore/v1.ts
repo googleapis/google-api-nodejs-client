@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -130,6 +129,10 @@ export namespace datastore_v1 {
    */
   export interface Schema$AllocateIdsRequest {
     /**
+     * If not empty, the ID of the database against which to make the request.
+     */
+    databaseId?: string | null;
+    /**
      * Required. A list of keys with incomplete key paths for which to allocate IDs. No key may be reserved/read-only.
      */
     keys?: Schema$Key[];
@@ -157,6 +160,10 @@ export namespace datastore_v1 {
    */
   export interface Schema$BeginTransactionRequest {
     /**
+     * If not empty, the ID of the database against which to make the request.
+     */
+    databaseId?: string | null;
+    /**
      * Options for a new transaction.
      */
     transactionOptions?: Schema$TransactionOptions;
@@ -175,6 +182,10 @@ export namespace datastore_v1 {
    */
   export interface Schema$CommitRequest {
     /**
+     * If not empty, the ID of the database against which to make the request.
+     */
+    databaseId?: string | null;
+    /**
      * The type of commit to perform. Defaults to `TRANSACTIONAL`.
      */
     mode?: string | null;
@@ -192,6 +203,10 @@ export namespace datastore_v1 {
    */
   export interface Schema$CommitResponse {
     /**
+     * The transaction commit timestamp. Not set for non-transactional commits.
+     */
+    commitTime?: string | null;
+    /**
      * The number of index entries updated during the commit, or zero if none were updated.
      */
     indexUpdates?: number | null;
@@ -205,7 +220,7 @@ export namespace datastore_v1 {
    */
   export interface Schema$CompositeFilter {
     /**
-     * The list of filters to combine. Must contain at least one filter.
+     * The list of filters to combine. Requires: * At least one filter is present.
      */
     filters?: Schema$Filter[];
     /**
@@ -214,7 +229,7 @@ export namespace datastore_v1 {
     op?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -242,6 +257,10 @@ export namespace datastore_v1 {
      * The resulting entity.
      */
     entity?: Schema$Entity;
+    /**
+     * The time at which the entity was last changed. This field is set for `FULL` entity results. If this entity is missing, this field will not be set.
+     */
+    updateTime?: string | null;
     /**
      * The version of the entity, a strictly positive number that monotonically increases with changes to the entity. This field is set for `FULL` entity results. For missing entities in `LookupResponse`, this is the version of the snapshot that was used to look up the entity, and it is always set except for eventually consistent reads.
      */
@@ -755,6 +774,10 @@ export namespace datastore_v1 {
    */
   export interface Schema$LookupRequest {
     /**
+     * If not empty, the ID of the database against which to make the request.
+     */
+    databaseId?: string | null;
+    /**
      * Required. Keys of entities to look up.
      */
     keys?: Schema$Key[];
@@ -779,6 +802,10 @@ export namespace datastore_v1 {
      * Entities not found as `ResultType.KEY_ONLY` entities. The order of results in this field is undefined and has no relation to the order of the keys in the input.
      */
     missing?: Schema$EntityResult[];
+    /**
+     * The time at which these entities were read or found missing.
+     */
+    readTime?: string | null;
   }
   /**
    * A mutation to apply to an entity.
@@ -801,6 +828,10 @@ export namespace datastore_v1 {
      */
     update?: Schema$Entity;
     /**
+     * The update time of the entity that this mutation is being applied to. If this does not match the current update time on the server, the mutation conflicts.
+     */
+    updateTime?: string | null;
+    /**
      * The entity to upsert. The entity may or may not already exist. The entity key's final path element may be incomplete.
      */
     upsert?: Schema$Entity;
@@ -818,6 +849,10 @@ export namespace datastore_v1 {
      */
     key?: Schema$Key;
     /**
+     * The update time of the entity on the server after processing the mutation. If the mutation doesn't change anything on the server, then the timestamp will be the update timestamp of the current entity. This field will not be set after a 'delete'.
+     */
+    updateTime?: string | null;
+    /**
      * The version of the entity on the server after processing the mutation. If the mutation doesn't change anything on the server, then the version will be the version of the current entity or, if no entity is present, a version that is strictly greater than the version of any previous entity and less than the version of any possible future entity.
      */
     version?: string | null;
@@ -826,6 +861,10 @@ export namespace datastore_v1 {
    * A partition ID identifies a grouping of entities. The grouping is always by project and namespace, however the namespace ID may be empty. A partition ID contains several dimensions: project ID and namespace ID. Partition dimensions: - May be `""`. - Must be valid UTF-8 bytes. - Must have values that match regex `[A-Za-z\d\.\-_]{1,100\}` If the value of any dimension matches regex `__.*__`, the partition is reserved/read-only. A reserved/read-only partition ID is forbidden in certain documented contexts. Foreign partition IDs (in which the project ID does not match the context project ID ) are discouraged. Reads and writes of foreign partition IDs may fail if the project is not in an active state.
    */
   export interface Schema$PartitionId {
+    /**
+     * If not empty, the ID of the database to which the entities belong.
+     */
+    databaseId?: string | null;
     /**
      * If not empty, the ID of the namespace to which the entities belong.
      */
@@ -844,11 +883,11 @@ export namespace datastore_v1 {
      */
     id?: string | null;
     /**
-     * The kind of the entity. A kind matching regex `__.*__` is reserved/read-only. A kind must not contain more than 1500 bytes when UTF-8 encoded. Cannot be `""`.
+     * The kind of the entity. A kind matching regex `__.*__` is reserved/read-only. A kind must not contain more than 1500 bytes when UTF-8 encoded. Cannot be `""`. Must be valid UTF-8 bytes. Legacy values that are not valid UTF-8 are encoded as `__bytes__` where `` is the base-64 encoding of the bytes.
      */
     kind?: string | null;
     /**
-     * The name of the entity. A name matching regex `__.*__` is reserved/read-only. A name must not be more than 1500 bytes when UTF-8 encoded. Cannot be `""`.
+     * The name of the entity. A name matching regex `__.*__` is reserved/read-only. A name must not be more than 1500 bytes when UTF-8 encoded. Cannot be `""`. Must be valid UTF-8 bytes. Legacy values that are not valid UTF-8 are encoded as `__bytes__` where `` is the base-64 encoding of the bytes.
      */
     name?: string | null;
   }
@@ -962,6 +1001,10 @@ export namespace datastore_v1 {
      */
     moreResults?: string | null;
     /**
+     * Read timestamp this batch was returned from. This applies to the range of results from the query's `start_cursor` (or the beginning of the query if no cursor was given) to this batch's `end_cursor` (not the query's `end_cursor`). In a single transaction, subsequent query result batches for the same query can have a greater timestamp. Each batch's read timestamp is valid for all preceding batches. This value will not be set for eventually consistent queries in Cloud Datastore.
+     */
+    readTime?: string | null;
+    /**
      * A cursor that points to the position after the last skipped result. Will be set when `skipped_results` != 0.
      */
     skippedCursor?: string | null;
@@ -977,7 +1020,12 @@ export namespace datastore_v1 {
   /**
    * Options specific to read-only transactions.
    */
-  export interface Schema$ReadOnly {}
+  export interface Schema$ReadOnly {
+    /**
+     * Reads entities at the given time. This may not be older than 60 seconds.
+     */
+    readTime?: string | null;
+  }
   /**
    * The options shared by read requests.
    */
@@ -986,6 +1034,10 @@ export namespace datastore_v1 {
      * The non-transactional read consistency to use. Cannot be set to `STRONG` for global queries.
      */
     readConsistency?: string | null;
+    /**
+     * Reads entities as they were at the given time. This may not be older than 270 seconds. This value is only supported for Cloud Firestore in Datastore mode.
+     */
+    readTime?: string | null;
     /**
      * The identifier of the transaction in which to read. A transaction identifier is returned by a call to Datastore.BeginTransaction.
      */
@@ -1022,6 +1074,10 @@ export namespace datastore_v1 {
    */
   export interface Schema$RollbackRequest {
     /**
+     * If not empty, the ID of the database against which to make the request.
+     */
+    databaseId?: string | null;
+    /**
      * Required. The transaction identifier, returned by a call to Datastore.BeginTransaction.
      */
     transaction?: string | null;
@@ -1035,7 +1091,11 @@ export namespace datastore_v1 {
    */
   export interface Schema$RunQueryRequest {
     /**
-     * The GQL query to run.
+     * If not empty, the ID of the database against which to make the request.
+     */
+    databaseId?: string | null;
+    /**
+     * The GQL query to run. This query must be a non-aggregation query.
      */
     gqlQuery?: Schema$GqlQuery;
     /**
@@ -1199,6 +1259,7 @@ export namespace datastore_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "databaseId": "my_databaseId",
      *       //   "keys": []
      *       // }
      *     },
@@ -1344,6 +1405,7 @@ export namespace datastore_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "databaseId": "my_databaseId",
      *       //   "transactionOptions": {}
      *       // }
      *     },
@@ -1490,6 +1552,7 @@ export namespace datastore_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "databaseId": "my_databaseId",
      *       //   "mode": "my_mode",
      *       //   "mutations": [],
      *       //   "transaction": "my_transaction"
@@ -1500,6 +1563,7 @@ export namespace datastore_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "commitTime": "my_commitTime",
      *   //   "indexUpdates": 0,
      *   //   "mutationResults": []
      *   // }
@@ -1936,6 +2000,7 @@ export namespace datastore_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "databaseId": "my_databaseId",
      *       //   "keys": [],
      *       //   "readOptions": {}
      *       // }
@@ -1947,7 +2012,8 @@ export namespace datastore_v1 {
      *   // {
      *   //   "deferred": [],
      *   //   "found": [],
-     *   //   "missing": []
+     *   //   "missing": [],
+     *   //   "readTime": "my_readTime"
      *   // }
      * }
      *
@@ -2220,6 +2286,7 @@ export namespace datastore_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "databaseId": "my_databaseId",
      *       //   "transaction": "my_transaction"
      *       // }
      *     },
@@ -2358,6 +2425,7 @@ export namespace datastore_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "databaseId": "my_databaseId",
      *       //   "gqlQuery": {},
      *       //   "partitionId": {},
      *       //   "query": {},

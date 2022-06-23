@@ -197,7 +197,7 @@
       }
     }
   },
-  "revision": "20220227",
+  "revision": "20220602",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "AllocateInfo": {
@@ -331,6 +331,10 @@
           "description": "The number of items returned from a List or Query API method, if applicable.",
           "format": "int64",
           "type": "string"
+        },
+        "policyViolationInfo": {
+          "$ref": "PolicyViolationInfo",
+          "description": "Indicates the policy violations for this request. If the request is denied by the policy, violation information will be logged here."
         },
         "request": {
           "additionalProperties": {
@@ -1165,17 +1169,6 @@
           "format": "google-datetime",
           "type": "string"
         },
-        "extensions": {
-          "description": "Unimplemented.",
-          "items": {
-            "additionalProperties": {
-              "description": "Properties of the object. Contains field @type with type URL.",
-              "type": "any"
-            },
-            "type": "object"
-          },
-          "type": "array"
-        },
         "importance": {
           "description": "DO NOT USE. This is an experimental field.",
           "enum": [
@@ -1252,6 +1245,39 @@
       },
       "type": "object"
     },
+    "OrgPolicyViolationInfo": {
+      "description": "Represents OrgPolicy Violation information.",
+      "id": "OrgPolicyViolationInfo",
+      "properties": {
+        "payload": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Resource payload that is currently in scope and is subjected to orgpolicy conditions. This payload may be the subset of the actual Resource that may come in the request. This payload should not contain any core content.",
+          "type": "object"
+        },
+        "resourceTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Tags referenced on the resource at the time of evaluation. These also include the federated tags, if they are supplied in the CheckOrgPolicy or CheckCustomConstraints Requests. Optional field as of now. These tags are the Cloud tags that are available on the resource during the policy evaluation and will be available as part of the OrgPolicy check response for logging purposes.",
+          "type": "object"
+        },
+        "resourceType": {
+          "description": "Optional. Resource type that the orgpolicy is checked against. Example: compute.googleapis.com/Instance, store.googleapis.com/bucket",
+          "type": "string"
+        },
+        "violationInfo": {
+          "description": "Optional. Policy violations",
+          "items": {
+            "$ref": "ViolationInfo"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Peer": {
       "description": "This message defines attributes for a node that handles a network request. The node can be either a service or an application that sends, forwards, or receives the request. Service peers should fill in `principal` and `labels` as appropriate.",
       "id": "Peer",
@@ -1279,6 +1305,17 @@
         "regionCode": {
           "description": "The CLDR country/region code associated with the above IP address. If the IP address is private, the `region_code` should reflect the physical location where this peer is running.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PolicyViolationInfo": {
+      "description": "Information related to policy violations for this request.",
+      "id": "PolicyViolationInfo",
+      "properties": {
+        "orgPolicyViolationInfo": {
+          "$ref": "OrgPolicyViolationInfo",
+          "description": "Indicates the orgpolicy violations for this resource."
         }
       },
       "type": "object"
@@ -1404,7 +1441,6 @@
             "NORMAL",
             "BEST_EFFORT",
             "CHECK_ONLY",
-            "QUERY_ONLY",
             "ADJUST_ONLY"
           ],
           "enumDescriptions": [
@@ -1412,7 +1448,6 @@
             "For AllocateQuota request, allocates quota for the amount specified in the service configuration or specified using the quota metrics. If the amount is higher than the available quota, allocation error will be returned and no quota will be allocated. If multiple quotas are part of the request, and one fails, none of the quotas are allocated or released.",
             "The operation allocates quota for the amount specified in the service configuration or specified using the quota metrics. If the amount is higher than the available quota, request does not fail but all available quota will be allocated. For rate quota, BEST_EFFORT will continue to deduct from other groups even if one does not have enough quota. For allocation, it will find the minimum available amount across all groups and deduct that amount from all the affected groups.",
             "For AllocateQuota request, only checks if there is enough quota available and does not change the available quota. No lock is placed on the available quota either.",
-            "Deprecated. Please use QueryLimits API to query quota limits.",
             "The operation allocates quota for the amount specified in the service configuration or specified using the quota metrics. If the requested amount is higher than the available quota, request does not fail and remaining quota would become negative (going over the limit). Not supported for Rate Quota."
           ],
           "type": "string"
@@ -2053,6 +2088,41 @@
         "line": {
           "description": "Optional. Line within the source file. 1-based; 0 indicates no line number available.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ViolationInfo": {
+      "description": "Provides information about the Policy violation info for this request.",
+      "id": "ViolationInfo",
+      "properties": {
+        "checkedValue": {
+          "description": "Optional. Value that is being checked for the policy. This could be in encrypted form (if pii sensitive). This field will only be emitted in LIST_POLICY types",
+          "type": "string"
+        },
+        "constraint": {
+          "description": "Optional. Constraint name",
+          "type": "string"
+        },
+        "errorMessage": {
+          "description": "Optional. Error message that policy is indicating.",
+          "type": "string"
+        },
+        "policyType": {
+          "description": "Optional. Indicates the type of the policy.",
+          "enum": [
+            "POLICY_TYPE_UNSPECIFIED",
+            "BOOLEAN_CONSTRAINT",
+            "LIST_CONSTRAINT",
+            "CUSTOM_CONSTRAINT"
+          ],
+          "enumDescriptions": [
+            "Default value. This value should not be used.",
+            "Indicates boolean policy constraint",
+            "Indicates list policy constraint",
+            "Indicates custom policy constraint"
+          ],
           "type": "string"
         }
       },

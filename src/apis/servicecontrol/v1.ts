@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -223,6 +222,10 @@ export namespace servicecontrol_v1 {
      * The number of items returned from a List or Query API method, if applicable.
      */
     numResponseItems?: string | null;
+    /**
+     * Indicates the policy violations for this request. If the request is denied by the policy, violation information will be logged here.
+     */
+    policyViolationInfo?: Schema$PolicyViolationInfo;
     /**
      * The operation request. This may not include all request parameters, such as those that are too large, privacy-sensitive, or duplicated elsewhere in the log record. It should never include user-generated data, such as file contents. When the JSON object represented here has a proto equivalent, the proto name will be indicated in the `@type` property.
      */
@@ -794,10 +797,6 @@ export namespace servicecontrol_v1 {
      */
     endTime?: string | null;
     /**
-     * Unimplemented.
-     */
-    extensions?: Array<{[key: string]: any}> | null;
-    /**
      * DO NOT USE. This is an experimental field.
      */
     importance?: string | null;
@@ -843,6 +842,27 @@ export namespace servicecontrol_v1 {
     userLabels?: {[key: string]: string} | null;
   }
   /**
+   * Represents OrgPolicy Violation information.
+   */
+  export interface Schema$OrgPolicyViolationInfo {
+    /**
+     * Optional. Resource payload that is currently in scope and is subjected to orgpolicy conditions. This payload may be the subset of the actual Resource that may come in the request. This payload should not contain any core content.
+     */
+    payload?: {[key: string]: any} | null;
+    /**
+     * Optional. Tags referenced on the resource at the time of evaluation. These also include the federated tags, if they are supplied in the CheckOrgPolicy or CheckCustomConstraints Requests. Optional field as of now. These tags are the Cloud tags that are available on the resource during the policy evaluation and will be available as part of the OrgPolicy check response for logging purposes.
+     */
+    resourceTags?: {[key: string]: string} | null;
+    /**
+     * Optional. Resource type that the orgpolicy is checked against. Example: compute.googleapis.com/Instance, store.googleapis.com/bucket
+     */
+    resourceType?: string | null;
+    /**
+     * Optional. Policy violations
+     */
+    violationInfo?: Schema$ViolationInfo[];
+  }
+  /**
    * This message defines attributes for a node that handles a network request. The node can be either a service or an application that sends, forwards, or receives the request. Service peers should fill in `principal` and `labels` as appropriate.
    */
   export interface Schema$Peer {
@@ -866,6 +886,15 @@ export namespace servicecontrol_v1 {
      * The CLDR country/region code associated with the above IP address. If the IP address is private, the `region_code` should reflect the physical location where this peer is running.
      */
     regionCode?: string | null;
+  }
+  /**
+   * Information related to policy violations for this request.
+   */
+  export interface Schema$PolicyViolationInfo {
+    /**
+     * Indicates the orgpolicy violations for this resource.
+     */
+    orgPolicyViolationInfo?: Schema$OrgPolicyViolationInfo;
   }
   /**
    * Represents error information for QuotaOperation.
@@ -1420,6 +1449,27 @@ export namespace servicecontrol_v1 {
      * Optional. Line within the source file. 1-based; 0 indicates no line number available.
      */
     line?: string | null;
+  }
+  /**
+   * Provides information about the Policy violation info for this request.
+   */
+  export interface Schema$ViolationInfo {
+    /**
+     * Optional. Value that is being checked for the policy. This could be in encrypted form (if pii sensitive). This field will only be emitted in LIST_POLICY types
+     */
+    checkedValue?: string | null;
+    /**
+     * Optional. Constraint name
+     */
+    constraint?: string | null;
+    /**
+     * Optional. Error message that policy is indicating.
+     */
+    errorMessage?: string | null;
+    /**
+     * Optional. Indicates the type of the policy.
+     */
+    policyType?: string | null;
   }
 
   export class Resource$Services {

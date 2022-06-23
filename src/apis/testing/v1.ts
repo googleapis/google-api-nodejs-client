@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -312,7 +311,7 @@ export namespace testing_v1 {
      */
     tags?: string[] | null;
     /**
-     * URL of a thumbnail image (photo) of the device. e.g. https://lh3.googleusercontent.com/90WcauuJiCYABEl8U0lcZeuS5STUbf2yW...
+     * URL of a thumbnail image (photo) of the device.
      */
     thumbnailUrl?: string | null;
   }
@@ -336,6 +335,14 @@ export namespace testing_v1 {
      * The java package for the application under test. The default value is determined by examining the application's manifest.
      */
     appPackageId?: string | null;
+    /**
+     * The max depth of the traversal stack Robo can explore. Needs to be at least 2 to make Robo explore the app beyond the first activity. Default is 50.
+     */
+    maxDepth?: number | null;
+    /**
+     * The max number of steps Robo can execute. Default is no limit.
+     */
+    maxSteps?: number | null;
     /**
      * A set of directives Robo should apply during the crawl. This allows users to customize the crawl. For example, the username and password for a test account can be provided.
      */
@@ -1062,7 +1069,7 @@ export namespace testing_v1 {
      */
     shardIndex?: number | null;
     /**
-     * Output only. Test targets for each shard.
+     * Output only. Test targets for each shard. Only set for manual sharding.
      */
     testTargetsForShard?: Schema$TestTargetsForShard;
   }
@@ -1329,7 +1336,7 @@ export namespace testing_v1 {
    */
   export interface Schema$TestTargetsForShard {
     /**
-     * Group of packages, classes, and/or test methods to be run for each shard. The targets need to be specified in AndroidJUnitRunner argument format. For example, "package com.my.packages" "class com.my.package.MyClass". The number of shard_test_targets must be greater than 0.
+     * Group of packages, classes, and/or test methods to be run for each shard. The targets need to be specified in AndroidJUnitRunner argument format. For example, "package com.my.packages" "class com.my.package.MyClass". The number of test_targets must be greater than 0.
      */
     testTargets?: string[] | null;
   }

@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -398,7 +397,7 @@ export namespace ondemandscanning_v1 {
     nonCompliantFiles?: Schema$NonCompliantFile[];
   }
   /**
-   * Common Vulnerability Scoring System. For details, see https://www.first.org/cvss/specification-document This is a message we will try to use for storing multiple versions of CVSS. The intention is that as new versions of CVSS scores get added, we will be able to modify this message rather than adding new protos for each new version of the score.
+   * Common Vulnerability Scoring System. For details, see https://www.first.org/cvss/specification-document This is a message we will try to use for storing various versions of CVSS rather than making a separate proto for storing a specific version.
    */
   export interface Schema$CVSS {
     attackComplexity?: string | null;
@@ -493,7 +492,7 @@ export namespace ondemandscanning_v1 {
     statement?: Schema$InTotoStatement;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -516,6 +515,15 @@ export namespace ondemandscanning_v1 {
      * Required. Collection of file hashes.
      */
     fileHash?: Schema$Hash[];
+  }
+  /**
+   * Indicates the location at which a package was found.
+   */
+  export interface Schema$FileLocation {
+    /**
+     * For jars that are contained inside .war files, this filepath can indicate the path to war file combined with the path to jar file.
+     */
+    filePath?: string | null;
   }
   /**
    * A set of properties that uniquely identify a given Docker image.
@@ -567,6 +575,62 @@ export namespace ondemandscanning_v1 {
      * Git repository URL.
      */
     url?: string | null;
+  }
+  /**
+   * Indicates the location at which a package was found.
+   */
+  export interface Schema$GrafeasV1FileLocation {
+    /**
+     * For jars that are contained inside .war files, this filepath can indicate the path to war file combined with the path to jar file.
+     */
+    filePath?: string | null;
+  }
+  /**
+   * Identifies the entity that executed the recipe, which is trusted to have correctly performed the operation and populated this provenance.
+   */
+  export interface Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaBuilder {
+    id?: string | null;
+  }
+  /**
+   * Indicates that the builder claims certain fields in this message to be complete.
+   */
+  export interface Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaCompleteness {
+    environment?: boolean | null;
+    materials?: boolean | null;
+    parameters?: boolean | null;
+  }
+  /**
+   * Describes where the config file that kicked off the build came from. This is effectively a pointer to the source where buildConfig came from.
+   */
+  export interface Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaConfigSource {
+    digest?: {[key: string]: string} | null;
+    entryPoint?: string | null;
+    uri?: string | null;
+  }
+  /**
+   * Identifies the event that kicked off the build.
+   */
+  export interface Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaInvocation {
+    configSource?: Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaConfigSource;
+    environment?: {[key: string]: any} | null;
+    parameters?: {[key: string]: any} | null;
+  }
+  /**
+   * The collection of artifacts that influenced the build including sources, dependencies, build tools, base images, and so on.
+   */
+  export interface Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaMaterial {
+    digest?: {[key: string]: string} | null;
+    uri?: string | null;
+  }
+  /**
+   * Other properties of the build.
+   */
+  export interface Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaMetadata {
+    buildFinishedOn?: string | null;
+    buildInvocationId?: string | null;
+    buildStartedOn?: string | null;
+    completeness?: Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaCompleteness;
+    reproducible?: boolean | null;
   }
   /**
    * Container message for hash values.
@@ -640,6 +704,7 @@ export namespace ondemandscanning_v1 {
     predicateType?: string | null;
     provenance?: Schema$InTotoProvenance;
     slsaProvenance?: Schema$SlsaProvenance;
+    slsaProvenanceZeroTwo?: Schema$SlsaProvenanceZeroTwo;
     subject?: Schema$Subject[];
     /**
      * Always `https://in-toto.io/Statement/v0.1`.
@@ -653,6 +718,13 @@ export namespace ondemandscanning_v1 {
     compactJwt?: string | null;
   }
   /**
+   * Indicates a language package available between this package and the customer's resource artifact.
+   */
+  export interface Schema$LanguagePackageDependency {
+    package?: string | null;
+    version?: string | null;
+  }
+  /**
    * Layer holds metadata specific to a layer of a Docker image.
    */
   export interface Schema$Layer {
@@ -664,6 +736,19 @@ export namespace ondemandscanning_v1 {
      * Required. The recovered Dockerfile directive used to construct this layer. See https://docs.docker.com/engine/reference/builder/ for more information.
      */
     directive?: string | null;
+  }
+  /**
+   * License information.
+   */
+  export interface Schema$License {
+    /**
+     * Comments
+     */
+    comments?: string | null;
+    /**
+     * Often a single license can be used to represent the licensing terms. Sometimes it is necessary to include a choice of one or more licenses or some combination of license identifiers. Examples: "LGPL-2.1-only OR MIT", "LGPL-2.1-only AND MIT", "GPL-2.0-or-later WITH Bison-exception-2.2".
+     */
+    expression?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -696,7 +781,7 @@ export namespace ondemandscanning_v1 {
    */
   export interface Schema$Location {
     /**
-     * Required. The CPE URI in [CPE format](https://cpe.mitre.org/specification/) denoting the package manager version distributing a package.
+     * Deprecated. The CPE URI in [CPE format](https://cpe.mitre.org/specification/)
      */
     cpeUri?: string | null;
     /**
@@ -704,7 +789,7 @@ export namespace ondemandscanning_v1 {
      */
     path?: string | null;
     /**
-     * The version installed at this location.
+     * Deprecated. The version installed at this location.
      */
     version?: Schema$Version;
   }
@@ -862,6 +947,18 @@ export namespace ondemandscanning_v1 {
      */
     cpeUri?: string | null;
     /**
+     * The dependency chain between this package and the user's artifact. List in order from the customer's package under review first, to the current package last. Inclusive of the original package and the current package.
+     */
+    dependencyChain?: Schema$LanguagePackageDependency[];
+    /**
+     * The path to the jar file / go binary file.
+     */
+    fileLocation?: Schema$FileLocation[];
+    /**
+     * HashDigest stores the SHA512 hash digest of the jar file if the package is of type Maven. This field will be unset for non Maven packages.
+     */
+    hashDigest?: string | null;
+    /**
      * The OS affected by a vulnerability This field is deprecated and the information is in cpe_uri
      */
     os?: string | null;
@@ -877,6 +974,10 @@ export namespace ondemandscanning_v1 {
      * The type of package: os, maven, go, etc.
      */
     packageType?: string | null;
+    /**
+     * CVEs that this package is no longer vulnerable to go/drydock-dd-custom-binary-scanning
+     */
+    patchedCve?: string[] | null;
     unused?: string | null;
     /**
      * The version of the package being analysed
@@ -904,6 +1005,10 @@ export namespace ondemandscanning_v1 {
      */
     effectiveSeverity?: string | null;
     /**
+     * The location at which this package was found.
+     */
+    fileLocation?: Schema$GrafeasV1FileLocation[];
+    /**
      * Output only. Whether a fix is available for this package.
      */
     fixAvailable?: boolean | null;
@@ -929,13 +1034,33 @@ export namespace ondemandscanning_v1 {
    */
   export interface Schema$PackageOccurrence {
     /**
-     * Required. All of the places within the filesystem versions of this package have been found.
+     * Output only. The CPU architecture for which packages in this distribution channel were built. Architecture will be blank for language packages.
+     */
+    architecture?: string | null;
+    /**
+     * Output only. The cpe_uri in [CPE format](https://cpe.mitre.org/specification/) denoting the package manager version distributing a package. The cpe_uri will be blank for language packages.
+     */
+    cpeUri?: string | null;
+    /**
+     * Licenses that have been declared by the authors of the package.
+     */
+    license?: Schema$License;
+    /**
+     * All of the places within the filesystem versions of this package have been found.
      */
     location?: Schema$Location[];
     /**
-     * Output only. The name of the installed package.
+     * Required. Output only. The name of the installed package.
      */
     name?: string | null;
+    /**
+     * Output only. The type of package; whether native or non native (e.g., ruby gems, node.js packages, etc.).
+     */
+    packageType?: string | null;
+    /**
+     * Output only. The version of the package.
+     */
+    version?: Schema$Version;
   }
   /**
    * Selects a repo using a Google Cloud Platform project ID (e.g., winged-cargo-31) and a repo name within that project.
@@ -1073,6 +1198,17 @@ export namespace ondemandscanning_v1 {
      * Identifies the configuration used for the build. When combined with materials, this SHOULD fully describe the build, such that re-running this recipe results in bit-for-bit identical output (if the build is reproducible). required
      */
     recipe?: Schema$SlsaRecipe;
+  }
+  /**
+   * See full explanation of fields at slsa.dev/provenance/v0.2.
+   */
+  export interface Schema$SlsaProvenanceZeroTwo {
+    buildConfig?: {[key: string]: any} | null;
+    builder?: Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaBuilder;
+    buildType?: string | null;
+    invocation?: Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaInvocation;
+    materials?: Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaMaterial[];
+    metadata?: Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaMetadata;
   }
   /**
    * Steps taken to build the artifact. For a TaskRun, typically each container corresponds to one step in the recipe.

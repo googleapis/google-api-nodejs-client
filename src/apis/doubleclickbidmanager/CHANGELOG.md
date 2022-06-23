@@ -1,5 +1,23 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/doubleclickbidmanager-v3.0.0...doubleclickbidmanager-v3.0.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **doubleclickbidmanager:** update the API ([84b864f](https://github.com/googleapis/google-api-nodejs-client/commit/84b864f62758a1c6b4757a12ea33eecc32e9fb1c))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/doubleclickbidmanager-v2.0.0...doubleclickbidmanager-v3.0.0) (2022-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#2971](https://github.com/googleapis/google-api-nodejs-client/issues/2971)) ([adddf01](https://github.com/googleapis/google-api-nodejs-client/commit/adddf018e7cb73adab7341053dd80d72c5a6248d))
+
 ## [2.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/doubleclickbidmanager-v1.0.0...doubleclickbidmanager-v2.0.0) (2021-09-14)
 
 

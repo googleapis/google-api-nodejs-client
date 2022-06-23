@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -141,6 +140,10 @@ export namespace container_v1 {
      * Size of partitions to create on the GPU. Valid values are described in the NVIDIA [mig user guide](https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning).
      */
     gpuPartitionSize?: string | null;
+    /**
+     * The configuration for GPU sharing options.
+     */
+    gpuSharingConfig?: Schema$GPUSharingConfig;
   }
   /**
    * Configuration for the addons that can be automatically spun up in the cluster, enabling additional functionality.
@@ -289,6 +292,10 @@ export namespace container_v1 {
      * Enable Binary Authorization for this cluster. If enabled, all container images will be validated by Binary Authorization.
      */
     enabled?: boolean | null;
+    /**
+     * Mode of operation for binauthz policy evaluation. Currently the only options are equivalent to enable/disable. If unspecified, defaults to DISABLED.
+     */
+    evaluationMode?: string | null;
   }
   /**
    * CancelOperationRequest cancels a single operation.
@@ -303,7 +310,7 @@ export namespace container_v1 {
      */
     operationId?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -774,7 +781,7 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -822,7 +829,7 @@ export namespace container_v1 {
      */
     parent?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string | null;
     /**
@@ -847,7 +854,7 @@ export namespace container_v1 {
      */
     parent?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string | null;
     /**
@@ -917,7 +924,7 @@ export namespace container_v1 {
     clusterDnsScope?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -1005,6 +1012,19 @@ export namespace container_v1 {
      * Supported subject types.
      */
     subject_types_supported?: string[] | null;
+  }
+  /**
+   * GPUSharingConfig represents the GPU sharing configuration for Hardware Accelerators.
+   */
+  export interface Schema$GPUSharingConfig {
+    /**
+     * The type of GPU sharing strategy to enable on the GPU node.
+     */
+    gpuSharingStrategy?: string | null;
+    /**
+     * The max number of containers that can share a physical GPU.
+     */
+    maxSharedClientsPerGpu?: string | null;
   }
   /**
    * Configuration options for the horizontal pod autoscaling feature, which increases or decreases the number of replica pods a replication controller has based on the resource usage of the existing pods.
@@ -1189,7 +1209,7 @@ export namespace container_v1 {
    */
   export interface Schema$LinuxNodeConfig {
     /**
-     * The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.netdev_max_backlog net.core.rmem_max net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse
+     * The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse
      */
     sysctls?: {[key: string]: string} | null;
   }
@@ -1299,6 +1319,15 @@ export namespace container_v1 {
     recurringWindow?: Schema$RecurringTimeWindow;
   }
   /**
+   * ManagedPrometheusConfig defines the configuration for Google Cloud Managed Service for Prometheus.
+   */
+  export interface Schema$ManagedPrometheusConfig {
+    /**
+     * Enable Managed Collection.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * The authentication information for accessing the master endpoint. Authentication can be done using HTTP basic auth or using client certificates.
    */
   export interface Schema$MasterAuth {
@@ -1396,6 +1425,10 @@ export namespace container_v1 {
      * Monitoring components configuration
      */
     componentConfig?: Schema$MonitoringComponentConfig;
+    /**
+     * Enable Google Cloud Managed Service for Prometheus in the cluster.
+     */
+    managedPrometheusConfig?: Schema$ManagedPrometheusConfig;
   }
   /**
    * NetworkConfig reports the relative names of network & subnetwork.
@@ -1439,6 +1472,15 @@ export namespace container_v1 {
     subnetwork?: string | null;
   }
   /**
+   * Configuration of all network bandwidth tiers
+   */
+  export interface Schema$NetworkPerformanceConfig {
+    /**
+     * Specifies the total network bandwidth tier for the NodePool.
+     */
+    totalEgressBandwidthTier?: string | null;
+  }
+  /**
    * Configuration options for the NetworkPolicy feature. https://kubernetes.io/docs/concepts/services-networking/networkpolicies/
    */
   export interface Schema$NetworkPolicy {
@@ -1470,7 +1512,7 @@ export namespace container_v1 {
     tags?: string[] | null;
   }
   /**
-   * Parameters that describe the nodes in a cluster.
+   * Parameters that describe the nodes in a cluster. GKE Autopilot clusters do not recognize parameters in `NodeConfig`. Use AutoprovisioningNodePoolDefaults instead.
    */
   export interface Schema$NodeConfig {
     /**
@@ -1485,6 +1527,10 @@ export namespace container_v1 {
      *  The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://cloud.google.com/compute/docs/disks/customer-managed-encryption
      */
     bootDiskKmsKey?: string | null;
+    /**
+     * Confidential nodes config. All the nodes in the node pool will be Confidential VM once enabled.
+     */
+    confidentialNodes?: Schema$ConfidentialNodes;
     /**
      * Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 10GB. If unspecified, the default disk size is 100GB.
      */
@@ -1603,6 +1649,19 @@ export namespace container_v1 {
      * Control the CPU management policy on the node. See https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/ The following values are allowed. * "none": the default, which represents the existing scheduling behavior. * "static": allows pods with certain resource characteristics to be granted increased CPU affinity and exclusivity on the node. The default value is 'none' if unspecified.
      */
     cpuManagerPolicy?: string | null;
+    /**
+     * Set the Pod PID limits. See https://kubernetes.io/docs/concepts/policy/pid-limiting/#pod-pid-limits Controls the maximum number of processes allowed to run in a pod. The value must be greater than or equal to 1024 and less than 4194304.
+     */
+    podPidsLimit?: string | null;
+  }
+  /**
+   * Collection of node-level [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels).
+   */
+  export interface Schema$NodeLabels {
+    /**
+     * Map of node label keys and node label values.
+     */
+    labels?: {[key: string]: string} | null;
   }
   /**
    * NodeManagement defines the set of node management services turned on for the node pool.
@@ -1629,6 +1688,10 @@ export namespace container_v1 {
      * Input only. Whether to create a new range for pod IPs in this node pool. Defaults are provided for `pod_range` and `pod_ipv4_cidr_block` if they are not specified. If neither `create_pod_range` or `pod_range` are specified, the cluster-level default (`ip_allocation_policy.cluster_ipv4_cidr_block`) is used. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.
      */
     createPodRange?: boolean | null;
+    /**
+     * Network bandwidth tier configuration.
+     */
+    networkPerformanceConfig?: Schema$NetworkPerformanceConfig;
     /**
      * The IP address range for pod IPs in this node pool. Only applicable if `create_pod_range` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) to pick a specific range to use. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.
      */
@@ -1762,6 +1825,15 @@ export namespace container_v1 {
      * Value for taint.
      */
     value?: string | null;
+  }
+  /**
+   * Collection of Kubernetes [node taints](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration).
+   */
+  export interface Schema$NodeTaints {
+    /**
+     * List of node taints.
+     */
+    taints?: Schema$NodeTaint[];
   }
   /**
    * NotificationConfig is the configuration of notifications.
@@ -2024,7 +2096,7 @@ export namespace container_v1 {
      */
     nodePoolId?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -2141,7 +2213,7 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -2166,7 +2238,7 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -2195,7 +2267,7 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -2220,7 +2292,7 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -2245,7 +2317,7 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -2270,7 +2342,7 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Required. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
+     * Required. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      */
     projectId?: string | null;
     /**
@@ -2295,7 +2367,7 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -2324,7 +2396,7 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -2349,7 +2421,7 @@ export namespace container_v1 {
      */
     networkPolicy?: Schema$NetworkPolicy;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -2378,7 +2450,7 @@ export namespace container_v1 {
      */
     nodePoolId?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -2407,7 +2479,7 @@ export namespace container_v1 {
      */
     nodePoolId?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -2436,7 +2508,7 @@ export namespace container_v1 {
      */
     nodePoolId?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -2479,7 +2551,7 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -2555,7 +2627,7 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -2584,7 +2656,7 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -2601,6 +2673,10 @@ export namespace container_v1 {
      */
     clusterId?: string | null;
     /**
+     * Confidential nodes config. All the nodes in the node pool will be Confidential VM once enabled.
+     */
+    confidentialNodes?: Schema$ConfidentialNodes;
+    /**
      * GCFS config.
      */
     gcfsConfig?: Schema$GcfsConfig;
@@ -2616,6 +2692,10 @@ export namespace container_v1 {
      * Node kubelet configs.
      */
     kubeletConfig?: Schema$NodeKubeletConfig;
+    /**
+     * The desired node labels to be applied to all nodes in the node pool. If this field is not present, the labels will not be changed. Otherwise, the existing node labels will be *replaced* with the provided labels.
+     */
+    labels?: Schema$NodeLabels;
     /**
      * Parameters that can be configured on Linux nodes.
      */
@@ -2637,9 +2717,17 @@ export namespace container_v1 {
      */
     nodeVersion?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
+    /**
+     * The desired network tags to be applied to all nodes in the node pool. If this field is not present, the tags will not be changed. Otherwise, the existing network tags will be *replaced* with the provided tags.
+     */
+    tags?: Schema$NetworkTags;
+    /**
+     * The desired node taints to be applied to all nodes in the node pool. If this field is not present, the taints will not be changed. Otherwise, the existing node taints will be *replaced* with the provided taints.
+     */
+    taints?: Schema$NodeTaints;
     /**
      * Upgrade settings control disruption and speed of the upgrade.
      */
@@ -3031,7 +3119,7 @@ export namespace container_v1 {
      *   const res = await container.projects.locations.getServerConfig({
      *     // The name (project and location) of the server config to get, specified in the format `projects/x/locations/x`.
      *     name: 'projects/my-project/locations/my-location',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) to return operations for. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -3148,7 +3236,7 @@ export namespace container_v1 {
      */
     name?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -3511,7 +3599,7 @@ export namespace container_v1 {
      *     clusterId: 'placeholder-value',
      *     // The name (project, location, cluster) of the cluster to delete. Specified in the format `projects/x/locations/x/clusters/x`.
      *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -3657,7 +3745,7 @@ export namespace container_v1 {
      *     clusterId: 'placeholder-value',
      *     // The name (project, location, cluster) of the cluster to retrieve. Specified in the format `projects/x/locations/x/clusters/x`.
      *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -3981,7 +4069,7 @@ export namespace container_v1 {
      *   const res = await container.projects.locations.clusters.list({
      *     // The parent (project and location) where the clusters will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
      *     parent: 'projects/my-project/locations/my-location',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides, or "-" for all zones. This field has been deprecated and replaced by the parent field.
      *     zone: 'placeholder-value',
@@ -5995,7 +6083,7 @@ export namespace container_v1 {
      */
     name?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -6014,7 +6102,7 @@ export namespace container_v1 {
      */
     name?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -6036,7 +6124,7 @@ export namespace container_v1 {
      */
     parent?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string;
     /**
@@ -6384,7 +6472,7 @@ export namespace container_v1 {
      *     name: 'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
      *     // Deprecated. The name of the node pool to delete. This field has been deprecated and replaced by the name field.
      *     nodePoolId: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -6533,7 +6621,7 @@ export namespace container_v1 {
      *     name: 'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
      *     // Deprecated. The name of the node pool. This field has been deprecated and replaced by the name field.
      *     nodePoolId: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -6681,7 +6769,7 @@ export namespace container_v1 {
      *     clusterId: 'placeholder-value',
      *     // The parent (project, location, cluster name) where the node pools will be listed. Specified in the format `projects/x/locations/x/clusters/x`.
      *     parent: 'projects/my-project/locations/my-location/clusters/my-cluster',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
      *     zone: 'placeholder-value',
@@ -7455,16 +7543,20 @@ export namespace container_v1 {
      *       // request body parameters
      *       // {
      *       //   "clusterId": "my_clusterId",
+     *       //   "confidentialNodes": {},
      *       //   "gcfsConfig": {},
      *       //   "gvnic": {},
      *       //   "imageType": "my_imageType",
      *       //   "kubeletConfig": {},
+     *       //   "labels": {},
      *       //   "linuxNodeConfig": {},
      *       //   "locations": [],
      *       //   "name": "my_name",
      *       //   "nodePoolId": "my_nodePoolId",
      *       //   "nodeVersion": "my_nodeVersion",
      *       //   "projectId": "my_projectId",
+     *       //   "tags": {},
+     *       //   "taints": {},
      *       //   "upgradeSettings": {},
      *       //   "workloadMetadataConfig": {},
      *       //   "zone": "my_zone"
@@ -7610,7 +7702,7 @@ export namespace container_v1 {
      */
     nodePoolId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -7633,7 +7725,7 @@ export namespace container_v1 {
      */
     nodePoolId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -7652,7 +7744,7 @@ export namespace container_v1 {
      */
     parent?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string;
     /**
@@ -8054,7 +8146,7 @@ export namespace container_v1 {
      *     name: 'projects/my-project/locations/my-location/operations/my-operation',
      *     // Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
      *     operationId: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -8198,7 +8290,7 @@ export namespace container_v1 {
      *   const res = await container.projects.locations.operations.list({
      *     // The parent (project and location) where the operations will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
      *     parent: 'projects/my-project/locations/my-location',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) to return operations for, or `-` for all zones. This field has been deprecated and replaced by the parent field.
      *     zone: 'placeholder-value',
@@ -8332,7 +8424,7 @@ export namespace container_v1 {
      */
     operationId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -8347,7 +8439,7 @@ export namespace container_v1 {
      */
     parent?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string;
     /**
@@ -8395,7 +8487,7 @@ export namespace container_v1 {
      *   const res = await container.projects.zones.getServerconfig({
      *     // The name (project and location) of the server config to get, specified in the format `projects/x/locations/x`.
      *     name: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) to return operations for. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -8511,7 +8603,7 @@ export namespace container_v1 {
      */
     name?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -8559,7 +8651,7 @@ export namespace container_v1 {
      *   const res = await container.projects.zones.clusters.addons({
      *     // Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      *     clusterId: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -8718,7 +8810,7 @@ export namespace container_v1 {
      *   const res = await container.projects.zones.clusters.completeIpRotation({
      *     // Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      *     clusterId: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -8875,7 +8967,7 @@ export namespace container_v1 {
      *
      *   // Do the magic
      *   const res = await container.projects.zones.clusters.create({
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
      *     zone: 'placeholder-value',
@@ -9034,7 +9126,7 @@ export namespace container_v1 {
      *     clusterId: 'placeholder-value',
      *     // The name (project, location, cluster) of the cluster to delete. Specified in the format `projects/x/locations/x/clusters/x`.
      *     name: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -9183,7 +9275,7 @@ export namespace container_v1 {
      *     clusterId: 'placeholder-value',
      *     // The name (project, location, cluster) of the cluster to retrieve. Specified in the format `projects/x/locations/x/clusters/x`.
      *     name: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -9376,7 +9468,7 @@ export namespace container_v1 {
      *   const res = await container.projects.zones.clusters.legacyAbac({
      *     // Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
      *     clusterId: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -9535,7 +9627,7 @@ export namespace container_v1 {
      *   const res = await container.projects.zones.clusters.list({
      *     // The parent (project and location) where the clusters will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
      *     parent: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides, or "-" for all zones. This field has been deprecated and replaced by the parent field.
      *     zone: 'placeholder-value',
@@ -9673,7 +9765,7 @@ export namespace container_v1 {
      *   const res = await container.projects.zones.clusters.locations({
      *     // Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      *     clusterId: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -9832,7 +9924,7 @@ export namespace container_v1 {
      *   const res = await container.projects.zones.clusters.logging({
      *     // Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      *     clusterId: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -9991,7 +10083,7 @@ export namespace container_v1 {
      *   const res = await container.projects.zones.clusters.master({
      *     // Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      *     clusterId: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -10150,7 +10242,7 @@ export namespace container_v1 {
      *   const res = await container.projects.zones.clusters.monitoring({
      *     // Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      *     clusterId: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -10309,7 +10401,7 @@ export namespace container_v1 {
      *   const res = await container.projects.zones.clusters.resourceLabels({
      *     // Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      *     clusterId: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -10469,7 +10561,7 @@ export namespace container_v1 {
      *   const res = await container.projects.zones.clusters.setMaintenancePolicy({
      *     // Required. The name of the cluster to update.
      *     clusterId: 'placeholder-value',
-     *     // Required. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
+     *     // Required. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *     projectId: 'placeholder-value',
      *     // Required. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides.
      *     zone: 'placeholder-value',
@@ -10631,7 +10723,7 @@ export namespace container_v1 {
      *   const res = await container.projects.zones.clusters.setMasterAuth({
      *     // Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      *     clusterId: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -10791,7 +10883,7 @@ export namespace container_v1 {
      *   const res = await container.projects.zones.clusters.setNetworkPolicy({
      *     // Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      *     clusterId: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -10950,7 +11042,7 @@ export namespace container_v1 {
      *   const res = await container.projects.zones.clusters.startIpRotation({
      *     // Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      *     clusterId: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -11109,7 +11201,7 @@ export namespace container_v1 {
      *   const res = await container.projects.zones.clusters.update({
      *     // Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      *     clusterId: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -11247,7 +11339,7 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -11267,7 +11359,7 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -11283,7 +11375,7 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Zones$Clusters$Create
     extends StandardParameters {
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string;
     /**
@@ -11307,7 +11399,7 @@ export namespace container_v1 {
      */
     name?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -11326,7 +11418,7 @@ export namespace container_v1 {
      */
     name?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -11341,7 +11433,7 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -11361,7 +11453,7 @@ export namespace container_v1 {
      */
     parent?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string;
     /**
@@ -11376,7 +11468,7 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -11396,7 +11488,7 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -11416,7 +11508,7 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -11436,7 +11528,7 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -11456,7 +11548,7 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -11476,7 +11568,7 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Required. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
+     * Required. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      */
     projectId?: string;
     /**
@@ -11496,7 +11588,7 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -11516,7 +11608,7 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -11536,7 +11628,7 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -11556,7 +11648,7 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -11607,7 +11699,7 @@ export namespace container_v1 {
      *     clusterId: 'placeholder-value',
      *     // Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
      *     nodePoolId: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -11768,7 +11860,7 @@ export namespace container_v1 {
      *   const res = await container.projects.zones.clusters.nodePools.create({
      *     // Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
      *     clusterId: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
      *     zone: 'placeholder-value',
@@ -11931,7 +12023,7 @@ export namespace container_v1 {
      *     name: 'placeholder-value',
      *     // Deprecated. The name of the node pool to delete. This field has been deprecated and replaced by the name field.
      *     nodePoolId: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -12082,7 +12174,7 @@ export namespace container_v1 {
      *     name: 'placeholder-value',
      *     // Deprecated. The name of the node pool. This field has been deprecated and replaced by the name field.
      *     nodePoolId: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -12232,7 +12324,7 @@ export namespace container_v1 {
      *     clusterId: 'placeholder-value',
      *     // The parent (project, location, cluster name) where the node pools will be listed. Specified in the format `projects/x/locations/x/clusters/x`.
      *     parent: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
      *     zone: 'placeholder-value',
@@ -12372,7 +12464,7 @@ export namespace container_v1 {
      *     clusterId: 'placeholder-value',
      *     // Deprecated. The name of the node pool to rollback. This field has been deprecated and replaced by the name field.
      *     nodePoolId: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -12534,7 +12626,7 @@ export namespace container_v1 {
      *     clusterId: 'placeholder-value',
      *     // Deprecated. The name of the node pool to update. This field has been deprecated and replaced by the name field.
      *     nodePoolId: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -12697,7 +12789,7 @@ export namespace container_v1 {
      *     clusterId: 'placeholder-value',
      *     // Deprecated. The name of the node pool to update. This field has been deprecated and replaced by the name field.
      *     nodePoolId: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -12860,7 +12952,7 @@ export namespace container_v1 {
      *     clusterId: 'placeholder-value',
      *     // Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
      *     nodePoolId: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -12870,16 +12962,20 @@ export namespace container_v1 {
      *       // request body parameters
      *       // {
      *       //   "clusterId": "my_clusterId",
+     *       //   "confidentialNodes": {},
      *       //   "gcfsConfig": {},
      *       //   "gvnic": {},
      *       //   "imageType": "my_imageType",
      *       //   "kubeletConfig": {},
+     *       //   "labels": {},
      *       //   "linuxNodeConfig": {},
      *       //   "locations": [],
      *       //   "name": "my_name",
      *       //   "nodePoolId": "my_nodePoolId",
      *       //   "nodeVersion": "my_nodeVersion",
      *       //   "projectId": "my_projectId",
+     *       //   "tags": {},
+     *       //   "taints": {},
      *       //   "upgradeSettings": {},
      *       //   "workloadMetadataConfig": {},
      *       //   "zone": "my_zone"
@@ -13011,7 +13107,7 @@ export namespace container_v1 {
      */
     nodePoolId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -13031,7 +13127,7 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string;
     /**
@@ -13059,7 +13155,7 @@ export namespace container_v1 {
      */
     nodePoolId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -13082,7 +13178,7 @@ export namespace container_v1 {
      */
     nodePoolId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -13101,7 +13197,7 @@ export namespace container_v1 {
      */
     parent?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string;
     /**
@@ -13120,7 +13216,7 @@ export namespace container_v1 {
      */
     nodePoolId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -13144,7 +13240,7 @@ export namespace container_v1 {
      */
     nodePoolId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -13168,7 +13264,7 @@ export namespace container_v1 {
      */
     nodePoolId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -13192,7 +13288,7 @@ export namespace container_v1 {
      */
     nodePoolId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -13241,7 +13337,7 @@ export namespace container_v1 {
      *   const res = await container.projects.zones.operations.cancel({
      *     // Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
      *     operationId: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the operation resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -13385,7 +13481,7 @@ export namespace container_v1 {
      *     name: 'placeholder-value',
      *     // Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
      *     operationId: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      *     zone: 'placeholder-value',
@@ -13532,7 +13628,7 @@ export namespace container_v1 {
      *   const res = await container.projects.zones.operations.list({
      *     // The parent (project and location) where the operations will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
      *     parent: 'placeholder-value',
-     *     // Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      *     projectId: 'placeholder-value',
      *     // Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) to return operations for, or `-` for all zones. This field has been deprecated and replaced by the parent field.
      *     zone: 'placeholder-value',
@@ -13649,7 +13745,7 @@ export namespace container_v1 {
      */
     operationId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -13673,7 +13769,7 @@ export namespace container_v1 {
      */
     operationId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
@@ -13688,7 +13784,7 @@ export namespace container_v1 {
      */
     parent?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string;
     /**

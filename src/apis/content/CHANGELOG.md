@@ -1,5 +1,55 @@
 # Changelog
 
+## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/content-v7.0.0...content-v7.0.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **content:** update the API ([8ef2d03](https://github.com/googleapis/google-api-nodejs-client/commit/8ef2d031020f010a94084356a6ecfb8ba059c68d))
+
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v6.2.0...content-v7.0.0) (2022-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#2971](https://github.com/googleapis/google-api-nodejs-client/issues/2971)) ([adddf01](https://github.com/googleapis/google-api-nodejs-client/commit/adddf018e7cb73adab7341053dd80d72c5a6248d))
+
+## [6.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v6.1.0...content-v6.2.0) (2022-06-13)
+
+
+### Features
+
+* **content:** update the API ([0919741](https://github.com/googleapis/google-api-nodejs-client/commit/09197412f9b82771aa3099f5c8195547d17ee50c))
+
+## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v6.0.1...content-v6.1.0) (2022-04-11)
+
+
+### Features
+
+* **content:** update the API ([4464054](https://github.com/googleapis/google-api-nodejs-client/commit/44640543da0539edef6047916217ed2ad0acb463))
+
+### [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/content-v6.0.0...content-v6.0.1) (2022-04-01)
+
+
+### Bug Fixes
+
+* **content:** update the API ([d6c0495](https://github.com/googleapis/google-api-nodejs-client/commit/d6c0495a0b0ead4be7aa97490ff257e2cfc60dfb))
+
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v5.0.0...content-v6.0.0) (2022-03-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* **content:** This release has breaking changes.
+
+### Features
+
+* **content:** update the API ([00f0961](https://github.com/googleapis/google-api-nodejs-client/commit/00f0961f94d11d804516134f9d4975a5f79f7415))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v4.6.0...content-v5.0.0) (2022-03-08)
 
 

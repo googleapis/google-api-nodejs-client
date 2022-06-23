@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -208,6 +207,10 @@ export namespace servicecontrol_v2 {
      */
     numResponseItems?: string | null;
     /**
+     * Indicates the policy violations for this request. If the request is denied by the policy, violation information will be logged here.
+     */
+    policyViolationInfo?: Schema$PolicyViolationInfo;
+    /**
      * The operation request. This may not include all request parameters, such as those that are too large, privacy-sensitive, or duplicated elsewhere in the log record. It should never include user-generated data, such as file contents. When the JSON object represented here has a proto equivalent, the proto name will be indicated in the `@type` property.
      */
     request?: {[key: string]: any} | null;
@@ -349,7 +352,7 @@ export namespace servicecontrol_v2 {
      */
     headers?: {[key: string]: string} | null;
     /**
-     * Operation is allowed when this field is not set. Any non-'OK' status indicates a denial; [google.rpc.Status.details]() would contain additional details about the denial.
+     * Operation is allowed when this field is not set. Any non-'OK' status indicates a denial; google.rpc.Status.details would contain additional details about the denial.
      */
     status?: Schema$Status;
   }
@@ -365,6 +368,27 @@ export namespace servicecontrol_v2 {
      * Metadata about the service that uses the service account. .
      */
     serviceMetadata?: {[key: string]: any} | null;
+  }
+  /**
+   * Represents OrgPolicy Violation information.
+   */
+  export interface Schema$OrgPolicyViolationInfo {
+    /**
+     * Optional. Resource payload that is currently in scope and is subjected to orgpolicy conditions. This payload may be the subset of the actual Resource that may come in the request. This payload should not contain any core content.
+     */
+    payload?: {[key: string]: any} | null;
+    /**
+     * Optional. Tags referenced on the resource at the time of evaluation. These also include the federated tags, if they are supplied in the CheckOrgPolicy or CheckCustomConstraints Requests. Optional field as of now. These tags are the Cloud tags that are available on the resource during the policy evaluation and will be available as part of the OrgPolicy check response for logging purposes.
+     */
+    resourceTags?: {[key: string]: string} | null;
+    /**
+     * Optional. Resource type that the orgpolicy is checked against. Example: compute.googleapis.com/Instance, store.googleapis.com/bucket
+     */
+    resourceType?: string | null;
+    /**
+     * Optional. Policy violations
+     */
+    violationInfo?: Schema$ViolationInfo[];
   }
   /**
    * This message defines attributes for a node that handles a network request. The node can be either a service or an application that sends, forwards, or receives the request. Service peers should fill in `principal` and `labels` as appropriate.
@@ -390,6 +414,15 @@ export namespace servicecontrol_v2 {
      * The CLDR country/region code associated with the above IP address. If the IP address is private, the `region_code` should reflect the physical location where this peer is running.
      */
     regionCode?: string | null;
+  }
+  /**
+   * Information related to policy violations for this request.
+   */
+  export interface Schema$PolicyViolationInfo {
+    /**
+     * Indicates the orgpolicy violations for this resource.
+     */
+    orgPolicyViolationInfo?: Schema$OrgPolicyViolationInfo;
   }
   /**
    * Request message for the Report method.
@@ -814,6 +847,27 @@ export namespace servicecontrol_v2 {
      */
     line?: string | null;
   }
+  /**
+   * Provides information about the Policy violation info for this request.
+   */
+  export interface Schema$ViolationInfo {
+    /**
+     * Optional. Value that is being checked for the policy. This could be in encrypted form (if pii sensitive). This field will only be emitted in LIST_POLICY types
+     */
+    checkedValue?: string | null;
+    /**
+     * Optional. Constraint name
+     */
+    constraint?: string | null;
+    /**
+     * Optional. Error message that policy is indicating.
+     */
+    errorMessage?: string | null;
+    /**
+     * Optional. Indicates the type of the policy.
+     */
+    policyType?: string | null;
+  }
 
   export class Resource$Services {
     context: APIRequestContext;
@@ -822,7 +876,7 @@ export namespace servicecontrol_v2 {
     }
 
     /**
-     * Private Preview. This feature is only available for approved services. This method provides admission control for services that are integrated with [Service Infrastructure](/service-infrastructure). It checks whether an operation should be allowed based on the service configuration and relevant policies. It must be called before the operation is executed. For more information, see [Admission Control](/service-infrastructure/docs/admission-control). NOTE: The admission control has an expected policy propagation delay of 60s. The caller **must** not depend on the most recent policy changes. NOTE: The admission control has a hard limit of 1 referenced resources per call. If an operation refers to more than 1 resources, the caller must call the Check method multiple times. This method requires the `servicemanagement.services.check` permission on the specified service. For more information, see [Service Control API Access Control](https://cloud.google.com/service-infrastructure/docs/service-control/access-control).
+     * Private Preview. This feature is only available for approved services. This method provides admission control for services that are integrated with [Service Infrastructure](https://cloud.google.com/service-infrastructure). It checks whether an operation should be allowed based on the service configuration and relevant policies. It must be called before the operation is executed. For more information, see [Admission Control](https://cloud.google.com/service-infrastructure/docs/admission-control). NOTE: The admission control has an expected policy propagation delay of 60s. The caller **must** not depend on the most recent policy changes. NOTE: The admission control has a hard limit of 1 referenced resources per call. If an operation refers to more than 1 resources, the caller must call the Check method multiple times. This method requires the `servicemanagement.services.check` permission on the specified service. For more information, see [Service Control API Access Control](https://cloud.google.com/service-infrastructure/docs/service-control/access-control).
      * @example
      * ```js
      * // Before running the sample:
@@ -966,7 +1020,7 @@ export namespace servicecontrol_v2 {
     }
 
     /**
-     * Private Preview. This feature is only available for approved services. This method provides telemetry reporting for services that are integrated with [Service Infrastructure](/service-infrastructure). It reports a list of operations that have occurred on a service. It must be called after the operations have been executed. For more information, see [Telemetry Reporting](/service-infrastructure/docs/telemetry-reporting). NOTE: The telemetry reporting has a hard limit of 1000 operations and 1MB per Report call. It is recommended to have no more than 100 operations per call. This method requires the `servicemanagement.services.report` permission on the specified service. For more information, see [Service Control API Access Control](https://cloud.google.com/service-infrastructure/docs/service-control/access-control).
+     * Private Preview. This feature is only available for approved services. This method provides telemetry reporting for services that are integrated with [Service Infrastructure](https://cloud.google.com/service-infrastructure). It reports a list of operations that have occurred on a service. It must be called after the operations have been executed. For more information, see [Telemetry Reporting](https://cloud.google.com/service-infrastructure/docs/telemetry-reporting). NOTE: The telemetry reporting has a hard limit of 1000 operations and 1MB per Report call. It is recommended to have no more than 100 operations per call. This method requires the `servicemanagement.services.report` permission on the specified service. For more information, see [Service Control API Access Control](https://cloud.google.com/service-infrastructure/docs/service-control/access-control).
      * @example
      * ```js
      * // Before running the sample:

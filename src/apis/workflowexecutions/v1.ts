@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -218,6 +217,31 @@ export namespace workflowexecutions_v1 {
     line?: string | null;
   }
   /**
+   * A message that is published by publishers and consumed by subscribers. The message must contain either a non-empty data field or at least one attribute. Note that client libraries represent this object differently depending on the language. See the corresponding [client library documentation](https://cloud.google.com/pubsub/docs/reference/libraries) for more information. See [quotas and limits] (https://cloud.google.com/pubsub/quotas) for more information about message limits.
+   */
+  export interface Schema$PubsubMessage {
+    /**
+     * Attributes for this message. If this field is empty, the message must contain non-empty data. This can be used to filter messages on the subscription.
+     */
+    attributes?: {[key: string]: string} | null;
+    /**
+     * The message data field. If this field is empty, the message must contain at least one attribute.
+     */
+    data?: string | null;
+    /**
+     * ID of this message, assigned by the server when the message is published. Guaranteed to be unique within the topic. This value may be read by a subscriber that receives a `PubsubMessage` via a `Pull` call or a push delivery. It must not be populated by the publisher in a `Publish` call.
+     */
+    messageId?: string | null;
+    /**
+     * If non-empty, identifies related messages for which publish order should be respected. If a `Subscription` has `enable_message_ordering` set to `true`, messages published with the same non-empty `ordering_key` value will be delivered to subscribers in the order in which they are received by the Pub/Sub system. All `PubsubMessage`s published in a given `PublishRequest` must specify the same `ordering_key` value. For more information, see [ordering messages](https://cloud.google.com/pubsub/docs/ordering).
+     */
+    orderingKey?: string | null;
+    /**
+     * The time at which the message was published, populated by the server when it receives the `Publish` call. It must not be populated by the publisher in a `Publish` call.
+     */
+    publishTime?: string | null;
+  }
+  /**
    * A collection of stack elements (frames) where an error occurred.
    */
   export interface Schema$StackTrace {
@@ -242,6 +266,23 @@ export namespace workflowexecutions_v1 {
      * The step the error occurred at.
      */
     step?: string | null;
+  }
+  /**
+   * Request for the TriggerPubsubExecution method.
+   */
+  export interface Schema$TriggerPubsubExecutionRequest {
+    /**
+     * Required. LINT: LEGACY_NAMES The query parameter value for __GCP_CloudEventsMode, set by the Eventarc service when configuring triggers.
+     */
+    GCPCloudEventsMode?: string | null;
+    /**
+     * Required. The message of the Pub/Sub push notification.
+     */
+    message?: Schema$PubsubMessage;
+    /**
+     * Required. The subscription of the Pub/Sub push notification. Format: projects/{project\}/subscriptions/{sub\}
+     */
+    subscription?: string | null;
   }
 
   export class Resource$Projects {
@@ -271,6 +312,174 @@ export namespace workflowexecutions_v1 {
         this.context
       );
     }
+
+    /**
+     * Triggers a new execution using the latest revision of the given workflow by a Pub/Sub push notification.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workflowexecutions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const workflowexecutions = google.workflowexecutions('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await workflowexecutions.projects.locations.workflows.triggerPubsubExecution(
+     *       {
+     *         // Required. Name of the workflow for which an execution should be created. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
+     *         workflow:
+     *           'projects/my-project/locations/my-location/workflows/my-workflow',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "GCPCloudEventsMode": "my_GCPCloudEventsMode",
+     *           //   "message": {},
+     *           //   "subscription": "my_subscription"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "argument": "my_argument",
+     *   //   "callLogLevel": "my_callLogLevel",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "name": "my_name",
+     *   //   "result": "my_result",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "workflowRevisionId": "my_workflowRevisionId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    triggerPubsubExecution(
+      params: Params$Resource$Projects$Locations$Workflows$Triggerpubsubexecution,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    triggerPubsubExecution(
+      params?: Params$Resource$Projects$Locations$Workflows$Triggerpubsubexecution,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Execution>;
+    triggerPubsubExecution(
+      params: Params$Resource$Projects$Locations$Workflows$Triggerpubsubexecution,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    triggerPubsubExecution(
+      params: Params$Resource$Projects$Locations$Workflows$Triggerpubsubexecution,
+      options: MethodOptions | BodyResponseCallback<Schema$Execution>,
+      callback: BodyResponseCallback<Schema$Execution>
+    ): void;
+    triggerPubsubExecution(
+      params: Params$Resource$Projects$Locations$Workflows$Triggerpubsubexecution,
+      callback: BodyResponseCallback<Schema$Execution>
+    ): void;
+    triggerPubsubExecution(
+      callback: BodyResponseCallback<Schema$Execution>
+    ): void;
+    triggerPubsubExecution(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workflows$Triggerpubsubexecution
+        | BodyResponseCallback<Schema$Execution>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Execution>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Execution>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Execution> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workflows$Triggerpubsubexecution;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Workflows$Triggerpubsubexecution;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://workflowexecutions.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+workflow}:triggerPubsubExecution').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['workflow'],
+        pathParams: ['workflow'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Execution>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Execution>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Workflows$Triggerpubsubexecution
+    extends StandardParameters {
+    /**
+     * Required. Name of the workflow for which an execution should be created. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
+     */
+    workflow?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TriggerPubsubExecutionRequest;
   }
 
   export class Resource$Projects$Locations$Workflows$Executions {

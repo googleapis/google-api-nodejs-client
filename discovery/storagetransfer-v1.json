@@ -11,7 +11,7 @@
   "basePath": "",
   "baseUrl": "https://storagetransfer.googleapis.com/",
   "batchPath": "batch",
-  "description": "Transfers data from external data sources to a Google Cloud Storage bucket or between Google Cloud Storage buckets.",
+  "description": "Transfers data from external data sources to a Google Cloud Storage bucket or between Google Cloud Storage buckets. ",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/storage-transfer/docs",
   "fullyEncodeReservedExpansion": true,
@@ -600,7 +600,7 @@
       }
     }
   },
-  "revision": "20220303",
+  "revision": "20220603",
   "rootUrl": "https://storagetransfer.googleapis.com/",
   "schemas": {
     "AgentPool": {
@@ -752,7 +752,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -979,7 +979,7 @@
       "type": "object"
     },
     "MetadataOptions": {
-      "description": "Specifies the metadata options for running a transfer. These options only apply to transfers involving a POSIX filesystem and are ignored for other transfers.",
+      "description": "Specifies the metadata options for running a transfer.",
       "id": "MetadataOptions",
       "properties": {
         "acl": {
@@ -997,7 +997,7 @@
           "type": "string"
         },
         "gid": {
-          "description": "Specifies how each file's POSIX group ID (GID) attribute should be handled by the transfer. By default, GID is not preserved.",
+          "description": "Specifies how each file's POSIX group ID (GID) attribute should be handled by the transfer. By default, GID is not preserved. Only applicable to transfers involving POSIX file systems, and ignored for other transfers.",
           "enum": [
             "GID_UNSPECIFIED",
             "GID_SKIP",
@@ -1025,7 +1025,7 @@
           "type": "string"
         },
         "mode": {
-          "description": "Specifies how each file's mode attribute should be handled by the transfer. By default, mode is not preserved.",
+          "description": "Specifies how each file's mode attribute should be handled by the transfer. By default, mode is not preserved. Only applicable to transfers involving POSIX file systems, and ignored for other transfers.",
           "enum": [
             "MODE_UNSPECIFIED",
             "MODE_SKIP",
@@ -1061,7 +1061,7 @@
           "type": "string"
         },
         "symlink": {
-          "description": "Specifies how symlinks should be handled by the transfer. By default, symlinks are not preserved.",
+          "description": "Specifies how symlinks should be handled by the transfer. By default, symlinks are not preserved. Only applicable to transfers involving POSIX file systems, and ignored for other transfers.",
           "enum": [
             "SYMLINK_UNSPECIFIED",
             "SYMLINK_SKIP",
@@ -1103,7 +1103,7 @@
           "type": "string"
         },
         "uid": {
-          "description": "Specifies how each file's POSIX user ID (UID) attribute should be handled by the transfer. By default, UID is not preserved.",
+          "description": "Specifies how each file's POSIX user ID (UID) attribute should be handled by the transfer. By default, UID is not preserved. Only applicable to transfers involving POSIX file systems, and ignored for other transfers.",
           "enum": [
             "UID_UNSPECIFIED",
             "UID_SKIP",
@@ -1640,6 +1640,22 @@
         "overwriteObjectsAlreadyExistingInSink": {
           "description": "When to overwrite objects that already exist in the sink. The default is that only objects that are different from the source are ovewritten. If true, all objects in the sink whose name matches an object in the source are overwritten with the source object.",
           "type": "boolean"
+        },
+        "overwriteWhen": {
+          "description": "When to overwrite objects that already exist in the sink. If not set, overwrite behavior is determined by overwrite_objects_already_existing_in_sink.",
+          "enum": [
+            "OVERWRITE_WHEN_UNSPECIFIED",
+            "DIFFERENT",
+            "NEVER",
+            "ALWAYS"
+          ],
+          "enumDescriptions": [
+            "Overwrite behavior is unspecified.",
+            "Overwrites destination objects with the source objects, only if the objects have the same name but different HTTP ETags or checksum values.",
+            "Never overwrites a destination object if a source object has the same name. In this case, the source object is not transferred.",
+            "Always overwrite the destination object with the source object, even if the HTTP Etags or checksum values are the same."
+          ],
+          "type": "string"
         }
       },
       "type": "object"

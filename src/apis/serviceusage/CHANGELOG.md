@@ -1,5 +1,41 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v4.0.0...serviceusage-v5.0.0) (2022-06-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **serviceusage:** This release has breaking changes.
+
+### Features
+
+* **serviceusage:** update the API ([f6041db](https://github.com/googleapis/google-api-nodejs-client/commit/f6041db5bf425724beba4690f0b657aa1b35af5b))
+
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v3.2.0...serviceusage-v4.0.0) (2022-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#2971](https://github.com/googleapis/google-api-nodejs-client/issues/2971)) ([adddf01](https://github.com/googleapis/google-api-nodejs-client/commit/adddf018e7cb73adab7341053dd80d72c5a6248d))
+
+## [3.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v3.1.1...serviceusage-v3.2.0) (2022-04-11)
+
+
+### Features
+
+* **serviceusage:** update the API ([7c436c8](https://github.com/googleapis/google-api-nodejs-client/commit/7c436c843eac83f805c6fea42d3a4a7ea7c28ea4))
+
+### [3.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v3.1.0...serviceusage-v3.1.1) (2022-03-23)
+
+
+### Bug Fixes
+
+* **serviceusage:** update the API ([46e2709](https://github.com/googleapis/google-api-nodejs-client/commit/46e2709f0ce6d9c3600071be35322b21cfeb2dbb))
+
 ## [3.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v3.0.0...serviceusage-v3.1.0) (2021-12-30)
 
 

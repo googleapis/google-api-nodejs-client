@@ -1,5 +1,37 @@
 # Changelog
 
+## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebasedatabase-v1.0.0...firebasedatabase-v1.0.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **firebasedatabase:** update the API ([d6bc3a9](https://github.com/googleapis/google-api-nodejs-client/commit/d6bc3a92e5b1060c88e5a36c2cb2eed13270669d))
+
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebasedatabase-v0.4.0...firebasedatabase-v1.0.0) (2022-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#2971](https://github.com/googleapis/google-api-nodejs-client/issues/2971)) ([adddf01](https://github.com/googleapis/google-api-nodejs-client/commit/adddf018e7cb73adab7341053dd80d72c5a6248d))
+
+## [0.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebasedatabase-v0.3.0...firebasedatabase-v0.4.0) (2022-04-11)
+
+
+### Features
+
+* **firebasedatabase:** update the API ([c68ff12](https://github.com/googleapis/google-api-nodejs-client/commit/c68ff12d3b660b80f0795d1f3dd29793b62d59f3))
+
+## [0.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebasedatabase-v0.2.0...firebasedatabase-v0.3.0) (2022-04-01)
+
+
+### Features
+
+* **firebasedatabase:** update the API ([7ceef82](https://github.com/googleapis/google-api-nodejs-client/commit/7ceef82e4e19848ca7f8a461cbe60384ccaec2a8))
+
 ## [0.2.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/firebasedatabase-v0.1.1...firebasedatabase-v0.2.0) (2021-09-14)
 
 

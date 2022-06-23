@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -172,6 +171,19 @@ export namespace dataproc_v1 {
      * Required. Describes how the autoscaler will operate for primary workers.
      */
     workerConfig?: Schema$InstanceGroupAutoscalingPolicyConfig;
+  }
+  /**
+   * Auxiliary services configuration for a Cluster.
+   */
+  export interface Schema$AuxiliaryServicesConfig {
+    /**
+     * Optional. The Hive Metastore configuration for this workload.
+     */
+    metastoreConfig?: Schema$MetastoreConfig;
+    /**
+     * Optional. The Spark History Server configuration for the workload.
+     */
+    sparkHistoryServerConfig?: Schema$SparkHistoryServerConfig;
   }
   /**
    * Basic algorithm for autoscaling.
@@ -334,7 +346,7 @@ export namespace dataproc_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Cloud Platform resource. members can have the following values: allUsers: A special identifier that represents anyone who is on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone who is authenticated with a Google account or a service account. user:{emailid\}: An email address that represents a specific Google account. For example, alice@example.com . serviceAccount:{emailid\}: An email address that represents a service account. For example, my-other-app@appspot.gserviceaccount.com. group:{emailid\}: An email address that represents a Google group. For example, admins@example.com. deleted:user:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a user that has been recently deleted. For example, alice@example.com?uid=123456789012345678901. If the user is recovered, this value reverts to user:{emailid\} and the recovered user retains the role in the binding. deleted:serviceAccount:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901. If the service account is undeleted, this value reverts to serviceAccount:{emailid\} and the undeleted service account retains the role in the binding. deleted:group:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, admins@example.com?uid=123456789012345678901. If the group is recovered, this value reverts to group:{emailid\} and the recovered group retains the role in the binding. domain:{domain\}: The G Suite domain (primary) that represents all the users of that domain. For example, google.com or example.com.
+     * Specifies the principals requesting access for a Google Cloud resource. members can have the following values: allUsers: A special identifier that represents anyone who is on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone who is authenticated with a Google account or a service account. user:{emailid\}: An email address that represents a specific Google account. For example, alice@example.com . serviceAccount:{emailid\}: An email address that represents a service account. For example, my-other-app@appspot.gserviceaccount.com. group:{emailid\}: An email address that represents a Google group. For example, admins@example.com. deleted:user:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a user that has been recently deleted. For example, alice@example.com?uid=123456789012345678901. If the user is recovered, this value reverts to user:{emailid\} and the recovered user retains the role in the binding. deleted:serviceAccount:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901. If the service account is undeleted, this value reverts to serviceAccount:{emailid\} and the undeleted service account retains the role in the binding. deleted:group:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, admins@example.com?uid=123456789012345678901. If the group is recovered, this value reverts to group:{emailid\} and the recovered group retains the role in the binding. domain:{domain\}: The G Suite domain (primary) that represents all the users of that domain. For example, google.com or example.com.
      */
     members?: string[] | null;
     /**
@@ -351,7 +363,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$Cluster {
     /**
-     * Required. The cluster name. Cluster names within a project must be unique. Names of deleted clusters can be reused.
+     * Required. The cluster name, which must be unique within a project. The name must start with a lowercase letter, and can contain up to 51 lowercase letters, numbers, and hyphens. It cannot end with a hyphen. The name of a deleted cluster can be reused.
      */
     clusterName?: string | null;
     /**
@@ -359,7 +371,7 @@ export namespace dataproc_v1 {
      */
     clusterUuid?: string | null;
     /**
-     * Optional. The cluster config for a cluster of Compute Engine Instances. Note that Dataproc may set default values, and values may change when clusters are updated.
+     * Optional. The cluster config for a cluster of Compute Engine Instances. Note that Dataproc may set default values, and values may change when clusters are updated.Exactly one of ClusterConfig or VirtualClusterConfig must be specified.
      */
     config?: Schema$ClusterConfig;
     /**
@@ -382,6 +394,10 @@ export namespace dataproc_v1 {
      * Output only. The previous cluster status.
      */
     statusHistory?: Schema$ClusterStatus[];
+    /**
+     * Optional. The virtual cluster config is used when creating a Dataproc cluster that does not directly control the underlying compute resources, for example, when creating a Dataproc-on-GKE cluster (https://cloud.google.com/dataproc/docs/guides/dpgke/dataproc-gke). Dataproc may set default values, and values may change when clusters are updated. Exactly one of config or virtual_cluster_config must be specified.
+     */
+    virtualClusterConfig?: Schema$VirtualClusterConfig;
   }
   /**
    * The cluster config.
@@ -396,7 +412,7 @@ export namespace dataproc_v1 {
      */
     configBucket?: string | null;
     /**
-     * Optional. The configuration(s) for a dataproc metric(s).
+     * Optional. The config for Dataproc metrics.
      */
     dataprocMetricConfig?: Schema$DataprocMetricConfig;
     /**
@@ -412,7 +428,7 @@ export namespace dataproc_v1 {
      */
     gceClusterConfig?: Schema$GceClusterConfig;
     /**
-     * Optional. BETA. The Kubernetes Engine config for Dataproc clusters deployed to Kubernetes. Setting this is considered mutually exclusive with Compute Engine-based options such as gce_cluster_config, master_config, worker_config, secondary_worker_config, and autoscaling_config.
+     * Optional. BETA. The Kubernetes Engine config for Dataproc clusters deployed to The Kubernetes Engine config for Dataproc clusters deployed to Kubernetes. These config settings are mutually exclusive with Compute Engine-based options, such as gce_cluster_config, master_config, worker_config, secondary_worker_config, and autoscaling_config.
      */
     gkeClusterConfig?: Schema$GkeClusterConfig;
     /**
@@ -461,7 +477,7 @@ export namespace dataproc_v1 {
      */
     hdfsMetrics?: {[key: string]: string} | null;
     /**
-     * The YARN metrics.
+     * YARN metrics.
      */
     yarnMetrics?: {[key: string]: string} | null;
   }
@@ -584,11 +600,11 @@ export namespace dataproc_v1 {
     enableConfidentialCompute?: boolean | null;
   }
   /**
-   * Contains dataproc metric config.
+   * Dataproc metric config.
    */
   export interface Schema$DataprocMetricConfig {
     /**
-     * Required. Metrics to be enabled.
+     * Required. Metrics to enable.
      */
     metrics?: Schema$Metric[];
   }
@@ -627,7 +643,7 @@ export namespace dataproc_v1 {
     numLocalSsds?: number | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for Empty is empty JSON object {\}.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -791,9 +807,114 @@ export namespace dataproc_v1 {
    */
   export interface Schema$GkeClusterConfig {
     /**
-     * Optional. A target for the deployment.
+     * Optional. A target GKE cluster to deploy to. It must be in the same project and region as the Dataproc cluster (the GKE cluster can be zonal or regional). Format: 'projects/{project\}/locations/{location\}/clusters/{cluster_id\}'
+     */
+    gkeClusterTarget?: string | null;
+    /**
+     * Optional. Deprecated. Use gkeClusterTarget. Used only for the deprecated beta. A target for the deployment.
      */
     namespacedGkeDeploymentTarget?: Schema$NamespacedGkeDeploymentTarget;
+    /**
+     * Optional. GKE node pools where workloads will be scheduled. At least one node pool must be assigned the DEFAULT GkeNodePoolTarget.Role. If a GkeNodePoolTarget is not specified, Dataproc constructs a DEFAULT GkeNodePoolTarget. Each role can be given to only one GkeNodePoolTarget. All node pools must have the same location settings.
+     */
+    nodePoolTarget?: Schema$GkeNodePoolTarget[];
+  }
+  /**
+   * Parameters that describe cluster nodes.
+   */
+  export interface Schema$GkeNodeConfig {
+    /**
+     * Optional. A list of hardware accelerators (https://cloud.google.com/compute/docs/gpus) to attach to each node.
+     */
+    accelerators?: Schema$GkeNodePoolAcceleratorConfig[];
+    /**
+     * Optional. The Customer Managed Encryption Key (CMEK) (https://cloud.google.com/compute/docs/disks/customer-managed-encryption) used to encrypt the boot disk attached to each node in the node pool. Specify the key using the following format: projects/KEY_PROJECT_ID /locations/LOCATION/keyRings/RING_NAME/cryptoKeys/KEY_NAME.
+     */
+    bootDiskKmsKey?: string | null;
+    /**
+     * Optional. The number of local SSD disks to attach to the node, which is limited by the maximum number of disks allowable per zone (see Adding Local SSDs (https://cloud.google.com/compute/docs/disks/local-ssd)).
+     */
+    localSsdCount?: number | null;
+    /**
+     * Optional. The name of a Compute Engine machine type (https://cloud.google.com/compute/docs/machine-types).
+     */
+    machineType?: string | null;
+    /**
+     * Optional. Minimum CPU platform (https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform) to be used by this instance. The instance may be scheduled on the specified or a newer CPU platform. Specify the friendly names of CPU platforms, such as "Intel Haswell"` or Intel Sandy Bridge".
+     */
+    minCpuPlatform?: string | null;
+    /**
+     * Optional. Whether the nodes are created as preemptible VM instances (https://cloud.google.com/compute/docs/instances/preemptible). Preemptible nodes cannot be used in a node pool with the CONTROLLER role or in the DEFAULT node pool if the CONTROLLER role is not assigned (the DEFAULT node pool will assume the CONTROLLER role).
+     */
+    preemptible?: boolean | null;
+    /**
+     * Optional. Spot flag for enabling Spot VM, which is a rebrand of the existing preemptible flag.
+     */
+    spot?: boolean | null;
+  }
+  /**
+   * A GkeNodeConfigAcceleratorConfig represents a Hardware Accelerator request for a node pool.
+   */
+  export interface Schema$GkeNodePoolAcceleratorConfig {
+    /**
+     * The number of accelerator cards exposed to an instance.
+     */
+    acceleratorCount?: string | null;
+    /**
+     * The accelerator type resource namename (see GPUs on Compute Engine).
+     */
+    acceleratorType?: string | null;
+    /**
+     * Size of partitions to create on the GPU. Valid values are described in the NVIDIA mig user guide (https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning).
+     */
+    gpuPartitionSize?: string | null;
+  }
+  /**
+   * GkeNodePoolAutoscaling contains information the cluster autoscaler needs to adjust the size of the node pool to the current cluster usage.
+   */
+  export interface Schema$GkeNodePoolAutoscalingConfig {
+    /**
+     * The maximum number of nodes in the node pool. Must be \>= min_node_count, and must be \> 0. Note: Quota must be sufficient to scale up the cluster.
+     */
+    maxNodeCount?: number | null;
+    /**
+     * The minimum number of nodes in the node pool. Must be \>= 0 and <= max_node_count.
+     */
+    minNodeCount?: number | null;
+  }
+  /**
+   * The configuration of a GKE node pool used by a Dataproc-on-GKE cluster (https://cloud.google.com/dataproc/docs/concepts/jobs/dataproc-gke#create-a-dataproc-on-gke-cluster).
+   */
+  export interface Schema$GkeNodePoolConfig {
+    /**
+     * Optional. The autoscaler configuration for this node pool. The autoscaler is enabled only when a valid configuration is present.
+     */
+    autoscaling?: Schema$GkeNodePoolAutoscalingConfig;
+    /**
+     * Optional. The node pool configuration.
+     */
+    config?: Schema$GkeNodeConfig;
+    /**
+     * Optional. The list of Compute Engine zones (https://cloud.google.com/compute/docs/zones#available) where node pool nodes associated with a Dataproc on GKE virtual cluster will be located.Note: All node pools associated with a virtual cluster must be located in the same region as the virtual cluster, and they must be located in the same zone within that region.If a location is not specified during node pool creation, Dataproc on GKE will choose the zone.
+     */
+    locations?: string[] | null;
+  }
+  /**
+   * GKE node pools that Dataproc workloads run on.
+   */
+  export interface Schema$GkeNodePoolTarget {
+    /**
+     * Required. The target GKE node pool. Format: 'projects/{project\}/locations/{location\}/clusters/{cluster\}/nodePools/{node_pool\}'
+     */
+    nodePool?: string | null;
+    /**
+     * Input only. The configuration for the GKE node pool.If specified, Dataproc attempts to create a node pool with the specified shape. If one with the same name already exists, it is verified against all specified fields. If a field differs, the virtual cluster creation will fail.If omitted, any node pool with the specified name is used. If a node pool with the specified name does not exist, Dataproc create a node pool with default values.This is an input only field. It will not be returned by the API.
+     */
+    nodePoolConfig?: Schema$GkeNodePoolConfig;
+    /**
+     * Required. The roles associated with the GKE node pool.
+     */
+    roles?: string[] | null;
   }
   /**
    * A Dataproc job for running Apache Hadoop MapReduce (https://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html) jobs on Apache Hadoop YARN (https://hadoop.apache.org/docs/r2.7.1/hadoop-yarn/hadoop-yarn-site/YARN.html).
@@ -1219,6 +1340,36 @@ export namespace dataproc_v1 {
     truststoreUri?: string | null;
   }
   /**
+   * The configuration for running the Dataproc cluster on Kubernetes.
+   */
+  export interface Schema$KubernetesClusterConfig {
+    /**
+     * Required. The configuration for running the Dataproc cluster on GKE.
+     */
+    gkeClusterConfig?: Schema$GkeClusterConfig;
+    /**
+     * Optional. A namespace within the Kubernetes cluster to deploy into. If this namespace does not exist, it is created. If it exists, Dataproc verifies that another Dataproc VirtualCluster is not installed into it. If not specified, the name of the Dataproc Cluster is used.
+     */
+    kubernetesNamespace?: string | null;
+    /**
+     * Optional. The software configuration for this Dataproc cluster running on Kubernetes.
+     */
+    kubernetesSoftwareConfig?: Schema$KubernetesSoftwareConfig;
+  }
+  /**
+   * The software configuration for this Dataproc cluster running on Kubernetes.
+   */
+  export interface Schema$KubernetesSoftwareConfig {
+    /**
+     * The components that should be installed in this Dataproc cluster. The key must be a string from the KubernetesComponent enumeration. The value is the version of the software to be installed. At least one entry must be specified.
+     */
+    componentVersion?: {[key: string]: string} | null;
+    /**
+     * The properties to set on daemon config files.Property keys are specified in prefix:property format, for example spark:spark.kubernetes.container.image. The following are supported prefixes and their mappings: spark: spark-defaults.confFor more information, see Cluster properties (https://cloud.google.com/dataproc/docs/concepts/cluster-properties).
+     */
+    properties?: {[key: string]: string} | null;
+  }
+  /**
    * Specifies the cluster auto-delete schedule configuration.
    */
   export interface Schema$LifecycleConfig {
@@ -1366,20 +1517,20 @@ export namespace dataproc_v1 {
     dataprocMetastoreService?: string | null;
   }
   /**
-   * Metric source to enable along with any optional metrics for this source that override the dataproc defaults
+   * The metric source to enable, with any optional metrics, to override Dataproc default metrics.
    */
   export interface Schema$Metric {
     /**
-     * Optional. Optional Metrics to override the dataproc default metrics configured for the metric source
+     * Optional. Optional Metrics to override the Dataproc default metrics configured for the metric source.
      */
     metricOverrides?: string[] | null;
     /**
-     * Required. MetricSource that should be enabled
+     * Required. MetricSource to enable.
      */
     metricSource?: string | null;
   }
   /**
-   * A full, namespace-isolated deployment target for an existing GKE cluster.
+   * Deprecated. Used only for the deprecated beta. A full, namespace-isolated deployment target for an existing GKE cluster.
    */
   export interface Schema$NamespacedGkeDeploymentTarget {
     /**
@@ -1412,6 +1563,23 @@ export namespace dataproc_v1 {
      * Optional. Amount of time executable has to complete. Default is 10 minutes (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).Cluster creation fails with an explanatory error message (the name of the executable that caused the error and the exceeded timeout period) if the executable is not completed at end of the timeout period.
      */
     executionTimeout?: string | null;
+  }
+  /**
+   * indicating a list of workers of same type
+   */
+  export interface Schema$NodePool {
+    /**
+     * Required. A unique id of the node pool. Primary and Secondary workers can be specified using special reserved ids PRIMARY_WORKER_POOL and SECONDARY_WORKER_POOL respectively. Aux node pools can be referenced using corresponding pool id.
+     */
+    id?: string | null;
+    /**
+     * Name of instances to be repaired. These instances must belong to specified node pool.
+     */
+    instanceNames?: string[] | null;
+    /**
+     * Required. Repair action to take on specified resources of the node pool.
+     */
+    repairAction?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -1693,6 +1861,10 @@ export namespace dataproc_v1 {
      */
     clusterUuid?: string | null;
     /**
+     * Optional. Node pools and corresponding repair action to be taken. All node pools should be unique in this request. i.e. Multiple entries for the same node pool id are not allowed.
+     */
+    nodePools?: Schema$NodePool[];
+    /**
      * Optional. A unique ID used to identify the request. If the server receives two RepairClusterRequests with the same ID, the second request is ignored, and the first google.longrunning.Operation created and stored in the backend is returned.Recommendation: Set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      */
     requestId?: string | null;
@@ -1803,7 +1975,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$SetIamPolicyRequest {
     /**
-     * REQUIRED: The complete policy to be applied to the resource. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
+     * REQUIRED: The complete policy to be applied to the resource. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
   }
@@ -2136,7 +2308,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the resource. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see IAM Overview (https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the resource. Permissions with wildcards (such as * or storage.*) are not allowed. For more information see IAM Overview (https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[] | null;
   }
@@ -2157,6 +2329,23 @@ export namespace dataproc_v1 {
      * Required. List of allowed values for the parameter.
      */
     values?: string[] | null;
+  }
+  /**
+   * The Dataproc cluster config for a cluster that does not directly control the underlying compute resources, such as a Dataproc-on-GKE cluster (https://cloud.google.com/dataproc/docs/guides/dpgke/dataproc-gke).
+   */
+  export interface Schema$VirtualClusterConfig {
+    /**
+     * Optional. Configuration of auxiliary services used by this cluster.
+     */
+    auxiliaryServicesConfig?: Schema$AuxiliaryServicesConfig;
+    /**
+     * Required. The configuration for running the Dataproc cluster on Kubernetes.
+     */
+    kubernetesClusterConfig?: Schema$KubernetesClusterConfig;
+    /**
+     * Optional. A Cloud Storage bucket used to stage job dependencies, config files, and job driver console output. If you do not specify a staging bucket, Cloud Dataproc will determine a Cloud Storage location (US, ASIA, or EU) for your cluster's staging bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket (see Dataproc staging and temp buckets (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)). This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.
+     */
+    stagingBucket?: string | null;
   }
   /**
    * The workflow graph.
@@ -2801,7 +2990,7 @@ export namespace dataproc_v1 {
      *   // Do the magic
      *   const res =
      *     await dataproc.projects.locations.autoscalingPolicies.getIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/autoscalingPolicies/my-autoscalingPolicie',
      *
@@ -3087,7 +3276,7 @@ export namespace dataproc_v1 {
      *   // Do the magic
      *   const res =
      *     await dataproc.projects.locations.autoscalingPolicies.setIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/autoscalingPolicies/my-autoscalingPolicie',
      *
@@ -3229,7 +3418,7 @@ export namespace dataproc_v1 {
      *   // Do the magic
      *   const res =
      *     await dataproc.projects.locations.autoscalingPolicies.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/autoscalingPolicies/my-autoscalingPolicie',
      *
@@ -3526,7 +3715,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3553,7 +3742,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3565,7 +3754,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -4661,7 +4850,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.locations.workflowTemplates.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/locations/my-location/workflowTemplates/my-workflowTemplate',
      *
@@ -5243,7 +5432,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.locations.workflowTemplates.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/locations/my-location/workflowTemplates/my-workflowTemplate',
      *
@@ -5385,7 +5574,7 @@ export namespace dataproc_v1 {
      *   // Do the magic
      *   const res =
      *     await dataproc.projects.locations.workflowTemplates.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/workflowTemplates/my-workflowTemplate',
      *
@@ -5695,7 +5884,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -5750,7 +5939,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -5762,7 +5951,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -6247,7 +6436,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.autoscalingPolicies.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/regions/my-region/autoscalingPolicies/my-autoscalingPolicie',
      *
@@ -6532,7 +6721,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.autoscalingPolicies.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/regions/my-region/autoscalingPolicies/my-autoscalingPolicie',
      *
@@ -6674,7 +6863,7 @@ export namespace dataproc_v1 {
      *   // Do the magic
      *   const res =
      *     await dataproc.projects.regions.autoscalingPolicies.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/regions/my-region/autoscalingPolicies/my-autoscalingPolicie',
      *
@@ -6971,7 +7160,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -6998,7 +7187,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -7010,7 +7199,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -7085,7 +7274,8 @@ export namespace dataproc_v1 {
      *       //   "metrics": {},
      *       //   "projectId": "my_projectId",
      *       //   "status": {},
-     *       //   "statusHistory": []
+     *       //   "statusHistory": [],
+     *       //   "virtualClusterConfig": {}
      *       // }
      *     },
      *   });
@@ -7520,7 +7710,8 @@ export namespace dataproc_v1 {
      *   //   "metrics": {},
      *   //   "projectId": "my_projectId",
      *   //   "status": {},
-     *   //   "statusHistory": []
+     *   //   "statusHistory": [],
+     *   //   "virtualClusterConfig": {}
      *   // }
      * }
      *
@@ -7642,7 +7833,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.clusters.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/regions/my-region/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -8093,7 +8284,8 @@ export namespace dataproc_v1 {
      *       //   "metrics": {},
      *       //   "projectId": "my_projectId",
      *       //   "status": {},
-     *       //   "statusHistory": []
+     *       //   "statusHistory": [],
+     *       //   "virtualClusterConfig": {}
      *       // }
      *     },
      *   });
@@ -8239,6 +8431,7 @@ export namespace dataproc_v1 {
      *       // request body parameters
      *       // {
      *       //   "clusterUuid": "my_clusterUuid",
+     *       //   "nodePools": [],
      *       //   "requestId": "my_requestId"
      *       // }
      *     },
@@ -8373,7 +8566,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.clusters.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/regions/my-region/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -8804,7 +8997,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.clusters.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/regions/my-region/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -9008,7 +9201,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Clusters$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -9115,7 +9308,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Clusters$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -9167,7 +9360,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Clusters$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -9647,7 +9840,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.jobs.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/regions/my-region/jobs/my-job',
      *
      *     // Request body metadata
@@ -10105,7 +10298,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.jobs.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/regions/my-region/jobs/my-job',
      *
      *     // Request body metadata
@@ -10545,7 +10738,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.jobs.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/regions/my-region/jobs/my-job',
      *
      *     // Request body metadata
@@ -10716,7 +10909,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Jobs$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -10783,7 +10976,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Jobs$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -10827,7 +11020,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Jobs$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -11248,7 +11441,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.operations.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/regions/my-region/operations/my-operation',
      *
      *     // Request body metadata
@@ -11525,7 +11718,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.operations.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/regions/my-region/operations/my-operation',
      *
      *     // Request body metadata
@@ -11664,7 +11857,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.operations.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/regions/my-region/operations/my-operation',
      *
      *     // Request body metadata
@@ -11807,7 +12000,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Operations$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -11838,7 +12031,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Operations$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -11850,7 +12043,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Operations$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -12313,7 +12506,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.workflowTemplates.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/regions/my-region/workflowTemplates/my-workflowTemplate',
      *
@@ -12894,7 +13087,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.workflowTemplates.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/regions/my-region/workflowTemplates/my-workflowTemplate',
      *
@@ -13036,7 +13229,7 @@ export namespace dataproc_v1 {
      *   // Do the magic
      *   const res =
      *     await dataproc.projects.regions.workflowTemplates.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/regions/my-region/workflowTemplates/my-workflowTemplate',
      *
@@ -13346,7 +13539,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -13401,7 +13594,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -13413,7 +13606,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 

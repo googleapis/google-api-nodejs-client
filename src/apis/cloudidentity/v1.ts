@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -461,6 +460,10 @@ export namespace cloudidentity_v1 {
      * Output only. When the Company-Owned device was imported. This field is empty for BYOD devices.
      */
     createTime?: string | null;
+    /**
+     * Unique identifier for the device.
+     */
+    deviceId?: string | null;
     /**
      * Output only. Type of device.
      */
@@ -1284,6 +1287,7 @@ export namespace cloudidentity_v1 {
      *       //   "buildNumber": "my_buildNumber",
      *       //   "compromisedState": "my_compromisedState",
      *       //   "createTime": "my_createTime",
+     *       //   "deviceId": "my_deviceId",
      *       //   "deviceType": "my_deviceType",
      *       //   "enabledDeveloperOptions": false,
      *       //   "enabledUsbDebugging": false,
@@ -1586,6 +1590,7 @@ export namespace cloudidentity_v1 {
      *   //   "buildNumber": "my_buildNumber",
      *   //   "compromisedState": "my_compromisedState",
      *   //   "createTime": "my_createTime",
+     *   //   "deviceId": "my_deviceId",
      *   //   "deviceType": "my_deviceType",
      *   //   "enabledDeveloperOptions": false,
      *   //   "enabledUsbDebugging": false,

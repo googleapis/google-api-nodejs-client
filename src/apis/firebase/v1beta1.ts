@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -257,7 +256,7 @@ export namespace firebase_v1beta1 {
     storageBucket?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   export interface Schema$FinalizeDefaultLocationRequest {
@@ -600,7 +599,7 @@ export namespace firebase_v1beta1 {
      */
     apiKeyId?: string | null;
     /**
-     * Immutable. The globally unique, Firebase-assigned identifier for the `WebApp`. This identifier should be treated as an opaque token, as the data format is not specified.
+     * Output only. Immutable. The globally unique, Firebase-assigned identifier for the `WebApp`. This identifier should be treated as an opaque token, as the data format is not specified.
      */
     appId?: string | null;
     /**
@@ -616,7 +615,7 @@ export namespace firebase_v1beta1 {
      */
     name?: string | null;
     /**
-     * Immutable. A user-assigned unique identifier of the parent FirebaseProject for the `WebApp`.
+     * Output only. Immutable. A user-assigned unique identifier of the parent FirebaseProject for the `WebApp`.
      */
     projectId?: string | null;
     /**

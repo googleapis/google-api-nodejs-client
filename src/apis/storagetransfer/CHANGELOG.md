@@ -1,5 +1,30 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/storagetransfer-v3.0.0...storagetransfer-v3.0.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **storagetransfer:** update the API ([6c6020d](https://github.com/googleapis/google-api-nodejs-client/commit/6c6020d880b50edd6197f2ff9bbcc30d62342b15))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/storagetransfer-v2.7.0...storagetransfer-v3.0.0) (2022-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#2971](https://github.com/googleapis/google-api-nodejs-client/issues/2971)) ([adddf01](https://github.com/googleapis/google-api-nodejs-client/commit/adddf018e7cb73adab7341053dd80d72c5a6248d))
+
+## [2.7.0](https://github.com/googleapis/google-api-nodejs-client/compare/storagetransfer-v2.6.1...storagetransfer-v2.7.0) (2022-04-01)
+
+
+### Features
+
+* **storagetransfer:** update the API ([976576e](https://github.com/googleapis/google-api-nodejs-client/commit/976576eb2e41b08c7d30d7a3868781a3f16cbf40))
+
 ### [2.6.1](https://github.com/googleapis/google-api-nodejs-client/compare/storagetransfer-v2.6.0...storagetransfer-v2.6.1) (2022-03-14)
 
 

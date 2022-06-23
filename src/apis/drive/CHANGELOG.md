@@ -1,5 +1,30 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v3.0.0...drive-v3.0.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **drive:** update the API ([f3f7670](https://github.com/googleapis/google-api-nodejs-client/commit/f3f7670afa63d23a16c5f2248116b930b1e678be))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v2.4.0...drive-v3.0.0) (2022-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#2971](https://github.com/googleapis/google-api-nodejs-client/issues/2971)) ([adddf01](https://github.com/googleapis/google-api-nodejs-client/commit/adddf018e7cb73adab7341053dd80d72c5a6248d))
+
+## [2.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v2.3.0...drive-v2.4.0) (2022-06-13)
+
+
+### Features
+
+* **drive:** update the API ([39af9d1](https://github.com/googleapis/google-api-nodejs-client/commit/39af9d149072eb2b431e14fb94ad7050124ff2a9))
+
 ## [2.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v2.2.0...drive-v2.3.0) (2022-03-08)
 
 

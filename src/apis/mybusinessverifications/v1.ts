@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -254,7 +253,7 @@ export namespace mybusinessverifications_v1 {
      */
     name?: string | null;
     /**
-     * Required. Id of the category that best describes the core business this location engages in.
+     * Required. Id of the category that best describes the core business this location engages in. e.g. gcid:bakery.
      */
     primaryCategoryId?: string | null;
     /**

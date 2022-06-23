@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -126,9 +125,90 @@ export namespace baremetalsolution_v2 {
   }
 
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * Represents an 'access point' for the share.
    */
-  export interface Schema$Empty {}
+  export interface Schema$AllowedClient {
+    /**
+     * Allow dev flag. Which controls whether to allow creation of devices.
+     */
+    allowDev?: boolean | null;
+    /**
+     * The subnet of IP addresses permitted to access the share.
+     */
+    allowedClientsCidr?: string | null;
+    /**
+     * Allow the setuid flag.
+     */
+    allowSuid?: boolean | null;
+    /**
+     * Mount permissions.
+     */
+    mountPermissions?: string | null;
+    /**
+     * The network the access point sits on.
+     */
+    network?: string | null;
+    /**
+     * Disable root squashing, which is a feature of NFS. Root squash is a special mapping of the remote superuser (root) identity when using identity authentication.
+     */
+    noRootSquash?: boolean | null;
+    /**
+     * The IP address of the share on this network.
+     */
+    shareIp?: string | null;
+  }
+  /**
+   * Message for detach specific LUN from an Instance.
+   */
+  export interface Schema$DetachLunRequest {
+    /**
+     * Required. Name of the Lun to detach.
+     */
+    lun?: string | null;
+  }
+  /**
+   * Response with all provisioning settings.
+   */
+  export interface Schema$FetchInstanceProvisioningSettingsResponse {
+    /**
+     * The OS images available.
+     */
+    images?: Schema$OSImage[];
+  }
+  /**
+   * Each logical interface represents a logical abstraction of the underlying physical interface (for eg. bond, nic) of the instance. Each logical interface can effectively map to multiple network-IP pairs and still be mapped to one underlying physical interface.
+   */
+  export interface Schema$GoogleCloudBaremetalsolutionV2LogicalInterface {
+    /**
+     * The index of the logical interface mapping to the index of the hardware bond or nic on the chosen network template. This field is deprecated.
+     */
+    interfaceIndex?: number | null;
+    /**
+     * List of logical network interfaces within a logical interface.
+     */
+    logicalNetworkInterfaces?: Schema$LogicalNetworkInterface[];
+    /**
+     * Interface name. This is of syntax or and forms part of the network template name.
+     */
+    name?: string | null;
+  }
+  /**
+   * Logical interface.
+   */
+  export interface Schema$GoogleCloudBaremetalsolutionV2ServerNetworkTemplateLogicalInterface {
+    /**
+     * Interface name. This is not a globally unique identifier. Name is unique only inside the ServerNetworkTemplate. This is of syntax or and forms part of the network template name.
+     */
+    name?: string | null;
+    /**
+     * If true, interface must have network connected.
+     */
+    required?: boolean | null;
+    /**
+     * Interface type.
+     */
+    type?: string | null;
+  }
   /**
    * A server.
    */
@@ -154,6 +234,10 @@ export namespace baremetalsolution_v2 {
      */
     labels?: {[key: string]: string} | null;
     /**
+     * List of logical interfaces for the instance. The number of logical interfaces will be the same as number of hardware bond/nic on the chosen network template. For the non-multivlan configurations (for eg, existing servers) that use existing default network template (bondaa-bondaa), both the Instance.networks field and the Instance.logical_interfaces fields will be filled to ensure backward compatibility. For the others, only Instance.logical_interfaces will be filled.
+     */
+    logicalInterfaces?: Schema$GoogleCloudBaremetalsolutionV2LogicalInterface[];
+    /**
      * List of LUNs associated with this server.
      */
     luns?: Schema$Lun[];
@@ -170,6 +254,18 @@ export namespace baremetalsolution_v2 {
      */
     networks?: Schema$Network[];
     /**
+     * Instance network template name. For eg, bondaa-bondaa, bondab-nic, etc. Generally, the template name follows the syntax of "bond" or "nic".
+     */
+    networkTemplate?: string | null;
+    /**
+     * The OS image currently installed on the server.
+     */
+    osImage?: string | null;
+    /**
+     * Immutable. Pod name. Pod is an independent part of infrastructure. Instance can be connected to the assets (networks, volumes) allocated in the same pod only.
+     */
+    pod?: string | null;
+    /**
      * The state of the server.
      */
     state?: string | null;
@@ -183,7 +279,11 @@ export namespace baremetalsolution_v2 {
    */
   export interface Schema$InstanceConfig {
     /**
-     * Client network address.
+     * If true networks can be from different projects of the same vendor account.
+     */
+    accountNetworksEnabled?: boolean | null;
+    /**
+     * Client network address. Filled if InstanceConfig.multivlan_config is false.
      */
     clientNetwork?: Schema$NetworkAddress;
     /**
@@ -199,15 +299,27 @@ export namespace baremetalsolution_v2 {
      */
     instanceType?: string | null;
     /**
+     * List of logical interfaces for the instance. The number of logical interfaces will be the same as number of hardware bond/nic on the chosen network template. Filled if InstanceConfig.multivlan_config is true.
+     */
+    logicalInterfaces?: Schema$GoogleCloudBaremetalsolutionV2LogicalInterface[];
+    /**
      * Output only. The name of the instance config.
      */
     name?: string | null;
+    /**
+     * The type of network configuration on the instance.
+     */
+    networkConfig?: string | null;
+    /**
+     * Server network template name. Filled if InstanceConfig.multivlan_config is true.
+     */
+    networkTemplate?: string | null;
     /**
      * OS image to initialize the instance. [Available images](https://cloud.google.com/bare-metal/docs/bms-planning#server_configurations)
      */
     osImage?: string | null;
     /**
-     * Private network address, if any.
+     * Private network address, if any. Filled if InstanceConfig.multivlan_config is false.
      */
     privateNetwork?: Schema$NetworkAddress;
     /**
@@ -323,6 +435,23 @@ export namespace baremetalsolution_v2 {
     networks?: Schema$NetworkUsage[];
   }
   /**
+   * Response message containing the list of NFS shares.
+   */
+  export interface Schema$ListNfsSharesResponse {
+    /**
+     * A token identifying a page of results from the server.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of NFS shares.
+     */
+    nfsShares?: Schema$NfsShare[];
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * Response message for the list of provisioning quotas.
    */
   export interface Schema$ListProvisioningQuotasResponse {
@@ -334,36 +463,6 @@ export namespace baremetalsolution_v2 {
      * The provisioning quotas registered in this project.
      */
     provisioningQuotas?: Schema$ProvisioningQuota[];
-  }
-  /**
-   * Response message containing the list of snapshot schedule policies.
-   */
-  export interface Schema$ListSnapshotSchedulePoliciesResponse {
-    /**
-     * Token to retrieve the next page of results, or empty if there are no more results in the list.
-     */
-    nextPageToken?: string | null;
-    /**
-     * The snapshot schedule policies registered in this project.
-     */
-    snapshotSchedulePolicies?: Schema$SnapshotSchedulePolicy[];
-  }
-  /**
-   * Response message containing the list of storage volume snapshots.
-   */
-  export interface Schema$ListVolumeSnapshotsResponse {
-    /**
-     * A token identifying a page of results from the server.
-     */
-    nextPageToken?: string | null;
-    /**
-     * Locations that could not be reached.
-     */
-    unreachable?: string[] | null;
-    /**
-     * The list of storage volumes.
-     */
-    volumeSnapshots?: Schema$VolumeSnapshot[];
   }
   /**
    * Response message containing the list of storage volumes.
@@ -406,6 +505,31 @@ export namespace baremetalsolution_v2 {
      * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
+  }
+  /**
+   * Each logical network interface is effectively a network and IP pair.
+   */
+  export interface Schema$LogicalNetworkInterface {
+    /**
+     * Whether this interface is the default gateway for the instance. Only one interface can be the default gateway for the instance.
+     */
+    defaultGateway?: boolean | null;
+    /**
+     * An identifier for the `Network`, generated by the backend.
+     */
+    id?: string | null;
+    /**
+     * IP address in the network
+     */
+    ipAddress?: string | null;
+    /**
+     * Name of the network
+     */
+    network?: string | null;
+    /**
+     * Type of network.
+     */
+    networkType?: string | null;
   }
   /**
    * A storage volume logical unit number (LUN).
@@ -494,6 +618,10 @@ export namespace baremetalsolution_v2 {
      */
     name?: string | null;
     /**
+     * List of IP address reservations in this network. When updating this field, an error will be generated if a reservation conflicts with an IP address already allocated to a physical server.
+     */
+    reservations?: Schema$NetworkAddressReservation[];
+    /**
      * IP range for reserved for services (e.g. NFS).
      */
     servicesCidr?: string | null;
@@ -532,6 +660,23 @@ export namespace baremetalsolution_v2 {
     networkId?: string | null;
   }
   /**
+   * A reservation of one or more addresses in a network.
+   */
+  export interface Schema$NetworkAddressReservation {
+    /**
+     * The last address of this reservation block, inclusive. I.e., for cases when reservations are only single addresses, end_address and start_address will be the same. Must be specified as a single IPv4 address, e.g. 10.1.2.2.
+     */
+    endAddress?: string | null;
+    /**
+     * A note about this reservation, intended for human consumption.
+     */
+    note?: string | null;
+    /**
+     * The first address of this reservation block. Must be specified as a single IPv4 address, e.g. 10.1.2.2.
+     */
+    startAddress?: string | null;
+  }
+  /**
    * Configuration parameters for a new network.
    */
   export interface Schema$NetworkConfig {
@@ -552,6 +697,10 @@ export namespace baremetalsolution_v2 {
      */
     id?: string | null;
     /**
+     * The JumboFramesEnabled option for customer to set.
+     */
+    jumboFramesEnabled?: boolean | null;
+    /**
      * Output only. The name of the network config.
      */
     name?: string | null;
@@ -564,7 +713,7 @@ export namespace baremetalsolution_v2 {
      */
     type?: string | null;
     /**
-     * User note field, it can be used by customers to add additional information for the BMS Ops team (b/194021617).
+     * User note field, it can be used by customers to add additional information for the BMS Ops team .
      */
     userNote?: string | null;
     /**
@@ -623,6 +772,39 @@ export namespace baremetalsolution_v2 {
     permissions?: string | null;
   }
   /**
+   * An NFS share.
+   */
+  export interface Schema$NfsShare {
+    /**
+     * List of allowed access points.
+     */
+    allowedClients?: Schema$AllowedClient[];
+    /**
+     * Labels as key value pairs.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. The name of the NFS share.
+     */
+    name?: string | null;
+    /**
+     * Output only. An identifier for the NFS share, generated by the backend.
+     */
+    nfsShareId?: string | null;
+    /**
+     * The requested size, in GiB.
+     */
+    requestedSizeGib?: string | null;
+    /**
+     * The state of the NFS share.
+     */
+    state?: string | null;
+    /**
+     * The volume containing the share.
+     */
+    volume?: string | null;
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -648,6 +830,31 @@ export namespace baremetalsolution_v2 {
     response?: {[key: string]: any} | null;
   }
   /**
+   * Operation System image.
+   */
+  export interface Schema$OSImage {
+    /**
+     * Instance types this image is applicable to. [Available types](https://cloud.google.com/bare-metal/docs/bms-planning#server_configurations)
+     */
+    applicableInstanceTypes?: string[] | null;
+    /**
+     * OS Image code.
+     */
+    code?: string | null;
+    /**
+     * OS Image description.
+     */
+    description?: string | null;
+    /**
+     * Output only. OS Image's unique name.
+     */
+    name?: string | null;
+    /**
+     * Network templates that can be used with this OS Image.
+     */
+    supportedNetworkTemplates?: Schema$ServerNetworkTemplate[];
+  }
+  /**
    * A provisioning configuration.
    */
   export interface Schema$ProvisioningConfig {
@@ -656,7 +863,7 @@ export namespace baremetalsolution_v2 {
      */
     cloudConsoleUri?: string | null;
     /**
-     * Optional. Email provided to send a confirmation with provisioning config to.
+     * Email provided to send a confirmation with provisioning config to. Deprecated in favour of email field in request messages.
      */
     email?: string | null;
     /**
@@ -684,7 +891,7 @@ export namespace baremetalsolution_v2 {
      */
     state?: string | null;
     /**
-     * A generated buganizer id to track provisioning request.
+     * A generated ticket id to track provisioning request.
      */
     ticketId?: string | null;
     /**
@@ -695,6 +902,10 @@ export namespace baremetalsolution_v2 {
      * Volumes to be created.
      */
     volumes?: Schema$VolumeConfig[];
+    /**
+     * If true, VPC SC is enabled for the cluster.
+     */
+    vpcScEnabled?: boolean | null;
   }
   /**
    * A provisioning quota for a given project.
@@ -724,6 +935,18 @@ export namespace baremetalsolution_v2 {
      * Output only. The name of the provisioning quota.
      */
     name?: string | null;
+    /**
+     * Network bandwidth, Gbps
+     */
+    networkBandwidth?: string | null;
+    /**
+     * Server count.
+     */
+    serverCount?: string | null;
+    /**
+     * Storage size (GB).
+     */
+    storageGib?: string | null;
   }
   /**
    * QOS policy parameters.
@@ -739,25 +962,30 @@ export namespace baremetalsolution_v2 {
    */
   export interface Schema$ResetInstanceRequest {}
   /**
-   * Message for restoring a volume snapshot.
+   * Request for emergency resize Volume.
    */
-  export interface Schema$RestoreVolumeSnapshotRequest {}
+  export interface Schema$ResizeVolumeRequest {
+    /**
+     * New Volume size, in GiB.
+     */
+    sizeGib?: string | null;
+  }
   /**
-   * A snapshot schedule.
+   * Network template.
    */
-  export interface Schema$Schedule {
+  export interface Schema$ServerNetworkTemplate {
     /**
-     * A crontab-like specification that the schedule uses to take snapshots.
+     * Instance types this template is applicable to.
      */
-    crontabSpec?: string | null;
+    applicableInstanceTypes?: string[] | null;
     /**
-     * A list of snapshot names created in this schedule.
+     * Logical interfaces.
      */
-    prefix?: string | null;
+    logicalInterfaces?: Schema$GoogleCloudBaremetalsolutionV2ServerNetworkTemplateLogicalInterface[];
     /**
-     * The maximum number of snapshots to retain in this schedule.
+     * Output only. Template's unique name. The full resource name follows the pattern: `projects/{project\}/locations/{location\}/serverNetworkTemplate/{server_network_template\}` Generally, the {server_network_template\} follows the syntax of "bond" or "nic".
      */
-    retentionCount?: number | null;
+    name?: string | null;
   }
   /**
    * Details about snapshot space reservation and usage on the storage volume.
@@ -781,35 +1009,6 @@ export namespace baremetalsolution_v2 {
     reservedSpaceUsedPercent?: number | null;
   }
   /**
-   * A snapshot schedule policy.
-   */
-  export interface Schema$SnapshotSchedulePolicy {
-    /**
-     * The description of the snapshot schedule policy.
-     */
-    description?: string | null;
-    /**
-     * An identifier for the snapshot schedule policy, generated by the backend.
-     */
-    id?: string | null;
-    /**
-     * Labels as key value pairs.
-     */
-    labels?: {[key: string]: string} | null;
-    /**
-     * Output only. The name of the snapshot schedule policy.
-     */
-    name?: string | null;
-    /**
-     * The snapshot schedules contained in this policy. You can specify a maximum of 5 schedules.
-     */
-    schedules?: Schema$Schedule[];
-    /**
-     * The state of the snapshot schedule policy.
-     */
-    state?: string | null;
-  }
-  /**
    * Message requesting to start a server.
    */
   export interface Schema$StartInstanceRequest {}
@@ -830,6 +1029,10 @@ export namespace baremetalsolution_v2 {
      */
     message?: string | null;
   }
+  /**
+   * Message requesting to stop a server.
+   */
+  export interface Schema$StopInstanceRequest {}
   /**
    * Request for SubmitProvisioningConfig.
    */
@@ -882,6 +1085,10 @@ export namespace baremetalsolution_v2 {
      */
     currentSizeGib?: string | null;
     /**
+     * Additional emergency size that was requested for this Volume, in GiB. current_size_gib includes this value.
+     */
+    emergencySizeGib?: string | null;
+    /**
      * An identifier for the `Volume`, generated by the backend.
      */
     id?: string | null;
@@ -890,9 +1097,21 @@ export namespace baremetalsolution_v2 {
      */
     labels?: {[key: string]: string} | null;
     /**
+     * Maximum size volume can be expanded to in case of evergency, in GiB.
+     */
+    maxSizeGib?: string | null;
+    /**
      * Output only. The resource name of this `Volume`. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. Format: `projects/{project\}/locations/{location\}/volumes/{volume\}`
      */
     name?: string | null;
+    /**
+     * Originally requested size, in GiB.
+     */
+    originallyRequestedSizeGib?: string | null;
+    /**
+     * Immutable. Pod name.
+     */
+    pod?: string | null;
     /**
      * The space remaining in the storage volume for new LUNs, in GiB, excluding space reserved for snapshots.
      */
@@ -971,38 +1190,9 @@ export namespace baremetalsolution_v2 {
      */
     type?: string | null;
     /**
-     * User note field, it can be used by customers to add additional information for the BMS Ops team (b/194021617).
+     * User note field, it can be used by customers to add additional information for the BMS Ops team .
      */
     userNote?: string | null;
-  }
-  /**
-   * Snapshot registered for a given storage volume.
-   */
-  export interface Schema$VolumeSnapshot {
-    /**
-     * Output only. The creation time of the storage volume snapshot.
-     */
-    createTime?: string | null;
-    /**
-     * The description of the storage volume snapshot.
-     */
-    description?: string | null;
-    /**
-     * An identifier for the snapshot, generated by the backend.
-     */
-    id?: string | null;
-    /**
-     * Output only. The name of the storage volume snapshot.
-     */
-    name?: string | null;
-    /**
-     * The size of the storage volume snapshot, in bytes.
-     */
-    sizeBytes?: string | null;
-    /**
-     * The storage volume this snapshot belongs to.
-     */
-    storageVolume?: string | null;
   }
   /**
    * A network VRF.
@@ -1037,22 +1227,26 @@ export namespace baremetalsolution_v2 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    instanceProvisioningSettings: Resource$Projects$Locations$Instanceprovisioningsettings;
     instances: Resource$Projects$Locations$Instances;
     networks: Resource$Projects$Locations$Networks;
+    nfsShares: Resource$Projects$Locations$Nfsshares;
     provisioningConfigs: Resource$Projects$Locations$Provisioningconfigs;
     provisioningQuotas: Resource$Projects$Locations$Provisioningquotas;
-    snapshotSchedulePolicies: Resource$Projects$Locations$Snapshotschedulepolicies;
     volumes: Resource$Projects$Locations$Volumes;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.instanceProvisioningSettings =
+        new Resource$Projects$Locations$Instanceprovisioningsettings(
+          this.context
+        );
       this.instances = new Resource$Projects$Locations$Instances(this.context);
       this.networks = new Resource$Projects$Locations$Networks(this.context);
+      this.nfsShares = new Resource$Projects$Locations$Nfsshares(this.context);
       this.provisioningConfigs =
         new Resource$Projects$Locations$Provisioningconfigs(this.context);
       this.provisioningQuotas =
         new Resource$Projects$Locations$Provisioningquotas(this.context);
-      this.snapshotSchedulePolicies =
-        new Resource$Projects$Locations$Snapshotschedulepolicies(this.context);
       this.volumes = new Resource$Projects$Locations$Volumes(this.context);
     }
 
@@ -1214,7 +1408,7 @@ export namespace baremetalsolution_v2 {
      *
      *   // Do the magic
      *   const res = await baremetalsolution.projects.locations.list({
-     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
@@ -1340,7 +1534,7 @@ export namespace baremetalsolution_v2 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
     /**
@@ -1357,10 +1551,309 @@ export namespace baremetalsolution_v2 {
     pageToken?: string;
   }
 
+  export class Resource$Projects$Locations$Instanceprovisioningsettings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Get instance provisioning settings for a given project. This is hidden method used by UI only.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/baremetalsolution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const baremetalsolution = google.baremetalsolution('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await baremetalsolution.projects.locations.instanceProvisioningSettings.fetch(
+     *       {
+     *         // Required. The parent project and location containing the ProvisioningSettings.
+     *         location: 'projects/my-project/locations/my-location',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "images": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetch(
+      params: Params$Resource$Projects$Locations$Instanceprovisioningsettings$Fetch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetch(
+      params?: Params$Resource$Projects$Locations$Instanceprovisioningsettings$Fetch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FetchInstanceProvisioningSettingsResponse>;
+    fetch(
+      params: Params$Resource$Projects$Locations$Instanceprovisioningsettings$Fetch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetch(
+      params: Params$Resource$Projects$Locations$Instanceprovisioningsettings$Fetch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchInstanceProvisioningSettingsResponse>,
+      callback: BodyResponseCallback<Schema$FetchInstanceProvisioningSettingsResponse>
+    ): void;
+    fetch(
+      params: Params$Resource$Projects$Locations$Instanceprovisioningsettings$Fetch,
+      callback: BodyResponseCallback<Schema$FetchInstanceProvisioningSettingsResponse>
+    ): void;
+    fetch(
+      callback: BodyResponseCallback<Schema$FetchInstanceProvisioningSettingsResponse>
+    ): void;
+    fetch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instanceprovisioningsettings$Fetch
+        | BodyResponseCallback<Schema$FetchInstanceProvisioningSettingsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchInstanceProvisioningSettingsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchInstanceProvisioningSettingsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FetchInstanceProvisioningSettingsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instanceprovisioningsettings$Fetch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instanceprovisioningsettings$Fetch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://baremetalsolution.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2/{+location}/instanceProvisioningSettings:fetch'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['location'],
+        pathParams: ['location'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchInstanceProvisioningSettingsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchInstanceProvisioningSettingsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Instanceprovisioningsettings$Fetch
+    extends StandardParameters {
+    /**
+     * Required. The parent project and location containing the ProvisioningSettings.
+     */
+    location?: string;
+  }
+
   export class Resource$Projects$Locations$Instances {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Detach LUN from Instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/baremetalsolution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const baremetalsolution = google.baremetalsolution('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await baremetalsolution.projects.locations.instances.detachLun({
+     *     // Required. Name of the instance.
+     *     instance: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "lun": "my_lun"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    detachLun(
+      params: Params$Resource$Projects$Locations$Instances$Detachlun,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    detachLun(
+      params?: Params$Resource$Projects$Locations$Instances$Detachlun,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    detachLun(
+      params: Params$Resource$Projects$Locations$Instances$Detachlun,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    detachLun(
+      params: Params$Resource$Projects$Locations$Instances$Detachlun,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    detachLun(
+      params: Params$Resource$Projects$Locations$Instances$Detachlun,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    detachLun(callback: BodyResponseCallback<Schema$Operation>): void;
+    detachLun(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Detachlun
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Detachlun;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Detachlun;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://baremetalsolution.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+instance}:detachLun').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['instance'],
+        pathParams: ['instance'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
     }
 
     /**
@@ -1402,10 +1895,14 @@ export namespace baremetalsolution_v2 {
      *   //   "id": "my_id",
      *   //   "interactiveSerialConsoleEnabled": false,
      *   //   "labels": {},
+     *   //   "logicalInterfaces": [],
      *   //   "luns": [],
      *   //   "machineType": "my_machineType",
      *   //   "name": "my_name",
+     *   //   "networkTemplate": "my_networkTemplate",
      *   //   "networks": [],
+     *   //   "osImage": "my_osImage",
+     *   //   "pod": "my_pod",
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -1672,7 +2169,7 @@ export namespace baremetalsolution_v2 {
      *   const res = await baremetalsolution.projects.locations.instances.patch({
      *     // Output only. The resource name of this `Instance`. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. Format: `projects/{project\}/locations/{location\}/instances/{instance\}`
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
-     *     // The list of fields to update. The only currently supported fields are: `labels`
+     *     // The list of fields to update. The currently supported fields are: `labels` `hyperthreading_enabled` `os_image`
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1684,10 +2181,14 @@ export namespace baremetalsolution_v2 {
      *       //   "id": "my_id",
      *       //   "interactiveSerialConsoleEnabled": false,
      *       //   "labels": {},
+     *       //   "logicalInterfaces": [],
      *       //   "luns": [],
      *       //   "machineType": "my_machineType",
      *       //   "name": "my_name",
+     *       //   "networkTemplate": "my_networkTemplate",
      *       //   "networks": [],
+     *       //   "osImage": "my_osImage",
+     *       //   "pod": "my_pod",
      *       //   "state": "my_state",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -2067,8 +2568,157 @@ export namespace baremetalsolution_v2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Stop a running server.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/baremetalsolution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const baremetalsolution = google.baremetalsolution('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await baremetalsolution.projects.locations.instances.stop({
+     *     // Required. Name of the resource.
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    stop(
+      params: Params$Resource$Projects$Locations$Instances$Stop,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    stop(
+      params?: Params$Resource$Projects$Locations$Instances$Stop,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    stop(
+      params: Params$Resource$Projects$Locations$Instances$Stop,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    stop(
+      params: Params$Resource$Projects$Locations$Instances$Stop,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    stop(
+      params: Params$Resource$Projects$Locations$Instances$Stop,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    stop(callback: BodyResponseCallback<Schema$Operation>): void;
+    stop(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Stop
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Stop;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Stop;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://baremetalsolution.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:stop').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Projects$Locations$Instances$Detachlun
+    extends StandardParameters {
+    /**
+     * Required. Name of the instance.
+     */
+    instance?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DetachLunRequest;
+  }
   export interface Params$Resource$Projects$Locations$Instances$Get
     extends StandardParameters {
     /**
@@ -2102,7 +2752,7 @@ export namespace baremetalsolution_v2 {
      */
     name?: string;
     /**
-     * The list of fields to update. The only currently supported fields are: `labels`
+     * The list of fields to update. The currently supported fields are: `labels` `hyperthreading_enabled` `os_image`
      */
     updateMask?: string;
 
@@ -2134,6 +2784,18 @@ export namespace baremetalsolution_v2 {
      * Request body metadata
      */
     requestBody?: Schema$StartInstanceRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Stop
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$StopInstanceRequest;
   }
 
   export class Resource$Projects$Locations$Networks {
@@ -2182,6 +2844,7 @@ export namespace baremetalsolution_v2 {
      *   //   "labels": {},
      *   //   "macAddress": [],
      *   //   "name": "my_name",
+     *   //   "reservations": [],
      *   //   "servicesCidr": "my_servicesCidr",
      *   //   "state": "my_state",
      *   //   "type": "my_type",
@@ -2589,7 +3252,7 @@ export namespace baremetalsolution_v2 {
      *   const res = await baremetalsolution.projects.locations.networks.patch({
      *     // Output only. The resource name of this `Network`. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. Format: `projects/{project\}/locations/{location\}/networks/{network\}`
      *     name: 'projects/my-project/locations/my-location/networks/my-network',
-     *     // The list of fields to update. The only currently supported fields are: `labels`
+     *     // The list of fields to update. The only currently supported fields are: `labels`, `reservations`
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2602,6 +3265,7 @@ export namespace baremetalsolution_v2 {
      *       //   "labels": {},
      *       //   "macAddress": [],
      *       //   "name": "my_name",
+     *       //   "reservations": [],
      *       //   "servicesCidr": "my_servicesCidr",
      *       //   "state": "my_state",
      *       //   "type": "my_type",
@@ -2752,7 +3416,7 @@ export namespace baremetalsolution_v2 {
      */
     name?: string;
     /**
-     * The list of fields to update. The only currently supported fields are: `labels`
+     * The list of fields to update. The only currently supported fields are: `labels`, `reservations`
      */
     updateMask?: string;
 
@@ -2760,6 +3424,479 @@ export namespace baremetalsolution_v2 {
      * Request body metadata
      */
     requestBody?: Schema$Network;
+  }
+
+  export class Resource$Projects$Locations$Nfsshares {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Get details of a single NFS share.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/baremetalsolution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const baremetalsolution = google.baremetalsolution('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await baremetalsolution.projects.locations.nfsShares.get({
+     *     // Required. Name of the resource.
+     *     name: 'projects/my-project/locations/my-location/nfsShares/my-nfsShare',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowedClients": [],
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "nfsShareId": "my_nfsShareId",
+     *   //   "requestedSizeGib": "my_requestedSizeGib",
+     *   //   "state": "my_state",
+     *   //   "volume": "my_volume"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Nfsshares$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Nfsshares$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$NfsShare>;
+    get(
+      params: Params$Resource$Projects$Locations$Nfsshares$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Nfsshares$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$NfsShare>,
+      callback: BodyResponseCallback<Schema$NfsShare>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Nfsshares$Get,
+      callback: BodyResponseCallback<Schema$NfsShare>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$NfsShare>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Nfsshares$Get
+        | BodyResponseCallback<Schema$NfsShare>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$NfsShare>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$NfsShare>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$NfsShare> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Nfsshares$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Nfsshares$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://baremetalsolution.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$NfsShare>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$NfsShare>(parameters);
+      }
+    }
+
+    /**
+     * List NFS shares.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/baremetalsolution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const baremetalsolution = google.baremetalsolution('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await baremetalsolution.projects.locations.nfsShares.list({
+     *     // List filter.
+     *     filter: 'placeholder-value',
+     *     // Requested page size. The server might return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results from the server.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Parent value for ListNfsSharesRequest.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "nfsShares": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Nfsshares$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Nfsshares$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListNfsSharesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Nfsshares$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Nfsshares$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListNfsSharesResponse>,
+      callback: BodyResponseCallback<Schema$ListNfsSharesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Nfsshares$List,
+      callback: BodyResponseCallback<Schema$ListNfsSharesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListNfsSharesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Nfsshares$List
+        | BodyResponseCallback<Schema$ListNfsSharesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListNfsSharesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListNfsSharesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListNfsSharesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Nfsshares$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Nfsshares$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://baremetalsolution.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/nfsShares').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListNfsSharesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListNfsSharesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Update details of a single NFS share.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/baremetalsolution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const baremetalsolution = google.baremetalsolution('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await baremetalsolution.projects.locations.nfsShares.patch({
+     *     // Output only. The name of the NFS share.
+     *     name: 'projects/my-project/locations/my-location/nfsShares/my-nfsShare',
+     *     // The list of fields to update. The only currently supported fields are: `labels`
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowedClients": [],
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "nfsShareId": "my_nfsShareId",
+     *       //   "requestedSizeGib": "my_requestedSizeGib",
+     *       //   "state": "my_state",
+     *       //   "volume": "my_volume"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Nfsshares$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Nfsshares$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Nfsshares$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Nfsshares$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Nfsshares$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Nfsshares$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Nfsshares$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Nfsshares$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://baremetalsolution.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Nfsshares$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Nfsshares$List
+    extends StandardParameters {
+    /**
+     * List filter.
+     */
+    filter?: string;
+    /**
+     * Requested page size. The server might return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results from the server.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value for ListNfsSharesRequest.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Nfsshares$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The name of the NFS share.
+     */
+    name?: string;
+    /**
+     * The list of fields to update. The only currently supported fields are: `labels`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NfsShare;
   }
 
   export class Resource$Projects$Locations$Provisioningconfigs {
@@ -2796,6 +3933,8 @@ export namespace baremetalsolution_v2 {
      *   // Do the magic
      *   const res =
      *     await baremetalsolution.projects.locations.provisioningConfigs.create({
+     *       // Optional. Email provided to send a confirmation with provisioning config to.
+     *       email: 'placeholder-value',
      *       // Required. The parent project and location containing the ProvisioningConfig.
      *       parent: 'projects/my-project/locations/my-location',
      *
@@ -2813,7 +3952,8 @@ export namespace baremetalsolution_v2 {
      *         //   "state": "my_state",
      *         //   "ticketId": "my_ticketId",
      *         //   "updateTime": "my_updateTime",
-     *         //   "volumes": []
+     *         //   "volumes": [],
+     *         //   "vpcScEnabled": false
      *         // }
      *       },
      *     });
@@ -2831,7 +3971,8 @@ export namespace baremetalsolution_v2 {
      *   //   "state": "my_state",
      *   //   "ticketId": "my_ticketId",
      *   //   "updateTime": "my_updateTime",
-     *   //   "volumes": []
+     *   //   "volumes": [],
+     *   //   "vpcScEnabled": false
      *   // }
      * }
      *
@@ -2976,7 +4117,8 @@ export namespace baremetalsolution_v2 {
      *   //   "state": "my_state",
      *   //   "ticketId": "my_ticketId",
      *   //   "updateTime": "my_updateTime",
-     *   //   "volumes": []
+     *   //   "volumes": [],
+     *   //   "vpcScEnabled": false
      *   // }
      * }
      *
@@ -3101,6 +4243,8 @@ export namespace baremetalsolution_v2 {
      *   // Do the magic
      *   const res =
      *     await baremetalsolution.projects.locations.provisioningConfigs.patch({
+     *       // Optional. Email provided to send a confirmation with provisioning config to.
+     *       email: 'placeholder-value',
      *       // Output only. The name of the provisioning config.
      *       name: 'projects/my-project/locations/my-location/provisioningConfigs/my-provisioningConfig',
      *       // Required. The list of fields to update.
@@ -3120,7 +4264,8 @@ export namespace baremetalsolution_v2 {
      *         //   "state": "my_state",
      *         //   "ticketId": "my_ticketId",
      *         //   "updateTime": "my_updateTime",
-     *         //   "volumes": []
+     *         //   "volumes": [],
+     *         //   "vpcScEnabled": false
      *         // }
      *       },
      *     });
@@ -3138,7 +4283,8 @@ export namespace baremetalsolution_v2 {
      *   //   "state": "my_state",
      *   //   "ticketId": "my_ticketId",
      *   //   "updateTime": "my_updateTime",
-     *   //   "volumes": []
+     *   //   "volumes": [],
+     *   //   "vpcScEnabled": false
      *   // }
      * }
      *
@@ -3389,6 +4535,10 @@ export namespace baremetalsolution_v2 {
   export interface Params$Resource$Projects$Locations$Provisioningconfigs$Create
     extends StandardParameters {
     /**
+     * Optional. Email provided to send a confirmation with provisioning config to.
+     */
+    email?: string;
+    /**
      * Required. The parent project and location containing the ProvisioningConfig.
      */
     parent?: string;
@@ -3407,6 +4557,10 @@ export namespace baremetalsolution_v2 {
   }
   export interface Params$Resource$Projects$Locations$Provisioningconfigs$Patch
     extends StandardParameters {
+    /**
+     * Optional. Email provided to send a confirmation with provisioning config to.
+     */
+    email?: string;
     /**
      * Output only. The name of the provisioning config.
      */
@@ -3603,814 +4757,12 @@ export namespace baremetalsolution_v2 {
     parent?: string;
   }
 
-  export class Resource$Projects$Locations$Snapshotschedulepolicies {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Create a snapshot schedule policy in the specified project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/baremetalsolution.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const baremetalsolution = google.baremetalsolution('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await baremetalsolution.projects.locations.snapshotSchedulePolicies.create({
-     *       // Required. The parent project and location containing the SnapshotSchedulePolicy.
-     *       parent: 'projects/my-project/locations/my-location',
-     *       // Required. Snapshot policy ID
-     *       snapshotSchedulePolicyId: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "description": "my_description",
-     *         //   "id": "my_id",
-     *         //   "labels": {},
-     *         //   "name": "my_name",
-     *         //   "schedules": [],
-     *         //   "state": "my_state"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "description": "my_description",
-     *   //   "id": "my_id",
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "schedules": [],
-     *   //   "state": "my_state"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Projects$Locations$Snapshotschedulepolicies$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Projects$Locations$Snapshotschedulepolicies$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$SnapshotSchedulePolicy>;
-    create(
-      params: Params$Resource$Projects$Locations$Snapshotschedulepolicies$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Snapshotschedulepolicies$Create,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SnapshotSchedulePolicy>,
-      callback: BodyResponseCallback<Schema$SnapshotSchedulePolicy>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Snapshotschedulepolicies$Create,
-      callback: BodyResponseCallback<Schema$SnapshotSchedulePolicy>
-    ): void;
-    create(callback: BodyResponseCallback<Schema$SnapshotSchedulePolicy>): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Snapshotschedulepolicies$Create
-        | BodyResponseCallback<Schema$SnapshotSchedulePolicy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$SnapshotSchedulePolicy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$SnapshotSchedulePolicy>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$SnapshotSchedulePolicy>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Snapshotschedulepolicies$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Snapshotschedulepolicies$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://baremetalsolution.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/{+parent}/snapshotSchedulePolicies').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$SnapshotSchedulePolicy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$SnapshotSchedulePolicy>(parameters);
-      }
-    }
-
-    /**
-     * Delete a named snapshot schedule policy.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/baremetalsolution.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const baremetalsolution = google.baremetalsolution('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await baremetalsolution.projects.locations.snapshotSchedulePolicies.delete({
-     *       // Required. The name of the snapshot schedule policy to delete.
-     *       name: 'projects/my-project/locations/my-location/snapshotSchedulePolicies/my-snapshotSchedulePolicie',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Projects$Locations$Snapshotschedulepolicies$Delete,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    delete(
-      params?: Params$Resource$Projects$Locations$Snapshotschedulepolicies$Delete,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
-    delete(
-      params: Params$Resource$Projects$Locations$Snapshotschedulepolicies$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Snapshotschedulepolicies$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Snapshotschedulepolicies$Delete,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$Empty>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Snapshotschedulepolicies$Delete
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Snapshotschedulepolicies$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Snapshotschedulepolicies$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://baremetalsolution.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Empty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Empty>(parameters);
-      }
-    }
-
-    /**
-     * Get details of a single snapshot schedule policy.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/baremetalsolution.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const baremetalsolution = google.baremetalsolution('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await baremetalsolution.projects.locations.snapshotSchedulePolicies.get({
-     *       // Required. Name of the resource.
-     *       name: 'projects/my-project/locations/my-location/snapshotSchedulePolicies/my-snapshotSchedulePolicie',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "description": "my_description",
-     *   //   "id": "my_id",
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "schedules": [],
-     *   //   "state": "my_state"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Snapshotschedulepolicies$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Projects$Locations$Snapshotschedulepolicies$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$SnapshotSchedulePolicy>;
-    get(
-      params: Params$Resource$Projects$Locations$Snapshotschedulepolicies$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Snapshotschedulepolicies$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SnapshotSchedulePolicy>,
-      callback: BodyResponseCallback<Schema$SnapshotSchedulePolicy>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Snapshotschedulepolicies$Get,
-      callback: BodyResponseCallback<Schema$SnapshotSchedulePolicy>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$SnapshotSchedulePolicy>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Snapshotschedulepolicies$Get
-        | BodyResponseCallback<Schema$SnapshotSchedulePolicy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$SnapshotSchedulePolicy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$SnapshotSchedulePolicy>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$SnapshotSchedulePolicy>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Snapshotschedulepolicies$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Snapshotschedulepolicies$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://baremetalsolution.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$SnapshotSchedulePolicy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$SnapshotSchedulePolicy>(parameters);
-      }
-    }
-
-    /**
-     * List snapshot schedule policies in a given project and location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/baremetalsolution.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const baremetalsolution = google.baremetalsolution('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await baremetalsolution.projects.locations.snapshotSchedulePolicies.list({
-     *       // List filter.
-     *       filter: 'placeholder-value',
-     *       // The maximum number of items to return.
-     *       pageSize: 'placeholder-value',
-     *       // The next_page_token value returned from a previous List request, if any.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The parent project containing the Snapshot Schedule Policies.
-     *       parent: 'projects/my-project/locations/my-location',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "snapshotSchedulePolicies": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Snapshotschedulepolicies$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Projects$Locations$Snapshotschedulepolicies$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSnapshotSchedulePoliciesResponse>;
-    list(
-      params: Params$Resource$Projects$Locations$Snapshotschedulepolicies$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Snapshotschedulepolicies$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSnapshotSchedulePoliciesResponse>,
-      callback: BodyResponseCallback<Schema$ListSnapshotSchedulePoliciesResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Snapshotschedulepolicies$List,
-      callback: BodyResponseCallback<Schema$ListSnapshotSchedulePoliciesResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$ListSnapshotSchedulePoliciesResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Snapshotschedulepolicies$List
-        | BodyResponseCallback<Schema$ListSnapshotSchedulePoliciesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListSnapshotSchedulePoliciesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListSnapshotSchedulePoliciesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListSnapshotSchedulePoliciesResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Snapshotschedulepolicies$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Snapshotschedulepolicies$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://baremetalsolution.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/{+parent}/snapshotSchedulePolicies').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListSnapshotSchedulePoliciesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ListSnapshotSchedulePoliciesResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Update a snapshot schedule policy in the specified project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/baremetalsolution.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const baremetalsolution = google.baremetalsolution('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await baremetalsolution.projects.locations.snapshotSchedulePolicies.patch({
-     *       // Output only. The name of the snapshot schedule policy.
-     *       name: 'projects/my-project/locations/my-location/snapshotSchedulePolicies/my-snapshotSchedulePolicie',
-     *       // Required. The list of fields to update.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "description": "my_description",
-     *         //   "id": "my_id",
-     *         //   "labels": {},
-     *         //   "name": "my_name",
-     *         //   "schedules": [],
-     *         //   "state": "my_state"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "description": "my_description",
-     *   //   "id": "my_id",
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "schedules": [],
-     *   //   "state": "my_state"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Projects$Locations$Snapshotschedulepolicies$Patch,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    patch(
-      params?: Params$Resource$Projects$Locations$Snapshotschedulepolicies$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$SnapshotSchedulePolicy>;
-    patch(
-      params: Params$Resource$Projects$Locations$Snapshotschedulepolicies$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Snapshotschedulepolicies$Patch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SnapshotSchedulePolicy>,
-      callback: BodyResponseCallback<Schema$SnapshotSchedulePolicy>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Snapshotschedulepolicies$Patch,
-      callback: BodyResponseCallback<Schema$SnapshotSchedulePolicy>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$SnapshotSchedulePolicy>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Snapshotschedulepolicies$Patch
-        | BodyResponseCallback<Schema$SnapshotSchedulePolicy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$SnapshotSchedulePolicy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$SnapshotSchedulePolicy>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$SnapshotSchedulePolicy>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Snapshotschedulepolicies$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Snapshotschedulepolicies$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://baremetalsolution.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$SnapshotSchedulePolicy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$SnapshotSchedulePolicy>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Snapshotschedulepolicies$Create
-    extends StandardParameters {
-    /**
-     * Required. The parent project and location containing the SnapshotSchedulePolicy.
-     */
-    parent?: string;
-    /**
-     * Required. Snapshot policy ID
-     */
-    snapshotSchedulePolicyId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SnapshotSchedulePolicy;
-  }
-  export interface Params$Resource$Projects$Locations$Snapshotschedulepolicies$Delete
-    extends StandardParameters {
-    /**
-     * Required. The name of the snapshot schedule policy to delete.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Snapshotschedulepolicies$Get
-    extends StandardParameters {
-    /**
-     * Required. Name of the resource.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Snapshotschedulepolicies$List
-    extends StandardParameters {
-    /**
-     * List filter.
-     */
-    filter?: string;
-    /**
-     * The maximum number of items to return.
-     */
-    pageSize?: number;
-    /**
-     * The next_page_token value returned from a previous List request, if any.
-     */
-    pageToken?: string;
-    /**
-     * Required. The parent project containing the Snapshot Schedule Policies.
-     */
-    parent?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Snapshotschedulepolicies$Patch
-    extends StandardParameters {
-    /**
-     * Output only. The name of the snapshot schedule policy.
-     */
-    name?: string;
-    /**
-     * Required. The list of fields to update.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SnapshotSchedulePolicy;
-  }
-
   export class Resource$Projects$Locations$Volumes {
     context: APIRequestContext;
     luns: Resource$Projects$Locations$Volumes$Luns;
-    snapshots: Resource$Projects$Locations$Volumes$Snapshots;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.luns = new Resource$Projects$Locations$Volumes$Luns(this.context);
-      this.snapshots = new Resource$Projects$Locations$Volumes$Snapshots(
-        this.context
-      );
     }
 
     /**
@@ -4449,9 +4801,13 @@ export namespace baremetalsolution_v2 {
      *   // {
      *   //   "autoGrownSizeGib": "my_autoGrownSizeGib",
      *   //   "currentSizeGib": "my_currentSizeGib",
+     *   //   "emergencySizeGib": "my_emergencySizeGib",
      *   //   "id": "my_id",
      *   //   "labels": {},
+     *   //   "maxSizeGib": "my_maxSizeGib",
      *   //   "name": "my_name",
+     *   //   "originallyRequestedSizeGib": "my_originallyRequestedSizeGib",
+     *   //   "pod": "my_pod",
      *   //   "remainingSpaceGib": "my_remainingSpaceGib",
      *   //   "requestedSizeGib": "my_requestedSizeGib",
      *   //   "snapshotAutoDeleteBehavior": "my_snapshotAutoDeleteBehavior",
@@ -4722,7 +5078,7 @@ export namespace baremetalsolution_v2 {
      *   const res = await baremetalsolution.projects.locations.volumes.patch({
      *     // Output only. The resource name of this `Volume`. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. Format: `projects/{project\}/locations/{location\}/volumes/{volume\}`
      *     name: 'projects/my-project/locations/my-location/volumes/my-volume',
-     *     // The list of fields to update. The only currently supported fields are: `snapshot_auto_delete_behavior` `snapshot_schedule_policy_name` 'labels' 'requested_size_gib' 'snapshot_enabled' 'snapshot_reservation_detail.reserved_space_percent'
+     *     // The list of fields to update. The only currently supported fields are: `snapshot_auto_delete_behavior` `snapshot_schedule_policy_name` 'labels' 'snapshot_enabled' 'snapshot_reservation_detail.reserved_space_percent'
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4731,9 +5087,13 @@ export namespace baremetalsolution_v2 {
      *       // {
      *       //   "autoGrownSizeGib": "my_autoGrownSizeGib",
      *       //   "currentSizeGib": "my_currentSizeGib",
+     *       //   "emergencySizeGib": "my_emergencySizeGib",
      *       //   "id": "my_id",
      *       //   "labels": {},
+     *       //   "maxSizeGib": "my_maxSizeGib",
      *       //   "name": "my_name",
+     *       //   "originallyRequestedSizeGib": "my_originallyRequestedSizeGib",
+     *       //   "pod": "my_pod",
      *       //   "remainingSpaceGib": "my_remainingSpaceGib",
      *       //   "requestedSizeGib": "my_requestedSizeGib",
      *       //   "snapshotAutoDeleteBehavior": "my_snapshotAutoDeleteBehavior",
@@ -4845,6 +5205,148 @@ export namespace baremetalsolution_v2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Emergency Volume resize.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/baremetalsolution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const baremetalsolution = google.baremetalsolution('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await baremetalsolution.projects.locations.volumes.resize({
+     *     // Required. Volume to resize.
+     *     volume: 'projects/my-project/locations/my-location/volumes/my-volume',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "sizeGib": "my_sizeGib"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    resize(
+      params: Params$Resource$Projects$Locations$Volumes$Resize,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resize(
+      params?: Params$Resource$Projects$Locations$Volumes$Resize,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    resize(
+      params: Params$Resource$Projects$Locations$Volumes$Resize,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    resize(
+      params: Params$Resource$Projects$Locations$Volumes$Resize,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    resize(
+      params: Params$Resource$Projects$Locations$Volumes$Resize,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    resize(callback: BodyResponseCallback<Schema$Operation>): void;
+    resize(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Volumes$Resize
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Volumes$Resize;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Volumes$Resize;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://baremetalsolution.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+volume}:resize').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['volume'],
+        pathParams: ['volume'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Volumes$Get
@@ -4880,7 +5382,7 @@ export namespace baremetalsolution_v2 {
      */
     name?: string;
     /**
-     * The list of fields to update. The only currently supported fields are: `snapshot_auto_delete_behavior` `snapshot_schedule_policy_name` 'labels' 'requested_size_gib' 'snapshot_enabled' 'snapshot_reservation_detail.reserved_space_percent'
+     * The list of fields to update. The only currently supported fields are: `snapshot_auto_delete_behavior` `snapshot_schedule_policy_name` 'labels' 'snapshot_enabled' 'snapshot_reservation_detail.reserved_space_percent'
      */
     updateMask?: string;
 
@@ -4888,6 +5390,18 @@ export namespace baremetalsolution_v2 {
      * Request body metadata
      */
     requestBody?: Schema$Volume;
+  }
+  export interface Params$Resource$Projects$Locations$Volumes$Resize
+    extends StandardParameters {
+    /**
+     * Required. Volume to resize.
+     */
+    volume?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ResizeVolumeRequest;
   }
 
   export class Resource$Projects$Locations$Volumes$Luns {
@@ -5187,767 +5701,5 @@ export namespace baremetalsolution_v2 {
      * Required. Parent value for ListLunsRequest.
      */
     parent?: string;
-  }
-
-  export class Resource$Projects$Locations$Volumes$Snapshots {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Create a storage volume snapshot in a containing volume.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/baremetalsolution.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const baremetalsolution = google.baremetalsolution('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await baremetalsolution.projects.locations.volumes.snapshots.create({
-     *       // Required. The volume to snapshot.
-     *       parent: 'projects/my-project/locations/my-location/volumes/my-volume',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "createTime": "my_createTime",
-     *         //   "description": "my_description",
-     *         //   "id": "my_id",
-     *         //   "name": "my_name",
-     *         //   "sizeBytes": "my_sizeBytes",
-     *         //   "storageVolume": "my_storageVolume"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "id": "my_id",
-     *   //   "name": "my_name",
-     *   //   "sizeBytes": "my_sizeBytes",
-     *   //   "storageVolume": "my_storageVolume"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Projects$Locations$Volumes$Snapshots$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Projects$Locations$Volumes$Snapshots$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$VolumeSnapshot>;
-    create(
-      params: Params$Resource$Projects$Locations$Volumes$Snapshots$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Volumes$Snapshots$Create,
-      options: MethodOptions | BodyResponseCallback<Schema$VolumeSnapshot>,
-      callback: BodyResponseCallback<Schema$VolumeSnapshot>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Volumes$Snapshots$Create,
-      callback: BodyResponseCallback<Schema$VolumeSnapshot>
-    ): void;
-    create(callback: BodyResponseCallback<Schema$VolumeSnapshot>): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Volumes$Snapshots$Create
-        | BodyResponseCallback<Schema$VolumeSnapshot>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$VolumeSnapshot>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$VolumeSnapshot>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$VolumeSnapshot> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Volumes$Snapshots$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Volumes$Snapshots$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://baremetalsolution.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/{+parent}/snapshots').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$VolumeSnapshot>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$VolumeSnapshot>(parameters);
-      }
-    }
-
-    /**
-     * Deletes a storage volume snapshot for a given volume.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/baremetalsolution.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const baremetalsolution = google.baremetalsolution('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await baremetalsolution.projects.locations.volumes.snapshots.delete({
-     *       // Required. The name of the snapshot to delete.
-     *       name: 'projects/my-project/locations/my-location/volumes/my-volume/snapshots/my-snapshot',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Projects$Locations$Volumes$Snapshots$Delete,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    delete(
-      params?: Params$Resource$Projects$Locations$Volumes$Snapshots$Delete,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
-    delete(
-      params: Params$Resource$Projects$Locations$Volumes$Snapshots$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Volumes$Snapshots$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Volumes$Snapshots$Delete,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$Empty>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Volumes$Snapshots$Delete
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Volumes$Snapshots$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Volumes$Snapshots$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://baremetalsolution.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Empty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Empty>(parameters);
-      }
-    }
-
-    /**
-     * Get details of a single storage volume snapshot.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/baremetalsolution.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const baremetalsolution = google.baremetalsolution('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await baremetalsolution.projects.locations.volumes.snapshots.get({
-     *     // Required. Name of the resource.
-     *     name: 'projects/my-project/locations/my-location/volumes/my-volume/snapshots/my-snapshot',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "id": "my_id",
-     *   //   "name": "my_name",
-     *   //   "sizeBytes": "my_sizeBytes",
-     *   //   "storageVolume": "my_storageVolume"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Volumes$Snapshots$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Projects$Locations$Volumes$Snapshots$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$VolumeSnapshot>;
-    get(
-      params: Params$Resource$Projects$Locations$Volumes$Snapshots$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Volumes$Snapshots$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$VolumeSnapshot>,
-      callback: BodyResponseCallback<Schema$VolumeSnapshot>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Volumes$Snapshots$Get,
-      callback: BodyResponseCallback<Schema$VolumeSnapshot>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$VolumeSnapshot>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Volumes$Snapshots$Get
-        | BodyResponseCallback<Schema$VolumeSnapshot>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$VolumeSnapshot>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$VolumeSnapshot>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$VolumeSnapshot> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Volumes$Snapshots$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Volumes$Snapshots$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://baremetalsolution.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$VolumeSnapshot>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$VolumeSnapshot>(parameters);
-      }
-    }
-
-    /**
-     * List storage volume snapshots for given storage volume.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/baremetalsolution.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const baremetalsolution = google.baremetalsolution('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await baremetalsolution.projects.locations.volumes.snapshots.list(
-     *     {
-     *       // Requested page size. The server might return fewer items than requested. If unspecified, server will pick an appropriate default.
-     *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results from the server.
-     *       pageToken: 'placeholder-value',
-     *       // Required. Parent value for ListVolumesRequest.
-     *       parent: 'projects/my-project/locations/my-location/volumes/my-volume',
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "unreachable": [],
-     *   //   "volumeSnapshots": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Volumes$Snapshots$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Projects$Locations$Volumes$Snapshots$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListVolumeSnapshotsResponse>;
-    list(
-      params: Params$Resource$Projects$Locations$Volumes$Snapshots$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Volumes$Snapshots$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListVolumeSnapshotsResponse>,
-      callback: BodyResponseCallback<Schema$ListVolumeSnapshotsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Volumes$Snapshots$List,
-      callback: BodyResponseCallback<Schema$ListVolumeSnapshotsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$ListVolumeSnapshotsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Volumes$Snapshots$List
-        | BodyResponseCallback<Schema$ListVolumeSnapshotsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListVolumeSnapshotsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListVolumeSnapshotsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListVolumeSnapshotsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Volumes$Snapshots$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Volumes$Snapshots$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://baremetalsolution.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/{+parent}/snapshots').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListVolumeSnapshotsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ListVolumeSnapshotsResponse>(parameters);
-      }
-    }
-
-    /**
-     * Restore a storage volume snapshot to its containing volume.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/baremetalsolution.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const baremetalsolution = google.baremetalsolution('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await baremetalsolution.projects.locations.volumes.snapshots.restoreVolumeSnapshot(
-     *       {
-     *         // Required. Name of the resource.
-     *         volumeSnapshot:
-     *           'projects/my-project/locations/my-location/volumes/my-volume/snapshots/my-snapshot',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {}
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    restoreVolumeSnapshot(
-      params: Params$Resource$Projects$Locations$Volumes$Snapshots$Restorevolumesnapshot,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    restoreVolumeSnapshot(
-      params?: Params$Resource$Projects$Locations$Volumes$Snapshots$Restorevolumesnapshot,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    restoreVolumeSnapshot(
-      params: Params$Resource$Projects$Locations$Volumes$Snapshots$Restorevolumesnapshot,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    restoreVolumeSnapshot(
-      params: Params$Resource$Projects$Locations$Volumes$Snapshots$Restorevolumesnapshot,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    restoreVolumeSnapshot(
-      params: Params$Resource$Projects$Locations$Volumes$Snapshots$Restorevolumesnapshot,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    restoreVolumeSnapshot(
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    restoreVolumeSnapshot(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Volumes$Snapshots$Restorevolumesnapshot
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Volumes$Snapshots$Restorevolumesnapshot;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Volumes$Snapshots$Restorevolumesnapshot;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://baremetalsolution.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v2/{+volumeSnapshot}:restoreVolumeSnapshot'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['volumeSnapshot'],
-        pathParams: ['volumeSnapshot'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Volumes$Snapshots$Create
-    extends StandardParameters {
-    /**
-     * Required. The volume to snapshot.
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$VolumeSnapshot;
-  }
-  export interface Params$Resource$Projects$Locations$Volumes$Snapshots$Delete
-    extends StandardParameters {
-    /**
-     * Required. The name of the snapshot to delete.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Volumes$Snapshots$Get
-    extends StandardParameters {
-    /**
-     * Required. Name of the resource.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Volumes$Snapshots$List
-    extends StandardParameters {
-    /**
-     * Requested page size. The server might return fewer items than requested. If unspecified, server will pick an appropriate default.
-     */
-    pageSize?: number;
-    /**
-     * A token identifying a page of results from the server.
-     */
-    pageToken?: string;
-    /**
-     * Required. Parent value for ListVolumesRequest.
-     */
-    parent?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Volumes$Snapshots$Restorevolumesnapshot
-    extends StandardParameters {
-    /**
-     * Required. Name of the resource.
-     */
-    volumeSnapshot?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$RestoreVolumeSnapshotRequest;
   }
 }

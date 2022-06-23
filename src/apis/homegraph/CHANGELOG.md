@@ -1,5 +1,19 @@
 # Changelog
 
+## [3.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/homegraph-v3.0.1...homegraph-v3.0.2) (2022-06-21)
+
+
+### Bug Fixes
+
+* **homegraph:** update the API ([44e6356](https://github.com/googleapis/google-api-nodejs-client/commit/44e635613163b33b0bc30f73ad5582a9632bbec1))
+
+### [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/homegraph-v3.0.0...homegraph-v3.0.1) (2022-04-01)
+
+
+### Bug Fixes
+
+* **homegraph:** update the API ([92801a6](https://github.com/googleapis/google-api-nodejs-client/commit/92801a65bfb824048bf730ab07193633e7283800))
+
 ## [3.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/homegraph-v2.0.0...homegraph-v3.0.0) (2021-09-14)
 
 

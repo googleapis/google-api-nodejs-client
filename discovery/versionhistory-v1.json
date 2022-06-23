@@ -271,7 +271,7 @@
       }
     }
   },
-  "revision": "20211101",
+  "revision": "20220321",
   "rootUrl": "https://versionhistory.googleapis.com/",
   "schemas": {
     "Channel": {
@@ -451,6 +451,11 @@
           "description": "Rollout fraction. This fraction indicates the fraction of people that should receive this version in this release. If the fraction is not specified in ReleaseManager, the API will assume fraction is 1.",
           "format": "double",
           "type": "number"
+        },
+        "fractionGroup": {
+          "description": "Rollout fraction group. Only fractions with the same fraction_group are statistically comparable: there may be non-fractional differences between different fraction groups.",
+          "format": "int64",
+          "type": "string"
         },
         "name": {
           "description": "Release name. Format is \"{product}/platforms/{platform}/channels/{channel}/versions/{version}/releases/{release}\"",

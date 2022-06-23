@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -272,7 +271,7 @@ export namespace run_v1alpha1 {
     protocol?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -347,6 +346,19 @@ export namespace run_v1alpha1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Not supported by Cloud Run GRPCAction describes an action involving a GRPC port.
+   */
+  export interface Schema$GRPCAction {
+    /**
+     * Port number of the gRPC service. Number must be in the range 1 to 65535.
+     */
+    port?: number | null;
+    /**
+     * Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC.
+     */
+    service?: string | null;
   }
   /**
    * Not supported by Cloud Run HTTPGetAction describes an action based on HTTP Get requests.
@@ -773,15 +785,19 @@ export namespace run_v1alpha1 {
      */
     failureThreshold?: number | null;
     /**
+     * (Optional) GRPCAction specifies an action involving a GRPC port. A field inlined from the Handler message.
+     */
+    grpc?: Schema$GRPCAction;
+    /**
      * (Optional) HTTPGet specifies the http request to perform. A field inlined from the Handler message.
      */
     httpGet?: Schema$HTTPGetAction;
     /**
-     * (Optional) Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     * (Optional) Number of seconds after the container has started before liveness probes are initiated. Defaults to 0 seconds. Minimum value is 0. Max value for liveness probe is 3600. Max value for startup probe is 240. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
      */
     initialDelaySeconds?: number | null;
     /**
-     * (Optional) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1. Maximum value is 3600. Must be greater or equal than timeout_seconds.
+     * (Optional) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1. Max value for liveness probe is 3600. Max value for startup probe is 240. Must be greater or equal than timeout_seconds.
      */
     periodSeconds?: number | null;
     /**

@@ -352,7 +352,7 @@
       }
     }
   },
-  "revision": "20211211",
+  "revision": "20220526",
   "rootUrl": "https://civicinfo.googleapis.com/",
   "schemas": {
     "AdministrationRegion": {
@@ -750,6 +750,19 @@
         "ocdDivisionId": {
           "description": "The political division of the election. Represented as an OCD Division ID. Voters within these political jurisdictions are covered by this election. This is typically a state such as ocd-division/country:us/state:ca or for the midterms or general election the entire US (i.e. ocd-division/country:us).",
           "type": "string"
+        },
+        "shapeLookupBehavior": {
+          "enum": [
+            "shapeLookupDefault",
+            "shapeLookupDisabled",
+            "shapeLookupEnabled"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -946,7 +959,7 @@
             "typeTransitDeparture",
             "typeTransitLeg",
             "typeTransitLine",
-            "typeTransitAgency",
+            "typeTransitAgencyDeprecatedValue",
             "typeTransitTransfer",
             "typeSegmentPath",
             "typeRoadSign",
@@ -1202,6 +1215,8 @@
             "typePhoneNumberAreaCode",
             "typeBusinessCorridor",
             "typeAddressTemplate",
+            "typeTransitAgency",
+            "typeFutureGeometry",
             "typeEvent",
             "typeEarthquake",
             "typeHurricane",
@@ -1315,7 +1330,7 @@
             "DEPRECATED",
             "DEPRECATED",
             "A transit line is a collection of transit legs, associated with some invariant properties of the trips that run over the legs. See also transitline.proto",
-            "A transit agency operates a number of lines, typically all in the same city, region or country. See also transitagency.proto",
+            "TYPE_TRANSIT_AGENCY was moved to 0xC91. This deprecated enum value still exists for debugging purposes only.",
             "DEPRECATED",
             "ABSTRACT",
             "Road sign features have names, point geometry, etc. They also have segment_path data (see below) which lists the segments that refer to the sign. See segment.proto for the reference from the segment to the road sign.",
@@ -1370,7 +1385,7 @@
             "Eventually we'll have more data for disputed areas (e.g., who makes claims on the area, who has de facto control, etc.). For the moment, we just define a type so we can simply mark areas as disputed.",
             "Boundaries representing the jurisdiction of a particular police station.",
             "An area used for aggregating statistical data, eg, a census region. Note that TYPE_STATISTICAL_AREA has a third nibble so we can add an abstract parent above it later if need be at 0x2E1 (and rename TYPE_STATISTICAL_AREA as TYPE_STATISTICAL_AREA1).",
-            "RESERVED",
+            "DEPRECATED",
             "DEPRECATED",
             "DEPRECATED",
             "DEPRECATED",
@@ -1571,6 +1586,8 @@
             "A phone number area code is a prefix which also coincides with the area code, or national destination code, of a particular region.",
             "A Business Corridor is a dense cluster of semantically similar establishments. TYPE_BUSINESS_CORRIDOR features are distinguished from TYPE_COLLOQUIAL_AREA features because the corridors are not under the political hierarchy, are allowed to be nameless, and may not correspond to well-known real world locations. For more details, see go/geo-corridors-schema.",
             "An address template feature provides region-specific conventions for structuring addresses. These features aren't necessarily defined by physical geographic features, so they are classified as meta-features.",
+            "A transit agency operates a number of lines, typically all in the same city, region or country. See also transitagency.proto",
+            "A feature whose geometry is planned to replace the geometry on another feature.",
             "DEPRECATED",
             "DEPRECATED",
             "DEPRECATED",
@@ -1607,8 +1624,8 @@
             "ABSTRACT This type is being replaced by TYPE_COMPOUND_GROUNDS. For further details, see go/compounds-v2",
             "DEPRECATED This type has been replaced by TYPE_COMPOUND_BUILDING. For further details, see go/oyster-compounds",
             "DEPRECATED",
-            "Establishment POIs can be referenced by TYPE_COMPOUND features using the RELATION_PRIMARILY_OCCUPIED_BY. This is the reciprocal relation of the RELATION_OCCUPIES.",
-            "Represents service-only establishments (those without a storefront location). NOTE(tcain): Using value 0xD441, since we could find ourselves with a need to differentiate service areas from online-only at this level in the future, but still benefit from being able to group those under a common parent, disjoint from TYPE_ESTABLISHMENT_POI.",
+            "An establishment which has a address (a.k.a. location or storefront). Note that it *may* also have a service area (e.g. a restaurant that offers both dine-in and delivery). This type of business is also known as a \"hybrid\" Service Area Business. Establishment POIs can be referenced by TYPE_COMPOUND features using the RELATION_PRIMARILY_OCCUPIED_BY. This is the reciprocal relation of the RELATION_OCCUPIES.",
+            "A business without a storefront, e.g. a plumber. It would normally not have a place that a customer could visit to receive service, but it would have an area served by the business. Also known as a \"pure\" Service Area Business. NOTE(tcain): Using value 0xD441, since we could find ourselves with a need to differentiate service areas from online-only at this level in the future, but still benefit from being able to group those under a common parent, disjoint from TYPE_ESTABLISHMENT_POI.",
             "The root of types of features that are in the sky, rather than on the earth. There will eventually be a hierarchy of types here.",
             "Features responsible for monitoring traffic on roads (usually for speed). Includes cameras at particular points as well as monitors that cover larger spans. Features of this type should have a corresponding gcid that specifies the correct subtype (e.g. gcid:road_camera or gcid:speed_camera_zone). This type was originally named as TYPE_ROAD_CAMERA.",
             "ABSTRACT",
@@ -1877,6 +1894,87 @@
       },
       "type": "object"
     },
+    "Precinct": {
+      "id": "Precinct",
+      "properties": {
+        "administrationRegionId": {
+          "description": "ID of the AdministrationRegion message for this precinct. Corresponds to LocalityId xml tag.",
+          "type": "string"
+        },
+        "contestId": {
+          "description": "ID(s) of the Contest message(s) for this precinct.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "datasetId": {
+          "description": "Required. Dataset ID. What datasets our Precincts come from.",
+          "format": "int64",
+          "type": "string"
+        },
+        "earlyVoteSiteId": {
+          "description": "ID(s) of the PollingLocation message(s) for this precinct.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "electoralDistrictId": {
+          "description": "ID(s) of the ElectoralDistrict message(s) for this precinct.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "Required. A unique identifier for this precinct.",
+          "type": "string"
+        },
+        "mailOnly": {
+          "description": "Specifies if the precinct runs mail-only elections.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Required. The name of the precinct.",
+          "type": "string"
+        },
+        "number": {
+          "description": "The number of the precinct.",
+          "type": "string"
+        },
+        "ocdId": {
+          "description": "Encouraged. The OCD ID of the precinct",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "pollingLocationId": {
+          "description": "ID(s) of the PollingLocation message(s) for this precinct.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "spatialBoundaryId": {
+          "description": "ID(s) of the SpatialBoundary message(s) for this precinct. Used to specify a geometrical boundary of the precinct.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "splitName": {
+          "description": "If present, this proto corresponds to one portion of split precinct. Other portions of this precinct are guaranteed to have the same `name`. If not present, this proto represents a full precicnt.",
+          "type": "string"
+        },
+        "ward": {
+          "description": "Specifies the ward the precinct is contained within.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RepresentativeInfoData": {
       "id": "RepresentativeInfoData",
       "properties": {
@@ -2049,6 +2147,13 @@
         },
         "precinctId": {
           "type": "string"
+        },
+        "precincts": {
+          "description": "The precincts that match this voter's address. Will only be returned for project IDs which have been whitelisted as \"partner projects\".",
+          "items": {
+            "$ref": "Precinct"
+          },
+          "type": "array"
         },
         "state": {
           "description": "Local Election Information for the state that the voter votes in. For the US, there will only be one element in this array.",

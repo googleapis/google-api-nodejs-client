@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -417,6 +416,7 @@ export namespace civicinfo_v2 {
      * The political division of the election. Represented as an OCD Division ID. Voters within these political jurisdictions are covered by this election. This is typically a state such as ocd-division/country:us/state:ca or for the midterms or general election the entire US (i.e. ocd-division/country:us).
      */
     ocdDivisionId?: string | null;
+    shapeLookupBehavior?: string | null;
   }
   /**
    * Information about individual election officials.
@@ -651,6 +651,64 @@ export namespace civicinfo_v2 {
      */
     voterServices?: string | null;
   }
+  export interface Schema$Precinct {
+    /**
+     * ID of the AdministrationRegion message for this precinct. Corresponds to LocalityId xml tag.
+     */
+    administrationRegionId?: string | null;
+    /**
+     * ID(s) of the Contest message(s) for this precinct.
+     */
+    contestId?: string[] | null;
+    /**
+     * Required. Dataset ID. What datasets our Precincts come from.
+     */
+    datasetId?: string | null;
+    /**
+     * ID(s) of the PollingLocation message(s) for this precinct.
+     */
+    earlyVoteSiteId?: string[] | null;
+    /**
+     * ID(s) of the ElectoralDistrict message(s) for this precinct.
+     */
+    electoralDistrictId?: string[] | null;
+    /**
+     * Required. A unique identifier for this precinct.
+     */
+    id?: string | null;
+    /**
+     * Specifies if the precinct runs mail-only elections.
+     */
+    mailOnly?: boolean | null;
+    /**
+     * Required. The name of the precinct.
+     */
+    name?: string | null;
+    /**
+     * The number of the precinct.
+     */
+    number?: string | null;
+    /**
+     * Encouraged. The OCD ID of the precinct
+     */
+    ocdId?: string[] | null;
+    /**
+     * ID(s) of the PollingLocation message(s) for this precinct.
+     */
+    pollingLocationId?: string[] | null;
+    /**
+     * ID(s) of the SpatialBoundary message(s) for this precinct. Used to specify a geometrical boundary of the precinct.
+     */
+    spatialBoundaryId?: string[] | null;
+    /**
+     * If present, this proto corresponds to one portion of split precinct. Other portions of this precinct are guaranteed to have the same `name`. If not present, this proto represents a full precicnt.
+     */
+    splitName?: string | null;
+    /**
+     * Specifies the ward the precinct is contained within.
+     */
+    ward?: string | null;
+  }
   export interface Schema$RepresentativeInfoData {
     /**
      * A map of political geographic divisions that contain the requested address, keyed by the unique Open Civic Data identifier for this division.
@@ -777,6 +835,10 @@ export namespace civicinfo_v2 {
      */
     pollingLocations?: Schema$PollingLocation[];
     precinctId?: string | null;
+    /**
+     * The precincts that match this voter's address. Will only be returned for project IDs which have been whitelisted as "partner projects".
+     */
+    precincts?: Schema$Precinct[];
     /**
      * Local Election Information for the state that the voter votes in. For the US, there will only be one element in this array.
      */
@@ -1121,6 +1183,7 @@ export namespace civicinfo_v2 {
      *   //   "otherElections": [],
      *   //   "pollingLocations": [],
      *   //   "precinctId": "my_precinctId",
+     *   //   "precincts": [],
      *   //   "state": []
      *   // }
      * }

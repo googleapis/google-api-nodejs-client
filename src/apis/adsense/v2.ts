@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -150,6 +149,10 @@ export namespace adsense_v2 {
      */
     premium?: boolean | null;
     /**
+     * Output only. State of the account.
+     */
+    state?: string | null;
+    /**
      * The account time zone, as used by reporting. For more information, see [changing the time zone of your reports](https://support.google.com/adsense/answer/9830725).
      */
     timeZone?: Schema$TimeZone;
@@ -163,13 +166,17 @@ export namespace adsense_v2 {
      */
     name?: string | null;
     /**
-     * Output only. Product code of the ad client. For example, "AFC" for AdSense for Content.
+     * Output only. Reporting product code of the ad client. For example, "AFC" for AdSense for Content. Corresponds to the `PRODUCT_CODE` dimension, and present only if the ad client supports reporting.
      */
     productCode?: string | null;
     /**
      * Output only. Unique ID of the ad client as used in the `AD_CLIENT_ID` reporting dimension. Present only if the ad client supports reporting.
      */
     reportingDimensionId?: string | null;
+    /**
+     * Output only. State of the ad client.
+     */
+    state?: string | null;
   }
   /**
    * Representation of the AdSense code for a given ad client. For more information, see [About the AdSense code](https://support.google.com/adsense/answer/9274634).
@@ -193,11 +200,11 @@ export namespace adsense_v2 {
    */
   export interface Schema$AdUnit {
     /**
-     * Settings specific to content ads (AFC).
+     * Required. Settings specific to content ads (AFC).
      */
     contentAdsSettings?: Schema$ContentAdsSettings;
     /**
-     * Display name of the ad unit, as provided when the ad unit was created.
+     * Required. Display name of the ad unit, as provided when the ad unit was created.
      */
     displayName?: string | null;
     /**
@@ -257,11 +264,11 @@ export namespace adsense_v2 {
    */
   export interface Schema$ContentAdsSettings {
     /**
-     * Size of the ad unit. e.g. "728x90", "1x3" (for responsive ad units).
+     * Required. Size of the ad unit. e.g. "728x90", "1x3" (for responsive ad units).
      */
     size?: string | null;
     /**
-     * Type of the ad unit.
+     * Required. Type of the ad unit.
      */
     type?: string | null;
   }
@@ -270,7 +277,7 @@ export namespace adsense_v2 {
    */
   export interface Schema$CustomChannel {
     /**
-     * Display name of the custom channel.
+     * Required. Display name of the custom channel.
      */
     displayName?: string | null;
     /**
@@ -671,6 +678,7 @@ export namespace adsense_v2 {
      *   //   "name": "my_name",
      *   //   "pendingTasks": [],
      *   //   "premium": false,
+     *   //   "state": "my_state",
      *   //   "timeZone": {}
      *   // }
      * }
@@ -1092,6 +1100,138 @@ export namespace adsense_v2 {
     }
 
     /**
+     * Gets the ad client from the given resource name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.get({
+     *     // Required. The name of the ad client to retrieve. Format: accounts/{account\}/adclients/{adclient\}
+     *     name: 'accounts/my-account/adclients/my-adclient',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "productCode": "my_productCode",
+     *   //   "reportingDimensionId": "my_reportingDimensionId",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Accounts$Adclients$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Accounts$Adclients$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdClient>;
+    get(
+      params: Params$Resource$Accounts$Adclients$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Adclients$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AdClient>,
+      callback: BodyResponseCallback<Schema$AdClient>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Adclients$Get,
+      callback: BodyResponseCallback<Schema$AdClient>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AdClient>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Adclients$Get
+        | BodyResponseCallback<Schema$AdClient>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdClient>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdClient>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdClient> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Adclients$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Adclients$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://adsense.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AdClient>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AdClient>(parameters);
+      }
+    }
+
+    /**
      * Gets the AdSense code for a given ad client. This returns what was previously known as the 'auto ad code'. This is only supported for ad clients with a product_code of AFC. For more information, see [About the AdSense code](https://support.google.com/adsense/answer/9274634).
      * @example
      * ```js
@@ -1365,6 +1505,13 @@ export namespace adsense_v2 {
     }
   }
 
+  export interface Params$Resource$Accounts$Adclients$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the ad client to retrieve. Format: accounts/{account\}/adclients/{adclient\}
+     */
+    name?: string;
+  }
   export interface Params$Resource$Accounts$Adclients$Getadcode
     extends StandardParameters {
     /**
@@ -2466,6 +2613,137 @@ export namespace adsense_v2 {
     }
 
     /**
+     * Gets information about the selected url channel.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.urlchannels.get({
+     *     // Required. The name of the url channel to retrieve. Format: accounts/{account\}/adclients/{adclient\}/urlchannels/{urlchannel\}
+     *     name: 'accounts/my-account/adclients/my-adclient/urlchannels/my-urlchannel',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "reportingDimensionId": "my_reportingDimensionId",
+     *   //   "uriPattern": "my_uriPattern"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Accounts$Adclients$Urlchannels$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Accounts$Adclients$Urlchannels$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UrlChannel>;
+    get(
+      params: Params$Resource$Accounts$Adclients$Urlchannels$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Adclients$Urlchannels$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$UrlChannel>,
+      callback: BodyResponseCallback<Schema$UrlChannel>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Adclients$Urlchannels$Get,
+      callback: BodyResponseCallback<Schema$UrlChannel>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$UrlChannel>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Adclients$Urlchannels$Get
+        | BodyResponseCallback<Schema$UrlChannel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UrlChannel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UrlChannel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$UrlChannel> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Adclients$Urlchannels$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Adclients$Urlchannels$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://adsense.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UrlChannel>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UrlChannel>(parameters);
+      }
+    }
+
+    /**
      * Lists active url channels.
      * @example
      * ```js
@@ -2608,6 +2886,13 @@ export namespace adsense_v2 {
     }
   }
 
+  export interface Params$Resource$Accounts$Adclients$Urlchannels$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the url channel to retrieve. Format: accounts/{account\}/adclients/{adclient\}/urlchannels/{urlchannel\}
+     */
+    name?: string;
+  }
   export interface Params$Resource$Accounts$Adclients$Urlchannels$List
     extends StandardParameters {
     /**
@@ -3272,6 +3557,136 @@ export namespace adsense_v2 {
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
     }
+
+    /**
+     * Gets the saved report from the given resource name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.reports.getSaved({
+     *     // Required. The name of the saved report to retrieve. Format: accounts/{account\}/reports/{report\}
+     *     name: 'accounts/my-account/reports/my-report',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getSaved(
+      params: Params$Resource$Accounts$Reports$Getsaved,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getSaved(
+      params?: Params$Resource$Accounts$Reports$Getsaved,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SavedReport>;
+    getSaved(
+      params: Params$Resource$Accounts$Reports$Getsaved,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getSaved(
+      params: Params$Resource$Accounts$Reports$Getsaved,
+      options: MethodOptions | BodyResponseCallback<Schema$SavedReport>,
+      callback: BodyResponseCallback<Schema$SavedReport>
+    ): void;
+    getSaved(
+      params: Params$Resource$Accounts$Reports$Getsaved,
+      callback: BodyResponseCallback<Schema$SavedReport>
+    ): void;
+    getSaved(callback: BodyResponseCallback<Schema$SavedReport>): void;
+    getSaved(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Reports$Getsaved
+        | BodyResponseCallback<Schema$SavedReport>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedReport>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedReport>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedReport> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Reports$Getsaved;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Reports$Getsaved;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://adsense.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}/saved').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SavedReport>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SavedReport>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Accounts$Reports$Generate
@@ -3407,6 +3822,13 @@ export namespace adsense_v2 {
      * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      */
     'startDate.year'?: number;
+  }
+  export interface Params$Resource$Accounts$Reports$Getsaved
+    extends StandardParameters {
+    /**
+     * Required. The name of the saved report to retrieve. Format: accounts/{account\}/reports/{report\}
+     */
+    name?: string;
   }
 
   export class Resource$Accounts$Reports$Saved {

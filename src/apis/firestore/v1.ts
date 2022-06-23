@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -268,7 +267,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$CompositeFilter {
     /**
-     * The list of filters to combine. Must contain at least one filter.
+     * The list of filters to combine. Requires: * At least one filter is present.
      */
     filters?: Schema$Filter[];
     /**
@@ -393,7 +392,7 @@ export namespace firestore_v1 {
     fieldTransforms?: Schema$FieldTransform[];
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -487,6 +486,10 @@ export namespace firestore_v1 {
    */
   export interface Schema$GoogleFirestoreAdminV1Database {
     /**
+     * The App Engine integration mode to use for this database.
+     */
+    appEngineIntegrationMode?: string | null;
+    /**
      * The concurrency control mode to use for this database.
      */
     concurrencyMode?: string | null;
@@ -494,6 +497,10 @@ export namespace firestore_v1 {
      * This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
+    /**
+     * Output only. The key_prefix for this database. This key_prefix is used, in combination with the project id ("~") to construct the application id that is returned from the Cloud Datastore APIs in Google App Engine first generation runtimes. This value may be empty in which case the appid to use for URL-encoded keys is the project_id (eg: foo instead of v~foo).
+     */
+    keyPrefix?: string | null;
     /**
      * The location of the database. Available databases are listed at https://cloud.google.com/firestore/docs/locations.
      */
@@ -574,6 +581,10 @@ export namespace firestore_v1 {
      * Required. A field name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/fields/{field_path\}` A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: (Note: Comments here are written in markdown syntax, so there is an additional layer of backticks to represent a code block) `\`address.city\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\`*\`` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id\}/databases/{database_id\}/collectionGroups/__default__/fields/x` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
      */
     name?: string | null;
+    /**
+     * The TTL configuration for this `Field`. Setting or unsetting this will enable or disable the TTL for documents that have this `Field`.
+     */
+    ttlConfig?: Schema$GoogleFirestoreAdminV1TtlConfig;
   }
   /**
    * Metadata for google.longrunning.Operation results from FirestoreAdmin.UpdateField.
@@ -607,6 +618,10 @@ export namespace firestore_v1 {
      * The state of the operation.
      */
     state?: string | null;
+    /**
+     * Describes the deltas of TTL configuration.
+     */
+    ttlConfigDelta?: Schema$GoogleFirestoreAdminV1TtlConfigDelta;
   }
   /**
    * Metadata for google.longrunning.Operation results from FirestoreAdmin.ImportDocuments.
@@ -808,6 +823,24 @@ export namespace firestore_v1 {
     estimatedWork?: string | null;
   }
   /**
+   * The TTL (time-to-live) configuration for documents that have this `Field` set. Storing a timestamp value into a TTL-enabled field will be treated as the document's absolute expiration time. Using any other data type or leaving the field absent will disable the TTL for the individual document.
+   */
+  export interface Schema$GoogleFirestoreAdminV1TtlConfig {
+    /**
+     * Output only. The state of the TTL configuration.
+     */
+    state?: string | null;
+  }
+  /**
+   * Information about an TTL configuration change.
+   */
+  export interface Schema$GoogleFirestoreAdminV1TtlConfigDelta {
+    /**
+     * Specifies how the TTL configuration is changing.
+     */
+    changeType?: string | null;
+  }
+  /**
    * Metadata related to the update database operation.
    */
   export interface Schema$GoogleFirestoreAdminV1UpdateDatabaseMetadata {}
@@ -878,6 +911,10 @@ export namespace firestore_v1 {
      * A page token. Must be a value from ListCollectionIdsResponse.
      */
     pageToken?: string | null;
+    /**
+     * Reads documents as they were at the given time. This may not be older than 270 seconds.
+     */
+    readTime?: string | null;
   }
   /**
    * The response from Firestore.ListCollectionIds.
@@ -1024,6 +1061,10 @@ export namespace firestore_v1 {
      */
     partitionCount?: string | null;
     /**
+     * Reads documents as they were at the given time. This may not be older than 270 seconds.
+     */
+    readTime?: string | null;
+    /**
      * A structured query. Query must specify collection with all descendants and be ordered by name ascending. Other filters, order bys, limits, offsets, and start/end cursors are not supported.
      */
     structuredQuery?: Schema$StructuredQuery;
@@ -1132,6 +1173,10 @@ export namespace firestore_v1 {
      * A query result, not set when reporting partial progress.
      */
     document?: Schema$Document;
+    /**
+     * If present, Firestore has completely finished the request and no more documents will be returned.
+     */
+    done?: boolean | null;
     /**
      * The time at which the document was read. This may be monotonically increasing; in this case, the previous documents in the result stream are guaranteed not to have changed between their `read_time` and this one. If the query returns no results, a response with `read_time` and no `document` will be sent, and this represents the time at which the query was run.
      */
@@ -1441,6 +1486,167 @@ export namespace firestore_v1 {
     }
 
     /**
+     * Create a database.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firestore = google.firestore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firestore.projects.databases.create({
+     *     // Required. The ID to use for the database, which will become the final component of the database's resource name. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8\}(-[0-9a-f]{4\}){3\}-[0-9a-f]{12\}/. "(default)" database id is also valid.
+     *     databaseId: 'placeholder-value',
+     *     // Required. A parent name of the form `projects/{project_id\}`
+     *     parent: 'projects/my-project',
+     *     // If set, validate the request and preview the response, but do not actually create the database.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appEngineIntegrationMode": "my_appEngineIntegrationMode",
+     *       //   "concurrencyMode": "my_concurrencyMode",
+     *       //   "etag": "my_etag",
+     *       //   "keyPrefix": "my_keyPrefix",
+     *       //   "locationId": "my_locationId",
+     *       //   "name": "my_name",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Databases$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Databases$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Projects$Databases$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Databases$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Databases$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/databases').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Exports a copy of all or a subset of documents from Google Cloud Firestore to another storage system, such as Google Cloud Storage. Recent updates to documents may not be reflected in the export. The export occurs in the background and its progress can be monitored and managed via the Operation resource that is created. The output of an export may only be used once the associated operation is done. If an export operation is cancelled before completion it may leave partial data behind in Google Cloud Storage. For more details on export behavior and output format, refer to: https://cloud.google.com/firestore/docs/manage-data/export-import
      * @example
      * ```js
@@ -1629,8 +1835,10 @@ export namespace firestore_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "appEngineIntegrationMode": "my_appEngineIntegrationMode",
      *   //   "concurrencyMode": "my_concurrencyMode",
      *   //   "etag": "my_etag",
+     *   //   "keyPrefix": "my_keyPrefix",
      *   //   "locationId": "my_locationId",
      *   //   "name": "my_name",
      *   //   "type": "my_type"
@@ -2066,8 +2274,10 @@ export namespace firestore_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "appEngineIntegrationMode": "my_appEngineIntegrationMode",
      *       //   "concurrencyMode": "my_concurrencyMode",
      *       //   "etag": "my_etag",
+     *       //   "keyPrefix": "my_keyPrefix",
      *       //   "locationId": "my_locationId",
      *       //   "name": "my_name",
      *       //   "type": "my_type"
@@ -2182,6 +2392,26 @@ export namespace firestore_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Databases$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID to use for the database, which will become the final component of the database's resource name. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8\}(-[0-9a-f]{4\}){3\}-[0-9a-f]{12\}/. "(default)" database id is also valid.
+     */
+    databaseId?: string;
+    /**
+     * Required. A parent name of the form `projects/{project_id\}`
+     */
+    parent?: string;
+    /**
+     * If set, validate the request and preview the response, but do not actually create the database.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirestoreAdminV1Database;
+  }
   export interface Params$Resource$Projects$Databases$Exportdocuments
     extends StandardParameters {
     /**
@@ -2296,7 +2526,8 @@ export namespace firestore_v1 {
      *   // Example response
      *   // {
      *   //   "indexConfig": {},
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "ttlConfig": {}
      *   // }
      * }
      *
@@ -2586,7 +2817,8 @@ export namespace firestore_v1 {
      *       // request body parameters
      *       // {
      *       //   "indexConfig": {},
-     *       //   "name": "my_name"
+     *       //   "name": "my_name",
+     *       //   "ttlConfig": {}
      *       // }
      *     },
      *   });
@@ -4581,7 +4813,8 @@ export namespace firestore_v1 {
      *       // request body parameters
      *       // {
      *       //   "pageSize": 0,
-     *       //   "pageToken": "my_pageToken"
+     *       //   "pageToken": "my_pageToken",
+     *       //   "readTime": "my_readTime"
      *       // }
      *     },
      *   });
@@ -4690,6 +4923,163 @@ export namespace firestore_v1 {
         );
       } else {
         return createAPIRequest<Schema$ListCollectionIdsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Lists documents.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firestore = google.firestore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firestore.projects.databases.documents.listDocuments({
+     *     // Required. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`.
+     *     collectionId: 'placeholder-value',
+     *     // The list of field paths in the mask. See Document.fields for a field path syntax reference.
+     *     'mask.fieldPaths': 'placeholder-value',
+     *     // The order to sort results by. For example: `priority desc, name`.
+     *     orderBy: 'placeholder-value',
+     *     // The maximum number of documents to return.
+     *     pageSize: 'placeholder-value',
+     *     // The `next_page_token` value returned from a previous List request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name. In the format: `projects/{project_id\}/databases/{database_id\}/documents` or `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     *     parent: 'projects/my-project/databases/my-database/documents',
+     *     // Reads documents as they were at the given time. This may not be older than 270 seconds.
+     *     readTime: 'placeholder-value',
+     *     // If the list should show missing documents. A missing document is a document that does not exist but has sub-documents. These documents will be returned with a key but will not have fields, Document.create_time, or Document.update_time set. Requests with `show_missing` may not specify `where` or `order_by`.
+     *     showMissing: 'placeholder-value',
+     *     // Reads documents in a transaction.
+     *     transaction: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "documents": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listDocuments(
+      params: Params$Resource$Projects$Databases$Documents$Listdocuments,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listDocuments(
+      params?: Params$Resource$Projects$Databases$Documents$Listdocuments,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDocumentsResponse>;
+    listDocuments(
+      params: Params$Resource$Projects$Databases$Documents$Listdocuments,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listDocuments(
+      params: Params$Resource$Projects$Databases$Documents$Listdocuments,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDocumentsResponse>,
+      callback: BodyResponseCallback<Schema$ListDocumentsResponse>
+    ): void;
+    listDocuments(
+      params: Params$Resource$Projects$Databases$Documents$Listdocuments,
+      callback: BodyResponseCallback<Schema$ListDocumentsResponse>
+    ): void;
+    listDocuments(
+      callback: BodyResponseCallback<Schema$ListDocumentsResponse>
+    ): void;
+    listDocuments(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Documents$Listdocuments
+        | BodyResponseCallback<Schema$ListDocumentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDocumentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDocumentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDocumentsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Documents$Listdocuments;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Databases$Documents$Listdocuments;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/{collectionId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent', 'collectionId'],
+        pathParams: ['collectionId', 'parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDocumentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDocumentsResponse>(parameters);
       }
     }
 
@@ -4880,6 +5270,7 @@ export namespace firestore_v1 {
      *       //   "pageSize": 0,
      *       //   "pageToken": "my_pageToken",
      *       //   "partitionCount": "my_partitionCount",
+     *       //   "readTime": "my_readTime",
      *       //   "structuredQuery": {}
      *       // }
      *     },
@@ -5331,6 +5722,7 @@ export namespace firestore_v1 {
      *   // Example response
      *   // {
      *   //   "document": {},
+     *   //   "done": false,
      *   //   "readTime": "my_readTime",
      *   //   "skippedResults": 0,
      *   //   "transaction": "my_transaction"
@@ -5731,6 +6123,45 @@ export namespace firestore_v1 {
      * Request body metadata
      */
     requestBody?: Schema$ListCollectionIdsRequest;
+  }
+  export interface Params$Resource$Projects$Databases$Documents$Listdocuments
+    extends StandardParameters {
+    /**
+     * Required. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`.
+     */
+    collectionId?: string;
+    /**
+     * The list of field paths in the mask. See Document.fields for a field path syntax reference.
+     */
+    'mask.fieldPaths'?: string[];
+    /**
+     * The order to sort results by. For example: `priority desc, name`.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of documents to return.
+     */
+    pageSize?: number;
+    /**
+     * The `next_page_token` value returned from a previous List request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource name. In the format: `projects/{project_id\}/databases/{database_id\}/documents` or `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     */
+    parent?: string;
+    /**
+     * Reads documents as they were at the given time. This may not be older than 270 seconds.
+     */
+    readTime?: string;
+    /**
+     * If the list should show missing documents. A missing document is a document that does not exist but has sub-documents. These documents will be returned with a key but will not have fields, Document.create_time, or Document.update_time set. Requests with `show_missing` may not specify `where` or `order_by`.
+     */
+    showMissing?: boolean;
+    /**
+     * Reads documents in a transaction.
+     */
+    transaction?: string;
   }
   export interface Params$Resource$Projects$Databases$Documents$Listen
     extends StandardParameters {
@@ -6591,7 +7022,7 @@ export namespace firestore_v1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.locations.list({
-     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
@@ -6716,7 +7147,7 @@ export namespace firestore_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
     /**

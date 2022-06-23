@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -156,7 +155,7 @@ export namespace memcache_v1 {
     startTime?: Schema$TimeOfDay;
   }
   /**
-   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day, with a zero year (e.g., an anniversary) * A year on its own, with a zero month and a zero day * A year and month, with a zero day (e.g., a credit card expiration date) Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
    */
   export interface Schema$Date {
     /**
@@ -190,7 +189,7 @@ export namespace memcache_v1 {
     time?: Schema$TimeOfDay;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -203,6 +202,27 @@ export namespace memcache_v1 {
     availableZones?: {
       [key: string]: Schema$GoogleCloudMemcacheV1ZoneMetadata;
     } | null;
+  }
+  /**
+   * Maintenance policy per instance.
+   */
+  export interface Schema$GoogleCloudMemcacheV1MaintenancePolicy {
+    /**
+     * Output only. The time when the policy was created.
+     */
+    createTime?: string | null;
+    /**
+     * Description of what this policy is for. Create/Update methods return INVALID_ARGUMENT if the length is greater than 512.
+     */
+    description?: string | null;
+    /**
+     * Output only. The time when the policy was updated.
+     */
+    updateTime?: string | null;
+    /**
+     * Required. Maintenance window that is applied to resources covered by this policy. Minimum 1. For the current version, the maximum number of weekly_maintenance_windows is expected to be one.
+     */
+    weeklyMaintenanceWindow?: Schema$WeeklyMaintenanceWindow[];
   }
   /**
    * Represents the metadata of a long-running operation.
@@ -248,7 +268,7 @@ export namespace memcache_v1 {
      */
     createTime?: string | null;
     /**
-     * Optional. The instance_type of this instance of format: projects/{project_id\}/locations/{location_id\}/instanceTypes/{instance_type_id\}. Instance Type represents a high-level tier or SKU of the service that this instance belong to. When enabled(eg: Maintenance Rollout), Rollout uses 'instance_type' along with 'software_versions' to determine whether instance needs an update or not.
+     * Optional. The instance_type of this instance of format: projects/{project_number\}/locations/{location_id\}/instanceTypes/{instance_type_id\}. Instance Type represents a high-level tier or SKU of the service that this instance belong to. When enabled(eg: Maintenance Rollout), Rollout uses 'instance_type' along with 'software_versions' to determine whether instance needs an update or not.
      */
     instanceType?: string | null;
     /**
@@ -272,13 +292,17 @@ export namespace memcache_v1 {
      */
     maintenanceSettings?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings;
     /**
-     * Unique name of the resource. It uses the form: `projects/{project_id|project_number\}/locations/{location_id\}/instances/{instance_id\}` Note: Either project_id or project_number can be used, but keep it consistent with other APIs (e.g. RescheduleUpdate)
+     * Unique name of the resource. It uses the form: `projects/{project_number\}/locations/{location_id\}/instances/{instance_id\}` Note: This name is passed, stored and logged across the rollout system. So use of consumer project_id or any other consumer PII in the name is strongly discouraged for wipeout (go/wipeout) compliance. See go/elysium/project_ids#storage-guidance for more details.
      */
     name?: string | null;
     /**
-     * Optional. notification_parameters are information that service producers may like to include that is not relevant to Rollout. This parameter will only be passed to Gamma and Cloud Logging for notification/logging purpose.
+     * Optional. notification_parameter are information that service producers may like to include that is not relevant to Rollout. This parameter will only be passed to Gamma and Cloud Logging for notification/logging purpose.
      */
-    notificationParameters?: {[key: string]: string} | null;
+    notificationParameters?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudSaasacceleratorManagementProvidersV1NotificationParameter;
+    } | null;
     /**
      * Output only. Custom string attributes used primarily to expose producer-specific information in monitoring dashboards. See go/get-instance-metadata.
      */
@@ -372,6 +396,15 @@ export namespace memcache_v1 {
     perSliEligibility?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility;
   }
   /**
+   * Contains notification related data.
+   */
+  export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1NotificationParameter {
+    /**
+     * Optional. Array of string values. e.g. instance's replica information.
+     */
+    values?: string[] | null;
+  }
+  /**
    * PerSliSloEligibility is a mapping from an SLI name to eligibility.
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility {
@@ -455,6 +488,14 @@ export namespace memcache_v1 {
      * Resource labels to represent user-provided metadata. Refer to cloud documentation on labels for more details. https://cloud.google.com/compute/docs/labeling-resources
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * The maintenance policy for the instance. If not provided, the maintenance event will be performed based on Memorystore internal rollout schedule.
+     */
+    maintenancePolicy?: Schema$GoogleCloudMemcacheV1MaintenancePolicy;
+    /**
+     * Output only. Published maintenance schedule.
+     */
+    maintenanceSchedule?: Schema$MaintenanceSchedule;
     /**
      * Output only. The full version of memcached server running on this instance. System automatically determines the full memcached version for an instance based on the input MemcacheVersion. The full version format will be "memcached-1.5.16".
      */
@@ -617,6 +658,23 @@ export namespace memcache_v1 {
     updateTime?: string | null;
   }
   /**
+   * Upcoming maintenance schedule.
+   */
+  export interface Schema$MaintenanceSchedule {
+    /**
+     * Output only. The end time of any upcoming scheduled maintenance for this instance.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. The deadline that the maintenance schedule start time can not go beyond, including reschedule.
+     */
+    scheduleDeadlineTime?: string | null;
+    /**
+     * Output only. The start time of any upcoming scheduled maintenance for this instance.
+     */
+    startTime?: string | null;
+  }
+  /**
    * MaintenanceWindow definition.
    */
   export interface Schema$MaintenanceWindow {
@@ -737,6 +795,19 @@ export namespace memcache_v1 {
     verb?: string | null;
   }
   /**
+   * Request for RescheduleMaintenance.
+   */
+  export interface Schema$RescheduleMaintenanceRequest {
+    /**
+     * Required. If reschedule type is SPECIFIC_TIME, must set up schedule_time as well.
+     */
+    rescheduleType?: string | null;
+    /**
+     * Timestamp when the maintenance shall be rescheduled to if reschedule_type=SPECIFIC_TIME, in RFC 3339 format, for example `2012-11-15T16:19:00.094Z`.
+     */
+    scheduleTime?: string | null;
+  }
+  /**
    * Configure the schedule.
    */
   export interface Schema$Schedule {
@@ -829,6 +900,23 @@ export namespace memcache_v1 {
      * User can specify multiple windows in a week. Minimum of 1 window.
      */
     schedule?: Schema$Schedule[];
+  }
+  /**
+   * Time window specified for weekly operations.
+   */
+  export interface Schema$WeeklyMaintenanceWindow {
+    /**
+     * Required. Allows to define schedule that runs specified day of the week.
+     */
+    day?: string | null;
+    /**
+     * Required. Duration of the time window.
+     */
+    duration?: string | null;
+    /**
+     * Required. Start time of the window in UTC.
+     */
+    startTime?: Schema$TimeOfDay;
   }
   export interface Schema$ZoneMetadata {}
 
@@ -1010,7 +1098,7 @@ export namespace memcache_v1 {
      *
      *   // Do the magic
      *   const res = await memcache.projects.locations.list({
-     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
@@ -1135,7 +1223,7 @@ export namespace memcache_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
     /**
@@ -1343,6 +1431,8 @@ export namespace memcache_v1 {
      *       //   "displayName": "my_displayName",
      *       //   "instanceMessages": [],
      *       //   "labels": {},
+     *       //   "maintenancePolicy": {},
+     *       //   "maintenanceSchedule": {},
      *       //   "memcacheFullVersion": "my_memcacheFullVersion",
      *       //   "memcacheNodes": [],
      *       //   "memcacheVersion": "my_memcacheVersion",
@@ -1629,6 +1719,8 @@ export namespace memcache_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "instanceMessages": [],
      *   //   "labels": {},
+     *   //   "maintenancePolicy": {},
+     *   //   "maintenanceSchedule": {},
      *   //   "memcacheFullVersion": "my_memcacheFullVersion",
      *   //   "memcacheNodes": [],
      *   //   "memcacheVersion": "my_memcacheVersion",
@@ -1916,6 +2008,8 @@ export namespace memcache_v1 {
      *       //   "displayName": "my_displayName",
      *       //   "instanceMessages": [],
      *       //   "labels": {},
+     *       //   "maintenancePolicy": {},
+     *       //   "maintenanceSchedule": {},
      *       //   "memcacheFullVersion": "my_memcacheFullVersion",
      *       //   "memcacheNodes": [],
      *       //   "memcacheVersion": "my_memcacheVersion",
@@ -2017,6 +2111,154 @@ export namespace memcache_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Reschedules upcoming maintenance event.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const memcache = google.memcache('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await memcache.projects.locations.instances.rescheduleMaintenance(
+     *     {
+     *       // Required. Memcache instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
+     *       instance:
+     *         'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "rescheduleType": "my_rescheduleType",
+     *         //   "scheduleTime": "my_scheduleTime"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    rescheduleMaintenance(
+      params: Params$Resource$Projects$Locations$Instances$Reschedulemaintenance,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    rescheduleMaintenance(
+      params?: Params$Resource$Projects$Locations$Instances$Reschedulemaintenance,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    rescheduleMaintenance(
+      params: Params$Resource$Projects$Locations$Instances$Reschedulemaintenance,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    rescheduleMaintenance(
+      params: Params$Resource$Projects$Locations$Instances$Reschedulemaintenance,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rescheduleMaintenance(
+      params: Params$Resource$Projects$Locations$Instances$Reschedulemaintenance,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rescheduleMaintenance(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rescheduleMaintenance(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Reschedulemaintenance
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Reschedulemaintenance;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Reschedulemaintenance;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://memcache.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+instance}:rescheduleMaintenance').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['instance'],
+        pathParams: ['instance'],
         context: this.context,
       };
       if (callback) {
@@ -2253,6 +2495,18 @@ export namespace memcache_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Instance;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Reschedulemaintenance
+    extends StandardParameters {
+    /**
+     * Required. Memcache instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
+     */
+    instance?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RescheduleMaintenanceRequest;
   }
   export interface Params$Resource$Projects$Locations$Instances$Updateparameters
     extends StandardParameters {

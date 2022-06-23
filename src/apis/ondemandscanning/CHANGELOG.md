@@ -1,5 +1,37 @@
 # Changelog
 
+## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/ondemandscanning-v4.0.0...ondemandscanning-v4.1.0) (2022-06-21)
+
+
+### Features
+
+* **ondemandscanning:** update the API ([aad0498](https://github.com/googleapis/google-api-nodejs-client/commit/aad0498e6a25afa2a733b1c1e78d14d42a712405))
+
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/ondemandscanning-v3.3.0...ondemandscanning-v4.0.0) (2022-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#2971](https://github.com/googleapis/google-api-nodejs-client/issues/2971)) ([adddf01](https://github.com/googleapis/google-api-nodejs-client/commit/adddf018e7cb73adab7341053dd80d72c5a6248d))
+
+## [3.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/ondemandscanning-v3.2.1...ondemandscanning-v3.3.0) (2022-06-13)
+
+
+### Features
+
+* **ondemandscanning:** update the API ([202277e](https://github.com/googleapis/google-api-nodejs-client/commit/202277e390691e5d96959535cb05f4d86e173cd3))
+
+### [3.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/ondemandscanning-v3.2.0...ondemandscanning-v3.2.1) (2022-04-01)
+
+
+### Bug Fixes
+
+* **ondemandscanning:** update the API ([6d39698](https://github.com/googleapis/google-api-nodejs-client/commit/6d39698bcc1e9fcdb6235960475a39108e491621))
+
 ## [3.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/ondemandscanning-v3.1.0...ondemandscanning-v3.2.0) (2022-02-04)
 
 

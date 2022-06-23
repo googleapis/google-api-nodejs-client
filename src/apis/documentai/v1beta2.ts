@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -130,6 +129,23 @@ export namespace documentai_v1beta2 {
      * The basic metadata of the long running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
+    /**
+     * The list of response details of each document.
+     */
+    individualBatchDeleteStatuses?: Schema$GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadataIndividualBatchDeleteStatus[];
+  }
+  /**
+   * The status of each individual document in the batch delete process.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadataIndividualBatchDeleteStatus {
+    /**
+     * The document id of the document.
+     */
+    documentId?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentId;
+    /**
+     * The status of deleting the document.
+     */
+    status?: Schema$GoogleRpcStatus;
   }
   /**
    * Response of the delete documents operation.
@@ -144,6 +160,10 @@ export namespace documentai_v1beta2 {
      * The destination dataset split type.
      */
     destDatasetType?: string | null;
+    /**
+     * The destination dataset split type.
+     */
+    destSplitType?: string | null;
     /**
      * The list of response details of each document.
      */
@@ -195,6 +215,15 @@ export namespace documentai_v1beta2 {
    * The long running operation metadata for CreateLabelerPool.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3CreateLabelerPoolOperationMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
+  }
+  /**
+   * The long running operation metadata for DeleteDataLabelingJob.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3DeleteDataLabelingJobOperationMetadata {
     /**
      * The basic metadata of the long running operation.
      */
@@ -614,7 +643,7 @@ export namespace documentai_v1beta2 {
     vertices?: Schema$GoogleCloudDocumentaiV1beta1Vertex[];
   }
   /**
-   * Document represents the canonical document resource in Document Understanding AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document Understanding AI to iterate and optimize for quality.
+   * Document represents the canonical document resource in Document AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document AI to iterate and optimize for quality.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1Document {
     /**
@@ -687,6 +716,10 @@ export namespace documentai_v1beta2 {
      */
     mentionText?: string | null;
     /**
+     * Optional. This attribute indicates that the processing didn't actually identify this entity, but a confidence score was assigned that represent the potential that this could be a false negative. A non-present entity should have an empty mention_text and text_anchor.
+     */
+    nonPresent?: boolean | null;
+    /**
      * Optional. Normalized entity value. Absent if the extracted value could not be converted or the type (e.g. address) is not supported for certain parsers. This field is also only populated for certain supported document types.
      */
     normalizedValue?: Schema$GoogleCloudDocumentaiV1beta1DocumentEntityNormalizedValue;
@@ -711,7 +744,7 @@ export namespace documentai_v1beta2 {
      */
     textAnchor?: Schema$GoogleCloudDocumentaiV1beta1DocumentTextAnchor;
     /**
-     * Entity type from a schema e.g. `Address`.
+     * Required. Entity type from a schema e.g. `Address`.
      */
     type?: string | null;
   }
@@ -1489,7 +1522,7 @@ export namespace documentai_v1beta2 {
     vertices?: Schema$GoogleCloudDocumentaiV1beta2Vertex[];
   }
   /**
-   * Document represents the canonical document resource in Document Understanding AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document Understanding AI to iterate and optimize for quality.
+   * Document represents the canonical document resource in Document AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document AI to iterate and optimize for quality.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2Document {
     /**
@@ -1566,6 +1599,10 @@ export namespace documentai_v1beta2 {
      */
     mentionText?: string | null;
     /**
+     * Optional. This attribute indicates that the processing didn't actually identify this entity, but a confidence score was assigned that represent the potential that this could be a false negative. A non-present entity should have an empty mention_text and text_anchor.
+     */
+    nonPresent?: boolean | null;
+    /**
      * Optional. Normalized entity value. Absent if the extracted value could not be converted or the type (e.g. address) is not supported for certain parsers. This field is also only populated for certain supported document types.
      */
     normalizedValue?: Schema$GoogleCloudDocumentaiV1beta2DocumentEntityNormalizedValue;
@@ -1590,7 +1627,7 @@ export namespace documentai_v1beta2 {
      */
     textAnchor?: Schema$GoogleCloudDocumentaiV1beta2DocumentTextAnchor;
     /**
-     * Entity type from a schema e.g. `Address`.
+     * Required. Entity type from a schema e.g. `Address`.
      */
     type?: string | null;
   }
@@ -2662,9 +2699,17 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3ReviewDocumentResponse {
     /**
-     * The Cloud Storage uri for the human reviewed document.
+     * The Cloud Storage uri for the human reviewed document if the review is succeeded.
      */
     gcsDestination?: string | null;
+    /**
+     * The reason why the review is rejected by reviewer.
+     */
+    rejectionReason?: string | null;
+    /**
+     * The state of the review operation.
+     */
+    state?: string | null;
   }
   /**
    * The long running operation metadata for set default processor version method.
@@ -2809,9 +2854,17 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiV1ReviewDocumentResponse {
     /**
-     * The Cloud Storage uri for the human reviewed document.
+     * The Cloud Storage uri for the human reviewed document if the review is succeeded.
      */
     gcsDestination?: string | null;
+    /**
+     * The reason why the review is rejected by reviewer.
+     */
+    rejectionReason?: string | null;
+    /**
+     * The state of the review operation.
+     */
+    state?: string | null;
   }
   /**
    * The long running operation metadata for set default processor version method.
@@ -2865,7 +2918,7 @@ export namespace documentai_v1beta2 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$GoogleProtobufEmpty {}
   /**

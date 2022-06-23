@@ -20,6 +20,7 @@ import {Utils} from './utils';
 import {GoogleAuth} from 'google-auth-library';
 import * as sinon from 'sinon';
 import {GaxiosResponse} from 'gaxios';
+import {JSONClient} from 'google-auth-library/build/src/auth/googleauth';
 
 function createNock(path?: string) {
   const p = path || '/drive/v2/files/woot';
@@ -274,7 +275,7 @@ describe('Options', () => {
     assert.ok(res2.data.resume);
 
     // callback for json
-    await new Promise(resolve => {
+    await new Promise<void>(resolve => {
       drive.files.list({}, (err, res) => {
         assert.ok(res?.data.etag);
         resolve();
@@ -282,14 +283,14 @@ describe('Options', () => {
     });
 
     // callback with no params
-    await new Promise(resolve => {
+    await new Promise<void>(resolve => {
       drive.files.list((err, res) => {
         assert.ok(res?.data.etag);
         resolve();
       });
     });
 
-    await new Promise(resolve => {
+    await new Promise<void>(resolve => {
       drive.files.list({}, {responseType: 'stream'}, (err, res) => {
         assert.ok(res?.data.resume);
         resolve();
@@ -304,7 +305,7 @@ describe('Options', () => {
     const auth = new GoogleAuth();
     const stub = sandbox.stub(auth, 'request').resolves({} as GaxiosResponse);
     // global options
-    google.options({auth});
+    google.options({auth: auth as GoogleAuth<JSONClient>});
     // per-API options
     const drive = google.drive({version: 'v3', auth});
     // per-call options

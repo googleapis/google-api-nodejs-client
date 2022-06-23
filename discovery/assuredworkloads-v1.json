@@ -343,6 +343,34 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "restrictAllowedResources": {
+                  "description": "Restrict the list of resources allowed in the Workload environment. The current list of allowed products can be found at https://cloud.google.com/assured-workloads/docs/supported-products In addition to assuredworkloads.workload.update permission, the user should also have orgpolicy.policy.set permission on the folder resource to use this functionality.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/workloads/{workloadsId}:restrictAllowedResources",
+                  "httpMethod": "POST",
+                  "id": "assuredworkloads.organizations.locations.workloads.restrictAllowedResources",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the Workload. This is the workloads's relative path in the API, formatted as \"organizations/{organization_id}/locations/{location_id}/workloads/{workload_id}\". For example, \"organizations/123/locations/us-east1/workloads/assured-workload-1\".",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/workloads/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:restrictAllowedResources",
+                  "request": {
+                    "$ref": "GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             }
@@ -351,7 +379,7 @@
       }
     }
   },
-  "revision": "20220303",
+  "revision": "20220609",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata": {
@@ -370,7 +398,8 @@
             "HIPAA",
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
-            "CA_REGIONS_AND_SUPPORT"
+            "CA_REGIONS_AND_SUPPORT",
+            "ITAR"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -382,7 +411,8 @@
             "Health Insurance Portability and Accountability Act controls",
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
-            "Assured Workloads For Canada Regions and Support controls"
+            "Assured Workloads For Canada Regions and Support controls",
+            "International Traffic in Arms Regulations"
           ],
           "type": "string"
         },
@@ -420,6 +450,33 @@
       },
       "type": "object"
     },
+    "GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesRequest": {
+      "description": "Request for restricting list of available resources in Workload environment.",
+      "id": "GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesRequest",
+      "properties": {
+        "restrictionType": {
+          "description": "Required. The type of restriction for using gcp products in the Workload environment.",
+          "enum": [
+            "RESTRICTION_TYPE_UNSPECIFIED",
+            "ALLOW_ALL_GCP_RESOURCES",
+            "ALLOW_COMPLIANT_RESOURCES"
+          ],
+          "enumDescriptions": [
+            "Unknown restriction type.",
+            "Allow the use all of all gcp products, irrespective of the compliance posture. This effectively removes gcp.restrictServiceUsage OrgPolicy on the AssuredWorkloads Folder.",
+            "Based on Workload's compliance regime, allowed list changes. See - https://cloud.google.com/assured-workloads/docs/supported-products for the list of supported resources."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse": {
+      "description": "Response for restricting the list of allowed resources.",
+      "id": "GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudAssuredworkloadsV1Workload": {
       "description": "An Workload object for managing highly regulated workloads of cloud customers.",
       "id": "GoogleCloudAssuredworkloadsV1Workload",
@@ -440,7 +497,8 @@
             "HIPAA",
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
-            "CA_REGIONS_AND_SUPPORT"
+            "CA_REGIONS_AND_SUPPORT",
+            "ITAR"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -452,7 +510,8 @@
             "Health Insurance Portability and Accountability Act controls",
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
-            "Assured Workloads For Canada Regions and Support controls"
+            "Assured Workloads For Canada Regions and Support controls",
+            "International Traffic in Arms Regulations"
           ],
           "type": "string"
         },
@@ -669,7 +728,8 @@
             "HIPAA",
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
-            "CA_REGIONS_AND_SUPPORT"
+            "CA_REGIONS_AND_SUPPORT",
+            "ITAR"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -681,7 +741,8 @@
             "Health Insurance Portability and Accountability Act controls",
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
-            "Assured Workloads For Canada Regions and Support controls"
+            "Assured Workloads For Canada Regions and Support controls",
+            "International Traffic in Arms Regulations"
           ],
           "type": "string"
         },
@@ -732,7 +793,8 @@
             "HIPAA",
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
-            "CA_REGIONS_AND_SUPPORT"
+            "CA_REGIONS_AND_SUPPORT",
+            "ITAR"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -744,7 +806,8 @@
             "Health Insurance Portability and Accountability Act controls",
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
-            "Assured Workloads For Canada Regions and Support controls"
+            "Assured Workloads For Canada Regions and Support controls",
+            "International Traffic in Arms Regulations"
           ],
           "type": "string"
         },
@@ -1017,7 +1080,8 @@
             "HIPAA",
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
-            "CA_REGIONS_AND_SUPPORT"
+            "CA_REGIONS_AND_SUPPORT",
+            "ITAR"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -1029,7 +1093,8 @@
             "Health Insurance Portability and Accountability Act controls",
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
-            "Assured Workloads For Canada Regions and Support controls"
+            "Assured Workloads For Canada Regions and Support controls",
+            "International Traffic in Arms Regulations"
           ],
           "type": "string"
         },
@@ -1080,7 +1145,8 @@
             "HIPAA",
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
-            "CA_REGIONS_AND_SUPPORT"
+            "CA_REGIONS_AND_SUPPORT",
+            "ITAR"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -1092,7 +1158,8 @@
             "Health Insurance Portability and Accountability Act controls",
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
-            "Assured Workloads For Canada Regions and Support controls"
+            "Assured Workloads For Canada Regions and Support controls",
+            "International Traffic in Arms Regulations"
           ],
           "type": "string"
         },
@@ -1403,7 +1470,7 @@
       "type": "object"
     },
     "GoogleProtobufEmpty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "GoogleProtobufEmpty",
       "properties": {},
       "type": "object"

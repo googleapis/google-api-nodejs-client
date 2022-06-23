@@ -207,7 +207,7 @@
               ],
               "parameters": {
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/notes/[^/]+$",
                   "required": true,
@@ -315,7 +315,7 @@
               ],
               "parameters": {
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/notes/[^/]+$",
                   "required": true,
@@ -343,7 +343,7 @@
               ],
               "parameters": {
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/notes/[^/]+$",
                   "required": true,
@@ -505,7 +505,7 @@
               ],
               "parameters": {
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/occurrences/[^/]+$",
                   "required": true,
@@ -707,7 +707,7 @@
               ],
               "parameters": {
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/occurrences/[^/]+$",
                   "required": true,
@@ -735,7 +735,7 @@
               ],
               "parameters": {
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/occurrences/[^/]+$",
                   "required": true,
@@ -1023,7 +1023,7 @@
               ],
               "parameters": {
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^providers/[^/]+/notes/[^/]+$",
                   "required": true,
@@ -1131,7 +1131,7 @@
               ],
               "parameters": {
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^providers/[^/]+/notes/[^/]+$",
                   "required": true,
@@ -1159,7 +1159,7 @@
               ],
               "parameters": {
                 "resource": {
-                  "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                  "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                   "location": "path",
                   "pattern": "^providers/[^/]+/notes/[^/]+$",
                   "required": true,
@@ -1229,7 +1229,7 @@
       }
     }
   },
-  "revision": "20220225",
+  "revision": "20220613",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "Artifact": {
@@ -1313,7 +1313,7 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
           "items": {
             "type": "string"
           },
@@ -1478,24 +1478,27 @@
       "type": "object"
     },
     "CVSS": {
-      "description": "Common Vulnerability Scoring System.",
+      "description": "Common Vulnerability Scoring System. This message is compatible with CVSS v2 and v3. For CVSS v2 details, see https://www.first.org/cvss/v2/guide CVSS v2 calculator: https://nvd.nist.gov/vuln-metrics/cvss/v2-calculator For CVSS v3 details, see https://www.first.org/cvss/specification-document CVSS v3 calculator: https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator",
       "id": "CVSS",
       "properties": {
         "attackComplexity": {
+          "description": "Defined in CVSS v3, CVSS v2",
           "enum": [
             "ATTACK_COMPLEXITY_UNSPECIFIED",
             "ATTACK_COMPLEXITY_LOW",
-            "ATTACK_COMPLEXITY_HIGH"
+            "ATTACK_COMPLEXITY_HIGH",
+            "ATTACK_COMPLEXITY_MEDIUM"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            ""
+            "Defined in CVSS v3, CVSS v2",
+            "Defined in CVSS v3, CVSS v2",
+            "Defined in CVSS v3, CVSS v2",
+            "Defined in CVSS v2"
           ],
           "type": "string"
         },
         "attackVector": {
-          "description": "Base Metrics Represents the intrinsic characteristics of a vulnerability that are constant over time and across user environments.",
+          "description": "Base Metrics Represents the intrinsic characteristics of a vulnerability that are constant over time and across user environments. Defined in CVSS v3, CVSS v2",
           "enum": [
             "ATTACK_VECTOR_UNSPECIFIED",
             "ATTACK_VECTOR_NETWORK",
@@ -1504,15 +1507,16 @@
             "ATTACK_VECTOR_PHYSICAL"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            "",
-            "",
-            ""
+            "Defined in CVSS v3, CVSS v2",
+            "Defined in CVSS v3, CVSS v2",
+            "Defined in CVSS v3, CVSS v2",
+            "Defined in CVSS v3, CVSS v2",
+            "Defined in CVSS v3"
           ],
           "type": "string"
         },
         "authentication": {
+          "description": "Defined in CVSS v2",
           "enum": [
             "AUTHENTICATION_UNSPECIFIED",
             "AUTHENTICATION_MULTIPLE",
@@ -1520,25 +1524,30 @@
             "AUTHENTICATION_NONE"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            "",
-            ""
+            "Defined in CVSS v2",
+            "Defined in CVSS v2",
+            "Defined in CVSS v2",
+            "Defined in CVSS v2"
           ],
           "type": "string"
         },
         "availabilityImpact": {
+          "description": "Defined in CVSS v3, CVSS v2",
           "enum": [
             "IMPACT_UNSPECIFIED",
             "IMPACT_HIGH",
             "IMPACT_LOW",
-            "IMPACT_NONE"
+            "IMPACT_NONE",
+            "IMPACT_PARTIAL",
+            "IMPACT_COMPLETE"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            "",
-            ""
+            "Defined in CVSS v3, CVSS v2",
+            "Defined in CVSS v3",
+            "Defined in CVSS v3",
+            "Defined in CVSS v3, CVSS v2",
+            "Defined in CVSS v2",
+            "Defined in CVSS v2"
           ],
           "type": "string"
         },
@@ -1548,17 +1557,22 @@
           "type": "number"
         },
         "confidentialityImpact": {
+          "description": "Defined in CVSS v3, CVSS v2",
           "enum": [
             "IMPACT_UNSPECIFIED",
             "IMPACT_HIGH",
             "IMPACT_LOW",
-            "IMPACT_NONE"
+            "IMPACT_NONE",
+            "IMPACT_PARTIAL",
+            "IMPACT_COMPLETE"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            "",
-            ""
+            "Defined in CVSS v3, CVSS v2",
+            "Defined in CVSS v3",
+            "Defined in CVSS v3",
+            "Defined in CVSS v3, CVSS v2",
+            "Defined in CVSS v2",
+            "Defined in CVSS v2"
           ],
           "type": "string"
         },
@@ -1571,21 +1585,27 @@
           "type": "number"
         },
         "integrityImpact": {
+          "description": "Defined in CVSS v3, CVSS v2",
           "enum": [
             "IMPACT_UNSPECIFIED",
             "IMPACT_HIGH",
             "IMPACT_LOW",
-            "IMPACT_NONE"
+            "IMPACT_NONE",
+            "IMPACT_PARTIAL",
+            "IMPACT_COMPLETE"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            "",
-            ""
+            "Defined in CVSS v3, CVSS v2",
+            "Defined in CVSS v3",
+            "Defined in CVSS v3",
+            "Defined in CVSS v3, CVSS v2",
+            "Defined in CVSS v2",
+            "Defined in CVSS v2"
           ],
           "type": "string"
         },
         "privilegesRequired": {
+          "description": "Defined in CVSS v3",
           "enum": [
             "PRIVILEGES_REQUIRED_UNSPECIFIED",
             "PRIVILEGES_REQUIRED_NONE",
@@ -1593,36 +1613,38 @@
             "PRIVILEGES_REQUIRED_HIGH"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            "",
-            ""
+            "Defined in CVSS v3",
+            "Defined in CVSS v3",
+            "Defined in CVSS v3",
+            "Defined in CVSS v3"
           ],
           "type": "string"
         },
         "scope": {
+          "description": "Defined in CVSS v3",
           "enum": [
             "SCOPE_UNSPECIFIED",
             "SCOPE_UNCHANGED",
             "SCOPE_CHANGED"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            ""
+            "Defined in CVSS v3",
+            "Defined in CVSS v3",
+            "Defined in CVSS v3"
           ],
           "type": "string"
         },
         "userInteraction": {
+          "description": "Defined in CVSS v3",
           "enum": [
             "USER_INTERACTION_UNSPECIFIED",
             "USER_INTERACTION_NONE",
             "USER_INTERACTION_REQUIRED"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            ""
+            "Defined in CVSS v3",
+            "Defined in CVSS v3",
+            "Defined in CVSS v3"
           ],
           "type": "string"
         }
@@ -2955,6 +2977,22 @@
       },
       "type": "object"
     },
+    "Digest": {
+      "description": "Digest information.",
+      "id": "Digest",
+      "properties": {
+        "algo": {
+          "description": "`SHA1`, `SHA512` etc.",
+          "type": "string"
+        },
+        "digestBytes": {
+          "description": "Value of the digest.",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Discovered": {
       "description": "Provides information about the scan status of a discovered resource.",
       "id": "Discovered",
@@ -3170,7 +3208,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -3284,6 +3322,17 @@
             "$ref": "Hash"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "FileLocation": {
+      "description": "Indicates the location at which a package was found.",
+      "id": "FileLocation",
+      "properties": {
+        "filePath": {
+          "description": "For jars that are contained inside .war files, this filepath can indicate the path to war file combined with the path to jar file.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3576,6 +3625,132 @@
       },
       "type": "object"
     },
+    "GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaBuilder": {
+      "description": "Identifies the entity that executed the recipe, which is trusted to have correctly performed the operation and populated this provenance.",
+      "id": "GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaBuilder",
+      "properties": {
+        "id": {
+          "description": "URI indicating the builder’s identity.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaCompleteness": {
+      "description": "Indicates that the builder claims certain fields in this message to be complete.",
+      "id": "GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaCompleteness",
+      "properties": {
+        "environment": {
+          "description": "If true, the builder claims that invocation.environment is complete.",
+          "type": "boolean"
+        },
+        "materials": {
+          "description": "If true, the builder claims that materials is complete.",
+          "type": "boolean"
+        },
+        "parameters": {
+          "description": "If true, the builder claims that invocation.parameters is complete.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaConfigSource": {
+      "description": "Describes where the config file that kicked off the build came from. This is effectively a pointer to the source where buildConfig came from.",
+      "id": "GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaConfigSource",
+      "properties": {
+        "digest": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Collection of cryptographic digests for the contents of the artifact specified by invocation.configSource.uri.",
+          "type": "object"
+        },
+        "entryPoint": {
+          "description": "String identifying the entry point into the build.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI indicating the identity of the source of the config.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaInvocation": {
+      "description": "Identifies the event that kicked off the build.",
+      "id": "GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaInvocation",
+      "properties": {
+        "configSource": {
+          "$ref": "GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaConfigSource",
+          "description": "Describes where the config file that kicked off the build came from."
+        },
+        "environment": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Any other builder-controlled inputs necessary for correctly evaluating the build.",
+          "type": "object"
+        },
+        "parameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Collection of all external inputs that influenced the build on top of invocation.configSource.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaMaterial": {
+      "description": "The collection of artifacts that influenced the build including sources, dependencies, build tools, base images, and so on.",
+      "id": "GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaMaterial",
+      "properties": {
+        "digest": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Collection of cryptographic digests for the contents of this artifact.",
+          "type": "object"
+        },
+        "uri": {
+          "description": "The method by which this artifact was referenced during the build.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaMetadata": {
+      "description": "Other properties of the build.",
+      "id": "GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaMetadata",
+      "properties": {
+        "buildFinishedOn": {
+          "description": "The timestamp of when the build completed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "buildInvocationId": {
+          "description": "Identifies this particular build invocation, which can be useful for finding associated logs or other ad-hoc analysis.",
+          "type": "string"
+        },
+        "buildStartedOn": {
+          "description": "The timestamp of when the build started.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "completeness": {
+          "$ref": "GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaCompleteness",
+          "description": "Indicates that the builder claims certain fields in this message to be complete."
+        },
+        "reproducible": {
+          "description": "If true, the builder claims that running invocation on materials will produce bit-for-bit identical output.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleDevtoolsContaineranalysisV1alpha1SourceContext": {
       "description": "A SourceContext is a reference to a tree of files. A SourceContext together with a path point to a unique revision of a single file or directory.",
       "id": "GoogleDevtoolsContaineranalysisV1alpha1SourceContext",
@@ -3664,11 +3839,15 @@
         },
         "provenance": {
           "$ref": "InTotoProvenance",
-          "description": "provenance is a predicate of type intotoprovenance"
+          "description": "Generic Grafeas provenance."
         },
         "slsaProvenance": {
           "$ref": "SlsaProvenance",
-          "description": "slsa_provenance is a predicate of type slsaProvenance"
+          "description": "SLSA 0.1 provenance."
+        },
+        "slsaProvenanceZeroTwo": {
+          "$ref": "SlsaProvenanceZeroTwo",
+          "description": "SLSA 0.2 provenance."
         },
         "subject": {
           "description": "subject is the subjects of the intoto statement",
@@ -3684,6 +3863,30 @@
       "description": "This represents how a particular software package may be installed on a system.",
       "id": "Installation",
       "properties": {
+        "architecture": {
+          "description": "Output only. The CPU architecture for which packages in this distribution channel were built. Architecture will be blank for language packages.",
+          "enum": [
+            "ARCHITECTURE_UNSPECIFIED",
+            "X86",
+            "X64"
+          ],
+          "enumDescriptions": [
+            "Unknown architecture",
+            "X86 architecture",
+            "X64 architecture"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "cpeUri": {
+          "description": "Output only. The cpe_uri in [CPE format](https://cpe.mitre.org/specification/) denoting the package manager version distributing a package. The cpe_uri will be blank for language packages.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "license": {
+          "$ref": "License",
+          "description": "Licenses that have been declared by the authors of the package."
+        },
         "location": {
           "description": "All of the places within the filesystem versions of this package have been found.",
           "items": {
@@ -3693,7 +3896,18 @@
         },
         "name": {
           "description": "Output only. The name of the installed package.",
+          "readOnly": true,
           "type": "string"
+        },
+        "packageType": {
+          "description": "Output only. The type of package; whether native or non native (e.g., ruby gems, node.js packages, etc.).",
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "$ref": "Version",
+          "description": "Output only. The version of the package.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -3754,7 +3968,7 @@
       "type": "object"
     },
     "License": {
-      "description": "License information: https://spdx.github.io/spdx-spec/3-package-information/#315-declared-license",
+      "description": "License information.",
       "id": "License",
       "properties": {
         "comments": {
@@ -3762,7 +3976,7 @@
           "type": "string"
         },
         "expression": {
-          "description": "Expression: https://spdx.github.io/spdx-spec/appendix-IV-SPDX-license-expressions/",
+          "description": "Often a single license can be used to represent the licensing terms. Sometimes it is necessary to include a choice of one or more licenses or some combination of license identifiers. Examples: \"LGPL-2.1-only OR MIT\", \"LGPL-2.1-only AND MIT\", \"GPL-2.0-or-later WITH Bison-exception-2.2\".",
           "type": "string"
         }
       },
@@ -3845,7 +4059,7 @@
       "id": "Location",
       "properties": {
         "cpeUri": {
-          "description": "The cpe_uri in [cpe format](https://cpe.mitre.org/specification/) denoting the package manager version distributing a package.",
+          "description": "Deprecated. The cpe_uri in [cpe format](https://cpe.mitre.org/specification/) denoting the package manager version distributing a package.",
           "type": "string"
         },
         "path": {
@@ -3854,7 +4068,7 @@
         },
         "version": {
           "$ref": "Version",
-          "description": "The version installed at this location."
+          "description": "Deprecated. The version installed at this location."
         }
       },
       "type": "object"
@@ -4234,6 +4448,35 @@
       "description": "This represents a particular package that is distributed over various channels. e.g. glibc (aka libc6) is distributed by many, at various versions.",
       "id": "Package",
       "properties": {
+        "architecture": {
+          "description": "The CPU architecture for which packages in this distribution channel were built. Architecture will be blank for language packages.",
+          "enum": [
+            "ARCHITECTURE_UNSPECIFIED",
+            "X86",
+            "X64"
+          ],
+          "enumDescriptions": [
+            "Unknown architecture",
+            "X86 architecture",
+            "X64 architecture"
+          ],
+          "type": "string"
+        },
+        "cpeUri": {
+          "description": "The cpe_uri in [CPE format](https://cpe.mitre.org/specification/) denoting the package manager version distributing a package. The cpe_uri will be blank for language packages.",
+          "type": "string"
+        },
+        "description": {
+          "description": "The description of this package.",
+          "type": "string"
+        },
+        "digest": {
+          "description": "Hash value, typically a file digest, that allows unique identification a specific package.",
+          "items": {
+            "$ref": "Digest"
+          },
+          "type": "array"
+        },
         "distribution": {
           "description": "The various channels by which a package is distributed.",
           "items": {
@@ -4241,9 +4484,29 @@
           },
           "type": "array"
         },
+        "license": {
+          "$ref": "License",
+          "description": "Licenses that have been declared by the authors of the package."
+        },
+        "maintainer": {
+          "description": "A freeform text denoting the maintainer of this package.",
+          "type": "string"
+        },
         "name": {
           "description": "The name of the package.",
           "type": "string"
+        },
+        "packageType": {
+          "description": "The type of package; whether native or non native (e.g., ruby gems, node.js packages, etc.).",
+          "type": "string"
+        },
+        "url": {
+          "description": "The homepage for this package.",
+          "type": "string"
+        },
+        "version": {
+          "$ref": "Version",
+          "description": "The version of the package."
         }
       },
       "type": "object"
@@ -4832,7 +5095,7 @@
       "properties": {
         "policy": {
           "$ref": "Policy",
-          "description": "REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them."
+          "description": "REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them."
         }
       },
       "type": "object"
@@ -4950,6 +5213,44 @@
         "recipe": {
           "$ref": "SlsaRecipe",
           "description": "Identifies the configuration used for the build. When combined with materials, this SHOULD fully describe the build, such that re-running this recipe results in bit-for-bit identical output (if the build is reproducible)."
+        }
+      },
+      "type": "object"
+    },
+    "SlsaProvenanceZeroTwo": {
+      "description": "SlsaProvenanceZeroTwo is the slsa provenance as defined by the slsa spec. See full explanation of fields at slsa.dev/provenance/v0.2.",
+      "id": "SlsaProvenanceZeroTwo",
+      "properties": {
+        "buildConfig": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Lists the steps in the build.",
+          "type": "object"
+        },
+        "buildType": {
+          "description": "URI indicating what type of build was performed.",
+          "type": "string"
+        },
+        "builder": {
+          "$ref": "GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaBuilder",
+          "description": "Identifies the entity that executed the recipe, which is trusted to have correctly performed the operation and populated this provenance."
+        },
+        "invocation": {
+          "$ref": "GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaInvocation",
+          "description": "Identifies the event that kicked off the build."
+        },
+        "materials": {
+          "description": "The collection of artifacts that influenced the build including sources, dependencies, build tools, base images, and so on.",
+          "items": {
+            "$ref": "GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaMaterial"
+          },
+          "type": "array"
+        },
+        "metadata": {
+          "$ref": "GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaMetadata",
+          "description": "Other properties of the build."
         }
       },
       "type": "object"
@@ -5097,7 +5398,7 @@
       "id": "TestIamPermissionsRequest",
       "properties": {
         "permissions": {
-          "description": "The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).",
+          "description": "The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).",
           "items": {
             "type": "string"
           },
@@ -5316,6 +5617,13 @@
           "description": "The cpe_uri in [cpe format] (https://cpe.mitre.org/specification/) format. Examples include distro or storage location for vulnerable jar. This field can be used as a filter in list requests.",
           "type": "string"
         },
+        "fileLocation": {
+          "description": "The file location at which this package was found.",
+          "items": {
+            "$ref": "FileLocation"
+          },
+          "type": "array"
+        },
         "package": {
           "description": "The package being described.",
           "type": "string"
@@ -5335,6 +5643,17 @@
           "description": "The CVSS score for this Vulnerability.",
           "format": "float",
           "type": "number"
+        },
+        "cvssV2": {
+          "$ref": "CVSS",
+          "description": "The full description of the CVSS for version 2."
+        },
+        "cwe": {
+          "description": "A list of CWE for this vulnerability. For details, see: https://cwe.mitre.org/index.html",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "details": {
           "description": "All information about the package to specifically identify this vulnerability. One entry per (version range and cpe_uri) the package vulnerability has manifested in.",

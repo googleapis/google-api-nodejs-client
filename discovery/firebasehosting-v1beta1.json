@@ -1939,7 +1939,7 @@
       }
     }
   },
-  "revision": "20210818",
+  "revision": "20220601",
   "rootUrl": "https://firebasehosting.googleapis.com/",
   "schemas": {
     "ActingUser": {
@@ -2232,7 +2232,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -2530,6 +2530,10 @@
         },
         "function": {
           "description": "The function to proxy requests to. Must match the exported function name exactly.",
+          "type": "string"
+        },
+        "functionRegion": {
+          "description": "Optional. Specify a Cloud region for rewritten Functions invocations. If not provided, defaults to us-central1.",
           "type": "string"
         },
         "glob": {

@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/chromepolicy-v1.0.0...chromepolicy-v1.0.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **chromepolicy:** update the API ([04eecb8](https://github.com/googleapis/google-api-nodejs-client/commit/04eecb84844ac5376324545e69219dc1c2068cc8))
+
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromepolicy-v0.8.0...chromepolicy-v1.0.0) (2022-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#2971](https://github.com/googleapis/google-api-nodejs-client/issues/2971)) ([adddf01](https://github.com/googleapis/google-api-nodejs-client/commit/adddf018e7cb73adab7341053dd80d72c5a6248d))
+
+## [0.8.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromepolicy-v0.7.0...chromepolicy-v0.8.0) (2022-03-23)
+
+
+### Features
+
+* **chromepolicy:** update the API ([8e48333](https://github.com/googleapis/google-api-nodejs-client/commit/8e483337e0ce82de6bc31438a1bc130c2ec53839))
+
 ## [0.7.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromepolicy-v0.6.1...chromepolicy-v0.7.0) (2022-03-08)
 
 

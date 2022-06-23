@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -164,6 +163,19 @@ export namespace composer_v1 {
     pypiDependencies?: {[key: string]: string} | null;
   }
   /**
+   * CIDR block with an optional name.
+   */
+  export interface Schema$CidrBlock {
+    /**
+     * CIDR block that must be specified in CIDR notation.
+     */
+    cidrBlock?: string | null;
+    /**
+     * User-defined name that identifies the CIDR block.
+     */
+    displayName?: string | null;
+  }
+  /**
    * The configuration of Cloud SQL instance that is used by the Apache Airflow software.
    */
   export interface Schema$DatabaseConfig {
@@ -190,7 +202,7 @@ export namespace composer_v1 {
     year?: number | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -267,6 +279,10 @@ export namespace composer_v1 {
      * Optional. The maintenance window is the period when Cloud Composer components may undergo maintenance. It is defined so that maintenance is not executed during peak hours or critical time periods. The system will not be under maintenance for every occurrence of this window, but when maintenance is planned, it will be scheduled during the window. The maintenance window period must encompass at least 12 hours per week. This may be split into multiple chunks, each with a size of at least 4 hours. If this value is omitted, the default value for maintenance window will be applied. The default value is Saturday and Sunday 00-06 GMT.
      */
     maintenanceWindow?: Schema$MaintenanceWindow;
+    /**
+     * Optional. The configuration options for GKE cluster master authorized networks. By default master authorized networks feature is: - in case of private environment: enabled with no external networks allowlisted. - in case of public environment: disabled.
+     */
+    masterAuthorizedNetworksConfig?: Schema$MasterAuthorizedNetworksConfig;
     /**
      * The configuration used for the Kubernetes Engine cluster.
      */
@@ -407,13 +423,30 @@ export namespace composer_v1 {
     startTime?: string | null;
   }
   /**
+   * Configuration options for the master authorized networks feature. Enabled master authorized networks will disallow all external traffic to access Kubernetes master through HTTPS except traffic from the given CIDR blocks, Google Compute Engine Public IPs and Google Prod IPs.
+   */
+  export interface Schema$MasterAuthorizedNetworksConfig {
+    /**
+     * Up to 50 external networks that could access Kubernetes master through HTTPS.
+     */
+    cidrBlocks?: Schema$CidrBlock[];
+    /**
+     * Whether or not master authorized networks feature is enabled.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * The configuration information for the Kubernetes Engine nodes running the Apache Airflow software.
    */
   export interface Schema$NodeConfig {
     /**
-     * Optional. The disk size in GB used for node VMs. Minimum size is 20GB. If unspecified, defaults to 100GB. Cannot be updated. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*.
+     * Optional. The disk size in GB used for node VMs. Minimum size is 30GB. If unspecified, defaults to 100GB. Cannot be updated. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*.
      */
     diskSizeGb?: number | null;
+    /**
+     * Optional. Deploys 'ip-masq-agent' daemon set in the GKE cluster and defines nonMasqueradeCIDRs equals to pod IP range so IP masquerading is used for all destination addresses, except between pods traffic. See: https://cloud.google.com/kubernetes-engine/docs/how-to/ip-masquerade-agent
+     */
+    enableIpMasqAgent?: boolean | null;
     /**
      * Optional. The configuration for controlling how IPs are allocated in the GKE cluster.
      */
@@ -543,6 +576,10 @@ export namespace composer_v1 {
      */
     enablePrivateEnvironment?: boolean | null;
     /**
+     * Optional. When enabled, IPs from public (non-RFC1918) ranges can be used for `IPAllocationPolicy.cluster_ipv4_cidr_block` and `IPAllocationPolicy.service_ipv4_cidr_block`.
+     */
+    enablePrivatelyUsedPublicIps?: boolean | null;
+    /**
      * Optional. Configuration for the private GKE cluster for a Private IP Cloud Composer environment.
      */
     privateClusterConfig?: Schema$PrivateClusterConfig;
@@ -589,7 +626,7 @@ export namespace composer_v1 {
      */
     envVariables?: {[key: string]: string} | null;
     /**
-     * The version of the software running in the environment. This encapsulates both the version of Cloud Composer functionality and the version of Apache Airflow. It must match the regular expression `composer-([0-9]+(\.[0-9]+\.[0-9]+(-preview\.[0-9]+)?)?|latest)-airflow-([0-9]+\.[0-9]+(\.[0-9]+)?)`. When used as input, the server also checks if the provided version is supported and denies the request for an unsupported version. The Cloud Composer portion of the image version is a full [semantic version](https://semver.org), or an alias in the form of major version number or `latest`. When an alias is provided, the server replaces it with the current Cloud Composer version that satisfies the alias. The Apache Airflow portion of the image version is a full semantic version that points to one of the supported Apache Airflow versions, or an alias in the form of only major and minor versions specified. When an alias is provided, the server replaces it with the latest Apache Airflow version that satisfies the alias and is supported in the given Cloud Composer version. In all cases, the resolved image version is stored in the same field. See also [version list](/composer/docs/concepts/versioning/composer-versions) and [versioning overview](/composer/docs/concepts/versioning/composer-versioning-overview).
+     * The version of the software running in the environment. This encapsulates both the version of Cloud Composer functionality and the version of Apache Airflow. It must match the regular expression `composer-([0-9]+(\.[0-9]+\.[0-9]+(-preview\.[0-9]+)?)?|latest)-airflow-([0-9]+(\.[0-9]+(\.[0-9]+)?)?)`. When used as input, the server also checks if the provided version is supported and denies the request for an unsupported version. The Cloud Composer portion of the image version is a full [semantic version](https://semver.org), or an alias in the form of major version number or `latest`. When an alias is provided, the server replaces it with the current Cloud Composer version that satisfies the alias. The Apache Airflow portion of the image version is a full semantic version that points to one of the supported Apache Airflow versions, or an alias in the form of only major or major.minor versions specified. When an alias is provided, the server replaces it with the latest Apache Airflow version that satisfies the alias and is supported in the given Cloud Composer version. In all cases, the resolved image version is stored in the same field. See also [version list](/composer/docs/concepts/versioning/composer-versions) and [versioning overview](/composer/docs/concepts/versioning/composer-versioning-overview).
      */
     imageVersion?: string | null;
     /**

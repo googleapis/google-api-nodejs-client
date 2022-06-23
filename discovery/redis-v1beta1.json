@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
                   "type": "string"
                 },
@@ -624,11 +624,11 @@
       }
     }
   },
-  "revision": "20220301",
+  "revision": "20220601",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -790,6 +790,13 @@
           "description": "Optional. The full name of the Google Compute Engine [network](https://cloud.google.com/vpc/docs/vpc) to which the instance is connected. If left unspecified, the `default` network will be used.",
           "type": "string"
         },
+        "availableMaintenanceVersions": {
+          "description": "Optional. The available maintenance versions that an instance could update to.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "connectMode": {
           "description": "Optional. The network connect mode of the Redis instance. If not provided, the connect mode defaults to DIRECT_PEERING.",
           "enum": [
@@ -813,6 +820,10 @@
         "currentLocationId": {
           "description": "Output only. The current zone where the Redis primary node is located. In basic tier, this will always be the same as [location_id]. In standard tier, this can be the zone of any node in the instance.",
           "readOnly": true,
+          "type": "string"
+        },
+        "customerManagedKey": {
+          "description": "Optional. The KMS key reference that the customer provides when trying to create the instance.",
           "type": "string"
         },
         "displayName": {
@@ -843,6 +854,10 @@
           "$ref": "MaintenanceSchedule",
           "description": "Output only. Date and time of upcoming maintenance events which have been scheduled.",
           "readOnly": true
+        },
+        "maintenanceVersion": {
+          "description": "Optional. The self service update maintenance version. The version is date based such as \"20210712_00_00\".",
+          "type": "string"
         },
         "memorySizeGb": {
           "description": "Required. Redis memory size in GiB.",
@@ -964,6 +979,21 @@
           "description": "Output only. Additional information about the current status of this instance, if available.",
           "readOnly": true,
           "type": "string"
+        },
+        "suspensionReasons": {
+          "description": "Optional. reasons that causes instance in \"SUSPENDED\" state.",
+          "items": {
+            "enum": [
+              "SUSPENSION_REASON_UNSPECIFIED",
+              "CUSTOMER_MANAGED_KEY_ISSUE"
+            ],
+            "enumDescriptions": [
+              "Not set.",
+              "Something wrong with the CMEK key provided by customer."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         },
         "tier": {
           "description": "Required. The service tier of the instance.",

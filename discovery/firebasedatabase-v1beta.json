@@ -160,7 +160,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Marks a DatabaseInstance to be deleted. The DatabaseInstance will be purged within 30 days. The default database cannot be deleted. IDs for deleted database instances may never be recovered or re-used. The Database may only be deleted if it is already in a DISABLED state.",
+                  "description": "Marks a DatabaseInstance to be deleted. The DatabaseInstance will be set to the DELETED state for 20 days, and will be purged within 30 days. The default database cannot be deleted. IDs for deleted database instances may never be recovered or re-used. The Database may only be deleted if it is already in a DISABLED state.",
                   "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}",
                   "httpMethod": "DELETE",
                   "id": "firebasedatabase.projects.locations.instances.delete",
@@ -268,6 +268,11 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "showDeleted": {
+                      "description": "Indicate that DatabaseInstances in the `DELETED` state should also be returned.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1beta/{+parent}/instances",
@@ -309,6 +314,35 @@
                     "https://www.googleapis.com/auth/cloud-platform",
                     "https://www.googleapis.com/auth/firebase"
                   ]
+                },
+                "undelete": {
+                  "description": "Restores a DatabaseInstance that was previously marked to be deleted. After the delete method is used, DatabaseInstances are set to the DELETED state for 20 days, and will be purged within 30 days. Databases in the DELETED state can be undeleted without losing any data. This method may only be used on a DatabaseInstance in the DELETED state. Purged DatabaseInstances may not be recovered.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:undelete",
+                  "httpMethod": "POST",
+                  "id": "firebasedatabase.projects.locations.instances.undelete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The fully qualified resource name of the database instance, in the form: `projects/{project-number}/locations/{location-id}/instances/{database-id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}:undelete",
+                  "request": {
+                    "$ref": "UndeleteDatabaseInstanceRequest"
+                  },
+                  "response": {
+                    "$ref": "DatabaseInstance"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/firebase"
+                  ]
                 }
               }
             }
@@ -317,7 +351,7 @@
       }
     }
   },
-  "revision": "20210827",
+  "revision": "20220615",
   "rootUrl": "https://firebasedatabase.googleapis.com/",
   "schemas": {
     "DatabaseInstance": {
@@ -325,7 +359,8 @@
       "id": "DatabaseInstance",
       "properties": {
         "databaseUrl": {
-          "description": "Immutable. The globally unique hostname of the database.",
+          "description": "Output only. Output Only. The globally unique hostname of the database.",
+          "readOnly": true,
           "type": "string"
         },
         "name": {
@@ -333,11 +368,12 @@
           "type": "string"
         },
         "project": {
-          "description": "The resource name of the project this instance belongs to. For example: `projects/{project-number}`.",
+          "description": "Output only. The resource name of the project this instance belongs to. For example: `projects/{project-number}`.",
+          "readOnly": true,
           "type": "string"
         },
         "state": {
-          "description": "The database's lifecycle state. Read-only.",
+          "description": "Output only. The database's lifecycle state. Read-only.",
           "enum": [
             "LIFECYCLE_STATE_UNSPECIFIED",
             "ACTIVE",
@@ -350,10 +386,11 @@
             "The database is in a disabled state. It can be re-enabled later.",
             "The database is in a deleted state."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "type": {
-          "description": "The database instance type. On creation only USER_DATABASE is allowed, which is also the default when omitted.",
+          "description": "Immutable. The database instance type. On creation only USER_DATABASE is allowed, which is also the default when omitted.",
           "enum": [
             "DATABASE_INSTANCE_TYPE_UNSPECIFIED",
             "DEFAULT_DATABASE",
@@ -396,6 +433,12 @@
     "ReenableDatabaseInstanceRequest": {
       "description": "The request sent to the ReenableDatabaseInstance method.",
       "id": "ReenableDatabaseInstanceRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "UndeleteDatabaseInstanceRequest": {
+      "description": "The request sent to UndeleteDatabaseInstance method.",
+      "id": "UndeleteDatabaseInstanceRequest",
       "properties": {},
       "type": "object"
     }

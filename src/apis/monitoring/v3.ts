@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -191,7 +190,7 @@ export namespace monitoring_v3 {
      */
     mutationRecord?: Schema$MutationRecord;
     /**
-     * Required if the policy exists. The resource name for this policy. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID] [ALERT_POLICY_ID] is assigned by Stackdriver Monitoring when the policy is created. When calling the alertPolicies.create method, do not include the name field in the alerting policy passed as part of the request.
+     * Required if the policy exists. The resource name for this policy. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID] [ALERT_POLICY_ID] is assigned by Cloud Monitoring when the policy is created. When calling the alertPolicies.create method, do not include the name field in the alerting policy passed as part of the request.
      */
     name?: string | null;
     /**
@@ -225,7 +224,7 @@ export namespace monitoring_v3 {
    */
   export interface Schema$AppEngine {
     /**
-     * The ID of the App Engine module underlying this service. Corresponds to the module_id resource label in the gae_app monitored resource: https://cloud.google.com/monitoring/api/resources#tag_gae_app
+     * The ID of the App Engine module underlying this service. Corresponds to the module_id resource label in the gae_app monitored resource (https://cloud.google.com/monitoring/api/resources#tag_gae_app).
      */
     moduleId?: string | null;
   }
@@ -293,9 +292,22 @@ export namespace monitoring_v3 {
    */
   export interface Schema$CloudEndpoints {
     /**
-     * The name of the Cloud Endpoints service underlying this service. Corresponds to the service resource label in the api monitored resource: https://cloud.google.com/monitoring/api/resources#tag_api
+     * The name of the Cloud Endpoints service underlying this service. Corresponds to the service resource label in the api monitored resource (https://cloud.google.com/monitoring/api/resources#tag_api).
      */
     service?: string | null;
+  }
+  /**
+   * Cloud Run service. Learn more at https://cloud.google.com/run.
+   */
+  export interface Schema$CloudRun {
+    /**
+     * The location the service is run. Corresponds to the location resource label in the cloud_run_revision monitored resource (https://cloud.google.com/monitoring/api/resources#tag_cloud_run_revision).
+     */
+    location?: string | null;
+    /**
+     * The name of the Cloud Run service. Corresponds to the service_name resource label in the cloud_run_revision monitored resource (https://cloud.google.com/monitoring/api/resources#tag_cloud_run_revision).
+     */
+    serviceName?: string | null;
   }
   /**
    * Istio service scoped to a single Kubernetes cluster. Learn more at https://istio.io. Clusters running OSS Istio will have their services ingested as this type.
@@ -427,7 +439,7 @@ export namespace monitoring_v3 {
      */
     displayName?: string | null;
     /**
-     * Required if the condition exists. The unique resource name for this condition. Its format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID] [CONDITION_ID] is assigned by Stackdriver Monitoring when the condition is created as part of a new or updated alerting policy.When calling the alertPolicies.create method, do not include the name field in the conditions of the requested alerting policy. Stackdriver Monitoring creates the condition identifiers and includes them in the new policy.When calling the alertPolicies.update method to update a policy, including a condition name causes the existing condition to be updated. Conditions without names are added to the updated policy. Existing conditions are deleted if they are not updated.Best practice is to preserve [CONDITION_ID] if you make only small changes, such as those to condition thresholds, durations, or trigger values. Otherwise, treat the change as a new condition and let the existing condition be deleted.
+     * Required if the condition exists. The unique resource name for this condition. Its format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID] [CONDITION_ID] is assigned by Cloud Monitoring when the condition is created as part of a new or updated alerting policy.When calling the alertPolicies.create method, do not include the name field in the conditions of the requested alerting policy. Cloud Monitoring creates the condition identifiers and includes them in the new policy.When calling the alertPolicies.update method to update a policy, including a condition name causes the existing condition to be updated. Conditions without names are added to the updated policy. Existing conditions are deleted if they are not updated.Best practice is to preserve [CONDITION_ID] if you make only small changes, such as those to condition thresholds, durations, or trigger values. Otherwise, treat the change as a new condition and let the existing condition be deleted.
      */
     name?: string | null;
   }
@@ -439,6 +451,10 @@ export namespace monitoring_v3 {
      * String, regex or JSON content to match. Maximum 1024 bytes. An empty content string indicates no content matching is to be performed.
      */
     content?: string | null;
+    /**
+     * Matcher information for MATCHES_JSON_PATH and NOT_MATCHES_JSON_PATH
+     */
+    jsonPathMatcher?: Schema$JsonPathMatcher;
     /**
      * The type of content matcher that will be applied to the server output, compared to the content string when the check is run.
      */
@@ -573,7 +589,7 @@ export namespace monitoring_v3 {
     label?: {[key: string]: string} | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for Empty is empty JSON object {\}.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -700,6 +716,81 @@ export namespace monitoring_v3 {
     expireTime?: string | null;
   }
   /**
+   * GKE Namespace. The field names correspond to the resource metadata labels on monitored resources that fall under a namespace (for example, k8s_container or k8s_pod).
+   */
+  export interface Schema$GkeNamespace {
+    /**
+     * The name of the parent cluster.
+     */
+    clusterName?: string | null;
+    /**
+     * The location of the parent cluster. This may be a zone or region.
+     */
+    location?: string | null;
+    /**
+     * The name of this namespace.
+     */
+    namespaceName?: string | null;
+    /**
+     * Output only. The project this resource lives in. For legacy services migrated from the Custom type, this may be a distinct project from the one parenting the service itself.
+     */
+    projectId?: string | null;
+  }
+  /**
+   * GKE Service. The "service" here represents a Kubernetes service object (https://kubernetes.io/docs/concepts/services-networking/service). The field names correspond to the resource labels on k8s_service monitored resources (https://cloud.google.com/monitoring/api/resources#tag_k8s_service).
+   */
+  export interface Schema$GkeService {
+    /**
+     * The name of the parent cluster.
+     */
+    clusterName?: string | null;
+    /**
+     * The location of the parent cluster. This may be a zone or region.
+     */
+    location?: string | null;
+    /**
+     * The name of the parent namespace.
+     */
+    namespaceName?: string | null;
+    /**
+     * Output only. The project this resource lives in. For legacy services migrated from the Custom type, this may be a distinct project from the one parenting the service itself.
+     */
+    projectId?: string | null;
+    /**
+     * The name of this service.
+     */
+    serviceName?: string | null;
+  }
+  /**
+   * A GKE Workload (Deployment, StatefulSet, etc). The field names correspond to the metadata labels on monitored resources that fall under a workload (for example, k8s_container or k8s_pod).
+   */
+  export interface Schema$GkeWorkload {
+    /**
+     * The name of the parent cluster.
+     */
+    clusterName?: string | null;
+    /**
+     * The location of the parent cluster. This may be a zone or region.
+     */
+    location?: string | null;
+    /**
+     * The name of the parent namespace.
+     */
+    namespaceName?: string | null;
+    /**
+     * Output only. The project this resource lives in. For legacy services migrated from the Custom type, this may be a distinct project from the one parenting the service itself.
+     */
+    projectId?: string | null;
+    /**
+     * The name of this workload.
+     */
+    topLevelControllerName?: string | null;
+    /**
+     * The type of this workload (for example, "Deployment" or "DaemonSet")
+     */
+    topLevelControllerType?: string | null;
+  }
+  /**
    * Range of numerical values within min and max.
    */
   export interface Schema$GoogleMonitoringV3Range {
@@ -787,7 +878,7 @@ export namespace monitoring_v3 {
    */
   export interface Schema$InternalChecker {
     /**
-     * The checker's human-readable name. The display name should be unique within a Stackdriver Workspace in order to make it easier to identify; however, uniqueness is not enforced.
+     * The checker's human-readable name. The display name should be unique within a Cloud Monitoring Metrics Scope in order to make it easier to identify; however, uniqueness is not enforced.
      */
     displayName?: string | null;
     /**
@@ -795,7 +886,7 @@ export namespace monitoring_v3 {
      */
     gcpZone?: string | null;
     /**
-     * A unique resource name for this InternalChecker. The format is: projects/[PROJECT_ID_OR_NUMBER]/internalCheckers/[INTERNAL_CHECKER_ID] [PROJECT_ID_OR_NUMBER] is the Stackdriver Workspace project for the Uptime check config associated with the internal checker.
+     * A unique resource name for this InternalChecker. The format is: projects/[PROJECT_ID_OR_NUMBER]/internalCheckers/[INTERNAL_CHECKER_ID] [PROJECT_ID_OR_NUMBER] is the Cloud Monitoring Metrics Scope project for the Uptime check config associated with the internal checker.
      */
     name?: string | null;
     /**
@@ -803,7 +894,7 @@ export namespace monitoring_v3 {
      */
     network?: string | null;
     /**
-     * The GCP project ID where the internal checker lives. Not necessary the same as the Workspace project.
+     * The GCP project ID where the internal checker lives. Not necessary the same as the Metrics Scope project.
      */
     peerProjectId?: string | null;
     /**
@@ -827,6 +918,19 @@ export namespace monitoring_v3 {
      * Identifier for the Istio mesh in which this canonical service is defined. Corresponds to the mesh_uid metric label in Istio metrics (https://cloud.google.com/monitoring/api/metrics_istio).
      */
     meshUid?: string | null;
+  }
+  /**
+   * Information needed to perform a JSONPath content match. Used for ContentMatcherOption::MATCHES_JSON_PATH and ContentMatcherOption::NOT_MATCHES_JSON_PATH.
+   */
+  export interface Schema$JsonPathMatcher {
+    /**
+     * The type of JSONPath match that will be applied to the JSON output (ContentMatcher.content)
+     */
+    jsonMatcher?: string | null;
+    /**
+     * JSONPath within the response output pointing to the expected ContentMatcher::content to match against.
+     */
+    jsonPath?: string | null;
   }
   /**
    * A description of a label.
@@ -1595,6 +1699,10 @@ export namespace monitoring_v3 {
      */
     cloudEndpoints?: Schema$CloudEndpoints;
     /**
+     * Type used for Cloud Run services.
+     */
+    cloudRun?: Schema$CloudRun;
+    /**
      * Type used for Istio services that live in a Kubernetes cluster.
      */
     clusterIstio?: Schema$ClusterIstio;
@@ -1606,6 +1714,18 @@ export namespace monitoring_v3 {
      * Name used for UI elements listing this Service.
      */
     displayName?: string | null;
+    /**
+     * Type used for GKE Namespaces.
+     */
+    gkeNamespace?: Schema$GkeNamespace;
+    /**
+     * Type used for GKE Services (the Kubernetes concept of a service).
+     */
+    gkeService?: Schema$GkeService;
+    /**
+     * Type used for GKE Workloads.
+     */
+    gkeWorkload?: Schema$GkeWorkload;
     /**
      * Type used for canonical services scoped to an Istio mesh. Metrics for Istio are documented here (https://istio.io/latest/docs/reference/config/metrics/)
      */
@@ -1899,7 +2019,7 @@ export namespace monitoring_v3 {
      */
     contentMatchers?: Schema$ContentMatcher[];
     /**
-     * A human-friendly name for the Uptime check configuration. The display name should be unique within a Stackdriver Workspace in order to make it easier to identify; however, uniqueness is not enforced. Required.
+     * A human-friendly name for the Uptime check configuration. The display name should be unique within a Cloud Monitoring Workspace in order to make it easier to identify; however, uniqueness is not enforced. Required.
      */
     displayName?: string | null;
     /**
@@ -2597,7 +2717,7 @@ export namespace monitoring_v3 {
      *
      *   // Do the magic
      *   const res = await monitoring.projects.alertPolicies.create({
-     *     // Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) in which to create the alerting policy. The format is: projects/[PROJECT_ID_OR_NUMBER] Note that this field names the parent container in which the alerting policy will be written, not the name of the created policy. |name| must be a host project of a workspace, otherwise INVALID_ARGUMENT error will return. The alerting policy that is returned will have a name that contains a normalized representation of this name as a prefix but adds a suffix of the form /alertPolicies/[ALERT_POLICY_ID], identifying the policy in the container.
+     *     // Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) in which to create the alerting policy. The format is: projects/[PROJECT_ID_OR_NUMBER] Note that this field names the parent container in which the alerting policy will be written, not the name of the created policy. |name| must be a host project of a Metrics Scope, otherwise INVALID_ARGUMENT error will return. The alerting policy that is returned will have a name that contains a normalized representation of this name as a prefix but adds a suffix of the form /alertPolicies/[ALERT_POLICY_ID], identifying the policy in the container.
      *     name: 'projects/my-project',
      *
      *     // Request body metadata
@@ -3177,7 +3297,7 @@ export namespace monitoring_v3 {
      *
      *   // Do the magic
      *   const res = await monitoring.projects.alertPolicies.patch({
-     *     // Required if the policy exists. The resource name for this policy. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID] [ALERT_POLICY_ID] is assigned by Stackdriver Monitoring when the policy is created. When calling the alertPolicies.create method, do not include the name field in the alerting policy passed as part of the request.
+     *     // Required if the policy exists. The resource name for this policy. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID] [ALERT_POLICY_ID] is assigned by Cloud Monitoring when the policy is created. When calling the alertPolicies.create method, do not include the name field in the alerting policy passed as part of the request.
      *     name: 'projects/my-project/alertPolicies/my-alertPolicie',
      *     // Optional. A list of alerting policy field names. If this field is not empty, each listed field in the existing alerting policy is set to the value of the corresponding field in the supplied policy (alert_policy), or to the field's default value if the field is not in the supplied alerting policy. Fields not listed retain their previous value.Examples of valid field masks include display_name, documentation, documentation.content, documentation.mime_type, user_labels, user_label.nameofkey, enabled, conditions, combiner, etc.If this field is empty, then the supplied alerting policy replaces the existing policy. It is the same as deleting the existing policy and adding the supplied policy, except for the following: The new policy will have the same [ALERT_POLICY_ID] as the former policy. This gives you continuity with the former policy in your notifications and incidents. Conditions in the new policy will keep their former [CONDITION_ID] if the supplied condition includes the name field with that [CONDITION_ID]. If the supplied condition omits the name field, then a new [CONDITION_ID] is created.
      *     updateMask: 'placeholder-value',
@@ -3312,7 +3432,7 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Alertpolicies$Create
     extends StandardParameters {
     /**
-     * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) in which to create the alerting policy. The format is: projects/[PROJECT_ID_OR_NUMBER] Note that this field names the parent container in which the alerting policy will be written, not the name of the created policy. |name| must be a host project of a workspace, otherwise INVALID_ARGUMENT error will return. The alerting policy that is returned will have a name that contains a normalized representation of this name as a prefix but adds a suffix of the form /alertPolicies/[ALERT_POLICY_ID], identifying the policy in the container.
+     * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) in which to create the alerting policy. The format is: projects/[PROJECT_ID_OR_NUMBER] Note that this field names the parent container in which the alerting policy will be written, not the name of the created policy. |name| must be a host project of a Metrics Scope, otherwise INVALID_ARGUMENT error will return. The alerting policy that is returned will have a name that contains a normalized representation of this name as a prefix but adds a suffix of the form /alertPolicies/[ALERT_POLICY_ID], identifying the policy in the container.
      */
     name?: string;
 
@@ -3361,7 +3481,7 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Alertpolicies$Patch
     extends StandardParameters {
     /**
-     * Required if the policy exists. The resource name for this policy. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID] [ALERT_POLICY_ID] is assigned by Stackdriver Monitoring when the policy is created. When calling the alertPolicies.create method, do not include the name field in the alerting policy passed as part of the request.
+     * Required if the policy exists. The resource name for this policy. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID] [ALERT_POLICY_ID] is assigned by Cloud Monitoring when the policy is created. When calling the alertPolicies.create method, do not include the name field in the alerting policy passed as part of the request.
      */
     name?: string;
     /**
@@ -3382,7 +3502,7 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * Stackdriver Monitoring Agent only: Creates a new time series.This method is only for use by the Stackdriver Monitoring Agent. Use projects.timeSeries.create instead.
+     * Cloud Monitoring Agent only: Creates a new time series.This method is only for use by the Cloud Monitoring Agent. Use projects.timeSeries.create instead.
      * @example
      * ```js
      * // Before running the sample:
@@ -8669,7 +8789,7 @@ export namespace monitoring_v3 {
      *
      *   // Do the magic
      *   const res = await monitoring.services.create({
-     *     // Required. Resource name (https://cloud.google.com/monitoring/api/v3#project_name) of the parent workspace. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     *     // Required. Resource name (https://cloud.google.com/monitoring/api/v3#project_name) of the parent Metrics Scope. The format is: projects/[PROJECT_ID_OR_NUMBER]
      *     parent: '[^/]+/[^/]+',
      *     // Optional. The Service id to use for this Service. If omitted, an id will be generated instead. Must match the pattern [a-z0-9\-]+
      *     serviceId: 'placeholder-value',
@@ -8680,9 +8800,13 @@ export namespace monitoring_v3 {
      *       // {
      *       //   "appEngine": {},
      *       //   "cloudEndpoints": {},
+     *       //   "cloudRun": {},
      *       //   "clusterIstio": {},
      *       //   "custom": {},
      *       //   "displayName": "my_displayName",
+     *       //   "gkeNamespace": {},
+     *       //   "gkeService": {},
+     *       //   "gkeWorkload": {},
      *       //   "istioCanonicalService": {},
      *       //   "meshIstio": {},
      *       //   "name": "my_name",
@@ -8697,9 +8821,13 @@ export namespace monitoring_v3 {
      *   // {
      *   //   "appEngine": {},
      *   //   "cloudEndpoints": {},
+     *   //   "cloudRun": {},
      *   //   "clusterIstio": {},
      *   //   "custom": {},
      *   //   "displayName": "my_displayName",
+     *   //   "gkeNamespace": {},
+     *   //   "gkeService": {},
+     *   //   "gkeWorkload": {},
      *   //   "istioCanonicalService": {},
      *   //   "meshIstio": {},
      *   //   "name": "my_name",
@@ -8964,9 +9092,13 @@ export namespace monitoring_v3 {
      *   // {
      *   //   "appEngine": {},
      *   //   "cloudEndpoints": {},
+     *   //   "cloudRun": {},
      *   //   "clusterIstio": {},
      *   //   "custom": {},
      *   //   "displayName": "my_displayName",
+     *   //   "gkeNamespace": {},
+     *   //   "gkeService": {},
+     *   //   "gkeWorkload": {},
      *   //   "istioCanonicalService": {},
      *   //   "meshIstio": {},
      *   //   "name": "my_name",
@@ -9063,7 +9195,7 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * List Services for this workspace.
+     * List Services for this Metrics Scope.
      * @example
      * ```js
      * // Before running the sample:
@@ -9093,13 +9225,13 @@ export namespace monitoring_v3 {
      *
      *   // Do the magic
      *   const res = await monitoring.services.list({
-     *     // A filter specifying what Services to return. The filter currently supports the following fields: - `identifier_case` - `app_engine.module_id` - `cloud_endpoints.service` (reserved for future use) - `mesh_istio.mesh_uid` - `mesh_istio.service_namespace` - `mesh_istio.service_name` - `cluster_istio.location` (deprecated) - `cluster_istio.cluster_name` (deprecated) - `cluster_istio.service_namespace` (deprecated) - `cluster_istio.service_name` (deprecated) identifier_case refers to which option in the identifier oneof is populated. For example, the filter identifier_case = "CUSTOM" would match all services with a value for the custom field. Valid options are "CUSTOM", "APP_ENGINE", "MESH_ISTIO", plus "CLUSTER_ISTIO" (deprecated) and "CLOUD_ENDPOINTS" (reserved for future use).
+     *     // A filter specifying what Services to return. The filter supports filtering on a particular service-identifier type or one of its attributes.To filter on a particular service-identifier type, the identifier_case refers to which option in the identifier field is populated. For example, the filter identifier_case = "CUSTOM" would match all services with a value for the custom field. Valid options include "CUSTOM", "APP_ENGINE", "MESH_ISTIO", and the other options listed at https://cloud.google.com/monitoring/api/ref_v3/rest/v3/services#ServiceTo filter on an attribute of a service-identifier type, apply the filter name by using the snake case of the service-identifier type and the attribute of that service-identifier type, and join the two with a period. For example, to filter by the meshUid field of the MeshIstio service-identifier type, you must filter on mesh_istio.mesh_uid = "123" to match all services with mesh UID "123". Service-identifier types and their attributes are described at https://cloud.google.com/monitoring/api/ref_v3/rest/v3/services#Service
      *     filter: 'placeholder-value',
      *     // A non-negative number that is the maximum number of results to return. When 0, use default page size.
      *     pageSize: 'placeholder-value',
      *     // If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
      *     pageToken: 'placeholder-value',
-     *     // Required. Resource name of the parent containing the listed services, either a project (https://cloud.google.com/monitoring/api/v3#project_name) or a Monitoring Workspace. The formats are: projects/[PROJECT_ID_OR_NUMBER] workspaces/[HOST_PROJECT_ID_OR_NUMBER]
+     *     // Required. Resource name of the parent containing the listed services, either a project (https://cloud.google.com/monitoring/api/v3#project_name) or a Monitoring Metrics Scope. The formats are: projects/[PROJECT_ID_OR_NUMBER] workspaces/[HOST_PROJECT_ID_OR_NUMBER]
      *     parent: '[^/]+/[^/]+',
      *   });
      *   console.log(res.data);
@@ -9247,9 +9379,13 @@ export namespace monitoring_v3 {
      *       // {
      *       //   "appEngine": {},
      *       //   "cloudEndpoints": {},
+     *       //   "cloudRun": {},
      *       //   "clusterIstio": {},
      *       //   "custom": {},
      *       //   "displayName": "my_displayName",
+     *       //   "gkeNamespace": {},
+     *       //   "gkeService": {},
+     *       //   "gkeWorkload": {},
      *       //   "istioCanonicalService": {},
      *       //   "meshIstio": {},
      *       //   "name": "my_name",
@@ -9264,9 +9400,13 @@ export namespace monitoring_v3 {
      *   // {
      *   //   "appEngine": {},
      *   //   "cloudEndpoints": {},
+     *   //   "cloudRun": {},
      *   //   "clusterIstio": {},
      *   //   "custom": {},
      *   //   "displayName": "my_displayName",
+     *   //   "gkeNamespace": {},
+     *   //   "gkeService": {},
+     *   //   "gkeWorkload": {},
      *   //   "istioCanonicalService": {},
      *   //   "meshIstio": {},
      *   //   "name": "my_name",
@@ -9365,7 +9505,7 @@ export namespace monitoring_v3 {
 
   export interface Params$Resource$Services$Create extends StandardParameters {
     /**
-     * Required. Resource name (https://cloud.google.com/monitoring/api/v3#project_name) of the parent workspace. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     * Required. Resource name (https://cloud.google.com/monitoring/api/v3#project_name) of the parent Metrics Scope. The format is: projects/[PROJECT_ID_OR_NUMBER]
      */
     parent?: string;
     /**
@@ -9392,7 +9532,7 @@ export namespace monitoring_v3 {
   }
   export interface Params$Resource$Services$List extends StandardParameters {
     /**
-     * A filter specifying what Services to return. The filter currently supports the following fields: - `identifier_case` - `app_engine.module_id` - `cloud_endpoints.service` (reserved for future use) - `mesh_istio.mesh_uid` - `mesh_istio.service_namespace` - `mesh_istio.service_name` - `cluster_istio.location` (deprecated) - `cluster_istio.cluster_name` (deprecated) - `cluster_istio.service_namespace` (deprecated) - `cluster_istio.service_name` (deprecated) identifier_case refers to which option in the identifier oneof is populated. For example, the filter identifier_case = "CUSTOM" would match all services with a value for the custom field. Valid options are "CUSTOM", "APP_ENGINE", "MESH_ISTIO", plus "CLUSTER_ISTIO" (deprecated) and "CLOUD_ENDPOINTS" (reserved for future use).
+     * A filter specifying what Services to return. The filter supports filtering on a particular service-identifier type or one of its attributes.To filter on a particular service-identifier type, the identifier_case refers to which option in the identifier field is populated. For example, the filter identifier_case = "CUSTOM" would match all services with a value for the custom field. Valid options include "CUSTOM", "APP_ENGINE", "MESH_ISTIO", and the other options listed at https://cloud.google.com/monitoring/api/ref_v3/rest/v3/services#ServiceTo filter on an attribute of a service-identifier type, apply the filter name by using the snake case of the service-identifier type and the attribute of that service-identifier type, and join the two with a period. For example, to filter by the meshUid field of the MeshIstio service-identifier type, you must filter on mesh_istio.mesh_uid = "123" to match all services with mesh UID "123". Service-identifier types and their attributes are described at https://cloud.google.com/monitoring/api/ref_v3/rest/v3/services#Service
      */
     filter?: string;
     /**
@@ -9404,7 +9544,7 @@ export namespace monitoring_v3 {
      */
     pageToken?: string;
     /**
-     * Required. Resource name of the parent containing the listed services, either a project (https://cloud.google.com/monitoring/api/v3#project_name) or a Monitoring Workspace. The formats are: projects/[PROJECT_ID_OR_NUMBER] workspaces/[HOST_PROJECT_ID_OR_NUMBER]
+     * Required. Resource name of the parent containing the listed services, either a project (https://cloud.google.com/monitoring/api/v3#project_name) or a Monitoring Metrics Scope. The formats are: projects/[PROJECT_ID_OR_NUMBER] workspaces/[HOST_PROJECT_ID_OR_NUMBER]
      */
     parent?: string;
   }
@@ -9896,7 +10036,7 @@ export namespace monitoring_v3 {
      *     pageSize: 'placeholder-value',
      *     // If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
      *     pageToken: 'placeholder-value',
-     *     // Required. Resource name of the parent containing the listed SLOs, either a project or a Monitoring Workspace. The formats are: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID] workspaces/[HOST_PROJECT_ID_OR_NUMBER]/services/-
+     *     // Required. Resource name of the parent containing the listed SLOs, either a project or a Monitoring Metrics Scope. The formats are: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID] workspaces/[HOST_PROJECT_ID_OR_NUMBER]/services/-
      *     parent: '[^/]+/[^/]+/services/my-service',
      *     // View of the ServiceLevelObjectives to return. If DEFAULT, return each ServiceLevelObjective as originally defined. If EXPLICIT and the ServiceLevelObjective is defined in terms of a BasicSli, replace the BasicSli with a RequestBasedSli spelling out how the SLI is computed.
      *     view: 'placeholder-value',
@@ -10216,7 +10356,7 @@ export namespace monitoring_v3 {
      */
     pageToken?: string;
     /**
-     * Required. Resource name of the parent containing the listed SLOs, either a project or a Monitoring Workspace. The formats are: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID] workspaces/[HOST_PROJECT_ID_OR_NUMBER]/services/-
+     * Required. Resource name of the parent containing the listed SLOs, either a project or a Monitoring Metrics Scope. The formats are: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID] workspaces/[HOST_PROJECT_ID_OR_NUMBER]/services/-
      */
     parent?: string;
     /**

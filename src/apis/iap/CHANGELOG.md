@@ -1,5 +1,43 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/iap-v3.0.0...iap-v3.0.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **iap:** update the API ([4ed9f3f](https://github.com/googleapis/google-api-nodejs-client/commit/4ed9f3f6ab2a236c9c63c651884cd91f232a934c))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/iap-v2.3.0...iap-v3.0.0) (2022-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#2971](https://github.com/googleapis/google-api-nodejs-client/issues/2971)) ([adddf01](https://github.com/googleapis/google-api-nodejs-client/commit/adddf018e7cb73adab7341053dd80d72c5a6248d))
+
+## [2.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/iap-v2.2.0...iap-v2.3.0) (2022-06-13)
+
+
+### Features
+
+* regenerate index files ([43ae576](https://github.com/googleapis/google-api-nodejs-client/commit/43ae57651332bdf31af52ea3abb9e2934798a404))
+
+
+### Bug Fixes
+
+* **iap:** update the API ([2e591a1](https://github.com/googleapis/google-api-nodejs-client/commit/2e591a15b1f947bc9f5f53236436727f83c40aac))
+* **iap:** update the API ([2cccd41](https://github.com/googleapis/google-api-nodejs-client/commit/2cccd41f498943a587b8423a07cfe50a9ca0fb53))
+
+## [2.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/iap-v2.1.2...iap-v2.2.0) (2022-03-23)
+
+
+### Features
+
+* **iap:** update the API ([1b8f710](https://github.com/googleapis/google-api-nodejs-client/commit/1b8f7104aca9def8ef4371eb37042ca2b134fa89))
+
 ### [2.1.2](https://www.github.com/googleapis/google-api-nodejs-client/compare/iap-v2.1.1...iap-v2.1.2) (2021-11-25)
 
 

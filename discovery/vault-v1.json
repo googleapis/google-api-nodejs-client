@@ -1193,7 +1193,7 @@
       }
     }
   },
-  "revision": "20220222",
+  "revision": "20220423",
   "rootUrl": "https://vault.googleapis.com/",
   "schemas": {
     "AccountCount": {
@@ -1499,6 +1499,22 @@
       "description": "Additional options for Drive search",
       "id": "DriveOptions",
       "properties": {
+        "clientSideEncryptedOption": {
+          "description": "Set whether the results include only content encrypted with [Google Workspace Client-side encryption](https://support.google.com/a?p=cse_ov) content, only unencrypted content, or both. Defaults to both. Currently supported for Drive.",
+          "enum": [
+            "CLIENT_SIDE_ENCRYPTED_OPTION_UNSPECIFIED",
+            "CLIENT_SIDE_ENCRYPTED_OPTION_ANY",
+            "CLIENT_SIDE_ENCRYPTED_OPTION_ENCRYPTED",
+            "CLIENT_SIDE_ENCRYPTED_OPTION_UNENCRYPTED"
+          ],
+          "enumDescriptions": [
+            "Encryption status unspecified. Results include both client-side encrypted and non-encrypted content.",
+            "Include both client-side encrypted and unencrypted content in results.",
+            "Include client-side encrypted content only.",
+            "Include unencrypted content only."
+          ],
+          "type": "string"
+        },
         "includeSharedDrives": {
           "description": "Set to **true** to include shared drives.",
           "type": "boolean"
@@ -1516,7 +1532,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -1547,7 +1563,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The export name.",
+          "description": "The export name. Don't use special characters (~!$'(),;@:/?) in the name, they can prevent you from downloading exports.",
           "type": "string"
         },
         "query": {
@@ -1697,8 +1713,8 @@
           ],
           "enumDescriptions": [
             "No export format specified.",
-            "Export as MBOX.",
-            "Export as PST."
+            "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
+            "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar."
           ],
           "type": "string"
         }
@@ -1718,8 +1734,8 @@
           ],
           "enumDescriptions": [
             "No export format specified.",
-            "Export as MBOX.",
-            "Export as PST."
+            "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
+            "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar."
           ],
           "type": "string"
         }
@@ -1915,7 +1931,7 @@
             "Drive, including Meet and Sites.",
             "For search, Gmail and classic Hangouts. For holds, Gmail only.",
             "Groups.",
-            "For search, Google Chat only. For holds, Google Chat and classic Hangouts.",
+            "For export, Google Chat only. For holds, Google Chat and classic Hangouts.",
             "Google Voice."
           ],
           "type": "string"
@@ -2099,8 +2115,8 @@
           ],
           "enumDescriptions": [
             "No export format specified.",
-            "Export as MBOX.",
-            "Export as PST."
+            "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
+            "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar."
           ],
           "type": "string"
         },
@@ -2262,7 +2278,7 @@
             "Drive, including Meet and Sites.",
             "For search, Gmail and classic Hangouts. For holds, Gmail only.",
             "Groups.",
-            "For search, Google Chat only. For holds, Google Chat and classic Hangouts.",
+            "For export, Google Chat only. For holds, Google Chat and classic Hangouts.",
             "Google Voice."
           ],
           "type": "string"
@@ -2313,6 +2329,7 @@
             "TEAM_DRIVE",
             "ENTIRE_ORG",
             "ROOM",
+            "SITES_URL",
             "SHARED_DRIVE"
           ],
           "enumDescriptions": [
@@ -2322,6 +2339,7 @@
             "Search the data in the Team Drive specified in **team_drive_info**.",
             "Search the data of all accounts in the organization. Supported only for Gmail. When specified, you don't need to specify **AccountInfo** or **OrgUnitInfo**.",
             "Search messages in the Chat spaces specified in [HangoutsChatInfo](https://developers.google.com/vault/reference/rest/v1/Query#hangoutschatinfo).",
+            "Search for sites by the published site URLs specified in [SitesUrlInfo](https://developers.google.com/vault/reference/rest/v1/Query#sitesurlinfo).",
             "Search the files in the shared drives specified in [SharedDriveInfo](https://developers.google.com/vault/reference/rest/v1/Query#shareddriveinfo)."
           ],
           "type": "string"
@@ -2339,6 +2357,7 @@
             "TEAM_DRIVE",
             "ENTIRE_ORG",
             "ROOM",
+            "SITES_URL",
             "SHARED_DRIVE"
           ],
           "enumDescriptions": [
@@ -2348,6 +2367,7 @@
             "Search the data in the Team Drive specified in **team_drive_info**.",
             "Search the data of all accounts in the organization. Supported only for Gmail. When specified, you don't need to specify **AccountInfo** or **OrgUnitInfo**.",
             "Search messages in the Chat spaces specified in [HangoutsChatInfo](https://developers.google.com/vault/reference/rest/v1/Query#hangoutschatinfo).",
+            "Search for sites by the published site URLs specified in [SitesUrlInfo](https://developers.google.com/vault/reference/rest/v1/Query#sitesurlinfo).",
             "Search the files in the shared drives specified in [SharedDriveInfo](https://developers.google.com/vault/reference/rest/v1/Query#shareddriveinfo)."
           ],
           "type": "string"
@@ -2355,6 +2375,10 @@
         "sharedDriveInfo": {
           "$ref": "SharedDriveInfo",
           "description": "Required when **SearchMethod** is **SHARED_DRIVE**."
+        },
+        "sitesUrlInfo": {
+          "$ref": "SitesUrlInfo",
+          "description": "Required when **SearchMethod** is **SITES_URL**."
         },
         "startTime": {
           "description": "The start time for the search query. Specify in GMT. The value is rounded to 12 AM on the specified date.",
@@ -2478,6 +2502,20 @@
       },
       "type": "object"
     },
+    "SitesUrlInfo": {
+      "description": "The published site URLs of new Google Sites to search",
+      "id": "SitesUrlInfo",
+      "properties": {
+        "urls": {
+          "description": "A list of published site URLs.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Status": {
       "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -2553,8 +2591,8 @@
           ],
           "enumDescriptions": [
             "No export format specified.",
-            "Export as MBOX.",
-            "Export as PST."
+            "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
+            "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar."
           ],
           "type": "string"
         }

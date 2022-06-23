@@ -1,5 +1,52 @@
 # Changelog
 
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v6.0.0...chat-v6.0.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **chat:** update the API ([fbd48e8](https://github.com/googleapis/google-api-nodejs-client/commit/fbd48e81c48b3ed1a23b543be4beeee296435492))
+
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v5.0.0...chat-v6.0.0) (2022-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#2971](https://github.com/googleapis/google-api-nodejs-client/issues/2971)) ([adddf01](https://github.com/googleapis/google-api-nodejs-client/commit/adddf018e7cb73adab7341053dd80d72c5a6248d))
+
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v4.0.0...chat-v5.0.0) (2022-06-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* **chat:** This release has breaking changes.
+
+### Features
+
+* **chat:** update the API ([7d92020](https://github.com/googleapis/google-api-nodejs-client/commit/7d9202037b6e2acc6e2cf1cd8958ab1da0cd8a0a))
+
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v3.5.2...chat-v4.0.0) (2022-04-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* **chat:** This release has breaking changes.
+
+### Features
+
+* **chat:** update the API ([318ea6e](https://github.com/googleapis/google-api-nodejs-client/commit/318ea6efb81f1251f24e964649137d816feec652))
+
+### [3.5.2](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v3.5.1...chat-v3.5.2) (2022-03-25)
+
+
+### Bug Fixes
+
+* **chat:** update the API ([a90c584](https://github.com/googleapis/google-api-nodejs-client/commit/a90c584f4005e11aa532c954539d29bb33878f97))
+
 ### [3.5.1](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v3.5.0...chat-v3.5.1) (2022-03-14)
 
 

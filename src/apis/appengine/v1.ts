@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -511,7 +510,7 @@ export namespace appengine_v1 {
     sslSettings?: Schema$SslSettings;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for Empty is empty JSON object {\}.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -992,6 +991,10 @@ export namespace appengine_v1 {
      */
     forwardedPorts?: string[] | null;
     /**
+     * The IP mode for instances. Only applicable in the App Engine flexible environment.
+     */
+    instanceIpMode?: string | null;
+    /**
      * Tag to apply to the instance during creation. Only applicable in the App Engine flexible environment.
      */
     instanceTag?: string | null;
@@ -1454,6 +1457,10 @@ export namespace appengine_v1 {
      * Serving configuration for Google Cloud Endpoints (https://cloud.google.com/appengine/docs/python/endpoints/).Only returned in GET requests if view=FULL is set.
      */
     apiConfig?: Schema$ApiConfigHandler;
+    /**
+     * Allows App Engine second generation runtimes to access the legacy bundled services.
+     */
+    appEngineApis?: boolean | null;
     /**
      * Automatic scaling is based on request rate, response latencies, and other application metrics. Instances are dynamically created and destroyed as needed in order to handle traffic.
      */
@@ -6367,6 +6374,7 @@ export namespace appengine_v1 {
      *       // request body parameters
      *       // {
      *       //   "apiConfig": {},
+     *       //   "appEngineApis": false,
      *       //   "automaticScaling": {},
      *       //   "basicScaling": {},
      *       //   "betaSettings": {},
@@ -6692,6 +6700,7 @@ export namespace appengine_v1 {
      *   // Example response
      *   // {
      *   //   "apiConfig": {},
+     *   //   "appEngineApis": false,
      *   //   "automaticScaling": {},
      *   //   "basicScaling": {},
      *   //   "betaSettings": {},
@@ -7011,6 +7020,7 @@ export namespace appengine_v1 {
      *       // request body parameters
      *       // {
      *       //   "apiConfig": {},
+     *       //   "appEngineApis": false,
      *       //   "automaticScaling": {},
      *       //   "basicScaling": {},
      *       //   "betaSettings": {},

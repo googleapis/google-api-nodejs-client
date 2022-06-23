@@ -436,6 +436,157 @@
             }
           },
           "resources": {
+            "channelPartnerRepricingConfigs": {
+              "methods": {
+                "create": {
+                  "description": "Creates a ChannelPartnerRepricingConfig. Call this method to set modifications for a specific ChannelPartner's bill. You can only create configs if the RepricingConfig.effective_invoice_month is a future month. If needed, you can create a config for the current month, with some restrictions. When creating a config for a future month, make sure there are no existing configs for that RepricingConfig.effective_invoice_month. The following restrictions are for creating configs in the current month. * This functionality is reserved for recovering from an erroneous config, and should not be used for regular business cases. * The new config will not modify exports used with other configs. Changes to the config may be immediate, but may take up to 24 hours. * There is a limit of ten configs for any ChannelPartner or RepricingConfig.effective_invoice_month. * The contained ChannelPartnerRepricingConfig.repricing_config vaule must be different from the value used in the current config for a ChannelPartner. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * INVALID_ARGUMENT: Missing or invalid required parameters in the request. Also displays if the updated config is for the current month or past months. * NOT_FOUND: The ChannelPartnerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the updated ChannelPartnerRepricingConfig resource, otherwise returns an error.",
+                  "flatPath": "v1/accounts/{accountsId}/channelPartnerLinks/{channelPartnerLinksId}/channelPartnerRepricingConfigs",
+                  "httpMethod": "POST",
+                  "id": "cloudchannel.accounts.channelPartnerLinks.channelPartnerRepricingConfigs.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The resource name of the ChannelPartner that will receive the repricing config. Parent uses the format: accounts/{account_id}/channelPartnerLinks/{channel_partner_id}",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/channelPartnerLinks/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/channelPartnerRepricingConfigs",
+                  "request": {
+                    "$ref": "GoogleCloudChannelV1ChannelPartnerRepricingConfig"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudChannelV1ChannelPartnerRepricingConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/apps.order"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes the given ChannelPartnerRepricingConfig permanently. You can only delete configs if their RepricingConfig.effective_invoice_month is set to a date after the current month. Possible error codes: * PERMISSION_DENIED: The account making the request does not own this customer. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * FAILED_PRECONDITION: The ChannelPartnerRepricingConfig is active or in the past. * NOT_FOUND: No ChannelPartnerRepricingConfig found for the name in the request.",
+                  "flatPath": "v1/accounts/{accountsId}/channelPartnerLinks/{channelPartnerLinksId}/channelPartnerRepricingConfigs/{channelPartnerRepricingConfigsId}",
+                  "httpMethod": "DELETE",
+                  "id": "cloudchannel.accounts.channelPartnerLinks.channelPartnerRepricingConfigs.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the channel partner repricing config rule to delete.",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/channelPartnerLinks/[^/]+/channelPartnerRepricingConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/apps.order"
+                  ]
+                },
+                "get": {
+                  "description": "Gets information about how a Distributor modifies their bill before sending it to a ChannelPartner. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * NOT_FOUND: The ChannelPartnerRepricingConfig was not found. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the ChannelPartnerRepricingConfig resource, otherwise returns an error.",
+                  "flatPath": "v1/accounts/{accountsId}/channelPartnerLinks/{channelPartnerLinksId}/channelPartnerRepricingConfigs/{channelPartnerRepricingConfigsId}",
+                  "httpMethod": "GET",
+                  "id": "cloudchannel.accounts.channelPartnerLinks.channelPartnerRepricingConfigs.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the ChannelPartnerRepricingConfig Format: accounts/{account_id}/channelPartnerLinks/{channel_partner_id}/channelPartnerRepricingConfigs/{id}.",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/channelPartnerLinks/[^/]+/channelPartnerRepricingConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudChannelV1ChannelPartnerRepricingConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/apps.order"
+                  ]
+                },
+                "list": {
+                  "description": "Lists information about how a Reseller modifies their bill before sending it to a ChannelPartner. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * NOT_FOUND: The ChannelPartnerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the ChannelPartnerRepricingConfig resources. The data for each resource is displayed in the ascending order of: * channel partner ID * RepricingConfig.effective_invoice_month * ChannelPartnerRepricingConfig.update_time If unsuccessful, returns an error.",
+                  "flatPath": "v1/accounts/{accountsId}/channelPartnerLinks/{channelPartnerLinksId}/channelPartnerRepricingConfigs",
+                  "httpMethod": "GET",
+                  "id": "cloudchannel.accounts.channelPartnerLinks.channelPartnerRepricingConfigs.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. A filter for [CloudChannelService.ListChannelPartnerRepricingConfigs] results (channel_partner_link only). You can use this filter when you support a BatchGet-like query. To use the filter, you must set `parent=accounts/{account_id}/channelPartnerLinks/-`. Example: `channel_partner_link = accounts/account_id/channelPartnerLinks/c1` OR `channel_partner_link = accounts/account_id/channelPartnerLinks/c2`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of repricing configs to return. The service may return fewer than this value. If unspecified, returns a maximum of 50 rules. The maximum value is 100; values above 100 will be coerced to 100.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results beyond the first page. Obtained through ListChannelPartnerRepricingConfigsResponse.next_page_token of the previous CloudChannelService.ListChannelPartnerRepricingConfigs call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the account's ChannelPartnerLink. Parent uses the format: accounts/{account_id}/channelPartnerLinks/{channel_partner_id}. Supports accounts/{account_id}/channelPartnerLinks/- to retrieve configs for all channel partners.",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/channelPartnerLinks/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/channelPartnerRepricingConfigs",
+                  "response": {
+                    "$ref": "GoogleCloudChannelV1ListChannelPartnerRepricingConfigsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/apps.order"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a ChannelPartnerRepricingConfig. Call this method to set modifications for a specific ChannelPartner's bill. This method overwrites the existing CustomerRepricingConfig. You can only update configs if the RepricingConfig.effective_invoice_month is a future month. To make changes to configs for the current month, use CreateChannelPartnerRepricingConfig, taking note of its restrictions. You cannot update the RepricingConfig.effective_invoice_month. When updating a config in the future: * This config must already exist. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * INVALID_ARGUMENT: Missing or invalid required parameters in the request. Also displays if the updated config is for the current month or past months. * NOT_FOUND: The ChannelPartnerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the updated ChannelPartnerRepricingConfig resource, otherwise returns an error.",
+                  "flatPath": "v1/accounts/{accountsId}/channelPartnerLinks/{channelPartnerLinksId}/channelPartnerRepricingConfigs/{channelPartnerRepricingConfigsId}",
+                  "httpMethod": "PATCH",
+                  "id": "cloudchannel.accounts.channelPartnerLinks.channelPartnerRepricingConfigs.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. Resource name of the ChannelPartnerRepricingConfig. Format: accounts/{account_id}/channelPartnerLinks/{channel_partner_id}/channelPartnerRepricingConfigs/{id}.",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/channelPartnerLinks/[^/]+/channelPartnerRepricingConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudChannelV1ChannelPartnerRepricingConfig"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudChannelV1ChannelPartnerRepricingConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/apps.order"
+                  ]
+                }
+              }
+            },
             "customers": {
               "methods": {
                 "create": {
@@ -1014,6 +1165,157 @@
             }
           },
           "resources": {
+            "customerRepricingConfigs": {
+              "methods": {
+                "create": {
+                  "description": "Creates a CustomerRepricingConfig. Call this method to set modifications for a specific customer's bill. You can only create configs if the RepricingConfig.effective_invoice_month is a future month. If needed, you can create a config for the current month, with some restrictions. When creating a config for a future month, make sure there are no existing configs for that RepricingConfig.effective_invoice_month. The following restrictions are for creating configs in the current month. * This functionality is reserved for recovering from an erroneous config, and should not be used for regular business cases. * The new config will not modify exports used with other configs. Changes to the config may be immediate, but may take up to 24 hours. * There is a limit of ten configs for any RepricingConfig.EntitlementGranularity.entitlement or RepricingConfig.effective_invoice_month. * The contained CustomerRepricingConfig.repricing_config vaule must be different from the value used in the current config for a RepricingConfig.EntitlementGranularity.entitlement. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * INVALID_ARGUMENT: Missing or invalid required parameters in the request. Also displays if the updated config is for the current month or past months. * NOT_FOUND: The CustomerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the updated CustomerRepricingConfig resource, otherwise returns an error.",
+                  "flatPath": "v1/accounts/{accountsId}/customers/{customersId}/customerRepricingConfigs",
+                  "httpMethod": "POST",
+                  "id": "cloudchannel.accounts.customers.customerRepricingConfigs.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The resource name of the customer that will receive this repricing config. Parent uses the format: accounts/{account_id}/customers/{customer_id}",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/customers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/customerRepricingConfigs",
+                  "request": {
+                    "$ref": "GoogleCloudChannelV1CustomerRepricingConfig"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudChannelV1CustomerRepricingConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/apps.order"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes the given CustomerRepricingConfig permanently. You can only delete configs if their RepricingConfig.effective_invoice_month is set to a date after the current month. Possible error codes: * PERMISSION_DENIED: The account making the request does not own this customer. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * FAILED_PRECONDITION: The CustomerRepricingConfig is active or in the past. * NOT_FOUND: No CustomerRepricingConfig found for the name in the request.",
+                  "flatPath": "v1/accounts/{accountsId}/customers/{customersId}/customerRepricingConfigs/{customerRepricingConfigsId}",
+                  "httpMethod": "DELETE",
+                  "id": "cloudchannel.accounts.customers.customerRepricingConfigs.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the customer repricing config rule to delete. Format: accounts/{account_id}/customers/{customer_id}/customerRepricingConfigs/{id}.",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/customers/[^/]+/customerRepricingConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/apps.order"
+                  ]
+                },
+                "get": {
+                  "description": "Gets information about how a Reseller modifies their bill before sending it to a Customer. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * NOT_FOUND: The CustomerRepricingConfig was not found. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the CustomerRepricingConfig resource, otherwise returns an error.",
+                  "flatPath": "v1/accounts/{accountsId}/customers/{customersId}/customerRepricingConfigs/{customerRepricingConfigsId}",
+                  "httpMethod": "GET",
+                  "id": "cloudchannel.accounts.customers.customerRepricingConfigs.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the CustomerRepricingConfig. Format: accounts/{account_id}/customers/{customer_id}/customerRepricingConfigs/{id}.",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/customers/[^/]+/customerRepricingConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudChannelV1CustomerRepricingConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/apps.order"
+                  ]
+                },
+                "list": {
+                  "description": "Lists information about how a Reseller modifies their bill before sending it to a Customer. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * NOT_FOUND: The CustomerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the CustomerRepricingConfig resources. The data for each resource is displayed in the ascending order of: * customer ID * RepricingConfig.EntitlementGranularity.entitlement * RepricingConfig.effective_invoice_month * CustomerRepricingConfig.update_time If unsuccessful, returns an error.",
+                  "flatPath": "v1/accounts/{accountsId}/customers/{customersId}/customerRepricingConfigs",
+                  "httpMethod": "GET",
+                  "id": "cloudchannel.accounts.customers.customerRepricingConfigs.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. A filter for [CloudChannelService.ListCustomerRepricingConfigs] results (customer only). You can use this filter when you support a BatchGet-like query. To use the filter, you must set `parent=accounts/{account_id}/customers/-`. Example: customer = accounts/account_id/customers/c1 OR customer = accounts/account_id/customers/c2.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of repricing configs to return. The service may return fewer than this value. If unspecified, returns a maximum of 50 rules. The maximum value is 100; values above 100 will be coerced to 100.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results beyond the first page. Obtained through ListCustomerRepricingConfigsResponse.next_page_token of the previous CloudChannelService.ListCustomerRepricingConfigs call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the customer. Parent uses the format: accounts/{account_id}/customers/{customer_id}. Supports accounts/{account_id}/customers/- to retrieve configs for all customers.",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/customers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/customerRepricingConfigs",
+                  "response": {
+                    "$ref": "GoogleCloudChannelV1ListCustomerRepricingConfigsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/apps.order"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a CustomerRepricingConfig. Call this method to set modifications for a specific customer's bill. This method overwrites the existing CustomerRepricingConfig. You can only update configs if the RepricingConfig.effective_invoice_month is a future month. To make changes to configs for the current month, use CreateCustomerRepricingConfig, taking note of its restrictions. You cannot update the RepricingConfig.effective_invoice_month. When updating a config in the future: * This config must already exist. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * INVALID_ARGUMENT: Missing or invalid required parameters in the request. Also displays if the updated config is for the current month or past months. * NOT_FOUND: The CustomerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the updated CustomerRepricingConfig resource, otherwise returns an error.",
+                  "flatPath": "v1/accounts/{accountsId}/customers/{customersId}/customerRepricingConfigs/{customerRepricingConfigsId}",
+                  "httpMethod": "PATCH",
+                  "id": "cloudchannel.accounts.customers.customerRepricingConfigs.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. Resource name of the CustomerRepricingConfig. Format: accounts/{account_id}/customers/{customer_id}/customerRepricingConfigs/{id}.",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/customers/[^/]+/customerRepricingConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudChannelV1CustomerRepricingConfig"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudChannelV1CustomerRepricingConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/apps.order"
+                  ]
+                }
+              }
+            },
             "entitlements": {
               "methods": {
                 "activate": {
@@ -1599,7 +1901,7 @@
       }
     }
   },
-  "revision": "20220303",
+  "revision": "20220612",
   "rootUrl": "https://cloudchannel.googleapis.com/",
   "schemas": {
     "GoogleCloudChannelV1ActivateEntitlementRequest": {
@@ -1771,6 +2073,28 @@
         },
         "updateTime": {
           "description": "Output only. Timestamp of when the channel partner link is updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1ChannelPartnerRepricingConfig": {
+      "description": "Configuration for how a distributor will rebill a channel partner (also known as a distributor-authorized reseller).",
+      "id": "GoogleCloudChannelV1ChannelPartnerRepricingConfig",
+      "properties": {
+        "name": {
+          "description": "Output only. Resource name of the ChannelPartnerRepricingConfig. Format: accounts/{account_id}/channelPartnerLinks/{channel_partner_id}/channelPartnerRepricingConfigs/{id}.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "repricingConfig": {
+          "$ref": "GoogleCloudChannelV1RepricingConfig",
+          "description": "Required. The configuration for bill modifications made by a reseller before sending it to ChannelPartner."
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp of an update to the repricing rule. If `update_time` is after RepricingConfig.effective_invoice_month then it indicates this was set mid-month.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2096,6 +2420,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudChannelV1CustomerRepricingConfig": {
+      "description": "Configuration for how a reseller will reprice a Customer.",
+      "id": "GoogleCloudChannelV1CustomerRepricingConfig",
+      "properties": {
+        "name": {
+          "description": "Output only. Resource name of the CustomerRepricingConfig. Format: accounts/{account_id}/customers/{customer_id}/customerRepricingConfigs/{id}.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "repricingConfig": {
+          "$ref": "GoogleCloudChannelV1RepricingConfig",
+          "description": "Required. The configuration for bill modifications made by a reseller before sending it to customers."
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp of an update to the repricing rule. If `update_time` is after RepricingConfig.effective_invoice_month then it indicates this was set mid-month.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudChannelV1EduData": {
       "description": "Required Edu Attributes",
       "id": "GoogleCloudChannelV1EduData",
@@ -2200,7 +2546,7 @@
           "type": "string"
         },
         "purchaseOrderId": {
-          "description": "Optional. This purchase order (PO) information is for resellers to use for their company tracking usage. If a purchaseOrderId value is given, it appears in the API responses and shows up in the invoice. The property accepts up to 80 plain text characters.",
+          "description": "Optional. This purchase order (PO) information is for resellers to use for their company tracking usage. If a purchaseOrderId value is given, it appears in the API responses and shows up in the invoice. The property accepts up to 80 plain text characters. This is only supported for Google Workspace entitlements.",
           "type": "string"
         },
         "suspensionReasons": {
@@ -2330,6 +2676,42 @@
         },
         "nextPageToken": {
           "description": "A token to retrieve the next page of results. Pass to ListChannelPartnerLinksRequest.page_token to obtain that page.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1ListChannelPartnerRepricingConfigsResponse": {
+      "description": "Response message for CloudChannelService.ListChannelPartnerRepricingConfigs.",
+      "id": "GoogleCloudChannelV1ListChannelPartnerRepricingConfigsResponse",
+      "properties": {
+        "channelPartnerRepricingConfigs": {
+          "description": "The repricing configs for this channel partner.",
+          "items": {
+            "$ref": "GoogleCloudChannelV1ChannelPartnerRepricingConfig"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results. Pass to ListChannelPartnerRepricingConfigsRequest.page_token to obtain that page.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1ListCustomerRepricingConfigsResponse": {
+      "description": "Response message for CloudChannelService.ListCustomerRepricingConfigs.",
+      "id": "GoogleCloudChannelV1ListCustomerRepricingConfigsResponse",
+      "properties": {
+        "customerRepricingConfigs": {
+          "description": "The repricing configs for this channel partner.",
+          "items": {
+            "$ref": "GoogleCloudChannelV1CustomerRepricingConfig"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results. Pass to ListCustomerRepricingConfigsRequest.page_token to obtain that page.",
           "type": "string"
         }
       },
@@ -2786,6 +3168,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudChannelV1PercentageAdjustment": {
+      "description": "An adjustment that applies a flat markup or markdown to an entire bill.",
+      "id": "GoogleCloudChannelV1PercentageAdjustment",
+      "properties": {
+        "percentage": {
+          "$ref": "GoogleTypeDecimal",
+          "description": "The percentage of the bill to adjust. For example: Mark down by 1% => \"-1.00\" Mark up by 1% => \"1.00\" Pass-Through => \"0.00\""
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudChannelV1Period": {
       "description": "Represents period in days/months/years.",
       "id": "GoogleCloudChannelV1Period",
@@ -3137,6 +3530,71 @@
       },
       "type": "object"
     },
+    "GoogleCloudChannelV1RepricingAdjustment": {
+      "description": "A type that represents the various adjustments you can apply to a bill.",
+      "id": "GoogleCloudChannelV1RepricingAdjustment",
+      "properties": {
+        "percentageAdjustment": {
+          "$ref": "GoogleCloudChannelV1PercentageAdjustment",
+          "description": "Flat markup or markdown on an entire bill."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1RepricingConfig": {
+      "description": "Configuration for repricing a Google bill over a period of time.",
+      "id": "GoogleCloudChannelV1RepricingConfig",
+      "properties": {
+        "adjustment": {
+          "$ref": "GoogleCloudChannelV1RepricingAdjustment",
+          "description": "Required. Information about the adjustment."
+        },
+        "channelPartnerGranularity": {
+          "$ref": "GoogleCloudChannelV1RepricingConfigChannelPartnerGranularity",
+          "description": "Applies the repricing configuration at the channel partner level. This is the only supported value for ChannelPartnerRepricingConfig."
+        },
+        "effectiveInvoiceMonth": {
+          "$ref": "GoogleTypeDate",
+          "description": "Required. The YearMonth when these adjustments activate. The Day field needs to be \"0\" since we only accept YearMonth repricing boundaries."
+        },
+        "entitlementGranularity": {
+          "$ref": "GoogleCloudChannelV1RepricingConfigEntitlementGranularity",
+          "description": "Applies the repricing configuration at the entitlement level. This is the only supported value for CustomerRepricingConfig."
+        },
+        "rebillingBasis": {
+          "description": "Required. The RebillingBasis to use for this bill. Specifies the relative cost based on repricing costs you will apply.",
+          "enum": [
+            "REBILLING_BASIS_UNSPECIFIED",
+            "COST_AT_LIST",
+            "DIRECT_CUSTOMER_COST"
+          ],
+          "enumDescriptions": [
+            "Not used.",
+            "Use the list cost, also known as the MSRP.",
+            "Pass through all discounts except the Reseller Program Discount. If this is the default cost base and no adjustments are specified, the output cost will be exactly what the customer would see if they viewed the bill in the Google Cloud Console."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1RepricingConfigChannelPartnerGranularity": {
+      "description": "Applies the repricing configuration at the channel partner level. The channel partner value is derived from the resource name. Takes an empty json object.",
+      "id": "GoogleCloudChannelV1RepricingConfigChannelPartnerGranularity",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudChannelV1RepricingConfigEntitlementGranularity": {
+      "description": "Applies the repricing configuration at the entitlement level.",
+      "id": "GoogleCloudChannelV1RepricingConfigEntitlementGranularity",
+      "properties": {
+        "entitlement": {
+          "description": "Resource name of the entitlement. Format: accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudChannelV1Sku": {
       "description": "Represents a product's purchasable Stock Keeping Unit (SKU). SKUs represent the different variations of the product. For example, Google Workspace Business Standard and Google Workspace Business Plus are Google Workspace product SKUs.",
       "id": "GoogleCloudChannelV1Sku",
@@ -3406,6 +3864,31 @@
       },
       "type": "object"
     },
+    "GoogleCloudChannelV1alpha1ChannelPartnerEvent": {
+      "description": "Represents Pub/Sub messages about updates to a Channel Partner. You can retrieve updated values through the ChannelPartnerLinks API.",
+      "id": "GoogleCloudChannelV1alpha1ChannelPartnerEvent",
+      "properties": {
+        "channelPartner": {
+          "description": "Resource name for the Channel Partner Link. Channel_partner uses the format: accounts/{account_id}/channelPartnerLinks/{channel_partner_id}",
+          "type": "string"
+        },
+        "eventType": {
+          "description": "Type of event performed on the Channel Partner.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "LINK_STATE_CHANGED",
+            "PARTNER_ADVANTAGE_INFO_CHANGED"
+          ],
+          "enumDescriptions": [
+            "Default value. Does not display if there are no errors.",
+            "The Channel Partner link state changed.",
+            "The Channel Partner's Partner Advantage information changed. This can entail the Channel Partner's authorization to sell a product in a particular region."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudChannelV1alpha1CommitmentSettings": {
       "description": "Commitment settings for commitment-based offers.",
       "id": "GoogleCloudChannelV1alpha1CommitmentSettings",
@@ -3534,7 +4017,7 @@
           "type": "string"
         },
         "purchaseOrderId": {
-          "description": "Optional. This purchase order (PO) information is for resellers to use for their company tracking usage. If a purchaseOrderId value is given, it appears in the API responses and shows up in the invoice. The property accepts up to 80 plain text characters.",
+          "description": "Optional. This purchase order (PO) information is for resellers to use for their company tracking usage. If a purchaseOrderId value is given, it appears in the API responses and shows up in the invoice. The property accepts up to 80 plain text characters. This is only supported for Google Workspace entitlements.",
           "type": "string"
         },
         "suspensionReasons": {
@@ -3796,6 +4279,10 @@
       "description": "Represents information which resellers will get as part of notification from Pub/Sub.",
       "id": "GoogleCloudChannelV1alpha1SubscriberEvent",
       "properties": {
+        "channelPartnerEvent": {
+          "$ref": "GoogleCloudChannelV1alpha1ChannelPartnerEvent",
+          "description": "Channel Partner event sent as part of Pub/Sub event to partners."
+        },
         "customerEvent": {
           "$ref": "GoogleCloudChannelV1alpha1CustomerEvent",
           "description": "Customer event sent as part of Pub/Sub event to partners."
@@ -3930,7 +4417,7 @@
       "type": "object"
     },
     "GoogleProtobufEmpty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "GoogleProtobufEmpty",
       "properties": {},
       "type": "object"
@@ -3957,6 +4444,39 @@
         },
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleTypeDate": {
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
+      "id": "GoogleTypeDate",
+      "properties": {
+        "day": {
+          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "year": {
+          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleTypeDecimal": {
+      "description": "A representation of a decimal value, such as 2.5. Clients may convert values into language-native decimal formats, such as Java's BigDecimal or Python's decimal.Decimal. [BigDecimal]: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/math/BigDecimal.html [decimal.Decimal]: https://docs.python.org/3/library/decimal.html",
+      "id": "GoogleTypeDecimal",
+      "properties": {
+        "value": {
+          "description": "The decimal value, as a string. The string representation consists of an optional sign, `+` (`U+002B`) or `-` (`U+002D`), followed by a sequence of zero or more decimal digits (\"the integer\"), optionally followed by a fraction, optionally followed by an exponent. The fraction consists of a decimal point followed by zero or more decimal digits. The string must contain at least one digit in either the integer or the fraction. The number formed by the sign, the integer and the fraction is referred to as the significand. The exponent consists of the character `e` (`U+0065`) or `E` (`U+0045`) followed by one or more decimal digits. Services **should** normalize decimal values before storing them by: - Removing an explicitly-provided `+` sign (`+2.5` -> `2.5`). - Replacing a zero-length integer value with `0` (`.5` -> `0.5`). - Coercing the exponent character to lower-case (`2.5E8` -> `2.5e8`). - Removing an explicitly-provided zero exponent (`2.5e0` -> `2.5`). Services **may** perform additional normalization based on its own needs and the internal decimal implementation selected, such as shifting the decimal point and exponent value together (example: `2.5e-1` <-> `0.25`). Additionally, services **may** preserve trailing zeroes in the fraction to indicate increased precision, but are not required to do so. Note that only the `.` character is supported to divide the integer and the fraction; `,` **should not** be supported regardless of locale. Additionally, thousand separators **should not** be supported. If a service does support them, values **must** be normalized. The ENBF grammar is: DecimalString = [Sign] Significand [Exponent]; Sign = '+' | '-'; Significand = Digits '.' | [Digits] '.' Digits; Exponent = ('e' | 'E') [Sign] Digits; Digits = { '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' }; Services **should** clearly document the range of supported values, the maximum supported precision (total number of digits), and, if applicable, the scale (number of digits after the decimal point), as well as how it behaves when receiving out-of-bounds values. Services **may** choose to accept values passed as input even when the value has a higher precision or scale than the service supports, and **should** round the value to fit the supported scale. Alternatively, the service **may** error with `400 Bad Request` (`INVALID_ARGUMENT` in gRPC) if precision would be lost. Services **should** error with `400 Bad Request` (`INVALID_ARGUMENT` in gRPC) if the service receives a value outside of the supported range.",
           "type": "string"
         }
       },

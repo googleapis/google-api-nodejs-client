@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -7743,7 +7742,7 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Deletes a filter.
+     * Immediately and permanently deletes the specified filter.
      * @example
      * ```js
      * // Before running the sample:

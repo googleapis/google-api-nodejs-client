@@ -306,7 +306,7 @@
       }
     }
   },
-  "revision": "20220301",
+  "revision": "20220609",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ApprovalConfig": {
@@ -1043,27 +1043,6 @@
       },
       "type": "object"
     },
-    "CreateGitLabConfigOperationMetadata": {
-      "description": "Metadata for `CreateGitLabConfig` operation.",
-      "id": "CreateGitLabConfigOperationMetadata",
-      "properties": {
-        "completeTime": {
-          "description": "Time the operation was completed.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "createTime": {
-          "description": "Time the operation was created.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "gitlabConfig": {
-          "description": "The resource name of the GitLabConfig to be created. Format: `projects/{project}/locations/{location}/gitlabConfigs/{id}`.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "CreateWorkerPoolOperationMetadata": {
       "description": "Metadata for the `CreateWorkerPool` operation.",
       "id": "CreateWorkerPoolOperationMetadata",
@@ -1127,27 +1106,6 @@
       },
       "type": "object"
     },
-    "DeleteGitLabConfigOperationMetadata": {
-      "description": "Metadata for `DeleteGitLabConfig` operation.",
-      "id": "DeleteGitLabConfigOperationMetadata",
-      "properties": {
-        "completeTime": {
-          "description": "Time the operation was completed.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "createTime": {
-          "description": "Time the operation was created.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "gitlabConfig": {
-          "description": "The resource name of the GitLabConfig to be created. Format: `projects/{project}/locations/{location}/gitlabConfigs/{id}`.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "DeleteWorkerPoolOperationMetadata": {
       "description": "Metadata for the `DeleteWorkerPool` operation.",
       "id": "DeleteWorkerPoolOperationMetadata",
@@ -1170,7 +1128,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -1974,27 +1932,6 @@
         },
         "githubEnterpriseConfig": {
           "description": "The resource name of the GitHubEnterprise to be updated. Format: `projects/{project}/locations/{location}/githubEnterpriseConfigs/{id}`.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "UpdateGitLabConfigOperationMetadata": {
-      "description": "Metadata for `UpdateGitLabConfig` operation.",
-      "id": "UpdateGitLabConfigOperationMetadata",
-      "properties": {
-        "completeTime": {
-          "description": "Time the operation was completed.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "createTime": {
-          "description": "Time the operation was created.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "gitlabConfig": {
-          "description": "The resource name of the GitLabConfig to be created. Format: `projects/{project}/locations/{location}/gitlabConfigs/{id}`.",
           "type": "string"
         }
       },

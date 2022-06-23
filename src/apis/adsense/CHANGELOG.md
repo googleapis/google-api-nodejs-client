@@ -1,5 +1,33 @@
 # Changelog
 
+## [0.5.1](https://github.com/googleapis/google-api-nodejs-client/compare/adsense-v0.5.0...adsense-v0.5.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **adsense:** update the API ([d0027b8](https://github.com/googleapis/google-api-nodejs-client/commit/d0027b87e073b3c7cdfeec2b775bc52492945c4a))
+
+## [0.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/adsense-v0.4.0...adsense-v0.5.0) (2022-06-13)
+
+
+### Features
+
+* **adsense:** update the API ([0cc949a](https://github.com/googleapis/google-api-nodejs-client/commit/0cc949a73584a0cb8273dd76e3383c9e75354626))
+
+## [0.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/adsense-v0.3.4...adsense-v0.4.0) (2022-04-11)
+
+
+### Features
+
+* **adsense:** update the API ([1b9a1ce](https://github.com/googleapis/google-api-nodejs-client/commit/1b9a1ce886714f8254090cf7b866f278980ea9d9))
+
+### [0.3.4](https://github.com/googleapis/google-api-nodejs-client/compare/adsense-v0.3.3...adsense-v0.3.4) (2022-03-23)
+
+
+### Bug Fixes
+
+* **adsense:** update the API ([4b2b074](https://github.com/googleapis/google-api-nodejs-client/commit/4b2b0740b82e8dbe2ff2f8531d0cde02ece009ba))
+
 ### [0.3.3](https://github.com/googleapis/google-api-nodejs-client/compare/adsense-v0.3.2...adsense-v0.3.3) (2022-03-08)
 
 

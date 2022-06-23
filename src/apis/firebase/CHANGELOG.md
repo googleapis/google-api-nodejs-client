@@ -1,5 +1,30 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v4.0.0...firebase-v4.0.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **firebase:** update the API ([a659323](https://github.com/googleapis/google-api-nodejs-client/commit/a6593238df1d56bb62c1140017f5418fa53ef4be))
+
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v3.2.1...firebase-v4.0.0) (2022-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#2971](https://github.com/googleapis/google-api-nodejs-client/issues/2971)) ([adddf01](https://github.com/googleapis/google-api-nodejs-client/commit/adddf018e7cb73adab7341053dd80d72c5a6248d))
+
+### [3.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v3.2.0...firebase-v3.2.1) (2022-03-23)
+
+
+### Bug Fixes
+
+* **firebase:** update the API ([e717586](https://github.com/googleapis/google-api-nodejs-client/commit/e71758645413af0e2767ec1167ab5c74d111382f))
+
 ## [3.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v3.1.0...firebase-v3.2.0) (2022-03-08)
 
 

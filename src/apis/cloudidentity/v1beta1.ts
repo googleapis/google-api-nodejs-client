@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -391,6 +390,10 @@ export namespace cloudidentity_v1beta1 {
      */
     createTime?: string | null;
     /**
+     * Unique identifier for the device.
+     */
+    deviceId?: string | null;
+    /**
      * Output only. Type of device.
      */
     deviceType?: string | null;
@@ -586,19 +589,6 @@ export namespace cloudidentity_v1beta1 {
      * The time at which the `MembershipRole` will expire.
      */
     expireTime?: string | null;
-  }
-  /**
-   * Message containing first admin invitation info for customers
-   */
-  export interface Schema$FirstAdminInvitationInfo {
-    /**
-     * Optional. To enable First Admin Invitation for Domained Customer
-     */
-    isFirstAdmin?: boolean | null;
-    /**
-     * Optional. Domain information of first admin invited
-     */
-    primaryDomain?: string | null;
   }
   /**
    * The response message for MembershipsService.GetMembershipGraph.
@@ -808,6 +798,10 @@ export namespace cloudidentity_v1beta1 {
      * Output only. When the Company-Owned device was imported. This field is empty for BYOD devices.
      */
     createTime?: string | null;
+    /**
+     * Unique identifier for the device.
+     */
+    deviceId?: string | null;
     /**
      * Output only. Type of device.
      */
@@ -1470,12 +1464,7 @@ export namespace cloudidentity_v1beta1 {
   /**
    * A request to send email for inviting target user corresponding to the UserInvitation.
    */
-  export interface Schema$SendUserInvitationRequest {
-    /**
-     * Optional. First admin invitation info for customers
-     */
-    firstAdminInvitationInfo?: Schema$FirstAdminInvitationInfo;
-  }
+  export interface Schema$SendUserInvitationRequest {}
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
@@ -2172,9 +2161,7 @@ export namespace cloudidentity_v1beta1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {
-     *       //   "firstAdminInvitationInfo": {}
-     *       // }
+     *       // {}
      *     },
      *   });
      *   console.log(res.data);
@@ -2802,6 +2789,7 @@ export namespace cloudidentity_v1beta1 {
      *   //   "buildNumber": "my_buildNumber",
      *   //   "compromisedState": "my_compromisedState",
      *   //   "createTime": "my_createTime",
+     *   //   "deviceId": "my_deviceId",
      *   //   "deviceType": "my_deviceType",
      *   //   "enabledDeveloperOptions": false,
      *   //   "enabledUsbDebugging": false,

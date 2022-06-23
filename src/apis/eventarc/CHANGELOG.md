@@ -1,5 +1,51 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/eventarc-v3.0.0...eventarc-v3.0.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **eventarc:** update the API ([ce1bb7c](https://github.com/googleapis/google-api-nodejs-client/commit/ce1bb7c55ac18ac1e1962c8d09c992e49b1b50d9))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/eventarc-v2.5.3...eventarc-v3.0.0) (2022-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#2971](https://github.com/googleapis/google-api-nodejs-client/issues/2971)) ([adddf01](https://github.com/googleapis/google-api-nodejs-client/commit/adddf018e7cb73adab7341053dd80d72c5a6248d))
+
+## [2.5.3](https://github.com/googleapis/google-api-nodejs-client/compare/eventarc-v2.5.2...eventarc-v2.5.3) (2022-06-13)
+
+
+### Bug Fixes
+
+* **eventarc:** update the API ([e8f4c94](https://github.com/googleapis/google-api-nodejs-client/commit/e8f4c94e088a10307cb64899d80bdbf7fa8cd365))
+
+### [2.5.2](https://github.com/googleapis/google-api-nodejs-client/compare/eventarc-v2.5.1...eventarc-v2.5.2) (2022-04-11)
+
+
+### Bug Fixes
+
+* **eventarc:** update the API ([5a689bc](https://github.com/googleapis/google-api-nodejs-client/commit/5a689bccfd2d2ca5925e62b8ad750ec117abc226))
+
+### [2.5.1](https://github.com/googleapis/google-api-nodejs-client/compare/eventarc-v2.5.0...eventarc-v2.5.1) (2022-04-01)
+
+
+### Bug Fixes
+
+* **eventarc:** update the API ([4b509a6](https://github.com/googleapis/google-api-nodejs-client/commit/4b509a6a84a744977dfe3593c581c19a29584bd0))
+
+## [2.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/eventarc-v2.4.0...eventarc-v2.5.0) (2022-03-23)
+
+
+### Features
+
+* **eventarc:** update the API ([67a815e](https://github.com/googleapis/google-api-nodejs-client/commit/67a815e75103cf68a72d1400a23e0d61222db1b8))
+
 ## [2.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/eventarc-v2.3.0...eventarc-v2.4.0) (2022-03-08)
 
 

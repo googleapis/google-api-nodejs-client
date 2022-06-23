@@ -1,5 +1,34 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v3.0.0...storage-v3.0.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **storage:** update the API ([2aa119b](https://github.com/googleapis/google-api-nodejs-client/commit/2aa119bff362e8a17a93308054ada2b0338537be))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v2.0.0...storage-v3.0.0) (2022-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#2971](https://github.com/googleapis/google-api-nodejs-client/issues/2971)) ([adddf01](https://github.com/googleapis/google-api-nodejs-client/commit/adddf018e7cb73adab7341053dd80d72c5a6248d))
+
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v1.2.0...storage-v2.0.0) (2022-04-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* **storage:** This release has breaking changes.
+
+### Features
+
+* **storage:** update the API ([fd2c342](https://github.com/googleapis/google-api-nodejs-client/commit/fd2c3425c808e82eeb0053d216cf4924557dacb6))
+
 ## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v1.1.0...storage-v1.2.0) (2022-03-08)
 
 

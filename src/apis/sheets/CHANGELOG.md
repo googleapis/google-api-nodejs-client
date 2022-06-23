@@ -1,5 +1,37 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/sheets-v3.0.0...sheets-v3.0.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **sheets:** update the API ([f30497b](https://github.com/googleapis/google-api-nodejs-client/commit/f30497bef7d068dfb2370589ee66cf99e4120fce))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sheets-v2.0.2...sheets-v3.0.0) (2022-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#2971](https://github.com/googleapis/google-api-nodejs-client/issues/2971)) ([adddf01](https://github.com/googleapis/google-api-nodejs-client/commit/adddf018e7cb73adab7341053dd80d72c5a6248d))
+
+## [2.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/sheets-v2.0.1...sheets-v2.0.2) (2022-06-13)
+
+
+### Bug Fixes
+
+* **sheets:** update the API ([0e0cd7d](https://github.com/googleapis/google-api-nodejs-client/commit/0e0cd7d0b6b4784144397e50876586ccfe54658d))
+
+### [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/sheets-v2.0.0...sheets-v2.0.1) (2022-03-23)
+
+
+### Bug Fixes
+
+* **sheets:** update the API ([abe90a4](https://github.com/googleapis/google-api-nodejs-client/commit/abe90a40a7742d1c11626d57e711a649ed529a76))
+
 ## [2.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/sheets-v1.0.0...sheets-v2.0.0) (2021-09-14)
 
 

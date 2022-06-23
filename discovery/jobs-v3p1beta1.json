@@ -681,7 +681,7 @@
       }
     }
   },
-  "revision": "20220303",
+  "revision": "20220614",
   "rootUrl": "https://jobs.googleapis.com/",
   "schemas": {
     "ApplicationInfo": {
@@ -1395,7 +1395,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -1998,7 +1998,7 @@
           "description": "Optional. Allows filtering jobs by commute time with different travel methods (for example, driving or public transit). Note: This only works with COMMUTE MODE. When specified, [JobQuery.location_filters] is ignored. Currently we don't support sorting by commute time."
         },
         "companyDisplayNames": {
-          "description": "Optional. This filter specifies the company Company.display_name of the jobs to search against. The company name must match the value exactly. Alternatively, if the value being searched for is wrapped in SUBSTRING_MATCH([value]), the company name must contain a case insensitive substring match of the value. Using this function may increase latency. Sample Value: SUBSTRING_MATCH(google) If a value isn't specified, jobs within the search results are associated with any company. If multiple values are specified, jobs within the search results may be associated with any of the specified companies. At most 20 company display name filters are allowed.",
+          "description": "Optional. This filter specifies the company Company.display_name of the jobs to search against. The company name must match the value exactly. Alternatively, the value being searched for can be wrapped in different match operators. `SUBSTRING_MATCH([value])` The company name must contain a case insensitive substring match of the value. Using this function may increase latency. Sample Value: `SUBSTRING_MATCH(google)` `MULTI_WORD_TOKEN_MATCH([value])` The value will be treated as a multi word token and the company name must contain a case insensitive match of the value. Using this function may increase latency. Sample Value: `MULTI_WORD_TOKEN_MATCH(google)` If a value isn't specified, jobs within the search results are associated with any company. If multiple values are specified, jobs within the search results may be associated with any of the specified companies. At most 20 company display name filters are allowed.",
           "items": {
             "type": "string"
           },
@@ -2298,16 +2298,18 @@
           "type": "string"
         },
         "telecommutePreference": {
-          "description": "Optional. Allows the client to return jobs without a set location, specifically, telecommuting jobs (telecommuting is considered by the service as a special location. Job.posting_region indicates if a job permits telecommuting. If this field is set to TelecommutePreference.TELECOMMUTE_ALLOWED, telecommuting jobs are searched, and address and lat_lng are ignored. If not set or set to TelecommutePreference.TELECOMMUTE_EXCLUDED, telecommute job are not searched. This filter can be used by itself to search exclusively for telecommuting jobs, or it can be combined with another location filter to search for a combination of job locations, such as \"Mountain View\" or \"telecommuting\" jobs. However, when used in combination with other location filters, telecommuting jobs can be treated as less relevant than other jobs in the search response.",
+          "description": "Optional. Allows the client to return jobs without a set location, specifically, telecommuting jobs (telecommuting is considered by the service as a special location). Job.posting_region indicates if a job permits telecommuting. If this field is set to TelecommutePreference.TELECOMMUTE_ALLOWED, telecommuting jobs are searched, and address and lat_lng are ignored. If not set or set to TelecommutePreference.TELECOMMUTE_EXCLUDED, the telecommute status of the jobs is ignored. Jobs that have PostingRegion.TELECOMMUTE and have additional Job.addresses may still be matched based on other location filters using address or latlng. This filter can be used by itself to search exclusively for telecommuting jobs, or it can be combined with another location filter to search for a combination of job locations, such as \"Mountain View\" or \"telecommuting\" jobs. However, when used in combination with other location filters, telecommuting jobs can be treated as less relevant than other jobs in the search response.",
           "enum": [
             "TELECOMMUTE_PREFERENCE_UNSPECIFIED",
             "TELECOMMUTE_EXCLUDED",
-            "TELECOMMUTE_ALLOWED"
+            "TELECOMMUTE_ALLOWED",
+            "TELECOMMUTE_JOBS_EXCLUDED"
           ],
           "enumDescriptions": [
             "Default value if the telecommute preference is not specified.",
-            "Exclude telecommute jobs.",
-            "Allow telecommute jobs."
+            "Deprecated: Ignore telecommute status of jobs. Use TELECOMMUTE_JOBS_EXCLUDED if want to exclude telecommute jobs.",
+            "Allow telecommute jobs.",
+            "Exclude telecommute jobs."
           ],
           "type": "string"
         }
@@ -2377,7 +2379,7 @@
       "type": "object"
     },
     "NamespacedDebugInput": {
-      "description": "Next ID: 15",
+      "description": "Next ID: 16",
       "id": "NamespacedDebugInput",
       "properties": {
         "absolutelyForcedExpNames": {
@@ -2471,6 +2473,20 @@
           },
           "description": "Rollouts to force in a particular experiment state. Map from rollout name to rollout value.",
           "type": "object"
+        },
+        "testingMode": {
+          "description": "If set to ALL_OFF, organic selection will be disabled; if set to ALL_ON, organic selection will be disabled, and only select launch experiments will receive traffic. See go/mendel-aoao-runtime-design.",
+          "enum": [
+            "TESTING_MODE_UNSPECIFIED",
+            "TESTING_MODE_ALL_OFF",
+            "TESTING_MODE_ALL_ON"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
         }
       },
       "type": "object"

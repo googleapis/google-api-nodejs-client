@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -103,7 +102,7 @@ export namespace alertcenter_v1beta1 {
   /**
    * Google Workspace Alert Center API
    *
-   * Manages alerts on issues affecting your domain.
+   * Manages alerts on issues affecting your domain. Note: The current version of this API (v1beta1) is available to all Google Workspace customers.
    *
    * @example
    * ```js
@@ -596,7 +595,7 @@ export namespace alertcenter_v1beta1 {
     takeoutRequestId?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -821,6 +820,23 @@ export namespace alertcenter_v1beta1 {
     detectorName?: string | null;
   }
   /**
+   * Event occurred when primary admin changed in customer's account. The event are being received from insight forwarder
+   */
+  export interface Schema$PrimaryAdminChangedEvent {
+    /**
+     * domain in which actioned occurred
+     */
+    domain?: string | null;
+    /**
+     * Email of person who was the primary admin before the action
+     */
+    previousAdminEmail?: string | null;
+    /**
+     * Email of person who is the primary admin after the action
+     */
+    updatedAdminEmail?: string | null;
+  }
+  /**
    * Alerts from Reporting Rules configured by Admin.
    */
   export interface Schema$ReportingRule {
@@ -926,6 +942,39 @@ export namespace alertcenter_v1beta1 {
     triggeringUserEmail?: string | null;
   }
   /**
+   * Alert that is triggered when Sensitive Admin Action occur in customer account.
+   */
+  export interface Schema$SensitiveAdminAction {
+    /**
+     * Email of person who performed the action
+     */
+    actorEmail?: string | null;
+    /**
+     * The time at which event occurred
+     */
+    eventTime?: string | null;
+    /**
+     * Event occurred when primary admin changed in customer's account
+     */
+    primaryAdminChangedEvent?: Schema$PrimaryAdminChangedEvent;
+    /**
+     * Event occurred when SSO Profile created in customer's account
+     */
+    ssoProfileCreatedEvent?: Schema$SSOProfileCreatedEvent;
+    /**
+     * Event occurred when SSO Profile deleted in customer's account
+     */
+    ssoProfileDeletedEvent?: Schema$SSOProfileDeletedEvent;
+    /**
+     * Event occurred when SSO Profile updated in customer's account
+     */
+    ssoProfileUpdatedEvent?: Schema$SSOProfileUpdatedEvent;
+    /**
+     * Event occurred when password was reset for super admin in customer's account
+     */
+    superAdminPasswordResetEvent?: Schema$SuperAdminPasswordResetEvent;
+  }
+  /**
    * Customer-level settings.
    */
   export interface Schema$Settings {
@@ -933,6 +982,37 @@ export namespace alertcenter_v1beta1 {
      * The list of notifications.
      */
     notifications?: Schema$Notification[];
+  }
+  /**
+   * Event occurred when SSO Profile created in customer's account. The event are being received from insight forwarder
+   */
+  export interface Schema$SSOProfileCreatedEvent {
+    /**
+     * sso profile name which got created
+     */
+    inboundSsoProfileName?: string | null;
+  }
+  /**
+   * Event occurred when SSO Profile deleted in customer's account. The event are being received from insight forwarder
+   */
+  export interface Schema$SSOProfileDeletedEvent {
+    /**
+     * sso profile name which got deleted
+     */
+    inboundSsoProfileName?: string | null;
+  }
+  /**
+   * Event occurred when SSO Profile updated in customer's account. The event are being received from insight forwarder
+   */
+  export interface Schema$SSOProfileUpdatedEvent {
+    /**
+     * changes made to sso profile
+     */
+    inboundSsoProfileChanges?: string | null;
+    /**
+     * sso profile name which got updated
+     */
+    inboundSsoProfileName?: string | null;
   }
   /**
    * A state-sponsored attack alert. Derived from audit logs.
@@ -959,6 +1039,15 @@ export namespace alertcenter_v1beta1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Event occurred when password was reset for super admin in customer's account. The event are being received from insight forwarder
+   */
+  export interface Schema$SuperAdminPasswordResetEvent {
+    /**
+     * email of person whose password was reset
+     */
+    userEmail?: string | null;
   }
   /**
    * A mobile suspicious activity alert. Derived from audit logs.

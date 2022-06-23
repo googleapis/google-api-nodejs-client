@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
                   "type": "string"
                 },
@@ -621,6 +621,17 @@
                       "description": "If this flag is set to true, the source will be queried instead of using cached results. Using this flag will make the call slower.",
                       "location": "query",
                       "type": "boolean"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of VMs to return. The service may return fewer than this value. For AWS source: If unspecified, at most 500 VMs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000. For VMWare source: If unspecified, all VMs will be returned. There is no limit for maximum value.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous `FetchInventory` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchInventory` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
                     },
                     "source": {
                       "description": "Required. The name of the Source.",
@@ -1521,6 +1532,81 @@
                           ]
                         }
                       }
+                    },
+                    "replicationCycles": {
+                      "methods": {
+                        "get": {
+                          "description": "Gets details of a single ReplicationCycle.",
+                          "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}/migratingVms/{migratingVmsId}/replicationCycles/{replicationCyclesId}",
+                          "httpMethod": "GET",
+                          "id": "vmmigration.projects.locations.sources.migratingVms.replicationCycles.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the ReplicationCycle.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/sources/[^/]+/migratingVms/[^/]+/replicationCycles/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha1/{+name}",
+                          "response": {
+                            "$ref": "ReplicationCycle"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists ReplicationCycles in a given MigratingVM.",
+                          "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}/migratingVms/{migratingVmsId}/replicationCycles",
+                          "httpMethod": "GET",
+                          "id": "vmmigration.projects.locations.sources.migratingVms.replicationCycles.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "Optional. The filter request.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "orderBy": {
+                              "description": "Optional. the order by fields for the result.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "Optional. The maximum number of replication cycles to return. The service may return fewer than this value. If unspecified, at most 100 migrating VMs will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Required. A page token, received from a previous `ListReplicationCycles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReplicationCycles` must match the call that provided the page token.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The parent, which owns this collection of ReplicationCycles.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/sources/[^/]+/migratingVms/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha1/{+parent}/replicationCycles",
+                          "response": {
+                            "$ref": "ListReplicationCyclesResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
                     }
                   }
                 },
@@ -1886,9 +1972,15 @@
       }
     }
   },
-  "revision": "20220306",
+  "revision": "20220602",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
+    "AdaptingOSStep": {
+      "description": "AdaptingOSStep contains specific step details.",
+      "id": "AdaptingOSStep",
+      "properties": {},
+      "type": "object"
+    },
     "AddGroupMigrationRequest": {
       "description": "Request message for 'AddGroupMigration' request.",
       "id": "AddGroupMigrationRequest",
@@ -1965,6 +2057,27 @@
       },
       "type": "object"
     },
+    "AwsSourceVmDetails": {
+      "description": "Represent the source AWS VM details.",
+      "id": "AwsSourceVmDetails",
+      "properties": {
+        "firmware": {
+          "description": "The firmware type of the source VM.",
+          "enum": [
+            "FIRMWARE_UNSPECIFIED",
+            "EFI",
+            "BIOS"
+          ],
+          "enumDescriptions": [
+            "The firmware is unknown.",
+            "The firmware is EFI.",
+            "The firmware is BIOS."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CancelCloneJobRequest": {
       "description": "Request message for 'CancelCloneJob' request.",
       "id": "CancelCloneJobRequest",
@@ -1999,6 +2112,12 @@
         },
         "createTime": {
           "description": "Output only. The time the clone job was created (as an API call, not when it was actually created in the target).",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the clone job was ended.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2044,10 +2163,47 @@
           "readOnly": true,
           "type": "string"
         },
+        "steps": {
+          "description": "Output only. The clone steps list representing its progress.",
+          "items": {
+            "$ref": "CloneStep"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "targetDetails": {
           "$ref": "TargetVMDetails",
           "description": "Output only. Details of the VM to create as the target of this clone job. Deprecated: Use compute_engine_target_details instead.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "CloneStep": {
+      "description": "CloneStep holds information about the clone step progress.",
+      "id": "CloneStep",
+      "properties": {
+        "adaptingOs": {
+          "$ref": "AdaptingOSStep",
+          "description": "Adapting OS step."
+        },
+        "endTime": {
+          "description": "The time the step has ended.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "instantiatingMigratedVm": {
+          "$ref": "InstantiatingMigratedVMStep",
+          "description": "Instantiating migrated VM step."
+        },
+        "preparingVmDisks": {
+          "$ref": "PreparingVMDisksStep",
+          "description": "Preparing VM disks step."
+        },
+        "startTime": {
+          "description": "The time the step has started.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2101,6 +2257,10 @@
             "SSD hard disk type.",
             "An alternative to SSD persistent disks that balance performance and cost."
           ],
+          "type": "string"
+        },
+        "hostname": {
+          "description": "The hostname to assign to the VM.",
           "type": "string"
         },
         "labels": {
@@ -2223,6 +2383,10 @@
             "SSD hard disk type.",
             "An alternative to SSD persistent disks that balance performance and cost."
           ],
+          "type": "string"
+        },
+        "hostname": {
+          "description": "The hostname to assign to the VM.",
           "type": "string"
         },
         "labels": {
@@ -2368,6 +2532,12 @@
           "readOnly": true,
           "type": "string"
         },
+        "endTime": {
+          "description": "Output only. The time the cutover job had finished.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "error": {
           "$ref": "Status",
           "description": "Output only. Provides details for the errors that led to the Cutover Job's state.",
@@ -2426,6 +2596,14 @@
           "readOnly": true,
           "type": "string"
         },
+        "steps": {
+          "description": "Output only. The cutover steps list representing its progress.",
+          "items": {
+            "$ref": "CutoverStep"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "targetDetails": {
           "$ref": "TargetVMDetails",
           "description": "Output only. Details of the VM to create as the target of this cutover job. Deprecated: Use compute_engine_target_details instead.",
@@ -2434,8 +2612,45 @@
       },
       "type": "object"
     },
+    "CutoverStep": {
+      "description": "CutoverStep holds information about the cutover step progress.",
+      "id": "CutoverStep",
+      "properties": {
+        "endTime": {
+          "description": "The time the step has ended.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "finalSync": {
+          "$ref": "ReplicationCycle",
+          "description": "Final sync step."
+        },
+        "instantiatingMigratedVm": {
+          "$ref": "InstantiatingMigratedVMStep",
+          "description": "Instantiating migrated VM step."
+        },
+        "preparingVmDisks": {
+          "$ref": "PreparingVMDisksStep",
+          "description": "Preparing VM disks step."
+        },
+        "previousReplicationCycle": {
+          "$ref": "ReplicationCycle",
+          "description": "A replication cycle prior cutover step."
+        },
+        "shuttingDownSourceVm": {
+          "$ref": "ShuttingDownSourceVMStep",
+          "description": "Shutting down VM step."
+        },
+        "startTime": {
+          "description": "The time the step has started.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CycleStep": {
-      "description": "CycleStep hold information about a step progress.",
+      "description": "CycleStep holds information about a step progress.",
       "id": "CycleStep",
       "properties": {
         "endTime": {
@@ -2555,7 +2770,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -2564,6 +2779,11 @@
       "description": "Response message for fetchInventory.",
       "id": "FetchInventoryResponse",
       "properties": {
+        "nextPageToken": {
+          "description": "Output only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "readOnly": true,
+          "type": "string"
+        },
         "updateTime": {
           "description": "Output only. The timestamp when the source was last queried (if the result is from the cache).",
           "format": "google-datetime",
@@ -2618,6 +2838,12 @@
     "InitializingReplicationStep": {
       "description": "InitializingReplicationStep contains specific step details.",
       "id": "InitializingReplicationStep",
+      "properties": {},
+      "type": "object"
+    },
+    "InstantiatingMigratedVMStep": {
+      "description": "InstantiatingMigratedVMStep contains specific step details.",
+      "id": "InstantiatingMigratedVMStep",
       "properties": {},
       "type": "object"
     },
@@ -2812,6 +3038,34 @@
       },
       "type": "object"
     },
+    "ListReplicationCyclesResponse": {
+      "description": "Response message for 'ListReplicationCycles' request.",
+      "id": "ListReplicationCyclesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Output only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "replicationCycles": {
+          "description": "Output only. The list of replication cycles response.",
+          "items": {
+            "$ref": "ReplicationCycle"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Output only. Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListSourcesResponse": {
       "description": "Response message for 'ListSources' request.",
       "id": "ListSourcesResponse",
@@ -2949,6 +3203,11 @@
       "description": "MigratingVm describes the VM that will be migrated from a Source environment and its replication state.",
       "id": "MigratingVm",
       "properties": {
+        "awsSourceVmDetails": {
+          "$ref": "AwsSourceVmDetails",
+          "description": "Output only. Details of the VM from an AWS source.",
+          "readOnly": true
+        },
         "computeEngineTargetDefaults": {
           "$ref": "ComputeEngineTargetDefaults",
           "description": "Details of the target VM in Compute Engine."
@@ -3253,6 +3512,12 @@
       "properties": {},
       "type": "object"
     },
+    "PreparingVMDisksStep": {
+      "description": "PreparingVMDisksStep contains specific step details.",
+      "id": "PreparingVMDisksStep",
+      "properties": {},
+      "type": "object"
+    },
     "RemoveGroupMigrationRequest": {
       "description": "Request message for 'RemoveMigration' request.",
       "id": "RemoveGroupMigrationRequest",
@@ -3295,6 +3560,15 @@
       "description": "ReplicationCycle contains information about the current replication cycle status.",
       "id": "ReplicationCycle",
       "properties": {
+        "endTime": {
+          "description": "The time the replication cycle has ended.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "name": {
+          "description": "The identifier of the ReplicationCycle.",
+          "type": "string"
+        },
         "progress": {
           "description": "The current progress in percentage of this cycle.",
           "format": "int32",
@@ -3311,7 +3585,7 @@
           "type": "string"
         },
         "steps": {
-          "description": "The cycle's steps list reflecting its progress.",
+          "description": "The cycle's steps list representing its progress.",
           "items": {
             "$ref": "CycleStep"
           },
@@ -3389,6 +3663,12 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "ShuttingDownSourceVMStep": {
+      "description": "ShuttingDownSourceVMStep contains specific step details.",
+      "id": "ShuttingDownSourceVMStep",
+      "properties": {},
       "type": "object"
     },
     "Source": {

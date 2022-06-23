@@ -1,5 +1,36 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/deploymentmanager-v3.0.0...deploymentmanager-v3.0.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **deploymentmanager:** update the API ([8436684](https://github.com/googleapis/google-api-nodejs-client/commit/8436684f6619b4b088ab93906b8813cb5408a826))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/deploymentmanager-v2.1.0...deploymentmanager-v3.0.0) (2022-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#2971](https://github.com/googleapis/google-api-nodejs-client/issues/2971)) ([adddf01](https://github.com/googleapis/google-api-nodejs-client/commit/adddf018e7cb73adab7341053dd80d72c5a6248d))
+
+## [2.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/deploymentmanager-v2.0.2...deploymentmanager-v2.1.0) (2022-06-13)
+
+
+### Features
+
+* regenerate index files ([6cda0e8](https://github.com/googleapis/google-api-nodejs-client/commit/6cda0e8b567506ae9f7d96288efe8d935b54e66e))
+
+
+### Bug Fixes
+
+* **deploymentmanager:** update the API ([88e7972](https://github.com/googleapis/google-api-nodejs-client/commit/88e79727193d86da1f950e824f82076092f29b6b))
+* **deploymentmanager:** update the API ([4c498dd](https://github.com/googleapis/google-api-nodejs-client/commit/4c498dddcbb86668d229f2b2b97e2aa075de8ea7))
+
 ### [2.0.2](https://www.github.com/googleapis/google-api-nodejs-client/compare/deploymentmanager-v2.0.1...deploymentmanager-v2.0.2) (2021-10-28)
 
 

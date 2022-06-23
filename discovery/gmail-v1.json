@@ -1788,7 +1788,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a filter.",
+                  "description": "Immediately and permanently deletes the specified filter.",
                   "flatPath": "gmail/v1/users/{userId}/settings/filters/{id}",
                   "httpMethod": "DELETE",
                   "id": "gmail.users.settings.filters.delete",
@@ -2682,7 +2682,7 @@
       }
     }
   },
-  "revision": "20220307",
+  "revision": "20220404",
   "rootUrl": "https://gmail.googleapis.com/",
   "schemas": {
     "AutoForwarding": {

@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -1008,7 +1007,7 @@ export namespace admin_directory_v1 {
     kind?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -1090,11 +1089,11 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$Group {
     /**
-     * Value is `true` if this group was created by an administrator rather than a user.
+     * Read-only. Value is `true` if this group was created by an administrator rather than a user.
      */
     adminCreated?: boolean | null;
     /**
-     * List of a group's alias email addresses.
+     * Read-only. A list of a group's alias email addresses.
      */
     aliases?: string[] | null;
     /**
@@ -1114,7 +1113,7 @@ export namespace admin_directory_v1 {
      */
     etag?: string | null;
     /**
-     * The unique ID of a group. A group `id` can be used as a group request URI's `groupKey`.
+     * Read-only. The unique ID of a group. A group `id` can be used as a group request URI's `groupKey`.
      */
     id?: string | null;
     /**
@@ -1126,7 +1125,7 @@ export namespace admin_directory_v1 {
      */
     name?: string | null;
     /**
-     * List of the group's non-editable alias email addresses that are outside of the account's primary domain or subdomains. These are functioning email addresses used by the group. This is a read-only property returned in the API's response for a group. If edited in a group's POST or PUT request, the edit is ignored by the API service.
+     * Read-only. A list of the group's non-editable alias email addresses that are outside of the account's primary domain or subdomains. These are functioning email addresses used by the group. This is a read-only property returned in the API's response for a group. If edited in a group's POST or PUT request, the edit is ignored by the API service.
      */
     nonEditableAliases?: string[] | null;
   }
@@ -1633,7 +1632,7 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$RoleAssignment {
     /**
-     * The unique ID of the user this role is assigned to.
+     * The unique ID of the entity this role is assigned to—either the `user_id` of a user or the `uniqueId` of a service account, as defined in [Identity and Access Management (IAM)](https://cloud.google.com/iam/docs/reference/rest/v1/projects.serviceAccounts).
      */
     assignedTo?: string | null;
     /**
@@ -8053,7 +8052,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.groups.list({
-     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, fill this field instead of domain. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users)
+     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, fill in this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. Either the `customer` or the `domain` parameter must be provided.
      *     customer: 'placeholder-value',
      *     // The domain name. Use this field to get groups from only one domain. To return all domains for a customer account, use the `customer` query parameter instead.
      *     domain: 'placeholder-value',
@@ -8500,7 +8499,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Groups$List extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, fill this field instead of domain. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users)
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, fill in this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. Either the `customer` or the `domain` parameter must be provided.
      */
     customer?: string;
     /**

@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -226,7 +225,7 @@ export namespace containeranalysis_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -445,6 +444,10 @@ export namespace containeranalysis_v1 {
    * Describes the CIS benchmark version that is applicable to a given OS and os version.
    */
   export interface Schema$ComplianceVersion {
+    /**
+     * The name of the document that defines this benchmark, e.g. "CIS Container-Optimized OS".
+     */
+    benchmarkDocument?: string | null;
     /**
      * The CPE URI (https://cpe.mitre.org/specification/) this benchmark is applicable to.
      */
@@ -1071,7 +1074,7 @@ export namespace containeranalysis_v1 {
     path?: string | null;
   }
   /**
-   * Common Vulnerability Scoring System. For details, see https://www.first.org/cvss/specification-document This is a message we will try to use for storing multiple versions of CVSS. The intention is that as new versions of CVSS scores get added, we will be able to modify this message rather than adding new protos for each new version of the score.
+   * Common Vulnerability Scoring System. For details, see https://www.first.org/cvss/specification-document This is a message we will try to use for storing various versions of CVSS rather than making a separate proto for storing a specific version.
    */
   export interface Schema$CVSS {
     attackComplexity?: string | null;
@@ -1219,6 +1222,19 @@ export namespace containeranalysis_v1 {
     vendor?: string | null;
   }
   /**
+   * Digest information.
+   */
+  export interface Schema$Digest {
+    /**
+     * `SHA1`, `SHA512` etc.
+     */
+    algo?: string | null;
+    /**
+     * Value of the digest.
+     */
+    digestBytes?: string | null;
+  }
+  /**
    * A note that indicates a type of analysis a provider would perform. This note exists in a provider's project. A `Discovery` occurrence is created in a consumer's project at the start of analysis.
    */
   export interface Schema$DiscoveryNote {
@@ -1311,7 +1327,7 @@ export namespace containeranalysis_v1 {
     humanReadableName?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -1460,6 +1476,62 @@ export namespace containeranalysis_v1 {
     endTime?: string | null;
   }
   /**
+   * Indicates the location at which a package was found.
+   */
+  export interface Schema$GrafeasV1FileLocation {
+    /**
+     * For jars that are contained inside .war files, this filepath can indicate the path to war file combined with the path to jar file.
+     */
+    filePath?: string | null;
+  }
+  /**
+   * Identifies the entity that executed the recipe, which is trusted to have correctly performed the operation and populated this provenance.
+   */
+  export interface Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaBuilder {
+    id?: string | null;
+  }
+  /**
+   * Indicates that the builder claims certain fields in this message to be complete.
+   */
+  export interface Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaCompleteness {
+    environment?: boolean | null;
+    materials?: boolean | null;
+    parameters?: boolean | null;
+  }
+  /**
+   * Describes where the config file that kicked off the build came from. This is effectively a pointer to the source where buildConfig came from.
+   */
+  export interface Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaConfigSource {
+    digest?: {[key: string]: string} | null;
+    entryPoint?: string | null;
+    uri?: string | null;
+  }
+  /**
+   * Identifies the event that kicked off the build.
+   */
+  export interface Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaInvocation {
+    configSource?: Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaConfigSource;
+    environment?: {[key: string]: any} | null;
+    parameters?: {[key: string]: any} | null;
+  }
+  /**
+   * The collection of artifacts that influenced the build including sources, dependencies, build tools, base images, and so on.
+   */
+  export interface Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaMaterial {
+    digest?: {[key: string]: string} | null;
+    uri?: string | null;
+  }
+  /**
+   * Other properties of the build.
+   */
+  export interface Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaMetadata {
+    buildFinishedOn?: string | null;
+    buildInvocationId?: string | null;
+    buildStartedOn?: string | null;
+    completeness?: Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaCompleteness;
+    reproducible?: boolean | null;
+  }
+  /**
    * Container message for hash values.
    */
   export interface Schema$Hash {
@@ -1553,6 +1625,7 @@ export namespace containeranalysis_v1 {
     predicateType?: string | null;
     provenance?: Schema$InTotoProvenance;
     slsaProvenance?: Schema$SlsaProvenance;
+    slsaProvenanceZeroTwo?: Schema$SlsaProvenanceZeroTwo;
     subject?: Schema$Subject[];
     /**
      * Always `https://in-toto.io/Statement/v0.1`.
@@ -1587,6 +1660,19 @@ export namespace containeranalysis_v1 {
      * Required. The recovered Dockerfile directive used to construct this layer. See https://docs.docker.com/engine/reference/builder/ for more information.
      */
     directive?: string | null;
+  }
+  /**
+   * License information.
+   */
+  export interface Schema$License {
+    /**
+     * Comments
+     */
+    comments?: string | null;
+    /**
+     * Often a single license can be used to represent the licensing terms. Sometimes it is necessary to include a choice of one or more licenses or some combination of license identifiers. Examples: "LGPL-2.1-only OR MIT", "LGPL-2.1-only AND MIT", "GPL-2.0-or-later WITH Bison-exception-2.2".
+     */
+    expression?: string | null;
   }
   /**
    * Response for listing occurrences for a note.
@@ -1632,7 +1718,7 @@ export namespace containeranalysis_v1 {
    */
   export interface Schema$Location {
     /**
-     * Required. The CPE URI in [CPE format](https://cpe.mitre.org/specification/) denoting the package manager version distributing a package.
+     * Deprecated. The CPE URI in [CPE format](https://cpe.mitre.org/specification/)
      */
     cpeUri?: string | null;
     /**
@@ -1640,7 +1726,7 @@ export namespace containeranalysis_v1 {
      */
     path?: string | null;
     /**
-     * The version installed at this location.
+     * Deprecated. The version installed at this location.
      */
     version?: Schema$Version;
   }
@@ -1869,6 +1955,10 @@ export namespace containeranalysis_v1 {
      */
     effectiveSeverity?: string | null;
     /**
+     * The location at which this package was found.
+     */
+    fileLocation?: Schema$GrafeasV1FileLocation[];
+    /**
      * Output only. Whether a fix is available for this package.
      */
     fixAvailable?: boolean | null;
@@ -1890,30 +1980,86 @@ export namespace containeranalysis_v1 {
     packageType?: string | null;
   }
   /**
-   * This represents a particular package that is distributed over various channels. E.g., glibc (aka libc6) is distributed by many, at various versions.
+   * PackageNote represents a particular package version.
    */
   export interface Schema$PackageNote {
     /**
-     * The various channels by which a package is distributed.
+     * The CPU architecture for which packages in this distribution channel were built. Architecture will be blank for language packages.
+     */
+    architecture?: string | null;
+    /**
+     * The cpe_uri in [CPE format](https://cpe.mitre.org/specification/) denoting the package manager version distributing a package. The cpe_uri will be blank for language packages.
+     */
+    cpeUri?: string | null;
+    /**
+     * The description of this package.
+     */
+    description?: string | null;
+    /**
+     * Hash value, typically a file digest, that allows unique identification a specific package.
+     */
+    digest?: Schema$Digest[];
+    /**
+     * Deprecated. The various channels by which a package is distributed.
      */
     distribution?: Schema$Distribution[];
+    /**
+     * Licenses that have been declared by the authors of the package.
+     */
+    license?: Schema$License;
+    /**
+     * A freeform text denoting the maintainer of this package.
+     */
+    maintainer?: string | null;
     /**
      * Required. Immutable. The name of the package.
      */
     name?: string | null;
+    /**
+     * The type of package; whether native or non native (e.g., ruby gems, node.js packages, etc.).
+     */
+    packageType?: string | null;
+    /**
+     * The homepage for this package.
+     */
+    url?: string | null;
+    /**
+     * The version of the package.
+     */
+    version?: Schema$Version;
   }
   /**
    * Details on how a particular software package was installed on a system.
    */
   export interface Schema$PackageOccurrence {
     /**
-     * Required. All of the places within the filesystem versions of this package have been found.
+     * Output only. The CPU architecture for which packages in this distribution channel were built. Architecture will be blank for language packages.
+     */
+    architecture?: string | null;
+    /**
+     * Output only. The cpe_uri in [CPE format](https://cpe.mitre.org/specification/) denoting the package manager version distributing a package. The cpe_uri will be blank for language packages.
+     */
+    cpeUri?: string | null;
+    /**
+     * Licenses that have been declared by the authors of the package.
+     */
+    license?: Schema$License;
+    /**
+     * All of the places within the filesystem versions of this package have been found.
      */
     location?: Schema$Location[];
     /**
-     * Output only. The name of the installed package.
+     * Required. Output only. The name of the installed package.
      */
     name?: string | null;
+    /**
+     * Output only. The type of package; whether native or non native (e.g., ruby gems, node.js packages, etc.).
+     */
+    packageType?: string | null;
+    /**
+     * Output only. The version of the package.
+     */
+    version?: Schema$Version;
   }
   /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
@@ -2001,7 +2147,7 @@ export namespace containeranalysis_v1 {
    */
   export interface Schema$SetIamPolicyRequest {
     /**
-     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
+     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
   }
@@ -2077,6 +2223,17 @@ export namespace containeranalysis_v1 {
      * Identifies the configuration used for the build. When combined with materials, this SHOULD fully describe the build, such that re-running this recipe results in bit-for-bit identical output (if the build is reproducible). required
      */
     recipe?: Schema$SlsaRecipe;
+  }
+  /**
+   * See full explanation of fields at slsa.dev/provenance/v0.2.
+   */
+  export interface Schema$SlsaProvenanceZeroTwo {
+    buildConfig?: {[key: string]: any} | null;
+    builder?: Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaBuilder;
+    buildType?: string | null;
+    invocation?: Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaInvocation;
+    materials?: Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaMaterial[];
+    metadata?: Schema$GrafeasV1SlsaProvenanceZeroTwoSlsaMetadata;
   }
   /**
    * Steps taken to build the artifact. For a TaskRun, typically each container corresponds to one step in the recipe.
@@ -2174,7 +2331,7 @@ export namespace containeranalysis_v1 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[] | null;
   }
@@ -3051,7 +3208,7 @@ export namespace containeranalysis_v1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/notes/my-note',
      *
      *     // Request body metadata
@@ -3504,7 +3661,7 @@ export namespace containeranalysis_v1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/notes/my-note',
      *
      *     // Request body metadata
@@ -3644,7 +3801,7 @@ export namespace containeranalysis_v1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/notes/my-note',
      *
      *     // Request body metadata
@@ -3808,7 +3965,7 @@ export namespace containeranalysis_v1 {
   export interface Params$Resource$Projects$Notes$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3855,7 +4012,7 @@ export namespace containeranalysis_v1 {
   export interface Params$Resource$Projects$Notes$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3867,7 +4024,7 @@ export namespace containeranalysis_v1 {
   export interface Params$Resource$Projects$Notes$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -4669,7 +4826,7 @@ export namespace containeranalysis_v1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/occurrences/my-occurrence',
      *
      *     // Request body metadata
@@ -5409,7 +5566,7 @@ export namespace containeranalysis_v1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/occurrences/my-occurrence',
      *
      *     // Request body metadata
@@ -5549,7 +5706,7 @@ export namespace containeranalysis_v1 {
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/occurrences/my-occurrence',
      *
      *     // Request body metadata
@@ -5709,7 +5866,7 @@ export namespace containeranalysis_v1 {
   export interface Params$Resource$Projects$Occurrences$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -5774,7 +5931,7 @@ export namespace containeranalysis_v1 {
   export interface Params$Resource$Projects$Occurrences$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -5786,7 +5943,7 @@ export namespace containeranalysis_v1 {
   export interface Params$Resource$Projects$Occurrences$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 

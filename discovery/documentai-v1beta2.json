@@ -292,7 +292,7 @@
       }
     }
   },
-  "revision": "20220307",
+  "revision": "20220610",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata": {
@@ -301,6 +301,28 @@
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
           "description": "The basic metadata of the long running operation."
+        },
+        "individualBatchDeleteStatuses": {
+          "description": "The list of response details of each document.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadataIndividualBatchDeleteStatus"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadataIndividualBatchDeleteStatus": {
+      "description": "The status of each individual document in the batch delete process.",
+      "id": "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadataIndividualBatchDeleteStatus",
+      "properties": {
+        "documentId": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentId",
+          "description": "The document id of the document."
+        },
+        "status": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The status of deleting the document."
         }
       },
       "type": "object"
@@ -319,6 +341,22 @@
           "description": "The basic metadata of the long running operation."
         },
         "destDatasetType": {
+          "description": "The destination dataset split type.",
+          "enum": [
+            "DATASET_SPLIT_TYPE_UNSPECIFIED",
+            "DATASET_SPLIT_TRAIN",
+            "DATASET_SPLIT_TEST",
+            "DATASET_SPLIT_UNASSIGNED"
+          ],
+          "enumDescriptions": [
+            "Default value if the enum is not set. go/protodosdonts#do-include-an-unspecified-value-in-an-enum",
+            "Identifies the train documents.",
+            "Identifies the test documents.",
+            "Identifies the unassigned documents."
+          ],
+          "type": "string"
+        },
+        "destSplitType": {
           "description": "The destination dataset split type.",
           "enum": [
             "DATASET_SPLIT_TYPE_UNSPECIFIED",
@@ -413,6 +451,17 @@
     "GoogleCloudDocumentaiUiv1beta3CreateLabelerPoolOperationMetadata": {
       "description": "The long running operation metadata for CreateLabelerPool.",
       "id": "GoogleCloudDocumentaiUiv1beta3CreateLabelerPoolOperationMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3DeleteDataLabelingJobOperationMetadata": {
+      "description": "The long running operation metadata for DeleteDataLabelingJob.",
+      "id": "GoogleCloudDocumentaiUiv1beta3DeleteDataLabelingJobOperationMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
@@ -1070,7 +1119,25 @@
       "id": "GoogleCloudDocumentaiV1ReviewDocumentResponse",
       "properties": {
         "gcsDestination": {
-          "description": "The Cloud Storage uri for the human reviewed document.",
+          "description": "The Cloud Storage uri for the human reviewed document if the review is succeeded.",
+          "type": "string"
+        },
+        "rejectionReason": {
+          "description": "The reason why the review is rejected by reviewer.",
+          "type": "string"
+        },
+        "state": {
+          "description": "The state of the review operation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "REJECTED",
+            "SUCCEEDED"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is used if the state is omitted.",
+            "The review operation is rejected by the reviewer.",
+            "The review operation is succeeded."
+          ],
           "type": "string"
         }
       },
@@ -1202,7 +1269,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta1Document": {
-      "description": "Document represents the canonical document resource in Document Understanding AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document Understanding AI to iterate and optimize for quality.",
+      "description": "Document represents the canonical document resource in Document AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document AI to iterate and optimize for quality.",
       "id": "GoogleCloudDocumentaiV1beta1Document",
       "properties": {
         "content": {
@@ -1296,6 +1363,10 @@
           "description": "Optional. Text value in the document e.g. `1600 Amphitheatre Pkwy`. If the entity is not present in the document, this field will be empty.",
           "type": "string"
         },
+        "nonPresent": {
+          "description": "Optional. This attribute indicates that the processing didn't actually identify this entity, but a confidence score was assigned that represent the potential that this could be a false negative. A non-present entity should have an empty mention_text and text_anchor.",
+          "type": "boolean"
+        },
         "normalizedValue": {
           "$ref": "GoogleCloudDocumentaiV1beta1DocumentEntityNormalizedValue",
           "description": "Optional. Normalized entity value. Absent if the extracted value could not be converted or the type (e.g. address) is not supported for certain parsers. This field is also only populated for certain supported document types."
@@ -1324,7 +1395,7 @@
           "description": "Optional. Provenance of the entity. Text anchor indexing into the Document.text."
         },
         "type": {
-          "description": "Entity type from a schema e.g. `Address`.",
+          "description": "Required. Entity type from a schema e.g. `Address`.",
           "type": "string"
         }
       },
@@ -2413,7 +2484,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta2Document": {
-      "description": "Document represents the canonical document resource in Document Understanding AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document Understanding AI to iterate and optimize for quality.",
+      "description": "Document represents the canonical document resource in Document AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document AI to iterate and optimize for quality.",
       "id": "GoogleCloudDocumentaiV1beta2Document",
       "properties": {
         "content": {
@@ -2514,6 +2585,10 @@
           "description": "Optional. Text value in the document e.g. `1600 Amphitheatre Pkwy`. If the entity is not present in the document, this field will be empty.",
           "type": "string"
         },
+        "nonPresent": {
+          "description": "Optional. This attribute indicates that the processing didn't actually identify this entity, but a confidence score was assigned that represent the potential that this could be a false negative. A non-present entity should have an empty mention_text and text_anchor.",
+          "type": "boolean"
+        },
         "normalizedValue": {
           "$ref": "GoogleCloudDocumentaiV1beta2DocumentEntityNormalizedValue",
           "description": "Optional. Normalized entity value. Absent if the extracted value could not be converted or the type (e.g. address) is not supported for certain parsers. This field is also only populated for certain supported document types."
@@ -2542,7 +2617,7 @@
           "description": "Optional. Provenance of the entity. Text anchor indexing into the Document.text."
         },
         "type": {
-          "description": "Entity type from a schema e.g. `Address`.",
+          "description": "Required. Entity type from a schema e.g. `Address`.",
           "type": "string"
         }
       },
@@ -4040,7 +4115,25 @@
       "id": "GoogleCloudDocumentaiV1beta3ReviewDocumentResponse",
       "properties": {
         "gcsDestination": {
-          "description": "The Cloud Storage uri for the human reviewed document.",
+          "description": "The Cloud Storage uri for the human reviewed document if the review is succeeded.",
+          "type": "string"
+        },
+        "rejectionReason": {
+          "description": "The reason why the review is rejected by reviewer.",
+          "type": "string"
+        },
+        "state": {
+          "description": "The state of the review operation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "REJECTED",
+            "SUCCEEDED"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is used if the state is omitted.",
+            "The review operation is rejected by the reviewer.",
+            "The review operation is succeeded."
+          ],
           "type": "string"
         }
       },
@@ -4116,7 +4209,7 @@
       "type": "object"
     },
     "GoogleProtobufEmpty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "GoogleProtobufEmpty",
       "properties": {},
       "type": "object"

@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -189,6 +188,10 @@ export namespace logging_v2 {
      */
     kmsKeyName?: string | null;
     /**
+     * The CryptoKeyVersion resource name for the configured Cloud KMS key.KMS key name format: "projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEYRING]/cryptoKeys/[KEY]/cryptoKeyVersions/[VERSION]" For example:"projects/my-project/locations/us-central1/keyRings/my-ring/cryptoKeys/my-key/cryptoKeyVersions/1"This is a read-only field used to convey the specific configured CryptoKeyVersion of kms_key that has been configured. It will be populated in cases where the CMEK settings are bound to a single key version.
+     */
+    kmsKeyVersionName?: string | null;
+    /**
      * Output only. The resource name of the CMEK settings.
      */
     name?: string | null;
@@ -257,7 +260,7 @@ export namespace logging_v2 {
     logEntriesCopiedCount?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for Empty is empty JSON object {\}.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -350,6 +353,23 @@ export namespace logging_v2 {
      * The user agent sent by the client. Example: "Mozilla/4.0 (compatible; MSIE 6.0; Windows 98; Q312461; .NET CLR 1.0.3705)".
      */
     userAgent?: string | null;
+  }
+  /**
+   * Configuration for an indexed field.
+   */
+  export interface Schema$IndexConfig {
+    /**
+     * Output only. The timestamp when the index was last modified.This is used to return the timestamp, and will be ignored if supplied during update.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The LogEntry field path to index.Note that some paths are automatically indexed, and other paths are not eligible for indexing. See indexing documentation( https://cloud.google.com/logging/docs/view/advanced-queries#indexed-fields) for details.For example: jsonPayload.request.status
+     */
+    fieldPath?: string | null;
+    /**
+     * Required. The type of data in this index.
+     */
+    type?: string | null;
   }
   /**
    * A description of a label.
@@ -585,6 +605,10 @@ export namespace logging_v2 {
      * Describes this bucket.
      */
     description?: string | null;
+    /**
+     * A list of indexed fields and related configuration data.
+     */
+    indexConfigs?: Schema$IndexConfig[];
     /**
      * Output only. The bucket lifecycle state.
      */
@@ -1162,6 +1186,10 @@ export namespace logging_v2 {
      */
     sourceReference?: Schema$SourceReference[];
     /**
+     * Stackdriver Trace span identifier for this request.
+     */
+    spanId?: string | null;
+    /**
      * Time when the request started.
      */
     startTime?: string | null;
@@ -1342,7 +1370,7 @@ export namespace logging_v2 {
      */
     logName?: string | null;
     /**
-     * Optional. Whether valid entries should be written even if some other entries fail due to INVALID_ARGUMENT or PERMISSION_DENIED errors. If any entry is not written, then the response status is the error associated with one of the failed entries and the response includes error details keyed by the entries' zero-based index in the entries.write method.
+     * Optional. Whether a batch's valid entries should be written even if some other entry failed due to a permanent error such as INVALID_ARGUMENT or PERMISSION_DENIED. If any entry failed, then the response status is the response status is the status of one of the failed entries. The response will include error details keyed by the entries' zero-based index in the entries.write method.
      */
     partialSuccess?: boolean | null;
     /**
@@ -1413,6 +1441,7 @@ export namespace logging_v2 {
      *   // Example response
      *   // {
      *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "kmsKeyVersionName": "my_kmsKeyVersionName",
      *   //   "name": "my_name",
      *   //   "serviceAccountId": "my_serviceAccountId"
      *   // }
@@ -1713,6 +1742,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -3115,6 +3145,7 @@ export namespace logging_v2 {
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
@@ -3131,6 +3162,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -3542,6 +3574,7 @@ export namespace logging_v2 {
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
@@ -3558,6 +3591,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -3862,8 +3896,12 @@ export namespace logging_v2 {
 
   export class Resource$Billingaccounts$Locations$Buckets$Views {
     context: APIRequestContext;
+    logs: Resource$Billingaccounts$Locations$Buckets$Views$Logs;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.logs = new Resource$Billingaccounts$Locations$Buckets$Views$Logs(
+        this.context
+      );
     }
 
     /**
@@ -4492,6 +4530,173 @@ export namespace logging_v2 {
      * Request body metadata
      */
     requestBody?: Schema$LogView;
+  }
+
+  export class Resource$Billingaccounts$Locations$Buckets$Views$Logs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the logs in projects, organizations, folders, or billing accounts. Only logs that have entries are listed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.locations.buckets.views.logs.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name that owns the logs: projects/[PROJECT_ID] organizations/[ORGANIZATION_ID] billingAccounts/[BILLING_ACCOUNT_ID] folders/[FOLDER_ID]
+     *     parent:
+     *       'billingAccounts/my-billingAccount/locations/my-location/buckets/my-bucket/views/my-view',
+     *     // Optional. The resource name that owns the logs: projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]To support legacy queries, it could also be: projects/[PROJECT_ID] organizations/[ORGANIZATION_ID] billingAccounts/[BILLING_ACCOUNT_ID] folders/[FOLDER_ID]
+     *     resourceNames: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "logNames": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Views$Logs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Billingaccounts$Locations$Buckets$Views$Logs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLogsResponse>;
+    list(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Views$Logs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Views$Logs$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListLogsResponse>,
+      callback: BodyResponseCallback<Schema$ListLogsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Views$Logs$List,
+      callback: BodyResponseCallback<Schema$ListLogsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Locations$Buckets$Views$Logs$List
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ListLogsResponse> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Locations$Buckets$Views$Logs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Billingaccounts$Locations$Buckets$Views$Logs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/logs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListLogsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListLogsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$Views$Logs$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name that owns the logs: projects/[PROJECT_ID] organizations/[ORGANIZATION_ID] billingAccounts/[BILLING_ACCOUNT_ID] folders/[FOLDER_ID]
+     */
+    parent?: string;
+    /**
+     * Optional. The resource name that owns the logs: projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]To support legacy queries, it could also be: projects/[PROJECT_ID] organizations/[ORGANIZATION_ID] billingAccounts/[BILLING_ACCOUNT_ID] folders/[FOLDER_ID]
+     */
+    resourceNames?: string[];
   }
 
   export class Resource$Billingaccounts$Locations$Operations {
@@ -7678,6 +7883,7 @@ export namespace logging_v2 {
      *   // Example response
      *   // {
      *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "kmsKeyVersionName": "my_kmsKeyVersionName",
      *   //   "name": "my_name",
      *   //   "serviceAccountId": "my_serviceAccountId"
      *   // }
@@ -9234,6 +9440,7 @@ export namespace logging_v2 {
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
@@ -9250,6 +9457,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -9519,6 +9727,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -9800,6 +10009,7 @@ export namespace logging_v2 {
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
@@ -9816,6 +10026,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -10126,8 +10337,12 @@ export namespace logging_v2 {
 
   export class Resource$Folders$Locations$Buckets$Views {
     context: APIRequestContext;
+    logs: Resource$Folders$Locations$Buckets$Views$Logs;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.logs = new Resource$Folders$Locations$Buckets$Views$Logs(
+        this.context
+      );
     }
 
     /**
@@ -10892,6 +11107,173 @@ export namespace logging_v2 {
      * Request body metadata
      */
     requestBody?: Schema$LogView;
+  }
+
+  export class Resource$Folders$Locations$Buckets$Views$Logs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the logs in projects, organizations, folders, or billing accounts. Only logs that have entries are listed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.locations.buckets.views.logs.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name that owns the logs: projects/[PROJECT_ID] organizations/[ORGANIZATION_ID] billingAccounts/[BILLING_ACCOUNT_ID] folders/[FOLDER_ID]
+     *     parent:
+     *       'folders/my-folder/locations/my-location/buckets/my-bucket/views/my-view',
+     *     // Optional. The resource name that owns the logs: projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]To support legacy queries, it could also be: projects/[PROJECT_ID] organizations/[ORGANIZATION_ID] billingAccounts/[BILLING_ACCOUNT_ID] folders/[FOLDER_ID]
+     *     resourceNames: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "logNames": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Folders$Locations$Buckets$Views$Logs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Folders$Locations$Buckets$Views$Logs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLogsResponse>;
+    list(
+      params: Params$Resource$Folders$Locations$Buckets$Views$Logs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Locations$Buckets$Views$Logs$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListLogsResponse>,
+      callback: BodyResponseCallback<Schema$ListLogsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Locations$Buckets$Views$Logs$List,
+      callback: BodyResponseCallback<Schema$ListLogsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Buckets$Views$Logs$List
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ListLogsResponse> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Buckets$Views$Logs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Folders$Locations$Buckets$Views$Logs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/logs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListLogsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListLogsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Locations$Buckets$Views$Logs$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name that owns the logs: projects/[PROJECT_ID] organizations/[ORGANIZATION_ID] billingAccounts/[BILLING_ACCOUNT_ID] folders/[FOLDER_ID]
+     */
+    parent?: string;
+    /**
+     * Optional. The resource name that owns the logs: projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]To support legacy queries, it could also be: projects/[PROJECT_ID] organizations/[ORGANIZATION_ID] billingAccounts/[BILLING_ACCOUNT_ID] folders/[FOLDER_ID]
+     */
+    resourceNames?: string[];
   }
 
   export class Resource$Folders$Locations$Operations {
@@ -13012,6 +13394,7 @@ export namespace logging_v2 {
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
@@ -13028,6 +13411,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -13297,6 +13681,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -13578,6 +13963,7 @@ export namespace logging_v2 {
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
@@ -13594,6 +13980,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -15646,6 +16033,7 @@ export namespace logging_v2 {
      *   // Example response
      *   // {
      *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "kmsKeyVersionName": "my_kmsKeyVersionName",
      *   //   "name": "my_name",
      *   //   "serviceAccountId": "my_serviceAccountId"
      *   // }
@@ -15920,6 +16308,7 @@ export namespace logging_v2 {
      *       // request body parameters
      *       // {
      *       //   "kmsKeyName": "my_kmsKeyName",
+     *       //   "kmsKeyVersionName": "my_kmsKeyVersionName",
      *       //   "name": "my_name",
      *       //   "serviceAccountId": "my_serviceAccountId"
      *       // }
@@ -15930,6 +16319,7 @@ export namespace logging_v2 {
      *   // Example response
      *   // {
      *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "kmsKeyVersionName": "my_kmsKeyVersionName",
      *   //   "name": "my_name",
      *   //   "serviceAccountId": "my_serviceAccountId"
      *   // }
@@ -17370,6 +17760,7 @@ export namespace logging_v2 {
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
@@ -17386,6 +17777,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -17655,6 +18047,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -17936,6 +18329,7 @@ export namespace logging_v2 {
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
@@ -17952,6 +18346,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -18262,8 +18657,12 @@ export namespace logging_v2 {
 
   export class Resource$Organizations$Locations$Buckets$Views {
     context: APIRequestContext;
+    logs: Resource$Organizations$Locations$Buckets$Views$Logs;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.logs = new Resource$Organizations$Locations$Buckets$Views$Logs(
+        this.context
+      );
     }
 
     /**
@@ -19035,6 +19434,173 @@ export namespace logging_v2 {
      * Request body metadata
      */
     requestBody?: Schema$LogView;
+  }
+
+  export class Resource$Organizations$Locations$Buckets$Views$Logs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the logs in projects, organizations, folders, or billing accounts. Only logs that have entries are listed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.locations.buckets.views.logs.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name that owns the logs: projects/[PROJECT_ID] organizations/[ORGANIZATION_ID] billingAccounts/[BILLING_ACCOUNT_ID] folders/[FOLDER_ID]
+     *     parent:
+     *       'organizations/my-organization/locations/my-location/buckets/my-bucket/views/my-view',
+     *     // Optional. The resource name that owns the logs: projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]To support legacy queries, it could also be: projects/[PROJECT_ID] organizations/[ORGANIZATION_ID] billingAccounts/[BILLING_ACCOUNT_ID] folders/[FOLDER_ID]
+     *     resourceNames: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "logNames": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$Buckets$Views$Logs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Locations$Buckets$Views$Logs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLogsResponse>;
+    list(
+      params: Params$Resource$Organizations$Locations$Buckets$Views$Logs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Buckets$Views$Logs$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListLogsResponse>,
+      callback: BodyResponseCallback<Schema$ListLogsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Buckets$Views$Logs$List,
+      callback: BodyResponseCallback<Schema$ListLogsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Buckets$Views$Logs$List
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ListLogsResponse> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Buckets$Views$Logs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Buckets$Views$Logs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/logs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListLogsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListLogsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Buckets$Views$Logs$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name that owns the logs: projects/[PROJECT_ID] organizations/[ORGANIZATION_ID] billingAccounts/[BILLING_ACCOUNT_ID] folders/[FOLDER_ID]
+     */
+    parent?: string;
+    /**
+     * Optional. The resource name that owns the logs: projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]To support legacy queries, it could also be: projects/[PROJECT_ID] organizations/[ORGANIZATION_ID] billingAccounts/[BILLING_ACCOUNT_ID] folders/[FOLDER_ID]
+     */
+    resourceNames?: string[];
   }
 
   export class Resource$Organizations$Locations$Operations {
@@ -20847,6 +21413,7 @@ export namespace logging_v2 {
      *   // Example response
      *   // {
      *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "kmsKeyVersionName": "my_kmsKeyVersionName",
      *   //   "name": "my_name",
      *   //   "serviceAccountId": "my_serviceAccountId"
      *   // }
@@ -22239,6 +22806,7 @@ export namespace logging_v2 {
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
@@ -22255,6 +22823,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -22524,6 +23093,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -22805,6 +23375,7 @@ export namespace logging_v2 {
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
@@ -22821,6 +23392,7 @@ export namespace logging_v2 {
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "indexConfigs": [],
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
@@ -23131,8 +23703,12 @@ export namespace logging_v2 {
 
   export class Resource$Projects$Locations$Buckets$Views {
     context: APIRequestContext;
+    logs: Resource$Projects$Locations$Buckets$Views$Logs;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.logs = new Resource$Projects$Locations$Buckets$Views$Logs(
+        this.context
+      );
     }
 
     /**
@@ -23897,6 +24473,173 @@ export namespace logging_v2 {
      * Request body metadata
      */
     requestBody?: Schema$LogView;
+  }
+
+  export class Resource$Projects$Locations$Buckets$Views$Logs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the logs in projects, organizations, folders, or billing accounts. Only logs that have entries are listed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.locations.buckets.views.logs.list({
+     *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name that owns the logs: projects/[PROJECT_ID] organizations/[ORGANIZATION_ID] billingAccounts/[BILLING_ACCOUNT_ID] folders/[FOLDER_ID]
+     *     parent:
+     *       'projects/my-project/locations/my-location/buckets/my-bucket/views/my-view',
+     *     // Optional. The resource name that owns the logs: projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]To support legacy queries, it could also be: projects/[PROJECT_ID] organizations/[ORGANIZATION_ID] billingAccounts/[BILLING_ACCOUNT_ID] folders/[FOLDER_ID]
+     *     resourceNames: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "logNames": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Buckets$Views$Logs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Buckets$Views$Logs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLogsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Buckets$Views$Logs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Buckets$Views$Logs$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListLogsResponse>,
+      callback: BodyResponseCallback<Schema$ListLogsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Buckets$Views$Logs$List,
+      callback: BodyResponseCallback<Schema$ListLogsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Buckets$Views$Logs$List
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ListLogsResponse> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Buckets$Views$Logs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Buckets$Views$Logs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/logs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListLogsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListLogsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Buckets$Views$Logs$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name that owns the logs: projects/[PROJECT_ID] organizations/[ORGANIZATION_ID] billingAccounts/[BILLING_ACCOUNT_ID] folders/[FOLDER_ID]
+     */
+    parent?: string;
+    /**
+     * Optional. The resource name that owns the logs: projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]To support legacy queries, it could also be: projects/[PROJECT_ID] organizations/[ORGANIZATION_ID] billingAccounts/[BILLING_ACCOUNT_ID] folders/[FOLDER_ID]
+     */
+    resourceNames?: string[];
   }
 
   export class Resource$Projects$Locations$Operations {
@@ -27292,6 +28035,7 @@ export namespace logging_v2 {
      *   // Example response
      *   // {
      *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "kmsKeyVersionName": "my_kmsKeyVersionName",
      *   //   "name": "my_name",
      *   //   "serviceAccountId": "my_serviceAccountId"
      *   // }
@@ -27565,6 +28309,7 @@ export namespace logging_v2 {
      *       // request body parameters
      *       // {
      *       //   "kmsKeyName": "my_kmsKeyName",
+     *       //   "kmsKeyVersionName": "my_kmsKeyVersionName",
      *       //   "name": "my_name",
      *       //   "serviceAccountId": "my_serviceAccountId"
      *       // }
@@ -27575,6 +28320,7 @@ export namespace logging_v2 {
      *   // Example response
      *   // {
      *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "kmsKeyVersionName": "my_kmsKeyVersionName",
      *   //   "name": "my_name",
      *   //   "serviceAccountId": "my_serviceAccountId"
      *   // }

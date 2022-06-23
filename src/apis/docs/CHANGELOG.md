@@ -1,5 +1,37 @@
 # Changelog
 
+## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/docs-v1.0.0...docs-v1.0.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **docs:** update the API ([8fdf542](https://github.com/googleapis/google-api-nodejs-client/commit/8fdf54259de9eeeab0ad2be6e435e48cbcfca1d7))
+
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/docs-v0.4.2...docs-v1.0.0) (2022-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#2971](https://github.com/googleapis/google-api-nodejs-client/issues/2971)) ([adddf01](https://github.com/googleapis/google-api-nodejs-client/commit/adddf018e7cb73adab7341053dd80d72c5a6248d))
+
+### [0.4.2](https://github.com/googleapis/google-api-nodejs-client/compare/docs-v0.4.1...docs-v0.4.2) (2022-04-11)
+
+
+### Bug Fixes
+
+* **docs:** update the API ([4189154](https://github.com/googleapis/google-api-nodejs-client/commit/4189154feea1b67c29e05bd120a738a2356c2b71))
+
+### [0.4.1](https://github.com/googleapis/google-api-nodejs-client/compare/docs-v0.4.0...docs-v0.4.1) (2022-04-01)
+
+
+### Bug Fixes
+
+* **docs:** update the API ([644ab97](https://github.com/googleapis/google-api-nodejs-client/commit/644ab97c8136cfae8b9992ce68b6a3d5914d5a88))
+
 ## [0.4.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/docs-v0.3.0...docs-v0.4.0) (2021-09-14)
 
 

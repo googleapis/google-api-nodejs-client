@@ -1,5 +1,33 @@
 # Changelog
 
+## [0.6.1](https://github.com/googleapis/google-api-nodejs-client/compare/vault-v0.6.0...vault-v0.6.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **vault:** update the API ([e5d8e82](https://github.com/googleapis/google-api-nodejs-client/commit/e5d8e8227464d6c52b3441606635da3c0381f80d))
+
+## [0.6.0](https://github.com/googleapis/google-api-nodejs-client/compare/vault-v0.5.0...vault-v0.6.0) (2022-06-13)
+
+
+### Features
+
+* **vault:** update the API ([f09934e](https://github.com/googleapis/google-api-nodejs-client/commit/f09934e0f10b972188f6136674c4fed2107dc84b))
+
+## [0.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/vault-v0.4.1...vault-v0.5.0) (2022-04-11)
+
+
+### Features
+
+* **vault:** update the API ([fa9fabb](https://github.com/googleapis/google-api-nodejs-client/commit/fa9fabbf7c84ad0020c5441d76d689bf260ad704))
+
+### [0.4.1](https://github.com/googleapis/google-api-nodejs-client/compare/vault-v0.4.0...vault-v0.4.1) (2022-03-23)
+
+
+### Bug Fixes
+
+* **vault:** update the API ([fd7a6ff](https://github.com/googleapis/google-api-nodejs-client/commit/fd7a6ff5f47969279dd9156cfb2d8f436e894011))
+
 ## [0.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/vault-v0.3.1...vault-v0.4.0) (2022-03-08)
 
 

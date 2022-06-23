@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -286,7 +285,7 @@ export namespace forms_v1 {
     location?: Schema$Location;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -1044,6 +1043,7 @@ export namespace forms_v1 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/drive',
      *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/forms.body',
      *     ],
      *   });
      *
@@ -1195,6 +1195,7 @@ export namespace forms_v1 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/drive',
      *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/forms.body',
      *     ],
      *   });
      *
@@ -1341,6 +1342,8 @@ export namespace forms_v1 {
      *       'https://www.googleapis.com/auth/drive',
      *       'https://www.googleapis.com/auth/drive.file',
      *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/forms.body',
+     *       'https://www.googleapis.com/auth/forms.body.readonly',
      *     ],
      *   });
      *
@@ -1507,6 +1510,7 @@ export namespace forms_v1 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/drive',
      *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/forms.responses.readonly',
      *     ],
      *   });
      *
@@ -1646,6 +1650,7 @@ export namespace forms_v1 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/drive',
      *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/forms.responses.readonly',
      *     ],
      *   });
      *
@@ -1831,6 +1836,9 @@ export namespace forms_v1 {
      *       'https://www.googleapis.com/auth/drive',
      *       'https://www.googleapis.com/auth/drive.file',
      *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/forms.body',
+     *       'https://www.googleapis.com/auth/forms.body.readonly',
+     *       'https://www.googleapis.com/auth/forms.responses.readonly',
      *     ],
      *   });
      *
@@ -1979,6 +1987,9 @@ export namespace forms_v1 {
      *       'https://www.googleapis.com/auth/drive',
      *       'https://www.googleapis.com/auth/drive.file',
      *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/forms.body',
+     *       'https://www.googleapis.com/auth/forms.body.readonly',
+     *       'https://www.googleapis.com/auth/forms.responses.readonly',
      *     ],
      *   });
      *
@@ -2112,6 +2123,9 @@ export namespace forms_v1 {
      *       'https://www.googleapis.com/auth/drive',
      *       'https://www.googleapis.com/auth/drive.file',
      *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/forms.body',
+     *       'https://www.googleapis.com/auth/forms.body.readonly',
+     *       'https://www.googleapis.com/auth/forms.responses.readonly',
      *     ],
      *   });
      *
@@ -2248,6 +2262,9 @@ export namespace forms_v1 {
      *       'https://www.googleapis.com/auth/drive',
      *       'https://www.googleapis.com/auth/drive.file',
      *       'https://www.googleapis.com/auth/drive.readonly',
+     *       'https://www.googleapis.com/auth/forms.body',
+     *       'https://www.googleapis.com/auth/forms.body.readonly',
+     *       'https://www.googleapis.com/auth/forms.responses.readonly',
      *     ],
      *   });
      *

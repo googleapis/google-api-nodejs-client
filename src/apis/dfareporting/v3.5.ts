@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -1097,7 +1096,7 @@ export namespace dfareporting_v3_5 {
      */
     measurementPartnerLink?: Schema$MeasurementPartnerCampaignLink;
     /**
-     * Name of this campaign. This is a required field and must be less than 256 characters long and unique among campaigns of the same advertiser.
+     * Name of this campaign. This is a required field and must be less than 512 characters long and unique among campaigns of the same advertiser.
      */
     name?: string | null;
     /**
@@ -4751,7 +4750,7 @@ export namespace dfareporting_v3_5 {
      */
     lookbackConfiguration?: Schema$LookbackConfiguration;
     /**
-     * Name of this placement.This is a required field and must be less than or equal to 256 characters long.
+     * Name of this placement.This is a required field and must be less than or equal to 512 characters long.
      */
     name?: string | null;
     /**

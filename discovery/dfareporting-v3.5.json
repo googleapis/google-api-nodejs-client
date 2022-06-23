@@ -2289,9 +2289,11 @@
                 "OBJECT_PLAYSTORE_LINK",
                 "OBJECT_TARGETING_TEMPLATE",
                 "OBJECT_SEARCH_LIFT_STUDY",
-                "OBJECT_FLOODLIGHT_DV360_LINK"
+                "OBJECT_FLOODLIGHT_DV360_LINK",
+                "OBJECT_ADVERTISER_CUSTOMER_LINK"
               ],
               "enumDescriptions": [
+                "",
                 "",
                 "",
                 "",
@@ -5678,9 +5680,25 @@
               "enum": [
                 "UNKNOWN",
                 "APPLE_APP_STORE",
-                "GOOGLE_PLAY_STORE"
+                "GOOGLE_PLAY_STORE",
+                "ROKU_APP_STORE",
+                "AMAZON_FIRETV_APP_STORE",
+                "PLAYSTATION_APP_STORE",
+                "APPLE_TV_APP_STORE",
+                "XBOX_APP_STORE",
+                "SAMSUNG_TV_APP_STORE",
+                "ANDROID_TV_APP_STORE",
+                "GENERIC_CTV_APP_STORE"
               ],
               "enumDescriptions": [
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
                 "",
                 "",
                 ""
@@ -9641,7 +9659,7 @@
       }
     }
   },
-  "revision": "20220104",
+  "revision": "20220611",
   "rootUrl": "https://dfareporting.googleapis.com/",
   "schemas": {
     "Account": {
@@ -10792,7 +10810,7 @@
           "description": "Measurement partner campaign link for tag wrapping."
         },
         "name": {
-          "description": "Name of this campaign. This is a required field and must be less than 256 characters long and unique among campaigns of the same advertiser.",
+          "description": "Name of this campaign. This is a required field and must be less than 512 characters long and unique among campaigns of the same advertiser.",
           "type": "string"
         },
         "nielsenOcrEnabled": {
@@ -11649,9 +11667,11 @@
             "CREATIVE_AUTHORING_SOURCE_DCM",
             "CREATIVE_AUTHORING_SOURCE_DBM",
             "CREATIVE_AUTHORING_SOURCE_STUDIO",
-            "CREATIVE_AUTHORING_SOURCE_GWD"
+            "CREATIVE_AUTHORING_SOURCE_GWD",
+            "CREATIVE_AUTHORING_SOURCE_ACS"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -12903,9 +12923,11 @@
               "CLICK_TAG_IN_GWD",
               "CLICK_TAG_HARD_CODED",
               "SVG_INVALID",
-              "CLICK_TAG_IN_RICH_MEDIA"
+              "CLICK_TAG_IN_RICH_MEDIA",
+              "MISSING_ENABLER_REFERENCE"
             ],
             "enumDescriptions": [
+              "",
               "",
               "",
               "",
@@ -15956,9 +15978,11 @@
           "description": "Measurement partner used for tag wrapping.",
           "enum": [
             "NONE",
-            "INTEGRAL_AD_SCIENCE"
+            "INTEGRAL_AD_SCIENCE",
+            "DOUBLE_VERIFY"
           ],
           "enumDescriptions": [
+            "",
             "",
             ""
           ],
@@ -16002,9 +16026,11 @@
           "description": "Measurement partner used for tag wrapping.",
           "enum": [
             "NONE",
-            "INTEGRAL_AD_SCIENCE"
+            "INTEGRAL_AD_SCIENCE",
+            "DOUBLE_VERIFY"
           ],
           "enumDescriptions": [
+            "",
             "",
             ""
           ],
@@ -16049,9 +16075,11 @@
           "description": "Measurement partner used for wrapping the placement.",
           "enum": [
             "NONE",
-            "INTEGRAL_AD_SCIENCE"
+            "INTEGRAL_AD_SCIENCE",
+            "DOUBLE_VERIFY"
           ],
           "enumDescriptions": [
+            "",
             "",
             ""
           ],
@@ -16066,9 +16094,23 @@
             "MONITORING_ONLY",
             "VIDEO_PIXEL_MONITORING",
             "TRACKING",
-            "NON_VPAID_MONITORING"
+            "VPAID_MONITORING",
+            "VPAID_BLOCKING",
+            "NON_VPAID_MONITORING",
+            "VPAID_ONLY_MONITORING",
+            "VPAID_ONLY_BLOCKING",
+            "VPAID_ONLY_FILTERING",
+            "VPAID_FILTERING",
+            "NON_VPAID_FILTERING"
           ],
           "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "",
             "",
             "",
@@ -16166,9 +16208,25 @@
           "enum": [
             "UNKNOWN",
             "APPLE_APP_STORE",
-            "GOOGLE_PLAY_STORE"
+            "GOOGLE_PLAY_STORE",
+            "ROKU_APP_STORE",
+            "AMAZON_FIRETV_APP_STORE",
+            "PLAYSTATION_APP_STORE",
+            "APPLE_TV_APP_STORE",
+            "XBOX_APP_STORE",
+            "SAMSUNG_TV_APP_STORE",
+            "ANDROID_TV_APP_STORE",
+            "GENERIC_CTV_APP_STORE"
           ],
           "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "",
             "",
             ""
@@ -17041,7 +17099,7 @@
           "description": "Lookback window settings for this placement."
         },
         "name": {
-          "description": "Name of this placement.This is a required field and must be less than or equal to 256 characters long.",
+          "description": "Name of this placement.This is a required field and must be less than or equal to 512 characters long.",
           "type": "string"
         },
         "partnerWrappingData": {

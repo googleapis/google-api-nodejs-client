@@ -199,7 +199,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/autoscalingPolicies/[^/]+$",
                       "required": true,
@@ -263,7 +263,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/autoscalingPolicies/[^/]+$",
                       "required": true,
@@ -291,7 +291,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/autoscalingPolicies/[^/]+$",
                       "required": true,
@@ -569,7 +569,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/workflowTemplates/[^/]+$",
                       "required": true,
@@ -694,7 +694,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/workflowTemplates/[^/]+$",
                       "required": true,
@@ -722,7 +722,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/workflowTemplates/[^/]+$",
                       "required": true,
@@ -864,7 +864,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/autoscalingPolicies/[^/]+$",
                       "required": true,
@@ -928,7 +928,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/autoscalingPolicies/[^/]+$",
                       "required": true,
@@ -956,7 +956,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/autoscalingPolicies/[^/]+$",
                       "required": true,
@@ -1197,7 +1197,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/clusters/[^/]+$",
                       "required": true,
@@ -1415,7 +1415,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/clusters/[^/]+$",
                       "required": true,
@@ -1525,7 +1525,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/clusters/[^/]+$",
                       "required": true,
@@ -1674,7 +1674,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/jobs/[^/]+$",
                       "required": true,
@@ -1816,7 +1816,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/jobs/[^/]+$",
                       "required": true,
@@ -1912,7 +1912,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/jobs/[^/]+$",
                       "required": true,
@@ -2019,7 +2019,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/operations/[^/]+$",
                       "required": true,
@@ -2088,7 +2088,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/operations/[^/]+$",
                       "required": true,
@@ -2116,7 +2116,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/operations/[^/]+$",
                       "required": true,
@@ -2238,7 +2238,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/workflowTemplates/[^/]+$",
                       "required": true,
@@ -2363,7 +2363,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/workflowTemplates/[^/]+$",
                       "required": true,
@@ -2391,7 +2391,7 @@
                   ],
                   "parameters": {
                     "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/regions/[^/]+/workflowTemplates/[^/]+$",
                       "required": true,
@@ -2444,7 +2444,7 @@
       }
     }
   },
-  "revision": "20220224",
+  "revision": "20220526",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2504,6 +2504,21 @@
         "workerConfig": {
           "$ref": "InstanceGroupAutoscalingPolicyConfig",
           "description": "Required. Describes how the autoscaler will operate for primary workers."
+        }
+      },
+      "type": "object"
+    },
+    "AuxiliaryServicesConfig": {
+      "description": "Auxiliary services configuration for a Cluster.",
+      "id": "AuxiliaryServicesConfig",
+      "properties": {
+        "metastoreConfig": {
+          "$ref": "MetastoreConfig",
+          "description": "Optional. The Hive Metastore configuration for this workload."
+        },
+        "sparkHistoryServerConfig": {
+          "$ref": "SparkHistoryServerConfig",
+          "description": "Optional. The Spark History Server configuration for the workload."
         }
       },
       "type": "object"
@@ -2735,7 +2750,7 @@
           "description": "The condition that is associated with this binding.If the condition evaluates to true, then this binding applies to the current request.If the condition evaluates to false, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Cloud Platform resource. members can have the following values: allUsers: A special identifier that represents anyone who is on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone who is authenticated with a Google account or a service account. user:{emailid}: An email address that represents a specific Google account. For example, alice@example.com . serviceAccount:{emailid}: An email address that represents a service account. For example, my-other-app@appspot.gserviceaccount.com. group:{emailid}: An email address that represents a Google group. For example, admins@example.com. deleted:user:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a user that has been recently deleted. For example, alice@example.com?uid=123456789012345678901. If the user is recovered, this value reverts to user:{emailid} and the recovered user retains the role in the binding. deleted:serviceAccount:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901. If the service account is undeleted, this value reverts to serviceAccount:{emailid} and the undeleted service account retains the role in the binding. deleted:group:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, admins@example.com?uid=123456789012345678901. If the group is recovered, this value reverts to group:{emailid} and the recovered group retains the role in the binding. domain:{domain}: The G Suite domain (primary) that represents all the users of that domain. For example, google.com or example.com.",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. members can have the following values: allUsers: A special identifier that represents anyone who is on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone who is authenticated with a Google account or a service account. user:{emailid}: An email address that represents a specific Google account. For example, alice@example.com . serviceAccount:{emailid}: An email address that represents a service account. For example, my-other-app@appspot.gserviceaccount.com. group:{emailid}: An email address that represents a Google group. For example, admins@example.com. deleted:user:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a user that has been recently deleted. For example, alice@example.com?uid=123456789012345678901. If the user is recovered, this value reverts to user:{emailid} and the recovered user retains the role in the binding. deleted:serviceAccount:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901. If the service account is undeleted, this value reverts to serviceAccount:{emailid} and the undeleted service account retains the role in the binding. deleted:group:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, admins@example.com?uid=123456789012345678901. If the group is recovered, this value reverts to group:{emailid} and the recovered group retains the role in the binding. domain:{domain}: The G Suite domain (primary) that represents all the users of that domain. For example, google.com or example.com.",
           "items": {
             "type": "string"
           },
@@ -2759,7 +2774,7 @@
       "id": "Cluster",
       "properties": {
         "clusterName": {
-          "description": "Required. The cluster name. Cluster names within a project must be unique. Names of deleted clusters can be reused.",
+          "description": "Required. The cluster name, which must be unique within a project. The name must start with a lowercase letter, and can contain up to 51 lowercase letters, numbers, and hyphens. It cannot end with a hyphen. The name of a deleted cluster can be reused.",
           "type": "string"
         },
         "clusterUuid": {
@@ -2769,7 +2784,7 @@
         },
         "config": {
           "$ref": "ClusterConfig",
-          "description": "Optional. The cluster config for a cluster of Compute Engine Instances. Note that Dataproc may set default values, and values may change when clusters are updated."
+          "description": "Optional. The cluster config for a cluster of Compute Engine Instances. Note that Dataproc may set default values, and values may change when clusters are updated.Exactly one of ClusterConfig or VirtualClusterConfig must be specified."
         },
         "labels": {
           "additionalProperties": {
@@ -2799,6 +2814,10 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "virtualClusterConfig": {
+          "$ref": "VirtualClusterConfig",
+          "description": "Optional. The virtual cluster config is used when creating a Dataproc cluster that does not directly control the underlying compute resources, for example, when creating a Dataproc-on-GKE cluster (https://cloud.google.com/dataproc/docs/guides/dpgke/dataproc-gke). Dataproc may set default values, and values may change when clusters are updated. Exactly one of config or virtual_cluster_config must be specified."
         }
       },
       "type": "object"
@@ -2817,7 +2836,7 @@
         },
         "dataprocMetricConfig": {
           "$ref": "DataprocMetricConfig",
-          "description": "Optional. The configuration(s) for a dataproc metric(s)."
+          "description": "Optional. The config for Dataproc metrics."
         },
         "encryptionConfig": {
           "$ref": "EncryptionConfig",
@@ -2833,7 +2852,7 @@
         },
         "gkeClusterConfig": {
           "$ref": "GkeClusterConfig",
-          "description": "Optional. BETA. The Kubernetes Engine config for Dataproc clusters deployed to Kubernetes. Setting this is considered mutually exclusive with Compute Engine-based options such as gce_cluster_config, master_config, worker_config, secondary_worker_config, and autoscaling_config."
+          "description": "Optional. BETA. The Kubernetes Engine config for Dataproc clusters deployed to The Kubernetes Engine config for Dataproc clusters deployed to Kubernetes. These config settings are mutually exclusive with Compute Engine-based options, such as gce_cluster_config, master_config, worker_config, secondary_worker_config, and autoscaling_config."
         },
         "initializationActions": {
           "description": "Optional. Commands to execute on each node after config is completed. By default, executables are run on master and all worker nodes. You can test a node's role metadata to run an executable on a master or worker node, as shown below using curl (you can also use wget): ROLE=$(curl -H Metadata-Flavor:Google http://metadata/computeMetadata/v1/instance/attributes/dataproc-role) if [[ \"${ROLE}\" == 'Master' ]]; then ... master specific actions ... else ... worker specific actions ... fi ",
@@ -2894,7 +2913,7 @@
             "format": "int64",
             "type": "string"
           },
-          "description": "The YARN metrics.",
+          "description": "YARN metrics.",
           "type": "object"
         }
       },
@@ -3110,11 +3129,11 @@
       "type": "object"
     },
     "DataprocMetricConfig": {
-      "description": "Contains dataproc metric config.",
+      "description": "Dataproc metric config.",
       "id": "DataprocMetricConfig",
       "properties": {
         "metrics": {
-          "description": "Required. Metrics to be enabled.",
+          "description": "Required. Metrics to enable.",
           "items": {
             "$ref": "Metric"
           },
@@ -3167,7 +3186,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for Empty is empty JSON object {}.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } ",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -3377,9 +3396,154 @@
       "description": "The cluster's GKE config.",
       "id": "GkeClusterConfig",
       "properties": {
+        "gkeClusterTarget": {
+          "description": "Optional. A target GKE cluster to deploy to. It must be in the same project and region as the Dataproc cluster (the GKE cluster can be zonal or regional). Format: 'projects/{project}/locations/{location}/clusters/{cluster_id}'",
+          "type": "string"
+        },
         "namespacedGkeDeploymentTarget": {
           "$ref": "NamespacedGkeDeploymentTarget",
-          "description": "Optional. A target for the deployment."
+          "description": "Optional. Deprecated. Use gkeClusterTarget. Used only for the deprecated beta. A target for the deployment."
+        },
+        "nodePoolTarget": {
+          "description": "Optional. GKE node pools where workloads will be scheduled. At least one node pool must be assigned the DEFAULT GkeNodePoolTarget.Role. If a GkeNodePoolTarget is not specified, Dataproc constructs a DEFAULT GkeNodePoolTarget. Each role can be given to only one GkeNodePoolTarget. All node pools must have the same location settings.",
+          "items": {
+            "$ref": "GkeNodePoolTarget"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GkeNodeConfig": {
+      "description": "Parameters that describe cluster nodes.",
+      "id": "GkeNodeConfig",
+      "properties": {
+        "accelerators": {
+          "description": "Optional. A list of hardware accelerators (https://cloud.google.com/compute/docs/gpus) to attach to each node.",
+          "items": {
+            "$ref": "GkeNodePoolAcceleratorConfig"
+          },
+          "type": "array"
+        },
+        "bootDiskKmsKey": {
+          "description": "Optional. The Customer Managed Encryption Key (CMEK) (https://cloud.google.com/compute/docs/disks/customer-managed-encryption) used to encrypt the boot disk attached to each node in the node pool. Specify the key using the following format: projects/KEY_PROJECT_ID /locations/LOCATION/keyRings/RING_NAME/cryptoKeys/KEY_NAME.",
+          "type": "string"
+        },
+        "localSsdCount": {
+          "description": "Optional. The number of local SSD disks to attach to the node, which is limited by the maximum number of disks allowable per zone (see Adding Local SSDs (https://cloud.google.com/compute/docs/disks/local-ssd)).",
+          "format": "int32",
+          "type": "integer"
+        },
+        "machineType": {
+          "description": "Optional. The name of a Compute Engine machine type (https://cloud.google.com/compute/docs/machine-types).",
+          "type": "string"
+        },
+        "minCpuPlatform": {
+          "description": "Optional. Minimum CPU platform (https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform) to be used by this instance. The instance may be scheduled on the specified or a newer CPU platform. Specify the friendly names of CPU platforms, such as \"Intel Haswell\"` or Intel Sandy Bridge\".",
+          "type": "string"
+        },
+        "preemptible": {
+          "description": "Optional. Whether the nodes are created as preemptible VM instances (https://cloud.google.com/compute/docs/instances/preemptible). Preemptible nodes cannot be used in a node pool with the CONTROLLER role or in the DEFAULT node pool if the CONTROLLER role is not assigned (the DEFAULT node pool will assume the CONTROLLER role).",
+          "type": "boolean"
+        },
+        "spot": {
+          "description": "Optional. Spot flag for enabling Spot VM, which is a rebrand of the existing preemptible flag.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GkeNodePoolAcceleratorConfig": {
+      "description": "A GkeNodeConfigAcceleratorConfig represents a Hardware Accelerator request for a node pool.",
+      "id": "GkeNodePoolAcceleratorConfig",
+      "properties": {
+        "acceleratorCount": {
+          "description": "The number of accelerator cards exposed to an instance.",
+          "format": "int64",
+          "type": "string"
+        },
+        "acceleratorType": {
+          "description": "The accelerator type resource namename (see GPUs on Compute Engine).",
+          "type": "string"
+        },
+        "gpuPartitionSize": {
+          "description": "Size of partitions to create on the GPU. Valid values are described in the NVIDIA mig user guide (https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GkeNodePoolAutoscalingConfig": {
+      "description": "GkeNodePoolAutoscaling contains information the cluster autoscaler needs to adjust the size of the node pool to the current cluster usage.",
+      "id": "GkeNodePoolAutoscalingConfig",
+      "properties": {
+        "maxNodeCount": {
+          "description": "The maximum number of nodes in the node pool. Must be >= min_node_count, and must be > 0. Note: Quota must be sufficient to scale up the cluster.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minNodeCount": {
+          "description": "The minimum number of nodes in the node pool. Must be >= 0 and <= max_node_count.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GkeNodePoolConfig": {
+      "description": "The configuration of a GKE node pool used by a Dataproc-on-GKE cluster (https://cloud.google.com/dataproc/docs/concepts/jobs/dataproc-gke#create-a-dataproc-on-gke-cluster).",
+      "id": "GkeNodePoolConfig",
+      "properties": {
+        "autoscaling": {
+          "$ref": "GkeNodePoolAutoscalingConfig",
+          "description": "Optional. The autoscaler configuration for this node pool. The autoscaler is enabled only when a valid configuration is present."
+        },
+        "config": {
+          "$ref": "GkeNodeConfig",
+          "description": "Optional. The node pool configuration."
+        },
+        "locations": {
+          "description": "Optional. The list of Compute Engine zones (https://cloud.google.com/compute/docs/zones#available) where node pool nodes associated with a Dataproc on GKE virtual cluster will be located.Note: All node pools associated with a virtual cluster must be located in the same region as the virtual cluster, and they must be located in the same zone within that region.If a location is not specified during node pool creation, Dataproc on GKE will choose the zone.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GkeNodePoolTarget": {
+      "description": "GKE node pools that Dataproc workloads run on.",
+      "id": "GkeNodePoolTarget",
+      "properties": {
+        "nodePool": {
+          "description": "Required. The target GKE node pool. Format: 'projects/{project}/locations/{location}/clusters/{cluster}/nodePools/{node_pool}'",
+          "type": "string"
+        },
+        "nodePoolConfig": {
+          "$ref": "GkeNodePoolConfig",
+          "description": "Input only. The configuration for the GKE node pool.If specified, Dataproc attempts to create a node pool with the specified shape. If one with the same name already exists, it is verified against all specified fields. If a field differs, the virtual cluster creation will fail.If omitted, any node pool with the specified name is used. If a node pool with the specified name does not exist, Dataproc create a node pool with default values.This is an input only field. It will not be returned by the API."
+        },
+        "roles": {
+          "description": "Required. The roles associated with the GKE node pool.",
+          "items": {
+            "enum": [
+              "ROLE_UNSPECIFIED",
+              "DEFAULT",
+              "CONTROLLER",
+              "SPARK_DRIVER",
+              "SPARK_EXECUTOR"
+            ],
+            "enumDescriptions": [
+              "Role is unspecified.",
+              "At least one node pool must have the DEFAULT role. Work assigned to a role that is not associated with a node pool is assigned to the node pool with the DEFAULT role. For example, work assigned to the CONTROLLER role will be assigned to the node pool with the DEFAULT role if no node pool has the CONTROLLER role.",
+              "Run work associated with the Dataproc control plane (for example, controllers and webhooks). Very low resource requirements.",
+              "Run work associated with a Spark driver of a job.",
+              "Run work associated with a Spark executor of a job."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3964,6 +4128,46 @@
       },
       "type": "object"
     },
+    "KubernetesClusterConfig": {
+      "description": "The configuration for running the Dataproc cluster on Kubernetes.",
+      "id": "KubernetesClusterConfig",
+      "properties": {
+        "gkeClusterConfig": {
+          "$ref": "GkeClusterConfig",
+          "description": "Required. The configuration for running the Dataproc cluster on GKE."
+        },
+        "kubernetesNamespace": {
+          "description": "Optional. A namespace within the Kubernetes cluster to deploy into. If this namespace does not exist, it is created. If it exists, Dataproc verifies that another Dataproc VirtualCluster is not installed into it. If not specified, the name of the Dataproc Cluster is used.",
+          "type": "string"
+        },
+        "kubernetesSoftwareConfig": {
+          "$ref": "KubernetesSoftwareConfig",
+          "description": "Optional. The software configuration for this Dataproc cluster running on Kubernetes."
+        }
+      },
+      "type": "object"
+    },
+    "KubernetesSoftwareConfig": {
+      "description": "The software configuration for this Dataproc cluster running on Kubernetes.",
+      "id": "KubernetesSoftwareConfig",
+      "properties": {
+        "componentVersion": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The components that should be installed in this Dataproc cluster. The key must be a string from the KubernetesComponent enumeration. The value is the version of the software to be installed. At least one entry must be specified.",
+          "type": "object"
+        },
+        "properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The properties to set on daemon config files.Property keys are specified in prefix:property format, for example spark:spark.kubernetes.container.image. The following are supported prefixes and their mappings: spark: spark-defaults.confFor more information, see Cluster properties (https://cloud.google.com/dataproc/docs/concepts/cluster-properties).",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "LifecycleConfig": {
       "description": "Specifies the cluster auto-delete schedule configuration.",
       "id": "LifecycleConfig",
@@ -4194,18 +4398,18 @@
       "type": "object"
     },
     "Metric": {
-      "description": "Metric source to enable along with any optional metrics for this source that override the dataproc defaults",
+      "description": "The metric source to enable, with any optional metrics, to override Dataproc default metrics.",
       "id": "Metric",
       "properties": {
         "metricOverrides": {
-          "description": "Optional. Optional Metrics to override the dataproc default metrics configured for the metric source",
+          "description": "Optional. Optional Metrics to override the Dataproc default metrics configured for the metric source.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "metricSource": {
-          "description": "Required. MetricSource that should be enabled",
+          "description": "Required. MetricSource to enable.",
           "enum": [
             "METRIC_SOURCE_UNSPECIFIED",
             "MONITORING_AGENT_DEFAULTS",
@@ -4216,13 +4420,13 @@
             "HIVESERVER2"
           ],
           "enumDescriptions": [
-            "Required unspecified metric source",
-            "all default monitoring agent metrics that are published with prefix \"agent.googleapis.com\" when we enable a monitoring agent in Compute Engine",
-            "Hdfs metric source",
-            "Spark metric source",
-            "Yarn metric source",
-            "Spark history server metric source",
-            "hiveserver2 metric source"
+            "Required unspecified metric source.",
+            "Default monitoring agent metrics, which are published with an agent.googleapis.com prefix when Dataproc enables the monitoring agent in Compute Engine.",
+            "HDFS metric source.",
+            "Spark metric source.",
+            "YARN metric source.",
+            "Spark History Server metric source.",
+            "Hiveserver2 metric source."
           ],
           "type": "string"
         }
@@ -4230,7 +4434,7 @@
       "type": "object"
     },
     "NamespacedGkeDeploymentTarget": {
-      "description": "A full, namespace-isolated deployment target for an existing GKE cluster.",
+      "description": "Deprecated. Used only for the deprecated beta. A full, namespace-isolated deployment target for an existing GKE cluster.",
       "id": "NamespacedGkeDeploymentTarget",
       "properties": {
         "clusterNamespace": {
@@ -4266,6 +4470,36 @@
         "executionTimeout": {
           "description": "Optional. Amount of time executable has to complete. Default is 10 minutes (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).Cluster creation fails with an explanatory error message (the name of the executable that caused the error and the exceeded timeout period) if the executable is not completed at end of the timeout period.",
           "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NodePool": {
+      "description": "indicating a list of workers of same type",
+      "id": "NodePool",
+      "properties": {
+        "id": {
+          "description": "Required. A unique id of the node pool. Primary and Secondary workers can be specified using special reserved ids PRIMARY_WORKER_POOL and SECONDARY_WORKER_POOL respectively. Aux node pools can be referenced using corresponding pool id.",
+          "type": "string"
+        },
+        "instanceNames": {
+          "description": "Name of instances to be repaired. These instances must belong to specified node pool.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "repairAction": {
+          "description": "Required. Repair action to take on specified resources of the node pool.",
+          "enum": [
+            "REPAIR_ACTION_UNSPECIFIED",
+            "DELETE"
+          ],
+          "enumDescriptions": [
+            "No action will be taken by default.",
+            "delete the specified list of nodes."
+          ],
           "type": "string"
         }
       },
@@ -4645,6 +4879,13 @@
           "description": "Optional. Specifying the cluster_uuid means the RPC will fail (with error NOT_FOUND) if a cluster with the specified UUID does not exist.",
           "type": "string"
         },
+        "nodePools": {
+          "description": "Optional. Node pools and corresponding repair action to be taken. All node pools should be unique in this request. i.e. Multiple entries for the same node pool id are not allowed.",
+          "items": {
+            "$ref": "NodePool"
+          },
+          "type": "array"
+        },
         "requestId": {
           "description": "Optional. A unique ID used to identify the request. If the server receives two RepairClusterRequests with the same ID, the second request is ignored, and the first google.longrunning.Operation created and stored in the backend is returned.Recommendation: Set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
           "type": "string"
@@ -4813,7 +5054,7 @@
       "properties": {
         "policy": {
           "$ref": "Policy",
-          "description": "REQUIRED: The complete policy to be applied to the resource. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them."
+          "description": "REQUIRED: The complete policy to be applied to the resource. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them."
         }
       },
       "type": "object"
@@ -5316,7 +5557,7 @@
       "id": "TestIamPermissionsRequest",
       "properties": {
         "permissions": {
-          "description": "The set of permissions to check for the resource. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see IAM Overview (https://cloud.google.com/iam/docs/overview#permissions).",
+          "description": "The set of permissions to check for the resource. Permissions with wildcards (such as * or storage.*) are not allowed. For more information see IAM Overview (https://cloud.google.com/iam/docs/overview#permissions).",
           "items": {
             "type": "string"
           },
@@ -5349,6 +5590,25 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "VirtualClusterConfig": {
+      "description": "The Dataproc cluster config for a cluster that does not directly control the underlying compute resources, such as a Dataproc-on-GKE cluster (https://cloud.google.com/dataproc/docs/guides/dpgke/dataproc-gke).",
+      "id": "VirtualClusterConfig",
+      "properties": {
+        "auxiliaryServicesConfig": {
+          "$ref": "AuxiliaryServicesConfig",
+          "description": "Optional. Configuration of auxiliary services used by this cluster."
+        },
+        "kubernetesClusterConfig": {
+          "$ref": "KubernetesClusterConfig",
+          "description": "Required. The configuration for running the Dataproc cluster on Kubernetes."
+        },
+        "stagingBucket": {
+          "description": "Optional. A Cloud Storage bucket used to stage job dependencies, config files, and job driver console output. If you do not specify a staging bucket, Cloud Dataproc will determine a Cloud Storage location (US, ASIA, or EU) for your cluster's staging bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket (see Dataproc staging and temp buckets (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)). This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.",
+          "type": "string"
         }
       },
       "type": "object"

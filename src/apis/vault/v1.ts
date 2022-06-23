@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -351,6 +350,10 @@ export namespace vault_v1 {
    */
   export interface Schema$DriveOptions {
     /**
+     * Set whether the results include only content encrypted with [Google Workspace Client-side encryption](https://support.google.com/a?p=cse_ov) content, only unencrypted content, or both. Defaults to both. Currently supported for Drive.
+     */
+    clientSideEncryptedOption?: string | null;
+    /**
      * Set to **true** to include shared drives.
      */
     includeSharedDrives?: boolean | null;
@@ -364,7 +367,7 @@ export namespace vault_v1 {
     versionDate?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -392,7 +395,7 @@ export namespace vault_v1 {
      */
     matterId?: string | null;
     /**
-     * The export name.
+     * The export name. Don't use special characters (~!$'(),;@:/?) in the name, they can prevent you from downloading exports.
      */
     name?: string | null;
     /**
@@ -905,6 +908,10 @@ export namespace vault_v1 {
      */
     sharedDriveInfo?: Schema$SharedDriveInfo;
     /**
+     * Required when **SearchMethod** is **SITES_URL**.
+     */
+    sitesUrlInfo?: Schema$SitesUrlInfo;
+    /**
      * The start time for the search query. Specify in GMT. The value is rounded to 12 AM on the specified date.
      */
     startTime?: string | null;
@@ -998,6 +1005,15 @@ export namespace vault_v1 {
      * A list of shared drive IDs, as provided by the [Drive API](https://developers.google.com/drive).
      */
     sharedDriveIds?: string[] | null;
+  }
+  /**
+   * The published site URLs of new Google Sites to search
+   */
+  export interface Schema$SitesUrlInfo {
+    /**
+     * A list of published site URLs.
+     */
+    urls?: string[] | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).

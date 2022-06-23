@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -201,7 +200,7 @@ export namespace clouderrorreporting_v1beta1 {
      */
     affectedServices?: Schema$ServiceContext[];
     /**
-     * Approximate number of affected users in the given group that match the filter criteria. Users are distinguished by data in the `ErrorContext` of the individual error events, such as their login name or their remote IP address in case of HTTP requests. The number of affected users can be zero even if the number of errors is non-zero if no data was provided from which the affected user could be deduced. Users are counted based on data in the request context that was provided in the error report. If more users are implicitly affected, such as due to a crash of the whole service, this is not reflected here.
+     * Approximate number of affected users in the given group that match the filter criteria. Users are distinguished by data in the ErrorContext of the individual error events, such as their login name or their remote IP address in case of HTTP requests. The number of affected users can be zero even if the number of errors is non-zero if no data was provided from which the affected user could be deduced. Users are counted based on data in the request context that was provided in the error report. If more users are implicitly affected, such as due to a crash of the whole service, this is not reflected here.
      */
     affectedUsersCount?: string | null;
     /**
@@ -309,7 +308,7 @@ export namespace clouderrorreporting_v1beta1 {
      */
     eventTime?: string | null;
     /**
-     * Required. The error message. If no `context.reportLocation` is provided, the message must contain a header (typically consisting of the exception type name and an error message) and an exception stack trace in one of the supported programming languages and formats. Supported languages are Java, Python, JavaScript, Ruby, C#, PHP, and Go. Supported stack trace formats are: * **Java**: Must be the return value of [`Throwable.printStackTrace()`](https://docs.oracle.com/javase/7/docs/api/java/lang/Throwable.html#printStackTrace%28%29). * **Python**: Must be the return value of [`traceback.format_exc()`](https://docs.python.org/2/library/traceback.html#traceback.format_exc). * **JavaScript**: Must be the value of [`error.stack`](https://github.com/v8/v8/wiki/Stack-Trace-API) as returned by V8. * **Ruby**: Must contain frames returned by [`Exception.backtrace`](https://ruby-doc.org/core-2.2.0/Exception.html#method-i-backtrace). * **C#**: Must be the return value of [`Exception.ToString()`](https://msdn.microsoft.com/en-us/library/system.exception.tostring.aspx). * **PHP**: Must start with `PHP (Notice|Parse error|Fatal error|Warning)` and contain the result of [`(string)$exception`](http://php.net/manual/en/exception.tostring.php). * **Go**: Must be the return value of [`runtime.Stack()`](https://golang.org/pkg/runtime/debug/#Stack).
+     * Required. The error message. If no `context.reportLocation` is provided, the message must contain a header (typically consisting of the exception type name and an error message) and an exception stack trace in one of the supported programming languages and formats. Supported languages are Java, Python, JavaScript, Ruby, C#, PHP, and Go. Supported stack trace formats are: * **Java**: Must be the return value of [`Throwable.printStackTrace()`](https://docs.oracle.com/javase/7/docs/api/java/lang/Throwable.html#printStackTrace%28%29). * **Python**: Must be the return value of [`traceback.format_exc()`](https://docs.python.org/2/library/traceback.html#traceback.format_exc). * **JavaScript**: Must be the value of [`error.stack`](https://github.com/v8/v8/wiki/Stack-Trace-API) as returned by V8. * **Ruby**: Must contain frames returned by [`Exception.backtrace`](https://ruby-doc.org/core-2.2.0/Exception.html#method-i-backtrace). * **C#**: Must be the return value of [`Exception.ToString()`](https://msdn.microsoft.com/en-us/library/system.exception.tostring.aspx). * **PHP**: Must be prefixed with `"PHP (Notice|Parse error|Fatal error|Warning): "` and contain the result of [`(string)$exception`](https://php.net/manual/en/exception.tostring.php). * **Go**: Must be the return value of [`runtime.Stack()`](https://golang.org/pkg/runtime/debug/#Stack).
      */
     message?: string | null;
     /**
@@ -934,7 +933,7 @@ export namespace clouderrorreporting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await clouderrorreporting.projects.groups.get({
-     *     // Required. The group resource name. Written as `projects/{projectID\}/groups/{group_name\}`. Call [`groupStats.list`](https://cloud.google.com/error-reporting/reference/rest/v1beta1/projects.groupStats/list) to return a list of groups belonging to this project. Example: `projects/my-project-123/groups/my-group`
+     *     // Required. The group resource name. Written as `projects/{projectID\}/groups/{group_name\}`. Call groupStats.list to return a list of groups belonging to this project. Example: `projects/my-project-123/groups/my-group`
      *     groupName: 'projects/my-project/groups/my-group',
      *   });
      *   console.log(res.data);
@@ -1185,7 +1184,7 @@ export namespace clouderrorreporting_v1beta1 {
   export interface Params$Resource$Projects$Groups$Get
     extends StandardParameters {
     /**
-     * Required. The group resource name. Written as `projects/{projectID\}/groups/{group_name\}`. Call [`groupStats.list`](https://cloud.google.com/error-reporting/reference/rest/v1beta1/projects.groupStats/list) to return a list of groups belonging to this project. Example: `projects/my-project-123/groups/my-group`
+     * Required. The group resource name. Written as `projects/{projectID\}/groups/{group_name\}`. Call groupStats.list to return a list of groups belonging to this project. Example: `projects/my-project-123/groups/my-group`
      */
     groupName?: string;
   }
@@ -1245,9 +1244,9 @@ export namespace clouderrorreporting_v1beta1 {
      *     order: 'placeholder-value',
      *     // Optional. The maximum number of results to return per response. Default is 20.
      *     pageSize: 'placeholder-value',
-     *     // Optional. A `next_page_token` provided by a previous response. To view additional results, pass this token along with the identical query parameters as the first request.
+     *     // Optional. A next_page_token provided by a previous response. To view additional results, pass this token along with the identical query parameters as the first request.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID\}` or `projects/{projectNumber\}`, where `{projectID\}` and `{projectNumber\}` can be found in the [Google Cloud Console](https://support.google.com/cloud/answer/6158840). Examples: `projects/my-project-123`, `projects/5551234`.
+     *     // Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID\}` or `projects/{projectNumber\}`, where `{projectID\}` and `{projectNumber\}` can be found in the [Google Cloud console](https://support.google.com/cloud/answer/6158840). Examples: `projects/my-project-123`, `projects/5551234`.
      *     projectName: 'projects/my-project',
      *     // Optional. The exact value to match against [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
      *     'serviceFilter.resourceType': 'placeholder-value',
@@ -1255,7 +1254,7 @@ export namespace clouderrorreporting_v1beta1 {
      *     'serviceFilter.service': 'placeholder-value',
      *     // Optional. The exact value to match against [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
      *     'serviceFilter.version': 'placeholder-value',
-     *     // Optional. The preferred duration for a single returned `TimedCount`. If not set, no timed counts are returned.
+     *     // Optional. The preferred duration for a single returned TimedCount. If not set, no timed counts are returned.
      *     timedCountDuration: 'placeholder-value',
      *     // Restricts the query to the specified time range.
      *     'timeRange.period': 'placeholder-value',
@@ -1391,11 +1390,11 @@ export namespace clouderrorreporting_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. A `next_page_token` provided by a previous response. To view additional results, pass this token along with the identical query parameters as the first request.
+     * Optional. A next_page_token provided by a previous response. To view additional results, pass this token along with the identical query parameters as the first request.
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID\}` or `projects/{projectNumber\}`, where `{projectID\}` and `{projectNumber\}` can be found in the [Google Cloud Console](https://support.google.com/cloud/answer/6158840). Examples: `projects/my-project-123`, `projects/5551234`.
+     * Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID\}` or `projects/{projectNumber\}`, where `{projectID\}` and `{projectNumber\}` can be found in the [Google Cloud console](https://support.google.com/cloud/answer/6158840). Examples: `projects/my-project-123`, `projects/5551234`.
      */
     projectName?: string;
     /**
@@ -1411,7 +1410,7 @@ export namespace clouderrorreporting_v1beta1 {
      */
     'serviceFilter.version'?: string;
     /**
-     * Optional. The preferred duration for a single returned `TimedCount`. If not set, no timed counts are returned.
+     * Optional. The preferred duration for a single returned TimedCount. If not set, no timed counts are returned.
      */
     timedCountDuration?: string;
     /**

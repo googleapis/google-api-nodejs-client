@@ -973,6 +973,48 @@
         }
       }
     },
+    "accountstatusesbyexternalsellerid": {
+      "methods": {
+        "get": {
+          "description": "Gets status of the account with the specified external_seller_id belonging to the MCA with the specified merchant_id.",
+          "flatPath": "{merchantId}/accountstatusesbyexternalsellerid/{externalSellerId}",
+          "httpMethod": "GET",
+          "id": "content.accountstatusesbyexternalsellerid.get",
+          "parameterOrder": [
+            "merchantId",
+            "externalSellerId"
+          ],
+          "parameters": {
+            "destinations": {
+              "description": "If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.",
+              "location": "query",
+              "repeated": true,
+              "type": "string"
+            },
+            "externalSellerId": {
+              "description": "Required. The External Seller ID of the seller account to be retrieved.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "merchantId": {
+              "description": "Required. The ID of the MCA containing the seller.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/accountstatusesbyexternalsellerid/{externalSellerId}",
+          "response": {
+            "$ref": "AccountStatus"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        }
+      }
+    },
     "accounttax": {
       "methods": {
         "custombatch": {
@@ -1103,7 +1145,7 @@
     "buyongoogleprograms": {
       "methods": {
         "activate": {
-          "description": "Reactivates the BoG program in your Merchant Center account. Moves the program to the active state when allowed, e.g. when paused. Important: This method is only whitelisted for selected merchants.",
+          "description": "Reactivates the BoG program in your Merchant Center account. Moves the program to the active state when allowed, for example, when paused. This method is only available to selected merchants.",
           "flatPath": "{merchantId}/buyongoogleprograms/{regionCode}/activate",
           "httpMethod": "POST",
           "id": "content.buyongoogleprograms.activate",
@@ -1240,7 +1282,7 @@
           ]
         },
         "pause": {
-          "description": "Pauses the BoG program in your Merchant Center account. Important: This method is only whitelisted for selected merchants.",
+          "description": "Pauses the BoG program in your Merchant Center account. This method is only available to selected merchants.",
           "flatPath": "{merchantId}/buyongoogleprograms/{regionCode}/pause",
           "httpMethod": "POST",
           "id": "content.buyongoogleprograms.pause",
@@ -1272,7 +1314,7 @@
           ]
         },
         "requestreview": {
-          "description": "Requests review and then activates the BoG program in your Merchant Center account for the first time. Moves the program to the REVIEW_PENDING state. Important: This method is only whitelisted for selected merchants.",
+          "description": "Requests review and then activates the BoG program in your Merchant Center account for the first time. Moves the program to the REVIEW_PENDING state. This method is only available to selected merchants.",
           "flatPath": "{merchantId}/buyongoogleprograms/{regionCode}/requestreview",
           "httpMethod": "POST",
           "id": "content.buyongoogleprograms.requestreview",
@@ -1666,7 +1708,7 @@
           ]
         },
         "fetchnow": {
-          "description": "Invokes a fetch for the datafeed in your Merchant Center account. If you need to call this method more than once per day, we recommend you use the Products service to update your product data.",
+          "description": "Invokes a fetch for the datafeed in your Merchant Center account. If you need to call this method more than once per day, we recommend you use the [Products service](https://developers.google.com/shopping-content/reference/rest/v2.1/products) to update your product data.",
           "flatPath": "{merchantId}/datafeeds/{datafeedId}/fetchNow",
           "httpMethod": "POST",
           "id": "content.datafeeds.fetchnow",
@@ -1962,7 +2004,7 @@
           ]
         },
         "requestreview": {
-          "description": "Requests a review for Free Listings program in the provided region. Important: This method is only whitelisted for selected merchants.",
+          "description": "Requests a review of free listings in a specific region. This method is only available to selected merchants.",
           "flatPath": "{merchantId}/freelistingsprogram/requestreview",
           "httpMethod": "POST",
           "id": "content.freelistingsprogram.requestreview",
@@ -3993,6 +4035,99 @@
         }
       }
     },
+    "productdeliverytime": {
+      "methods": {
+        "create": {
+          "description": "Creates or updates the delivery time of a product.",
+          "flatPath": "{merchantId}/productdeliverytime",
+          "httpMethod": "POST",
+          "id": "content.productdeliverytime.create",
+          "parameterOrder": [
+            "merchantId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "The Google merchant ID of the account that contains the product. This account cannot be a multi-client account.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/productdeliverytime",
+          "request": {
+            "$ref": "ProductDeliveryTime"
+          },
+          "response": {
+            "$ref": "ProductDeliveryTime"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
+        "delete": {
+          "description": "Deletes the delivery time of a product.",
+          "flatPath": "{merchantId}/productdeliverytime/{productId}",
+          "httpMethod": "DELETE",
+          "id": "content.productdeliverytime.delete",
+          "parameterOrder": [
+            "merchantId",
+            "productId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "Required. The Google merchant ID of the account that contains the product. This account cannot be a multi-client account.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "productId": {
+              "description": "Required. The Content API ID of the product, in the form `channel:contentLanguage:targetCountry:offerId`.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/productdeliverytime/{productId}",
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
+        "get": {
+          "description": "Gets `productDeliveryTime` by `productId`.",
+          "flatPath": "{merchantId}/productdeliverytime/{productId}",
+          "httpMethod": "GET",
+          "id": "content.productdeliverytime.get",
+          "parameterOrder": [
+            "merchantId",
+            "productId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "Required. The Google merchant ID of the account that contains the product. This account cannot be a multi-client account.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "productId": {
+              "description": "Required. The Content API ID of the product, in the form `channel:contentLanguage:targetCountry:offerId`.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/productdeliverytime/{productId}",
+          "response": {
+            "$ref": "ProductDeliveryTime"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        }
+      }
+    },
     "products": {
       "methods": {
         "custombatch": {
@@ -4362,7 +4497,7 @@
     "promotions": {
       "methods": {
         "create": {
-          "description": "Inserts a promotion for your Merchant Center account. If the promotion already exists, then it will update the promotion instead.",
+          "description": "Inserts a promotion for your Merchant Center account. If the promotion already exists, then it updates the promotion instead.",
           "flatPath": "{merchantId}/promotions",
           "httpMethod": "POST",
           "id": "content.promotions.create",
@@ -4501,7 +4636,7 @@
           ]
         },
         "insert": {
-          "description": "Update the regional inventory of a product in your Merchant Center account. If a regional inventory with the same region ID already exists, this method updates that entry.",
+          "description": "Updates the regional inventory of a product in your Merchant Center account. If a regional inventory with the same region ID already exists, this method updates that entry.",
           "flatPath": "{merchantId}/products/{productId}/regionalinventory",
           "httpMethod": "POST",
           "id": "content.regionalinventory.insert",
@@ -5788,7 +5923,7 @@
           ]
         },
         "requestreview": {
-          "description": "Requests a review for Shopping Ads program in the provided country.",
+          "description": "Requests a review of Shopping ads in a specific region. This method is only available to selected merchants.",
           "flatPath": "{merchantId}/shoppingadsprogram/requestreview",
           "httpMethod": "POST",
           "id": "content.shoppingadsprogram.requestreview",
@@ -5815,7 +5950,7 @@
       }
     }
   },
-  "revision": "20220303",
+  "revision": "20220602",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -5929,7 +6064,7 @@
           "type": "string"
         },
         "streetAddress": {
-          "description": "Street-level part of the address.",
+          "description": "Street-level part of the address. Use `\\n` to add a second line.",
           "type": "string"
         }
       },
@@ -5974,7 +6109,7 @@
       "properties": {
         "address": {
           "$ref": "AccountAddress",
-          "description": "The address of the business."
+          "description": "The address of the business. Use `\\n` to add a second address line."
         },
         "customerService": {
           "$ref": "AccountCustomerService",
@@ -6482,6 +6617,10 @@
         },
         "paymentsManager": {
           "description": "Whether user can manage payment settings.",
+          "type": "boolean"
+        },
+        "reportingManager": {
+          "description": "Whether user is a reporting manager.",
           "type": "boolean"
         }
       },
@@ -7002,7 +7141,7 @@
           "type": "string"
         },
         "streetAddress": {
-          "description": "Street-level part of the address.",
+          "description": "Street-level part of the address. Use `\\n` to add a second line.",
           "type": "string"
         }
       },
@@ -8018,6 +8157,40 @@
       },
       "type": "object"
     },
+    "DeliveryArea": {
+      "description": "A delivery area for the product. Only one of `countryCode` or `postalCodeRange` must be set.",
+      "id": "DeliveryArea",
+      "properties": {
+        "countryCode": {
+          "description": "Required. The country that the product can be delivered to. Submit a [unicode CLDR region](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) such as `US` or `CH`.",
+          "type": "string"
+        },
+        "postalCodeRange": {
+          "$ref": "DeliveryAreaPostalCodeRange",
+          "description": "A postal code, postal code range or postal code prefix that defines this area. Limited to US and AUS."
+        },
+        "regionCode": {
+          "description": "A state, territory, or prefecture. This is supported for the United States, Australia, and Japan. Provide a subdivision code from the ISO 3166-2 code tables ([US](https://en.wikipedia.org/wiki/ISO_3166-2:US), [AU](https://en.wikipedia.org/wiki/ISO_3166-2:AU), or [JP](https://en.wikipedia.org/wiki/ISO_3166-2:JP)) without country prefix (for example, `\"NY\"`, `\"NSW\"`, `\"03\"`).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DeliveryAreaPostalCodeRange": {
+      "description": "A range of postal codes that defines the delivery area. Only set `firstPostalCode` when specifying a single postal code.",
+      "id": "DeliveryAreaPostalCodeRange",
+      "properties": {
+        "firstPostalCode": {
+          "description": "Required. A postal code or a pattern of the form prefix* denoting the inclusive lower bound of the range defining the area. Examples values: `\"94108\"`, `\"9410*\"`, `\"9*\"`.",
+          "type": "string"
+        },
+        "lastPostalCode": {
+          "description": "A postal code or a pattern of the form prefix* denoting the inclusive upper bound of the range defining the area (for example [070* - 078*] results in the range [07000 - 07899]). It must have the same length as `firstPostalCode`: if `firstPostalCode` is a postal code then `lastPostalCode` must be a postal code too; if firstPostalCode is a pattern then `lastPostalCode` must be a pattern with the same prefix length. Ignored if not set, then the area is defined as being all the postal codes matching `firstPostalCode`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DeliveryTime": {
       "id": "DeliveryTime",
       "properties": {
@@ -8132,7 +8305,7 @@
       "id": "FreeListingsProgramStatus",
       "properties": {
         "globalState": {
-          "description": "State of the program, It is set to enabled if there are offers for at least one region.",
+          "description": "State of the program. `ENABLED` if there are offers for at least one region.",
           "enum": [
             "PROGRAM_STATE_UNSPECIFIED",
             "NOT_ENABLED",
@@ -8140,9 +8313,9 @@
             "ENABLED"
           ],
           "enumDescriptions": [
-            "State is not known.",
+            "State is unknown.",
             "Program is not enabled for any country.",
-            "Offers are not uploaded targeting even a single country for this program.",
+            "No products have been uploaded for any region. Upload products to Merchant Center.",
             "Program is enabled and offers are uploaded for at least one country."
           ],
           "type": "string"
@@ -8162,7 +8335,7 @@
       "id": "FreeListingsProgramStatusRegionStatus",
       "properties": {
         "disapprovalDate": {
-          "description": "Date by which `eligibility_status` will go from `WARNING` to `DISAPPROVED`. It will be present when `eligibility_status` is `WARNING`. Date will be provided in ISO 8601 format: YYYY-MM-DD",
+          "description": "Date by which eligibilityStatus will go from `WARNING` to `DISAPPROVED`. Only visible when your eligibilityStatus is WARNING. In [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DD`.",
           "type": "string"
         },
         "eligibilityStatus": {
@@ -8181,14 +8354,14 @@
             "If the account has no issues and review is completed successfully.",
             "There are one or more issues that needs to be resolved for account to be active for the program. Detailed list of account issues are available in [accountstatuses](https://developers.google.com/shopping-content/reference/rest/v2.1/accountstatuses) API.",
             "If account has issues but offers are servable. Some of the issue can make account DISAPPROVED after a certain deadline.",
-            "Account is under review. Deprecated: This state is not created.",
+            "Account is under review.",
             "Account is waiting for review to start.",
             "Program is currently onboarding. Upload valid offers to complete onboarding."
           ],
           "type": "string"
         },
         "onboardingIssues": {
-          "description": "These issues must be fixed to become eligible for the review.",
+          "description": "Issues that must be fixed to be eligible for review.",
           "items": {
             "type": "string"
           },
@@ -8202,14 +8375,14 @@
           "type": "array"
         },
         "reviewEligibilityStatus": {
-          "description": "If a program in a given country is eligible for review. It will be present only if eligibility status is `DISAPPROVED`.",
+          "description": "If a program is eligible for review in a specific region. Only visible if `eligibilityStatus` is `DISAPPROVED`.",
           "enum": [
             "REVIEW_ELIGIBILITY_UNSPECIFIED",
             "ELIGIBLE",
             "INELIGIBLE"
           ],
           "enumDescriptions": [
-            "Review eligibility reason state is unknown.",
+            "Review eligibility state is unknown.",
             "Account is eligible for review for a specified region code.",
             "Account is not eligible for review for a specified region code."
           ],
@@ -8223,7 +8396,10 @@
             "NOT_ENOUGH_OFFERS",
             "IN_COOLDOWN_PERIOD",
             "ALREADY_UNDER_REVIEW",
-            "NO_REVIEW_REQUIRED"
+            "NO_REVIEW_REQUIRED",
+            "WILL_BE_REVIEWED_AUTOMATICALLY",
+            "IS_RETIRED",
+            "ALREADY_REVIEWED"
           ],
           "enumDescriptions": [
             "Requesting a review from Google is not possible.",
@@ -8231,20 +8407,23 @@
             "Not enough offers uploaded for this country.",
             "Cooldown period applies. Wait until cooldown period ends.",
             "Account is already under review.",
-            "No issues available to review."
+            "No issues available to review.",
+            "Account will be automatically reviewed at the end of the grace period.",
+            "Account is retired. Should not appear in MC.",
+            "Account was already reviewd."
           ],
           "type": "string"
         },
         "reviewIneligibilityReasonDescription": {
-          "description": "Reason if a program in a given country is not eligible for review. Populated only if `review_eligibility_status` is `INELIGIBLE`.",
+          "description": "Reason a program in a specific region isn’t eligible for review. Only visible if `reviewEligibilityStatus` is `INELIGIBLE`.",
           "type": "string"
         },
         "reviewIneligibilityReasonDetails": {
           "$ref": "FreeListingsProgramStatusReviewIneligibilityReasonDetails",
-          "description": "This contains additional information specific to review ineligibility reasons. If review is ineligible because of `IN_COOLDOWN_PERIOD`, it will contain timestamp for cooldown period."
+          "description": "Additional information for ineligibility. If `reviewIneligibilityReason` is `IN_COOLDOWN_PERIOD`, a timestamp for the end of the cooldown period is provided."
         },
         "reviewIssues": {
-          "description": "These issues will be evaluated in review process. Fix all the issues before requesting the review.",
+          "description": "Issues evaluated in the review process. Fix all issues before requesting a review.",
           "items": {
             "type": "string"
           },
@@ -9334,6 +9513,21 @@
           "format": "int64",
           "type": "string"
         },
+        "conversionRate": {
+          "description": "Number of conversions divided by the number of clicks, reported on the impression date. The metric is currently available only for the FREE_PRODUCT_LISTING program.",
+          "format": "double",
+          "type": "number"
+        },
+        "conversionValueMicros": {
+          "description": "Value of conversions in micros attributed to the product, reported on the conversion date. The metric is currently available only for the FREE_PRODUCT_LISTING program. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response.",
+          "format": "int64",
+          "type": "string"
+        },
+        "conversions": {
+          "description": "Number of conversions attributed to the product, reported on the conversion date. Depending on the attribution model, a conversion might be distributed across multiple clicks, where each click gets its own credit assigned. This metric is a sum of all such credits. The metric is currently available only for the FREE_PRODUCT_LISTING program.",
+          "format": "double",
+          "type": "number"
+        },
         "ctr": {
           "description": "Click-through rate - the number of clicks merchant's products receive (clicks) divided by the number of times the products are shown (impressions).",
           "format": "double",
@@ -9622,7 +9816,7 @@
           "type": "string"
         },
         "streetAddress": {
-          "description": "Street-level part of the address.",
+          "description": "Street-level part of the address. Use `\\n` to add a second line.",
           "items": {
             "type": "string"
           },
@@ -10290,7 +10484,7 @@
       "id": "OrderShipment",
       "properties": {
         "carrier": {
-          "description": "The carrier handling the shipment. For supported carriers, Google includes the carrier name and tracking URL in emails to customers. For select supported carriers, Google also automatically updates the shipment status based on the provided shipment ID. *Note:* You can also use unsupported carriers, but emails to customers won't include the carrier name or tracking URL, and there will be no automatic order status updates. Supported carriers for \"US\" are: - \"`ups`\" (United Parcel Service) *automatic status updates* - \"`usps`\" (United States Postal Service) *automatic status updates* - \"`fedex`\" (FedEx) *automatic status updates * - \"`dhl`\" (DHL eCommerce) *automatic status updates* (US only) - \"`ontrac`\" (OnTrac) *automatic status updates * - \"`dhl express`\" (DHL Express) - \"`deliv`\" (Deliv) - \"`dynamex`\" (TForce) - \"`lasership`\" (LaserShip) - \"`mpx`\" (Military Parcel Xpress) - \"`uds`\" (United Delivery Service) - \"`efw`\" (Estes Forwarding Worldwide) - \"`jd logistics`\" (JD Logistics) - \"`yunexpress`\" (YunExpress) - \"`china post`\" (China Post) - \"`china ems`\" (China Post Express Mail Service) - \"`singapore post`\" (Singapore Post) - \"`pos malaysia`\" (Pos Malaysia) - \"`postnl`\" (PostNL) - \"`ptt`\" (PTT Turkish Post) - \"`eub`\" (ePacket) - \"`chukou1`\" (Chukou1 Logistics) - \"`bestex`\" (Best Express) - \"`canada post`\" (Canada Post) - \"`purolator`\" (Purolator) - \"`canpar`\" (Canpar) - \"`india post`\" (India Post) - \"`blue dart`\" (Blue Dart) - \"`delhivery`\" (Delhivery) - \"`dtdc`\" (DTDC) - \"`tpc india`\" (TPC India) - \"`lso`\" (Lone Star Overnight) - \"`tww`\" (Team Worldwide) Supported carriers for FR are: - \"`la poste`\" (La Poste) *automatic status updates * - \"`colissimo`\" (Colissimo by La Poste) *automatic status updates* - \"`ups`\" (United Parcel Service) *automatic status updates * - \"`chronopost`\" (Chronopost by La Poste) - \"`gls`\" (General Logistics Systems France) - \"`dpd`\" (DPD Group by GeoPost) - \"`bpost`\" (Belgian Post Group) - \"`colis prive`\" (Colis Privé) - \"`boxtal`\" (Boxtal) - \"`geodis`\" (GEODIS) - \"`tnt`\" (TNT) - \"`db schenker`\" (DB Schenker) - \"`aramex`\" (Aramex) ",
+          "description": "The carrier handling the shipment. For supported carriers, Google includes the carrier name and tracking URL in emails to customers. For select supported carriers, Google also automatically updates the shipment status based on the provided shipment ID. *Note:* You can also use unsupported carriers, but emails to customers won't include the carrier name or tracking URL, and there will be no automatic order status updates. Supported carriers for \"US\" are: - \"`ups`\" (United Parcel Service) *automatic status updates* - \"`usps`\" (United States Postal Service) *automatic status updates* - \"`fedex`\" (FedEx) *automatic status updates * - \"`dhl`\" (DHL eCommerce) *automatic status updates* (US only) - \"`ontrac`\" (OnTrac) *automatic status updates * - \"`dhl express`\" (DHL Express) - \"`deliv`\" (Deliv) - \"`dynamex`\" (TForce) - \"`lasership`\" (LaserShip) - \"`mpx`\" (Military Parcel Xpress) - \"`uds`\" (United Delivery Service) - \"`efw`\" (Estes Forwarding Worldwide) - \"`jd logistics`\" (JD Logistics) - \"`yunexpress`\" (YunExpress) - \"`china post`\" (China Post) - \"`china ems`\" (China Post Express Mail Service) - \"`singapore post`\" (Singapore Post) - \"`pos malaysia`\" (Pos Malaysia) - \"`postnl`\" (PostNL) - \"`ptt`\" (PTT Turkish Post) - \"`eub`\" (ePacket) - \"`chukou1`\" (Chukou1 Logistics) - \"`bestex`\" (Best Express) - \"`canada post`\" (Canada Post) - \"`purolator`\" (Purolator) - \"`canpar`\" (Canpar) - \"`india post`\" (India Post) - \"`blue dart`\" (Blue Dart) - \"`delhivery`\" (Delhivery) - \"`dtdc`\" (DTDC) - \"`tpc india`\" (TPC India) - \"`lso`\" (Lone Star Overnight) - \"`tww`\" (Team Worldwide) - \"`deliver-it`\" (Deliver-IT) - \"`cdl last mile`\" (CDL Last Mile) Supported carriers for FR are: - \"`la poste`\" (La Poste) *automatic status updates * - \"`colissimo`\" (Colissimo by La Poste) *automatic status updates* - \"`ups`\" (United Parcel Service) *automatic status updates * - \"`chronopost`\" (Chronopost by La Poste) - \"`gls`\" (General Logistics Systems France) - \"`dpd`\" (DPD Group by GeoPost) - \"`bpost`\" (Belgian Post Group) - \"`colis prive`\" (Colis Privé) - \"`boxtal`\" (Boxtal) - \"`geodis`\" (GEODIS) - \"`tnt`\" (TNT) - \"`db schenker`\" (DB Schenker) - \"`aramex`\" (Aramex) ",
           "type": "string"
         },
         "creationDate": {
@@ -12415,6 +12609,10 @@
           "description": "Date on which the item should expire, as specified upon insertion, in ISO 8601 format. The actual expiration date in Google Shopping is exposed in `productstatuses` as `googleExpirationDate` and might be earlier if `expirationDate` is too far in the future.",
           "type": "string"
         },
+        "externalSellerId": {
+          "description": "Required for multi-seller accounts. Use this attribute if you're a marketplace uploading products for various sellers to your multi-seller account.",
+          "type": "string"
+        },
         "gender": {
           "description": "Target gender of the item.",
           "type": "string"
@@ -12519,6 +12717,10 @@
         },
         "pattern": {
           "description": "The item's pattern (for example, polka dots).",
+          "type": "string"
+        },
+        "pause": {
+          "description": "Publication of this item should be temporarily paused. Acceptable values are: - \"`ads`\" ",
           "type": "string"
         },
         "pickupMethod": {
@@ -12699,6 +12901,66 @@
       },
       "type": "object"
     },
+    "ProductDeliveryTime": {
+      "description": "The estimated days to deliver a product after an order is placed. Only authorized shipping signals partners working with a merchant can use this resource. Merchants should use the [`products`](https://developers.google.com/shopping-content/reference/rest/v2.1/products#productshipping) resource instead.",
+      "id": "ProductDeliveryTime",
+      "properties": {
+        "areaDeliveryTimes": {
+          "description": "Required. A set of associations between `DeliveryArea` and `DeliveryTime` entries. The total number of `areaDeliveryTimes` can be at most 100.",
+          "items": {
+            "$ref": "ProductDeliveryTimeAreaDeliveryTime"
+          },
+          "type": "array"
+        },
+        "productId": {
+          "$ref": "ProductId",
+          "description": "Required. The `id` of the product."
+        }
+      },
+      "type": "object"
+    },
+    "ProductDeliveryTimeAreaDeliveryTime": {
+      "description": "A pairing of `DeliveryArea` associated with a `DeliveryTime` for this product.",
+      "id": "ProductDeliveryTimeAreaDeliveryTime",
+      "properties": {
+        "deliveryArea": {
+          "$ref": "DeliveryArea",
+          "description": "Required. The delivery area associated with `deliveryTime` for this product."
+        },
+        "deliveryTime": {
+          "$ref": "ProductDeliveryTimeAreaDeliveryTimeDeliveryTime",
+          "description": "Required. The delivery time associated with `deliveryArea` for this product."
+        }
+      },
+      "type": "object"
+    },
+    "ProductDeliveryTimeAreaDeliveryTimeDeliveryTime": {
+      "description": "A delivery time for this product.",
+      "id": "ProductDeliveryTimeAreaDeliveryTimeDeliveryTime",
+      "properties": {
+        "maxHandlingTimeDays": {
+          "description": "Required. The maximum number of business days (inclusive) between when an order is placed and when the product ships. If a product ships in the same day, set this value to 0.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxTransitTimeDays": {
+          "description": "Required. The maximum number of business days (inclusive) between when the product ships and when the product is delivered.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minHandlingTimeDays": {
+          "description": "Required. The minimum number of business days (inclusive) between when an order is placed and when the product ships. If a product ships in the same day, set this value to 0.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minTransitTimeDays": {
+          "description": "Required. The minimum number of business days (inclusive) between when the product ships and when the product is delivered.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "ProductDimension": {
       "id": "ProductDimension",
       "properties": {
@@ -12710,6 +12972,17 @@
           "description": "Required. The length value represented as a number. The value can have a maximum precision of four decimal places.",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "ProductId": {
+      "description": "The Content API ID of the product.",
+      "id": "ProductId",
+      "properties": {
+        "productId": {
+          "description": "The Content API ID of the product, in the form `channel:contentLanguage:targetCountry:offerId`.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -13185,6 +13458,7 @@
           "type": "array"
         },
         "includeAttributes": {
+          "description": "Deprecated: Setting this field has no effect and attributes are never included.",
           "type": "boolean"
         },
         "merchantId": {
@@ -13265,7 +13539,7 @@
       "type": "object"
     },
     "Promotion": {
-      "description": " The Promotions feature is currently in alpha and is not yet publicly available in Content API for Shopping. This documentation is provided for reference only may be subject to change. Represents a promotion. See the following articles for more details. * [Promotions feed specification](https://support.google.com/merchants/answer/2906014) * [Local promotions feed specification](https://support.google.com/merchants/answer/10146130) * [Promotions on Buy on Google product data specification](https://support.google.com/merchants/answer/9173673)",
+      "description": "The Promotions feature is available for `AU`, `CA`, `DE`, `FR`, `GB`, `IN` and `US` target countries, and `en` content language. Represents a promotion. See the following articles for more details. * [Promotions feed specification](https://support.google.com/merchants/answer/2906014) * [Local promotions feed specification](https://support.google.com/merchants/answer/10146130) * [Promotions on Buy on Google product data specification](https://support.google.com/merchants/answer/9173673)",
       "id": "Promotion",
       "properties": {
         "brand": {
@@ -13283,7 +13557,7 @@
           "type": "array"
         },
         "contentLanguage": {
-          "description": "Required. The content language used as part of the unique identifier.",
+          "description": "Required. The content language used as part of the unique identifier. Currently only `en` value is supported.",
           "type": "string"
         },
         "couponValueType": {
@@ -13307,13 +13581,13 @@
             "Indicates that the coupon value type is unspecified.",
             "Money off coupon value type.",
             "Percent off coupon value type.",
-            "Buy M quantity, get N money off coupon value type. buy_this_quantity and get_this_quantity must be present. money_off_amount must also be present.",
-            "Buy M quantity, get N percent off coupon value type. buy_this_quantity and get_this_quantity must be present. percent_off_percentage must also be present.",
-            "Buy M quantity, get money off. buy_this_quantity and money_off_amount must be present.",
-            "Buy M quantity, get money off. buy_this_quantity and percent_off_percentage must be present.",
-            "Free gift with description only",
+            "Buy M quantity, get N money off coupon value type. `buy_this_quantity` and `get_this_quantity` must be present. `money_off_amount` must also be present.",
+            "Buy M quantity, get N percent off coupon value type. `buy_this_quantity` and `get_this_quantity` must be present. `percent_off_percentage` must also be present.",
+            "Buy M quantity, get money off. `buy_this_quantity` and `money_off_amount` must be present.",
+            "Buy M quantity, get money off. `buy_this_quantity` and `percent_off_percentage` must be present.",
+            "Free gift with description only.",
             "Free gift with value (description is optional).",
-            "Free gift with item id (description is optional).",
+            "Free gift with item ID (description is optional).",
             "Standard free shipping coupon value type.",
             "Overnight free shipping coupon value type.",
             "Two day free shipping coupon value type."
@@ -13325,7 +13599,7 @@
           "type": "string"
         },
         "freeGiftItemId": {
-          "description": "Free gift item id for the promotion.",
+          "description": "Free gift item ID for the promotion.",
           "type": "string"
         },
         "freeGiftValue": {
@@ -13333,7 +13607,7 @@
           "description": "Free gift value for the promotion."
         },
         "genericRedemptionCode": {
-          "description": "Generic redemption code for the promotion. To be used with the above field.",
+          "description": "Generic redemption code for the promotion. To be used with the `offerType` field.",
           "type": "string"
         },
         "getThisQuantityDiscounted": {
@@ -13342,33 +13616,33 @@
           "type": "integer"
         },
         "id": {
-          "description": "Required. Output only. The REST promotion id to uniquely identify the promotion. Content API methods that operate on promotions take this as their promotionId parameter. The REST ID for a promotion is of the form channel:contentLanguage:targetCountry:promotionId The channel field will have a value of \"online\", \"in_store\", or \"online_in_store\".",
+          "description": "Required. Output only. The REST promotion ID to uniquely identify the promotion. Content API methods that operate on promotions take this as their `promotionId` parameter. The REST ID for a promotion is of the form channel:contentLanguage:targetCountry:promotionId The `channel` field has a value of `\"online\"`, `\"in_store\"`, or `\"online_in_store\"`.",
           "readOnly": true,
           "type": "string"
         },
         "itemGroupId": {
-          "description": "Product filter by item group id for the promotion.",
+          "description": "Product filter by item group ID for the promotion.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "itemGroupIdExclusion": {
-          "description": "Product filter by item group id exclusion for the promotion.",
+          "description": "Product filter by item group ID exclusion for the promotion.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "itemId": {
-          "description": "Product filter by item id for the promotion.",
+          "description": "Product filter by item ID for the promotion.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "itemIdExclusion": {
-          "description": "Product filter by item id exclusion for the promotion.",
+          "description": "Product filter by item ID exclusion for the promotion.",
           "items": {
             "type": "string"
           },
@@ -13384,7 +13658,7 @@
           "description": "Maximum purchase value for the promotion."
         },
         "longTitle": {
-          "description": "Long title for the promotion.",
+          "description": "Required. Long title for the promotion.",
           "type": "string"
         },
         "minimumPurchaseAmount": {
@@ -13398,7 +13672,7 @@
         },
         "moneyBudget": {
           "$ref": "PriceAmount",
-          "description": "Promotion cost cap of the promotion."
+          "description": "Cost cap for the promotion."
         },
         "moneyOffAmount": {
           "$ref": "PriceAmount",
@@ -13436,7 +13710,7 @@
             "SPECIFIC_PRODUCTS"
           ],
           "enumDescriptions": [
-            "Unknown product applicability.",
+            "Which products the promotion applies to is unknown.",
             "Applicable to all products.",
             "Applicable to only a single product or list of products."
           ],
@@ -13464,23 +13738,23 @@
           "type": "array"
         },
         "promotionDisplayDates": {
-          "description": "String representation of the promotion display dates (deprecated: Use promotion_display_time_period instead).",
+          "description": "String representation of the promotion display dates. Deprecated. Use `promotion_display_time_period` instead.",
           "type": "string"
         },
         "promotionDisplayTimePeriod": {
           "$ref": "TimePeriod",
-          "description": "TimePeriod representation of the promotion display dates."
+          "description": "`TimePeriod` representation of the promotion's display dates."
         },
         "promotionEffectiveDates": {
-          "description": "String representation of the promotion effective dates (deprecated: Use promotion_effective_time_period instead).",
+          "description": "String representation of the promotion effective dates. Deprecated. Use `promotion_effective_time_period` instead.",
           "type": "string"
         },
         "promotionEffectiveTimePeriod": {
           "$ref": "TimePeriod",
-          "description": "Required. TimePeriod representation of the promotion effective dates."
+          "description": "Required. `TimePeriod` representation of the promotion's effective dates."
         },
         "promotionId": {
-          "description": "Required. The user provided promotion id to uniquely identify the promotion.",
+          "description": "Required. The user provided promotion ID to uniquely identify the promotion.",
           "type": "string"
         },
         "redemptionChannel": {
@@ -13501,14 +13775,14 @@
           "type": "array"
         },
         "shippingServiceNames": {
-          "description": "Shipping service names for thse promotion.",
+          "description": "Shipping service names for the promotion.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "targetCountry": {
-          "description": "Required. The target country used as part of the unique identifier.",
+          "description": "Required. The target country used as part of the unique identifier. Can be `AU`, `CA`, `DE`, `FR`, `GB`, `IN` or `US`.",
           "type": "string"
         }
       },
@@ -15542,7 +15816,7 @@
       "id": "ShoppingAdsProgramStatus",
       "properties": {
         "globalState": {
-          "description": "State of the program, It is set to enabled if there are offers for at least one region.",
+          "description": "State of the program. `ENABLED` if there are offers for at least one region.",
           "enum": [
             "PROGRAM_STATE_UNSPECIFIED",
             "NOT_ENABLED",
@@ -15550,9 +15824,9 @@
             "ENABLED"
           ],
           "enumDescriptions": [
-            "State is not known.",
+            "State is unknown.",
             "Program is not enabled for any country.",
-            "Offers are not uploaded targeting even a single country for this program.",
+            "No products have been uploaded for any region. Upload products to Merchant Center.",
             "Program is enabled and offers are uploaded for at least one country."
           ],
           "type": "string"
@@ -15572,7 +15846,7 @@
       "id": "ShoppingAdsProgramStatusRegionStatus",
       "properties": {
         "disapprovalDate": {
-          "description": "Date by which `eligibility_status` will go from `WARNING` to `DISAPPROVED`. It will be present when `eligibility_status` is `WARNING`. Date will be provided in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: YYYY-MM-DD",
+          "description": "Date by which eligibilityStatus will go from `WARNING` to `DISAPPROVED`. Only visible when your eligibilityStatus is WARNING. In [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DD`.",
           "type": "string"
         },
         "eligibilityStatus": {
@@ -15591,14 +15865,14 @@
             "If the account has no issues and review is completed successfully.",
             "There are one or more issues that needs to be resolved for account to be active for the program. Detailed list of account issues are available in [accountstatuses](https://developers.google.com/shopping-content/reference/rest/v2.1/accountstatuses) API.",
             "If account has issues but offers are servable. Some of the issue can make account DISAPPROVED after a certain deadline.",
-            "Account is under review. Deprecated: This state is not created.",
+            "Account is under review.",
             "Account is waiting for review to start.",
             "Program is currently onboarding. Upload valid offers to complete onboarding."
           ],
           "type": "string"
         },
         "onboardingIssues": {
-          "description": "These issues must be fixed to become eligible for the review.",
+          "description": "Issues that must be fixed to be eligible for review.",
           "items": {
             "type": "string"
           },
@@ -15612,14 +15886,14 @@
           "type": "array"
         },
         "reviewEligibilityStatus": {
-          "description": "If a program in a given country is eligible for review. It will be present only if eligibility status is `DISAPPROVED`.",
+          "description": "If a program is eligible for review in a specific region. Only visible if `eligibilityStatus` is `DISAPPROVED`.",
           "enum": [
             "REVIEW_ELIGIBILITY_UNSPECIFIED",
             "ELIGIBLE",
             "INELIGIBLE"
           ],
           "enumDescriptions": [
-            "Review eligibility reason state is unknown.",
+            "Review eligibility state is unknown.",
             "Account is eligible for review for a specified region code.",
             "Account is not eligible for review for a specified region code."
           ],
@@ -15633,7 +15907,10 @@
             "NOT_ENOUGH_OFFERS",
             "IN_COOLDOWN_PERIOD",
             "ALREADY_UNDER_REVIEW",
-            "NO_REVIEW_REQUIRED"
+            "NO_REVIEW_REQUIRED",
+            "WILL_BE_REVIEWED_AUTOMATICALLY",
+            "IS_RETIRED",
+            "ALREADY_REVIEWED"
           ],
           "enumDescriptions": [
             "Requesting a review from Google is not possible.",
@@ -15641,20 +15918,23 @@
             "Not enough offers uploaded for this country.",
             "Cooldown period applies. Wait until cooldown period ends.",
             "Account is already under review.",
-            "No issues available to review."
+            "No issues available to review.",
+            "Account will be automatically reviewed at the end of the grace period.",
+            "Account is retired. Should not appear in MC.",
+            "Account was already reviewd."
           ],
           "type": "string"
         },
         "reviewIneligibilityReasonDescription": {
-          "description": "Reason if a program in a given country is not eligible for review. Populated only if `review_eligibility_status` is `INELIGIBLE`.",
+          "description": "Reason a program in a specific region isn’t eligible for review. Only visible if `reviewEligibilityStatus` is `INELIGIBLE`.",
           "type": "string"
         },
         "reviewIneligibilityReasonDetails": {
           "$ref": "ShoppingAdsProgramStatusReviewIneligibilityReasonDetails",
-          "description": "This contains additional information specific to review ineligibility reasons. If review is ineligible because of `IN_COOLDOWN_PERIOD`, it will contain timestamp for cooldown period."
+          "description": "Additional information for ineligibility. If `reviewIneligibilityReason` is `IN_COOLDOWN_PERIOD`, a timestamp for the end of the cooldown period is provided."
         },
         "reviewIssues": {
-          "description": "These issues will be evaluated in review process. Fix all the issues before requesting the review.",
+          "description": "Issues evaluated in the review process. Fix all issues before requesting a review.",
           "items": {
             "type": "string"
           },
@@ -15799,7 +16079,7 @@
           "type": "string"
         },
         "streetAddress": {
-          "description": "Street-level part of the address.",
+          "description": "Street-level part of the address. Use `\\n` to add a second line.",
           "items": {
             "type": "string"
           },

@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -262,7 +261,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     jwksUri?: string | null;
     /**
-     * Defines the locations to extract the JWT. JWT locations can be either from HTTP headers or URL query parameters. The rule is that the first match wins. The checking order is: checking all headers first, then URL query parameters. If not specified, default to use following 3 locations: 1) Authorization: Bearer 2) x-goog-iap-jwt-assertion 3) access_token query parameter Default locations can be specified as followings: jwt_locations: - header: Authorization value_prefix: "Bearer " - header: x-goog-iap-jwt-assertion - query: access_token
+     * Defines the locations to extract the JWT. For now it is only used by the Cloud Endpoints to store the OpenAPI extension [x-google-jwt-locations] (https://cloud.google.com/endpoints/docs/openapi/openapi-extensions#x-google-jwt-locations) JWT locations can be one of HTTP headers, URL query parameters or cookies. The rule is that the first match wins. If not specified, default to use following 3 locations: 1) Authorization: Bearer 2) x-goog-iap-jwt-assertion 3) access_token query parameter Default locations can be specified as followings: jwt_locations: - header: Authorization value_prefix: "Bearer " - header: x-goog-iap-jwt-assertion - query: access_token
      */
     jwtLocations?: Schema$JwtLocation[];
   }
@@ -504,7 +503,7 @@ export namespace serviceconsumermanagement_v1 {
     selector?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -673,6 +672,10 @@ export namespace serviceconsumermanagement_v1 {
    * Specifies a location to extract JWT from an API request.
    */
   export interface Schema$JwtLocation {
+    /**
+     * Specifies cookie name to extract JWT token.
+     */
+    cookie?: string | null;
     /**
      * Specifies HTTP header name to extract JWT token.
      */
@@ -1363,16 +1366,16 @@ export namespace serviceconsumermanagement_v1 {
      */
     services?: string[] | null;
     /**
-     * Describes ownership and policies for the new tenant project. Required.
+     * Describes ownership and policies for the new tenant project.
      */
     tenantProjectPolicy?: Schema$TenantProjectPolicy;
   }
   /**
-   * Describes policy settings that need to be applied to a newly created tenant project.
+   * Describes policy settings that can be applied to a newly created tenant project.
    */
   export interface Schema$TenantProjectPolicy {
     /**
-     * Policy bindings to be applied to the tenant project, in addition to the 'roles/owner' role granted to the Service Consumer Management service account. At least one binding must have the role `roles/owner`.
+     * Policy bindings to be applied to the tenant project, in addition to the 'roles/owner' role granted to the Service Consumer Management service account.
      */
     policyBindings?: Schema$PolicyBinding[];
   }

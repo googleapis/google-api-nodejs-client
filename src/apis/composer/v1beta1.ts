@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -143,7 +142,7 @@ export namespace composer_v1beta1 {
    */
   export interface Schema$CheckUpgradeRequest {
     /**
-     * The version of the software running in the environment. This encapsulates both the version of Cloud Composer functionality and the version of Apache Airflow. It must match the regular expression `composer-([0-9]+(\.[0-9]+\.[0-9]+(-preview\.[0-9]+)?)?|latest)-airflow-([0-9]+\.[0-9]+(\.[0-9]+)?)`. When used as input, the server also checks if the provided version is supported and denies the request for an unsupported version. The Cloud Composer portion of the image version is a full [semantic version](https://semver.org), or an alias in the form of major version number or `latest`. When an alias is provided, the server replaces it with the current Cloud Composer version that satisfies the alias. The Apache Airflow portion of the image version is a full semantic version that points to one of the supported Apache Airflow versions, or an alias in the form of only major and minor versions specified. When an alias is provided, the server replaces it with the latest Apache Airflow version that satisfies the alias and is supported in the given Cloud Composer version. In all cases, the resolved image version is stored in the same field. See also [version list](/composer/docs/concepts/versioning/composer-versions) and [versioning overview](/composer/docs/concepts/versioning/composer-versioning-overview).
+     * The version of the software running in the environment. This encapsulates both the version of Cloud Composer functionality and the version of Apache Airflow. It must match the regular expression `composer-([0-9]+(\.[0-9]+\.[0-9]+(-preview\.[0-9]+)?)?|latest)-airflow-([0-9]+(\.[0-9]+(\.[0-9]+)?)?)`. When used as input, the server also checks if the provided version is supported and denies the request for an unsupported version. The Cloud Composer portion of the image version is a full [semantic version](https://semver.org), or an alias in the form of major version number or `latest`. When an alias is provided, the server replaces it with the current Cloud Composer version that satisfies the alias. The Apache Airflow portion of the image version is a full semantic version that points to one of the supported Apache Airflow versions, or an alias in the form of only major or major.minor versions specified. When an alias is provided, the server replaces it with the latest Apache Airflow version that satisfies the alias and is supported in the given Cloud Composer version. In all cases, the resolved image version is stored in the same field. See also [version list](/composer/docs/concepts/versioning/composer-versions) and [versioning overview](/composer/docs/concepts/versioning/composer-versioning-overview).
      */
     imageVersion?: string | null;
   }
@@ -173,15 +172,15 @@ export namespace composer_v1beta1 {
     pypiDependencies?: {[key: string]: string} | null;
   }
   /**
-   * CidrBlock contains an optional name and one CIDR block.
+   * CIDR block with an optional name.
    */
   export interface Schema$CidrBlock {
     /**
-     * cidr_block must be specified in CIDR notation.
+     * CIDR block that must be specified in CIDR notation.
      */
     cidrBlock?: string | null;
     /**
-     * display_name is a field for users to identify CIDR blocks.
+     * User-defined name that identifies the CIDR block.
      */
     displayName?: string | null;
   }
@@ -212,7 +211,7 @@ export namespace composer_v1beta1 {
     year?: number | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -290,7 +289,7 @@ export namespace composer_v1beta1 {
      */
     maintenanceWindow?: Schema$MaintenanceWindow;
     /**
-     * Optional. The configuration options for GKE clusters master authorized networks. By default master authorized networks feature is: - in case of private environment: enabled with no external networks allowlisted. - in case of public environment: disabled.
+     * Optional. The configuration options for GKE cluster master authorized networks. By default master authorized networks feature is: - in case of private environment: enabled with no external networks allowlisted. - in case of public environment: disabled.
      */
     masterAuthorizedNetworksConfig?: Schema$MasterAuthorizedNetworksConfig;
     /**
@@ -416,6 +415,19 @@ export namespace composer_v1beta1 {
     operations?: Schema$Operation[];
   }
   /**
+   * Request to load a snapshot into a Cloud Composer environment.
+   */
+  export interface Schema$LoadSnapshotRequest {
+    /**
+     * Whether or not to skip installing Pypi packages when loading the environment's state.
+     */
+    skipPypiPackagesInstallation?: boolean | null;
+    /**
+     * A Cloud Storage path to a snapshot to load, e.g.: "gs://my-bucket/snapshots/project_location_environment_timestamp".
+     */
+    snapshotPath?: string | null;
+  }
+  /**
    * Response to LoadSnapshotRequest.
    */
   export interface Schema$LoadSnapshotResponse {}
@@ -441,11 +453,11 @@ export namespace composer_v1beta1 {
    */
   export interface Schema$MasterAuthorizedNetworksConfig {
     /**
-     * cidr_blocks define up to 50 external networks that could access Kubernetes master through HTTPS.
+     * Up to 50 external networks that could access Kubernetes master through HTTPS.
      */
     cidrBlocks?: Schema$CidrBlock[];
     /**
-     * Whether or not master authorized networks is enabled.
+     * Whether or not master authorized networks feature is enabled.
      */
     enabled?: boolean | null;
   }
@@ -454,7 +466,7 @@ export namespace composer_v1beta1 {
    */
   export interface Schema$NodeConfig {
     /**
-     * Optional. The disk size in GB used for node VMs. Minimum size is 20GB. If unspecified, defaults to 100GB. Cannot be updated. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*.
+     * Optional. The disk size in GB used for node VMs. Minimum size is 30GB. If unspecified, defaults to 100GB. Cannot be updated. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*.
      */
     diskSizeGb?: number | null;
     /**
@@ -615,6 +627,15 @@ export namespace composer_v1beta1 {
    */
   export interface Schema$RestartWebServerRequest {}
   /**
+   * Request to create a snapshot of a Cloud Composer environment.
+   */
+  export interface Schema$SaveSnapshotRequest {
+    /**
+     * Location in a Cloud Storage where the snapshot is going to be stored, e.g.: "gs://my-bucket/snapshots".
+     */
+    snapshotLocation?: string | null;
+  }
+  /**
    * Response to SaveSnapshotRequest.
    */
   export interface Schema$SaveSnapshotResponse {
@@ -657,7 +678,7 @@ export namespace composer_v1beta1 {
      */
     envVariables?: {[key: string]: string} | null;
     /**
-     * The version of the software running in the environment. This encapsulates both the version of Cloud Composer functionality and the version of Apache Airflow. It must match the regular expression `composer-([0-9]+(\.[0-9]+\.[0-9]+(-preview\.[0-9]+)?)?|latest)-airflow-([0-9]+\.[0-9]+(\.[0-9]+)?)`. When used as input, the server also checks if the provided version is supported and denies the request for an unsupported version. The Cloud Composer portion of the image version is a full [semantic version](https://semver.org), or an alias in the form of major version number or `latest`. When an alias is provided, the server replaces it with the current Cloud Composer version that satisfies the alias. The Apache Airflow portion of the image version is a full semantic version that points to one of the supported Apache Airflow versions, or an alias in the form of only major and minor versions specified. When an alias is provided, the server replaces it with the latest Apache Airflow version that satisfies the alias and is supported in the given Cloud Composer version. In all cases, the resolved image version is stored in the same field. See also [version list](/composer/docs/concepts/versioning/composer-versions) and [versioning overview](/composer/docs/concepts/versioning/composer-versioning-overview).
+     * The version of the software running in the environment. This encapsulates both the version of Cloud Composer functionality and the version of Apache Airflow. It must match the regular expression `composer-([0-9]+(\.[0-9]+\.[0-9]+(-preview\.[0-9]+)?)?|latest)-airflow-([0-9]+(\.[0-9]+(\.[0-9]+)?)?)`. When used as input, the server also checks if the provided version is supported and denies the request for an unsupported version. The Cloud Composer portion of the image version is a full [semantic version](https://semver.org), or an alias in the form of major version number or `latest`. When an alias is provided, the server replaces it with the current Cloud Composer version that satisfies the alias. The Apache Airflow portion of the image version is a full semantic version that points to one of the supported Apache Airflow versions, or an alias in the form of only major or major.minor versions specified. When an alias is provided, the server replaces it with the latest Apache Airflow version that satisfies the alias and is supported in the given Cloud Composer version. In all cases, the resolved image version is stored in the same field. See also [version list](/composer/docs/concepts/versioning/composer-versions) and [versioning overview](/composer/docs/concepts/versioning/composer-versioning-overview).
      */
     imageVersion?: string | null;
     /**
@@ -1494,6 +1515,150 @@ export namespace composer_v1beta1 {
     }
 
     /**
+     * Loads a snapshot of a Cloud Composer environment. As a result of this operation, a snapshot of environment's specified in LoadSnapshotRequest is loaded into the environment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/composer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const composer = google.composer('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await composer.projects.locations.environments.loadSnapshot({
+     *     // The resource name of the target environment in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
+     *     environment:
+     *       'projects/my-project/locations/my-location/environments/my-environment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "skipPypiPackagesInstallation": false,
+     *       //   "snapshotPath": "my_snapshotPath"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    loadSnapshot(
+      params: Params$Resource$Projects$Locations$Environments$Loadsnapshot,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    loadSnapshot(
+      params?: Params$Resource$Projects$Locations$Environments$Loadsnapshot,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    loadSnapshot(
+      params: Params$Resource$Projects$Locations$Environments$Loadsnapshot,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    loadSnapshot(
+      params: Params$Resource$Projects$Locations$Environments$Loadsnapshot,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    loadSnapshot(
+      params: Params$Resource$Projects$Locations$Environments$Loadsnapshot,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    loadSnapshot(callback: BodyResponseCallback<Schema$Operation>): void;
+    loadSnapshot(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Loadsnapshot
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Loadsnapshot;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Environments$Loadsnapshot;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+environment}:loadSnapshot').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['environment'],
+        pathParams: ['environment'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Update an environment.
      * @example
      * ```js
@@ -1778,6 +1943,149 @@ export namespace composer_v1beta1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Creates a snapshots of a Cloud Composer environment. As a result of this operation, snapshot of environment's state is stored in a location specified in the SaveSnapshotRequest.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/composer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const composer = google.composer('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await composer.projects.locations.environments.saveSnapshot({
+     *     // The resource name of the source environment in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
+     *     environment:
+     *       'projects/my-project/locations/my-location/environments/my-environment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "snapshotLocation": "my_snapshotLocation"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    saveSnapshot(
+      params: Params$Resource$Projects$Locations$Environments$Savesnapshot,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    saveSnapshot(
+      params?: Params$Resource$Projects$Locations$Environments$Savesnapshot,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    saveSnapshot(
+      params: Params$Resource$Projects$Locations$Environments$Savesnapshot,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    saveSnapshot(
+      params: Params$Resource$Projects$Locations$Environments$Savesnapshot,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    saveSnapshot(
+      params: Params$Resource$Projects$Locations$Environments$Savesnapshot,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    saveSnapshot(callback: BodyResponseCallback<Schema$Operation>): void;
+    saveSnapshot(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Savesnapshot
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Savesnapshot;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Environments$Savesnapshot;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+environment}:saveSnapshot').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['environment'],
+        pathParams: ['environment'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Environments$Checkupgrade
@@ -1833,6 +2141,18 @@ export namespace composer_v1beta1 {
      */
     parent?: string;
   }
+  export interface Params$Resource$Projects$Locations$Environments$Loadsnapshot
+    extends StandardParameters {
+    /**
+     * The resource name of the target environment in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
+     */
+    environment?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LoadSnapshotRequest;
+  }
   export interface Params$Resource$Projects$Locations$Environments$Patch
     extends StandardParameters {
     /**
@@ -1860,6 +2180,18 @@ export namespace composer_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$RestartWebServerRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Environments$Savesnapshot
+    extends StandardParameters {
+    /**
+     * The resource name of the source environment in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
+     */
+    environment?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SaveSnapshotRequest;
   }
 
   export class Resource$Projects$Locations$Imageversions {

@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -126,6 +125,14 @@ export namespace clouddeploy_v1 {
   }
 
   /**
+   * The request object used by `AbandonRelease`.
+   */
+  export interface Schema$AbandonReleaseRequest {}
+  /**
+   * The response object for `AbandonRelease`.
+   */
+  export interface Schema$AbandonReleaseResponse {}
+  /**
    * Information specifying an Anthos Cluster.
    */
   export interface Schema$AnthosCluster {
@@ -148,7 +155,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$ApproveRolloutResponse {}
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -182,7 +189,7 @@ export namespace clouddeploy_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -291,6 +298,10 @@ export namespace clouddeploy_v1 {
      */
     serialPipeline?: Schema$SerialPipeline;
     /**
+     * When suspended, no new releases or rollouts can be created, but in-progress ones will complete.
+     */
+    suspended?: boolean | null;
+    /**
      * Output only. Unique identifier of the `DeliveryPipeline`.
      */
     uid?: string | null;
@@ -300,7 +311,24 @@ export namespace clouddeploy_v1 {
     updateTime?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * Payload proto for "clouddeploy.googleapis.com/deliverypipeline_notification" Platform Log event that describes the failure to send delivery pipeline status change Pub/Sub notification.
+   */
+  export interface Schema$DeliveryPipelineNotificationEvent {
+    /**
+     * The name of the `Delivery Pipeline`.
+     */
+    deliveryPipeline?: string | null;
+    /**
+     * Debug message for when a notification fails to send.
+     */
+    message?: string | null;
+    /**
+     * Type of this notification, e.g. for a Pub/Sub failure.
+     */
+    type?: string | null;
+  }
+  /**
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -315,6 +343,10 @@ export namespace clouddeploy_v1 {
      * Optional. Use default Cloud Build pool.
      */
     defaultPool?: Schema$DefaultPool;
+    /**
+     * Optional. Execution timeout for a Cloud Build Execution. This must be between 10m and 24h in seconds format. If unspecified, a default timeout of 1h is used.
+     */
+    executionTimeout?: string | null;
     /**
      * Optional. Use private Cloud Build pool.
      */
@@ -612,6 +644,10 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$Release {
     /**
+     * Output only. Indicates whether this is an abandoned release.
+     */
+    abandoned?: boolean | null;
+    /**
      * User annotations. These attributes can only be set and used by the user, and not by Google Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.
      */
     annotations?: {[key: string]: string} | null;
@@ -683,6 +719,36 @@ export namespace clouddeploy_v1 {
      * Output only. Unique identifier of the `Release`.
      */
     uid?: string | null;
+  }
+  /**
+   * Payload proto for "clouddeploy.googleapis.com/release_notification" Platform Log event that describes the failure to send release status change Pub/Sub notification.
+   */
+  export interface Schema$ReleaseNotificationEvent {
+    /**
+     * Debug message for when a notification fails to send.
+     */
+    message?: string | null;
+    /**
+     * The name of the `Release`.
+     */
+    release?: string | null;
+    /**
+     * Type of this notification, e.g. for a Pub/Sub failure.
+     */
+    type?: string | null;
+  }
+  /**
+   * Payload proto for "clouddeploy.googleapis.com/release_render" Platform Log event that describes the render status change.
+   */
+  export interface Schema$ReleaseRenderEvent {
+    /**
+     * Debug message for when a render transition occurs. Provides further details as rendering progresses through render states.
+     */
+    message?: string | null;
+    /**
+     * The name of the `Release`.
+     */
+    release?: string | null;
   }
   /**
    * A `Rollout` resource in the Google Cloud Deploy API. A `Rollout` contains information around a specific deployment to a `Target`.
@@ -758,6 +824,35 @@ export namespace clouddeploy_v1 {
     uid?: string | null;
   }
   /**
+   * Payload proto for "clouddeploy.googleapis.com/rollout_notification" Platform Log event that describes the failure to send rollout status change Pub/Sub notification.
+   */
+  export interface Schema$RolloutNotificationEvent {
+    /**
+     * Debug message for when a notification fails to send.
+     */
+    message?: string | null;
+    /**
+     * Unique identifier of the `DeliveryPipeline`.
+     */
+    pipelineUid?: string | null;
+    /**
+     * Unique identifier of the `Release`.
+     */
+    releaseUid?: string | null;
+    /**
+     * The name of the `Rollout`.
+     */
+    rollout?: string | null;
+    /**
+     * ID of the `Target` that the rollout is deployed to.
+     */
+    targetId?: string | null;
+    /**
+     * Type of this notification, e.g. for a Pub/Sub failure.
+     */
+    type?: string | null;
+  }
+  /**
    * SerialPipeline defines a sequential set of stages for a `DeliveryPipeline`.
    */
   export interface Schema$SerialPipeline {
@@ -771,7 +866,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$SetIamPolicyRequest {
     /**
-     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
+     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
     /**
@@ -897,6 +992,23 @@ export namespace clouddeploy_v1 {
     skaffoldConfigPath?: string | null;
   }
   /**
+   * Payload proto for "clouddeploy.googleapis.com/target_notification" Platform Log event that describes the failure to send target status change Pub/Sub notification.
+   */
+  export interface Schema$TargetNotificationEvent {
+    /**
+     * Debug message for when a notification fails to send.
+     */
+    message?: string | null;
+    /**
+     * The name of the `Target`.
+     */
+    target?: string | null;
+    /**
+     * Type of this notification, e.g. for a Pub/Sub failure.
+     */
+    type?: string | null;
+  }
+  /**
    * Details of rendering for a single target.
    */
   export interface Schema$TargetRender {
@@ -935,7 +1047,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[] | null;
   }
@@ -1258,7 +1370,7 @@ export namespace clouddeploy_v1 {
      *
      *   // Do the magic
      *   const res = await clouddeploy.projects.locations.list({
-     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
@@ -1390,7 +1502,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
     /**
@@ -1466,6 +1578,7 @@ export namespace clouddeploy_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "serialPipeline": {},
+     *       //   "suspended": false,
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -1758,6 +1871,7 @@ export namespace clouddeploy_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "serialPipeline": {},
+     *   //   "suspended": false,
      *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -1881,7 +1995,7 @@ export namespace clouddeploy_v1 {
      *     await clouddeploy.projects.locations.deliveryPipelines.getIamPolicy({
      *       // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline',
      *     });
@@ -2015,7 +2129,7 @@ export namespace clouddeploy_v1 {
      *
      *   // Do the magic
      *   const res = await clouddeploy.projects.locations.deliveryPipelines.list({
-     *     // Filter builds to be returned. See https://google.aip.dev/160 for more details.
+     *     // Filter pipelines to be returned. See https://google.aip.dev/160 for more details.
      *     filter: 'placeholder-value',
      *     // Field to sort by. See https://google.aip.dev/132#ordering for more details.
      *     orderBy: 'placeholder-value',
@@ -2187,6 +2301,7 @@ export namespace clouddeploy_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "serialPipeline": {},
+     *       //   "suspended": false,
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -2321,7 +2436,7 @@ export namespace clouddeploy_v1 {
      *   // Do the magic
      *   const res =
      *     await clouddeploy.projects.locations.deliveryPipelines.setIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline',
      *
@@ -2465,7 +2580,7 @@ export namespace clouddeploy_v1 {
      *   // Do the magic
      *   const res =
      *     await clouddeploy.projects.locations.deliveryPipelines.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline',
      *
@@ -2650,14 +2765,14 @@ export namespace clouddeploy_v1 {
      */
     'options.requestedPolicyVersion'?: number;
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
   }
   export interface Params$Resource$Projects$Locations$Deliverypipelines$List
     extends StandardParameters {
     /**
-     * Filter builds to be returned. See https://google.aip.dev/160 for more details.
+     * Filter pipelines to be returned. See https://google.aip.dev/160 for more details.
      */
     filter?: string;
     /**
@@ -2708,7 +2823,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -2720,7 +2835,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -2739,6 +2854,148 @@ export namespace clouddeploy_v1 {
         new Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts(
           this.context
         );
+    }
+
+    /**
+     * Abandons a Release in the Delivery Pipeline.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.releases.abandon({
+     *       // Required. Name of the Release. Format is projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}.
+     *       name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    abandon(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    abandon(
+      params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AbandonReleaseResponse>;
+    abandon(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    abandon(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AbandonReleaseResponse>,
+      callback: BodyResponseCallback<Schema$AbandonReleaseResponse>
+    ): void;
+    abandon(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon,
+      callback: BodyResponseCallback<Schema$AbandonReleaseResponse>
+    ): void;
+    abandon(
+      callback: BodyResponseCallback<Schema$AbandonReleaseResponse>
+    ): void;
+    abandon(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon
+        | BodyResponseCallback<Schema$AbandonReleaseResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AbandonReleaseResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AbandonReleaseResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AbandonReleaseResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:abandon').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AbandonReleaseResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AbandonReleaseResponse>(parameters);
+      }
     }
 
     /**
@@ -2783,6 +3040,7 @@ export namespace clouddeploy_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "abandoned": false,
      *         //   "annotations": {},
      *         //   "buildArtifacts": [],
      *         //   "createTime": "my_createTime",
@@ -2943,6 +3201,7 @@ export namespace clouddeploy_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "abandoned": false,
      *   //   "annotations": {},
      *   //   "buildArtifacts": [],
      *   //   "createTime": "my_createTime",
@@ -3081,7 +3340,7 @@ export namespace clouddeploy_v1 {
      *   // Do the magic
      *   const res =
      *     await clouddeploy.projects.locations.deliveryPipelines.releases.list({
-     *       // Optional. Filter builds to be returned. See https://google.aip.dev/160 for more details.
+     *       // Optional. Filter releases to be returned. See https://google.aip.dev/160 for more details.
      *       filter: 'placeholder-value',
      *       // Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
      *       orderBy: 'placeholder-value',
@@ -3201,6 +3460,18 @@ export namespace clouddeploy_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Abandon
+    extends StandardParameters {
+    /**
+     * Required. Name of the Release. Format is projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AbandonReleaseRequest;
+  }
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Create
     extends StandardParameters {
     /**
@@ -3235,7 +3506,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$List
     extends StandardParameters {
     /**
-     * Optional. Filter builds to be returned. See https://google.aip.dev/160 for more details.
+     * Optional. Filter releases to be returned. See https://google.aip.dev/160 for more details.
      */
     filter?: string;
     /**
@@ -3751,7 +4022,7 @@ export namespace clouddeploy_v1 {
      *   const res =
      *     await clouddeploy.projects.locations.deliveryPipelines.releases.rollouts.list(
      *       {
-     *         // Optional. Filter builds to be returned. See https://google.aip.dev/160 for more details.
+     *         // Optional. Filter rollouts to be returned. See https://google.aip.dev/160 for more details.
      *         filter: 'placeholder-value',
      *         // Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
      *         orderBy: 'placeholder-value',
@@ -3918,7 +4189,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$List
     extends StandardParameters {
     /**
-     * Optional. Filter builds to be returned. See https://google.aip.dev/160 for more details.
+     * Optional. Filter rollouts to be returned. See https://google.aip.dev/160 for more details.
      */
     filter?: string;
     /**
@@ -4987,7 +5258,7 @@ export namespace clouddeploy_v1 {
      *   const res = await clouddeploy.projects.locations.targets.getIamPolicy({
      *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/targets/my-target',
      *   });
      *   console.log(res.data);
@@ -5119,7 +5390,7 @@ export namespace clouddeploy_v1 {
      *
      *   // Do the magic
      *   const res = await clouddeploy.projects.locations.targets.list({
-     *     // Optional. Filter builds to be returned. See https://google.aip.dev/160 for more details.
+     *     // Optional. Filter targets to be returned. See https://google.aip.dev/160 for more details.
      *     filter: 'placeholder-value',
      *     // Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
      *     orderBy: 'placeholder-value',
@@ -5419,7 +5690,7 @@ export namespace clouddeploy_v1 {
      *
      *   // Do the magic
      *   const res = await clouddeploy.projects.locations.targets.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/targets/my-target',
      *
      *     // Request body metadata
@@ -5560,7 +5831,7 @@ export namespace clouddeploy_v1 {
      *
      *   // Do the magic
      *   const res = await clouddeploy.projects.locations.targets.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/targets/my-target',
      *
      *     // Request body metadata
@@ -5740,14 +6011,14 @@ export namespace clouddeploy_v1 {
      */
     'options.requestedPolicyVersion'?: number;
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
   }
   export interface Params$Resource$Projects$Locations$Targets$List
     extends StandardParameters {
     /**
-     * Optional. Filter builds to be returned. See https://google.aip.dev/160 for more details.
+     * Optional. Filter targets to be returned. See https://google.aip.dev/160 for more details.
      */
     filter?: string;
     /**
@@ -5798,7 +6069,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Targets$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -5810,7 +6081,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Targets$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 

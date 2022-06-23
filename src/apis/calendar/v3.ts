@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -602,7 +601,7 @@ export namespace calendar_v3 {
      */
     anyoneCanAddSelf?: boolean | null;
     /**
-     * File attachments for the event. Currently only Google Drive attachments are supported.
+     * File attachments for the event.
      * In order to modify attachments the supportsAttachments request parameter should be set to true.
      * There can be at most 25 attachments per event,
      */
@@ -818,7 +817,7 @@ export namespace calendar_v3 {
      */
     fileUrl?: string | null;
     /**
-     * URL link to the attachment's icon. Read-only.
+     * URL link to the attachment's icon. This field can only be modified for custom third-party attachments.
      */
     iconLink?: string | null;
     /**
@@ -866,10 +865,10 @@ export namespace calendar_v3 {
     resource?: boolean | null;
     /**
      * The attendee's response status. Possible values are:
-     * - "needsAction" - The attendee has not responded to the invitation.
+     * - "needsAction" - The attendee has not responded to the invitation (recommended for new events).
      * - "declined" - The attendee has declined the invitation.
      * - "tentative" - The attendee has tentatively accepted the invitation.
-     * - "accepted" - The attendee has accepted the invitation.
+     * - "accepted" - The attendee has accepted the invitation.  Warning: If you add an event using the values declined, tentative, or accepted, attendees with the "Add invitations to my calendar" setting set to "When I respond to invitation in email" won't see an event on their calendar unless they choose to change their invitation response in the event invitation email.
      */
     responseStatus?: string | null;
     /**
@@ -5623,7 +5622,7 @@ export namespace calendar_v3 {
      *     pageToken: 'placeholder-value',
      *     // Extended properties constraint specified as propertyName=value. Matches only private properties. This parameter might be repeated multiple times to return events that match all given constraints.
      *     privateExtendedProperty: 'placeholder-value',
-     *     // Free text search terms to find events that match these terms in any field, except for extended properties. Optional.
+     *     // Free text search terms to find events that match these terms in the following fields: summary, description, location, attendee's displayName, attendee's email. Optional.
      *     q: 'placeholder-value',
      *     // Extended properties constraint specified as propertyName=value. Matches only shared properties. This parameter might be repeated multiple times to return events that match all given constraints.
      *     sharedExtendedProperty: 'placeholder-value',
@@ -6627,7 +6626,7 @@ export namespace calendar_v3 {
      *     pageToken: 'placeholder-value',
      *     // Extended properties constraint specified as propertyName=value. Matches only private properties. This parameter might be repeated multiple times to return events that match all given constraints.
      *     privateExtendedProperty: 'placeholder-value',
-     *     // Free text search terms to find events that match these terms in any field, except for extended properties. Optional.
+     *     // Free text search terms to find events that match these terms in the following fields: summary, description, location, attendee's displayName, attendee's email. Optional.
      *     q: 'placeholder-value',
      *     // Extended properties constraint specified as propertyName=value. Matches only shared properties. This parameter might be repeated multiple times to return events that match all given constraints.
      *     sharedExtendedProperty: 'placeholder-value',
@@ -6959,7 +6958,7 @@ export namespace calendar_v3 {
      */
     privateExtendedProperty?: string[];
     /**
-     * Free text search terms to find events that match these terms in any field, except for extended properties. Optional.
+     * Free text search terms to find events that match these terms in the following fields: summary, description, location, attendee's displayName, attendee's email. Optional.
      */
     q?: string;
     /**
@@ -7172,7 +7171,7 @@ export namespace calendar_v3 {
      */
     privateExtendedProperty?: string[];
     /**
-     * Free text search terms to find events that match these terms in any field, except for extended properties. Optional.
+     * Free text search terms to find events that match these terms in the following fields: summary, description, location, attendee's displayName, attendee's email. Optional.
      */
     q?: string;
     /**

@@ -16,10 +16,12 @@
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {doubleclickbidmanager_v1_1} from './v1.1';
 import {doubleclickbidmanager_v1} from './v1';
+import {doubleclickbidmanager_v2} from './v2';
 
 export const VERSIONS = {
   'v1.1': doubleclickbidmanager_v1_1.Doubleclickbidmanager,
   v1: doubleclickbidmanager_v1.Doubleclickbidmanager,
+  v2: doubleclickbidmanager_v2.Doubleclickbidmanager,
 };
 
 export function doubleclickbidmanager(
@@ -34,10 +36,17 @@ export function doubleclickbidmanager(
 export function doubleclickbidmanager(
   options: doubleclickbidmanager_v1.Options
 ): doubleclickbidmanager_v1.Doubleclickbidmanager;
+export function doubleclickbidmanager(
+  version: 'v2'
+): doubleclickbidmanager_v2.Doubleclickbidmanager;
+export function doubleclickbidmanager(
+  options: doubleclickbidmanager_v2.Options
+): doubleclickbidmanager_v2.Doubleclickbidmanager;
 export function doubleclickbidmanager<
   T =
     | doubleclickbidmanager_v1_1.Doubleclickbidmanager
     | doubleclickbidmanager_v1.Doubleclickbidmanager
+    | doubleclickbidmanager_v2.Doubleclickbidmanager
 >(
   this: GoogleConfigurable,
   versionOrOptions:
@@ -45,6 +54,8 @@ export function doubleclickbidmanager<
     | doubleclickbidmanager_v1_1.Options
     | 'v1'
     | doubleclickbidmanager_v1.Options
+    | 'v2'
+    | doubleclickbidmanager_v2.Options
 ) {
   return getAPI<T>('doubleclickbidmanager', versionOrOptions, VERSIONS, this);
 }
@@ -53,6 +64,7 @@ const auth = new AuthPlus();
 export {auth};
 export {doubleclickbidmanager_v1_1};
 export {doubleclickbidmanager_v1};
+export {doubleclickbidmanager_v2};
 export {
   AuthPlus,
   GlobalOptions,

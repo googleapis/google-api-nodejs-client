@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -225,6 +224,39 @@ export namespace chromemanagement_v1 {
     type?: string | null;
   }
   /**
+   * Audio report.
+   */
+  export interface Schema$GoogleChromeManagementV1AudioStatusReport {
+    /**
+     * Output only. Active input device's name.
+     */
+    inputDevice?: string | null;
+    /**
+     * Output only. Active input device's gain in [0, 100].
+     */
+    inputGain?: number | null;
+    /**
+     * Output only. Is active input device mute or not.
+     */
+    inputMute?: boolean | null;
+    /**
+     * Output only. Active output device's name.
+     */
+    outputDevice?: string | null;
+    /**
+     * Output only. Is active output device mute or not.
+     */
+    outputMute?: boolean | null;
+    /**
+     * Output only. Active output device's volume in [0, 100].
+     */
+    outputVolume?: number | null;
+    /**
+     * Output only. Timestamp of when the sample was collected on device.
+     */
+    reportTime?: string | null;
+  }
+  /**
    * Battery info
    */
   export interface Schema$GoogleChromeManagementV1BatteryInfo {
@@ -311,7 +343,7 @@ export namespace chromemanagement_v1 {
      */
     reportTime?: string | null;
     /**
-     * Output only. Sampling data for the battery.
+     * Output only. Sampling data for the battery sorted in a decreasing order of report_time.
      */
     sample?: Schema$GoogleChromeManagementV1BatterySampleReport[];
     /**
@@ -357,9 +389,17 @@ export namespace chromemanagement_v1 {
      */
     isCwsHosted?: boolean | null;
     /**
+     * Output only. Whether the app is only for Kiosk mode on ChromeOS devices
+     */
+    isKioskOnly?: boolean | null;
+    /**
      * Output only. Whether the app or extension is a theme.
      */
     isTheme?: boolean | null;
+    /**
+     * Output only. Whether this app is enabled for Kiosk mode on ChromeOS devices
+     */
+    kioskEnabled?: boolean | null;
     /**
      * Output only. The minimum number of users using this app.
      */
@@ -875,7 +915,7 @@ export namespace chromemanagement_v1 {
    */
   export interface Schema$GoogleChromeManagementV1StorageStatusReport {
     /**
-     * Output only. Reports on disk
+     * Output only. Reports on disk.
      */
     disk?: Schema$GoogleChromeManagementV1DiskInfo[];
     /**
@@ -887,6 +927,10 @@ export namespace chromemanagement_v1 {
    * Telemetry data collected from a managed device.
    */
   export interface Schema$GoogleChromeManagementV1TelemetryDevice {
+    /**
+     * Output only. Audio reports collected periodically sorted in a decreasing order of report_time.
+     */
+    audioStatusReport?: Schema$GoogleChromeManagementV1AudioStatusReport[];
     /**
      * Output only. Information on battery specs for the device.
      */
@@ -900,7 +944,7 @@ export namespace chromemanagement_v1 {
      */
     cpuInfo?: Schema$GoogleChromeManagementV1CpuInfo[];
     /**
-     * Output only. CPU status reports collected periodically.
+     * Output only. CPU status reports collected periodically sorted in a decreasing order of report_time.
      */
     cpuStatusReport?: Schema$GoogleChromeManagementV1CpuStatusReport[];
     /**
@@ -908,7 +952,7 @@ export namespace chromemanagement_v1 {
      */
     customer?: string | null;
     /**
-     * Output only. The unique Directory API ID of the device. This value is the same as the Admin Console's Directory API ID in the Chrome OS Devices tab
+     * Output only. The unique Directory API ID of the device. This value is the same as the Admin Console's Directory API ID in the ChromeOS Devices tab
      */
     deviceId?: string | null;
     /**
@@ -924,7 +968,7 @@ export namespace chromemanagement_v1 {
      */
     memoryInfo?: Schema$GoogleChromeManagementV1MemoryInfo;
     /**
-     * Output only. Memory status reports collected periodically.
+     * Output only. Memory status reports collected periodically sorted decreasing by report_time.
      */
     memoryStatusReport?: Schema$GoogleChromeManagementV1MemoryStatusReport[];
     /**
@@ -944,7 +988,7 @@ export namespace chromemanagement_v1 {
      */
     osUpdateStatus?: Schema$GoogleChromeManagementV1OsUpdateStatus[];
     /**
-     * Output only. Device serial number. This value is the same as the Admin Console's Serial Number in the Chrome OS Devices tab.
+     * Output only. Device serial number. This value is the same as the Admin Console's Serial Number in the ChromeOS Devices tab.
      */
     serialNumber?: string | null;
     /**
@@ -2272,6 +2316,163 @@ export namespace chromemanagement_v1 {
     }
 
     /**
+     * Get telemetry device.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.telemetry.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.telemetry.devices.get({
+     *     // Required. Name of the `TelemetryDevice` to return.
+     *     name: 'customers/my-customer/telemetry/devices/my-device',
+     *     // Required. Read mask to specify which fields to return.
+     *     readMask: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "audioStatusReport": [],
+     *   //   "batteryInfo": [],
+     *   //   "batteryStatusReport": [],
+     *   //   "cpuInfo": [],
+     *   //   "cpuStatusReport": [],
+     *   //   "customer": "my_customer",
+     *   //   "deviceId": "my_deviceId",
+     *   //   "graphicsInfo": {},
+     *   //   "graphicsStatusReport": [],
+     *   //   "memoryInfo": {},
+     *   //   "memoryStatusReport": [],
+     *   //   "name": "my_name",
+     *   //   "networkStatusReport": [],
+     *   //   "orgUnitId": "my_orgUnitId",
+     *   //   "osUpdateStatus": [],
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "storageInfo": {},
+     *   //   "storageStatusReport": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Customers$Telemetry$Devices$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Customers$Telemetry$Devices$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChromeManagementV1TelemetryDevice>;
+    get(
+      params: Params$Resource$Customers$Telemetry$Devices$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Telemetry$Devices$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1TelemetryDevice>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1TelemetryDevice>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Telemetry$Devices$Get,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1TelemetryDevice>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1TelemetryDevice>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Telemetry$Devices$Get
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1TelemetryDevice>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1TelemetryDevice>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1TelemetryDevice>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChromeManagementV1TelemetryDevice>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Telemetry$Devices$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Telemetry$Devices$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1TelemetryDevice>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1TelemetryDevice>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * List all telemetry devices.
      * @example
      * ```js
@@ -2300,9 +2501,9 @@ export namespace chromemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await chromemanagement.customers.telemetry.devices.list({
-     *     // Optional. Only include resources that match the filter. Supported filter fields: - org_unit_id - serial_number
+     *     // Optional. Only include resources that match the filter. Supported filter fields: - org_unit_id - serial_number - device_id
      *     filter: 'placeholder-value',
-     *     // Maximum number of results to return. Default value is 100. Maximum value is 200.
+     *     // Maximum number of results to return. Default value is 100. Maximum value is 1000.
      *     pageSize: 'placeholder-value',
      *     // Token to specify next page in the list.
      *     pageToken: 'placeholder-value',
@@ -2422,14 +2623,25 @@ export namespace chromemanagement_v1 {
     }
   }
 
+  export interface Params$Resource$Customers$Telemetry$Devices$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the `TelemetryDevice` to return.
+     */
+    name?: string;
+    /**
+     * Required. Read mask to specify which fields to return.
+     */
+    readMask?: string;
+  }
   export interface Params$Resource$Customers$Telemetry$Devices$List
     extends StandardParameters {
     /**
-     * Optional. Only include resources that match the filter. Supported filter fields: - org_unit_id - serial_number
+     * Optional. Only include resources that match the filter. Supported filter fields: - org_unit_id - serial_number - device_id
      */
     filter?: string;
     /**
-     * Maximum number of results to return. Default value is 100. Maximum value is 200.
+     * Maximum number of results to return. Default value is 100. Maximum value is 1000.
      */
     pageSize?: number;
     /**

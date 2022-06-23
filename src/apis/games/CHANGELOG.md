@@ -1,5 +1,37 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/games-v4.0.0...games-v4.0.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **games:** update the API ([8720aaa](https://github.com/googleapis/google-api-nodejs-client/commit/8720aaa9596f38eff45f43ac4c9c26d4fcaae968))
+
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/games-v3.2.0...games-v4.0.0) (2022-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#2971](https://github.com/googleapis/google-api-nodejs-client/issues/2971)) ([adddf01](https://github.com/googleapis/google-api-nodejs-client/commit/adddf018e7cb73adab7341053dd80d72c5a6248d))
+
+## [3.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/games-v3.1.0...games-v3.2.0) (2022-04-11)
+
+
+### Features
+
+* **games:** update the API ([4498445](https://github.com/googleapis/google-api-nodejs-client/commit/449844560a5147a7d0ad9ea077a5df730382057c))
+
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/games-v3.0.0...games-v3.1.0) (2022-03-25)
+
+
+### Features
+
+* **games:** update the API ([0844901](https://github.com/googleapis/google-api-nodejs-client/commit/0844901d343bb6c76e4091bd1fb97c3f86db5e35))
+
 ## [3.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/games-v2.0.0...games-v3.0.0) (2021-09-14)
 
 

@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -113,6 +112,7 @@ export namespace cloudresourcemanager_v3 {
    */
   export class Cloudresourcemanager {
     context: APIRequestContext;
+    effectiveTags: Resource$Effectivetags;
     folders: Resource$Folders;
     liens: Resource$Liens;
     operations: Resource$Operations;
@@ -128,6 +128,7 @@ export namespace cloudresourcemanager_v3 {
         google,
       };
 
+      this.effectiveTags = new Resource$Effectivetags(this.context);
       this.folders = new Resource$Folders(this.context);
       this.liens = new Resource$Liens(this.context);
       this.operations = new Resource$Operations(this.context);
@@ -140,7 +141,7 @@ export namespace cloudresourcemanager_v3 {
   }
 
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -174,7 +175,7 @@ export namespace cloudresourcemanager_v3 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -291,7 +292,32 @@ export namespace cloudresourcemanager_v3 {
    */
   export interface Schema$DeleteTagValueMetadata {}
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * An EffectiveTag represents a tag that applies to a resource during policy evaluation. Tags can be either directly bound to a resource or inherited from its ancestor. EffectiveTag contains the name and namespaced_name of the tag value and tag key, with additional fields of `inherited` to indicate the inheritance status of the effective tag.
+   */
+  export interface Schema$EffectiveTag {
+    /**
+     * Indicates the inheritance status of a tag value attached to the given resource. If the tag value is inherited from one of the resource's ancestors, inherited will be true. If false, then the tag value is directly attached to the resource, inherited will be false.
+     */
+    inherited?: boolean | null;
+    /**
+     * The namespaced_name of the TagKey, in the format of `{organization_id\}/{tag_key_short_name\}`
+     */
+    namespacedTagKey?: string | null;
+    /**
+     * Namespaced name of the TagValue. Must be in the format `{organization_id\}/{tag_key_short_name\}/{tag_value_short_name\}`.
+     */
+    namespacedTagValue?: string | null;
+    /**
+     * The name of the TagKey, in the format `tagKeys/{id\}`, such as `tagKeys/123`.
+     */
+    tagKey?: string | null;
+    /**
+     * Resource name for TagValue in the format `tagValues/456`.
+     */
+    tagValue?: string | null;
+  }
+  /**
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -430,6 +456,19 @@ export namespace cloudresourcemanager_v3 {
     restrictions?: string[] | null;
   }
   /**
+   * The response of ListEffectiveTags.
+   */
+  export interface Schema$ListEffectiveTagsResponse {
+    /**
+     * A possibly paginated list of effective tags for the specified resource.
+     */
+    effectiveTags?: Schema$EffectiveTag[];
+    /**
+     * Pagination token. If the result set is too large to fit in a single response, this token is returned. It encodes the position of the current result cursor. Feeding this value into a new list request with the `page_token` parameter gives the next page of the results. When `next_page_token` is not filled in, there is no next page and the list returned is the last page in the result set. Pagination tokens have a limited lifetime.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The ListFolders response message.
    */
   export interface Schema$ListFoldersResponse {
@@ -480,6 +519,19 @@ export namespace cloudresourcemanager_v3 {
      * A possibly paginated list of TagBindings for the specified resource.
      */
     tagBindings?: Schema$TagBinding[];
+  }
+  /**
+   * The ListTagHolds response.
+   */
+  export interface Schema$ListTagHoldsResponse {
+    /**
+     * Pagination token. If the result set is too large to fit in a single response, this token is returned. It encodes the position of the current result cursor. Feeding this value into a new list request with the `page_token` parameter gives the next page of the results. When `next_page_token` is not filled in, there is no next page and the list returned is the last page in the result set. Pagination tokens have a limited lifetime.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A possibly paginated list of TagHolds.
+     */
+    tagHolds?: Schema$TagHold[];
   }
   /**
    * The ListTagKeys response message.
@@ -735,7 +787,7 @@ export namespace cloudresourcemanager_v3 {
    */
   export interface Schema$SetIamPolicyRequest {
     /**
-     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
+     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
     /**
@@ -778,6 +830,31 @@ export namespace cloudresourcemanager_v3 {
     tagValue?: string | null;
   }
   /**
+   * A TagHold represents the use of a TagValue that is not captured by TagBindings. If a TagValue has any TagHolds, deletion will be blocked. This resource is intended to be created in the same cloud location as the `holder`.
+   */
+  export interface Schema$TagHold {
+    /**
+     * Output only. The time this TagHold was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. A URL where an end user can learn more about removing this hold. E.g. `https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing`
+     */
+    helpLink?: string | null;
+    /**
+     * Required. The name of the resource where the TagValue is being used. Must be less than 200 characters. E.g. `//compute.googleapis.com/compute/projects/myproject/regions/us-east-1/instanceGroupManagers/instance-group`
+     */
+    holder?: string | null;
+    /**
+     * Output only. The resource name of a TagHold. This is a String of the form: `tagValues/{tag-value-id\}/tagHolds/{tag-hold-id\}` (e.g. `tagValues/123/tagHolds/456`). This resource name is generated by the server.
+     */
+    name?: string | null;
+    /**
+     * Optional. An optional string representing the origin of this request. This field should include human-understandable information to distinguish origins from each other. Must be less than 200 characters. E.g. `migs-35678234`
+     */
+    origin?: string | null;
+  }
+  /**
    * A TagKey, used to group a set of TagValues.
    */
   export interface Schema$TagKey {
@@ -805,6 +882,14 @@ export namespace cloudresourcemanager_v3 {
      * Immutable. The resource name of the new TagKey's parent. Must be of the form `organizations/{org_id\}`.
      */
     parent?: string | null;
+    /**
+     * Optional. A purpose denotes that this Tag is intended for use in policies of a specific policy engine, and will involve that policy engine in management operations involving this Tag. A purpose does not grant a policy engine exclusive rights to the Tag, and it may be referenced by other policy engines. A purpose cannot be changed once set.
+     */
+    purpose?: string | null;
+    /**
+     * Optional. Purpose data corresponds to the policy system that the tag is intended for. See documentation for `Purpose` for formatting of this field. Purpose data cannot be changed once set.
+     */
+    purposeData?: {[key: string]: string} | null;
     /**
      * Required. Immutable. The user friendly name for a TagKey. The short name should be unique for TagKeys within the same tag namespace. The short name must be 1-63 characters, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between.
      */
@@ -856,7 +941,7 @@ export namespace cloudresourcemanager_v3 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[] | null;
   }
@@ -905,6 +990,171 @@ export namespace cloudresourcemanager_v3 {
    * Runtime operation information for updating a TagValue.
    */
   export interface Schema$UpdateTagValueMetadata {}
+
+  export class Resource$Effectivetags {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Return a list of effective tags for the given cloud resource, as specified in `parent`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudresourcemanager = google.cloudresourcemanager('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudresourcemanager.effectiveTags.list({
+     *     // Optional. The maximum number of effective tags to return in the response. The server allows a maximum of 300 effective tags to return in a single page. If unspecified, the server will use 100 as the default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A pagination token returned from a previous call to `ListEffectiveTags` that indicates from where this listing should continue.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The full resource name of a resource for which you want to list the effective tags. E.g. "//cloudresourcemanager.googleapis.com/projects/123"
+     *     parent: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "effectiveTags": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Effectivetags$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Effectivetags$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListEffectiveTagsResponse>;
+    list(
+      params: Params$Resource$Effectivetags$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Effectivetags$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEffectiveTagsResponse>,
+      callback: BodyResponseCallback<Schema$ListEffectiveTagsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Effectivetags$List,
+      callback: BodyResponseCallback<Schema$ListEffectiveTagsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListEffectiveTagsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Effectivetags$List
+        | BodyResponseCallback<Schema$ListEffectiveTagsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListEffectiveTagsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListEffectiveTagsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListEffectiveTagsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Effectivetags$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Effectivetags$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/effectiveTags').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListEffectiveTagsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListEffectiveTagsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Effectivetags$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of effective tags to return in the response. The server allows a maximum of 300 effective tags to return in a single page. If unspecified, the server will use 100 as the default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A pagination token returned from a previous call to `ListEffectiveTags` that indicates from where this listing should continue.
+     */
+    pageToken?: string;
+    /**
+     * Required. The full resource name of a resource for which you want to list the effective tags. E.g. "//cloudresourcemanager.googleapis.com/projects/123"
+     */
+    parent?: string;
+  }
 
   export class Resource$Folders {
     context: APIRequestContext;
@@ -1350,7 +1600,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'folders/my-folder',
      *
      *     // Request body metadata
@@ -2054,7 +2304,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'folders/my-folder',
      *
      *     // Request body metadata
@@ -2196,7 +2446,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'folders/my-folder',
      *
      *     // Request body metadata
@@ -2475,7 +2725,7 @@ export namespace cloudresourcemanager_v3 {
   export interface Params$Resource$Folders$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -2545,7 +2795,7 @@ export namespace cloudresourcemanager_v3 {
   export interface Params$Resource$Folders$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -2557,7 +2807,7 @@ export namespace cloudresourcemanager_v3 {
   export interface Params$Resource$Folders$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3480,7 +3730,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'organizations/my-organization',
      *
      *     // Request body metadata
@@ -3766,7 +4016,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'organizations/my-organization',
      *
      *     // Request body metadata
@@ -3911,7 +4161,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'organizations/my-organization',
      *
      *     // Request body metadata
@@ -4040,7 +4290,7 @@ export namespace cloudresourcemanager_v3 {
   export interface Params$Resource$Organizations$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -4067,7 +4317,7 @@ export namespace cloudresourcemanager_v3 {
   export interface Params$Resource$Organizations$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -4079,7 +4329,7 @@ export namespace cloudresourcemanager_v3 {
   export interface Params$Resource$Organizations$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -4537,7 +4787,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project',
      *
      *     // Request body metadata
@@ -5245,7 +5495,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project',
      *
      *     // Request body metadata
@@ -5390,7 +5640,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project',
      *
      *     // Request body metadata
@@ -5670,7 +5920,7 @@ export namespace cloudresourcemanager_v3 {
   export interface Params$Resource$Projects$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -5740,7 +5990,7 @@ export namespace cloudresourcemanager_v3 {
   export interface Params$Resource$Projects$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -5752,7 +6002,7 @@ export namespace cloudresourcemanager_v3 {
   export interface Params$Resource$Projects$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -6272,6 +6522,8 @@ export namespace cloudresourcemanager_v3 {
      *       //   "name": "my_name",
      *       //   "namespacedName": "my_namespacedName",
      *       //   "parent": "my_parent",
+     *       //   "purpose": "my_purpose",
+     *       //   "purposeData": {},
      *       //   "shortName": "my_shortName",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -6554,6 +6806,8 @@ export namespace cloudresourcemanager_v3 {
      *   //   "name": "my_name",
      *   //   "namespacedName": "my_namespacedName",
      *   //   "parent": "my_parent",
+     *   //   "purpose": "my_purpose",
+     *   //   "purposeData": {},
      *   //   "shortName": "my_shortName",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -6677,7 +6931,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.tagKeys.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'tagKeys/my-tagKey',
      *
      *     // Request body metadata
@@ -6972,6 +7226,8 @@ export namespace cloudresourcemanager_v3 {
      *       //   "name": "my_name",
      *       //   "namespacedName": "my_namespacedName",
      *       //   "parent": "my_parent",
+     *       //   "purpose": "my_purpose",
+     *       //   "purposeData": {},
      *       //   "shortName": "my_shortName",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -7104,7 +7360,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.tagKeys.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'tagKeys/my-tagKey',
      *
      *     // Request body metadata
@@ -7246,7 +7502,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.tagKeys.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'tagKeys/my-tagKey',
      *
      *     // Request body metadata
@@ -7399,7 +7655,7 @@ export namespace cloudresourcemanager_v3 {
   export interface Params$Resource$Tagkeys$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -7444,7 +7700,7 @@ export namespace cloudresourcemanager_v3 {
   export interface Params$Resource$Tagkeys$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -7456,7 +7712,7 @@ export namespace cloudresourcemanager_v3 {
   export interface Params$Resource$Tagkeys$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -7468,8 +7724,10 @@ export namespace cloudresourcemanager_v3 {
 
   export class Resource$Tagvalues {
     context: APIRequestContext;
+    tagHolds: Resource$Tagvalues$Tagholds;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.tagHolds = new Resource$Tagvalues$Tagholds(this.context);
     }
 
     /**
@@ -7917,7 +8175,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.tagValues.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'tagValues/my-tagValue',
      *
      *     // Request body metadata
@@ -8346,7 +8604,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.tagValues.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'tagValues/my-tagValue',
      *
      *     // Request body metadata
@@ -8488,7 +8746,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.tagValues.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'tagValues/my-tagValue',
      *
      *     // Request body metadata
@@ -8641,7 +8899,7 @@ export namespace cloudresourcemanager_v3 {
   export interface Params$Resource$Tagvalues$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -8686,7 +8944,7 @@ export namespace cloudresourcemanager_v3 {
   export interface Params$Resource$Tagvalues$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -8698,7 +8956,7 @@ export namespace cloudresourcemanager_v3 {
   export interface Params$Resource$Tagvalues$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -8706,5 +8964,485 @@ export namespace cloudresourcemanager_v3 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Tagvalues$Tagholds {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a TagHold. Returns ALREADY_EXISTS if a TagHold with the same resource and origin exists under the same TagValue.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudresourcemanager = google.cloudresourcemanager('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudresourcemanager.tagValues.tagHolds.create({
+     *     // Required. The resource name of the TagHold's parent TagValue. Must be of the form: `tagValues/{tag-value-id\}`.
+     *     parent: 'tagValues/my-tagValue',
+     *     // Optional. Set to true to perform the validations necessary for creating the resource, but not actually perform the action.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "helpLink": "my_helpLink",
+     *       //   "holder": "my_holder",
+     *       //   "name": "my_name",
+     *       //   "origin": "my_origin"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Tagvalues$Tagholds$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Tagvalues$Tagholds$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Tagvalues$Tagholds$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Tagvalues$Tagholds$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Tagvalues$Tagholds$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Tagvalues$Tagholds$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Tagvalues$Tagholds$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tagvalues$Tagholds$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/tagHolds').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a TagHold.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudresourcemanager = google.cloudresourcemanager('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudresourcemanager.tagValues.tagHolds.delete({
+     *     // Required. The resource name of the TagHold to delete. Must be of the form: `tagValues/{tag-value-id\}/tagHolds/{tag-hold-id\}`.
+     *     name: 'tagValues/my-tagValue/tagHolds/my-tagHold',
+     *     // Optional. Set to true to perform the validations necessary for deleting the resource, but not actually perform the action.
+     *     validateOnly: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Tagvalues$Tagholds$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Tagvalues$Tagholds$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Tagvalues$Tagholds$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Tagvalues$Tagholds$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Tagvalues$Tagholds$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Tagvalues$Tagholds$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Tagvalues$Tagholds$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tagvalues$Tagholds$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Lists TagHolds under a TagValue.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudresourcemanager = google.cloudresourcemanager('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudresourcemanager.tagValues.tagHolds.list({
+     *     // Optional. Criteria used to select a subset of TagHolds parented by the TagValue to return. This field follows the syntax defined by aip.dev/160; the `holder` and `origin` fields are supported for filtering. Currently only `AND` syntax is supported. Some example queries are: * `holder = //compute.googleapis.com/compute/projects/myproject/regions/us-east-1/instanceGroupManagers/instance-group` * `origin = 35678234` * `holder = //compute.googleapis.com/compute/projects/myproject/regions/us-east-1/instanceGroupManagers/instance-group AND origin = 35678234`
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of TagHolds to return in the response. The server allows a maximum of 300 TagHolds to return. If unspecified, the server will use 100 as the default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A pagination token returned from a previous call to `ListTagHolds` that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the parent TagValue. Must be of the form: `tagValues/{tag-value-id\}`.
+     *     parent: 'tagValues/my-tagValue',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "tagHolds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Tagvalues$Tagholds$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Tagvalues$Tagholds$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListTagHoldsResponse>;
+    list(
+      params: Params$Resource$Tagvalues$Tagholds$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Tagvalues$Tagholds$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTagHoldsResponse>,
+      callback: BodyResponseCallback<Schema$ListTagHoldsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Tagvalues$Tagholds$List,
+      callback: BodyResponseCallback<Schema$ListTagHoldsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListTagHoldsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Tagvalues$Tagholds$List
+        | BodyResponseCallback<Schema$ListTagHoldsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTagHoldsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTagHoldsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListTagHoldsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Tagvalues$Tagholds$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tagvalues$Tagholds$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/tagHolds').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListTagHoldsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListTagHoldsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Tagvalues$Tagholds$Create
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the TagHold's parent TagValue. Must be of the form: `tagValues/{tag-value-id\}`.
+     */
+    parent?: string;
+    /**
+     * Optional. Set to true to perform the validations necessary for creating the resource, but not actually perform the action.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TagHold;
+  }
+  export interface Params$Resource$Tagvalues$Tagholds$Delete
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the TagHold to delete. Must be of the form: `tagValues/{tag-value-id\}/tagHolds/{tag-hold-id\}`.
+     */
+    name?: string;
+    /**
+     * Optional. Set to true to perform the validations necessary for deleting the resource, but not actually perform the action.
+     */
+    validateOnly?: boolean;
+  }
+  export interface Params$Resource$Tagvalues$Tagholds$List
+    extends StandardParameters {
+    /**
+     * Optional. Criteria used to select a subset of TagHolds parented by the TagValue to return. This field follows the syntax defined by aip.dev/160; the `holder` and `origin` fields are supported for filtering. Currently only `AND` syntax is supported. Some example queries are: * `holder = //compute.googleapis.com/compute/projects/myproject/regions/us-east-1/instanceGroupManagers/instance-group` * `origin = 35678234` * `holder = //compute.googleapis.com/compute/projects/myproject/regions/us-east-1/instanceGroupManagers/instance-group AND origin = 35678234`
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of TagHolds to return in the response. The server allows a maximum of 300 TagHolds to return. If unspecified, the server will use 100 as the default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A pagination token returned from a previous call to `ListTagHolds` that indicates where this listing should continue from.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the parent TagValue. Must be of the form: `tagValues/{tag-value-id\}`.
+     */
+    parent?: string;
   }
 }

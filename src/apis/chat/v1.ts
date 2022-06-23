@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -103,7 +102,7 @@ export namespace chat_v1 {
   /**
    * Google Chat API
    *
-   * Enables apps to fetch information and perform actions in Google Chat. Authentication using a service account is a prerequisite for using the Google Chat REST API.
+   * Enables apps to fetch information and perform actions in Google Chat. Authentication is a prerequisite for using the Google Chat REST API.
    *
    * @example
    * ```js
@@ -145,24 +144,24 @@ export namespace chat_v1 {
     value?: string | null;
   }
   /**
-   * Parameters that a bot can use to configure how it's response is posted.
+   * Parameters that a Chat app can use to configure how it's response is posted.
    */
   export interface Schema$ActionResponse {
     /**
-     * A response to an event related to a [dialog](https://developers.google.com/chat/how-tos/bot-dialogs). Must be accompanied by `ResponseType.Dialog`.
+     * Input only. A response to an event related to a [dialog](https://developers.google.com/chat/how-tos/dialogs). Must be accompanied by `ResponseType.Dialog`.
      */
     dialogAction?: Schema$DialogAction;
     /**
-     * The type of bot response.
+     * Input only. The type of Chat app response.
      */
     type?: string | null;
     /**
-     * URL for users to auth or config. (Only for REQUEST_CONFIG response types.)
+     * Input only. URL for users to auth or config. (Only for REQUEST_CONFIG response types.)
      */
     url?: string | null;
   }
   /**
-   * Represents the status of a request.
+   * Represents the status for a request to either invoke or submit a [dialog](https://developers.google.com/chat/how-tos/dialogs).
    */
   export interface Schema$ActionStatus {
     /**
@@ -216,7 +215,7 @@ export namespace chat_v1 {
      */
     contentType?: string | null;
     /**
-     * Output only. The download URL which should be used to allow a human user to download the attachment. Bots should not use this URL to download attachment content.
+     * Output only. The download URL which should be used to allow a human user to download the attachment. Chat apps should not use this URL to download attachment content.
      */
     downloadUri?: string | null;
     /**
@@ -232,7 +231,7 @@ export namespace chat_v1 {
      */
     source?: string | null;
     /**
-     * Output only. The thumbnail URL which should be used to preview the attachment to a human user. Bots should not use this URL to download attachment content.
+     * Output only. The thumbnail URL which should be used to preview the attachment to a human user. Chat apps should not use this URL to download attachment content.
      */
     thumbnailUri?: string | null;
   }
@@ -311,6 +310,23 @@ export namespace chat_v1 {
     title?: string | null;
   }
   /**
+   * JSON payload of error messages. If the Cloud Logging API is enabled, these error messages are logged to [Google Cloud Logging](https://cloud.google.com/logging/docs).
+   */
+  export interface Schema$ChatAppLogEntry {
+    /**
+     * The deployment that caused the error. For Chat apps built in Apps Script, this is the deployment ID defined by Apps Script.
+     */
+    deployment?: string | null;
+    /**
+     * The unencrypted `callback_method` name that was running when the error was encountered.
+     */
+    deploymentFunction?: string | null;
+    /**
+     * The error code and message.
+     */
+    error?: Schema$Status;
+  }
+  /**
    * Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to/from color representations in various languages over compactness. For example, the fields of this representation can be trivially provided to the constructor of `java.awt.Color` in Java; it can also be trivially provided to UIColor's `+colorWithRed:green:blue:alpha` method in iOS; and, with just a little work, it can be easily formatted into a CSS `rgba()` string in JavaScript. This reference page doesn't carry information about the absolute color space that should be used to interpret the RGB value (e.g. sRGB, Adobe RGB, DCI-P3, BT.2020, etc.). By default, applications should assume the sRGB color space. When color equality needs to be decided, implementations, unless documented otherwise, treat two colors as equal if all their red, green, blue, and alpha values each differ by at most 1e-5. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); \} public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); \} return resultBuilder.build(); \} // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; \} return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; \} static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) { return nil; \} Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha <= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; \} [result autorelease]; return result; \} // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!('alpha' in rgb_color)) { return rgbToCssColor(red, green, blue); \} var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(','); return ['rgba(', rgbParams, ',', alphaFrac, ')'].join(''); \}; var rgbToCssColor = function(red, green, blue) { var rgbNumber = new Number((red << 16) | (green << 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = ['#']; for (var i = 0; i < missingZeros; i++) { resultBuilder.push('0'); \} resultBuilder.push(hexString); return resultBuilder.join(''); \}; // ...
    */
   export interface Schema$Color {
@@ -332,11 +348,11 @@ export namespace chat_v1 {
     red?: number | null;
   }
   /**
-   * Represents information about the user's client, such as locale, host app, and platform. For Chat apps, `CommonEventObject` includes data submitted by users interacting with cards, like data entered in [dialogs](https://developers.google.com/chat/how-tos/bot-dialogs).
+   * Represents information about the user's client, such as locale, host app, and platform. For Chat apps, `CommonEventObject` includes data submitted by users interacting with cards, like data entered in [dialogs](https://developers.google.com/chat/how-tos/dialogs).
    */
   export interface Schema$CommonEventObject {
     /**
-     * A map containing the current values of the widgets in a card. The map keys are the string IDs assigned to each widget, and the values represent inputs to the widget. Depending on the input data type, a different object represents each input: For single-value widgets, `StringInput`. For multi-value widgets, an array of `StringInput` objects. For a date-time picker, a `DateTimeInput`. For a date-only picker, a `DateInput`. For a time-only picker, a `TimeInput`. Corresponds with the data entered by a user on a card in a [dialog](https://developers.google.com/chat/how-tos/bot-dialogs).
+     * A map containing the current values of the widgets in a card. The map keys are the string IDs assigned to each widget, and the values represent inputs to the widget. Depending on the input data type, a different object represents each input: For single-value widgets, `StringInput`. For multi-value widgets, an array of `StringInput` objects. For a date-time picker, a `DateTimeInput`. For a date-only picker, a `DateInput`. For a time-only picker, a `TimeInput`. Corresponds with the data entered by a user on a card in a [dialog](https://developers.google.com/chat/how-tos/dialogs).
      */
     formInputs?: {[key: string]: Schema$Inputs} | null;
     /**
@@ -399,15 +415,15 @@ export namespace chat_v1 {
      */
     action?: Schema$FormAction;
     /**
-     * Represents information about the user's client, such as locale, host app, and platform. For Chat apps, `CommonEventObject` includes information submitted by users interacting with [dialogs](https://developers.google.com/chat/how-tos/bot-dialogs), like data entered on a card.
+     * Represents information about the user's client, such as locale, host app, and platform. For Chat apps, `CommonEventObject` includes information submitted by users interacting with [dialogs](https://developers.google.com/chat/how-tos/dialogs), like data entered on a card.
      */
     common?: Schema$CommonEventObject;
     /**
-     * The URL the bot should redirect the user to after they have completed an authorization or configuration flow outside of Google Chat. See the [Authorizing access to 3p services guide](/chat/how-tos/auth-3p) for more information.
+     * The URL the Chat app should redirect the user to after they have completed an authorization or configuration flow outside of Google Chat. See the [Authorizing access to 3p services guide](/chat/how-tos/auth-3p) for more information.
      */
     configCompleteRedirectUrl?: string | null;
     /**
-     * The type of [dialog](https://developers.google.com/chat/how-tos/bot-dialogs) event received.
+     * The type of [dialog](https://developers.google.com/chat/how-tos/dialogs) event received.
      */
     dialogEventType?: string | null;
     /**
@@ -415,7 +431,7 @@ export namespace chat_v1 {
      */
     eventTime?: string | null;
     /**
-     * True when the event is related to [dialogs](https://developers.google.com/chat/how-tos/bot-dialogs).
+     * True when the event is related to [dialogs](https://developers.google.com/chat/how-tos/dialogs).
      */
     isDialogEvent?: boolean | null;
     /**
@@ -427,11 +443,11 @@ export namespace chat_v1 {
      */
     space?: Schema$Space;
     /**
-     * The bot-defined key for the thread related to the event. See the thread_key field of the `spaces.message.create` request for more information.
+     * The Chat app-defined key for the thread related to the event. See the thread_key field of the `spaces.message.create` request for more information.
      */
     threadKey?: string | null;
     /**
-     * A secret value that bots can use to verify if a request is from Google. The token is randomly generated by Google, remains static, and can be obtained from the Google Chat API configuration page in the Cloud Console. Developers can revoke/regenerate it if needed from the same page.
+     * A secret value that legacy Chat apps can use to verify if a request is from Google. Google randomly generates the token, and its value remains static. You can obtain, revoke, or regenerate the token from the [Chat API configuration page](https://console.cloud.google.com/apis/api/chat.googleapis.com/hangouts-chat) in the Google Cloud Console. Modern Chat apps don't use this field. It is absent from API responses and the [Chat API configuration page](https://console.cloud.google.com/apis/api/chat.googleapis.com/hangouts-chat).
      */
     token?: string | null;
     /**
@@ -448,20 +464,20 @@ export namespace chat_v1 {
    */
   export interface Schema$Dialog {
     /**
-     * Body of the dialog, which is rendered in a modal. Google Chat apps do not support the following card entities: `DateTimePicker`, `OnChangeAction`.
+     * Input only. Body of the dialog, which is rendered in a modal. Google Chat apps do not support the following card entities: `DateTimePicker`, `OnChangeAction`.
      */
     body?: Schema$GoogleAppsCardV1Card;
   }
   /**
-   * Contains a [dialog](https://developers.google.com/chat/how-tos/bot-dialogs) and request status code.
+   * Contains a [dialog](https://developers.google.com/chat/how-tos/dialogs) and request status code.
    */
   export interface Schema$DialogAction {
     /**
-     * Status for a request to either invoke or submit a [dialog](https://developers.google.com/chat/how-tos/bot-dialogs). Displays a status and message to users, if necessary. For example, in case of an error or success.
+     * Input only. Status for a request to either invoke or submit a [dialog](https://developers.google.com/chat/how-tos/dialogs). Displays a status and message to users, if necessary. For example, in case of an error or success.
      */
     actionStatus?: Schema$ActionStatus;
     /**
-     * [Dialog](https://developers.google.com/chat/how-tos/bot-dialogs) for the request.
+     * Input only. [Dialog](https://developers.google.com/chat/how-tos/dialogs) for the request.
      */
     dialog?: Schema$Dialog;
   }
@@ -475,24 +491,7 @@ export namespace chat_v1 {
     driveFileId?: string | null;
   }
   /**
-   * JSON payload of error messages. If the Cloud Logging API is enabled, these error messages are logged to [Google Cloud Logging](https://cloud.google.com/logging/docs).
-   */
-  export interface Schema$DynamiteIntegrationLogEntry {
-    /**
-     * The deployment that caused the error. For Chat bots built in Apps Script, this is the deployment ID defined by Apps Script.
-     */
-    deployment?: string | null;
-    /**
-     * The unencrypted `callback_method` name that was running when the error was encountered.
-     */
-    deploymentFunction?: string | null;
-    /**
-     * The error code and message.
-     */
-    error?: Schema$Status;
-  }
-  /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -500,7 +499,7 @@ export namespace chat_v1 {
    */
   export interface Schema$FormAction {
     /**
-     * The method name is used to identify which part of the form triggered the form submission. This information is echoed back to the bot as part of the card click event. The same method name can be used for several elements that trigger a common behavior if desired.
+     * The method name is used to identify which part of the form triggered the form submission. This information is echoed back to the Chat app as part of the card click event. The same method name can be used for several elements that trigger a common behavior if desired.
      */
     actionMethodName?: string | null;
     /**
@@ -1234,11 +1233,11 @@ export namespace chat_v1 {
     spaces?: Schema$Space[];
   }
   /**
-   * A matched url in a Chat message. Chat bots can unfurl matched URLs. For more information, refer to [Unfurl links](/chat/how-tos/link-unfurling).
+   * A matched url in a Chat message. Chat apps can preview matched URLs. For more information, refer to [Preview links](https://developers.google.com/chat/how-tos/preview-links).
    */
   export interface Schema$MatchedUrl {
     /**
-     * The url that was matched.
+     * Output only. The url that was matched.
      */
     url?: string | null;
   }
@@ -1252,17 +1251,20 @@ export namespace chat_v1 {
     resourceName?: string | null;
   }
   /**
-   * Represents a membership relation in Google Chat.
+   * Represents a membership relation in Google Chat, such as whether a user or Chat app is invited to, part of, or absent from a space.
    */
   export interface Schema$Membership {
     /**
-     * Output only. The creation time of the membership a.k.a. the time at which the member joined the space, if applicable.
+     * Output only. The creation time of the membership, such as when a member joined or was invited to join a space.
      */
     createTime?: string | null;
     /**
-     * A user in Google Chat. Represents a [person](https://developers.google.com/people/api/rest/v1/people) in the People API or a [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Admin SDK Directory API. Format: `users/{user\}`
+     * A Google Chat user or app. Format: `users/{user\}` or `users/app` When `users/{user\}`, represents a [person](https://developers.google.com/people/api/rest/v1/people) in the People API or a [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Admin SDK Directory API. When `users/app`, represents a Chat app creating membership for itself.
      */
     member?: Schema$User;
+    /**
+     * Resource name of the membership. Format: spaces/{space\}/members/{member\}
+     */
     name?: string | null;
     /**
      * Output only. State of the membership.
@@ -1274,7 +1276,7 @@ export namespace chat_v1 {
    */
   export interface Schema$Message {
     /**
-     * Input only. Parameters that a bot can use to configure how its response is posted.
+     * Input only. Parameters that a Chat app can use to configure how its response is posted.
      */
     actionResponse?: Schema$ActionResponse;
     /**
@@ -1282,7 +1284,7 @@ export namespace chat_v1 {
      */
     annotations?: Schema$Annotation[];
     /**
-     * Plain-text body of the message with all bot mentions stripped out.
+     * Plain-text body of the message with all Chat app mentions stripped out.
      */
     argumentText?: string | null;
     /**
@@ -1302,11 +1304,11 @@ export namespace chat_v1 {
      */
     fallbackText?: string | null;
     /**
-     * Output only. The time at which the message was last updated in Google Chat server. If the message was never updated, this field will be same as create_time.
+     * Output only. The time at which the message was last updated. If the message was never updated, this field matches `create_time`.
      */
     lastUpdateTime?: string | null;
     /**
-     * A URL in `spaces.messages.text` that matches a link unfurling pattern. For more information, refer to [Unfurl links](/chat/how-tos/link-unfurling).
+     * Output only. A URL in `spaces.messages.text` that matches a link preview pattern. For more information, refer to [Preview links](https://developers.google.com/chat/how-tos/preview-links).
      */
     matchedUrl?: Schema$MatchedUrl;
     /**
@@ -1314,15 +1316,11 @@ export namespace chat_v1 {
      */
     name?: string | null;
     /**
-     * Text for generating preview chips. This text will not be displayed to the user, but any links to images, web pages, videos, etc. included here will generate preview chips.
-     */
-    previewText?: string | null;
-    /**
-     * The user who created the message.
+     * Output only. The user who created the message.
      */
     sender?: Schema$User;
     /**
-     * Slash command information, if applicable.
+     * Output only. Slash command information, if applicable.
      */
     slashCommand?: Schema$SlashCommand;
     /**
@@ -1330,7 +1328,7 @@ export namespace chat_v1 {
      */
     space?: Schema$Space;
     /**
-     * Plain-text body of the message.
+     * Plain-text body of the message. The first link to an image, video, web page, or other preview-able item generates a preview chip.
      */
     text?: string | null;
     /**
@@ -1387,7 +1385,7 @@ export namespace chat_v1 {
    */
   export interface Schema$SlashCommandMetadata {
     /**
-     * The bot whose command was invoked.
+     * The Chat app whose command was invoked.
      */
     bot?: Schema$User;
     /**
@@ -1408,7 +1406,7 @@ export namespace chat_v1 {
     type?: string | null;
   }
   /**
-   * A space in Google Chat. Spaces are conversations between two or more users or 1:1 messages between a user and a Chat bot.
+   * A space in Google Chat. Spaces are conversations between two or more users or 1:1 messages between a user and a Chat app.
    */
   export interface Schema$Space {
     /**
@@ -1416,19 +1414,19 @@ export namespace chat_v1 {
      */
     displayName?: string | null;
     /**
-     * Optional. Resource name of the space, in the form "spaces/x". Example: spaces/AAAAAAAAAAAA
+     * Resource name of the space. Format: spaces/{space\}
      */
     name?: string | null;
     /**
-     * Output only. Whether the space is a DM between a bot and a single human.
+     * Output only. Whether the space is a DM between a Chat app and a single human.
      */
     singleUserBotDm?: boolean | null;
     /**
-     * Output only. Whether the messages are threaded in this space.
+     * Output only. Whether messages are threaded in this space.
      */
     threaded?: boolean | null;
     /**
-     * Deprecated. Use `single_user_bot_dm` instead. Output only. The type of a space.
+     * Output only. Deprecated: Use `single_user_bot_dm` or `space_type` (developer preview) instead. The type of a space.
      */
     type?: string | null;
   }
@@ -1517,7 +1515,7 @@ export namespace chat_v1 {
    */
   export interface Schema$User {
     /**
-     * The user's display name.
+     * Output only. The user's display name.
      */
     displayName?: string | null;
     /**
@@ -1525,7 +1523,7 @@ export namespace chat_v1 {
      */
     domainId?: string | null;
     /**
-     * True when the user is deleted or the user's profile is not visible.
+     * Output only. When `true`, the user is deleted or their profile is not visible.
      */
     isAnonymous?: boolean | null;
     /**
@@ -1611,7 +1609,7 @@ export namespace chat_v1 {
      *     parent: 'dms/my-dm',
      *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      *     requestId: 'placeholder-value',
-     *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     *     // Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
      *     threadKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1628,7 +1626,6 @@ export namespace chat_v1 {
      *       //   "lastUpdateTime": "my_lastUpdateTime",
      *       //   "matchedUrl": {},
      *       //   "name": "my_name",
-     *       //   "previewText": "my_previewText",
      *       //   "sender": {},
      *       //   "slashCommand": {},
      *       //   "space": {},
@@ -1651,7 +1648,6 @@ export namespace chat_v1 {
      *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "matchedUrl": {},
      *   //   "name": "my_name",
-     *   //   "previewText": "my_previewText",
      *   //   "sender": {},
      *   //   "slashCommand": {},
      *   //   "space": {},
@@ -1781,7 +1777,7 @@ export namespace chat_v1 {
      *     parent: 'dms/my-dm',
      *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      *     requestId: 'placeholder-value',
-     *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     *     // Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
      *     threadKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1798,7 +1794,6 @@ export namespace chat_v1 {
      *       //   "lastUpdateTime": "my_lastUpdateTime",
      *       //   "matchedUrl": {},
      *       //   "name": "my_name",
-     *       //   "previewText": "my_previewText",
      *       //   "sender": {},
      *       //   "slashCommand": {},
      *       //   "space": {},
@@ -1821,7 +1816,6 @@ export namespace chat_v1 {
      *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "matchedUrl": {},
      *   //   "name": "my_name",
-     *   //   "previewText": "my_previewText",
      *   //   "sender": {},
      *   //   "slashCommand": {},
      *   //   "space": {},
@@ -1931,7 +1925,7 @@ export namespace chat_v1 {
      */
     requestId?: string;
     /**
-     * Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     * Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
      */
     threadKey?: string;
 
@@ -1950,7 +1944,7 @@ export namespace chat_v1 {
      */
     requestId?: string;
     /**
-     * Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     * Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
      */
     threadKey?: string;
 
@@ -1997,7 +1991,7 @@ export namespace chat_v1 {
      *     parent: 'dms/my-dm/conversations/my-conversation',
      *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      *     requestId: 'placeholder-value',
-     *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     *     // Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
      *     threadKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2014,7 +2008,6 @@ export namespace chat_v1 {
      *       //   "lastUpdateTime": "my_lastUpdateTime",
      *       //   "matchedUrl": {},
      *       //   "name": "my_name",
-     *       //   "previewText": "my_previewText",
      *       //   "sender": {},
      *       //   "slashCommand": {},
      *       //   "space": {},
@@ -2037,7 +2030,6 @@ export namespace chat_v1 {
      *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "matchedUrl": {},
      *   //   "name": "my_name",
-     *   //   "previewText": "my_previewText",
      *   //   "sender": {},
      *   //   "slashCommand": {},
      *   //   "space": {},
@@ -2149,7 +2141,7 @@ export namespace chat_v1 {
      */
     requestId?: string;
     /**
-     * Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     * Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
      */
     threadKey?: string;
 
@@ -2340,7 +2332,7 @@ export namespace chat_v1 {
      *     parent: 'rooms/my-room',
      *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      *     requestId: 'placeholder-value',
-     *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     *     // Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
      *     threadKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2357,7 +2349,6 @@ export namespace chat_v1 {
      *       //   "lastUpdateTime": "my_lastUpdateTime",
      *       //   "matchedUrl": {},
      *       //   "name": "my_name",
-     *       //   "previewText": "my_previewText",
      *       //   "sender": {},
      *       //   "slashCommand": {},
      *       //   "space": {},
@@ -2380,7 +2371,6 @@ export namespace chat_v1 {
      *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "matchedUrl": {},
      *   //   "name": "my_name",
-     *   //   "previewText": "my_previewText",
      *   //   "sender": {},
      *   //   "slashCommand": {},
      *   //   "space": {},
@@ -2510,7 +2500,7 @@ export namespace chat_v1 {
      *     parent: 'rooms/my-room',
      *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      *     requestId: 'placeholder-value',
-     *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     *     // Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
      *     threadKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2527,7 +2517,6 @@ export namespace chat_v1 {
      *       //   "lastUpdateTime": "my_lastUpdateTime",
      *       //   "matchedUrl": {},
      *       //   "name": "my_name",
-     *       //   "previewText": "my_previewText",
      *       //   "sender": {},
      *       //   "slashCommand": {},
      *       //   "space": {},
@@ -2550,7 +2539,6 @@ export namespace chat_v1 {
      *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "matchedUrl": {},
      *   //   "name": "my_name",
-     *   //   "previewText": "my_previewText",
      *   //   "sender": {},
      *   //   "slashCommand": {},
      *   //   "space": {},
@@ -2660,7 +2648,7 @@ export namespace chat_v1 {
      */
     requestId?: string;
     /**
-     * Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     * Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
      */
     threadKey?: string;
 
@@ -2679,7 +2667,7 @@ export namespace chat_v1 {
      */
     requestId?: string;
     /**
-     * Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     * Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
      */
     threadKey?: string;
 
@@ -2726,7 +2714,7 @@ export namespace chat_v1 {
      *     parent: 'rooms/my-room/conversations/my-conversation',
      *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      *     requestId: 'placeholder-value',
-     *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     *     // Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
      *     threadKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2743,7 +2731,6 @@ export namespace chat_v1 {
      *       //   "lastUpdateTime": "my_lastUpdateTime",
      *       //   "matchedUrl": {},
      *       //   "name": "my_name",
-     *       //   "previewText": "my_previewText",
      *       //   "sender": {},
      *       //   "slashCommand": {},
      *       //   "space": {},
@@ -2766,7 +2753,6 @@ export namespace chat_v1 {
      *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "matchedUrl": {},
      *   //   "name": "my_name",
-     *   //   "previewText": "my_previewText",
      *   //   "sender": {},
      *   //   "slashCommand": {},
      *   //   "space": {},
@@ -2878,7 +2864,7 @@ export namespace chat_v1 {
      */
     requestId?: string;
     /**
-     * Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     * Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
      */
     threadKey?: string;
 
@@ -2899,7 +2885,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Returns a space.
+     * Returns a space. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
      * @example
      * ```js
      * // Before running the sample:
@@ -2925,7 +2911,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.get({
-     *     // Required. Resource name of the space, in the form "spaces/x". Example: spaces/AAAAAAAAAAAA
+     *     // Required. Resource name of the space, in the form "spaces/x". Format: spaces/{space\}
      *     name: 'spaces/my-space',
      *   });
      *   console.log(res.data);
@@ -3028,7 +3014,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Lists spaces the caller is a member of.
+     * Lists spaces the caller is a member of. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
      * @example
      * ```js
      * // Before running the sample:
@@ -3189,7 +3175,7 @@ export namespace chat_v1 {
      *     parent: 'spaces/my-space',
      *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      *     requestId: 'placeholder-value',
-     *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     *     // Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
      *     threadKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3206,7 +3192,6 @@ export namespace chat_v1 {
      *       //   "lastUpdateTime": "my_lastUpdateTime",
      *       //   "matchedUrl": {},
      *       //   "name": "my_name",
-     *       //   "previewText": "my_previewText",
      *       //   "sender": {},
      *       //   "slashCommand": {},
      *       //   "space": {},
@@ -3229,7 +3214,6 @@ export namespace chat_v1 {
      *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "matchedUrl": {},
      *   //   "name": "my_name",
-     *   //   "previewText": "my_previewText",
      *   //   "sender": {},
      *   //   "slashCommand": {},
      *   //   "space": {},
@@ -3331,7 +3315,7 @@ export namespace chat_v1 {
 
   export interface Params$Resource$Spaces$Get extends StandardParameters {
     /**
-     * Required. Resource name of the space, in the form "spaces/x". Example: spaces/AAAAAAAAAAAA
+     * Required. Resource name of the space, in the form "spaces/x". Format: spaces/{space\}
      */
     name?: string;
   }
@@ -3355,7 +3339,7 @@ export namespace chat_v1 {
      */
     requestId?: string;
     /**
-     * Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     * Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
      */
     threadKey?: string;
 
@@ -3372,7 +3356,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Returns a membership.
+     * Returns a membership. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
      * @example
      * ```js
      * // Before running the sample:
@@ -3398,7 +3382,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.members.get({
-     *     // Required. Resource name of the membership to be retrieved, in the form "spaces/x/members/x". Example: spaces/AAAAAAAAAAAA/members/111111111111111111111
+     *     // Required. Resource name of the membership to retrieve. Format: spaces/{space\}/members/{member\}
      *     name: 'spaces/my-space/members/my-member',
      *   });
      *   console.log(res.data);
@@ -3501,7 +3485,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Lists human memberships in a space.
+     * Lists human memberships in a space. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
      * @example
      * ```js
      * // Before running the sample:
@@ -3531,7 +3515,7 @@ export namespace chat_v1 {
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the space for which membership list is to be fetched, in the form "spaces/x". Example: spaces/AAAAAAAAAAAA
+     *     // Required. The resource name of the space for which to fetch a membership list. Format: spaces/{space\}
      *     parent: 'spaces/my-space',
      *   });
      *   console.log(res.data);
@@ -3643,7 +3627,7 @@ export namespace chat_v1 {
   export interface Params$Resource$Spaces$Members$Get
     extends StandardParameters {
     /**
-     * Required. Resource name of the membership to be retrieved, in the form "spaces/x/members/x". Example: spaces/AAAAAAAAAAAA/members/111111111111111111111
+     * Required. Resource name of the membership to retrieve. Format: spaces/{space\}/members/{member\}
      */
     name?: string;
   }
@@ -3658,7 +3642,7 @@ export namespace chat_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the space for which membership list is to be fetched, in the form "spaces/x". Example: spaces/AAAAAAAAAAAA
+     * Required. The resource name of the space for which to fetch a membership list. Format: spaces/{space\}
      */
     parent?: string;
   }
@@ -3672,7 +3656,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Creates a message.
+     * Creates a message. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
      * @example
      * ```js
      * // Before running the sample:
@@ -3702,7 +3686,7 @@ export namespace chat_v1 {
      *     parent: 'spaces/my-space',
      *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      *     requestId: 'placeholder-value',
-     *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     *     // Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
      *     threadKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3719,7 +3703,6 @@ export namespace chat_v1 {
      *       //   "lastUpdateTime": "my_lastUpdateTime",
      *       //   "matchedUrl": {},
      *       //   "name": "my_name",
-     *       //   "previewText": "my_previewText",
      *       //   "sender": {},
      *       //   "slashCommand": {},
      *       //   "space": {},
@@ -3742,7 +3725,6 @@ export namespace chat_v1 {
      *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "matchedUrl": {},
      *   //   "name": "my_name",
-     *   //   "previewText": "my_previewText",
      *   //   "sender": {},
      *   //   "slashCommand": {},
      *   //   "space": {},
@@ -3843,7 +3825,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Deletes a message.
+     * Deletes a message. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
      * @example
      * ```js
      * // Before running the sample:
@@ -3967,7 +3949,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Returns a message.
+     * Returns a message. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
      * @example
      * ```js
      * // Before running the sample:
@@ -4010,7 +3992,6 @@ export namespace chat_v1 {
      *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "matchedUrl": {},
      *   //   "name": "my_name",
-     *   //   "previewText": "my_previewText",
      *   //   "sender": {},
      *   //   "slashCommand": {},
      *   //   "space": {},
@@ -4108,7 +4089,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Updates a message.
+     * Updates a message. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
      * @example
      * ```js
      * // Before running the sample:
@@ -4153,7 +4134,6 @@ export namespace chat_v1 {
      *       //   "lastUpdateTime": "my_lastUpdateTime",
      *       //   "matchedUrl": {},
      *       //   "name": "my_name",
-     *       //   "previewText": "my_previewText",
      *       //   "sender": {},
      *       //   "slashCommand": {},
      *       //   "space": {},
@@ -4176,7 +4156,6 @@ export namespace chat_v1 {
      *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "matchedUrl": {},
      *   //   "name": "my_name",
-     *   //   "previewText": "my_previewText",
      *   //   "sender": {},
      *   //   "slashCommand": {},
      *   //   "space": {},
@@ -4285,7 +4264,7 @@ export namespace chat_v1 {
      */
     requestId?: string;
     /**
-     * Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     * Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
      */
     threadKey?: string;
 
@@ -4332,7 +4311,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Gets the metadata of a message attachment. The attachment data is fetched using the media API.
+     * Gets the metadata of a message attachment. The attachment data is fetched using the media API. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
      * @example
      * ```js
      * // Before running the sample:

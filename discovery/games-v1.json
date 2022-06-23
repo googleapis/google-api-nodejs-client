@@ -714,11 +714,31 @@
               "location": "path",
               "required": true,
               "type": "string"
+            },
+            "playerIdConsistencyToken": {
+              "description": "Consistency token of the player id. The call returns a 'not found' result when the token is present and invalid. Empty value is ignored. See also GlobalPlayerIdConsistencyTokenProto",
+              "location": "query",
+              "type": "string"
             }
           },
           "path": "games/v1/players/{playerId}",
           "response": {
             "$ref": "Player"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/games"
+          ]
+        },
+        "getScopedPlayerIds": {
+          "description": "Retrieves scoped player identifiers for currently authenticated user.",
+          "flatPath": "games/v1/players/me/scopedIds",
+          "httpMethod": "GET",
+          "id": "games.players.getScopedPlayerIds",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "games/v1/players/me/scopedIds",
+          "response": {
+            "$ref": "ScopedPlayerIds"
           },
           "scopes": [
             "https://www.googleapis.com/auth/games"
@@ -1224,7 +1244,7 @@
       }
     }
   },
-  "revision": "20210401",
+  "revision": "20220609",
   "rootUrl": "https://games.googleapis.com/",
   "schemas": {
     "AchievementDefinition": {
@@ -2425,6 +2445,10 @@
           ],
           "type": "string"
         },
+        "gamePlayerId": {
+          "description": "Per-application unique player identifier.",
+          "type": "string"
+        },
         "kind": {
           "description": "Uniquely identifies the type of this resource. Value is always the fixed string `games#player`",
           "type": "string"
@@ -2929,6 +2953,21 @@
             "There is currently a newer version available, but the revision being used still works.",
             "The revision being used is not supported in any released version."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ScopedPlayerIds": {
+      "description": "Scoped player identifiers.",
+      "id": "ScopedPlayerIds",
+      "properties": {
+        "developerPlayerKey": {
+          "description": "Identifier of the player across all games of the given developer. Every player has the same developer_player_key in all games of one developer. Developer player key changes for the game if the game is transferred to another developer. Note that game_player_id will stay unchanged.",
+          "type": "string"
+        },
+        "gamePlayerId": {
+          "description": "Game-scoped player identifier. This is the same id that is returned in GetPlayer game_player_id field.",
           "type": "string"
         }
       },

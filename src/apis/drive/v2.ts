@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -809,6 +808,7 @@ export namespace drive_v2 {
       canReadRevisions?: boolean;
       canRename?: boolean;
       canRenameDrive?: boolean;
+      canResetDriveRestrictions?: boolean;
       canShare?: boolean;
       canTrashChildren?: boolean;
     } | null;
@@ -1689,6 +1689,7 @@ export namespace drive_v2 {
       canRemoveChildren?: boolean;
       canRename?: boolean;
       canRenameTeamDrive?: boolean;
+      canResetTeamDriveRestrictions?: boolean;
       canShare?: boolean;
       canTrashChildren?: boolean;
     } | null;
@@ -4965,8 +4966,12 @@ export namespace drive_v2 {
      *
      *   // Do the magic
      *   const res = await drive.drives.delete({
+     *     // Whether any items inside the shared drive should also be deleted. This option is only supported when useDomainAdminAccess is also set to true.
+     *     allowItemDeletion: 'placeholder-value',
      *     // The ID of the shared drive.
      *     driveId: 'placeholder-value',
+     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the shared drive belongs.
+     *     useDomainAdminAccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      * }
@@ -5935,9 +5940,17 @@ export namespace drive_v2 {
 
   export interface Params$Resource$Drives$Delete extends StandardParameters {
     /**
+     * Whether any items inside the shared drive should also be deleted. This option is only supported when useDomainAdminAccess is also set to true.
+     */
+    allowItemDeletion?: boolean;
+    /**
      * The ID of the shared drive.
      */
     driveId?: string;
+    /**
+     * Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the shared drive belongs.
+     */
+    useDomainAdminAccess?: boolean;
   }
   export interface Params$Resource$Drives$Get extends StandardParameters {
     /**
@@ -8813,7 +8826,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Subscribe to changes on a file
+     * Subscribes to changes to a file. While you can establish a channel for changes to a file on a shared drive, a change to a shared drive file won't create a notification.
      * @example
      * ```js
      * // Before running the sample:

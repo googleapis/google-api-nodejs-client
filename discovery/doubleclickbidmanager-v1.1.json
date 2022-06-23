@@ -280,7 +280,7 @@
       }
     }
   },
-  "revision": "20211109",
+  "revision": "20220607",
   "rootUrl": "https://doubleclickbidmanager.googleapis.com/",
   "schemas": {
     "ChannelGrouping": {
@@ -628,9 +628,11 @@
             "FILTER_VERIFICATION_AUDIBILITY_START",
             "FILTER_VERIFICATION_AUDIBILITY_COMPLETE",
             "FILTER_MEDIA_TYPE",
-            "FILTER_AUDIO_FEED_TYPE_NAME"
+            "FILTER_AUDIO_FEED_TYPE_NAME",
+            "FILTER_TRUEVIEW_TARGETING_EXPANSION"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -1298,9 +1300,11 @@
               "FILTER_VERIFICATION_AUDIBILITY_START",
               "FILTER_VERIFICATION_AUDIBILITY_COMPLETE",
               "FILTER_MEDIA_TYPE",
-              "FILTER_AUDIO_FEED_TYPE_NAME"
+              "FILTER_AUDIO_FEED_TYPE_NAME",
+              "FILTER_TRUEVIEW_TARGETING_EXPANSION"
             ],
             "enumDescriptions": [
+              "",
               "",
               "",
               "",
@@ -1986,7 +1990,6 @@
               "METRIC_INVALID_CLICKS",
               "METRIC_INVALID_IMPRESSIONS",
               "METRIC_INVALID_TRACKED_ADS",
-              "METRIC_MEDIA_COST_ADVERTISER_CURRENCY_PER_STORE_VISIT_ADX_ONLY",
               "METRIC_MIDPOINT_AUDIO",
               "METRIC_ORIGINAL_AUDIENCE_FREQUENCY",
               "METRIC_PAUSES_AUDIO",
@@ -2002,11 +2005,9 @@
               "METRIC_REFUND_BILLABLE_COST_ADVERTISER_CURRENCY",
               "METRIC_REFUND_MEDIA_COST_ADVERTISER_CURRENCY",
               "METRIC_REFUND_PLATFORM_FEE_ADVERTISER_CURRENCY",
-              "METRIC_REVENUE_ADVERTISER_CURRENCY_PER_STORE_VISIT_ADX_ONLY",
               "METRIC_RICH_MEDIA_ENGAGEMENTS",
               "METRIC_STARTS_AUDIO",
               "METRIC_STOPS_AUDIO",
-              "METRIC_STORE_VISITS_ADX_ONLY",
               "METRIC_STORE_VISIT_CONVERSIONS",
               "METRIC_THIRD_QUARTILE_AUDIO",
               "METRIC_TIMERS",
@@ -2015,7 +2016,6 @@
               "METRIC_TOTAL_DISPLAY_TIME",
               "METRIC_TOTAL_IMPRESSION_CUSTOM_VALUE",
               "METRIC_TOTAL_INTERACTION_TIME",
-              "METRIC_TOTAL_MEDIA_COST_ADVERTISER_CURRENCY_PER_STORE_VISIT_ADX_ONLY",
               "METRIC_TOTAL_USERS",
               "METRIC_TRACKED_ADS",
               "METRIC_TRUEVIEW_GENERAL_INVALID_TRAFFIC_GIVT_VIEWS",
@@ -2074,9 +2074,27 @@
               "METRIC_WIN_LOSS_DEAL_TARGETED_IMPRESSIONS",
               "METRIC_WIN_LOSS_LINEITEM_TARGETED_IMPRESSIONS",
               "METRIC_VERIFICATION_VIDEO_PLAYER_SIZE_MEASURABLE_IMPRESSIONS",
-              "METRIC_TRUEVIEW_ALL_AD_SEQUENCE_IMPRESSIONS"
+              "METRIC_TRUEVIEW_ALL_AD_SEQUENCE_IMPRESSIONS",
+              "METRIC_IMPRESSIONS_COVIEWED",
+              "METRIC_UNIQUE_REACH_IMPRESSION_REACH_COVIEWED",
+              "METRIC_UNIQUE_REACH_TOTAL_REACH_COVIEWED",
+              "METRIC_UNIQUE_REACH_AVERAGE_IMPRESSION_FREQUENCY_COVIEWED",
+              "METRIC_GRP_CORRECTED_IMPRESSIONS_COVIEWED",
+              "METRIC_VIRTUAL_PEOPLE_IMPRESSION_REACH_BY_DEMO_COVIEWED",
+              "METRIC_VIRTUAL_PEOPLE_AVERAGE_IMPRESSION_FREQUENCY_BY_DEMO_COVIEWED",
+              "METRIC_TARGET_RATING_POINTS_COVIEWED",
+              "METRIC_DEMO_COMPOSITION_IMPRESSION_COVIEWED",
+              "METRIC_VIRTUAL_PEOPLE_IMPRESSION_REACH_SHARE_PERCENT_COVIEWED",
+              "METRIC_VIRTUAL_PEOPLE_IMPRESSION_REACH_PERCENT_COVIEWED"
             ],
             "enumDescriptions": [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
               "",
               "",
               "",
@@ -2978,9 +2996,11 @@
             "FILTER_VERIFICATION_AUDIBILITY_START",
             "FILTER_VERIFICATION_AUDIBILITY_COMPLETE",
             "FILTER_MEDIA_TYPE",
-            "FILTER_AUDIO_FEED_TYPE_NAME"
+            "FILTER_AUDIO_FEED_TYPE_NAME",
+            "FILTER_TRUEVIEW_TARGETING_EXPANSION"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",

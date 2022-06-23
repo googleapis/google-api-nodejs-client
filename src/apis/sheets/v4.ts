@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -411,7 +410,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BandingProperties {
     /**
-     * The first color that is alternating. (Required)
+     * The first color that is alternating. (Required) Deprecated: Use first_band_color_style.
      */
     firstBandColor?: Schema$Color;
     /**
@@ -419,7 +418,7 @@ export namespace sheets_v4 {
      */
     firstBandColorStyle?: Schema$ColorStyle;
     /**
-     * The color of the last row or column. If this field is not set, the last row or column is filled with either first_band_color or second_band_color, depending on the color of the previous row or column.
+     * The color of the last row or column. If this field is not set, the last row or column is filled with either first_band_color or second_band_color, depending on the color of the previous row or column. Deprecated: Use footer_color_style.
      */
     footerColor?: Schema$Color;
     /**
@@ -427,7 +426,7 @@ export namespace sheets_v4 {
      */
     footerColorStyle?: Schema$ColorStyle;
     /**
-     * The color of the first row or column. If this field is set, the first row or column is filled with this color and the colors alternate between first_band_color and second_band_color starting from the second row or column. Otherwise, the first row or column is filled with first_band_color and the colors proceed to alternate as they normally would.
+     * The color of the first row or column. If this field is set, the first row or column is filled with this color and the colors alternate between first_band_color and second_band_color starting from the second row or column. Otherwise, the first row or column is filled with first_band_color and the colors proceed to alternate as they normally would. Deprecated: Use header_color_style.
      */
     headerColor?: Schema$Color;
     /**
@@ -435,7 +434,7 @@ export namespace sheets_v4 {
      */
     headerColorStyle?: Schema$ColorStyle;
     /**
-     * The second color that is alternating. (Required)
+     * The second color that is alternating. (Required) Deprecated: Use second_band_color_style.
      */
     secondBandColor?: Schema$Color;
     /**
@@ -456,7 +455,7 @@ export namespace sheets_v4 {
      */
     description?: string | null;
     /**
-     * Color to be used, in case baseline value represents a negative change for key value. This field is optional.
+     * Color to be used, in case baseline value represents a negative change for key value. This field is optional. Deprecated: Use negative_color_style.
      */
     negativeColor?: Schema$Color;
     /**
@@ -468,7 +467,7 @@ export namespace sheets_v4 {
      */
     position?: Schema$TextPosition;
     /**
-     * Color to be used, in case baseline value represents a positive change for key value. This field is optional.
+     * Color to be used, in case baseline value represents a positive change for key value. This field is optional. Deprecated: Use positive_color_style.
      */
     positiveColor?: Schema$Color;
     /**
@@ -523,7 +522,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BasicChartSeries {
     /**
-     * The color for elements (such as bars, lines, and points) associated with this series. If empty, a default color is used.
+     * The color for elements (such as bars, lines, and points) associated with this series. If empty, a default color is used. Deprecated: Use color_style.
      */
     color?: Schema$Color;
     /**
@@ -638,7 +637,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BasicSeriesDataPointStyleOverride {
     /**
-     * Color of the series data point. If empty, the series default is used.
+     * Color of the series data point. If empty, the series default is used. Deprecated: Use color_style.
      */
     color?: Schema$Color;
     /**
@@ -668,7 +667,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BatchClearValuesByDataFilterResponse {
     /**
-     * The ranges that were cleared, in A1 notation. If the requests are for an unbounded range or a ranger larger than the bounds of the sheet, this is the actual ranges that were cleared, bounded to the sheet's limits.
+     * The ranges that were cleared, in [A1 notation](/sheets/api/guides/concepts#cell). If the requests are for an unbounded range or a ranger larger than the bounds of the sheet, this is the actual ranges that were cleared, bounded to the sheet's limits.
      */
     clearedRanges?: string[] | null;
     /**
@@ -681,7 +680,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BatchClearValuesRequest {
     /**
-     * The ranges to clear, in A1 or R1C1 notation.
+     * The ranges to clear, in [A1 notation or R1C1 notation](/sheets/api/guides/concepts#cell).
      */
     ranges?: string[] | null;
   }
@@ -965,7 +964,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$Border {
     /**
-     * The color of the border.
+     * The color of the border. Deprecated: Use [color_style].
      */
     color?: Schema$Color;
     /**
@@ -1007,7 +1006,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BubbleChartSpec {
     /**
-     * The bubble border color.
+     * The bubble border color. Deprecated: Use bubble_border_color_style.
      */
     bubbleBorderColor?: Schema$Color;
     /**
@@ -1169,7 +1168,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$CellFormat {
     /**
-     * The background color of the cell.
+     * The background color of the cell. Deprecated: Use background_color_style.
      */
     backgroundColor?: Schema$Color;
     /**
@@ -1325,7 +1324,7 @@ export namespace sheets_v4 {
      */
     altText?: string | null;
     /**
-     * The background color of the entire chart. Not applicable to Org charts.
+     * The background color of the entire chart. Not applicable to Org charts. Deprecated: Use background_color_style.
      */
     backgroundColor?: Schema$Color;
     /**
@@ -2336,7 +2335,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$EmbeddedObjectBorder {
     /**
-     * The color of the border.
+     * The color of the border. Deprecated: Use color_style.
      */
     color?: Schema$Color;
     /**
@@ -2412,7 +2411,7 @@ export namespace sheets_v4 {
      */
     hiddenValues?: string[] | null;
     /**
-     * The background fill color to filter by; only cells with this fill color are shown. Mutually exclusive with visible_foreground_color.
+     * The background fill color to filter by; only cells with this fill color are shown. Mutually exclusive with visible_foreground_color. Deprecated: Use visible_background_color_style.
      */
     visibleBackgroundColor?: Schema$Color;
     /**
@@ -2420,7 +2419,7 @@ export namespace sheets_v4 {
      */
     visibleBackgroundColorStyle?: Schema$ColorStyle;
     /**
-     * The foreground color to filter by; only cells with this foreground color are shown. Mutually exclusive with visible_background_color.
+     * The foreground color to filter by; only cells with this foreground color are shown. Mutually exclusive with visible_background_color. Deprecated: Use visible_foreground_color_style.
      */
     visibleForegroundColor?: Schema$Color;
     /**
@@ -2650,7 +2649,7 @@ export namespace sheets_v4 {
     rowGroupControlAfter?: boolean | null;
   }
   /**
-   * A range on a sheet. All indexes are zero-based. Indexes are half open, i.e. the start index is inclusive and the end index is exclusive -- [start_index, end_index). Missing indexes indicate the range is unbounded on that side. For example, if `"Sheet1"` is sheet ID 0, then: `Sheet1!A1:A1 == sheet_id: 0, start_row_index: 0, end_row_index: 1, start_column_index: 0, end_column_index: 1` `Sheet1!A3:B4 == sheet_id: 0, start_row_index: 2, end_row_index: 4, start_column_index: 0, end_column_index: 2` `Sheet1!A:B == sheet_id: 0, start_column_index: 0, end_column_index: 2` `Sheet1!A5:B == sheet_id: 0, start_row_index: 4, start_column_index: 0, end_column_index: 2` `Sheet1 == sheet_id:0` The start index must always be less than or equal to the end index. If the start index equals the end index, then the range is empty. Empty ranges are typically not meaningful and are usually rendered in the UI as `#REF!`.
+   * A range on a sheet. All indexes are zero-based. Indexes are half open, i.e. the start index is inclusive and the end index is exclusive -- [start_index, end_index). Missing indexes indicate the range is unbounded on that side. For example, if `"Sheet1"` is sheet ID 123456, then: `Sheet1!A1:A1 == sheet_id: 123456, start_row_index: 0, end_row_index: 1, start_column_index: 0, end_column_index: 1` `Sheet1!A3:B4 == sheet_id: 123456, start_row_index: 2, end_row_index: 4, start_column_index: 0, end_column_index: 2` `Sheet1!A:B == sheet_id: 123456, start_column_index: 0, end_column_index: 2` `Sheet1!A5:B == sheet_id: 123456, start_row_index: 4, start_column_index: 0, end_column_index: 2` `Sheet1 == sheet_id: 123456` The start index must always be less than or equal to the end index. If the start index equals the end index, then the range is empty. Empty ranges are typically not meaningful and are usually rendered in the UI as `#REF!`.
    */
   export interface Schema$GridRange {
     /**
@@ -2721,7 +2720,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$HistogramSeries {
     /**
-     * The color of the column representing this series in each bucket. This field is optional.
+     * The color of the column representing this series in each bucket. This field is optional. Deprecated: Use bar_color_style.
      */
     barColor?: Schema$Color;
     /**
@@ -2764,7 +2763,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$InterpolationPoint {
     /**
-     * The color this interpolation point should use.
+     * The color this interpolation point should use. Deprecated: Use color_style.
      */
     color?: Schema$Color;
     /**
@@ -2954,7 +2953,7 @@ export namespace sheets_v4 {
      */
     labels?: Schema$ChartData;
     /**
-     * The color of the org chart nodes.
+     * The color of the org chart nodes. Deprecated: Use node_color_style.
      */
     nodeColor?: Schema$Color;
     /**
@@ -2970,7 +2969,7 @@ export namespace sheets_v4 {
      */
     parentLabels?: Schema$ChartData;
     /**
-     * The color of the selected org chart nodes.
+     * The color of the selected org chart nodes. Deprecated: Use selected_node_color_style.
      */
     selectedNodeColor?: Schema$Color;
     /**
@@ -3940,7 +3939,7 @@ export namespace sheets_v4 {
      */
     sheetType?: string | null;
     /**
-     * The color of the tab in the UI.
+     * The color of the tab in the UI. Deprecated: Use tab_color_style.
      */
     tabColor?: Schema$Color;
     /**
@@ -3978,7 +3977,7 @@ export namespace sheets_v4 {
      */
     applyToPivotTables?: boolean | null;
     /**
-     * The background color of the slicer.
+     * The background color of the slicer. Deprecated: Use background_color_style.
      */
     backgroundColor?: Schema$Color;
     /**
@@ -4028,7 +4027,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$SortSpec {
     /**
-     * The background fill color to sort by; cells with this fill color are sorted to the top. Mutually exclusive with foreground_color.
+     * The background fill color to sort by; cells with this fill color are sorted to the top. Mutually exclusive with foreground_color. Deprecated: Use background_color_style.
      */
     backgroundColor?: Schema$Color;
     /**
@@ -4044,7 +4043,7 @@ export namespace sheets_v4 {
      */
     dimensionIndex?: number | null;
     /**
-     * The foreground color to sort by; cells with this foreground color are sorted to the top. Mutually exclusive with background_color.
+     * The foreground color to sort by; cells with this foreground color are sorted to the top. Mutually exclusive with background_color. Deprecated: Use foreground_color_style.
      */
     foregroundColor?: Schema$Color;
     /**
@@ -4173,7 +4172,7 @@ export namespace sheets_v4 {
      */
     fontSize?: number | null;
     /**
-     * The foreground color of the text.
+     * The foreground color of the text. Deprecated: Use foreground_color_style.
      */
     foregroundColor?: Schema$Color;
     /**
@@ -4288,7 +4287,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$TreemapChartColorScale {
     /**
-     * The background color for cells with a color value greater than or equal to maxValue. Defaults to #109618 if not specified.
+     * The background color for cells with a color value greater than or equal to maxValue. Defaults to #109618 if not specified. Deprecated: Use max_value_color_style.
      */
     maxValueColor?: Schema$Color;
     /**
@@ -4296,7 +4295,7 @@ export namespace sheets_v4 {
      */
     maxValueColorStyle?: Schema$ColorStyle;
     /**
-     * The background color for cells with a color value at the midpoint between minValue and maxValue. Defaults to #efe6dc if not specified.
+     * The background color for cells with a color value at the midpoint between minValue and maxValue. Defaults to #efe6dc if not specified. Deprecated: Use mid_value_color_style.
      */
     midValueColor?: Schema$Color;
     /**
@@ -4304,7 +4303,7 @@ export namespace sheets_v4 {
      */
     midValueColorStyle?: Schema$ColorStyle;
     /**
-     * The background color for cells with a color value less than or equal to minValue. Defaults to #dc3912 if not specified.
+     * The background color for cells with a color value less than or equal to minValue. Defaults to #dc3912 if not specified. Deprecated: Use min_value_color_style.
      */
     minValueColor?: Schema$Color;
     /**
@@ -4312,7 +4311,7 @@ export namespace sheets_v4 {
      */
     minValueColorStyle?: Schema$ColorStyle;
     /**
-     * The background color for cells that have no color data associated with them. Defaults to #000000 if not specified.
+     * The background color for cells that have no color data associated with them. Defaults to #000000 if not specified. Deprecated: Use no_data_color_style.
      */
     noDataColor?: Schema$Color;
     /**
@@ -4333,7 +4332,7 @@ export namespace sheets_v4 {
      */
     colorScale?: Schema$TreemapChartColorScale;
     /**
-     * The background color for header cells.
+     * The background color for header cells. Deprecated: Use header_color_style.
      */
     headerColor?: Schema$Color;
     /**
@@ -4758,7 +4757,7 @@ export namespace sheets_v4 {
      */
     updatedData?: Schema$ValueRange;
     /**
-     * The range (in A1 notation) that updates were applied to.
+     * The range (in [A1 notation](/sheets/api/guides/concepts#cell)) that updates were applied to.
      */
     updatedRange?: string | null;
     /**
@@ -4804,7 +4803,7 @@ export namespace sheets_v4 {
      */
     majorDimension?: string | null;
     /**
-     * The range the values cover, in A1 notation. For output, this range indicates the entire requested range, even though the values will exclude trailing rows and columns. When appending values, this field represents the range to search for a table, after which values will be appended.
+     * The range the values cover, in [A1 notation](/sheets/api/guides/concepts#cell). For output, this range indicates the entire requested range, even though the values will exclude trailing rows and columns. When appending values, this field represents the range to search for a table, after which values will be appended.
      */
     range?: string | null;
     /**
@@ -4817,7 +4816,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$WaterfallChartColumnStyle {
     /**
-     * The color of the column.
+     * The color of the column. Deprecated: Use color_style.
      */
     color?: Schema$Color;
     /**
@@ -5244,7 +5243,7 @@ export namespace sheets_v4 {
     }
 
     /**
-     * Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID. By default, data within grids will not be returned. You can include grid data one of two ways: * Specify a field mask listing your desired fields using the `fields` URL parameter in HTTP * Set the includeGridData URL parameter to true. If a field mask is set, the `includeGridData` parameter is ignored For large spreadsheets, it is recommended to retrieve only the specific fields of the spreadsheet that you want. To retrieve only subsets of the spreadsheet, use the ranges URL parameter. Multiple ranges can be specified. Limiting the range will return only the portions of the spreadsheet that intersect the requested ranges. Ranges are specified using A1 notation.
+     * Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID. By default, data within grids is not returned. You can include grid data in one of 2 ways: * Specify a field mask listing your desired fields using the `fields` URL parameter in HTTP * Set the includeGridData URL parameter to true. If a field mask is set, the `includeGridData` parameter is ignored For large spreadsheets, as a best practice, retrieve only the specific spreadsheet fields that you want. To retrieve only subsets of spreadsheet data, use the ranges URL parameter. Ranges are specified using [A1 notation](/sheets/api/guides/concepts#cell). You can define a single cell (for example, `A1`) or multiple cells (for example, `A1:D5`). You can also get cells from other sheets within the same spreadsheet (for example, `Sheet2!A1:C4`) or retrieve multiple ranges at once (for example, `?ranges=A1:D5&ranges=Sheet2!A1:C4`). Limiting the range returns only the portions of the spreadsheet that intersect the requested ranges.
      * @example
      * ```js
      * // Before running the sample:
@@ -5389,7 +5388,7 @@ export namespace sheets_v4 {
     }
 
     /**
-     * Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID. This method differs from GetSpreadsheet in that it allows selecting which subsets of spreadsheet data to return by specifying a dataFilters parameter. Multiple DataFilters can be specified. Specifying one or more data filters will return the portions of the spreadsheet that intersect ranges matched by any of the filters. By default, data within grids will not be returned. You can include grid data one of two ways: * Specify a field mask listing your desired fields using the `fields` URL parameter in HTTP * Set the includeGridData parameter to true. If a field mask is set, the `includeGridData` parameter is ignored For large spreadsheets, it is recommended to retrieve only the specific fields of the spreadsheet that you want.
+     * Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID. This method differs from GetSpreadsheet in that it allows selecting which subsets of spreadsheet data to return by specifying a dataFilters parameter. Multiple DataFilters can be specified. Specifying one or more data filters returns the portions of the spreadsheet that intersect ranges matched by any of the filters. By default, data within grids is not returned. You can include grid data one of 2 ways: * Specify a field mask listing your desired fields using the `fields` URL parameter in HTTP * Set the includeGridData parameter to true. If a field mask is set, the `includeGridData` parameter is ignored For large spreadsheets, as a best practice, retrieve only the specific spreadsheet fields that you want.
      * @example
      * ```js
      * // Before running the sample:
@@ -6123,7 +6122,7 @@ export namespace sheets_v4 {
      *     includeValuesInResponse: 'placeholder-value',
      *     // How the input data should be inserted.
      *     insertDataOption: 'placeholder-value',
-     *     // The A1 notation of a range to search for a logical table of data. Values are appended after the last row of the table.
+     *     // The [A1 notation](/sheets/api/guides/concepts#cell) of a range to search for a logical table of data. Values are appended after the last row of the table.
      *     range: 'placeholder-value',
      *     // Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.
      *     responseDateTimeRenderOption: 'placeholder-value',
@@ -6250,7 +6249,7 @@ export namespace sheets_v4 {
     }
 
     /**
-     * Clears one or more ranges of values from a spreadsheet. The caller must specify the spreadsheet ID and one or more ranges. Only values are cleared -- all other properties of the cell (such as formatting, data validation, etc..) are kept.
+     * Clears one or more ranges of values from a spreadsheet. The caller must specify the spreadsheet ID and one or more ranges. Only values are cleared -- all other properties of the cell (such as formatting and data validation) are kept.
      * @example
      * ```js
      * // Before running the sample:
@@ -6584,9 +6583,9 @@ export namespace sheets_v4 {
      *   const res = await sheets.spreadsheets.values.batchGet({
      *     // How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.
      *     dateTimeRenderOption: 'placeholder-value',
-     *     // The major dimension that results should use. For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
+     *     // The major dimension that results should use. For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `ranges=["A1:B2"],majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `ranges=["A1:B2"],majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
      *     majorDimension: 'placeholder-value',
-     *     // The A1 notation or R1C1 notation of the range to retrieve values from.
+     *     // The [A1 notation or R1C1 notation](/sheets/api/guides/concepts#cell) of the range to retrieve values from.
      *     ranges: 'placeholder-value',
      *     // The ID of the spreadsheet to retrieve data from.
      *     spreadsheetId: 'placeholder-value',
@@ -7200,7 +7199,7 @@ export namespace sheets_v4 {
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.clear({
-     *     // The A1 notation or R1C1 notation of the values to clear.
+     *     // The [A1 notation or R1C1 notation](/sheets/api/guides/concepts#cell) of the values to clear.
      *     range: 'placeholder-value',
      *     // The ID of the spreadsheet to update.
      *     spreadsheetId: 'placeholder-value',
@@ -7350,7 +7349,7 @@ export namespace sheets_v4 {
      *     dateTimeRenderOption: 'placeholder-value',
      *     // The major dimension that results should use. For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
      *     majorDimension: 'placeholder-value',
-     *     // The A1 notation or R1C1 notation of the range to retrieve values from.
+     *     // The [A1 notation or R1C1 notation](/sheets/api/guides/concepts#cell) of the range to retrieve values from.
      *     range: 'placeholder-value',
      *     // The ID of the spreadsheet to retrieve data from.
      *     spreadsheetId: 'placeholder-value',
@@ -7490,7 +7489,7 @@ export namespace sheets_v4 {
      *   const res = await sheets.spreadsheets.values.update({
      *     // Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. If the range to write was larger than the range actually written, the response includes all values in the requested range (excluding trailing empty rows and columns).
      *     includeValuesInResponse: 'placeholder-value',
-     *     // The A1 notation of the values to update.
+     *     // The [A1 notation](/sheets/api/guides/concepts#cell) of the values to update.
      *     range: 'placeholder-value',
      *     // Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.
      *     responseDateTimeRenderOption: 'placeholder-value',
@@ -7631,7 +7630,7 @@ export namespace sheets_v4 {
      */
     insertDataOption?: string;
     /**
-     * The A1 notation of a range to search for a logical table of data. Values are appended after the last row of the table.
+     * The [A1 notation](/sheets/api/guides/concepts#cell) of a range to search for a logical table of data. Values are appended after the last row of the table.
      */
     range?: string;
     /**
@@ -7687,11 +7686,11 @@ export namespace sheets_v4 {
      */
     dateTimeRenderOption?: string;
     /**
-     * The major dimension that results should use. For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
+     * The major dimension that results should use. For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `ranges=["A1:B2"],majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `ranges=["A1:B2"],majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
      */
     majorDimension?: string;
     /**
-     * The A1 notation or R1C1 notation of the range to retrieve values from.
+     * The [A1 notation or R1C1 notation](/sheets/api/guides/concepts#cell) of the range to retrieve values from.
      */
     ranges?: string[];
     /**
@@ -7742,7 +7741,7 @@ export namespace sheets_v4 {
   export interface Params$Resource$Spreadsheets$Values$Clear
     extends StandardParameters {
     /**
-     * The A1 notation or R1C1 notation of the values to clear.
+     * The [A1 notation or R1C1 notation](/sheets/api/guides/concepts#cell) of the values to clear.
      */
     range?: string;
     /**
@@ -7766,7 +7765,7 @@ export namespace sheets_v4 {
      */
     majorDimension?: string;
     /**
-     * The A1 notation or R1C1 notation of the range to retrieve values from.
+     * The [A1 notation or R1C1 notation](/sheets/api/guides/concepts#cell) of the range to retrieve values from.
      */
     range?: string;
     /**
@@ -7785,7 +7784,7 @@ export namespace sheets_v4 {
      */
     includeValuesInResponse?: boolean;
     /**
-     * The A1 notation of the values to update.
+     * The [A1 notation](/sheets/api/guides/concepts#cell) of the values to update.
      */
     range?: string;
     /**

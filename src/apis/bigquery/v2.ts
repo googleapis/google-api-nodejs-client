@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -357,7 +356,7 @@ export namespace bigquery_v2 {
     timeSeriesIds?: string[] | null;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -548,7 +547,7 @@ export namespace bigquery_v2 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -627,6 +626,16 @@ export namespace bigquery_v2 {
      * The count of training samples matching the category within the cluster.
      */
     count?: string | null;
+  }
+  export interface Schema$CloneDefinition {
+    /**
+     * [Required] Reference describing the ID of the table that was cloned.
+     */
+    baseTableReference?: Schema$TableReference;
+    /**
+     * [Required] The time at which the base table was cloned. This value is reported in the JSON response using RFC3339 format.
+     */
+    cloneTime?: string | null;
   }
   /**
    * Message containing the information about one cluster.
@@ -811,9 +820,13 @@ export namespace bigquery_v2 {
      */
     location?: string | null;
     /**
+     * [Optional] Number of hours for the max time travel for all tables in the dataset.
+     */
+    maxTimeTravelHours?: string | null;
+    /**
      * [Output-only] Reserved for future use.
      */
-    satisfiesPZS?: boolean | null;
+    satisfiesPzs?: boolean | null;
     /**
      * [Output-only] A URL that can be used to access the resource again. You can use this URL in Get or Update requests to the resource.
      */
@@ -874,6 +887,10 @@ export namespace bigquery_v2 {
      */
     evaluationTable?: Schema$TableReference;
     /**
+     * Table reference of the test data after split.
+     */
+    testTable?: Schema$TableReference;
+    /**
      * Table reference of the training data after split.
      */
     trainingTable?: Schema$TableReference;
@@ -896,6 +913,15 @@ export namespace bigquery_v2 {
      */
     labels?: {[key: string]: string} | null;
   }
+  /**
+   * Model evaluation metrics for dimensionality reduction models.
+   */
+  export interface Schema$DimensionalityReductionMetrics {
+    /**
+     * Total percentage of variance explained by the selected principal components.
+     */
+    totalExplainedVarianceRatio?: number | null;
+  }
   export interface Schema$DmlStatistics {
     /**
      * Number of deleted Rows. populated by DML DELETE, MERGE and TRUNCATE statements.
@@ -909,6 +935,41 @@ export namespace bigquery_v2 {
      * Number of updated Rows. Populated by DML UPDATE and MERGE statements.
      */
     updatedRowCount?: string | null;
+  }
+  /**
+   * Discrete candidates of a double hyperparameter.
+   */
+  export interface Schema$DoubleCandidates {
+    /**
+     * Candidates for the double parameter in increasing order.
+     */
+    candidates?: number[] | null;
+  }
+  /**
+   * Search space for a double hyperparameter.
+   */
+  export interface Schema$DoubleHparamSearchSpace {
+    /**
+     * Candidates of the double hyperparameter.
+     */
+    candidates?: Schema$DoubleCandidates;
+    /**
+     * Range of the double hyperparameter.
+     */
+    range?: Schema$DoubleRange;
+  }
+  /**
+   * Range of a double hyperparameter.
+   */
+  export interface Schema$DoubleRange {
+    /**
+     * Max value of the double parameter.
+     */
+    max?: number | null;
+    /**
+     * Min value of the double parameter.
+     */
+    min?: number | null;
   }
   export interface Schema$EncryptionConfiguration {
     /**
@@ -963,6 +1024,10 @@ export namespace bigquery_v2 {
      * Populated for clustering models.
      */
     clusteringMetrics?: Schema$ClusteringMetrics;
+    /**
+     * Evaluation metrics when the model is a dimensionality reduction model, which currently includes PCA.
+     */
+    dimensionalityReductionMetrics?: Schema$DimensionalityReductionMetrics;
     /**
      * Populated for multi-class classification/classifier models.
      */
@@ -1107,6 +1172,19 @@ export namespace bigquery_v2 {
      * Human-readable stage descriptions.
      */
     substeps?: string[] | null;
+  }
+  /**
+   * Explanation for a single feature.
+   */
+  export interface Schema$Explanation {
+    /**
+     * Attribution of feature.
+     */
+    attribution?: number | null;
+    /**
+     * The full feature name. For non-numerical features, will be formatted like `.`. Overall size of feature name will always be truncated to first 120 characters.
+     */
+    featureName?: string | null;
   }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
@@ -1286,6 +1364,19 @@ export namespace bigquery_v2 {
      */
     kind?: string | null;
   }
+  /**
+   * Global explanations containing the top most important features after training.
+   */
+  export interface Schema$GlobalExplanation {
+    /**
+     * Class label for this set of global explanations. Will be empty/null for binary logistic and linear regression models. Sorted alphabetically in descending order.
+     */
+    classLabel?: string | null;
+    /**
+     * A list of the top global explanations. Sorted by absolute value of attribution in descending order.
+     */
+    explanations?: Schema$Explanation[];
+  }
   export interface Schema$GoogleSheetsOptions {
     /**
      * [Optional] Range of a sheet to query from. Only used when non-empty. Typical format: sheet_name!top_left_cell_id:bottom_right_cell_id For example: sheet1!A1:B20
@@ -1309,6 +1400,215 @@ export namespace bigquery_v2 {
      * [Optional] When hive partition detection is requested, a common prefix for all source uris should be supplied. The prefix must end immediately before the partition key encoding begins. For example, consider files following this data layout. gs://bucket/path_to_table/dt=2019-01-01/country=BR/id=7/file.avro gs://bucket/path_to_table/dt=2018-12-31/country=CA/id=3/file.avro When hive partitioning is requested with either AUTO or STRINGS detection, the common prefix can be either of gs://bucket/path_to_table or gs://bucket/path_to_table/ (trailing slash does not matter).
      */
     sourceUriPrefix?: string | null;
+  }
+  /**
+   * Hyperparameter search spaces. These should be a subset of training_options.
+   */
+  export interface Schema$HparamSearchSpaces {
+    /**
+     * Activation functions of neural network models.
+     */
+    activationFn?: Schema$StringHparamSearchSpace;
+    /**
+     * Mini batch sample size.
+     */
+    batchSize?: Schema$IntHparamSearchSpace;
+    /**
+     * Booster type for boosted tree models.
+     */
+    boosterType?: Schema$StringHparamSearchSpace;
+    /**
+     * Subsample ratio of columns for each level for boosted tree models.
+     */
+    colsampleBylevel?: Schema$DoubleHparamSearchSpace;
+    /**
+     * Subsample ratio of columns for each node(split) for boosted tree models.
+     */
+    colsampleBynode?: Schema$DoubleHparamSearchSpace;
+    /**
+     * Subsample ratio of columns when constructing each tree for boosted tree models.
+     */
+    colsampleBytree?: Schema$DoubleHparamSearchSpace;
+    /**
+     * Dart normalization type for boosted tree models.
+     */
+    dartNormalizeType?: Schema$StringHparamSearchSpace;
+    /**
+     * Dropout probability for dnn model training and boosted tree models using dart booster.
+     */
+    dropout?: Schema$DoubleHparamSearchSpace;
+    /**
+     * Hidden units for neural network models.
+     */
+    hiddenUnits?: Schema$IntArrayHparamSearchSpace;
+    /**
+     * L1 regularization coefficient.
+     */
+    l1Reg?: Schema$DoubleHparamSearchSpace;
+    /**
+     * L2 regularization coefficient.
+     */
+    l2Reg?: Schema$DoubleHparamSearchSpace;
+    /**
+     * Learning rate of training jobs.
+     */
+    learnRate?: Schema$DoubleHparamSearchSpace;
+    /**
+     * Maximum depth of a tree for boosted tree models.
+     */
+    maxTreeDepth?: Schema$IntHparamSearchSpace;
+    /**
+     * Minimum split loss for boosted tree models.
+     */
+    minSplitLoss?: Schema$DoubleHparamSearchSpace;
+    /**
+     * Minimum sum of instance weight needed in a child for boosted tree models.
+     */
+    minTreeChildWeight?: Schema$IntHparamSearchSpace;
+    /**
+     * Number of clusters for k-means.
+     */
+    numClusters?: Schema$IntHparamSearchSpace;
+    /**
+     * Number of latent factors to train on.
+     */
+    numFactors?: Schema$IntHparamSearchSpace;
+    /**
+     * Number of parallel trees for boosted tree models.
+     */
+    numParallelTree?: Schema$IntHparamSearchSpace;
+    /**
+     * Optimizer of TF models.
+     */
+    optimizer?: Schema$StringHparamSearchSpace;
+    /**
+     * Subsample the training data to grow tree to prevent overfitting for boosted tree models.
+     */
+    subsample?: Schema$DoubleHparamSearchSpace;
+    /**
+     * Tree construction algorithm for boosted tree models.
+     */
+    treeMethod?: Schema$StringHparamSearchSpace;
+    /**
+     * Hyperparameter for matrix factoration when implicit feedback type is specified.
+     */
+    walsAlpha?: Schema$DoubleHparamSearchSpace;
+  }
+  /**
+   * Training info of a trial in [hyperparameter tuning](/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-hp-tuning-overview) models.
+   */
+  export interface Schema$HparamTuningTrial {
+    /**
+     * Ending time of the trial.
+     */
+    endTimeMs?: string | null;
+    /**
+     * Error message for FAILED and INFEASIBLE trial.
+     */
+    errorMessage?: string | null;
+    /**
+     * Loss computed on the eval data at the end of trial.
+     */
+    evalLoss?: number | null;
+    /**
+     * Evaluation metrics of this trial calculated on the test data. Empty in Job API.
+     */
+    evaluationMetrics?: Schema$EvaluationMetrics;
+    /**
+     * The hyperprameters selected for this trial.
+     */
+    hparams?: Schema$TrainingOptions;
+    /**
+     * Hyperparameter tuning evaluation metrics of this trial calculated on the eval data. Unlike evaluation_metrics, only the fields corresponding to the hparam_tuning_objectives are set.
+     */
+    hparamTuningEvaluationMetrics?: Schema$EvaluationMetrics;
+    /**
+     * Starting time of the trial.
+     */
+    startTimeMs?: string | null;
+    /**
+     * The status of the trial.
+     */
+    status?: string | null;
+    /**
+     * Loss computed on the training data at the end of trial.
+     */
+    trainingLoss?: number | null;
+    /**
+     * 1-based index of the trial.
+     */
+    trialId?: string | null;
+  }
+  export interface Schema$IndexUnusedReason {
+    /**
+     * [Output-only] Specifies the base table involved in the reason that no search index was used.
+     */
+    base_table?: Schema$TableReference;
+    /**
+     * [Output-only] Specifies the high-level reason for the scenario when no search index was used.
+     */
+    code?: string | null;
+    /**
+     * [Output-only] Specifies the name of the unused search index, if available.
+     */
+    index_name?: string | null;
+    /**
+     * [Output-only] Free form human-readable reason for the scenario when no search index was used.
+     */
+    message?: string | null;
+  }
+  /**
+   * An array of int.
+   */
+  export interface Schema$IntArray {
+    /**
+     * Elements in the int array.
+     */
+    elements?: string[] | null;
+  }
+  /**
+   * Search space for int array.
+   */
+  export interface Schema$IntArrayHparamSearchSpace {
+    /**
+     * Candidates for the int array parameter.
+     */
+    candidates?: Schema$IntArray[];
+  }
+  /**
+   * Discrete candidates of an int hyperparameter.
+   */
+  export interface Schema$IntCandidates {
+    /**
+     * Candidates for the int parameter in increasing order.
+     */
+    candidates?: string[] | null;
+  }
+  /**
+   * Search space for an int hyperparameter.
+   */
+  export interface Schema$IntHparamSearchSpace {
+    /**
+     * Candidates of the int hyperparameter.
+     */
+    candidates?: Schema$IntCandidates;
+    /**
+     * Range of the int hyperparameter.
+     */
+    range?: Schema$IntRange;
+  }
+  /**
+   * Range of an int hyperparameter.
+   */
+  export interface Schema$IntRange {
+    /**
+     * Max value of the int parameter.
+     */
+    max?: string | null;
+    /**
+     * Min value of the int parameter.
+     */
+    min?: string | null;
   }
   export interface Schema$IterationResult {
     /**
@@ -1758,6 +2058,10 @@ export namespace bigquery_v2 {
      */
     completionRatio?: number | null;
     /**
+     * [Output-only] Statistics for a copy job.
+     */
+    copy?: Schema$JobStatistics5;
+    /**
      * [Output-only] Creation time of this job, in milliseconds since the epoch. This field will be present on all jobs.
      */
     creationTime?: string | null;
@@ -1916,6 +2220,10 @@ export namespace bigquery_v2 {
      */
     schema?: Schema$TableSchema;
     /**
+     * [Output-only] Search query specific statistics.
+     */
+    searchStatistics?: Schema$SearchStatistics;
+    /**
      * The type of query statement, if valid. Possible values (new values might be added in the future): "SELECT": SELECT query. "INSERT": INSERT query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. "UPDATE": UPDATE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. "DELETE": DELETE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. "MERGE": MERGE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. "ALTER_TABLE": ALTER TABLE query. "ALTER_VIEW": ALTER VIEW query. "ASSERT": ASSERT condition AS 'description'. "CREATE_FUNCTION": CREATE FUNCTION query. "CREATE_MODEL": CREATE [OR REPLACE] MODEL ... AS SELECT ... . "CREATE_PROCEDURE": CREATE PROCEDURE query. "CREATE_TABLE": CREATE [OR REPLACE] TABLE without AS SELECT. "CREATE_TABLE_AS_SELECT": CREATE [OR REPLACE] TABLE ... AS SELECT ... . "CREATE_VIEW": CREATE [OR REPLACE] VIEW ... AS SELECT ... . "DROP_FUNCTION" : DROP FUNCTION query. "DROP_PROCEDURE": DROP PROCEDURE query. "DROP_TABLE": DROP TABLE query. "DROP_VIEW": DROP VIEW query.
      */
     statementType?: string | null;
@@ -1979,6 +2287,16 @@ export namespace bigquery_v2 {
      * [Output-only] Number of user bytes extracted into the result. This is the byte count as computed by BigQuery for billing purposes.
      */
     inputBytes?: string | null;
+  }
+  export interface Schema$JobStatistics5 {
+    /**
+     * [Output-only] Number of logical bytes copied to the destination table.
+     */
+    copied_logical_bytes?: string | null;
+    /**
+     * [Output-only] Number of rows copied to the destination table.
+     */
+    copied_rows?: string | null;
   }
   export interface Schema$JobStatus {
     /**
@@ -2051,6 +2369,10 @@ export namespace bigquery_v2 {
      */
     lastRefreshTime?: string | null;
     /**
+     * [Optional] Max staleness of data that could be returned when materizlized view is queried (formatted as Google SQL Interval type).
+     */
+    maxStaleness?: string | null;
+    /**
      * [Required] A query whose result is persisted.
      */
     query?: string | null;
@@ -2079,6 +2401,10 @@ export namespace bigquery_v2 {
      */
     creationTime?: string | null;
     /**
+     * Output only. The default trial_id to use in TVFs when the trial_id is not passed in. For single-objective [hyperparameter tuning](/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-hp-tuning-overview) models, this is the best trial ID. For multi-objective [hyperparameter tuning](/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-hp-tuning-overview) models, this is the smallest trial ID among all Pareto optimal trials.
+     */
+    defaultTrialId?: string | null;
+    /**
      * Optional. A user-friendly description of this model.
      */
     description?: string | null;
@@ -2103,6 +2429,14 @@ export namespace bigquery_v2 {
      */
     friendlyName?: string | null;
     /**
+     * Output only. All hyperparameter search spaces in this model.
+     */
+    hparamSearchSpaces?: Schema$HparamSearchSpaces;
+    /**
+     * Output only. Trials of a [hyperparameter tuning](/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-hp-tuning-overview) model sorted by trial_id.
+     */
+    hparamTrials?: Schema$HparamTuningTrial[];
+    /**
      * Output only. Label columns that were used to train this model. The output of the model will have a "predicted_" prefix to these columns.
      */
     labelColumns?: Schema$StandardSqlField[];
@@ -2126,6 +2460,10 @@ export namespace bigquery_v2 {
      * Output only. Type of the model resource.
      */
     modelType?: string | null;
+    /**
+     * Output only. For single-objective [hyperparameter tuning](/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-hp-tuning-overview) models, it only contains the best trial. For multi-objective [hyperparameter tuning](/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-hp-tuning-overview) models, it contains all Pareto optimal trials sorted by trial_id.
+     */
+    optimalTrialIds?: string[] | null;
     /**
      * Output only. Information for all training runs in increasing order of start_time.
      */
@@ -2202,6 +2540,27 @@ export namespace bigquery_v2 {
      * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
+  }
+  /**
+   * Principal component infos, used only for eigen decomposition based models, e.g., PCA. Ordered by explained_variance in the descending order.
+   */
+  export interface Schema$PrincipalComponentInfo {
+    /**
+     * The explained_variance is pre-ordered in the descending order to compute the cumulative explained variance ratio.
+     */
+    cumulativeExplainedVarianceRatio?: number | null;
+    /**
+     * Explained variance by this principal component, which is simply the eigenvalue.
+     */
+    explainedVariance?: number | null;
+    /**
+     * Explained_variance over the total explained variance.
+     */
+    explainedVarianceRatio?: number | null;
+    /**
+     * Id of the principal component.
+     */
+    principalComponentId?: string | null;
   }
   export interface Schema$ProjectList {
     /**
@@ -2486,6 +2845,27 @@ export namespace bigquery_v2 {
     rSquared?: number | null;
   }
   /**
+   * Options for a remote user-defined function.
+   */
+  export interface Schema$RemoteFunctionOptions {
+    /**
+     * Fully qualified name of the user-provided connection object which holds the authentication information to send requests to the remote service. projects/{project_id\}/locations/{location_id\}/connections/{connection_id\}
+     */
+    connection?: string | null;
+    /**
+     * Endpoint of the user-provided remote service (e.g. a function url in Google Cloud Functions).
+     */
+    endpoint?: string | null;
+    /**
+     * Max number of rows in each batch sent to the remote service. If absent or if 0, it means no limit.
+     */
+    maxBatchingRows?: string | null;
+    /**
+     * User-defined context as a set of key/value pairs, which will be sent as function invocation context together with batched arguments in the requests to the remote service. The total number of bytes of keys and values must be less than 8KB.
+     */
+    userDefinedContext?: {[key: string]: string} | null;
+  }
+  /**
    * A user-defined function or a stored procedure.
    */
   export interface Schema$Routine {
@@ -2525,6 +2905,10 @@ export namespace bigquery_v2 {
      * Output only. The time when this routine was last modified, in milliseconds since the epoch.
      */
     lastModifiedTime?: string | null;
+    /**
+     * Optional. Remote function specific options.
+     */
+    remoteFunctionOptions?: Schema$RemoteFunctionOptions;
     /**
      * Optional. Can be set only if routine_type = "TABLE_VALUED_FUNCTION". If absent, the return table type is inferred from definition_body at query time in each query that references this routine. If present, then the columns in the evaluated table result will be cast to match the column types specificed in return table type, at query time.
      */
@@ -2658,6 +3042,16 @@ export namespace bigquery_v2 {
      */
     stackFrames?: Schema$ScriptStackFrame[];
   }
+  export interface Schema$SearchStatistics {
+    /**
+     * When index_usage_mode is UNUSED or PARTIALLY_USED, this field explains why index was not used in all or part of the search query. If index_usage_mode is FULLLY_USED, this field is not populated.
+     */
+    indexUnusedReason?: Schema$IndexUnusedReason[];
+    /**
+     * Specifies index usage mode for the query.
+     */
+    indexUsageMode?: string | null;
+  }
   export interface Schema$SessionInfo {
     /**
      * [Output-only] // [Preview] Id of the session.
@@ -2669,7 +3063,7 @@ export namespace bigquery_v2 {
    */
   export interface Schema$SetIamPolicyRequest {
     /**
-     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
+     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
     /**
@@ -2743,7 +3137,20 @@ export namespace bigquery_v2 {
      */
     oldestEntryTime?: string | null;
   }
+  /**
+   * Search space for string and enum.
+   */
+  export interface Schema$StringHparamSearchSpace {
+    /**
+     * Canididates for the string or enum parameter in lower case.
+     */
+    candidates?: string[] | null;
+  }
   export interface Schema$Table {
+    /**
+     * [Output-only] Clone definition.
+     */
+    cloneDefinition?: Schema$CloneDefinition;
     /**
      * [Beta] Clustering specification for the table. Must be specified with partitioning, data in the table will be first partitioned and subsequently clustered.
      */
@@ -2824,6 +3231,38 @@ export namespace bigquery_v2 {
      * [Output-only] The number of rows of data in this table, excluding any data in the streaming buffer.
      */
     numRows?: string | null;
+    /**
+     * [Output-only] Number of logical bytes that are less than 90 days old.
+     */
+    num_active_logical_bytes?: string | null;
+    /**
+     * [Output-only] Number of physical bytes less than 90 days old. This data is not kept in real time, and might be delayed by a few seconds to a few minutes.
+     */
+    num_active_physical_bytes?: string | null;
+    /**
+     * [Output-only] Number of logical bytes that are more than 90 days old.
+     */
+    num_long_term_logical_bytes?: string | null;
+    /**
+     * [Output-only] Number of physical bytes more than 90 days old. This data is not kept in real time, and might be delayed by a few seconds to a few minutes.
+     */
+    num_long_term_physical_bytes?: string | null;
+    /**
+     * [Output-only] The number of partitions present in the table or materialized view. This data is not kept in real time, and might be delayed by a few seconds to a few minutes.
+     */
+    num_partitions?: string | null;
+    /**
+     * [Output-only] Number of physical bytes used by time travel storage (deleted or changed data). This data is not kept in real time, and might be delayed by a few seconds to a few minutes.
+     */
+    num_time_travel_physical_bytes?: string | null;
+    /**
+     * [Output-only] Total number of logical bytes in the table or materialized view.
+     */
+    num_total_logical_bytes?: string | null;
+    /**
+     * [Output-only] The physical size of this table in bytes. This also includes storage used for time travel. This data is not kept in real time, and might be delayed by a few seconds to a few minutes.
+     */
+    num_total_physical_bytes?: string | null;
     /**
      * [TrustedTester] Range partitioning specification for this table. Only one of timePartitioning and rangePartitioning should be specified.
      */
@@ -2930,7 +3369,11 @@ export namespace bigquery_v2 {
     /**
      * Optional. Collation specification of the field. It only can be set on string type field.
      */
-    collationSpec?: string | null;
+    collation?: string | null;
+    /**
+     * Optional. A SQL expression to specify the default value for this field. It can only be set for top level fields (columns). You can use struct or array expression to specify default value for the entire struct or array. The valid SQL expressions are: - Literals for all data types, including STRUCT and ARRAY. - Following functions: - CURRENT_TIMESTAMP - CURRENT_TIME - CURRENT_DATE - CURRENT_DATETIME - GENERATE_UUID - RAND - SESSION_USER - ST_GEOGPOINT - Struct or array composed with the above allowed functions, for example, [CURRENT_DATE(), DATE '2020-01-01']
+     */
+    defaultValueExpression?: string | null;
     /**
      * [Optional] The field description. The maximum length is 1,024 characters.
      */
@@ -3031,7 +3474,7 @@ export namespace bigquery_v2 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[] | null;
   }
@@ -3083,6 +3526,10 @@ export namespace bigquery_v2 {
      * Booster type for boosted tree models.
      */
     boosterType?: string | null;
+    /**
+     * Whether or not p-value test should be computed for this model. Only available for linear and logistic regression models.
+     */
+    calculatePValues?: boolean | null;
     /**
      * If true, clean spikes and dips in the input time series.
      */
@@ -3136,6 +3583,10 @@ export namespace bigquery_v2 {
      */
     earlyStop?: boolean | null;
     /**
+     * If true, enable global explanation during training.
+     */
+    enableGlobalExplain?: boolean | null;
+    /**
      * Feedback type that specifies which algorithm to run for matrix factorization.
      */
     feedbackType?: string | null;
@@ -3152,6 +3603,10 @@ export namespace bigquery_v2 {
      */
     horizon?: string | null;
     /**
+     * The target evaluation metrics to optimize the hyperparameters for.
+     */
+    hparamTuningObjectives?: string[] | null;
+    /**
      * Include drift when fitting an ARIMA model.
      */
     includeDrift?: boolean | null;
@@ -3163,6 +3618,10 @@ export namespace bigquery_v2 {
      * Name of input label columns in training data.
      */
     inputLabelColumns?: string[] | null;
+    /**
+     * Number of integral steps for the integrated gradients explain method.
+     */
+    integratedGradientsNumSteps?: string | null;
     /**
      * Item column specified for matrix factorization models.
      */
@@ -3204,6 +3663,10 @@ export namespace bigquery_v2 {
      */
     maxIterations?: string | null;
     /**
+     * Maximum number of trials to run in parallel.
+     */
+    maxParallelTrials?: string | null;
+    /**
      * Maximum depth of a tree for boosted tree models.
      */
     maxTreeDepth?: string | null;
@@ -3240,6 +3703,10 @@ export namespace bigquery_v2 {
      */
     numParallelTree?: string | null;
     /**
+     * Number of trials to run this hyperparameter tuning job.
+     */
+    numTrials?: string | null;
+    /**
      * Optimization strategy for training linear regression models.
      */
     optimizationStrategy?: string | null;
@@ -3247,6 +3714,10 @@ export namespace bigquery_v2 {
      * Whether to preserve the input structs in output feature names. Suppose there is a struct A with field b. When false (default), the output feature name is A_b. When true, the output feature name is A.b.
      */
     preserveInputStructs?: boolean | null;
+    /**
+     * Number of paths for the sampled shapley explain method.
+     */
+    sampledShapleyNumPaths?: string | null;
     /**
      * Subsample fraction of the training data to grow tree to prevent overfitting for boosted tree models.
      */
@@ -3289,6 +3760,10 @@ export namespace bigquery_v2 {
    */
   export interface Schema$TrainingRun {
     /**
+     * Global explanation contains the explanation of top features on the class level. Applies to classification models only.
+     */
+    classLevelGlobalExplanations?: Schema$GlobalExplanation[];
+    /**
      * Data split result of the training run. Only set when the input data is actually split.
      */
     dataSplitResult?: Schema$DataSplitResult;
@@ -3296,6 +3771,10 @@ export namespace bigquery_v2 {
      * The evaluation metrics over training/eval data that were computed at the end of training.
      */
     evaluationMetrics?: Schema$EvaluationMetrics;
+    /**
+     * Global explanation contains the explanation of top features on the model level. Applies to both regression and classification models.
+     */
+    modelLevelGlobalExplanation?: Schema$GlobalExplanation;
     /**
      * Output of each iteration run, results.size() <= max_iterations.
      */
@@ -3308,6 +3787,14 @@ export namespace bigquery_v2 {
      * Options that were used for this training run, includes user specified and default options that were used.
      */
     trainingOptions?: Schema$TrainingOptions;
+    /**
+     * The model id in Vertex AI Model Registry for this training run
+     */
+    vertexAiModelId?: string | null;
+    /**
+     * The model version in Vertex AI Model Registry for this training run
+     */
+    vertexAiModelVersion?: string | null;
   }
   export interface Schema$TransactionInfo {
     /**
@@ -3536,7 +4023,8 @@ export namespace bigquery_v2 {
      *   //   "labels": {},
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
-     *   //   "satisfiesPZS": false,
+     *   //   "maxTimeTravelHours": "my_maxTimeTravelHours",
+     *   //   "satisfiesPzs": false,
      *   //   "selfLink": "my_selfLink",
      *   //   "tags": []
      *   // }
@@ -3684,7 +4172,8 @@ export namespace bigquery_v2 {
      *       //   "labels": {},
      *       //   "lastModifiedTime": "my_lastModifiedTime",
      *       //   "location": "my_location",
-     *       //   "satisfiesPZS": false,
+     *       //   "maxTimeTravelHours": "my_maxTimeTravelHours",
+     *       //   "satisfiesPzs": false,
      *       //   "selfLink": "my_selfLink",
      *       //   "tags": []
      *       // }
@@ -3710,7 +4199,8 @@ export namespace bigquery_v2 {
      *   //   "labels": {},
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
-     *   //   "satisfiesPZS": false,
+     *   //   "maxTimeTravelHours": "my_maxTimeTravelHours",
+     *   //   "satisfiesPzs": false,
      *   //   "selfLink": "my_selfLink",
      *   //   "tags": []
      *   // }
@@ -4002,7 +4492,8 @@ export namespace bigquery_v2 {
      *       //   "labels": {},
      *       //   "lastModifiedTime": "my_lastModifiedTime",
      *       //   "location": "my_location",
-     *       //   "satisfiesPZS": false,
+     *       //   "maxTimeTravelHours": "my_maxTimeTravelHours",
+     *       //   "satisfiesPzs": false,
      *       //   "selfLink": "my_selfLink",
      *       //   "tags": []
      *       // }
@@ -4028,7 +4519,8 @@ export namespace bigquery_v2 {
      *   //   "labels": {},
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
-     *   //   "satisfiesPZS": false,
+     *   //   "maxTimeTravelHours": "my_maxTimeTravelHours",
+     *   //   "satisfiesPzs": false,
      *   //   "selfLink": "my_selfLink",
      *   //   "tags": []
      *   // }
@@ -4178,7 +4670,8 @@ export namespace bigquery_v2 {
      *       //   "labels": {},
      *       //   "lastModifiedTime": "my_lastModifiedTime",
      *       //   "location": "my_location",
-     *       //   "satisfiesPZS": false,
+     *       //   "maxTimeTravelHours": "my_maxTimeTravelHours",
+     *       //   "satisfiesPzs": false,
      *       //   "selfLink": "my_selfLink",
      *       //   "tags": []
      *       // }
@@ -4204,7 +4697,8 @@ export namespace bigquery_v2 {
      *   //   "labels": {},
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
-     *   //   "satisfiesPZS": false,
+     *   //   "maxTimeTravelHours": "my_maxTimeTravelHours",
+     *   //   "satisfiesPzs": false,
      *   //   "selfLink": "my_selfLink",
      *   //   "tags": []
      *   // }
@@ -5776,18 +6270,22 @@ export namespace bigquery_v2 {
      *   // {
      *   //   "bestTrialId": "my_bestTrialId",
      *   //   "creationTime": "my_creationTime",
+     *   //   "defaultTrialId": "my_defaultTrialId",
      *   //   "description": "my_description",
      *   //   "encryptionConfiguration": {},
      *   //   "etag": "my_etag",
      *   //   "expirationTime": "my_expirationTime",
      *   //   "featureColumns": [],
      *   //   "friendlyName": "my_friendlyName",
+     *   //   "hparamSearchSpaces": {},
+     *   //   "hparamTrials": [],
      *   //   "labelColumns": [],
      *   //   "labels": {},
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
      *   //   "modelReference": {},
      *   //   "modelType": "my_modelType",
+     *   //   "optimalTrialIds": [],
      *   //   "trainingRuns": []
      *   // }
      * }
@@ -6067,18 +6565,22 @@ export namespace bigquery_v2 {
      *       // {
      *       //   "bestTrialId": "my_bestTrialId",
      *       //   "creationTime": "my_creationTime",
+     *       //   "defaultTrialId": "my_defaultTrialId",
      *       //   "description": "my_description",
      *       //   "encryptionConfiguration": {},
      *       //   "etag": "my_etag",
      *       //   "expirationTime": "my_expirationTime",
      *       //   "featureColumns": [],
      *       //   "friendlyName": "my_friendlyName",
+     *       //   "hparamSearchSpaces": {},
+     *       //   "hparamTrials": [],
      *       //   "labelColumns": [],
      *       //   "labels": {},
      *       //   "lastModifiedTime": "my_lastModifiedTime",
      *       //   "location": "my_location",
      *       //   "modelReference": {},
      *       //   "modelType": "my_modelType",
+     *       //   "optimalTrialIds": [],
      *       //   "trainingRuns": []
      *       // }
      *     },
@@ -6089,18 +6591,22 @@ export namespace bigquery_v2 {
      *   // {
      *   //   "bestTrialId": "my_bestTrialId",
      *   //   "creationTime": "my_creationTime",
+     *   //   "defaultTrialId": "my_defaultTrialId",
      *   //   "description": "my_description",
      *   //   "encryptionConfiguration": {},
      *   //   "etag": "my_etag",
      *   //   "expirationTime": "my_expirationTime",
      *   //   "featureColumns": [],
      *   //   "friendlyName": "my_friendlyName",
+     *   //   "hparamSearchSpaces": {},
+     *   //   "hparamTrials": [],
      *   //   "labelColumns": [],
      *   //   "labels": {},
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
      *   //   "modelReference": {},
      *   //   "modelType": "my_modelType",
+     *   //   "optimalTrialIds": [],
      *   //   "trainingRuns": []
      *   // }
      * }
@@ -6752,6 +7258,7 @@ export namespace bigquery_v2 {
      *   //   "importedLibraries": [],
      *   //   "language": "my_language",
      *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "remoteFunctionOptions": {},
      *   //   "returnTableType": {},
      *   //   "returnType": {},
      *   //   "routineReference": {},
@@ -6898,6 +7405,7 @@ export namespace bigquery_v2 {
      *       //   "importedLibraries": [],
      *       //   "language": "my_language",
      *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "remoteFunctionOptions": {},
      *       //   "returnTableType": {},
      *       //   "returnType": {},
      *       //   "routineReference": {},
@@ -6919,6 +7427,7 @@ export namespace bigquery_v2 {
      *   //   "importedLibraries": [],
      *   //   "language": "my_language",
      *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "remoteFunctionOptions": {},
      *   //   "returnTableType": {},
      *   //   "returnType": {},
      *   //   "routineReference": {},
@@ -7215,6 +7724,7 @@ export namespace bigquery_v2 {
      *       //   "importedLibraries": [],
      *       //   "language": "my_language",
      *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "remoteFunctionOptions": {},
      *       //   "returnTableType": {},
      *       //   "returnType": {},
      *       //   "routineReference": {},
@@ -7236,6 +7746,7 @@ export namespace bigquery_v2 {
      *   //   "importedLibraries": [],
      *   //   "language": "my_language",
      *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "remoteFunctionOptions": {},
      *   //   "returnTableType": {},
      *   //   "returnType": {},
      *   //   "routineReference": {},
@@ -7465,7 +7976,7 @@ export namespace bigquery_v2 {
      *
      *   // Do the magic
      *   const res = await bigquery.rowAccessPolicies.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/datasets/my-dataset/tables/my-table/rowAccessPolicies/my-rowAccessPolicie',
      *
@@ -7760,7 +8271,7 @@ export namespace bigquery_v2 {
      *
      *   // Do the magic
      *   const res = await bigquery.rowAccessPolicies.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/datasets/my-dataset/tables/my-table/rowAccessPolicies/my-rowAccessPolicie',
      *
@@ -7906,7 +8417,7 @@ export namespace bigquery_v2 {
      *
      *   // Do the magic
      *   const res = await bigquery.rowAccessPolicies.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource:
      *       'projects/my-project/datasets/my-dataset/tables/my-table/rowAccessPolicies/my-rowAccessPolicie',
      *
@@ -8027,7 +8538,7 @@ export namespace bigquery_v2 {
   export interface Params$Resource$Rowaccesspolicies$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -8062,7 +8573,7 @@ export namespace bigquery_v2 {
   export interface Params$Resource$Rowaccesspolicies$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -8074,7 +8585,7 @@ export namespace bigquery_v2 {
   export interface Params$Resource$Rowaccesspolicies$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -8620,11 +9131,14 @@ export namespace bigquery_v2 {
      *     selectedFields: 'placeholder-value',
      *     // Table ID of the requested table
      *     tableId: 'placeholder-value',
+     *     // Specifies the view that determines which table information is returned. By default, basic table information and storage statistics (STORAGE_STATS) are returned.
+     *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
+     *   //   "cloneDefinition": {},
      *   //   "clustering": {},
      *   //   "creationTime": "my_creationTime",
      *   //   "defaultCollation": "my_defaultCollation",
@@ -8645,6 +9159,14 @@ export namespace bigquery_v2 {
      *   //   "numLongTermBytes": "my_numLongTermBytes",
      *   //   "numPhysicalBytes": "my_numPhysicalBytes",
      *   //   "numRows": "my_numRows",
+     *   //   "num_active_logical_bytes": "my_num_active_logical_bytes",
+     *   //   "num_active_physical_bytes": "my_num_active_physical_bytes",
+     *   //   "num_long_term_logical_bytes": "my_num_long_term_logical_bytes",
+     *   //   "num_long_term_physical_bytes": "my_num_long_term_physical_bytes",
+     *   //   "num_partitions": "my_num_partitions",
+     *   //   "num_time_travel_physical_bytes": "my_num_time_travel_physical_bytes",
+     *   //   "num_total_logical_bytes": "my_num_total_logical_bytes",
+     *   //   "num_total_physical_bytes": "my_num_total_physical_bytes",
      *   //   "rangePartitioning": {},
      *   //   "requirePartitionFilter": false,
      *   //   "schema": {},
@@ -8779,7 +9301,7 @@ export namespace bigquery_v2 {
      *
      *   // Do the magic
      *   const res = await bigquery.tables.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/datasets/my-dataset/tables/my-table',
      *
      *     // Request body metadata
@@ -8931,6 +9453,7 @@ export namespace bigquery_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "cloneDefinition": {},
      *       //   "clustering": {},
      *       //   "creationTime": "my_creationTime",
      *       //   "defaultCollation": "my_defaultCollation",
@@ -8951,6 +9474,14 @@ export namespace bigquery_v2 {
      *       //   "numLongTermBytes": "my_numLongTermBytes",
      *       //   "numPhysicalBytes": "my_numPhysicalBytes",
      *       //   "numRows": "my_numRows",
+     *       //   "num_active_logical_bytes": "my_num_active_logical_bytes",
+     *       //   "num_active_physical_bytes": "my_num_active_physical_bytes",
+     *       //   "num_long_term_logical_bytes": "my_num_long_term_logical_bytes",
+     *       //   "num_long_term_physical_bytes": "my_num_long_term_physical_bytes",
+     *       //   "num_partitions": "my_num_partitions",
+     *       //   "num_time_travel_physical_bytes": "my_num_time_travel_physical_bytes",
+     *       //   "num_total_logical_bytes": "my_num_total_logical_bytes",
+     *       //   "num_total_physical_bytes": "my_num_total_physical_bytes",
      *       //   "rangePartitioning": {},
      *       //   "requirePartitionFilter": false,
      *       //   "schema": {},
@@ -8968,6 +9499,7 @@ export namespace bigquery_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "cloneDefinition": {},
      *   //   "clustering": {},
      *   //   "creationTime": "my_creationTime",
      *   //   "defaultCollation": "my_defaultCollation",
@@ -8988,6 +9520,14 @@ export namespace bigquery_v2 {
      *   //   "numLongTermBytes": "my_numLongTermBytes",
      *   //   "numPhysicalBytes": "my_numPhysicalBytes",
      *   //   "numRows": "my_numRows",
+     *   //   "num_active_logical_bytes": "my_num_active_logical_bytes",
+     *   //   "num_active_physical_bytes": "my_num_active_physical_bytes",
+     *   //   "num_long_term_logical_bytes": "my_num_long_term_logical_bytes",
+     *   //   "num_long_term_physical_bytes": "my_num_long_term_physical_bytes",
+     *   //   "num_partitions": "my_num_partitions",
+     *   //   "num_time_travel_physical_bytes": "my_num_time_travel_physical_bytes",
+     *   //   "num_total_logical_bytes": "my_num_total_logical_bytes",
+     *   //   "num_total_physical_bytes": "my_num_total_physical_bytes",
      *   //   "rangePartitioning": {},
      *   //   "requirePartitionFilter": false,
      *   //   "schema": {},
@@ -9276,6 +9816,7 @@ export namespace bigquery_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "cloneDefinition": {},
      *       //   "clustering": {},
      *       //   "creationTime": "my_creationTime",
      *       //   "defaultCollation": "my_defaultCollation",
@@ -9296,6 +9837,14 @@ export namespace bigquery_v2 {
      *       //   "numLongTermBytes": "my_numLongTermBytes",
      *       //   "numPhysicalBytes": "my_numPhysicalBytes",
      *       //   "numRows": "my_numRows",
+     *       //   "num_active_logical_bytes": "my_num_active_logical_bytes",
+     *       //   "num_active_physical_bytes": "my_num_active_physical_bytes",
+     *       //   "num_long_term_logical_bytes": "my_num_long_term_logical_bytes",
+     *       //   "num_long_term_physical_bytes": "my_num_long_term_physical_bytes",
+     *       //   "num_partitions": "my_num_partitions",
+     *       //   "num_time_travel_physical_bytes": "my_num_time_travel_physical_bytes",
+     *       //   "num_total_logical_bytes": "my_num_total_logical_bytes",
+     *       //   "num_total_physical_bytes": "my_num_total_physical_bytes",
      *       //   "rangePartitioning": {},
      *       //   "requirePartitionFilter": false,
      *       //   "schema": {},
@@ -9313,6 +9862,7 @@ export namespace bigquery_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "cloneDefinition": {},
      *   //   "clustering": {},
      *   //   "creationTime": "my_creationTime",
      *   //   "defaultCollation": "my_defaultCollation",
@@ -9333,6 +9883,14 @@ export namespace bigquery_v2 {
      *   //   "numLongTermBytes": "my_numLongTermBytes",
      *   //   "numPhysicalBytes": "my_numPhysicalBytes",
      *   //   "numRows": "my_numRows",
+     *   //   "num_active_logical_bytes": "my_num_active_logical_bytes",
+     *   //   "num_active_physical_bytes": "my_num_active_physical_bytes",
+     *   //   "num_long_term_logical_bytes": "my_num_long_term_logical_bytes",
+     *   //   "num_long_term_physical_bytes": "my_num_long_term_physical_bytes",
+     *   //   "num_partitions": "my_num_partitions",
+     *   //   "num_time_travel_physical_bytes": "my_num_time_travel_physical_bytes",
+     *   //   "num_total_logical_bytes": "my_num_total_logical_bytes",
+     *   //   "num_total_physical_bytes": "my_num_total_physical_bytes",
      *   //   "rangePartitioning": {},
      *   //   "requirePartitionFilter": false,
      *   //   "schema": {},
@@ -9466,7 +10024,7 @@ export namespace bigquery_v2 {
      *
      *   // Do the magic
      *   const res = await bigquery.tables.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/datasets/my-dataset/tables/my-table',
      *
      *     // Request body metadata
@@ -9611,7 +10169,7 @@ export namespace bigquery_v2 {
      *
      *   // Do the magic
      *   const res = await bigquery.tables.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'projects/my-project/datasets/my-dataset/tables/my-table',
      *
      *     // Request body metadata
@@ -9770,6 +10328,7 @@ export namespace bigquery_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "cloneDefinition": {},
      *       //   "clustering": {},
      *       //   "creationTime": "my_creationTime",
      *       //   "defaultCollation": "my_defaultCollation",
@@ -9790,6 +10349,14 @@ export namespace bigquery_v2 {
      *       //   "numLongTermBytes": "my_numLongTermBytes",
      *       //   "numPhysicalBytes": "my_numPhysicalBytes",
      *       //   "numRows": "my_numRows",
+     *       //   "num_active_logical_bytes": "my_num_active_logical_bytes",
+     *       //   "num_active_physical_bytes": "my_num_active_physical_bytes",
+     *       //   "num_long_term_logical_bytes": "my_num_long_term_logical_bytes",
+     *       //   "num_long_term_physical_bytes": "my_num_long_term_physical_bytes",
+     *       //   "num_partitions": "my_num_partitions",
+     *       //   "num_time_travel_physical_bytes": "my_num_time_travel_physical_bytes",
+     *       //   "num_total_logical_bytes": "my_num_total_logical_bytes",
+     *       //   "num_total_physical_bytes": "my_num_total_physical_bytes",
      *       //   "rangePartitioning": {},
      *       //   "requirePartitionFilter": false,
      *       //   "schema": {},
@@ -9807,6 +10374,7 @@ export namespace bigquery_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "cloneDefinition": {},
      *   //   "clustering": {},
      *   //   "creationTime": "my_creationTime",
      *   //   "defaultCollation": "my_defaultCollation",
@@ -9827,6 +10395,14 @@ export namespace bigquery_v2 {
      *   //   "numLongTermBytes": "my_numLongTermBytes",
      *   //   "numPhysicalBytes": "my_numPhysicalBytes",
      *   //   "numRows": "my_numRows",
+     *   //   "num_active_logical_bytes": "my_num_active_logical_bytes",
+     *   //   "num_active_physical_bytes": "my_num_active_physical_bytes",
+     *   //   "num_long_term_logical_bytes": "my_num_long_term_logical_bytes",
+     *   //   "num_long_term_physical_bytes": "my_num_long_term_physical_bytes",
+     *   //   "num_partitions": "my_num_partitions",
+     *   //   "num_time_travel_physical_bytes": "my_num_time_travel_physical_bytes",
+     *   //   "num_total_logical_bytes": "my_num_total_logical_bytes",
+     *   //   "num_total_physical_bytes": "my_num_total_physical_bytes",
      *   //   "rangePartitioning": {},
      *   //   "requirePartitionFilter": false,
      *   //   "schema": {},
@@ -9962,11 +10538,15 @@ export namespace bigquery_v2 {
      * Table ID of the requested table
      */
     tableId?: string;
+    /**
+     * Specifies the view that determines which table information is returned. By default, basic table information and storage statistics (STORAGE_STATS) are returned.
+     */
+    view?: string;
   }
   export interface Params$Resource$Tables$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -10034,7 +10614,7 @@ export namespace bigquery_v2 {
   export interface Params$Resource$Tables$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -10046,7 +10626,7 @@ export namespace bigquery_v2 {
   export interface Params$Resource$Tables$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 

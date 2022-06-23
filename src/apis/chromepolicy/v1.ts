@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -290,7 +289,7 @@ export namespace chromepolicy_v1 {
      */
     field?: string | null;
     /**
-     * Output only. Provides a list of fields and the values they must have for this field to be allowed to be set.
+     * Output only. Provides a list of fields and values. At least one of the fields must have the corresponding value in order for this field to be allowed to be set.
      */
     fieldDependencies?: Schema$GoogleChromePolicyV1PolicySchemaFieldDependencies[];
     /**
@@ -305,6 +304,10 @@ export namespace chromepolicy_v1 {
      * Output only. Provides the description of the fields nested in this field, if the field is a message type that defines multiple fields.
      */
     nestedFieldDescriptions?: Schema$GoogleChromePolicyV1PolicySchemaFieldDescription[];
+    /**
+     * Output only. Provides a list of fields that are required to be set if this field has a certain value.
+     */
+    requiredItems?: Schema$GoogleChromePolicyV1PolicySchemaRequiredItems[];
   }
   /**
    * Provides detailed information about a known value that is allowed for a particular field in a PolicySchema.
@@ -339,6 +342,19 @@ export namespace chromepolicy_v1 {
      * Output only. The value of the field that has a notice. When setting the field to this value, the user may be required to acknowledge the notice message in order for the value to be set.
      */
     noticeValue?: string | null;
+  }
+  /**
+   * The fields that will become required based on the value of this field.
+   */
+  export interface Schema$GoogleChromePolicyV1PolicySchemaRequiredItems {
+    /**
+     * The value(s) of the field that provoke required field enforcement. An empty field_conditions implies that any value assigned to this field will provoke required field enforcement.
+     */
+    fieldConditions?: string[] | null;
+    /**
+     * The fields that are required as a consequence of the field conditions.
+     */
+    requiredFields?: string[] | null;
   }
   /**
    * The key used to identify the target on which the policy will be applied.
@@ -400,7 +416,7 @@ export namespace chromepolicy_v1 {
      */
     pageToken?: string | null;
     /**
-     * The schema filter to apply to the resolve request. Specify a schema name to view a particular schema, for example: chrome.users.ShowLogoutButton Wildcards are supported, but only in the leaf portion of the schema name. Wildcards cannot be used in namespace directly. Please read https://developers.google.com/chrome/chrome-management/guides/policyapi for details on schema namepsaces. For example: Valid: "chrome.users.*", "chrome.users.apps.*", "chrome.printers.*" Invalid: "*", "*.users", "chrome.*", "chrome.*.apps.*"
+     * The schema filter to apply to the resolve request. Specify a schema name to view a particular schema, for example: chrome.users.ShowLogoutButton Wildcards are supported, but only in the leaf portion of the schema name. Wildcards cannot be used in namespace directly. Please read https://developers.google.com/chrome/policy/guides/policy-schemas for details on schema namepsaces. For example: Valid: "chrome.users.*", "chrome.users.apps.*", "chrome.printers.*" Invalid: "*", "*.users", "chrome.*", "chrome.*.apps.*"
      */
     policySchemaFilter?: string | null;
     /**
@@ -440,7 +456,7 @@ export namespace chromepolicy_v1 {
     downloadUri?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$GoogleProtobufEmpty {}
   /**

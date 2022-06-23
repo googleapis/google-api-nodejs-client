@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -199,11 +198,11 @@ export namespace transcoder_v1 {
    */
   export interface Schema$Audio {
     /**
-     * Enable boosting high frequency components. The default is `false`.
+     * Enable boosting high frequency components. The default is `false`. **Note:** This field is not supported.
      */
     highBoost?: boolean | null;
     /**
-     * Enable boosting low frequency components. The default is `false`.
+     * Enable boosting low frequency components. The default is `false`. **Note:** This field is not supported.
      */
     lowBoost?: boolean | null;
     /**
@@ -270,7 +269,7 @@ export namespace transcoder_v1 {
     sampleRateHertz?: number | null;
   }
   /**
-   * Color preprocessing configuration.
+   * Color preprocessing configuration. **Note:** This configuration is not supported.
    */
   export interface Schema$Color {
     /**
@@ -308,7 +307,7 @@ export namespace transcoder_v1 {
     topPixels?: number | null;
   }
   /**
-   * Deblock preprocessing configuration.
+   * Deblock preprocessing configuration. **Note:** This configuration is not supported.
    */
   export interface Schema$Deblock {
     /**
@@ -321,7 +320,7 @@ export namespace transcoder_v1 {
     strength?: number | null;
   }
   /**
-   * Denoise preprocessing configuration.
+   * Denoise preprocessing configuration. **Note:** This configuration is not supported.
    */
   export interface Schema$Denoise {
     /**
@@ -376,7 +375,7 @@ export namespace transcoder_v1 {
     videoStream?: Schema$VideoStream;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -575,7 +574,7 @@ export namespace transcoder_v1 {
      */
     preprocessingConfig?: Schema$PreprocessingConfig;
     /**
-     * URI of the media. Input files must be at least 5 seconds in duration and stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). If empty, the value will be populated from `Job.input_uri`.
+     * URI of the media. Input files must be at least 5 seconds in duration and stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). If empty, the value is populated from `Job.input_uri`. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      */
     uri?: string | null;
   }
@@ -600,15 +599,19 @@ export namespace transcoder_v1 {
      */
     error?: Schema$Status;
     /**
-     * Input only. Specify the `input_uri` to populate empty `uri` fields in each element of `Job.config.inputs` or `JobTemplate.config.inputs` when using template. URI of the media. Input files must be at least 5 seconds in duration and stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`).
+     * Input only. Specify the `input_uri` to populate empty `uri` fields in each element of `Job.config.inputs` or `JobTemplate.config.inputs` when using template. URI of the media. Input files must be at least 5 seconds in duration and stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      */
     inputUri?: string | null;
+    /**
+     * The labels associated with this job. You can use these to organize and group your jobs.
+     */
+    labels?: {[key: string]: string} | null;
     /**
      * The resource name of the job. Format: `projects/{project_number\}/locations/{location\}/jobs/{job\}`
      */
     name?: string | null;
     /**
-     * Input only. Specify the `output_uri` to populate an empty `Job.config.output.uri` or `JobTemplate.config.output.uri` when using template. URI for the output file(s). For example, `gs://my-bucket/outputs/`.
+     * Input only. Specify the `output_uri` to populate an empty `Job.config.output.uri` or `JobTemplate.config.output.uri` when using template. URI for the output file(s). For example, `gs://my-bucket/outputs/`. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      */
     outputUri?: string | null;
     /**
@@ -669,7 +672,7 @@ export namespace transcoder_v1 {
      */
     pubsubDestination?: Schema$PubsubDestination;
     /**
-     * List of output sprite sheets.
+     * List of output sprite sheets. Spritesheets require at least one VideoStream in the Jobconfig.
      */
     spriteSheets?: Schema$SpriteSheet[];
   }
@@ -681,6 +684,10 @@ export namespace transcoder_v1 {
      * The configuration for this template.
      */
     config?: Schema$JobConfig;
+    /**
+     * The labels associated with this job template. You can use these to organize and group your job templates.
+     */
+    labels?: {[key: string]: string} | null;
     /**
      * The resource name of the job template. Format: `projects/{project_number\}/locations/{location\}/jobTemplates/{job_template\}`
      */
@@ -742,7 +749,7 @@ export namespace transcoder_v1 {
    */
   export interface Schema$MuxStream {
     /**
-     * The container format. The default is `mp4` Supported container formats: - `ts` - `fmp4`- the corresponding file extension is `.m4s` - `mp4` - `vtt`
+     * The container format. The default is `mp4` Supported container formats: - `ts` - `fmp4`- the corresponding file extension is `.m4s` - `mp4` - `vtt` See also: [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats)
      */
     container?: string | null;
     /**
@@ -780,7 +787,7 @@ export namespace transcoder_v1 {
    */
   export interface Schema$Output {
     /**
-     * URI for the output file(s). For example, `gs://my-bucket/outputs/`. If empty the value is populated from `Job.output_uri`.
+     * URI for the output file(s). For example, `gs://my-bucket/outputs/`. If empty, the value is populated from `Job.output_uri`. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      */
     uri?: string | null;
   }
@@ -991,7 +998,7 @@ export namespace transcoder_v1 {
      */
     bitrateBps?: number | null;
     /**
-     * Target CRF level. Must be between 10 and 36, where 10 is the highest quality and 36 is the most efficient compression. The default is 21. *Note*: This field is not supported.
+     * Target CRF level. Must be between 10 and 36, where 10 is the highest quality and 36 is the most efficient compression. The default is 21. **Note:** This field is not supported.
      */
     crfLevel?: number | null;
     /**
@@ -1095,6 +1102,7 @@ export namespace transcoder_v1 {
      *       //   "endTime": "my_endTime",
      *       //   "error": {},
      *       //   "inputUri": "my_inputUri",
+     *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "outputUri": "my_outputUri",
      *       //   "startTime": "my_startTime",
@@ -1113,6 +1121,7 @@ export namespace transcoder_v1 {
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "inputUri": "my_inputUri",
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "outputUri": "my_outputUri",
      *   //   "startTime": "my_startTime",
@@ -1375,6 +1384,7 @@ export namespace transcoder_v1 {
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "inputUri": "my_inputUri",
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "outputUri": "my_outputUri",
      *   //   "startTime": "my_startTime",
@@ -1706,6 +1716,7 @@ export namespace transcoder_v1 {
      *       // request body parameters
      *       // {
      *       //   "config": {},
+     *       //   "labels": {},
      *       //   "name": "my_name"
      *       // }
      *     },
@@ -1715,6 +1726,7 @@ export namespace transcoder_v1 {
      *   // Example response
      *   // {
      *   //   "config": {},
+     *   //   "labels": {},
      *   //   "name": "my_name"
      *   // }
      * }
@@ -1971,6 +1983,7 @@ export namespace transcoder_v1 {
      *   // Example response
      *   // {
      *   //   "config": {},
+     *   //   "labels": {},
      *   //   "name": "my_name"
      *   // }
      * }

@@ -268,7 +268,7 @@
       }
     }
   },
-  "revision": "20220225",
+  "revision": "20220603",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "ConfigMapEnvSource": {
@@ -453,7 +453,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -521,6 +521,22 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GRPCAction": {
+      "description": "Not supported by Cloud Run GRPCAction describes an action involving a GRPC port.",
+      "id": "GRPCAction",
+      "properties": {
+        "port": {
+          "description": "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "service": {
+          "description": "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1069,17 +1085,21 @@
           "format": "int32",
           "type": "integer"
         },
+        "grpc": {
+          "$ref": "GRPCAction",
+          "description": "(Optional) GRPCAction specifies an action involving a GRPC port. A field inlined from the Handler message."
+        },
         "httpGet": {
           "$ref": "HTTPGetAction",
           "description": "(Optional) HTTPGet specifies the http request to perform. A field inlined from the Handler message."
         },
         "initialDelaySeconds": {
-          "description": "(Optional) Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+          "description": "(Optional) Number of seconds after the container has started before liveness probes are initiated. Defaults to 0 seconds. Minimum value is 0. Max value for liveness probe is 3600. Max value for startup probe is 240. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
           "format": "int32",
           "type": "integer"
         },
         "periodSeconds": {
-          "description": "(Optional) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1. Maximum value is 3600. Must be greater or equal than timeout_seconds.",
+          "description": "(Optional) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1. Max value for liveness probe is 3600. Max value for startup probe is 240. Must be greater or equal than timeout_seconds.",
           "format": "int32",
           "type": "integer"
         },

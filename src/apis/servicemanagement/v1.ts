@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -170,7 +169,7 @@ export namespace servicemanagement_v1 {
     version?: string | null;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -254,7 +253,7 @@ export namespace servicemanagement_v1 {
      */
     jwksUri?: string | null;
     /**
-     * Defines the locations to extract the JWT. JWT locations can be either from HTTP headers or URL query parameters. The rule is that the first match wins. The checking order is: checking all headers first, then URL query parameters. If not specified, default to use following 3 locations: 1) Authorization: Bearer 2) x-goog-iap-jwt-assertion 3) access_token query parameter Default locations can be specified as followings: jwt_locations: - header: Authorization value_prefix: "Bearer " - header: x-goog-iap-jwt-assertion - query: access_token
+     * Defines the locations to extract the JWT. For now it is only used by the Cloud Endpoints to store the OpenAPI extension [x-google-jwt-locations] (https://cloud.google.com/endpoints/docs/openapi/openapi-extensions#x-google-jwt-locations) JWT locations can be one of HTTP headers, URL query parameters or cookies. The rule is that the first match wins. If not specified, default to use following 3 locations: 1) Authorization: Bearer 2) x-goog-iap-jwt-assertion 3) access_token query parameter Default locations can be specified as followings: jwt_locations: - header: Authorization value_prefix: "Bearer " - header: x-goog-iap-jwt-assertion - query: access_token
      */
     jwtLocations?: Schema$JwtLocation[];
   }
@@ -345,7 +344,7 @@ export namespace servicemanagement_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -828,6 +827,10 @@ export namespace servicemanagement_v1 {
    */
   export interface Schema$JwtLocation {
     /**
+     * Specifies cookie name to extract JWT token.
+     */
+    cookie?: string | null;
+    /**
      * Specifies HTTP header name to extract JWT token.
      */
     header?: string | null;
@@ -965,7 +968,7 @@ export namespace servicemanagement_v1 {
      */
     producerProjectId?: string | null;
     /**
-     * The name of the service. See the [overview](/service-management/overview) for naming requirements.
+     * The name of the service. See the [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.
      */
     serviceName?: string | null;
   }
@@ -1072,6 +1075,10 @@ export namespace servicemanagement_v1 {
    * Bind API methods to metrics. Binding a method to a metric causes that metric's configured quota behaviors to apply to the method call.
    */
   export interface Schema$MetricRule {
+    /**
+     * Metrics to update when the selected methods are called. The key of the map is the metric name, the value is the DynamicCostType to specify how to calculate the cost from the request. The cost amount will be increased for the metric against which the quota limits are defined. It is only implemented in CloudESF(go/cloudesf)
+     */
+    dynamicMetricCosts?: {[key: string]: string} | null;
     /**
      * Metrics to update when the selected methods are called, and the associated cost applied to each metric. The key of the map is the metric name, and the values are the amount increased for the metric against which the quota limits are defined. The value must not be negative.
      */
@@ -1490,7 +1497,7 @@ export namespace servicemanagement_v1 {
    */
   export interface Schema$SetIamPolicyRequest {
     /**
-     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
+     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
     /**
@@ -1612,7 +1619,7 @@ export namespace servicemanagement_v1 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[] | null;
   }
@@ -2194,7 +2201,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.delete({
-     *     // Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     *     // Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      *     serviceName: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2620,7 +2627,7 @@ export namespace servicemanagement_v1 {
      *   const res = await servicemanagement.services.getConfig({
      *     // Required. The id of the service configuration resource. This field must be specified for the server to return all fields, including `SourceInfo`.
      *     configId: 'placeholder-value',
-     *     // Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     *     // Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      *     serviceName: 'placeholder-value',
      *     // Specifies which parts of the Service Config should be returned in the response.
      *     view: 'placeholder-value',
@@ -2783,7 +2790,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'services/my-service',
      *
      *     // Request body metadata
@@ -2931,7 +2938,7 @@ export namespace servicemanagement_v1 {
      *   const res = await servicemanagement.services.list({
      *     // Include services consumed by the specified consumer. The Google Service Management implementation accepts the following forms: - project:
      *     consumerId: 'placeholder-value',
-     *     // The max number of items to include in the response list. Page size is 50 if not specified. Maximum value is 100.
+     *     // The max number of items to include in the response list. Page size is 50 if not specified. Maximum value is 500.
      *     pageSize: 'placeholder-value',
      *     // Token identifying which result to start with; returned by a previous list call.
      *     pageToken: 'placeholder-value',
@@ -3070,7 +3077,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'services/my-service',
      *
      *     // Request body metadata
@@ -3217,7 +3224,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'services/my-service',
      *
      *     // Request body metadata
@@ -3365,7 +3372,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.undelete({
-     *     // Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     *     // Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      *     serviceName: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3481,7 +3488,7 @@ export namespace servicemanagement_v1 {
   }
   export interface Params$Resource$Services$Delete extends StandardParameters {
     /**
-     * Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     * Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      */
     serviceName?: string;
   }
@@ -3505,7 +3512,7 @@ export namespace servicemanagement_v1 {
      */
     configId?: string;
     /**
-     * Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     * Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      */
     serviceName?: string;
     /**
@@ -3516,7 +3523,7 @@ export namespace servicemanagement_v1 {
   export interface Params$Resource$Services$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3531,7 +3538,7 @@ export namespace servicemanagement_v1 {
      */
     consumerId?: string;
     /**
-     * The max number of items to include in the response list. Page size is 50 if not specified. Maximum value is 100.
+     * The max number of items to include in the response list. Page size is 50 if not specified. Maximum value is 500.
      */
     pageSize?: number;
     /**
@@ -3546,7 +3553,7 @@ export namespace servicemanagement_v1 {
   export interface Params$Resource$Services$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3558,7 +3565,7 @@ export namespace servicemanagement_v1 {
   export interface Params$Resource$Services$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3570,7 +3577,7 @@ export namespace servicemanagement_v1 {
   export interface Params$Resource$Services$Undelete
     extends StandardParameters {
     /**
-     * Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     * Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      */
     serviceName?: string;
   }
@@ -3611,7 +3618,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.configs.create({
-     *     // Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     *     // Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      *     serviceName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3808,7 +3815,7 @@ export namespace servicemanagement_v1 {
      *   const res = await servicemanagement.services.configs.get({
      *     // Required. The id of the service configuration resource. This field must be specified for the server to return all fields, including `SourceInfo`.
      *     configId: 'placeholder-value',
-     *     // Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     *     // Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      *     serviceName: 'placeholder-value',
      *     // Specifies which parts of the Service Config should be returned in the response.
      *     view: 'placeholder-value',
@@ -3974,7 +3981,7 @@ export namespace servicemanagement_v1 {
      *     pageSize: 'placeholder-value',
      *     // The token of the page to retrieve.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     *     // Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      *     serviceName: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4115,7 +4122,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.configs.submit({
-     *     // Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     *     // Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      *     serviceName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4234,7 +4241,7 @@ export namespace servicemanagement_v1 {
   export interface Params$Resource$Services$Configs$Create
     extends StandardParameters {
     /**
-     * Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     * Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      */
     serviceName?: string;
 
@@ -4250,7 +4257,7 @@ export namespace servicemanagement_v1 {
      */
     configId?: string;
     /**
-     * Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     * Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      */
     serviceName?: string;
     /**
@@ -4269,14 +4276,14 @@ export namespace servicemanagement_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     * Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      */
     serviceName?: string;
   }
   export interface Params$Resource$Services$Configs$Submit
     extends StandardParameters {
     /**
-     * Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     * Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      */
     serviceName?: string;
 
@@ -4324,7 +4331,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.consumers.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'services/my-service/consumers/my-consumer',
      *
      *     // Request body metadata
@@ -4468,7 +4475,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.consumers.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'services/my-service/consumers/my-consumer',
      *
      *     // Request body metadata
@@ -4615,7 +4622,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.consumers.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      *     resource: 'services/my-service/consumers/my-consumer',
      *
      *     // Request body metadata
@@ -4737,7 +4744,7 @@ export namespace servicemanagement_v1 {
   export interface Params$Resource$Services$Consumers$Getiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -4749,7 +4756,7 @@ export namespace servicemanagement_v1 {
   export interface Params$Resource$Services$Consumers$Setiampolicy
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -4761,7 +4768,7 @@ export namespace servicemanagement_v1 {
   export interface Params$Resource$Services$Consumers$Testiampermissions
     extends StandardParameters {
     /**
-     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
 
@@ -4807,7 +4814,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.rollouts.create({
-     *     // Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     *     // Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      *     serviceName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4962,7 +4969,7 @@ export namespace servicemanagement_v1 {
      *   const res = await servicemanagement.services.rollouts.get({
      *     // Required. The id of the rollout resource.
      *     rolloutId: 'placeholder-value',
-     *     // Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     *     // Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      *     serviceName: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5102,13 +5109,13 @@ export namespace servicemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.rollouts.list({
-     *     // Required. Use `filter` to return subset of rollouts. The following filters are supported: -- To limit the results to only those in [status](google.api.servicemanagement.v1.RolloutStatus) 'SUCCESS', use filter='status=SUCCESS' -- To limit the results to those in [status](google.api.servicemanagement.v1.RolloutStatus) 'CANCELLED' or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
+     *     // Required. Use `filter` to return subset of rollouts. The following filters are supported: -- By status. For example, `filter='status=SUCCESS'` -- By strategy. For example, `filter='strategy=TrafficPercentStrategy'`
      *     filter: 'placeholder-value',
      *     // The max number of items to include in the response list. Page size is 50 if not specified. Maximum value is 100.
      *     pageSize: 'placeholder-value',
      *     // The token of the page to retrieve.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     *     // Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      *     serviceName: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5223,7 +5230,7 @@ export namespace servicemanagement_v1 {
   export interface Params$Resource$Services$Rollouts$Create
     extends StandardParameters {
     /**
-     * Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     * Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      */
     serviceName?: string;
 
@@ -5239,14 +5246,14 @@ export namespace servicemanagement_v1 {
      */
     rolloutId?: string;
     /**
-     * Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     * Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      */
     serviceName?: string;
   }
   export interface Params$Resource$Services$Rollouts$List
     extends StandardParameters {
     /**
-     * Required. Use `filter` to return subset of rollouts. The following filters are supported: -- To limit the results to only those in [status](google.api.servicemanagement.v1.RolloutStatus) 'SUCCESS', use filter='status=SUCCESS' -- To limit the results to those in [status](google.api.servicemanagement.v1.RolloutStatus) 'CANCELLED' or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
+     * Required. Use `filter` to return subset of rollouts. The following filters are supported: -- By status. For example, `filter='status=SUCCESS'` -- By strategy. For example, `filter='strategy=TrafficPercentStrategy'`
      */
     filter?: string;
     /**
@@ -5258,7 +5265,7 @@ export namespace servicemanagement_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     * Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      */
     serviceName?: string;
   }

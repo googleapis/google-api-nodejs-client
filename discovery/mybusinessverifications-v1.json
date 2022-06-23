@@ -256,7 +256,7 @@
       }
     }
   },
-  "revision": "20220310",
+  "revision": "20220504",
   "rootUrl": "https://mybusinessverifications.googleapis.com/",
   "schemas": {
     "AddressVerificationData": {
@@ -423,7 +423,7 @@
           "type": "string"
         },
         "primaryCategoryId": {
-          "description": "Required. Id of the category that best describes the core business this location engages in.",
+          "description": "Required. Id of the category that best describes the core business this location engages in. e.g. gcid:bakery.",
           "type": "string"
         },
         "primaryPhone": {

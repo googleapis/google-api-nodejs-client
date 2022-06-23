@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -265,6 +264,10 @@ export namespace accessapproval_v1 {
      */
     expireTime?: string | null;
     /**
+     * If set, denotes the timestamp at which the approval is invalidated.
+     */
+    invalidateTime?: string | null;
+    /**
      * The signature for the ApprovalRequest and details on how it was signed.
      */
     signatureInfo?: Schema$SignatureInfo;
@@ -287,7 +290,7 @@ export namespace accessapproval_v1 {
     implicit?: boolean | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -303,6 +306,10 @@ export namespace accessapproval_v1 {
      */
     enrollmentLevel?: string | null;
   }
+  /**
+   * Request to invalidate an existing approval.
+   */
+  export interface Schema$InvalidateApprovalRequestMessage {}
   /**
    * Response to listing of ApprovalRequest objects.
    */
@@ -1384,6 +1391,150 @@ export namespace accessapproval_v1 {
     }
 
     /**
+     * Invalidates an existing ApprovalRequest. Returns the updated ApprovalRequest. NOTE: This does not deny access to the resource if another request has been made and approved. It only invalidates a single approval. Returns FAILED_PRECONDITION if the request exists but is not in an approved state.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.folders.approvalRequests.invalidate({
+     *     // Name of the ApprovalRequest to invalidate.
+     *     name: 'folders/my-folder/approvalRequests/my-approvalRequest',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approve": {},
+     *   //   "dismiss": {},
+     *   //   "name": "my_name",
+     *   //   "requestTime": "my_requestTime",
+     *   //   "requestedExpiration": "my_requestedExpiration",
+     *   //   "requestedLocations": {},
+     *   //   "requestedReason": {},
+     *   //   "requestedResourceName": "my_requestedResourceName",
+     *   //   "requestedResourceProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    invalidate(
+      params: Params$Resource$Folders$Approvalrequests$Invalidate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    invalidate(
+      params?: Params$Resource$Folders$Approvalrequests$Invalidate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ApprovalRequest>;
+    invalidate(
+      params: Params$Resource$Folders$Approvalrequests$Invalidate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    invalidate(
+      params: Params$Resource$Folders$Approvalrequests$Invalidate,
+      options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
+      callback: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void;
+    invalidate(
+      params: Params$Resource$Folders$Approvalrequests$Invalidate,
+      callback: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void;
+    invalidate(callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
+    invalidate(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Approvalrequests$Invalidate
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Approvalrequests$Invalidate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Approvalrequests$Invalidate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://accessapproval.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:invalidate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ApprovalRequest>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ApprovalRequest>(parameters);
+      }
+    }
+
+    /**
      * Lists approval requests associated with a project, folder, or organization. Approval requests can be filtered by state (pending, active, dismissed). The order is reverse chronological.
      * @example
      * ```js
@@ -1560,6 +1711,18 @@ export namespace accessapproval_v1 {
      * The name of the approval request to retrieve. Format: "{projects|folders|organizations\}/{id\}/approvalRequests/{approval_request\}"
      */
     name?: string;
+  }
+  export interface Params$Resource$Folders$Approvalrequests$Invalidate
+    extends StandardParameters {
+    /**
+     * Name of the ApprovalRequest to invalidate.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InvalidateApprovalRequestMessage;
   }
   export interface Params$Resource$Folders$Approvalrequests$List
     extends StandardParameters {
@@ -2624,6 +2787,151 @@ export namespace accessapproval_v1 {
     }
 
     /**
+     * Invalidates an existing ApprovalRequest. Returns the updated ApprovalRequest. NOTE: This does not deny access to the resource if another request has been made and approved. It only invalidates a single approval. Returns FAILED_PRECONDITION if the request exists but is not in an approved state.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.organizations.approvalRequests.invalidate({
+     *     // Name of the ApprovalRequest to invalidate.
+     *     name: 'organizations/my-organization/approvalRequests/my-approvalRequest',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approve": {},
+     *   //   "dismiss": {},
+     *   //   "name": "my_name",
+     *   //   "requestTime": "my_requestTime",
+     *   //   "requestedExpiration": "my_requestedExpiration",
+     *   //   "requestedLocations": {},
+     *   //   "requestedReason": {},
+     *   //   "requestedResourceName": "my_requestedResourceName",
+     *   //   "requestedResourceProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    invalidate(
+      params: Params$Resource$Organizations$Approvalrequests$Invalidate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    invalidate(
+      params?: Params$Resource$Organizations$Approvalrequests$Invalidate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ApprovalRequest>;
+    invalidate(
+      params: Params$Resource$Organizations$Approvalrequests$Invalidate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    invalidate(
+      params: Params$Resource$Organizations$Approvalrequests$Invalidate,
+      options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
+      callback: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void;
+    invalidate(
+      params: Params$Resource$Organizations$Approvalrequests$Invalidate,
+      callback: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void;
+    invalidate(callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
+    invalidate(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Approvalrequests$Invalidate
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Approvalrequests$Invalidate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Approvalrequests$Invalidate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://accessapproval.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:invalidate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ApprovalRequest>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ApprovalRequest>(parameters);
+      }
+    }
+
+    /**
      * Lists approval requests associated with a project, folder, or organization. Approval requests can be filtered by state (pending, active, dismissed). The order is reverse chronological.
      * @example
      * ```js
@@ -2800,6 +3108,18 @@ export namespace accessapproval_v1 {
      * The name of the approval request to retrieve. Format: "{projects|folders|organizations\}/{id\}/approvalRequests/{approval_request\}"
      */
     name?: string;
+  }
+  export interface Params$Resource$Organizations$Approvalrequests$Invalidate
+    extends StandardParameters {
+    /**
+     * Name of the ApprovalRequest to invalidate.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InvalidateApprovalRequestMessage;
   }
   export interface Params$Resource$Organizations$Approvalrequests$List
     extends StandardParameters {
@@ -3862,6 +4182,150 @@ export namespace accessapproval_v1 {
     }
 
     /**
+     * Invalidates an existing ApprovalRequest. Returns the updated ApprovalRequest. NOTE: This does not deny access to the resource if another request has been made and approved. It only invalidates a single approval. Returns FAILED_PRECONDITION if the request exists but is not in an approved state.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.projects.approvalRequests.invalidate({
+     *     // Name of the ApprovalRequest to invalidate.
+     *     name: 'projects/my-project/approvalRequests/my-approvalRequest',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approve": {},
+     *   //   "dismiss": {},
+     *   //   "name": "my_name",
+     *   //   "requestTime": "my_requestTime",
+     *   //   "requestedExpiration": "my_requestedExpiration",
+     *   //   "requestedLocations": {},
+     *   //   "requestedReason": {},
+     *   //   "requestedResourceName": "my_requestedResourceName",
+     *   //   "requestedResourceProperties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    invalidate(
+      params: Params$Resource$Projects$Approvalrequests$Invalidate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    invalidate(
+      params?: Params$Resource$Projects$Approvalrequests$Invalidate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ApprovalRequest>;
+    invalidate(
+      params: Params$Resource$Projects$Approvalrequests$Invalidate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    invalidate(
+      params: Params$Resource$Projects$Approvalrequests$Invalidate,
+      options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
+      callback: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void;
+    invalidate(
+      params: Params$Resource$Projects$Approvalrequests$Invalidate,
+      callback: BodyResponseCallback<Schema$ApprovalRequest>
+    ): void;
+    invalidate(callback: BodyResponseCallback<Schema$ApprovalRequest>): void;
+    invalidate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Approvalrequests$Invalidate
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Approvalrequests$Invalidate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Approvalrequests$Invalidate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://accessapproval.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:invalidate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ApprovalRequest>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ApprovalRequest>(parameters);
+      }
+    }
+
+    /**
      * Lists approval requests associated with a project, folder, or organization. Approval requests can be filtered by state (pending, active, dismissed). The order is reverse chronological.
      * @example
      * ```js
@@ -4038,6 +4502,18 @@ export namespace accessapproval_v1 {
      * The name of the approval request to retrieve. Format: "{projects|folders|organizations\}/{id\}/approvalRequests/{approval_request\}"
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Approvalrequests$Invalidate
+    extends StandardParameters {
+    /**
+     * Name of the ApprovalRequest to invalidate.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InvalidateApprovalRequestMessage;
   }
   export interface Params$Resource$Projects$Approvalrequests$List
     extends StandardParameters {

@@ -526,7 +526,7 @@
       }
     }
   },
-  "revision": "20211211",
+  "revision": "20220604",
   "rootUrl": "https://websecurityscanner.googleapis.com/",
   "schemas": {
     "Authentication": {
@@ -587,7 +587,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -968,12 +968,16 @@
             "enum": [
               "TARGET_PLATFORM_UNSPECIFIED",
               "APP_ENGINE",
-              "COMPUTE"
+              "COMPUTE",
+              "CLOUD_RUN",
+              "CLOUD_FUNCTIONS"
             ],
             "enumDescriptions": [
               "The target platform is unknown. Requests with this enum value will be rejected with INVALID_ARGUMENT error.",
               "Google App Engine service.",
-              "Google Compute Engine service."
+              "Google Compute Engine service.",
+              "Google Cloud Run service.",
+              "Google Cloud Function service."
             ],
             "type": "string"
           },

@@ -216,7 +216,7 @@
       }
     }
   },
-  "revision": "20210707",
+  "revision": "20220609",
   "rootUrl": "https://docs.googleapis.com/",
   "schemas": {
     "AutoText": {
@@ -424,7 +424,7 @@
       "type": "object"
     },
     "CreateFooterRequest": {
-      "description": "Creates a Footer. The new footer is applied to the SectionStyle at the location of the SectionBreak if specificed, otherwise it is applied to the DocumentStyle. If a footer of the specified type already exists, a 400 bad request error is returned.",
+      "description": "Creates a Footer. The new footer is applied to the SectionStyle at the location of the SectionBreak if specified, otherwise it is applied to the DocumentStyle. If a footer of the specified type already exists, a 400 bad request error is returned.",
       "id": "CreateFooterRequest",
       "properties": {
         "sectionBreakLocation": {
@@ -484,7 +484,7 @@
       "type": "object"
     },
     "CreateHeaderRequest": {
-      "description": "Creates a Header. The new header is applied to the SectionStyle at the location of the SectionBreak if specificed, otherwise it is applied to the DocumentStyle. If a header of the specified type already exists, a 400 bad request error is returned.",
+      "description": "Creates a Header. The new header is applied to the SectionStyle at the location of the SectionBreak if specified, otherwise it is applied to the DocumentStyle. If a header of the specified type already exists, a 400 bad request error is returned.",
       "id": "CreateHeaderRequest",
       "properties": {
         "sectionBreakLocation": {
@@ -839,7 +839,7 @@
           "type": "object"
         },
         "revisionId": {
-          "description": "Output only. The revision ID of the document. Can be used in update requests to specify which revision of a document to apply updates to and how the request should behave if the document has been edited since that revision. Only populated if the user has edit access to the document. The format of the revision ID may change over time, so it should be treated opaquely. A returned revision ID is only guaranteed to be valid for 24 hours after it has been returned and cannot be shared across users. If the revision ID is unchanged between calls, then the document has not changed. Conversely, a changed ID (for the same document and user) usually means the document has been updated; however, a changed ID can also be due to internal factors such as ID format changes.",
+          "description": "Output only. The revision ID of the document. Can be used in update requests to specify which revision of a document to apply updates to and how the request should behave if the document has been edited since that revision. Only populated if the user has edit access to the document. The revision ID is not a sequential number but an opaque string. The format of the revision ID might change over time. A returned revision ID is only guaranteed to be valid for 24 hours after it has been returned and cannot be shared across users. If the revision ID is unchanged between calls, then the document has not changed. Conversely, a changed ID (for the same document and user) usually means the document has been updated. However, a changed ID can also be due to internal factors such as ID format changes.",
           "type": "string"
         },
         "suggestedDocumentStyleChanges": {
@@ -1459,7 +1459,7 @@
           "description": "The properties of this inline object."
         },
         "objectId": {
-          "description": "The ID of this inline object.",
+          "description": "The ID of this inline object. Can be used to update an object’s properties.",
           "type": "string"
         },
         "suggestedDeletionIds": {
@@ -2410,6 +2410,10 @@
           ],
           "type": "string"
         },
+        "pageBreakBefore": {
+          "description": "Whether the current paragraph should always start at the beginning of a page. If unset, the value is inherited from the parent. Attempting to update page_break_before for paragraphs in unsupported regions, including Table, Header, Footer and Footnote, can result in an invalid document state which returns a 400 bad request error.",
+          "type": "boolean"
+        },
         "shading": {
           "$ref": "Shading",
           "description": "The shading of the paragraph. If unset, the value is inherited from the parent."
@@ -2514,6 +2518,10 @@
           "description": "Indicates if there was a suggested change to named_style_type.",
           "type": "boolean"
         },
+        "pageBreakBeforeSuggested": {
+          "description": "Indicates if there was a suggested change to page_break_before.",
+          "type": "boolean"
+        },
         "shadingSuggestionState": {
           "$ref": "ShadingSuggestionState",
           "description": "A mask that indicates which of the fields in shading have been changed in this suggestion."
@@ -2588,6 +2596,22 @@
           "description": "Output only. The name of the person if it is displayed in the link text instead of the person's email address.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PinTableHeaderRowsRequest": {
+      "description": "Updates the number of pinned table header rows in a table.",
+      "id": "PinTableHeaderRowsRequest",
+      "properties": {
+        "pinnedHeaderRowsCount": {
+          "description": "The number of table rows to pin, where 0 implies that all rows are unpinned.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "tableStartLocation": {
+          "$ref": "Location",
+          "description": "The location where the table starts in the document."
         }
       },
       "type": "object"
@@ -2764,7 +2788,7 @@
       "id": "ReplaceImageRequest",
       "properties": {
         "imageObjectId": {
-          "description": "The ID of the existing image that will be replaced.",
+          "description": "The ID of the existing image that will be replaced. The ID can be retrieved from the response of a get request.",
           "type": "string"
         },
         "imageReplaceMethod": {
@@ -2775,12 +2799,12 @@
           ],
           "enumDescriptions": [
             "Unspecified image replace method. This value must not be used.",
-            "Scales and centers the image to fill the bounds of the original image. The image may be cropped in order to fill the original image's bounds. The rendered size of the image will be the same as that of the original image."
+            "Scales and centers the image to fill the bounds of the original image. The image may be cropped in order to fill the original image's bounds. The rendered size of the image will be the same as the original image."
           ],
           "type": "string"
         },
         "uri": {
-          "description": "The URI of the new image. The image is fetched once at insertion time and a copy is stored for display inside the document. Images must be less than 50MB in size, cannot exceed 25 megapixels, and must be in one of PNG, JPEG, or GIF format. The provided URI can be at most 2 kB in length. The URI itself is saved with the image, and exposed via the ImageProperties.source_uri field.",
+          "description": "The URI of the new image. The image is fetched once at insertion time and a copy is stored for display inside the document. Images must be less than 50MB, cannot exceed 25 megapixels, and must be in PNG, JPEG, or GIF format. The provided URI can't surpass 2 KB in length. The URI is saved with the image, and exposed through the ImageProperties.source_uri field.",
           "type": "string"
         }
       },
@@ -2892,6 +2916,10 @@
         "mergeTableCells": {
           "$ref": "MergeTableCellsRequest",
           "description": "Merges cells in a table."
+        },
+        "pinTableHeaderRows": {
+          "$ref": "PinTableHeaderRowsRequest",
+          "description": "Updates the number of pinned header rows in a table."
         },
         "replaceAllText": {
           "$ref": "ReplaceAllTextRequest",
@@ -3426,7 +3454,7 @@
       "properties": {
         "paragraphStyle": {
           "$ref": "ParagraphStyle",
-          "description": "A ParagraphStyle that only includes the changes made in this suggestion. This can be used along with the paragraph_suggestion_state to see which fields have changed and their new values."
+          "description": "A ParagraphStyle that only includes the changes made in this suggestion. This can be used along with the paragraph_style_suggestion_state to see which fields have changed and their new values."
         },
         "paragraphStyleSuggestionState": {
           "$ref": "ParagraphStyleSuggestionState",
@@ -3921,6 +3949,14 @@
         "minRowHeight": {
           "$ref": "Dimension",
           "description": "The minimum height of the row. The row will be rendered in the Docs editor at a height equal to or greater than this value in order to show all the content in the row's cells."
+        },
+        "preventOverflow": {
+          "description": "Whether the row cannot overflow across page or column boundaries.",
+          "type": "boolean"
+        },
+        "tableHeader": {
+          "description": "Whether the row is a table header.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -4132,7 +4168,7 @@
       "id": "UpdateParagraphStyleRequest",
       "properties": {
         "fields": {
-          "description": "The fields that should be updated. At least one field must be specified. The root `paragraph_style` is implied and should not be specified. For example, to update the paragraph style's alignment property, set `fields` to `\"alignment\"`. To reset a property to its default value, include its field name in the field mask but leave the field itself unset.",
+          "description": "The fields that should be updated. At least one field must be specified. The root `paragraph_style` is implied and should not be specified. A single `\"*\"` can be used as short-hand for listing every field. For example, to update the paragraph style's alignment property, set `fields` to `\"alignment\"`. To reset a property to its default value, include its field name in the field mask but leave the field itself unset.",
           "format": "google-fieldmask",
           "type": "string"
         },
@@ -4288,11 +4324,11 @@
       "id": "WriteControl",
       "properties": {
         "requiredRevisionId": {
-          "description": "The revision ID of the document that the write request will be applied to. If this is not the latest revision of the document, the request will not be processed and will return a 400 bad request error. When a required revision ID is returned in a response, it indicates the revision ID of the document after the request was applied.",
+          "description": "The optional revision ID of the document the write request is applied to. If this is not the latest revision of the document, the request is not processed and returns a 400 bad request error. When a required revision ID is returned in a response, it indicates the revision ID of the document after the request was applied.",
           "type": "string"
         },
         "targetRevisionId": {
-          "description": "The target revision ID of the document that the write request will be applied to. If collaborator changes have occurred after the document was read using the API, the changes produced by this write request will be transformed against the collaborator changes. This results in a new revision of the document which incorporates both the changes in the request and the collaborator changes, and the Docs server will resolve conflicting changes. When using `target_revision_id`, the API client can be thought of as another collaborator of the document. The target revision ID may only be used to write to recent versions of a document. If the target revision is too far behind the latest revision, the request will not be processed and will return a 400 bad request error and the request should be retried after reading the latest version of the document. In most cases a `revision_id` will remain valid for use as a target revision for several minutes after it is read, but for frequently-edited documents this window may be shorter.",
+          "description": "The optional target revision ID of the document the write request is applied to. If collaborator changes have occurred after the document was read using the API, the changes produced by this write request are applied against the collaborator changes. This results in a new revision of the document that incorporates both the collaborator changes and the changes in the request, with the Docs server resolving conflicting changes. When using target revision ID, the API client can be thought of as another collaborator of the document. The target revision ID can only be used to write to recent versions of a document. If the target revision is too far behind the latest revision, the request is not processed and returns a 400 bad request error. The request should be tried again after retrieving the latest version of the document. Usually a revision ID remains valid for use as a target revision for several minutes after it's read, but for frequently edited documents this window might be shorter.",
           "type": "string"
         }
       },

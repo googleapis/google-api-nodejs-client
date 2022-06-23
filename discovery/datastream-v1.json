@@ -180,7 +180,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
                   "type": "string"
                 },
@@ -1217,7 +1217,7 @@
       }
     }
   },
-  "revision": "20220302",
+  "revision": "20220413",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AvroFileFormat": {
@@ -1439,8 +1439,14 @@
       },
       "type": "object"
     },
+    "DropLargeObjects": {
+      "description": "Configuration to drop large object values.",
+      "id": "DropLargeObjects",
+      "properties": {},
+      "type": "object"
+    },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -2196,6 +2202,10 @@
       "description": "Oracle data source configuration",
       "id": "OracleSourceConfig",
       "properties": {
+        "dropLargeObjects": {
+          "$ref": "DropLargeObjects",
+          "description": "Drop large object values."
+        },
         "excludeObjects": {
           "$ref": "OracleRdbms",
           "description": "Oracle objects to exclude from the stream."

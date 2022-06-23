@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -130,6 +129,23 @@ export namespace documentai_v1beta3 {
      * The basic metadata of the long running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
+    /**
+     * The list of response details of each document.
+     */
+    individualBatchDeleteStatuses?: Schema$GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadataIndividualBatchDeleteStatus[];
+  }
+  /**
+   * The status of each individual document in the batch delete process.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadataIndividualBatchDeleteStatus {
+    /**
+     * The document id of the document.
+     */
+    documentId?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentId;
+    /**
+     * The status of deleting the document.
+     */
+    status?: Schema$GoogleRpcStatus;
   }
   /**
    * Response of the delete documents operation.
@@ -144,6 +160,10 @@ export namespace documentai_v1beta3 {
      * The destination dataset split type.
      */
     destDatasetType?: string | null;
+    /**
+     * The destination dataset split type.
+     */
+    destSplitType?: string | null;
     /**
      * The list of response details of each document.
      */
@@ -195,6 +215,15 @@ export namespace documentai_v1beta3 {
    * The long running operation metadata for CreateLabelerPool.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3CreateLabelerPoolOperationMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
+  }
+  /**
+   * The long running operation metadata for DeleteDataLabelingJob.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3DeleteDataLabelingJobOperationMetadata {
     /**
      * The basic metadata of the long running operation.
      */
@@ -614,7 +643,7 @@ export namespace documentai_v1beta3 {
     vertices?: Schema$GoogleCloudDocumentaiV1beta1Vertex[];
   }
   /**
-   * Document represents the canonical document resource in Document Understanding AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document Understanding AI to iterate and optimize for quality.
+   * Document represents the canonical document resource in Document AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document AI to iterate and optimize for quality.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1Document {
     /**
@@ -687,6 +716,10 @@ export namespace documentai_v1beta3 {
      */
     mentionText?: string | null;
     /**
+     * Optional. This attribute indicates that the processing didn't actually identify this entity, but a confidence score was assigned that represent the potential that this could be a false negative. A non-present entity should have an empty mention_text and text_anchor.
+     */
+    nonPresent?: boolean | null;
+    /**
      * Optional. Normalized entity value. Absent if the extracted value could not be converted or the type (e.g. address) is not supported for certain parsers. This field is also only populated for certain supported document types.
      */
     normalizedValue?: Schema$GoogleCloudDocumentaiV1beta1DocumentEntityNormalizedValue;
@@ -711,7 +744,7 @@ export namespace documentai_v1beta3 {
      */
     textAnchor?: Schema$GoogleCloudDocumentaiV1beta1DocumentTextAnchor;
     /**
-     * Entity type from a schema e.g. `Address`.
+     * Required. Entity type from a schema e.g. `Address`.
      */
     type?: string | null;
   }
@@ -1471,7 +1504,7 @@ export namespace documentai_v1beta3 {
     vertices?: Schema$GoogleCloudDocumentaiV1beta2Vertex[];
   }
   /**
-   * Document represents the canonical document resource in Document Understanding AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document Understanding AI to iterate and optimize for quality.
+   * Document represents the canonical document resource in Document AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document AI to iterate and optimize for quality.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2Document {
     /**
@@ -1548,6 +1581,10 @@ export namespace documentai_v1beta3 {
      */
     mentionText?: string | null;
     /**
+     * Optional. This attribute indicates that the processing didn't actually identify this entity, but a confidence score was assigned that represent the potential that this could be a false negative. A non-present entity should have an empty mention_text and text_anchor.
+     */
+    nonPresent?: boolean | null;
+    /**
      * Optional. Normalized entity value. Absent if the extracted value could not be converted or the type (e.g. address) is not supported for certain parsers. This field is also only populated for certain supported document types.
      */
     normalizedValue?: Schema$GoogleCloudDocumentaiV1beta2DocumentEntityNormalizedValue;
@@ -1572,7 +1609,7 @@ export namespace documentai_v1beta3 {
      */
     textAnchor?: Schema$GoogleCloudDocumentaiV1beta2DocumentTextAnchor;
     /**
-     * Entity type from a schema e.g. `Address`.
+     * Required. Entity type from a schema e.g. `Address`.
      */
     type?: string | null;
   }
@@ -2535,7 +2572,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DisableProcessorResponse {}
   /**
-   * Document represents the canonical document resource in Document Understanding AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document Understanding AI to iterate and optimize for quality.
+   * Document represents the canonical document resource in Document AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document AI to iterate and optimize for quality.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3Document {
     /**
@@ -2608,6 +2645,10 @@ export namespace documentai_v1beta3 {
      */
     mentionText?: string | null;
     /**
+     * Optional. This attribute indicates that the processing didn't actually identify this entity, but a confidence score was assigned that represent the potential that this could be a false negative. A non-present entity should have an empty mention_text and text_anchor.
+     */
+    nonPresent?: boolean | null;
+    /**
      * Optional. Normalized entity value. Absent if the extracted value could not be converted or the type (e.g. address) is not supported for certain parsers. This field is also only populated for certain supported document types.
      */
     normalizedValue?: Schema$GoogleCloudDocumentaiV1beta3DocumentEntityNormalizedValue;
@@ -2632,7 +2673,7 @@ export namespace documentai_v1beta3 {
      */
     textAnchor?: Schema$GoogleCloudDocumentaiV1beta3DocumentTextAnchor;
     /**
-     * Entity type from a schema e.g. `Address`.
+     * Required. Entity type from a schema e.g. `Address`.
      */
     type?: string | null;
   }
@@ -3184,6 +3225,91 @@ export namespace documentai_v1beta3 {
     stateMessage?: string | null;
   }
   /**
+   * The schema defines the output of the processed document by a processor.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentSchema {
+    /**
+     * Description of the schema.
+     */
+    description?: string | null;
+    /**
+     * Display name to show to users.
+     */
+    displayName?: string | null;
+    /**
+     * Entity types of the schema.
+     */
+    entityTypes?: Schema$GoogleCloudDocumentaiV1beta3DocumentSchemaEntityType[];
+    /**
+     * Metadata of the schema.
+     */
+    metadata?: Schema$GoogleCloudDocumentaiV1beta3DocumentSchemaMetadata;
+  }
+  /**
+   * EntityType is the wrapper of a label of the corresponding model with detailed attributes and limitations for entity-based processors. Multiple types can also compose a dependency tree to represent nested types.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentSchemaEntityType {
+    /**
+     * The entity type that this type is derived from. For now, one and only one should be set.
+     */
+    baseTypes?: string[] | null;
+    /**
+     * User defined name for the type.
+     */
+    displayName?: string | null;
+    /**
+     * If specified, lists all the possible values for this entity. This should not be more than a handful of values. If the number of values is \>10 or could change frequently use the `EntityType.value_ontology` field and specify a list of all possible values in a value ontology file.
+     */
+    enumValues?: Schema$GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeEnumValues;
+    /**
+     * Name of the type. It must be unique within the schema file and cannot be a 'Common Type'. Besides that we use the following naming conventions: - *use snake_casing* - name matching is case-insensitive - Maximum 64 characters. - Must start with a letter. - Allowed characters: ASCII letters [a-z0-9_-]. (For backward compatibility internal infrastructure and tooling can handle any ascii character) - The '/' is sometimes used to denote a property of a type. For example line_item/amount. This convention is deprecated, but will still be honored for backward compatibility.
+     */
+    name?: string | null;
+    /**
+     * Describing the nested structure, or composition of an entity.
+     */
+    properties?: Schema$GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeProperty[];
+  }
+  /**
+   * Defines the a list of enum values.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeEnumValues {
+    /**
+     * The individual values that this enum values type can include.
+     */
+    values?: string[] | null;
+  }
+  /**
+   * Defines properties that can be part of the entity type.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeProperty {
+    /**
+     * The name of the property. Follows the same guidelines as the EntityType name.
+     */
+    name?: string | null;
+    /**
+     * Occurrence type limits the number of instances an entity type appears in the document.
+     */
+    occurrenceType?: string | null;
+    /**
+     * A reference to the value type of the property. This type is subject to the same conventions as the `Entity.base_types` field.
+     */
+    valueType?: string | null;
+  }
+  /**
+   * Metadata for global schema behavior.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentSchemaMetadata {
+    /**
+     * If true, on a given page, there can be multiple `document` annotations covering it.
+     */
+    documentAllowMultipleLabels?: boolean | null;
+    /**
+     * If true, a `document` entity type can be applied to subdocument ( splitting). Otherwise, it can only be applied to the entire document (classification).
+     */
+    documentSplitter?: boolean | null;
+  }
+  /**
    * For a large document, sharding may be performed to produce several document shards. Each document shard contains this field to detail which shard it is.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DocumentShardInfo {
@@ -3478,7 +3604,7 @@ export namespace documentai_v1beta3 {
     locationId?: string | null;
   }
   /**
-   * A processor version is an implementation of a processor. Each processor can have multiple versions, pre-trained by Google internally or up-trained by the customer. At a time, a processor can only have one default version version. So the processor's behavior (when processing documents) is defined by a default version.
+   * A processor version is an implementation of a processor. Each processor can have multiple versions, pre-trained by Google internally or up-trained by the customer. At a time, a processor can only have one default version version. So the processor's behavior (when processing documents) is defined by a default version
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3ProcessorVersion {
     /**
@@ -3486,9 +3612,17 @@ export namespace documentai_v1beta3 {
      */
     createTime?: string | null;
     /**
+     * If set, information about the eventual deprecation of this version.
+     */
+    deprecationInfo?: Schema$GoogleCloudDocumentaiV1beta3ProcessorVersionDeprecationInfo;
+    /**
      * The display name of the processor version.
      */
     displayName?: string | null;
+    /**
+     * Denotes that this ProcessorVersion is managed by google.
+     */
+    googleManaged?: boolean | null;
     /**
      * The KMS key name used for encryption.
      */
@@ -3507,6 +3641,19 @@ export namespace documentai_v1beta3 {
     state?: string | null;
   }
   /**
+   * Information about the upcoming deprecation of this processor version.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ProcessorVersionDeprecationInfo {
+    /**
+     * The time at which this processor version will be deprecated.
+     */
+    deprecationTime?: string | null;
+    /**
+     * If set, the processor version that will be used as a replacement.
+     */
+    replacementProcessorVersion?: string | null;
+  }
+  /**
    * Request message for the process document method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3ProcessRequest {
@@ -3514,6 +3661,10 @@ export namespace documentai_v1beta3 {
      * The document payload, the [content] and [mime_type] fields must be set.
      */
     document?: Schema$GoogleCloudDocumentaiV1beta3Document;
+    /**
+     * Specifies which fields to include in ProcessResponse's document.
+     */
+    fieldMask?: string | null;
     /**
      * An inline document proto.
      */
@@ -3595,6 +3746,10 @@ export namespace documentai_v1beta3 {
      */
     document?: Schema$GoogleCloudDocumentaiV1beta3Document;
     /**
+     * The document schema of the human review task.
+     */
+    documentSchema?: Schema$GoogleCloudDocumentaiV1beta3DocumentSchema;
+    /**
      * Whether the validation should be performed on the ad-hoc review request.
      */
     enableSchemaValidation?: boolean | null;
@@ -3612,9 +3767,17 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3ReviewDocumentResponse {
     /**
-     * The Cloud Storage uri for the human reviewed document.
+     * The Cloud Storage uri for the human reviewed document if the review is succeeded.
      */
     gcsDestination?: string | null;
+    /**
+     * The reason why the review is rejected by reviewer.
+     */
+    rejectionReason?: string | null;
+    /**
+     * The state of the review operation.
+     */
+    state?: string | null;
   }
   /**
    * The long running operation metadata for set default processor version method.
@@ -3630,7 +3793,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionRequest {
     /**
-     * Required. The resource name of child ProcessorVersion to use as default.
+     * Required. The resource name of child ProcessorVersion to use as default. Format: `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{version\}`
      */
     defaultProcessorVersion?: string | null;
   }
@@ -3785,9 +3948,17 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1ReviewDocumentResponse {
     /**
-     * The Cloud Storage uri for the human reviewed document.
+     * The Cloud Storage uri for the human reviewed document if the review is succeeded.
      */
     gcsDestination?: string | null;
+    /**
+     * The reason why the review is rejected by reviewer.
+     */
+    rejectionReason?: string | null;
+    /**
+     * The state of the review operation.
+     */
+    state?: string | null;
   }
   /**
    * The long running operation metadata for set default processor version method.
@@ -3892,7 +4063,7 @@ export namespace documentai_v1beta3 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$GoogleProtobufEmpty {}
   /**
@@ -4396,7 +4567,7 @@ export namespace documentai_v1beta3 {
      *
      *   // Do the magic
      *   const res = await documentai.projects.locations.list({
-     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
@@ -4532,7 +4703,7 @@ export namespace documentai_v1beta3 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
     /**
@@ -6077,6 +6248,7 @@ export namespace documentai_v1beta3 {
      *       // request body parameters
      *       // {
      *       //   "document": {},
+     *       //   "fieldMask": "my_fieldMask",
      *       //   "inlineDocument": {},
      *       //   "rawDocument": {},
      *       //   "skipHumanReview": false
@@ -6490,6 +6662,7 @@ export namespace documentai_v1beta3 {
      *           // request body parameters
      *           // {
      *           //   "document": {},
+     *           //   "documentSchema": {},
      *           //   "enableSchemaValidation": false,
      *           //   "inlineDocument": {},
      *           //   "priority": "my_priority"
@@ -7106,7 +7279,9 @@ export namespace documentai_v1beta3 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "deprecationInfo": {},
      *   //   "displayName": "my_displayName",
+     *   //   "googleManaged": false,
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "kmsKeyVersionName": "my_kmsKeyVersionName",
      *   //   "name": "my_name",
@@ -7394,6 +7569,7 @@ export namespace documentai_v1beta3 {
      *         // request body parameters
      *         // {
      *         //   "document": {},
+     *         //   "fieldMask": "my_fieldMask",
      *         //   "inlineDocument": {},
      *         //   "rawDocument": {},
      *         //   "skipHumanReview": false

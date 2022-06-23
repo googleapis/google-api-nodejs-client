@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -126,7 +125,7 @@ export namespace redis_v1beta1 {
   }
 
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -248,6 +247,10 @@ export namespace redis_v1beta1 {
      */
     authorizedNetwork?: string | null;
     /**
+     * Optional. The available maintenance versions that an instance could update to.
+     */
+    availableMaintenanceVersions?: string[] | null;
+    /**
      * Optional. The network connect mode of the Redis instance. If not provided, the connect mode defaults to DIRECT_PEERING.
      */
     connectMode?: string | null;
@@ -259,6 +262,10 @@ export namespace redis_v1beta1 {
      * Output only. The current zone where the Redis primary node is located. In basic tier, this will always be the same as [location_id]. In standard tier, this can be the zone of any node in the instance.
      */
     currentLocationId?: string | null;
+    /**
+     * Optional. The KMS key reference that the customer provides when trying to create the instance.
+     */
+    customerManagedKey?: string | null;
     /**
      * An arbitrary and optional user-provided name for the instance.
      */
@@ -283,6 +290,10 @@ export namespace redis_v1beta1 {
      * Output only. Date and time of upcoming maintenance events which have been scheduled.
      */
     maintenanceSchedule?: Schema$MaintenanceSchedule;
+    /**
+     * Optional. The self service update maintenance version. The version is date based such as "20210712_00_00".
+     */
+    maintenanceVersion?: string | null;
     /**
      * Required. Redis memory size in GiB.
      */
@@ -351,6 +362,10 @@ export namespace redis_v1beta1 {
      * Output only. Additional information about the current status of this instance, if available.
      */
     statusMessage?: string | null;
+    /**
+     * Optional. reasons that causes instance in "SUSPENDED" state.
+     */
+    suspensionReasons?: string[] | null;
     /**
      * Required. The service tier of the instance.
      */
@@ -828,7 +843,7 @@ export namespace redis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await redis.projects.locations.list({
-     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
@@ -953,7 +968,7 @@ export namespace redis_v1beta1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
     /**
@@ -1015,15 +1030,18 @@ export namespace redis_v1beta1 {
      *       //   "alternativeLocationId": "my_alternativeLocationId",
      *       //   "authEnabled": false,
      *       //   "authorizedNetwork": "my_authorizedNetwork",
+     *       //   "availableMaintenanceVersions": [],
      *       //   "connectMode": "my_connectMode",
      *       //   "createTime": "my_createTime",
      *       //   "currentLocationId": "my_currentLocationId",
+     *       //   "customerManagedKey": "my_customerManagedKey",
      *       //   "displayName": "my_displayName",
      *       //   "host": "my_host",
      *       //   "labels": {},
      *       //   "locationId": "my_locationId",
      *       //   "maintenancePolicy": {},
      *       //   "maintenanceSchedule": {},
+     *       //   "maintenanceVersion": "my_maintenanceVersion",
      *       //   "memorySizeGb": 0,
      *       //   "name": "my_name",
      *       //   "nodes": [],
@@ -1041,6 +1059,7 @@ export namespace redis_v1beta1 {
      *       //   "serverCaCerts": [],
      *       //   "state": "my_state",
      *       //   "statusMessage": "my_statusMessage",
+     *       //   "suspensionReasons": [],
      *       //   "tier": "my_tier",
      *       //   "transitEncryptionMode": "my_transitEncryptionMode"
      *       // }
@@ -1598,15 +1617,18 @@ export namespace redis_v1beta1 {
      *   //   "alternativeLocationId": "my_alternativeLocationId",
      *   //   "authEnabled": false,
      *   //   "authorizedNetwork": "my_authorizedNetwork",
+     *   //   "availableMaintenanceVersions": [],
      *   //   "connectMode": "my_connectMode",
      *   //   "createTime": "my_createTime",
      *   //   "currentLocationId": "my_currentLocationId",
+     *   //   "customerManagedKey": "my_customerManagedKey",
      *   //   "displayName": "my_displayName",
      *   //   "host": "my_host",
      *   //   "labels": {},
      *   //   "locationId": "my_locationId",
      *   //   "maintenancePolicy": {},
      *   //   "maintenanceSchedule": {},
+     *   //   "maintenanceVersion": "my_maintenanceVersion",
      *   //   "memorySizeGb": 0,
      *   //   "name": "my_name",
      *   //   "nodes": [],
@@ -1624,6 +1646,7 @@ export namespace redis_v1beta1 {
      *   //   "serverCaCerts": [],
      *   //   "state": "my_state",
      *   //   "statusMessage": "my_statusMessage",
+     *   //   "suspensionReasons": [],
      *   //   "tier": "my_tier",
      *   //   "transitEncryptionMode": "my_transitEncryptionMode"
      *   // }
@@ -2172,15 +2195,18 @@ export namespace redis_v1beta1 {
      *       //   "alternativeLocationId": "my_alternativeLocationId",
      *       //   "authEnabled": false,
      *       //   "authorizedNetwork": "my_authorizedNetwork",
+     *       //   "availableMaintenanceVersions": [],
      *       //   "connectMode": "my_connectMode",
      *       //   "createTime": "my_createTime",
      *       //   "currentLocationId": "my_currentLocationId",
+     *       //   "customerManagedKey": "my_customerManagedKey",
      *       //   "displayName": "my_displayName",
      *       //   "host": "my_host",
      *       //   "labels": {},
      *       //   "locationId": "my_locationId",
      *       //   "maintenancePolicy": {},
      *       //   "maintenanceSchedule": {},
+     *       //   "maintenanceVersion": "my_maintenanceVersion",
      *       //   "memorySizeGb": 0,
      *       //   "name": "my_name",
      *       //   "nodes": [],
@@ -2198,6 +2224,7 @@ export namespace redis_v1beta1 {
      *       //   "serverCaCerts": [],
      *       //   "state": "my_state",
      *       //   "statusMessage": "my_statusMessage",
+     *       //   "suspensionReasons": [],
      *       //   "tier": "my_tier",
      *       //   "transitEncryptionMode": "my_transitEncryptionMode"
      *       // }

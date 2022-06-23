@@ -423,7 +423,7 @@
               ],
               "parameters": {
                 "gheConfigId": {
-                  "description": "Optional. The ID to use for the GithubEnterpriseConfig, which will become the final component of the GithubEnterpriseConfig’s resource name. ghe_config_id must meet the following requirements: + They must contain only alphanumeric characters and dashes. + They can be 1-64 characters long. + They must begin and end with an alphanumeric character",
+                  "description": "Optional. The ID to use for the GithubEnterpriseConfig, which will become the final component of the GithubEnterpriseConfig's resource name. ghe_config_id must meet the following requirements: + They must contain only alphanumeric characters and dashes. + They can be 1-64 characters long. + They must begin and end with an alphanumeric character",
                   "location": "query",
                   "type": "string"
                 },
@@ -591,34 +591,6 @@
           "resources": {
             "bitbucketServerConfigs": {
               "methods": {
-                "addBitbucketServerConnectedRepository": {
-                  "description": "Add a Bitbucket Server repository to a given BitbucketServerConfig's connected repositories. This API is experimental.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/bitbucketServerConfigs/{bitbucketServerConfigsId}:addBitbucketServerConnectedRepository",
-                  "httpMethod": "POST",
-                  "id": "cloudbuild.projects.locations.bitbucketServerConfigs.addBitbucketServerConnectedRepository",
-                  "parameterOrder": [
-                    "config"
-                  ],
-                  "parameters": {
-                    "config": {
-                      "description": "Required. The name of the `BitbucketServerConfig` to add a connected repository. Format: `projects/{project}/locations/{location}/bitbucketServerConfigs/{config}`",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/bitbucketServerConfigs/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+config}:addBitbucketServerConnectedRepository",
-                  "request": {
-                    "$ref": "AddBitbucketServerConnectedRepositoryRequest"
-                  },
-                  "response": {
-                    "$ref": "AddBitbucketServerConnectedRepositoryResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "create": {
                   "description": "Creates a new `BitbucketServerConfig`. This API is experimental.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/bitbucketServerConfigs",
@@ -773,7 +745,7 @@
                   ]
                 },
                 "removeBitbucketServerConnectedRepository": {
-                  "description": "Remove a Bitbucket Server repository from an given BitbucketServerConfig’s connected repositories. This API is experimental.",
+                  "description": "Remove a Bitbucket Server repository from a given BitbucketServerConfig's connected repositories. This API is experimental.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/bitbucketServerConfigs/{bitbucketServerConfigsId}:removeBitbucketServerConnectedRepository",
                   "httpMethod": "POST",
                   "id": "cloudbuild.projects.locations.bitbucketServerConfigs.removeBitbucketServerConnectedRepository",
@@ -1090,7 +1062,7 @@
                   ],
                   "parameters": {
                     "gheConfigId": {
-                      "description": "Optional. The ID to use for the GithubEnterpriseConfig, which will become the final component of the GithubEnterpriseConfig’s resource name. ghe_config_id must meet the following requirements: + They must contain only alphanumeric characters and dashes. + They can be 1-64 characters long. + They must begin and end with an alphanumeric character",
+                      "description": "Optional. The ID to use for the GithubEnterpriseConfig, which will become the final component of the GithubEnterpriseConfig's resource name. ghe_config_id must meet the following requirements: + They must contain only alphanumeric characters and dashes. + They can be 1-64 characters long. + They must begin and end with an alphanumeric character",
                       "location": "query",
                       "type": "string"
                     },
@@ -1625,7 +1597,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. The name of the `WorkerPool` to delete. Format: `projects/{project}/locations/{workerPool}/workerPools/{workerPool}`.",
+                      "description": "Required. The name of the `WorkerPool` to delete. Format: `projects/{project}/locations/{location}/workerPools/{workerPool}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/workerPools/[^/]+$",
                       "required": true,
@@ -2039,35 +2011,9 @@
       }
     }
   },
-  "revision": "20220301",
+  "revision": "20220609",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
-    "AddBitbucketServerConnectedRepositoryRequest": {
-      "description": "RPC request object accepted by the AddBitbucketServerConnectedRepository RPC method.",
-      "id": "AddBitbucketServerConnectedRepositoryRequest",
-      "properties": {
-        "connectedRepository": {
-          "$ref": "BitbucketServerRepositoryId",
-          "description": "The connected repository to add."
-        }
-      },
-      "type": "object"
-    },
-    "AddBitbucketServerConnectedRepositoryResponse": {
-      "description": "RPC request object returned by the AddBitbucketServerConnectedRepository RPC method.",
-      "id": "AddBitbucketServerConnectedRepositoryResponse",
-      "properties": {
-        "config": {
-          "description": "The name of the `BitbucketServerConfig` that added connected repository. Format: `projects/{project}/locations/{location}/bitbucketServerConfigs/{config}`",
-          "type": "string"
-        },
-        "connectedRepository": {
-          "$ref": "BitbucketServerRepositoryId",
-          "description": "The connected repository."
-        }
-      },
-      "type": "object"
-    },
     "ApprovalConfig": {
       "description": "ApprovalConfig describes configuration for manual approval of a build.",
       "id": "ApprovalConfig",
@@ -2392,7 +2338,7 @@
           "type": "string"
         },
         "projectKey": {
-          "description": "Required. Key of the project that the repo is in. For example: The key for http://mybitbucket.server/projects/TEST/repos/test-repo is \"TEST\".",
+          "description": "Required. Key of the project that the repo is in. For example: The key for https://mybitbucket.server/projects/TEST/repos/test-repo is \"TEST\".",
           "type": "string"
         },
         "pullRequest": {
@@ -2404,7 +2350,7 @@
           "description": "Filter to match changes in refs like branches, tags."
         },
         "repoSlug": {
-          "description": "Required. Slug of the repository. A repository slug is a URL-friendly version of a repository name, automatically generated by Bitbucket for use in the URL. For example, if the repository name is 'test repo', in the URL it would become 'test-repo' as in http://mybitbucket.server/projects/TEST/repos/test-repo.",
+          "description": "Required. Slug of the repository. A repository slug is a URL-friendly version of a repository name, automatically generated by Bitbucket for use in the URL. For example, if the repository name is 'test repo', in the URL it would become 'test-repo' as in https://mybitbucket.server/projects/TEST/repos/test-repo.",
           "type": "string"
         }
       },
@@ -2970,6 +2916,18 @@
           },
           "type": "array"
         },
+        "includeBuildLogs": {
+          "description": "If set to INCLUDE_BUILD_LOGS_WITH_STATUS, log url will be shown on GitHub page when build status is final. Setting this field to INCLUDE_BUILD_LOGS_WITH_STATUS for non GitHub triggers results in INVALID_ARGUMENT error.",
+          "enum": [
+            "INCLUDE_BUILD_LOGS_UNSPECIFIED",
+            "INCLUDE_BUILD_LOGS_WITH_STATUS"
+          ],
+          "enumDescriptions": [
+            "Build logs will not be shown on GitHub.",
+            "Build logs will be shown on GitHub."
+          ],
+          "type": "string"
+        },
         "includedFiles": {
           "description": "If any of the files altered in the commit pass the ignored_files filter and included_files is empty, then as far as this filter is concerned, we should trigger the build. If any of the files altered in the commit pass the ignored_files filter and included_files is not empty, then we make sure that at least one of those files matches a included_files glob. If not, then we do not trigger a build.",
           "items": {
@@ -3124,27 +3082,6 @@
       },
       "type": "object"
     },
-    "CreateGitLabConfigOperationMetadata": {
-      "description": "Metadata for `CreateGitLabConfig` operation.",
-      "id": "CreateGitLabConfigOperationMetadata",
-      "properties": {
-        "completeTime": {
-          "description": "Time the operation was completed.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "createTime": {
-          "description": "Time the operation was created.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "gitlabConfig": {
-          "description": "The resource name of the GitLabConfig to be created. Format: `projects/{project}/locations/{location}/gitlabConfigs/{id}`.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "CreateWorkerPoolOperationMetadata": {
       "description": "Metadata for the `CreateWorkerPool` operation.",
       "id": "CreateWorkerPoolOperationMetadata",
@@ -3208,27 +3145,6 @@
       },
       "type": "object"
     },
-    "DeleteGitLabConfigOperationMetadata": {
-      "description": "Metadata for `DeleteGitLabConfig` operation.",
-      "id": "DeleteGitLabConfigOperationMetadata",
-      "properties": {
-        "completeTime": {
-          "description": "Time the operation was completed.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "createTime": {
-          "description": "Time the operation was created.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "gitlabConfig": {
-          "description": "The resource name of the GitLabConfig to be created. Format: `projects/{project}/locations/{location}/gitlabConfigs/{id}`.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "DeleteWorkerPoolOperationMetadata": {
       "description": "Metadata for the `DeleteWorkerPool` operation.",
       "id": "DeleteWorkerPoolOperationMetadata",
@@ -3251,7 +3167,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -3340,7 +3256,7 @@
           "type": "string"
         },
         "uri": {
-          "description": "The URI of the repo (optional). If unspecified, the repo from which the trigger invocation originated is assumed to be the repo from which to read the specified path.",
+          "description": "The URI of the repo. Either uri or repository can be specified. If unspecified, the repo from which the trigger invocation originated is assumed to be the repo from which to read the specified path.",
           "type": "string"
         }
       },
@@ -3496,7 +3412,7 @@
           "type": "string"
         },
         "uri": {
-          "description": "The URI of the repo (required).",
+          "description": "The URI of the repo. Either uri or repository can be specified and is required.",
           "type": "string"
         }
       },
@@ -4533,27 +4449,6 @@
         },
         "githubEnterpriseConfig": {
           "description": "The resource name of the GitHubEnterprise to be updated. Format: `projects/{project}/locations/{location}/githubEnterpriseConfigs/{id}`.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "UpdateGitLabConfigOperationMetadata": {
-      "description": "Metadata for `UpdateGitLabConfig` operation.",
-      "id": "UpdateGitLabConfigOperationMetadata",
-      "properties": {
-        "completeTime": {
-          "description": "Time the operation was completed.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "createTime": {
-          "description": "Time the operation was created.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "gitlabConfig": {
-          "description": "The resource name of the GitLabConfig to be created. Format: `projects/{project}/locations/{location}/gitlabConfigs/{id}`.",
           "type": "string"
         }
       },

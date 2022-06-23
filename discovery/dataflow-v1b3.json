@@ -265,7 +265,7 @@
               ]
             },
             "create": {
-              "description": "Creates a Cloud Dataflow job. To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`.",
+              "description": "Creates a Cloud Dataflow job. To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`. Do not enter confidential information when you supply string values using the API.",
               "flatPath": "v1b3/projects/{projectId}/jobs",
               "httpMethod": "POST",
               "id": "dataflow.projects.jobs.create",
@@ -910,7 +910,7 @@
             "jobs": {
               "methods": {
                 "create": {
-                  "description": "Creates a Cloud Dataflow job. To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`.",
+                  "description": "Creates a Cloud Dataflow job. To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`. Do not enter confidential information when you supply string values using the API.",
                   "flatPath": "v1b3/projects/{projectId}/locations/{location}/jobs",
                   "httpMethod": "POST",
                   "id": "dataflow.projects.locations.jobs.create",
@@ -1858,7 +1858,7 @@
             "templates": {
               "methods": {
                 "create": {
-                  "description": "Creates a Cloud Dataflow job from a template.",
+                  "description": "Creates a Cloud Dataflow job from a template. Do not enter confidential information when you supply string values using the API.",
                   "flatPath": "v1b3/projects/{projectId}/locations/{location}/templates",
                   "httpMethod": "POST",
                   "id": "dataflow.projects.locations.templates.create",
@@ -2088,7 +2088,7 @@
         "templates": {
           "methods": {
             "create": {
-              "description": "Creates a Cloud Dataflow job from a template.",
+              "description": "Creates a Cloud Dataflow job from a template. Do not enter confidential information when you supply string values using the API.",
               "flatPath": "v1b3/projects/{projectId}/templates",
               "httpMethod": "POST",
               "id": "dataflow.projects.templates.create",
@@ -2225,7 +2225,7 @@
       }
     }
   },
-  "revision": "20220301",
+  "revision": "20220526",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -2539,6 +2539,18 @@
         },
         "image": {
           "description": "Name of the docker container image. E.g., gcr.io/project/some-image",
+          "type": "string"
+        },
+        "imageRepositoryCertPath": {
+          "description": "Cloud Storage path to self-signed certificate of private registry.",
+          "type": "string"
+        },
+        "imageRepositoryPasswordSecretId": {
+          "description": "Secret Manager secret id for password to authenticate to private registry.",
+          "type": "string"
+        },
+        "imageRepositoryUsernameSecretId": {
+          "description": "Secret Manager secret id for username to authenticate to private registry.",
           "type": "string"
         },
         "metadata": {
@@ -3334,7 +3346,7 @@
           "type": "integer"
         },
         "dumpHeapOnOom": {
-          "description": "If true, save a heap dump before killing a thread or process which is GC thrashing or out of memory. The location of the heap file will either be echoed back to the user, or the user will be given the opportunity to download the heap file.",
+          "description": "If true, when processing time is spent almost entirely on garbage collection (GC), saves a heap dump before ending the thread or process. If false, ends the thread or process without saving a heap dump. Does not save a heap dump when the Java Virtual Machine (JVM) has an out of memory error during processing. The location of the heap file is either echoed back to the user, or the user is given the opportunity to download the heap file.",
           "type": "boolean"
         },
         "enableStreamingEngine": {
@@ -3396,7 +3408,7 @@
           "type": "integer"
         },
         "saveHeapDumpsToGcsPath": {
-          "description": "Cloud Storage bucket (directory) to upload heap dumps to the given location. Enabling this implies that heap dumps should be generated on OOM (dump_heap_on_oom is set to true).",
+          "description": "Cloud Storage bucket (directory) to upload heap dumps to. Enabling this field implies that `dump_heap_on_oom` is set to true.",
           "type": "string"
         },
         "sdkContainerImage": {
@@ -3666,7 +3678,7 @@
       "type": "object"
     },
     "Job": {
-      "description": "Defines a job to be run by the Cloud Dataflow service.",
+      "description": "Defines a job to be run by the Cloud Dataflow service. Do not enter confidential information when you supply string values using the API.",
       "id": "Job",
       "properties": {
         "clientRequestId": {
@@ -3749,7 +3761,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The user-specified Cloud Dataflow job name. Only one Job with a given name may exist in a project at any given time. If a caller attempts to create a Job with the same name as an already-existing Job, the attempt returns the existing Job. The name must match the regular expression `[a-z]([-a-z0-9]{0,38}[a-z0-9])?`",
+          "description": "The user-specified Cloud Dataflow job name. Only one Job with a given name can exist in a project within one region at any given time. Jobs in different regions can have the same name. If a caller attempts to create a Job with the same name as an already-existing Job, the attempt returns the existing Job. The name must match the regular expression `[a-z]([-a-z0-9]{0,38}[a-z0-9])?`",
           "type": "string"
         },
         "pipelineDescription": {
@@ -4139,7 +4151,7 @@
       "type": "object"
     },
     "LaunchTemplateParameters": {
-      "description": "Parameters to provide to the template being launched.",
+      "description": "Parameters to provide to the template being launched. Note that the [metadata in the pipeline code] (https://cloud.google.com/dataflow/docs/guides/templates/creating-templates#metadata) determines which runtime parameters are valid.",
       "id": "LaunchTemplateParameters",
       "properties": {
         "environment": {
@@ -5111,7 +5123,7 @@
           "type": "string"
         },
         "numWorkers": {
-          "description": "The initial number of Google Compute Engine instnaces for the job.",
+          "description": "The initial number of Google Compute Engine instances for the job.",
           "format": "int32",
           "type": "integer"
         },
@@ -5186,11 +5198,11 @@
       "type": "object"
     },
     "SdkHarnessContainerImage": {
-      "description": "Defines a SDK harness container for executing Dataflow pipelines.",
+      "description": "Defines an SDK harness container for executing Dataflow pipelines.",
       "id": "SdkHarnessContainerImage",
       "properties": {
         "capabilities": {
-          "description": "The set of capabilities enumerated in the above Environment proto. See also https://github.com/apache/beam/blob/master/model/pipeline/src/main/proto/beam_runner_api.proto",
+          "description": "The set of capabilities enumerated in the above Environment proto. See also [beam_runner_api.proto](https://github.com/apache/beam/blob/master/model/pipeline/src/main/proto/org/apache/beam/model/pipeline/v1/beam_runner_api.proto)",
           "items": {
             "type": "string"
           },

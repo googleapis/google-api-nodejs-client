@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -113,6 +112,7 @@ export namespace androidpublisher_v3 {
    */
   export class Androidpublisher {
     context: APIRequestContext;
+    applications: Resource$Applications;
     edits: Resource$Edits;
     generatedapks: Resource$Generatedapks;
     grants: Resource$Grants;
@@ -131,6 +131,7 @@ export namespace androidpublisher_v3 {
         google,
       };
 
+      this.applications = new Resource$Applications(this.context);
       this.edits = new Resource$Edits(this.context);
       this.generatedapks = new Resource$Generatedapks(this.context);
       this.grants = new Resource$Grants(this.context);
@@ -146,6 +147,23 @@ export namespace androidpublisher_v3 {
     }
   }
 
+  /**
+   * Represents a targeting rule of the form: User never had {scope\} before.
+   */
+  export interface Schema$AcquisitionTargetingRule {
+    /**
+     * Required. The scope of subscriptions this rule considers. Only allows "this subscription" and "any subscription in app".
+     */
+    scope?: Schema$TargetingRuleScope;
+  }
+  /**
+   * Request message for ActivateBasePlan.
+   */
+  export interface Schema$ActivateBasePlanRequest {}
+  /**
+   * Request message for ActivateSubscriptionOffer.
+   */
+  export interface Schema$ActivateSubscriptionOfferRequest {}
   /**
    * Information about an APK. The resource for ApksService.
    */
@@ -238,6 +256,77 @@ export namespace androidpublisher_v3 {
     id?: string | null;
   }
   /**
+   * Request message for ArchiveSubscription.
+   */
+  export interface Schema$ArchiveSubscriptionRequest {}
+  /**
+   * Represents a base plan that automatically renews at the end of its subscription period.
+   */
+  export interface Schema$AutoRenewingBasePlanType {
+    /**
+     * Required. Subscription period, specified in ISO 8601 format. For a list of acceptable billing periods, refer to the help center.
+     */
+    billingPeriodDuration?: string | null;
+    /**
+     * Grace period of the subscription, specified in ISO 8601 format. Acceptable values are P0D (zero days), P3D (3 days), P7D (7 days), P14D (14 days), and P30D (30 days). If not specified, a default value will be used based on the recurring period duration.
+     */
+    gracePeriodDuration?: string | null;
+    /**
+     * Whether the renewing base plan is compatible with legacy version of the Play Billing Library (prior to version 3) or not. Only one renewing base plan can be marked as legacy compatible for a given subscription.
+     */
+    legacyCompatible?: boolean | null;
+    /**
+     * The proration mode for the base plan determines what happens when a user switches to this plan from another base plan. If unspecified, defaults to CHARGE_ON_NEXT_BILLING_DATE.
+     */
+    prorationMode?: string | null;
+    /**
+     * Whether users should be able to resubscribe to this base plan in Google Play surfaces. Defaults to RESUBSCRIBE_STATE_ACTIVE if not specified.
+     */
+    resubscribeState?: string | null;
+  }
+  /**
+   * Information related to an auto renewing plan.
+   */
+  export interface Schema$AutoRenewingPlan {
+    /**
+     * If the subscription is currently set to auto-renew, e.g. the user has not canceled the subscription
+     */
+    autoRenewEnabled?: boolean | null;
+  }
+  /**
+   * A single base plan for a subscription.
+   */
+  export interface Schema$BasePlan {
+    /**
+     * Set when the base plan automatically renews at a regular interval.
+     */
+    autoRenewingBasePlanType?: Schema$AutoRenewingBasePlanType;
+    /**
+     * Required. Immutable. The unique identifier of this base plan. Must be unique within the subscription, and conform with RFC-1034. That is, this ID can only contain lower-case letters (a-z), numbers (0-9), and hyphens (-), and be at most 63 characters.
+     */
+    basePlanId?: string | null;
+    /**
+     * List of up to 20 custom tags specified for this base plan, and returned to the app through the billing library. Subscription offers for this base plan will also receive these offer tags in the billing library.
+     */
+    offerTags?: Schema$OfferTag[];
+    /**
+     * Pricing information for any new locations Play may launch in the future. If omitted, the BasePlan will not be automatically available any new locations Play may launch in the future.
+     */
+    otherRegionsConfig?: Schema$OtherRegionsBasePlanConfig;
+    /**
+     * Set when the base plan does not automatically renew at the end of the billing period.
+     */
+    prepaidBasePlanType?: Schema$PrepaidBasePlanType;
+    /**
+     * Region-specific information for this base plan.
+     */
+    regionalConfigs?: Schema$RegionalBasePlanConfig[];
+    /**
+     * Output only. The state of the base plan, i.e. whether it's active. Draft and inactive base plans can be activated or deleted. Active base plans can be made inactive. Inactive base plans can be canceled. This field cannot be changed by updating the resource. Use the dedicated endpoints instead.
+     */
+    state?: string | null;
+  }
+  /**
    * Information about an app bundle. The resource for BundlesService.
    */
   export interface Schema$Bundle {
@@ -266,6 +355,40 @@ export namespace androidpublisher_v3 {
      * The kind of this response ("androidpublisher#bundlesListResponse").
      */
     kind?: string | null;
+  }
+  /**
+   * Information specific to a subscription in canceled state.
+   */
+  export interface Schema$CanceledStateContext {
+    /**
+     * Subscription was canceled by the developer.
+     */
+    developerInitiatedCancellation?: Schema$DeveloperInitiatedCancellation;
+    /**
+     * Subscription was replaced by a new subscription.
+     */
+    replacementCancellation?: Schema$ReplacementCancellation;
+    /**
+     * Subscription was canceled by the system, for example because of a billing problem.
+     */
+    systemInitiatedCancellation?: Schema$SystemInitiatedCancellation;
+    /**
+     * Subscription was canceled by user.
+     */
+    userInitiatedCancellation?: Schema$UserInitiatedCancellation;
+  }
+  /**
+   * Result of the cancel survey when the subscription was canceled by the user.
+   */
+  export interface Schema$CancelSurveyResult {
+    /**
+     * The reason the user selected in the cancel survey.
+     */
+    reason?: string | null;
+    /**
+     * Only set for CANCEL_SURVEY_REASON_OTHERS. This is the user's freeform response to the survey.
+     */
+    reasonUserInput?: string | null;
   }
   /**
    * An entry of conversation between user and developer.
@@ -346,6 +469,14 @@ export namespace androidpublisher_v3 {
     includeRestOfWorld?: boolean | null;
   }
   /**
+   * Request message for DeactivateBasePlan.
+   */
+  export interface Schema$DeactivateBasePlanRequest {}
+  /**
+   * Request message for DeactivateSubscriptionOffer.
+   */
+  export interface Schema$DeactivateSubscriptionOfferRequest {}
+  /**
    * Represents a deobfuscation file.
    */
   export interface Schema$DeobfuscationFile {
@@ -375,6 +506,36 @@ export namespace androidpublisher_v3 {
      * The content of the comment, i.e. reply body.
      */
     text?: string | null;
+  }
+  /**
+   * Information specific to cancellations initiated by developers.
+   */
+  export interface Schema$DeveloperInitiatedCancellation {}
+  /**
+   * LINT.IfChange A group of devices. A group is defined by a set of device selectors. A device belongs to the group if it matches any selector (logical OR).
+   */
+  export interface Schema$DeviceGroup {
+    /**
+     * Device selectors for this group. A device matching any of the selectors is included in this group.
+     */
+    deviceSelectors?: Schema$DeviceSelector[];
+    /**
+     * The name of the group.
+     */
+    name?: string | null;
+  }
+  /**
+   * Identifier of a device.
+   */
+  export interface Schema$DeviceId {
+    /**
+     * Value of Build.BRAND.
+     */
+    buildBrand?: string | null;
+    /**
+     * Value of Build.DEVICE.
+     */
+    buildDevice?: string | null;
   }
   /**
    * Characteristics of the user's device.
@@ -426,6 +587,44 @@ export namespace androidpublisher_v3 {
     screenWidthPx?: number | null;
   }
   /**
+   * Conditions about a device's RAM capabilities.
+   */
+  export interface Schema$DeviceRam {
+    /**
+     * Maximum RAM in bytes (bound excluded).
+     */
+    maxBytes?: string | null;
+    /**
+     * Minimum RAM in bytes (bound included).
+     */
+    minBytes?: string | null;
+  }
+  /**
+   * Selector for a device group. A selector consists of a set of conditions on the device that should all match (logical AND) to determine a device group eligibility. For instance, if a selector specifies RAM conditions, device model inclusion and device model exclusion, a device is considered to match if: device matches RAM conditions AND device matches one of the included device models AND device doesn't match excluded device models
+   */
+  export interface Schema$DeviceSelector {
+    /**
+     * Conditions on the device's RAM.
+     */
+    deviceRam?: Schema$DeviceRam;
+    /**
+     * Device models excluded by this selector, even if they match all other conditions.
+     */
+    excludedDeviceIds?: Schema$DeviceId[];
+    /**
+     * A device that has any of these system features is excluded by this selector, even if it matches all other conditions.
+     */
+    forbiddenSystemFeatures?: Schema$SystemFeature[];
+    /**
+     * Device models included by this selector.
+     */
+    includedDeviceIds?: Schema$DeviceId[];
+    /**
+     * A device needs to have all these system features to be included by the selector.
+     */
+    requiredSystemFeatures?: Schema$SystemFeature[];
+  }
+  /**
    * The device spec used to generate a system APK.
    */
   export interface Schema$DeviceSpec {
@@ -441,6 +640,45 @@ export namespace androidpublisher_v3 {
      * All installed locales represented as BCP-47 strings, e.g. "en-US".
      */
     supportedLocales?: string[] | null;
+  }
+  /**
+   * A single device tier. Devices matching any of the device groups in device_group_names are considered to match the tier.
+   */
+  export interface Schema$DeviceTier {
+    /**
+     * Groups of devices included in this tier. These groups must be defined explicitly under device_groups in this configuration.
+     */
+    deviceGroupNames?: string[] | null;
+    /**
+     * The priority level of the tier. Tiers are evaluated in descending order of level: the highest level tier has the highest priority. The highest tier matching a given device is selected for that device. You should use a contiguous range of levels for your tiers in a tier set; tier levels in a tier set must be unique. For instance, if your tier set has 4 tiers (including the global fallback), you should define tiers 1, 2 and 3 in this configuration. Note: tier 0 is implicitly defined as a global fallback and selected for devices that don't match any of the tiers explicitly defined here. You mustn't define level 0 explicitly in this configuration.
+     */
+    level?: number | null;
+  }
+  /**
+   * LINT.IfChange Configuration describing device targeting criteria for the content of an app.
+   */
+  export interface Schema$DeviceTierConfig {
+    /**
+     * Definition of device groups for the app.
+     */
+    deviceGroups?: Schema$DeviceGroup[];
+    /**
+     * Output only. The device tier config ID.
+     */
+    deviceTierConfigId?: string | null;
+    /**
+     * Definition of the set of device tiers for the app.
+     */
+    deviceTierSet?: Schema$DeviceTierSet;
+  }
+  /**
+   * A set of device tiers. A tier set determines what variation of app content gets served to a specific device, for device-targeted content. You should assign a priority level to each tier, which determines the ordering by which they are evaluated by Play. See the documentation of DeviceTier.level for more details.
+   */
+  export interface Schema$DeviceTierSet {
+    /**
+     * Device tiers belonging to the set.
+     */
+    deviceTiers?: Schema$DeviceTier[];
   }
   /**
    * An expansion file. The resource for ExpansionFilesService.
@@ -463,6 +701,23 @@ export namespace androidpublisher_v3 {
      * The uploaded expansion file configuration.
      */
     expansionFile?: Schema$ExpansionFile;
+  }
+  /**
+   * User account identifier in the third-party service.
+   */
+  export interface Schema$ExternalAccountIdentifiers {
+    /**
+     * User account identifier in the third-party service. Only present if account linking happened as part of the subscription purchase flow.
+     */
+    externalAccountId?: string | null;
+    /**
+     * An obfuscated version of the id that is uniquely associated with the user's account in your app. Present for the following purchases: * If account linking happened as part of the subscription purchase flow. * It was specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedaccountid when the purchase was made.
+     */
+    obfuscatedExternalAccountId?: string | null;
+    /**
+     * An obfuscated version of the id that is uniquely associated with the user's profile in your app. Only present if specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedprofileid when the purchase was made.
+     */
+    obfuscatedExternalProfileId?: string | null;
   }
   /**
    * Defines an APK available for this application that is hosted externally and not uploaded to Google Play. This function is only available to organizations using Managed Play whose application is configured to restrict distribution to the organizations.
@@ -636,11 +891,11 @@ export namespace androidpublisher_v3 {
      */
     appLevelPermissions?: string[] | null;
     /**
-     * Required. Resource name for this grant, following the pattern "developers/{developer\}/users/{email\}/grants/{package_name\}".
+     * Required. Resource name for this grant, following the pattern "developers/{developer\}/users/{email\}/grants/{package_name\}". If this grant is for a draft app, the app ID will be used in this resource name instead of the package name.
      */
     name?: string | null;
     /**
-     * Immutable. The package name of the app.
+     * Immutable. The package name of the app. This will be empty for draft apps.
      */
     packageName?: string | null;
   }
@@ -826,6 +1081,19 @@ export namespace androidpublisher_v3 {
     introductoryPricePeriod?: string | null;
   }
   /**
+   * Response listing existing device tier configs.
+   */
+  export interface Schema$ListDeviceTierConfigsResponse {
+    /**
+     * Device tier configs created by the developer.
+     */
+    deviceTierConfigs?: Schema$DeviceTierConfig[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * A localized store listing. The resource for ListingsService.
    */
   export interface Schema$Listing {
@@ -862,6 +1130,32 @@ export namespace androidpublisher_v3 {
      * All localized listings.
      */
     listings?: Schema$Listing[];
+  }
+  /**
+   * Response message for ListSubscriptionOffers.
+   */
+  export interface Schema$ListSubscriptionOffersResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The subscription offers from the specified subscription.
+     */
+    subscriptionOffers?: Schema$SubscriptionOffer[];
+  }
+  /**
+   * Response message for ListSubscriptions.
+   */
+  export interface Schema$ListSubscriptionsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The subscriptions from the specified app.
+     */
+    subscriptions?: Schema$Subscription[];
   }
   /**
    * A response containing one or more users with access to an account.
@@ -905,6 +1199,23 @@ export namespace androidpublisher_v3 {
     } | null;
   }
   /**
+   * Request message for MigrateBasePlanPrices.
+   */
+  export interface Schema$MigrateBasePlanPricesRequest {
+    /**
+     * Required. The regional prices to update.
+     */
+    regionalPriceMigrations?: Schema$RegionalPriceMigrationConfig[];
+    /**
+     * Required. The version of the available regions being used for the regional_price_migrations.
+     */
+    regionsVersion?: Schema$RegionsVersion;
+  }
+  /**
+   * Response message for MigrateBasePlanPrices.
+   */
+  export interface Schema$MigrateBasePlanPricesResponse {}
+  /**
    * Represents an amount of money with its currency type.
    */
   export interface Schema$Money {
@@ -922,6 +1233,71 @@ export namespace androidpublisher_v3 {
     units?: string | null;
   }
   /**
+   * Represents a custom tag specified for base plans and subscription offers.
+   */
+  export interface Schema$OfferTag {
+    /**
+     * Must conform with RFC-1034. That is, this string can only contain lower-case letters (a-z), numbers (0-9), and hyphens (-), and be at most 20 characters.
+     */
+    tag?: string | null;
+  }
+  /**
+   * Pricing information for any new locations Play may launch in.
+   */
+  export interface Schema$OtherRegionsBasePlanConfig {
+    /**
+     * Required. Price in EUR to use for any new locations Play may launch in.
+     */
+    eurPrice?: Schema$Money;
+    /**
+     * Whether the base plan is available for new subscribers in any new locations Play may launch in. If not specified, this will default to false.
+     */
+    newSubscriberAvailability?: boolean | null;
+    /**
+     * Required. Price in USD to use for any new locations Play may launch in.
+     */
+    usdPrice?: Schema$Money;
+  }
+  /**
+   * Configuration for any new locations Play may launch in specified on a subscription offer.
+   */
+  export interface Schema$OtherRegionsSubscriptionOfferConfig {
+    /**
+     * Whether the subscription offer in any new locations Play may launch in the future. If not specified, this will default to false.
+     */
+    otherRegionsNewSubscriberAvailability?: boolean | null;
+  }
+  /**
+   * Configuration for any new locations Play may launch in for a single offer phase.
+   */
+  export interface Schema$OtherRegionsSubscriptionOfferPhaseConfig {
+    /**
+     * The absolute amount of money subtracted from the base plan price prorated over the phase duration that the user pays for this offer phase. For example, if the base plan price for this region is $12 for a period of 1 year, then a $1 absolute discount for a phase of a duration of 3 months would correspond to a price of $2. The resulting price may not be smaller than the minimum price allowed for any new locations Play may launch in.
+     */
+    absoluteDiscounts?: Schema$OtherRegionsSubscriptionOfferPhasePrices;
+    /**
+     * The absolute price the user pays for this offer phase. The price must not be smaller than the minimum price allowed for any new locations Play may launch in.
+     */
+    otherRegionsPrices?: Schema$OtherRegionsSubscriptionOfferPhasePrices;
+    /**
+     * The fraction of the base plan price prorated over the phase duration that the user pays for this offer phase. For example, if the base plan price for this region is $12 for a period of 1 year, then a 50% discount for a phase of a duration of 3 months would correspond to a price of $1.50. The discount must be specified as a fraction strictly larger than 0 and strictly smaller than 1. The resulting price will be rounded to the nearest billable unit (e.g. cents for USD). The relative discount is considered invalid if the discounted price ends up being smaller than the minimum price allowed in any new locations Play may launch in.
+     */
+    relativeDiscount?: number | null;
+  }
+  /**
+   * Pricing information for any new locations Play may launch in.
+   */
+  export interface Schema$OtherRegionsSubscriptionOfferPhasePrices {
+    /**
+     * Required. Price in EUR to use for any new locations Play may launch in.
+     */
+    eurPrice?: Schema$Money;
+    /**
+     * Required. Price in USD to use for any new locations Play may launch in.
+     */
+    usdPrice?: Schema$Money;
+  }
+  /**
    * Information about the current page. List operations that supports paging return only one "page" of results. This protocol buffer message describes the page that has been returned.
    */
   export interface Schema$PageInfo {
@@ -937,6 +1313,37 @@ export namespace androidpublisher_v3 {
      * Total number of results available on the backend ! The total number of results in the result set.
      */
     totalResults?: number | null;
+  }
+  /**
+   * Information specific to a subscription in paused state.
+   */
+  export interface Schema$PausedStateContext {
+    /**
+     * Time at which the subscription will be automatically resumed.
+     */
+    autoResumeTime?: string | null;
+  }
+  /**
+   * Represents a base plan that does not automatically renew at the end of the base plan, and must be manually renewed by the user.
+   */
+  export interface Schema$PrepaidBasePlanType {
+    /**
+     * Required. Subscription period, specified in ISO 8601 format. For a list of acceptable billing periods, refer to the help center.
+     */
+    billingPeriodDuration?: string | null;
+    /**
+     * Whether users should be able to extend this prepaid base plan in Google Play surfaces. Defaults to TIME_EXTENSION_ACTIVE if not specified.
+     */
+    timeExtension?: string | null;
+  }
+  /**
+   * Information related to a prepaid plan.
+   */
+  export interface Schema$PrepaidPlan {
+    /**
+     * After this time, the subscription is allowed for a new top-up purchase. Not present if the subscription is already extended by a top-up purchase.
+     */
+    allowExtendAfterTime?: string | null;
   }
   /**
    * Definition of a price, i.e. currency and units.
@@ -984,7 +1391,7 @@ export namespace androidpublisher_v3 {
      */
     orderId?: string | null;
     /**
-     * The inapp product SKU.
+     * The inapp product SKU. May not be present.
      */
     productId?: string | null;
     /**
@@ -996,7 +1403,7 @@ export namespace androidpublisher_v3 {
      */
     purchaseTimeMillis?: string | null;
     /**
-     * The purchase token generated to identify this purchase.
+     * The purchase token generated to identify this purchase. May not be present.
      */
     purchaseToken?: string | null;
     /**
@@ -1004,7 +1411,7 @@ export namespace androidpublisher_v3 {
      */
     purchaseType?: number | null;
     /**
-     * The quantity associated with the purchase of the inapp product.
+     * The quantity associated with the purchase of the inapp product. If not present, the quantity is 1.
      */
     quantity?: number | null;
     /**
@@ -1022,6 +1429,70 @@ export namespace androidpublisher_v3 {
     developerPayload?: string | null;
   }
   /**
+   * Configuration for a base plan specific to a region.
+   */
+  export interface Schema$RegionalBasePlanConfig {
+    /**
+     * Whether the base plan in the specified region is available for new subscribers. Existing subscribers will not have their subscription canceled if this value is set to false. If not specified, this will default to false.
+     */
+    newSubscriberAvailability?: boolean | null;
+    /**
+     * The price of the base plan in the specified region. Must be set if the base plan is available to new subscribers. Must be set in the currency that is linked to the specified region.
+     */
+    price?: Schema$Money;
+    /**
+     * Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g. "US".
+     */
+    regionCode?: string | null;
+  }
+  /**
+   * Configuration for a price migration.
+   */
+  export interface Schema$RegionalPriceMigrationConfig {
+    /**
+     * Required. The cutoff time for historical prices that subscribers can remain paying. Subscribers who are on a price that was created before this cutoff time will be migrated to the currently-offered price. These subscribers will receive a notification that they will be paying a different price. Subscribers who do not agree to the new price will have their subscription ended at the next renewal.
+     */
+    oldestAllowedPriceVersionTime?: string | null;
+    /**
+     * Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g. "US".
+     */
+    regionCode?: string | null;
+  }
+  /**
+   * Configuration for a subscription offer in a single region.
+   */
+  export interface Schema$RegionalSubscriptionOfferConfig {
+    /**
+     * Whether the subscription offer in the specified region is available for new subscribers. Existing subscribers will not have their subscription cancelled if this value is set to false. If not specified, this will default to false.
+     */
+    newSubscriberAvailability?: boolean | null;
+    /**
+     * Required. Immutable. Region code this configuration applies to, as defined by ISO 3166-2, e.g. "US".
+     */
+    regionCode?: string | null;
+  }
+  /**
+   * Configuration for a single phase of a subscription offer in a single region.
+   */
+  export interface Schema$RegionalSubscriptionOfferPhaseConfig {
+    /**
+     * The absolute amount of money subtracted from the base plan price prorated over the phase duration that the user pays for this offer phase. For example, if the base plan price for this region is $12 for a period of 1 year, then a $1 absolute discount for a phase of a duration of 3 months would correspond to a price of $2. The resulting price may not be smaller than the minimum price allowed for this region.
+     */
+    absoluteDiscount?: Schema$Money;
+    /**
+     * The absolute price the user pays for this offer phase. The price must not be smaller than the minimum price allowed for this region.
+     */
+    price?: Schema$Money;
+    /**
+     * Required. Immutable. The region to which this config applies.
+     */
+    regionCode?: string | null;
+    /**
+     * The fraction of the base plan price prorated over the phase duration that the user pays for this offer phase. For example, if the base plan price for this region is $12 for a period of 1 year, then a 50% discount for a phase of a duration of 3 months would correspond to a price of $1.50. The discount must be specified as a fraction strictly larger than 0 and strictly smaller than 1. The resulting price will be rounded to the nearest billable unit (e.g. cents for USD). The relative discount is considered invalid if the discounted price ends up being smaller than the minimum price allowed in this region.
+     */
+    relativeDiscount?: number | null;
+  }
+  /**
    * Specified details about taxation in a given geographical region.
    */
   export interface Schema$RegionalTaxRateInfo {
@@ -1034,6 +1505,19 @@ export namespace androidpublisher_v3 {
      */
     taxTier?: string | null;
   }
+  /**
+   * The version of the available regions being used for the specified resource.
+   */
+  export interface Schema$RegionsVersion {
+    /**
+     * Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/01.
+     */
+    version?: string | null;
+  }
+  /**
+   * Information specific to cancellations caused by subscription replacement.
+   */
+  export interface Schema$ReplacementCancellation {}
   /**
    * An Android app review.
    */
@@ -1100,6 +1584,60 @@ export namespace androidpublisher_v3 {
     result?: Schema$ReviewReplyResult;
   }
   /**
+   * Information associated with purchases made with 'Subscribe with Google'.
+   */
+  export interface Schema$SubscribeWithGoogleInfo {
+    /**
+     * The email address of the user when the subscription was purchased.
+     */
+    emailAddress?: string | null;
+    /**
+     * The family name of the user when the subscription was purchased.
+     */
+    familyName?: string | null;
+    /**
+     * The given name of the user when the subscription was purchased.
+     */
+    givenName?: string | null;
+    /**
+     * The Google profile id of the user when the subscription was purchased.
+     */
+    profileId?: string | null;
+    /**
+     * The profile name of the user when the subscription was purchased.
+     */
+    profileName?: string | null;
+  }
+  /**
+   * A single subscription for an app.
+   */
+  export interface Schema$Subscription {
+    /**
+     * Output only. Whether this subscription is archived. Archived subscriptions are not available to any subscriber any longer, cannot be updated, and are not returned in list requests unless the show archived flag is passed in.
+     */
+    archived?: boolean | null;
+    /**
+     * The set of base plans for this subscription. Represents the prices and duration of the subscription if no other offers apply.
+     */
+    basePlans?: Schema$BasePlan[];
+    /**
+     * Required. List of localized listings for this subscription. Must contain at least an entry for the default language of the parent app.
+     */
+    listings?: Schema$SubscriptionListing[];
+    /**
+     * Immutable. Package name of the parent app.
+     */
+    packageName?: string | null;
+    /**
+     * Immutable. Unique product ID of the product. Unique within the parent app. Product IDs must be composed of lower-case letters (a-z), numbers (0-9), underscores (_) and dots (.). It must start with a lower-case letter or number, and be between 1 and 40 (inclusive) characters in length.
+     */
+    productId?: string | null;
+    /**
+     * Details about taxes and legal compliance.
+     */
+    taxAndComplianceSettings?: Schema$SubscriptionTaxAndComplianceSettings;
+  }
+  /**
    * Information provided by the user when they complete the subscription cancellation flow (cancellation reason survey).
    */
   export interface Schema$SubscriptionCancelSurveyResult {
@@ -1124,6 +1662,106 @@ export namespace androidpublisher_v3 {
      * The expected expiry time for the subscription. If the current expiry time for the subscription is not the value specified here, the deferral will not occur.
      */
     expectedExpiryTimeMillis?: string | null;
+  }
+  /**
+   * The consumer-visible metadata of a subscription.
+   */
+  export interface Schema$SubscriptionListing {
+    /**
+     * A list of benefits shown to the user on platforms such as the Play Store and in restoration flows in the language of this listing. Plain text. Ordered list of at most four benefits.
+     */
+    benefits?: string[] | null;
+    /**
+     * The description of this subscription in the language of this listing. Maximum length - 80 characters. Plain text.
+     */
+    description?: string | null;
+    /**
+     * Required. The language of this listing, as defined by BCP-47, e.g. "en-US".
+     */
+    languageCode?: string | null;
+    /**
+     * Required. The title of this subscription in the language of this listing. Plain text.
+     */
+    title?: string | null;
+  }
+  /**
+   * A single, temporary offer
+   */
+  export interface Schema$SubscriptionOffer {
+    /**
+     * Required. Immutable. The ID of the base plan to which this offer is an extension.
+     */
+    basePlanId?: string | null;
+    /**
+     * Required. Immutable. Unique ID of this subscription offer. Must be unique within the base plan.
+     */
+    offerId?: string | null;
+    /**
+     * List of up to 20 custom tags specified for this offer, and returned to the app through the billing library.
+     */
+    offerTags?: Schema$OfferTag[];
+    /**
+     * The configuration for any new locations Play may launch in the future.
+     */
+    otherRegionsConfig?: Schema$OtherRegionsSubscriptionOfferConfig;
+    /**
+     * Required. Immutable. The package name of the app the parent subscription belongs to.
+     */
+    packageName?: string | null;
+    /**
+     * Required. The phases of this subscription offer. Must contain at least one entry, and may contain at most five. Users will always receive all these phases in the specified order. Phases may not be added, removed, or reordered after initial creation.
+     */
+    phases?: Schema$SubscriptionOfferPhase[];
+    /**
+     * Required. Immutable. The ID of the parent subscription this offer belongs to.
+     */
+    productId?: string | null;
+    /**
+     * Required. The region-specific configuration of this offer. Must contain at least one entry.
+     */
+    regionalConfigs?: Schema$RegionalSubscriptionOfferConfig[];
+    /**
+     * Output only. The current state of this offer. Can be changed using Activate and Deactivate actions. NB: the base plan state supersedes this state, so an active offer may not be available if the base plan is not active.
+     */
+    state?: string | null;
+    /**
+     * The requirements that users need to fulfil to be eligible for this offer. Represents the requirements that Play will evaluate to decide whether an offer should be returned. Developers may further filter these offers themselves.
+     */
+    targeting?: Schema$SubscriptionOfferTargeting;
+  }
+  /**
+   * A single phase of a subscription offer.
+   */
+  export interface Schema$SubscriptionOfferPhase {
+    /**
+     * Required. The duration of a single recurrence of this phase. Specified in ISO 8601 format.
+     */
+    duration?: string | null;
+    /**
+     * Pricing information for any new locations Play may launch in.
+     */
+    otherRegionsConfig?: Schema$OtherRegionsSubscriptionOfferPhaseConfig;
+    /**
+     * Required. The number of times this phase repeats. If this offer phase is not free, each recurrence charges the user the price of this offer phase.
+     */
+    recurrenceCount?: number | null;
+    /**
+     * Required. The region-specific configuration of this offer phase. This list must contain exactly one entry for each region for which the subscription offer has a regional config.
+     */
+    regionalConfigs?: Schema$RegionalSubscriptionOfferPhaseConfig[];
+  }
+  /**
+   * Defines the rule a user needs to satisfy to receive this offer.
+   */
+  export interface Schema$SubscriptionOfferTargeting {
+    /**
+     * Offer targeting rule for new user acquisition.
+     */
+    acquisitionRule?: Schema$AcquisitionTargetingRule;
+    /**
+     * Offer targeting rule for upgrading users' existing plans.
+     */
+    upgradeRule?: Schema$UpgradeTargetingRule;
   }
   /**
    * Contains the price change information for a subscription that can be used to control the user journey for the price change in the app. This can be in the form of seeking confirmation from the user or tailoring the experience for a successful conversion.
@@ -1260,6 +1898,27 @@ export namespace androidpublisher_v3 {
     userCancellationTimeMillis?: string | null;
   }
   /**
+   * Item-level info for a subscription purchase.
+   */
+  export interface Schema$SubscriptionPurchaseLineItem {
+    /**
+     * The item is auto renewing.
+     */
+    autoRenewingPlan?: Schema$AutoRenewingPlan;
+    /**
+     * Time at which the subscription expired or will expire unless the access is extended (ex. renews).
+     */
+    expiryTime?: string | null;
+    /**
+     * The item is prepaid.
+     */
+    prepaidPlan?: Schema$PrepaidPlan;
+    /**
+     * The purchased product ID (for example, 'monthly001').
+     */
+    productId?: string | null;
+  }
+  /**
    * Request for the purchases.subscriptions.acknowledge API.
    */
   export interface Schema$SubscriptionPurchasesAcknowledgeRequest {
@@ -1287,6 +1946,63 @@ export namespace androidpublisher_v3 {
     newExpiryTimeMillis?: string | null;
   }
   /**
+   * Indicates the status of a user's subscription purchase.
+   */
+  export interface Schema$SubscriptionPurchaseV2 {
+    /**
+     * The acknowledgement state of the subscription.
+     */
+    acknowledgementState?: string | null;
+    /**
+     * Additional context around canceled subscriptions. Only present if the subscription currently has subscription_state SUBSCRIPTION_STATE_CANCELED.
+     */
+    canceledStateContext?: Schema$CanceledStateContext;
+    /**
+     * User account identifier in the third-party service.
+     */
+    externalAccountIdentifiers?: Schema$ExternalAccountIdentifiers;
+    /**
+     * This kind represents a SubscriptionPurchaseV2 object in the androidpublisher service.
+     */
+    kind?: string | null;
+    /**
+     * The order id of the latest order associated with the purchase of the subscription. For autoRenewing subscription, this is the order id of signup order if it is not renewed yet, or the last recurring order id (success, pending, or declined order). For prepaid subscription, this is the order id associated with the queried purchase token.
+     */
+    latestOrderId?: string | null;
+    /**
+     * Item-level info for a subscription purchase. The items in the same purchase should be either all with AutoRenewingPlan or all with PrepaidPlan.
+     */
+    lineItems?: Schema$SubscriptionPurchaseLineItem[];
+    /**
+     * The purchase token of the old subscription if this subscription is one of the following: * Re-signup of a canceled but non-lapsed subscription * Upgrade/downgrade from a previous subscription. * Convert from prepaid to auto renewing subscription. * Convert from an auto renewing subscription to prepaid. * Topup a prepaid subscription.
+     */
+    linkedPurchaseToken?: string | null;
+    /**
+     * Additional context around paused subscriptions. Only present if the subscription currently has subscription_state SUBSCRIPTION_STATE_PAUSED.
+     */
+    pausedStateContext?: Schema$PausedStateContext;
+    /**
+     * ISO 3166-1 alpha-2 billing country/region code of the user at the time the subscription was granted.
+     */
+    regionCode?: string | null;
+    /**
+     * Time at which the subscription was granted. Not set for pending subscriptions (subscription was created but awaiting payment during signup).
+     */
+    startTime?: string | null;
+    /**
+     * User profile associated with purchases made with 'Subscribe with Google'.
+     */
+    subscribeWithGoogleInfo?: Schema$SubscribeWithGoogleInfo;
+    /**
+     * The current state of the subscription.
+     */
+    subscriptionState?: string | null;
+    /**
+     * Only present if this subscription purchase is a test purchase.
+     */
+    testPurchase?: Schema$TestPurchase;
+  }
+  /**
    * Details about taxation, Google Play policy and legal compliance for subscription products.
    */
   export interface Schema$SubscriptionTaxAndComplianceSettings {
@@ -1311,7 +2027,29 @@ export namespace androidpublisher_v3 {
     variants?: Schema$Variant[];
   }
   /**
-   * The testers of an app. The resource for TestersService.
+   * Representation of a system feature.
+   */
+  export interface Schema$SystemFeature {
+    /**
+     * The name of the feature.
+     */
+    name?: string | null;
+  }
+  /**
+   * Information specific to cancellations initiated by Google system.
+   */
+  export interface Schema$SystemInitiatedCancellation {}
+  /**
+   * Defines the scope of subscriptions which a targeting rule can match to target offers to users based on past or current entitlement.
+   */
+  export interface Schema$TargetingRuleScope {
+    /**
+     * The scope of the current targeting rule is the subscription with the specified subscription ID. Must be a subscription within the same parent app.
+     */
+    specificSubscriptionInApp?: string | null;
+  }
+  /**
+   * The testers of an app. The resource for TestersService. Note: while it is possible in the Play Console UI to add testers via email lists, email lists are not supported by this resource.
    */
   export interface Schema$Testers {
     /**
@@ -1319,6 +2057,10 @@ export namespace androidpublisher_v3 {
      */
     googleGroups?: string[] | null;
   }
+  /**
+   * Whether this subscription purchase is a test purchase.
+   */
+  export interface Schema$TestPurchase {}
   /**
    * A Timestamp represents a point in time independent of any time zone or local calendar, encoded as a count of seconds and fractions of seconds at nanosecond resolution. The count is relative to an epoch at UTC midnight on January 1, 1970.
    */
@@ -1428,6 +2170,23 @@ export namespace androidpublisher_v3 {
     countryCode?: string | null;
   }
   /**
+   * Represents a targeting rule of the form: User currently has {scope\} [with billing period {billing_period\}].
+   */
+  export interface Schema$UpgradeTargetingRule {
+    /**
+     * The specific billing period duration, specified in ISO 8601 format, that a user must be currently subscribed to to be eligible for this rule. If not specified, users subscribed to any billing period are matched.
+     */
+    billingPeriodDuration?: string | null;
+    /**
+     * Limit this offer to only once per user. If set to true, a user can never be eligible for this offer again if they ever subscribed to this offer.
+     */
+    oncePerUser?: boolean | null;
+    /**
+     * Required. The scope of subscriptions this rule considers. Only allows "this subscription" and "specific subscription in app".
+     */
+    scope?: Schema$TargetingRuleScope;
+  }
+  /**
    * A user resource.
    */
   export interface Schema$User {
@@ -1444,7 +2203,7 @@ export namespace androidpublisher_v3 {
      */
     email?: string | null;
     /**
-     * The time at which the user's access expires, if set.
+     * The time at which the user's access expires, if set. When setting this value, it must always be in the future.
      */
     expirationTime?: string | null;
     /**
@@ -1456,7 +2215,7 @@ export namespace androidpublisher_v3 {
      */
     name?: string | null;
     /**
-     * Output only. Whether there are more permissions for the user that are not represented here.
+     * Output only. Whether there are more permissions for the user that are not represented here. This can happen if the caller does not have permission to manage all apps in the account. This is also `true` if this user is the account owner. If this field is `true`, it should be taken as a signal that this user cannot be fully managed via the API. That is, the API caller is not be able to manage all of the permissions this user holds, either because it doesn't know about them or because the user is the account owner.
      */
     partial?: boolean | null;
   }
@@ -1512,6 +2271,19 @@ export namespace androidpublisher_v3 {
      * Number of users who have given this review a thumbs up.
      */
     thumbsUpCount?: number | null;
+  }
+  /**
+   * Information specific to cancellations initiated by users.
+   */
+  export interface Schema$UserInitiatedCancellation {
+    /**
+     * Information provided by the user when they complete the subscription cancellation flow (cancellation reason survey).
+     */
+    cancelSurveyResult?: Schema$CancelSurveyResult;
+    /**
+     * The time at which the subscription was canceled by the user. The user might still have access to the subscription after this time. Use line_items.expiry_time to determine if a user still has access.
+     */
+    cancelTime?: string | null;
   }
   /**
    * A permission used by this APK.
@@ -1585,6 +2357,489 @@ export namespace androidpublisher_v3 {
      */
     tokenPagination?: Schema$TokenPagination;
     voidedPurchases?: Schema$VoidedPurchase[];
+  }
+
+  export class Resource$Applications {
+    context: APIRequestContext;
+    deviceTierConfigs: Resource$Applications$Devicetierconfigs;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.deviceTierConfigs = new Resource$Applications$Devicetierconfigs(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Applications$Devicetierconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new device tier config for an app.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.applications.deviceTierConfigs.create({
+     *     // Whether the service should accept device IDs that are unknown to Play's device catalog.
+     *     allowUnknownDevices: 'placeholder-value',
+     *     // Package name of the app.
+     *     packageName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deviceGroups": [],
+     *       //   "deviceTierConfigId": "my_deviceTierConfigId",
+     *       //   "deviceTierSet": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deviceGroups": [],
+     *   //   "deviceTierConfigId": "my_deviceTierConfigId",
+     *   //   "deviceTierSet": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Applications$Devicetierconfigs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Applications$Devicetierconfigs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DeviceTierConfig>;
+    create(
+      params: Params$Resource$Applications$Devicetierconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Applications$Devicetierconfigs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$DeviceTierConfig>,
+      callback: BodyResponseCallback<Schema$DeviceTierConfig>
+    ): void;
+    create(
+      params: Params$Resource$Applications$Devicetierconfigs$Create,
+      callback: BodyResponseCallback<Schema$DeviceTierConfig>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$DeviceTierConfig>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Applications$Devicetierconfigs$Create
+        | BodyResponseCallback<Schema$DeviceTierConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeviceTierConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeviceTierConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DeviceTierConfig> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Applications$Devicetierconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Applications$Devicetierconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/deviceTierConfigs'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName'],
+        pathParams: ['packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DeviceTierConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DeviceTierConfig>(parameters);
+      }
+    }
+
+    /**
+     * Returns a particular device tier config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.applications.deviceTierConfigs.get({
+     *     // Required. Id of an existing device tier config.
+     *     deviceTierConfigId: 'placeholder-value',
+     *     // Package name of the app.
+     *     packageName: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deviceGroups": [],
+     *   //   "deviceTierConfigId": "my_deviceTierConfigId",
+     *   //   "deviceTierSet": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Applications$Devicetierconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Applications$Devicetierconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DeviceTierConfig>;
+    get(
+      params: Params$Resource$Applications$Devicetierconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Applications$Devicetierconfigs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DeviceTierConfig>,
+      callback: BodyResponseCallback<Schema$DeviceTierConfig>
+    ): void;
+    get(
+      params: Params$Resource$Applications$Devicetierconfigs$Get,
+      callback: BodyResponseCallback<Schema$DeviceTierConfig>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$DeviceTierConfig>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Applications$Devicetierconfigs$Get
+        | BodyResponseCallback<Schema$DeviceTierConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeviceTierConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeviceTierConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DeviceTierConfig> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Applications$Devicetierconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Applications$Devicetierconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/deviceTierConfigs/{deviceTierConfigId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'deviceTierConfigId'],
+        pathParams: ['deviceTierConfigId', 'packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DeviceTierConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DeviceTierConfig>(parameters);
+      }
+    }
+
+    /**
+     * Returns created device tier configs, ordered by descending creation time.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.applications.deviceTierConfigs.list({
+     *     // Package name of the app.
+     *     packageName: 'placeholder-value',
+     *     // The maximum number of device tier configs to return. The service may return fewer than this value. If unspecified, at most 10 device tier configs will be returned. The maximum value for this field is 100; values above 100 will be coerced to 100. Device tier configs will be ordered by descending creation time.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListDeviceTierConfigs` call. Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deviceTierConfigs": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Applications$Devicetierconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Applications$Devicetierconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDeviceTierConfigsResponse>;
+    list(
+      params: Params$Resource$Applications$Devicetierconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Applications$Devicetierconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDeviceTierConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListDeviceTierConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Applications$Devicetierconfigs$List,
+      callback: BodyResponseCallback<Schema$ListDeviceTierConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListDeviceTierConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Applications$Devicetierconfigs$List
+        | BodyResponseCallback<Schema$ListDeviceTierConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDeviceTierConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDeviceTierConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDeviceTierConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Applications$Devicetierconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Applications$Devicetierconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/deviceTierConfigs'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName'],
+        pathParams: ['packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDeviceTierConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDeviceTierConfigsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Applications$Devicetierconfigs$Create
+    extends StandardParameters {
+    /**
+     * Whether the service should accept device IDs that are unknown to Play's device catalog.
+     */
+    allowUnknownDevices?: boolean;
+    /**
+     * Package name of the app.
+     */
+    packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DeviceTierConfig;
+  }
+  export interface Params$Resource$Applications$Devicetierconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. Id of an existing device tier config.
+     */
+    deviceTierConfigId?: string;
+    /**
+     * Package name of the app.
+     */
+    packageName?: string;
+  }
+  export interface Params$Resource$Applications$Devicetierconfigs$List
+    extends StandardParameters {
+    /**
+     * Package name of the app.
+     */
+    packageName?: string;
+    /**
+     * The maximum number of device tier configs to return. The service may return fewer than this value. If unspecified, at most 10 device tier configs will be returned. The maximum value for this field is 100; values above 100 will be coerced to 100. Device tier configs will be ordered by descending creation time.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListDeviceTierConfigs` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
   }
 
   export class Resource$Edits {
@@ -6380,7 +7635,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Gets testers.
+     * Gets testers. Note: Testers resource does not support email lists.
      * @example
      * ```js
      * // Before running the sample:
@@ -6514,7 +7769,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Patches testers.
+     * Patches testers. Note: Testers resource does not support email lists.
      * @example
      * ```js
      * // Before running the sample:
@@ -6656,7 +7911,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Updates testers.
+     * Updates testers. Note: Testers resource does not support email lists.
      * @example
      * ```js
      * // Before running the sample:
@@ -8081,7 +9336,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.grants.patch({
-     *     // Required. Resource name for this grant, following the pattern "developers/{developer\}/users/{email\}/grants/{package_name\}".
+     *     // Required. Resource name for this grant, following the pattern "developers/{developer\}/users/{email\}/grants/{package_name\}". If this grant is for a draft app, the app ID will be used in this resource name instead of the package name.
      *     name: 'developers/my-developer/users/my-user/grants/my-grant',
      *     // Optional. The list of fields to be updated.
      *     updateMask: 'placeholder-value',
@@ -8217,7 +9472,7 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Grants$Patch extends StandardParameters {
     /**
-     * Required. Resource name for this grant, following the pattern "developers/{developer\}/users/{email\}/grants/{package_name\}".
+     * Required. Resource name for this grant, following the pattern "developers/{developer\}/users/{email\}/grants/{package_name\}". If this grant is for a draft app, the app ID will be used in this resource name instead of the package name.
      */
     name?: string;
     /**
@@ -9619,8 +10874,12 @@ export namespace androidpublisher_v3 {
 
   export class Resource$Monetization {
     context: APIRequestContext;
+    subscriptions: Resource$Monetization$Subscriptions;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.subscriptions = new Resource$Monetization$Subscriptions(
+        this.context
+      );
     }
 
     /**
@@ -9783,6 +11042,2900 @@ export namespace androidpublisher_v3 {
     requestBody?: Schema$ConvertRegionPricesRequest;
   }
 
+  export class Resource$Monetization$Subscriptions {
+    context: APIRequestContext;
+    basePlans: Resource$Monetization$Subscriptions$Baseplans;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.basePlans = new Resource$Monetization$Subscriptions$Baseplans(
+        this.context
+      );
+    }
+
+    /**
+     * Archives a subscription. Can only be done if at least one base plan was active in the past, and no base plan is available for new or existing subscribers currently. This action is irreversible, and the subscription ID will remain reserved.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.monetization.subscriptions.archive({
+     *     // Required. The parent app (package name) of the app of the subscription to delete.
+     *     packageName: 'placeholder-value',
+     *     // Required. The unique product ID of the subscription to delete.
+     *     productId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "archived": false,
+     *   //   "basePlans": [],
+     *   //   "listings": [],
+     *   //   "packageName": "my_packageName",
+     *   //   "productId": "my_productId",
+     *   //   "taxAndComplianceSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    archive(
+      params: Params$Resource$Monetization$Subscriptions$Archive,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    archive(
+      params?: Params$Resource$Monetization$Subscriptions$Archive,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Subscription>;
+    archive(
+      params: Params$Resource$Monetization$Subscriptions$Archive,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    archive(
+      params: Params$Resource$Monetization$Subscriptions$Archive,
+      options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
+    archive(
+      params: Params$Resource$Monetization$Subscriptions$Archive,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
+    archive(callback: BodyResponseCallback<Schema$Subscription>): void;
+    archive(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Subscriptions$Archive
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Subscription> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Subscriptions$Archive;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Monetization$Subscriptions$Archive;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}:archive'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId'],
+        pathParams: ['packageName', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Subscription>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Subscription>(parameters);
+      }
+    }
+
+    /**
+     * Creates a new subscription. Newly added base plans will remain in draft state until activated.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.monetization.subscriptions.create({
+     *     // Required. The parent app (package name) for which the subscription should be created. Must be equal to the package_name field on the Subscription resource.
+     *     packageName: 'placeholder-value',
+     *     // Required. The ID to use for the subscription. For the requirements on this format, see the documentation of the product_id field on the Subscription resource.
+     *     productId: 'placeholder-value',
+     *     // Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/01.
+     *     'regionsVersion.version': 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "archived": false,
+     *       //   "basePlans": [],
+     *       //   "listings": [],
+     *       //   "packageName": "my_packageName",
+     *       //   "productId": "my_productId",
+     *       //   "taxAndComplianceSettings": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "archived": false,
+     *   //   "basePlans": [],
+     *   //   "listings": [],
+     *   //   "packageName": "my_packageName",
+     *   //   "productId": "my_productId",
+     *   //   "taxAndComplianceSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Monetization$Subscriptions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Monetization$Subscriptions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Subscription>;
+    create(
+      params: Params$Resource$Monetization$Subscriptions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Monetization$Subscriptions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
+    create(
+      params: Params$Resource$Monetization$Subscriptions$Create,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Subscription>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Subscriptions$Create
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Subscription> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Subscriptions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Monetization$Subscriptions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/subscriptions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName'],
+        pathParams: ['packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Subscription>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Subscription>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a subscription. A subscription can only be deleted if it has never had a base plan published.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.monetization.subscriptions.delete({
+     *     // Required. The parent app (package name) of the app of the subscription to delete.
+     *     packageName: 'placeholder-value',
+     *     // Required. The unique product ID of the subscription to delete.
+     *     productId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Monetization$Subscriptions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Monetization$Subscriptions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Monetization$Subscriptions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Monetization$Subscriptions$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Monetization$Subscriptions$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Subscriptions$Delete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Subscriptions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Monetization$Subscriptions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId'],
+        pathParams: ['packageName', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Reads a single subscription.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.monetization.subscriptions.get({
+     *     // Required. The parent app (package name) of the subscription to get.
+     *     packageName: 'placeholder-value',
+     *     // Required. The unique product ID of the subscription to get.
+     *     productId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "archived": false,
+     *   //   "basePlans": [],
+     *   //   "listings": [],
+     *   //   "packageName": "my_packageName",
+     *   //   "productId": "my_productId",
+     *   //   "taxAndComplianceSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Monetization$Subscriptions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Monetization$Subscriptions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Subscription>;
+    get(
+      params: Params$Resource$Monetization$Subscriptions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Monetization$Subscriptions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
+    get(
+      params: Params$Resource$Monetization$Subscriptions$Get,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Subscription>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Subscriptions$Get
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Subscription> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Subscriptions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Monetization$Subscriptions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId'],
+        pathParams: ['packageName', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Subscription>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Subscription>(parameters);
+      }
+    }
+
+    /**
+     * Lists all subscriptions under a given app.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.monetization.subscriptions.list({
+     *     // Required. The parent app (package name) for which the subscriptions should be read.
+     *     packageName: 'placeholder-value',
+     *     // The maximum number of subscriptions to return. The service may return fewer than this value. If unspecified, at most 50 subscriptions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListSubscriptions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubscriptions` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Whether archived subscriptions should be included in the response. Defaults to false.
+     *     showArchived: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "subscriptions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Monetization$Subscriptions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Monetization$Subscriptions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSubscriptionsResponse>;
+    list(
+      params: Params$Resource$Monetization$Subscriptions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Monetization$Subscriptions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSubscriptionsResponse>,
+      callback: BodyResponseCallback<Schema$ListSubscriptionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Monetization$Subscriptions$List,
+      callback: BodyResponseCallback<Schema$ListSubscriptionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListSubscriptionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Subscriptions$List
+        | BodyResponseCallback<Schema$ListSubscriptionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSubscriptionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSubscriptionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSubscriptionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Subscriptions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Monetization$Subscriptions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/subscriptions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName'],
+        pathParams: ['packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSubscriptionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSubscriptionsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates an existing subscription.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.monetization.subscriptions.patch({
+     *     // Immutable. Package name of the parent app.
+     *     packageName: 'placeholder-value',
+     *     // Immutable. Unique product ID of the product. Unique within the parent app. Product IDs must be composed of lower-case letters (a-z), numbers (0-9), underscores (_) and dots (.). It must start with a lower-case letter or number, and be between 1 and 40 (inclusive) characters in length.
+     *     productId: 'placeholder-value',
+     *     // Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/01.
+     *     'regionsVersion.version': 'placeholder-value',
+     *     // Required. The list of fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "archived": false,
+     *       //   "basePlans": [],
+     *       //   "listings": [],
+     *       //   "packageName": "my_packageName",
+     *       //   "productId": "my_productId",
+     *       //   "taxAndComplianceSettings": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "archived": false,
+     *   //   "basePlans": [],
+     *   //   "listings": [],
+     *   //   "packageName": "my_packageName",
+     *   //   "productId": "my_productId",
+     *   //   "taxAndComplianceSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Monetization$Subscriptions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Monetization$Subscriptions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Subscription>;
+    patch(
+      params: Params$Resource$Monetization$Subscriptions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Monetization$Subscriptions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
+    patch(
+      params: Params$Resource$Monetization$Subscriptions$Patch,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Subscription>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Subscriptions$Patch
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Subscription> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Subscriptions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Monetization$Subscriptions$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId'],
+        pathParams: ['packageName', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Subscription>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Subscription>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Monetization$Subscriptions$Archive
+    extends StandardParameters {
+    /**
+     * Required. The parent app (package name) of the app of the subscription to delete.
+     */
+    packageName?: string;
+    /**
+     * Required. The unique product ID of the subscription to delete.
+     */
+    productId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ArchiveSubscriptionRequest;
+  }
+  export interface Params$Resource$Monetization$Subscriptions$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent app (package name) for which the subscription should be created. Must be equal to the package_name field on the Subscription resource.
+     */
+    packageName?: string;
+    /**
+     * Required. The ID to use for the subscription. For the requirements on this format, see the documentation of the product_id field on the Subscription resource.
+     */
+    productId?: string;
+    /**
+     * Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/01.
+     */
+    'regionsVersion.version'?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Subscription;
+  }
+  export interface Params$Resource$Monetization$Subscriptions$Delete
+    extends StandardParameters {
+    /**
+     * Required. The parent app (package name) of the app of the subscription to delete.
+     */
+    packageName?: string;
+    /**
+     * Required. The unique product ID of the subscription to delete.
+     */
+    productId?: string;
+  }
+  export interface Params$Resource$Monetization$Subscriptions$Get
+    extends StandardParameters {
+    /**
+     * Required. The parent app (package name) of the subscription to get.
+     */
+    packageName?: string;
+    /**
+     * Required. The unique product ID of the subscription to get.
+     */
+    productId?: string;
+  }
+  export interface Params$Resource$Monetization$Subscriptions$List
+    extends StandardParameters {
+    /**
+     * Required. The parent app (package name) for which the subscriptions should be read.
+     */
+    packageName?: string;
+    /**
+     * The maximum number of subscriptions to return. The service may return fewer than this value. If unspecified, at most 50 subscriptions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListSubscriptions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubscriptions` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Whether archived subscriptions should be included in the response. Defaults to false.
+     */
+    showArchived?: boolean;
+  }
+  export interface Params$Resource$Monetization$Subscriptions$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Package name of the parent app.
+     */
+    packageName?: string;
+    /**
+     * Immutable. Unique product ID of the product. Unique within the parent app. Product IDs must be composed of lower-case letters (a-z), numbers (0-9), underscores (_) and dots (.). It must start with a lower-case letter or number, and be between 1 and 40 (inclusive) characters in length.
+     */
+    productId?: string;
+    /**
+     * Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/01.
+     */
+    'regionsVersion.version'?: string;
+    /**
+     * Required. The list of fields to be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Subscription;
+  }
+
+  export class Resource$Monetization$Subscriptions$Baseplans {
+    context: APIRequestContext;
+    offers: Resource$Monetization$Subscriptions$Baseplans$Offers;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.offers = new Resource$Monetization$Subscriptions$Baseplans$Offers(
+        this.context
+      );
+    }
+
+    /**
+     * Activates a base plan. Once activated, base plans will be available to new subscribers.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.monetization.subscriptions.basePlans.activate({
+     *       // Required. The unique base plan ID of the base plan to activate.
+     *       basePlanId: 'placeholder-value',
+     *       // Required. The parent app (package name) of the base plan to activate.
+     *       packageName: 'placeholder-value',
+     *       // Required. The parent subscription (ID) of the base plan to activate.
+     *       productId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "archived": false,
+     *   //   "basePlans": [],
+     *   //   "listings": [],
+     *   //   "packageName": "my_packageName",
+     *   //   "productId": "my_productId",
+     *   //   "taxAndComplianceSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    activate(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Activate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    activate(
+      params?: Params$Resource$Monetization$Subscriptions$Baseplans$Activate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Subscription>;
+    activate(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Activate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    activate(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Activate,
+      options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
+    activate(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Activate,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
+    activate(callback: BodyResponseCallback<Schema$Subscription>): void;
+    activate(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Subscriptions$Baseplans$Activate
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Subscription> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Activate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Monetization$Subscriptions$Baseplans$Activate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}:activate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId', 'basePlanId'],
+        pathParams: ['basePlanId', 'packageName', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Subscription>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Subscription>(parameters);
+      }
+    }
+
+    /**
+     * Deactivates a base plan. Once deactivated, the base plan will become unavailable to new subscribers, but existing subscribers will maintain their subscription
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.monetization.subscriptions.basePlans.deactivate({
+     *       // Required. The unique base plan ID of the base plan to deactivate.
+     *       basePlanId: 'placeholder-value',
+     *       // Required. The parent app (package name) of the base plan to deactivate.
+     *       packageName: 'placeholder-value',
+     *       // Required. The parent subscription (ID) of the base plan to deactivate.
+     *       productId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "archived": false,
+     *   //   "basePlans": [],
+     *   //   "listings": [],
+     *   //   "packageName": "my_packageName",
+     *   //   "productId": "my_productId",
+     *   //   "taxAndComplianceSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deactivate(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Deactivate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deactivate(
+      params?: Params$Resource$Monetization$Subscriptions$Baseplans$Deactivate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Subscription>;
+    deactivate(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Deactivate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deactivate(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Deactivate,
+      options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
+    deactivate(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Deactivate,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
+    deactivate(callback: BodyResponseCallback<Schema$Subscription>): void;
+    deactivate(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Subscriptions$Baseplans$Deactivate
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Subscription> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Deactivate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Monetization$Subscriptions$Baseplans$Deactivate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}:deactivate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId', 'basePlanId'],
+        pathParams: ['basePlanId', 'packageName', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Subscription>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Subscription>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a base plan. Can only be done for draft base plans. This action is irreversible.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.monetization.subscriptions.basePlans.delete({
+     *       // Required. The unique offer ID of the base plan to delete.
+     *       basePlanId: 'placeholder-value',
+     *       // Required. The parent app (package name) of the base plan to delete.
+     *       packageName: 'placeholder-value',
+     *       // Required. The parent subscription (ID) of the base plan to delete.
+     *       productId: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Monetization$Subscriptions$Baseplans$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Subscriptions$Baseplans$Delete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Monetization$Subscriptions$Baseplans$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId', 'basePlanId'],
+        pathParams: ['basePlanId', 'packageName', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Migrates subscribers who are receiving an historical subscription price to the currently-offered price for the specified region. Requests will cause price change notifications to be sent to users who are currently receiving an historical price older than the supplied timestamp. Subscribers who do not agree to the new price will have their subscription ended at the next renewal.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.monetization.subscriptions.basePlans.migratePrices({
+     *       // Required. The unique base plan ID of the base plan to update prices on.
+     *       basePlanId: 'placeholder-value',
+     *       // Required. Package name of the parent app. Must be equal to the package_name field on the Subscription resource.
+     *       packageName: 'placeholder-value',
+     *       // Required. The ID of the subscription to update. Must be equal to the product_id field on the Subscription resource.
+     *       productId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "regionalPriceMigrations": [],
+     *         //   "regionsVersion": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    migratePrices(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Migrateprices,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    migratePrices(
+      params?: Params$Resource$Monetization$Subscriptions$Baseplans$Migrateprices,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MigrateBasePlanPricesResponse>;
+    migratePrices(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Migrateprices,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    migratePrices(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Migrateprices,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$MigrateBasePlanPricesResponse>,
+      callback: BodyResponseCallback<Schema$MigrateBasePlanPricesResponse>
+    ): void;
+    migratePrices(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Migrateprices,
+      callback: BodyResponseCallback<Schema$MigrateBasePlanPricesResponse>
+    ): void;
+    migratePrices(
+      callback: BodyResponseCallback<Schema$MigrateBasePlanPricesResponse>
+    ): void;
+    migratePrices(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Subscriptions$Baseplans$Migrateprices
+        | BodyResponseCallback<Schema$MigrateBasePlanPricesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$MigrateBasePlanPricesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$MigrateBasePlanPricesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$MigrateBasePlanPricesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Migrateprices;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Monetization$Subscriptions$Baseplans$Migrateprices;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}:migratePrices'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId', 'basePlanId'],
+        pathParams: ['basePlanId', 'packageName', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$MigrateBasePlanPricesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$MigrateBasePlanPricesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Activate
+    extends StandardParameters {
+    /**
+     * Required. The unique base plan ID of the base plan to activate.
+     */
+    basePlanId?: string;
+    /**
+     * Required. The parent app (package name) of the base plan to activate.
+     */
+    packageName?: string;
+    /**
+     * Required. The parent subscription (ID) of the base plan to activate.
+     */
+    productId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ActivateBasePlanRequest;
+  }
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Deactivate
+    extends StandardParameters {
+    /**
+     * Required. The unique base plan ID of the base plan to deactivate.
+     */
+    basePlanId?: string;
+    /**
+     * Required. The parent app (package name) of the base plan to deactivate.
+     */
+    packageName?: string;
+    /**
+     * Required. The parent subscription (ID) of the base plan to deactivate.
+     */
+    productId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DeactivateBasePlanRequest;
+  }
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Delete
+    extends StandardParameters {
+    /**
+     * Required. The unique offer ID of the base plan to delete.
+     */
+    basePlanId?: string;
+    /**
+     * Required. The parent app (package name) of the base plan to delete.
+     */
+    packageName?: string;
+    /**
+     * Required. The parent subscription (ID) of the base plan to delete.
+     */
+    productId?: string;
+  }
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Migrateprices
+    extends StandardParameters {
+    /**
+     * Required. The unique base plan ID of the base plan to update prices on.
+     */
+    basePlanId?: string;
+    /**
+     * Required. Package name of the parent app. Must be equal to the package_name field on the Subscription resource.
+     */
+    packageName?: string;
+    /**
+     * Required. The ID of the subscription to update. Must be equal to the product_id field on the Subscription resource.
+     */
+    productId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MigrateBasePlanPricesRequest;
+  }
+
+  export class Resource$Monetization$Subscriptions$Baseplans$Offers {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Activates a subscription offer. Once activated, subscription offers will be available to new subscribers.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.monetization.subscriptions.basePlans.offers.activate(
+     *       {
+     *         // Required. The parent base plan (ID) of the offer to activate.
+     *         basePlanId: 'placeholder-value',
+     *         // Required. The unique offer ID of the offer to activate.
+     *         offerId: 'placeholder-value',
+     *         // Required. The parent app (package name) of the offer to activate.
+     *         packageName: 'placeholder-value',
+     *         // Required. The parent subscription (ID) of the offer to activate.
+     *         productId: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "basePlanId": "my_basePlanId",
+     *   //   "offerId": "my_offerId",
+     *   //   "offerTags": [],
+     *   //   "otherRegionsConfig": {},
+     *   //   "packageName": "my_packageName",
+     *   //   "phases": [],
+     *   //   "productId": "my_productId",
+     *   //   "regionalConfigs": [],
+     *   //   "state": "my_state",
+     *   //   "targeting": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    activate(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Activate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    activate(
+      params?: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Activate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SubscriptionOffer>;
+    activate(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Activate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    activate(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Activate,
+      options: MethodOptions | BodyResponseCallback<Schema$SubscriptionOffer>,
+      callback: BodyResponseCallback<Schema$SubscriptionOffer>
+    ): void;
+    activate(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Activate,
+      callback: BodyResponseCallback<Schema$SubscriptionOffer>
+    ): void;
+    activate(callback: BodyResponseCallback<Schema$SubscriptionOffer>): void;
+    activate(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Activate
+        | BodyResponseCallback<Schema$SubscriptionOffer>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SubscriptionOffer>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SubscriptionOffer>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SubscriptionOffer>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Activate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Activate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers/{offerId}:activate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId', 'basePlanId', 'offerId'],
+        pathParams: ['basePlanId', 'offerId', 'packageName', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SubscriptionOffer>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SubscriptionOffer>(parameters);
+      }
+    }
+
+    /**
+     * Creates a new subscription offer. Only auto-renewing base plans can have subscription offers. The offer state will be DRAFT until it is activated.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.monetization.subscriptions.basePlans.offers.create({
+     *       // Required. The parent base plan (ID) for which the offer should be created. Must be equal to the base_plan_id field on the SubscriptionOffer resource.
+     *       basePlanId: 'placeholder-value',
+     *       // Required. The ID to use for the offer. For the requirements on this format, see the documentation of the offer_id field on the SubscriptionOffer resource.
+     *       offerId: 'placeholder-value',
+     *       // Required. The parent app (package name) for which the offer should be created. Must be equal to the package_name field on the Subscription resource.
+     *       packageName: 'placeholder-value',
+     *       // Required. The parent subscription (ID) for which the offer should be created. Must be equal to the product_id field on the SubscriptionOffer resource.
+     *       productId: 'placeholder-value',
+     *       // Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/01.
+     *       'regionsVersion.version': 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "basePlanId": "my_basePlanId",
+     *         //   "offerId": "my_offerId",
+     *         //   "offerTags": [],
+     *         //   "otherRegionsConfig": {},
+     *         //   "packageName": "my_packageName",
+     *         //   "phases": [],
+     *         //   "productId": "my_productId",
+     *         //   "regionalConfigs": [],
+     *         //   "state": "my_state",
+     *         //   "targeting": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "basePlanId": "my_basePlanId",
+     *   //   "offerId": "my_offerId",
+     *   //   "offerTags": [],
+     *   //   "otherRegionsConfig": {},
+     *   //   "packageName": "my_packageName",
+     *   //   "phases": [],
+     *   //   "productId": "my_productId",
+     *   //   "regionalConfigs": [],
+     *   //   "state": "my_state",
+     *   //   "targeting": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SubscriptionOffer>;
+    create(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$SubscriptionOffer>,
+      callback: BodyResponseCallback<Schema$SubscriptionOffer>
+    ): void;
+    create(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Create,
+      callback: BodyResponseCallback<Schema$SubscriptionOffer>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$SubscriptionOffer>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Create
+        | BodyResponseCallback<Schema$SubscriptionOffer>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SubscriptionOffer>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SubscriptionOffer>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SubscriptionOffer>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId', 'basePlanId'],
+        pathParams: ['basePlanId', 'packageName', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SubscriptionOffer>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SubscriptionOffer>(parameters);
+      }
+    }
+
+    /**
+     * Deactivates a subscription offer. Once deactivated, existing subscribers will maintain their subscription, but the offer will become unavailable to new subscribers.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.monetization.subscriptions.basePlans.offers.deactivate(
+     *       {
+     *         // Required. The parent base plan (ID) of the offer to deactivate.
+     *         basePlanId: 'placeholder-value',
+     *         // Required. The unique offer ID of the offer to deactivate.
+     *         offerId: 'placeholder-value',
+     *         // Required. The parent app (package name) of the offer to deactivate.
+     *         packageName: 'placeholder-value',
+     *         // Required. The parent subscription (ID) of the offer to deactivate.
+     *         productId: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "basePlanId": "my_basePlanId",
+     *   //   "offerId": "my_offerId",
+     *   //   "offerTags": [],
+     *   //   "otherRegionsConfig": {},
+     *   //   "packageName": "my_packageName",
+     *   //   "phases": [],
+     *   //   "productId": "my_productId",
+     *   //   "regionalConfigs": [],
+     *   //   "state": "my_state",
+     *   //   "targeting": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deactivate(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Deactivate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deactivate(
+      params?: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Deactivate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SubscriptionOffer>;
+    deactivate(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Deactivate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deactivate(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Deactivate,
+      options: MethodOptions | BodyResponseCallback<Schema$SubscriptionOffer>,
+      callback: BodyResponseCallback<Schema$SubscriptionOffer>
+    ): void;
+    deactivate(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Deactivate,
+      callback: BodyResponseCallback<Schema$SubscriptionOffer>
+    ): void;
+    deactivate(callback: BodyResponseCallback<Schema$SubscriptionOffer>): void;
+    deactivate(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Deactivate
+        | BodyResponseCallback<Schema$SubscriptionOffer>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SubscriptionOffer>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SubscriptionOffer>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SubscriptionOffer>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Deactivate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Deactivate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers/{offerId}:deactivate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId', 'basePlanId', 'offerId'],
+        pathParams: ['basePlanId', 'offerId', 'packageName', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SubscriptionOffer>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SubscriptionOffer>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a subscription offer. Can only be done for draft offers. This action is irreversible.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.monetization.subscriptions.basePlans.offers.delete({
+     *       // Required. The parent base plan (ID) of the offer to delete.
+     *       basePlanId: 'placeholder-value',
+     *       // Required. The unique offer ID of the offer to delete.
+     *       offerId: 'placeholder-value',
+     *       // Required. The parent app (package name) of the offer to delete.
+     *       packageName: 'placeholder-value',
+     *       // Required. The parent subscription (ID) of the offer to delete.
+     *       productId: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Delete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers/{offerId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId', 'basePlanId', 'offerId'],
+        pathParams: ['basePlanId', 'offerId', 'packageName', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Reads a single offer
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.monetization.subscriptions.basePlans.offers.get({
+     *       // Required. The parent base plan (ID) of the offer to get.
+     *       basePlanId: 'placeholder-value',
+     *       // Required. The unique offer ID of the offer to get.
+     *       offerId: 'placeholder-value',
+     *       // Required. The parent app (package name) of the offer to get.
+     *       packageName: 'placeholder-value',
+     *       // Required. The parent subscription (ID) of the offer to get.
+     *       productId: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "basePlanId": "my_basePlanId",
+     *   //   "offerId": "my_offerId",
+     *   //   "offerTags": [],
+     *   //   "otherRegionsConfig": {},
+     *   //   "packageName": "my_packageName",
+     *   //   "phases": [],
+     *   //   "productId": "my_productId",
+     *   //   "regionalConfigs": [],
+     *   //   "state": "my_state",
+     *   //   "targeting": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SubscriptionOffer>;
+    get(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$SubscriptionOffer>,
+      callback: BodyResponseCallback<Schema$SubscriptionOffer>
+    ): void;
+    get(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Get,
+      callback: BodyResponseCallback<Schema$SubscriptionOffer>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$SubscriptionOffer>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Get
+        | BodyResponseCallback<Schema$SubscriptionOffer>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SubscriptionOffer>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SubscriptionOffer>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SubscriptionOffer>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers/{offerId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId', 'basePlanId', 'offerId'],
+        pathParams: ['basePlanId', 'offerId', 'packageName', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SubscriptionOffer>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SubscriptionOffer>(parameters);
+      }
+    }
+
+    /**
+     * Lists all offers under a given subscription.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.monetization.subscriptions.basePlans.offers.list({
+     *       // Required. The parent base plan (ID) for which the offers should be read. May be specified as '-' to read all offers under a subscription.
+     *       basePlanId: 'placeholder-value',
+     *       // Required. The parent app (package name) for which the subscriptions should be read.
+     *       packageName: 'placeholder-value',
+     *       // The maximum number of subscriptions to return. The service may return fewer than this value. If unspecified, at most 50 subscriptions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *       pageSize: 'placeholder-value',
+     *       // A page token, received from a previous `ListSubscriptionsOffers` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubscriptionOffers` must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent subscription (ID) for which the offers should be read.
+     *       productId: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "subscriptionOffers": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSubscriptionOffersResponse>;
+    list(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSubscriptionOffersResponse>,
+      callback: BodyResponseCallback<Schema$ListSubscriptionOffersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$List,
+      callback: BodyResponseCallback<Schema$ListSubscriptionOffersResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListSubscriptionOffersResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Subscriptions$Baseplans$Offers$List
+        | BodyResponseCallback<Schema$ListSubscriptionOffersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSubscriptionOffersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSubscriptionOffersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSubscriptionOffersResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId', 'basePlanId'],
+        pathParams: ['basePlanId', 'packageName', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSubscriptionOffersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSubscriptionOffersResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an existing subscription offer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.monetization.subscriptions.basePlans.offers.patch({
+     *       // Required. Immutable. The ID of the base plan to which this offer is an extension.
+     *       basePlanId: 'placeholder-value',
+     *       // Required. Immutable. Unique ID of this subscription offer. Must be unique within the base plan.
+     *       offerId: 'placeholder-value',
+     *       // Required. Immutable. The package name of the app the parent subscription belongs to.
+     *       packageName: 'placeholder-value',
+     *       // Required. Immutable. The ID of the parent subscription this offer belongs to.
+     *       productId: 'placeholder-value',
+     *       // Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/01.
+     *       'regionsVersion.version': 'placeholder-value',
+     *       // Required. The list of fields to be updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "basePlanId": "my_basePlanId",
+     *         //   "offerId": "my_offerId",
+     *         //   "offerTags": [],
+     *         //   "otherRegionsConfig": {},
+     *         //   "packageName": "my_packageName",
+     *         //   "phases": [],
+     *         //   "productId": "my_productId",
+     *         //   "regionalConfigs": [],
+     *         //   "state": "my_state",
+     *         //   "targeting": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "basePlanId": "my_basePlanId",
+     *   //   "offerId": "my_offerId",
+     *   //   "offerTags": [],
+     *   //   "otherRegionsConfig": {},
+     *   //   "packageName": "my_packageName",
+     *   //   "phases": [],
+     *   //   "productId": "my_productId",
+     *   //   "regionalConfigs": [],
+     *   //   "state": "my_state",
+     *   //   "targeting": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SubscriptionOffer>;
+    patch(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$SubscriptionOffer>,
+      callback: BodyResponseCallback<Schema$SubscriptionOffer>
+    ): void;
+    patch(
+      params: Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Patch,
+      callback: BodyResponseCallback<Schema$SubscriptionOffer>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$SubscriptionOffer>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Patch
+        | BodyResponseCallback<Schema$SubscriptionOffer>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SubscriptionOffer>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SubscriptionOffer>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SubscriptionOffer>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers/{offerId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId', 'basePlanId', 'offerId'],
+        pathParams: ['basePlanId', 'offerId', 'packageName', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SubscriptionOffer>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SubscriptionOffer>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Activate
+    extends StandardParameters {
+    /**
+     * Required. The parent base plan (ID) of the offer to activate.
+     */
+    basePlanId?: string;
+    /**
+     * Required. The unique offer ID of the offer to activate.
+     */
+    offerId?: string;
+    /**
+     * Required. The parent app (package name) of the offer to activate.
+     */
+    packageName?: string;
+    /**
+     * Required. The parent subscription (ID) of the offer to activate.
+     */
+    productId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ActivateSubscriptionOfferRequest;
+  }
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent base plan (ID) for which the offer should be created. Must be equal to the base_plan_id field on the SubscriptionOffer resource.
+     */
+    basePlanId?: string;
+    /**
+     * Required. The ID to use for the offer. For the requirements on this format, see the documentation of the offer_id field on the SubscriptionOffer resource.
+     */
+    offerId?: string;
+    /**
+     * Required. The parent app (package name) for which the offer should be created. Must be equal to the package_name field on the Subscription resource.
+     */
+    packageName?: string;
+    /**
+     * Required. The parent subscription (ID) for which the offer should be created. Must be equal to the product_id field on the SubscriptionOffer resource.
+     */
+    productId?: string;
+    /**
+     * Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/01.
+     */
+    'regionsVersion.version'?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SubscriptionOffer;
+  }
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Deactivate
+    extends StandardParameters {
+    /**
+     * Required. The parent base plan (ID) of the offer to deactivate.
+     */
+    basePlanId?: string;
+    /**
+     * Required. The unique offer ID of the offer to deactivate.
+     */
+    offerId?: string;
+    /**
+     * Required. The parent app (package name) of the offer to deactivate.
+     */
+    packageName?: string;
+    /**
+     * Required. The parent subscription (ID) of the offer to deactivate.
+     */
+    productId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DeactivateSubscriptionOfferRequest;
+  }
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Delete
+    extends StandardParameters {
+    /**
+     * Required. The parent base plan (ID) of the offer to delete.
+     */
+    basePlanId?: string;
+    /**
+     * Required. The unique offer ID of the offer to delete.
+     */
+    offerId?: string;
+    /**
+     * Required. The parent app (package name) of the offer to delete.
+     */
+    packageName?: string;
+    /**
+     * Required. The parent subscription (ID) of the offer to delete.
+     */
+    productId?: string;
+  }
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Get
+    extends StandardParameters {
+    /**
+     * Required. The parent base plan (ID) of the offer to get.
+     */
+    basePlanId?: string;
+    /**
+     * Required. The unique offer ID of the offer to get.
+     */
+    offerId?: string;
+    /**
+     * Required. The parent app (package name) of the offer to get.
+     */
+    packageName?: string;
+    /**
+     * Required. The parent subscription (ID) of the offer to get.
+     */
+    productId?: string;
+  }
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$List
+    extends StandardParameters {
+    /**
+     * Required. The parent base plan (ID) for which the offers should be read. May be specified as '-' to read all offers under a subscription.
+     */
+    basePlanId?: string;
+    /**
+     * Required. The parent app (package name) for which the subscriptions should be read.
+     */
+    packageName?: string;
+    /**
+     * The maximum number of subscriptions to return. The service may return fewer than this value. If unspecified, at most 50 subscriptions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListSubscriptionsOffers` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubscriptionOffers` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent subscription (ID) for which the offers should be read.
+     */
+    productId?: string;
+  }
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Patch
+    extends StandardParameters {
+    /**
+     * Required. Immutable. The ID of the base plan to which this offer is an extension.
+     */
+    basePlanId?: string;
+    /**
+     * Required. Immutable. Unique ID of this subscription offer. Must be unique within the base plan.
+     */
+    offerId?: string;
+    /**
+     * Required. Immutable. The package name of the app the parent subscription belongs to.
+     */
+    packageName?: string;
+    /**
+     * Required. Immutable. The ID of the parent subscription this offer belongs to.
+     */
+    productId?: string;
+    /**
+     * Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/01.
+     */
+    'regionsVersion.version'?: string;
+    /**
+     * Required. The list of fields to be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SubscriptionOffer;
+  }
+
   export class Resource$Orders {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -9935,11 +14088,15 @@ export namespace androidpublisher_v3 {
     context: APIRequestContext;
     products: Resource$Purchases$Products;
     subscriptions: Resource$Purchases$Subscriptions;
+    subscriptionsv2: Resource$Purchases$Subscriptionsv2;
     voidedpurchases: Resource$Purchases$Voidedpurchases;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.products = new Resource$Purchases$Products(this.context);
       this.subscriptions = new Resource$Purchases$Subscriptions(this.context);
+      this.subscriptionsv2 = new Resource$Purchases$Subscriptionsv2(
+        this.context
+      );
       this.voidedpurchases = new Resource$Purchases$Voidedpurchases(
         this.context
       );
@@ -11209,6 +15366,174 @@ export namespace androidpublisher_v3 {
     subscriptionId?: string;
     /**
      * The token provided to the user's device when the subscription was purchased.
+     */
+    token?: string;
+  }
+
+  export class Resource$Purchases$Subscriptionsv2 {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Get metadata about a subscription
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.purchases.subscriptionsv2.get({
+     *     // The package of the application for which this subscription was purchased (for example, 'com.some.thing').
+     *     packageName: 'placeholder-value',
+     *     // Required. The token provided to the user's device when the subscription was purchased.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acknowledgementState": "my_acknowledgementState",
+     *   //   "canceledStateContext": {},
+     *   //   "externalAccountIdentifiers": {},
+     *   //   "kind": "my_kind",
+     *   //   "latestOrderId": "my_latestOrderId",
+     *   //   "lineItems": [],
+     *   //   "linkedPurchaseToken": "my_linkedPurchaseToken",
+     *   //   "pausedStateContext": {},
+     *   //   "regionCode": "my_regionCode",
+     *   //   "startTime": "my_startTime",
+     *   //   "subscribeWithGoogleInfo": {},
+     *   //   "subscriptionState": "my_subscriptionState",
+     *   //   "testPurchase": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Purchases$Subscriptionsv2$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Purchases$Subscriptionsv2$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SubscriptionPurchaseV2>;
+    get(
+      params: Params$Resource$Purchases$Subscriptionsv2$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Purchases$Subscriptionsv2$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SubscriptionPurchaseV2>,
+      callback: BodyResponseCallback<Schema$SubscriptionPurchaseV2>
+    ): void;
+    get(
+      params: Params$Resource$Purchases$Subscriptionsv2$Get,
+      callback: BodyResponseCallback<Schema$SubscriptionPurchaseV2>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$SubscriptionPurchaseV2>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Purchases$Subscriptionsv2$Get
+        | BodyResponseCallback<Schema$SubscriptionPurchaseV2>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SubscriptionPurchaseV2>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SubscriptionPurchaseV2>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SubscriptionPurchaseV2>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Purchases$Subscriptionsv2$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Purchases$Subscriptionsv2$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/purchases/subscriptionsv2/tokens/{token}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'token'],
+        pathParams: ['packageName', 'token'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SubscriptionPurchaseV2>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SubscriptionPurchaseV2>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Purchases$Subscriptionsv2$Get
+    extends StandardParameters {
+    /**
+     * The package of the application for which this subscription was purchased (for example, 'com.some.thing').
+     */
+    packageName?: string;
+    /**
+     * Required. The token provided to the user's device when the subscription was purchased.
      */
     token?: string;
   }

@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -276,7 +275,7 @@ export namespace docs_v1 {
     textStyle?: Schema$TextStyle;
   }
   /**
-   * Creates a Footer. The new footer is applied to the SectionStyle at the location of the SectionBreak if specificed, otherwise it is applied to the DocumentStyle. If a footer of the specified type already exists, a 400 bad request error is returned.
+   * Creates a Footer. The new footer is applied to the SectionStyle at the location of the SectionBreak if specified, otherwise it is applied to the DocumentStyle. If a footer of the specified type already exists, a 400 bad request error is returned.
    */
   export interface Schema$CreateFooterRequest {
     /**
@@ -320,7 +319,7 @@ export namespace docs_v1 {
     footnoteId?: string | null;
   }
   /**
-   * Creates a Header. The new header is applied to the SectionStyle at the location of the SectionBreak if specificed, otherwise it is applied to the DocumentStyle. If a header of the specified type already exists, a 400 bad request error is returned.
+   * Creates a Header. The new header is applied to the SectionStyle at the location of the SectionBreak if specified, otherwise it is applied to the DocumentStyle. If a header of the specified type already exists, a 400 bad request error is returned.
    */
   export interface Schema$CreateHeaderRequest {
     /**
@@ -564,7 +563,7 @@ export namespace docs_v1 {
      */
     positionedObjects?: {[key: string]: Schema$PositionedObject} | null;
     /**
-     * Output only. The revision ID of the document. Can be used in update requests to specify which revision of a document to apply updates to and how the request should behave if the document has been edited since that revision. Only populated if the user has edit access to the document. The format of the revision ID may change over time, so it should be treated opaquely. A returned revision ID is only guaranteed to be valid for 24 hours after it has been returned and cannot be shared across users. If the revision ID is unchanged between calls, then the document has not changed. Conversely, a changed ID (for the same document and user) usually means the document has been updated; however, a changed ID can also be due to internal factors such as ID format changes.
+     * Output only. The revision ID of the document. Can be used in update requests to specify which revision of a document to apply updates to and how the request should behave if the document has been edited since that revision. Only populated if the user has edit access to the document. The revision ID is not a sequential number but an opaque string. The format of the revision ID might change over time. A returned revision ID is only guaranteed to be valid for 24 hours after it has been returned and cannot be shared across users. If the revision ID is unchanged between calls, then the document has not changed. Conversely, a changed ID (for the same document and user) usually means the document has been updated. However, a changed ID can also be due to internal factors such as ID format changes.
      */
     revisionId?: string | null;
     /**
@@ -1080,7 +1079,7 @@ export namespace docs_v1 {
      */
     inlineObjectProperties?: Schema$InlineObjectProperties;
     /**
-     * The ID of this inline object.
+     * The ID of this inline object. Can be used to update an object’s properties.
      */
     objectId?: string | null;
     /**
@@ -1751,6 +1750,10 @@ export namespace docs_v1 {
      */
     namedStyleType?: string | null;
     /**
+     * Whether the current paragraph should always start at the beginning of a page. If unset, the value is inherited from the parent. Attempting to update page_break_before for paragraphs in unsupported regions, including Table, Header, Footer and Footnote, can result in an invalid document state which returns a 400 bad request error.
+     */
+    pageBreakBefore?: boolean | null;
+    /**
      * The shading of the paragraph. If unset, the value is inherited from the parent.
      */
     shading?: Schema$Shading;
@@ -1840,6 +1843,10 @@ export namespace docs_v1 {
      */
     namedStyleTypeSuggested?: boolean | null;
     /**
+     * Indicates if there was a suggested change to page_break_before.
+     */
+    pageBreakBeforeSuggested?: boolean | null;
+    /**
      * A mask that indicates which of the fields in shading have been changed in this suggestion.
      */
     shadingSuggestionState?: Schema$ShadingSuggestionState;
@@ -1899,6 +1906,19 @@ export namespace docs_v1 {
      * Output only. The name of the person if it is displayed in the link text instead of the person's email address.
      */
     name?: string | null;
+  }
+  /**
+   * Updates the number of pinned table header rows in a table.
+   */
+  export interface Schema$PinTableHeaderRowsRequest {
+    /**
+     * The number of table rows to pin, where 0 implies that all rows are unpinned.
+     */
+    pinnedHeaderRowsCount?: number | null;
+    /**
+     * The location where the table starts in the document.
+     */
+    tableStartLocation?: Schema$Location;
   }
   /**
    * An object that is tethered to a Paragraph and positioned relative to the beginning of the paragraph. A PositionedObject contains an EmbeddedObject such as an image.
@@ -2031,7 +2051,7 @@ export namespace docs_v1 {
    */
   export interface Schema$ReplaceImageRequest {
     /**
-     * The ID of the existing image that will be replaced.
+     * The ID of the existing image that will be replaced. The ID can be retrieved from the response of a get request.
      */
     imageObjectId?: string | null;
     /**
@@ -2039,7 +2059,7 @@ export namespace docs_v1 {
      */
     imageReplaceMethod?: string | null;
     /**
-     * The URI of the new image. The image is fetched once at insertion time and a copy is stored for display inside the document. Images must be less than 50MB in size, cannot exceed 25 megapixels, and must be in one of PNG, JPEG, or GIF format. The provided URI can be at most 2 kB in length. The URI itself is saved with the image, and exposed via the ImageProperties.source_uri field.
+     * The URI of the new image. The image is fetched once at insertion time and a copy is stored for display inside the document. Images must be less than 50MB, cannot exceed 25 megapixels, and must be in PNG, JPEG, or GIF format. The provided URI can't surpass 2 KB in length. The URI is saved with the image, and exposed through the ImageProperties.source_uri field.
      */
     uri?: string | null;
   }
@@ -2148,6 +2168,10 @@ export namespace docs_v1 {
      * Merges cells in a table.
      */
     mergeTableCells?: Schema$MergeTableCellsRequest;
+    /**
+     * Updates the number of pinned header rows in a table.
+     */
+    pinTableHeaderRows?: Schema$PinTableHeaderRowsRequest;
     /**
      * Replaces all instances of the specified text.
      */
@@ -2580,7 +2604,7 @@ export namespace docs_v1 {
    */
   export interface Schema$SuggestedParagraphStyle {
     /**
-     * A ParagraphStyle that only includes the changes made in this suggestion. This can be used along with the paragraph_suggestion_state to see which fields have changed and their new values.
+     * A ParagraphStyle that only includes the changes made in this suggestion. This can be used along with the paragraph_style_suggestion_state to see which fields have changed and their new values.
      */
     paragraphStyle?: Schema$ParagraphStyle;
     /**
@@ -2934,6 +2958,14 @@ export namespace docs_v1 {
      * The minimum height of the row. The row will be rendered in the Docs editor at a height equal to or greater than this value in order to show all the content in the row's cells.
      */
     minRowHeight?: Schema$Dimension;
+    /**
+     * Whether the row cannot overflow across page or column boundaries.
+     */
+    preventOverflow?: boolean | null;
+    /**
+     * Whether the row is a table header.
+     */
+    tableHeader?: boolean | null;
   }
   /**
    * A mask that indicates which of the fields on the base TableRowStyle have been changed in this suggestion. For any field set to true, there is a new suggested value.
@@ -3118,7 +3150,7 @@ export namespace docs_v1 {
    */
   export interface Schema$UpdateParagraphStyleRequest {
     /**
-     * The fields that should be updated. At least one field must be specified. The root `paragraph_style` is implied and should not be specified. For example, to update the paragraph style's alignment property, set `fields` to `"alignment"`. To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
+     * The fields that should be updated. At least one field must be specified. The root `paragraph_style` is implied and should not be specified. A single `"*"` can be used as short-hand for listing every field. For example, to update the paragraph style's alignment property, set `fields` to `"alignment"`. To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
      */
     fields?: string | null;
     /**
@@ -3245,11 +3277,11 @@ export namespace docs_v1 {
    */
   export interface Schema$WriteControl {
     /**
-     * The revision ID of the document that the write request will be applied to. If this is not the latest revision of the document, the request will not be processed and will return a 400 bad request error. When a required revision ID is returned in a response, it indicates the revision ID of the document after the request was applied.
+     * The optional revision ID of the document the write request is applied to. If this is not the latest revision of the document, the request is not processed and returns a 400 bad request error. When a required revision ID is returned in a response, it indicates the revision ID of the document after the request was applied.
      */
     requiredRevisionId?: string | null;
     /**
-     * The target revision ID of the document that the write request will be applied to. If collaborator changes have occurred after the document was read using the API, the changes produced by this write request will be transformed against the collaborator changes. This results in a new revision of the document which incorporates both the changes in the request and the collaborator changes, and the Docs server will resolve conflicting changes. When using `target_revision_id`, the API client can be thought of as another collaborator of the document. The target revision ID may only be used to write to recent versions of a document. If the target revision is too far behind the latest revision, the request will not be processed and will return a 400 bad request error and the request should be retried after reading the latest version of the document. In most cases a `revision_id` will remain valid for use as a target revision for several minutes after it is read, but for frequently-edited documents this window may be shorter.
+     * The optional target revision ID of the document the write request is applied to. If collaborator changes have occurred after the document was read using the API, the changes produced by this write request are applied against the collaborator changes. This results in a new revision of the document that incorporates both the collaborator changes and the changes in the request, with the Docs server resolving conflicting changes. When using target revision ID, the API client can be thought of as another collaborator of the document. The target revision ID can only be used to write to recent versions of a document. If the target revision is too far behind the latest revision, the request is not processed and returns a 400 bad request error. The request should be tried again after retrieving the latest version of the document. Usually a revision ID remains valid for use as a target revision for several minutes after it's read, but for frequently edited documents this window might be shorter.
      */
     targetRevisionId?: string | null;
   }

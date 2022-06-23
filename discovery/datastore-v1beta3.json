@@ -308,7 +308,7 @@
       }
     }
   },
-  "revision": "20220221",
+  "revision": "20220604",
   "rootUrl": "https://datastore.googleapis.com/",
   "schemas": {
     "AllocateIdsRequest": {
@@ -413,6 +413,11 @@
       "description": "The response for Datastore.Commit.",
       "id": "CommitResponse",
       "properties": {
+        "commitTime": {
+          "description": "The transaction commit timestamp. Not set for non-transactional commits.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "indexUpdates": {
           "description": "The number of index entries updated during the commit, or zero if none were updated.",
           "format": "int32",
@@ -433,7 +438,7 @@
       "id": "CompositeFilter",
       "properties": {
         "filters": {
-          "description": "The list of filters to combine. Must contain at least one filter.",
+          "description": "The list of filters to combine. Requires: * At least one filter is present.",
           "items": {
             "$ref": "Filter"
           },
@@ -484,6 +489,11 @@
         "entity": {
           "$ref": "Entity",
           "description": "The resulting entity."
+        },
+        "updateTime": {
+          "description": "The time at which the entity was last changed. This field is set for `FULL` entity results. If this entity is missing, this field will not be set.",
+          "format": "google-datetime",
+          "type": "string"
         },
         "version": {
           "description": "The version of the entity, a strictly positive number that monotonically increases with changes to the entity. This field is set for `FULL` entity results. For missing entities in `LookupResponse`, this is the version of the snapshot that was used to look up the entity, and it is always set except for eventually consistent reads.",
@@ -1149,6 +1159,11 @@
             "$ref": "EntityResult"
           },
           "type": "array"
+        },
+        "readTime": {
+          "description": "The time at which these entities were read or found missing.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1174,6 +1189,11 @@
           "$ref": "Entity",
           "description": "The entity to update. The entity must already exist. Must have a complete key path."
         },
+        "updateTime": {
+          "description": "The update time of the entity that this mutation is being applied to. If this does not match the current update time on the server, the mutation conflicts.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "upsert": {
           "$ref": "Entity",
           "description": "The entity to upsert. The entity may or may not already exist. The entity key's final path element may be incomplete."
@@ -1192,6 +1212,11 @@
         "key": {
           "$ref": "Key",
           "description": "The automatically allocated key. Set only when the mutation allocated a key."
+        },
+        "updateTime": {
+          "description": "The update time of the entity on the server after processing the mutation. If the mutation doesn't change anything on the server, then the timestamp will be the update timestamp of the current entity. This field will not be set after a 'delete'.",
+          "format": "google-datetime",
+          "type": "string"
         },
         "version": {
           "description": "The version of the entity on the server after processing the mutation. If the mutation doesn't change anything on the server, then the version will be the version of the current entity or, if no entity is present, a version that is strictly greater than the version of any previous entity and less than the version of any possible future entity.",
@@ -1226,11 +1251,11 @@
           "type": "string"
         },
         "kind": {
-          "description": "The kind of the entity. A kind matching regex `__.*__` is reserved/read-only. A kind must not contain more than 1500 bytes when UTF-8 encoded. Cannot be `\"\"`.",
+          "description": "The kind of the entity. A kind matching regex `__.*__` is reserved/read-only. A kind must not contain more than 1500 bytes when UTF-8 encoded. Cannot be `\"\"`. Must be valid UTF-8 bytes. Legacy values that are not valid UTF-8 are encoded as `__bytes__` where `` is the base-64 encoding of the bytes.",
           "type": "string"
         },
         "name": {
-          "description": "The name of the entity. A name matching regex `__.*__` is reserved/read-only. A name must not be more than 1500 bytes when UTF-8 encoded. Cannot be `\"\"`.",
+          "description": "The name of the entity. A name matching regex `__.*__` is reserved/read-only. A name must not be more than 1500 bytes when UTF-8 encoded. Cannot be `\"\"`. Must be valid UTF-8 bytes. Legacy values that are not valid UTF-8 are encoded as `__bytes__` where `` is the base-64 encoding of the bytes.",
           "type": "string"
         }
       },
@@ -1260,7 +1285,10 @@
             "GREATER_THAN",
             "GREATER_THAN_OR_EQUAL",
             "EQUAL",
-            "HAS_ANCESTOR"
+            "IN",
+            "NOT_EQUAL",
+            "HAS_ANCESTOR",
+            "NOT_IN"
           ],
           "enumDescriptions": [
             "Unspecified. This value must not be used.",
@@ -1269,7 +1297,10 @@
             "The given `property` is greater than the given `value`. Requires: * That `property` comes first in `order_by`.",
             "The given `property` is greater than or equal to the given `value`. Requires: * That `property` comes first in `order_by`.",
             "The given `property` is equal to the given `value`.",
-            "Limit the result set to the given entity and its descendants. Requires: * That `value` is an entity key."
+            "The given `property` is equal to at least one value in the given array. Requires: * That `value` is a non-empty `ArrayValue` with at most 10 values. * No other `IN` or `NOT_IN` is in the same query.",
+            "The given `property` is not equal to the given `value`. Requires: * No other `NOT_EQUAL` or `NOT_IN` is in the same query. * That `property` comes first in the `order_by`.",
+            "Limit the result set to the given entity and its descendants. Requires: * That `value` is an entity key.",
+            "The value of the `property` is not in the given array. Requires: * That `value` is a non-empty `ArrayValue` with at most 10 values. * No other `IN`, `NOT_IN`, `NOT_EQUAL` is in the same query. * That `field` comes first in the `order_by`."
           ],
           "type": "string"
         },
@@ -1429,6 +1460,11 @@
           ],
           "type": "string"
         },
+        "readTime": {
+          "description": "Read timestamp this batch was returned from. This applies to the range of results from the query's `start_cursor` (or the beginning of the query if no cursor was given) to this batch's `end_cursor` (not the query's `end_cursor`). In a single transaction, subsequent query result batches for the same query can have a greater timestamp. Each batch's read timestamp is valid for all preceding batches. This value will not be set for eventually consistent queries in Cloud Datastore.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "skippedCursor": {
           "description": "A cursor that points to the position after the last skipped result. Will be set when `skipped_results` != 0.",
           "format": "byte",
@@ -1450,7 +1486,13 @@
     "ReadOnly": {
       "description": "Options specific to read-only transactions.",
       "id": "ReadOnly",
-      "properties": {},
+      "properties": {
+        "readTime": {
+          "description": "Reads entities at the given time. This may not be older than 60 seconds.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "ReadOptions": {
@@ -1469,6 +1511,11 @@
             "Strong consistency.",
             "Eventual consistency."
           ],
+          "type": "string"
+        },
+        "readTime": {
+          "description": "Reads entities as they were at the given time. This may not be older than 270 seconds. This value is only supported for Cloud Firestore in Datastore mode.",
+          "format": "google-datetime",
           "type": "string"
         },
         "transaction": {
@@ -1539,7 +1586,7 @@
       "properties": {
         "gqlQuery": {
           "$ref": "GqlQuery",
-          "description": "The GQL query to run."
+          "description": "The GQL query to run. This query must be a non-aggregation query."
         },
         "partitionId": {
           "$ref": "PartitionId",

@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -183,7 +182,7 @@ export namespace certificatemanager_v1 {
      */
     pemCertificate?: string | null;
     /**
-     * Output only. The list of Subject Alternative Names of dnsName type defined in the certificate (see RFC 5280 4.2.1.6)
+     * Output only. The list of Subject Alternative Names of dnsName type defined in the certificate (see RFC 5280 4.2.1.6). Managed certificates that haven't been provisioned yet have this field populated with a value of the managed.domains field.
      */
     sanDnsnames?: string[] | null;
     /**
@@ -320,7 +319,7 @@ export namespace certificatemanager_v1 {
     type?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -332,11 +331,11 @@ export namespace certificatemanager_v1 {
      */
     ipConfigs?: Schema$IpConfig[];
     /**
-     * A name must be in the format `projects/x/locations/x/targetHttpsProxies/x`.
+     * This field returns the resource name in the following format: `//compute.googleapis.com/projects/x/global/targetHttpsProxies/x`.
      */
     targetHttpsProxy?: string | null;
     /**
-     * A name must be in the format `projects/x/locations/x/targetSslProxies/x`.
+     * This field returns the resource name in the following format: `//compute.googleapis.com/projects/x/global/targetSslProxies/x`.
      */
     targetSslProxy?: string | null;
   }
@@ -569,6 +568,23 @@ export namespace certificatemanager_v1 {
     reason?: string | null;
   }
   /**
+   * ResourcesCount represents the resource that stores aggregated project's info in the given location, e.g.: total number of certificates assigned to the project.
+   */
+  export interface Schema$ResourcesCount {
+    /**
+     * The count of certificates.
+     */
+    certificates?: string | null;
+    /**
+     * Required. Input only. The time of the computation. The field is input only, used in Create and Update calls. For Update call, new values of selected resources are set if their compute_time is younger than the persisted ones, e.g.: If you support 3 types of resources: A, B and C, and you have: 'A' resource count computed at timestamp = 3 'B' resource count computed at timestamp = 10 'C' resource count computed at timestamp = 5 And you're going to update all of them with compute_time = 8, only 'A' and 'C' will be updated, as 'B' already has fresher data. For Get call a ResourcesCount instance contains the freshest values for every type.
+     */
+    computeTime?: string | null;
+    /**
+     * The singleton resource of the resources count. Must be in the format `projects/x/locations/x/resourcesCounts/single`.
+     */
+    name?: string | null;
+  }
+  /**
    * Certificate data for a SelfManaged Certificate. SelfManaged Certificates are uploaded by the user. Updating such certificates before they expire remains the user's responsibility.
    */
   export interface Schema$SelfManagedCertificate {
@@ -787,7 +803,7 @@ export namespace certificatemanager_v1 {
      *
      *   // Do the magic
      *   const res = await certificatemanager.projects.locations.list({
-     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
@@ -913,7 +929,7 @@ export namespace certificatemanager_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
     /**

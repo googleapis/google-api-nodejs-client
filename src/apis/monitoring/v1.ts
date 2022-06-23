@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -221,6 +220,10 @@ export namespace monitoring_v1 {
      */
     columnLayout?: Schema$ColumnLayout;
     /**
+     * Filters to reduce the amount of data charted based on the filter criteria.
+     */
+    dashboardFilters?: Schema$DashboardFilter[];
+    /**
      * Required. The mutable, human-readable name.
      */
     displayName?: string | null;
@@ -248,6 +251,27 @@ export namespace monitoring_v1 {
      * The content is divided into equally spaced rows and the widgets are arranged horizontally.
      */
     rowLayout?: Schema$RowLayout;
+  }
+  /**
+   * A filter to reduce the amount of data charted in relevant widgets.
+   */
+  export interface Schema$DashboardFilter {
+    /**
+     * The specified filter type
+     */
+    filterType?: string | null;
+    /**
+     * Required. The key for the label
+     */
+    labelKey?: string | null;
+    /**
+     * A variable-length string value.
+     */
+    stringValue?: string | null;
+    /**
+     * The placeholder text that can be referenced in a filter string or MQL query. If omitted, the dashboard filter will be applied to all relevant widgets in the dashboard.
+     */
+    templateVariable?: string | null;
   }
   /**
    * Groups a time series query definition with charting options.
@@ -284,7 +308,7 @@ export namespace monitoring_v1 {
     label?: {[key: string]: string} | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for Empty is empty JSON object {\}.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -857,7 +881,7 @@ export namespace monitoring_v1 {
      */
     timeSeriesFilterRatio?: Schema$TimeSeriesFilterRatio;
     /**
-     * A query used to fetch time series.
+     * A query used to fetch time series with MQL.
      */
     timeSeriesQueryLanguage?: string | null;
     /**
@@ -1817,6 +1841,7 @@ export namespace monitoring_v1 {
      *       // request body parameters
      *       // {
      *       //   "columnLayout": {},
+     *       //   "dashboardFilters": [],
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",
      *       //   "gridLayout": {},
@@ -1832,6 +1857,7 @@ export namespace monitoring_v1 {
      *   // Example response
      *   // {
      *   //   "columnLayout": {},
+     *   //   "dashboardFilters": [],
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
      *   //   "gridLayout": {},
@@ -2100,6 +2126,7 @@ export namespace monitoring_v1 {
      *   // Example response
      *   // {
      *   //   "columnLayout": {},
+     *   //   "dashboardFilters": [],
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
      *   //   "gridLayout": {},
@@ -2382,6 +2409,7 @@ export namespace monitoring_v1 {
      *       // request body parameters
      *       // {
      *       //   "columnLayout": {},
+     *       //   "dashboardFilters": [],
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",
      *       //   "gridLayout": {},
@@ -2397,6 +2425,7 @@ export namespace monitoring_v1 {
      *   // Example response
      *   // {
      *   //   "columnLayout": {},
+     *   //   "dashboardFilters": [],
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
      *   //   "gridLayout": {},

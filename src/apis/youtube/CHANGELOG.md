@@ -1,5 +1,23 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v4.2.0...youtube-v5.0.0) (2022-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#2971](https://github.com/googleapis/google-api-nodejs-client/issues/2971)) ([adddf01](https://github.com/googleapis/google-api-nodejs-client/commit/adddf018e7cb73adab7341053dd80d72c5a6248d))
+
+## [4.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v4.1.1...youtube-v4.2.0) (2022-03-23)
+
+
+### Features
+
+* **youtube:** update the API ([d6124e4](https://github.com/googleapis/google-api-nodejs-client/commit/d6124e4c1561609b6aa0848e6f5be9614d7cc45b))
+
 ### [4.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v4.1.0...youtube-v4.1.1) (2022-03-08)
 
 

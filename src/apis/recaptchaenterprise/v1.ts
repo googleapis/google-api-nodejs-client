@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -184,6 +183,10 @@ export namespace recaptchaenterprise_v1 {
      * Output only. The resource name for the Assessment in the format "projects/{project\}/assessments/{assessment\}".
      */
     name?: string | null;
+    /**
+     * The private password leak verification field contains the parameters used to check for leaks privately without sharing user credentials.
+     */
+    privatePasswordLeakVerification?: Schema$GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification;
     /**
      * Output only. The risk analysis result for the event being assessed.
      */
@@ -359,6 +362,27 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest {}
   /**
+   * Private password leak verification info.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification {
+    /**
+     * Output only. List of prefixes of the encrypted potential password leaks that matched the given parameters. They should be compared with the client-side decryption prefix of `reencrypted_user_credentials_hash`
+     */
+    encryptedLeakMatchPrefixes?: string[] | null;
+    /**
+     * Optional. Encrypted Scrypt hash of the canonicalized username+password. It is re-encrypted by the server and returned through `reencrypted_user_credentials_hash`.
+     */
+    encryptedUserCredentialsHash?: string | null;
+    /**
+     * Optional. Exactly 26-bit prefix of the SHA-256 hash of the canonicalized username. It is used to look up password leaks associated with that hash prefix.
+     */
+    lookupHashPrefix?: string | null;
+    /**
+     * Output only. Corresponds to the re-encryption of the `encrypted_user_credentials_hash` field. Used to match potential password leaks within `encrypted_leak_match_prefixes`.
+     */
+    reencryptedUserCredentialsHash?: string | null;
+  }
+  /**
    * A group of related accounts.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1RelatedAccountGroup {
@@ -521,7 +545,7 @@ export namespace recaptchaenterprise_v1 {
     integrationType?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$GoogleProtobufEmpty {}
 
@@ -733,6 +757,7 @@ export namespace recaptchaenterprise_v1 {
      *       //   "accountDefenderAssessment": {},
      *       //   "event": {},
      *       //   "name": "my_name",
+     *       //   "privatePasswordLeakVerification": {},
      *       //   "riskAnalysis": {},
      *       //   "tokenProperties": {}
      *       // }
@@ -745,6 +770,7 @@ export namespace recaptchaenterprise_v1 {
      *   //   "accountDefenderAssessment": {},
      *   //   "event": {},
      *   //   "name": "my_name",
+     *   //   "privatePasswordLeakVerification": {},
      *   //   "riskAnalysis": {},
      *   //   "tokenProperties": {}
      *   // }

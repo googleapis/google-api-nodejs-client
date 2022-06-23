@@ -2612,11 +2612,6 @@
                 "parent"
               ],
               "parameters": {
-                "filter": {
-                  "description": "Required. Filters to restrict results to specific answer records. Filter on answer record type. Currently predicates on `type` is supported, valid values are `ARTICLE_ANSWER`, `FAQ_ANSWER`. For more information about filtering, see [API Filtering](https://aip.dev/160).",
-                  "location": "query",
-                  "type": "string"
-                },
                 "pageSize": {
                   "description": "Optional. The maximum number of records to return in a single page. The server may return fewer records than this. If unspecified, we use 10. The maximum is 100.",
                   "format": "int32",
@@ -4186,7 +4181,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
                   "type": "string"
                 },
@@ -6308,11 +6303,6 @@
                     "parent"
                   ],
                   "parameters": {
-                    "filter": {
-                      "description": "Required. Filters to restrict results to specific answer records. Filter on answer record type. Currently predicates on `type` is supported, valid values are `ARTICLE_ANSWER`, `FAQ_ANSWER`. For more information about filtering, see [API Filtering](https://aip.dev/160).",
-                      "location": "query",
-                      "type": "string"
-                    },
                     "pageSize": {
                       "description": "Optional. The maximum number of records to return in a single page. The server may return fewer records than this. If unspecified, we use 10. The maximum is 100.",
                       "format": "int32",
@@ -8077,7 +8067,7 @@
       }
     }
   },
-  "revision": "20220309",
+  "revision": "20220607",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -8362,6 +8352,10 @@
             "$ref": "GoogleCloudDialogflowCxV3EnvironmentVersionConfig"
           },
           "type": "array"
+        },
+        "webhookConfig": {
+          "$ref": "GoogleCloudDialogflowCxV3EnvironmentWebhookConfig",
+          "description": "The webhook configuration for this environment."
         }
       },
       "type": "object"
@@ -8395,6 +8389,20 @@
         "version": {
           "description": "Required. Format: projects//locations//agents//flows//versions/.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3EnvironmentWebhookConfig": {
+      "description": "Configuration for webhooks.",
+      "id": "GoogleCloudDialogflowCxV3EnvironmentWebhookConfig",
+      "properties": {
+        "webhookOverrides": {
+          "description": "The list of webhooks to override for the agent environment. The webhook must exist in the agent. You can override fields in `generic_web_service` and `service_directory`.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3Webhook"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -8589,7 +8597,7 @@
           "type": "array"
         },
         "tag": {
-          "description": "The tag used by the webhook to identify which fulfillment is being called. This field is required if `webhook` is specified.",
+          "description": "The value of this field will be populated in the WebhookRequest `fulfillmentInfo.tag` field by Dialogflow when the associated webhook is called. The tag is typically used by the webhook service to identify which fulfillment is being called, but it could be used for other purposes. This field is required if `webhook` is specified.",
           "type": "string"
         },
         "webhook": {
@@ -8946,7 +8954,7 @@
       "id": "GoogleCloudDialogflowCxV3Page",
       "properties": {
         "displayName": {
-          "description": "Required. The human-readable name of the page, unique within the agent.",
+          "description": "Required. The human-readable name of the page, unique within the flow.",
           "type": "string"
         },
         "entryFulfillment": {
@@ -9573,6 +9581,72 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3Webhook": {
+      "description": "Webhooks host the developer's business logic. During a session, webhooks allow the developer to use the data extracted by Dialogflow's natural language processing to generate dynamic responses, validate collected data, or trigger actions on the backend.",
+      "id": "GoogleCloudDialogflowCxV3Webhook",
+      "properties": {
+        "disabled": {
+          "description": "Indicates whether the webhook is disabled.",
+          "type": "boolean"
+        },
+        "displayName": {
+          "description": "Required. The human-readable name of the webhook, unique within the agent.",
+          "type": "string"
+        },
+        "genericWebService": {
+          "$ref": "GoogleCloudDialogflowCxV3WebhookGenericWebService",
+          "description": "Configuration for a generic web service."
+        },
+        "name": {
+          "description": "The unique identifier of the webhook. Required for the Webhooks.UpdateWebhook method. Webhooks.CreateWebhook populates the name automatically. Format: `projects//locations//agents//webhooks/`.",
+          "type": "string"
+        },
+        "serviceDirectory": {
+          "$ref": "GoogleCloudDialogflowCxV3WebhookServiceDirectoryConfig",
+          "description": "Configuration for a [Service Directory](https://cloud.google.com/service-directory) service."
+        },
+        "timeout": {
+          "description": "Webhook execution timeout. Execution is considered failed if Dialogflow doesn't receive a response from webhook at the end of the timeout period. Defaults to 5 seconds, maximum allowed timeout is 30 seconds.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3WebhookGenericWebService": {
+      "description": "Represents configuration for a generic web service.",
+      "id": "GoogleCloudDialogflowCxV3WebhookGenericWebService",
+      "properties": {
+        "allowedCaCerts": {
+          "description": "Optional. Specifies a list of allowed custom CA certificates (in DER format) for HTTPS verification. This overrides the default SSL trust store. If this is empty or unspecified, Dialogflow will use Google's default trust store to verify certificates. N.B. Make sure the HTTPS server certificates are signed with \"subject alt name\". For instance a certificate can be self-signed using the following command, ``` openssl x509 -req -days 200 -in example.com.csr \\ -signkey example.com.key \\ -out example.com.crt \\ -extfile <(printf \"\\nsubjectAltName='DNS:www.example.com'\") ```",
+          "items": {
+            "format": "byte",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "password": {
+          "description": "The password for HTTP Basic authentication.",
+          "type": "string"
+        },
+        "requestHeaders": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The HTTP request headers to send together with webhook requests.",
+          "type": "object"
+        },
+        "uri": {
+          "description": "Required. The webhook URI for receiving POST requests. It must use https protocol.",
+          "type": "string"
+        },
+        "username": {
+          "description": "The user name for HTTP Basic authentication.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3WebhookRequest": {
       "description": "The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases.",
       "id": "GoogleCloudDialogflowCxV3WebhookRequest",
@@ -9644,7 +9718,7 @@
       "id": "GoogleCloudDialogflowCxV3WebhookRequestFulfillmentInfo",
       "properties": {
         "tag": {
-          "description": "Always present. The tag used to identify which fulfillment is being called.",
+          "description": "Always present. The value of the Fulfillment.tag field will be populated in this field by Dialogflow when the associated webhook is called. The tag is typically used by the webhook service to identify which fulfillment is being called, but it could be used for other purposes.",
           "type": "string"
         }
       },
@@ -9768,6 +9842,21 @@
             "$ref": "GoogleCloudDialogflowCxV3ResponseMessage"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3WebhookServiceDirectoryConfig": {
+      "description": "Represents configuration for a [Service Directory](https://cloud.google.com/service-directory) service.",
+      "id": "GoogleCloudDialogflowCxV3WebhookServiceDirectoryConfig",
+      "properties": {
+        "genericWebService": {
+          "$ref": "GoogleCloudDialogflowCxV3WebhookGenericWebService",
+          "description": "Generic Service configuration of this webhook."
+        },
+        "service": {
+          "description": "Required. The name of [Service Directory](https://cloud.google.com/service-directory) service. Format: `projects//locations//namespaces//services/`. `Location ID` of the service directory must be the same as the location of the agent.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -10054,6 +10143,10 @@
             "$ref": "GoogleCloudDialogflowCxV3beta1EnvironmentVersionConfig"
           },
           "type": "array"
+        },
+        "webhookConfig": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1EnvironmentWebhookConfig",
+          "description": "The webhook configuration for this environment."
         }
       },
       "type": "object"
@@ -10087,6 +10180,20 @@
         "version": {
           "description": "Required. Format: projects//locations//agents//flows//versions/.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1EnvironmentWebhookConfig": {
+      "description": "Configuration for webhooks.",
+      "id": "GoogleCloudDialogflowCxV3beta1EnvironmentWebhookConfig",
+      "properties": {
+        "webhookOverrides": {
+          "description": "The list of webhooks to override for the agent environment. The webhook must exist in the agent. You can override fields in `generic_web_service` and `service_directory`.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1Webhook"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -10281,7 +10388,7 @@
           "type": "array"
         },
         "tag": {
-          "description": "The tag used by the webhook to identify which fulfillment is being called. This field is required if `webhook` is specified.",
+          "description": "The value of this field will be populated in the WebhookRequest `fulfillmentInfo.tag` field by Dialogflow when the associated webhook is called. The tag is typically used by the webhook service to identify which fulfillment is being called, but it could be used for other purposes. This field is required if `webhook` is specified.",
           "type": "string"
         },
         "webhook": {
@@ -10638,7 +10745,7 @@
       "id": "GoogleCloudDialogflowCxV3beta1Page",
       "properties": {
         "displayName": {
-          "description": "Required. The human-readable name of the page, unique within the agent.",
+          "description": "Required. The human-readable name of the page, unique within the flow.",
           "type": "string"
         },
         "entryFulfillment": {
@@ -11265,6 +11372,72 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3beta1Webhook": {
+      "description": "Webhooks host the developer's business logic. During a session, webhooks allow the developer to use the data extracted by Dialogflow's natural language processing to generate dynamic responses, validate collected data, or trigger actions on the backend.",
+      "id": "GoogleCloudDialogflowCxV3beta1Webhook",
+      "properties": {
+        "disabled": {
+          "description": "Indicates whether the webhook is disabled.",
+          "type": "boolean"
+        },
+        "displayName": {
+          "description": "Required. The human-readable name of the webhook, unique within the agent.",
+          "type": "string"
+        },
+        "genericWebService": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1WebhookGenericWebService",
+          "description": "Configuration for a generic web service."
+        },
+        "name": {
+          "description": "The unique identifier of the webhook. Required for the Webhooks.UpdateWebhook method. Webhooks.CreateWebhook populates the name automatically. Format: `projects//locations//agents//webhooks/`.",
+          "type": "string"
+        },
+        "serviceDirectory": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1WebhookServiceDirectoryConfig",
+          "description": "Configuration for a [Service Directory](https://cloud.google.com/service-directory) service."
+        },
+        "timeout": {
+          "description": "Webhook execution timeout. Execution is considered failed if Dialogflow doesn't receive a response from webhook at the end of the timeout period. Defaults to 5 seconds, maximum allowed timeout is 30 seconds.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1WebhookGenericWebService": {
+      "description": "Represents configuration for a generic web service.",
+      "id": "GoogleCloudDialogflowCxV3beta1WebhookGenericWebService",
+      "properties": {
+        "allowedCaCerts": {
+          "description": "Optional. Specifies a list of allowed custom CA certificates (in DER format) for HTTPS verification. This overrides the default SSL trust store. If this is empty or unspecified, Dialogflow will use Google's default trust store to verify certificates. N.B. Make sure the HTTPS server certificates are signed with \"subject alt name\". For instance a certificate can be self-signed using the following command, ``` openssl x509 -req -days 200 -in example.com.csr \\ -signkey example.com.key \\ -out example.com.crt \\ -extfile <(printf \"\\nsubjectAltName='DNS:www.example.com'\") ```",
+          "items": {
+            "format": "byte",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "password": {
+          "description": "The password for HTTP Basic authentication.",
+          "type": "string"
+        },
+        "requestHeaders": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The HTTP request headers to send together with webhook requests.",
+          "type": "object"
+        },
+        "uri": {
+          "description": "Required. The webhook URI for receiving POST requests. It must use https protocol.",
+          "type": "string"
+        },
+        "username": {
+          "description": "The user name for HTTP Basic authentication.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3beta1WebhookRequest": {
       "description": "The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases.",
       "id": "GoogleCloudDialogflowCxV3beta1WebhookRequest",
@@ -11336,7 +11509,7 @@
       "id": "GoogleCloudDialogflowCxV3beta1WebhookRequestFulfillmentInfo",
       "properties": {
         "tag": {
-          "description": "Always present. The tag used to identify which fulfillment is being called.",
+          "description": "Always present. The value of the Fulfillment.tag field will be populated in this field by Dialogflow when the associated webhook is called. The tag is typically used by the webhook service to identify which fulfillment is being called, but it could be used for other purposes.",
           "type": "string"
         }
       },
@@ -11460,6 +11633,21 @@
             "$ref": "GoogleCloudDialogflowCxV3beta1ResponseMessage"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1WebhookServiceDirectoryConfig": {
+      "description": "Represents configuration for a [Service Directory](https://cloud.google.com/service-directory) service.",
+      "id": "GoogleCloudDialogflowCxV3beta1WebhookServiceDirectoryConfig",
+      "properties": {
+        "genericWebService": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1WebhookGenericWebService",
+          "description": "Generic Service configuration of this webhook."
+        },
+        "service": {
+          "description": "Required. The name of [Service Directory](https://cloud.google.com/service-directory) service. Format: `projects//locations//namespaces//services/`. `Location ID` of the service directory must be the same as the location of the agent.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -11631,6 +11819,14 @@
           "$ref": "GoogleCloudDialogflowV2AssistQueryParameters",
           "description": "Parameters for a human assist query."
         },
+        "cxParameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Additional parameters to be put into Dialogflow CX session parameters. To remove a parameter from the session, clients should explicitly set the parameter value to null. Note: this field should only be used if you are connecting to a Dialogflow CX agent.",
+          "type": "object"
+        },
         "eventInput": {
           "$ref": "GoogleCloudDialogflowV2EventInput",
           "description": "An input event to send to Dialogflow."
@@ -11667,14 +11863,14 @@
           "description": "Indicates the parameters of DTMF."
         },
         "endUserSuggestionResults": {
-          "description": "The suggestions for end user. The order is the same as HumanAgentAssistantConfig.SuggestionConfig.feature_configs of HumanAgentAssistantConfig.end_user_suggestion_config.",
+          "description": "The suggestions for end user. The order is the same as HumanAgentAssistantConfig.SuggestionConfig.feature_configs of HumanAgentAssistantConfig.end_user_suggestion_config. Same as human_agent_suggestion_results, any failure of Agent Assist features will not lead to the overall failure of an AnalyzeContent API call. Instead, the features will fail silently with the error field set in the corresponding SuggestionResult.",
           "items": {
             "$ref": "GoogleCloudDialogflowV2SuggestionResult"
           },
           "type": "array"
         },
         "humanAgentSuggestionResults": {
-          "description": "The suggestions for most recent human agent. The order is the same as HumanAgentAssistantConfig.SuggestionConfig.feature_configs of HumanAgentAssistantConfig.human_agent_suggestion_config.",
+          "description": "The suggestions for most recent human agent. The order is the same as HumanAgentAssistantConfig.SuggestionConfig.feature_configs of HumanAgentAssistantConfig.human_agent_suggestion_config. Note that any failure of Agent Assist features will not lead to the overall failure of an AnalyzeContent API call. Instead, the features will fail silently with the error field set in the corresponding SuggestionResult.",
           "items": {
             "$ref": "GoogleCloudDialogflowV2SuggestionResult"
           },
@@ -13301,7 +13497,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2HumanAgentAssistantConfigConversationModelConfig": {
-      "description": "Custom conversation models used in agent assist feature. Supported feature: ARTICLE_SUGGESTION, SMART_COMPOSE, SMART_REPLY.",
+      "description": "Custom conversation models used in agent assist feature. Supported feature: ARTICLE_SUGGESTION, SMART_COMPOSE, SMART_REPLY, CONVERSATION_SUMMARIZATION.",
       "id": "GoogleCloudDialogflowV2HumanAgentAssistantConfigConversationModelConfig",
       "properties": {
         "model": {
@@ -17846,7 +18042,7 @@
           "enumDescriptions": [
             "Not specified. This value should never be used.",
             "Examples do not contain @-prefixed entity type names, but example parts can be annotated with entity types.",
-            "Templates are not annotated with entity types, but they can contain @-prefixed entity type names as substrings. Template mode has been deprecated. Example mode is the only supported way to create new training phrases. If you have existing training phrases that you've created in template mode, those will continue to work."
+            "Templates are not annotated with entity types, but they can contain @-prefixed entity type names as substrings. Note: Template mode has been deprecated. Example mode is the only supported way to create new training phrases. If you have existing training phrases in template mode, they will be removed during training and it can cause a drop in agent performance."
           ],
           "type": "string"
         }
@@ -18665,7 +18861,7 @@
       "type": "object"
     },
     "GoogleProtobufEmpty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "GoogleProtobufEmpty",
       "properties": {},
       "type": "object"

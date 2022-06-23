@@ -1,5 +1,50 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v3.0.0...androidpublisher-v3.0.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **androidpublisher:** update the API ([9288ea1](https://github.com/googleapis/google-api-nodejs-client/commit/9288ea10654f02aab879d4e357070d1b6b0aed8e))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v2.5.0...androidpublisher-v3.0.0) (2022-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#2971](https://github.com/googleapis/google-api-nodejs-client/issues/2971)) ([adddf01](https://github.com/googleapis/google-api-nodejs-client/commit/adddf018e7cb73adab7341053dd80d72c5a6248d))
+
+## [2.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v2.4.0...androidpublisher-v2.5.0) (2022-06-13)
+
+
+### Features
+
+* regenerate index files ([43ae576](https://github.com/googleapis/google-api-nodejs-client/commit/43ae57651332bdf31af52ea3abb9e2934798a404))
+
+
+### Bug Fixes
+
+* **androidpublisher:** update the API ([3f6d9cf](https://github.com/googleapis/google-api-nodejs-client/commit/3f6d9cf24b5fc79850bdaa43e7343143877e8a78))
+* **androidpublisher:** update the API ([c4cf1e2](https://github.com/googleapis/google-api-nodejs-client/commit/c4cf1e2547ecf5441db2892c2aa704b7e48f19f1))
+
+## [2.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v2.3.2...androidpublisher-v2.4.0) (2022-04-01)
+
+
+### Features
+
+* **androidpublisher:** update the API ([27219e5](https://github.com/googleapis/google-api-nodejs-client/commit/27219e5f63a3976ee3a275ac262bd2198483db2f))
+
+### [2.3.2](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v2.3.1...androidpublisher-v2.3.2) (2022-03-23)
+
+
+### Bug Fixes
+
+* **androidpublisher:** update the API ([9c6fc9f](https://github.com/googleapis/google-api-nodejs-client/commit/9c6fc9f0d263cc021d9583d6925333f365bd0c69))
+
 ### [2.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v2.3.0...androidpublisher-v2.3.1) (2022-02-04)
 
 

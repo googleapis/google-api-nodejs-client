@@ -12,7 +12,6 @@
 // limitations under the License.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/class-name-casing */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -130,7 +129,7 @@ export namespace firebasedatabase_v1beta {
    */
   export interface Schema$DatabaseInstance {
     /**
-     * Immutable. The globally unique hostname of the database.
+     * Output only. Output Only. The globally unique hostname of the database.
      */
     databaseUrl?: string | null;
     /**
@@ -138,15 +137,15 @@ export namespace firebasedatabase_v1beta {
      */
     name?: string | null;
     /**
-     * The resource name of the project this instance belongs to. For example: `projects/{project-number\}`.
+     * Output only. The resource name of the project this instance belongs to. For example: `projects/{project-number\}`.
      */
     project?: string | null;
     /**
-     * The database's lifecycle state. Read-only.
+     * Output only. The database's lifecycle state. Read-only.
      */
     state?: string | null;
     /**
-     * The database instance type. On creation only USER_DATABASE is allowed, which is also the default when omitted.
+     * Immutable. The database instance type. On creation only USER_DATABASE is allowed, which is also the default when omitted.
      */
     type?: string | null;
   }
@@ -171,6 +170,10 @@ export namespace firebasedatabase_v1beta {
    * The request sent to the ReenableDatabaseInstance method.
    */
   export interface Schema$ReenableDatabaseInstanceRequest {}
+  /**
+   * The request sent to UndeleteDatabaseInstance method.
+   */
+  export interface Schema$UndeleteDatabaseInstanceRequest {}
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -350,7 +353,7 @@ export namespace firebasedatabase_v1beta {
     }
 
     /**
-     * Marks a DatabaseInstance to be deleted. The DatabaseInstance will be purged within 30 days. The default database cannot be deleted. IDs for deleted database instances may never be recovered or re-used. The Database may only be deleted if it is already in a DISABLED state.
+     * Marks a DatabaseInstance to be deleted. The DatabaseInstance will be set to the DELETED state for 20 days, and will be purged within 30 days. The default database cannot be deleted. IDs for deleted database instances may never be recovered or re-used. The Database may only be deleted if it is already in a DISABLED state.
      * @example
      * ```js
      * // Before running the sample:
@@ -800,6 +803,8 @@ export namespace firebasedatabase_v1beta {
      *     pageToken: 'placeholder-value',
      *     // The parent project for which to list database instances, in the form: `projects/{project-number\}/locations/{location-id\}` To list across all locations, use a parent in the form: `projects/{project-number\}/locations/-`
      *     parent: 'projects/my-project/locations/my-location',
+     *     // Indicate that DatabaseInstances in the `DELETED` state should also be returned.
+     *     showDeleted: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -1053,6 +1058,149 @@ export namespace firebasedatabase_v1beta {
         return createAPIRequest<Schema$DatabaseInstance>(parameters);
       }
     }
+
+    /**
+     * Restores a DatabaseInstance that was previously marked to be deleted. After the delete method is used, DatabaseInstances are set to the DELETED state for 20 days, and will be purged within 30 days. Databases in the DELETED state can be undeleted without losing any data. This method may only be used on a DatabaseInstance in the DELETED state. Purged DatabaseInstances may not be recovered.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasedatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebasedatabase = google.firebasedatabase('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasedatabase.projects.locations.instances.undelete({
+     *     // The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "databaseUrl": "my_databaseUrl",
+     *   //   "name": "my_name",
+     *   //   "project": "my_project",
+     *   //   "state": "my_state",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    undelete(
+      params: Params$Resource$Projects$Locations$Instances$Undelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    undelete(
+      params?: Params$Resource$Projects$Locations$Instances$Undelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DatabaseInstance>;
+    undelete(
+      params: Params$Resource$Projects$Locations$Instances$Undelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    undelete(
+      params: Params$Resource$Projects$Locations$Instances$Undelete,
+      options: MethodOptions | BodyResponseCallback<Schema$DatabaseInstance>,
+      callback: BodyResponseCallback<Schema$DatabaseInstance>
+    ): void;
+    undelete(
+      params: Params$Resource$Projects$Locations$Instances$Undelete,
+      callback: BodyResponseCallback<Schema$DatabaseInstance>
+    ): void;
+    undelete(callback: BodyResponseCallback<Schema$DatabaseInstance>): void;
+    undelete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Undelete
+        | BodyResponseCallback<Schema$DatabaseInstance>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DatabaseInstance>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DatabaseInstance>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DatabaseInstance> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Undelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasedatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DatabaseInstance>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DatabaseInstance>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Instances$Create
@@ -1115,6 +1263,10 @@ export namespace firebasedatabase_v1beta {
      * The parent project for which to list database instances, in the form: `projects/{project-number\}/locations/{location-id\}` To list across all locations, use a parent in the form: `projects/{project-number\}/locations/-`
      */
     parent?: string;
+    /**
+     * Indicate that DatabaseInstances in the `DELETED` state should also be returned.
+     */
+    showDeleted?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Instances$Reenable
     extends StandardParameters {
@@ -1127,5 +1279,17 @@ export namespace firebasedatabase_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$ReenableDatabaseInstanceRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Undelete
+    extends StandardParameters {
+    /**
+     * The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UndeleteDatabaseInstanceRequest;
   }
 }

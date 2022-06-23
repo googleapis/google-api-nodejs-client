@@ -1,5 +1,44 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/iam-v3.0.0...iam-v3.0.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* **iam:** update the API ([5b2a9f6](https://github.com/googleapis/google-api-nodejs-client/commit/5b2a9f6bd6adc17cef0e8f340941717ac977532e))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/iam-v2.4.0...iam-v3.0.0) (2022-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#2971](https://github.com/googleapis/google-api-nodejs-client/issues/2971)) ([adddf01](https://github.com/googleapis/google-api-nodejs-client/commit/adddf018e7cb73adab7341053dd80d72c5a6248d))
+
+## [2.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/iam-v2.3.1...iam-v2.4.0) (2022-06-13)
+
+
+### Features
+
+* **iam:** update the API ([4d232ad](https://github.com/googleapis/google-api-nodejs-client/commit/4d232ad2b5f4c8f5be1771ed7c58150af3f1f6ed))
+
+### [2.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/iam-v2.3.0...iam-v2.3.1) (2022-04-11)
+
+
+### Bug Fixes
+
+* **iam:** update the API ([14ba1de](https://github.com/googleapis/google-api-nodejs-client/commit/14ba1deeae841946a838a0660b09f0d2238332ad))
+
+## [2.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/iam-v2.2.0...iam-v2.3.0) (2022-03-23)
+
+
+### Features
+
+* **iam:** update the API ([0cb83ce](https://github.com/googleapis/google-api-nodejs-client/commit/0cb83ce17e03196fffdcfe6142717e2440a32734))
+
 ## [2.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/iam-v2.1.2...iam-v2.2.0) (2022-03-08)
 
 
