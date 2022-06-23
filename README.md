@@ -658,7 +658,7 @@ We love contributions! Before submitting a Pull Request, it's always good to sta
 [oauth]: https://developers.google.com/identity/protocols/OAuth2
 [oauthexample]: https://github.com/googleapis/google-api-nodejs-client/tree/main/samples/oauth2.js
 [options]: https://github.com/googleapis/google-api-nodejs-client/tree/main#options
-[googlecloud]: https://cloud.google.com/nodejs/docs/reference/libraries
+[googlecloud]: https://cloud.google.com/nodejs/docs/reference
 [googlecloudapis]: https://cloud.google.com/nodejs/docs/reference/apis
 [cloudplatform]: https://cloud.google.com/docs/
 [downloadsimg]: https://img.shields.io/npm/dm/googleapis.svg
