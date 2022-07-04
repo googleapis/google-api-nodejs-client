@@ -2780,6 +2780,10 @@ export namespace bigquery_v2 {
      */
     elapsedMs?: string | null;
     /**
+     * Units of work that can be scheduled immediately. Providing additional slots for these units of work will speed up the query, provided no other query in the reservation needs additional slots.
+     */
+    estimatedRunnableUnits?: string | null;
+    /**
      * Total parallel units of work remaining for the active stages.
      */
     pendingUnits?: string | null;
@@ -3211,6 +3215,10 @@ export namespace bigquery_v2 {
      * [Optional] Materialized view definition.
      */
     materializedView?: Schema$MaterializedViewDefinition;
+    /**
+     * [Optional] Max staleness of data that could be returned when table or materialized view is queried (formatted as Google SQL Interval type).
+     */
+    maxStaleness?: string | null;
     /**
      * [Output-only, Beta] Present iff this table represents a ML model. Describes the training information for the model, and it is required to run 'PREDICT' queries.
      */
@@ -3667,6 +3675,10 @@ export namespace bigquery_v2 {
      */
     maxParallelTrials?: string | null;
     /**
+     * Get truncated length by last n points in time series. Use separately from time_series_length_fraction and min_time_series_length.
+     */
+    maxTimeSeriesLength?: string | null;
+    /**
      * Maximum depth of a tree for boosted tree models.
      */
     maxTreeDepth?: string | null;
@@ -3678,6 +3690,10 @@ export namespace bigquery_v2 {
      * Minimum split loss for boosted tree models.
      */
     minSplitLoss?: number | null;
+    /**
+     * Set fast trend ARIMA_PLUS model minimum training length. Use in pair with time_series_length_fraction.
+     */
+    minTimeSeriesLength?: string | null;
     /**
      * Minimum sum of instance weight needed in a child for boosted tree models.
      */
@@ -3735,6 +3751,10 @@ export namespace bigquery_v2 {
      */
     timeSeriesIdColumns?: string[] | null;
     /**
+     * Get truncated length by fraction in time series.
+     */
+    timeSeriesLengthFraction?: number | null;
+    /**
      * Column to be designated as time series timestamp for ARIMA model.
      */
     timeSeriesTimestampColumn?: string | null;
@@ -3742,6 +3762,10 @@ export namespace bigquery_v2 {
      * Tree construction algorithm for boosted tree models.
      */
     treeMethod?: string | null;
+    /**
+     * The smoothing window size for the trend component of the time series.
+     */
+    trendSmoothingWindowSize?: string | null;
     /**
      * User column specified for matrix factorization models.
      */
@@ -9154,6 +9178,7 @@ export namespace bigquery_v2 {
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
      *   //   "materializedView": {},
+     *   //   "maxStaleness": "my_maxStaleness",
      *   //   "model": {},
      *   //   "numBytes": "my_numBytes",
      *   //   "numLongTermBytes": "my_numLongTermBytes",
@@ -9469,6 +9494,7 @@ export namespace bigquery_v2 {
      *       //   "lastModifiedTime": "my_lastModifiedTime",
      *       //   "location": "my_location",
      *       //   "materializedView": {},
+     *       //   "maxStaleness": "my_maxStaleness",
      *       //   "model": {},
      *       //   "numBytes": "my_numBytes",
      *       //   "numLongTermBytes": "my_numLongTermBytes",
@@ -9515,6 +9541,7 @@ export namespace bigquery_v2 {
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
      *   //   "materializedView": {},
+     *   //   "maxStaleness": "my_maxStaleness",
      *   //   "model": {},
      *   //   "numBytes": "my_numBytes",
      *   //   "numLongTermBytes": "my_numLongTermBytes",
@@ -9832,6 +9859,7 @@ export namespace bigquery_v2 {
      *       //   "lastModifiedTime": "my_lastModifiedTime",
      *       //   "location": "my_location",
      *       //   "materializedView": {},
+     *       //   "maxStaleness": "my_maxStaleness",
      *       //   "model": {},
      *       //   "numBytes": "my_numBytes",
      *       //   "numLongTermBytes": "my_numLongTermBytes",
@@ -9878,6 +9906,7 @@ export namespace bigquery_v2 {
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
      *   //   "materializedView": {},
+     *   //   "maxStaleness": "my_maxStaleness",
      *   //   "model": {},
      *   //   "numBytes": "my_numBytes",
      *   //   "numLongTermBytes": "my_numLongTermBytes",
@@ -10344,6 +10373,7 @@ export namespace bigquery_v2 {
      *       //   "lastModifiedTime": "my_lastModifiedTime",
      *       //   "location": "my_location",
      *       //   "materializedView": {},
+     *       //   "maxStaleness": "my_maxStaleness",
      *       //   "model": {},
      *       //   "numBytes": "my_numBytes",
      *       //   "numLongTermBytes": "my_numLongTermBytes",
@@ -10390,6 +10420,7 @@ export namespace bigquery_v2 {
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
      *   //   "materializedView": {},
+     *   //   "maxStaleness": "my_maxStaleness",
      *   //   "model": {},
      *   //   "numBytes": "my_numBytes",
      *   //   "numLongTermBytes": "my_numLongTermBytes",
