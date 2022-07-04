@@ -100,7 +100,7 @@ export namespace blogger_v2 {
   }
 
   /**
-   * Blogger API v3
+   * Blogger API
    *
    * The Blogger API provides access to posts, comments and pages of a Blogger blog.
    *
