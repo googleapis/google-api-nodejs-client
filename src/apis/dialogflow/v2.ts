@@ -1328,7 +1328,7 @@ export namespace dialogflow_v2 {
     username?: string | null;
   }
   /**
-   * The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases.
+   * The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases. You may see undocumented fields in an actual request. These fields are used internally by Dialogflow and should be ignored.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookRequest {
     /**
@@ -2641,7 +2641,7 @@ export namespace dialogflow_v2 {
     username?: string | null;
   }
   /**
-   * The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases.
+   * The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases. You may see undocumented fields in an actual request. These fields are used internally by Dialogflow and should be ignored.
    */
   export interface Schema$GoogleCloudDialogflowCxV3WebhookRequest {
     /**
@@ -4480,7 +4480,7 @@ export namespace dialogflow_v2 {
      */
     allRequiredParamsPresent?: boolean | null;
     /**
-     * Indicates whether the conversational query triggers a cancellation for slot filling.
+     * Indicates whether the conversational query triggers a cancellation for slot filling. For more information, see the [cancel slot filling documentation](https://cloud.google.com/dialogflow/es/docs/intents-actions-parameters#cancel).
      */
     cancelsSlotFilling?: boolean | null;
     /**
@@ -7081,7 +7081,7 @@ export namespace dialogflow_v2 {
      */
     allRequiredParamsPresent?: boolean | null;
     /**
-     * Indicates whether the conversational query triggers a cancellation for slot filling.
+     * Indicates whether the conversational query triggers a cancellation for slot filling. For more information, see the [cancel slot filling documentation](https://cloud.google.com/dialogflow/es/docs/intents-actions-parameters#cancel).
      */
     cancelsSlotFilling?: boolean | null;
     /**
@@ -7498,7 +7498,7 @@ export namespace dialogflow_v2 {
     volumeGainDb?: number | null;
   }
   /**
-   * Represents the natural language text to be processed.
+   * ============================================================================ Auxiliary proto messages. Represents the natural language text to be processed.
    */
   export interface Schema$GoogleCloudDialogflowV2TextInput {
     /**
