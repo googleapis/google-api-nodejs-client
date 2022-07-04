@@ -114,6 +114,8 @@ export namespace streetviewpublish_v1 {
     context: APIRequestContext;
     photo: Resource$Photo;
     photos: Resource$Photos;
+    photoSequence: Resource$Photosequence;
+    photoSequences: Resource$Photosequences;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -123,6 +125,8 @@ export namespace streetviewpublish_v1 {
 
       this.photo = new Resource$Photo(this.context);
       this.photos = new Resource$Photos(this.context);
+      this.photoSequence = new Resource$Photosequence(this.context);
+      this.photoSequences = new Resource$Photosequences(this.context);
     }
   }
 
@@ -185,6 +189,58 @@ export namespace streetviewpublish_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * Details related to ProcessingFailureReason#GPS_DATA_GAP.
+   */
+  export interface Schema$GpsDataGapFailureDetails {
+    /**
+     * The duration of the gap in GPS data that was found.
+     */
+    gapDuration?: string | null;
+    /**
+     * Relative time (from the start of the video stream) when the gap started.
+     */
+    gapTime?: string | null;
+  }
+  /**
+   * IMU data from the device sensors.
+   */
+  export interface Schema$Imu {
+    /**
+     * The accelerometer measurements in meters/sec^2 with increasing timestamps from devices.
+     */
+    accelMpsps?: Schema$Measurement3d[];
+    /**
+     * The gyroscope measurements in radians/sec with increasing timestamps from devices.
+     */
+    gyroRps?: Schema$Measurement3d[];
+    /**
+     * The magnetometer measurements of the magnetic field in microtesla (uT) with increasing timestamps from devices.
+     */
+    magUt?: Schema$Measurement3d[];
+  }
+  /**
+   * Details related to ProcessingFailureReason#IMU_DATA_GAP.
+   */
+  export interface Schema$ImuDataGapFailureDetails {
+    /**
+     * The duration of the gap in IMU data that was found.
+     */
+    gapDuration?: string | null;
+    /**
+     * Relative time (from the start of the video stream) when the gap started.
+     */
+    gapTime?: string | null;
+  }
+  /**
+   * Details related to ProcessingFailureReason#INSUFFICIENT_GPS.
+   */
+  export interface Schema$InsufficientGpsFailureDetails {
+    /**
+     * The number of GPS points that were found in the video.
+     */
+    gpsPointsFound?: number | null;
+  }
+  /**
    * An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this object must conform to the WGS84 standard. Values must be within normalized ranges.
    */
   export interface Schema$LatLng {
@@ -196,6 +252,19 @@ export namespace streetviewpublish_v1 {
      * The longitude in degrees. It must be in the range [-180.0, +180.0].
      */
     longitude?: number | null;
+  }
+  /**
+   * A rectangle in geographical coordinates.
+   */
+  export interface Schema$LatLngBounds {
+    /**
+     * The northeast corner of these bounds.
+     */
+    northeast?: Schema$LatLng;
+    /**
+     * The southwest corner of these bounds.
+     */
+    southwest?: Schema$LatLng;
   }
   /**
    * Level information containing level number and its corresponding name.
@@ -211,6 +280,19 @@ export namespace streetviewpublish_v1 {
     number?: number | null;
   }
   /**
+   * Response to list all photo sequences that belong to a user.
+   */
+  export interface Schema$ListPhotoSequencesResponse {
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of photo sequences via Operation interface. The maximum number of items returned is based on the pageSize field in the request. Each item in the list can have three possible states, * `Operation.done` = false, if the processing of PhotoSequence is not finished yet. * `Operation.done` = true and `Operation.error` is populated, if there was an error in processing. * `Operation.done` = true and `Operation.response` contains a PhotoSequence message, In each sequence, only Id is populated.
+     */
+    photoSequences?: Schema$Operation[];
+  }
+  /**
    * Response to list all photos that belong to a user.
    */
   export interface Schema$ListPhotosResponse {
@@ -222,6 +304,36 @@ export namespace streetviewpublish_v1 {
      * List of photos. The pageSize field in the request determines the number of items returned.
      */
     photos?: Schema$Photo[];
+  }
+  /**
+   * A Generic 3d measurement sample.
+   */
+  export interface Schema$Measurement3d {
+    /**
+     * The timestamp of the IMU measurement.
+     */
+    captureTime?: string | null;
+    /**
+     * The sensor measurement in the x axis.
+     */
+    x?: number | null;
+    /**
+     * The sensor measurement in the y axis.
+     */
+    y?: number | null;
+    /**
+     * The sensor measurement in the z axis.
+     */
+    z?: number | null;
+  }
+  /**
+   * Details related to ProcessingFailureReason#NOT_OUTDOORS.
+   */
+  export interface Schema$NotOutdoorsFailureDetails {
+    /**
+     * Relative time (from the start of the video stream) when an indoor frame was found.
+     */
+    time?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -328,6 +440,71 @@ export namespace streetviewpublish_v1 {
     status?: Schema$Status;
   }
   /**
+   * A sequence of 360 photos along with metadata.
+   */
+  export interface Schema$PhotoSequence {
+    /**
+     * Optional. Absolute time when the photo sequence starts to be captured. If the photo sequence is a video, this is the start time of the video. If this field is populated in input, it overrides the capture time in the video or XDM file.
+     */
+    captureTimeOverride?: string | null;
+    /**
+     * Output only. The computed distance of the photo sequence in meters.
+     */
+    distanceMeters?: number | null;
+    /**
+     * Output only. If this sequence has `failure_reason` set, this may contain additional details about the failure.
+     */
+    failureDetails?: Schema$ProcessingFailureDetails;
+    /**
+     * Output only. If this sequence has processing_state = FAILED, this will contain the reason why it failed. If the processing_state is any other value, this field will be unset.
+     */
+    failureReason?: string | null;
+    /**
+     * Output only. The filename of the upload. Does not include the directory path. Only available if the sequence was uploaded on a platform that provides the filename.
+     */
+    filename?: string | null;
+    /**
+     * Input only. If both raw_gps_timeline and the Camera Motion Metadata Track (CAMM) contain GPS measurements, indicate which takes precedence.
+     */
+    gpsSource?: string | null;
+    /**
+     * Output only. Unique identifier for the photo sequence. This also acts as a long running operation ID if uploading is performed asynchronously.
+     */
+    id?: string | null;
+    /**
+     * Input only. Three axis IMU data for the collection. If this data is too large to put in the request, then it should be put in the CAMM track for the video. This data always takes precedence over the equivalent CAMM data, if it exists.
+     */
+    imu?: Schema$Imu;
+    /**
+     * Output only. Photos with increasing timestamps.
+     */
+    photos?: Schema$Photo[];
+    /**
+     * Output only. The processing state of this sequence.
+     */
+    processingState?: string | null;
+    /**
+     * Input only. Raw GPS measurements with increasing timestamps from the device that aren't time synced with each photo. These raw measurements will be used to infer the pose of each frame. Required in input when InputType is VIDEO and raw GPS measurements are not in Camera Motion Metadata Track (CAMM). User can indicate which takes precedence using gps_source if raw GPS measurements are provided in both raw_gps_timeline and Camera Motion Metadata Track (CAMM).
+     */
+    rawGpsTimeline?: Schema$Pose[];
+    /**
+     * Output only. A rectangular box that encapsulates every image in this photo sequence.
+     */
+    sequenceBounds?: Schema$LatLngBounds;
+    /**
+     * Input only. Required when creating photo sequence. The resource name where the bytes of the photo sequence (in the form of video) are uploaded.
+     */
+    uploadReference?: Schema$UploadRef;
+    /**
+     * Output only. The time this photo sequence was created in uSV Store service.
+     */
+    uploadTime?: string | null;
+    /**
+     * Output only. The total number of views that all the published images in this PhotoSequence have received.
+     */
+    viewCount?: string | null;
+  }
+  /**
    * Place metadata for an entity.
    */
   export interface Schema$Place {
@@ -357,6 +534,10 @@ export namespace streetviewpublish_v1 {
      */
     altitude?: number | null;
     /**
+     * Time of the GPS record since UTC epoch.
+     */
+    gpsRecordTimestampUnixEpoch?: string | null;
+    /**
      * The following pose parameters pertain to the center of the photo. They match https://developers.google.com/streetview/spherical-metadata. Compass heading, measured at the center of the photo in degrees clockwise from North. Value must be \>=0 and <360. NaN indicates an unmeasured quantity.
      */
     heading?: number | null;
@@ -376,6 +557,27 @@ export namespace streetviewpublish_v1 {
      * Roll, measured in degrees. Value must be \>= 0 and <360. A value of 0 means level with the horizon. NaN indicates an unmeasured quantity.
      */
     roll?: number | null;
+  }
+  /**
+   * Additional details to accompany the ProcessingFailureReason enum. This message is always expected to be used in conjunction with ProcessingFailureReason, and the oneof value set in this message should match the FailureReason.
+   */
+  export interface Schema$ProcessingFailureDetails {
+    /**
+     * See GpsDataGapFailureDetails.
+     */
+    gpsDataGapDetails?: Schema$GpsDataGapFailureDetails;
+    /**
+     * See ImuDataGapFailureDetails.
+     */
+    imuDataGapDetails?: Schema$ImuDataGapFailureDetails;
+    /**
+     * See InsufficientGpsFailureDetails.
+     */
+    insufficientGpsDetails?: Schema$InsufficientGpsFailureDetails;
+    /**
+     * See NotOutdoorsFailureDetails.
+     */
+    notOutdoorsDetails?: Schema$NotOutdoorsFailureDetails;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -1811,5 +2013,768 @@ export namespace streetviewpublish_v1 {
      * Required. Specifies if a download URL for the photos bytes should be returned in the Photos response.
      */
     view?: string;
+  }
+
+  export class Resource$Photosequence {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * After the client finishes uploading the PhotoSequence with the returned UploadRef, CreatePhotoSequence extracts a sequence of 360 photos from a video or Extensible Device Metadata (XDM, http://www.xdm.org/) to be published to Street View on Google Maps. `CreatePhotoSequence` returns an Operation, with the PhotoSequence Id set in the `Operation.name` field. This method returns the following error codes: * google.rpc.Code.INVALID_ARGUMENT if the request is malformed. * google.rpc.Code.NOT_FOUND if the upload reference does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/streetviewpublish.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const streetviewpublish = google.streetviewpublish('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/streetviewpublish'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await streetviewpublish.photoSequence.create({
+     *     // Required. The input form of PhotoSequence.
+     *     inputType: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "captureTimeOverride": "my_captureTimeOverride",
+     *       //   "distanceMeters": {},
+     *       //   "failureDetails": {},
+     *       //   "failureReason": "my_failureReason",
+     *       //   "filename": "my_filename",
+     *       //   "gpsSource": "my_gpsSource",
+     *       //   "id": "my_id",
+     *       //   "imu": {},
+     *       //   "photos": [],
+     *       //   "processingState": "my_processingState",
+     *       //   "rawGpsTimeline": [],
+     *       //   "sequenceBounds": {},
+     *       //   "uploadReference": {},
+     *       //   "uploadTime": "my_uploadTime",
+     *       //   "viewCount": "my_viewCount"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Photosequence$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Photosequence$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Photosequence$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Photosequence$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Photosequence$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Photosequence$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Photosequence$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Photosequence$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://streetviewpublish.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/photoSequence').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a PhotoSequence and its metadata. This method returns the following error codes: * google.rpc.Code.PERMISSION_DENIED if the requesting user did not create the requested photo sequence. * google.rpc.Code.NOT_FOUND if the photo sequence ID does not exist. * google.rpc.Code.FAILED_PRECONDITION if the photo sequence ID is not yet finished processing.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/streetviewpublish.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const streetviewpublish = google.streetviewpublish('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/streetviewpublish'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await streetviewpublish.photoSequence.delete({
+     *     // Required. ID of the PhotoSequence.
+     *     sequenceId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Photosequence$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Photosequence$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Photosequence$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Photosequence$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Photosequence$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Photosequence$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Photosequence$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Photosequence$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://streetviewpublish.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/photoSequence/{sequenceId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['sequenceId'],
+        pathParams: ['sequenceId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets the metadata of the specified PhotoSequence via the Operation interface. This method returns the following three types of responses: * `Operation.done` = false, if the processing of PhotoSequence is not finished yet. * `Operation.done` = true and `Operation.error` is populated, if there was an error in processing. * `Operation.done` = true and `Operation.response` is poulated, which contains a PhotoSequence message. This method returns the following error codes: * google.rpc.Code.PERMISSION_DENIED if the requesting user did not create the requested PhotoSequence. * google.rpc.Code.NOT_FOUND if the requested PhotoSequence does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/streetviewpublish.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const streetviewpublish = google.streetviewpublish('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/streetviewpublish'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await streetviewpublish.photoSequence.get({
+     *     // Optional. The filter expression. For example: `published_status=PUBLISHED`. The filters supported are: `published_status`. See https://google.aip.dev/160 for more information.
+     *     filter: 'placeholder-value',
+     *     // Required. ID of the photo sequence.
+     *     sequenceId: 'placeholder-value',
+     *     // Specifies if a download URL for the photo sequence should be returned in `download_url` of individual photos in the PhotoSequence response. \> Note: Currently not implemented.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Photosequence$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Photosequence$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Photosequence$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Photosequence$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Photosequence$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Photosequence$Get
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Photosequence$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Photosequence$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://streetviewpublish.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/photoSequence/{sequenceId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['sequenceId'],
+        pathParams: ['sequenceId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Creates an upload session to start uploading photo sequence data. The upload URL of the returned UploadRef is used to upload the data for the `photoSequence`. After the upload is complete, the UploadRef is used with CreatePhotoSequence to create the PhotoSequence object entry.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/streetviewpublish.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const streetviewpublish = google.streetviewpublish('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/streetviewpublish'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await streetviewpublish.photoSequence.startUpload({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "uploadUrl": "my_uploadUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    startUpload(
+      params: Params$Resource$Photosequence$Startupload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    startUpload(
+      params?: Params$Resource$Photosequence$Startupload,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UploadRef>;
+    startUpload(
+      params: Params$Resource$Photosequence$Startupload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    startUpload(
+      params: Params$Resource$Photosequence$Startupload,
+      options: MethodOptions | BodyResponseCallback<Schema$UploadRef>,
+      callback: BodyResponseCallback<Schema$UploadRef>
+    ): void;
+    startUpload(
+      params: Params$Resource$Photosequence$Startupload,
+      callback: BodyResponseCallback<Schema$UploadRef>
+    ): void;
+    startUpload(callback: BodyResponseCallback<Schema$UploadRef>): void;
+    startUpload(
+      paramsOrCallback?:
+        | Params$Resource$Photosequence$Startupload
+        | BodyResponseCallback<Schema$UploadRef>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UploadRef>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UploadRef>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$UploadRef> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Photosequence$Startupload;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Photosequence$Startupload;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://streetviewpublish.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/photoSequence:startUpload').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UploadRef>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UploadRef>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Photosequence$Create
+    extends StandardParameters {
+    /**
+     * Required. The input form of PhotoSequence.
+     */
+    inputType?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PhotoSequence;
+  }
+  export interface Params$Resource$Photosequence$Delete
+    extends StandardParameters {
+    /**
+     * Required. ID of the PhotoSequence.
+     */
+    sequenceId?: string;
+  }
+  export interface Params$Resource$Photosequence$Get
+    extends StandardParameters {
+    /**
+     * Optional. The filter expression. For example: `published_status=PUBLISHED`. The filters supported are: `published_status`. See https://google.aip.dev/160 for more information.
+     */
+    filter?: string;
+    /**
+     * Required. ID of the photo sequence.
+     */
+    sequenceId?: string;
+    /**
+     * Specifies if a download URL for the photo sequence should be returned in `download_url` of individual photos in the PhotoSequence response. \> Note: Currently not implemented.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Photosequence$Startupload
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Empty;
+  }
+
+  export class Resource$Photosequences {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists all the PhotoSequences that belong to the user, in descending CreatePhotoSequence timestamp order.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/streetviewpublish.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const streetviewpublish = google.streetviewpublish('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/streetviewpublish'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await streetviewpublish.photoSequences.list({
+     *     // Optional. The filter expression. For example: `imagery_type=SPHERICAL`. The filters supported are: `imagery_type`, `processing_state`, `min_latitude`, `max_latitude`, `min_longitude`, `max_longitude`, and `filename_query`. See https://google.aip.dev/160 for more information. Filename queries should sent as a Phrase in order to support multple words and special characters by adding escaped quotes. Ex: filename_query="example of a phrase.mp4"
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of photo sequences to return. `pageSize` must be non-negative. If `pageSize` is zero or is not provided, the default page size of 100 is used. The number of photo sequences returned in the response may be less than `pageSize` if the number of matches is less than `pageSize`. This is currently unimplemented but is in process.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The nextPageToken value returned from a previous ListPhotoSequences request, if any.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "photoSequences": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Photosequences$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Photosequences$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListPhotoSequencesResponse>;
+    list(
+      params: Params$Resource$Photosequences$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Photosequences$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPhotoSequencesResponse>,
+      callback: BodyResponseCallback<Schema$ListPhotoSequencesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Photosequences$List,
+      callback: BodyResponseCallback<Schema$ListPhotoSequencesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListPhotoSequencesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Photosequences$List
+        | BodyResponseCallback<Schema$ListPhotoSequencesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPhotoSequencesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPhotoSequencesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListPhotoSequencesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Photosequences$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Photosequences$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://streetviewpublish.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/photoSequences').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListPhotoSequencesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListPhotoSequencesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Photosequences$List
+    extends StandardParameters {
+    /**
+     * Optional. The filter expression. For example: `imagery_type=SPHERICAL`. The filters supported are: `imagery_type`, `processing_state`, `min_latitude`, `max_latitude`, `min_longitude`, `max_longitude`, and `filename_query`. See https://google.aip.dev/160 for more information. Filename queries should sent as a Phrase in order to support multple words and special characters by adding escaped quotes. Ex: filename_query="example of a phrase.mp4"
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of photo sequences to return. `pageSize` must be non-negative. If `pageSize` is zero or is not provided, the default page size of 100 is used. The number of photo sequences returned in the response may be less than `pageSize` if the number of matches is less than `pageSize`. This is currently unimplemented but is in process.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The nextPageToken value returned from a previous ListPhotoSequences request, if any.
+     */
+    pageToken?: string;
   }
 }
