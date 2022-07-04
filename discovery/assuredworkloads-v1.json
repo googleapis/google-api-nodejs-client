@@ -379,7 +379,7 @@
       }
     }
   },
-  "revision": "20220609",
+  "revision": "20220623",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata": {
@@ -1163,6 +1163,11 @@
           ],
           "type": "string"
         },
+        "complianceStatus": {
+          "$ref": "GoogleCloudAssuredworkloadsVersioningV1mainWorkloadComplianceStatus",
+          "description": "Output only. Count of active Violations in the Workload.",
+          "readOnly": true
+        },
         "createTime": {
           "description": "Output only. Immutable. The Workload creation timestamp.",
           "format": "google-datetime",
@@ -1257,6 +1262,18 @@
         "kmsSettings": {
           "$ref": "GoogleCloudAssuredworkloadsVersioningV1mainWorkloadKMSSettings",
           "description": "Input only. Immutable. Settings used to create a CMEK crypto key."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsVersioningV1mainWorkloadComplianceStatus": {
+      "description": "Represents the Compliance Status of this workload",
+      "id": "GoogleCloudAssuredworkloadsVersioningV1mainWorkloadComplianceStatus",
+      "properties": {
+        "activeViolationCount": {
+          "description": "Optional. Count of active Violations in the Workload.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
