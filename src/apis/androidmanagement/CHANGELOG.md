@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v4.0.1...androidmanagement-v4.1.0) (2022-07-04)
+
+
+### Features
+
+* **androidmanagement:** update the API ([ef4d735](https://github.com/googleapis/google-api-nodejs-client/commit/ef4d735d23cc6e706a157fec2f2ae3d9964d69f9))
+
 ## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v4.0.0...androidmanagement-v4.0.1) (2022-06-21)
 
 

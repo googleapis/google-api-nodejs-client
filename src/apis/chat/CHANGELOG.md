@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v6.0.1...chat-v6.1.0) (2022-07-04)
+
+
+### Features
+
+* **chat:** update the API ([9042820](https://github.com/googleapis/google-api-nodejs-client/commit/904282096b4fa4c54ff638043f7fe167c059ab6b))
+
 ## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v6.0.0...chat-v6.0.1) (2022-06-21)
 
 

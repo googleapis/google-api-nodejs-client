@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/blogger",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "blogger",
   "main": "build/index.js",
   "types": "build/index.d.ts",

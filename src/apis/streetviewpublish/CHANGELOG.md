@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/streetviewpublish-v0.4.4...streetviewpublish-v0.5.0) (2022-07-04)
+
+
+### Features
+
+* **streetviewpublish:** update the API ([70709c8](https://github.com/googleapis/google-api-nodejs-client/commit/70709c8a312f98d4ac6bd7a07070548d4cb6ccec))
+
 ## [0.4.4](https://github.com/googleapis/google-api-nodejs-client/compare/streetviewpublish-v0.4.3...streetviewpublish-v0.4.4) (2022-06-21)
 
 
