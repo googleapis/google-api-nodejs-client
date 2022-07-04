@@ -298,6 +298,44 @@ export namespace container_v1 {
     evaluationMode?: string | null;
   }
   /**
+   * Information relevant to blue-green upgrade.
+   */
+  export interface Schema$BlueGreenInfo {
+    /**
+     * The resource URLs of the [managed instance groups] (/compute/docs/instance-groups/creating-groups-of-managed-instances) associated with blue pool.
+     */
+    blueInstanceGroupUrls?: string[] | null;
+    /**
+     * Time to start deleting blue pool to complete blue-green upgrade, in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
+     */
+    bluePoolDeletionStartTime?: string | null;
+    /**
+     * The resource URLs of the [managed instance groups] (/compute/docs/instance-groups/creating-groups-of-managed-instances) associated with green pool.
+     */
+    greenInstanceGroupUrls?: string[] | null;
+    /**
+     * Version of green pool.
+     */
+    greenPoolVersion?: string | null;
+    /**
+     * Current blue-green upgrade phase.
+     */
+    phase?: string | null;
+  }
+  /**
+   * Settings for blue-green upgrade.
+   */
+  export interface Schema$BlueGreenSettings {
+    /**
+     * Time needed after draining entire blue pool. After this period, blue pool will be cleaned up.
+     */
+    nodePoolSoakDuration?: string | null;
+    /**
+     * Standard policy for the blue-green upgrade.
+     */
+    standardRolloutPolicy?: Schema$StandardRolloutPolicy;
+  }
+  /**
    * CancelOperationRequest cancels a single operation.
    */
   export interface Schema$CancelOperationRequest {
@@ -789,6 +827,10 @@ export namespace container_v1 {
      */
     zone?: string | null;
   }
+  /**
+   * CompleteNodePoolUpgradeRequest sets the name of target node pool to complete upgrade.
+   */
+  export interface Schema$CompleteNodePoolUpgradeRequest {}
   /**
    * ConfidentialNodes is configuration for the confidential nodes feature, which makes nodes run on confidential VMs.
    */
@@ -1629,7 +1671,7 @@ export namespace container_v1 {
    */
   export interface Schema$NodeConfigDefaults {
     /**
-     * GCFS (Google Container File System, a.k.a Riptide) options.
+     * GCFS (Google Container File System, a.k.a. Riptide) options.
      */
     gcfsConfig?: Schema$GcfsConfig;
   }
@@ -1722,7 +1764,7 @@ export namespace container_v1 {
      */
     initialNodeCount?: number | null;
     /**
-     * [Output only] The resource URLs of the [managed instance groups](https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances) associated with this node pool.
+     * [Output only] The resource URLs of the [managed instance groups](https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances) associated with this node pool. During the node pool blue-green upgrade operation, the URLs contain both blue and green resources.
      */
     instanceGroupUrls?: string[] | null;
     /**
@@ -1762,6 +1804,10 @@ export namespace container_v1 {
      */
     statusMessage?: string | null;
     /**
+     * Output only. [Output only] Update info contains relevant information during a node pool update.
+     */
+    updateInfo?: Schema$UpdateInfo;
+    /**
      * Upgrade settings control disruption and speed of the upgrade.
      */
     upgradeSettings?: Schema$UpgradeSettings;
@@ -1792,6 +1838,10 @@ export namespace container_v1 {
      */
     enabled?: boolean | null;
     /**
+     * Location policy used when scaling up a nodepool.
+     */
+    locationPolicy?: string | null;
+    /**
      * Maximum number of nodes for one location in the NodePool. Must be \>= min_node_count. There has to be enough quota to scale up the cluster.
      */
     maxNodeCount?: number | null;
@@ -1799,6 +1849,14 @@ export namespace container_v1 {
      * Minimum number of nodes for one location in the NodePool. Must be \>= 1 and <= max_node_count.
      */
     minNodeCount?: number | null;
+    /**
+     * Maximum number of nodes in the node pool. Must be greater than total_min_node_count. There has to be enough quota to scale up the cluster. The total_*_node_count fields are mutually exclusive with the *_node_count fields.
+     */
+    totalMaxNodeCount?: number | null;
+    /**
+     * Minimum number of nodes in the node pool. Must be greater than 1 less than total_max_node_count. The total_*_node_count fields are mutually exclusive with the *_node_count fields.
+     */
+    totalMinNodeCount?: number | null;
   }
   /**
    * Subset of Nodepool message that has defaults.
@@ -2099,6 +2157,10 @@ export namespace container_v1 {
      * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
+    /**
+     * Option for rollback to ignore the PodDisruptionBudget. Default value is false.
+     */
+    respectPdb?: boolean | null;
     /**
      * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
@@ -2539,6 +2601,23 @@ export namespace container_v1 {
     enabled?: boolean | null;
   }
   /**
+   * Standard rollout policy is the default policy for blue-green.
+   */
+  export interface Schema$StandardRolloutPolicy {
+    /**
+     * Number of blue nodes to drain in a batch.
+     */
+    batchNodeCount?: number | null;
+    /**
+     * Percentage of the bool pool nodes to drain in a batch. The range of this field should be (0.0, 1.0].
+     */
+    batchPercentage?: number | null;
+    /**
+     * Soak time after each batch gets drained. Default to zero.
+     */
+    batchSoakDuration?: string | null;
+  }
+  /**
    * StartIPRotationRequest creates a new IP for the cluster and then performs a node upgrade on each node pool to point to the new IP.
    */
   export interface Schema$StartIPRotationRequest {
@@ -2640,6 +2719,15 @@ export namespace container_v1 {
     zone?: string | null;
   }
   /**
+   * UpdateInfo contains resource (instance groups, etc), status and other intermediate information relevant to a node pool upgrade.
+   */
+  export interface Schema$UpdateInfo {
+    /**
+     * Information of a blue-green upgrade.
+     */
+    blueGreenInfo?: Schema$BlueGreenInfo;
+  }
+  /**
    * UpdateMasterRequest updates the master of the cluster.
    */
   export interface Schema$UpdateMasterRequest {
@@ -2708,6 +2796,10 @@ export namespace container_v1 {
      * The name (project, location, cluster, node pool) of the node pool to update. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
     name?: string | null;
+    /**
+     * Node network config.
+     */
+    nodeNetworkConfig?: Schema$NodeNetworkConfig;
     /**
      * Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
      */
@@ -2792,9 +2884,13 @@ export namespace container_v1 {
     targetVersion?: string | null;
   }
   /**
-   * These upgrade settings control the level of parallelism and the level of disruption caused by an upgrade. maxUnavailable controls the number of nodes that can be simultaneously unavailable. maxSurge controls the number of additional nodes that can be added to the node pool temporarily for the time of the upgrade to increase the number of available nodes. (maxUnavailable + maxSurge) determines the level of parallelism (how many nodes are being upgraded at the same time). Note: upgrades inevitably introduce some disruption since workloads need to be moved from old nodes to new, upgraded ones. Even if maxUnavailable=0, this holds true. (Disruption stays within the limits of PodDisruptionBudget, if it is configured.) Consider a hypothetical node pool with 5 nodes having maxSurge=2, maxUnavailable=1. This means the upgrade process upgrades 3 nodes simultaneously. It creates 2 additional (upgraded) nodes, then it brings down 3 old (not yet upgraded) nodes at the same time. This ensures that there are always at least 4 nodes available.
+   * These upgrade settings control the level of parallelism and the level of disruption caused by an upgrade. maxUnavailable controls the number of nodes that can be simultaneously unavailable. maxSurge controls the number of additional nodes that can be added to the node pool temporarily for the time of the upgrade to increase the number of available nodes. (maxUnavailable + maxSurge) determines the level of parallelism (how many nodes are being upgraded at the same time). Note: upgrades inevitably introduce some disruption since workloads need to be moved from old nodes to new, upgraded ones. Even if maxUnavailable=0, this holds true. (Disruption stays within the limits of PodDisruptionBudget, if it is configured.) Consider a hypothetical node pool with 5 nodes having maxSurge=2, maxUnavailable=1. This means the upgrade process upgrades 3 nodes simultaneously. It creates 2 additional (upgraded) nodes, then it brings down 3 old (not yet upgraded) nodes at the same time. This ensures that there are always at least 4 nodes available. These upgrade settings configure the upgrade strategy for the node pool. Use strategy to switch between the strategies applied to the node pool. If the strategy is ROLLING, use max_surge and max_unavailable to control the level of parallelism and the level of disruption caused by upgrade. 1. maxSurge controls the number of additional nodes that can be added to the node pool temporarily for the time of the upgrade to increase the number of available nodes. 2. maxUnavailable controls the number of nodes that can be simultaneously unavailable. 3. (maxUnavailable + maxSurge) determines the level of parallelism (how many nodes are being upgraded at the same time). If the strategy is BLUE_GREEN, use blue_green_settings to configure the blue-green upgrade related settings. 1. standard_rollout_policy is the default policy. The policy is used to control the way blue pool gets drained. The draining is executed in the batch mode. The batch size could be specified as either percentage of the node pool size or the number of nodes. batch_soak_duration is the soak time after each batch gets drained. 2. node_pool_soak_duration is the soak time after all blue nodes are drained. After this period, the blue pool nodes will be deleted.
    */
   export interface Schema$UpgradeSettings {
+    /**
+     * Settings for blue-green upgrade strategy.
+     */
+    blueGreenSettings?: Schema$BlueGreenSettings;
     /**
      * The maximum number of nodes that can be created beyond the current size of the node pool during the upgrade process.
      */
@@ -2803,6 +2899,10 @@ export namespace container_v1 {
      * The maximum number of nodes that can be simultaneously unavailable during the upgrade process. A node is considered available if its status is Ready.
      */
     maxUnavailable?: number | null;
+    /**
+     * Update strategy of the node pool.
+     */
+    strategy?: string | null;
   }
   /**
    * UsableSubnetwork resource returns the subnetwork name, its associated network and the primary CIDR range.
@@ -6284,6 +6384,141 @@ export namespace container_v1 {
     }
 
     /**
+     * CompleteNodePoolUpgrade will signal an on-going node pool upgrade to complete.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await container.projects.locations.clusters.nodePools.completeUpgrade({
+     *       // The name (project, location, cluster, node pool id) of the node pool to complete upgrade. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     *       name: 'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    completeUpgrade(
+      params: Params$Resource$Projects$Locations$Clusters$Nodepools$Completeupgrade,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    completeUpgrade(
+      params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Completeupgrade,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    completeUpgrade(
+      params: Params$Resource$Projects$Locations$Clusters$Nodepools$Completeupgrade,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    completeUpgrade(
+      params: Params$Resource$Projects$Locations$Clusters$Nodepools$Completeupgrade,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    completeUpgrade(
+      params: Params$Resource$Projects$Locations$Clusters$Nodepools$Completeupgrade,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    completeUpgrade(callback: BodyResponseCallback<Schema$Empty>): void;
+    completeUpgrade(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Clusters$Nodepools$Completeupgrade
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Clusters$Nodepools$Completeupgrade;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Nodepools$Completeupgrade;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:completeUpgrade').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
      * Creates a node pool for a cluster.
      * @example
      * ```js
@@ -6644,6 +6879,7 @@ export namespace container_v1 {
      *   //   "selfLink": "my_selfLink",
      *   //   "status": "my_status",
      *   //   "statusMessage": "my_statusMessage",
+     *   //   "updateInfo": {},
      *   //   "upgradeSettings": {},
      *   //   "version": "my_version"
      *   // }
@@ -6917,6 +7153,7 @@ export namespace container_v1 {
      *       //   "name": "my_name",
      *       //   "nodePoolId": "my_nodePoolId",
      *       //   "projectId": "my_projectId",
+     *       //   "respectPdb": false,
      *       //   "zone": "my_zone"
      *       // }
      *     },
@@ -7552,6 +7789,7 @@ export namespace container_v1 {
      *       //   "linuxNodeConfig": {},
      *       //   "locations": [],
      *       //   "name": "my_name",
+     *       //   "nodeNetworkConfig": {},
      *       //   "nodePoolId": "my_nodePoolId",
      *       //   "nodeVersion": "my_nodeVersion",
      *       //   "projectId": "my_projectId",
@@ -7675,6 +7913,18 @@ export namespace container_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Completeupgrade
+    extends StandardParameters {
+    /**
+     * The name (project, location, cluster, node pool id) of the node pool to complete upgrade. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CompleteNodePoolUpgradeRequest;
+  }
   export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Create
     extends StandardParameters {
     /**
@@ -12197,6 +12447,7 @@ export namespace container_v1 {
      *   //   "selfLink": "my_selfLink",
      *   //   "status": "my_status",
      *   //   "statusMessage": "my_statusMessage",
+     *   //   "updateInfo": {},
      *   //   "upgradeSettings": {},
      *   //   "version": "my_version"
      *   // }
@@ -12477,6 +12728,7 @@ export namespace container_v1 {
      *       //   "name": "my_name",
      *       //   "nodePoolId": "my_nodePoolId",
      *       //   "projectId": "my_projectId",
+     *       //   "respectPdb": false,
      *       //   "zone": "my_zone"
      *       // }
      *     },
@@ -12971,6 +13223,7 @@ export namespace container_v1 {
      *       //   "linuxNodeConfig": {},
      *       //   "locations": [],
      *       //   "name": "my_name",
+     *       //   "nodeNetworkConfig": {},
      *       //   "nodePoolId": "my_nodePoolId",
      *       //   "nodeVersion": "my_nodeVersion",
      *       //   "projectId": "my_projectId",

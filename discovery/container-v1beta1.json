@@ -755,6 +755,34 @@
               "resources": {
                 "nodePools": {
                   "methods": {
+                    "completeUpgrade": {
+                      "description": "CompleteNodePoolUpgrade will signal an on-going node pool upgrade to complete.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}/nodePools/{nodePoolsId}:completeUpgrade",
+                      "httpMethod": "POST",
+                      "id": "container.projects.locations.clusters.nodePools.completeUpgrade",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name (project, location, cluster, node pool id) of the node pool to complete upgrade. Specified in the format 'projects/*/locations/*/clusters/*/nodePools/*'.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+/nodePools/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:completeUpgrade",
+                      "request": {
+                        "$ref": "CompleteNodePoolUpgradeRequest"
+                      },
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "create": {
                       "description": "Creates a node pool for a cluster.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}/nodePools",
@@ -2484,7 +2512,7 @@
       }
     }
   },
-  "revision": "20220518",
+  "revision": "20220615",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2717,11 +2745,80 @@
             "PROJECT_SINGLETON_POLICY_ENFORCE"
           ],
           "enumDescriptions": [
-            "Default value, equivalent to DISABLED.",
+            "Default value",
             "Disable BinaryAuthorization",
-            "If enabled, enforce Kubernetes admission requests with BinAuthz using the project's singleton policy. Equivalent to bool enabled=true."
+            "Enforce Kubernetes admission requests with BinaryAuthorization using the project's singleton policy. This is equivalent to setting the enabled boolean to true."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BlueGreenInfo": {
+      "description": "Information relevant to blue-green upgrade.",
+      "id": "BlueGreenInfo",
+      "properties": {
+        "blueInstanceGroupUrls": {
+          "description": "The resource URLs of the [managed instance groups] (/compute/docs/instance-groups/creating-groups-of-managed-instances) associated with blue pool.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "bluePoolDeletionStartTime": {
+          "description": "Time to start deleting blue pool to complete blue-green upgrade, in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.",
+          "type": "string"
+        },
+        "greenInstanceGroupUrls": {
+          "description": "The resource URLs of the [managed instance groups] (/compute/docs/instance-groups/creating-groups-of-managed-instances) associated with green pool.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "greenPoolVersion": {
+          "description": "Version of green pool.",
+          "type": "string"
+        },
+        "phase": {
+          "description": "Current blue-green upgrade phase.",
+          "enum": [
+            "PHASE_UNSPECIFIED",
+            "UPDATE_STARTED",
+            "CREATING_GREEN_POOL",
+            "CORDONING_BLUE_POOL",
+            "DRAINING_BLUE_POOL",
+            "NODE_POOL_SOAKING",
+            "DELETING_BLUE_POOL",
+            "ROLLBACK_STARTED"
+          ],
+          "enumDescriptions": [
+            "Unspecified phase.",
+            "blue-green upgrade has been initiated.",
+            "Start creating green pool nodes.",
+            "Start cordoning blue pool nodes.",
+            "Start draining blue pool nodes.",
+            "Start soaking time after draining entire blue pool.",
+            "Start deleting blue nodes.",
+            "Rollback has been initiated."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BlueGreenSettings": {
+      "description": "Settings for blue-green upgrade.",
+      "id": "BlueGreenSettings",
+      "properties": {
+        "nodePoolSoakDuration": {
+          "description": "Time needed after draining entire blue pool. After this period, blue pool will be cleaned up.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "standardRolloutPolicy": {
+          "$ref": "StandardRolloutPolicy",
+          "description": "Standard policy for the blue-green upgrade."
         }
       },
       "type": "object"
@@ -2842,6 +2939,10 @@
         "confidentialNodes": {
           "$ref": "ConfidentialNodes",
           "description": "Configuration of Confidential Nodes. All the nodes in the cluster will be Confidential VM once enabled."
+        },
+        "costManagementConfig": {
+          "$ref": "CostManagementConfig",
+          "description": "Configuration for the fine-grained cost management feature."
         },
         "createTime": {
           "description": "[Output only] The time the cluster was created, in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.",
@@ -3214,6 +3315,10 @@
           "$ref": "ClusterTelemetry",
           "description": "The desired telemetry integration for the cluster."
         },
+        "desiredCostManagementConfig": {
+          "$ref": "CostManagementConfig",
+          "description": "The desired configuration for the fine-grained cost management feature."
+        },
         "desiredDatabaseEncryption": {
           "$ref": "DatabaseEncryption",
           "description": "Configuration of etcd encryption."
@@ -3409,6 +3514,12 @@
       },
       "type": "object"
     },
+    "CompleteNodePoolUpgradeRequest": {
+      "description": "CompleteNodePoolUpgradeRequest sets the name of target node pool to complete upgrade.",
+      "id": "CompleteNodePoolUpgradeRequest",
+      "properties": {},
+      "type": "object"
+    },
     "ConfidentialNodes": {
       "description": "ConfidentialNodes is configuration for the confidential nodes feature, which makes nodes run on confidential VMs.",
       "id": "ConfidentialNodes",
@@ -3437,6 +3548,17 @@
       "properties": {
         "enabled": {
           "description": "Whether to enable consumption metering for this cluster. If enabled, a second BigQuery table will be created to hold resource consumption records.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "CostManagementConfig": {
+      "description": "Configuration for fine-grained cost management feature.",
+      "id": "CostManagementConfig",
+      "properties": {
+        "enabled": {
+          "description": "Whether the feature is enabled or not.",
           "type": "boolean"
         }
       },
@@ -3906,6 +4028,11 @@
           "description": "The IP address range of the services IPs in this cluster. If blank, a range will be automatically chosen with the default size. This field is only applicable when `use_ip_aliases` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.",
           "type": "string"
         },
+        "servicesIpv6CidrBlock": {
+          "description": "Output only. [Output only] The services IPv6 CIDR block for the cluster.",
+          "readOnly": true,
+          "type": "string"
+        },
         "servicesSecondaryRangeName": {
           "description": "The name of the secondary range to be used as for the services CIDR block. The secondary range will be used for service ClusterIPs. This must be an existing secondary range associated with the cluster subnetwork. This field is only applicable with use_ip_aliases and create_subnetwork is false.",
           "type": "string"
@@ -3922,6 +4049,11 @@
             "The value used if the cluster is a IPV4 only",
             "The value used if the cluster is a dual stack cluster"
           ],
+          "type": "string"
+        },
+        "subnetIpv6CidrBlock": {
+          "description": "Output only. [Output only] The subnet's IPv6 CIDR block used by nodes and pods.",
+          "readOnly": true,
           "type": "string"
         },
         "subnetworkName": {
@@ -4068,6 +4200,20 @@
       "description": "Parameters that can be configured on Linux nodes.",
       "id": "LinuxNodeConfig",
       "properties": {
+        "cgroupMode": {
+          "description": "cgroup_mode specifies the cgroup mode to be used on the node.",
+          "enum": [
+            "CGROUP_MODE_UNSPECIFIED",
+            "CGROUP_MODE_V1",
+            "CGROUP_MODE_V2"
+          ],
+          "enumDescriptions": [
+            "CGROUP_MODE_UNSPECIFIED is when unspecified cgroup configuration is used. The default for the GKE node OS image will be used.",
+            "CGROUP_MODE_V1 specifies to use cgroupv1 for the cgroup configuration on the node image.",
+            "CGROUP_MODE_V2 specifies to use cgroupv2 for the cgroup configuration on the node image."
+          ],
+          "type": "string"
+        },
         "sysctls": {
           "additionalProperties": {
             "type": "string"
@@ -4415,12 +4561,18 @@
             "enum": [
               "COMPONENT_UNSPECIFIED",
               "SYSTEM_COMPONENTS",
-              "WORKLOADS"
+              "WORKLOADS",
+              "APISERVER",
+              "SCHEDULER",
+              "CONTROLLER_MANAGER"
             ],
             "enumDescriptions": [
               "Default value. This shouldn't be used.",
               "system components",
-              "Deprecated: Use Google Cloud Managed Service for Prometheus."
+              "Deprecated: Use Google Cloud Managed Service for Prometheus.",
+              "kube-apiserver",
+              "kube-scheduler",
+              "kube-controller-manager"
             ],
             "type": "string"
           },
@@ -4733,7 +4885,7 @@
       "properties": {
         "gcfsConfig": {
           "$ref": "GcfsConfig",
-          "description": "GCFS (Google Container File System, a.k.a Riptide) options."
+          "description": "GCFS (Google Container File System, a.k.a. Riptide) options."
         }
       },
       "type": "object"
@@ -4843,7 +4995,7 @@
           "type": "integer"
         },
         "instanceGroupUrls": {
-          "description": "[Output only] The resource URLs of the [managed instance groups](https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances) associated with this node pool.",
+          "description": "[Output only] The resource URLs of the [managed instance groups](https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances) associated with this node pool. During the node pool blue-green upgrade operation, the URLs contain both blue and green resources.",
           "items": {
             "type": "string"
           },
@@ -4911,6 +5063,11 @@
           "description": "[Output only] Deprecated. Use conditions instead. Additional information about the current status of this node pool instance, if available.",
           "type": "string"
         },
+        "updateInfo": {
+          "$ref": "UpdateInfo",
+          "description": "Output only. [Output only] Update info contains relevant information during a node pool update.",
+          "readOnly": true
+        },
         "upgradeSettings": {
           "$ref": "UpgradeSettings",
           "description": "Upgrade settings control disruption and speed of the upgrade."
@@ -4945,6 +5102,20 @@
           "description": "Is autoscaling enabled for this node pool.",
           "type": "boolean"
         },
+        "locationPolicy": {
+          "description": "Location policy used when scaling up a nodepool.",
+          "enum": [
+            "LOCATION_POLICY_UNSPECIFIED",
+            "BALANCED",
+            "ANY"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "BALANCED is a best effort policy that aims to balance the sizes of different zones.",
+            "ANY policy picks zones that have the highest capacity available."
+          ],
+          "type": "string"
+        },
         "maxNodeCount": {
           "description": "Maximum number of nodes for one location in the NodePool. Must be >= min_node_count. There has to be enough quota to scale up the cluster.",
           "format": "int32",
@@ -4952,6 +5123,16 @@
         },
         "minNodeCount": {
           "description": "Minimum number of nodes for one location in the NodePool. Must be >= 1 and <= max_node_count.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalMaxNodeCount": {
+          "description": "Maximum number of nodes in the node pool. Must be greater than total_min_node_count. There has to be enough quota to scale up the cluster. The total_*_node_count fields are mutually exclusive with the *_node_count fields.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalMinNodeCount": {
+          "description": "Minimum number of nodes in the node pool. Must be greater than 1 less than total_max_node_count. The total_*_node_count fields are mutually exclusive with the *_node_count fields.",
           "format": "int32",
           "type": "integer"
         }
@@ -5473,6 +5654,10 @@
         "projectId": {
           "description": "Required. Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.",
           "type": "string"
+        },
+        "respectPdb": {
+          "description": "Option for rollback to ignore the PodDisruptionBudget. Default value is false.",
+          "type": "boolean"
         },
         "zone": {
           "description": "Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.",
@@ -6010,6 +6195,28 @@
       },
       "type": "object"
     },
+    "StandardRolloutPolicy": {
+      "description": "Standard rollout policy is the default policy for blue-green.",
+      "id": "StandardRolloutPolicy",
+      "properties": {
+        "batchNodeCount": {
+          "description": "Number of blue nodes to drain in a batch.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "batchPercentage": {
+          "description": "Percentage of the bool pool nodes to drain in a batch. The range of this field should be (0.0, 1.0].",
+          "format": "float",
+          "type": "number"
+        },
+        "batchSoakDuration": {
+          "description": "Soak time after each batch gets drained. Default to zero.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "StartIPRotationRequest": {
       "description": "StartIPRotationRequest creates a new IP for the cluster and then performs a node upgrade on each node pool to point to the new IP.",
       "id": "StartIPRotationRequest",
@@ -6206,6 +6413,17 @@
       },
       "type": "object"
     },
+    "UpdateInfo": {
+      "description": "UpdateInfo contains resource (instance groups, etc), status and other intermediate information relevant to a node pool upgrade.",
+      "id": "UpdateInfo",
+      "properties": {
+        "blueGreenInfo": {
+          "$ref": "BlueGreenInfo",
+          "description": "Information of a blue-green upgrade."
+        }
+      },
+      "type": "object"
+    },
     "UpdateMasterRequest": {
       "description": "UpdateMasterRequest updates the master of the cluster.",
       "id": "UpdateMasterRequest",
@@ -6279,6 +6497,10 @@
         "name": {
           "description": "The name (project, location, cluster, node pool) of the node pool to update. Specified in the format `projects/*/locations/*/clusters/*/nodePools/*`.",
           "type": "string"
+        },
+        "nodeNetworkConfig": {
+          "$ref": "NodeNetworkConfig",
+          "description": "Node network config."
         },
         "nodePoolId": {
           "description": "Required. Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.",
@@ -6395,8 +6617,13 @@
       "type": "object"
     },
     "UpgradeSettings": {
+      "description": "These upgrade settings configure the upgrade strategy for the node pool. Use strategy to switch between the strategies applied to the node pool. If the strategy is SURGE, use max_surge and max_unavailable to control the level of parallelism and the level of disruption caused by upgrade. 1. maxSurge controls the number of additional nodes that can be added to the node pool temporarily for the time of the upgrade to increase the number of available nodes. 2. maxUnavailable controls the number of nodes that can be simultaneously unavailable. 3. (maxUnavailable + maxSurge) determines the level of parallelism (how many nodes are being upgraded at the same time). If the strategy is BLUE_GREEN, use blue_green_settings to configure the blue-green upgrade related settings. 1. standard_rollout_policy is the default policy. The policy is used to control the way blue pool gets drained. The draining is executed in the batch mode. The batch size could be specified as either percentage of the node pool size or the number of nodes. batch_soak_duration is the soak time after each batch gets drained. 2. node_pool_soak_duration is the soak time after all blue nodes are drained. After this period, the blue pool nodes will be deleted.",
       "id": "UpgradeSettings",
       "properties": {
+        "blueGreenSettings": {
+          "$ref": "BlueGreenSettings",
+          "description": "Settings for blue-green upgrade strategy."
+        },
         "maxSurge": {
           "description": "The maximum number of nodes that can be created beyond the current size of the node pool during the upgrade process.",
           "format": "int32",
@@ -6406,6 +6633,20 @@
           "description": "The maximum number of nodes that can be simultaneously unavailable during the upgrade process. A node is considered available if its status is Ready.",
           "format": "int32",
           "type": "integer"
+        },
+        "strategy": {
+          "description": "Update strategy of the node pool.",
+          "enum": [
+            "NODE_POOL_UPDATE_STRATEGY_UNSPECIFIED",
+            "BLUE_GREEN",
+            "SURGE"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "blue-green upgrade.",
+            "SURGE is the traditional way of upgrading a node pool. max_surge and max_unavailable determines the level of upgrade parallelism."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
