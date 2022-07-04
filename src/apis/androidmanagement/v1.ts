@@ -127,6 +127,19 @@ export namespace androidmanagement_v1 {
   }
 
   /**
+   * A shell command was issued over ADB via “adb shell command”.
+   */
+  export interface Schema$AdbShellCommandEvent {
+    /**
+     * Shell command that was issued over ADB via "adb shell command". Redacted to empty string on organization-owned managed profile devices.
+     */
+    shellCmd?: string | null;
+  }
+  /**
+   * An ADB interactive shell was opened via “adb shell”. Intentionally empty.
+   */
+  export interface Schema$AdbShellInteractiveEvent {}
+  /**
    * Security policies set to secure values by default. To maintain the security posture of a device, we don't recommend overriding any of the default values.
    */
   export interface Schema$AdvancedSecurityOverrides {
@@ -420,6 +433,48 @@ export namespace androidmanagement_v1 {
     includeRemovedApps?: boolean | null;
   }
   /**
+   * Information about a process. It contains process name, start time, app Uid, app Pid, seinfo tag, hash of the base APK.
+   */
+  export interface Schema$AppProcessInfo {
+    /**
+     * SHA-256 hash of the base APK, in hexadecimal format.
+     */
+    apkSha256Hash?: string | null;
+    /**
+     * Package names of all packages that are associated with the particular user id. In most cases, this will be a single package name, the package that has been assigned that user id. If multiple application share a uid then all packages sharing uid will be included.
+     */
+    packageNames?: string[] | null;
+    /**
+     * Process ID.
+     */
+    pid?: number | null;
+    /**
+     * Process name.
+     */
+    processName?: string | null;
+    /**
+     * SELinux policy info.
+     */
+    seinfo?: string | null;
+    /**
+     * Process start time.
+     */
+    startTime?: string | null;
+    /**
+     * UID of the package.
+     */
+    uid?: number | null;
+  }
+  /**
+   * An app process was started. This is available device-wide on fully managed devices and within the work profile on organization-owned devices with a work profile.
+   */
+  export interface Schema$AppProcessStartEvent {
+    /**
+     * Information about a process.
+     */
+    processInfo?: Schema$AppProcessInfo;
+  }
+  /**
    * Id to name association of a app track.
    */
   export interface Schema$AppTrackInfo {
@@ -454,6 +509,27 @@ export namespace androidmanagement_v1 {
     versionString?: string | null;
   }
   /**
+   * Batched event logs of events from the device.
+   */
+  export interface Schema$BatchUsageLogEvents {
+    /**
+     * The name of the device in the form ‘enterprises/{enterpriseId\}/devices/{deviceId\}’
+     */
+    device?: string | null;
+    /**
+     * The device timestamp when the batch of events were collected from the device.
+     */
+    retrievalTime?: string | null;
+    /**
+     * The list of UsageLogEvent that were reported by the device, sorted chronologically by the event time.
+     */
+    usageLogEvents?: Schema$UsageLogEvent[];
+    /**
+     * The resource name of the user that owns this device in the form ‘enterprises/{enterpriseId\}/users/{userId\}’.
+     */
+    user?: string | null;
+  }
+  /**
    * An action to block access to apps and data on a fully managed device or in a work profile. This action also triggers a device or work profile to displays a user-facing notification with information (where possible) on how to correct the compliance issue. Note: wipeAction must also be specified.
    */
   export interface Schema$BlockAction {
@@ -465,6 +541,49 @@ export namespace androidmanagement_v1 {
      * Specifies the scope of this BlockAction. Only applicable to devices that are company-owned.
      */
     blockScope?: string | null;
+  }
+  /**
+   * A new root certificate was installed into the system's trusted credential storage. This is available device-wide on fully managed devices and within the work profile on organization-owned devices with a work profile.
+   */
+  export interface Schema$CertAuthorityInstalledEvent {
+    /**
+     * Subject of the certificate.
+     */
+    certificate?: string | null;
+    /**
+     * Whether the installation event succeeded.
+     */
+    success?: boolean | null;
+    /**
+     * The user in which the certificate install event happened. Only available for devices running Android 11 and above.
+     */
+    userId?: number | null;
+  }
+  /**
+   * A root certificate was removed from the system's trusted credential storage. This is available device-wide on fully managed devices and within the work profile on organization-owned devices with a work profile.
+   */
+  export interface Schema$CertAuthorityRemovedEvent {
+    /**
+     * Subject of the certificate.
+     */
+    certificate?: string | null;
+    /**
+     * Whether the removal succeeded.
+     */
+    success?: boolean | null;
+    /**
+     * The user in which the certificate removal event occurred. Only available for devices running Android 11 and above.
+     */
+    userId?: number | null;
+  }
+  /**
+   * An X.509v3 certificate failed to validate, currently this validation is performed on the Wi-FI access point and failure may be due to a mismatch upon server certificate validation. However it may in the future include other validation events of an X.509v3 certificate.
+   */
+  export interface Schema$CertValidationFailureEvent {
+    /**
+     * The reason why certification validation failed.
+     */
+    failureReason?: string | null;
   }
   /**
    * Controls apps' access to private keys. The rule determines which private key, if any, Android Device Policy grants to the specified app. Access is granted either when the app calls KeyChain.choosePrivateKeyAlias (https://developer.android.com/reference/android/security/KeyChain#choosePrivateKeyAlias%28android.app.Activity,%20android.security.KeyChainAliasCallback,%20java.lang.String[],%20java.security.Principal[],%20java.lang.String,%20int,%20java.lang.String%29) (or any overloads) to request a private key alias for a given URL, or for rules that are not URL-specific (that is, if urlPattern is not set, or set to the empty string or .*) on Android 11 and above, directly so that the app can call KeyChain.getPrivateKey (https://developer.android.com/reference/android/security/KeyChain#getPrivateKey%28android.content.Context,%20java.lang.String%29), without first having to call KeyChain.choosePrivateKeyAlias.When an app calls KeyChain.choosePrivateKeyAlias if more than one choosePrivateKeyRules matches, the last matching rule defines which key alias to return.
@@ -573,6 +692,23 @@ export namespace androidmanagement_v1 {
     packageNamesToDisable?: string[] | null;
   }
   /**
+   * A TCP connect event was initiated through the standard network stack.
+   */
+  export interface Schema$ConnectEvent {
+    /**
+     * The destination IP address of the connect call.
+     */
+    destinationIpAddress?: string | null;
+    /**
+     * The destination port of the connect call.
+     */
+    destinationPort?: number | null;
+    /**
+     * The package name of the UID that performed the connect call.
+     */
+    packageName?: string | null;
+  }
+  /**
    * Contact details for managed Google Play enterprises.
    */
   export interface Schema$ContactInfo {
@@ -638,6 +774,15 @@ export namespace androidmanagement_v1 {
      * Whether contacts stored in the work profile can be shown in personal profile contact searches and incoming calls.
      */
     showWorkContactsInPersonalProfile?: string | null;
+  }
+  /**
+   * Validates whether Android’s built-in cryptographic library (BoringSSL) is valid. Should always succeed on device boot, if it fails, the device should be considered untrusted.
+   */
+  export interface Schema$CryptoSelfTestCompletedEvent {
+    /**
+     * Whether the test succeeded.
+     */
+    success?: boolean | null;
   }
   /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: A full date, with non-zero year, month, and day values. A month and day, with a zero year (for example, an anniversary). A year on its own, with a zero month and a zero day. A year and month, with a zero day (for example, a credit card expiration date).Related types: google.type.TimeOfDay google.type.DateTime google.protobuf.Timestamp
@@ -868,6 +1013,27 @@ export namespace androidmanagement_v1 {
     width?: number | null;
   }
   /**
+   * A DNS lookup event was initiated through the standard network stack.
+   */
+  export interface Schema$DnsEvent {
+    /**
+     * The hostname that was looked up.
+     */
+    hostname?: string | null;
+    /**
+     * The (possibly truncated) list of the IP addresses returned for DNS lookup (max 10 IPv4 or IPv6 addresses).
+     */
+    ipAddresses?: string[] | null;
+    /**
+     * The package name of the UID that performed the DNS lookup.
+     */
+    packageName?: string | null;
+    /**
+     * The number of IP addresses returned from the DNS lookup event. May be higher than the amount of ip_addresses if there were too many addresses to log.
+     */
+    totalIpAddressesReturned?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -988,6 +1154,24 @@ export namespace androidmanagement_v1 {
     url?: string | null;
   }
   /**
+   * A file was downloaded from the device.
+   */
+  export interface Schema$FilePulledEvent {
+    /**
+     * The path of the file being pulled.
+     */
+    filePath?: string | null;
+  }
+  /**
+   * A file was uploaded onto the device.
+   */
+  export interface Schema$FilePushedEvent {
+    /**
+     * The path of the file being pushed.
+     */
+    filePath?: string | null;
+  }
+  /**
    * A system freeze period. When a device’s clock is within the freeze period, all incoming system updates (including security patches) are blocked and won’t be installed. When a device is outside the freeze period, normal update behavior applies. Leap years are ignored in freeze period calculations, in particular: * If Feb. 29th is set as the start or end date of a freeze period, the freeze period will start or end on Feb. 28th instead. * When a device’s system clock reads Feb. 29th, it’s treated as Feb. 28th. * When calculating the number of days in a freeze period or the time between two freeze periods, Feb. 29th is ignored and not counted as a day.
    */
   export interface Schema$FreezePeriod {
@@ -1103,6 +1287,23 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$IssueCommandResponse {}
   /**
+   * A cryptographic key including user installed, admin installed and system maintained private key is removed from the device either by the user or management. This is available device-wide on fully managed devices and within the work profile on organization-owned devices with a work profile.
+   */
+  export interface Schema$KeyDestructionEvent {
+    /**
+     * UID of the application which owns the key.
+     */
+    applicationUid?: number | null;
+    /**
+     * Alias of the key.
+     */
+    keyAlias?: string | null;
+    /**
+     * Whether the operation was successful.
+     */
+    success?: boolean | null;
+  }
+  /**
    * Keyed app state reported by the app.
    */
   export interface Schema$KeyedAppState {
@@ -1130,6 +1331,74 @@ export namespace androidmanagement_v1 {
      * The severity of the app state.
      */
     severity?: string | null;
+  }
+  /**
+   * A cryptographic key including user installed, admin installed and system maintained private key is installed on the device either by the user or management.This is available device-wide on fully managed devices and within the work profile on organization-owned devices with a work profile.
+   */
+  export interface Schema$KeyGeneratedEvent {
+    /**
+     * UID of the application which generated the key.
+     */
+    applicationUid?: number | null;
+    /**
+     * Alias of the key.
+     */
+    keyAlias?: string | null;
+    /**
+     * Whether the operation was successful.
+     */
+    success?: boolean | null;
+  }
+  /**
+   * An attempt was made to unlock the device.
+   */
+  export interface Schema$KeyguardDismissAuthAttemptEvent {
+    /**
+     * Whether a strong form of authentication (password, PIN, or pattern) was used to unlock device.
+     */
+    strongAuthMethodUsed?: boolean | null;
+    /**
+     * Whether the unlock attempt was successful.
+     */
+    success?: boolean | null;
+  }
+  /**
+   * The keyguard was dismissed. Intentionally empty.
+   */
+  export interface Schema$KeyguardDismissedEvent {}
+  /**
+   * The device was locked either by user or timeout. Intentionally empty.
+   */
+  export interface Schema$KeyguardSecuredEvent {}
+  /**
+   * A cryptographic key including user installed, admin installed and system maintained private key is imported on the device either by the user or management. This is available device-wide on fully managed devices and within the work profile on organization-owned devices with a work profile.
+   */
+  export interface Schema$KeyImportEvent {
+    /**
+     * UID of the application which imported the key
+     */
+    applicationUid?: number | null;
+    /**
+     * Alias of the key.
+     */
+    keyAlias?: string | null;
+    /**
+     * Whether the operation was successful.
+     */
+    success?: boolean | null;
+  }
+  /**
+   * A cryptographic key including user installed, admin installed and system maintained private key is determined to be corrupted due to storage corruption, hardware failure or some OS issue. This is available device-wide on fully managed devices and within the work profile on organization-owned devices with a work profile.
+   */
+  export interface Schema$KeyIntegrityViolationEvent {
+    /**
+     * UID of the application which owns the key
+     */
+    applicationUid?: number | null;
+    /**
+     * Alias of the key.
+     */
+    keyAlias?: string | null;
   }
   /**
    * Settings controlling the behavior of a device in kiosk mode. To enable kiosk mode, set kioskCustomLauncherEnabled to true or specify an app in the policy with installType KIOSK.
@@ -1244,6 +1513,18 @@ export namespace androidmanagement_v1 {
     webApps?: Schema$WebApp[];
   }
   /**
+   * The usageLog buffer on the device has reached 90% of its capacity, therefore older events may be dropped. Intentionally empty.
+   */
+  export interface Schema$LogBufferSizeCriticalEvent {}
+  /**
+   * usageLog policy has been enabled. Intentionally empty.
+   */
+  export interface Schema$LoggingStartedEvent {}
+  /**
+   * usageLog policy has been disabled. Intentionally empty.
+   */
+  export interface Schema$LoggingStoppedEvent {}
+  /**
    * The managed configurations template for the app, saved from the managed configurations iframe.
    */
   export interface Schema$ManagedConfigurationTemplate {
@@ -1301,6 +1582,32 @@ export namespace androidmanagement_v1 {
      * The machine-readable value of the entry, which should be used in the configuration. Not localized.
      */
     value?: string | null;
+  }
+  /**
+   * Removable media was mounted.
+   */
+  export interface Schema$MediaMountEvent {
+    /**
+     * Mount point.
+     */
+    mountPoint?: string | null;
+    /**
+     * Volume label. Redacted to empty string on organization-owned managed profile devices.
+     */
+    volumeLabel?: string | null;
+  }
+  /**
+   * Removable media was unmounted.
+   */
+  export interface Schema$MediaUnmountEvent {
+    /**
+     * Mount point.
+     */
+    mountPoint?: string | null;
+    /**
+     * Volume label. Redacted to empty string on organization-owned managed profile devices.
+     */
+    volumeLabel?: string | null;
   }
   /**
    * An event related to memory and storage measurements.
@@ -1457,6 +1764,23 @@ export namespace androidmanagement_v1 {
      * The normal response of the operation in case of success. If the original method returns no data on success, such as Delete, the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type XxxResponse, where Xxx is the original method name. For example, if the original method name is TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
      */
     response?: {[key: string]: any} | null;
+  }
+  /**
+   * Device was shutdown. Intentionally empty.
+   */
+  export interface Schema$OsShutdownEvent {}
+  /**
+   * Device was started.
+   */
+  export interface Schema$OsStartupEvent {
+    /**
+     * Verified Boot state.
+     */
+    verifiedBootState?: string | null;
+    /**
+     * dm-verity mode.
+     */
+    verityMode?: string | null;
   }
   /**
    * A list of package names.
@@ -2044,6 +2368,23 @@ export namespace androidmanagement_v1 {
     port?: number | null;
   }
   /**
+   * The device or profile has been remotely locked via the LOCK command.
+   */
+  export interface Schema$RemoteLockEvent {
+    /**
+     * Package name of the admin app requesting the change.
+     */
+    adminPackageName?: string | null;
+    /**
+     * User ID of the admin app from the which the change was requested.
+     */
+    adminUserId?: number | null;
+    /**
+     * User ID in which the change was requested in.
+     */
+    targetUserId?: number | null;
+  }
+  /**
    * The security posture of the device, as determined by the current device state and the policies applied.
    */
   export interface Schema$SecurityPosture {
@@ -2309,6 +2650,131 @@ export namespace androidmanagement_v1 {
     uploadOnCellularAllowed?: string[] | null;
   }
   /**
+   * An event logged on the device.
+   */
+  export interface Schema$UsageLogEvent {
+    /**
+     * A shell command was issued over ADB via “adb shell command”. Part of SECURITY_LOGS.
+     */
+    adbShellCommandEvent?: Schema$AdbShellCommandEvent;
+    /**
+     * An ADB interactive shell was opened via “adb shell”. Part of SECURITY_LOGS.
+     */
+    adbShellInteractiveEvent?: Schema$AdbShellInteractiveEvent;
+    /**
+     * An app process was started. Part of SECURITY_LOGS.
+     */
+    appProcessStartEvent?: Schema$AppProcessStartEvent;
+    /**
+     * A new root certificate was installed into the system's trusted credential storage. Part of SECURITY_LOGS.
+     */
+    certAuthorityInstalledEvent?: Schema$CertAuthorityInstalledEvent;
+    /**
+     * A root certificate was removed from the system's trusted credential storage. Part of SECURITY_LOGS.
+     */
+    certAuthorityRemovedEvent?: Schema$CertAuthorityRemovedEvent;
+    /**
+     * An X.509v3 certificate failed to validate, currently this validation is performed on the Wi-FI access point and failure may be due to a mismatch upon server certificate validation. However it may in the future include other validation events of an X.509v3 certificate. Part of SECURITY_LOGS.
+     */
+    certValidationFailureEvent?: Schema$CertValidationFailureEvent;
+    /**
+     * A TCP connect event was initiated through the standard network stack. Part of NETWORK_LOGS.
+     */
+    connectEvent?: Schema$ConnectEvent;
+    /**
+     * Validates whether Android’s built-in cryptographic library (BoringSSL) is valid. Should always succeed on device boot, if it fails, the device should be considered untrusted. Part of SECURITY_LOGS.
+     */
+    cryptoSelfTestCompletedEvent?: Schema$CryptoSelfTestCompletedEvent;
+    /**
+     * A DNS lookup event was initiated through the standard network stack. Part of NETWORK_LOGS.
+     */
+    dnsEvent?: Schema$DnsEvent;
+    /**
+     * Unique id of the event.
+     */
+    eventId?: string | null;
+    /**
+     * Device timestamp when the event was logged.
+     */
+    eventTime?: string | null;
+    /**
+     * The particular usage log event type that was reported on the device. Use this to determine which event field to access.
+     */
+    eventType?: string | null;
+    /**
+     * A file was downloaded from the device. Part of SECURITY_LOGS.
+     */
+    filePulledEvent?: Schema$FilePulledEvent;
+    /**
+     * A file was uploaded onto the device. Part of SECURITY_LOGS.
+     */
+    filePushedEvent?: Schema$FilePushedEvent;
+    /**
+     * A cryptographic key including user installed, admin installed and system maintained private key is removed from the device either by the user or management. Part of SECURITY_LOGS.
+     */
+    keyDestructionEvent?: Schema$KeyDestructionEvent;
+    /**
+     * A cryptographic key including user installed, admin installed and system maintained private key is installed on the device either by the user or management. Part of SECURITY_LOGS.
+     */
+    keyGeneratedEvent?: Schema$KeyGeneratedEvent;
+    /**
+     * An attempt was made to unlock the device. Part of SECURITY_LOGS.
+     */
+    keyguardDismissAuthAttemptEvent?: Schema$KeyguardDismissAuthAttemptEvent;
+    /**
+     * The keyguard was dismissed. Part of SECURITY_LOGS.
+     */
+    keyguardDismissedEvent?: Schema$KeyguardDismissedEvent;
+    /**
+     * The device was locked either by user or timeout. Part of SECURITY_LOGS.
+     */
+    keyguardSecuredEvent?: Schema$KeyguardSecuredEvent;
+    /**
+     * A cryptographic key including user installed, admin installed and system maintained private key is imported on the device either by the user or management. Part of SECURITY_LOGS.
+     */
+    keyImportEvent?: Schema$KeyImportEvent;
+    /**
+     * A cryptographic key including user installed, admin installed and system maintained private key is determined to be corrupted due to storage corruption, hardware failure or some OS issue. Part of SECURITY_LOGS.
+     */
+    keyIntegrityViolationEvent?: Schema$KeyIntegrityViolationEvent;
+    /**
+     * The audit log buffer has reached 90% of its capacity, therefore older events may be dropped. Part of SECURITY_LOGS.
+     */
+    logBufferSizeCriticalEvent?: Schema$LogBufferSizeCriticalEvent;
+    /**
+     * usageLog policy has been enabled. Part of SECURITY_LOGS.
+     */
+    loggingStartedEvent?: Schema$LoggingStartedEvent;
+    /**
+     * usageLog policy has been disabled. Part of SECURITY_LOGS.
+     */
+    loggingStoppedEvent?: Schema$LoggingStoppedEvent;
+    /**
+     * Removable media was mounted. Part of SECURITY_LOGS.
+     */
+    mediaMountEvent?: Schema$MediaMountEvent;
+    /**
+     * Removable media was unmounted. Part of SECURITY_LOGS.
+     */
+    mediaUnmountEvent?: Schema$MediaUnmountEvent;
+    /**
+     * Device was shutdown. Part of SECURITY_LOGS.
+     */
+    osShutdownEvent?: Schema$OsShutdownEvent;
+    /**
+     * Device was started. Part of SECURITY_LOGS.
+     */
+    osStartupEvent?: Schema$OsStartupEvent;
+    /**
+     * The device or profile has been remotely locked via the LOCK command. Part of SECURITY_LOGS.
+     */
+    remoteLockEvent?: Schema$RemoteLockEvent;
+    /**
+     * The work profile or company-owned device failed to wipe when when requested. This could be user initiated or admin initiated e.g. delete was received. Part of SECURITY_LOGS.
+     */
+    wipeFailureEvent?: Schema$WipeFailureEvent;
+  }
+  /**
    * A user belonging to an enterprise.
    */
   export interface Schema$User {
@@ -2406,6 +2872,10 @@ export namespace androidmanagement_v1 {
      */
     wipeAfterDays?: number | null;
   }
+  /**
+   * The work profile or company-owned device failed to wipe when when requested. This could be user initiated or admin initiated e.g. delete was received. Intentionally empty.
+   */
+  export interface Schema$WipeFailureEvent {}
 
   export class Resource$Enterprises {
     context: APIRequestContext;
