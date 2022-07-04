@@ -14,25 +14,38 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {beyondcorp_v1} from './v1';
 import {beyondcorp_v1alpha} from './v1alpha';
 
 export const VERSIONS = {
+  v1: beyondcorp_v1.Beyondcorp,
   v1alpha: beyondcorp_v1alpha.Beyondcorp,
 };
 
+export function beyondcorp(version: 'v1'): beyondcorp_v1.Beyondcorp;
+export function beyondcorp(
+  options: beyondcorp_v1.Options
+): beyondcorp_v1.Beyondcorp;
 export function beyondcorp(version: 'v1alpha'): beyondcorp_v1alpha.Beyondcorp;
 export function beyondcorp(
   options: beyondcorp_v1alpha.Options
 ): beyondcorp_v1alpha.Beyondcorp;
-export function beyondcorp<T = beyondcorp_v1alpha.Beyondcorp>(
+export function beyondcorp<
+  T = beyondcorp_v1.Beyondcorp | beyondcorp_v1alpha.Beyondcorp
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1alpha' | beyondcorp_v1alpha.Options
+  versionOrOptions:
+    | 'v1'
+    | beyondcorp_v1.Options
+    | 'v1alpha'
+    | beyondcorp_v1alpha.Options
 ) {
   return getAPI<T>('beyondcorp', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
+export {beyondcorp_v1};
 export {beyondcorp_v1alpha};
 export {
   AuthPlus,
