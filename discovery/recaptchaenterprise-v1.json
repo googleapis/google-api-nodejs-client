@@ -369,6 +369,31 @@
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
+            },
+            "retrieveLegacySecretKey": {
+              "description": "Returns the secret key related to the specified public key. You should use the legacy secret key only if you are integrating with a 3rd party using the legacy reCAPTCHA instead of reCAPTCHA Enterprise.",
+              "flatPath": "v1/projects/{projectsId}/keys/{keysId}:retrieveLegacySecretKey",
+              "httpMethod": "GET",
+              "id": "recaptchaenterprise.projects.keys.retrieveLegacySecretKey",
+              "parameterOrder": [
+                "key"
+              ],
+              "parameters": {
+                "key": {
+                  "description": "Required. The public key name linked to the requested secret key , in the format \"projects/{project}/keys/{key}\".",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/keys/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+key}:retrieveLegacySecretKey",
+              "response": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
             }
           }
         },
@@ -489,7 +514,7 @@
       }
     }
   },
-  "revision": "20220612",
+  "revision": "20220625",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -907,6 +932,17 @@
         },
         "name": {
           "description": "Required. The resource name for this membership in the format `projects/{project}/relatedaccountgroups/{relatedaccountgroup}/memberships/{membership}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse": {
+      "description": "Secret key used in legacy reCAPTCHA only. Should be used when integrating with a 3rd party which is still using legacy reCAPTCHA.",
+      "id": "GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse",
+      "properties": {
+        "legacySecretKey": {
+          "description": "The secret key (also known as shared secret) authorizes communication between your application backend and the reCAPTCHA Enterprise server to create an assessment. The secret key needs to be kept safe for security purposes.",
           "type": "string"
         }
       },

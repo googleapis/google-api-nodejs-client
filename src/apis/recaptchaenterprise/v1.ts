@@ -405,6 +405,15 @@ export namespace recaptchaenterprise_v1 {
     name?: string | null;
   }
   /**
+   * Secret key used in legacy reCAPTCHA only. Should be used when integrating with a 3rd party which is still using legacy reCAPTCHA.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse {
+    /**
+     * The secret key (also known as shared secret) authorizes communication between your application backend and the reCAPTCHA Enterprise server to create an assessment. The secret key needs to be kept safe for security purposes.
+     */
+    legacySecretKey?: string | null;
+  }
+  /**
    * Risk analysis result for an event.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1RiskAnalysis {
@@ -1935,6 +1944,145 @@ export namespace recaptchaenterprise_v1 {
         );
       }
     }
+
+    /**
+     * Returns the secret key related to the specified public key. You should use the legacy secret key only if you are integrating with a 3rd party using the legacy reCAPTCHA instead of reCAPTCHA Enterprise.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recaptchaenterprise.projects.keys.retrieveLegacySecretKey({
+     *     // Required. The public key name linked to the requested secret key , in the format "projects/{project\}/keys/{key\}".
+     *     key: 'projects/my-project/keys/my-key',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "legacySecretKey": "my_legacySecretKey"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    retrieveLegacySecretKey(
+      params: Params$Resource$Projects$Keys$Retrievelegacysecretkey,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    retrieveLegacySecretKey(
+      params?: Params$Resource$Projects$Keys$Retrievelegacysecretkey,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse>;
+    retrieveLegacySecretKey(
+      params: Params$Resource$Projects$Keys$Retrievelegacysecretkey,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    retrieveLegacySecretKey(
+      params: Params$Resource$Projects$Keys$Retrievelegacysecretkey,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse>
+    ): void;
+    retrieveLegacySecretKey(
+      params: Params$Resource$Projects$Keys$Retrievelegacysecretkey,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse>
+    ): void;
+    retrieveLegacySecretKey(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse>
+    ): void;
+    retrieveLegacySecretKey(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Keys$Retrievelegacysecretkey
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Keys$Retrievelegacysecretkey;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Keys$Retrievelegacysecretkey;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://recaptchaenterprise.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+key}:retrieveLegacySecretKey').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['key'],
+        pathParams: ['key'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Keys$Create
@@ -2012,6 +2160,13 @@ export namespace recaptchaenterprise_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudRecaptchaenterpriseV1Key;
+  }
+  export interface Params$Resource$Projects$Keys$Retrievelegacysecretkey
+    extends StandardParameters {
+    /**
+     * Required. The public key name linked to the requested secret key , in the format "projects/{project\}/keys/{key\}".
+     */
+    key?: string;
   }
 
   export class Resource$Projects$Relatedaccountgroupmemberships {
