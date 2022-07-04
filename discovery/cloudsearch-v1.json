@@ -1994,7 +1994,7 @@
       }
     }
   },
-  "revision": "20220530",
+  "revision": "20220620",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "AclInfo": {
@@ -4252,12 +4252,43 @@
           },
           "type": "array"
         },
+        "phoneNumbers": {
+          "description": "The person's phone numbers",
+          "items": {
+            "$ref": "PhoneNumber"
+          },
+          "type": "array"
+        },
         "photos": {
           "description": "A person's read-only photo. A picture shown next to the person's name to help others recognize the person in search results.",
           "items": {
             "$ref": "Photo"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PhoneNumber": {
+      "description": "A person's Phone Number",
+      "id": "PhoneNumber",
+      "properties": {
+        "phoneNumber": {
+          "description": "The phone number of the person.",
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "OTHER",
+            "MOBILE",
+            "OFFICE"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
         }
       },
       "type": "object"

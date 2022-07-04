@@ -1516,9 +1516,23 @@ export namespace cloudsearch_v1 {
      */
     personNames?: Schema$Name[];
     /**
+     * The person's phone numbers
+     */
+    phoneNumbers?: Schema$PhoneNumber[];
+    /**
      * A person's read-only photo. A picture shown next to the person's name to help others recognize the person in search results.
      */
     photos?: Schema$Photo[];
+  }
+  /**
+   * A person's Phone Number
+   */
+  export interface Schema$PhoneNumber {
+    /**
+     * The phone number of the person.
+     */
+    phoneNumber?: string | null;
+    type?: string | null;
   }
   /**
    * A person's photo.
