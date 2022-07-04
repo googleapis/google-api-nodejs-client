@@ -8067,7 +8067,7 @@
       }
     }
   },
-  "revision": "20220607",
+  "revision": "20220616",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -9648,7 +9648,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3WebhookRequest": {
-      "description": "The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases.",
+      "description": "The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases. You may see undocumented fields in an actual request. These fields are used internally by Dialogflow and should be ignored.",
       "id": "GoogleCloudDialogflowCxV3WebhookRequest",
       "properties": {
         "detectIntentResponseId": {
@@ -11439,7 +11439,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3beta1WebhookRequest": {
-      "description": "The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases.",
+      "description": "The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases. You may see undocumented fields in an actual request. These fields are used internally by Dialogflow and should be ignored.",
       "id": "GoogleCloudDialogflowCxV3beta1WebhookRequest",
       "properties": {
         "detectIntentResponseId": {
@@ -15582,7 +15582,7 @@
           "type": "boolean"
         },
         "cancelsSlotFilling": {
-          "description": "Indicates whether the conversational query triggers a cancellation for slot filling.",
+          "description": "Indicates whether the conversational query triggers a cancellation for slot filling. For more information, see the [cancel slot filling documentation](https://cloud.google.com/dialogflow/es/docs/intents-actions-parameters#cancel).",
           "type": "boolean"
         },
         "diagnosticInfo": {
@@ -16193,7 +16193,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2TextInput": {
-      "description": "Represents the natural language text to be processed.",
+      "description": "============================================================================ Auxiliary proto messages. Represents the natural language text to be processed.",
       "id": "GoogleCloudDialogflowV2TextInput",
       "properties": {
         "languageCode": {
@@ -18274,7 +18274,7 @@
           "type": "boolean"
         },
         "cancelsSlotFilling": {
-          "description": "Indicates whether the conversational query triggers a cancellation for slot filling.",
+          "description": "Indicates whether the conversational query triggers a cancellation for slot filling. For more information, see the [cancel slot filling documentation](https://cloud.google.com/dialogflow/es/docs/intents-actions-parameters#cancel).",
           "type": "boolean"
         },
         "diagnosticInfo": {
