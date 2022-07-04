@@ -1929,6 +1929,10 @@ export namespace sqladmin_v1 {
    */
   export interface Schema$User {
     /**
+     * Dual password status for the user.
+     */
+    dualPasswordType?: string | null;
+    /**
      * This field is deprecated and will be removed from a future version of the API.
      */
     etag?: string | null;
@@ -1978,6 +1982,10 @@ export namespace sqladmin_v1 {
      * If true, failed login attempts check will be enabled.
      */
     enableFailedAttemptsCheck?: boolean | null;
+    /**
+     * If true, the user must specify the current password before changing the password. This flag is supported only for MySQL.
+     */
+    enablePasswordVerification?: boolean | null;
     /**
      * Expiration duration after password is updated.
      */
@@ -9773,6 +9781,151 @@ export namespace sqladmin_v1 {
     }
 
     /**
+     * Retrieves a resource containing information about a user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.users.get({
+     *     // Database instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // User of the instance. If the database user has a host, this is specified as {username\}@{host\} else as {username\}.
+     *     name: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dualPasswordType": "my_dualPasswordType",
+     *   //   "etag": "my_etag",
+     *   //   "host": "my_host",
+     *   //   "instance": "my_instance",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "password": "my_password",
+     *   //   "passwordPolicy": {},
+     *   //   "project": "my_project",
+     *   //   "sqlserverUserDetails": {},
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Users$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Users$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$User>;
+    get(
+      params: Params$Resource$Users$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Users$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$User>,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    get(
+      params: Params$Resource$Users$Get,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$User>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Users$Get
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$User> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Users$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/projects/{project}/instances/{instance}/users/{name}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'instance', 'name'],
+        pathParams: ['instance', 'name', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$User>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$User>(parameters);
+      }
+    }
+
+    /**
      * Creates a new user in a Cloud SQL instance.
      * @example
      * ```js
@@ -9811,6 +9964,7 @@ export namespace sqladmin_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "dualPasswordType": "my_dualPasswordType",
      *       //   "etag": "my_etag",
      *       //   "host": "my_host",
      *       //   "instance": "my_instance",
@@ -10116,6 +10270,7 @@ export namespace sqladmin_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "dualPasswordType": "my_dualPasswordType",
      *       //   "etag": "my_etag",
      *       //   "host": "my_host",
      *       //   "instance": "my_instance",
@@ -10253,6 +10408,20 @@ export namespace sqladmin_v1 {
     instance?: string;
     /**
      * Name of the user in the instance.
+     */
+    name?: string;
+    /**
+     * Project ID of the project that contains the instance.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Users$Get extends StandardParameters {
+    /**
+     * Database instance ID. This does not include the project ID.
+     */
+    instance?: string;
+    /**
+     * User of the instance. If the database user has a host, this is specified as {username\}@{host\} else as {username\}.
      */
     name?: string;
     /**
