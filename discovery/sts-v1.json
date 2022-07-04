@@ -131,7 +131,7 @@
       }
     }
   },
-  "revision": "20220429",
+  "revision": "20220625",
   "rootUrl": "https://sts.googleapis.com/",
   "schemas": {
     "GoogleIamV1Binding": {
@@ -205,7 +205,7 @@
           "type": "string"
         },
         "options": {
-          "description": "A set of features that Security Token Service supports, in addition to the standard OAuth 2.0 token exchange, formatted as a serialized JSON object of Options.",
+          "description": "A set of features that Security Token Service supports, in addition to the standard OAuth 2.0 token exchange, formatted as a serialized JSON object of Options. The size of the parameter value must not exceed 4096 characters.",
           "type": "string"
         },
         "requestedTokenType": {
