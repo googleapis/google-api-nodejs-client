@@ -1519,8 +1519,6 @@ export namespace firestore_v1 {
      *     databaseId: 'placeholder-value',
      *     // Required. A parent name of the form `projects/{project_id\}`
      *     parent: 'projects/my-project',
-     *     // If set, validate the request and preview the response, but do not actually create the database.
-     *     validateOnly: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -2402,10 +2400,6 @@ export namespace firestore_v1 {
      * Required. A parent name of the form `projects/{project_id\}`
      */
     parent?: string;
-    /**
-     * If set, validate the request and preview the response, but do not actually create the database.
-     */
-    validateOnly?: boolean;
 
     /**
      * Request body metadata

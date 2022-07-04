@@ -132,11 +132,6 @@
                   "pattern": "^projects/[^/]+$",
                   "required": true,
                   "type": "string"
-                },
-                "validateOnly": {
-                  "description": "If set, validate the request and preview the response, but do not actually create the database.",
-                  "location": "query",
-                  "type": "boolean"
                 }
               },
               "path": "v1/{+parent}/databases",
@@ -1358,7 +1353,7 @@
       }
     }
   },
-  "revision": "20220604",
+  "revision": "20220625",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "ArrayValue": {
