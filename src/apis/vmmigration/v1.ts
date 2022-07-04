@@ -185,6 +185,10 @@ export namespace vmmigration_v1 {
    */
   export interface Schema$AwsSourceVmDetails {
     /**
+     * The total size of the disks being migrated in bytes.
+     */
+    committedStorageBytes?: string | null;
+    /**
      * The firmware type of the source VM.
      */
     firmware?: string | null;

@@ -1972,7 +1972,7 @@
       }
     }
   },
-  "revision": "20220602",
+  "revision": "20220624",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AdaptingOSStep": {
@@ -2061,6 +2061,11 @@
       "description": "Represent the source AWS VM details.",
       "id": "AwsSourceVmDetails",
       "properties": {
+        "committedStorageBytes": {
+          "description": "The total size of the disks being migrated in bytes.",
+          "format": "int64",
+          "type": "string"
+        },
         "firmware": {
           "description": "The firmware type of the source VM.",
           "enum": [
