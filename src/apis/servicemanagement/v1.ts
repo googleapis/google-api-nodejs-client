@@ -575,6 +575,10 @@ export namespace servicemanagement_v1 {
     selector?: string | null;
   }
   /**
+   * Operation payload for EnableService method.
+   */
+  export interface Schema$EnableServiceResponse {}
+  /**
    * `Endpoint` describes a network address of a service that serves a set of APIs. It is commonly known as a service endpoint. A service may expose any number of service endpoints, and all service endpoints share the same service definition, such as quota limits and monitoring metrics. Example: type: google.api.Service name: library-example.googleapis.com endpoints: # Declares network address `https://library-example.googleapis.com` # for service `library-example.googleapis.com`. The `https` scheme # is implicit for all service endpoints. Other schemes may be # supported in the future. - name: library-example.googleapis.com allow_cors: false - name: content-staging-library-example.googleapis.com # Allows HTTP OPTIONS calls to be passed to the API frontend, for it # to decide whether the subsequent cross-origin request is allowed # to proceed. allow_cors: true
    */
   export interface Schema$Endpoint {
@@ -1075,10 +1079,6 @@ export namespace servicemanagement_v1 {
    * Bind API methods to metrics. Binding a method to a metric causes that metric's configured quota behaviors to apply to the method call.
    */
   export interface Schema$MetricRule {
-    /**
-     * Metrics to update when the selected methods are called. The key of the map is the metric name, the value is the DynamicCostType to specify how to calculate the cost from the request. The cost amount will be increased for the metric against which the quota limits are defined. It is only implemented in CloudESF(go/cloudesf)
-     */
-    dynamicMetricCosts?: {[key: string]: string} | null;
     /**
      * Metrics to update when the selected methods are called, and the associated cost applied to each metric. The key of the map is the metric name, and the values are the amount increased for the metric against which the quota limits are defined. The value must not be negative.
      */
