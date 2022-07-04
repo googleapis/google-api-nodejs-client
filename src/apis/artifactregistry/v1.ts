@@ -423,6 +423,32 @@ export namespace artifactregistry_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * The response from listing maven artifacts.
+   */
+  export interface Schema$ListMavenArtifactsResponse {
+    /**
+     * The maven artifacts returned.
+     */
+    mavenArtifacts?: Schema$MavenArtifact[];
+    /**
+     * The token to retrieve the next page of artifacts, or empty if there are no more artifacts to return.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * The response from listing npm packages.
+   */
+  export interface Schema$ListNpmPackagesResponse {
+    /**
+     * The token to retrieve the next page of artifacts, or empty if there are no more artifacts to return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The npm packages returned.
+     */
+    npmPackages?: Schema$NpmPackage[];
+  }
+  /**
    * The response from listing packages.
    */
   export interface Schema$ListPackagesResponse {
@@ -434,6 +460,19 @@ export namespace artifactregistry_v1 {
      * The packages returned.
      */
     packages?: Schema$Package[];
+  }
+  /**
+   * The response from listing python packages.
+   */
+  export interface Schema$ListPythonPackagesResponse {
+    /**
+     * The token to retrieve the next page of artifacts, or empty if there are no more artifacts to return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The python packages returned.
+     */
+    pythonPackages?: Schema$PythonPackage[];
   }
   /**
    * The response from listing repositories.
@@ -500,6 +539,39 @@ export namespace artifactregistry_v1 {
     name?: string | null;
   }
   /**
+   * MavenArtifact represents a maven artifact.
+   */
+  export interface Schema$MavenArtifact {
+    /**
+     * Artifact ID for the artifact.
+     */
+    artifactId?: string | null;
+    /**
+     * Output only. Time the artifact was created.
+     */
+    createTime?: string | null;
+    /**
+     * Group ID for the artifact. Example: com.google.guava
+     */
+    groupId?: string | null;
+    /**
+     * Required. registry_location, project_id, repository_name and maven_artifact forms a unique artifact For example, "projects/test-project/locations/us-west4/repositories/test-repo/mavenArtifacts/ com.google.guava:guava:31.0-jre", where "us-west4" is the registry_location, "test-project" is the project_id, "test-repo" is the repository_name and "com.google.guava:guava:31.0-jre" is the maven artifact.
+     */
+    name?: string | null;
+    /**
+     * Required. URL to access the pom file of the artifact. Example: us-west4-maven.pkg.dev/test-project/test-repo/com/google/guava/guava/31.0/guava-31.0.pom
+     */
+    pomUri?: string | null;
+    /**
+     * Output only. Time the artifact was updated.
+     */
+    updateTime?: string | null;
+    /**
+     * Version of this artifact.
+     */
+    version?: string | null;
+  }
+  /**
    * MavenRepositoryConfig is maven related repository details. Provides additional configuration details for repositories of the maven format type.
    */
   export interface Schema$MavenRepositoryConfig {
@@ -511,6 +583,35 @@ export namespace artifactregistry_v1 {
      * Version policy defines the versions that the registry will accept.
      */
     versionPolicy?: string | null;
+  }
+  /**
+   * NpmPackage represents an npm artifact.
+   */
+  export interface Schema$NpmPackage {
+    /**
+     * Output only. Time the package was created.
+     */
+    createTime?: string | null;
+    /**
+     * Required. registry_location, project_id, repository_name and npm_package forms a unique package For example, "projects/test-project/locations/us-west4/repositories/test-repo/npmPackages/ npm_test:1.0.0", where "us-west4" is the registry_location, "test-project" is the project_id, "test-repo" is the repository_name and npm_test:1.0.0" is the npm package.
+     */
+    name?: string | null;
+    /**
+     * Package for the artifact.
+     */
+    packageName?: string | null;
+    /**
+     * Tags attached to this package.
+     */
+    tags?: string[] | null;
+    /**
+     * Output only. Time the package was updated.
+     */
+    updateTime?: string | null;
+    /**
+     * Version of this package.
+     */
+    version?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -591,6 +692,35 @@ export namespace artifactregistry_v1 {
      * The name of the project's settings. Always of the form: projects/{project-id\}/projectSettings In update request: never set In response: always set
      */
     name?: string | null;
+  }
+  /**
+   * PythonPackage represents a python artifact.
+   */
+  export interface Schema$PythonPackage {
+    /**
+     * Output only. Time the package was created.
+     */
+    createTime?: string | null;
+    /**
+     * Required. registry_location, project_id, repository_name and python_package forms a unique package name:`projects//locations//repository//pythonPackages/`. For example, "projects/test-project/locations/us-west4/repositories/test-repo/pythonPackages/ python_package:1.0.0", where "us-west4" is the registry_location, "test-project" is the project_id, "test-repo" is the repository_name and python_package:1.0.0" is the python package.
+     */
+    name?: string | null;
+    /**
+     * Package for the artifact.
+     */
+    packageName?: string | null;
+    /**
+     * Output only. Time the package was updated.
+     */
+    updateTime?: string | null;
+    /**
+     * Required. URL to access the package. Example: us-west4-python.pkg.dev/test-project/test-repo/python_package/file-name-1.0.0.tar.gz
+     */
+    uri?: string | null;
+    /**
+     * Version of this package.
+     */
+    version?: string | null;
   }
   /**
    * A Repository for storing artifacts with a specific format.
@@ -1575,7 +1705,10 @@ export namespace artifactregistry_v1 {
     aptArtifacts: Resource$Projects$Locations$Repositories$Aptartifacts;
     dockerImages: Resource$Projects$Locations$Repositories$Dockerimages;
     files: Resource$Projects$Locations$Repositories$Files;
+    mavenArtifacts: Resource$Projects$Locations$Repositories$Mavenartifacts;
+    npmPackages: Resource$Projects$Locations$Repositories$Npmpackages;
     packages: Resource$Projects$Locations$Repositories$Packages;
+    pythonPackages: Resource$Projects$Locations$Repositories$Pythonpackages;
     yumArtifacts: Resource$Projects$Locations$Repositories$Yumartifacts;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -1586,9 +1719,19 @@ export namespace artifactregistry_v1 {
       this.files = new Resource$Projects$Locations$Repositories$Files(
         this.context
       );
+      this.mavenArtifacts =
+        new Resource$Projects$Locations$Repositories$Mavenartifacts(
+          this.context
+        );
+      this.npmPackages =
+        new Resource$Projects$Locations$Repositories$Npmpackages(this.context);
       this.packages = new Resource$Projects$Locations$Repositories$Packages(
         this.context
       );
+      this.pythonPackages =
+        new Resource$Projects$Locations$Repositories$Pythonpackages(
+          this.context
+        );
       this.yumArtifacts =
         new Resource$Projects$Locations$Repositories$Yumartifacts(this.context);
     }
@@ -3835,6 +3978,635 @@ export namespace artifactregistry_v1 {
     parent?: string;
   }
 
+  export class Resource$Projects$Locations$Repositories$Mavenartifacts {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a maven artifact.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.mavenArtifacts.get({
+     *       // Required. The name of the maven artifact.
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/mavenArtifacts/my-mavenArtifact',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "artifactId": "my_artifactId",
+     *   //   "createTime": "my_createTime",
+     *   //   "groupId": "my_groupId",
+     *   //   "name": "my_name",
+     *   //   "pomUri": "my_pomUri",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Mavenartifacts$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Repositories$Mavenartifacts$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MavenArtifact>;
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Mavenartifacts$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Mavenartifacts$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$MavenArtifact>,
+      callback: BodyResponseCallback<Schema$MavenArtifact>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Mavenartifacts$Get,
+      callback: BodyResponseCallback<Schema$MavenArtifact>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$MavenArtifact>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Mavenartifacts$Get
+        | BodyResponseCallback<Schema$MavenArtifact>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$MavenArtifact>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$MavenArtifact>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$MavenArtifact> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Mavenartifacts$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Mavenartifacts$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$MavenArtifact>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$MavenArtifact>(parameters);
+      }
+    }
+
+    /**
+     * Lists maven artifacts.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.mavenArtifacts.list({
+     *       // The maximum number of artifacts to return.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from a previous list request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The name of the parent resource whose maven artifacts will be listed.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "mavenArtifacts": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Mavenartifacts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Repositories$Mavenartifacts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMavenArtifactsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Mavenartifacts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Mavenartifacts$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMavenArtifactsResponse>,
+      callback: BodyResponseCallback<Schema$ListMavenArtifactsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Mavenartifacts$List,
+      callback: BodyResponseCallback<Schema$ListMavenArtifactsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListMavenArtifactsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Mavenartifacts$List
+        | BodyResponseCallback<Schema$ListMavenArtifactsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMavenArtifactsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMavenArtifactsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMavenArtifactsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Mavenartifacts$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Mavenartifacts$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/mavenArtifacts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMavenArtifactsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListMavenArtifactsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Repositories$Mavenartifacts$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the maven artifact.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Mavenartifacts$List
+    extends StandardParameters {
+    /**
+     * The maximum number of artifacts to return.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from a previous list request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the parent resource whose maven artifacts will be listed.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Repositories$Npmpackages {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a npm package.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.npmPackages.get({
+     *       // Required. The name of the npm package.
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/npmPackages/my-npmPackage',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "packageName": "my_packageName",
+     *   //   "tags": [],
+     *   //   "updateTime": "my_updateTime",
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Npmpackages$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Repositories$Npmpackages$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$NpmPackage>;
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Npmpackages$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Npmpackages$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$NpmPackage>,
+      callback: BodyResponseCallback<Schema$NpmPackage>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Npmpackages$Get,
+      callback: BodyResponseCallback<Schema$NpmPackage>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$NpmPackage>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Npmpackages$Get
+        | BodyResponseCallback<Schema$NpmPackage>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$NpmPackage>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$NpmPackage>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$NpmPackage> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Npmpackages$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Npmpackages$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$NpmPackage>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$NpmPackage>(parameters);
+      }
+    }
+
+    /**
+     * Lists npm packages.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.npmPackages.list({
+     *       // The maximum number of artifacts to return.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from a previous list request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The name of the parent resource whose npm packages will be listed.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "npmPackages": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Npmpackages$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Repositories$Npmpackages$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListNpmPackagesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Npmpackages$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Npmpackages$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListNpmPackagesResponse>,
+      callback: BodyResponseCallback<Schema$ListNpmPackagesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Npmpackages$List,
+      callback: BodyResponseCallback<Schema$ListNpmPackagesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListNpmPackagesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Npmpackages$List
+        | BodyResponseCallback<Schema$ListNpmPackagesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListNpmPackagesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListNpmPackagesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListNpmPackagesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Npmpackages$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Npmpackages$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/npmPackages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListNpmPackagesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListNpmPackagesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Repositories$Npmpackages$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the npm package.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Npmpackages$List
+    extends StandardParameters {
+    /**
+     * The maximum number of artifacts to return.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from a previous list request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the parent resource whose npm packages will be listed.
+     */
+    parent?: string;
+  }
+
   export class Resource$Projects$Locations$Repositories$Packages {
     context: APIRequestContext;
     tags: Resource$Projects$Locations$Repositories$Packages$Tags;
@@ -5536,6 +6308,321 @@ export namespace artifactregistry_v1 {
      * The view that should be returned in the response.
      */
     view?: string;
+  }
+
+  export class Resource$Projects$Locations$Repositories$Pythonpackages {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a python package.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.pythonPackages.get({
+     *       // Required. The name of the python package.
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/pythonPackages/my-pythonPackage',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "packageName": "my_packageName",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "uri": "my_uri",
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Pythonpackages$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Repositories$Pythonpackages$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PythonPackage>;
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Pythonpackages$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Pythonpackages$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$PythonPackage>,
+      callback: BodyResponseCallback<Schema$PythonPackage>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Pythonpackages$Get,
+      callback: BodyResponseCallback<Schema$PythonPackage>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$PythonPackage>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Pythonpackages$Get
+        | BodyResponseCallback<Schema$PythonPackage>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PythonPackage>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PythonPackage>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PythonPackage> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Pythonpackages$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Pythonpackages$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PythonPackage>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PythonPackage>(parameters);
+      }
+    }
+
+    /**
+     * Lists python packages.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.pythonPackages.list({
+     *       // The maximum number of artifacts to return.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from a previous list request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The name of the parent resource whose python packages will be listed.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pythonPackages": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Pythonpackages$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Repositories$Pythonpackages$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListPythonPackagesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Pythonpackages$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Pythonpackages$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPythonPackagesResponse>,
+      callback: BodyResponseCallback<Schema$ListPythonPackagesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Pythonpackages$List,
+      callback: BodyResponseCallback<Schema$ListPythonPackagesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListPythonPackagesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Pythonpackages$List
+        | BodyResponseCallback<Schema$ListPythonPackagesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPythonPackagesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPythonPackagesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListPythonPackagesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Pythonpackages$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Pythonpackages$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/pythonPackages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListPythonPackagesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListPythonPackagesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Repositories$Pythonpackages$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the python package.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Pythonpackages$List
+    extends StandardParameters {
+    /**
+     * The maximum number of artifacts to return.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from a previous list request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the parent resource whose python packages will be listed.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Repositories$Yumartifacts {
