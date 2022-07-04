@@ -268,7 +268,7 @@
       }
     }
   },
-  "revision": "20220603",
+  "revision": "20220626",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "ConfigMapEnvSource": {
@@ -1078,7 +1078,7 @@
       "properties": {
         "exec": {
           "$ref": "ExecAction",
-          "description": "(Optional) One and only one of the following should be specified. Exec specifies the action to take. A field inlined from the Handler message."
+          "description": "(Optional) Not supported by Cloud Run One and only one of the following should be specified. Exec specifies the action to take. A field inlined from the Handler message."
         },
         "failureThreshold": {
           "description": "(Optional) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
@@ -1094,17 +1094,17 @@
           "description": "(Optional) HTTPGet specifies the http request to perform. A field inlined from the Handler message."
         },
         "initialDelaySeconds": {
-          "description": "(Optional) Number of seconds after the container has started before liveness probes are initiated. Defaults to 0 seconds. Minimum value is 0. Max value for liveness probe is 3600. Max value for startup probe is 240. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+          "description": "(Optional) Number of seconds after the container has started before the probe is initiated. Defaults to 0 seconds. Minimum value is 0. Maximum value for liveness probe is 3600. Maximum value for startup probe is 240. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
           "format": "int32",
           "type": "integer"
         },
         "periodSeconds": {
-          "description": "(Optional) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1. Max value for liveness probe is 3600. Max value for startup probe is 240. Must be greater or equal than timeout_seconds.",
+          "description": "(Optional) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1. Maximum value for liveness probe is 3600. Maximum value for startup probe is 240. Must be greater or equal than timeout_seconds.",
           "format": "int32",
           "type": "integer"
         },
         "successThreshold": {
-          "description": "(Optional) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup Probes.",
+          "description": "(Optional) Minimum consecutive successes for the probe to be considered successful after having failed. Must be 1 if set.",
           "format": "int32",
           "type": "integer"
         },
