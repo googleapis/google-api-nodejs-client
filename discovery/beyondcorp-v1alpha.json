@@ -189,7 +189,7 @@
                   ],
                   "parameters": {
                     "appConnectionId": {
-                      "description": "Optional. User-settable AppConnection resource ID. * Must start with a letter. * Must contain between 4-63 characters from (/a-z-/). * Must end with a number or a letter.",
+                      "description": "Optional. User-settable AppConnection resource ID. * Must start with a letter. * Must contain between 4-63 characters from `/a-z-/`. * Must end with a number or a letter.",
                       "location": "query",
                       "type": "string"
                     },
@@ -519,7 +519,7 @@
                   ],
                   "parameters": {
                     "appConnectorId": {
-                      "description": "Optional. User-settable AppConnector resource ID. * Must start with a letter. * Must contain between 4-63 characters from (/a-z-/). * Must end with a number or a letter.",
+                      "description": "Optional. User-settable AppConnector resource ID. * Must start with a letter. * Must contain between 4-63 characters from `/a-z-/`. * Must end with a number or a letter.",
                       "location": "query",
                       "type": "string"
                     },
@@ -856,7 +856,7 @@
                   ],
                   "parameters": {
                     "appGatewayId": {
-                      "description": "Optional. User-settable AppGateway resource ID. * Must start with a letter. * Must contain between 4-63 characters from (/a-z-/). * Must end with a number or a letter.",
+                      "description": "Optional. User-settable AppGateway resource ID. * Must start with a letter. * Must contain between 4-63 characters from `/a-z-/`. * Must end with a number or a letter.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1084,6 +1084,97 @@
                 }
               }
             },
+            "applications": {
+              "methods": {
+                "getIamPolicy": {
+                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}:getIamPolicy",
+                  "httpMethod": "GET",
+                  "id": "beyondcorp.projects.locations.applications.getIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "options.requestedPolicyVersion": {
+                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/applications/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+resource}:getIamPolicy",
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "setIamPolicy": {
+                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}:setIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "beyondcorp.projects.locations.applications.setIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/applications/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+resource}:setIamPolicy",
+                  "request": {
+                    "$ref": "GoogleIamV1SetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "testIamPermissions": {
+                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}:testIamPermissions",
+                  "httpMethod": "POST",
+                  "id": "beyondcorp.projects.locations.applications.testIamPermissions",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/applications/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+resource}:testIamPermissions",
+                  "request": {
+                    "$ref": "GoogleIamV1TestIamPermissionsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleIamV1TestIamPermissionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "clientConnectorServices": {
               "methods": {
                 "create": {
@@ -1096,7 +1187,7 @@
                   ],
                   "parameters": {
                     "clientConnectorServiceId": {
-                      "description": "Optional. User-settable client connector service resource ID. * Must start with a letter. * Must contain between 4-63 characters from (/a-z-/). * Must end with a number or a letter. A random system generated name will be assigned if not specified by the user.",
+                      "description": "Optional. User-settable client connector service resource ID. * Must start with a letter. * Must contain between 4-63 characters from `/a-z-/`. * Must end with a number or a letter. A random system generated name will be assigned if not specified by the user.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1385,7 +1476,7 @@
                   ],
                   "parameters": {
                     "clientGatewayId": {
-                      "description": "Optional. User-settable client gateway resource ID. * Must start with a letter. * Must contain between 4-63 characters from (/a-z-/). * Must end with a number or a letter.",
+                      "description": "Optional. User-settable client gateway resource ID. * Must start with a letter. * Must contain between 4-63 characters from `/a-z-/`. * Must end with a number or a letter.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1625,7 +1716,7 @@
                   ],
                   "parameters": {
                     "connectionId": {
-                      "description": "Optional. User-settable connection resource ID. * Must start with a letter. * Must contain between 4-63 characters from (/a-z-/). * Must end with a number or a letter.",
+                      "description": "Optional. User-settable connection resource ID. * Must start with a letter. * Must contain between 4-63 characters from `/a-z-/`. * Must end with a number or a letter.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1955,7 +2046,7 @@
                   ],
                   "parameters": {
                     "connectorId": {
-                      "description": "Optional. User-settable connector resource ID. * Must start with a letter. * Must contain between 4-63 characters from (/a-z-/). * Must end with a number or a letter.",
+                      "description": "Optional. User-settable connector resource ID. * Must start with a letter. * Must contain between 4-63 characters from `/a-z-/`. * Must end with a number or a letter.",
                       "location": "query",
                       "type": "string"
                     },
@@ -2408,7 +2499,7 @@
       }
     }
   },
-  "revision": "20220526",
+  "revision": "20220616",
   "rootUrl": "https://beyondcorp.googleapis.com/",
   "schemas": {
     "AllocatedConnection": {
@@ -3695,16 +3786,42 @@
       },
       "type": "object"
     },
+    "GoogleCloudBeyondcorpAppconnectorsV1alphaContainerHealthDetails": {
+      "description": "ContainerHealthDetails reflects the health details of a container.",
+      "id": "GoogleCloudBeyondcorpAppconnectorsV1alphaContainerHealthDetails",
+      "properties": {
+        "currentConfigVersion": {
+          "description": "The version of the current config.",
+          "type": "string"
+        },
+        "errorMsg": {
+          "description": "The latest error message.",
+          "type": "string"
+        },
+        "expectedConfigVersion": {
+          "description": "The version of the expected config.",
+          "type": "string"
+        },
+        "extendedStatus": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The extended status. Such as ExitCode, StartedAt, FinishedAt, etc.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudBeyondcorpAppconnectorsV1alphaImageConfig": {
       "description": "ImageConfig defines the control plane images to run.",
       "id": "GoogleCloudBeyondcorpAppconnectorsV1alphaImageConfig",
       "properties": {
         "stableImage": {
-          "description": "The stable image that the remote agent will fallback to if the target image fails.",
+          "description": "The stable image that the remote agent will fallback to if the target image fails. Format would be a gcr image path, e.g.: gcr.io/PROJECT-ID/my-image:tag1",
           "type": "string"
         },
         "targetImage": {
-          "description": "The initial image the remote agent will attempt to run for the control plane.",
+          "description": "The initial image the remote agent will attempt to run for the control plane. Format would be a gcr image path, e.g.: gcr.io/PROJECT-ID/my-image:tag1",
           "type": "string"
         }
       },
@@ -3741,7 +3858,7 @@
       "properties": {
         "pubsubNotification": {
           "$ref": "GoogleCloudBeyondcorpAppconnectorsV1alphaNotificationConfigCloudPubSubNotificationConfig",
-          "description": "Pub/Sub topic for AppConnector to subscribe and receive notifications from `projects/{project}/topics/{pubsub_topic}`"
+          "description": "Cloud Pub/Sub Configuration to receive notifications."
         }
       },
       "type": "object"
@@ -3755,6 +3872,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpAppconnectorsV1alphaRemoteAgentDetails": {
+      "description": "RemoteAgentDetails reflects the details of a remote agent.",
+      "id": "GoogleCloudBeyondcorpAppconnectorsV1alphaRemoteAgentDetails",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudBeyondcorpAppconnectorsV1alphaReportStatusRequest": {
@@ -3817,7 +3940,7 @@
             "The resource is healthy.",
             "The resource is unhealthy.",
             "The resource is unresponsive.",
-            "The resource is some sub-resources are UNHEALTHY."
+            "Some sub-resources are UNHEALTHY."
           ],
           "type": "string"
         },
@@ -3831,6 +3954,45 @@
         "time": {
           "description": "The timestamp to collect the info. It is suggested to be set by the topmost level resource only.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpApplicationsV1alphaApplicationOperationMetadata": {
+      "description": "Represents the metadata of the long-running operation.",
+      "id": "GoogleCloudBeyondcorpApplicationsV1alphaApplicationOperationMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "requestedCancellation": {
+          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "statusMessage": {
+          "description": "Output only. Human-readable status of the operation, if any.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "target": {
+          "description": "Output only. Server-defined resource path for the target of the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "verb": {
+          "description": "Output only. Name of the verb executed by the operation.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -4417,7 +4579,7 @@
             "The resource is healthy.",
             "The resource is unhealthy.",
             "The resource is unresponsive.",
-            "The resource is some sub-resources are UNHEALTHY."
+            "Some sub-resources are UNHEALTHY."
           ],
           "type": "string"
         },
