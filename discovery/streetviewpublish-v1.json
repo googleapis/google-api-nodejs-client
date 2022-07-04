@@ -244,6 +244,164 @@
         }
       }
     },
+    "photoSequence": {
+      "methods": {
+        "create": {
+          "description": "After the client finishes uploading the PhotoSequence with the returned UploadRef, CreatePhotoSequence extracts a sequence of 360 photos from a video or Extensible Device Metadata (XDM, http://www.xdm.org/) to be published to Street View on Google Maps. `CreatePhotoSequence` returns an Operation, with the PhotoSequence Id set in the `Operation.name` field. This method returns the following error codes: * google.rpc.Code.INVALID_ARGUMENT if the request is malformed. * google.rpc.Code.NOT_FOUND if the upload reference does not exist.",
+          "flatPath": "v1/photoSequence",
+          "httpMethod": "POST",
+          "id": "streetviewpublish.photoSequence.create",
+          "parameterOrder": [],
+          "parameters": {
+            "inputType": {
+              "description": "Required. The input form of PhotoSequence.",
+              "enum": [
+                "INPUT_TYPE_UNSPECIFIED",
+                "VIDEO",
+                "XDM"
+              ],
+              "enumDescriptions": [
+                "Not specified. Server will return google.rpc.Code.INVALID_ARGUMENT.",
+                "360 Video.",
+                "Extensible Device Metadata, http://www.xdm.org"
+              ],
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/photoSequence",
+          "request": {
+            "$ref": "PhotoSequence"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/streetviewpublish"
+          ]
+        },
+        "delete": {
+          "description": "Deletes a PhotoSequence and its metadata. This method returns the following error codes: * google.rpc.Code.PERMISSION_DENIED if the requesting user did not create the requested photo sequence. * google.rpc.Code.NOT_FOUND if the photo sequence ID does not exist. * google.rpc.Code.FAILED_PRECONDITION if the photo sequence ID is not yet finished processing.",
+          "flatPath": "v1/photoSequence/{sequenceId}",
+          "httpMethod": "DELETE",
+          "id": "streetviewpublish.photoSequence.delete",
+          "parameterOrder": [
+            "sequenceId"
+          ],
+          "parameters": {
+            "sequenceId": {
+              "description": "Required. ID of the PhotoSequence.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/photoSequence/{sequenceId}",
+          "response": {
+            "$ref": "Empty"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/streetviewpublish"
+          ]
+        },
+        "get": {
+          "description": "Gets the metadata of the specified PhotoSequence via the Operation interface. This method returns the following three types of responses: * `Operation.done` = false, if the processing of PhotoSequence is not finished yet. * `Operation.done` = true and `Operation.error` is populated, if there was an error in processing. * `Operation.done` = true and `Operation.response` is poulated, which contains a PhotoSequence message. This method returns the following error codes: * google.rpc.Code.PERMISSION_DENIED if the requesting user did not create the requested PhotoSequence. * google.rpc.Code.NOT_FOUND if the requested PhotoSequence does not exist.",
+          "flatPath": "v1/photoSequence/{sequenceId}",
+          "httpMethod": "GET",
+          "id": "streetviewpublish.photoSequence.get",
+          "parameterOrder": [
+            "sequenceId"
+          ],
+          "parameters": {
+            "filter": {
+              "description": "Optional. The filter expression. For example: `published_status=PUBLISHED`. The filters supported are: `published_status`. See https://google.aip.dev/160 for more information.",
+              "location": "query",
+              "type": "string"
+            },
+            "sequenceId": {
+              "description": "Required. ID of the photo sequence.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "view": {
+              "description": "Specifies if a download URL for the photo sequence should be returned in `download_url` of individual photos in the PhotoSequence response. > Note: Currently not implemented.",
+              "enum": [
+                "BASIC",
+                "INCLUDE_DOWNLOAD_URL"
+              ],
+              "enumDescriptions": [
+                "Server responses do not include the download URL for the photo bytes. The default value.",
+                "Server responses include the download URL for the photo bytes."
+              ],
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/photoSequence/{sequenceId}",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/streetviewpublish"
+          ]
+        },
+        "startUpload": {
+          "description": "Creates an upload session to start uploading photo sequence data. The upload URL of the returned UploadRef is used to upload the data for the `photoSequence`. After the upload is complete, the UploadRef is used with CreatePhotoSequence to create the PhotoSequence object entry.",
+          "flatPath": "v1/photoSequence:startUpload",
+          "httpMethod": "POST",
+          "id": "streetviewpublish.photoSequence.startUpload",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1/photoSequence:startUpload",
+          "request": {
+            "$ref": "Empty"
+          },
+          "response": {
+            "$ref": "UploadRef"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/streetviewpublish"
+          ]
+        }
+      }
+    },
+    "photoSequences": {
+      "methods": {
+        "list": {
+          "description": "Lists all the PhotoSequences that belong to the user, in descending CreatePhotoSequence timestamp order.",
+          "flatPath": "v1/photoSequences",
+          "httpMethod": "GET",
+          "id": "streetviewpublish.photoSequences.list",
+          "parameterOrder": [],
+          "parameters": {
+            "filter": {
+              "description": "Optional. The filter expression. For example: `imagery_type=SPHERICAL`. The filters supported are: `imagery_type`, `processing_state`, `min_latitude`, `max_latitude`, `min_longitude`, `max_longitude`, and `filename_query`. See https://google.aip.dev/160 for more information. Filename queries should sent as a Phrase in order to support multple words and special characters by adding escaped quotes. Ex: filename_query=\"example of a phrase.mp4\"",
+              "location": "query",
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "Optional. The maximum number of photo sequences to return. `pageSize` must be non-negative. If `pageSize` is zero or is not provided, the default page size of 100 is used. The number of photo sequences returned in the response may be less than `pageSize` if the number of matches is less than `pageSize`. This is currently unimplemented but is in process.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "Optional. The nextPageToken value returned from a previous ListPhotoSequences request, if any.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/photoSequences",
+          "response": {
+            "$ref": "ListPhotoSequencesResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/streetviewpublish"
+          ]
+        }
+      }
+    },
     "photos": {
       "methods": {
         "batchDelete": {
@@ -375,7 +533,7 @@
       }
     }
   },
-  "revision": "20220321",
+  "revision": "20220630",
   "rootUrl": "https://streetviewpublish.googleapis.com/",
   "schemas": {
     "BatchDeletePhotosRequest": {
@@ -465,6 +623,80 @@
       "properties": {},
       "type": "object"
     },
+    "GpsDataGapFailureDetails": {
+      "description": "Details related to ProcessingFailureReason#GPS_DATA_GAP.",
+      "id": "GpsDataGapFailureDetails",
+      "properties": {
+        "gapDuration": {
+          "description": "The duration of the gap in GPS data that was found.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "gapTime": {
+          "description": "Relative time (from the start of the video stream) when the gap started.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Imu": {
+      "description": "IMU data from the device sensors.",
+      "id": "Imu",
+      "properties": {
+        "accelMpsps": {
+          "description": "The accelerometer measurements in meters/sec^2 with increasing timestamps from devices.",
+          "items": {
+            "$ref": "Measurement3d"
+          },
+          "type": "array"
+        },
+        "gyroRps": {
+          "description": "The gyroscope measurements in radians/sec with increasing timestamps from devices.",
+          "items": {
+            "$ref": "Measurement3d"
+          },
+          "type": "array"
+        },
+        "magUt": {
+          "description": "The magnetometer measurements of the magnetic field in microtesla (uT) with increasing timestamps from devices.",
+          "items": {
+            "$ref": "Measurement3d"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ImuDataGapFailureDetails": {
+      "description": "Details related to ProcessingFailureReason#IMU_DATA_GAP.",
+      "id": "ImuDataGapFailureDetails",
+      "properties": {
+        "gapDuration": {
+          "description": "The duration of the gap in IMU data that was found.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "gapTime": {
+          "description": "Relative time (from the start of the video stream) when the gap started.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InsufficientGpsFailureDetails": {
+      "description": "Details related to ProcessingFailureReason#INSUFFICIENT_GPS.",
+      "id": "InsufficientGpsFailureDetails",
+      "properties": {
+        "gpsPointsFound": {
+          "description": "The number of GPS points that were found in the video.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "LatLng": {
       "description": "An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this object must conform to the WGS84 standard. Values must be within normalized ranges.",
       "id": "LatLng",
@@ -478,6 +710,21 @@
           "description": "The longitude in degrees. It must be in the range [-180.0, +180.0].",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "LatLngBounds": {
+      "description": "A rectangle in geographical coordinates.",
+      "id": "LatLngBounds",
+      "properties": {
+        "northeast": {
+          "$ref": "LatLng",
+          "description": "The northeast corner of these bounds."
+        },
+        "southwest": {
+          "$ref": "LatLng",
+          "description": "The southwest corner of these bounds."
         }
       },
       "type": "object"
@@ -498,6 +745,24 @@
       },
       "type": "object"
     },
+    "ListPhotoSequencesResponse": {
+      "description": "Response to list all photo sequences that belong to a user.",
+      "id": "ListPhotoSequencesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "photoSequences": {
+          "description": "List of photo sequences via Operation interface. The maximum number of items returned is based on the pageSize field in the request. Each item in the list can have three possible states, * `Operation.done` = false, if the processing of PhotoSequence is not finished yet. * `Operation.done` = true and `Operation.error` is populated, if there was an error in processing. * `Operation.done` = true and `Operation.response` contains a PhotoSequence message, In each sequence, only Id is populated.",
+          "items": {
+            "$ref": "Operation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListPhotosResponse": {
       "description": "Response to list all photos that belong to a user.",
       "id": "ListPhotosResponse",
@@ -512,6 +777,45 @@
             "$ref": "Photo"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Measurement3d": {
+      "description": "A Generic 3d measurement sample.",
+      "id": "Measurement3d",
+      "properties": {
+        "captureTime": {
+          "description": "The timestamp of the IMU measurement.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "x": {
+          "description": "The sensor measurement in the x axis.",
+          "format": "float",
+          "type": "number"
+        },
+        "y": {
+          "description": "The sensor measurement in the y axis.",
+          "format": "float",
+          "type": "number"
+        },
+        "z": {
+          "description": "The sensor measurement in the z axis.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "NotOutdoorsFailureDetails": {
+      "description": "Details related to ProcessingFailureReason#NOT_OUTDOORS.",
+      "id": "NotOutdoorsFailureDetails",
+      "properties": {
+        "time": {
+          "description": "Relative time (from the start of the video stream) when an indoor frame was found.",
+          "format": "google-duration",
+          "type": "string"
         }
       },
       "type": "object"
@@ -683,6 +987,157 @@
       },
       "type": "object"
     },
+    "PhotoSequence": {
+      "description": "A sequence of 360 photos along with metadata.",
+      "id": "PhotoSequence",
+      "properties": {
+        "captureTimeOverride": {
+          "description": "Optional. Absolute time when the photo sequence starts to be captured. If the photo sequence is a video, this is the start time of the video. If this field is populated in input, it overrides the capture time in the video or XDM file.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "distanceMeters": {
+          "description": "Output only. The computed distance of the photo sequence in meters.",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        },
+        "failureDetails": {
+          "$ref": "ProcessingFailureDetails",
+          "description": "Output only. If this sequence has `failure_reason` set, this may contain additional details about the failure.",
+          "readOnly": true
+        },
+        "failureReason": {
+          "description": "Output only. If this sequence has processing_state = FAILED, this will contain the reason why it failed. If the processing_state is any other value, this field will be unset.",
+          "enum": [
+            "PROCESSING_FAILURE_REASON_UNSPECIFIED",
+            "LOW_RESOLUTION",
+            "DUPLICATE",
+            "INSUFFICIENT_GPS",
+            "NO_OVERLAP_GPS",
+            "INVALID_GPS",
+            "FAILED_TO_REFINE_POSITIONS",
+            "TAKEDOWN",
+            "CORRUPT_VIDEO",
+            "INTERNAL",
+            "INVALID_VIDEO_FORMAT",
+            "INVALID_VIDEO_DIMENSIONS",
+            "INVALID_CAPTURE_TIME",
+            "GPS_DATA_GAP",
+            "JUMPY_GPS",
+            "INVALID_IMU",
+            "IMU_DATA_GAP",
+            "UNSUPPORTED_CAMERA",
+            "NOT_OUTDOORS"
+          ],
+          "enumDescriptions": [
+            "The failure reason is unspecified, this is the default value.",
+            "Video frame's resolution is too small.",
+            "This video has been uploaded before.",
+            "Too few GPS points.",
+            "No overlap between the time frame of GPS track and the time frame of video.",
+            "GPS is invalid (e.x. all GPS points are at (0,0))",
+            "The sequence of photos could not be accurately located in the world.",
+            "The sequence was taken down for policy reasons.",
+            "The video file was corrupt.",
+            "A permanent failure in the underlying system occurred.",
+            "The video format is invalid or unsupported.",
+            "Invalid image aspect ratio found.",
+            "Invalid capture time. Timestamps were from the future.",
+            "GPS data contains a gap greater than 5 seconds in duration.",
+            "GPS data is too erratic to be processed.",
+            "IMU (Accelerometer, Gyroscope, etc.) data are not valid. They may be missing required fields (x, y, z or time), may not be formatted correctly, or any other issue that prevents our systems from parsing it.",
+            "IMU (Accelerometer, Gyroscope, etc.) data contain gaps greater than 0.1 seconds in duration.",
+            "The camera is not supported.",
+            "Some frames were indoors, which is unsupported."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "filename": {
+          "description": "Output only. The filename of the upload. Does not include the directory path. Only available if the sequence was uploaded on a platform that provides the filename.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "gpsSource": {
+          "description": "Input only. If both raw_gps_timeline and the Camera Motion Metadata Track (CAMM) contain GPS measurements, indicate which takes precedence.",
+          "enum": [
+            "PHOTO_SEQUENCE",
+            "CAMERA_MOTION_METADATA_TRACK"
+          ],
+          "enumDescriptions": [
+            "GPS in raw_gps_timeline takes precedence if it exists.",
+            "GPS in Camera Motion Metadata Track (CAMM) takes precedence if it exists."
+          ],
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. Unique identifier for the photo sequence. This also acts as a long running operation ID if uploading is performed asynchronously.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "imu": {
+          "$ref": "Imu",
+          "description": "Input only. Three axis IMU data for the collection. If this data is too large to put in the request, then it should be put in the CAMM track for the video. This data always takes precedence over the equivalent CAMM data, if it exists."
+        },
+        "photos": {
+          "description": "Output only. Photos with increasing timestamps.",
+          "items": {
+            "$ref": "Photo"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "processingState": {
+          "description": "Output only. The processing state of this sequence.",
+          "enum": [
+            "PROCESSING_STATE_UNSPECIFIED",
+            "PENDING",
+            "PROCESSING",
+            "PROCESSED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified, this is the default value.",
+            "The sequence has not yet started processing.",
+            "The sequence is currently in processing.",
+            "The sequence has finished processing including refining position.",
+            "The sequence failed processing. See FailureReason for more details."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "rawGpsTimeline": {
+          "description": "Input only. Raw GPS measurements with increasing timestamps from the device that aren't time synced with each photo. These raw measurements will be used to infer the pose of each frame. Required in input when InputType is VIDEO and raw GPS measurements are not in Camera Motion Metadata Track (CAMM). User can indicate which takes precedence using gps_source if raw GPS measurements are provided in both raw_gps_timeline and Camera Motion Metadata Track (CAMM).",
+          "items": {
+            "$ref": "Pose"
+          },
+          "type": "array"
+        },
+        "sequenceBounds": {
+          "$ref": "LatLngBounds",
+          "description": "Output only. A rectangular box that encapsulates every image in this photo sequence.",
+          "readOnly": true
+        },
+        "uploadReference": {
+          "$ref": "UploadRef",
+          "description": "Input only. Required when creating photo sequence. The resource name where the bytes of the photo sequence (in the form of video) are uploaded."
+        },
+        "uploadTime": {
+          "description": "Output only. The time this photo sequence was created in uSV Store service.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "viewCount": {
+          "description": "Output only. The total number of views that all the published images in this PhotoSequence have received.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Place": {
       "description": "Place metadata for an entity.",
       "id": "Place",
@@ -718,6 +1173,11 @@
           "format": "double",
           "type": "number"
         },
+        "gpsRecordTimestampUnixEpoch": {
+          "description": "Time of the GPS record since UTC epoch.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "heading": {
           "description": "The following pose parameters pertain to the center of the photo. They match https://developers.google.com/streetview/spherical-metadata. Compass heading, measured at the center of the photo in degrees clockwise from North. Value must be >=0 and <360. NaN indicates an unmeasured quantity.",
           "format": "double",
@@ -740,6 +1200,29 @@
           "description": "Roll, measured in degrees. Value must be >= 0 and <360. A value of 0 means level with the horizon. NaN indicates an unmeasured quantity.",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "ProcessingFailureDetails": {
+      "description": "Additional details to accompany the ProcessingFailureReason enum. This message is always expected to be used in conjunction with ProcessingFailureReason, and the oneof value set in this message should match the FailureReason.",
+      "id": "ProcessingFailureDetails",
+      "properties": {
+        "gpsDataGapDetails": {
+          "$ref": "GpsDataGapFailureDetails",
+          "description": "See GpsDataGapFailureDetails."
+        },
+        "imuDataGapDetails": {
+          "$ref": "ImuDataGapFailureDetails",
+          "description": "See ImuDataGapFailureDetails."
+        },
+        "insufficientGpsDetails": {
+          "$ref": "InsufficientGpsFailureDetails",
+          "description": "See InsufficientGpsFailureDetails."
+        },
+        "notOutdoorsDetails": {
+          "$ref": "NotOutdoorsFailureDetails",
+          "description": "See NotOutdoorsFailureDetails."
         }
       },
       "type": "object"
