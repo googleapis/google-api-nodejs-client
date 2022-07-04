@@ -5777,6 +5777,174 @@
                 }
               }
             },
+            "securityReports": {
+              "methods": {
+                "create": {
+                  "description": "Submit a report request to be processed in the background. If the submission succeeds, the API returns a 200 status and an ID that refer to the report request. In addition to the HTTP status 200, the `state` of \"enqueued\" means that the request succeeded.",
+                  "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/securityReports",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.environments.securityReports.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource name. Must be of the form `organizations/{org}/environments/{env}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/environments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/securityReports",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1SecurityReportQuery"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1SecurityReport"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Get security report status If the query is still in progress, the `state` is set to \"running\" After the query has completed successfully, `state` is set to \"completed\"",
+                  "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/securityReports/{securityReportsId}",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.environments.securityReports.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the security report to get. Must be of the form `organizations/{org}/environments/{env}/securityReports/{reportId}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/environments/[^/]+/securityReports/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1SecurityReport"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "getResult": {
+                  "description": "After the query is completed, use this API to retrieve the results as file. If the request succeeds, and there is a non-zero result set, the result is downloaded to the client as a zipped JSON file. The name of the downloaded file will be: OfflineQueryResult-.zip Example: `OfflineQueryResult-9cfc0d85-0f30-46d6-ae6f-318d0cb961bd.zip`",
+                  "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/securityReports/{securityReportsId}/result",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.environments.securityReports.getResult",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the security report result to get. Must be of the form `organizations/{org}/environments/{env}/securityReports/{reportId}/result`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/environments/[^/]+/securityReports/[^/]+/result$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleApiHttpBody"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "getResultView": {
+                  "description": "After the query is completed, use this API to view the query result when result size is small.",
+                  "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/securityReports/{securityReportsId}/resultView",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.environments.securityReports.getResultView",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the security report result view to get. Must be of the form `organizations/{org}/environments/{env}/securityReports/{reportId}/resultView`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/environments/[^/]+/securityReports/[^/]+/resultView$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1SecurityReportResultView"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Return a list of Security Reports",
+                  "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/securityReports",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.environments.securityReports.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "dataset": {
+                      "description": "Filter response list by dataset. Example: `api`, `mint`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "from": {
+                      "description": "Filter response list by returning security reports that created after this date time. Time must be in ISO date-time format like '2011-12-03T10:15:30Z'.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of security report to return in the list response.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Token returned from the previous list response to fetch the next page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource name. Must be of the form `organizations/{org}/environments/{env}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/environments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "Filter response list by security reports status.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "submittedBy": {
+                      "description": "Filter response list by user who submitted queries.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "to": {
+                      "description": "Filter response list by returning security reports that created before this date time. Time must be in ISO date-time format like '2011-12-03T10:16:30Z'.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/securityReports",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1ListSecurityReportsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "sharedflows": {
               "resources": {
                 "deployments": {
@@ -6436,6 +6604,179 @@
               "path": "v1/{+parent}/hostQueries",
               "response": {
                 "$ref": "GoogleCloudApigeeV1ListAsyncQueriesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
+        "hostSecurityReports": {
+          "methods": {
+            "create": {
+              "description": "Submit a query at host level to be processed in the background. If the submission of the query succeeds, the API returns a 201 status and an ID that refer to the query. In addition to the HTTP status 201, the `state` of \"enqueued\" means that the request succeeded.",
+              "flatPath": "v1/organizations/{organizationsId}/hostSecurityReports",
+              "httpMethod": "POST",
+              "id": "apigee.organizations.hostSecurityReports.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The parent resource name. Must be of the form `organizations/{org}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/hostSecurityReports",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1SecurityReportQuery"
+              },
+              "response": {
+                "$ref": "GoogleCloudApigeeV1SecurityReport"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Get status of a query submitted at host level. If the query is still in progress, the `state` is set to \"running\" After the query has completed successfully, `state` is set to \"completed\"",
+              "flatPath": "v1/organizations/{organizationsId}/hostSecurityReports/{hostSecurityReportsId}",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.hostSecurityReports.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the security report to get. Must be of the form `organizations/{org}/securityReports/{reportId}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/hostSecurityReports/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1SecurityReport"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "getResult": {
+              "description": "After the query is completed, use this API to retrieve the results. If the request succeeds, and there is a non-zero result set, the result is downloaded to the client as a zipped JSON file. The name of the downloaded file will be: OfflineQueryResult-.zip Example: `OfflineQueryResult-9cfc0d85-0f30-46d6-ae6f-318d0cb961bd.zip`",
+              "flatPath": "v1/organizations/{organizationsId}/hostSecurityReports/{hostSecurityReportsId}/result",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.hostSecurityReports.getResult",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the security report result to get. Must be of the form `organizations/{org}/securityReports/{reportId}/result`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/hostSecurityReports/[^/]+/result$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleApiHttpBody"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "getResultView": {
+              "description": "After the query is completed, use this API to view the query result when result size is small.",
+              "flatPath": "v1/organizations/{organizationsId}/hostSecurityReports/{hostSecurityReportsId}/resultView",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.hostSecurityReports.getResultView",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the security report result view to get. Must be of the form `organizations/{org}/securityReports/{reportId}/resultView`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/hostSecurityReports/[^/]+/resultView$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1SecurityReportResultView"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Return a list of Security Reports at host level.",
+              "flatPath": "v1/organizations/{organizationsId}/hostSecurityReports",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.hostSecurityReports.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "dataset": {
+                  "description": "Filter response list by dataset. Example: `api`, `mint`",
+                  "location": "query",
+                  "type": "string"
+                },
+                "envgroupHostname": {
+                  "description": "Required. Filter response list by hostname.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "from": {
+                  "description": "Filter response list by returning security reports that created after this date time. Time must be in ISO date-time format like '2011-12-03T10:15:30Z'.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "The maximum number of security report to return in the list response.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Token returned from the previous list response to fetch the next page.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent resource name. Must be of the form `organizations/{org}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "status": {
+                  "description": "Filter response list by security report status.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "submittedBy": {
+                  "description": "Filter response list by user who submitted queries.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "to": {
+                  "description": "Filter response list by returning security reports that created before this date time. Time must be in ISO date-time format like '2011-12-03T10:16:30Z'.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/hostSecurityReports",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1ListSecurityReportsResponse"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -7531,6 +7872,194 @@
             }
           }
         },
+        "securityProfiles": {
+          "methods": {
+            "get": {
+              "description": "GetSecurityProfile gets the specified security profile. Returns NOT_FOUND if security profile is not present for the specified organization.",
+              "flatPath": "v1/organizations/{organizationsId}/securityProfiles/{securityProfilesId}",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.securityProfiles.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Security profile in the following format: `organizations/{org}/securityProfiles/{profile}'. Profile may optionally contain revision ID. If revision ID is not provided, the response will contain latest revision by default. Example: organizations/testOrg/securityProfiles/testProfile@5",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/securityProfiles/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1SecurityProfile"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "ListSecurityProfiles lists all the security profiles associated with the org including attached and unattached profiles.",
+              "flatPath": "v1/organizations/{organizationsId}/securityProfiles",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.securityProfiles.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of profiles to return. The service may return fewer than this value. If unspecified, at most 50 profiles will be returned.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListSecurityProfiles` call. Provide this to retrieve the subsequent page.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. For a specific organization, list of all the security profiles. Format: `organizations/{org}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/securityProfiles",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1ListSecurityProfilesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "listRevisions": {
+              "description": "ListSecurityProfileRevisions lists all the revisions of the security profile.",
+              "flatPath": "v1/organizations/{organizationsId}/securityProfiles/{securityProfilesId}:listRevisions",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.securityProfiles.listRevisions",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. For a specific profile, list all the revisions. Format: `organizations/{org}/securityProfiles/{profile}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/securityProfiles/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "The maximum number of profile revisions to return. The service may return fewer than this value. If unspecified, at most 50 revisions will be returned.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListSecurityProfileRevisions` call. Provide this to retrieve the subsequent page.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:listRevisions",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1ListSecurityProfileRevisionsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          },
+          "resources": {
+            "environments": {
+              "methods": {
+                "computeEnvironmentScores": {
+                  "description": "ComputeEnvironmentScores calculates scores for requested time range for the specified security profile and environment.",
+                  "flatPath": "v1/organizations/{organizationsId}/securityProfiles/{securityProfilesId}/environments/{environmentsId}:computeEnvironmentScores",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.securityProfiles.environments.computeEnvironmentScores",
+                  "parameterOrder": [
+                    "profileEnvironment"
+                  ],
+                  "parameters": {
+                    "profileEnvironment": {
+                      "description": "Required. Name of organization and environment and profile id for which score needs to be computed. Format: organizations/{org}/securityProfiles/{profile}/environments/{env}",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/securityProfiles/[^/]+/environments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+profileEnvironment}:computeEnvironmentScores",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1ComputeEnvironmentScoresRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1ComputeEnvironmentScoresResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "create": {
+                  "description": "CreateSecurityProfileEnvironmentAssociation creates profile environment association i.e. attaches environment to security profile.",
+                  "flatPath": "v1/organizations/{organizationsId}/securityProfiles/{securityProfilesId}/environments",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.securityProfiles.environments.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Name of organization and security profile ID. Format: organizations/{org}/securityProfiles/{profile}",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/securityProfiles/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/environments",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1SecurityProfileEnvironmentAssociation"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1SecurityProfileEnvironmentAssociation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "DeleteSecurityProfileEnvironmentAssociation removes profile environment association i.e. detaches environment from security profile.",
+                  "flatPath": "v1/organizations/{organizationsId}/securityProfiles/{securityProfilesId}/environments/{environmentsId}",
+                  "httpMethod": "DELETE",
+                  "id": "apigee.organizations.securityProfiles.environments.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the environment attachment to delete. Format: organizations/{org}/securityProfiles/{profile}/environments/{env}",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/securityProfiles/[^/]+/environments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
+          }
+        },
         "sharedflows": {
           "methods": {
             "create": {
@@ -7986,7 +8515,7 @@
       }
     }
   },
-  "revision": "20220609",
+  "revision": "20220629",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -8115,6 +8644,10 @@
         "advancedApiOpsConfig": {
           "$ref": "GoogleCloudApigeeV1AdvancedApiOpsConfig",
           "description": "Configuration for the Advanced API Ops add-on."
+        },
+        "apiSecurityConfig": {
+          "$ref": "GoogleCloudApigeeV1ApiSecurityConfig",
+          "description": "Configuration for the API Security add-on."
         },
         "connectorsPlatformConfig": {
           "$ref": "GoogleCloudApigeeV1ConnectorsPlatformConfig",
@@ -8581,6 +9114,23 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1ApiSecurityConfig": {
+      "description": "Configurations of the API Security add-on.",
+      "id": "GoogleCloudApigeeV1ApiSecurityConfig",
+      "properties": {
+        "enabled": {
+          "description": "Flag that specifies whether the API security add-on is enabled.",
+          "type": "boolean"
+        },
+        "expiresAt": {
+          "description": "Output only. Time at which the API Security add-on expires in in milliseconds since epoch. If unspecified, the add-on will never expire.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1App": {
       "id": "GoogleCloudApigeeV1App",
       "properties": {
@@ -8996,6 +9546,62 @@
         },
         "name": {
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ComputeEnvironmentScoresRequest": {
+      "description": "Request for ComputeEnvironmentScores.",
+      "id": "GoogleCloudApigeeV1ComputeEnvironmentScoresRequest",
+      "properties": {
+        "filters": {
+          "description": "Optional. Filters are used to filter scored components. Return all the components if no filter is mentioned. Example: [{ \"scorePath\": \"/org@myorg/envgroup@myenvgroup/env@myenv/proxies/proxy@myproxy/source\" }, { \"scorePath\": \"/org@myorg/envgroup@myenvgroup/env@myenv/proxies/proxy@myproxy/target\", }] This will return components with path: \"/org@myorg/envgroup@myenvgroup/env@myenv/proxies/proxy@myproxy/source\" OR \"/org@myorg/envgroup@myenvgroup/env@myenv/proxies/proxy@myproxy/target\"",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1ComputeEnvironmentScoresRequestFilter"
+          },
+          "type": "array"
+        },
+        "pageSize": {
+          "description": "Optional. The maximum number of subcomponents to be returned in a single page. The service may return fewer than this value. If unspecified, at most 100 subcomponents will be returned in a single page.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageToken": {
+          "description": "Optional. A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "timeRange": {
+          "$ref": "GoogleTypeInterval",
+          "description": "Required. Time range for score calculation. At most 14 days of scores will be returned."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ComputeEnvironmentScoresRequestFilter": {
+      "description": "Filter scores by component path. Used custom filter instead of AIP-160 as the use cases are highly constrained and predictable.",
+      "id": "GoogleCloudApigeeV1ComputeEnvironmentScoresRequestFilter",
+      "properties": {
+        "scorePath": {
+          "description": "Optional. Return scores for this component. Example: \"/org@myorg/envgroup@myenvgroup/env@myenv/proxies/proxy@myproxy/source\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ComputeEnvironmentScoresResponse": {
+      "description": "Response for ComputeEnvironmentScores.",
+      "id": "GoogleCloudApigeeV1ComputeEnvironmentScoresResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A page token, received from a previous `ComputeScore` call. Provide this to retrieve the subsequent page.",
+          "type": "string"
+        },
+        "scores": {
+          "description": "List of scores. One score per day.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1Score"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -11423,6 +12029,60 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1ListSecurityProfileRevisionsResponse": {
+      "description": "Response for ListSecurityProfileRevisions.",
+      "id": "GoogleCloudApigeeV1ListSecurityProfileRevisionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "securityProfiles": {
+          "description": "List of security profile revisions. The revisions may be attached or unattached to any environment.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1SecurityProfile"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ListSecurityProfilesResponse": {
+      "description": "Response for ListSecurityProfiles.",
+      "id": "GoogleCloudApigeeV1ListSecurityProfilesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "securityProfiles": {
+          "description": "List of security profiles in the organization. The profiles may be attached or unattached to any environment. This will return latest revision of each profile.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1SecurityProfile"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ListSecurityReportsResponse": {
+      "description": "The response for SecurityReports.",
+      "id": "GoogleCloudApigeeV1ListSecurityReportsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "If the number of security reports exceeded the page size requested, the token can be used to fetch the next page in a subsequent call. If the response is the last page and there are no more reports to return this field is left empty.",
+          "type": "string"
+        },
+        "securityReports": {
+          "description": "The security reports belong to requested resource name.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1SecurityReport"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1ListSharedFlowsResponse": {
       "description": "To change this message, in the same CL add a change log in go/changing-api-proto-breaks-ui",
       "id": "GoogleCloudApigeeV1ListSharedFlowsResponse",
@@ -12844,6 +13504,477 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1Score": {
+      "description": "Represents Security Score.",
+      "id": "GoogleCloudApigeeV1Score",
+      "properties": {
+        "component": {
+          "$ref": "GoogleCloudApigeeV1ScoreComponent",
+          "description": "Component containing score, recommendations and actions."
+        },
+        "subcomponents": {
+          "description": "List of all the drilldown score components.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1ScoreComponent"
+          },
+          "type": "array"
+        },
+        "timeRange": {
+          "$ref": "GoogleTypeInterval",
+          "description": "Start and end time for the score."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ScoreComponent": {
+      "description": "Component is an individual security element that is scored.",
+      "id": "GoogleCloudApigeeV1ScoreComponent",
+      "properties": {
+        "calculateTime": {
+          "description": "Time when score was calculated.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "dataCaptureTime": {
+          "description": "Time in the requested time period when data was last captured to compute the score.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "drilldownPaths": {
+          "description": "List of paths for next components.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "recommendations": {
+          "description": "List of recommendations to improve API security.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1ScoreComponentRecommendation"
+          },
+          "type": "array"
+        },
+        "score": {
+          "description": "Score for the component.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "scorePath": {
+          "description": "Path of the component. Example: /org@myorg/envgroup@myenvgroup/proxies/proxy@myproxy",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ScoreComponentRecommendation": {
+      "description": "Recommendation based on security concerns and score.",
+      "id": "GoogleCloudApigeeV1ScoreComponentRecommendation",
+      "properties": {
+        "actions": {
+          "description": "Actions for the recommendation to improve the security score.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1ScoreComponentRecommendationAction"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Description of the recommendation.",
+          "type": "string"
+        },
+        "impact": {
+          "description": "Potential impact of this recommendation on the overall score. This denotes how important this recommendation is to improve the score.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "title": {
+          "description": "Title represents recommendation title.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ScoreComponentRecommendationAction": {
+      "description": "Action to improve security score.",
+      "id": "GoogleCloudApigeeV1ScoreComponentRecommendationAction",
+      "properties": {
+        "actionContext": {
+          "$ref": "GoogleCloudApigeeV1ScoreComponentRecommendationActionActionContext",
+          "description": "Action context for the action."
+        },
+        "description": {
+          "description": "Description of the action.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ScoreComponentRecommendationActionActionContext": {
+      "description": "Action context are all the relevant details for the action.",
+      "id": "GoogleCloudApigeeV1ScoreComponentRecommendationActionActionContext",
+      "properties": {
+        "documentationLink": {
+          "description": "Documentation link for the action.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1SecurityProfile": {
+      "description": "Represents a SecurityProfile resource.",
+      "id": "GoogleCloudApigeeV1SecurityProfile",
+      "properties": {
+        "displayName": {
+          "description": "Display name of the security profile.",
+          "type": "string"
+        },
+        "environments": {
+          "description": "List of environments attached to security profile.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1SecurityProfileEnvironment"
+          },
+          "type": "array"
+        },
+        "maxScore": {
+          "description": "Output only. Maximum security score that can be generated by this profile.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "minScore": {
+          "description": "Output only. Minimum security score that can be generated by this profile.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "name": {
+          "description": "Immutable. Name of the security profile resource. Format: organizations/{org}/securityProfiles/{profile}",
+          "type": "string"
+        },
+        "revisionCreateTime": {
+          "description": "Output only. The time when revision was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "revisionId": {
+          "description": "Output only. Revision ID of the security profile.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "revisionPublishTime": {
+          "description": "Output only. The time when revision was published. Once published, the security profile revision cannot be updated further and can be attached to environments.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "revisionUpdateTime": {
+          "description": "Output only. The time when revision was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "scoringConfigs": {
+          "description": "List of profile scoring configs in this revision.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1SecurityProfileScoringConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1SecurityProfileEnvironment": {
+      "description": "Environment information of attached environments. Scoring an environment is enabled only if it is attached to a security profile.",
+      "id": "GoogleCloudApigeeV1SecurityProfileEnvironment",
+      "properties": {
+        "attachTime": {
+          "description": "Output only. Time at which environment was attached to the security profile.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "environment": {
+          "description": "Output only. Name of the environment.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1SecurityProfileEnvironmentAssociation": {
+      "description": "Represents a SecurityProfileEnvironmentAssociation resource.",
+      "id": "GoogleCloudApigeeV1SecurityProfileEnvironmentAssociation",
+      "properties": {
+        "attachTime": {
+          "description": "Output only. The time when environment was attached to the security profile.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. Name of the profile-environment association resource. Format: organizations/{org}/securityProfiles/{profile}/environments/{env}",
+          "type": "string"
+        },
+        "securityProfileRevisionId": {
+          "description": "Revision ID of the security profile.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1SecurityProfileScoringConfig": {
+      "description": "Security configurations to manage scoring.",
+      "id": "GoogleCloudApigeeV1SecurityProfileScoringConfig",
+      "properties": {
+        "description": {
+          "description": "Description of the config.",
+          "type": "string"
+        },
+        "scorePath": {
+          "description": "Path of the component config used for scoring.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Title of the config.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1SecurityReport": {
+      "description": "SecurityReport saves all the information about the created security report.",
+      "id": "GoogleCloudApigeeV1SecurityReport",
+      "properties": {
+        "created": {
+          "description": "Creation time of the query.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display Name specified by the user.",
+          "type": "string"
+        },
+        "envgroupHostname": {
+          "description": "Hostname is available only when query is executed at host level.",
+          "type": "string"
+        },
+        "error": {
+          "description": "Error is set when query fails.",
+          "type": "string"
+        },
+        "executionTime": {
+          "description": "ExecutionTime is available only after the query is completed.",
+          "type": "string"
+        },
+        "queryParams": {
+          "$ref": "GoogleCloudApigeeV1SecurityReportMetadata",
+          "description": "Contains information like metrics, dimenstions etc of the Security Report."
+        },
+        "reportDefinitionId": {
+          "description": "Report Definition ID.",
+          "type": "string"
+        },
+        "result": {
+          "$ref": "GoogleCloudApigeeV1SecurityReportResultMetadata",
+          "description": "Result is available only after the query is completed."
+        },
+        "resultFileSize": {
+          "description": "ResultFileSize is available only after the query is completed.",
+          "type": "string"
+        },
+        "resultRows": {
+          "description": "ResultRows is available only after the query is completed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "self": {
+          "description": "Self link of the query. Example: `/organizations/myorg/environments/myenv/securityReports/9cfc0d85-0f30-46d6-ae6f-318d0cb961bd` or following format if query is running at host level: `/organizations/myorg/hostSecurityReports/9cfc0d85-0f30-46d6-ae6f-318d0cb961bd`",
+          "type": "string"
+        },
+        "state": {
+          "description": "Query state could be \"enqueued\", \"running\", \"completed\", \"failed\".",
+          "type": "string"
+        },
+        "updated": {
+          "description": "Output only. Last updated timestamp for the query.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1SecurityReportMetadata": {
+      "description": "Metadata for the security report.",
+      "id": "GoogleCloudApigeeV1SecurityReportMetadata",
+      "properties": {
+        "dimensions": {
+          "description": "Dimensions of the SecurityReport.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "endTimestamp": {
+          "description": "End timestamp of the query range.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "metrics": {
+          "description": "Metrics of the SecurityReport. Example: [\"name:bot_count,func:sum,alias:sum_bot_count\"]",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "mimeType": {
+          "description": "MIME type / Output format.",
+          "type": "string"
+        },
+        "startTimestamp": {
+          "description": "Start timestamp of the query range.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "timeUnit": {
+          "description": "Query GroupBy time unit. Example: \"seconds\", \"minute\", \"hour\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1SecurityReportQuery": {
+      "description": "Body structure when user makes a request to create a security report.",
+      "id": "GoogleCloudApigeeV1SecurityReportQuery",
+      "properties": {
+        "csvDelimiter": {
+          "description": "Delimiter used in the CSV file, if `outputFormat` is set to `csv`. Defaults to the `,` (comma) character. Supported delimiter characters include comma (`,`), pipe (`|`), and tab (`\\t`).",
+          "type": "string"
+        },
+        "dimensions": {
+          "description": "A list of dimensions. https://docs.apigee.com/api-platform/analytics/analytics-reference#dimensions",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "displayName": {
+          "description": "Security Report display name which users can specify.",
+          "type": "string"
+        },
+        "envgroupHostname": {
+          "description": "Hostname needs to be specified if query intends to run at host level. This field is only allowed when query is submitted by CreateHostSecurityReport where analytics data will be grouped by organization and hostname.",
+          "type": "string"
+        },
+        "filter": {
+          "description": "Boolean expression that can be used to filter data. Filter expressions can be combined using AND/OR terms and should be fully parenthesized to avoid ambiguity. See Analytics metrics, dimensions, and filters reference https://docs.apigee.com/api-platform/analytics/analytics-reference for more information on the fields available to filter on. For more information on the tokens that you use to build filter expressions, see Filter expression syntax. https://docs.apigee.com/api-platform/analytics/asynch-reports-api#filter-expression-syntax",
+          "type": "string"
+        },
+        "groupByTimeUnit": {
+          "description": "Time unit used to group the result set. Valid values include: second, minute, hour, day, week, or month. If a query includes groupByTimeUnit, then the result is an aggregation based on the specified time unit and the resultant timestamp does not include milliseconds precision. If a query omits groupByTimeUnit, then the resultant timestamp includes milliseconds precision.",
+          "type": "string"
+        },
+        "limit": {
+          "description": "Maximum number of rows that can be returned in the result.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "metrics": {
+          "description": "A list of Metrics.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1SecurityReportQueryMetric"
+          },
+          "type": "array"
+        },
+        "mimeType": {
+          "description": "Valid values include: `csv` or `json`. Defaults to `json`. Note: Configure the delimiter for CSV output using the csvDelimiter property.",
+          "type": "string"
+        },
+        "reportDefinitionId": {
+          "description": "Report Definition ID.",
+          "type": "string"
+        },
+        "timeRange": {
+          "description": "Required. Time range for the query. Can use the following predefined strings to specify the time range: `last60minutes` `last24hours` `last7days` Or, specify the timeRange as a structure describing start and end timestamps in the ISO format: yyyy-mm-ddThh:mm:ssZ. Example: \"timeRange\": { \"start\": \"2018-07-29T00:13:00Z\", \"end\": \"2018-08-01T00:18:00Z\" }",
+          "type": "any"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1SecurityReportQueryMetric": {
+      "description": "Metric of the Query",
+      "id": "GoogleCloudApigeeV1SecurityReportQueryMetric",
+      "properties": {
+        "aggregationFunction": {
+          "description": "Aggregation function: avg, min, max, or sum.",
+          "type": "string"
+        },
+        "alias": {
+          "description": "Alias for the metric. Alias will be used to replace metric name in query results.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Metric name.",
+          "type": "string"
+        },
+        "operator": {
+          "description": "One of `+`, `-`, `/`, `%`, `*`.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Operand value should be provided when operator is set.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1SecurityReportResultMetadata": {
+      "description": "Contains informations about the security report results.",
+      "id": "GoogleCloudApigeeV1SecurityReportResultMetadata",
+      "properties": {
+        "expires": {
+          "description": "Output only. Expire_time is set to 7 days after report creation. Query result will be unaccessable after this time. Example: \"2021-05-04T13:38:52-07:00\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "self": {
+          "description": "Self link of the query results. Example: `/organizations/myorg/environments/myenv/securityReports/9cfc0d85-0f30-46d6-ae6f-318d0cb961bd/result` or following format if query is running at host level: `/organizations/myorg/hostSecurityReports/9cfc0d85-0f30-46d6-ae6f-318d0cb961bd/result`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1SecurityReportResultView": {
+      "description": "The response for security report result view APIs.",
+      "id": "GoogleCloudApigeeV1SecurityReportResultView",
+      "properties": {
+        "code": {
+          "description": "Error code when there is a failure.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "error": {
+          "description": "Error message when there is a failure.",
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "GoogleCloudApigeeV1SecurityReportMetadata",
+          "description": "Metadata contains information like metrics, dimenstions etc of the security report."
+        },
+        "rows": {
+          "description": "Rows of security report result. Each row is a JSON object. Example: {sum(message_count): 1, developer_app: \"(not set)\",…}",
+          "items": {
+            "type": "any"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "State of retrieving ResultView.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1ServiceIssuersMapping": {
       "id": "GoogleCloudApigeeV1ServiceIssuersMapping",
       "properties": {
@@ -13727,6 +14858,23 @@
         },
         "title": {
           "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleTypeInterval": {
+      "description": "Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive). The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time.",
+      "id": "GoogleTypeInterval",
+      "properties": {
+        "endTime": {
+          "description": "Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.",
+          "format": "google-datetime",
           "type": "string"
         }
       },

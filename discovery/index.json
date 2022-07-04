@@ -573,6 +573,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "baremetalsolution:v1alpha1",
+      "name": "baremetalsolution",
+      "version": "v1alpha1",
+      "title": "Bare Metal Solution API",
+      "description": "Bare Metal Solution provides hardware to run specialized workloads with low latency on Google Cloud.",
+      "discoveryRestUrl": "https://baremetalsolution.googleapis.com/$discovery/rest?version=v1alpha1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/bare-metal",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "baremetalsolution:v1",
       "name": "baremetalsolution",
       "version": "v1",
@@ -609,6 +624,21 @@
       "title": "BeyondCorp API",
       "description": "Beyondcorp Enterprise provides identity and context aware access controls for enterprise resources and enables zero-trust access. Using the Beyondcorp Enterprise APIs, enterprises can set up multi-cloud and on-prem connectivity using the App Connector hybrid connectivity solution.",
       "discoveryRestUrl": "https://beyondcorp.googleapis.com/$discovery/rest?version=v1alpha",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "beyondcorp:v1",
+      "name": "beyondcorp",
+      "version": "v1",
+      "title": "BeyondCorp API",
+      "description": "Beyondcorp Enterprise provides identity and context aware access controls for enterprise resources and enables zero-trust access. Using the Beyondcorp Enterprise APIs, enterprises can set up multi-cloud and on-prem connectivity using the App Connector hybrid connectivity solution.",
+      "discoveryRestUrl": "https://beyondcorp.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -771,7 +801,7 @@
       "id": "blogger:v2",
       "name": "blogger",
       "version": "v2",
-      "title": "Blogger API v3",
+      "title": "Blogger API",
       "description": "The Blogger API provides access to posts, comments and pages of a Blogger blog.",
       "discoveryRestUrl": "https://blogger.googleapis.com/$discovery/rest?version=v2",
       "icons": {
@@ -786,7 +816,7 @@
       "id": "blogger:v3",
       "name": "blogger",
       "version": "v3",
-      "title": "Blogger API v3",
+      "title": "Blogger API",
       "description": "The Blogger API provides access to posts, comments and pages of a Blogger blog.",
       "discoveryRestUrl": "https://blogger.googleapis.com/$discovery/rest?version=v3",
       "icons": {

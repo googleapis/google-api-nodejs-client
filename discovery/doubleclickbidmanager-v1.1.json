@@ -280,7 +280,7 @@
       }
     }
   },
-  "revision": "20220607",
+  "revision": "20220622",
   "rootUrl": "https://doubleclickbidmanager.googleapis.com/",
   "schemas": {
     "ChannelGrouping": {
@@ -629,9 +629,11 @@
             "FILTER_VERIFICATION_AUDIBILITY_COMPLETE",
             "FILTER_MEDIA_TYPE",
             "FILTER_AUDIO_FEED_TYPE_NAME",
-            "FILTER_TRUEVIEW_TARGETING_EXPANSION"
+            "FILTER_TRUEVIEW_TARGETING_EXPANSION",
+            "FILTER_PUBLISHER_TRAFFIC_SOURCE"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -1301,9 +1303,11 @@
               "FILTER_VERIFICATION_AUDIBILITY_COMPLETE",
               "FILTER_MEDIA_TYPE",
               "FILTER_AUDIO_FEED_TYPE_NAME",
-              "FILTER_TRUEVIEW_TARGETING_EXPANSION"
+              "FILTER_TRUEVIEW_TARGETING_EXPANSION",
+              "FILTER_PUBLISHER_TRAFFIC_SOURCE"
             ],
             "enumDescriptions": [
+              "",
               "",
               "",
               "",
@@ -2997,9 +3001,11 @@
             "FILTER_VERIFICATION_AUDIBILITY_COMPLETE",
             "FILTER_MEDIA_TYPE",
             "FILTER_AUDIO_FEED_TYPE_NAME",
-            "FILTER_TRUEVIEW_TARGETING_EXPANSION"
+            "FILTER_TRUEVIEW_TARGETING_EXPANSION",
+            "FILTER_PUBLISHER_TRAFFIC_SOURCE"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",

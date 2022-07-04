@@ -69,6 +69,7 @@ export {authorizedbuyersmarketplace_v1} from './apis/authorizedbuyersmarketplace
 export {baremetalsolution_v1} from './apis/baremetalsolution/v1';
 export {baremetalsolution_v1alpha1} from './apis/baremetalsolution/v1alpha1';
 export {baremetalsolution_v2} from './apis/baremetalsolution/v2';
+export {beyondcorp_v1} from './apis/beyondcorp/v1';
 export {beyondcorp_v1alpha} from './apis/beyondcorp/v1alpha';
 export {bigquery_v2} from './apis/bigquery/v2';
 export {bigqueryconnection_v1beta1} from './apis/bigqueryconnection/v1beta1';

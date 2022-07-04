@@ -4,6 +4,14 @@
     "package": "@google-cloud/access-approval"
   },
   {
+    "api": "accesscontextmanager",
+    "package": "@google-cloud/access-context-manager"
+  },
+  {
+    "api": "notebooks",
+    "package": "@google-cloud/notebooks"
+  },
+  {
     "api": "apigateway",
     "package": "@google-cloud/api-gateway"
   },
@@ -12,12 +20,28 @@
     "package": "@google-cloud/apigee-connect"
   },
   {
+    "api": "appengine",
+    "package": "@google-cloud/appengine-admin"
+  },
+  {
+    "api": "artifactregistry",
+    "package": "@google-cloud/artifact-registry"
+  },
+  {
     "api": "cloudasset",
     "package": "@google-cloud/asset"
   },
   {
+    "api": "assuredworkloads",
+    "package": "@google-cloud/assured-workloads"
+  },
+  {
     "api": "automl",
     "package": "@google-cloud/automl"
+  },
+  {
+    "api": "gkebackup",
+    "package": "@google-cloud/gke-backup"
   },
   {
     "api": "bigtable",
@@ -32,12 +56,20 @@
     "package": "@google-cloud/billing-budgets"
   },
   {
+    "api": "binaryauthorization",
+    "package": "@google-cloud/binary-authorization"
+  },
+  {
     "api": "cloudbuild",
     "package": "@google-cloud/cloudbuild"
   },
   {
     "api": "privateca",
     "package": "@google-cloud/security-private-ca"
+  },
+  {
+    "api": "certificatemanager",
+    "package": "@google-cloud/certificate-manager"
   },
   {
     "api": "cloudchannel",
@@ -48,8 +80,16 @@
     "package": "@google-cloud/orchestration-airflow"
   },
   {
+    "api": "contactcenterinsights",
+    "package": "@google-cloud/contact-center-insights"
+  },
+  {
     "api": "datacatalog",
     "package": "@google-cloud/datacatalog"
+  },
+  {
+    "api": "datafusion",
+    "package": "@google-cloud/data-fusion"
   },
   {
     "api": "dlp",
@@ -60,8 +100,16 @@
     "package": "@google-cloud/dms"
   },
   {
+    "api": "dataplex",
+    "package": "@google-cloud/dataplex"
+  },
+  {
     "api": "dataproc",
     "package": "@google-cloud/dataproc"
+  },
+  {
+    "api": "metastore",
+    "package": "@google-cloud/dataproc-metastore"
   },
   {
     "api": "datastore",
@@ -70,6 +118,14 @@
   {
     "api": "datastore",
     "package": "@google-cloud/connect-datastore"
+  },
+  {
+    "api": "datastream",
+    "package": "@google-cloud/datastream"
+  },
+  {
+    "api": "clouddeploy",
+    "package": "@google-cloud/deploy"
   },
   {
     "api": "dialogflow",
@@ -88,12 +144,24 @@
     "package": "@google-cloud/documentai"
   },
   {
+    "api": "domains",
+    "package": "@google-cloud/domains"
+  },
+  {
+    "api": "clouderrorreporting",
+    "package": "@google-cloud/error-reporting"
+  },
+  {
     "api": "essentialcontacts",
     "package": "@google-cloud/essential-contacts"
   },
   {
     "api": "eventarc",
     "package": "@google-cloud/eventarc"
+  },
+  {
+    "api": "publishing",
+    "package": "@google-cloud/eventarc-publishing"
   },
   {
     "api": "file",
@@ -156,8 +224,16 @@
     "package": "@google-cloud/policy-troubleshooter"
   },
   {
+    "api": "iamcredentials",
+    "package": "@google-cloud/iam-credentials"
+  },
+  {
     "api": "iap",
     "package": "@google-cloud/iap"
+  },
+  {
+    "api": "ids",
+    "package": "@google-cloud/ids"
   },
   {
     "api": "cloudiot",
@@ -170,6 +246,10 @@
   {
     "api": "container",
     "package": "@google-cloud/container"
+  },
+  {
+    "api": "livestream",
+    "package": "@google-cloud/livestream"
   },
   {
     "api": "logging",
@@ -188,8 +268,16 @@
     "package": "@google-cloud/managed-identities"
   },
   {
+    "api": "mediatranslation",
+    "package": "@google-cloud/media-translation"
+  },
+  {
     "api": "memcache",
     "package": "@google-cloud/memcache"
+  },
+  {
+    "api": "vmmigration",
+    "package": "@google-cloud/vmmigration"
   },
   {
     "api": "monitoring",
@@ -200,8 +288,16 @@
     "package": "@google-cloud/language"
   },
   {
+    "api": "networkconnectivity",
+    "package": "@google-cloud/network-connectivity"
+  },
+  {
     "api": "networkmanagement",
     "package": "@google-cloud/network-management"
+  },
+  {
+    "api": "cloudoptimization",
+    "package": "@google-cloud/optimization"
   },
   {
     "api": "orgpolicy",
@@ -236,6 +332,10 @@
     "package": "@google-cloud/redis"
   },
   {
+    "api": "cloudresourcemanager",
+    "package": "@google-cloud/resource-manager"
+  },
+  {
     "api": "resourcesettings",
     "package": "@google-cloud/resource-settings"
   },
@@ -256,8 +356,16 @@
     "package": "@google-cloud/security-center"
   },
   {
+    "api": "servicecontrol",
+    "package": "@google-cloud/service-control"
+  },
+  {
     "api": "servicedirectory",
     "package": "@google-cloud/service-directory"
+  },
+  {
+    "api": "servicemanagement",
+    "package": "@google-cloud/service-management"
   },
   {
     "api": "serviceusage",
@@ -274,6 +382,10 @@
   {
     "api": "speech",
     "package": "@google-cloud/speech"
+  },
+  {
+    "api": "clouddebugger",
+    "package": "@google-cloud/debug-agent"
   },
   {
     "api": "monitoring",
@@ -340,40 +452,12 @@
     "package": "@google-cloud/workflows"
   },
   {
-    "api": "accesscontextmanager",
-    "package": "@google-cloud/access-context-manager"
-  },
-  {
-    "api": "notebooks",
-    "package": "@google-cloud/notebooks"
-  },
-  {
-    "api": "appengine",
-    "package": "@google-cloud/appengine-admin"
+    "api": "analyticshub",
+    "package": "@google-cloud/bigquery-data-exchange"
   },
   {
     "api": "area120tables",
     "package": "@google/area120-tables"
-  },
-  {
-    "api": "artifactregistry",
-    "package": "@google-cloud/artifact-registry"
-  },
-  {
-    "api": "assuredworkloads",
-    "package": "@google-cloud/assured-workloads"
-  },
-  {
-    "api": "binaryauthorization",
-    "package": "@google-cloud/binary-authorization"
-  },
-  {
-    "api": "contactcenterinsights",
-    "package": "@google-cloud/contact-center-insights"
-  },
-  {
-    "api": "datafusion",
-    "package": "@google-cloud/data-fusion"
   },
   {
     "api": "datalabeling",
@@ -388,30 +472,6 @@
     "package": "@google-cloud/dataflow"
   },
   {
-    "api": "dataplex",
-    "package": "@google-cloud/dataplex"
-  },
-  {
-    "api": "metastore",
-    "package": "@google-cloud/dataproc-metastore"
-  },
-  {
-    "api": "datastream",
-    "package": "@google-cloud/datastream"
-  },
-  {
-    "api": "clouddeploy",
-    "package": "@google-cloud/deploy"
-  },
-  {
-    "api": "domains",
-    "package": "@google-cloud/domains"
-  },
-  {
-    "api": "clouderrorreporting",
-    "package": "@google-cloud/error-reporting"
-  },
-  {
     "api": "connectgateway",
     "package": "@google-cloud/gke-connect-gateway"
   },
@@ -424,32 +484,8 @@
     "package": "@google-analytics/data"
   },
   {
-    "api": "iamcredentials",
-    "package": "@google-cloud/iam-credentials"
-  },
-  {
-    "api": "ids",
-    "package": "@google-cloud/ids"
-  },
-  {
     "api": "lifesciences",
     "package": "@google-cloud/life-sciences"
-  },
-  {
-    "api": "livestream",
-    "package": "@google-cloud/livestream"
-  },
-  {
-    "api": "mediatranslation",
-    "package": "@google-cloud/media-translation"
-  },
-  {
-    "api": "vmmigration",
-    "package": "@google-cloud/vmmigration"
-  },
-  {
-    "api": "networkconnectivity",
-    "package": "@google-cloud/network-connectivity"
   },
   {
     "api": "networksecurity",
@@ -464,23 +500,15 @@
     "package": "@google-cloud/private-catalog"
   },
   {
-    "api": "cloudresourcemanager",
-    "package": "@google-cloud/resource-manager"
-  },
-  {
-    "api": "servicecontrol",
-    "package": "@google-cloud/service-control"
-  },
-  {
-    "api": "servicemanagement",
-    "package": "@google-cloud/service-management"
-  },
-  {
-    "api": "clouddebugger",
-    "package": "@google-cloud/debug-agent"
+    "api": "run",
+    "package": "@google-cloud/run"
   },
   {
     "api": "cloudtrace",
     "package": "@google-cloud/trace-agent"
+  },
+  {
+    "api": "stitcher",
+    "package": "@google-cloud/video-stitcher"
   }
 ]
