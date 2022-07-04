@@ -300,6 +300,10 @@ export namespace connectors_v1 {
      */
     description?: string | null;
     /**
+     * Output only. Outbound domains/hosts needs to be allowlisted.
+     */
+    egressBackends?: string[] | null;
+    /**
      * Output only. GCR location where the envoy image is stored. formatted like: gcr.io/{bucketName\}/{imageName\}
      */
     envoyImageLocation?: string | null;
@@ -1025,10 +1029,6 @@ export namespace connectors_v1 {
      */
     locationId?: string | null;
     /**
-     * Output only. Resource name of the form: `projects/x/locations/x/runtimeConfig`
-     */
-    name?: string | null;
-    /**
      * Output only. The endpoint of the connectors runtime ingress.
      */
     runtimeEndpoint?: string | null;
@@ -1093,6 +1093,9 @@ export namespace connectors_v1 {
      */
     sourceType?: string | null;
   }
+  /**
+   * Parameters to support Ssh public key Authentication.
+   */
   export interface Schema$SshPublicKey {
     /**
      * Format of SSH Client cert.
@@ -1373,7 +1376,6 @@ export namespace connectors_v1 {
      *   //   "controlPlaneSubscription": "my_controlPlaneSubscription",
      *   //   "controlPlaneTopic": "my_controlPlaneTopic",
      *   //   "locationId": "my_locationId",
-     *   //   "name": "my_name",
      *   //   "runtimeEndpoint": "my_runtimeEndpoint",
      *   //   "schemaGcsBucket": "my_schemaGcsBucket",
      *   //   "serviceDirectory": "my_serviceDirectory",
@@ -1704,6 +1706,7 @@ export namespace connectors_v1 {
      *       //   "connectorVersion": "my_connectorVersion",
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "egressBackends": [],
      *       //   "envoyImageLocation": "my_envoyImageLocation",
      *       //   "imageLocation": "my_imageLocation",
      *       //   "labels": {},
@@ -1991,6 +1994,7 @@ export namespace connectors_v1 {
      *   //   "connectorVersion": "my_connectorVersion",
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "egressBackends": [],
      *   //   "envoyImageLocation": "my_envoyImageLocation",
      *   //   "imageLocation": "my_imageLocation",
      *   //   "labels": {},
@@ -2541,7 +2545,7 @@ export namespace connectors_v1 {
      *   const res = await connectors.projects.locations.connections.patch({
      *     // Output only. Resource name of the Connection. Format: projects/{project\}/locations/{location\}/connections/{connection\}
      *     name: 'projects/my-project/locations/my-location/connections/my-connection',
-     *     // Required. Field mask is used to specify the fields to be overwritten in the Connection resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     *     // Field mask is used to specify the fields to be overwritten in the Connection resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2553,6 +2557,7 @@ export namespace connectors_v1 {
      *       //   "connectorVersion": "my_connectorVersion",
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "egressBackends": [],
      *       //   "envoyImageLocation": "my_envoyImageLocation",
      *       //   "imageLocation": "my_imageLocation",
      *       //   "labels": {},
@@ -3043,7 +3048,7 @@ export namespace connectors_v1 {
      */
     name?: string;
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the Connection resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     * Field mask is used to specify the fields to be overwritten in the Connection resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      */
     updateMask?: string;
 

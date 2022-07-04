@@ -436,7 +436,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Field mask is used to specify the fields to be overwritten in the Connection resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "description": "Field mask is used to specify the fields to be overwritten in the Connection resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -1055,7 +1055,7 @@
       }
     }
   },
-  "revision": "20220603",
+  "revision": "20220616",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1328,6 +1328,14 @@
         "description": {
           "description": "Optional. Description of the resource.",
           "type": "string"
+        },
+        "egressBackends": {
+          "description": "Output only. Outbound domains/hosts needs to be allowlisted.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "envoyImageLocation": {
           "description": "Output only. GCR location where the envoy image is stored. formatted like: gcr.io/{bucketName}/{imageName}",
@@ -2647,11 +2655,6 @@
           "readOnly": true,
           "type": "string"
         },
-        "name": {
-          "description": "Output only. Resource name of the form: `projects/*/locations/*/runtimeConfig`",
-          "readOnly": true,
-          "type": "string"
-        },
         "runtimeEndpoint": {
           "description": "Output only. The endpoint of the connectors runtime ingress.",
           "readOnly": true,
@@ -2764,6 +2767,7 @@
       "type": "object"
     },
     "SshPublicKey": {
+      "description": "Parameters to support Ssh public key Authentication.",
       "id": "SshPublicKey",
       "properties": {
         "certType": {
