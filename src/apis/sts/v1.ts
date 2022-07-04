@@ -223,7 +223,7 @@ export namespace sts_v1 {
      */
     grantType?: string | null;
     /**
-     * A set of features that Security Token Service supports, in addition to the standard OAuth 2.0 token exchange, formatted as a serialized JSON object of Options.
+     * A set of features that Security Token Service supports, in addition to the standard OAuth 2.0 token exchange, formatted as a serialized JSON object of Options. The size of the parameter value must not exceed 4096 characters.
      */
     options?: string | null;
     /**
