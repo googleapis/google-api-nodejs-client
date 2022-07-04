@@ -201,7 +201,7 @@ export namespace firebase_v1beta1 {
      */
     apiKeyId?: string | null;
     /**
-     * Immutable. The globally unique, Firebase-assigned identifier for the `AndroidApp`. This identifier should be treated as an opaque token, as the data format is not specified.
+     * Output only. Immutable. The globally unique, Firebase-assigned identifier for the `AndroidApp`. This identifier should be treated as an opaque token, as the data format is not specified.
      */
     appId?: string | null;
     /**
@@ -217,9 +217,13 @@ export namespace firebase_v1beta1 {
      */
     packageName?: string | null;
     /**
-     * Immutable. A user-assigned unique identifier of the parent FirebaseProject for the `AndroidApp`.
+     * Output only. Immutable. A user-assigned unique identifier of the parent FirebaseProject for the `AndroidApp`.
      */
     projectId?: string | null;
+    /**
+     * Output only. The lifecycle state of the App.
+     */
+    state?: string | null;
   }
   /**
    * Configuration metadata of a single Firebase App for Android.
@@ -289,6 +293,10 @@ export namespace firebase_v1beta1 {
      * The platform of the Firebase App.
      */
     platform?: string | null;
+    /**
+     * Output only. The lifecycle state of the App.
+     */
+    state?: string | null;
   }
   /**
    * A `FirebaseProject` is the top-level Firebase entity. It is the container for Firebase Apps, Firebase Hosting sites, storage systems (Firebase Realtime Database, Cloud Firestore, Cloud Storage buckets), and other Firebase and Google Cloud Platform (GCP) resources. You create a `FirebaseProject` by calling AddFirebase and specifying an *existing* [GCP `Project`](https://cloud.google.com/resource-manager/reference/rest/v1/projects). This adds Firebase resources to the existing GCP `Project`. Since a FirebaseProject is actually also a GCP `Project`, a `FirebaseProject` has the same underlying GCP identifiers (`projectNumber` and `projectId`). This allows for easy interop with Google APIs.
@@ -328,7 +336,7 @@ export namespace firebase_v1beta1 {
      */
     apiKeyId?: string | null;
     /**
-     * Immutable. The globally unique, Firebase-assigned identifier for the `IosApp`. This identifier should be treated as an opaque token, as the data format is not specified.
+     * Output only. Immutable. The globally unique, Firebase-assigned identifier for the `IosApp`. This identifier should be treated as an opaque token, as the data format is not specified.
      */
     appId?: string | null;
     /**
@@ -348,9 +356,13 @@ export namespace firebase_v1beta1 {
      */
     name?: string | null;
     /**
-     * Immutable. A user-assigned unique identifier of the parent FirebaseProject for the `IosApp`.
+     * Output only. Immutable. A user-assigned unique identifier of the parent FirebaseProject for the `IosApp`.
      */
     projectId?: string | null;
+    /**
+     * Output only. The lifecycle state of the App.
+     */
+    state?: string | null;
     /**
      * The Apple Developer Team ID associated with the App in the App Store.
      */
@@ -618,6 +630,10 @@ export namespace firebase_v1beta1 {
      * Output only. Immutable. A user-assigned unique identifier of the parent FirebaseProject for the `WebApp`.
      */
     projectId?: string | null;
+    /**
+     * Output only. The lifecycle state of the App.
+     */
+    state?: string | null;
     /**
      * Output only. Immutable. A unique, Firebase-assigned identifier for the `WebApp`. This identifier is only used to populate the `namespace` value for the `WebApp`. For most use cases, use `appId` to identify or reference the App. The `webId` value is only unique within a `FirebaseProject` and its associated Apps.
      */
@@ -2160,6 +2176,8 @@ export namespace firebase_v1beta1 {
      *     pageToken: 'placeholder-value',
      *     // The parent FirebaseProject for which to list Apps, in the format: projects/ PROJECT_IDENTIFIER Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
      *     parent: 'projects/my-project',
+     *     // Controls whether Apps in the DELETED state should be returned. Defaults to false.
+     *     showDeleted: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -2368,6 +2386,10 @@ export namespace firebase_v1beta1 {
      * The parent FirebaseProject for which to list Apps, in the format: projects/ PROJECT_IDENTIFIER Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
      */
     parent?: string;
+    /**
+     * Controls whether Apps in the DELETED state should be returned. Defaults to false.
+     */
+    showDeleted?: boolean;
   }
 
   export class Resource$Projects$Androidapps {
@@ -2420,7 +2442,8 @@ export namespace firebase_v1beta1 {
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
      *       //   "packageName": "my_packageName",
-     *       //   "projectId": "my_projectId"
+     *       //   "projectId": "my_projectId",
+     *       //   "state": "my_state"
      *       // }
      *     },
      *   });
@@ -2571,7 +2594,8 @@ export namespace firebase_v1beta1 {
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
      *   //   "packageName": "my_packageName",
-     *   //   "projectId": "my_projectId"
+     *   //   "projectId": "my_projectId",
+     *   //   "state": "my_state"
      *   // }
      * }
      *
@@ -2833,6 +2857,8 @@ export namespace firebase_v1beta1 {
      *     pageToken: 'placeholder-value',
      *     // The resource name of the parent FirebaseProject for which to list each associated AndroidApp, in the format: projects/PROJECT_IDENTIFIER /androidApps Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
      *     parent: 'projects/my-project',
+     *     // Controls whether Apps in the DELETED state should be returned. Defaults to false.
+     *     showDeleted: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -2971,7 +2997,7 @@ export namespace firebase_v1beta1 {
      *   const res = await firebase.projects.androidApps.patch({
      *     // The resource name of the AndroidApp, in the format: projects/ PROJECT_IDENTIFIER/androidApps/APP_ID * PROJECT_IDENTIFIER: the parent Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`. * APP_ID: the globally unique, Firebase-assigned identifier for the App (see [`appId`](../projects.androidApps#AndroidApp.FIELDS.app_id)).
      *     name: 'projects/my-project/androidApps/my-androidApp',
-     *     // Specifies which fields to update. Note that the fields `name`, `app_id`, `project_id`, and `package_name` are all immutable.
+     *     // Specifies which fields to update. Note that the fields `name`, `app_id`, `project_id`, `package_name`, and `state` are all immutable.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2983,7 +3009,8 @@ export namespace firebase_v1beta1 {
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
      *       //   "packageName": "my_packageName",
-     *       //   "projectId": "my_projectId"
+     *       //   "projectId": "my_projectId",
+     *       //   "state": "my_state"
      *       // }
      *     },
      *   });
@@ -2996,7 +3023,8 @@ export namespace firebase_v1beta1 {
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
      *   //   "packageName": "my_packageName",
-     *   //   "projectId": "my_projectId"
+     *   //   "projectId": "my_projectId",
+     *   //   "state": "my_state"
      *   // }
      * }
      *
@@ -3129,6 +3157,10 @@ export namespace firebase_v1beta1 {
      * The resource name of the parent FirebaseProject for which to list each associated AndroidApp, in the format: projects/PROJECT_IDENTIFIER /androidApps Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
      */
     parent?: string;
+    /**
+     * Controls whether Apps in the DELETED state should be returned. Defaults to false.
+     */
+    showDeleted?: boolean;
   }
   export interface Params$Resource$Projects$Androidapps$Patch
     extends StandardParameters {
@@ -3137,7 +3169,7 @@ export namespace firebase_v1beta1 {
      */
     name?: string;
     /**
-     * Specifies which fields to update. Note that the fields `name`, `app_id`, `project_id`, and `package_name` are all immutable.
+     * Specifies which fields to update. Note that the fields `name`, `app_id`, `project_id`, `package_name`, and `state` are all immutable.
      */
     updateMask?: string;
 
@@ -3977,6 +4009,7 @@ export namespace firebase_v1beta1 {
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
      *       //   "projectId": "my_projectId",
+     *       //   "state": "my_state",
      *       //   "teamId": "my_teamId"
      *       // }
      *     },
@@ -4130,6 +4163,7 @@ export namespace firebase_v1beta1 {
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
      *   //   "projectId": "my_projectId",
+     *   //   "state": "my_state",
      *   //   "teamId": "my_teamId"
      *   // }
      * }
@@ -4392,6 +4426,8 @@ export namespace firebase_v1beta1 {
      *     pageToken: 'placeholder-value',
      *     // The resource name of the parent FirebaseProject for which to list each associated IosApp, in the format: projects/PROJECT_IDENTIFIER/iosApps Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
      *     parent: 'projects/my-project',
+     *     // Controls whether Apps in the DELETED state should be returned. Defaults to false.
+     *     showDeleted: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -4528,7 +4564,7 @@ export namespace firebase_v1beta1 {
      *   const res = await firebase.projects.iosApps.patch({
      *     // The resource name of the IosApp, in the format: projects/PROJECT_IDENTIFIER /iosApps/APP_ID * PROJECT_IDENTIFIER: the parent Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`. * APP_ID: the globally unique, Firebase-assigned identifier for the App (see [`appId`](../projects.iosApps#IosApp.FIELDS.app_id)).
      *     name: 'projects/my-project/iosApps/my-iosApp',
-     *     // Specifies which fields to update. Note that the fields `name`, `appId`, `projectId`, and `bundleId` are all immutable.
+     *     // Specifies which fields to update. Note that the fields `name`, `appId`, `projectId`, `bundleId`, and `state` are all immutable
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4542,6 +4578,7 @@ export namespace firebase_v1beta1 {
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
      *       //   "projectId": "my_projectId",
+     *       //   "state": "my_state",
      *       //   "teamId": "my_teamId"
      *       // }
      *     },
@@ -4557,6 +4594,7 @@ export namespace firebase_v1beta1 {
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
      *   //   "projectId": "my_projectId",
+     *   //   "state": "my_state",
      *   //   "teamId": "my_teamId"
      *   // }
      * }
@@ -4690,6 +4728,10 @@ export namespace firebase_v1beta1 {
      * The resource name of the parent FirebaseProject for which to list each associated IosApp, in the format: projects/PROJECT_IDENTIFIER/iosApps Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
      */
     parent?: string;
+    /**
+     * Controls whether Apps in the DELETED state should be returned. Defaults to false.
+     */
+    showDeleted?: boolean;
   }
   export interface Params$Resource$Projects$Iosapps$Patch
     extends StandardParameters {
@@ -4698,7 +4740,7 @@ export namespace firebase_v1beta1 {
      */
     name?: string;
     /**
-     * Specifies which fields to update. Note that the fields `name`, `appId`, `projectId`, and `bundleId` are all immutable.
+     * Specifies which fields to update. Note that the fields `name`, `appId`, `projectId`, `bundleId`, and `state` are all immutable
      */
     updateMask?: string;
 
@@ -4757,6 +4799,7 @@ export namespace firebase_v1beta1 {
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
      *       //   "projectId": "my_projectId",
+     *       //   "state": "my_state",
      *       //   "webId": "my_webId"
      *       // }
      *     },
@@ -4909,6 +4952,7 @@ export namespace firebase_v1beta1 {
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
      *   //   "projectId": "my_projectId",
+     *   //   "state": "my_state",
      *   //   "webId": "my_webId"
      *   // }
      * }
@@ -5178,6 +5222,8 @@ export namespace firebase_v1beta1 {
      *     pageToken: 'placeholder-value',
      *     // The resource name of the parent FirebaseProject for which to list each associated WebApp, in the format: projects/PROJECT_IDENTIFIER/webApps Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
      *     parent: 'projects/my-project',
+     *     // Controls whether Apps in the DELETED state should be returned. Defaults to false.
+     *     showDeleted: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -5314,7 +5360,7 @@ export namespace firebase_v1beta1 {
      *   const res = await firebase.projects.webApps.patch({
      *     // The resource name of the WebApp, in the format: projects/PROJECT_IDENTIFIER /webApps/APP_ID * PROJECT_IDENTIFIER: the parent Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`. * APP_ID: the globally unique, Firebase-assigned identifier for the App (see [`appId`](../projects.webApps#WebApp.FIELDS.app_id)).
      *     name: 'projects/my-project/webApps/my-webApp',
-     *     // Specifies which fields to update. Note that the fields `name`, `appId`, and `projectId` are all immutable.
+     *     // Specifies which fields to update. Note that the fields `name`, `appId`, `projectId` and `state` are all immutable
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5327,6 +5373,7 @@ export namespace firebase_v1beta1 {
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
      *       //   "projectId": "my_projectId",
+     *       //   "state": "my_state",
      *       //   "webId": "my_webId"
      *       // }
      *     },
@@ -5341,6 +5388,7 @@ export namespace firebase_v1beta1 {
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
      *   //   "projectId": "my_projectId",
+     *   //   "state": "my_state",
      *   //   "webId": "my_webId"
      *   // }
      * }
@@ -5474,6 +5522,10 @@ export namespace firebase_v1beta1 {
      * The resource name of the parent FirebaseProject for which to list each associated WebApp, in the format: projects/PROJECT_IDENTIFIER/webApps Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
      */
     parent?: string;
+    /**
+     * Controls whether Apps in the DELETED state should be returned. Defaults to false.
+     */
+    showDeleted?: boolean;
   }
   export interface Params$Resource$Projects$Webapps$Patch
     extends StandardParameters {
@@ -5482,7 +5534,7 @@ export namespace firebase_v1beta1 {
      */
     name?: string;
     /**
-     * Specifies which fields to update. Note that the fields `name`, `appId`, and `projectId` are all immutable.
+     * Specifies which fields to update. Note that the fields `name`, `appId`, `projectId` and `state` are all immutable
      */
     updateMask?: string;
 

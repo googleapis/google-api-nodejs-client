@@ -449,6 +449,11 @@
               "pattern": "^projects/[^/]+$",
               "required": true,
               "type": "string"
+            },
+            "showDeleted": {
+              "description": "Controls whether Apps in the DELETED state should be returned. Defaults to false.",
+              "location": "query",
+              "type": "boolean"
             }
           },
           "path": "v1beta1/{+parent}:searchApps",
@@ -577,6 +582,11 @@
                   "pattern": "^projects/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "showDeleted": {
+                  "description": "Controls whether Apps in the DELETED state should be returned. Defaults to false.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1beta1/{+parent}/androidApps",
@@ -607,7 +617,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Specifies which fields to update. Note that the fields `name`, `app_id`, `project_id`, and `package_name` are all immutable.",
+                  "description": "Specifies which fields to update. Note that the fields `name`, `app_id`, `project_id`, `package_name`, and `state` are all immutable.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -905,6 +915,11 @@
                   "pattern": "^projects/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "showDeleted": {
+                  "description": "Controls whether Apps in the DELETED state should be returned. Defaults to false.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1beta1/{+parent}/iosApps",
@@ -935,7 +950,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Specifies which fields to update. Note that the fields `name`, `appId`, `projectId`, and `bundleId` are all immutable.",
+                  "description": "Specifies which fields to update. Note that the fields `name`, `appId`, `projectId`, `bundleId`, and `state` are all immutable",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -1068,6 +1083,11 @@
                   "pattern": "^projects/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "showDeleted": {
+                  "description": "Controls whether Apps in the DELETED state should be returned. Defaults to false.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1beta1/{+parent}/webApps",
@@ -1098,7 +1118,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Specifies which fields to update. Note that the fields `name`, `appId`, and `projectId` are all immutable.",
+                  "description": "Specifies which fields to update. Note that the fields `name`, `appId`, `projectId` and `state` are all immutable",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -1121,7 +1141,7 @@
       }
     }
   },
-  "revision": "20220612",
+  "revision": "20220630",
   "rootUrl": "https://firebase.googleapis.com/",
   "schemas": {
     "AddFirebaseRequest": {
@@ -1217,7 +1237,8 @@
           "type": "string"
         },
         "appId": {
-          "description": "Immutable. The globally unique, Firebase-assigned identifier for the `AndroidApp`. This identifier should be treated as an opaque token, as the data format is not specified.",
+          "description": "Output only. Immutable. The globally unique, Firebase-assigned identifier for the `AndroidApp`. This identifier should be treated as an opaque token, as the data format is not specified.",
+          "readOnly": true,
           "type": "string"
         },
         "displayName": {
@@ -1233,7 +1254,23 @@
           "type": "string"
         },
         "projectId": {
-          "description": "Immutable. A user-assigned unique identifier of the parent FirebaseProject for the `AndroidApp`.",
+          "description": "Output only. Immutable. A user-assigned unique identifier of the parent FirebaseProject for the `AndroidApp`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The lifecycle state of the App.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETED"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "The normal and active state.",
+            "The app has been soft deleted."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1331,6 +1368,21 @@
             "The Firebase App is associated with web."
           ],
           "type": "string"
+        },
+        "state": {
+          "description": "Output only. The lifecycle state of the App.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETED"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "The normal and active state.",
+            "The app has been soft deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1387,7 +1439,8 @@
           "type": "string"
         },
         "appId": {
-          "description": "Immutable. The globally unique, Firebase-assigned identifier for the `IosApp`. This identifier should be treated as an opaque token, as the data format is not specified.",
+          "description": "Output only. Immutable. The globally unique, Firebase-assigned identifier for the `IosApp`. This identifier should be treated as an opaque token, as the data format is not specified.",
+          "readOnly": true,
           "type": "string"
         },
         "appStoreId": {
@@ -1407,7 +1460,23 @@
           "type": "string"
         },
         "projectId": {
-          "description": "Immutable. A user-assigned unique identifier of the parent FirebaseProject for the `IosApp`.",
+          "description": "Output only. Immutable. A user-assigned unique identifier of the parent FirebaseProject for the `IosApp`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The lifecycle state of the App.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETED"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "The normal and active state.",
+            "The app has been soft deleted."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "teamId": {
@@ -1814,6 +1883,21 @@
         },
         "projectId": {
           "description": "Output only. Immutable. A user-assigned unique identifier of the parent FirebaseProject for the `WebApp`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The lifecycle state of the App.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETED"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "The normal and active state.",
+            "The app has been soft deleted."
+          ],
           "readOnly": true,
           "type": "string"
         },
