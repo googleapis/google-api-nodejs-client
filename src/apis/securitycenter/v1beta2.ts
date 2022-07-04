@@ -1046,6 +1046,27 @@ export namespace securitycenter_v1beta2 {
     yaraRuleSignature?: Schema$YaraRuleSignature;
   }
   /**
+   * Resource capturing the settings for the Rapid Vulnerability Detection service.
+   */
+  export interface Schema$RapidVulnerabilityDetectionSettings {
+    /**
+     * The configurations including the state of enablement for the service's different modules. The absence of a module in the map implies its configuration is inherited from its parent's.
+     */
+    modules?: {[key: string]: Schema$Config} | null;
+    /**
+     * The resource name of the RapidVulnerabilityDetectionSettings. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
+     */
+    name?: string | null;
+    /**
+     * The state of enablement for the service at its level of the resource hierarchy. A DISABLED state will override all module enablement_states to DISABLED.
+     */
+    serviceEnablementState?: string | null;
+    /**
+     * Output only. The time the settings were last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Additional Links
    */
   export interface Schema$Reference {
@@ -1207,6 +1228,7 @@ export namespace securitycenter_v1beta2 {
     context: APIRequestContext;
     containerThreatDetectionSettings: Resource$Folders$Containerthreatdetectionsettings;
     eventThreatDetectionSettings: Resource$Folders$Eventthreatdetectionsettings;
+    rapidVulnerabilityDetectionSettings: Resource$Folders$Rapidvulnerabilitydetectionsettings;
     securityHealthAnalyticsSettings: Resource$Folders$Securityhealthanalyticssettings;
     virtualMachineThreatDetectionSettings: Resource$Folders$Virtualmachinethreatdetectionsettings;
     webSecurityScannerSettings: Resource$Folders$Websecurityscannersettings;
@@ -1216,6 +1238,8 @@ export namespace securitycenter_v1beta2 {
         new Resource$Folders$Containerthreatdetectionsettings(this.context);
       this.eventThreatDetectionSettings =
         new Resource$Folders$Eventthreatdetectionsettings(this.context);
+      this.rapidVulnerabilityDetectionSettings =
+        new Resource$Folders$Rapidvulnerabilitydetectionsettings(this.context);
       this.securityHealthAnalyticsSettings =
         new Resource$Folders$Securityhealthanalyticssettings(this.context);
       this.virtualMachineThreatDetectionSettings =
@@ -1633,6 +1657,147 @@ export namespace securitycenter_v1beta2 {
         );
       } else {
         return createAPIRequest<Schema$OnboardingState>(parameters);
+      }
+    }
+
+    /**
+     * Get the RapidVulnerabilityDetectionSettings resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.folders.getRapidVulnerabilityDetectionSettings({
+     *       // Required. The name of the RapidVulnerabilityDetectionSettings to retrieve. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
+     *       name: 'folders/my-folder/rapidVulnerabilityDetectionSettings',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "modules": {},
+     *   //   "name": "my_name",
+     *   //   "serviceEnablementState": "my_serviceEnablementState",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getRapidVulnerabilityDetectionSettings(
+      params: Params$Resource$Folders$Getrapidvulnerabilitydetectionsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getRapidVulnerabilityDetectionSettings(
+      params?: Params$Resource$Folders$Getrapidvulnerabilitydetectionsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>;
+    getRapidVulnerabilityDetectionSettings(
+      params: Params$Resource$Folders$Getrapidvulnerabilitydetectionsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getRapidVulnerabilityDetectionSettings(
+      params: Params$Resource$Folders$Getrapidvulnerabilitydetectionsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>,
+      callback: BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+    ): void;
+    getRapidVulnerabilityDetectionSettings(
+      params: Params$Resource$Folders$Getrapidvulnerabilitydetectionsettings,
+      callback: BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+    ): void;
+    getRapidVulnerabilityDetectionSettings(
+      callback: BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+    ): void;
+    getRapidVulnerabilityDetectionSettings(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Getrapidvulnerabilitydetectionsettings
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Getrapidvulnerabilitydetectionsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Folders$Getrapidvulnerabilitydetectionsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RapidVulnerabilityDetectionSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RapidVulnerabilityDetectionSettings>(
+          parameters
+        );
       }
     }
 
@@ -2503,6 +2668,160 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
+     * Update the RapidVulnerabilityDetectionSettings resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.folders.updateRapidVulnerabilityDetectionSettings({
+     *       // The resource name of the RapidVulnerabilityDetectionSettings. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
+     *       name: 'folders/my-folder/rapidVulnerabilityDetectionSettings',
+     *       // The list of fields to be updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "modules": {},
+     *         //   "name": "my_name",
+     *         //   "serviceEnablementState": "my_serviceEnablementState",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "modules": {},
+     *   //   "name": "my_name",
+     *   //   "serviceEnablementState": "my_serviceEnablementState",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateRapidVulnerabilityDetectionSettings(
+      params: Params$Resource$Folders$Updaterapidvulnerabilitydetectionsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateRapidVulnerabilityDetectionSettings(
+      params?: Params$Resource$Folders$Updaterapidvulnerabilitydetectionsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>;
+    updateRapidVulnerabilityDetectionSettings(
+      params: Params$Resource$Folders$Updaterapidvulnerabilitydetectionsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateRapidVulnerabilityDetectionSettings(
+      params: Params$Resource$Folders$Updaterapidvulnerabilitydetectionsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>,
+      callback: BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+    ): void;
+    updateRapidVulnerabilityDetectionSettings(
+      params: Params$Resource$Folders$Updaterapidvulnerabilitydetectionsettings,
+      callback: BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+    ): void;
+    updateRapidVulnerabilityDetectionSettings(
+      callback: BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+    ): void;
+    updateRapidVulnerabilityDetectionSettings(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Updaterapidvulnerabilitydetectionsettings
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Updaterapidvulnerabilitydetectionsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Folders$Updaterapidvulnerabilitydetectionsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RapidVulnerabilityDetectionSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RapidVulnerabilityDetectionSettings>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Update the SecurityHealthAnalyticsSettings resource.
      * @example
      * ```js
@@ -2986,6 +3305,13 @@ export namespace securitycenter_v1beta2 {
      */
     name?: string;
   }
+  export interface Params$Resource$Folders$Getrapidvulnerabilitydetectionsettings
+    extends StandardParameters {
+    /**
+     * Required. The name of the RapidVulnerabilityDetectionSettings to retrieve. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
+     */
+    name?: string;
+  }
   export interface Params$Resource$Folders$Getsecuritycentersettings
     extends StandardParameters {
     /**
@@ -3045,6 +3371,22 @@ export namespace securitycenter_v1beta2 {
      * Request body metadata
      */
     requestBody?: Schema$EventThreatDetectionSettings;
+  }
+  export interface Params$Resource$Folders$Updaterapidvulnerabilitydetectionsettings
+    extends StandardParameters {
+    /**
+     * The resource name of the RapidVulnerabilityDetectionSettings. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
+     */
+    name?: string;
+    /**
+     * The list of fields to be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RapidVulnerabilityDetectionSettings;
   }
   export interface Params$Resource$Folders$Updatesecurityhealthanalyticssettings
     extends StandardParameters {
@@ -3410,6 +3752,165 @@ export namespace securitycenter_v1beta2 {
     extends StandardParameters {
     /**
      * Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
+     */
+    name?: string;
+  }
+
+  export class Resource$Folders$Rapidvulnerabilitydetectionsettings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Calculates the effective RapidVulnerabilityDetectionSettings based on its level in the resource hierarchy and its settings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.folders.rapidVulnerabilityDetectionSettings.calculate({
+     *       // Required. The name of the RapidVulnerabilityDetectionSettings to calculate. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
+     *       name: 'folders/my-folder/rapidVulnerabilityDetectionSettings',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "modules": {},
+     *   //   "name": "my_name",
+     *   //   "serviceEnablementState": "my_serviceEnablementState",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    calculate(
+      params: Params$Resource$Folders$Rapidvulnerabilitydetectionsettings$Calculate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    calculate(
+      params?: Params$Resource$Folders$Rapidvulnerabilitydetectionsettings$Calculate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>;
+    calculate(
+      params: Params$Resource$Folders$Rapidvulnerabilitydetectionsettings$Calculate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    calculate(
+      params: Params$Resource$Folders$Rapidvulnerabilitydetectionsettings$Calculate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>,
+      callback: BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+    ): void;
+    calculate(
+      params: Params$Resource$Folders$Rapidvulnerabilitydetectionsettings$Calculate,
+      callback: BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+    ): void;
+    calculate(
+      callback: BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+    ): void;
+    calculate(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Rapidvulnerabilitydetectionsettings$Calculate
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Rapidvulnerabilitydetectionsettings$Calculate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Folders$Rapidvulnerabilitydetectionsettings$Calculate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+name}:calculate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RapidVulnerabilityDetectionSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RapidVulnerabilityDetectionSettings>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Rapidvulnerabilitydetectionsettings$Calculate
+    extends StandardParameters {
+    /**
+     * Required. The name of the RapidVulnerabilityDetectionSettings to calculate. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
      */
     name?: string;
   }
@@ -3898,6 +4399,7 @@ export namespace securitycenter_v1beta2 {
     context: APIRequestContext;
     containerThreatDetectionSettings: Resource$Organizations$Containerthreatdetectionsettings;
     eventThreatDetectionSettings: Resource$Organizations$Eventthreatdetectionsettings;
+    rapidVulnerabilityDetectionSettings: Resource$Organizations$Rapidvulnerabilitydetectionsettings;
     securityHealthAnalyticsSettings: Resource$Organizations$Securityhealthanalyticssettings;
     virtualMachineThreatDetectionSettings: Resource$Organizations$Virtualmachinethreatdetectionsettings;
     webSecurityScannerSettings: Resource$Organizations$Websecurityscannersettings;
@@ -3909,6 +4411,10 @@ export namespace securitycenter_v1beta2 {
         );
       this.eventThreatDetectionSettings =
         new Resource$Organizations$Eventthreatdetectionsettings(this.context);
+      this.rapidVulnerabilityDetectionSettings =
+        new Resource$Organizations$Rapidvulnerabilitydetectionsettings(
+          this.context
+        );
       this.securityHealthAnalyticsSettings =
         new Resource$Organizations$Securityhealthanalyticssettings(
           this.context
@@ -4331,6 +4837,147 @@ export namespace securitycenter_v1beta2 {
         );
       } else {
         return createAPIRequest<Schema$OnboardingState>(parameters);
+      }
+    }
+
+    /**
+     * Get the RapidVulnerabilityDetectionSettings resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.organizations.getRapidVulnerabilityDetectionSettings({
+     *       // Required. The name of the RapidVulnerabilityDetectionSettings to retrieve. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
+     *       name: 'organizations/my-organization/rapidVulnerabilityDetectionSettings',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "modules": {},
+     *   //   "name": "my_name",
+     *   //   "serviceEnablementState": "my_serviceEnablementState",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getRapidVulnerabilityDetectionSettings(
+      params: Params$Resource$Organizations$Getrapidvulnerabilitydetectionsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getRapidVulnerabilityDetectionSettings(
+      params?: Params$Resource$Organizations$Getrapidvulnerabilitydetectionsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>;
+    getRapidVulnerabilityDetectionSettings(
+      params: Params$Resource$Organizations$Getrapidvulnerabilitydetectionsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getRapidVulnerabilityDetectionSettings(
+      params: Params$Resource$Organizations$Getrapidvulnerabilitydetectionsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>,
+      callback: BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+    ): void;
+    getRapidVulnerabilityDetectionSettings(
+      params: Params$Resource$Organizations$Getrapidvulnerabilitydetectionsettings,
+      callback: BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+    ): void;
+    getRapidVulnerabilityDetectionSettings(
+      callback: BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+    ): void;
+    getRapidVulnerabilityDetectionSettings(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Getrapidvulnerabilitydetectionsettings
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Getrapidvulnerabilitydetectionsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Getrapidvulnerabilitydetectionsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RapidVulnerabilityDetectionSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RapidVulnerabilityDetectionSettings>(
+          parameters
+        );
       }
     }
 
@@ -5335,6 +5982,162 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
+     * Update the RapidVulnerabilityDetectionSettings resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.organizations.updateRapidVulnerabilityDetectionSettings(
+     *       {
+     *         // The resource name of the RapidVulnerabilityDetectionSettings. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
+     *         name: 'organizations/my-organization/rapidVulnerabilityDetectionSettings',
+     *         // The list of fields to be updated.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "modules": {},
+     *           //   "name": "my_name",
+     *           //   "serviceEnablementState": "my_serviceEnablementState",
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "modules": {},
+     *   //   "name": "my_name",
+     *   //   "serviceEnablementState": "my_serviceEnablementState",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateRapidVulnerabilityDetectionSettings(
+      params: Params$Resource$Organizations$Updaterapidvulnerabilitydetectionsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateRapidVulnerabilityDetectionSettings(
+      params?: Params$Resource$Organizations$Updaterapidvulnerabilitydetectionsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>;
+    updateRapidVulnerabilityDetectionSettings(
+      params: Params$Resource$Organizations$Updaterapidvulnerabilitydetectionsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateRapidVulnerabilityDetectionSettings(
+      params: Params$Resource$Organizations$Updaterapidvulnerabilitydetectionsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>,
+      callback: BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+    ): void;
+    updateRapidVulnerabilityDetectionSettings(
+      params: Params$Resource$Organizations$Updaterapidvulnerabilitydetectionsettings,
+      callback: BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+    ): void;
+    updateRapidVulnerabilityDetectionSettings(
+      callback: BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+    ): void;
+    updateRapidVulnerabilityDetectionSettings(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Updaterapidvulnerabilitydetectionsettings
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Updaterapidvulnerabilitydetectionsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Updaterapidvulnerabilitydetectionsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RapidVulnerabilityDetectionSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RapidVulnerabilityDetectionSettings>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Update the SecurityHealthAnalyticsSettings resource.
      * @example
      * ```js
@@ -5822,6 +6625,13 @@ export namespace securitycenter_v1beta2 {
      */
     name?: string;
   }
+  export interface Params$Resource$Organizations$Getrapidvulnerabilitydetectionsettings
+    extends StandardParameters {
+    /**
+     * Required. The name of the RapidVulnerabilityDetectionSettings to retrieve. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
+     */
+    name?: string;
+  }
   export interface Params$Resource$Organizations$Getsecuritycentersettings
     extends StandardParameters {
     /**
@@ -5888,6 +6698,22 @@ export namespace securitycenter_v1beta2 {
      * Request body metadata
      */
     requestBody?: Schema$EventThreatDetectionSettings;
+  }
+  export interface Params$Resource$Organizations$Updaterapidvulnerabilitydetectionsettings
+    extends StandardParameters {
+    /**
+     * The resource name of the RapidVulnerabilityDetectionSettings. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
+     */
+    name?: string;
+    /**
+     * The list of fields to be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RapidVulnerabilityDetectionSettings;
   }
   export interface Params$Resource$Organizations$Updatesecurityhealthanalyticssettings
     extends StandardParameters {
@@ -6255,6 +7081,167 @@ export namespace securitycenter_v1beta2 {
     extends StandardParameters {
     /**
      * Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
+     */
+    name?: string;
+  }
+
+  export class Resource$Organizations$Rapidvulnerabilitydetectionsettings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Calculates the effective RapidVulnerabilityDetectionSettings based on its level in the resource hierarchy and its settings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.organizations.rapidVulnerabilityDetectionSettings.calculate(
+     *       {
+     *         // Required. The name of the RapidVulnerabilityDetectionSettings to calculate. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
+     *         name: 'organizations/my-organization/rapidVulnerabilityDetectionSettings',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "modules": {},
+     *   //   "name": "my_name",
+     *   //   "serviceEnablementState": "my_serviceEnablementState",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    calculate(
+      params: Params$Resource$Organizations$Rapidvulnerabilitydetectionsettings$Calculate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    calculate(
+      params?: Params$Resource$Organizations$Rapidvulnerabilitydetectionsettings$Calculate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>;
+    calculate(
+      params: Params$Resource$Organizations$Rapidvulnerabilitydetectionsettings$Calculate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    calculate(
+      params: Params$Resource$Organizations$Rapidvulnerabilitydetectionsettings$Calculate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>,
+      callback: BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+    ): void;
+    calculate(
+      params: Params$Resource$Organizations$Rapidvulnerabilitydetectionsettings$Calculate,
+      callback: BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+    ): void;
+    calculate(
+      callback: BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+    ): void;
+    calculate(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Rapidvulnerabilitydetectionsettings$Calculate
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Rapidvulnerabilitydetectionsettings$Calculate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Rapidvulnerabilitydetectionsettings$Calculate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+name}:calculate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RapidVulnerabilityDetectionSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RapidVulnerabilityDetectionSettings>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Rapidvulnerabilitydetectionsettings$Calculate
+    extends StandardParameters {
+    /**
+     * Required. The name of the RapidVulnerabilityDetectionSettings to calculate. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
      */
     name?: string;
   }
@@ -6745,6 +7732,7 @@ export namespace securitycenter_v1beta2 {
     containerThreatDetectionSettings: Resource$Projects$Containerthreatdetectionsettings;
     eventThreatDetectionSettings: Resource$Projects$Eventthreatdetectionsettings;
     locations: Resource$Projects$Locations;
+    rapidVulnerabilityDetectionSettings: Resource$Projects$Rapidvulnerabilitydetectionsettings;
     securityHealthAnalyticsSettings: Resource$Projects$Securityhealthanalyticssettings;
     virtualMachineThreatDetectionSettings: Resource$Projects$Virtualmachinethreatdetectionsettings;
     webSecurityScannerSettings: Resource$Projects$Websecurityscannersettings;
@@ -6755,6 +7743,8 @@ export namespace securitycenter_v1beta2 {
       this.eventThreatDetectionSettings =
         new Resource$Projects$Eventthreatdetectionsettings(this.context);
       this.locations = new Resource$Projects$Locations(this.context);
+      this.rapidVulnerabilityDetectionSettings =
+        new Resource$Projects$Rapidvulnerabilitydetectionsettings(this.context);
       this.securityHealthAnalyticsSettings =
         new Resource$Projects$Securityhealthanalyticssettings(this.context);
       this.virtualMachineThreatDetectionSettings =
@@ -7174,6 +8164,147 @@ export namespace securitycenter_v1beta2 {
         );
       } else {
         return createAPIRequest<Schema$OnboardingState>(parameters);
+      }
+    }
+
+    /**
+     * Get the RapidVulnerabilityDetectionSettings resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.projects.getRapidVulnerabilityDetectionSettings({
+     *       // Required. The name of the RapidVulnerabilityDetectionSettings to retrieve. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
+     *       name: 'projects/my-project/rapidVulnerabilityDetectionSettings',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "modules": {},
+     *   //   "name": "my_name",
+     *   //   "serviceEnablementState": "my_serviceEnablementState",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getRapidVulnerabilityDetectionSettings(
+      params: Params$Resource$Projects$Getrapidvulnerabilitydetectionsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getRapidVulnerabilityDetectionSettings(
+      params?: Params$Resource$Projects$Getrapidvulnerabilitydetectionsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>;
+    getRapidVulnerabilityDetectionSettings(
+      params: Params$Resource$Projects$Getrapidvulnerabilitydetectionsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getRapidVulnerabilityDetectionSettings(
+      params: Params$Resource$Projects$Getrapidvulnerabilitydetectionsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>,
+      callback: BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+    ): void;
+    getRapidVulnerabilityDetectionSettings(
+      params: Params$Resource$Projects$Getrapidvulnerabilitydetectionsettings,
+      callback: BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+    ): void;
+    getRapidVulnerabilityDetectionSettings(
+      callback: BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+    ): void;
+    getRapidVulnerabilityDetectionSettings(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Getrapidvulnerabilitydetectionsettings
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Getrapidvulnerabilitydetectionsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Getrapidvulnerabilitydetectionsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RapidVulnerabilityDetectionSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RapidVulnerabilityDetectionSettings>(
+          parameters
+        );
       }
     }
 
@@ -8044,6 +9175,160 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
+     * Update the RapidVulnerabilityDetectionSettings resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.projects.updateRapidVulnerabilityDetectionSettings({
+     *       // The resource name of the RapidVulnerabilityDetectionSettings. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
+     *       name: 'projects/my-project/rapidVulnerabilityDetectionSettings',
+     *       // The list of fields to be updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "modules": {},
+     *         //   "name": "my_name",
+     *         //   "serviceEnablementState": "my_serviceEnablementState",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "modules": {},
+     *   //   "name": "my_name",
+     *   //   "serviceEnablementState": "my_serviceEnablementState",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateRapidVulnerabilityDetectionSettings(
+      params: Params$Resource$Projects$Updaterapidvulnerabilitydetectionsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateRapidVulnerabilityDetectionSettings(
+      params?: Params$Resource$Projects$Updaterapidvulnerabilitydetectionsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>;
+    updateRapidVulnerabilityDetectionSettings(
+      params: Params$Resource$Projects$Updaterapidvulnerabilitydetectionsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateRapidVulnerabilityDetectionSettings(
+      params: Params$Resource$Projects$Updaterapidvulnerabilitydetectionsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>,
+      callback: BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+    ): void;
+    updateRapidVulnerabilityDetectionSettings(
+      params: Params$Resource$Projects$Updaterapidvulnerabilitydetectionsettings,
+      callback: BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+    ): void;
+    updateRapidVulnerabilityDetectionSettings(
+      callback: BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+    ): void;
+    updateRapidVulnerabilityDetectionSettings(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Updaterapidvulnerabilitydetectionsettings
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Updaterapidvulnerabilitydetectionsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Updaterapidvulnerabilitydetectionsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RapidVulnerabilityDetectionSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RapidVulnerabilityDetectionSettings>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Update the SecurityHealthAnalyticsSettings resource.
      * @example
      * ```js
@@ -8528,6 +9813,13 @@ export namespace securitycenter_v1beta2 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Getrapidvulnerabilitydetectionsettings
+    extends StandardParameters {
+    /**
+     * Required. The name of the RapidVulnerabilityDetectionSettings to retrieve. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Getsecuritycentersettings
     extends StandardParameters {
     /**
@@ -8587,6 +9879,22 @@ export namespace securitycenter_v1beta2 {
      * Request body metadata
      */
     requestBody?: Schema$EventThreatDetectionSettings;
+  }
+  export interface Params$Resource$Projects$Updaterapidvulnerabilitydetectionsettings
+    extends StandardParameters {
+    /**
+     * The resource name of the RapidVulnerabilityDetectionSettings. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
+     */
+    name?: string;
+    /**
+     * The list of fields to be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RapidVulnerabilityDetectionSettings;
   }
   export interface Params$Resource$Projects$Updatesecurityhealthanalyticssettings
     extends StandardParameters {
@@ -9461,6 +10769,167 @@ export namespace securitycenter_v1beta2 {
     extends StandardParameters {
     /**
      * Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
+     */
+    name?: string;
+  }
+
+  export class Resource$Projects$Rapidvulnerabilitydetectionsettings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Calculates the effective RapidVulnerabilityDetectionSettings based on its level in the resource hierarchy and its settings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.projects.rapidVulnerabilityDetectionSettings.calculate(
+     *       {
+     *         // Required. The name of the RapidVulnerabilityDetectionSettings to calculate. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
+     *         name: 'projects/my-project/rapidVulnerabilityDetectionSettings',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "modules": {},
+     *   //   "name": "my_name",
+     *   //   "serviceEnablementState": "my_serviceEnablementState",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    calculate(
+      params: Params$Resource$Projects$Rapidvulnerabilitydetectionsettings$Calculate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    calculate(
+      params?: Params$Resource$Projects$Rapidvulnerabilitydetectionsettings$Calculate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>;
+    calculate(
+      params: Params$Resource$Projects$Rapidvulnerabilitydetectionsettings$Calculate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    calculate(
+      params: Params$Resource$Projects$Rapidvulnerabilitydetectionsettings$Calculate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>,
+      callback: BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+    ): void;
+    calculate(
+      params: Params$Resource$Projects$Rapidvulnerabilitydetectionsettings$Calculate,
+      callback: BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+    ): void;
+    calculate(
+      callback: BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+    ): void;
+    calculate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Rapidvulnerabilitydetectionsettings$Calculate
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RapidVulnerabilityDetectionSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RapidVulnerabilityDetectionSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Rapidvulnerabilitydetectionsettings$Calculate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Rapidvulnerabilitydetectionsettings$Calculate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+name}:calculate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RapidVulnerabilityDetectionSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RapidVulnerabilityDetectionSettings>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Rapidvulnerabilitydetectionsettings$Calculate
+    extends StandardParameters {
+    /**
+     * Required. The name of the RapidVulnerabilityDetectionSettings to calculate. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
      */
     name?: string;
   }
