@@ -1711,6 +1711,10 @@ export namespace gkehub_v1alpha {
      */
     logDeniesEnabled?: boolean | null;
     /**
+     * Monitoring specifies the configuration of monitoring.
+     */
+    monitoring?: Schema$PolicyControllerMonitoringConfig;
+    /**
      * Enables the ability to mutate resources using Policy Controller.
      */
     mutationEnabled?: boolean | null;
@@ -1778,6 +1782,15 @@ export namespace gkehub_v1alpha {
      * The lifecycle state Policy Controller is in.
      */
     state?: string | null;
+  }
+  /**
+   * MonitoringConfig specifies the backends Policy Controller should export metrics to. For example, to specify metrics should be exported to Cloud Monitoring and Prometheus, specify backends: ["cloudmonitoring", "prometheus"]
+   */
+  export interface Schema$PolicyControllerMonitoringConfig {
+    /**
+     * Specifies the list of backends Policy Controller will export to. An empty list would effectively disable metrics export.
+     */
+    backends?: string[] | null;
   }
   /**
    * The config specifying which default library templates to install.

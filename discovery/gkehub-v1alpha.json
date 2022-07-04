@@ -1151,7 +1151,7 @@
       }
     }
   },
-  "revision": "20220613",
+  "revision": "20220621",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -3447,6 +3447,10 @@
           "description": "Logs all denies and dry run failures.",
           "type": "boolean"
         },
+        "monitoring": {
+          "$ref": "PolicyControllerMonitoringConfig",
+          "description": "Monitoring specifies the configuration of monitoring."
+        },
         "mutationEnabled": {
           "description": "Enables the ability to mutate resources using Policy Controller.",
           "type": "boolean"
@@ -3557,6 +3561,30 @@
             "In this state, the PC may still be operational, and only the PCH is unable to act. The hub should not issue instructions to change the PC state, or otherwise interfere with the on-cluster resources. Entering a HUB_ERROR state happens automatically when the PCH determines the hub is in an unhealthy state and it wishes to ‘take hands off’ to avoid corrupting the PC or other data."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PolicyControllerMonitoringConfig": {
+      "description": "MonitoringConfig specifies the backends Policy Controller should export metrics to. For example, to specify metrics should be exported to Cloud Monitoring and Prometheus, specify backends: [\"cloudmonitoring\", \"prometheus\"]",
+      "id": "PolicyControllerMonitoringConfig",
+      "properties": {
+        "backends": {
+          "description": "Specifies the list of backends Policy Controller will export to. An empty list would effectively disable metrics export.",
+          "items": {
+            "enum": [
+              "MONITORING_BACKEND_UNSPECIFIED",
+              "PROMETHEUS",
+              "CLOUD_MONITORING"
+            ],
+            "enumDescriptions": [
+              "Backend cannot be determined",
+              "Prometheus backend for monitoring",
+              "Stackdriver/Cloud Monitoring backend for monitoring"
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
