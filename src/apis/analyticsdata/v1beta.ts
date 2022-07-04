@@ -443,7 +443,7 @@ export namespace analyticsdata_v1beta {
      */
     betweenFilter?: Schema$BetweenFilter;
     /**
-     * The dimension name or metric name. Must be a name defined in dimensions or metrics.
+     * The dimension name or metric name. In most methods, dimensions & metrics can be used for the first time in this field. However in a RunPivotReportRequest, this field must be additionally specified by name in the RunPivotReportRequest's dimensions or metrics.
      */
     fieldName?: string | null;
     /**
@@ -929,7 +929,7 @@ export namespace analyticsdata_v1beta {
    */
   export interface Schema$RunRealtimeReportRequest {
     /**
-     * The filter clause of dimensions. Dimensions must be requested to be used in this filter. Metrics cannot be used in this filter.
+     * The filter clause of dimensions. Metrics cannot be used in this filter.
      */
     dimensionFilter?: Schema$FilterExpression;
     /**
@@ -945,7 +945,7 @@ export namespace analyticsdata_v1beta {
      */
     metricAggregations?: string[] | null;
     /**
-     * The filter clause of metrics. Applied at post aggregation phase, similar to SQL having-clause. Metrics must be requested to be used in this filter. Dimensions cannot be used in this filter.
+     * The filter clause of metrics. Applied at post aggregation phase, similar to SQL having-clause. Dimensions cannot be used in this filter.
      */
     metricFilter?: Schema$FilterExpression;
     /**
