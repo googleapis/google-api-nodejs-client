@@ -473,6 +473,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "simulateMaintenanceEvent": {
+                  "description": "Simulates a maintenance event.",
+                  "flatPath": "v2alpha1/projects/{projectsId}/locations/{locationsId}/nodes/{nodesId}:simulateMaintenanceEvent",
+                  "httpMethod": "POST",
+                  "id": "tpu.projects.locations.nodes.simulateMaintenanceEvent",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/nodes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2alpha1/{+name}:simulateMaintenanceEvent",
+                  "request": {
+                    "$ref": "SimulateMaintenanceEventRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "start": {
                   "description": "Starts a node.",
                   "flatPath": "v2alpha1/projects/{projectsId}/locations/{locationsId}/nodes/{nodesId}:start",
@@ -731,7 +759,7 @@
       }
     }
   },
-  "revision": "20220426",
+  "revision": "20220629",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorType": {
@@ -1379,6 +1407,20 @@
         "email": {
           "description": "The email address of the service identity.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SimulateMaintenanceEventRequest": {
+      "description": "Request for SimulateMaintenanceEvent.",
+      "id": "SimulateMaintenanceEventRequest",
+      "properties": {
+        "workerIds": {
+          "description": "The 0-based worker ID. If it is empty, worker ID 0 will be selected for maintenance event simulation. A maintenance event will only be fired on the first specified worker ID. Future implementations may support firing on multiple workers.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
