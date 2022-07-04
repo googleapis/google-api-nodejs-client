@@ -524,6 +524,10 @@ export namespace assuredworkloads_v1 {
      */
     complianceRegime?: string | null;
     /**
+     * Output only. Count of active Violations in the Workload.
+     */
+    complianceStatus?: Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadComplianceStatus;
+    /**
      * Output only. Immutable. The Workload creation timestamp.
      */
     createTime?: string | null;
@@ -592,6 +596,15 @@ export namespace assuredworkloads_v1 {
      * Input only. Immutable. Settings used to create a CMEK crypto key.
      */
     kmsSettings?: Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadKMSSettings;
+  }
+  /**
+   * Represents the Compliance Status of this workload
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadComplianceStatus {
+    /**
+     * Optional. Count of active Violations in the Workload.
+     */
+    activeViolationCount?: number | null;
   }
   /**
    * Settings specific to resources needed for FedRAMP High.
