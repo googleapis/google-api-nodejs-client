@@ -280,7 +280,7 @@ export namespace cloudfunctions_v2beta {
     title?: string | null;
   }
   /**
-   * Describes a Cloud Function that contains user computation executed in response to an event. It encapsulate function and triggers configurations.
+   * Describes a Cloud Function that contains user computation executed in response to an event. It encapsulates function and trigger configurations.
    */
   export interface Schema$Function {
     /**
