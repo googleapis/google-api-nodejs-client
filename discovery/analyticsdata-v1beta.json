@@ -313,7 +313,7 @@
       }
     }
   },
-  "revision": "20220504",
+  "revision": "20220628",
   "rootUrl": "https://analyticsdata.googleapis.com/",
   "schemas": {
     "ActiveMetricRestriction": {
@@ -771,7 +771,7 @@
           "description": "A filter for two values."
         },
         "fieldName": {
-          "description": "The dimension name or metric name. Must be a name defined in dimensions or metrics.",
+          "description": "The dimension name or metric name. In most methods, dimensions & metrics can be used for the first time in this field. However in a RunPivotReportRequest, this field must be additionally specified by name in the RunPivotReportRequest's dimensions or metrics.",
           "type": "string"
         },
         "inListFilter": {
@@ -1498,7 +1498,7 @@
       "properties": {
         "dimensionFilter": {
           "$ref": "FilterExpression",
-          "description": "The filter clause of dimensions. Dimensions must be requested to be used in this filter. Metrics cannot be used in this filter."
+          "description": "The filter clause of dimensions. Metrics cannot be used in this filter."
         },
         "dimensions": {
           "description": "The dimensions requested and displayed.",
@@ -1535,7 +1535,7 @@
         },
         "metricFilter": {
           "$ref": "FilterExpression",
-          "description": "The filter clause of metrics. Applied at post aggregation phase, similar to SQL having-clause. Metrics must be requested to be used in this filter. Dimensions cannot be used in this filter."
+          "description": "The filter clause of metrics. Applied at post aggregation phase, similar to SQL having-clause. Dimensions cannot be used in this filter."
         },
         "metrics": {
           "description": "The metrics requested and displayed.",
