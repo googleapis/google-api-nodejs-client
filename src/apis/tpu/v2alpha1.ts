@@ -569,6 +569,15 @@ export namespace tpu_v2alpha1 {
     email?: string | null;
   }
   /**
+   * Request for SimulateMaintenanceEvent.
+   */
+  export interface Schema$SimulateMaintenanceEventRequest {
+    /**
+     * The 0-based worker ID. If it is empty, worker ID 0 will be selected for maintenance event simulation. A maintenance event will only be fired on the first specified worker ID. Future implementations may support firing on multiple workers.
+     */
+    workerIds?: string[] | null;
+  }
+  /**
    * Request for StartNode.
    */
   export interface Schema$StartNodeRequest {}
@@ -2303,6 +2312,149 @@ export namespace tpu_v2alpha1 {
     }
 
     /**
+     * Simulates a maintenance event.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tpu = google.tpu('v2alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tpu.projects.locations.nodes.simulateMaintenanceEvent({
+     *     // Required. The resource name.
+     *     name: 'projects/my-project/locations/my-location/nodes/my-node',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "workerIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    simulateMaintenanceEvent(
+      params: Params$Resource$Projects$Locations$Nodes$Simulatemaintenanceevent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    simulateMaintenanceEvent(
+      params?: Params$Resource$Projects$Locations$Nodes$Simulatemaintenanceevent,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    simulateMaintenanceEvent(
+      params: Params$Resource$Projects$Locations$Nodes$Simulatemaintenanceevent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    simulateMaintenanceEvent(
+      params: Params$Resource$Projects$Locations$Nodes$Simulatemaintenanceevent,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    simulateMaintenanceEvent(
+      params: Params$Resource$Projects$Locations$Nodes$Simulatemaintenanceevent,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    simulateMaintenanceEvent(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    simulateMaintenanceEvent(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Nodes$Simulatemaintenanceevent
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Nodes$Simulatemaintenanceevent;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Nodes$Simulatemaintenanceevent;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2alpha1/{+name}:simulateMaintenanceEvent'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Starts a node.
      * @example
      * ```js
@@ -2661,6 +2813,18 @@ export namespace tpu_v2alpha1 {
      * Request body metadata
      */
     requestBody?: Schema$Node;
+  }
+  export interface Params$Resource$Projects$Locations$Nodes$Simulatemaintenanceevent
+    extends StandardParameters {
+    /**
+     * Required. The resource name.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SimulateMaintenanceEventRequest;
   }
   export interface Params$Resource$Projects$Locations$Nodes$Start
     extends StandardParameters {
