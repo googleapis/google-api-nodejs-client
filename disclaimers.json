@@ -404,7 +404,7 @@
     "package": "@google-cloud/talent"
   },
   {
-    "api": "tasks",
+    "api": "cloudtasks",
     "package": "@google-cloud/tasks"
   },
   {
