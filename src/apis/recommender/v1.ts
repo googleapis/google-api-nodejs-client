@@ -236,6 +236,48 @@ export namespace recommender_v1 {
     stateMetadata?: {[key: string]: string} | null;
   }
   /**
+   * Configuration for an InsightType.
+   */
+  export interface Schema$GoogleCloudRecommenderV1InsightTypeConfig {
+    /**
+     * Allows clients to store small amounts of arbitrary data. Annotations must follow the Kubernetes syntax. The total size of all keys and values combined is limited to 256k. Key can have 2 segments: prefix (optional) and name (required), separated by a slash (/). Prefix must be a DNS subdomain. Name must be 63 characters or less, begin and end with alphanumerics, with dashes (-), underscores (_), dots (.), and alphanumerics between.
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
+     * A user-settable field to provide a human-readable name to be used in user interfaces.
+     */
+    displayName?: string | null;
+    /**
+     * Fingerprint of the InsightTypeConfig. Provides optimistic locking when updating.
+     */
+    etag?: string | null;
+    /**
+     * InsightTypeGenerationConfig which configures the generation of insights for this insight type.
+     */
+    insightTypeGenerationConfig?: Schema$GoogleCloudRecommenderV1InsightTypeGenerationConfig;
+    /**
+     * Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
+     */
+    name?: string | null;
+    /**
+     * Output only. Immutable. The revision ID of the config. A new revision is committed whenever the config is changed in any way. The format is an 8-character hexadecimal string.
+     */
+    revisionId?: string | null;
+    /**
+     * Last time when the config was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * A configuration to customize the generation of insights. Eg, customizing the lookback period considered when generating a insight.
+   */
+  export interface Schema$GoogleCloudRecommenderV1InsightTypeGenerationConfig {
+    /**
+     * Parameters for this InsightTypeGenerationConfig. These configs can be used by or are applied to all subtypes.
+     */
+    params?: {[key: string]: any} | null;
+  }
+  /**
    * Response to the `ListInsights` method.
    */
   export interface Schema$GoogleCloudRecommenderV1ListInsightsResponse {
@@ -456,6 +498,48 @@ export namespace recommender_v1 {
      * A map of metadata for the state, provided by user or automations systems.
      */
     stateMetadata?: {[key: string]: string} | null;
+  }
+  /**
+   * Configuration for a Recommender.
+   */
+  export interface Schema$GoogleCloudRecommenderV1RecommenderConfig {
+    /**
+     * Allows clients to store small amounts of arbitrary data. Annotations must follow the Kubernetes syntax. The total size of all keys and values combined is limited to 256k. Key can have 2 segments: prefix (optional) and name (required), separated by a slash (/). Prefix must be a DNS subdomain. Name must be 63 characters or less, begin and end with alphanumerics, with dashes (-), underscores (_), dots (.), and alphanumerics between.
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
+     * A user-settable field to provide a human-readable name to be used in user interfaces.
+     */
+    displayName?: string | null;
+    /**
+     * Fingerprint of the RecommenderConfig. Provides optimistic locking when updating.
+     */
+    etag?: string | null;
+    /**
+     * Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
+     */
+    name?: string | null;
+    /**
+     * RecommenderGenerationConfig which configures the Generation of recommendations for this recommender.
+     */
+    recommenderGenerationConfig?: Schema$GoogleCloudRecommenderV1RecommenderGenerationConfig;
+    /**
+     * Output only. Immutable. The revision ID of the config. A new revision is committed whenever the config is changed in any way. The format is an 8-character hexadecimal string.
+     */
+    revisionId?: string | null;
+    /**
+     * Last time when the config was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * A Configuration to customize the generation of recommendations. Eg, customizing the lookback period considered when generating a recommendation.
+   */
+  export interface Schema$GoogleCloudRecommenderV1RecommenderGenerationConfig {
+    /**
+     * Parameters for this RecommenderGenerationConfig. These configs can be used by or are applied to all subtypes.
+     */
+    params?: {[key: string]: any} | null;
   }
   /**
    * Contains various ways of describing the impact on Security.
@@ -3334,6 +3418,337 @@ export namespace recommender_v1 {
           this.context
         );
     }
+
+    /**
+     * Gets the requested InsightTypeConfig. There is only one instance of the config for each InsightType.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recommender.organizations.locations.insightTypes.getConfig({
+     *     // Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`
+     *     name: 'organizations/my-organization/locations/my-location/insightTypes/my-insightType/config',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "insightTypeGenerationConfig": {},
+     *   //   "name": "my_name",
+     *   //   "revisionId": "my_revisionId",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getConfig(
+      params: Params$Resource$Organizations$Locations$Insighttypes$Getconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getConfig(
+      params?: Params$Resource$Organizations$Locations$Insighttypes$Getconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1InsightTypeConfig>;
+    getConfig(
+      params: Params$Resource$Organizations$Locations$Insighttypes$Getconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getConfig(
+      params: Params$Resource$Organizations$Locations$Insighttypes$Getconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+    ): void;
+    getConfig(
+      params: Params$Resource$Organizations$Locations$Insighttypes$Getconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+    ): void;
+    getConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+    ): void;
+    getConfig(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Insighttypes$Getconfig
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Insighttypes$Getconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Insighttypes$Getconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecommenderV1InsightTypeConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecommenderV1InsightTypeConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an InsightTypeConfig change. This will create a new revision of the config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await recommender.organizations.locations.insightTypes.updateConfig({
+     *       // Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
+     *       name: 'organizations/my-organization/locations/my-location/insightTypes/my-insightType/config',
+     *       // The list of fields to be updated.
+     *       updateMask: 'placeholder-value',
+     *       // If true, validate the request and preview the change, but do not actually update it.
+     *       validateOnly: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "annotations": {},
+     *         //   "displayName": "my_displayName",
+     *         //   "etag": "my_etag",
+     *         //   "insightTypeGenerationConfig": {},
+     *         //   "name": "my_name",
+     *         //   "revisionId": "my_revisionId",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "insightTypeGenerationConfig": {},
+     *   //   "name": "my_name",
+     *   //   "revisionId": "my_revisionId",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateConfig(
+      params: Params$Resource$Organizations$Locations$Insighttypes$Updateconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateConfig(
+      params?: Params$Resource$Organizations$Locations$Insighttypes$Updateconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1InsightTypeConfig>;
+    updateConfig(
+      params: Params$Resource$Organizations$Locations$Insighttypes$Updateconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateConfig(
+      params: Params$Resource$Organizations$Locations$Insighttypes$Updateconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+    ): void;
+    updateConfig(
+      params: Params$Resource$Organizations$Locations$Insighttypes$Updateconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+    ): void;
+    updateConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+    ): void;
+    updateConfig(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Insighttypes$Updateconfig
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Insighttypes$Updateconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Insighttypes$Updateconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecommenderV1InsightTypeConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecommenderV1InsightTypeConfig>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Insighttypes$Getconfig
+    extends StandardParameters {
+    /**
+     * Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Insighttypes$Updateconfig
+    extends StandardParameters {
+    /**
+     * Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
+     */
+    name?: string;
+    /**
+     * The list of fields to be updated.
+     */
+    updateMask?: string;
+    /**
+     * If true, validate the request and preview the change, but do not actually update it.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRecommenderV1InsightTypeConfig;
   }
 
   export class Resource$Organizations$Locations$Insighttypes$Insights {
@@ -3850,6 +4265,337 @@ export namespace recommender_v1 {
           this.context
         );
     }
+
+    /**
+     * Gets the requested Recommender Config. There is only one instance of the config for each Recommender.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recommender.organizations.locations.recommenders.getConfig({
+     *     // Required. Name of the Recommendation Config to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
+     *     name: 'organizations/my-organization/locations/my-location/recommenders/my-recommender/config',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "recommenderGenerationConfig": {},
+     *   //   "revisionId": "my_revisionId",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getConfig(
+      params: Params$Resource$Organizations$Locations$Recommenders$Getconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getConfig(
+      params?: Params$Resource$Organizations$Locations$Recommenders$Getconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1RecommenderConfig>;
+    getConfig(
+      params: Params$Resource$Organizations$Locations$Recommenders$Getconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getConfig(
+      params: Params$Resource$Organizations$Locations$Recommenders$Getconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+    ): void;
+    getConfig(
+      params: Params$Resource$Organizations$Locations$Recommenders$Getconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+    ): void;
+    getConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+    ): void;
+    getConfig(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Recommenders$Getconfig
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Recommenders$Getconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Recommenders$Getconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecommenderV1RecommenderConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecommenderV1RecommenderConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a Recommender Config. This will create a new revision of the config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await recommender.organizations.locations.recommenders.updateConfig({
+     *       // Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
+     *       name: 'organizations/my-organization/locations/my-location/recommenders/my-recommender/config',
+     *       // The list of fields to be updated.
+     *       updateMask: 'placeholder-value',
+     *       // If true, validate the request and preview the change, but do not actually update it.
+     *       validateOnly: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "annotations": {},
+     *         //   "displayName": "my_displayName",
+     *         //   "etag": "my_etag",
+     *         //   "name": "my_name",
+     *         //   "recommenderGenerationConfig": {},
+     *         //   "revisionId": "my_revisionId",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "recommenderGenerationConfig": {},
+     *   //   "revisionId": "my_revisionId",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateConfig(
+      params: Params$Resource$Organizations$Locations$Recommenders$Updateconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateConfig(
+      params?: Params$Resource$Organizations$Locations$Recommenders$Updateconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1RecommenderConfig>;
+    updateConfig(
+      params: Params$Resource$Organizations$Locations$Recommenders$Updateconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateConfig(
+      params: Params$Resource$Organizations$Locations$Recommenders$Updateconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+    ): void;
+    updateConfig(
+      params: Params$Resource$Organizations$Locations$Recommenders$Updateconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+    ): void;
+    updateConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+    ): void;
+    updateConfig(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Recommenders$Updateconfig
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Recommenders$Updateconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Recommenders$Updateconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecommenderV1RecommenderConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecommenderV1RecommenderConfig>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Recommenders$Getconfig
+    extends StandardParameters {
+    /**
+     * Required. Name of the Recommendation Config to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Recommenders$Updateconfig
+    extends StandardParameters {
+    /**
+     * Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
+     */
+    name?: string;
+    /**
+     * The list of fields to be updated.
+     */
+    updateMask?: string;
+    /**
+     * If true, validate the request and preview the change, but do not actually update it.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRecommenderV1RecommenderConfig;
   }
 
   export class Resource$Organizations$Locations$Recommenders$Recommendations {
@@ -4739,6 +5485,336 @@ export namespace recommender_v1 {
         this.context
       );
     }
+
+    /**
+     * Gets the requested InsightTypeConfig. There is only one instance of the config for each InsightType.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recommender.projects.locations.insightTypes.getConfig({
+     *     // Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`
+     *     name: 'projects/my-project/locations/my-location/insightTypes/my-insightType/config',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "insightTypeGenerationConfig": {},
+     *   //   "name": "my_name",
+     *   //   "revisionId": "my_revisionId",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getConfig(
+      params: Params$Resource$Projects$Locations$Insighttypes$Getconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getConfig(
+      params?: Params$Resource$Projects$Locations$Insighttypes$Getconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1InsightTypeConfig>;
+    getConfig(
+      params: Params$Resource$Projects$Locations$Insighttypes$Getconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getConfig(
+      params: Params$Resource$Projects$Locations$Insighttypes$Getconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+    ): void;
+    getConfig(
+      params: Params$Resource$Projects$Locations$Insighttypes$Getconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+    ): void;
+    getConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+    ): void;
+    getConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Insighttypes$Getconfig
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Insighttypes$Getconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Insighttypes$Getconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecommenderV1InsightTypeConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecommenderV1InsightTypeConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an InsightTypeConfig change. This will create a new revision of the config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recommender.projects.locations.insightTypes.updateConfig({
+     *     // Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
+     *     name: 'projects/my-project/locations/my-location/insightTypes/my-insightType/config',
+     *     // The list of fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *     // If true, validate the request and preview the change, but do not actually update it.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "insightTypeGenerationConfig": {},
+     *       //   "name": "my_name",
+     *       //   "revisionId": "my_revisionId",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "insightTypeGenerationConfig": {},
+     *   //   "name": "my_name",
+     *   //   "revisionId": "my_revisionId",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateConfig(
+      params: Params$Resource$Projects$Locations$Insighttypes$Updateconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateConfig(
+      params?: Params$Resource$Projects$Locations$Insighttypes$Updateconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1InsightTypeConfig>;
+    updateConfig(
+      params: Params$Resource$Projects$Locations$Insighttypes$Updateconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateConfig(
+      params: Params$Resource$Projects$Locations$Insighttypes$Updateconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+    ): void;
+    updateConfig(
+      params: Params$Resource$Projects$Locations$Insighttypes$Updateconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+    ): void;
+    updateConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+    ): void;
+    updateConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Insighttypes$Updateconfig
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1InsightTypeConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Insighttypes$Updateconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Insighttypes$Updateconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecommenderV1InsightTypeConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecommenderV1InsightTypeConfig>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Insighttypes$Getconfig
+    extends StandardParameters {
+    /**
+     * Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Insighttypes$Updateconfig
+    extends StandardParameters {
+    /**
+     * Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
+     */
+    name?: string;
+    /**
+     * The list of fields to be updated.
+     */
+    updateMask?: string;
+    /**
+     * If true, validate the request and preview the change, but do not actually update it.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRecommenderV1InsightTypeConfig;
   }
 
   export class Resource$Projects$Locations$Insighttypes$Insights {
@@ -5251,6 +6327,336 @@ export namespace recommender_v1 {
           this.context
         );
     }
+
+    /**
+     * Gets the requested Recommender Config. There is only one instance of the config for each Recommender.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recommender.projects.locations.recommenders.getConfig({
+     *     // Required. Name of the Recommendation Config to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
+     *     name: 'projects/my-project/locations/my-location/recommenders/my-recommender/config',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "recommenderGenerationConfig": {},
+     *   //   "revisionId": "my_revisionId",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getConfig(
+      params: Params$Resource$Projects$Locations$Recommenders$Getconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getConfig(
+      params?: Params$Resource$Projects$Locations$Recommenders$Getconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1RecommenderConfig>;
+    getConfig(
+      params: Params$Resource$Projects$Locations$Recommenders$Getconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getConfig(
+      params: Params$Resource$Projects$Locations$Recommenders$Getconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+    ): void;
+    getConfig(
+      params: Params$Resource$Projects$Locations$Recommenders$Getconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+    ): void;
+    getConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+    ): void;
+    getConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Recommenders$Getconfig
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Recommenders$Getconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Recommenders$Getconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecommenderV1RecommenderConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecommenderV1RecommenderConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a Recommender Config. This will create a new revision of the config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recommender.projects.locations.recommenders.updateConfig({
+     *     // Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
+     *     name: 'projects/my-project/locations/my-location/recommenders/my-recommender/config',
+     *     // The list of fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *     // If true, validate the request and preview the change, but do not actually update it.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "recommenderGenerationConfig": {},
+     *       //   "revisionId": "my_revisionId",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "recommenderGenerationConfig": {},
+     *   //   "revisionId": "my_revisionId",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateConfig(
+      params: Params$Resource$Projects$Locations$Recommenders$Updateconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateConfig(
+      params?: Params$Resource$Projects$Locations$Recommenders$Updateconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1RecommenderConfig>;
+    updateConfig(
+      params: Params$Resource$Projects$Locations$Recommenders$Updateconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateConfig(
+      params: Params$Resource$Projects$Locations$Recommenders$Updateconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+    ): void;
+    updateConfig(
+      params: Params$Resource$Projects$Locations$Recommenders$Updateconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+    ): void;
+    updateConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+    ): void;
+    updateConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Recommenders$Updateconfig
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1RecommenderConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Recommenders$Updateconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Recommenders$Updateconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecommenderV1RecommenderConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecommenderV1RecommenderConfig>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Recommenders$Getconfig
+    extends StandardParameters {
+    /**
+     * Required. Name of the Recommendation Config to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Recommenders$Updateconfig
+    extends StandardParameters {
+    /**
+     * Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
+     */
+    name?: string;
+    /**
+     * The list of fields to be updated.
+     */
+    updateMask?: string;
+    /**
+     * If true, validate the request and preview the change, but do not actually update it.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRecommenderV1RecommenderConfig;
   }
 
   export class Resource$Projects$Locations$Recommenders$Recommendations {
