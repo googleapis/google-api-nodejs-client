@@ -134,6 +134,31 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "getGoogleChannelConfig": {
+              "description": "Get a GoogleChannelConfig",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/googleChannelConfig",
+              "httpMethod": "GET",
+              "id": "eventarc.projects.locations.getGoogleChannelConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the config to get.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/googleChannelConfig$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleChannelConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "list": {
               "description": "Lists information about the supported locations for this service.",
               "flatPath": "v1/projects/{projectsId}/locations",
@@ -170,6 +195,40 @@
               "path": "v1/{+name}/locations",
               "response": {
                 "$ref": "ListLocationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "updateGoogleChannelConfig": {
+              "description": "Update a single GoogleChannelConfig",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/googleChannelConfig",
+              "httpMethod": "PATCH",
+              "id": "eventarc.projects.locations.updateGoogleChannelConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the config. Must be in the format of, `projects/{project}/locations/{location}/googleChannelConfig`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/googleChannelConfig$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "The fields to be updated; only fields explicitly provided are updated. If no field mask is provided, all provided fields in the request are updated. To update all fields, provide a field mask of \"*\".",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "GoogleChannelConfig"
+              },
+              "response": {
+                "$ref": "GoogleChannelConfig"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -1138,7 +1197,7 @@
       }
     }
   },
-  "revision": "20220607",
+  "revision": "20220628",
   "rootUrl": "https://eventarc.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1226,6 +1285,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "cryptoKeyName": {
+          "description": "Optional. Resource name of a KMS crypto key (managed by the user) used to encrypt/decrypt their event data. It must match the pattern `projects/*/locations/*/keyRings/*/cryptoKeys/*`.",
+          "type": "string"
+        },
         "name": {
           "description": "Required. The resource name of the channel. Must be unique within the location on the project and must be in `projects/{project}/locations/{location}/channels/{channel_id}` format.",
           "type": "string"
@@ -1251,7 +1314,7 @@
             "Default value. This value is unused.",
             "The PENDING state indicates that a Channel has been created successfully and there is a new activation token available for the subscriber to use to convey the Channel to the provider in order to create a Connection.",
             "The ACTIVE state indicates that a Channel has been successfully connected with the event provider. An ACTIVE Channel is ready to receive and route events from the event provider.",
-            "The INACTIVE state means that the Channel cannot receive events permanently. There are two possible cases this state can happen: 1. The SaaS provider disconnected from this Channel. 2. The Channel activation token has expired but the SaaS provider wasn't connected. To re-establish a Connection with a provider, the subscriber should create a new Channel and give it to the provider."
+            "The INACTIVE state indicates that the Channel cannot receive events permanently. There are two possible cases this state can happen: 1. The SaaS provider disconnected from this Channel. 2. The Channel activation token has expired but the SaaS provider wasn't connected. To re-establish a Connection with a provider, the subscriber should create a new Channel and give it to the provider."
           ],
           "readOnly": true,
           "type": "string"
@@ -1293,7 +1356,7 @@
           "type": "string"
         },
         "uid": {
-          "description": "Output only. / Output only. Server assigned ID of the resource. The server guarantees uniqueness and immutability until deleted.",
+          "description": "Output only. Server assigned ID of the resource. The server guarantees uniqueness and immutability until deleted.",
           "readOnly": true,
           "type": "string"
         },
@@ -1480,6 +1543,27 @@
       },
       "type": "object"
     },
+    "GoogleChannelConfig": {
+      "description": "A GoogleChannelConfig is a resource that stores the custom settings respected by Eventarc first-party triggers in the matching region. Once configured, first-party event data will be protected using the specified custom managed encryption key instead of Google-managed encryption keys.",
+      "id": "GoogleChannelConfig",
+      "properties": {
+        "cryptoKeyName": {
+          "description": "Optional. Resource name of a KMS crypto key (managed by the user) used to encrypt/decrypt their event data. It must match the pattern `projects/*/locations/*/keyRings/*/cryptoKeys/*`.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. The resource name of the config. Must be in the format of, `projects/{project}/locations/{location}/googleChannelConfig`.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The last-modified time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleLongrunningCancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "GoogleLongrunningCancelOperationRequest",
@@ -1578,7 +1662,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A page token that can be sent to ListChannelConnections to request the next page. If this is empty, then there are no more pages.",
+          "description": "A page token that can be sent to `ListChannelConnections` to request the next page. If this is empty, then there are no more pages.",
           "type": "string"
         },
         "unreachable": {
@@ -1603,7 +1687,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A page token that can be sent to ListChannels to request the next page. If this is empty, then there are no more pages.",
+          "description": "A page token that can be sent to `ListChannels` to request the next page. If this is empty, then there are no more pages.",
           "type": "string"
         },
         "unreachable": {
@@ -1639,7 +1723,7 @@
       "id": "ListProvidersResponse",
       "properties": {
         "nextPageToken": {
-          "description": "A page token that can be sent to ListProviders to request the next page. If this is empty, then there are no more pages.",
+          "description": "A page token that can be sent to `ListProviders` to request the next page. If this is empty, then there are no more pages.",
           "type": "string"
         },
         "providers": {
@@ -1664,7 +1748,7 @@
       "id": "ListTriggersResponse",
       "properties": {
         "nextPageToken": {
-          "description": "A page token that can be sent to ListTriggers to request the next page. If this is empty, then there are no more pages.",
+          "description": "A page token that can be sent to `ListTriggers` to request the next page. If this is empty, then there are no more pages.",
           "type": "string"
         },
         "triggers": {
