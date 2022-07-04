@@ -550,7 +550,7 @@ export namespace chromepolicy_v1 {
      */
     package?: string | null;
     /**
-     * The syntax of the proto file. The supported values are "proto2" and "proto3".
+     * The syntax of the proto file. The supported values are "proto2", "proto3", and "editions". If `edition` is present, this value must be "editions".
      */
     syntax?: string | null;
   }

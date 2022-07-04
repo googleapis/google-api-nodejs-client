@@ -324,7 +324,7 @@
       }
     }
   },
-  "revision": "20220613",
+  "revision": "20220630",
   "rootUrl": "https://chromepolicy.googleapis.com/",
   "schemas": {
     "ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle": {
@@ -1012,7 +1012,7 @@
           "type": "string"
         },
         "syntax": {
-          "description": "The syntax of the proto file. The supported values are \"proto2\" and \"proto3\".",
+          "description": "The syntax of the proto file. The supported values are \"proto2\", \"proto3\", and \"editions\". If `edition` is present, this value must be \"editions\".",
           "type": "string"
         }
       },
