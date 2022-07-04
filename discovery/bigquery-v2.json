@@ -1710,7 +1710,7 @@
       }
     }
   },
-  "revision": "20220528",
+  "revision": "20220611",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -5561,6 +5561,11 @@
           "format": "int64",
           "type": "string"
         },
+        "estimatedRunnableUnits": {
+          "description": "Units of work that can be scheduled immediately. Providing additional slots for these units of work will speed up the query, provided no other query in the reservation needs additional slots.",
+          "format": "int64",
+          "type": "string"
+        },
         "pendingUnits": {
           "description": "Total parallel units of work remaining for the active stages.",
           "format": "int64",
@@ -6216,6 +6221,11 @@
         "materializedView": {
           "$ref": "MaterializedViewDefinition",
           "description": "[Optional] Materialized view definition."
+        },
+        "maxStaleness": {
+          "description": "[Optional] Max staleness of data that could be returned when table or materialized view is queried (formatted as Google SQL Interval type).",
+          "format": "byte",
+          "type": "string"
         },
         "model": {
           "$ref": "ModelDefinition",
@@ -7199,6 +7209,11 @@
           "format": "int64",
           "type": "string"
         },
+        "maxTimeSeriesLength": {
+          "description": "Get truncated length by last n points in time series. Use separately from time_series_length_fraction and min_time_series_length.",
+          "format": "int64",
+          "type": "string"
+        },
         "maxTreeDepth": {
           "description": "Maximum depth of a tree for boosted tree models.",
           "format": "int64",
@@ -7213,6 +7228,11 @@
           "description": "Minimum split loss for boosted tree models.",
           "format": "double",
           "type": "number"
+        },
+        "minTimeSeriesLength": {
+          "description": "Set fast trend ARIMA_PLUS model minimum training length. Use in pair with time_series_length_fraction.",
+          "format": "int64",
+          "type": "string"
         },
         "minTreeChildWeight": {
           "description": "Minimum sum of instance weight needed in a child for boosted tree models.",
@@ -7290,6 +7310,11 @@
           },
           "type": "array"
         },
+        "timeSeriesLengthFraction": {
+          "description": "Get truncated length by fraction in time series.",
+          "format": "double",
+          "type": "number"
+        },
         "timeSeriesTimestampColumn": {
           "description": "Column to be designated as time series timestamp for ARIMA model.",
           "type": "string"
@@ -7310,6 +7335,11 @@
             "Approximate greedy algorithm using quantile sketch and gradient histogram.",
             "Fast histogram optimized approximate greedy algorithm."
           ],
+          "type": "string"
+        },
+        "trendSmoothingWindowSize": {
+          "description": "The smoothing window size for the trend component of the time series.",
+          "format": "int64",
           "type": "string"
         },
         "userColumn": {
