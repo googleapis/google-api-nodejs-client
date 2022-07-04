@@ -180,6 +180,10 @@ export namespace eventarc_v1 {
      */
     createTime?: string | null;
     /**
+     * Optional. Resource name of a KMS crypto key (managed by the user) used to encrypt/decrypt their event data. It must match the pattern `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
+     */
+    cryptoKeyName?: string | null;
+    /**
      * Required. The resource name of the channel. Must be unique within the location on the project and must be in `projects/{project\}/locations/{location\}/channels/{channel_id\}` format.
      */
     name?: string | null;
@@ -225,7 +229,7 @@ export namespace eventarc_v1 {
      */
     name?: string | null;
     /**
-     * Output only. / Output only. Server assigned ID of the resource. The server guarantees uniqueness and immutability until deleted.
+     * Output only. Server assigned ID of the resource. The server guarantees uniqueness and immutability until deleted.
      */
     uid?: string | null;
     /**
@@ -381,6 +385,23 @@ export namespace eventarc_v1 {
     service?: string | null;
   }
   /**
+   * A GoogleChannelConfig is a resource that stores the custom settings respected by Eventarc first-party triggers in the matching region. Once configured, first-party event data will be protected using the specified custom managed encryption key instead of Google-managed encryption keys.
+   */
+  export interface Schema$GoogleChannelConfig {
+    /**
+     * Optional. Resource name of a KMS crypto key (managed by the user) used to encrypt/decrypt their event data. It must match the pattern `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
+     */
+    cryptoKeyName?: string | null;
+    /**
+     * Required. The resource name of the config. Must be in the format of, `projects/{project\}/locations/{location\}/googleChannelConfig`.
+     */
+    name?: string | null;
+    /**
+     * Output only. The last-modified time.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$GoogleLongrunningCancelOperationRequest {}
@@ -448,7 +469,7 @@ export namespace eventarc_v1 {
      */
     channelConnections?: Schema$ChannelConnection[];
     /**
-     * A page token that can be sent to ListChannelConnections to request the next page. If this is empty, then there are no more pages.
+     * A page token that can be sent to `ListChannelConnections` to request the next page. If this is empty, then there are no more pages.
      */
     nextPageToken?: string | null;
     /**
@@ -465,7 +486,7 @@ export namespace eventarc_v1 {
      */
     channels?: Schema$Channel[];
     /**
-     * A page token that can be sent to ListChannels to request the next page. If this is empty, then there are no more pages.
+     * A page token that can be sent to `ListChannels` to request the next page. If this is empty, then there are no more pages.
      */
     nextPageToken?: string | null;
     /**
@@ -491,7 +512,7 @@ export namespace eventarc_v1 {
    */
   export interface Schema$ListProvidersResponse {
     /**
-     * A page token that can be sent to ListProviders to request the next page. If this is empty, then there are no more pages.
+     * A page token that can be sent to `ListProviders` to request the next page. If this is empty, then there are no more pages.
      */
     nextPageToken?: string | null;
     /**
@@ -508,7 +529,7 @@ export namespace eventarc_v1 {
    */
   export interface Schema$ListTriggersResponse {
     /**
-     * A page token that can be sent to ListTriggers to request the next page. If this is empty, then there are no more pages.
+     * A page token that can be sent to `ListTriggers` to request the next page. If this is empty, then there are no more pages.
      */
     nextPageToken?: string | null;
     /**
@@ -895,6 +916,140 @@ export namespace eventarc_v1 {
     }
 
     /**
+     * Get a GoogleChannelConfig
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/eventarc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const eventarc = google.eventarc('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await eventarc.projects.locations.getGoogleChannelConfig({
+     *     // Required. The name of the config to get.
+     *     name: 'projects/my-project/locations/my-location/googleChannelConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cryptoKeyName": "my_cryptoKeyName",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getGoogleChannelConfig(
+      params: Params$Resource$Projects$Locations$Getgooglechannelconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getGoogleChannelConfig(
+      params?: Params$Resource$Projects$Locations$Getgooglechannelconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChannelConfig>;
+    getGoogleChannelConfig(
+      params: Params$Resource$Projects$Locations$Getgooglechannelconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getGoogleChannelConfig(
+      params: Params$Resource$Projects$Locations$Getgooglechannelconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleChannelConfig>,
+      callback: BodyResponseCallback<Schema$GoogleChannelConfig>
+    ): void;
+    getGoogleChannelConfig(
+      params: Params$Resource$Projects$Locations$Getgooglechannelconfig,
+      callback: BodyResponseCallback<Schema$GoogleChannelConfig>
+    ): void;
+    getGoogleChannelConfig(
+      callback: BodyResponseCallback<Schema$GoogleChannelConfig>
+    ): void;
+    getGoogleChannelConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Getgooglechannelconfig
+        | BodyResponseCallback<Schema$GoogleChannelConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChannelConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChannelConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChannelConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Getgooglechannelconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Getgooglechannelconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://eventarc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChannelConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChannelConfig>(parameters);
+      }
+    }
+
+    /**
      * Lists information about the supported locations for this service.
      * @example
      * ```js
@@ -1034,12 +1189,165 @@ export namespace eventarc_v1 {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
       }
     }
+
+    /**
+     * Update a single GoogleChannelConfig
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/eventarc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const eventarc = google.eventarc('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await eventarc.projects.locations.updateGoogleChannelConfig({
+     *     // Required. The resource name of the config. Must be in the format of, `projects/{project\}/locations/{location\}/googleChannelConfig`.
+     *     name: 'projects/my-project/locations/my-location/googleChannelConfig',
+     *     // The fields to be updated; only fields explicitly provided are updated. If no field mask is provided, all provided fields in the request are updated. To update all fields, provide a field mask of "*".
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cryptoKeyName": "my_cryptoKeyName",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cryptoKeyName": "my_cryptoKeyName",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateGoogleChannelConfig(
+      params: Params$Resource$Projects$Locations$Updategooglechannelconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateGoogleChannelConfig(
+      params?: Params$Resource$Projects$Locations$Updategooglechannelconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChannelConfig>;
+    updateGoogleChannelConfig(
+      params: Params$Resource$Projects$Locations$Updategooglechannelconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateGoogleChannelConfig(
+      params: Params$Resource$Projects$Locations$Updategooglechannelconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleChannelConfig>,
+      callback: BodyResponseCallback<Schema$GoogleChannelConfig>
+    ): void;
+    updateGoogleChannelConfig(
+      params: Params$Resource$Projects$Locations$Updategooglechannelconfig,
+      callback: BodyResponseCallback<Schema$GoogleChannelConfig>
+    ): void;
+    updateGoogleChannelConfig(
+      callback: BodyResponseCallback<Schema$GoogleChannelConfig>
+    ): void;
+    updateGoogleChannelConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Updategooglechannelconfig
+        | BodyResponseCallback<Schema$GoogleChannelConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChannelConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChannelConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChannelConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Updategooglechannelconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Updategooglechannelconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://eventarc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChannelConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChannelConfig>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**
      * Resource name for the location.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Getgooglechannelconfig
+    extends StandardParameters {
+    /**
+     * Required. The name of the config to get.
      */
     name?: string;
   }
@@ -1061,6 +1369,22 @@ export namespace eventarc_v1 {
      * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Updategooglechannelconfig
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the config. Must be in the format of, `projects/{project\}/locations/{location\}/googleChannelConfig`.
+     */
+    name?: string;
+    /**
+     * The fields to be updated; only fields explicitly provided are updated. If no field mask is provided, all provided fields in the request are updated. To update all fields, provide a field mask of "*".
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleChannelConfig;
   }
 
   export class Resource$Projects$Locations$Channelconnections {
@@ -2201,6 +2525,7 @@ export namespace eventarc_v1 {
      *       // {
      *       //   "activationToken": "my_activationToken",
      *       //   "createTime": "my_createTime",
+     *       //   "cryptoKeyName": "my_cryptoKeyName",
      *       //   "name": "my_name",
      *       //   "provider": "my_provider",
      *       //   "pubsubTopic": "my_pubsubTopic",
@@ -2495,6 +2820,7 @@ export namespace eventarc_v1 {
      *   // {
      *   //   "activationToken": "my_activationToken",
      *   //   "createTime": "my_createTime",
+     *   //   "cryptoKeyName": "my_cryptoKeyName",
      *   //   "name": "my_name",
      *   //   "provider": "my_provider",
      *   //   "pubsubTopic": "my_pubsubTopic",
@@ -2908,6 +3234,7 @@ export namespace eventarc_v1 {
      *       // {
      *       //   "activationToken": "my_activationToken",
      *       //   "createTime": "my_createTime",
+     *       //   "cryptoKeyName": "my_cryptoKeyName",
      *       //   "name": "my_name",
      *       //   "provider": "my_provider",
      *       //   "pubsubTopic": "my_pubsubTopic",
