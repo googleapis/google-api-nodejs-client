@@ -964,7 +964,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$Border {
     /**
-     * The color of the border. Deprecated: Use [color_style].
+     * The color of the border. Deprecated: Use color_style.
      */
     color?: Schema$Color;
     /**
@@ -1184,7 +1184,7 @@ export namespace sheets_v4 {
      */
     horizontalAlignment?: string | null;
     /**
-     * How a hyperlink, if it exists, should be displayed in the cell.
+     * If one exists, how a hyperlink should be displayed in the cell.
      */
     hyperlinkDisplayType?: string | null;
     /**
@@ -1200,11 +1200,11 @@ export namespace sheets_v4 {
      */
     textDirection?: string | null;
     /**
-     * The format of the text in the cell (unless overridden by a format run). Setting a cell-level link here will clear the cell's existing links. Setting the link field in a TextFormatRun will take precedence over the cell-level link.
+     * The format of the text in the cell (unless overridden by a format run). Setting a cell-level link here clears the cell's existing links. Setting the link field in a TextFormatRun takes precedence over the cell-level link.
      */
     textFormat?: Schema$TextFormat;
     /**
-     * The rotation applied to text in a cell
+     * The rotation applied to text in the cell.
      */
     textRotation?: Schema$TextRotation;
     /**
@@ -1468,7 +1468,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$ColorStyle {
     /**
-     * RGB color.
+     * RGB color. The [`alpha`](/sheets/api/reference/rest/v4/spreadsheets/other#Color.FIELDS.alpha) value in the [`Color`](/sheets/api/reference/rest/v4/spreadsheets/other#color) object isn't generally supported.
      */
     rgbColor?: Schema$Color;
     /**

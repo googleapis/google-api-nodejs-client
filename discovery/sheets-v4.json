@@ -870,7 +870,7 @@
       }
     }
   },
-  "revision": "20220606",
+  "revision": "20220620",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {
@@ -2178,7 +2178,7 @@
       "properties": {
         "color": {
           "$ref": "Color",
-          "description": "The color of the border. Deprecated: Use [color_style]."
+          "description": "The color of the border. Deprecated: Use color_style."
         },
         "colorStyle": {
           "$ref": "ColorStyle",
@@ -2474,7 +2474,7 @@
           "type": "string"
         },
         "hyperlinkDisplayType": {
-          "description": "How a hyperlink, if it exists, should be displayed in the cell.",
+          "description": "If one exists, how a hyperlink should be displayed in the cell.",
           "enum": [
             "HYPERLINK_DISPLAY_TYPE_UNSPECIFIED",
             "LINKED",
@@ -2511,11 +2511,11 @@
         },
         "textFormat": {
           "$ref": "TextFormat",
-          "description": "The format of the text in the cell (unless overridden by a format run). Setting a cell-level link here will clear the cell's existing links. Setting the link field in a TextFormatRun will take precedence over the cell-level link."
+          "description": "The format of the text in the cell (unless overridden by a format run). Setting a cell-level link here clears the cell's existing links. Setting the link field in a TextFormatRun takes precedence over the cell-level link."
         },
         "textRotation": {
           "$ref": "TextRotation",
-          "description": "The rotation applied to text in a cell"
+          "description": "The rotation applied to text in the cell."
         },
         "verticalAlignment": {
           "description": "The vertical alignment of the value in the cell.",
@@ -2930,7 +2930,7 @@
       "properties": {
         "rgbColor": {
           "$ref": "Color",
-          "description": "RGB color."
+          "description": "RGB color. The [`alpha`](/sheets/api/reference/rest/v4/spreadsheets/other#Color.FIELDS.alpha) value in the [`Color`](/sheets/api/reference/rest/v4/spreadsheets/other#color) object isn't generally supported."
         },
         "themeColor": {
           "description": "Theme color.",
