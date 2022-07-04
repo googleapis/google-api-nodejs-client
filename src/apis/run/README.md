@@ -4,6 +4,15 @@
 
 > Deploy and manage user provided container images that scale automatically based on incoming requests. The Cloud Run Admin API v1 follows the Knative Serving API specification, while v2 is aligned with Google Cloud AIP-based API standards, as described in https://google.aip.dev/.
 
+## Support status
+**Note**: Google provides multiple libraries for this service. This library is in
+maintenance mode, and will continue to be made available for users who have
+existing applications. If you're building a new application, or modernizing a
+legacy application, please use [@google-cloud/run](https://www.npmjs.com/package/@google-cloud/run) instead.
+The [@google-cloud/run](https://www.npmjs.com/package/@google-cloud/run) library is faster, easier to use, and better maintained.
+
+To learn more, see [Client Libraries Explained](https://cloud.google.com/apis/docs/client-libraries-explained).
+
 ## Installation
 
 ```sh

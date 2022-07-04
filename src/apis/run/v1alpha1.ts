@@ -777,7 +777,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$Probe {
     /**
-     * (Optional) One and only one of the following should be specified. Exec specifies the action to take. A field inlined from the Handler message.
+     * (Optional) Not supported by Cloud Run One and only one of the following should be specified. Exec specifies the action to take. A field inlined from the Handler message.
      */
     exec?: Schema$ExecAction;
     /**
@@ -793,15 +793,15 @@ export namespace run_v1alpha1 {
      */
     httpGet?: Schema$HTTPGetAction;
     /**
-     * (Optional) Number of seconds after the container has started before liveness probes are initiated. Defaults to 0 seconds. Minimum value is 0. Max value for liveness probe is 3600. Max value for startup probe is 240. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     * (Optional) Number of seconds after the container has started before the probe is initiated. Defaults to 0 seconds. Minimum value is 0. Maximum value for liveness probe is 3600. Maximum value for startup probe is 240. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
      */
     initialDelaySeconds?: number | null;
     /**
-     * (Optional) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1. Max value for liveness probe is 3600. Max value for startup probe is 240. Must be greater or equal than timeout_seconds.
+     * (Optional) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1. Maximum value for liveness probe is 3600. Maximum value for startup probe is 240. Must be greater or equal than timeout_seconds.
      */
     periodSeconds?: number | null;
     /**
-     * (Optional) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup Probes.
+     * (Optional) Minimum consecutive successes for the probe to be considered successful after having failed. Must be 1 if set.
      */
     successThreshold?: number | null;
     /**
