@@ -1770,6 +1770,38 @@
                     "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "undelete": {
+                  "description": "Restores a specified table which was accidentally deleted.",
+                  "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}:undelete",
+                  "httpMethod": "POST",
+                  "id": "bigtableadmin.projects.instances.tables.undelete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The unique name of the table to be restored. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/instances/[^/]+/tables/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:undelete",
+                  "request": {
+                    "$ref": "UndeleteTableRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigtable.admin",
+                    "https://www.googleapis.com/auth/bigtable.admin.table",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             }
@@ -1860,7 +1892,7 @@
       }
     }
   },
-  "revision": "20220530",
+  "revision": "20220614",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -3294,6 +3326,33 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "UndeleteTableMetadata": {
+      "description": "Metadata type for the operation returned by google.bigtable.admin.v2.BigtableTableAdmin.UndeleteTable.",
+      "id": "UndeleteTableMetadata",
+      "properties": {
+        "endTime": {
+          "description": "If set, the time at which this operation finished or was cancelled.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the table being restored.",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "The time at which this operation started.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UndeleteTableRequest": {
+      "description": "Request message for google.bigtable.admin.v2.BigtableTableAdmin.UndeleteTable",
+      "id": "UndeleteTableRequest",
+      "properties": {},
       "type": "object"
     },
     "Union": {
