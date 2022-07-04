@@ -442,6 +442,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "import": {
+                  "description": "Imports a domain name from [Google Domains](https://domains.google/) for use in Cloud Domains. To transfer a domain from another registrar, use the `TransferDomain` method instead. Since individual users can own domains in Google Domains, the calling user must have ownership permission on the domain.",
+                  "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations:import",
+                  "httpMethod": "POST",
+                  "id": "domains.projects.locations.registrations.import",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource of the Registration. Must be in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha2/{+parent}/registrations:import",
+                  "request": {
+                    "$ref": "ImportDomainRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "list": {
                   "description": "Lists the `Registration` resources in a project.",
                   "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations",
@@ -598,6 +626,42 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "retrieveImportableDomains": {
+                  "description": "Lists domain names from [Google Domains](https://domains.google/) that can be imported to Cloud Domains using the `ImportDomain` method. Since individual users can own domains in Google Domains, the list of domains returned depends on the individual user making the call. Domains supported by Google Domains, but not supported by Cloud Domains, are not returned.",
+                  "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations:retrieveImportableDomains",
+                  "httpMethod": "GET",
+                  "id": "domains.projects.locations.registrations.retrieveImportableDomains",
+                  "parameterOrder": [
+                    "location"
+                  ],
+                  "parameters": {
+                    "location": {
+                      "description": "Required. The location. Must be in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Maximum number of results to return.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "When set to the `next_page_token` from a prior response, provides the next page of results.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha2/{+location}/registrations:retrieveImportableDomains",
+                  "response": {
+                    "$ref": "RetrieveImportableDomainsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "retrieveRegisterParameters": {
                   "description": "Gets parameters needed to register a new domain name, including price and up-to-date availability. Use the returned values to call `RegisterDomain`.",
                   "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations:retrieveRegisterParameters",
@@ -629,7 +693,7 @@
                   ]
                 },
                 "retrieveTransferParameters": {
-                  "description": "Gets parameters needed to transfer a domain name from another registrar to Cloud Domains. For domains managed by Google Domains, transferring to Cloud Domains is not supported. Use the returned values to call `TransferDomain`.",
+                  "description": "Gets parameters needed to transfer a domain name from another registrar to Cloud Domains. For domains already managed by [Google Domains](https://domains.google/), use `ImportDomain` instead. Use the returned values to call `TransferDomain`.",
                   "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations:retrieveTransferParameters",
                   "httpMethod": "GET",
                   "id": "domains.projects.locations.registrations.retrieveTransferParameters",
@@ -745,7 +809,7 @@
                   ]
                 },
                 "transfer": {
-                  "description": "Transfers a domain name from another registrar to Cloud Domains. For domains managed by Google Domains, transferring to Cloud Domains is not supported. Before calling this method, go to the domain's current registrar to unlock the domain for transfer and retrieve the domain's transfer authorization code. Then call `RetrieveTransferParameters` to confirm that the domain is unlocked and to get values needed to build a call to this method. A successful call creates a `Registration` resource in state `TRANSFER_PENDING`. It can take several days to complete the transfer process. The registrant can often speed up this process by approving the transfer through the current registrar, either by clicking a link in an email from the registrar or by visiting the registrar's website. A few minutes after transfer approval, the resource transitions to state `ACTIVE`, indicating that the transfer was successful. If the transfer is rejected or the request expires without being approved, the resource can end up in state `TRANSFER_FAILED`. If transfer fails, you can safely delete the resource and retry the transfer.",
+                  "description": "Transfers a domain name from another registrar to Cloud Domains. For domains already managed by [Google Domains](https://domains.google/), use `ImportDomain` instead. Before calling this method, go to the domain's current registrar to unlock the domain for transfer and retrieve the domain's transfer authorization code. Then call `RetrieveTransferParameters` to confirm that the domain is unlocked and to get values needed to build a call to this method. A successful call creates a `Registration` resource in state `TRANSFER_PENDING`. It can take several days to complete the transfer process. The registrant can often speed up this process by approving the transfer through the current registrar, either by clicking a link in an email from the registrar or by visiting the registrar's website. A few minutes after transfer approval, the resource transitions to state `ACTIVE`, indicating that the transfer was successful. If the transfer is rejected or the request expires without being approved, the resource can end up in state `TRANSFER_FAILED`. If transfer fails, you can safely delete the resource and retry the transfer.",
                   "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations:transfer",
                   "httpMethod": "POST",
                   "id": "domains.projects.locations.registrations.transfer",
@@ -779,7 +843,7 @@
       }
     }
   },
-  "revision": "20220517",
+  "revision": "20220616",
   "rootUrl": "https://domains.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1035,6 +1099,41 @@
       },
       "type": "object"
     },
+    "Domain": {
+      "description": "A domain that the calling user manages in Google Domains.",
+      "id": "Domain",
+      "properties": {
+        "domainName": {
+          "description": "The domain name. Unicode domain names are expressed in Punycode format.",
+          "type": "string"
+        },
+        "resourceState": {
+          "description": "The state of this domain as a `Registration` resource.",
+          "enum": [
+            "RESOURCE_STATE_UNSPECIFIED",
+            "IMPORTABLE",
+            "UNSUPPORTED",
+            "SUSPENDED",
+            "EXPIRED",
+            "DELETED"
+          ],
+          "enumDescriptions": [
+            "The assessment is undefined.",
+            "A `Registration` resource can be created for this domain by calling `ImportDomain`.",
+            "A `Registration` resource cannot be created for this domain because it is not supported by Cloud Domains; for example, the top-level domain is not supported or the registry charges non-standard pricing for yearly renewals.",
+            "A `Registration` resource cannot be created for this domain because it is suspended and needs to be resolved with Google Domains.",
+            "A `Registration` resource cannot be created for this domain because it is expired and needs to be renewed with Google Domains.",
+            "A `Registration` resource cannot be created for this domain because it is deleted, but can be restored with Google Domains."
+          ],
+          "type": "string"
+        },
+        "yearlyPrice": {
+          "$ref": "Money",
+          "description": "Price to renew the domain for one year. Only set when `resource_state` is `IMPORTABLE`."
+        }
+      },
+      "type": "object"
+    },
     "DsRecord": {
       "description": "Defines a Delegation Signer (DS) record, which is needed to enable DNSSEC for a domain. It contains a digest (hash) of a DNSKEY record that must be present in the domain's DNS zone.",
       "id": "DsRecord",
@@ -1200,6 +1299,24 @@
           },
           "readOnly": true,
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ImportDomainRequest": {
+      "description": "Request for the `ImportDomain` method.",
+      "id": "ImportDomainRequest",
+      "properties": {
+        "domainName": {
+          "description": "Required. The domain name. Unicode domain names must be expressed in Punycode format.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Set of labels associated with the `Registration`.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -1623,7 +1740,7 @@
       "type": "object"
     },
     "Registration": {
-      "description": "The `Registration` resource facilitates managing and configuring domain name registrations. There are several ways to create a new `Registration` resource: To create a new `Registration` resource, find a suitable domain name by calling the `SearchDomains` method with a query to see available domain name options. After choosing a name, call `RetrieveRegisterParameters` to ensure availability and obtain information like pricing, which is needed to build a call to `RegisterDomain`. Another way to create a new `Registration` is to transfer an existing domain from another registrar. First, go to the current registrar to unlock the domain for transfer and retrieve the domain's transfer authorization code. Then call `RetrieveTransferParameters` to confirm that the domain is unlocked and to get values needed to build a call to `TransferDomain`.",
+      "description": "The `Registration` resource facilitates managing and configuring domain name registrations. There are several ways to create a new `Registration` resource: To create a new `Registration` resource, find a suitable domain name by calling the `SearchDomains` method with a query to see available domain name options. After choosing a name, call `RetrieveRegisterParameters` to ensure availability and obtain information like pricing, which is needed to build a call to `RegisterDomain`. Another way to create a new `Registration` is to transfer an existing domain from another registrar. First, go to the current registrar to unlock the domain for transfer and retrieve the domain's transfer authorization code. Then call `RetrieveTransferParameters` to confirm that the domain is unlocked and to get values needed to build a call to `TransferDomain`. Finally, you can create a new `Registration` by importing an existing domain managed with [Google Domains](https://domains.google/). First, call `RetrieveImportableDomains` to list domains to which the calling user has sufficient access. Then call `ImportDomain` on any domain names you want to use with Cloud Domains.",
       "id": "Registration",
       "properties": {
         "contactSettings": {
@@ -1689,6 +1806,23 @@
           "description": "Output only. Pending contact settings for the `Registration`. Updates to the `contact_settings` field that change its `registrant_contact` or `privacy` fields require email confirmation by the `registrant_contact` before taking effect. This field is set only if there are pending updates to the `contact_settings` that have not been confirmed. To confirm the changes, the `registrant_contact` must follow the instructions in the email they receive.",
           "readOnly": true
         },
+        "registerFailureReason": {
+          "description": "Output only. The reason the domain registration failed. Only set for domains in REGISTRATION_FAILED state.",
+          "enum": [
+            "REGISTER_FAILURE_REASON_UNSPECIFIED",
+            "REGISTER_FAILURE_REASON_UNKNOWN",
+            "DOMAIN_NOT_AVAILABLE",
+            "INVALID_CONTACTS"
+          ],
+          "enumDescriptions": [
+            "Register failure unspecified.",
+            "Registration failed for an unknown reason.",
+            "The domain is not available for registration.",
+            "The provided contact information was rejected."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "state": {
           "description": "Output only. The state of the `Registration`",
           "enum": [
@@ -1697,6 +1831,7 @@
             "REGISTRATION_FAILED",
             "TRANSFER_PENDING",
             "TRANSFER_FAILED",
+            "IMPORT_PENDING",
             "ACTIVE",
             "SUSPENDED",
             "EXPORTED"
@@ -1707,6 +1842,7 @@
             "The domain registration failed. You can delete resources in this state to allow registration to be retried.",
             "The domain is being transferred from another registrar to Cloud Domains.",
             "The attempt to transfer the domain from another registrar to Cloud Domains failed. You can delete resources in this state and retry the transfer.",
+            "The domain is being imported from Google Domains to Cloud Domains.",
             "The domain is registered and operational. The domain renews automatically as long as it remains in this state.",
             "The domain is suspended and inoperative. For more details, see the `issues` field.",
             "The domain is no longer managed with Cloud Domains. It may have been transferred to another registrar or exported for management in [Google Domains](https://domains.google/). You can no longer update it with this API, and information shown about it may be stale. Domains in this state are not automatically renewed by Cloud Domains."
@@ -1733,6 +1869,37 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "transferFailureReason": {
+          "description": "Output only. The reason the domain transfer failed. Only set for domains in TRANSFER_FAILED state.",
+          "enum": [
+            "TRANSFER_FAILURE_REASON_UNSPECIFIED",
+            "TRANSFER_FAILURE_REASON_UNKNOWN",
+            "EMAIL_CONFIRMATION_FAILURE",
+            "DOMAIN_NOT_REGISTERED",
+            "DOMAIN_HAS_TRANSFER_LOCK",
+            "INVALID_AUTHORIZATION_CODE",
+            "TRANSFER_CANCELLED",
+            "TRANSFER_REJECTED",
+            "INVALID_REGISTRANT_EMAIL_ADDRESS",
+            "DOMAIN_NOT_ELIGIBLE_FOR_TRANSFER",
+            "TRANSFER_ALREADY_PENDING"
+          ],
+          "enumDescriptions": [
+            "Transfer failure unspecified.",
+            "Transfer failed for an unknown reason.",
+            "An email confirmation sent to the user was rejected or expired.",
+            "The domain is available for registration.",
+            "The domain has a transfer lock with its current registrar which must be removed prior to transfer.",
+            "The authorization code entered is not valid.",
+            "The transfer was cancelled by the domain owner, current registrar, or TLD registry.",
+            "The transfer was rejected by the current registrar. Contact the current registrar for more information.",
+            "The registrant email address cannot be parsed from the domain's current public contact data.",
+            "The domain is not eligible for transfer due requirements imposed by the current registrar or TLD registry.",
+            "Another transfer is already pending for this domain. The existing transfer attempt must expire or be cancelled in order to proceed."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1741,6 +1908,24 @@
       "description": "Request for the `ResetAuthorizationCode` method.",
       "id": "ResetAuthorizationCodeRequest",
       "properties": {},
+      "type": "object"
+    },
+    "RetrieveImportableDomainsResponse": {
+      "description": "Response for the `RetrieveImportableDomains` method.",
+      "id": "RetrieveImportableDomainsResponse",
+      "properties": {
+        "domains": {
+          "description": "A list of domains that the calling user manages in Google Domains.",
+          "items": {
+            "$ref": "Domain"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "When present, there are more results to retrieve. Set `page_token` to this value on a subsequent call to get the next page of results.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "RetrieveRegisterParametersResponse": {
@@ -1894,6 +2079,10 @@
       "properties": {
         "currentRegistrar": {
           "description": "The registrar that currently manages the domain.",
+          "type": "string"
+        },
+        "currentRegistrarUri": {
+          "description": "The URL of registrar that currently manages the domain.",
           "type": "string"
         },
         "domainName": {

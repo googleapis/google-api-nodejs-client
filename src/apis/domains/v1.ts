@@ -300,6 +300,23 @@ export namespace domains_v1 {
     googleDomainsDns?: Schema$GoogleDomainsDns;
   }
   /**
+   * A domain that the calling user manages in Google Domains.
+   */
+  export interface Schema$Domain {
+    /**
+     * The domain name. Unicode domain names are expressed in Punycode format.
+     */
+    domainName?: string | null;
+    /**
+     * The state of this domain as a `Registration` resource.
+     */
+    resourceState?: string | null;
+    /**
+     * Price to renew the domain for one year. Only set when `resource_state` is `IMPORTABLE`.
+     */
+    yearlyPrice?: Schema$Money;
+  }
+  /**
    * Defines a Delegation Signer (DS) record, which is needed to enable DNSSEC for a domain. It contains a digest (hash) of a DNSKEY record that must be present in the domain's DNS zone.
    */
   export interface Schema$DsRecord {
@@ -378,6 +395,19 @@ export namespace domains_v1 {
      * Output only. A list of name servers that store the DNS zone for this domain. Each name server is a domain name, with Unicode domain names expressed in Punycode format. This field is automatically populated with the name servers assigned to the Google Domains DNS zone.
      */
     nameServers?: string[] | null;
+  }
+  /**
+   * Request for the `ImportDomain` method.
+   */
+  export interface Schema$ImportDomainRequest {
+    /**
+     * Required. The domain name. Unicode domain names must be expressed in Punycode format.
+     */
+    domainName?: string | null;
+    /**
+     * Set of labels associated with the `Registration`.
+     */
+    labels?: {[key: string]: string} | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -648,7 +678,7 @@ export namespace domains_v1 {
     yearlyPrice?: Schema$Money;
   }
   /**
-   * The `Registration` resource facilitates managing and configuring domain name registrations. There are several ways to create a new `Registration` resource: To create a new `Registration` resource, find a suitable domain name by calling the `SearchDomains` method with a query to see available domain name options. After choosing a name, call `RetrieveRegisterParameters` to ensure availability and obtain information like pricing, which is needed to build a call to `RegisterDomain`. Another way to create a new `Registration` is to transfer an existing domain from another registrar. First, go to the current registrar to unlock the domain for transfer and retrieve the domain's transfer authorization code. Then call `RetrieveTransferParameters` to confirm that the domain is unlocked and to get values needed to build a call to `TransferDomain`.
+   * The `Registration` resource facilitates managing and configuring domain name registrations. There are several ways to create a new `Registration` resource: To create a new `Registration` resource, find a suitable domain name by calling the `SearchDomains` method with a query to see available domain name options. After choosing a name, call `RetrieveRegisterParameters` to ensure availability and obtain information like pricing, which is needed to build a call to `RegisterDomain`. Another way to create a new `Registration` is to transfer an existing domain from another registrar. First, go to the current registrar to unlock the domain for transfer and retrieve the domain's transfer authorization code. Then call `RetrieveTransferParameters` to confirm that the domain is unlocked and to get values needed to build a call to `TransferDomain`. Finally, you can create a new `Registration` by importing an existing domain managed with [Google Domains](https://domains.google/). First, call `RetrieveImportableDomains` to list domains to which the calling user has sufficient access. Then call `ImportDomain` on any domain names you want to use with Cloud Domains.
    */
   export interface Schema$Registration {
     /**
@@ -692,6 +722,10 @@ export namespace domains_v1 {
      */
     pendingContactSettings?: Schema$ContactSettings;
     /**
+     * Output only. The reason the domain registration failed. Only set for domains in REGISTRATION_FAILED state.
+     */
+    registerFailureReason?: string | null;
+    /**
      * Output only. The state of the `Registration`
      */
     state?: string | null;
@@ -699,11 +733,28 @@ export namespace domains_v1 {
      * Output only. Set of options for the `contact_settings.privacy` field that this `Registration` supports.
      */
     supportedPrivacy?: string[] | null;
+    /**
+     * Output only. The reason the domain transfer failed. Only set for domains in TRANSFER_FAILED state.
+     */
+    transferFailureReason?: string | null;
   }
   /**
    * Request for the `ResetAuthorizationCode` method.
    */
   export interface Schema$ResetAuthorizationCodeRequest {}
+  /**
+   * Response for the `RetrieveImportableDomains` method.
+   */
+  export interface Schema$RetrieveImportableDomainsResponse {
+    /**
+     * A list of domains that the calling user manages in Google Domains.
+     */
+    domains?: Schema$Domain[];
+    /**
+     * When present, there are more results to retrieve. Set `page_token` to this value on a subsequent call to get the next page of results.
+     */
+    nextPageToken?: string | null;
+  }
   /**
    * Response for the `RetrieveRegisterParameters` method.
    */
@@ -812,6 +863,10 @@ export namespace domains_v1 {
      * The registrar that currently manages the domain.
      */
     currentRegistrar?: string | null;
+    /**
+     * The URL of registrar that currently manages the domain.
+     */
+    currentRegistrarUri?: string | null;
     /**
      * The domain name. Unicode domain names are expressed in Punycode format.
      */
@@ -2219,8 +2274,10 @@ export namespace domains_v1 {
      *   //   "managementSettings": {},
      *   //   "name": "my_name",
      *   //   "pendingContactSettings": {},
+     *   //   "registerFailureReason": "my_registerFailureReason",
      *   //   "state": "my_state",
-     *   //   "supportedPrivacy": []
+     *   //   "supportedPrivacy": [],
+     *   //   "transferFailureReason": "my_transferFailureReason"
      *   // }
      * }
      *
@@ -2449,6 +2506,148 @@ export namespace domains_v1 {
     }
 
     /**
+     * Imports a domain name from [Google Domains](https://domains.google/) for use in Cloud Domains. To transfer a domain from another registrar, use the `TransferDomain` method instead. Since individual users can own domains in Google Domains, the calling user must have ownership permission on the domain.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/domains.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const domains = google.domains('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await domains.projects.locations.registrations.import({
+     *     // Required. The parent resource of the Registration. Must be in the format `projects/x/locations/x`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "domainName": "my_domainName",
+     *       //   "labels": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    import(
+      params: Params$Resource$Projects$Locations$Registrations$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
+      params?: Params$Resource$Projects$Locations$Registrations$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    import(
+      params: Params$Resource$Projects$Locations$Registrations$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Registrations$Import,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Registrations$Import,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(callback: BodyResponseCallback<Schema$Operation>): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Registrations$Import
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Registrations$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Registrations$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://domains.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/registrations:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Lists the `Registration` resources in a project.
      * @example
      * ```js
@@ -2637,8 +2836,10 @@ export namespace domains_v1 {
      *       //   "managementSettings": {},
      *       //   "name": "my_name",
      *       //   "pendingContactSettings": {},
+     *       //   "registerFailureReason": "my_registerFailureReason",
      *       //   "state": "my_state",
-     *       //   "supportedPrivacy": []
+     *       //   "supportedPrivacy": [],
+     *       //   "transferFailureReason": "my_transferFailureReason"
      *       // }
      *     },
      *   });
@@ -3167,6 +3368,151 @@ export namespace domains_v1 {
     }
 
     /**
+     * Lists domain names from [Google Domains](https://domains.google/) that can be imported to Cloud Domains using the `ImportDomain` method. Since individual users can own domains in Google Domains, the list of domains returned depends on the individual user making the call. Domains supported by Google Domains, but not supported by Cloud Domains, are not returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/domains.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const domains = google.domains('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await domains.projects.locations.registrations.retrieveImportableDomains({
+     *       // Required. The location. Must be in the format `projects/x/locations/x`.
+     *       location: 'projects/my-project/locations/my-location',
+     *       // Maximum number of results to return.
+     *       pageSize: 'placeholder-value',
+     *       // When set to the `next_page_token` from a prior response, provides the next page of results.
+     *       pageToken: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "domains": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    retrieveImportableDomains(
+      params: Params$Resource$Projects$Locations$Registrations$Retrieveimportabledomains,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    retrieveImportableDomains(
+      params?: Params$Resource$Projects$Locations$Registrations$Retrieveimportabledomains,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RetrieveImportableDomainsResponse>;
+    retrieveImportableDomains(
+      params: Params$Resource$Projects$Locations$Registrations$Retrieveimportabledomains,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    retrieveImportableDomains(
+      params: Params$Resource$Projects$Locations$Registrations$Retrieveimportabledomains,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RetrieveImportableDomainsResponse>,
+      callback: BodyResponseCallback<Schema$RetrieveImportableDomainsResponse>
+    ): void;
+    retrieveImportableDomains(
+      params: Params$Resource$Projects$Locations$Registrations$Retrieveimportabledomains,
+      callback: BodyResponseCallback<Schema$RetrieveImportableDomainsResponse>
+    ): void;
+    retrieveImportableDomains(
+      callback: BodyResponseCallback<Schema$RetrieveImportableDomainsResponse>
+    ): void;
+    retrieveImportableDomains(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Registrations$Retrieveimportabledomains
+        | BodyResponseCallback<Schema$RetrieveImportableDomainsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RetrieveImportableDomainsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RetrieveImportableDomainsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RetrieveImportableDomainsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Registrations$Retrieveimportabledomains;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Registrations$Retrieveimportabledomains;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://domains.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+location}/registrations:retrieveImportableDomains'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['location'],
+        pathParams: ['location'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RetrieveImportableDomainsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RetrieveImportableDomainsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets parameters needed to register a new domain name, including price and up-to-date availability. Use the returned values to call `RegisterDomain`.
      * @example
      * ```js
@@ -3309,7 +3655,7 @@ export namespace domains_v1 {
     }
 
     /**
-     * Gets parameters needed to transfer a domain name from another registrar to Cloud Domains. For domains managed by Google Domains, transferring to Cloud Domains is not supported. Use the returned values to call `TransferDomain`.
+     * Gets parameters needed to transfer a domain name from another registrar to Cloud Domains. For domains already managed by [Google Domains](https://domains.google/), use `ImportDomain` instead. Use the returned values to call `TransferDomain`.
      * @example
      * ```js
      * // Before running the sample:
@@ -3880,7 +4226,7 @@ export namespace domains_v1 {
     }
 
     /**
-     * Transfers a domain name from another registrar to Cloud Domains. For domains managed by Google Domains, transferring to Cloud Domains is not supported. Before calling this method, go to the domain's current registrar to unlock the domain for transfer and retrieve the domain's transfer authorization code. Then call `RetrieveTransferParameters` to confirm that the domain is unlocked and to get values needed to build a call to this method. A successful call creates a `Registration` resource in state `TRANSFER_PENDING`. It can take several days to complete the transfer process. The registrant can often speed up this process by approving the transfer through the current registrar, either by clicking a link in an email from the registrar or by visiting the registrar's website. A few minutes after transfer approval, the resource transitions to state `ACTIVE`, indicating that the transfer was successful. If the transfer is rejected or the request expires without being approved, the resource can end up in state `TRANSFER_FAILED`. If transfer fails, you can safely delete the resource and retry the transfer.
+     * Transfers a domain name from another registrar to Cloud Domains. For domains already managed by [Google Domains](https://domains.google/), use `ImportDomain` instead. Before calling this method, go to the domain's current registrar to unlock the domain for transfer and retrieve the domain's transfer authorization code. Then call `RetrieveTransferParameters` to confirm that the domain is unlocked and to get values needed to build a call to this method. A successful call creates a `Registration` resource in state `TRANSFER_PENDING`. It can take several days to complete the transfer process. The registrant can often speed up this process by approving the transfer through the current registrar, either by clicking a link in an email from the registrar or by visiting the registrar's website. A few minutes after transfer approval, the resource transitions to state `ACTIVE`, indicating that the transfer was successful. If the transfer is rejected or the request expires without being approved, the resource can end up in state `TRANSFER_FAILED`. If transfer fails, you can safely delete the resource and retry the transfer.
      * @example
      * ```js
      * // Before running the sample:
@@ -4099,6 +4445,18 @@ export namespace domains_v1 {
      */
     resource?: string;
   }
+  export interface Params$Resource$Projects$Locations$Registrations$Import
+    extends StandardParameters {
+    /**
+     * Required. The parent resource of the Registration. Must be in the format `projects/x/locations/x`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ImportDomainRequest;
+  }
   export interface Params$Resource$Projects$Locations$Registrations$List
     extends StandardParameters {
     /**
@@ -4164,6 +4522,21 @@ export namespace domains_v1 {
      * Required. The name of the `Registration` whose authorization code is being retrieved, in the format `projects/x/locations/x/registrations/x`.
      */
     registration?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Registrations$Retrieveimportabledomains
+    extends StandardParameters {
+    /**
+     * Required. The location. Must be in the format `projects/x/locations/x`.
+     */
+    location?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    pageSize?: number;
+    /**
+     * When set to the `next_page_token` from a prior response, provides the next page of results.
+     */
+    pageToken?: string;
   }
   export interface Params$Resource$Projects$Locations$Registrations$Retrieveregisterparameters
     extends StandardParameters {
