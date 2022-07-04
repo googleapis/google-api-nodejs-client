@@ -542,6 +542,23 @@ export namespace chat_v1 {
     value?: string | null;
   }
   /**
+   * Represents the platform specific uri/intent to open for each client.
+   */
+  export interface Schema$GoogleAppsCardV1AppUri {
+    /**
+     * An intent object to be opened in the corresponding android hosting app.
+     */
+    androidIntent?: Schema$GoogleAppsCardV1Intent;
+    /**
+     * A companion uri string to be opened in the chat companion window. on the web.
+     */
+    companionUri?: string | null;
+    /**
+     * A uri string to be opened in the corresponding iOS hosting app.
+     */
+    iosUri?: string | null;
+  }
+  /**
    * Represents the complete border style applied to widgets.
    */
   export interface Schema$GoogleAppsCardV1BorderStyle {
@@ -759,6 +776,19 @@ export namespace chat_v1 {
    */
   export interface Schema$GoogleAppsCardV1Divider {}
   /**
+   * Extra data for an android intent. Valid keys are defined in the hosting app contract.
+   */
+  export interface Schema$GoogleAppsCardV1ExtraData {
+    /**
+     * A key for the intent extra data.
+     */
+    key?: string | null;
+    /**
+     * Value for the given extra data key.
+     */
+    value?: string | null;
+  }
+  /**
    * Represents a Grid widget that displays items in a configurable grid layout.
    */
   export interface Schema$GoogleAppsCardV1Grid {
@@ -882,6 +912,19 @@ export namespace chat_v1 {
     type?: string | null;
   }
   /**
+   * Android intent.
+   */
+  export interface Schema$GoogleAppsCardV1Intent {
+    /**
+     * A list of extra data for the android intent. For example, for a calendar event edit intent, the event title information can be passed as extra data.
+     */
+    extraData?: Schema$GoogleAppsCardV1ExtraData[];
+    /**
+     * An android intent action string for the {@link android.content.Intent\} object. For example: for the view intent action type, a valid value will be android.content.Intent.ACTION_VIEW.
+     */
+    intentAction?: string | null;
+  }
+  /**
    * Represents the response to an `onClick` event.
    */
   export interface Schema$GoogleAppsCardV1OnClick {
@@ -906,6 +949,10 @@ export namespace chat_v1 {
    * Represents an `onClick` event that opens a hyperlink.
    */
   export interface Schema$GoogleAppsCardV1OpenLink {
+    /**
+     * Represents the platform specific uri/intent to open on each client. For example: A companion_url will open in a companion window on the web. An iOS URL and android intent will open in the corresponding hosting apps. If these platform specific URLs can't be handled correctly, i.e. if the companion isn't supported on web and the hosting apps aren't available on the mobile platforms then the `uri` will open in a new browser window on all the platforms.
+     */
+    appUri?: Schema$GoogleAppsCardV1AppUri;
     /**
      * Whether the client forgets about a link after opening it, or observes it until the window closes. Not supported by Chat apps.
      */

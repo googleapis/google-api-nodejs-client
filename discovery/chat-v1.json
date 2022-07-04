@@ -642,7 +642,7 @@
       }
     }
   },
-  "revision": "20220608",
+  "revision": "20220622",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -1287,6 +1287,25 @@
       },
       "type": "object"
     },
+    "GoogleAppsCardV1AppUri": {
+      "description": "Represents the platform specific uri/intent to open for each client.",
+      "id": "GoogleAppsCardV1AppUri",
+      "properties": {
+        "androidIntent": {
+          "$ref": "GoogleAppsCardV1Intent",
+          "description": "An intent object to be opened in the corresponding android hosting app."
+        },
+        "companionUri": {
+          "description": "A companion uri string to be opened in the chat companion window. on the web.",
+          "type": "string"
+        },
+        "iosUri": {
+          "description": "A uri string to be opened in the corresponding iOS hosting app.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAppsCardV1BorderStyle": {
       "description": "Represents the complete border style applied to widgets.",
       "id": "GoogleAppsCardV1BorderStyle",
@@ -1574,6 +1593,21 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleAppsCardV1ExtraData": {
+      "description": "Extra data for an android intent. Valid keys are defined in the hosting app contract.",
+      "id": "GoogleAppsCardV1ExtraData",
+      "properties": {
+        "key": {
+          "description": "A key for the intent extra data.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value for the given extra data key.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAppsCardV1Grid": {
       "description": "Represents a Grid widget that displays items in a configurable grid layout.",
       "id": "GoogleAppsCardV1Grid",
@@ -1760,6 +1794,24 @@
       },
       "type": "object"
     },
+    "GoogleAppsCardV1Intent": {
+      "description": "Android intent.",
+      "id": "GoogleAppsCardV1Intent",
+      "properties": {
+        "extraData": {
+          "description": "A list of extra data for the android intent. For example, for a calendar event edit intent, the event title information can be passed as extra data.",
+          "items": {
+            "$ref": "GoogleAppsCardV1ExtraData"
+          },
+          "type": "array"
+        },
+        "intentAction": {
+          "description": "An android intent action string for the {@link android.content.Intent} object. For example: for the view intent action type, a valid value will be android.content.Intent.ACTION_VIEW.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAppsCardV1OnClick": {
       "description": "Represents the response to an `onClick` event.",
       "id": "GoogleAppsCardV1OnClick",
@@ -1787,6 +1839,10 @@
       "description": "Represents an `onClick` event that opens a hyperlink.",
       "id": "GoogleAppsCardV1OpenLink",
       "properties": {
+        "appUri": {
+          "$ref": "GoogleAppsCardV1AppUri",
+          "description": "Represents the platform specific uri/intent to open on each client. For example: A companion_url will open in a companion window on the web. An iOS URL and android intent will open in the corresponding hosting apps. If these platform specific URLs can't be handled correctly, i.e. if the companion isn't supported on web and the hosting apps aren't available on the mobile platforms then the `uri` will open in a new browser window on all the platforms."
+        },
         "onClose": {
           "description": "Whether the client forgets about a link after opening it, or observes it until the window closes. Not supported by Chat apps.",
           "enum": [
