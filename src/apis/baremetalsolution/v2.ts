@@ -830,6 +830,39 @@ export namespace baremetalsolution_v2 {
     response?: {[key: string]: any} | null;
   }
   /**
+   * Represents the metadata from a long-running operation.
+   */
+  export interface Schema$OperationMetadata {
+    /**
+     * Output only. API version used with the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Identifies whether the user requested the cancellation of the operation. Operations that have been successfully cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     */
+    requestedCancellation?: boolean | null;
+    /**
+     * Output only. Human-readable status of the operation, if any.
+     */
+    statusMessage?: string | null;
+    /**
+     * Output only. Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Output only. Name of the action executed by the operation.
+     */
+    verb?: string | null;
+  }
+  /**
    * Operation System image.
    */
   export interface Schema$OSImage {
@@ -890,6 +923,10 @@ export namespace baremetalsolution_v2 {
      * Output only. State of ProvisioningConfig.
      */
     state?: string | null;
+    /**
+     * Optional status messages associated with the FAILED state.
+     */
+    statusMessage?: string | null;
     /**
      * A generated ticket id to track provisioning request.
      */
@@ -3950,6 +3987,7 @@ export namespace baremetalsolution_v2 {
      *         //   "name": "my_name",
      *         //   "networks": [],
      *         //   "state": "my_state",
+     *         //   "statusMessage": "my_statusMessage",
      *         //   "ticketId": "my_ticketId",
      *         //   "updateTime": "my_updateTime",
      *         //   "volumes": [],
@@ -3969,6 +4007,7 @@ export namespace baremetalsolution_v2 {
      *   //   "name": "my_name",
      *   //   "networks": [],
      *   //   "state": "my_state",
+     *   //   "statusMessage": "my_statusMessage",
      *   //   "ticketId": "my_ticketId",
      *   //   "updateTime": "my_updateTime",
      *   //   "volumes": [],
@@ -4115,6 +4154,7 @@ export namespace baremetalsolution_v2 {
      *   //   "name": "my_name",
      *   //   "networks": [],
      *   //   "state": "my_state",
+     *   //   "statusMessage": "my_statusMessage",
      *   //   "ticketId": "my_ticketId",
      *   //   "updateTime": "my_updateTime",
      *   //   "volumes": [],
@@ -4262,6 +4302,7 @@ export namespace baremetalsolution_v2 {
      *         //   "name": "my_name",
      *         //   "networks": [],
      *         //   "state": "my_state",
+     *         //   "statusMessage": "my_statusMessage",
      *         //   "ticketId": "my_ticketId",
      *         //   "updateTime": "my_updateTime",
      *         //   "volumes": [],
@@ -4281,6 +4322,7 @@ export namespace baremetalsolution_v2 {
      *   //   "name": "my_name",
      *   //   "networks": [],
      *   //   "state": "my_state",
+     *   //   "statusMessage": "my_statusMessage",
      *   //   "ticketId": "my_ticketId",
      *   //   "updateTime": "my_updateTime",
      *   //   "volumes": [],
