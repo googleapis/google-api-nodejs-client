@@ -5950,7 +5950,7 @@
       }
     }
   },
-  "revision": "20220602",
+  "revision": "20220623",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -9499,12 +9499,12 @@
       "id": "Metrics",
       "properties": {
         "aos": {
-          "description": "Average order size - the average number of items in an order. **This metric cannot be segmented by product dimensions.**",
+          "description": "Average order size - the average number of items in an order. **This metric cannot be segmented by product dimensions and customer_country_code.**",
           "format": "double",
           "type": "number"
         },
         "aovMicros": {
-          "description": "Average order value - the average value (total price of items) of all placed orders. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by product dimensions.**",
+          "description": "Average order value - the average value (total price of items) of all placed orders. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by product dimensions and customer_country_code.**",
           "format": "double",
           "type": "number"
         },
@@ -9534,7 +9534,7 @@
           "type": "number"
         },
         "daysToShip": {
-          "description": "Average number of days between an order being placed and the order being fully shipped, reported on the last shipment date. **This metric cannot be segmented by product dimensions.**",
+          "description": "Average number of days between an order being placed and the order being fully shipped, reported on the last shipment date. **This metric cannot be segmented by product dimensions and customer_country_code.**",
           "format": "double",
           "type": "number"
         },
@@ -9544,72 +9544,72 @@
           "type": "string"
         },
         "itemDaysToShip": {
-          "description": "Average number of days between an item being ordered and the item being",
+          "description": "Average number of days between an item being ordered and the item being **This metric cannot be segmented by customer_country_code.**",
           "format": "double",
           "type": "number"
         },
         "itemFillRate": {
-          "description": "Percentage of shipped items in relation to all finalized items (shipped or rejected by the merchant; unshipped items are not taken into account), reported on the order date. Item fill rate is lowered by merchant rejections.",
+          "description": "Percentage of shipped items in relation to all finalized items (shipped or rejected by the merchant; unshipped items are not taken into account), reported on the order date. Item fill rate is lowered by merchant rejections. **This metric cannot be segmented by customer_country_code.**",
           "format": "double",
           "type": "number"
         },
         "orderedItemSalesMicros": {
-          "description": "Total price of ordered items. Excludes shipping, taxes (US only), and customer cancellations that happened within 30 minutes of placing the order. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response.",
+          "description": "Total price of ordered items. Excludes shipping, taxes (US only), and customer cancellations that happened within 30 minutes of placing the order. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**",
           "format": "int64",
           "type": "string"
         },
         "orderedItems": {
-          "description": "Number of ordered items. Excludes customer cancellations that happened within 30 minutes of placing the order.",
+          "description": "Number of ordered items. Excludes customer cancellations that happened within 30 minutes of placing the order. **This metric cannot be segmented by customer_country_code.**",
           "format": "int64",
           "type": "string"
         },
         "orders": {
-          "description": "Number of placed orders. Excludes customer cancellations that happened within 30 minutes of placing the order. **This metric cannot be segmented by product dimensions.**",
+          "description": "Number of placed orders. Excludes customer cancellations that happened within 30 minutes of placing the order. **This metric cannot be segmented by product dimensions and customer_country_code.**",
           "format": "int64",
           "type": "string"
         },
         "rejectedItems": {
-          "description": "Number of ordered items canceled by the merchant, reported on the order date.",
+          "description": "Number of ordered items canceled by the merchant, reported on the order date. **This metric cannot be segmented by customer_country_code.**",
           "format": "int64",
           "type": "string"
         },
         "returnRate": {
-          "description": "Total price of returned items divided by the total price of shipped items, reported on the order date. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response.",
+          "description": "Total price of returned items divided by the total price of shipped items, reported on the order date. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**",
           "format": "double",
           "type": "number"
         },
         "returnedItems": {
-          "description": "Number of ordered items sent back for return, reported on the date when the merchant accepted the return.",
+          "description": "Number of ordered items sent back for return, reported on the date when the merchant accepted the return. **This metric cannot be segmented by customer_country_code.**",
           "format": "int64",
           "type": "string"
         },
         "returnsMicros": {
-          "description": "Total price of ordered items sent back for return, reported on the date when the merchant accepted the return. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response.",
+          "description": "Total price of ordered items sent back for return, reported on the date when the merchant accepted the return. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**",
           "format": "int64",
           "type": "string"
         },
         "shippedItemSalesMicros": {
-          "description": "Total price of shipped items, reported on the order date. Excludes shipping and taxes (US only). The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response.",
+          "description": "Total price of shipped items, reported on the order date. Excludes shipping and taxes (US only). The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**",
           "format": "int64",
           "type": "string"
         },
         "shippedItems": {
-          "description": "Number of shipped items, reported on the shipment date.",
+          "description": "Number of shipped items, reported on the shipment date. **This metric cannot be segmented by customer_country_code.**",
           "format": "int64",
           "type": "string"
         },
         "shippedOrders": {
-          "description": "Number of fully shipped orders, reported on the last shipment date. **This metric cannot be segmented by product dimensions.**",
+          "description": "Number of fully shipped orders, reported on the last shipment date. **This metric cannot be segmented by product dimensions and customer_country_code.**",
           "format": "int64",
           "type": "string"
         },
         "unshippedItems": {
-          "description": "Number of ordered items not shipped up until the end of the queried day. If a multi-day period is specified in the search query, the returned value is the average number of unshipped items over the days in the queried period.",
+          "description": "Number of ordered items not shipped up until the end of the queried day. If a multi-day period is specified in the search query, the returned value is the average number of unshipped items over the days in the queried period. **This metric cannot be segmented by customer_country_code.**",
           "format": "double",
           "type": "number"
         },
         "unshippedOrders": {
-          "description": "Number of orders not shipped or partially shipped up until the end of the queried day. If a multi-day period is specified in the search query, the returned value is the average number of unshipped orders over the days in the queried period. **This metric cannot be segmented by product dimensions.**",
+          "description": "Number of orders not shipped or partially shipped up until the end of the queried day. If a multi-day period is specified in the search query, the returned value is the average number of unshipped orders over the days in the queried period. **This metric cannot be segmented by product dimensions and customer_country_code.**",
           "format": "double",
           "type": "number"
         }
@@ -13539,7 +13539,7 @@
       "type": "object"
     },
     "Promotion": {
-      "description": "The Promotions feature is available for `AU`, `CA`, `DE`, `FR`, `GB`, `IN` and `US` target countries, and `en` content language. Represents a promotion. See the following articles for more details. * [Promotions feed specification](https://support.google.com/merchants/answer/2906014) * [Local promotions feed specification](https://support.google.com/merchants/answer/10146130) * [Promotions on Buy on Google product data specification](https://support.google.com/merchants/answer/9173673)",
+      "description": "Represents a promotion. See the following articles for more details. * [Promotions feed specification](https://support.google.com/merchants/answer/2906014) * [Local promotions feed specification](https://support.google.com/merchants/answer/10146130) * [Promotions on Buy on Google product data specification](https://support.google.com/merchants/answer/9173673)",
       "id": "Promotion",
       "properties": {
         "brand": {
@@ -13557,7 +13557,7 @@
           "type": "array"
         },
         "contentLanguage": {
-          "description": "Required. The content language used as part of the unique identifier. Currently only `en` value is supported.",
+          "description": "Required. The content language used as part of the unique identifier. `en` content language is available for all target countries. `fr` content language is available for `CA` and `FR` target countries, and `de` content language is available for `DE` target country.",
           "type": "string"
         },
         "couponValueType": {
@@ -15264,6 +15264,10 @@
         },
         "customLabel4": {
           "description": "Custom label 4 for custom grouping of products.",
+          "type": "string"
+        },
+        "customerCountryCode": {
+          "description": "Code of the country where the customer is located at the time of the event. Represented in the ISO 3166 format. If the customer country cannot be determined, a special 'ZZ' code is returned.",
           "type": "string"
         },
         "date": {
