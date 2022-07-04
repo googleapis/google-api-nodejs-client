@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/sheets-v3.0.1...sheets-v3.0.2) (2022-07-04)
+
+
+### Bug Fixes
+
+* **sheets:** update the API ([47b9d1c](https://github.com/googleapis/google-api-nodejs-client/commit/47b9d1c0ae3729555aca8f867f746615bd58ec20))
+
 ## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/sheets-v3.0.0...sheets-v3.0.1) (2022-06-21)
 
 
