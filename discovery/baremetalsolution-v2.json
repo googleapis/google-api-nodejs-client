@@ -1027,7 +1027,7 @@
       }
     }
   },
-  "revision": "20220603",
+  "revision": "20220627",
   "rootUrl": "https://baremetalsolution.googleapis.com/",
   "schemas": {
     "AllowedClient": {
@@ -2017,11 +2017,17 @@
           "description": "The state of the NFS share.",
           "enum": [
             "STATE_UNSPECIFIED",
-            "PROVISIONED"
+            "PROVISIONED",
+            "CREATING",
+            "UPDATING",
+            "DELETING"
           ],
           "enumDescriptions": [
             "The share is in an unknown state.",
-            "The share has been provisioned."
+            "The share has been provisioned.",
+            "The NFS Share is being created.",
+            "The NFS Share is being updated.",
+            "The NFS Share has been requested to be deleted."
           ],
           "type": "string"
         },
@@ -2101,6 +2107,50 @@
       },
       "type": "object"
     },
+    "OperationMetadata": {
+      "description": "Represents the metadata from a long-running operation.",
+      "id": "OperationMetadata",
+      "properties": {
+        "apiVersion": {
+          "description": "Output only. API version used with the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "requestedCancellation": {
+          "description": "Output only. Identifies whether the user requested the cancellation of the operation. Operations that have been successfully cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "statusMessage": {
+          "description": "Output only. Human-readable status of the operation, if any.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "target": {
+          "description": "Output only. Server-defined resource path for the target of the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "verb": {
+          "description": "Output only. Name of the action executed by the operation.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ProvisioningConfig": {
       "description": "A provisioning configuration.",
       "id": "ProvisioningConfig",
@@ -2150,7 +2200,8 @@
             "PROVISIONING",
             "PROVISIONED",
             "VALIDATED",
-            "CANCELLED"
+            "CANCELLED",
+            "FAILED"
           ],
           "enumDescriptions": [
             "State wasn't specified.",
@@ -2159,9 +2210,14 @@
             "ProvisioningConfig was in the provisioning state. Initially this state comes from the work order table in big query when SNOW is used. Later this field can be set by the work order API.",
             "ProvisioningConfig was provisioned, meaning the resources exist.",
             "ProvisioningConfig was validated. A validation tool will be run to set this state.",
-            "ProvisioningConfig was canceled."
+            "ProvisioningConfig was canceled.",
+            "The request is submitted for provisioning, with error return."
           ],
           "readOnly": true,
+          "type": "string"
+        },
+        "statusMessage": {
+          "description": "Optional status messages associated with the FAILED state.",
           "type": "string"
         },
         "ticketId": {
