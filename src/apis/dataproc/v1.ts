@@ -503,6 +503,10 @@ export namespace dataproc_v1 {
    */
   export interface Schema$ClusterOperationMetadata {
     /**
+     * Output only. Child operation ids
+     */
+    childOperationIds?: string[] | null;
+    /**
      * Output only. Name of the cluster for the operation.
      */
     clusterName?: string | null;
@@ -604,7 +608,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$DataprocMetricConfig {
     /**
-     * Required. Metrics to enable.
+     * Required. Metrics sources to enable.
      */
     metrics?: Schema$Metric[];
   }
@@ -638,7 +642,7 @@ export namespace dataproc_v1 {
      */
     localSsdInterface?: string | null;
     /**
-     * Optional. Number of attached SSDs, from 0 to 4 (default is 0). If SSDs are not attached, the boot disk is used to store runtime logs and HDFS (https://hadoop.apache.org/docs/r1.2.1/hdfs_user_guide.html) data. If one or more SSDs are attached, this runtime bulk data is spread across them, and the boot disk contains only basic config and installed binaries.
+     * Optional. Number of attached SSDs, from 0 to 8 (default is 0). If SSDs are not attached, the boot disk is used to store runtime logs and HDFS (https://hadoop.apache.org/docs/r1.2.1/hdfs_user_guide.html) data. If one or more SSDs are attached, this runtime bulk data is spread across them, and the boot disk contains only basic config and installed binaries.Note: Local SSD options may vary by machine type and number of vCPUs selected.
      */
     numLocalSsds?: number | null;
   }
@@ -828,7 +832,7 @@ export namespace dataproc_v1 {
      */
     accelerators?: Schema$GkeNodePoolAcceleratorConfig[];
     /**
-     * Optional. The Customer Managed Encryption Key (CMEK) (https://cloud.google.com/compute/docs/disks/customer-managed-encryption) used to encrypt the boot disk attached to each node in the node pool. Specify the key using the following format: projects/KEY_PROJECT_ID /locations/LOCATION/keyRings/RING_NAME/cryptoKeys/KEY_NAME.
+     * Optional. The Customer Managed Encryption Key (CMEK) (https://cloud.google.com/kubernetes-engine/docs/how-to/using-cmek) used to encrypt the boot disk attached to each node in the node pool. Specify the key using the following format: projects/KEY_PROJECT_ID/locations/LOCATION /keyRings/RING_NAME/cryptoKeys/KEY_NAME.
      */
     bootDiskKmsKey?: string | null;
     /**
@@ -1517,15 +1521,15 @@ export namespace dataproc_v1 {
     dataprocMetastoreService?: string | null;
   }
   /**
-   * The metric source to enable, with any optional metrics, to override Dataproc default metrics.
+   * A Dataproc OSS metric.
    */
   export interface Schema$Metric {
     /**
-     * Optional. Optional Metrics to override the Dataproc default metrics configured for the metric source.
+     * Optional. Specify one or more available OSS metrics (https://cloud.google.com/dataproc/docs/guides/monitoring#available_oss_metrics) to collect for the metric course (for the SPARK metric source, any Spark metric (https://spark.apache.org/docs/latest/monitoring.html#metrics) can be specified).Provide metrics in the following format: METRIC_SOURCE: INSTANCE:GROUP:METRIC Use camelcase as appropriate.Examples: yarn:ResourceManager:QueueMetrics:AppsCompleted spark:driver:DAGScheduler:job.allJobs sparkHistoryServer:JVM:Memory:NonHeapMemoryUsage.committed hiveserver2:JVM:Memory:NonHeapMemoryUsage.used Notes: Only the specified overridden metrics will be collected for the metric source. For example, if one or more spark:executive metrics are listed as metric overrides, other SPARK metrics will not be collected. The collection of the default metrics for other OSS metric sources is unaffected. For example, if both SPARK andd YARN metric sources are enabled, and overrides are provided for Spark metrics only, all default YARN metrics will be collected.
      */
     metricOverrides?: string[] | null;
     /**
-     * Required. MetricSource to enable.
+     * Required. Default metrics are collected unless metricOverrides are specified for the metric source (see Available OSS metrics (https://cloud.google.com/dataproc/docs/guides/monitoring#available_oss_metrics) for more information).
      */
     metricSource?: string | null;
   }
