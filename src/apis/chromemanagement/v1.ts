@@ -536,6 +536,14 @@ export namespace chromemanagement_v1 {
      */
     architecture?: string | null;
     /**
+     * Output only. Whether keylocker is configured.`TRUE` = Enabled; `FALSE` = disabled. Only reported if keylockerSupported = `TRUE`.
+     */
+    keylockerConfigured?: boolean | null;
+    /**
+     * Output only. Whether keylocker is supported.
+     */
+    keylockerSupported?: boolean | null;
+    /**
      * Output only. The max CPU clock speed in kHz.
      */
     maxClockSpeed?: number | null;
@@ -730,6 +738,19 @@ export namespace chromemanagement_v1 {
     reportTime?: string | null;
   }
   /**
+   * Data that describes the result of the HTTPS latency diagnostics routine, with the HTTPS requests issued to Google websites.
+   */
+  export interface Schema$GoogleChromeManagementV1HttpsLatencyRoutineData {
+    /**
+     * Output only. HTTPS latency if routine succeeded or failed because of HIGH_LATENCY or VERY_HIGH_LATENCY.
+     */
+    latency?: string | null;
+    /**
+     * Output only. HTTPS latency routine problem if a problem occurred.
+     */
+    problem?: string | null;
+  }
+  /**
    * Describes an installed app.
    */
   export interface Schema$GoogleChromeManagementV1InstalledApp {
@@ -797,6 +818,10 @@ export namespace chromemanagement_v1 {
      */
     availableRamBytes?: string | null;
     /**
+     * Output only. Total memory encryption info for the device.
+     */
+    totalMemoryEncryption?: Schema$GoogleChromeManagementV1TotalMemoryEncryptionInfo;
+    /**
      * Output only. Total RAM in bytes.
      */
     totalRamBytes?: string | null;
@@ -823,17 +848,88 @@ export namespace chromemanagement_v1 {
     systemRamFreeBytes?: string | null;
   }
   /**
+   * Network device.
+   */
+  export interface Schema$GoogleChromeManagementV1NetworkDevice {
+    /**
+     * Output only. The integrated circuit card ID associated with the device's sim card.
+     */
+    iccid?: string | null;
+    /**
+     * Output only. IMEI (if applicable) of the corresponding network device.
+     */
+    imei?: string | null;
+    /**
+     * Output only. MAC address (if applicable) of the corresponding network device.
+     */
+    macAddress?: string | null;
+    /**
+     * Output only. The mobile directory number associated with the device's sim card.
+     */
+    mdn?: string | null;
+    /**
+     * Output only. MEID (if applicable) of the corresponding network device.
+     */
+    meid?: string | null;
+    /**
+     * Output only. Network device type.
+     */
+    type?: string | null;
+  }
+  /**
+   * Network testing results to determine the health of the device's network connection, for example whether the HTTPS latency is high or normal.
+   */
+  export interface Schema$GoogleChromeManagementV1NetworkDiagnosticsReport {
+    /**
+     * Output only. HTTPS latency test data.
+     */
+    httpsLatencyData?: Schema$GoogleChromeManagementV1HttpsLatencyRoutineData;
+    /**
+     * Output only. Timestamp of when the diagnostics were collected.
+     */
+    reportTime?: string | null;
+  }
+  /**
+   * Network devices info.
+   */
+  export interface Schema$GoogleChromeManagementV1NetworkInfo {
+    /**
+     * Output only. List of network devices.
+     */
+    networkDevices?: Schema$GoogleChromeManagementV1NetworkDevice[];
+  }
+  /**
    * State of visible/configured networks.
    */
   export interface Schema$GoogleChromeManagementV1NetworkStatusReport {
+    /**
+     * Output only. Current connection state of the network.
+     */
+    connectionState?: string | null;
+    /**
+     * Output only. Network connection type.
+     */
+    connectionType?: string | null;
+    /**
+     * Output only. Whether the wifi encryption key is turned off.
+     */
+    encryptionOn?: boolean | null;
     /**
      * Output only. Gateway IP address.
      */
     gatewayIpAddress?: string | null;
     /**
+     * Output only. Network connection guid.
+     */
+    guid?: string | null;
+    /**
      * Output only. LAN IP address.
      */
     lanIpAddress?: string | null;
+    /**
+     * Output only. Receiving bit rate measured in megabytes per second.
+     */
+    receivingBitRateMbps?: string | null;
     /**
      * Output only. Time at which the network state was reported.
      */
@@ -846,6 +942,22 @@ export namespace chromemanagement_v1 {
      * Output only. Signal strength for wireless networks measured in decibels.
      */
     signalStrengthDbm?: number | null;
+    /**
+     * Output only. Transmission bit rate measured in megabytes per second.
+     */
+    transmissionBitRateMbps?: string | null;
+    /**
+     * Output only. Transmission power measured in decibels.
+     */
+    transmissionPowerDbm?: number | null;
+    /**
+     * Output only. Wifi link quality. Value ranges from [0, 70]. 0 indicates no signal and 70 indicates a strong signal.
+     */
+    wifiLinkQuality?: string | null;
+    /**
+     * Output only. Wifi power management enabled
+     */
+    wifiPowerManagementEnabled?: boolean | null;
   }
   /**
    * Contains information regarding the current OS update status.
@@ -976,6 +1088,14 @@ export namespace chromemanagement_v1 {
      */
     name?: string | null;
     /**
+     * Output only. Network diagnostics collected periodically.
+     */
+    networkDiagnosticsReport?: Schema$GoogleChromeManagementV1NetworkDiagnosticsReport[];
+    /**
+     * Output only. Network devices information.
+     */
+    networkInfo?: Schema$GoogleChromeManagementV1NetworkInfo;
+    /**
      * Output only. Network specs collected periodically.
      */
     networkStatusReport?: Schema$GoogleChromeManagementV1NetworkStatusReport[];
@@ -999,6 +1119,40 @@ export namespace chromemanagement_v1 {
      * Output only. Storage reports collected periodically.
      */
     storageStatusReport?: Schema$GoogleChromeManagementV1StorageStatusReport[];
+    /**
+     * Output only. Information on Thunderbolt bus.
+     */
+    thunderboltInfo?: Schema$GoogleChromeManagementV1ThunderboltInfo[];
+  }
+  /**
+   * Thunderbolt bus info.
+   */
+  export interface Schema$GoogleChromeManagementV1ThunderboltInfo {
+    /**
+     * Security level of the Thunderbolt bus.
+     */
+    securityLevel?: string | null;
+  }
+  /**
+   * Memory encryption information of a device.
+   */
+  export interface Schema$GoogleChromeManagementV1TotalMemoryEncryptionInfo {
+    /**
+     * Memory encryption algorithm.
+     */
+    encryptionAlgorithm?: string | null;
+    /**
+     * The state of memory encryption on the device.
+     */
+    encryptionState?: string | null;
+    /**
+     * The length of the encryption keys.
+     */
+    keyLength?: string | null;
+    /**
+     * The maximum number of keys that can be used for encryption.
+     */
+    maxKeys?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -2365,12 +2519,15 @@ export namespace chromemanagement_v1 {
      *   //   "memoryInfo": {},
      *   //   "memoryStatusReport": [],
      *   //   "name": "my_name",
+     *   //   "networkDiagnosticsReport": [],
+     *   //   "networkInfo": {},
      *   //   "networkStatusReport": [],
      *   //   "orgUnitId": "my_orgUnitId",
      *   //   "osUpdateStatus": [],
      *   //   "serialNumber": "my_serialNumber",
      *   //   "storageInfo": {},
-     *   //   "storageStatusReport": []
+     *   //   "storageStatusReport": [],
+     *   //   "thunderboltInfo": []
      *   // }
      * }
      *
