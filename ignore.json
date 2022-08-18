@@ -1,6 +1,8 @@
 {
   "ignore": [
     "apigee:v1",
-    "artifactregistry:v1beta2"
+    "artifactregistry:v1beta2",
+    "monitoring:v1",
+    "identitytoolkit:v1"
   ]
 }
