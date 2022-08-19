@@ -308,7 +308,7 @@
       }
     }
   },
-  "revision": "20220604",
+  "revision": "20220808",
   "rootUrl": "https://datastore.googleapis.com/",
   "schemas": {
     "AllocateIdsRequest": {
@@ -1500,7 +1500,7 @@
       "id": "ReadOptions",
       "properties": {
         "readConsistency": {
-          "description": "The non-transactional read consistency to use. Cannot be set to `STRONG` for global queries.",
+          "description": "The non-transactional read consistency to use.",
           "enum": [
             "READ_CONSISTENCY_UNSPECIFIED",
             "STRONG",
@@ -1543,7 +1543,7 @@
       "id": "ReserveIdsRequest",
       "properties": {
         "databaseId": {
-          "description": "If not empty, the ID of the database against which to make the request.",
+          "description": "The ID of the database against which to make the request. '(default)' is not allowed; please use empty string '' to refer the default database.",
           "type": "string"
         },
         "keys": {
