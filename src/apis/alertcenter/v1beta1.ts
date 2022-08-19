@@ -346,6 +346,23 @@ export namespace alertcenter_v1beta1 {
     updateTime?: string | null;
   }
   /**
+   * The explanation message associated with ApnsCertificationExpiring and ApnsCertificationExpired alerts.
+   */
+  export interface Schema$ApnsCertificateExpirationInfo {
+    /**
+     * The Apple ID used for the certificate, may be blank if admins did not enter it.
+     */
+    appleId?: string | null;
+    /**
+     * The expiration date of the APNS Certificate.
+     */
+    expirationTime?: string | null;
+    /**
+     * The UID for the certificate.
+     */
+    uid?: string | null;
+  }
+  /**
    * Alerts from App Maker to notify admins to set up default SQL instance.
    */
   export interface Schema$AppMakerSqlSetupNotification {
