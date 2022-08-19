@@ -1706,7 +1706,7 @@
                   "type": "string"
                 },
                 "insertionOrderId": {
-                  "description": "The ID of the insertion order we need to delete.",
+                  "description": "The ID of the insertion order to delete.",
                   "format": "int64",
                   "location": "path",
                   "pattern": "^[^/]+$",
@@ -2405,7 +2405,7 @@
                   "type": "string"
                 },
                 "lineItemId": {
-                  "description": "The ID of the line item we need to fetch.",
+                  "description": "The ID of the line item to delete.",
                   "format": "int64",
                   "location": "path",
                   "pattern": "^[^/]+$",
@@ -4452,7 +4452,7 @@
                       "type": "string"
                     },
                     "targetingType": {
-                      "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`",
+                      "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL`",
                       "enum": [
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
@@ -4603,7 +4603,7 @@
                       "type": "string"
                     },
                     "targetingType": {
-                      "description": "Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`",
+                      "description": "Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL`",
                       "enum": [
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
@@ -4883,7 +4883,7 @@
               "type": "string"
             },
             "filter": {
-              "description": "Allows filtering by custom bidding algorithm fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND`. A sequence of restrictions * implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following field: - `displayName` * The operator must be `EQUALS (=)` for the following field: - `customBiddingAlgorithmType` - `customBiddingAlgorithmState` * For `displayName`, the value is a string. We return all custom bidding algorithms whose display_name contains such string. * For `customBiddingAlgorithmType`, the value is a string. We return all algorithms whose custom_bidding_algorithm_type is equal to the given type. * For `customBiddingAlgorithmState`, the value is a string. We return all algorithms whose custom_bidding_algorithm_state is equal to the given type. Examples: * All custom bidding algorithms for which the display name contains \"politics\": `displayName:politics`. * All custom bidding algorithms for which the type is \"SCRIPT_BASED\": `customBiddingAlgorithmType=SCRIPT_BASED` * All custom bidding algorithms for which the state is \"ENABLED\": `customBiddingAlgorithmState=ENABLED` The length of this field should be no more than 500 characters.",
+              "description": "Allows filtering by custom bidding algorithm fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND`. A sequence of restrictions * implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following field: - `displayName` * The operator must be `EQUALS (=)` for the following field: - `customBiddingAlgorithmType` * For `displayName`, the value is a string. We return all custom bidding algorithms whose display_name contains such string. * For `customBiddingAlgorithmType`, the value is a string. We return all algorithms whose custom_bidding_algorithm_type is equal to the given type. Examples: * All custom bidding algorithms for which the display name contains \"politics\": `displayName:politics`. * All custom bidding algorithms for which the type is \"SCRIPT_BASED\": `customBiddingAlgorithmType=SCRIPT_BASED` The length of this field should be no more than 500 characters.",
               "location": "query",
               "type": "string"
             },
@@ -8146,7 +8146,7 @@
       }
     }
   },
-  "revision": "20220613",
+  "revision": "20220818",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -8497,7 +8497,17 @@
             "AGE_RANGE_45_54",
             "AGE_RANGE_55_64",
             "AGE_RANGE_65_PLUS",
-            "AGE_RANGE_UNKNOWN"
+            "AGE_RANGE_UNKNOWN",
+            "AGE_RANGE_18_20",
+            "AGE_RANGE_21_24",
+            "AGE_RANGE_25_29",
+            "AGE_RANGE_30_34",
+            "AGE_RANGE_35_39",
+            "AGE_RANGE_40_44",
+            "AGE_RANGE_45_49",
+            "AGE_RANGE_50_54",
+            "AGE_RANGE_55_59",
+            "AGE_RANGE_60_64"
           ],
           "enumDescriptions": [
             "Default value when age range is not specified in this version. This enum is a placeholder for default value and does not represent a real age range option.",
@@ -8507,7 +8517,17 @@
             "The age range of the audience is 45 to 54.",
             "The age range of the audience is 55 to 64.",
             "The age range of the audience is 65 and up.",
-            "The age range of the audience is unknown."
+            "The age range of the audience is unknown.",
+            "The age range of the audience is 18 to 20, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
+            "The age range of the audience is 21 to 24, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
+            "The age range of the audience is 25 to 29, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
+            "The age range of the audience is 30 to 34, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
+            "The age range of the audience is 35 to 39, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
+            "The age range of the audience is 40 to 44, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
+            "The age range of the audience is 45 to 49, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
+            "The age range of the audience is 50 to 54, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
+            "The age range of the audience is 55 to 59, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
+            "The age range of the audience is 60 to 64, only supported for the AdGroup of YouTube Programmatic Reservation line item."
           ],
           "type": "string"
         },
@@ -8532,7 +8552,17 @@
             "AGE_RANGE_45_54",
             "AGE_RANGE_55_64",
             "AGE_RANGE_65_PLUS",
-            "AGE_RANGE_UNKNOWN"
+            "AGE_RANGE_UNKNOWN",
+            "AGE_RANGE_18_20",
+            "AGE_RANGE_21_24",
+            "AGE_RANGE_25_29",
+            "AGE_RANGE_30_34",
+            "AGE_RANGE_35_39",
+            "AGE_RANGE_40_44",
+            "AGE_RANGE_45_49",
+            "AGE_RANGE_50_54",
+            "AGE_RANGE_55_59",
+            "AGE_RANGE_60_64"
           ],
           "enumDescriptions": [
             "Default value when age range is not specified in this version. This enum is a placeholder for default value and does not represent a real age range option.",
@@ -8542,7 +8572,17 @@
             "The age range of the audience is 45 to 54.",
             "The age range of the audience is 55 to 64.",
             "The age range of the audience is 65 and up.",
-            "The age range of the audience is unknown."
+            "The age range of the audience is unknown.",
+            "The age range of the audience is 18 to 20, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
+            "The age range of the audience is 21 to 24, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
+            "The age range of the audience is 25 to 29, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
+            "The age range of the audience is 30 to 34, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
+            "The age range of the audience is 35 to 39, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
+            "The age range of the audience is 40 to 44, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
+            "The age range of the audience is 45 to 49, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
+            "The age range of the audience is 50 to 54, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
+            "The age range of the audience is 55 to 59, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
+            "The age range of the audience is 60 to 64, only supported for the AdGroup of YouTube Programmatic Reservation line item."
           ],
           "readOnly": true,
           "type": "string"
@@ -12572,9 +12612,12 @@
             "EXCHANGE_WAZE",
             "EXCHANGE_SOUNDCAST",
             "EXCHANGE_SHARETHROUGH",
+            "EXCHANGE_FYBER",
             "EXCHANGE_RED_FOR_PUBLISHERS",
             "EXCHANGE_MEDIANET",
-            "EXCHANGE_TAPJOY"
+            "EXCHANGE_TAPJOY",
+            "EXCHANGE_VISTAR",
+            "EXCHANGE_DAX"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -12640,9 +12683,12 @@
             "Waze.",
             "SoundCast.",
             "Sharethrough.",
+            "Fyber.",
             "Red For Publishers.",
             "Media.net.",
-            "Tapjoy."
+            "Tapjoy.",
+            "Vistar.",
+            "DAX."
           ],
           "type": "string"
         },
@@ -12734,9 +12780,12 @@
             "EXCHANGE_WAZE",
             "EXCHANGE_SOUNDCAST",
             "EXCHANGE_SHARETHROUGH",
+            "EXCHANGE_FYBER",
             "EXCHANGE_RED_FOR_PUBLISHERS",
             "EXCHANGE_MEDIANET",
-            "EXCHANGE_TAPJOY"
+            "EXCHANGE_TAPJOY",
+            "EXCHANGE_VISTAR",
+            "EXCHANGE_DAX"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -12802,9 +12851,12 @@
             "Waze.",
             "SoundCast.",
             "Sharethrough.",
+            "Fyber.",
             "Red For Publishers.",
             "Media.net.",
-            "Tapjoy."
+            "Tapjoy.",
+            "Vistar.",
+            "DAX."
           ],
           "type": "string"
         },
@@ -12897,9 +12949,12 @@
             "EXCHANGE_WAZE",
             "EXCHANGE_SOUNDCAST",
             "EXCHANGE_SHARETHROUGH",
+            "EXCHANGE_FYBER",
             "EXCHANGE_RED_FOR_PUBLISHERS",
             "EXCHANGE_MEDIANET",
-            "EXCHANGE_TAPJOY"
+            "EXCHANGE_TAPJOY",
+            "EXCHANGE_VISTAR",
+            "EXCHANGE_DAX"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -12965,9 +13020,12 @@
             "Waze.",
             "SoundCast.",
             "Sharethrough.",
+            "Fyber.",
             "Red For Publishers.",
             "Media.net.",
-            "Tapjoy."
+            "Tapjoy.",
+            "Vistar.",
+            "DAX."
           ],
           "readOnly": true,
           "type": "string"
@@ -13437,13 +13495,13 @@
             "LINE_ITEM_TYPE_VIDEO_OVER_THE_TOP"
           ],
           "enumDescriptions": [
-            "Type value is not specified or is unknown in this version.",
+            "Type value is not specified or is unknown in this version. Line items of this type and their targeting cannot be created or updated using the API.",
             "Image, HTML5, native, or rich media ads.",
             "Display ads that drive installs of an app.",
             "Video ads sold on a CPM basis for a variety of environments.",
             "Video ads that drive installs of an app.",
-            "Display ads served on mobile app inventory.",
-            "Video ads served on mobile app inventory.",
+            "Display ads served on mobile app inventory. Line items of this type and their targeting cannot be created or updated using the API.",
+            "Video ads served on mobile app inventory. Line items of this type and their targeting cannot be created or updated using the API.",
             "RTB Audio ads sold for a variety of environments.",
             "Over-the-top ads present in OTT insertion orders. This type is only applicable to line items with an insertion order of insertion_order_type `OVER_THE_TOP`."
           ],
@@ -13801,9 +13859,12 @@
             "EXCHANGE_WAZE",
             "EXCHANGE_SOUNDCAST",
             "EXCHANGE_SHARETHROUGH",
+            "EXCHANGE_FYBER",
             "EXCHANGE_RED_FOR_PUBLISHERS",
             "EXCHANGE_MEDIANET",
-            "EXCHANGE_TAPJOY"
+            "EXCHANGE_TAPJOY",
+            "EXCHANGE_VISTAR",
+            "EXCHANGE_DAX"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -13869,9 +13930,12 @@
             "Waze.",
             "SoundCast.",
             "Sharethrough.",
+            "Fyber.",
             "Red For Publishers.",
             "Media.net.",
-            "Tapjoy."
+            "Tapjoy.",
+            "Vistar.",
+            "DAX."
           ],
           "type": "string"
         },
@@ -14636,9 +14700,12 @@
             "EXCHANGE_WAZE",
             "EXCHANGE_SOUNDCAST",
             "EXCHANGE_SHARETHROUGH",
+            "EXCHANGE_FYBER",
             "EXCHANGE_RED_FOR_PUBLISHERS",
             "EXCHANGE_MEDIANET",
-            "EXCHANGE_TAPJOY"
+            "EXCHANGE_TAPJOY",
+            "EXCHANGE_VISTAR",
+            "EXCHANGE_DAX"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -14704,9 +14771,12 @@
             "Waze.",
             "SoundCast.",
             "Sharethrough.",
+            "Fyber.",
             "Red For Publishers.",
             "Media.net.",
-            "Tapjoy."
+            "Tapjoy.",
+            "Vistar.",
+            "DAX."
           ],
           "type": "string"
         },
@@ -15281,13 +15351,13 @@
             "LINE_ITEM_TYPE_VIDEO_OVER_THE_TOP"
           ],
           "enumDescriptions": [
-            "Type value is not specified or is unknown in this version.",
+            "Type value is not specified or is unknown in this version. Line items of this type and their targeting cannot be created or updated using the API.",
             "Image, HTML5, native, or rich media ads.",
             "Display ads that drive installs of an app.",
             "Video ads sold on a CPM basis for a variety of environments.",
             "Video ads that drive installs of an app.",
-            "Display ads served on mobile app inventory.",
-            "Video ads served on mobile app inventory.",
+            "Display ads served on mobile app inventory. Line items of this type and their targeting cannot be created or updated using the API.",
+            "Video ads served on mobile app inventory. Line items of this type and their targeting cannot be created or updated using the API.",
             "RTB Audio ads sold for a variety of environments.",
             "Over-the-top ads present in OTT insertion orders. This type is only applicable to line items with an insertion order of insertion_order_type `OVER_THE_TOP`."
           ],
