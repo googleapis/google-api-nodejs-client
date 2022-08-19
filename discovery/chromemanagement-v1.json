@@ -254,6 +254,82 @@
         },
         "reports": {
           "methods": {
+            "countChromeDevicesReachingAutoExpirationDate": {
+              "description": "Generate report of the number of devices expiring in each month of the selected time frame. Devices are grouped by auto update expiration date and model. Further information can be found [here](https://support.google.com/chrome/a/answer/10564947).",
+              "flatPath": "v1/customers/{customersId}/reports:countChromeDevicesReachingAutoExpirationDate",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.reports.countChromeDevicesReachingAutoExpirationDate",
+              "parameterOrder": [
+                "customer"
+              ],
+              "parameters": {
+                "customer": {
+                  "description": "Required. The customer ID or \"my_customer\" prefixed with \"customers/\".",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "maxAueDate": {
+                  "description": "Optional. Maximum expiration date in format yyyy-mm-dd in UTC timezone. If included returns all devices that have already expired and devices with auto expiration date equal to or earlier than the maximum date.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "minAueDate": {
+                  "description": "Optional. Maximum expiration date in format yyyy-mm-dd in UTC timezone. If included returns all devices that have already expired and devices with auto expiration date equal to or later than the minimum date.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orgUnitId": {
+                  "description": "Optional. The organizational unit ID, if omitted, will return data for all organizational units.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+customer}/reports:countChromeDevicesReachingAutoExpirationDate",
+              "response": {
+                "$ref": "GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.reports.readonly"
+              ]
+            },
+            "countChromeDevicesThatNeedAttention": {
+              "description": "Counts of ChromeOS devices that have not synced policies or have lacked user activity in the past 28 days, are out of date, or are not complaint. Further information can be found here https://support.google.com/chrome/a/answer/10564947",
+              "flatPath": "v1/customers/{customersId}/reports:countChromeDevicesThatNeedAttention",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.reports.countChromeDevicesThatNeedAttention",
+              "parameterOrder": [
+                "customer"
+              ],
+              "parameters": {
+                "customer": {
+                  "description": "Required. The customer ID or \"my_customer\" prefixed with \"customers/\".",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "orgUnitId": {
+                  "description": "Optional. The ID of the organizational unit. If omitted, all data will be returned.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "readMask": {
+                  "description": "Required. Mask of the fields that should be populated in the returned report.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+customer}/reports:countChromeDevicesThatNeedAttention",
+              "response": {
+                "$ref": "GoogleChromeManagementV1CountChromeDevicesThatNeedAttentionResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.reports.readonly"
+              ]
+            },
             "countChromeVersions": {
               "description": "Generate report of installed Chrome versions.",
               "flatPath": "v1/customers/{customersId}/reports:countChromeVersions",
@@ -519,7 +595,7 @@
       }
     }
   },
-  "revision": "20220630",
+  "revision": "20220817",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -1087,6 +1163,52 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse": {
+      "description": "Response containing a list of devices expiring in each month of a selected time frame. Counts are grouped by model and Auto Update Expiration date.",
+      "id": "GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse",
+      "properties": {
+        "deviceAueCountReports": {
+          "description": "The list of reports sorted by auto update expiration date in ascending order.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1DeviceAueCountReport"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1CountChromeDevicesThatNeedAttentionResponse": {
+      "description": "Response containing counts for devices that need attention.",
+      "id": "GoogleChromeManagementV1CountChromeDevicesThatNeedAttentionResponse",
+      "properties": {
+        "noRecentPolicySyncCount": {
+          "description": "Number of ChromeOS devices have not synced policies in the past 28 days.",
+          "format": "int64",
+          "type": "string"
+        },
+        "noRecentUserActivityCount": {
+          "description": "Number of ChromeOS devices that have not seen any user activity in the past 28 days.",
+          "format": "int64",
+          "type": "string"
+        },
+        "osVersionNotCompliantCount": {
+          "description": "Number of devices whose OS version is not compliant.",
+          "format": "int64",
+          "type": "string"
+        },
+        "pendingUpdate": {
+          "description": "Number of devices that are pending an OS update.",
+          "format": "int64",
+          "type": "string"
+        },
+        "unsupportedPolicyCount": {
+          "description": "Number of devices that are unable to apply a policy due to an OS version mismatch.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementV1CountChromeVersionsResponse": {
       "description": "Response containing requested browser versions details and counts.",
       "id": "GoogleChromeManagementV1CountChromeVersionsResponse",
@@ -1237,6 +1359,65 @@
         "machine": {
           "description": "Output only. The name of the machine within its local network.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1DeviceAueCountReport": {
+      "description": "Report for CountChromeDevicesPerAueDateResponse, contains the count of devices of a specific model and auto update expiration range.",
+      "id": "GoogleChromeManagementV1DeviceAueCountReport",
+      "properties": {
+        "aueMonth": {
+          "description": "Enum value of month corresponding to the auto update expiration date in UTC time zone. If the device is already expired, this field is empty.",
+          "enum": [
+            "MONTH_UNSPECIFIED",
+            "JANUARY",
+            "FEBRUARY",
+            "MARCH",
+            "APRIL",
+            "MAY",
+            "JUNE",
+            "JULY",
+            "AUGUST",
+            "SEPTEMBER",
+            "OCTOBER",
+            "NOVEMBER",
+            "DECEMBER"
+          ],
+          "enumDescriptions": [
+            "The unspecified month.",
+            "The month of January.",
+            "The month of February.",
+            "The month of March.",
+            "The month of April.",
+            "The month of May.",
+            "The month of June.",
+            "The month of July.",
+            "The month of August.",
+            "The month of September.",
+            "The month of October.",
+            "The month of November.",
+            "The month of December."
+          ],
+          "type": "string"
+        },
+        "aueYear": {
+          "description": "Int value of year corresponding to the Auto Update Expiration date in UTC time zone. If the device is already expired, this field is empty.",
+          "format": "int64",
+          "type": "string"
+        },
+        "count": {
+          "description": "Count of devices of this model.",
+          "format": "int64",
+          "type": "string"
+        },
+        "expired": {
+          "description": "Boolean value for whether or not the device has already expired.",
+          "type": "boolean"
+        },
+        "model": {
+          "description": "Public model name of the devices.",
           "type": "string"
         }
       },
@@ -1803,7 +1984,7 @@
           "type": "string"
         },
         "receivingBitRateMbps": {
-          "description": "Output only. Receiving bit rate measured in megabytes per second.",
+          "description": "Output only. Receiving bit rate measured in Megabits per second.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
@@ -1827,7 +2008,7 @@
           "type": "integer"
         },
         "transmissionBitRateMbps": {
-          "description": "Output only. Transmission bit rate measured in megabytes per second.",
+          "description": "Output only. Transmission bit rate measured in Megabits per second.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
