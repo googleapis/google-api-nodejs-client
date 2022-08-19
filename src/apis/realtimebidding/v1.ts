@@ -391,7 +391,7 @@ export namespace realtimebidding_v1 {
      */
     restrictedCategories?: string[] | null;
     /**
-     * Output only. The version of this creative. Version for a new creative is 1 and it increments during subsequent creative updates.
+     * Output only. The version of the creative. Version for a new creative is 1 and it increments during subsequent creative updates.
      */
     version?: number | null;
     /**
