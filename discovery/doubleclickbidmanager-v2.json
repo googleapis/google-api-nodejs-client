@@ -126,7 +126,7 @@
           ]
         },
         "delete": {
-          "description": "Deletes a stored query as well as the associated stored reports.",
+          "description": "Deletes a query as well as the associated reports.",
           "flatPath": "queries/{queryId}",
           "httpMethod": "DELETE",
           "id": "doubleclickbidmanager.queries.delete",
@@ -135,7 +135,7 @@
           ],
           "parameters": {
             "queryId": {
-              "description": "Required. Query ID to delete.",
+              "description": "Required. ID of query to delete.",
               "format": "int64",
               "location": "path",
               "required": true,
@@ -148,7 +148,7 @@
           ]
         },
         "get": {
-          "description": "Retrieves a stored query.",
+          "description": "Retrieves a query.",
           "flatPath": "queries/{queryId}",
           "httpMethod": "GET",
           "id": "doubleclickbidmanager.queries.get",
@@ -157,7 +157,7 @@
           ],
           "parameters": {
             "queryId": {
-              "description": "Required. Query ID to retrieve.",
+              "description": "Required. ID of query to retrieve.",
               "format": "int64",
               "location": "path",
               "required": true,
@@ -173,14 +173,14 @@
           ]
         },
         "list": {
-          "description": "Retrieves stored queries.",
+          "description": "Lists queries created by the current user.",
           "flatPath": "queries",
           "httpMethod": "GET",
           "id": "doubleclickbidmanager.queries.list",
           "parameterOrder": [],
           "parameters": {
             "orderBy": {
-              "description": "Name of a field used to order results. The default sorting order is ascending. To specify descending order for a field, append a \" desc\" suffix. For example \"metadata.title desc\". Sorting is only supported for the following fields: * queryId * metadata.title",
+              "description": "Name of a field used to order results. The default sorting order is ascending. To specify descending order for a field, append a \" desc\" suffix. For example \"metadata.title desc\". Sorting is only supported for the following fields: * `queryId` * `metadata.title`",
               "location": "query",
               "type": "string"
             },
@@ -214,7 +214,7 @@
           ],
           "parameters": {
             "queryId": {
-              "description": "Required. Query ID to run.",
+              "description": "Required. ID of query to run.",
               "format": "int64",
               "location": "path",
               "required": true,
@@ -242,7 +242,7 @@
         "reports": {
           "methods": {
             "get": {
-              "description": "Retrieves a stored report.",
+              "description": "Retrieves a report.",
               "flatPath": "queries/{queryId}/reports/{reportId}",
               "httpMethod": "GET",
               "id": "doubleclickbidmanager.queries.reports.get",
@@ -275,7 +275,7 @@
               ]
             },
             "list": {
-              "description": "Lists reports.",
+              "description": "Lists reports associated with a query.",
               "flatPath": "queries/{queryId}/reports",
               "httpMethod": "GET",
               "id": "doubleclickbidmanager.queries.reports.list",
@@ -284,7 +284,7 @@
               ],
               "parameters": {
                 "orderBy": {
-                  "description": "Name of a field used to order results. The default sorting order is ascending. To specify descending order for a field, append a \" desc\" suffix. For example \"key.reportId desc\". Sorting is only supported for the following fields: * key.reportId",
+                  "description": "Name of a field used to order results. The default sorting order is ascending. To specify descending order for a field, append a \" desc\" suffix. For example \"key.reportId desc\". Sorting is only supported for the following fields: * `key.reportId`",
                   "location": "query",
                   "type": "string"
                 },
@@ -300,7 +300,7 @@
                   "type": "string"
                 },
                 "queryId": {
-                  "description": "Required. Query ID with which the reports are associated.",
+                  "description": "Required. ID of the query with which the reports are associated.",
                   "format": "int64",
                   "location": "path",
                   "required": true,
@@ -320,7 +320,7 @@
       }
     }
   },
-  "revision": "20220607",
+  "revision": "20220812",
   "rootUrl": "https://doubleclickbidmanager.googleapis.com/",
   "schemas": {
     "ChannelGrouping": {
@@ -381,25 +381,25 @@
             "LAST_60_DAYS"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
+            "Default value when range is not specified or is unknown in this version.",
+            "Custom range specified by custom_start_date and custom_end_date fields.",
+            "Current day.",
+            "Previous day.",
+            "All days, including the current day, since the most recent Sunday.",
+            "All days, including the current day, since the start of the current month.",
+            "All days, including the current day, since the start of the current quarter.",
+            "All days, including the current day, since the start of the current calendar year.",
+            "The previous completed week, beginning from Sunday.",
+            "The previous completed calendar month.",
+            "The previous completed quarter.",
+            "The previous completed calendar year.",
+            "The previous 7 days, excluding the current day.",
+            "The previous 30 days, excluding the current day.",
+            "The previous 90 days, excluding the current day.",
+            "The previous 365 days, excluding the current day.",
+            "All time for which data is available, excluding the current day.",
+            "The previous 14 days, excluding the current day.",
+            "The previous 60 days, excluding the current day."
           ],
           "type": "string"
         }
@@ -469,15 +469,14 @@
       "type": "object"
     },
     "ListQueriesResponse": {
-      "description": "Represents a list of queries.",
       "id": "ListQueriesResponse",
       "properties": {
         "nextPageToken": {
-          "description": "A token, which can be sent as `page_token` to retrieve the next page of queries. If this field is omitted, there are no subsequent pages.",
+          "description": "A token, which can be sent as page_token to retrieve the next page of queries. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         },
         "queries": {
-          "description": "Retrieved queries.",
+          "description": "The list of queries.",
           "items": {
             "$ref": "Query"
           },
@@ -487,11 +486,10 @@
       "type": "object"
     },
     "ListReportsResponse": {
-      "description": "Represents a list of reports.",
       "id": "ListReportsResponse",
       "properties": {
         "nextPageToken": {
-          "description": "A token, which can be sent as `page_token` to retrieve the next page of reports. If this field is omitted, there are no subsequent pages.",
+          "description": "A token, which can be sent as page_token to retrieve the next page of reports. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         },
         "reports": {
@@ -549,7 +547,7 @@
           "description": "Additional query options."
         },
         "type": {
-          "description": "Report type.",
+          "description": "The type of the report. The type of the report will dictate what dimesions, filters, and metrics can be used.",
           "enum": [
             "REPORT_TYPE_UNSPECIFIED",
             "STANDARD",
@@ -565,18 +563,18 @@
             "PATH_ATTRIBUTION"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
+            "Default value when report type is not specified or is unknown in this version.",
+            "Standard report.",
+            "Inventory Availability report.",
+            "Audience Composition report.",
+            "Floodlight report.",
+            "YouTube report.",
+            "GRP report.",
+            "YouTube Programmatic Guaranteed report.",
+            "Reach report.",
+            "Unique Reach Audience report.",
+            "Full Path report.",
+            "Path Attribution report."
           ],
           "type": "string"
         }
@@ -595,7 +593,7 @@
           "type": "array"
         },
         "pathMatchPosition": {
-          "description": "Indicates the position of the path the filter should match to (first, last, or any event in path).",
+          "description": "The position of the path the filter should match to (first, last, or any event in path).",
           "enum": [
             "PATH_MATCH_POSITION_UNSPECIFIED",
             "ANY",
@@ -603,10 +601,10 @@
             "LAST"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            "",
-            ""
+            "Default value when path match position is not specified or is unknown in this version.",
+            "Any position in the path.",
+            "The first position in the path.",
+            "The last position in the path."
           ],
           "type": "string"
         }
@@ -632,7 +630,7 @@
       "type": "object"
     },
     "PathQueryOptionsFilter": {
-      "description": "Dimension Filter on path events.",
+      "description": "Dimension filter on path events.",
       "id": "PathQueryOptionsFilter",
       "properties": {
         "filter": {
@@ -640,7 +638,7 @@
           "type": "string"
         },
         "match": {
-          "description": "Indicates how the filter should be matched to the value.",
+          "description": "Match logic of the filter.",
           "enum": [
             "UNKNOWN",
             "EXACT",
@@ -649,16 +647,16 @@
             "WILDCARD_EXPRESSION"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            "",
-            "",
-            ""
+            "Default value when match is not specified or is unknown in this version.",
+            "Matches a value exactly.",
+            "Matches a value partially.",
+            "Begins with a value.",
+            "Matches a value, utilizing wildcard character logic in the value."
           ],
           "type": "string"
         },
         "values": {
-          "description": "Value to filter on.",
+          "description": "Values to filter on.",
           "items": {
             "type": "string"
           },
@@ -687,7 +685,7 @@
         },
         "schedule": {
           "$ref": "QuerySchedule",
-          "description": "Information on how often and when to run a query."
+          "description": "Information on how often and when to run a query. If `ONE_TIME` is set to the frequency field, the query will only be run at the time of creation."
         }
       },
       "type": "object"
@@ -698,7 +696,7 @@
       "properties": {
         "dataRange": {
           "$ref": "DataRange",
-          "description": "Range of report data."
+          "description": "Range of report data. All reports will be based on the same time zone as used by the advertiser."
         },
         "format": {
           "description": "Format of the generated report.",
@@ -719,7 +717,7 @@
           "type": "boolean"
         },
         "shareEmailAddress": {
-          "description": "List of email addresses which are sent email notifications when the report is finished. Separate from `sendNotification`.",
+          "description": "List of email addresses which are sent email notifications when the report is finished. Separate from send_notification.",
           "items": {
             "type": "string"
           },
@@ -733,7 +731,7 @@
       "type": "object"
     },
     "QuerySchedule": {
-      "description": "Information on how frequently and when to run a query.",
+      "description": "Information on when and how frequently to run a query.",
       "id": "QuerySchedule",
       "properties": {
         "endDate": {
@@ -753,14 +751,14 @@
             "YEARLY"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
+            "Default value when frequency is not specified or is unknown in this version.",
+            "Only once.",
+            "Once a day.",
+            "Once a week.",
+            "Twice a month.",
+            "Once a month.",
+            "Once a quarter",
+            "Once a year."
           ],
           "type": "string"
         },
@@ -871,11 +869,11 @@
             "FAILED"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            "",
-            "",
-            ""
+            "Default value when state is not specified or is unknown in this version.",
+            "The report is queued to run.",
+            "The report is currently running.",
+            "The report has finished running successfully.",
+            "The report has finished running in failure."
           ],
           "readOnly": true,
           "type": "string"
