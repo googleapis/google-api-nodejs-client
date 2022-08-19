@@ -159,13 +159,104 @@ export namespace cloudfunctions_v2 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
      * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
     role?: string | null;
+  }
+  /**
+   * Describes the Build step of the function that builds a container from the given source.
+   */
+  export interface Schema$BuildConfig {
+    /**
+     * Output only. The Cloud Build name of the latest successful deployment of the function.
+     */
+    build?: string | null;
+    /**
+     * Optional. User managed repository created in Artifact Registry optionally with a customer managed encryption key. This is the repository to which the function docker image will be pushed after it is built by Cloud Build. If unspecified, GCF will create and use a repository named 'gcf-artifacts' for every deployed region. It must match the pattern `projects/{project\}/locations/{location\}/repositories/{repository\}`. Cross-project repositories are not supported. Cross-location repositories are not supported. Repository format must be 'DOCKER'.
+     */
+    dockerRepository?: string | null;
+    /**
+     * The name of the function (as defined in source code) that will be executed. Defaults to the resource name suffix, if not specified. For backward compatibility, if function with given name is not found, then the system will try to use function named "function". For Node.js this is name of a function exported by the module specified in `source_location`.
+     */
+    entryPoint?: string | null;
+    /**
+     * User-provided build-time environment variables for the function
+     */
+    environmentVariables?: {[key: string]: string} | null;
+    /**
+     * The runtime in which to run the function. Required when deploying a new function, optional when updating an existing function. For a complete list of possible choices, see the [`gcloud` command reference](https://cloud.google.com/sdk/gcloud/reference/functions/deploy#--runtime).
+     */
+    runtime?: string | null;
+    /**
+     * The location of the function source code.
+     */
+    source?: Schema$Source;
+    /**
+     * Output only. A permanent fixed identifier for source.
+     */
+    sourceProvenance?: Schema$SourceProvenance;
+    /**
+     * Name of the Cloud Build Custom Worker Pool that should be used to build the function. The format of this field is `projects/{project\}/locations/{region\}/workerPools/{workerPool\}` where {project\} and {region\} are the project id and region respectively where the worker pool is defined and {workerPool\} is the short name of the worker pool. If the project id is not the same as the function, then the Cloud Functions Service Agent (service-@gcf-admin-robot.iam.gserviceaccount.com) must be granted the role Cloud Build Custom Workers Builder (roles/cloudbuild.customworkers.builder) in the project.
+     */
+    workerPool?: string | null;
+  }
+  /**
+   * Filters events based on exact matches on the CloudEvents attributes.
+   */
+  export interface Schema$EventFilter {
+    /**
+     * Required. The name of a CloudEvents attribute.
+     */
+    attribute?: string | null;
+    /**
+     * Optional. The operator used for matching the events with the value of the filter. If not specified, only events that have an exact key-value pair specified in the filter are matched. The only allowed value is `match-path-pattern`.
+     */
+    operator?: string | null;
+    /**
+     * Required. The value for the attribute.
+     */
+    value?: string | null;
+  }
+  /**
+   * Describes EventTrigger, used to request events to be sent from another service.
+   */
+  export interface Schema$EventTrigger {
+    /**
+     * Optional. The name of the channel associated with the trigger in `projects/{project\}/locations/{location\}/channels/{channel\}` format. You must provide a channel to receive events from Eventarc SaaS partners.
+     */
+    channel?: string | null;
+    /**
+     * Criteria used to filter events.
+     */
+    eventFilters?: Schema$EventFilter[];
+    /**
+     * Required. The type of event to observe. For example: `google.cloud.audit.log.v1.written` or `google.cloud.pubsub.topic.v1.messagePublished`.
+     */
+    eventType?: string | null;
+    /**
+     * Optional. The name of a Pub/Sub topic in the same project that will be used as the transport topic for the event delivery. Format: `projects/{project\}/topics/{topic\}`. This is only valid for events of type `google.cloud.pubsub.topic.v1.messagePublished`. The topic provided here will not be deleted at function deletion.
+     */
+    pubsubTopic?: string | null;
+    /**
+     * Optional. If unset, then defaults to ignoring failures (i.e. not retrying them).
+     */
+    retryPolicy?: string | null;
+    /**
+     * Optional. The email of the trigger's service account. The service account must have permission to invoke Cloud Run services, the permission is `run.routes.invoke`. If empty, defaults to the Compute Engine default service account: `{project_number\}-compute@developer.gserviceaccount.com`.
+     */
+    serviceAccountEmail?: string | null;
+    /**
+     * Output only. The resource name of the Eventarc trigger. The format of this field is `projects/{project\}/locations/{region\}/triggers/{trigger\}`.
+     */
+    trigger?: string | null;
+    /**
+     * The region that the trigger will be in. The trigger will only receive events originating in this region. It can be the same region as the function, a different region or multi-region, or the global region. If not provided, defaults to the same region as the function.
+     */
+    triggerRegion?: string | null;
   }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
@@ -187,6 +278,81 @@ export namespace cloudfunctions_v2 {
      * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
+  }
+  /**
+   * Describes a Cloud Function that contains user computation executed in response to an event. It encapsulates function and trigger configurations.
+   */
+  export interface Schema$Function {
+    /**
+     * Describes the Build step of the function that builds a container from the given source.
+     */
+    buildConfig?: Schema$BuildConfig;
+    /**
+     * User-provided description of a function.
+     */
+    description?: string | null;
+    /**
+     * Describe whether the function is gen1 or gen2.
+     */
+    environment?: string | null;
+    /**
+     * An Eventarc trigger managed by Google Cloud Functions that fires events in response to a condition in another service.
+     */
+    eventTrigger?: Schema$EventTrigger;
+    /**
+     * Labels associated with this Cloud Function.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * A user-defined name of the function. Function names must be unique globally and match pattern `projects/x/locations/x/functions/x`
+     */
+    name?: string | null;
+    /**
+     * Describes the Service being deployed. Currently deploys services to Cloud Run (fully managed).
+     */
+    serviceConfig?: Schema$ServiceConfig;
+    /**
+     * Output only. State of the function.
+     */
+    state?: string | null;
+    /**
+     * Output only. State Messages for this Cloud Function.
+     */
+    stateMessages?: Schema$GoogleCloudFunctionsV2StateMessage[];
+    /**
+     * Output only. The last update timestamp of a Cloud Function.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Request of `GenerateDownloadUrl` method.
+   */
+  export interface Schema$GenerateDownloadUrlRequest {}
+  /**
+   * Response of `GenerateDownloadUrl` method.
+   */
+  export interface Schema$GenerateDownloadUrlResponse {
+    /**
+     * The generated Google Cloud Storage signed URL that should be used for function source code download.
+     */
+    downloadUrl?: string | null;
+  }
+  /**
+   * Request of `GenerateSourceUploadUrl` method.
+   */
+  export interface Schema$GenerateUploadUrlRequest {}
+  /**
+   * Response of `GenerateSourceUploadUrl` method.
+   */
+  export interface Schema$GenerateUploadUrlResponse {
+    /**
+     * The location of the source code in the upload bucket. Once the archive is uploaded using the `upload_url` use this field to set the `function.build_config.source.storage_source` during CreateFunction and UpdateFunction. Generation defaults to 0, as Cloud Storage provides a new generation only upon uploading a new object or version of an object.
+     */
+    storageSource?: Schema$StorageSource;
+    /**
+     * The generated Google Cloud Storage signed URL that should be used for a function source code upload. The uploaded file should be a zip archive which contains a function.
+     */
+    uploadUrl?: string | null;
   }
   /**
    * Represents the metadata of the long-running operation.
@@ -363,6 +529,110 @@ export namespace cloudfunctions_v2 {
     type?: string | null;
   }
   /**
+   * Represents the metadata of the long-running operation.
+   */
+  export interface Schema$GoogleCloudFunctionsV2OperationMetadata {
+    /**
+     * API version used to start the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     */
+    cancelRequested?: boolean | null;
+    /**
+     * The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * The original request that started the operation.
+     */
+    requestResource?: {[key: string]: any} | null;
+    /**
+     * Mechanism for reporting in-progress stages
+     */
+    stages?: Schema$GoogleCloudFunctionsV2Stage[];
+    /**
+     * Human-readable status of the operation, if any.
+     */
+    statusDetail?: string | null;
+    /**
+     * Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Name of the verb executed by the operation.
+     */
+    verb?: string | null;
+  }
+  /**
+   * Each Stage of the deployment process
+   */
+  export interface Schema$GoogleCloudFunctionsV2Stage {
+    /**
+     * Message describing the Stage
+     */
+    message?: string | null;
+    /**
+     * Name of the Stage. This will be unique for each Stage.
+     */
+    name?: string | null;
+    /**
+     * Resource of the Stage
+     */
+    resource?: string | null;
+    /**
+     * Link to the current Stage resource
+     */
+    resourceUri?: string | null;
+    /**
+     * Current state of the Stage
+     */
+    state?: string | null;
+    /**
+     * State messages from the current Stage.
+     */
+    stateMessages?: Schema$GoogleCloudFunctionsV2StateMessage[];
+  }
+  /**
+   * Informational messages about the state of the Cloud Function or Operation.
+   */
+  export interface Schema$GoogleCloudFunctionsV2StateMessage {
+    /**
+     * The message.
+     */
+    message?: string | null;
+    /**
+     * Severity of the state message.
+     */
+    severity?: string | null;
+    /**
+     * One-word CamelCase type of the state message.
+     */
+    type?: string | null;
+  }
+  /**
+   * Response for the `ListFunctions` method.
+   */
+  export interface Schema$ListFunctionsResponse {
+    /**
+     * The functions that match the request.
+     */
+    functions?: Schema$Function[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached. The response does not include any functions from these locations.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * The response message for Locations.ListLocations.
    */
   export interface Schema$ListLocationsResponse {
@@ -387,6 +657,15 @@ export namespace cloudfunctions_v2 {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$Operation[];
+  }
+  /**
+   * Response for the `ListRuntimes` method.
+   */
+  export interface Schema$ListRuntimesResponse {
+    /**
+     * The runtimes that match the request.
+     */
+    runtimes?: Schema$Runtime[];
   }
   /**
    * A resource that represents Google Cloud Platform location.
@@ -497,6 +776,184 @@ export namespace cloudfunctions_v2 {
     version?: number | null;
   }
   /**
+   * Location of the source in a Google Cloud Source Repository.
+   */
+  export interface Schema$RepoSource {
+    /**
+     * Regex matching branches to build. The syntax of the regular expressions accepted is the syntax accepted by RE2 and described at https://github.com/google/re2/wiki/Syntax
+     */
+    branchName?: string | null;
+    /**
+     * Explicit commit SHA to build.
+     */
+    commitSha?: string | null;
+    /**
+     * Directory, relative to the source root, in which to run the build. This must be a relative path. If a step's `dir` is specified and is an absolute path, this value is ignored for that step's execution. eg. helloworld (no leading slash allowed)
+     */
+    dir?: string | null;
+    /**
+     * Only trigger a build if the revision regex does NOT match the revision regex.
+     */
+    invertRegex?: boolean | null;
+    /**
+     * ID of the project that owns the Cloud Source Repository. If omitted, the project ID requesting the build is assumed.
+     */
+    projectId?: string | null;
+    /**
+     * Name of the Cloud Source Repository.
+     */
+    repoName?: string | null;
+    /**
+     * Regex matching tags to build. The syntax of the regular expressions accepted is the syntax accepted by RE2 and described at https://github.com/google/re2/wiki/Syntax
+     */
+    tagName?: string | null;
+  }
+  /**
+   * Describes a runtime and any special information (e.g., deprecation status) related to it.
+   */
+  export interface Schema$Runtime {
+    /**
+     * The user facing name, eg 'Go 1.13', 'Node.js 12', etc.
+     */
+    displayName?: string | null;
+    /**
+     * The environment for the runtime.
+     */
+    environment?: string | null;
+    /**
+     * The name of the runtime, e.g., 'go113', 'nodejs12', etc.
+     */
+    name?: string | null;
+    /**
+     * The stage of life this runtime is in, e.g., BETA, GA, etc.
+     */
+    stage?: string | null;
+    /**
+     * Warning messages, e.g., a deprecation warning.
+     */
+    warnings?: string[] | null;
+  }
+  /**
+   * Configuration for a secret environment variable. It has the information necessary to fetch the secret value from secret manager and expose it as an environment variable.
+   */
+  export interface Schema$SecretEnvVar {
+    /**
+     * Name of the environment variable.
+     */
+    key?: string | null;
+    /**
+     * Project identifier (preferably project number but can also be the project ID) of the project that contains the secret. If not set, it is assumed that the secret is in the same project as the function.
+     */
+    projectId?: string | null;
+    /**
+     * Name of the secret in secret manager (not the full resource name).
+     */
+    secret?: string | null;
+    /**
+     * Version of the secret (version number or the string 'latest'). It is recommended to use a numeric version for secret environment variables as any updates to the secret value is not reflected until new instances start.
+     */
+    version?: string | null;
+  }
+  /**
+   * Configuration for a single version.
+   */
+  export interface Schema$SecretVersion {
+    /**
+     * Relative path of the file under the mount path where the secret value for this version will be fetched and made available. For example, setting the mount_path as '/etc/secrets' and path as `secret_foo` would mount the secret value file at `/etc/secrets/secret_foo`.
+     */
+    path?: string | null;
+    /**
+     * Version of the secret (version number or the string 'latest'). It is preferable to use `latest` version with secret volumes as secret value changes are reflected immediately.
+     */
+    version?: string | null;
+  }
+  /**
+   * Configuration for a secret volume. It has the information necessary to fetch the secret value from secret manager and make it available as files mounted at the requested paths within the application container.
+   */
+  export interface Schema$SecretVolume {
+    /**
+     * The path within the container to mount the secret volume. For example, setting the mount_path as `/etc/secrets` would mount the secret value files under the `/etc/secrets` directory. This directory will also be completely shadowed and unavailable to mount any other secrets. Recommended mount path: /etc/secrets
+     */
+    mountPath?: string | null;
+    /**
+     * Project identifier (preferably project number but can also be the project ID) of the project that contains the secret. If not set, it is assumed that the secret is in the same project as the function.
+     */
+    projectId?: string | null;
+    /**
+     * Name of the secret in secret manager (not the full resource name).
+     */
+    secret?: string | null;
+    /**
+     * List of secret versions to mount for this secret. If empty, the `latest` version of the secret will be made available in a file named after the secret under the mount point.
+     */
+    versions?: Schema$SecretVersion[];
+  }
+  /**
+   * Describes the Service being deployed. Currently Supported : Cloud Run (fully managed).
+   */
+  export interface Schema$ServiceConfig {
+    /**
+     * Whether 100% of traffic is routed to the latest revision. On CreateFunction and UpdateFunction, when set to true, the revision being deployed will serve 100% of traffic, ignoring any traffic split settings, if any. On GetFunction, true will be returned if the latest revision is serving 100% of traffic.
+     */
+    allTrafficOnLatestRevision?: boolean | null;
+    /**
+     * The amount of memory available for a function. Defaults to 256M. Supported units are k, M, G, Mi, Gi. If no unit is supplied the value is interpreted as bytes. See https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go a full description.
+     */
+    availableMemory?: string | null;
+    /**
+     * Environment variables that shall be available during function execution.
+     */
+    environmentVariables?: {[key: string]: string} | null;
+    /**
+     * The ingress settings for the function, controlling what traffic can reach it.
+     */
+    ingressSettings?: string | null;
+    /**
+     * The limit on the maximum number of function instances that may coexist at a given time. In some cases, such as rapid traffic surges, Cloud Functions may, for a short period of time, create more instances than the specified max instances limit. If your function cannot tolerate this temporary behavior, you may want to factor in a safety margin and set a lower max instances value than your function can tolerate. See the [Max Instances](https://cloud.google.com/functions/docs/max-instances) Guide for more details.
+     */
+    maxInstanceCount?: number | null;
+    /**
+     * The limit on the minimum number of function instances that may coexist at a given time. Function instances are kept in idle state for a short period after they finished executing the request to reduce cold start time for subsequent requests. Setting a minimum instance count will ensure that the given number of instances are kept running in idle state always. This can help with cold start times when jump in incoming request count occurs after the idle instance would have been stopped in the default case.
+     */
+    minInstanceCount?: number | null;
+    /**
+     * Output only. The name of service revision.
+     */
+    revision?: string | null;
+    /**
+     * Secret environment variables configuration.
+     */
+    secretEnvironmentVariables?: Schema$SecretEnvVar[];
+    /**
+     * Secret volumes configuration.
+     */
+    secretVolumes?: Schema$SecretVolume[];
+    /**
+     * Output only. Name of the service associated with a Function. The format of this field is `projects/{project\}/locations/{region\}/services/{service\}`
+     */
+    service?: string | null;
+    /**
+     * The email of the service's service account. If empty, defaults to `{project_number\}-compute@developer.gserviceaccount.com`.
+     */
+    serviceAccountEmail?: string | null;
+    /**
+     * The function execution timeout. Execution is considered failed and can be terminated if the function is not completed at the end of the timeout period. Defaults to 60 seconds.
+     */
+    timeoutSeconds?: number | null;
+    /**
+     * Output only. URI of the Service deployed.
+     */
+    uri?: string | null;
+    /**
+     * The Serverless VPC Access connector that this cloud function can connect to. The format of this field is `projects/x/locations/x/connectors/x`.
+     */
+    vpcConnector?: string | null;
+    /**
+     * The egress settings for the connector, controlling what traffic is diverted through it.
+     */
+    vpcConnectorEgressSettings?: string | null;
+  }
+  /**
    * Request message for `SetIamPolicy` method.
    */
   export interface Schema$SetIamPolicyRequest {
@@ -508,6 +965,32 @@ export namespace cloudfunctions_v2 {
      * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: "bindings, etag"`
      */
     updateMask?: string | null;
+  }
+  /**
+   * The location of the function source code.
+   */
+  export interface Schema$Source {
+    /**
+     * If provided, get the source from this location in a Cloud Source Repository.
+     */
+    repoSource?: Schema$RepoSource;
+    /**
+     * If provided, get the source from this location in Google Cloud Storage.
+     */
+    storageSource?: Schema$StorageSource;
+  }
+  /**
+   * Provenance of the source. Ways to find the original source, or verify that some source was used for this build.
+   */
+  export interface Schema$SourceProvenance {
+    /**
+     * A copy of the build's `source.repo_source`, if exists, with any revisions resolved.
+     */
+    resolvedRepoSource?: Schema$RepoSource;
+    /**
+     * A copy of the build's `source.storage_source`, if exists, with any generations resolved.
+     */
+    resolvedStorageSource?: Schema$StorageSource;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -525,6 +1008,23 @@ export namespace cloudfunctions_v2 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Location of the source in an archive file in Google Cloud Storage.
+   */
+  export interface Schema$StorageSource {
+    /**
+     * Google Cloud Storage bucket containing the source (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
+     */
+    bucket?: string | null;
+    /**
+     * Google Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
+     */
+    generation?: string | null;
+    /**
+     * Google Cloud Storage object containing the source. This object must be a gzipped archive file (`.tar.gz`) containing source to build.
+     */
+    object?: string | null;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -558,12 +1058,14 @@ export namespace cloudfunctions_v2 {
     context: APIRequestContext;
     functions: Resource$Projects$Locations$Functions;
     operations: Resource$Projects$Locations$Operations;
+    runtimes: Resource$Projects$Locations$Runtimes;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.functions = new Resource$Projects$Locations$Functions(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
+      this.runtimes = new Resource$Projects$Locations$Runtimes(this.context);
     }
 
     /**
@@ -736,6 +1238,716 @@ export namespace cloudfunctions_v2 {
     }
 
     /**
+     * Creates a new function. If a function with the given name already exists in the specified project, the long running operation will return `ALREADY_EXISTS` error.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.projects.locations.functions.create({
+     *     // The ID to use for the function, which will become the final component of the function's resource name. This value should be 4-63 characters, and valid characters are /a-z-/.
+     *     functionId: 'placeholder-value',
+     *     // Required. The project and location in which the function should be created, specified in the format `projects/x/locations/x`
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "buildConfig": {},
+     *       //   "description": "my_description",
+     *       //   "environment": "my_environment",
+     *       //   "eventTrigger": {},
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "serviceConfig": {},
+     *       //   "state": "my_state",
+     *       //   "stateMessages": [],
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Functions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Functions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Functions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Functions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Functions$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Functions$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Functions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Functions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/functions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a function with the given name from the specified project. If the given function is used by some trigger, the trigger will be updated to remove this function.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.projects.locations.functions.delete({
+     *     // Required. The name of the function which should be deleted.
+     *     name: 'projects/my-project/locations/my-location/functions/my-function',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Functions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Functions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Functions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Functions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Functions$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Functions$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Functions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Functions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Returns a signed URL for downloading deployed function source code. The URL is only valid for a limited period and should be used within 30 minutes of generation. For more information about the signed URL usage see: https://cloud.google.com/storage/docs/access-control/signed-urls
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudfunctions.projects.locations.functions.generateDownloadUrl({
+     *       // Required. The name of function for which source code Google Cloud Storage signed URL should be generated.
+     *       name: 'projects/my-project/locations/my-location/functions/my-function',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "downloadUrl": "my_downloadUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateDownloadUrl(
+      params: Params$Resource$Projects$Locations$Functions$Generatedownloadurl,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateDownloadUrl(
+      params?: Params$Resource$Projects$Locations$Functions$Generatedownloadurl,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GenerateDownloadUrlResponse>;
+    generateDownloadUrl(
+      params: Params$Resource$Projects$Locations$Functions$Generatedownloadurl,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateDownloadUrl(
+      params: Params$Resource$Projects$Locations$Functions$Generatedownloadurl,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateDownloadUrlResponse>,
+      callback: BodyResponseCallback<Schema$GenerateDownloadUrlResponse>
+    ): void;
+    generateDownloadUrl(
+      params: Params$Resource$Projects$Locations$Functions$Generatedownloadurl,
+      callback: BodyResponseCallback<Schema$GenerateDownloadUrlResponse>
+    ): void;
+    generateDownloadUrl(
+      callback: BodyResponseCallback<Schema$GenerateDownloadUrlResponse>
+    ): void;
+    generateDownloadUrl(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Functions$Generatedownloadurl
+        | BodyResponseCallback<Schema$GenerateDownloadUrlResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateDownloadUrlResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateDownloadUrlResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GenerateDownloadUrlResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Functions$Generatedownloadurl;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Functions$Generatedownloadurl;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:generateDownloadUrl').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GenerateDownloadUrlResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GenerateDownloadUrlResponse>(parameters);
+      }
+    }
+
+    /**
+     * Returns a signed URL for uploading a function source code. For more information about the signed URL usage see: https://cloud.google.com/storage/docs/access-control/signed-urls. Once the function source code upload is complete, the used signed URL should be provided in CreateFunction or UpdateFunction request as a reference to the function source code. When uploading source code to the generated signed URL, please follow these restrictions: * Source file type should be a zip file. * No credentials should be attached - the signed URLs provide access to the target bucket using internal service identity; if credentials were attached, the identity from the credentials would be used, but that identity does not have permissions to upload files to the URL. When making a HTTP PUT request, these two headers need to be specified: * `content-type: application/zip` And this header SHOULD NOT be specified: * `Authorization: Bearer YOUR_TOKEN`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudfunctions.projects.locations.functions.generateUploadUrl({
+     *       // Required. The project and location in which the Google Cloud Storage signed URL should be generated, specified in the format `projects/x/locations/x`.
+     *       parent: 'projects/my-project/locations/my-location',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "storageSource": {},
+     *   //   "uploadUrl": "my_uploadUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateUploadUrl(
+      params: Params$Resource$Projects$Locations$Functions$Generateuploadurl,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateUploadUrl(
+      params?: Params$Resource$Projects$Locations$Functions$Generateuploadurl,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GenerateUploadUrlResponse>;
+    generateUploadUrl(
+      params: Params$Resource$Projects$Locations$Functions$Generateuploadurl,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateUploadUrl(
+      params: Params$Resource$Projects$Locations$Functions$Generateuploadurl,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateUploadUrlResponse>,
+      callback: BodyResponseCallback<Schema$GenerateUploadUrlResponse>
+    ): void;
+    generateUploadUrl(
+      params: Params$Resource$Projects$Locations$Functions$Generateuploadurl,
+      callback: BodyResponseCallback<Schema$GenerateUploadUrlResponse>
+    ): void;
+    generateUploadUrl(
+      callback: BodyResponseCallback<Schema$GenerateUploadUrlResponse>
+    ): void;
+    generateUploadUrl(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Functions$Generateuploadurl
+        | BodyResponseCallback<Schema$GenerateUploadUrlResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateUploadUrlResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateUploadUrlResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GenerateUploadUrlResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Functions$Generateuploadurl;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Functions$Generateuploadurl;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2/{+parent}/functions:generateUploadUrl'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GenerateUploadUrlResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GenerateUploadUrlResponse>(parameters);
+      }
+    }
+
+    /**
+     * Returns a function with the given name from the requested project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.projects.locations.functions.get({
+     *     // Required. The name of the function which details should be obtained.
+     *     name: 'projects/my-project/locations/my-location/functions/my-function',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "buildConfig": {},
+     *   //   "description": "my_description",
+     *   //   "environment": "my_environment",
+     *   //   "eventTrigger": {},
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "serviceConfig": {},
+     *   //   "state": "my_state",
+     *   //   "stateMessages": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Functions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Functions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Function>;
+    get(
+      params: Params$Resource$Projects$Locations$Functions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Functions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Function>,
+      callback: BodyResponseCallback<Schema$Function>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Functions$Get,
+      callback: BodyResponseCallback<Schema$Function>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Function>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Functions$Get
+        | BodyResponseCallback<Schema$Function>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Function>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Function>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Function> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Functions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Functions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Function>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Function>(parameters);
+      }
+    }
+
+    /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @example
      * ```js
@@ -868,6 +2080,301 @@ export namespace cloudfunctions_v2 {
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Returns a list of functions that belong to the requested project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.projects.locations.functions.list({
+     *     // The filter for Functions that match the filter expression, following the syntax outlined in https://google.aip.dev/160.
+     *     filter: 'placeholder-value',
+     *     // The sorting order of the resources returned. Value should be a comma separated list of fields. The default sorting oder is ascending. See https://google.aip.dev/132#ordering.
+     *     orderBy: 'placeholder-value',
+     *     // Maximum number of functions to return per call.
+     *     pageSize: 'placeholder-value',
+     *     // The value returned by the last `ListFunctionsResponse`; indicates that this is a continuation of a prior `ListFunctions` call, and that the system should return the next page of data.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The project and location from which the function should be listed, specified in the format `projects/x/locations/x` If you want to list functions in all locations, use "-" in place of a location. When listing functions in all locations, if one or more location(s) are unreachable, the response will contain functions from all reachable locations along with the names of any unreachable locations.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "functions": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Functions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Functions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListFunctionsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Functions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Functions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListFunctionsResponse>,
+      callback: BodyResponseCallback<Schema$ListFunctionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Functions$List,
+      callback: BodyResponseCallback<Schema$ListFunctionsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListFunctionsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Functions$List
+        | BodyResponseCallback<Schema$ListFunctionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListFunctionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListFunctionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListFunctionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Functions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Functions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/functions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListFunctionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListFunctionsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates existing function.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.projects.locations.functions.patch({
+     *     // A user-defined name of the function. Function names must be unique globally and match pattern `projects/x/locations/x/functions/x`
+     *     name: 'projects/my-project/locations/my-location/functions/my-function',
+     *     // The list of fields to be updated. If no field mask is provided, all provided fields in the request will be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "buildConfig": {},
+     *       //   "description": "my_description",
+     *       //   "environment": "my_environment",
+     *       //   "eventTrigger": {},
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "serviceConfig": {},
+     *       //   "state": "my_state",
+     *       //   "stateMessages": [],
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Functions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Functions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Functions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Functions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Functions$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Functions$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Functions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Functions$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -1163,6 +2670,60 @@ export namespace cloudfunctions_v2 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Functions$Create
+    extends StandardParameters {
+    /**
+     * The ID to use for the function, which will become the final component of the function's resource name. This value should be 4-63 characters, and valid characters are /a-z-/.
+     */
+    functionId?: string;
+    /**
+     * Required. The project and location in which the function should be created, specified in the format `projects/x/locations/x`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Function;
+  }
+  export interface Params$Resource$Projects$Locations$Functions$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the function which should be deleted.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Functions$Generatedownloadurl
+    extends StandardParameters {
+    /**
+     * Required. The name of function for which source code Google Cloud Storage signed URL should be generated.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GenerateDownloadUrlRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Functions$Generateuploadurl
+    extends StandardParameters {
+    /**
+     * Required. The project and location in which the Google Cloud Storage signed URL should be generated, specified in the format `projects/x/locations/x`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GenerateUploadUrlRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Functions$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the function which details should be obtained.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Functions$Getiampolicy
     extends StandardParameters {
     /**
@@ -1173,6 +2734,45 @@ export namespace cloudfunctions_v2 {
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Functions$List
+    extends StandardParameters {
+    /**
+     * The filter for Functions that match the filter expression, following the syntax outlined in https://google.aip.dev/160.
+     */
+    filter?: string;
+    /**
+     * The sorting order of the resources returned. Value should be a comma separated list of fields. The default sorting oder is ascending. See https://google.aip.dev/132#ordering.
+     */
+    orderBy?: string;
+    /**
+     * Maximum number of functions to return per call.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListFunctionsResponse`; indicates that this is a continuation of a prior `ListFunctions` call, and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project and location from which the function should be listed, specified in the format `projects/x/locations/x` If you want to list functions in all locations, use "-" in place of a location. When listing functions in all locations, if one or more location(s) are unreachable, the response will contain functions from all reachable locations along with the names of any unreachable locations.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Functions$Patch
+    extends StandardParameters {
+    /**
+     * A user-defined name of the function. Function names must be unique globally and match pattern `projects/x/locations/x/functions/x`
+     */
+    name?: string;
+    /**
+     * The list of fields to be updated. If no field mask is provided, all provided fields in the request will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Function;
   }
   export interface Params$Resource$Projects$Locations$Functions$Setiampolicy
     extends StandardParameters {
@@ -1504,5 +3104,161 @@ export namespace cloudfunctions_v2 {
      * Token identifying which result to start with, which is returned by a previous list call. Pagination is only supported when querying for a specific function.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Runtimes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns a list of runtimes that are supported for the requested project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.projects.locations.runtimes.list({
+     *     // The filter for Runtimes that match the filter expression, following the syntax outlined in https://google.aip.dev/160.
+     *     filter: 'placeholder-value',
+     *     // Required. The project and location from which the runtimes should be listed, specified in the format `projects/x/locations/x`
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "runtimes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Runtimes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Runtimes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRuntimesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Runtimes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Runtimes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRuntimesResponse>,
+      callback: BodyResponseCallback<Schema$ListRuntimesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Runtimes$List,
+      callback: BodyResponseCallback<Schema$ListRuntimesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListRuntimesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Runtimes$List
+        | BodyResponseCallback<Schema$ListRuntimesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRuntimesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRuntimesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRuntimesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Runtimes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Runtimes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/runtimes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRuntimesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRuntimesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Runtimes$List
+    extends StandardParameters {
+    /**
+     * The filter for Runtimes that match the filter expression, following the syntax outlined in https://google.aip.dev/160.
+     */
+    filter?: string;
+    /**
+     * Required. The project and location from which the runtimes should be listed, specified in the format `projects/x/locations/x`
+     */
+    parent?: string;
   }
 }

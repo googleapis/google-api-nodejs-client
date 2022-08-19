@@ -159,7 +159,7 @@ export namespace cloudfunctions_v2alpha {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -515,6 +515,93 @@ export namespace cloudfunctions_v2alpha {
    * Informational messages about the state of the Cloud Function or Operation.
    */
   export interface Schema$GoogleCloudFunctionsV2betaStateMessage {
+    /**
+     * The message.
+     */
+    message?: string | null;
+    /**
+     * Severity of the state message.
+     */
+    severity?: string | null;
+    /**
+     * One-word CamelCase type of the state message.
+     */
+    type?: string | null;
+  }
+  /**
+   * Represents the metadata of the long-running operation.
+   */
+  export interface Schema$GoogleCloudFunctionsV2OperationMetadata {
+    /**
+     * API version used to start the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     */
+    cancelRequested?: boolean | null;
+    /**
+     * The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * The original request that started the operation.
+     */
+    requestResource?: {[key: string]: any} | null;
+    /**
+     * Mechanism for reporting in-progress stages
+     */
+    stages?: Schema$GoogleCloudFunctionsV2Stage[];
+    /**
+     * Human-readable status of the operation, if any.
+     */
+    statusDetail?: string | null;
+    /**
+     * Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Name of the verb executed by the operation.
+     */
+    verb?: string | null;
+  }
+  /**
+   * Each Stage of the deployment process
+   */
+  export interface Schema$GoogleCloudFunctionsV2Stage {
+    /**
+     * Message describing the Stage
+     */
+    message?: string | null;
+    /**
+     * Name of the Stage. This will be unique for each Stage.
+     */
+    name?: string | null;
+    /**
+     * Resource of the Stage
+     */
+    resource?: string | null;
+    /**
+     * Link to the current Stage resource
+     */
+    resourceUri?: string | null;
+    /**
+     * Current state of the Stage
+     */
+    state?: string | null;
+    /**
+     * State messages from the current Stage.
+     */
+    stateMessages?: Schema$GoogleCloudFunctionsV2StateMessage[];
+  }
+  /**
+   * Informational messages about the state of the Cloud Function or Operation.
+   */
+  export interface Schema$GoogleCloudFunctionsV2StateMessage {
     /**
      * The message.
      */
