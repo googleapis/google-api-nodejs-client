@@ -687,7 +687,7 @@ export namespace logging_v2 {
      */
     sourceLocation?: Schema$LogEntrySourceLocation;
     /**
-     * Optional. The span ID within the trace associated with the log entry.For Trace spans, this is the same format that the Trace API v2 uses: a 16-character hexadecimal encoding of an 8-byte array, such as 000000000000004a.
+     * Optional. The ID of the Cloud Trace (https://cloud.google.com/trace) span associated with the current operation in which the log is being written. For example, if a span has the REST resource name of "projects/some-project/traces/some-trace/spans/some-span-id", then the span_id field is "some-span-id".A Span (https://cloud.google.com/trace/docs/reference/v2/rest/v2/projects.traces/batchWrite#Span) represents a single operation within a trace. Whereas a trace may involve multiple different microservices running on multiple different machines, a span generally corresponds to a single logical operation being performed in a single instance of a microservice on one specific machine. Spans are the nodes within the tree that is a trace.Applications that are instrumented for tracing (https://cloud.google.com/trace/docs/setup) will generally assign a new, unique span ID on each incoming request. It is also common to create and record additional spans corresponding to internal processing elements as well as issuing requests to dependencies.The span ID is expected to be a 16-character, hexadecimal encoding of an 8-byte array and should not be zero. It should be unique within the trace and should, ideally, be generated in a manner that is uniformly random.Example values: 000000000000004a 7a2190356c3fc94b 0000f00300090021 d39223e101960076
      */
     spanId?: string | null;
     /**
@@ -703,7 +703,7 @@ export namespace logging_v2 {
      */
     timestamp?: string | null;
     /**
-     * Optional. Resource name of the trace associated with the log entry, if any. If it contains a relative resource name, the name is assumed to be relative to //tracing.googleapis.com. Example: projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824
+     * Optional. The REST resource name of the trace being written to Cloud Trace (https://cloud.google.com/trace) in association with this log entry. For example, if your trace data is stored in the Cloud project "my-trace-project" and if the service that is creating the log entry receives a trace header that includes the trace ID "12345", then the service should use "projects/my-tracing-project/traces/12345".The trace field provides the link between logs and traces. By using this field, you can navigate from a log entry to a trace.
      */
     trace?: string | null;
     /**
@@ -804,6 +804,10 @@ export namespace logging_v2 {
    */
   export interface Schema$LogMetric {
     /**
+     * Optional. The resource name of the Log Bucket that owns the Log Metric. Only Log Buckets in projects are supported. The bucket has to be in the same project as the metric.For example:projects/my-project/locations/global/buckets/my-bucketIf empty, then the Log Metric is considered a non-Bucket Log Metric.
+     */
+    bucketName?: string | null;
+    /**
      * Optional. The bucket_options are required when the logs-based metric is using a DISTRIBUTION value type and it describes the bucket boundaries used to create a histogram of the extracted values.
      */
     bucketOptions?: Schema$BucketOptions;
@@ -824,7 +828,7 @@ export namespace logging_v2 {
      */
     filter?: string | null;
     /**
-     * Optional. A map from a label key string to an extractor expression which is used to extract data from a log entry field and assign as the label value. Each label key specified in the LabelDescriptor must have an associated extractor expression in this map. The syntax of the extractor expression is the same as for the value_extractor field.The extracted value is converted to the type defined in the label descriptor. If the either the extraction or the type conversion fails, the label will have a default value. The default value for a string label is an empty string, for an integer label its 0, and for a boolean label its false.Note that there are upper bounds on the maximum number of labels and the number of active time series that are allowed in a project.
+     * Optional. A map from a label key string to an extractor expression which is used to extract data from a log entry field and assign as the label value. Each label key specified in the LabelDescriptor must have an associated extractor expression in this map. The syntax of the extractor expression is the same as for the value_extractor field.The extracted value is converted to the type defined in the label descriptor. If either the extraction or the type conversion fails, the label will have a default value. The default value for a string label is an empty string, for an integer label its 0, and for a boolean label its false.Note that there are upper bounds on the maximum number of labels and the number of active time series that are allowed in a project.
      */
     labelExtractors?: {[key: string]: string} | null;
     /**
@@ -897,7 +901,7 @@ export namespace logging_v2 {
      */
     updateTime?: string | null;
     /**
-     * Output only. An IAM identity—a service account or group—under which Cloud Logging writes the exported log entries to the sink's destination. This field is set by sinks.create and sinks.update based on the value of unique_writer_identity in those methods.Until you grant this identity write-access to the destination, log entry exports from this sink will fail. For more information, see Granting Access for a Resource (https://cloud.google.com/iam/docs/granting-roles-to-service-accounts#granting_access_to_a_service_account_for_a_resource). Consult the destination service's documentation to determine the appropriate IAM roles to assign to the identity.Sinks that have a destination that is a log bucket in the same project as the sink do not have a writer_identity and no additional permissions are required.
+     * Output only. An IAM identity—a service account or group—under which Cloud Logging writes the exported log entries to the sink's destination. This field is either set by specifying custom_writer_identity or set automatically by sinks.create and sinks.update based on the value of unique_writer_identity in those methods.Until you grant this identity write-access to the destination, log entry exports from this sink will fail. For more information, see Granting Access for a Resource (https://cloud.google.com/iam/docs/granting-roles-to-service-accounts#granting_access_to_a_service_account_for_a_resource). Consult the destination service's documentation to determine the appropriate IAM roles to assign to the identity.Sinks that have a destination that is a log bucket in the same project as the sink cannot have a writer_identity and no additional permissions are required.
      */
     writerIdentity?: string | null;
   }
@@ -25416,6 +25420,7 @@ export namespace logging_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "bucketName": "my_bucketName",
      *       //   "bucketOptions": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
@@ -25434,6 +25439,7 @@ export namespace logging_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "bucketName": "my_bucketName",
      *   //   "bucketOptions": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -25706,6 +25712,7 @@ export namespace logging_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "bucketName": "my_bucketName",
      *   //   "bucketOptions": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -25990,6 +25997,7 @@ export namespace logging_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "bucketName": "my_bucketName",
      *       //   "bucketOptions": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
@@ -26008,6 +26016,7 @@ export namespace logging_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "bucketName": "my_bucketName",
      *   //   "bucketOptions": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
