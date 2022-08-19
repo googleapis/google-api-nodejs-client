@@ -129,9 +129,22 @@ export namespace playintegrity_v1 {
    */
   export interface Schema$AccountDetails {
     /**
+     * Details about the account risk for the user in the scope. This feature is available only to selected developers.
+     */
+    accountRiskVerdict?: Schema$AccountRiskVerdict;
+    /**
      * Required. Details about the licensing status of the user for the app in the scope.
      */
     appLicensingVerdict?: string | null;
+  }
+  /**
+   * Contains information about account risk that indicates if the current user session seems low risk, unknown, or risky before you allow important actions to proceed.
+   */
+  export interface Schema$AccountRiskVerdict {
+    /**
+     * Required. Indicates the account risk level of the current user session.
+     */
+    riskLevel?: string | null;
   }
   /**
    * Contains the application integrity information.

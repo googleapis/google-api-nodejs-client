@@ -138,13 +138,17 @@
       }
     }
   },
-  "revision": "20220305",
+  "revision": "20220817",
   "rootUrl": "https://playintegrity.googleapis.com/",
   "schemas": {
     "AccountDetails": {
       "description": "Contains the account information such as the licensing status for the user in the scope.",
       "id": "AccountDetails",
       "properties": {
+        "accountRiskVerdict": {
+          "$ref": "AccountRiskVerdict",
+          "description": "Details about the account risk for the user in the scope. This feature is available only to selected developers."
+        },
         "appLicensingVerdict": {
           "description": "Required. Details about the licensing status of the user for the app in the scope.",
           "enum": [
@@ -158,6 +162,33 @@
             "The app and certificate match the versions distributed by Play.",
             "The certificate or package name does not match Google Play records.",
             "Licensing details were not evaluated since a necessary requirement was missed. For example DeviceIntegrity did not meet the minimum bar or the application was not a known Play version."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AccountRiskVerdict": {
+      "description": "Contains information about account risk that indicates if the current user session seems low risk, unknown, or risky before you allow important actions to proceed.",
+      "id": "AccountRiskVerdict",
+      "properties": {
+        "riskLevel": {
+          "description": "Required. Indicates the account risk level of the current user session.",
+          "enum": [
+            "RISK_LEVEL_UNSPECIFIED",
+            "RISK_LEVEL_UNEVALUATED",
+            "RISK_LEVEL_RISK",
+            "RISK_LEVEL_UNKNOWN",
+            "RISK_LEVEL_LOW_RISK",
+            "RISK_LEVEL_LOWEST_RISK"
+          ],
+          "enumDescriptions": [
+            "Risk level has not been set.",
+            "The account risk is not evaluated, because the device is not trusted or the user does not have a Play app license.",
+            "Play thinks that at least one of the user accounts on the device has some unusual store engagement behavior that could be risky.",
+            "Play does not have sufficient information to assess the risk. The account may be new, or it may lack activity on the Play Store.",
+            "Play thinks the user could be genuine, since there is some store engagement. However, some signals to support the trust level are missing.",
+            "Play thinks the user is more likely to be genuine due to harder to replicate store engagement signals."
           ],
           "type": "string"
         }
