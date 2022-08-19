@@ -700,7 +700,7 @@ export namespace calendar_v3 {
     htmlLink?: string | null;
     /**
      * Event unique identifier as defined in RFC5545. It is used to uniquely identify events accross calendaring systems and must be supplied when importing events via the import method.
-     * Note that the icalUID and the id are not identical and only one of them should be supplied at event creation time. One difference in their semantics is that in recurring events, all occurrences of one event have different ids while they all share the same icalUIDs.
+     * Note that the iCalUID and the id are not identical and only one of them should be supplied at event creation time. One difference in their semantics is that in recurring events, all occurrences of one event have different ids while they all share the same iCalUIDs. To retrieve an event using its iCalUID, call the events.list method using the iCalUID parameter. To retrieve an event using its id, call the events.get method.
      */
     iCalUID?: string | null;
     /**
@@ -4790,7 +4790,7 @@ export namespace calendar_v3 {
     }
 
     /**
-     * Returns an event.
+     * Returns an event based on its Google Calendar ID. To retrieve an event using its iCalendar ID, call the events.list method using the iCalUID parameter.
      * @example
      * ```js
      * // Before running the sample:
@@ -5610,7 +5610,7 @@ export namespace calendar_v3 {
      *     alwaysIncludeEmail: 'placeholder-value',
      *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      *     calendarId: 'placeholder-value',
-     *     // Specifies event ID in the iCalendar format to be included in the response. Optional.
+     *     // Specifies an event ID in the iCalendar format to be provided in the response. Optional. Use this if you want to search for an event by its iCalendar ID.
      *     iCalUID: 'placeholder-value',
      *     // The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
      *     maxAttendees: 'placeholder-value',
@@ -6614,7 +6614,7 @@ export namespace calendar_v3 {
      *     alwaysIncludeEmail: 'placeholder-value',
      *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      *     calendarId: 'placeholder-value',
-     *     // Specifies event ID in the iCalendar format to be included in the response. Optional.
+     *     // Specifies an event ID in the iCalendar format to be provided in the response. Optional. Use this if you want to search for an event by its iCalendar ID.
      *     iCalUID: 'placeholder-value',
      *     // The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
      *     maxAttendees: 'placeholder-value',
@@ -6934,7 +6934,7 @@ export namespace calendar_v3 {
      */
     calendarId?: string;
     /**
-     * Specifies event ID in the iCalendar format to be included in the response. Optional.
+     * Specifies an event ID in the iCalendar format to be provided in the response. Optional. Use this if you want to search for an event by its iCalendar ID.
      */
     iCalUID?: string;
     /**
@@ -7147,7 +7147,7 @@ export namespace calendar_v3 {
      */
     calendarId?: string;
     /**
-     * Specifies event ID in the iCalendar format to be included in the response. Optional.
+     * Specifies an event ID in the iCalendar format to be provided in the response. Optional. Use this if you want to search for an event by its iCalendar ID.
      */
     iCalUID?: string;
     /**
