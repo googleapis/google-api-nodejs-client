@@ -221,6 +221,11 @@
                     "name"
                   ],
                   "parameters": {
+                    "force": {
+                      "description": "If set to true, any child resources will also be deleted. (Otherwise, the request will only work if there are no child resources.)",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "name": {
                       "description": "Required. The name of the API to delete. Format: projects/*/locations/*/apis/*",
                       "location": "path",
@@ -1302,6 +1307,11 @@
                         "name"
                       ],
                       "parameters": {
+                        "force": {
+                          "description": "If set to true, any child resources will also be deleted. (Otherwise, the request will only work if there are no child resources.)",
+                          "location": "query",
+                          "type": "boolean"
+                        },
                         "name": {
                           "description": "Required. The name of the version to delete. Format: projects/*/locations/*/apis/*/versions/*",
                           "location": "path",
@@ -3116,7 +3126,7 @@
       }
     }
   },
-  "revision": "20220607",
+  "revision": "20220723",
   "rootUrl": "https://apigeeregistry.googleapis.com/",
   "schemas": {
     "Api": {
