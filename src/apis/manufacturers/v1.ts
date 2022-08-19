@@ -181,6 +181,10 @@ export namespace manufacturers_v1 {
      */
     gender?: string | null;
     /**
+     * Grocery Attributes. For more information, see go/mfc-nutrition-attributes.
+     */
+    grocery?: Schema$Grocery;
+    /**
      * The Global Trade Item Number (GTIN) of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#gtin.
      */
     gtin?: string[] | null;
@@ -204,6 +208,10 @@ export namespace manufacturers_v1 {
      * The Manufacturer Part Number (MPN) of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#mpn.
      */
     mpn?: string | null;
+    /**
+     * Nutrition Attributes. For more information, see go/mfc-nutrition-attributes.
+     */
+    nutrition?: Schema$Nutrition;
     /**
      * The pattern of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#pattern.
      */
@@ -338,6 +346,57 @@ export namespace manufacturers_v1 {
     text?: string | null;
   }
   /**
+   * Combination of float amout and unit.
+   */
+  export interface Schema$FloatUnit {
+    /**
+     * amount.
+     */
+    amount?: number | null;
+    /**
+     * unit.
+     */
+    unit?: string | null;
+  }
+  export interface Schema$Grocery {
+    /**
+     * Active ingredients.
+     */
+    activeIngredients?: string | null;
+    /**
+     * Alcohol by volume.
+     */
+    alcoholByVolume?: number | null;
+    /**
+     * Allergens.
+     */
+    allergens?: string | null;
+    /**
+     * Derived nutrition claim.
+     */
+    derivedNutritionClaim?: string[] | null;
+    /**
+     * Directions.
+     */
+    directions?: string | null;
+    /**
+     * Indications.
+     */
+    indications?: string | null;
+    /**
+     * Ingredients.
+     */
+    ingredients?: string | null;
+    /**
+     * Nutrition claim.
+     */
+    nutritionClaim?: string[] | null;
+    /**
+     * Storage instructions.
+     */
+    storageInstructions?: string | null;
+  }
+  /**
    * An image.
    */
   export interface Schema$Image {
@@ -400,6 +459,180 @@ export namespace manufacturers_v1 {
      * List of the products.
      */
     products?: Schema$Product[];
+  }
+  export interface Schema$Nutrition {
+    /**
+     * Added sugars.
+     */
+    addedSugars?: Schema$FloatUnit;
+    /**
+     * Added sugars daily percentage.
+     */
+    addedSugarsDailyPercentage?: number | null;
+    /**
+     * Calcium.
+     */
+    calcium?: Schema$FloatUnit;
+    /**
+     * Calcium daily percentage.
+     */
+    calciumDailyPercentage?: number | null;
+    /**
+     * Cholesterol.
+     */
+    cholesterol?: Schema$FloatUnit;
+    /**
+     * Cholesterol daily percentage.
+     */
+    cholesterolDailyPercentage?: number | null;
+    /**
+     * Dietary fiber.
+     */
+    dietaryFiber?: Schema$FloatUnit;
+    /**
+     * Dietary fiber daily percentage.
+     */
+    dietaryFiberDailyPercentage?: number | null;
+    /**
+     * Mandatory Nutrition Facts. Energy.
+     */
+    energy?: Schema$FloatUnit;
+    /**
+     * Energy from fat.
+     */
+    energyFromFat?: Schema$FloatUnit;
+    /**
+     * Folate daily percentage.
+     */
+    folateDailyPercentage?: number | null;
+    /**
+     * Folate folic acid.
+     */
+    folateFolicAcid?: Schema$FloatUnit;
+    /**
+     * Folate mcg DFE.
+     */
+    folateMcgDfe?: number | null;
+    /**
+     * Iron.
+     */
+    iron?: Schema$FloatUnit;
+    /**
+     * Iron daily percentage.
+     */
+    ironDailyPercentage?: number | null;
+    /**
+     * Monounsaturated fat.
+     */
+    monounsaturatedFat?: Schema$FloatUnit;
+    /**
+     * Nutrition fact measure.
+     */
+    nutritionFactMeasure?: string | null;
+    /**
+     * Polyols.
+     */
+    polyols?: Schema$FloatUnit;
+    /**
+     * Polyunsaturated fat.
+     */
+    polyunsaturatedFat?: Schema$FloatUnit;
+    /**
+     * Potassium.
+     */
+    potassium?: Schema$FloatUnit;
+    /**
+     * Potassium daily percentage.
+     */
+    potassiumDailyPercentage?: number | null;
+    /**
+     * Prepared size description.
+     */
+    preparedSizeDescription?: string | null;
+    /**
+     * Protein.
+     */
+    protein?: Schema$FloatUnit;
+    /**
+     * Protein daily percentage.
+     */
+    proteinDailyPercentage?: number | null;
+    /**
+     * Saturated fat.
+     */
+    saturatedFat?: Schema$FloatUnit;
+    /**
+     * Saturated fat daily percentage.
+     */
+    saturatedFatDailyPercentage?: number | null;
+    /**
+     * Food Serving Size. Serving size description.
+     */
+    servingSizeDescription?: string | null;
+    /**
+     * Serving size measure.
+     */
+    servingSizeMeasure?: Schema$FloatUnit;
+    /**
+     * Servings per container.
+     */
+    servingsPerContainer?: string | null;
+    /**
+     * Sodium.
+     */
+    sodium?: Schema$FloatUnit;
+    /**
+     * Sodium daily percentage.
+     */
+    sodiumDailyPercentage?: number | null;
+    /**
+     * Starch.
+     */
+    starch?: Schema$FloatUnit;
+    /**
+     * Total carbohydrate.
+     */
+    totalCarbohydrate?: Schema$FloatUnit;
+    /**
+     * Total carbohydrate daily percentage.
+     */
+    totalCarbohydrateDailyPercentage?: number | null;
+    /**
+     * Total fat.
+     */
+    totalFat?: Schema$FloatUnit;
+    /**
+     * Total fat daily percentage.
+     */
+    totalFatDailyPercentage?: number | null;
+    /**
+     * Total sugars.
+     */
+    totalSugars?: Schema$FloatUnit;
+    /**
+     * Total sugars daily percentage.
+     */
+    totalSugarsDailyPercentage?: number | null;
+    /**
+     * Trans fat.
+     */
+    transFat?: Schema$FloatUnit;
+    /**
+     * Trans fat daily percentage.
+     */
+    transFatDailyPercentage?: number | null;
+    /**
+     * Vitamin D.
+     */
+    vitaminD?: Schema$FloatUnit;
+    /**
+     * Vitamin D daily percentage.
+     */
+    vitaminDDailyPercentage?: number | null;
+    /**
+     * Voluntary nutrition fact.
+     */
+    voluntaryNutritionFact?: Schema$VoluntaryNutritionFact[];
   }
   /**
    * A price.
@@ -467,6 +700,23 @@ export namespace manufacturers_v1 {
      * A short section name that can be reused between multiple product details.
      */
     sectionName?: string | null;
+  }
+  /**
+   * Voluntary Nutrition Facts.
+   */
+  export interface Schema$VoluntaryNutritionFact {
+    /**
+     * Daily percentage.
+     */
+    dailyPercentage?: number | null;
+    /**
+     * Name.
+     */
+    name?: string | null;
+    /**
+     * Value.
+     */
+    value?: Schema$FloatUnit;
   }
 
   export class Resource$Accounts {
@@ -946,12 +1196,14 @@ export namespace manufacturers_v1 {
      *       //   "flavor": "my_flavor",
      *       //   "format": "my_format",
      *       //   "gender": "my_gender",
+     *       //   "grocery": {},
      *       //   "gtin": [],
      *       //   "imageLink": {},
      *       //   "includedDestination": [],
      *       //   "itemGroupId": "my_itemGroupId",
      *       //   "material": "my_material",
      *       //   "mpn": "my_mpn",
+     *       //   "nutrition": {},
      *       //   "pattern": "my_pattern",
      *       //   "productDetail": [],
      *       //   "productHighlight": [],
