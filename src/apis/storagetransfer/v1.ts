@@ -167,6 +167,31 @@ export namespace storagetransfer_v1 {
     secretAccessKey?: string | null;
   }
   /**
+   * An AwsS3CompatibleData resource.
+   */
+  export interface Schema$AwsS3CompatibleData {
+    /**
+     * Required. Specifies the name of the bucket.
+     */
+    bucketName?: string | null;
+    /**
+     * Required. Specifies the endpoint of the storage service.
+     */
+    endpoint?: string | null;
+    /**
+     * Specifies the root path to transfer objects. Must be an empty string or full path name that ends with a '/'. This field is treated as an object prefix. As such, it should generally not begin with a '/'.
+     */
+    path?: string | null;
+    /**
+     * Specifies the region to sign requests with. This can be left blank if requests should be signed with an empty region.
+     */
+    region?: string | null;
+    /**
+     * A S3 compatible metadata.
+     */
+    s3Metadata?: Schema$S3CompatibleMetadata;
+  }
+  /**
    * An AwsS3Data resource can be a data source, but not a data sink. In an AwsS3Data resource, an object's name is the S3 object's key name.
    */
   export interface Schema$AwsS3Data {
@@ -511,6 +536,27 @@ export namespace storagetransfer_v1 {
     projectId?: string | null;
   }
   /**
+   * S3CompatibleMetadata contains the metadata fields that apply to the basic types of S3-compatible data providers.
+   */
+  export interface Schema$S3CompatibleMetadata {
+    /**
+     * Specifies the authentication and authorization method used by the storage service. When not specified, Transfer Service will attempt to determine right auth method to use.
+     */
+    authMethod?: string | null;
+    /**
+     * The Listing API to use for discovering objects. When not specified, Transfer Service will attempt to determine the right API to use.
+     */
+    listApi?: string | null;
+    /**
+     * Specifies the network protocol of the agent. When not specified, the default value of NetworkProtocol NETWORK_PROTOCOL_HTTPS is used.
+     */
+    protocol?: string | null;
+    /**
+     * Specifies the API request model used to call the storage service. When not specified, the default value of RequestModel REQUEST_MODEL_VIRTUAL_HOSTED_STYLE is used.
+     */
+    requestModel?: string | null;
+  }
+  /**
    * Transfers can be scheduled to recur or to run just once.
    */
   export interface Schema$Schedule {
@@ -782,7 +828,7 @@ export namespace storagetransfer_v1 {
      */
     deleteObjectsUniqueInSink?: boolean | null;
     /**
-     * Represents the selected metadata options for a transfer job. This feature is in Preview.
+     * Represents the selected metadata options for a transfer job.
      */
     metadataOptions?: Schema$MetadataOptions;
     /**
@@ -798,6 +844,10 @@ export namespace storagetransfer_v1 {
    * Configuration for running a transfer.
    */
   export interface Schema$TransferSpec {
+    /**
+     * An AWS S3 compatible data source.
+     */
+    awsS3CompatibleDataSource?: Schema$AwsS3CompatibleData;
     /**
      * An AWS S3 data source.
      */
