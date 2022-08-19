@@ -307,7 +307,7 @@
       }
     }
   },
-  "revision": "20220619",
+  "revision": "20220817",
   "rootUrl": "https://servicenetworking.googleapis.com/",
   "schemas": {
     "AddDnsRecordSetMetadata": {
@@ -644,6 +644,26 @@
       },
       "type": "object"
     },
+    "CloudSQLConfig": {
+      "description": "Cloud SQL configuration.",
+      "id": "CloudSQLConfig",
+      "properties": {
+        "service": {
+          "description": "Peering service used for peering with the Cloud SQL project.",
+          "type": "string"
+        },
+        "umbrellaNetwork": {
+          "description": "The name of the umbrella network in the Cloud SQL umbrella project.",
+          "type": "string"
+        },
+        "umbrellaProject": {
+          "description": "The project number of the Cloud SQL umbrella project.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Connection": {
       "description": "Represents a private connection resource. A private connection is implemented as a VPC Network Peering connection between a service producer's VPC network and a service consumer's VPC network.",
       "id": "Connection",
@@ -676,6 +696,13 @@
       "description": "Configuration information for a private service access connection.",
       "id": "ConsumerConfig",
       "properties": {
+        "cloudsqlConfigs": {
+          "description": "Represents one or multiple Cloud SQL configurations.",
+          "items": {
+            "$ref": "CloudSQLConfig"
+          },
+          "type": "array"
+        },
         "consumerExportCustomRoutes": {
           "description": "Export custom routes flag value for peering from consumer to producer.",
           "type": "boolean"
@@ -1750,6 +1777,10 @@
       "description": "OAuth scopes are a way to define data and permissions on data. For example, there are scopes defined for \"Read-only access to Google Calendar\" and \"Access to Cloud Platform\". Users can consent to a scope for an application, giving it permission to access that data on their behalf. OAuth scope specifications should be fairly coarse grained; a user will need to see and understand the text description of what your scope means. In most cases: use one or at most two OAuth scopes for an entire family of products. If your product has multiple APIs, you should probably be sharing the OAuth scope across all of those APIs. When you need finer grained OAuth consent screens: talk with your product management about how developers will use them in practice. Please note that even though each of the canonical scopes is enough for a request to be accepted and passed to the backend, a request can still fail due to the backend requiring additional scopes or permissions.",
       "id": "OAuthRequirements",
       "properties": {
+        "allowAnyScope": {
+          "description": "UNIMPLEMENTED: If enabled, ESF will allow OAuth credentials with any scope, more details in http://go/esf-oauth-any-scope. WARNING: Enabling this option will bring security risks. Customers enabling this feature accidentally may have the risk of losing authentication enforcement. Please reach out to api-auth@ and esf-team@ for approval and allowlisting before you enable this option. ",
+          "type": "boolean"
+        },
         "canonicalScopes": {
           "description": "The list of publicly documented OAuth scopes that are allowed access. An OAuth token containing any of these scopes will be accepted. Example: canonical_scopes: https://www.googleapis.com/auth/calendar, https://www.googleapis.com/auth/calendar.read",
           "type": "string"
