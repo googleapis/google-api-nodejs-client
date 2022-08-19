@@ -206,25 +206,19 @@ export namespace doubleclickbidmanager_v2 {
      */
     value?: string | null;
   }
-  /**
-   * Represents a list of queries.
-   */
   export interface Schema$ListQueriesResponse {
     /**
-     * A token, which can be sent as `page_token` to retrieve the next page of queries. If this field is omitted, there are no subsequent pages.
+     * A token, which can be sent as page_token to retrieve the next page of queries. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
     /**
-     * Retrieved queries.
+     * The list of queries.
      */
     queries?: Schema$Query[];
   }
-  /**
-   * Represents a list of reports.
-   */
   export interface Schema$ListReportsResponse {
     /**
-     * A token, which can be sent as `page_token` to retrieve the next page of reports. If this field is omitted, there are no subsequent pages.
+     * A token, which can be sent as page_token to retrieve the next page of reports. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
     /**
@@ -266,7 +260,7 @@ export namespace doubleclickbidmanager_v2 {
      */
     options?: Schema$Options;
     /**
-     * Report type.
+     * The type of the report. The type of the report will dictate what dimesions, filters, and metrics can be used.
      */
     type?: string | null;
   }
@@ -279,7 +273,7 @@ export namespace doubleclickbidmanager_v2 {
      */
     eventFilters?: Schema$EventFilter[];
     /**
-     * Indicates the position of the path the filter should match to (first, last, or any event in path).
+     * The position of the path the filter should match to (first, last, or any event in path).
      */
     pathMatchPosition?: string | null;
   }
@@ -297,7 +291,7 @@ export namespace doubleclickbidmanager_v2 {
     pathFilters?: Schema$PathFilter[];
   }
   /**
-   * Dimension Filter on path events.
+   * Dimension filter on path events.
    */
   export interface Schema$PathQueryOptionsFilter {
     /**
@@ -305,11 +299,11 @@ export namespace doubleclickbidmanager_v2 {
      */
     filter?: string | null;
     /**
-     * Indicates how the filter should be matched to the value.
+     * Match logic of the filter.
      */
     match?: string | null;
     /**
-     * Value to filter on.
+     * Values to filter on.
      */
     values?: string[] | null;
   }
@@ -330,7 +324,7 @@ export namespace doubleclickbidmanager_v2 {
      */
     queryId?: string | null;
     /**
-     * Information on how often and when to run a query.
+     * Information on how often and when to run a query. If `ONE_TIME` is set to the frequency field, the query will only be run at the time of creation.
      */
     schedule?: Schema$QuerySchedule;
   }
@@ -339,7 +333,7 @@ export namespace doubleclickbidmanager_v2 {
    */
   export interface Schema$QueryMetadata {
     /**
-     * Range of report data.
+     * Range of report data. All reports will be based on the same time zone as used by the advertiser.
      */
     dataRange?: Schema$DataRange;
     /**
@@ -351,7 +345,7 @@ export namespace doubleclickbidmanager_v2 {
      */
     sendNotification?: boolean | null;
     /**
-     * List of email addresses which are sent email notifications when the report is finished. Separate from `sendNotification`.
+     * List of email addresses which are sent email notifications when the report is finished. Separate from send_notification.
      */
     shareEmailAddress?: string[] | null;
     /**
@@ -360,7 +354,7 @@ export namespace doubleclickbidmanager_v2 {
     title?: string | null;
   }
   /**
-   * Information on how frequently and when to run a query.
+   * Information on when and how frequently to run a query.
    */
   export interface Schema$QuerySchedule {
     /**
@@ -617,7 +611,7 @@ export namespace doubleclickbidmanager_v2 {
     }
 
     /**
-     * Deletes a stored query as well as the associated stored reports.
+     * Deletes a query as well as the associated reports.
      * @example
      * ```js
      * // Before running the sample:
@@ -643,7 +637,7 @@ export namespace doubleclickbidmanager_v2 {
      *
      *   // Do the magic
      *   const res = await doubleclickbidmanager.queries.delete({
-     *     // Required. Query ID to delete.
+     *     // Required. ID of query to delete.
      *     queryId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -739,7 +733,7 @@ export namespace doubleclickbidmanager_v2 {
     }
 
     /**
-     * Retrieves a stored query.
+     * Retrieves a query.
      * @example
      * ```js
      * // Before running the sample:
@@ -765,7 +759,7 @@ export namespace doubleclickbidmanager_v2 {
      *
      *   // Do the magic
      *   const res = await doubleclickbidmanager.queries.get({
-     *     // Required. Query ID to retrieve.
+     *     // Required. ID of query to retrieve.
      *     queryId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -871,7 +865,7 @@ export namespace doubleclickbidmanager_v2 {
     }
 
     /**
-     * Retrieves stored queries.
+     * Lists queries created by the current user.
      * @example
      * ```js
      * // Before running the sample:
@@ -897,7 +891,7 @@ export namespace doubleclickbidmanager_v2 {
      *
      *   // Do the magic
      *   const res = await doubleclickbidmanager.queries.list({
-     *     // Name of a field used to order results. The default sorting order is ascending. To specify descending order for a field, append a " desc" suffix. For example "metadata.title desc". Sorting is only supported for the following fields: * queryId * metadata.title
+     *     // Name of a field used to order results. The default sorting order is ascending. To specify descending order for a field, append a " desc" suffix. For example "metadata.title desc". Sorting is only supported for the following fields: * `queryId` * `metadata.title`
      *     orderBy: 'placeholder-value',
      *     // Maximum number of results per page. Must be between `1` and `100`. Defaults to `100` if unspecified.
      *     pageSize: 'placeholder-value',
@@ -1031,7 +1025,7 @@ export namespace doubleclickbidmanager_v2 {
      *
      *   // Do the magic
      *   const res = await doubleclickbidmanager.queries.run({
-     *     // Required. Query ID to run.
+     *     // Required. ID of query to run.
      *     queryId: 'placeholder-value',
      *     // Whether the query should be run synchronously. When true, this method will not return until the query has finished running. When false or not specified, this method will return immediately.
      *     synchronous: 'placeholder-value',
@@ -1154,19 +1148,19 @@ export namespace doubleclickbidmanager_v2 {
   }
   export interface Params$Resource$Queries$Delete extends StandardParameters {
     /**
-     * Required. Query ID to delete.
+     * Required. ID of query to delete.
      */
     queryId?: string;
   }
   export interface Params$Resource$Queries$Get extends StandardParameters {
     /**
-     * Required. Query ID to retrieve.
+     * Required. ID of query to retrieve.
      */
     queryId?: string;
   }
   export interface Params$Resource$Queries$List extends StandardParameters {
     /**
-     * Name of a field used to order results. The default sorting order is ascending. To specify descending order for a field, append a " desc" suffix. For example "metadata.title desc". Sorting is only supported for the following fields: * queryId * metadata.title
+     * Name of a field used to order results. The default sorting order is ascending. To specify descending order for a field, append a " desc" suffix. For example "metadata.title desc". Sorting is only supported for the following fields: * `queryId` * `metadata.title`
      */
     orderBy?: string;
     /**
@@ -1180,7 +1174,7 @@ export namespace doubleclickbidmanager_v2 {
   }
   export interface Params$Resource$Queries$Run extends StandardParameters {
     /**
-     * Required. Query ID to run.
+     * Required. ID of query to run.
      */
     queryId?: string;
     /**
@@ -1201,7 +1195,7 @@ export namespace doubleclickbidmanager_v2 {
     }
 
     /**
-     * Retrieves a stored report.
+     * Retrieves a report.
      * @example
      * ```js
      * // Before running the sample:
@@ -1335,7 +1329,7 @@ export namespace doubleclickbidmanager_v2 {
     }
 
     /**
-     * Lists reports.
+     * Lists reports associated with a query.
      * @example
      * ```js
      * // Before running the sample:
@@ -1361,13 +1355,13 @@ export namespace doubleclickbidmanager_v2 {
      *
      *   // Do the magic
      *   const res = await doubleclickbidmanager.queries.reports.list({
-     *     // Name of a field used to order results. The default sorting order is ascending. To specify descending order for a field, append a " desc" suffix. For example "key.reportId desc". Sorting is only supported for the following fields: * key.reportId
+     *     // Name of a field used to order results. The default sorting order is ascending. To specify descending order for a field, append a " desc" suffix. For example "key.reportId desc". Sorting is only supported for the following fields: * `key.reportId`
      *     orderBy: 'placeholder-value',
      *     // Maximum number of results per page. Must be between `1` and `100`. Defaults to `100` if unspecified.
      *     pageSize: 'placeholder-value',
      *     // A page token, received from a previous list call. Provide this to retrieve the subsequent page of reports.
      *     pageToken: 'placeholder-value',
-     *     // Required. Query ID with which the reports are associated.
+     *     // Required. ID of the query with which the reports are associated.
      *     queryId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1489,7 +1483,7 @@ export namespace doubleclickbidmanager_v2 {
   export interface Params$Resource$Queries$Reports$List
     extends StandardParameters {
     /**
-     * Name of a field used to order results. The default sorting order is ascending. To specify descending order for a field, append a " desc" suffix. For example "key.reportId desc". Sorting is only supported for the following fields: * key.reportId
+     * Name of a field used to order results. The default sorting order is ascending. To specify descending order for a field, append a " desc" suffix. For example "key.reportId desc". Sorting is only supported for the following fields: * `key.reportId`
      */
     orderBy?: string;
     /**
@@ -1501,7 +1495,7 @@ export namespace doubleclickbidmanager_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Query ID with which the reports are associated.
+     * Required. ID of the query with which the reports are associated.
      */
     queryId?: string;
   }
