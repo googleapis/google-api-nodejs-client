@@ -180,6 +180,10 @@ export namespace mybusinessaccountmanagement_v1 {
    */
   export interface Schema$Admin {
     /**
+     * Immutable. The name of the Account resource that this Admin refers to. Used when calling locations.admins.create to invite a LocationGroup as an admin. If both this field and `admin` are set on `CREATE` requests, this field takes precedence and the email address in `admin` will be ignored. Format: `accounts/{account\}`.
+     */
+    account?: string | null;
+    /**
      * Optional. The name of the admin. When making the initial invitation, this is the invitee's email address. On `GET` calls, the user's email address is returned if the invitation is still pending. Otherwise, it contains the user's first and last names. This field is only needed to be set during admin creation.
      */
     admin?: string | null;
@@ -683,7 +687,7 @@ export namespace mybusinessaccountmanagement_v1 {
      *   const res = await mybusinessaccountmanagement.accounts.list({
      *     // Optional. A filter constraining the accounts to return. The response includes only entries that match the filter. If `filter` is empty, then no constraints are applied and all accounts (paginated) are retrieved for the requested account. For example, a request with the filter `type=USER_GROUP` will only return user groups. The `type` field is the only supported filter.
      *     filter: 'placeholder-value',
-     *     // Optional. How many accounts to fetch per page. The minimum supported page_size is 2. The default and maximum is 20.
+     *     // Optional. How many accounts to fetch per page. The default and maximum is 20.
      *     pageSize: 'placeholder-value',
      *     // Optional. If specified, the next page of accounts is retrieved. The `pageToken` is returned when a call to `accounts.list` returns more results than can fit into the requested page size.
      *     pageToken: 'placeholder-value',
@@ -969,7 +973,7 @@ export namespace mybusinessaccountmanagement_v1 {
      */
     filter?: string;
     /**
-     * Optional. How many accounts to fetch per page. The minimum supported page_size is 2. The default and maximum is 20.
+     * Optional. How many accounts to fetch per page. The default and maximum is 20.
      */
     pageSize?: number;
     /**
@@ -1041,6 +1045,7 @@ export namespace mybusinessaccountmanagement_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "account": "my_account",
      *       //   "admin": "my_admin",
      *       //   "name": "my_name",
      *       //   "pendingInvitation": false,
@@ -1052,6 +1057,7 @@ export namespace mybusinessaccountmanagement_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "account": "my_account",
      *   //   "admin": "my_admin",
      *   //   "name": "my_name",
      *   //   "pendingInvitation": false,
@@ -1452,6 +1458,7 @@ export namespace mybusinessaccountmanagement_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "account": "my_account",
      *       //   "admin": "my_admin",
      *       //   "name": "my_name",
      *       //   "pendingInvitation": false,
@@ -1463,6 +1470,7 @@ export namespace mybusinessaccountmanagement_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "account": "my_account",
      *   //   "admin": "my_admin",
      *   //   "name": "my_name",
      *   //   "pendingInvitation": false,
@@ -2251,6 +2259,7 @@ export namespace mybusinessaccountmanagement_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "account": "my_account",
      *       //   "admin": "my_admin",
      *       //   "name": "my_name",
      *       //   "pendingInvitation": false,
@@ -2262,6 +2271,7 @@ export namespace mybusinessaccountmanagement_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "account": "my_account",
      *   //   "admin": "my_admin",
      *   //   "name": "my_name",
      *   //   "pendingInvitation": false,
@@ -2662,6 +2672,7 @@ export namespace mybusinessaccountmanagement_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "account": "my_account",
      *       //   "admin": "my_admin",
      *       //   "name": "my_name",
      *       //   "pendingInvitation": false,
@@ -2673,6 +2684,7 @@ export namespace mybusinessaccountmanagement_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "account": "my_account",
      *   //   "admin": "my_admin",
      *   //   "name": "my_name",
      *   //   "pendingInvitation": false,
