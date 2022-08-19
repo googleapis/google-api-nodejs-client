@@ -896,7 +896,7 @@
       }
     }
   },
-  "revision": "20220609",
+  "revision": "20220811",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -916,7 +916,22 @@
           "type": "string"
         },
         "principalEmail": {
-          "description": "Associated email, such as \"foo@google.com\".",
+          "description": "Associated email, such as \"foo@google.com\". The email address of the authenticated user (or service account on behalf of third party principal) making the request. For third party identity callers, the `principal_subject` field is populated instead of this field. For privacy reasons, the principal email address is sometimes redacted. For more information, see [Caller identities in audit logs](https://cloud.google.com/logging/docs/audit#user-id).",
+          "type": "string"
+        },
+        "principalSubject": {
+          "description": "A string representing the principal_subject associated with the identity. As compared to `principal_email`, supports principals that aren't associated with email addresses, such as third party principals. For most identities, the format will be `principal://iam.googleapis.com/{identity pool name}/subject/{subject)` except for some GKE identities (GKE_WORKLOAD, FREEFORM, GKE_HUB_WORKLOAD) that are still in the legacy format `serviceAccount:{identity pool name}[{subject}]`",
+          "type": "string"
+        },
+        "serviceAccountDelegationInfo": {
+          "description": "Identity delegation history of an authenticated service account that makes the request. It contains information on the real authorities that try to access GCP resources by delegating on a service account. When multiple authorities are present, they are guaranteed to be sorted based on the original ordering of the identity delegation events.",
+          "items": {
+            "$ref": "ServiceAccountDelegationInfo"
+          },
+          "type": "array"
+        },
+        "serviceAccountKeyName": {
+          "description": "The name of the service account key used to create or exchange credentials for authenticating the service account making the request. This is a scheme-less URI full resource name. For example: \"//iam.googleapis.com/projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}\" ",
           "type": "string"
         },
         "serviceName": {
@@ -925,6 +940,41 @@
         },
         "userAgentFamily": {
           "description": "What kind of user agent is associated, e.g. operating system shells, embedded or stand-alone applications, etc.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AccessReview": {
+      "description": "Conveys information about a Kubernetes access review (e.g. kubectl auth can-i ...) that was involved in a finding.",
+      "id": "AccessReview",
+      "properties": {
+        "group": {
+          "description": "Group is the API Group of the Resource. \"*\" means all.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name is the name of the resource being requested. Empty means all.",
+          "type": "string"
+        },
+        "ns": {
+          "description": "Namespace of the action being requested. Currently, there is no distinction between no namespace and all namespaces. Both are represented by \"\" (empty).",
+          "type": "string"
+        },
+        "resource": {
+          "description": "Resource is the optional resource type requested. \"*\" means all.",
+          "type": "string"
+        },
+        "subresource": {
+          "description": "Subresource is the optional subresource type.",
+          "type": "string"
+        },
+        "verb": {
+          "description": "Verb is a Kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy. \"*\" means all.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version is the API Version of the Resource. \"*\" means all.",
           "type": "string"
         }
       },
@@ -1051,7 +1101,7 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
           "items": {
             "type": "string"
           },
@@ -1158,6 +1208,32 @@
             "$ref": "Contact"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Container": {
+      "description": "Container associated with the finding.",
+      "id": "Container",
+      "properties": {
+        "imageId": {
+          "description": "Optional container image id, when provided by the container runtime. Uniquely identifies the container image launched using a container image digest.",
+          "type": "string"
+        },
+        "labels": {
+          "description": "Container labels, as provided by the container runtime.",
+          "items": {
+            "$ref": "Label"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Container name.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "Container image URI provided when configuring a pod/container. May identify a container image version using mutable tags.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1319,6 +1395,36 @@
             "The vulnerable system can be exploited without interaction from any user.",
             "Successful exploitation of this vulnerability requires a user to take some action before the vulnerability can be exploited."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Database": {
+      "description": "Represents database access information, such as queries. A database may be a sub-resource of an instance (as in the case of CloudSQL instances or Cloud Spanner instances), or the database instance itself. Some database resources may not have the full resource name populated because these resource types are not yet supported by Cloud Asset Inventory (e.g. CloudSQL databases). In these cases only the display name will be provided.",
+      "id": "Database",
+      "properties": {
+        "displayName": {
+          "description": "The human readable name of the database the user connected to.",
+          "type": "string"
+        },
+        "grantees": {
+          "description": "The target usernames/roles/groups of a SQL privilege grant (not an IAM policy change).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "The full resource name of the database the user connected to, if it is supported by CAI. (https://google.aip.dev/122#full-resource-names)",
+          "type": "string"
+        },
+        "query": {
+          "description": "The SQL statement associated with the relevant access.",
+          "type": "string"
+        },
+        "userName": {
+          "description": "The username used to connect to the DB. This may not necessarily be an IAM principal, and has no required format.",
           "type": "string"
         }
       },
@@ -1490,14 +1596,25 @@
           "additionalProperties": {
             "$ref": "ContactDetails"
           },
-          "description": "Output only. Map containing the point of contacts for the given finding. The key represents the type of contact, while the value contains a list of all the contacts that pertain. Please refer to: https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories { “security”: {contact: {email: “person1@company.com”} contact: {email: “person2@company.com”} }",
+          "description": "Output only. Map containing the point of contacts for the given finding. The key represents the type of contact, while the value contains a list of all the contacts that pertain. Please refer to: https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories { \"security\": { \"contacts\": [ { \"email\": \"person1@company.com\" }, { \"email\": \"person2@company.com\" } ] }",
           "readOnly": true,
           "type": "object"
+        },
+        "containers": {
+          "description": "Containers associated with the finding. containers provides information for both Kubernetes and non-Kubernetes containers.",
+          "items": {
+            "$ref": "Container"
+          },
+          "type": "array"
         },
         "createTime": {
           "description": "The time at which the finding was created in Security Command Center.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "database": {
+          "$ref": "Database",
+          "description": "Database associated with the finding."
         },
         "description": {
           "description": "Contains more detail about the finding.",
@@ -1554,6 +1671,10 @@
         "indicator": {
           "$ref": "Indicator",
           "description": "Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise"
+        },
+        "kubernetes": {
+          "$ref": "Kubernetes",
+          "description": "Kubernetes resources associated with the finding."
         },
         "mitreAttack": {
           "$ref": "MitreAttack",
@@ -1749,6 +1870,32 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV1Binding": {
+      "description": "Represents a Kubernetes RoleBinding or ClusterRoleBinding.",
+      "id": "GoogleCloudSecuritycenterV1Binding",
+      "properties": {
+        "name": {
+          "description": "Name for binding.",
+          "type": "string"
+        },
+        "ns": {
+          "description": "Namespace for binding.",
+          "type": "string"
+        },
+        "role": {
+          "$ref": "Role",
+          "description": "The Role or ClusterRole referenced by the binding."
+        },
+        "subjects": {
+          "description": "Represents the subjects(s) bound to the role. Not always available for PATCH requests.",
+          "items": {
+            "$ref": "Subject"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2414,6 +2561,77 @@
             "$ref": "ProcessSignature"
           },
           "type": "array"
+        },
+        "uris": {
+          "description": "The list of URIs associated to the Findings",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Kubernetes": {
+      "description": "Kubernetes related attributes.",
+      "id": "Kubernetes",
+      "properties": {
+        "accessReviews": {
+          "description": "Provides information on any Kubernetes access reviews (i.e. privilege checks) relevant to the finding.",
+          "items": {
+            "$ref": "AccessReview"
+          },
+          "type": "array"
+        },
+        "bindings": {
+          "description": "Provides Kubernetes role binding information for findings that involve RoleBindings or ClusterRoleBindings.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV1Binding"
+          },
+          "type": "array"
+        },
+        "nodePools": {
+          "description": "GKE Node Pools associated with the finding. This field will contain NodePool information for each Node, when it is available.",
+          "items": {
+            "$ref": "NodePool"
+          },
+          "type": "array"
+        },
+        "nodes": {
+          "description": "Provides Kubernetes Node information.",
+          "items": {
+            "$ref": "Node"
+          },
+          "type": "array"
+        },
+        "pods": {
+          "description": "Kubernetes Pods associated with the finding. This field will contain Pod records for each container that is owned by a Pod.",
+          "items": {
+            "$ref": "Pod"
+          },
+          "type": "array"
+        },
+        "roles": {
+          "description": "Provides Kubernetes role information for findings that involve Roles or ClusterRoles.",
+          "items": {
+            "$ref": "Role"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Label": {
+      "description": "Label represents a generic name=value label. Label has separate name and value fields to support filtering with contains().",
+      "id": "Label",
+      "properties": {
+        "name": {
+          "description": "Label name.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Label value.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2637,7 +2855,9 @@
               "MODIFY_AUTHENTICATION_PROCESS",
               "DATA_DESTRUCTION",
               "DOMAIN_POLICY_MODIFICATION",
-              "IMPAIR_DEFENSES"
+              "IMPAIR_DEFENSES",
+              "NETWORK_SERVICE_DISCOVERY",
+              "ACCESS_TOKEN_MANIPULATION"
             ],
             "enumDescriptions": [
               "Unspecified value.",
@@ -2671,7 +2891,9 @@
               "T1556",
               "T1485",
               "T1484",
-              "T1562"
+              "T1562",
+              "T1046",
+              "T1134"
             ],
             "type": "string"
           },
@@ -2750,7 +2972,9 @@
               "MODIFY_AUTHENTICATION_PROCESS",
               "DATA_DESTRUCTION",
               "DOMAIN_POLICY_MODIFICATION",
-              "IMPAIR_DEFENSES"
+              "IMPAIR_DEFENSES",
+              "NETWORK_SERVICE_DISCOVERY",
+              "ACCESS_TOKEN_MANIPULATION"
             ],
             "enumDescriptions": [
               "Unspecified value.",
@@ -2784,7 +3008,9 @@
               "T1556",
               "T1485",
               "T1484",
-              "T1562"
+              "T1562",
+              "T1046",
+              "T1134"
             ],
             "type": "string"
           },
@@ -2793,6 +3019,35 @@
         "version": {
           "description": "The MITRE ATT&CK version referenced by the above fields. E.g. \"8\".",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Node": {
+      "description": "Kubernetes Nodes associated with the finding.",
+      "id": "Node",
+      "properties": {
+        "name": {
+          "description": "Full Resource name of the Compute Engine VM running the cluster node.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NodePool": {
+      "description": "Provides GKE Node Pool information.",
+      "id": "NodePool",
+      "properties": {
+        "name": {
+          "description": "Kubernetes Node pool name.",
+          "type": "string"
+        },
+        "nodes": {
+          "description": "Nodes associated with the finding.",
+          "items": {
+            "$ref": "Node"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2846,6 +3101,35 @@
         },
         "name": {
           "description": "The relative resource name of the settings. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: \"organizations/{organization_id}/organizationSettings\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Pod": {
+      "description": "Kubernetes Pod.",
+      "id": "Pod",
+      "properties": {
+        "containers": {
+          "description": "Pod containers associated with this finding, if any.",
+          "items": {
+            "$ref": "Container"
+          },
+          "type": "array"
+        },
+        "labels": {
+          "description": "Pod labels. For Kubernetes containers, these are applied to the container.",
+          "items": {
+            "$ref": "Label"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Kubernetes Pod name.",
+          "type": "string"
+        },
+        "ns": {
+          "description": "Kubernetes Pod namespace.",
           "type": "string"
         }
       },
@@ -2920,7 +3204,7 @@
           "type": "array"
         },
         "name": {
-          "description": "The process name visible in utilities like top and ps; it can be accessed via /proc/[pid]/comm and changed with prctl(PR_SET_NAME).",
+          "description": "The process name visible in utilities like `top` and `ps`; it can be accessed via `/proc/[pid]/comm` and changed with `prctl(PR_SET_NAME)`.",
           "type": "string"
         },
         "parentPid": {
@@ -2965,6 +3249,35 @@
         },
         "uri": {
           "description": "Uri for the mentioned source e.g. https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34527.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Role": {
+      "description": "Kubernetes Role or ClusterRole.",
+      "id": "Role",
+      "properties": {
+        "kind": {
+          "description": "Role type.",
+          "enum": [
+            "KIND_UNSPECIFIED",
+            "ROLE",
+            "CLUSTER_ROLE"
+          ],
+          "enumDescriptions": [
+            "Role type is not specified.",
+            "Kubernetes Role.",
+            "Kubernetes ClusterRole."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Role name.",
+          "type": "string"
+        },
+        "ns": {
+          "description": "Role namespace.",
           "type": "string"
         }
       },
@@ -3023,6 +3336,21 @@
         },
         "name": {
           "description": "The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: \"organizations/{organization_id}/assets/{asset_id}/securityMarks\" \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ServiceAccountDelegationInfo": {
+      "description": "Identity delegation history of an authenticated service account.",
+      "id": "ServiceAccountDelegationInfo",
+      "properties": {
+        "principalEmail": {
+          "description": "The email address of a Google account. .",
+          "type": "string"
+        },
+        "principalSubject": {
+          "description": "A string representing the principal_subject associated with the identity. As compared to `principal_email`, supports principals that aren't associated with email addresses, such as third party principals. For most identities, the format will be `principal://iam.googleapis.com/{identity pool name}/subject/{subject)` except for some GKE identities (GKE_WORKLOAD, FREEFORM, GKE_HUB_WORKLOAD) that are still in the legacy format `serviceAccount:{identity pool name}[{subject}]`",
           "type": "string"
         }
       },
@@ -3111,6 +3439,37 @@
         },
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Subject": {
+      "description": "Represents a Kubernetes Subject.",
+      "id": "Subject",
+      "properties": {
+        "kind": {
+          "description": "Authentication type for subject.",
+          "enum": [
+            "AUTH_TYPE_UNSPECIFIED",
+            "USER",
+            "SERVICEACCOUNT",
+            "GROUP"
+          ],
+          "enumDescriptions": [
+            "Authentication is not specified.",
+            "User with valid certificate.",
+            "Users managed by Kubernetes API with credentials stored as Secrets.",
+            "Collection of users."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Name for subject.",
+          "type": "string"
+        },
+        "ns": {
+          "description": "Namespace for subject.",
           "type": "string"
         }
       },

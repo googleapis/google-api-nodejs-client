@@ -141,9 +141,21 @@ export namespace securitycenter_v1beta1 {
      */
     methodName?: string | null;
     /**
-     * Associated email, such as "foo@google.com".
+     * Associated email, such as "foo@google.com". The email address of the authenticated user (or service account on behalf of third party principal) making the request. For third party identity callers, the `principal_subject` field is populated instead of this field. For privacy reasons, the principal email address is sometimes redacted. For more information, see [Caller identities in audit logs](https://cloud.google.com/logging/docs/audit#user-id).
      */
     principalEmail?: string | null;
+    /**
+     * A string representing the principal_subject associated with the identity. As compared to `principal_email`, supports principals that aren't associated with email addresses, such as third party principals. For most identities, the format will be `principal://iam.googleapis.com/{identity pool name\}/subject/{subject)` except for some GKE identities (GKE_WORKLOAD, FREEFORM, GKE_HUB_WORKLOAD) that are still in the legacy format `serviceAccount:{identity pool name\}[{subject\}]`
+     */
+    principalSubject?: string | null;
+    /**
+     * Identity delegation history of an authenticated service account that makes the request. It contains information on the real authorities that try to access GCP resources by delegating on a service account. When multiple authorities are present, they are guaranteed to be sorted based on the original ordering of the identity delegation events.
+     */
+    serviceAccountDelegationInfo?: Schema$ServiceAccountDelegationInfo[];
+    /**
+     * The name of the service account key used to create or exchange credentials for authenticating the service account making the request. This is a scheme-less URI full resource name. For example: "//iam.googleapis.com/projects/{PROJECT_ID\}/serviceAccounts/{ACCOUNT\}/keys/{key\}"
+     */
+    serviceAccountKeyName?: string | null;
     /**
      * This is the API service that the service account made a call to, e.g. "iam.googleapis.com"
      */
@@ -152,6 +164,39 @@ export namespace securitycenter_v1beta1 {
      * What kind of user agent is associated, e.g. operating system shells, embedded or stand-alone applications, etc.
      */
     userAgentFamily?: string | null;
+  }
+  /**
+   * Conveys information about a Kubernetes access review (e.g. kubectl auth can-i ...) that was involved in a finding.
+   */
+  export interface Schema$AccessReview {
+    /**
+     * Group is the API Group of the Resource. "*" means all.
+     */
+    group?: string | null;
+    /**
+     * Name is the name of the resource being requested. Empty means all.
+     */
+    name?: string | null;
+    /**
+     * Namespace of the action being requested. Currently, there is no distinction between no namespace and all namespaces. Both are represented by "" (empty).
+     */
+    ns?: string | null;
+    /**
+     * Resource is the optional resource type requested. "*" means all.
+     */
+    resource?: string | null;
+    /**
+     * Subresource is the optional subresource type.
+     */
+    subresource?: string | null;
+    /**
+     * Verb is a Kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy. "*" means all.
+     */
+    verb?: string | null;
+    /**
+     * Version is the API Version of the Resource. "*" means all.
+     */
+    version?: string | null;
   }
   /**
    * Security Command Center representation of a Google Cloud resource. The Asset is a Security Command Center resource that captures information about a single Google Cloud resource. All modifications to an Asset are only within the context of Security Command Center and don't affect the referenced Google Cloud resource.
@@ -230,7 +275,7 @@ export namespace securitycenter_v1beta1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -303,6 +348,27 @@ export namespace securitycenter_v1beta1 {
     contacts?: Schema$Contact[];
   }
   /**
+   * Container associated with the finding.
+   */
+  export interface Schema$Container {
+    /**
+     * Optional container image id, when provided by the container runtime. Uniquely identifies the container image launched using a container image digest.
+     */
+    imageId?: string | null;
+    /**
+     * Container labels, as provided by the container runtime.
+     */
+    labels?: Schema$Label[];
+    /**
+     * Container name.
+     */
+    name?: string | null;
+    /**
+     * Container image URI provided when configuring a pod/container. May identify a container image version using mutable tags.
+     */
+    uri?: string | null;
+  }
+  /**
    * CVE stands for Common Vulnerabilities and Exposures. More information: https://cve.mitre.org
    */
   export interface Schema$Cve {
@@ -363,6 +429,31 @@ export namespace securitycenter_v1beta1 {
      * This metric captures the requirement for a human user, other than the attacker, to participate in the successful compromise of the vulnerable component.
      */
     userInteraction?: string | null;
+  }
+  /**
+   * Represents database access information, such as queries. A database may be a sub-resource of an instance (as in the case of CloudSQL instances or Cloud Spanner instances), or the database instance itself. Some database resources may not have the full resource name populated because these resource types are not yet supported by Cloud Asset Inventory (e.g. CloudSQL databases). In these cases only the display name will be provided.
+   */
+  export interface Schema$Database {
+    /**
+     * The human readable name of the database the user connected to.
+     */
+    displayName?: string | null;
+    /**
+     * The target usernames/roles/groups of a SQL privilege grant (not an IAM policy change).
+     */
+    grantees?: string[] | null;
+    /**
+     * The full resource name of the database the user connected to, if it is supported by CAI. (https://google.aip.dev/122#full-resource-names)
+     */
+    name?: string | null;
+    /**
+     * The SQL statement associated with the relevant access.
+     */
+    query?: string | null;
+    /**
+     * The username used to connect to the DB. This may not necessarily be an IAM principal, and has no required format.
+     */
+    userName?: string | null;
   }
   /**
    * Memory hash detection contributing to the binary family match.
@@ -495,13 +586,21 @@ export namespace securitycenter_v1beta1 {
      */
     connections?: Schema$Connection[];
     /**
-     * Output only. Map containing the point of contacts for the given finding. The key represents the type of contact, while the value contains a list of all the contacts that pertain. Please refer to: https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories { “security”: {contact: {email: “person1@company.com”\} contact: {email: “person2@company.com”\} \}
+     * Output only. Map containing the point of contacts for the given finding. The key represents the type of contact, while the value contains a list of all the contacts that pertain. Please refer to: https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories { "security": { "contacts": [ { "email": "person1@company.com" \}, { "email": "person2@company.com" \} ] \}
      */
     contacts?: {[key: string]: Schema$ContactDetails} | null;
+    /**
+     * Containers associated with the finding. containers provides information for both Kubernetes and non-Kubernetes containers.
+     */
+    containers?: Schema$Container[];
     /**
      * The time at which the finding was created in Security Command Center.
      */
     createTime?: string | null;
+    /**
+     * Database associated with the finding.
+     */
+    database?: Schema$Database;
     /**
      * Contains more detail about the finding.
      */
@@ -536,6 +635,10 @@ export namespace securitycenter_v1beta1 {
      * Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
      */
     indicator?: Schema$Indicator;
+    /**
+     * Kubernetes resources associated with the finding.
+     */
+    kubernetes?: Schema$Kubernetes;
     /**
      * MITRE ATT&CK tactics and techniques related to this finding. See: https://attack.mitre.org
      */
@@ -740,6 +843,27 @@ export namespace securitycenter_v1beta1 {
      * Output only. The most recent time at which the big export was updated. This field is set by the server and will be ignored if provided on export creation or update.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Represents a Kubernetes RoleBinding or ClusterRoleBinding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1Binding {
+    /**
+     * Name for binding.
+     */
+    name?: string | null;
+    /**
+     * Namespace for binding.
+     */
+    ns?: string | null;
+    /**
+     * The Role or ClusterRole referenced by the binding.
+     */
+    role?: Schema$Role;
+    /**
+     * Represents the subjects(s) bound to the role. Not always available for PATCH requests.
+     */
+    subjects?: Schema$Subject[];
   }
   /**
    * The response to a BulkMute request. Contains the LRO information.
@@ -1146,6 +1270,52 @@ export namespace securitycenter_v1beta1 {
      * The list of matched signatures indicating that the given process is present in the environment.
      */
     signatures?: Schema$ProcessSignature[];
+    /**
+     * The list of URIs associated to the Findings
+     */
+    uris?: string[] | null;
+  }
+  /**
+   * Kubernetes related attributes.
+   */
+  export interface Schema$Kubernetes {
+    /**
+     * Provides information on any Kubernetes access reviews (i.e. privilege checks) relevant to the finding.
+     */
+    accessReviews?: Schema$AccessReview[];
+    /**
+     * Provides Kubernetes role binding information for findings that involve RoleBindings or ClusterRoleBindings.
+     */
+    bindings?: Schema$GoogleCloudSecuritycenterV1Binding[];
+    /**
+     * GKE Node Pools associated with the finding. This field will contain NodePool information for each Node, when it is available.
+     */
+    nodePools?: Schema$NodePool[];
+    /**
+     * Provides Kubernetes Node information.
+     */
+    nodes?: Schema$Node[];
+    /**
+     * Kubernetes Pods associated with the finding. This field will contain Pod records for each container that is owned by a Pod.
+     */
+    pods?: Schema$Pod[];
+    /**
+     * Provides Kubernetes role information for findings that involve Roles or ClusterRoles.
+     */
+    roles?: Schema$Role[];
+  }
+  /**
+   * Label represents a generic name=value label. Label has separate name and value fields to support filtering with contains().
+   */
+  export interface Schema$Label {
+    /**
+     * Label name.
+     */
+    name?: string | null;
+    /**
+     * Label value.
+     */
+    value?: string | null;
   }
   /**
    * Response message for listing assets.
@@ -1267,6 +1437,28 @@ export namespace securitycenter_v1beta1 {
     version?: string | null;
   }
   /**
+   * Kubernetes Nodes associated with the finding.
+   */
+  export interface Schema$Node {
+    /**
+     * Full Resource name of the Compute Engine VM running the cluster node.
+     */
+    name?: string | null;
+  }
+  /**
+   * Provides GKE Node Pool information.
+   */
+  export interface Schema$NodePool {
+    /**
+     * Kubernetes Node pool name.
+     */
+    name?: string | null;
+    /**
+     * Nodes associated with the finding.
+     */
+    nodes?: Schema$Node[];
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -1307,6 +1499,27 @@ export namespace securitycenter_v1beta1 {
      * The relative resource name of the settings. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/organizationSettings".
      */
     name?: string | null;
+  }
+  /**
+   * Kubernetes Pod.
+   */
+  export interface Schema$Pod {
+    /**
+     * Pod containers associated with this finding, if any.
+     */
+    containers?: Schema$Container[];
+    /**
+     * Pod labels. For Kubernetes containers, these are applied to the container.
+     */
+    labels?: Schema$Label[];
+    /**
+     * Kubernetes Pod name.
+     */
+    name?: string | null;
+    /**
+     * Kubernetes Pod namespace.
+     */
+    ns?: string | null;
   }
   /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
@@ -1358,7 +1571,7 @@ export namespace securitycenter_v1beta1 {
      */
     libraries?: Schema$File[];
     /**
-     * The process name visible in utilities like top and ps; it can be accessed via /proc/[pid]/comm and changed with prctl(PR_SET_NAME).
+     * The process name visible in utilities like `top` and `ps`; it can be accessed via `/proc/[pid]/comm` and changed with `prctl(PR_SET_NAME)`.
      */
     name?: string | null;
     /**
@@ -1399,6 +1612,23 @@ export namespace securitycenter_v1beta1 {
      * Uri for the mentioned source e.g. https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34527.
      */
     uri?: string | null;
+  }
+  /**
+   * Kubernetes Role or ClusterRole.
+   */
+  export interface Schema$Role {
+    /**
+     * Role type.
+     */
+    kind?: string | null;
+    /**
+     * Role name.
+     */
+    name?: string | null;
+    /**
+     * Role namespace.
+     */
+    ns?: string | null;
   }
   /**
    * Request message for running asset discovery for an organization.
@@ -1445,6 +1675,19 @@ export namespace securitycenter_v1beta1 {
      * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id\}/assets/{asset_id\}/securityMarks" "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks".
      */
     name?: string | null;
+  }
+  /**
+   * Identity delegation history of an authenticated service account.
+   */
+  export interface Schema$ServiceAccountDelegationInfo {
+    /**
+     * The email address of a Google account. .
+     */
+    principalEmail?: string | null;
+    /**
+     * A string representing the principal_subject associated with the identity. As compared to `principal_email`, supports principals that aren't associated with email addresses, such as third party principals. For most identities, the format will be `principal://iam.googleapis.com/{identity pool name\}/subject/{subject)` except for some GKE identities (GKE_WORKLOAD, FREEFORM, GKE_HUB_WORKLOAD) that are still in the legacy format `serviceAccount:{identity pool name\}[{subject\}]`
+     */
+    principalSubject?: string | null;
   }
   /**
    * Request message for updating a finding's state.
@@ -1505,6 +1748,23 @@ export namespace securitycenter_v1beta1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Represents a Kubernetes Subject.
+   */
+  export interface Schema$Subject {
+    /**
+     * Authentication type for subject.
+     */
+    kind?: string | null;
+    /**
+     * Name for subject.
+     */
+    name?: string | null;
+    /**
+     * Namespace for subject.
+     */
+    ns?: string | null;
   }
   /**
    * Request message for `TestIamPermissions` method.
