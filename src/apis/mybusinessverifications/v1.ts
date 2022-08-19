@@ -214,7 +214,7 @@ export namespace mybusinessverifications_v1 {
    */
   export interface Schema$GenerateVerificationTokenRequest {
     /**
-     * Required. The target location.
+     * Required. The target location. Note: The location information should exactly match the target Location, otherwise the generated verification token won't be able to verify the target Location.
      */
     location?: Schema$Location;
   }
