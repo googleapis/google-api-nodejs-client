@@ -494,6 +494,40 @@ export namespace chromemanagement_v1 {
     totalSize?: number | null;
   }
   /**
+   * Response containing a list of devices expiring in each month of a selected time frame. Counts are grouped by model and Auto Update Expiration date.
+   */
+  export interface Schema$GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse {
+    /**
+     * The list of reports sorted by auto update expiration date in ascending order.
+     */
+    deviceAueCountReports?: Schema$GoogleChromeManagementV1DeviceAueCountReport[];
+  }
+  /**
+   * Response containing counts for devices that need attention.
+   */
+  export interface Schema$GoogleChromeManagementV1CountChromeDevicesThatNeedAttentionResponse {
+    /**
+     * Number of ChromeOS devices have not synced policies in the past 28 days.
+     */
+    noRecentPolicySyncCount?: string | null;
+    /**
+     * Number of ChromeOS devices that have not seen any user activity in the past 28 days.
+     */
+    noRecentUserActivityCount?: string | null;
+    /**
+     * Number of devices whose OS version is not compliant.
+     */
+    osVersionNotCompliantCount?: string | null;
+    /**
+     * Number of devices that are pending an OS update.
+     */
+    pendingUpdate?: string | null;
+    /**
+     * Number of devices that are unable to apply a policy due to an OS version mismatch.
+     */
+    unsupportedPolicyCount?: string | null;
+  }
+  /**
    * Response containing requested browser versions details and counts.
    */
   export interface Schema$GoogleChromeManagementV1CountChromeVersionsResponse {
@@ -598,6 +632,31 @@ export namespace chromemanagement_v1 {
      * Output only. The name of the machine within its local network.
      */
     machine?: string | null;
+  }
+  /**
+   * Report for CountChromeDevicesPerAueDateResponse, contains the count of devices of a specific model and auto update expiration range.
+   */
+  export interface Schema$GoogleChromeManagementV1DeviceAueCountReport {
+    /**
+     * Enum value of month corresponding to the auto update expiration date in UTC time zone. If the device is already expired, this field is empty.
+     */
+    aueMonth?: string | null;
+    /**
+     * Int value of year corresponding to the Auto Update Expiration date in UTC time zone. If the device is already expired, this field is empty.
+     */
+    aueYear?: string | null;
+    /**
+     * Count of devices of this model.
+     */
+    count?: string | null;
+    /**
+     * Boolean value for whether or not the device has already expired.
+     */
+    expired?: boolean | null;
+    /**
+     * Public model name of the devices.
+     */
+    model?: string | null;
   }
   /**
    * Status of the single storage device.
@@ -927,7 +986,7 @@ export namespace chromemanagement_v1 {
      */
     lanIpAddress?: string | null;
     /**
-     * Output only. Receiving bit rate measured in megabytes per second.
+     * Output only. Receiving bit rate measured in Megabits per second.
      */
     receivingBitRateMbps?: string | null;
     /**
@@ -943,7 +1002,7 @@ export namespace chromemanagement_v1 {
      */
     signalStrengthDbm?: number | null;
     /**
-     * Output only. Transmission bit rate measured in megabytes per second.
+     * Output only. Transmission bit rate measured in Megabits per second.
      */
     transmissionBitRateMbps?: string | null;
     /**
@@ -1909,6 +1968,310 @@ export namespace chromemanagement_v1 {
     }
 
     /**
+     * Generate report of the number of devices expiring in each month of the selected time frame. Devices are grouped by auto update expiration date and model. Further information can be found [here](https://support.google.com/chrome/a/answer/10564947).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.reports.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.reports.countChromeDevicesReachingAutoExpirationDate(
+     *       {
+     *         // Required. The customer ID or "my_customer" prefixed with "customers/".
+     *         customer: 'customers/my-customer',
+     *         // Optional. Maximum expiration date in format yyyy-mm-dd in UTC timezone. If included returns all devices that have already expired and devices with auto expiration date equal to or earlier than the maximum date.
+     *         maxAueDate: 'placeholder-value',
+     *         // Optional. Maximum expiration date in format yyyy-mm-dd in UTC timezone. If included returns all devices that have already expired and devices with auto expiration date equal to or later than the minimum date.
+     *         minAueDate: 'placeholder-value',
+     *         // Optional. The organizational unit ID, if omitted, will return data for all organizational units.
+     *         orgUnitId: 'placeholder-value',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deviceAueCountReports": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    countChromeDevicesReachingAutoExpirationDate(
+      params: Params$Resource$Customers$Reports$Countchromedevicesreachingautoexpirationdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    countChromeDevicesReachingAutoExpirationDate(
+      params?: Params$Resource$Customers$Reports$Countchromedevicesreachingautoexpirationdate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse>;
+    countChromeDevicesReachingAutoExpirationDate(
+      params: Params$Resource$Customers$Reports$Countchromedevicesreachingautoexpirationdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    countChromeDevicesReachingAutoExpirationDate(
+      params: Params$Resource$Customers$Reports$Countchromedevicesreachingautoexpirationdate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse>
+    ): void;
+    countChromeDevicesReachingAutoExpirationDate(
+      params: Params$Resource$Customers$Reports$Countchromedevicesreachingautoexpirationdate,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse>
+    ): void;
+    countChromeDevicesReachingAutoExpirationDate(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse>
+    ): void;
+    countChromeDevicesReachingAutoExpirationDate(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Reports$Countchromedevicesreachingautoexpirationdate
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Reports$Countchromedevicesreachingautoexpirationdate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Reports$Countchromedevicesreachingautoexpirationdate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+customer}/reports:countChromeDevicesReachingAutoExpirationDate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Counts of ChromeOS devices that have not synced policies or have lacked user activity in the past 28 days, are out of date, or are not complaint. Further information can be found here https://support.google.com/chrome/a/answer/10564947
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.reports.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.reports.countChromeDevicesThatNeedAttention(
+     *       {
+     *         // Required. The customer ID or "my_customer" prefixed with "customers/".
+     *         customer: 'customers/my-customer',
+     *         // Optional. The ID of the organizational unit. If omitted, all data will be returned.
+     *         orgUnitId: 'placeholder-value',
+     *         // Required. Mask of the fields that should be populated in the returned report.
+     *         readMask: 'placeholder-value',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "noRecentPolicySyncCount": "my_noRecentPolicySyncCount",
+     *   //   "noRecentUserActivityCount": "my_noRecentUserActivityCount",
+     *   //   "osVersionNotCompliantCount": "my_osVersionNotCompliantCount",
+     *   //   "pendingUpdate": "my_pendingUpdate",
+     *   //   "unsupportedPolicyCount": "my_unsupportedPolicyCount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    countChromeDevicesThatNeedAttention(
+      params: Params$Resource$Customers$Reports$Countchromedevicesthatneedattention,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    countChromeDevicesThatNeedAttention(
+      params?: Params$Resource$Customers$Reports$Countchromedevicesthatneedattention,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChromeManagementV1CountChromeDevicesThatNeedAttentionResponse>;
+    countChromeDevicesThatNeedAttention(
+      params: Params$Resource$Customers$Reports$Countchromedevicesthatneedattention,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    countChromeDevicesThatNeedAttention(
+      params: Params$Resource$Customers$Reports$Countchromedevicesthatneedattention,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeDevicesThatNeedAttentionResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeDevicesThatNeedAttentionResponse>
+    ): void;
+    countChromeDevicesThatNeedAttention(
+      params: Params$Resource$Customers$Reports$Countchromedevicesthatneedattention,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeDevicesThatNeedAttentionResponse>
+    ): void;
+    countChromeDevicesThatNeedAttention(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeDevicesThatNeedAttentionResponse>
+    ): void;
+    countChromeDevicesThatNeedAttention(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Reports$Countchromedevicesthatneedattention
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeDevicesThatNeedAttentionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeDevicesThatNeedAttentionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeDevicesThatNeedAttentionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChromeManagementV1CountChromeDevicesThatNeedAttentionResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Reports$Countchromedevicesthatneedattention;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Reports$Countchromedevicesthatneedattention;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+customer}/reports:countChromeDevicesThatNeedAttention'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1CountChromeDevicesThatNeedAttentionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1CountChromeDevicesThatNeedAttentionResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Generate report of installed Chrome versions.
      * @example
      * ```js
@@ -2368,6 +2731,40 @@ export namespace chromemanagement_v1 {
     }
   }
 
+  export interface Params$Resource$Customers$Reports$Countchromedevicesreachingautoexpirationdate
+    extends StandardParameters {
+    /**
+     * Required. The customer ID or "my_customer" prefixed with "customers/".
+     */
+    customer?: string;
+    /**
+     * Optional. Maximum expiration date in format yyyy-mm-dd in UTC timezone. If included returns all devices that have already expired and devices with auto expiration date equal to or earlier than the maximum date.
+     */
+    maxAueDate?: string;
+    /**
+     * Optional. Maximum expiration date in format yyyy-mm-dd in UTC timezone. If included returns all devices that have already expired and devices with auto expiration date equal to or later than the minimum date.
+     */
+    minAueDate?: string;
+    /**
+     * Optional. The organizational unit ID, if omitted, will return data for all organizational units.
+     */
+    orgUnitId?: string;
+  }
+  export interface Params$Resource$Customers$Reports$Countchromedevicesthatneedattention
+    extends StandardParameters {
+    /**
+     * Required. The customer ID or "my_customer" prefixed with "customers/".
+     */
+    customer?: string;
+    /**
+     * Optional. The ID of the organizational unit. If omitted, all data will be returned.
+     */
+    orgUnitId?: string;
+    /**
+     * Required. Mask of the fields that should be populated in the returned report.
+     */
+    readMask?: string;
+  }
   export interface Params$Resource$Customers$Reports$Countchromeversions
     extends StandardParameters {
     /**
