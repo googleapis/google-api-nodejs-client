@@ -256,7 +256,7 @@
       }
     }
   },
-  "revision": "20220628",
+  "revision": "20220817",
   "rootUrl": "https://mybusinessverifications.googleapis.com/",
   "schemas": {
     "AddressVerificationData": {
@@ -376,7 +376,7 @@
       "properties": {
         "location": {
           "$ref": "Location",
-          "description": "Required. The target location."
+          "description": "Required. The target location. Note: The location information should exactly match the target Location, otherwise the generated verification token won't be able to verify the target Location."
         }
       },
       "type": "object"
