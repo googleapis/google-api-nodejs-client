@@ -991,6 +991,10 @@ export namespace androidenterprise_v1 {
    */
   export interface Schema$Product {
     /**
+     * The app restriction schema
+     */
+    appRestrictionsSchema?: Schema$AppRestrictionsSchema;
+    /**
      * The tracks visible to the enterprise.
      */
     appTracks?: Schema$TrackInfo[];
@@ -8099,6 +8103,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "appRestrictionsSchema": {},
      *   //   "appTracks": [],
      *   //   "appVersion": [],
      *   //   "authorName": "my_authorName",
