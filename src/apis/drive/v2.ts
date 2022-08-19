@@ -911,6 +911,7 @@ export namespace drive_v2 {
       canListChildren?: boolean;
       canModifyContent?: boolean;
       canModifyContentRestriction?: boolean;
+      canModifyLabels?: boolean;
       canMoveChildrenOutOfDrive?: boolean;
       canMoveChildrenOutOfTeamDrive?: boolean;
       canMoveChildrenWithinDrive?: boolean;
@@ -922,6 +923,7 @@ export namespace drive_v2 {
       canMoveItemWithinTeamDrive?: boolean;
       canMoveTeamDriveItem?: boolean;
       canReadDrive?: boolean;
+      canReadLabels?: boolean;
       canReadRevisions?: boolean;
       canReadTeamDrive?: boolean;
       canRemoveChildren?: boolean;
@@ -1059,6 +1061,10 @@ export namespace drive_v2 {
      */
     kind?: string | null;
     /**
+     * An overview of the labels on the file.
+     */
+    labelInfo?: {labels?: Schema$Label[]} | null;
+    /**
      * A group of labels for the file.
      */
     labels?: {
@@ -1157,6 +1163,14 @@ export namespace drive_v2 {
      * A link back to this file.
      */
     selfLink?: string | null;
+    /**
+     * The SHA1 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
+     */
+    sha1Checksum?: string | null;
+    /**
+     * The SHA256 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
+     */
+    sha256Checksum?: string | null;
     /**
      * Deprecated: use capabilities/canShare.
      */
@@ -1291,6 +1305,170 @@ export namespace drive_v2 {
      * The type of file that can be created with these IDs.
      */
     space?: string | null;
+  }
+  /**
+   * Representation of a label and its fields.
+   */
+  export interface Schema$Label {
+    /**
+     * A map of the label's fields keyed by the field ID.
+     */
+    fields?: {[key: string]: Schema$LabelField} | null;
+    /**
+     * The ID of the label.
+     */
+    id?: string | null;
+    /**
+     * This is always drive#label
+     */
+    kind?: string | null;
+    /**
+     * The revision ID of the label.
+     */
+    revisionId?: string | null;
+  }
+  /**
+   * Representation of a label field.
+   */
+  export interface Schema$LabelField {
+    /**
+     * Only present if valueType is dateString. RFC 3339 formatted date: YYYY-MM-DD.
+     */
+    dateString?: string[] | null;
+    /**
+     * The identifier of this field.
+     */
+    id?: string | null;
+    /**
+     * Only present if valueType is integer.
+     */
+    integer?: string[] | null;
+    /**
+     * This is always drive#labelField.
+     */
+    kind?: string | null;
+    /**
+     * Only present if valueType is selection.
+     */
+    selection?: string[] | null;
+    /**
+     * Only present if valueType is text.
+     */
+    text?: string[] | null;
+    /**
+     * Only present if valueType is user.
+     */
+    user?: Schema$User[];
+    /**
+     * The field type. While new values may be supported in the future, the following are currently allowed:
+     * - dateString
+     * - integer
+     * - selection
+     * - text
+     * - user
+     */
+    valueType?: string | null;
+  }
+  /**
+   * A modification to a label's field.
+   */
+  export interface Schema$LabelFieldModification {
+    /**
+     * The ID of the field to be modified.
+     */
+    fieldId?: string | null;
+    /**
+     * This is always drive#labelFieldModification.
+     */
+    kind?: string | null;
+    /**
+     * Replaces a dateString field with these new values. The values must be strings in the RFC 3339 full-date format: YYYY-MM-DD.
+     */
+    setDateValues?: string[] | null;
+    /**
+     * Replaces an integer field with these new values.
+     */
+    setIntegerValues?: string[] | null;
+    /**
+     * Replaces a selection field with these new values.
+     */
+    setSelectionValues?: string[] | null;
+    /**
+     * Replaces a text field with these new values.
+     */
+    setTextValues?: string[] | null;
+    /**
+     * Replaces a user field with these new values. The values must be valid email addresses.
+     */
+    setUserValues?: string[] | null;
+    /**
+     * Unsets the values for this field.
+     */
+    unsetValues?: boolean | null;
+  }
+  /**
+   * A list of labels.
+   */
+  export interface Schema$LabelList {
+    /**
+     * The list of labels.
+     */
+    items?: Schema$Label[];
+    /**
+     * This is always drive#labelList
+     */
+    kind?: string | null;
+    /**
+     * The page token for the next page of labels. This field will be absent if the end of the list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * A modification to a label on a file. A LabelModification can be used to apply a label to a file, update an existing label on a file, or remove a label from a file.
+   */
+  export interface Schema$LabelModification {
+    /**
+     * The list of modifications to this label's fields.
+     */
+    fieldModifications?: Schema$LabelFieldModification[];
+    /**
+     * This is always drive#labelModification.
+     */
+    kind?: string | null;
+    /**
+     * The ID of the label to modify.
+     */
+    labelId?: string | null;
+    /**
+     * If true, the label will be removed from the file.
+     */
+    removeLabel?: boolean | null;
+  }
+  /**
+   * A request to modify the set of labels on a file. This request may contain many modifications that will either all succeed or all fail transactionally.
+   */
+  export interface Schema$ModifyLabelsRequest {
+    /**
+     * This is always drive#modifyLabelsRequest
+     */
+    kind?: string | null;
+    /**
+     * The list of modifications to apply to the labels on the file.
+     */
+    labelModifications?: Schema$LabelModification[];
+  }
+  /**
+   * Response to a ModifyLabels request. This contains only those labels which were added or updated by the request.
+   */
+  export interface Schema$ModifyLabelsResponse {
+    /**
+     * This is always drive#modifyLabelsResponse
+     */
+    kind?: string | null;
+    /**
+     * The list of labels which were added or updated by the request.
+     */
+    modifiedLabels?: Schema$Label[];
   }
   /**
    * A list of a file's parents.
@@ -2638,6 +2816,8 @@ export namespace drive_v2 {
      *     includeDeleted: 'placeholder-value',
      *     // Whether both My Drive and shared drive items should be included in results.
      *     includeItemsFromAllDrives: 'placeholder-value',
+     *     // A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     *     includeLabels: 'placeholder-value',
      *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      *     includePermissionsForView: 'placeholder-value',
      *     // Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive are omitted from the result.
@@ -2805,6 +2985,8 @@ export namespace drive_v2 {
      *     includeDeleted: 'placeholder-value',
      *     // Whether both My Drive and shared drive items should be included in results.
      *     includeItemsFromAllDrives: 'placeholder-value',
+     *     // A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     *     includeLabels: 'placeholder-value',
      *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      *     includePermissionsForView: 'placeholder-value',
      *     // Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive are omitted from the result.
@@ -3010,6 +3192,10 @@ export namespace drive_v2 {
      */
     includeItemsFromAllDrives?: boolean;
     /**
+     * A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     */
+    includeLabels?: string;
+    /**
      * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      */
     includePermissionsForView?: string;
@@ -3067,6 +3253,10 @@ export namespace drive_v2 {
      * Whether both My Drive and shared drive items should be included in results.
      */
     includeItemsFromAllDrives?: boolean;
+    /**
+     * A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     */
+    includeLabels?: string;
     /**
      * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      */
@@ -6064,6 +6254,8 @@ export namespace drive_v2 {
      *     enforceSingleParent: 'placeholder-value',
      *     // The ID of the file to copy.
      *     fileId: 'placeholder-value',
+     *     // A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     *     includeLabels: 'placeholder-value',
      *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      *     includePermissionsForView: 'placeholder-value',
      *     // Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
@@ -6118,6 +6310,7 @@ export namespace drive_v2 {
      *       //   "indexableText": {},
      *       //   "isAppAuthorized": false,
      *       //   "kind": "my_kind",
+     *       //   "labelInfo": {},
      *       //   "labels": {},
      *       //   "lastModifyingUser": {},
      *       //   "lastModifyingUserName": "my_lastModifyingUserName",
@@ -6140,6 +6333,8 @@ export namespace drive_v2 {
      *       //   "quotaBytesUsed": "my_quotaBytesUsed",
      *       //   "resourceKey": "my_resourceKey",
      *       //   "selfLink": "my_selfLink",
+     *       //   "sha1Checksum": "my_sha1Checksum",
+     *       //   "sha256Checksum": "my_sha256Checksum",
      *       //   "shareable": false,
      *       //   "shared": false,
      *       //   "sharedWithMeDate": "my_sharedWithMeDate",
@@ -6197,6 +6392,7 @@ export namespace drive_v2 {
      *   //   "indexableText": {},
      *   //   "isAppAuthorized": false,
      *   //   "kind": "my_kind",
+     *   //   "labelInfo": {},
      *   //   "labels": {},
      *   //   "lastModifyingUser": {},
      *   //   "lastModifyingUserName": "my_lastModifyingUserName",
@@ -6219,6 +6415,8 @@ export namespace drive_v2 {
      *   //   "quotaBytesUsed": "my_quotaBytesUsed",
      *   //   "resourceKey": "my_resourceKey",
      *   //   "selfLink": "my_selfLink",
+     *   //   "sha1Checksum": "my_sha1Checksum",
+     *   //   "sha256Checksum": "my_sha256Checksum",
      *   //   "shareable": false,
      *   //   "shared": false,
      *   //   "sharedWithMeDate": "my_sharedWithMeDate",
@@ -6888,6 +7086,8 @@ export namespace drive_v2 {
      *     acknowledgeAbuse: 'placeholder-value',
      *     // The ID for the file in question.
      *     fileId: 'placeholder-value',
+     *     // A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     *     includeLabels: 'placeholder-value',
      *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      *     includePermissionsForView: 'placeholder-value',
      *     // This parameter is deprecated and has no function.
@@ -6936,6 +7136,7 @@ export namespace drive_v2 {
      *   //   "indexableText": {},
      *   //   "isAppAuthorized": false,
      *   //   "kind": "my_kind",
+     *   //   "labelInfo": {},
      *   //   "labels": {},
      *   //   "lastModifyingUser": {},
      *   //   "lastModifyingUserName": "my_lastModifyingUserName",
@@ -6958,6 +7159,8 @@ export namespace drive_v2 {
      *   //   "quotaBytesUsed": "my_quotaBytesUsed",
      *   //   "resourceKey": "my_resourceKey",
      *   //   "selfLink": "my_selfLink",
+     *   //   "sha1Checksum": "my_sha1Checksum",
+     *   //   "sha256Checksum": "my_sha256Checksum",
      *   //   "shareable": false,
      *   //   "shared": false,
      *   //   "sharedWithMeDate": "my_sharedWithMeDate",
@@ -7106,6 +7309,8 @@ export namespace drive_v2 {
      *     convert: 'placeholder-value',
      *     // Deprecated. Creating files in multiple folders is no longer supported.
      *     enforceSingleParent: 'placeholder-value',
+     *     // A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     *     includeLabels: 'placeholder-value',
      *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      *     includePermissionsForView: 'placeholder-value',
      *     // Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
@@ -7162,6 +7367,7 @@ export namespace drive_v2 {
      *       //   "indexableText": {},
      *       //   "isAppAuthorized": false,
      *       //   "kind": "my_kind",
+     *       //   "labelInfo": {},
      *       //   "labels": {},
      *       //   "lastModifyingUser": {},
      *       //   "lastModifyingUserName": "my_lastModifyingUserName",
@@ -7184,6 +7390,8 @@ export namespace drive_v2 {
      *       //   "quotaBytesUsed": "my_quotaBytesUsed",
      *       //   "resourceKey": "my_resourceKey",
      *       //   "selfLink": "my_selfLink",
+     *       //   "sha1Checksum": "my_sha1Checksum",
+     *       //   "sha256Checksum": "my_sha256Checksum",
      *       //   "shareable": false,
      *       //   "shared": false,
      *       //   "sharedWithMeDate": "my_sharedWithMeDate",
@@ -7245,6 +7453,7 @@ export namespace drive_v2 {
      *   //   "indexableText": {},
      *   //   "isAppAuthorized": false,
      *   //   "kind": "my_kind",
+     *   //   "labelInfo": {},
      *   //   "labels": {},
      *   //   "lastModifyingUser": {},
      *   //   "lastModifyingUserName": "my_lastModifyingUserName",
@@ -7267,6 +7476,8 @@ export namespace drive_v2 {
      *   //   "quotaBytesUsed": "my_quotaBytesUsed",
      *   //   "resourceKey": "my_resourceKey",
      *   //   "selfLink": "my_selfLink",
+     *   //   "sha1Checksum": "my_sha1Checksum",
+     *   //   "sha256Checksum": "my_sha256Checksum",
      *   //   "shareable": false,
      *   //   "shared": false,
      *   //   "sharedWithMeDate": "my_sharedWithMeDate",
@@ -7424,6 +7635,8 @@ export namespace drive_v2 {
      *     driveId: 'placeholder-value',
      *     // Whether both My Drive and shared drive items should be included in results.
      *     includeItemsFromAllDrives: 'placeholder-value',
+     *     // A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     *     includeLabels: 'placeholder-value',
      *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      *     includePermissionsForView: 'placeholder-value',
      *     // Deprecated use includeItemsFromAllDrives instead.
@@ -7549,6 +7762,296 @@ export namespace drive_v2 {
     }
 
     /**
+     * Lists the labels on a file.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.files.listLabels({
+     *     // The ID of the file.
+     *     fileId: 'placeholder-value',
+     *     // The maximum number of labels to return per page. When not set, this defaults to 100.
+     *     maxResults: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listLabels(
+      params: Params$Resource$Files$Listlabels,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listLabels(
+      params?: Params$Resource$Files$Listlabels,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LabelList>;
+    listLabels(
+      params: Params$Resource$Files$Listlabels,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listLabels(
+      params: Params$Resource$Files$Listlabels,
+      options: MethodOptions | BodyResponseCallback<Schema$LabelList>,
+      callback: BodyResponseCallback<Schema$LabelList>
+    ): void;
+    listLabels(
+      params: Params$Resource$Files$Listlabels,
+      callback: BodyResponseCallback<Schema$LabelList>
+    ): void;
+    listLabels(callback: BodyResponseCallback<Schema$LabelList>): void;
+    listLabels(
+      paramsOrCallback?:
+        | Params$Resource$Files$Listlabels
+        | BodyResponseCallback<Schema$LabelList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LabelList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LabelList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LabelList> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Files$Listlabels;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Files$Listlabels;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/listLabels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['fileId'],
+        pathParams: ['fileId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LabelList>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LabelList>(parameters);
+      }
+    }
+
+    /**
+     * Modifies the set of labels on a file.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.files.modifyLabels({
+     *     // The ID of the file for which the labels are modified.
+     *     fileId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "labelModifications": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "modifiedLabels": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    modifyLabels(
+      params: Params$Resource$Files$Modifylabels,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    modifyLabels(
+      params?: Params$Resource$Files$Modifylabels,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ModifyLabelsResponse>;
+    modifyLabels(
+      params: Params$Resource$Files$Modifylabels,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    modifyLabels(
+      params: Params$Resource$Files$Modifylabels,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ModifyLabelsResponse>,
+      callback: BodyResponseCallback<Schema$ModifyLabelsResponse>
+    ): void;
+    modifyLabels(
+      params: Params$Resource$Files$Modifylabels,
+      callback: BodyResponseCallback<Schema$ModifyLabelsResponse>
+    ): void;
+    modifyLabels(
+      callback: BodyResponseCallback<Schema$ModifyLabelsResponse>
+    ): void;
+    modifyLabels(
+      paramsOrCallback?:
+        | Params$Resource$Files$Modifylabels
+        | BodyResponseCallback<Schema$ModifyLabelsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ModifyLabelsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ModifyLabelsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ModifyLabelsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Files$Modifylabels;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Files$Modifylabels;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/modifyLabels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['fileId'],
+        pathParams: ['fileId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ModifyLabelsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ModifyLabelsResponse>(parameters);
+      }
+    }
+
+    /**
      * Updates a file's metadata and/or content. When calling this method, only populate fields in the request that you want to modify. When updating fields, some fields might change automatically, such as modifiedDate. This method supports patch semantics.
      * @example
      * ```js
@@ -7590,6 +8093,8 @@ export namespace drive_v2 {
      *     enforceSingleParent: 'placeholder-value',
      *     // The ID of the file to update.
      *     fileId: 'placeholder-value',
+     *     // A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     *     includeLabels: 'placeholder-value',
      *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      *     includePermissionsForView: 'placeholder-value',
      *     // Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
@@ -7654,6 +8159,7 @@ export namespace drive_v2 {
      *       //   "indexableText": {},
      *       //   "isAppAuthorized": false,
      *       //   "kind": "my_kind",
+     *       //   "labelInfo": {},
      *       //   "labels": {},
      *       //   "lastModifyingUser": {},
      *       //   "lastModifyingUserName": "my_lastModifyingUserName",
@@ -7676,6 +8182,8 @@ export namespace drive_v2 {
      *       //   "quotaBytesUsed": "my_quotaBytesUsed",
      *       //   "resourceKey": "my_resourceKey",
      *       //   "selfLink": "my_selfLink",
+     *       //   "sha1Checksum": "my_sha1Checksum",
+     *       //   "sha256Checksum": "my_sha256Checksum",
      *       //   "shareable": false,
      *       //   "shared": false,
      *       //   "sharedWithMeDate": "my_sharedWithMeDate",
@@ -7733,6 +8241,7 @@ export namespace drive_v2 {
      *   //   "indexableText": {},
      *   //   "isAppAuthorized": false,
      *   //   "kind": "my_kind",
+     *   //   "labelInfo": {},
      *   //   "labels": {},
      *   //   "lastModifyingUser": {},
      *   //   "lastModifyingUserName": "my_lastModifyingUserName",
@@ -7755,6 +8264,8 @@ export namespace drive_v2 {
      *   //   "quotaBytesUsed": "my_quotaBytesUsed",
      *   //   "resourceKey": "my_resourceKey",
      *   //   "selfLink": "my_selfLink",
+     *   //   "sha1Checksum": "my_sha1Checksum",
+     *   //   "sha256Checksum": "my_sha256Checksum",
      *   //   "shareable": false,
      *   //   "shared": false,
      *   //   "sharedWithMeDate": "my_sharedWithMeDate",
@@ -7902,6 +8413,8 @@ export namespace drive_v2 {
      *   const res = await drive.files.touch({
      *     // The ID of the file to update.
      *     fileId: 'placeholder-value',
+     *     // A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     *     includeLabels: 'placeholder-value',
      *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      *     includePermissionsForView: 'placeholder-value',
      *     // Whether the requesting application supports both My Drives and shared drives.
@@ -7944,6 +8457,7 @@ export namespace drive_v2 {
      *   //   "indexableText": {},
      *   //   "isAppAuthorized": false,
      *   //   "kind": "my_kind",
+     *   //   "labelInfo": {},
      *   //   "labels": {},
      *   //   "lastModifyingUser": {},
      *   //   "lastModifyingUserName": "my_lastModifyingUserName",
@@ -7966,6 +8480,8 @@ export namespace drive_v2 {
      *   //   "quotaBytesUsed": "my_quotaBytesUsed",
      *   //   "resourceKey": "my_resourceKey",
      *   //   "selfLink": "my_selfLink",
+     *   //   "sha1Checksum": "my_sha1Checksum",
+     *   //   "sha256Checksum": "my_sha256Checksum",
      *   //   "shareable": false,
      *   //   "shared": false,
      *   //   "sharedWithMeDate": "my_sharedWithMeDate",
@@ -8112,6 +8628,8 @@ export namespace drive_v2 {
      *   const res = await drive.files.trash({
      *     // The ID of the file to trash.
      *     fileId: 'placeholder-value',
+     *     // A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     *     includeLabels: 'placeholder-value',
      *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      *     includePermissionsForView: 'placeholder-value',
      *     // Whether the requesting application supports both My Drives and shared drives.
@@ -8154,6 +8672,7 @@ export namespace drive_v2 {
      *   //   "indexableText": {},
      *   //   "isAppAuthorized": false,
      *   //   "kind": "my_kind",
+     *   //   "labelInfo": {},
      *   //   "labels": {},
      *   //   "lastModifyingUser": {},
      *   //   "lastModifyingUserName": "my_lastModifyingUserName",
@@ -8176,6 +8695,8 @@ export namespace drive_v2 {
      *   //   "quotaBytesUsed": "my_quotaBytesUsed",
      *   //   "resourceKey": "my_resourceKey",
      *   //   "selfLink": "my_selfLink",
+     *   //   "sha1Checksum": "my_sha1Checksum",
+     *   //   "sha256Checksum": "my_sha256Checksum",
      *   //   "shareable": false,
      *   //   "shared": false,
      *   //   "sharedWithMeDate": "my_sharedWithMeDate",
@@ -8322,6 +8843,8 @@ export namespace drive_v2 {
      *   const res = await drive.files.untrash({
      *     // The ID of the file to untrash.
      *     fileId: 'placeholder-value',
+     *     // A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     *     includeLabels: 'placeholder-value',
      *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      *     includePermissionsForView: 'placeholder-value',
      *     // Whether the requesting application supports both My Drives and shared drives.
@@ -8364,6 +8887,7 @@ export namespace drive_v2 {
      *   //   "indexableText": {},
      *   //   "isAppAuthorized": false,
      *   //   "kind": "my_kind",
+     *   //   "labelInfo": {},
      *   //   "labels": {},
      *   //   "lastModifyingUser": {},
      *   //   "lastModifyingUserName": "my_lastModifyingUserName",
@@ -8386,6 +8910,8 @@ export namespace drive_v2 {
      *   //   "quotaBytesUsed": "my_quotaBytesUsed",
      *   //   "resourceKey": "my_resourceKey",
      *   //   "selfLink": "my_selfLink",
+     *   //   "sha1Checksum": "my_sha1Checksum",
+     *   //   "sha256Checksum": "my_sha256Checksum",
      *   //   "shareable": false,
      *   //   "shared": false,
      *   //   "sharedWithMeDate": "my_sharedWithMeDate",
@@ -8540,6 +9066,8 @@ export namespace drive_v2 {
      *     enforceSingleParent: 'placeholder-value',
      *     // The ID of the file to update.
      *     fileId: 'placeholder-value',
+     *     // A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     *     includeLabels: 'placeholder-value',
      *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      *     includePermissionsForView: 'placeholder-value',
      *     // Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
@@ -8604,6 +9132,7 @@ export namespace drive_v2 {
      *       //   "indexableText": {},
      *       //   "isAppAuthorized": false,
      *       //   "kind": "my_kind",
+     *       //   "labelInfo": {},
      *       //   "labels": {},
      *       //   "lastModifyingUser": {},
      *       //   "lastModifyingUserName": "my_lastModifyingUserName",
@@ -8626,6 +9155,8 @@ export namespace drive_v2 {
      *       //   "quotaBytesUsed": "my_quotaBytesUsed",
      *       //   "resourceKey": "my_resourceKey",
      *       //   "selfLink": "my_selfLink",
+     *       //   "sha1Checksum": "my_sha1Checksum",
+     *       //   "sha256Checksum": "my_sha256Checksum",
      *       //   "shareable": false,
      *       //   "shared": false,
      *       //   "sharedWithMeDate": "my_sharedWithMeDate",
@@ -8687,6 +9218,7 @@ export namespace drive_v2 {
      *   //   "indexableText": {},
      *   //   "isAppAuthorized": false,
      *   //   "kind": "my_kind",
+     *   //   "labelInfo": {},
      *   //   "labels": {},
      *   //   "lastModifyingUser": {},
      *   //   "lastModifyingUserName": "my_lastModifyingUserName",
@@ -8709,6 +9241,8 @@ export namespace drive_v2 {
      *   //   "quotaBytesUsed": "my_quotaBytesUsed",
      *   //   "resourceKey": "my_resourceKey",
      *   //   "selfLink": "my_selfLink",
+     *   //   "sha1Checksum": "my_sha1Checksum",
+     *   //   "sha256Checksum": "my_sha256Checksum",
      *   //   "shareable": false,
      *   //   "shared": false,
      *   //   "sharedWithMeDate": "my_sharedWithMeDate",
@@ -8864,6 +9398,8 @@ export namespace drive_v2 {
      *     acknowledgeAbuse: 'placeholder-value',
      *     // The ID for the file in question.
      *     fileId: 'placeholder-value',
+     *     // A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     *     includeLabels: 'placeholder-value',
      *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      *     includePermissionsForView: 'placeholder-value',
      *     // This parameter is deprecated and has no function.
@@ -9016,6 +9552,10 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
+     * A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     */
+    includeLabels?: string;
+    /**
      * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      */
     includePermissionsForView?: string;
@@ -9116,6 +9656,10 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
+     * A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     */
+    includeLabels?: string;
+    /**
      * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      */
     includePermissionsForView?: string;
@@ -9149,6 +9693,10 @@ export namespace drive_v2 {
      * Deprecated. Creating files in multiple folders is no longer supported.
      */
     enforceSingleParent?: boolean;
+    /**
+     * A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     */
+    includeLabels?: string;
     /**
      * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      */
@@ -9228,6 +9776,10 @@ export namespace drive_v2 {
      */
     includeItemsFromAllDrives?: boolean;
     /**
+     * A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     */
+    includeLabels?: string;
+    /**
      * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      */
     includePermissionsForView?: string;
@@ -9272,6 +9824,32 @@ export namespace drive_v2 {
      */
     teamDriveId?: string;
   }
+  export interface Params$Resource$Files$Listlabels extends StandardParameters {
+    /**
+     * The ID of the file.
+     */
+    fileId?: string;
+    /**
+     * The maximum number of labels to return per page. When not set, this defaults to 100.
+     */
+    maxResults?: number;
+    /**
+     * The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Files$Modifylabels
+    extends StandardParameters {
+    /**
+     * The ID of the file for which the labels are modified.
+     */
+    fileId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ModifyLabelsRequest;
+  }
   export interface Params$Resource$Files$Patch extends StandardParameters {
     /**
      * Comma-separated list of parent IDs to add.
@@ -9289,6 +9867,10 @@ export namespace drive_v2 {
      * The ID of the file to update.
      */
     fileId?: string;
+    /**
+     * A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     */
+    includeLabels?: string;
     /**
      * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      */
@@ -9357,6 +9939,10 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
+     * A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     */
+    includeLabels?: string;
+    /**
      * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      */
     includePermissionsForView?: string;
@@ -9375,6 +9961,10 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
+     * A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     */
+    includeLabels?: string;
+    /**
      * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      */
     includePermissionsForView?: string;
@@ -9392,6 +9982,10 @@ export namespace drive_v2 {
      * The ID of the file to untrash.
      */
     fileId?: string;
+    /**
+     * A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     */
+    includeLabels?: string;
     /**
      * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      */
@@ -9422,6 +10016,10 @@ export namespace drive_v2 {
      * The ID of the file to update.
      */
     fileId?: string;
+    /**
+     * A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     */
+    includeLabels?: string;
     /**
      * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      */
@@ -9508,6 +10106,10 @@ export namespace drive_v2 {
      * The ID for the file in question.
      */
     fileId?: string;
+    /**
+     * A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     */
+    includeLabels?: string;
     /**
      * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
      */
