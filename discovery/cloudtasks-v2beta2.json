@@ -179,6 +179,34 @@
           "resources": {
             "queues": {
               "methods": {
+                "buffer": {
+                  "description": "Note: This feature is in its experimental stage. You must request access to the API through the [Cloud Tasks BufferQueues Experiment Signup form](https://forms.gle/X8Zr5hiXH5tTGFqh8). Creates and buffers a new task without the need to explicitly define a Task message. The queue must be an http queue (i.e., must have HTTP target). This method is used for a simplified application of Cloud Tasks queues in buffer and rate limitting HTTP requests.",
+                  "flatPath": "v2beta2/projects/{projectsId}/locations/{locationsId}/queues/{queuesId}:buffer",
+                  "httpMethod": "POST",
+                  "id": "cloudtasks.projects.locations.queues.buffer",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The queue name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` The queue must already exist.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/queues/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2beta2/{+name}:buffer",
+                  "request": {
+                    "$ref": "BufferQueueRequest"
+                  },
+                  "response": {
+                    "$ref": "BufferQueueResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "create": {
                   "description": "Creates a queue. Queues created with this method allow tasks to live for a maximum of 31 days. After a task is 31 days old, the task will be deleted regardless of whether it was dispatched or not. WARNING: Using this method may have unintended side effects if you are using an App Engine `queue.yaml` or `queue.xml` file to manage your queues. Read [Overview of Queue Management and queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using this method.",
                   "flatPath": "v2beta2/projects/{projectsId}/locations/{locationsId}/queues",
@@ -809,7 +837,7 @@
       }
     }
   },
-  "revision": "20220530",
+  "revision": "20220818",
   "rootUrl": "https://cloudtasks.googleapis.com/",
   "schemas": {
     "AcknowledgeTaskRequest": {
@@ -847,7 +875,9 @@
             "GET",
             "HEAD",
             "PUT",
-            "DELETE"
+            "DELETE",
+            "PATCH",
+            "OPTIONS"
           ],
           "enumDescriptions": [
             "HTTP method unspecified",
@@ -855,7 +885,9 @@
             "HTTP GET",
             "HTTP HEAD",
             "HTTP PUT",
-            "HTTP DELETE"
+            "HTTP DELETE",
+            "HTTP PATCH",
+            "HTTP OPTIONS"
           ],
           "type": "string"
         },
@@ -940,7 +972,7 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
           "items": {
             "type": "string"
           },
@@ -948,6 +980,28 @@
         },
         "role": {
           "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BufferQueueRequest": {
+      "description": "Request message for BufferQueue.",
+      "id": "BufferQueueRequest",
+      "properties": {
+        "body": {
+          "$ref": "HttpBody",
+          "description": "Body of the HTTP request. The body can take any generic value. The value will be written to the HttpRequest of the [Task]."
+        }
+      },
+      "type": "object"
+    },
+    "BufferQueueResponse": {
+      "description": "Response message for BufferQueue.",
+      "id": "BufferQueueResponse",
+      "properties": {
+        "task": {
+          "description": "The name of the created task. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`. TASK_ID is randomly generated and is unique within the queue.",
           "type": "string"
         }
       },
@@ -1052,6 +1106,164 @@
           "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "Header": {
+      "description": "Defines a header message. A header can have a key and a value.",
+      "id": "Header",
+      "properties": {
+        "key": {
+          "format": "byte",
+          "type": "string"
+        },
+        "value": {
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "HeaderOverride": {
+      "description": "Wraps the Header object.",
+      "id": "HeaderOverride",
+      "properties": {
+        "header": {
+          "$ref": "Header",
+          "description": "header embodying a key and a value."
+        }
+      },
+      "type": "object"
+    },
+    "HttpBody": {
+      "description": "Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; } service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); } Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); } Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.",
+      "id": "HttpBody",
+      "properties": {
+        "contentType": {
+          "description": "The HTTP Content-Type header value specifying the content type of the body.",
+          "type": "string"
+        },
+        "data": {
+          "description": "The HTTP request/response body as raw binary.",
+          "format": "byte",
+          "type": "string"
+        },
+        "extensions": {
+          "description": "Application specific response metadata. Must be set in the first response for streaming APIs.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "HttpRequest": {
+      "description": "HTTP request. The task will be pushed to the worker as an HTTP request. An HTTP request embodies a url, an http method, headers, body and authorization for the http task.",
+      "id": "HttpRequest",
+      "properties": {
+        "body": {
+          "description": "HTTP request body. A request body is allowed only if the HTTP method is POST, PUT, or PATCH. It is an error to set body on a task with an incompatible HttpMethod.",
+          "format": "byte",
+          "type": "string"
+        },
+        "headers": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "HTTP request headers. This map contains the header field names and values. Headers can be set when running the task is created or task is created. These headers represent a subset of the headers that will accompany the task's HTTP request. Some HTTP request headers will be ignored or replaced. A partial list of headers that will be ignored or replaced is: * Any header that is prefixed with \"X-Google-Cloud-Tasks-\" will be treated as service header. Service headers define properties of the task and are predefined in CloudTask. * Host: This will be computed by Cloud Tasks and derived from HttpRequest.url. * Content-Length: This will be computed by Cloud Tasks. * User-Agent: This will be set to `\"Google-Cloud-Tasks\"`. * `X-Google-*`: Google use only. * `X-AppEngine-*`: Google use only. `Content-Type` won't be set by Cloud Tasks. You can explicitly set `Content-Type` to a media type when the task is created. For example, `Content-Type` can be set to `\"application/octet-stream\"` or `\"application/json\"`. Headers which can have multiple values (according to RFC2616) can be specified using comma-separated values. The size of the headers must be less than 80KB.",
+          "type": "object"
+        },
+        "httpMethod": {
+          "description": "The HTTP method to use for the request. The default is POST.",
+          "enum": [
+            "HTTP_METHOD_UNSPECIFIED",
+            "POST",
+            "GET",
+            "HEAD",
+            "PUT",
+            "DELETE",
+            "PATCH",
+            "OPTIONS"
+          ],
+          "enumDescriptions": [
+            "HTTP method unspecified",
+            "HTTP POST",
+            "HTTP GET",
+            "HTTP HEAD",
+            "HTTP PUT",
+            "HTTP DELETE",
+            "HTTP PATCH",
+            "HTTP OPTIONS"
+          ],
+          "type": "string"
+        },
+        "oauthToken": {
+          "$ref": "OAuthToken",
+          "description": "If specified, an [OAuth token](https://developers.google.com/identity/protocols/OAuth2) will be generated and attached as an `Authorization` header in the HTTP request. This type of authorization should generally only be used when calling Google APIs hosted on *.googleapis.com."
+        },
+        "oidcToken": {
+          "$ref": "OidcToken",
+          "description": "If specified, an [OIDC](https://developers.google.com/identity/protocols/OpenIDConnect) token will be generated and attached as an `Authorization` header in the HTTP request. This type of authorization can be used for many scenarios, including calling Cloud Run, or endpoints where you intend to validate the token yourself."
+        },
+        "url": {
+          "description": "Required. The full url path that the request will be sent to. This string must begin with either \"http://\" or \"https://\". Some examples are: `http://acme.com` and `https://acme.com/sales:8080`. Cloud Tasks will encode some characters for safety and compatibility. The maximum allowed URL length is 2083 characters after encoding. The `Location` header response from a redirect response [`300` - `399`] may be followed. The redirect is not counted as a separate attempt.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "HttpTarget": {
+      "description": "HTTP target. When specified as a Queue, all the tasks with [HttpRequest] will be overridden according to the target.",
+      "id": "HttpTarget",
+      "properties": {
+        "headerOverrides": {
+          "description": "HTTP target headers. This map contains the header field names and values. Headers will be set when running the task is created and/or task is created. These headers represent a subset of the headers that will accompany the task's HTTP request. Some HTTP request headers will be ignored or replaced. A partial list of headers that will be ignored or replaced is: * Any header that is prefixed with \"X-Google-Cloud-Tasks-\" will be treated as service header. Service headers define properties of the task and are predefined in CloudTask. * Host: This will be computed by Cloud Tasks and derived from HttpRequest.url. * Content-Length: This will be computed by Cloud Tasks. * User-Agent: This will be set to `\"Google-Cloud-Tasks\"`. * `X-Google-*`: Google use only. * `X-AppEngine-*`: Google use only. `Content-Type` won't be set by Cloud Tasks. You can explicitly set `Content-Type` to a media type when the task is created. For example, `Content-Type` can be set to `\"application/octet-stream\"` or `\"application/json\"`. Headers which can have multiple values (according to RFC2616) can be specified using comma-separated values. The size of the headers must be less than 80KB. Queue-level headers to override headers of all the tasks in the queue.",
+          "items": {
+            "$ref": "HeaderOverride"
+          },
+          "type": "array"
+        },
+        "httpMethod": {
+          "description": "The HTTP method to use for the request. When specified, it will override HttpRequest for the task. Note that if the value is set to HttpMethod the HttpRequest of the task will be ignored at execution time.",
+          "enum": [
+            "HTTP_METHOD_UNSPECIFIED",
+            "POST",
+            "GET",
+            "HEAD",
+            "PUT",
+            "DELETE",
+            "PATCH",
+            "OPTIONS"
+          ],
+          "enumDescriptions": [
+            "HTTP method unspecified",
+            "HTTP POST",
+            "HTTP GET",
+            "HTTP HEAD",
+            "HTTP PUT",
+            "HTTP DELETE",
+            "HTTP PATCH",
+            "HTTP OPTIONS"
+          ],
+          "type": "string"
+        },
+        "oauthToken": {
+          "$ref": "OAuthToken",
+          "description": "If specified, an [OAuth token](https://developers.google.com/identity/protocols/OAuth2) will be generated and attached as an `Authorization` header in the HTTP request. This type of authorization should generally only be used when calling Google APIs hosted on *.googleapis.com."
+        },
+        "oidcToken": {
+          "$ref": "OidcToken",
+          "description": "If specified, an [OIDC](https://developers.google.com/identity/protocols/OpenIDConnect) token will be generated and attached as an `Authorization` header in the HTTP request. This type of authorization can be used for many scenarios, including calling Cloud Run, or endpoints where you intend to validate the token yourself."
+        },
+        "uriOverride": {
+          "$ref": "UriOverride",
+          "description": "Uri override. When specified modifies the execution Uri for all the tasks in the queue."
         }
       },
       "type": "object"
@@ -1193,6 +1405,36 @@
       },
       "type": "object"
     },
+    "OAuthToken": {
+      "description": "Contains information needed for generating an [OAuth token](https://developers.google.com/identity/protocols/OAuth2). This type of authorization should generally only be used when calling Google APIs hosted on *.googleapis.com.",
+      "id": "OAuthToken",
+      "properties": {
+        "scope": {
+          "description": "OAuth scope to be used for generating OAuth access token. If not specified, \"https://www.googleapis.com/auth/cloud-platform\" will be used.",
+          "type": "string"
+        },
+        "serviceAccountEmail": {
+          "description": "[Service account email](https://cloud.google.com/iam/docs/service-accounts) to be used for generating OAuth token. The service account must be within the same project as the queue. The caller must have iam.serviceAccounts.actAs permission for the service account.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OidcToken": {
+      "description": "Contains information needed for generating an [OpenID Connect token](https://developers.google.com/identity/protocols/OpenIDConnect). This type of authorization can be used for many scenarios, including calling Cloud Run, or endpoints where you intend to validate the token yourself.",
+      "id": "OidcToken",
+      "properties": {
+        "audience": {
+          "description": "Audience to be used when generating OIDC token. If not specified, the URI specified in target will be used.",
+          "type": "string"
+        },
+        "serviceAccountEmail": {
+          "description": "[Service account email](https://cloud.google.com/iam/docs/service-accounts) to be used for generating OIDC token. The service account must be within the same project as the queue. The caller must have iam.serviceAccounts.actAs permission for the service account.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PauseQueueRequest": {
       "description": "Request message for PauseQueue.",
       "id": "PauseQueueRequest",
@@ -1258,6 +1500,10 @@
         "appEngineHttpTarget": {
           "$ref": "AppEngineHttpTarget",
           "description": "App Engine HTTP target. An App Engine queue is a queue that has an AppEngineHttpTarget."
+        },
+        "httpTarget": {
+          "$ref": "HttpTarget",
+          "description": "An http_target is used to override the target values for HTTP tasks."
         },
         "name": {
           "description": "Caller-specified and required in CreateQueue, after which it becomes output only. The queue name. The queue name must have the following format: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]), hyphens (-), colons (:), or periods (.). For more information, see [Identifying projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects) * `LOCATION_ID` is the canonical ID for the queue's location. The list of available locations can be obtained by calling ListLocations. For more information, see https://cloud.google.com/about/locations/. * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or hyphens (-). The maximum length is 100 characters.",
@@ -1518,6 +1764,10 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "httpRequest": {
+          "$ref": "HttpRequest",
+          "description": "HTTP request that is sent to the task's target. An HTTP task is a task that has HttpRequest set."
+        },
         "name": {
           "description": "Optionally caller-specified in CreateTask. The task name. The task name must have the following format: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID` * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]), hyphens (-), colons (:), or periods (.). For more information, see [Identifying projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects) * `LOCATION_ID` is the canonical ID for the task's location. The list of available locations can be obtained by calling ListLocations. For more information, see https://cloud.google.com/about/locations/. * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or hyphens (-). The maximum length is 100 characters. * `TASK_ID` can contain only letters ([A-Za-z]), numbers ([0-9]), hyphens (-), or underscores (_). The maximum length is 500 characters.",
           "type": "string"
@@ -1601,6 +1851,44 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "UriOverride": {
+      "description": "Uri Override. When specified, all the HTTP tasks inside the queue will be partially or fully overridden depending on the configured values.",
+      "id": "UriOverride",
+      "properties": {
+        "host": {
+          "description": "Host override. When specified, the host part of url will be overridden. For example, if the original Uri is \"https://www.google.com\", and host is set to \"example.net\", the overridden Uri will be \"https://example.net\".",
+          "type": "string"
+        },
+        "path": {
+          "description": "Uri path. Will be used as the path for the current Uri (replaces any existing path of the task url).",
+          "type": "string"
+        },
+        "port": {
+          "description": "Port override. When specified, the port part of Uri will be replaced by the provided value. For instance, for a Uri http://www.google.com/foo and port=123 the overridden Uri becomes http://www.google.com:123/foo.",
+          "format": "int64",
+          "type": "string"
+        },
+        "query": {
+          "description": "Uri Query. Will replace the query part of the task uri.",
+          "type": "string"
+        },
+        "scheme": {
+          "description": "Scheme override. When specified, the Uri scheme is replaced by the provided value.",
+          "enum": [
+            "SCHEME_UNSPECIFIED",
+            "HTTP",
+            "HTTPS"
+          ],
+          "enumDescriptions": [
+            "Scheme unspecified. Defaults to HTTPS.",
+            "Convert the scheme to HTTP, e.g., https://www.google.ca will change to http://www.google.ca.",
+            "Convert the scheme to HTTPS, e.g., http://www.google.ca will change to https://www.google.ca."
+          ],
+          "type": "string"
         }
       },
       "type": "object"

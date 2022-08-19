@@ -218,13 +218,31 @@ export namespace cloudtasks_v2beta2 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
      * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
     role?: string | null;
+  }
+  /**
+   * Request message for BufferQueue.
+   */
+  export interface Schema$BufferQueueRequest {
+    /**
+     * Body of the HTTP request. The body can take any generic value. The value will be written to the HttpRequest of the [Task].
+     */
+    body?: Schema$HttpBody;
+  }
+  /**
+   * Response message for BufferQueue.
+   */
+  export interface Schema$BufferQueueResponse {
+    /**
+     * The name of the created task. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`. TASK_ID is randomly generated and is unique within the queue.
+     */
+    task?: string | null;
   }
   /**
    * Request message for canceling a lease using CancelLease.
@@ -294,6 +312,93 @@ export namespace cloudtasks_v2beta2 {
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     requestedPolicyVersion?: number | null;
+  }
+  /**
+   * Defines a header message. A header can have a key and a value.
+   */
+  export interface Schema$Header {
+    key?: string | null;
+    value?: string | null;
+  }
+  /**
+   * Wraps the Header object.
+   */
+  export interface Schema$HeaderOverride {
+    /**
+     * header embodying a key and a value.
+     */
+    header?: Schema$Header;
+  }
+  /**
+   * Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; \} service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); \} Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); \} Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.
+   */
+  export interface Schema$HttpBody {
+    /**
+     * The HTTP Content-Type header value specifying the content type of the body.
+     */
+    contentType?: string | null;
+    /**
+     * The HTTP request/response body as raw binary.
+     */
+    data?: string | null;
+    /**
+     * Application specific response metadata. Must be set in the first response for streaming APIs.
+     */
+    extensions?: Array<{[key: string]: any}> | null;
+  }
+  /**
+   * HTTP request. The task will be pushed to the worker as an HTTP request. An HTTP request embodies a url, an http method, headers, body and authorization for the http task.
+   */
+  export interface Schema$HttpRequest {
+    /**
+     * HTTP request body. A request body is allowed only if the HTTP method is POST, PUT, or PATCH. It is an error to set body on a task with an incompatible HttpMethod.
+     */
+    body?: string | null;
+    /**
+     * HTTP request headers. This map contains the header field names and values. Headers can be set when running the task is created or task is created. These headers represent a subset of the headers that will accompany the task's HTTP request. Some HTTP request headers will be ignored or replaced. A partial list of headers that will be ignored or replaced is: * Any header that is prefixed with "X-Google-Cloud-Tasks-" will be treated as service header. Service headers define properties of the task and are predefined in CloudTask. * Host: This will be computed by Cloud Tasks and derived from HttpRequest.url. * Content-Length: This will be computed by Cloud Tasks. * User-Agent: This will be set to `"Google-Cloud-Tasks"`. * `X-Google-*`: Google use only. * `X-AppEngine-*`: Google use only. `Content-Type` won't be set by Cloud Tasks. You can explicitly set `Content-Type` to a media type when the task is created. For example, `Content-Type` can be set to `"application/octet-stream"` or `"application/json"`. Headers which can have multiple values (according to RFC2616) can be specified using comma-separated values. The size of the headers must be less than 80KB.
+     */
+    headers?: {[key: string]: string} | null;
+    /**
+     * The HTTP method to use for the request. The default is POST.
+     */
+    httpMethod?: string | null;
+    /**
+     * If specified, an [OAuth token](https://developers.google.com/identity/protocols/OAuth2) will be generated and attached as an `Authorization` header in the HTTP request. This type of authorization should generally only be used when calling Google APIs hosted on *.googleapis.com.
+     */
+    oauthToken?: Schema$OAuthToken;
+    /**
+     * If specified, an [OIDC](https://developers.google.com/identity/protocols/OpenIDConnect) token will be generated and attached as an `Authorization` header in the HTTP request. This type of authorization can be used for many scenarios, including calling Cloud Run, or endpoints where you intend to validate the token yourself.
+     */
+    oidcToken?: Schema$OidcToken;
+    /**
+     * Required. The full url path that the request will be sent to. This string must begin with either "http://" or "https://". Some examples are: `http://acme.com` and `https://acme.com/sales:8080`. Cloud Tasks will encode some characters for safety and compatibility. The maximum allowed URL length is 2083 characters after encoding. The `Location` header response from a redirect response [`300` - `399`] may be followed. The redirect is not counted as a separate attempt.
+     */
+    url?: string | null;
+  }
+  /**
+   * HTTP target. When specified as a Queue, all the tasks with [HttpRequest] will be overridden according to the target.
+   */
+  export interface Schema$HttpTarget {
+    /**
+     * HTTP target headers. This map contains the header field names and values. Headers will be set when running the task is created and/or task is created. These headers represent a subset of the headers that will accompany the task's HTTP request. Some HTTP request headers will be ignored or replaced. A partial list of headers that will be ignored or replaced is: * Any header that is prefixed with "X-Google-Cloud-Tasks-" will be treated as service header. Service headers define properties of the task and are predefined in CloudTask. * Host: This will be computed by Cloud Tasks and derived from HttpRequest.url. * Content-Length: This will be computed by Cloud Tasks. * User-Agent: This will be set to `"Google-Cloud-Tasks"`. * `X-Google-*`: Google use only. * `X-AppEngine-*`: Google use only. `Content-Type` won't be set by Cloud Tasks. You can explicitly set `Content-Type` to a media type when the task is created. For example, `Content-Type` can be set to `"application/octet-stream"` or `"application/json"`. Headers which can have multiple values (according to RFC2616) can be specified using comma-separated values. The size of the headers must be less than 80KB. Queue-level headers to override headers of all the tasks in the queue.
+     */
+    headerOverrides?: Schema$HeaderOverride[];
+    /**
+     * The HTTP method to use for the request. When specified, it will override HttpRequest for the task. Note that if the value is set to HttpMethod the HttpRequest of the task will be ignored at execution time.
+     */
+    httpMethod?: string | null;
+    /**
+     * If specified, an [OAuth token](https://developers.google.com/identity/protocols/OAuth2) will be generated and attached as an `Authorization` header in the HTTP request. This type of authorization should generally only be used when calling Google APIs hosted on *.googleapis.com.
+     */
+    oauthToken?: Schema$OAuthToken;
+    /**
+     * If specified, an [OIDC](https://developers.google.com/identity/protocols/OpenIDConnect) token will be generated and attached as an `Authorization` header in the HTTP request. This type of authorization can be used for many scenarios, including calling Cloud Run, or endpoints where you intend to validate the token yourself.
+     */
+    oidcToken?: Schema$OidcToken;
+    /**
+     * Uri override. When specified modifies the execution Uri for all the tasks in the queue.
+     */
+    uriOverride?: Schema$UriOverride;
   }
   /**
    * Request message for leasing tasks using LeaseTasks.
@@ -390,6 +495,32 @@ export namespace cloudtasks_v2beta2 {
     name?: string | null;
   }
   /**
+   * Contains information needed for generating an [OAuth token](https://developers.google.com/identity/protocols/OAuth2). This type of authorization should generally only be used when calling Google APIs hosted on *.googleapis.com.
+   */
+  export interface Schema$OAuthToken {
+    /**
+     * OAuth scope to be used for generating OAuth access token. If not specified, "https://www.googleapis.com/auth/cloud-platform" will be used.
+     */
+    scope?: string | null;
+    /**
+     * [Service account email](https://cloud.google.com/iam/docs/service-accounts) to be used for generating OAuth token. The service account must be within the same project as the queue. The caller must have iam.serviceAccounts.actAs permission for the service account.
+     */
+    serviceAccountEmail?: string | null;
+  }
+  /**
+   * Contains information needed for generating an [OpenID Connect token](https://developers.google.com/identity/protocols/OpenIDConnect). This type of authorization can be used for many scenarios, including calling Cloud Run, or endpoints where you intend to validate the token yourself.
+   */
+  export interface Schema$OidcToken {
+    /**
+     * Audience to be used when generating OIDC token. If not specified, the URI specified in target will be used.
+     */
+    audience?: string | null;
+    /**
+     * [Service account email](https://cloud.google.com/iam/docs/service-accounts) to be used for generating OIDC token. The service account must be within the same project as the queue. The caller must have iam.serviceAccounts.actAs permission for the service account.
+     */
+    serviceAccountEmail?: string | null;
+  }
+  /**
    * Request message for PauseQueue.
    */
   export interface Schema$PauseQueueRequest {}
@@ -439,6 +570,10 @@ export namespace cloudtasks_v2beta2 {
      * App Engine HTTP target. An App Engine queue is a queue that has an AppEngineHttpTarget.
      */
     appEngineHttpTarget?: Schema$AppEngineHttpTarget;
+    /**
+     * An http_target is used to override the target values for HTTP tasks.
+     */
+    httpTarget?: Schema$HttpTarget;
     /**
      * Caller-specified and required in CreateQueue, after which it becomes output only. The queue name. The queue name must have the following format: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]), hyphens (-), colons (:), or periods (.). For more information, see [Identifying projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects) * `LOCATION_ID` is the canonical ID for the queue's location. The list of available locations can be obtained by calling ListLocations. For more information, see https://cloud.google.com/about/locations/. * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or hyphens (-). The maximum length is 100 characters.
      */
@@ -616,6 +751,10 @@ export namespace cloudtasks_v2beta2 {
      */
     createTime?: string | null;
     /**
+     * HTTP request that is sent to the task's target. An HTTP task is a task that has HttpRequest set.
+     */
+    httpRequest?: Schema$HttpRequest;
+    /**
      * Optionally caller-specified in CreateTask. The task name. The task name must have the following format: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID` * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]), hyphens (-), colons (:), or periods (.). For more information, see [Identifying projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects) * `LOCATION_ID` is the canonical ID for the task's location. The list of available locations can be obtained by calling ListLocations. For more information, see https://cloud.google.com/about/locations/. * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or hyphens (-). The maximum length is 100 characters. * `TASK_ID` can contain only letters ([A-Za-z]), numbers ([0-9]), hyphens (-), or underscores (_). The maximum length is 500 characters.
      */
     name?: string | null;
@@ -674,6 +813,31 @@ export namespace cloudtasks_v2beta2 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
+  }
+  /**
+   * Uri Override. When specified, all the HTTP tasks inside the queue will be partially or fully overridden depending on the configured values.
+   */
+  export interface Schema$UriOverride {
+    /**
+     * Host override. When specified, the host part of url will be overridden. For example, if the original Uri is "https://www.google.com", and host is set to "example.net", the overridden Uri will be "https://example.net".
+     */
+    host?: string | null;
+    /**
+     * Uri path. Will be used as the path for the current Uri (replaces any existing path of the task url).
+     */
+    path?: string | null;
+    /**
+     * Port override. When specified, the port part of Uri will be replaced by the provided value. For instance, for a Uri http://www.google.com/foo and port=123 the overridden Uri becomes http://www.google.com:123/foo.
+     */
+    port?: string | null;
+    /**
+     * Uri Query. Will replace the query part of the task uri.
+     */
+    query?: string | null;
+    /**
+     * Scheme override. When specified, the Uri scheme is replaced by the provided value.
+     */
+    scheme?: string | null;
   }
 
   export class Resource$Projects {
@@ -1001,6 +1165,146 @@ export namespace cloudtasks_v2beta2 {
     }
 
     /**
+     * Note: This feature is in its experimental stage. You must request access to the API through the [Cloud Tasks BufferQueues Experiment Signup form](https://forms.gle/X8Zr5hiXH5tTGFqh8). Creates and buffers a new task without the need to explicitly define a Task message. The queue must be an http queue (i.e., must have HTTP target). This method is used for a simplified application of Cloud Tasks queues in buffer and rate limitting HTTP requests.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudtasks = google.cloudtasks('v2beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudtasks.projects.locations.queues.buffer({
+     *     // Required. The queue name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` The queue must already exist.
+     *     name: 'projects/my-project/locations/my-location/queues/my-queue',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "body": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "task": "my_task"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    buffer(
+      params: Params$Resource$Projects$Locations$Queues$Buffer,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    buffer(
+      params?: Params$Resource$Projects$Locations$Queues$Buffer,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BufferQueueResponse>;
+    buffer(
+      params: Params$Resource$Projects$Locations$Queues$Buffer,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    buffer(
+      params: Params$Resource$Projects$Locations$Queues$Buffer,
+      options: MethodOptions | BodyResponseCallback<Schema$BufferQueueResponse>,
+      callback: BodyResponseCallback<Schema$BufferQueueResponse>
+    ): void;
+    buffer(
+      params: Params$Resource$Projects$Locations$Queues$Buffer,
+      callback: BodyResponseCallback<Schema$BufferQueueResponse>
+    ): void;
+    buffer(callback: BodyResponseCallback<Schema$BufferQueueResponse>): void;
+    buffer(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queues$Buffer
+        | BodyResponseCallback<Schema$BufferQueueResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BufferQueueResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BufferQueueResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BufferQueueResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queues$Buffer;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Queues$Buffer;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta2/{+name}:buffer').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BufferQueueResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BufferQueueResponse>(parameters);
+      }
+    }
+
+    /**
      * Creates a queue. Queues created with this method allow tasks to live for a maximum of 31 days. After a task is 31 days old, the task will be deleted regardless of whether it was dispatched or not. WARNING: Using this method may have unintended side effects if you are using an App Engine `queue.yaml` or `queue.xml` file to manage your queues. Read [Overview of Queue Management and queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using this method.
      * @example
      * ```js
@@ -1035,6 +1339,7 @@ export namespace cloudtasks_v2beta2 {
      *       // request body parameters
      *       // {
      *       //   "appEngineHttpTarget": {},
+     *       //   "httpTarget": {},
      *       //   "name": "my_name",
      *       //   "pullTarget": {},
      *       //   "purgeTime": "my_purgeTime",
@@ -1052,6 +1357,7 @@ export namespace cloudtasks_v2beta2 {
      *   // Example response
      *   // {
      *   //   "appEngineHttpTarget": {},
+     *   //   "httpTarget": {},
      *   //   "name": "my_name",
      *   //   "pullTarget": {},
      *   //   "purgeTime": "my_purgeTime",
@@ -1316,6 +1622,7 @@ export namespace cloudtasks_v2beta2 {
      *   // Example response
      *   // {
      *   //   "appEngineHttpTarget": {},
+     *   //   "httpTarget": {},
      *   //   "name": "my_name",
      *   //   "pullTarget": {},
      *   //   "purgeTime": "my_purgeTime",
@@ -1733,6 +2040,7 @@ export namespace cloudtasks_v2beta2 {
      *       // request body parameters
      *       // {
      *       //   "appEngineHttpTarget": {},
+     *       //   "httpTarget": {},
      *       //   "name": "my_name",
      *       //   "pullTarget": {},
      *       //   "purgeTime": "my_purgeTime",
@@ -1750,6 +2058,7 @@ export namespace cloudtasks_v2beta2 {
      *   // Example response
      *   // {
      *   //   "appEngineHttpTarget": {},
+     *   //   "httpTarget": {},
      *   //   "name": "my_name",
      *   //   "pullTarget": {},
      *   //   "purgeTime": "my_purgeTime",
@@ -1891,6 +2200,7 @@ export namespace cloudtasks_v2beta2 {
      *   // Example response
      *   // {
      *   //   "appEngineHttpTarget": {},
+     *   //   "httpTarget": {},
      *   //   "name": "my_name",
      *   //   "pullTarget": {},
      *   //   "purgeTime": "my_purgeTime",
@@ -2035,6 +2345,7 @@ export namespace cloudtasks_v2beta2 {
      *   // Example response
      *   // {
      *   //   "appEngineHttpTarget": {},
+     *   //   "httpTarget": {},
      *   //   "name": "my_name",
      *   //   "pullTarget": {},
      *   //   "purgeTime": "my_purgeTime",
@@ -2179,6 +2490,7 @@ export namespace cloudtasks_v2beta2 {
      *   // Example response
      *   // {
      *   //   "appEngineHttpTarget": {},
+     *   //   "httpTarget": {},
      *   //   "name": "my_name",
      *   //   "pullTarget": {},
      *   //   "purgeTime": "my_purgeTime",
@@ -2567,6 +2879,18 @@ export namespace cloudtasks_v2beta2 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Queues$Buffer
+    extends StandardParameters {
+    /**
+     * Required. The queue name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` The queue must already exist.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BufferQueueRequest;
+  }
   export interface Params$Resource$Projects$Locations$Queues$Create
     extends StandardParameters {
     /**
@@ -2896,6 +3220,7 @@ export namespace cloudtasks_v2beta2 {
      *   // {
      *   //   "appEngineHttpRequest": {},
      *   //   "createTime": "my_createTime",
+     *   //   "httpRequest": {},
      *   //   "name": "my_name",
      *   //   "pullMessage": {},
      *   //   "scheduleTime": "my_scheduleTime",
@@ -3041,6 +3366,7 @@ export namespace cloudtasks_v2beta2 {
      *   // {
      *   //   "appEngineHttpRequest": {},
      *   //   "createTime": "my_createTime",
+     *   //   "httpRequest": {},
      *   //   "name": "my_name",
      *   //   "pullMessage": {},
      *   //   "scheduleTime": "my_scheduleTime",
@@ -3302,6 +3628,7 @@ export namespace cloudtasks_v2beta2 {
      *   // {
      *   //   "appEngineHttpRequest": {},
      *   //   "createTime": "my_createTime",
+     *   //   "httpRequest": {},
      *   //   "name": "my_name",
      *   //   "pullMessage": {},
      *   //   "scheduleTime": "my_scheduleTime",
@@ -3726,6 +4053,7 @@ export namespace cloudtasks_v2beta2 {
      *   // {
      *   //   "appEngineHttpRequest": {},
      *   //   "createTime": "my_createTime",
+     *   //   "httpRequest": {},
      *   //   "name": "my_name",
      *   //   "pullMessage": {},
      *   //   "scheduleTime": "my_scheduleTime",
@@ -3870,6 +4198,7 @@ export namespace cloudtasks_v2beta2 {
      *   // {
      *   //   "appEngineHttpRequest": {},
      *   //   "createTime": "my_createTime",
+     *   //   "httpRequest": {},
      *   //   "name": "my_name",
      *   //   "pullMessage": {},
      *   //   "scheduleTime": "my_scheduleTime",
