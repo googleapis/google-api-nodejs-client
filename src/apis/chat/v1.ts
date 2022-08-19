@@ -310,6 +310,19 @@ export namespace chat_v1 {
     title?: string | null;
   }
   /**
+   * Widgets for Chat apps to specify.
+   */
+  export interface Schema$CardWithId {
+    /**
+     * Card proto that allows Chat apps to specify UI elements and editable widgets.
+     */
+    card?: Schema$GoogleAppsCardV1Card;
+    /**
+     * Required for `cardsV2` messages. Chat app-specified identifier for this widget. Scoped within a message.
+     */
+    cardId?: string | null;
+  }
+  /**
    * JSON payload of error messages. If the Cloud Logging API is enabled, these error messages are logged to [Google Cloud Logging](https://cloud.google.com/logging/docs).
    */
   export interface Schema$ChatAppLogEntry {
@@ -524,7 +537,7 @@ export namespace chat_v1 {
      */
     parameters?: Schema$GoogleAppsCardV1ActionParameter[];
     /**
-     * Indicates whether form values persist after the action. The default value is `false`. If `true`, form values remain after the action is triggered. When using [LoadIndicator.NONE](workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) for actions, `persist_values` = `true`is recommended, as it ensures that any changes made by the user after form or on change actions are sent to the server are not overwritten by the response. If `false`, the form values are cleared when the action is triggered. When `persist_values` is set to `false`, it is strongly recommended that the card use [LoadIndicator.SPINNER](workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) for all actions, as this locks the UI to ensure no changes are made by the user while the action is being processed.
+     * Indicates whether form values persist after the action. The default value is `false`. If `true`, form values remain after the action is triggered. When using [LoadIndicator.NONE](workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) for actions, `persist_values` = `true`is recommended, as it ensures that any changes made by the user after form or on change actions are sent to the server are not overwritten by the response. If `false`, the form values are cleared when the action is triggered. When `persist_values` is set to `false`, it is strongly recommended that the card use [LoadIndicator.SPINNER](workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) for all actions, as this locks the UI to ensure no changes are made by the user while the action is being processed. Not supported by Google Chat apps.
      */
     persistValues?: boolean | null;
   }
@@ -540,23 +553,6 @@ export namespace chat_v1 {
      * The value of the parameter.
      */
     value?: string | null;
-  }
-  /**
-   * Represents the platform specific uri/intent to open for each client.
-   */
-  export interface Schema$GoogleAppsCardV1AppUri {
-    /**
-     * An intent object to be opened in the corresponding android hosting app.
-     */
-    androidIntent?: Schema$GoogleAppsCardV1Intent;
-    /**
-     * A companion uri string to be opened in the chat companion window. on the web.
-     */
-    companionUri?: string | null;
-    /**
-     * A uri string to be opened in the corresponding iOS hosting app.
-     */
-    iosUri?: string | null;
   }
   /**
    * Represents the complete border style applied to widgets.
@@ -622,7 +618,7 @@ export namespace chat_v1 {
      */
     cardActions?: Schema$GoogleAppsCardV1CardAction[];
     /**
-     * The display style for `peekCardHeader`.
+     * The `peekCardHeader` display style for. Not supported by Google Chat apps.
      */
     displayStyle?: string | null;
     /**
@@ -638,7 +634,7 @@ export namespace chat_v1 {
      */
     name?: string | null;
     /**
-     * When displaying contextual content, the peek card header acts as a placeholder so that the user can navigate forward between the homepage cards and the contextual cards.
+     * When displaying contextual content, the peek card header acts as a placeholder so that the user can navigate forward between the homepage cards and the contextual cards. Not supported by Google Chat apps.
      */
     peekCardHeader?: Schema$GoogleAppsCardV1CardHeader;
     /**
@@ -776,19 +772,6 @@ export namespace chat_v1 {
    */
   export interface Schema$GoogleAppsCardV1Divider {}
   /**
-   * Extra data for an android intent. Valid keys are defined in the hosting app contract.
-   */
-  export interface Schema$GoogleAppsCardV1ExtraData {
-    /**
-     * A key for the intent extra data.
-     */
-    key?: string | null;
-    /**
-     * Value for the given extra data key.
-     */
-    value?: string | null;
-  }
-  /**
    * Represents a Grid widget that displays items in a configurable grid layout.
    */
   export interface Schema$GoogleAppsCardV1Grid {
@@ -912,19 +895,6 @@ export namespace chat_v1 {
     type?: string | null;
   }
   /**
-   * Android intent.
-   */
-  export interface Schema$GoogleAppsCardV1Intent {
-    /**
-     * A list of extra data for the android intent. For example, for a calendar event edit intent, the event title information can be passed as extra data.
-     */
-    extraData?: Schema$GoogleAppsCardV1ExtraData[];
-    /**
-     * An android intent action string for the {@link android.content.Intent\} object. For example: for the view intent action type, a valid value will be android.content.Intent.ACTION_VIEW.
-     */
-    intentAction?: string | null;
-  }
-  /**
    * Represents the response to an `onClick` event.
    */
   export interface Schema$GoogleAppsCardV1OnClick {
@@ -949,10 +919,6 @@ export namespace chat_v1 {
    * Represents an `onClick` event that opens a hyperlink.
    */
   export interface Schema$GoogleAppsCardV1OpenLink {
-    /**
-     * Represents the platform specific uri/intent to open on each client. For example: A companion_url will open in a companion window on the web. An iOS URL and android intent will open in the corresponding hosting apps. If these platform specific URLs can't be handled correctly, i.e. if the companion isn't supported on web and the hosting apps aren't available on the mobile platforms then the `uri` will open in a new browser window on all the platforms.
-     */
-    appUri?: Schema$GoogleAppsCardV1AppUri;
     /**
      * Whether the client forgets about a link after opening it, or observes it until the window closes. Not supported by Chat apps.
      */
@@ -1110,7 +1076,7 @@ export namespace chat_v1 {
     value?: string | null;
   }
   /**
-   * A paragraph of text that supports formatting. See [Text formatting](workspace/add-ons/concepts/widgets#text_formatting") for details.
+   * A paragraph of text that supports formatting. See [Text formatting](workspace/add-ons/concepts/widgets#text_formatting) for details.
    */
   export interface Schema$GoogleAppsCardV1TextParagraph {
     /**
@@ -1314,6 +1280,10 @@ export namespace chat_v1 {
      */
     name?: string | null;
     /**
+     * Output only. User's role within a Chat space, which determines their permitted actions in the space.
+     */
+    role?: string | null;
+    /**
      * Output only. State of the membership.
      */
     state?: string | null;
@@ -1343,6 +1313,10 @@ export namespace chat_v1 {
      */
     cards?: Schema$Card[];
     /**
+     * Richly formatted and interactive cards that display UI elements and editable widgets, such as: - Formatted text - Buttons - Clickable images - Checkboxes - Radio buttons - Input widgets. Cards are usually displayed below the text-body of a Chat message, but can situationally appear other places, such as [dialogs](https://developers.google.com/chat/how-tos/dialogs). The `cardId` is a unique identifier among cards in the same message and for identifying user input values. Currently supported widgets include: - `TextParagraph` - `DecoratedText` - `Image` - `ButtonList`
+     */
+    cardsV2?: Schema$CardWithId[];
+    /**
      * Output only. The time at which the message was created in Google Chat server.
      */
     createTime?: string | null;
@@ -1351,7 +1325,7 @@ export namespace chat_v1 {
      */
     fallbackText?: string | null;
     /**
-     * Output only. The time at which the message was last updated. If the message was never updated, this field matches `create_time`.
+     * Output only. The time at which the message was last edited by a user. If the message has never been edited, this field is empty.
      */
     lastUpdateTime?: string | null;
     /**
@@ -1469,13 +1443,30 @@ export namespace chat_v1 {
      */
     singleUserBotDm?: boolean | null;
     /**
+     * Details about the space including description and rules.
+     */
+    spaceDetails?: Schema$SpaceDetails;
+    /**
      * Output only. Whether messages are threaded in this space.
      */
     threaded?: boolean | null;
     /**
-     * Output only. Deprecated: Use `single_user_bot_dm` or `space_type` (developer preview) instead. The type of a space.
+     * Output only. Deprecated: Use `singleUserBotDm` or `spaceType` (developer preview) instead. The type of a space.
      */
     type?: string | null;
+  }
+  /**
+   * Details about the space including description and rules.
+   */
+  export interface Schema$SpaceDetails {
+    /**
+     * Optional. A description of the space. It could describe the space's discussion topic, functional purpose, or participants.
+     */
+    description?: string | null;
+    /**
+     * Optional. The space's rules, expectations, and etiquette.
+     */
+    guidelines?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -1668,6 +1659,7 @@ export namespace chat_v1 {
      *       //   "argumentText": "my_argumentText",
      *       //   "attachment": [],
      *       //   "cards": [],
+     *       //   "cardsV2": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
      *       //   "lastUpdateTime": "my_lastUpdateTime",
@@ -1690,6 +1682,7 @@ export namespace chat_v1 {
      *   //   "argumentText": "my_argumentText",
      *   //   "attachment": [],
      *   //   "cards": [],
+     *   //   "cardsV2": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
@@ -1836,6 +1829,7 @@ export namespace chat_v1 {
      *       //   "argumentText": "my_argumentText",
      *       //   "attachment": [],
      *       //   "cards": [],
+     *       //   "cardsV2": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
      *       //   "lastUpdateTime": "my_lastUpdateTime",
@@ -1858,6 +1852,7 @@ export namespace chat_v1 {
      *   //   "argumentText": "my_argumentText",
      *   //   "attachment": [],
      *   //   "cards": [],
+     *   //   "cardsV2": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
@@ -2050,6 +2045,7 @@ export namespace chat_v1 {
      *       //   "argumentText": "my_argumentText",
      *       //   "attachment": [],
      *       //   "cards": [],
+     *       //   "cardsV2": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
      *       //   "lastUpdateTime": "my_lastUpdateTime",
@@ -2072,6 +2068,7 @@ export namespace chat_v1 {
      *   //   "argumentText": "my_argumentText",
      *   //   "attachment": [],
      *   //   "cards": [],
+     *   //   "cardsV2": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
@@ -2391,6 +2388,7 @@ export namespace chat_v1 {
      *       //   "argumentText": "my_argumentText",
      *       //   "attachment": [],
      *       //   "cards": [],
+     *       //   "cardsV2": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
      *       //   "lastUpdateTime": "my_lastUpdateTime",
@@ -2413,6 +2411,7 @@ export namespace chat_v1 {
      *   //   "argumentText": "my_argumentText",
      *   //   "attachment": [],
      *   //   "cards": [],
+     *   //   "cardsV2": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
@@ -2559,6 +2558,7 @@ export namespace chat_v1 {
      *       //   "argumentText": "my_argumentText",
      *       //   "attachment": [],
      *       //   "cards": [],
+     *       //   "cardsV2": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
      *       //   "lastUpdateTime": "my_lastUpdateTime",
@@ -2581,6 +2581,7 @@ export namespace chat_v1 {
      *   //   "argumentText": "my_argumentText",
      *   //   "attachment": [],
      *   //   "cards": [],
+     *   //   "cardsV2": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
@@ -2773,6 +2774,7 @@ export namespace chat_v1 {
      *       //   "argumentText": "my_argumentText",
      *       //   "attachment": [],
      *       //   "cards": [],
+     *       //   "cardsV2": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
      *       //   "lastUpdateTime": "my_lastUpdateTime",
@@ -2795,6 +2797,7 @@ export namespace chat_v1 {
      *   //   "argumentText": "my_argumentText",
      *   //   "attachment": [],
      *   //   "cards": [],
+     *   //   "cardsV2": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
@@ -2968,6 +2971,7 @@ export namespace chat_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
      *   //   "singleUserBotDm": false,
+     *   //   "spaceDetails": {},
      *   //   "threaded": false,
      *   //   "type": "my_type"
      *   // }
@@ -3087,9 +3091,9 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.list({
-     *     // Requested page size. The value is capped at 1000. Server may return fewer results than requested. If unspecified, server will default to 100.
+     *     // Optional. Requested page size. The value is capped at 1000. Server may return fewer results than requested. If unspecified, server will default to 100.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
+     *     // Optional. A token identifying a page of results the server should return.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3234,6 +3238,7 @@ export namespace chat_v1 {
      *       //   "argumentText": "my_argumentText",
      *       //   "attachment": [],
      *       //   "cards": [],
+     *       //   "cardsV2": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
      *       //   "lastUpdateTime": "my_lastUpdateTime",
@@ -3256,6 +3261,7 @@ export namespace chat_v1 {
      *   //   "argumentText": "my_argumentText",
      *   //   "attachment": [],
      *   //   "cards": [],
+     *   //   "cardsV2": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
@@ -3368,11 +3374,11 @@ export namespace chat_v1 {
   }
   export interface Params$Resource$Spaces$List extends StandardParameters {
     /**
-     * Requested page size. The value is capped at 1000. Server may return fewer results than requested. If unspecified, server will default to 100.
+     * Optional. Requested page size. The value is capped at 1000. Server may return fewer results than requested. If unspecified, server will default to 100.
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results the server should return.
+     * Optional. A token identifying a page of results the server should return.
      */
     pageToken?: string;
   }
@@ -3439,6 +3445,7 @@ export namespace chat_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "member": {},
      *   //   "name": "my_name",
+     *   //   "role": "my_role",
      *   //   "state": "my_state"
      *   // }
      * }
@@ -3745,6 +3752,7 @@ export namespace chat_v1 {
      *       //   "argumentText": "my_argumentText",
      *       //   "attachment": [],
      *       //   "cards": [],
+     *       //   "cardsV2": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
      *       //   "lastUpdateTime": "my_lastUpdateTime",
@@ -3767,6 +3775,7 @@ export namespace chat_v1 {
      *   //   "argumentText": "my_argumentText",
      *   //   "attachment": [],
      *   //   "cards": [],
+     *   //   "cardsV2": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
@@ -4034,6 +4043,7 @@ export namespace chat_v1 {
      *   //   "argumentText": "my_argumentText",
      *   //   "attachment": [],
      *   //   "cards": [],
+     *   //   "cardsV2": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
@@ -4164,7 +4174,7 @@ export namespace chat_v1 {
      *   const res = await chat.spaces.messages.update({
      *     // Resource name in the form `spaces/x/messages/x`. Example: `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`
      *     name: 'spaces/my-space/messages/my-message',
-     *     // Required. The field paths to be updated, comma separated if there are multiple. Currently supported field paths: * text * cards * attachment
+     *     // Required. The field paths to update. Separate multiple values with commas. Currently supported field paths: - text - cards (Requires [service account authentication](/chat/api/guides/auth/service-accounts).)
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4176,6 +4186,7 @@ export namespace chat_v1 {
      *       //   "argumentText": "my_argumentText",
      *       //   "attachment": [],
      *       //   "cards": [],
+     *       //   "cardsV2": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
      *       //   "lastUpdateTime": "my_lastUpdateTime",
@@ -4198,6 +4209,7 @@ export namespace chat_v1 {
      *   //   "argumentText": "my_argumentText",
      *   //   "attachment": [],
      *   //   "cards": [],
+     *   //   "cardsV2": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
@@ -4341,7 +4353,7 @@ export namespace chat_v1 {
      */
     name?: string;
     /**
-     * Required. The field paths to be updated, comma separated if there are multiple. Currently supported field paths: * text * cards * attachment
+     * Required. The field paths to update. Separate multiple values with commas. Currently supported field paths: - text - cards (Requires [service account authentication](/chat/api/guides/auth/service-accounts).)
      */
     updateMask?: string;
 

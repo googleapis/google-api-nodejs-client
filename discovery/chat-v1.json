@@ -385,13 +385,13 @@
           "parameterOrder": [],
           "parameters": {
             "pageSize": {
-              "description": "Requested page size. The value is capped at 1000. Server may return fewer results than requested. If unspecified, server will default to 100.",
+              "description": "Optional. Requested page size. The value is capped at 1000. Server may return fewer results than requested. If unspecified, server will default to 100.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "pageToken": {
-              "description": "A token identifying a page of results the server should return.",
+              "description": "Optional. A token identifying a page of results the server should return.",
               "location": "query",
               "type": "string"
             }
@@ -595,7 +595,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. The field paths to be updated, comma separated if there are multiple. Currently supported field paths: * text * cards * attachment",
+                  "description": "Required. The field paths to update. Separate multiple values with commas. Currently supported field paths: - text - cards (Requires [service account authentication](/chat/api/guides/auth/service-accounts).) ",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -642,7 +642,7 @@
       }
     }
   },
-  "revision": "20220622",
+  "revision": "20220816",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -935,6 +935,21 @@
         },
         "title": {
           "description": "The title must be specified. The header has a fixed height: if both a title and subtitle is specified, each will take up 1 line. If only the title is specified, it will take up both lines.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CardWithId": {
+      "description": "Widgets for Chat apps to specify.",
+      "id": "CardWithId",
+      "properties": {
+        "card": {
+          "$ref": "GoogleAppsCardV1Card",
+          "description": "Card proto that allows Chat apps to specify UI elements and editable widgets."
+        },
+        "cardId": {
+          "description": "Required for `cardsV2` messages. Chat app-specified identifier for this widget. Scoped within a message.",
           "type": "string"
         }
       },
@@ -1266,7 +1281,7 @@
           "type": "array"
         },
         "persistValues": {
-          "description": "Indicates whether form values persist after the action. The default value is `false`. If `true`, form values remain after the action is triggered. When using [LoadIndicator.NONE](workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) for actions, `persist_values` = `true`is recommended, as it ensures that any changes made by the user after form or on change actions are sent to the server are not overwritten by the response. If `false`, the form values are cleared when the action is triggered. When `persist_values` is set to `false`, it is strongly recommended that the card use [LoadIndicator.SPINNER](workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) for all actions, as this locks the UI to ensure no changes are made by the user while the action is being processed.",
+          "description": "Indicates whether form values persist after the action. The default value is `false`. If `true`, form values remain after the action is triggered. When using [LoadIndicator.NONE](workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) for actions, `persist_values` = `true`is recommended, as it ensures that any changes made by the user after form or on change actions are sent to the server are not overwritten by the response. If `false`, the form values are cleared when the action is triggered. When `persist_values` is set to `false`, it is strongly recommended that the card use [LoadIndicator.SPINNER](workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) for all actions, as this locks the UI to ensure no changes are made by the user while the action is being processed. Not supported by Google Chat apps.",
           "type": "boolean"
         }
       },
@@ -1282,25 +1297,6 @@
         },
         "value": {
           "description": "The value of the parameter.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleAppsCardV1AppUri": {
-      "description": "Represents the platform specific uri/intent to open for each client.",
-      "id": "GoogleAppsCardV1AppUri",
-      "properties": {
-        "androidIntent": {
-          "$ref": "GoogleAppsCardV1Intent",
-          "description": "An intent object to be opened in the corresponding android hosting app."
-        },
-        "companionUri": {
-          "description": "A companion uri string to be opened in the chat companion window. on the web.",
-          "type": "string"
-        },
-        "iosUri": {
-          "description": "A uri string to be opened in the corresponding iOS hosting app.",
           "type": "string"
         }
       },
@@ -1393,16 +1389,16 @@
           "type": "array"
         },
         "displayStyle": {
-          "description": "The display style for `peekCardHeader`.",
+          "description": "The `peekCardHeader` display style for. Not supported by Google Chat apps.",
           "enum": [
             "DISPLAY_STYLE_UNSPECIFIED",
             "PEEK",
             "REPLACE"
           ],
           "enumDescriptions": [
-            "Default value. Do not use.",
+            "Do not use.",
             "The header of the card appears at the bottom of the sidebar, partially covering the current top card of the stack. Clicking the header pops the card into the card stack. If the card has no header, a generated header is used instead.",
-            "The card is shown by replacing the view of the top card in the card stack."
+            "Default value. The card is shown by replacing the view of the top card in the card stack."
           ],
           "type": "string"
         },
@@ -1420,7 +1416,7 @@
         },
         "peekCardHeader": {
           "$ref": "GoogleAppsCardV1CardHeader",
-          "description": "When displaying contextual content, the peek card header acts as a placeholder so that the user can navigate forward between the homepage cards and the contextual cards."
+          "description": "When displaying contextual content, the peek card header acts as a placeholder so that the user can navigate forward between the homepage cards and the contextual cards. Not supported by Google Chat apps."
         },
         "sections": {
           "description": "Sections are separated by a line divider.",
@@ -1591,21 +1587,6 @@
       "description": "A divider that appears in between widgets.",
       "id": "GoogleAppsCardV1Divider",
       "properties": {},
-      "type": "object"
-    },
-    "GoogleAppsCardV1ExtraData": {
-      "description": "Extra data for an android intent. Valid keys are defined in the hosting app contract.",
-      "id": "GoogleAppsCardV1ExtraData",
-      "properties": {
-        "key": {
-          "description": "A key for the intent extra data.",
-          "type": "string"
-        },
-        "value": {
-          "description": "Value for the given extra data key.",
-          "type": "string"
-        }
-      },
       "type": "object"
     },
     "GoogleAppsCardV1Grid": {
@@ -1794,24 +1775,6 @@
       },
       "type": "object"
     },
-    "GoogleAppsCardV1Intent": {
-      "description": "Android intent.",
-      "id": "GoogleAppsCardV1Intent",
-      "properties": {
-        "extraData": {
-          "description": "A list of extra data for the android intent. For example, for a calendar event edit intent, the event title information can be passed as extra data.",
-          "items": {
-            "$ref": "GoogleAppsCardV1ExtraData"
-          },
-          "type": "array"
-        },
-        "intentAction": {
-          "description": "An android intent action string for the {@link android.content.Intent} object. For example: for the view intent action type, a valid value will be android.content.Intent.ACTION_VIEW.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleAppsCardV1OnClick": {
       "description": "Represents the response to an `onClick` event.",
       "id": "GoogleAppsCardV1OnClick",
@@ -1839,10 +1802,6 @@
       "description": "Represents an `onClick` event that opens a hyperlink.",
       "id": "GoogleAppsCardV1OpenLink",
       "properties": {
-        "appUri": {
-          "$ref": "GoogleAppsCardV1AppUri",
-          "description": "Represents the platform specific uri/intent to open on each client. For example: A companion_url will open in a companion window on the web. An iOS URL and android intent will open in the corresponding hosting apps. If these platform specific URLs can't be handled correctly, i.e. if the companion isn't supported on web and the hosting apps aren't available on the mobile platforms then the `uri` will open in a new browser window on all the platforms."
-        },
         "onClose": {
           "description": "Whether the client forgets about a link after opening it, or observes it until the window closes. Not supported by Chat apps.",
           "enum": [
@@ -1850,8 +1809,8 @@
             "RELOAD"
           ],
           "enumDescriptions": [
-            "Doesn’t reload the card after the child window closes.",
-            "Reloads the card after the child window closes. If used in conjunction with [OpenAs.OVERLAY](/workspace/add-ons/reference/rpc/google.apps.card.v1#openas), the child window acts as a modal dialog and the main card is blocked until the child window closes."
+            "Default value. The card does not reload; nothing happens.",
+            "Reloads the card after the child window closes. If used in conjunction with [OpenAs.OVERLAY](https://developers.google.com/workspace/add-ons/reference/rpc/google.apps.card.v1#openas), the child window acts as a modal dialog and the parent card is blocked until the child window closes."
           ],
           "type": "string"
         },
@@ -2072,7 +2031,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1TextParagraph": {
-      "description": "A paragraph of text that supports formatting. See [Text formatting](workspace/add-ons/concepts/widgets#text_formatting\") for details.",
+      "description": "A paragraph of text that supports formatting. See [Text formatting](workspace/add-ons/concepts/widgets#text_formatting) for details.",
       "id": "GoogleAppsCardV1TextParagraph",
       "properties": {
         "text": {
@@ -2453,6 +2412,21 @@
           "description": "Resource name of the membership. Format: spaces/{space}/members/{member}",
           "type": "string"
         },
+        "role": {
+          "description": "Output only. User's role within a Chat space, which determines their permitted actions in the space.",
+          "enum": [
+            "MEMBERSHIP_ROLE_UNSPECIFIED",
+            "ROLE_MEMBER",
+            "ROLE_MANAGER"
+          ],
+          "enumDescriptions": [
+            "Default value. The user isn't a member of the space, but might be invited.",
+            "A member of the space. The user has basic permissions, like sending messages to the space. In 1:1 and unnamed group conversations, everyone has this role.",
+            "A space manager. The user has all basic permissions plus administrative permissions that allow them to manage the space, like adding or removing members. Only supports SpaceType.SPACE."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "state": {
           "description": "Output only. State of the membership.",
           "enum": [
@@ -2507,6 +2481,13 @@
           },
           "type": "array"
         },
+        "cardsV2": {
+          "description": "Richly formatted and interactive cards that display UI elements and editable widgets, such as: - Formatted text - Buttons - Clickable images - Checkboxes - Radio buttons - Input widgets. Cards are usually displayed below the text-body of a Chat message, but can situationally appear other places, such as [dialogs](https://developers.google.com/chat/how-tos/dialogs). The `cardId` is a unique identifier among cards in the same message and for identifying user input values. Currently supported widgets include: - `TextParagraph` - `DecoratedText` - `Image` - `ButtonList`",
+          "items": {
+            "$ref": "CardWithId"
+          },
+          "type": "array"
+        },
         "createTime": {
           "description": "Output only. The time at which the message was created in Google Chat server.",
           "format": "google-datetime",
@@ -2518,7 +2499,7 @@
           "type": "string"
         },
         "lastUpdateTime": {
-          "description": "Output only. The time at which the message was last updated. If the message was never updated, this field matches `create_time`.",
+          "description": "Output only. The time at which the message was last edited by a user. If the message has never been edited, this field is empty.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2668,13 +2649,17 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "spaceDetails": {
+          "$ref": "SpaceDetails",
+          "description": "Details about the space including description and rules."
+        },
         "threaded": {
           "description": "Output only. Whether messages are threaded in this space.",
           "readOnly": true,
           "type": "boolean"
         },
         "type": {
-          "description": "Output only. Deprecated: Use `single_user_bot_dm` or `space_type` (developer preview) instead. The type of a space.",
+          "description": "Output only. Deprecated: Use `singleUserBotDm` or `spaceType` (developer preview) instead. The type of a space.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "ROOM",
@@ -2686,6 +2671,21 @@
             "1:1 Direct Message between a human and a Chat app, where all messages are flat. Note that this does not include direct messages between two humans."
           ],
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SpaceDetails": {
+      "description": "Details about the space including description and rules.",
+      "id": "SpaceDetails",
+      "properties": {
+        "description": {
+          "description": "Optional. A description of the space. It could describe the space's discussion topic, functional purpose, or participants.",
+          "type": "string"
+        },
+        "guidelines": {
+          "description": "Optional. The space's rules, expectations, and etiquette.",
           "type": "string"
         }
       },
