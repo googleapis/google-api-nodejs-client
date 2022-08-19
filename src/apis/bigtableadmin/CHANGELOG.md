@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigtableadmin-v3.1.0...bigtableadmin-v3.2.0) (2022-08-19)
+
+
+### Features
+
+* **bigtableadmin:** update the API ([5c8b2a4](https://github.com/googleapis/google-api-nodejs-client/commit/5c8b2a4498c97fbb341d36da81a640afd072e79d))
+
 ## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigtableadmin-v3.0.1...bigtableadmin-v3.1.0) (2022-07-04)
 
 

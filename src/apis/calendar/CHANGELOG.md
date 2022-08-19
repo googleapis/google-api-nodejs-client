@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v2.0.1...calendar-v2.0.2) (2022-08-19)
+
+
+### Bug Fixes
+
+* **calendar:** update the API ([0b82a21](https://github.com/googleapis/google-api-nodejs-client/commit/0b82a217f28e0849896a6c0e4afa3f732ed92d62))
+
 ## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v2.0.0...calendar-v2.0.1) (2022-06-21)
 
 
