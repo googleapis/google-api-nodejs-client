@@ -227,7 +227,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the lake: projects/{project_number}/locations/{location_id}/lakes/{lake_id}",
+                      "description": "Required. The resource name of the lake: projects/{project_number}/locations/{location_id}/lakes/{lake_id}.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/lakes/[^/]+$",
                       "required": true,
@@ -252,7 +252,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the lake: projects/{project_number}/locations/{location_id}/lakes/{lake_id}",
+                      "description": "Required. The resource name of the lake: projects/{project_number}/locations/{location_id}/lakes/{lake_id}.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/lakes/[^/]+$",
                       "required": true,
@@ -464,7 +464,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The resource name of the parent lake: projects/{project_number}/locations/{location_id}/lakes/{lake_id}",
+                          "description": "Required. The resource name of the parent lake: projects/{project_number}/locations/{location_id}/lakes/{lake_id}.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/lakes/[^/]+$",
                           "required": true,
@@ -1036,7 +1036,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The resource name of the parent lake: projects/{project_id}/locations/{location_id}/lakes/{lake_id}",
+                          "description": "Required. The resource name of the parent lake: projects/{project_id}/locations/{location_id}/lakes/{lake_id}.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/lakes/[^/]+$",
                           "required": true,
@@ -1069,7 +1069,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the environment: projects/{project_id}/locations/{location_id}/lakes/{lake_id}/environments/{environment_id}`",
+                          "description": "Required. The resource name of the environment: projects/{project_id}/locations/{location_id}/lakes/{lake_id}/environments/{environment_id}.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/lakes/[^/]+/environments/[^/]+$",
                           "required": true,
@@ -1094,7 +1094,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the environment: projects/{project_id}/locations/{location_id}/lakes/{lake_id}/environments/{environment_id}",
+                          "description": "Required. The resource name of the environment: projects/{project_id}/locations/{location_id}/lakes/{lake_id}/environments/{environment_id}.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/lakes/[^/]+/environments/[^/]+$",
                           "required": true,
@@ -1171,7 +1171,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The resource name of the parent lake: projects/{project_id}/locations/{location_id}/lakes/{lake_id}",
+                          "description": "Required. The resource name of the parent lake: projects/{project_id}/locations/{location_id}/lakes/{lake_id}.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/lakes/[^/]+$",
                           "required": true,
@@ -1311,7 +1311,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The resource name of the parent environment: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/environment/{environment_id}",
+                              "description": "Required. The resource name of the parent environment: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/environment/{environment_id}.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/lakes/[^/]+/environments/[^/]+$",
                               "required": true,
@@ -1342,7 +1342,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. The resource name of the parent lake: projects/{project_number}/locations/{location_id}/lakes/{lake_id}",
+                          "description": "Required. The resource name of the parent lake: projects/{project_number}/locations/{location_id}/lakes/{lake_id}.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/lakes/[^/]+$",
                           "required": true,
@@ -1380,7 +1380,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the task: projects/{project_number}/locations/{location_id}/lakes/{lake_id} /task/{task_id}`",
+                          "description": "Required. The resource name of the task: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/task/{task_id}.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/lakes/[^/]+/tasks/[^/]+$",
                           "required": true,
@@ -1405,7 +1405,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the task: projects/{project_number}/locations/{location_id}/lakes/{lake_id} /tasks/{tasks_id}",
+                          "description": "Required. The resource name of the task: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/tasks/{tasks_id}.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/lakes/[^/]+/tasks/[^/]+$",
                           "required": true,
@@ -1482,7 +1482,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The resource name of the parent lake: projects/{project_number}/locations/{location_id}/lakes/{lake_id}",
+                          "description": "Required. The resource name of the parent lake: projects/{project_number}/locations/{location_id}/lakes/{lake_id}.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/lakes/[^/]+$",
                           "required": true,
@@ -1606,7 +1606,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The resource name of the job: projects/{project_number}/locations/{location_id}/lakes/{lake_id} /task/{task_id}/job/{job_id}`",
+                              "description": "Required. The resource name of the job: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/task/{task_id}/job/{job_id}.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/lakes/[^/]+/tasks/[^/]+/jobs/[^/]+$",
                               "required": true,
@@ -1634,7 +1634,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The resource name of the job: projects/{project_number}/locations/{location_id}/lakes/{lake_id} /tasks/{task_id}/jobs/{job_id}",
+                              "description": "Required. The resource name of the job: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/tasks/{task_id}/jobs/{job_id}.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/lakes/[^/]+/tasks/[^/]+/jobs/[^/]+$",
                               "required": true,
@@ -1670,7 +1670,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The resource name of the parent environment: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/tasks/{task_id}",
+                              "description": "Required. The resource name of the parent environment: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/tasks/{task_id}.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/lakes/[^/]+/tasks/[^/]+$",
                               "required": true,
@@ -1701,7 +1701,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. The resource name of the parent lake: projects/{project_number}/locations/{location_id}/lakes/{lake_id}",
+                          "description": "Required. The resource name of the parent lake: projects/{project_number}/locations/{location_id}/lakes/{lake_id}.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/lakes/[^/]+$",
                           "required": true,
@@ -1739,7 +1739,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the zone: projects/{project_number}/locations/{location_id}/lakes/{lake_id} /zones/{zone_id}`",
+                          "description": "Required. The resource name of the zone: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/lakes/[^/]+/zones/[^/]+$",
                           "required": true,
@@ -1764,7 +1764,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the zone: projects/{project_number}/locations/{location_id}/lakes/{lake_id} /zones/{zone_id}",
+                          "description": "Required. The resource name of the zone: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/lakes/[^/]+/zones/[^/]+$",
                           "required": true,
@@ -1841,7 +1841,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The resource name of the parent lake: projects/{project_number}/locations/{location_id}/lakes/{lake_id}",
+                          "description": "Required. The resource name of the parent lake: projects/{project_number}/locations/{location_id}/lakes/{lake_id}.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/lakes/[^/]+$",
                           "required": true,
@@ -1976,7 +1976,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The resource name of the parent zone: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}",
+                              "description": "Required. The resource name of the parent zone: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/lakes/[^/]+/zones/[^/]+$",
                               "required": true,
@@ -2010,7 +2010,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The resource name of the parent zone: projects/{project_number}/locations/{location_id}/lakes/{lake_id} /zones/{zone_id}`",
+                              "description": "Required. The resource name of the parent zone: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/lakes/[^/]+/zones/[^/]+$",
                               "required": true,
@@ -2043,7 +2043,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The resource name of the asset: projects/{project_number}/locations/{location_id}/lakes/{lake_id} /zones/{zone_id}/assets/{asset_id}",
+                              "description": "Required. The resource name of the asset: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/assets/{asset_id}.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/lakes/[^/]+/zones/[^/]+/assets/[^/]+$",
                               "required": true,
@@ -2068,7 +2068,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The resource name of the asset: projects/{project_number}/locations/{location_id}/lakes/{lake_id} /zones/{zone_id}/assets/{asset_id}",
+                              "description": "Required. The resource name of the asset: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/assets/{asset_id}.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/lakes/[^/]+/zones/[^/]+/assets/[^/]+$",
                               "required": true,
@@ -2145,7 +2145,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The resource name of the parent zone: projects/{project_number}/locations/{location_id}/lakes/{lake_id} /zones/{zone_id}`",
+                              "description": "Required. The resource name of the parent zone: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/lakes/[^/]+/zones/[^/]+$",
                               "required": true,
@@ -2280,7 +2280,7 @@
                                   "type": "string"
                                 },
                                 "parent": {
-                                  "description": "Required. The resource name of the parent asset: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/assets/{asset_id}",
+                                  "description": "Required. The resource name of the parent asset: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/assets/{asset_id}.",
                                   "location": "path",
                                   "pattern": "^projects/[^/]+/locations/[^/]+/lakes/[^/]+/zones/[^/]+/assets/[^/]+$",
                                   "required": true,
@@ -2764,7 +2764,7 @@
       }
     }
   },
-  "revision": "20220531",
+  "revision": "20220725",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -3921,12 +3921,12 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The relative resource name of the job, of the form: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/ tasks/{task_id}/jobs/{job_id}.",
+          "description": "Output only. The relative resource name of the job, of the form: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/tasks/{task_id}/jobs/{job_id}.",
           "readOnly": true,
           "type": "string"
         },
         "retryCount": {
-          "description": "Output only. . The number of times the job has been retried (excluding the initial attempt).",
+          "description": "Output only. The number of times the job has been retried (excluding the initial attempt).",
           "format": "uint32",
           "readOnly": true,
           "type": "integer"
@@ -4689,6 +4689,10 @@
       "description": "These messages contain information about sessions within an environment. The monitored resource is 'Environment'.",
       "id": "GoogleCloudDataplexV1SessionEvent",
       "properties": {
+        "eventSucceeded": {
+          "description": "The status of the event.",
+          "type": "boolean"
+        },
         "message": {
           "description": "The log message.",
           "type": "string"
@@ -4707,19 +4711,30 @@
             "EVENT_TYPE_UNSPECIFIED",
             "START",
             "STOP",
-            "QUERY"
+            "QUERY",
+            "CREATE"
           ],
           "enumDescriptions": [
             "An unspecified event type.",
-            "Event for start of a session.",
+            "Event when the session is assigned to a user.",
             "Event for stop of a session.",
-            "Query events in the session."
+            "Query events in the session.",
+            "Event for creation of a cluster. It is not yet assigned to a user. This comes before START in the sequence"
           ],
           "type": "string"
         },
-        "userId": {
-          "description": "The information about the user that created the session.",
+        "unassignedDuration": {
+          "description": "The idle duration of a warm pooled session before it is assigned to user.",
+          "format": "google-duration",
           "type": "string"
+        },
+        "userId": {
+          "description": "The information about the user that created the session. It will be the email address of the user.",
+          "type": "string"
+        },
+        "warmPoolEnabled": {
+          "description": "If the session is a warm pooled session.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -4962,13 +4977,17 @@
           "description": "Optional. The arguments to pass to the task. The args can use placeholders of the format ${placeholder} as part of key/value string. These will be interpolated before passing the args to the driver. Currently supported placeholders: - ${task_id} - ${job_time} To pass positional args, set the key as TASK_ARGS. The value should be a comma-separated string of all the positional arguments. To use a delimiter other than comma, refer to https://cloud.google.com/sdk/gcloud/reference/topic/escaping. In case of other keys being present in the args, then TASK_ARGS will be passed as the last argument.",
           "type": "object"
         },
+        "kmsKey": {
+          "description": "Optional. The Cloud KMS key to use for encryption, of the form: projects/{project_number}/locations/{location_id}/keyRings/{key-ring-name}/cryptoKeys/{key-name}.",
+          "type": "string"
+        },
         "maxJobExecutionLifetime": {
           "description": "Optional. The maximum duration after which the job execution is expired.",
           "format": "google-duration",
           "type": "string"
         },
         "project": {
-          "description": "Optional. The project in which jobs are run. By default, the project containing the Lake is used. If a project is provided, the executionspec.service_account must belong to this same project.",
+          "description": "Optional. The project in which jobs are run. By default, the project containing the Lake is used. If a project is provided, the ExecutionSpec.service_account must belong to this project.",
           "type": "string"
         },
         "serviceAccount": {
@@ -5036,6 +5055,10 @@
       "description": "Container Image Runtime Configuration used with Batch execution.",
       "id": "GoogleCloudDataplexV1TaskInfrastructureSpecContainerImageRuntime",
       "properties": {
+        "image": {
+          "description": "Optional. Container image to use.",
+          "type": "string"
+        },
         "javaJars": {
           "description": "Optional. A list of Java JARS to add to the classpath. Valid input includes Cloud Storage URIs to Jar binaries. For example, gs://bucket-name/my/path/to/file.jar",
           "items": {

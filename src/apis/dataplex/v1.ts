@@ -909,11 +909,11 @@ export namespace dataplex_v1 {
      */
     message?: string | null;
     /**
-     * Output only. The relative resource name of the job, of the form: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/ tasks/{task_id\}/jobs/{job_id\}.
+     * Output only. The relative resource name of the job, of the form: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/tasks/{task_id\}/jobs/{job_id\}.
      */
     name?: string | null;
     /**
-     * Output only. . The number of times the job has been retried (excluding the initial attempt).
+     * Output only. The number of times the job has been retried (excluding the initial attempt).
      */
     retryCount?: number | null;
     /**
@@ -1348,6 +1348,10 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1SessionEvent {
     /**
+     * The status of the event.
+     */
+    eventSucceeded?: boolean | null;
+    /**
      * The log message.
      */
     message?: string | null;
@@ -1364,9 +1368,17 @@ export namespace dataplex_v1 {
      */
     type?: string | null;
     /**
-     * The information about the user that created the session.
+     * The idle duration of a warm pooled session before it is assigned to user.
+     */
+    unassignedDuration?: string | null;
+    /**
+     * The information about the user that created the session. It will be the email address of the user.
      */
     userId?: string | null;
+    /**
+     * If the session is a warm pooled session.
+     */
+    warmPoolEnabled?: boolean | null;
   }
   /**
    * Execution details of the query.
@@ -1514,11 +1526,15 @@ export namespace dataplex_v1 {
      */
     args?: {[key: string]: string} | null;
     /**
+     * Optional. The Cloud KMS key to use for encryption, of the form: projects/{project_number\}/locations/{location_id\}/keyRings/{key-ring-name\}/cryptoKeys/{key-name\}.
+     */
+    kmsKey?: string | null;
+    /**
      * Optional. The maximum duration after which the job execution is expired.
      */
     maxJobExecutionLifetime?: string | null;
     /**
-     * Optional. The project in which jobs are run. By default, the project containing the Lake is used. If a project is provided, the executionspec.service_account must belong to this same project.
+     * Optional. The project in which jobs are run. By default, the project containing the Lake is used. If a project is provided, the ExecutionSpec.service_account must belong to this project.
      */
     project?: string | null;
     /**
@@ -1573,6 +1589,10 @@ export namespace dataplex_v1 {
    * Container Image Runtime Configuration used with Batch execution.
    */
   export interface Schema$GoogleCloudDataplexV1TaskInfrastructureSpecContainerImageRuntime {
+    /**
+     * Optional. Container image to use.
+     */
+    image?: string | null;
     /**
      * Optional. A list of Java JARS to add to the classpath. Valid input includes Cloud Storage URIs to Jar binaries. For example, gs://bucket-name/my/path/to/file.jar
      */
@@ -2551,7 +2571,7 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.lakes.delete({
-     *     // Required. The resource name of the lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}
+     *     // Required. The resource name of the lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
      *     name: 'projects/my-project/locations/my-location/lakes/my-lake',
      *   });
      *   console.log(res.data);
@@ -2688,7 +2708,7 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.lakes.get({
-     *     // Required. The resource name of the lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}
+     *     // Required. The resource name of the lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
      *     name: 'projects/my-project/locations/my-location/lakes/my-lake',
      *   });
      *   console.log(res.data);
@@ -3567,14 +3587,14 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Lakes$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}
+     * Required. The resource name of the lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Lakes$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}
+     * Required. The resource name of the lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
      */
     name?: string;
   }
@@ -3694,7 +3714,7 @@ export namespace dataplex_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. Page token received from a previous ListLakeActions call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListLakeActions must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the parent lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}
+     *     // Required. The resource name of the parent lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
      *     parent: 'projects/my-project/locations/my-location/lakes/my-lake',
      *   });
      *   console.log(res.data);
@@ -3818,7 +3838,7 @@ export namespace dataplex_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the parent lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}
+     * Required. The resource name of the parent lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
      */
     parent?: string;
   }
@@ -6472,7 +6492,7 @@ export namespace dataplex_v1 {
      *   const res = await dataplex.projects.locations.lakes.environments.create({
      *     // Required. Environment identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the lake.
      *     environmentId: 'placeholder-value',
-     *     // Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}
+     *     // Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}.
      *     parent: 'projects/my-project/locations/my-location/lakes/my-lake',
      *     // Optional. Only validate the request, but do not perform mutations. The default is false.
      *     validateOnly: 'placeholder-value',
@@ -6634,7 +6654,7 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.lakes.environments.delete({
-     *     // Required. The resource name of the environment: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/environments/{environment_id\}`
+     *     // Required. The resource name of the environment: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/environments/{environment_id\}.
      *     name: 'projects/my-project/locations/my-location/lakes/my-lake/environments/my-environment',
      *   });
      *   console.log(res.data);
@@ -6772,7 +6792,7 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.lakes.environments.get({
-     *     // Required. The resource name of the environment: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/environments/{environment_id\}
+     *     // Required. The resource name of the environment: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/environments/{environment_id\}.
      *     name: 'projects/my-project/locations/my-location/lakes/my-lake/environments/my-environment',
      *   });
      *   console.log(res.data);
@@ -7070,7 +7090,7 @@ export namespace dataplex_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. Page token received from a previous ListEnvironments call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListEnvironments must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}
+     *     // Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}.
      *     parent: 'projects/my-project/locations/my-location/lakes/my-lake',
      *   });
      *   console.log(res.data);
@@ -7651,7 +7671,7 @@ export namespace dataplex_v1 {
      */
     environmentId?: string;
     /**
-     * Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}
+     * Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}.
      */
     parent?: string;
     /**
@@ -7667,14 +7687,14 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Lakes$Environments$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the environment: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/environments/{environment_id\}`
+     * Required. The resource name of the environment: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/environments/{environment_id\}.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Lakes$Environments$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the environment: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/environments/{environment_id\}
+     * Required. The resource name of the environment: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/environments/{environment_id\}.
      */
     name?: string;
   }
@@ -7708,7 +7728,7 @@ export namespace dataplex_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}
+     * Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}.
      */
     parent?: string;
   }
@@ -7797,7 +7817,7 @@ export namespace dataplex_v1 {
      *       pageSize: 'placeholder-value',
      *       // Optional. Page token received from a previous ListSessions call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListSessions must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
-     *       // Required. The resource name of the parent environment: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/environment/{environment_id\}
+     *       // Required. The resource name of the parent environment: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/environment/{environment_id\}.
      *       parent:
      *         'projects/my-project/locations/my-location/lakes/my-lake/environments/my-environment',
      *     });
@@ -7927,7 +7947,7 @@ export namespace dataplex_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the parent environment: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/environment/{environment_id\}
+     * Required. The resource name of the parent environment: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/environment/{environment_id\}.
      */
     parent?: string;
   }
@@ -7969,7 +7989,7 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.lakes.tasks.create({
-     *     // Required. The resource name of the parent lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}
+     *     // Required. The resource name of the parent lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
      *     parent: 'projects/my-project/locations/my-location/lakes/my-lake',
      *     // Required. Task identifier.
      *     taskId: 'placeholder-value',
@@ -8132,7 +8152,7 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.lakes.tasks.delete({
-     *     // Required. The resource name of the task: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\} /task/{task_id\}`
+     *     // Required. The resource name of the task: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/task/{task_id\}.
      *     name: 'projects/my-project/locations/my-location/lakes/my-lake/tasks/my-task',
      *   });
      *   console.log(res.data);
@@ -8269,7 +8289,7 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.lakes.tasks.get({
-     *     // Required. The resource name of the task: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\} /tasks/{tasks_id\}
+     *     // Required. The resource name of the task: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/tasks/{tasks_id\}.
      *     name: 'projects/my-project/locations/my-location/lakes/my-lake/tasks/my-task',
      *   });
      *   console.log(res.data);
@@ -8560,7 +8580,7 @@ export namespace dataplex_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. Page token received from a previous ListZones call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListZones must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the parent lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}
+     *     // Required. The resource name of the parent lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
      *     parent: 'projects/my-project/locations/my-location/lakes/my-lake',
      *   });
      *   console.log(res.data);
@@ -9133,7 +9153,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Lakes$Tasks$Create
     extends StandardParameters {
     /**
-     * Required. The resource name of the parent lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}
+     * Required. The resource name of the parent lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
      */
     parent?: string;
     /**
@@ -9153,14 +9173,14 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Lakes$Tasks$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the task: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\} /task/{task_id\}`
+     * Required. The resource name of the task: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/task/{task_id\}.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Lakes$Tasks$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the task: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\} /tasks/{tasks_id\}
+     * Required. The resource name of the task: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/tasks/{tasks_id\}.
      */
     name?: string;
   }
@@ -9194,7 +9214,7 @@ export namespace dataplex_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the parent lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}
+     * Required. The resource name of the parent lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
      */
     parent?: string;
   }
@@ -9276,7 +9296,7 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.lakes.tasks.jobs.cancel({
-     *     // Required. The resource name of the job: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\} /task/{task_id\}/job/{job_id\}`
+     *     // Required. The resource name of the job: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/task/{task_id\}/job/{job_id\}.
      *     name: 'projects/my-project/locations/my-location/lakes/my-lake/tasks/my-task/jobs/my-job',
      *
      *     // Request body metadata
@@ -9407,7 +9427,7 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.lakes.tasks.jobs.get({
-     *     // Required. The resource name of the job: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\} /tasks/{task_id\}/jobs/{job_id\}
+     *     // Required. The resource name of the job: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/tasks/{task_id\}/jobs/{job_id\}.
      *     name: 'projects/my-project/locations/my-location/lakes/my-lake/tasks/my-task/jobs/my-job',
      *   });
      *   console.log(res.data);
@@ -9550,7 +9570,7 @@ export namespace dataplex_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. Page token received from a previous ListJobs call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListJobs must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the parent environment: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/tasks/{task_id\}
+     *     // Required. The resource name of the parent environment: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/tasks/{task_id\}.
      *     parent:
      *       'projects/my-project/locations/my-location/lakes/my-lake/tasks/my-task',
      *   });
@@ -9664,7 +9684,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Lakes$Tasks$Jobs$Cancel
     extends StandardParameters {
     /**
-     * Required. The resource name of the job: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\} /task/{task_id\}/job/{job_id\}`
+     * Required. The resource name of the job: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/task/{task_id\}/job/{job_id\}.
      */
     name?: string;
 
@@ -9676,7 +9696,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Lakes$Tasks$Jobs$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the job: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\} /tasks/{task_id\}/jobs/{job_id\}
+     * Required. The resource name of the job: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/tasks/{task_id\}/jobs/{job_id\}.
      */
     name?: string;
   }
@@ -9691,7 +9711,7 @@ export namespace dataplex_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the parent environment: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/tasks/{task_id\}
+     * Required. The resource name of the parent environment: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/tasks/{task_id\}.
      */
     parent?: string;
   }
@@ -9741,7 +9761,7 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.lakes.zones.create({
-     *     // Required. The resource name of the parent lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}
+     *     // Required. The resource name of the parent lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
      *     parent: 'projects/my-project/locations/my-location/lakes/my-lake',
      *     // Optional. Only validate the request, but do not perform mutations. The default is false.
      *     validateOnly: 'placeholder-value',
@@ -9904,7 +9924,7 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.lakes.zones.delete({
-     *     // Required. The resource name of the zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\} /zones/{zone_id\}`
+     *     // Required. The resource name of the zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}.
      *     name: 'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone',
      *   });
      *   console.log(res.data);
@@ -10041,7 +10061,7 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.lakes.zones.get({
-     *     // Required. The resource name of the zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\} /zones/{zone_id\}
+     *     // Required. The resource name of the zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}.
      *     name: 'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone',
      *   });
      *   console.log(res.data);
@@ -10332,7 +10352,7 @@ export namespace dataplex_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. Page token received from a previous ListZones call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListZones must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the parent lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}
+     *     // Required. The resource name of the parent lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
      *     parent: 'projects/my-project/locations/my-location/lakes/my-lake',
      *   });
      *   console.log(res.data);
@@ -10904,7 +10924,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Lakes$Zones$Create
     extends StandardParameters {
     /**
-     * Required. The resource name of the parent lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}
+     * Required. The resource name of the parent lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
      */
     parent?: string;
     /**
@@ -10924,14 +10944,14 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Lakes$Zones$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\} /zones/{zone_id\}`
+     * Required. The resource name of the zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Lakes$Zones$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\} /zones/{zone_id\}
+     * Required. The resource name of the zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}.
      */
     name?: string;
   }
@@ -10965,7 +10985,7 @@ export namespace dataplex_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the parent lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}
+     * Required. The resource name of the parent lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
      */
     parent?: string;
   }
@@ -11051,7 +11071,7 @@ export namespace dataplex_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. Page token received from a previous ListZoneActions call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListZoneActions must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the parent zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}
+     *     // Required. The resource name of the parent zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}.
      *     parent:
      *       'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone',
      *   });
@@ -11177,7 +11197,7 @@ export namespace dataplex_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the parent zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}
+     * Required. The resource name of the parent zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}.
      */
     parent?: string;
   }
@@ -11221,7 +11241,7 @@ export namespace dataplex_v1 {
      *   const res = await dataplex.projects.locations.lakes.zones.assets.create({
      *     // Required. Asset identifier. This ID will be used to generate names such as table names when publishing metadata to Hive Metastore and BigQuery. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must end with a number or a letter. * Must be between 1-63 characters. * Must be unique within the zone.
      *     assetId: 'placeholder-value',
-     *     // Required. The resource name of the parent zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\} /zones/{zone_id\}`
+     *     // Required. The resource name of the parent zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}.
      *     parent:
      *       'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone',
      *     // Optional. Only validate the request, but do not perform mutations. The default is false.
@@ -11385,7 +11405,7 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.lakes.zones.assets.delete({
-     *     // Required. The resource name of the asset: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\} /zones/{zone_id\}/assets/{asset_id\}
+     *     // Required. The resource name of the asset: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/assets/{asset_id\}.
      *     name: 'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone/assets/my-asset',
      *   });
      *   console.log(res.data);
@@ -11523,7 +11543,7 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.lakes.zones.assets.get({
-     *     // Required. The resource name of the asset: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\} /zones/{zone_id\}/assets/{asset_id\}
+     *     // Required. The resource name of the asset: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/assets/{asset_id\}.
      *     name: 'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone/assets/my-asset',
      *   });
      *   console.log(res.data);
@@ -11820,7 +11840,7 @@ export namespace dataplex_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. Page token received from a previous ListAssets call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListAssets must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the parent zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\} /zones/{zone_id\}`
+     *     // Required. The resource name of the parent zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}.
      *     parent:
      *       'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone',
      *   });
@@ -12403,7 +12423,7 @@ export namespace dataplex_v1 {
      */
     assetId?: string;
     /**
-     * Required. The resource name of the parent zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\} /zones/{zone_id\}`
+     * Required. The resource name of the parent zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}.
      */
     parent?: string;
     /**
@@ -12419,14 +12439,14 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Lakes$Zones$Assets$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the asset: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\} /zones/{zone_id\}/assets/{asset_id\}
+     * Required. The resource name of the asset: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/assets/{asset_id\}.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Lakes$Zones$Assets$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the asset: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\} /zones/{zone_id\}/assets/{asset_id\}
+     * Required. The resource name of the asset: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/assets/{asset_id\}.
      */
     name?: string;
   }
@@ -12460,7 +12480,7 @@ export namespace dataplex_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the parent zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\} /zones/{zone_id\}`
+     * Required. The resource name of the parent zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}.
      */
     parent?: string;
   }
@@ -12547,7 +12567,7 @@ export namespace dataplex_v1 {
      *       pageSize: 'placeholder-value',
      *       // Optional. Page token received from a previous ListAssetActions call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListAssetActions must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
-     *       // Required. The resource name of the parent asset: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/assets/{asset_id\}
+     *       // Required. The resource name of the parent asset: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/assets/{asset_id\}.
      *       parent:
      *         'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone/assets/my-asset',
      *     }
@@ -12674,7 +12694,7 @@ export namespace dataplex_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the parent asset: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/assets/{asset_id\}
+     * Required. The resource name of the parent asset: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/assets/{asset_id\}.
      */
     parent?: string;
   }
