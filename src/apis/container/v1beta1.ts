@@ -258,7 +258,7 @@ export namespace container_v1beta1 {
      */
     management?: Schema$NodeManagement;
     /**
-     * Deprecated. Minimum CPU platform to be used for NAP created node pools. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: Intel Haswell or minCpuPlatform: Intel Sandy Bridge. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform) This field is deprecated, min_cpu_platform should be specified using cloud.google.com/requested-min-cpu-platform label selector on the pod. To unset the min cpu platform field pass "automatic" as field value.
+     * Deprecated. Minimum CPU platform to be used for NAP created node pools. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: Intel Haswell or minCpuPlatform: Intel Sandy Bridge. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform) This field is deprecated, min_cpu_platform should be specified using https://cloud.google.com/requested-min-cpu-platform label selector on the pod. To unset the min cpu platform field pass "automatic" as field value.
      */
     minCpuPlatform?: string | null;
     /**
@@ -318,7 +318,7 @@ export namespace container_v1beta1 {
    */
   export interface Schema$BinaryAuthorization {
     /**
-     * Enable Binary Authorization for this cluster. If enabled, all container images will be validated by Binary Authorization.
+     * This field is deprecated. Leave this unset and instead configure BinaryAuthorization using evaluation_mode. If evaluation_mode is set to anything other than EVALUATION_MODE_UNSPECIFIED, this field is ignored.
      */
     enabled?: boolean | null;
     /**
@@ -1525,7 +1525,7 @@ export namespace container_v1beta1 {
      */
     name?: string | null;
     /**
-     * Whether the location is recomended for GKE cluster scheduling.
+     * Whether the location is recommended for GKE cluster scheduling.
      */
     recommended?: boolean | null;
     /**
@@ -1910,7 +1910,7 @@ export namespace container_v1beta1 {
    */
   export interface Schema$NodeConfigDefaults {
     /**
-     * GCFS (Google Container File System, a.k.a. Riptide) options.
+     * GCFS (Google Container File System, also known as Riptide) options.
      */
     gcfsConfig?: Schema$GcfsConfig;
   }
@@ -6935,7 +6935,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await container.projects.locations.clusters.nodePools.completeUpgrade({
-     *       // The name (project, location, cluster, node pool id) of the node pool to complete upgrade. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     *       // The name (project, location, cluster, node pool id) of the node pool to complete upgrade. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      *       name: 'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
      *
      *       // Request body metadata
@@ -8441,7 +8441,7 @@ export namespace container_v1beta1 {
   export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Completeupgrade
     extends StandardParameters {
     /**
-     * The name (project, location, cluster, node pool id) of the node pool to complete upgrade. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * The name (project, location, cluster, node pool id) of the node pool to complete upgrade. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
     name?: string;
 
