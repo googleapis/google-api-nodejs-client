@@ -129,7 +129,7 @@ export namespace datastore_v1 {
    */
   export interface Schema$AllocateIdsRequest {
     /**
-     * If not empty, the ID of the database against which to make the request.
+     * The ID of the database against which to make the request. '(default)' is not allowed; please use empty string '' to refer the default database.
      */
     databaseId?: string | null;
     /**
@@ -160,7 +160,7 @@ export namespace datastore_v1 {
    */
   export interface Schema$BeginTransactionRequest {
     /**
-     * If not empty, the ID of the database against which to make the request.
+     * The ID of the database against which to make the request. '(default)' is not allowed; please use empty string '' to refer the default database.
      */
     databaseId?: string | null;
     /**
@@ -182,7 +182,7 @@ export namespace datastore_v1 {
    */
   export interface Schema$CommitRequest {
     /**
-     * If not empty, the ID of the database against which to make the request.
+     * The ID of the database against which to make the request. '(default)' is not allowed; please use empty string '' to refer the default database.
      */
     databaseId?: string | null;
     /**
@@ -774,7 +774,7 @@ export namespace datastore_v1 {
    */
   export interface Schema$LookupRequest {
     /**
-     * If not empty, the ID of the database against which to make the request.
+     * The ID of the database against which to make the request. '(default)' is not allowed; please use empty string '' to refer the default database.
      */
     databaseId?: string | null;
     /**
@@ -1031,7 +1031,7 @@ export namespace datastore_v1 {
    */
   export interface Schema$ReadOptions {
     /**
-     * The non-transactional read consistency to use. Cannot be set to `STRONG` for global queries.
+     * The non-transactional read consistency to use.
      */
     readConsistency?: string | null;
     /**
@@ -1057,7 +1057,7 @@ export namespace datastore_v1 {
    */
   export interface Schema$ReserveIdsRequest {
     /**
-     * If not empty, the ID of the database against which to make the request.
+     * The ID of the database against which to make the request. '(default)' is not allowed; please use empty string '' to refer the default database.
      */
     databaseId?: string | null;
     /**
@@ -1074,7 +1074,7 @@ export namespace datastore_v1 {
    */
   export interface Schema$RollbackRequest {
     /**
-     * If not empty, the ID of the database against which to make the request.
+     * The ID of the database against which to make the request. '(default)' is not allowed; please use empty string '' to refer the default database.
      */
     databaseId?: string | null;
     /**
@@ -1091,7 +1091,7 @@ export namespace datastore_v1 {
    */
   export interface Schema$RunQueryRequest {
     /**
-     * If not empty, the ID of the database against which to make the request.
+     * The ID of the database against which to make the request. '(default)' is not allowed; please use empty string '' to refer the default database.
      */
     databaseId?: string | null;
     /**
