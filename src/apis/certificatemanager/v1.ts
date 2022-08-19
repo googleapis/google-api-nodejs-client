@@ -129,7 +129,7 @@ export namespace certificatemanager_v1 {
    */
   export interface Schema$AuthorizationAttemptInfo {
     /**
-     * Human readable explanation for reaching the state. Provided to help address the configuration issues. Not guaranteed to be stable. For programmatic access use Reason enum.
+     * Output only. Human readable explanation for reaching the state. Provided to help address the configuration issues. Not guaranteed to be stable. For programmatic access use FailureReason enum.
      */
     details?: string | null;
     /**
@@ -141,7 +141,7 @@ export namespace certificatemanager_v1 {
      */
     failureReason?: string | null;
     /**
-     * State of the domain for managed certificate issuance.
+     * Output only. State of the domain for managed certificate issuance.
      */
     state?: string | null;
   }
@@ -327,15 +327,15 @@ export namespace certificatemanager_v1 {
    */
   export interface Schema$GclbTarget {
     /**
-     * IP configurations for this Target Proxy where the Certificate Map is serving.
+     * Output only. IP configurations for this Target Proxy where the Certificate Map is serving.
      */
     ipConfigs?: Schema$IpConfig[];
     /**
-     * This field returns the resource name in the following format: `//compute.googleapis.com/projects/x/global/targetHttpsProxies/x`.
+     * Output only. This field returns the resource name in the following format: `//compute.googleapis.com/projects/x/global/targetHttpsProxies/x`.
      */
     targetHttpsProxy?: string | null;
     /**
-     * This field returns the resource name in the following format: `//compute.googleapis.com/projects/x/global/targetSslProxies/x`.
+     * Output only. This field returns the resource name in the following format: `//compute.googleapis.com/projects/x/global/targetSslProxies/x`.
      */
     targetSslProxy?: string | null;
   }
@@ -344,11 +344,11 @@ export namespace certificatemanager_v1 {
    */
   export interface Schema$IpConfig {
     /**
-     * An external IP address.
+     * Output only. An external IP address.
      */
     ipAddress?: string | null;
     /**
-     * Ports.
+     * Output only. Ports.
      */
     ports?: number[] | null;
   }
@@ -488,7 +488,7 @@ export namespace certificatemanager_v1 {
      */
     domains?: string[] | null;
     /**
-     * Information about issues with provisioning a Managed Certificate.
+     * Output only. Information about issues with provisioning a Managed Certificate.
      */
     provisioningIssue?: Schema$ProvisioningIssue;
     /**
@@ -559,30 +559,13 @@ export namespace certificatemanager_v1 {
    */
   export interface Schema$ProvisioningIssue {
     /**
-     * Human readable explanation about the issue. Provided to help address the configuration issues. Not guaranteed to be stable. For programmatic access use Reason enum.
+     * Output only. Human readable explanation about the issue. Provided to help address the configuration issues. Not guaranteed to be stable. For programmatic access use Reason enum.
      */
     details?: string | null;
     /**
-     * Reason for provisioning failures.
+     * Output only. Reason for provisioning failures.
      */
     reason?: string | null;
-  }
-  /**
-   * ResourcesCount represents the resource that stores aggregated project's info in the given location, e.g.: total number of certificates assigned to the project.
-   */
-  export interface Schema$ResourcesCount {
-    /**
-     * The count of certificates.
-     */
-    certificates?: string | null;
-    /**
-     * Required. Input only. The time of the computation. The field is input only, used in Create and Update calls. For Update call, new values of selected resources are set if their compute_time is younger than the persisted ones, e.g.: If you support 3 types of resources: A, B and C, and you have: 'A' resource count computed at timestamp = 3 'B' resource count computed at timestamp = 10 'C' resource count computed at timestamp = 5 And you're going to update all of them with compute_time = 8, only 'A' and 'C' will be updated, as 'B' already has fresher data. For Get call a ResourcesCount instance contains the freshest values for every type.
-     */
-    computeTime?: string | null;
-    /**
-     * The singleton resource of the resources count. Must be in the format `projects/x/locations/x/resourcesCounts/single`.
-     */
-    name?: string | null;
   }
   /**
    * Certificate data for a SelfManaged Certificate. SelfManaged Certificates are uploaded by the user. Updating such certificates before they expire remains the user's responsibility.

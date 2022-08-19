@@ -975,7 +975,7 @@
       }
     }
   },
-  "revision": "20220602",
+  "revision": "20220804",
   "rootUrl": "https://certificatemanager.googleapis.com/",
   "schemas": {
     "AuthorizationAttemptInfo": {
@@ -983,7 +983,8 @@
       "id": "AuthorizationAttemptInfo",
       "properties": {
         "details": {
-          "description": "Human readable explanation for reaching the state. Provided to help address the configuration issues. Not guaranteed to be stable. For programmatic access use Reason enum.",
+          "description": "Output only. Human readable explanation for reaching the state. Provided to help address the configuration issues. Not guaranteed to be stable. For programmatic access use FailureReason enum.",
+          "readOnly": true,
           "type": "string"
         },
         "domain": {
@@ -1008,7 +1009,7 @@
           "type": "string"
         },
         "state": {
-          "description": "State of the domain for managed certificate issuance.",
+          "description": "Output only. State of the domain for managed certificate issuance.",
           "enum": [
             "STATE_UNSPECIFIED",
             "AUTHORIZING",
@@ -1021,6 +1022,7 @@
             "A managed certificate can be provisioned, no issues for this domain.",
             "Attempt to authorize the domain failed. This prevents the Managed Certificate from being issued. See `failure_reason` and `details` fields for more information."
           ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1295,18 +1297,21 @@
       "id": "GclbTarget",
       "properties": {
         "ipConfigs": {
-          "description": "IP configurations for this Target Proxy where the Certificate Map is serving.",
+          "description": "Output only. IP configurations for this Target Proxy where the Certificate Map is serving.",
           "items": {
             "$ref": "IpConfig"
           },
+          "readOnly": true,
           "type": "array"
         },
         "targetHttpsProxy": {
-          "description": "This field returns the resource name in the following format: `//compute.googleapis.com/projects/*/global/targetHttpsProxies/*`.",
+          "description": "Output only. This field returns the resource name in the following format: `//compute.googleapis.com/projects/*/global/targetHttpsProxies/*`.",
+          "readOnly": true,
           "type": "string"
         },
         "targetSslProxy": {
-          "description": "This field returns the resource name in the following format: `//compute.googleapis.com/projects/*/global/targetSslProxies/*`.",
+          "description": "Output only. This field returns the resource name in the following format: `//compute.googleapis.com/projects/*/global/targetSslProxies/*`.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1317,15 +1322,17 @@
       "id": "IpConfig",
       "properties": {
         "ipAddress": {
-          "description": "An external IP address.",
+          "description": "Output only. An external IP address.",
+          "readOnly": true,
           "type": "string"
         },
         "ports": {
-          "description": "Ports.",
+          "description": "Output only. Ports.",
           "items": {
             "format": "uint32",
             "type": "integer"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -1529,7 +1536,8 @@
         },
         "provisioningIssue": {
           "$ref": "ProvisioningIssue",
-          "description": "Information about issues with provisioning a Managed Certificate."
+          "description": "Output only. Information about issues with provisioning a Managed Certificate.",
+          "readOnly": true
         },
         "state": {
           "description": "Output only. State of the managed certificate resource.",
@@ -1628,11 +1636,12 @@
       "id": "ProvisioningIssue",
       "properties": {
         "details": {
-          "description": "Human readable explanation about the issue. Provided to help address the configuration issues. Not guaranteed to be stable. For programmatic access use Reason enum.",
+          "description": "Output only. Human readable explanation about the issue. Provided to help address the configuration issues. Not guaranteed to be stable. For programmatic access use Reason enum.",
+          "readOnly": true,
           "type": "string"
         },
         "reason": {
-          "description": "Reason for provisioning failures.",
+          "description": "Output only. Reason for provisioning failures.",
           "enum": [
             "REASON_UNSPECIFIED",
             "AUTHORIZATION_ISSUE",
@@ -1643,27 +1652,7 @@
             "Certificate provisioning failed due to an issue with one or more of the domains on the certificate. For details of which domains failed, consult the `authorization_attempt_info` field.",
             "Exceeded Certificate Authority quotas or internal rate limits of the system. Provisioning may take longer to complete."
           ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ResourcesCount": {
-      "description": "ResourcesCount represents the resource that stores aggregated project's info in the given location, e.g.: total number of certificates assigned to the project.",
-      "id": "ResourcesCount",
-      "properties": {
-        "certificates": {
-          "description": "The count of certificates.",
-          "format": "uint64",
-          "type": "string"
-        },
-        "computeTime": {
-          "description": "Required. Input only. The time of the computation. The field is input only, used in Create and Update calls. For Update call, new values of selected resources are set if their compute_time is younger than the persisted ones, e.g.: If you support 3 types of resources: A, B and C, and you have: 'A' resource count computed at timestamp = 3 'B' resource count computed at timestamp = 10 'C' resource count computed at timestamp = 5 And you're going to update all of them with compute_time = 8, only 'A' and 'C' will be updated, as 'B' already has fresher data. For Get call a ResourcesCount instance contains the freshest values for every type.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "name": {
-          "description": "The singleton resource of the resources count. Must be in the format `projects/*/locations/*/resourcesCounts/single`.",
+          "readOnly": true,
           "type": "string"
         }
       },
