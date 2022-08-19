@@ -1548,10 +1548,6 @@ export namespace tagmanager_v2 {
      */
     notes?: string | null;
     /**
-     * Additional parameters.
-     */
-    parameter?: Schema$Parameter[];
-    /**
      * GTM Zone's API relative path.
      */
     path?: string | null;
@@ -13624,7 +13620,6 @@ export namespace tagmanager_v2 {
      *       //   "fingerprint": "my_fingerprint",
      *       //   "name": "my_name",
      *       //   "notes": "my_notes",
-     *       //   "parameter": [],
      *       //   "path": "my_path",
      *       //   "tagManagerUrl": "my_tagManagerUrl",
      *       //   "typeRestriction": {},
@@ -13644,7 +13639,6 @@ export namespace tagmanager_v2 {
      *   //   "fingerprint": "my_fingerprint",
      *   //   "name": "my_name",
      *   //   "notes": "my_notes",
-     *   //   "parameter": [],
      *   //   "path": "my_path",
      *   //   "tagManagerUrl": "my_tagManagerUrl",
      *   //   "typeRestriction": {},
@@ -13912,7 +13906,6 @@ export namespace tagmanager_v2 {
      *   //   "fingerprint": "my_fingerprint",
      *   //   "name": "my_name",
      *   //   "notes": "my_notes",
-     *   //   "parameter": [],
      *   //   "path": "my_path",
      *   //   "tagManagerUrl": "my_tagManagerUrl",
      *   //   "typeRestriction": {},
@@ -14330,7 +14323,6 @@ export namespace tagmanager_v2 {
      *       //   "fingerprint": "my_fingerprint",
      *       //   "name": "my_name",
      *       //   "notes": "my_notes",
-     *       //   "parameter": [],
      *       //   "path": "my_path",
      *       //   "tagManagerUrl": "my_tagManagerUrl",
      *       //   "typeRestriction": {},
@@ -14350,7 +14342,6 @@ export namespace tagmanager_v2 {
      *   //   "fingerprint": "my_fingerprint",
      *   //   "name": "my_name",
      *   //   "notes": "my_notes",
-     *   //   "parameter": [],
      *   //   "path": "my_path",
      *   //   "tagManagerUrl": "my_tagManagerUrl",
      *   //   "typeRestriction": {},
