@@ -154,6 +154,15 @@ export namespace chromepolicy_v1 {
     keyDescription?: string | null;
   }
   /**
+   * Request message for specifying that multiple policy values will be deleted.
+   */
+  export interface Schema$GoogleChromePolicyV1BatchDeleteGroupPoliciesRequest {
+    /**
+     * List of policies that will be deleted as defined by the `requests`. All requests in the list must follow these restrictions: 1. All schemas in the list must have the same root namespace. 2. All `policyTargetKey.targetResource` values must point to a group resource. 3. All `policyTargetKey` values must have the same `app_id` key name in the `additionalTargetKeys`. 4. No two modification requests can reference the same `policySchema` + ` policyTargetKey` pair.
+     */
+    requests?: Schema$GoogleChromePolicyV1DeleteGroupPolicyRequest[];
+  }
+  /**
    * Request message for specifying that multiple policy values inherit their value from their parents.
    */
   export interface Schema$GoogleChromePolicyV1BatchInheritOrgUnitPoliciesRequest {
@@ -163,6 +172,15 @@ export namespace chromepolicy_v1 {
     requests?: Schema$GoogleChromePolicyV1InheritOrgUnitPolicyRequest[];
   }
   /**
+   * Request message for modifying multiple policy values for a specific group-based target.
+   */
+  export interface Schema$GoogleChromePolicyV1BatchModifyGroupPoliciesRequest {
+    /**
+     * List of policies to modify as defined by the `requests`. All requests in the list must follow these restrictions: 1. All schemas in the list must have the same root namespace. 2. All `policyTargetKey.targetResource` values must point to a group resource. 3. All `policyTargetKey` values must have the same `app_id` key name in the `additionalTargetKeys`. 4. No two modification requests can reference the same `policySchema` + ` policyTargetKey` pair.
+     */
+    requests?: Schema$GoogleChromePolicyV1ModifyGroupPolicyRequest[];
+  }
+  /**
    * Request message for modifying multiple policy values for a specific target.
    */
   export interface Schema$GoogleChromePolicyV1BatchModifyOrgUnitPoliciesRequest {
@@ -170,6 +188,19 @@ export namespace chromepolicy_v1 {
      * List of policies to modify as defined by the `requests`. All requests in the list must follow these restrictions: 1. All schemas in the list must have the same root namespace. 2. All `policyTargetKey.targetResource` values must point to an org unit resource. 3. All `policyTargetKey` values must have the same key names in the ` additionalTargetKeys`. This also means if one of the targets has an empty `additionalTargetKeys` map, all of the targets must have an empty `additionalTargetKeys` map. 4. No two modification requests can reference the same `policySchema` + ` policyTargetKey` pair.
      */
     requests?: Schema$GoogleChromePolicyV1ModifyOrgUnitPolicyRequest[];
+  }
+  /**
+   * Request parameters for deleting the policy value of a specific group target.
+   */
+  export interface Schema$GoogleChromePolicyV1DeleteGroupPolicyRequest {
+    /**
+     * The fully qualified name of the policy schema that is being inherited.
+     */
+    policySchema?: string | null;
+    /**
+     * Required. The key of the target for which we want to modify a policy. The target resource must point to a Group.
+     */
+    policyTargetKey?: Schema$GoogleChromePolicyV1PolicyTargetKey;
   }
   /**
    * Request parameters for inheriting policy value of a specific org unit target from the policy value of its parent org unit.
@@ -185,6 +216,36 @@ export namespace chromepolicy_v1 {
     policyTargetKey?: Schema$GoogleChromePolicyV1PolicyTargetKey;
   }
   /**
+   * Request message for listing the group priority ordering of an app.
+   */
+  export interface Schema$GoogleChromePolicyV1ListGroupPriorityOrderingRequest {
+    /**
+     * Required. The namespace of the policy type for the request.
+     */
+    policyNamespace?: string | null;
+    /**
+     * Required. The key of the target for which we want to retrieve the group priority ordering. The target resource must point to an app.
+     */
+    policyTargetKey?: Schema$GoogleChromePolicyV1PolicyTargetKey;
+  }
+  /**
+   * Response message for listing the group priority ordering of an app.
+   */
+  export interface Schema$GoogleChromePolicyV1ListGroupPriorityOrderingResponse {
+    /**
+     * Output only. The group IDs, in priority ordering.
+     */
+    groupIds?: string[] | null;
+    /**
+     * Output only. The namespace of the policy type of the group IDs.
+     */
+    policyNamespace?: string | null;
+    /**
+     * Output only. The target resource for which the group priority ordering has been retrieved.
+     */
+    policyTargetKey?: Schema$GoogleChromePolicyV1PolicyTargetKey;
+  }
+  /**
    * Response message for listing policy schemas that match a filter.
    */
   export interface Schema$GoogleChromePolicyV1ListPolicySchemasResponse {
@@ -196,6 +257,23 @@ export namespace chromepolicy_v1 {
      * The list of policy schemas that match the query.
      */
     policySchemas?: Schema$GoogleChromePolicyV1PolicySchema[];
+  }
+  /**
+   * Request parameters for modifying a policy value for a specific group target.
+   */
+  export interface Schema$GoogleChromePolicyV1ModifyGroupPolicyRequest {
+    /**
+     * Required. The key of the target for which we want to modify a policy. The target resource must point to a Group.
+     */
+    policyTargetKey?: Schema$GoogleChromePolicyV1PolicyTargetKey;
+    /**
+     * The new value for the policy.
+     */
+    policyValue?: Schema$GoogleChromePolicyV1PolicyValue;
+    /**
+     * Required. Policy fields to update. Only fields in this mask will be updated; other fields in `policy_value` will be ignored (even if they have values). If a field is in this list it must have a value in 'policy_value'.
+     */
+    updateMask?: string | null;
   }
   /**
    * Request parameters for modifying a policy value for a specific org unit target.
@@ -215,7 +293,7 @@ export namespace chromepolicy_v1 {
     updateMask?: string | null;
   }
   /**
-   * Resource representing a policy schema. Next ID: 12
+   * Resource representing a policy schema. Next ID: 13
    */
   export interface Schema$GoogleChromePolicyV1PolicySchema {
     /**
@@ -243,7 +321,11 @@ export namespace chromepolicy_v1 {
      */
     notices?: Schema$GoogleChromePolicyV1PolicySchemaNoticeDescription[];
     /**
-     * Output only. Current life cycle information.
+     * Output only. Current lifecycle information.
+     */
+    policyApiLifecycle?: Schema$ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle;
+    /**
+     * Deprecated field because of typo.
      */
     policyApiLifeycle?: Schema$ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle;
     /**
@@ -251,7 +333,7 @@ export namespace chromepolicy_v1 {
      */
     policyDescription?: string | null;
     /**
-     * Output only. The fully qualified name of the policy schema. This value is used to fill the field `policy_schema` in PolicyValue when calling BatchInheritOrgUnitPolicies or BatchModifyOrgUnitPolicies
+     * Output only. The fully qualified name of the policy schema. This value is used to fill the field `policy_schema` in PolicyValue when calling BatchInheritOrgUnitPolicies BatchModifyOrgUnitPolicies BatchModifyGroupPolicies or BatchDeleteGroupPolicies.
      */
     schemaName?: string | null;
     /**
@@ -365,7 +447,7 @@ export namespace chromepolicy_v1 {
      */
     additionalTargetKeys?: {[key: string]: string} | null;
     /**
-     * The target resource on which this policy is applied. The following resources are supported: * Organizational Unit ("orgunits/{orgunit_id\}")
+     * The target resource on which this policy is applied. The following resources are supported: * Organizational Unit ("orgunits/{orgunit_id\}") * Group ("groups/{group_id\}")
      */
     targetResource?: string | null;
   }
@@ -436,6 +518,23 @@ export namespace chromepolicy_v1 {
      * The list of resolved policies found by the resolve request.
      */
     resolvedPolicies?: Schema$GoogleChromePolicyV1ResolvedPolicy[];
+  }
+  /**
+   * Request message for updating the group priority ordering of an app.
+   */
+  export interface Schema$GoogleChromePolicyV1UpdateGroupPriorityOrderingRequest {
+    /**
+     * Required. The group IDs, in desired priority ordering.
+     */
+    groupIds?: string[] | null;
+    /**
+     * Required. The namespace of the policy type for the request.
+     */
+    policyNamespace?: string | null;
+    /**
+     * Required. The key of the target for which we want to update the group priority ordering. The target resource must point to an app.
+     */
+    policyTargetKey?: Schema$GoogleChromePolicyV1PolicyTargetKey;
   }
   /**
    * Request message for uploading a file for a policy. Next ID: 5
@@ -574,9 +673,11 @@ export namespace chromepolicy_v1 {
 
   export class Resource$Customers$Policies {
     context: APIRequestContext;
+    groups: Resource$Customers$Policies$Groups;
     orgunits: Resource$Customers$Policies$Orgunits;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.groups = new Resource$Customers$Policies$Groups(this.context);
       this.orgunits = new Resource$Customers$Policies$Orgunits(this.context);
     }
 
@@ -745,6 +846,638 @@ export namespace chromepolicy_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleChromePolicyV1ResolveRequest;
+  }
+
+  export class Resource$Customers$Policies$Groups {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Delete multiple policy values that are applied to a specific group. All targets must have the same target format. That is to say that they must point to the same target resource and must have the same keys specified in `additionalTargetKeyNames`, though the values for those keys may be different. On failure the request will return the error details as part of the google.rpc.Status.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chromepolicy = google.chromepolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chrome.management.policy'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromepolicy.customers.policies.groups.batchDelete({
+     *     // ID of the Google Workspace account or literal "my_customer" for the customer associated to the request.
+     *     customer: 'customers/my-customer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchDelete(
+      params: Params$Resource$Customers$Policies$Groups$Batchdelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchDelete(
+      params?: Params$Resource$Customers$Policies$Groups$Batchdelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    batchDelete(
+      params: Params$Resource$Customers$Policies$Groups$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Customers$Policies$Groups$Batchdelete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Customers$Policies$Groups$Batchdelete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    batchDelete(
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    batchDelete(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Policies$Groups$Batchdelete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Policies$Groups$Batchdelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Policies$Groups$Batchdelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chromepolicy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+customer}/policies/groups:batchDelete'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Modify multiple policy values that are applied to a specific group. All targets must have the same target format. That is to say that they must point to the same target resource and must have the same keys specified in `additionalTargetKeyNames`, though the values for those keys may be different. On failure the request will return the error details as part of the google.rpc.Status.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chromepolicy = google.chromepolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chrome.management.policy'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromepolicy.customers.policies.groups.batchModify({
+     *     // ID of the Google Workspace account or literal "my_customer" for the customer associated to the request.
+     *     customer: 'customers/my-customer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchModify(
+      params: Params$Resource$Customers$Policies$Groups$Batchmodify,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchModify(
+      params?: Params$Resource$Customers$Policies$Groups$Batchmodify,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    batchModify(
+      params: Params$Resource$Customers$Policies$Groups$Batchmodify,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchModify(
+      params: Params$Resource$Customers$Policies$Groups$Batchmodify,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    batchModify(
+      params: Params$Resource$Customers$Policies$Groups$Batchmodify,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    batchModify(
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    batchModify(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Policies$Groups$Batchmodify
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Policies$Groups$Batchmodify;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Policies$Groups$Batchmodify;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chromepolicy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+customer}/policies/groups:batchModify'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Retrieve a group priority ordering for an app. The target app must be supplied in `additionalTargetKeyNames` in the PolicyTargetKey. On failure the request will return the error details as part of the google.rpc.Status.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chromepolicy = google.chromepolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.policy',
+     *       'https://www.googleapis.com/auth/chrome.management.policy.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromepolicy.customers.policies.groups.listGroupPriorityOrdering({
+     *       // Required. ID of the Google Workspace account or literal "my_customer" for the customer associated to the request.
+     *       customer: 'customers/my-customer',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policyNamespace": "my_policyNamespace",
+     *         //   "policyTargetKey": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "groupIds": [],
+     *   //   "policyNamespace": "my_policyNamespace",
+     *   //   "policyTargetKey": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listGroupPriorityOrdering(
+      params: Params$Resource$Customers$Policies$Groups$Listgrouppriorityordering,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listGroupPriorityOrdering(
+      params?: Params$Resource$Customers$Policies$Groups$Listgrouppriorityordering,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChromePolicyV1ListGroupPriorityOrderingResponse>;
+    listGroupPriorityOrdering(
+      params: Params$Resource$Customers$Policies$Groups$Listgrouppriorityordering,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listGroupPriorityOrdering(
+      params: Params$Resource$Customers$Policies$Groups$Listgrouppriorityordering,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromePolicyV1ListGroupPriorityOrderingResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromePolicyV1ListGroupPriorityOrderingResponse>
+    ): void;
+    listGroupPriorityOrdering(
+      params: Params$Resource$Customers$Policies$Groups$Listgrouppriorityordering,
+      callback: BodyResponseCallback<Schema$GoogleChromePolicyV1ListGroupPriorityOrderingResponse>
+    ): void;
+    listGroupPriorityOrdering(
+      callback: BodyResponseCallback<Schema$GoogleChromePolicyV1ListGroupPriorityOrderingResponse>
+    ): void;
+    listGroupPriorityOrdering(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Policies$Groups$Listgrouppriorityordering
+        | BodyResponseCallback<Schema$GoogleChromePolicyV1ListGroupPriorityOrderingResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromePolicyV1ListGroupPriorityOrderingResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromePolicyV1ListGroupPriorityOrderingResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChromePolicyV1ListGroupPriorityOrderingResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Policies$Groups$Listgrouppriorityordering;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Policies$Groups$Listgrouppriorityordering;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chromepolicy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+customer}/policies/groups:listGroupPriorityOrdering'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromePolicyV1ListGroupPriorityOrderingResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromePolicyV1ListGroupPriorityOrderingResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update a group priority ordering for an app. The target app must be supplied in `additionalTargetKeyNames` in the PolicyTargetKey. On failure the request will return the error details as part of the google.rpc.Status.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chromepolicy = google.chromepolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chrome.management.policy'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromepolicy.customers.policies.groups.updateGroupPriorityOrdering({
+     *       // Required. ID of the Google Workspace account or literal "my_customer" for the customer associated to the request.
+     *       customer: 'customers/my-customer',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "groupIds": [],
+     *         //   "policyNamespace": "my_policyNamespace",
+     *         //   "policyTargetKey": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateGroupPriorityOrdering(
+      params: Params$Resource$Customers$Policies$Groups$Updategrouppriorityordering,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateGroupPriorityOrdering(
+      params?: Params$Resource$Customers$Policies$Groups$Updategrouppriorityordering,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    updateGroupPriorityOrdering(
+      params: Params$Resource$Customers$Policies$Groups$Updategrouppriorityordering,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateGroupPriorityOrdering(
+      params: Params$Resource$Customers$Policies$Groups$Updategrouppriorityordering,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    updateGroupPriorityOrdering(
+      params: Params$Resource$Customers$Policies$Groups$Updategrouppriorityordering,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    updateGroupPriorityOrdering(
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    updateGroupPriorityOrdering(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Policies$Groups$Updategrouppriorityordering
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Policies$Groups$Updategrouppriorityordering;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Policies$Groups$Updategrouppriorityordering;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chromepolicy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+customer}/policies/groups:updateGroupPriorityOrdering'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Customers$Policies$Groups$Batchdelete
+    extends StandardParameters {
+    /**
+     * ID of the Google Workspace account or literal "my_customer" for the customer associated to the request.
+     */
+    customer?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleChromePolicyV1BatchDeleteGroupPoliciesRequest;
+  }
+  export interface Params$Resource$Customers$Policies$Groups$Batchmodify
+    extends StandardParameters {
+    /**
+     * ID of the Google Workspace account or literal "my_customer" for the customer associated to the request.
+     */
+    customer?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleChromePolicyV1BatchModifyGroupPoliciesRequest;
+  }
+  export interface Params$Resource$Customers$Policies$Groups$Listgrouppriorityordering
+    extends StandardParameters {
+    /**
+     * Required. ID of the Google Workspace account or literal "my_customer" for the customer associated to the request.
+     */
+    customer?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleChromePolicyV1ListGroupPriorityOrderingRequest;
+  }
+  export interface Params$Resource$Customers$Policies$Groups$Updategrouppriorityordering
+    extends StandardParameters {
+    /**
+     * Required. ID of the Google Workspace account or literal "my_customer" for the customer associated to the request.
+     */
+    customer?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleChromePolicyV1UpdateGroupPriorityOrderingRequest;
   }
 
   export class Resource$Customers$Policies$Orgunits {
@@ -1106,6 +1839,7 @@ export namespace chromepolicy_v1 {
      *   //   "fieldDescriptions": [],
      *   //   "name": "my_name",
      *   //   "notices": [],
+     *   //   "policyApiLifecycle": {},
      *   //   "policyApiLifeycle": {},
      *   //   "policyDescription": "my_policyDescription",
      *   //   "schemaName": "my_schemaName",
