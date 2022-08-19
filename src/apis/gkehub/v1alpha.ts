@@ -290,7 +290,7 @@ export namespace gkehub_v1alpha {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -787,7 +787,7 @@ export namespace gkehub_v1alpha {
      */
     monitoring?: Schema$ConfigManagementPolicyControllerMonitoring;
     /**
-     * Enable users to try out mutation for PolicyController.
+     * Enable or disable mutation in policy controller. If true, mutation CRDs, webhook and controller deployment will be deployed to the cluster.
      */
     mutationEnabled?: boolean | null;
     /**
@@ -1028,13 +1028,13 @@ export namespace gkehub_v1alpha {
      */
     displayName?: string | null;
     /**
-     * The name for the fleet. The name must meet the following constraints: + The name of a fleet should be unique within the organization; + It must consist of lower case alphanumeric characters or `-`; + The length of the name must be less than or equal to 63; + Unicode names must be expressed in Punycode format (rfc3492). Examples: + prod-fleet + xn--wlq33vhyw9jb （Punycode form for "生产环境")
-     */
-    fleetName?: string | null;
-    /**
      * Output only. The full, unique resource name of this fleet in the format of `projects/{project\}/locations/{location\}/fleets/{fleet\}`. Each GCP project can have at most one fleet resource, named "default".
      */
     name?: string | null;
+    /**
+     * Output only. State of the namespace resource.
+     */
+    state?: Schema$FleetLifecycleState;
     /**
      * Output only. Google-generated UUID for this resource. This is unique across all Fleet resources. If a Fleet resource is deleted and another resource with the same name is created, it gets a different uid.
      */
@@ -1043,6 +1043,15 @@ export namespace gkehub_v1alpha {
      * Output only. When the Fleet was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * FleetLifecycleState describes the state of a Fleet resource.
+   */
+  export interface Schema$FleetLifecycleState {
+    /**
+     * Output only. The current state of the Fleet resource.
+     */
+    code?: string | null;
   }
   /**
    * GenerateConnectManifestResponse contains manifest information for installing/upgrading a Connect agent.
@@ -1088,6 +1097,14 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$IdentityServiceAuthMethod {
     /**
+     * AzureAD specific Configuration.
+     */
+    azureadConfig?: Schema$IdentityServiceAzureADConfig;
+    /**
+     * GoogleConfig specific configuration
+     */
+    googleConfig?: Schema$IdentityServiceGoogleConfig;
+    /**
      * Identifier for auth config.
      */
     name?: string | null;
@@ -1099,6 +1116,40 @@ export namespace gkehub_v1alpha {
      * Proxy server address to use for auth method.
      */
     proxy?: string | null;
+  }
+  /**
+   * Configuration for the AzureAD Auth flow.
+   */
+  export interface Schema$IdentityServiceAzureADConfig {
+    /**
+     * ID for the registered client application that makes authentication requests to the Azure AD identity provider.
+     */
+    clientId?: string | null;
+    /**
+     * Input only. Unencrypted AzureAD client secret will be passed to the GKE Hub CLH.
+     */
+    clientSecret?: string | null;
+    /**
+     * Output only. Encrypted AzureAD client secret.
+     */
+    encryptedClientSecret?: string | null;
+    /**
+     * The redirect URL that kubectl uses for authorization.
+     */
+    kubectlRedirectUri?: string | null;
+    /**
+     * Kind of Azure AD account to be authenticated. Supported values are or for accounts belonging to a specific tenant.
+     */
+    tenant?: string | null;
+  }
+  /**
+   * Configuration for the Google Plugin Auth flow.
+   */
+  export interface Schema$IdentityServiceGoogleConfig {
+    /**
+     * Disable automatic configuration of Google Plugin on supported platforms.
+     */
+    disable?: boolean | null;
   }
   /**
    * **Anthos Identity Service**: Configuration for a single Membership.
@@ -1509,7 +1560,7 @@ export namespace gkehub_v1alpha {
      */
     identityservice?: Schema$IdentityServiceMembershipState;
     /**
-     * Metering-specific spec.
+     * Metering-specific state.
      */
     metering?: Schema$MeteringMembershipState;
     /**
@@ -1573,7 +1624,7 @@ export namespace gkehub_v1alpha {
      */
     clusterMissing?: boolean | null;
     /**
-     * Immutable. Self-link of the GCP resource for the GKE Multi-Cloud cluster. For example: //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/awsClusters/my-cluster //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/azureClusters/my-cluster
+     * Immutable. Self-link of the GCP resource for the GKE Multi-Cloud cluster. For example: //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/awsClusters/my-cluster //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/azureClusters/my-cluster //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/attachedClusters/my-cluster
      */
     resourceLink?: string | null;
   }
@@ -1728,28 +1779,6 @@ export namespace gkehub_v1alpha {
     templateLibraryConfig?: Schema$PolicyControllerTemplateLibraryConfig;
   }
   /**
-   * State of the Policy Controller.
-   */
-  export interface Schema$PolicyControllerHubState {
-    /**
-     * Map from deployment name to deployment state. Example deployments are gatekeeper-controller-manager, gatekeeper-audit deployment, and gatekeeper-mutation.
-     */
-    deploymentStates?: {[key: string]: string} | null;
-    /**
-     * The version of Gatekeeper Policy Controller deployed.
-     */
-    version?: Schema$PolicyControllerHubVersion;
-  }
-  /**
-   * The build version of Gatekeeper that Policy Controller is using.
-   */
-  export interface Schema$PolicyControllerHubVersion {
-    /**
-     * The gatekeeper image tag that is composed of ACM version, git tag, build number.
-     */
-    version?: string | null;
-  }
-  /**
    * **Policy Controller**: Configuration for a single cluster. Intended to parallel the PolicyController CR.
    */
   export interface Schema$PolicyControllerMembershipSpec {
@@ -1771,15 +1800,13 @@ export namespace gkehub_v1alpha {
      */
     clusterName?: string | null;
     /**
-     * Membership configuration in the cluster. This represents the actual state in the cluster, while the MembershipSpec in the FeatureSpec represents the intended state
+     * Currently these include (also serving as map keys): 1. "admission" 2. "audit" 3. "mutation" 4. "constraint template library"
      */
-    membershipSpec?: Schema$PolicyControllerMembershipSpec;
+    componentStates?: {
+      [key: string]: Schema$PolicyControllerOnClusterState;
+    } | null;
     /**
-     * Policy Controller state observed by the Policy Controller Hub
-     */
-    policyControllerHubState?: Schema$PolicyControllerHubState;
-    /**
-     * The lifecycle state Policy Controller is in.
+     * The overall Policy Controller lifecycle state observed by the Hub Feature controller.
      */
     state?: string | null;
   }
@@ -1791,6 +1818,19 @@ export namespace gkehub_v1alpha {
      * Specifies the list of backends Policy Controller will export to. An empty list would effectively disable metrics export.
      */
     backends?: string[] | null;
+  }
+  /**
+   * OnClusterState represents the state of a sub-component of Policy Controller.
+   */
+  export interface Schema$PolicyControllerOnClusterState {
+    /**
+     * Surface potential errors or information logs.
+     */
+    details?: string | null;
+    /**
+     * The lifecycle state of this component.
+     */
+    state?: string | null;
   }
   /**
    * The config specifying which default library templates to install.
@@ -3842,8 +3882,8 @@ export namespace gkehub_v1alpha {
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
      *       //   "displayName": "my_displayName",
-     *       //   "fleetName": "my_fleetName",
      *       //   "name": "my_name",
+     *       //   "state": {},
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -3853,13 +3893,11 @@ export namespace gkehub_v1alpha {
      *
      *   // Example response
      *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "deleteTime": "my_deleteTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "fleetName": "my_fleetName",
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
      *   //   "name": "my_name",
-     *   //   "uid": "my_uid",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "response": {}
      *   // }
      * }
      *
@@ -3882,7 +3920,7 @@ export namespace gkehub_v1alpha {
     create(
       params?: Params$Resource$Projects$Locations$Fleets$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Fleet>;
+    ): GaxiosPromise<Schema$Operation>;
     create(
       params: Params$Resource$Projects$Locations$Fleets$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3890,28 +3928,28 @@ export namespace gkehub_v1alpha {
     ): void;
     create(
       params: Params$Resource$Projects$Locations$Fleets$Create,
-      options: MethodOptions | BodyResponseCallback<Schema$Fleet>,
-      callback: BodyResponseCallback<Schema$Fleet>
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
     ): void;
     create(
       params: Params$Resource$Projects$Locations$Fleets$Create,
-      callback: BodyResponseCallback<Schema$Fleet>
+      callback: BodyResponseCallback<Schema$Operation>
     ): void;
-    create(callback: BodyResponseCallback<Schema$Fleet>): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Fleets$Create
-        | BodyResponseCallback<Schema$Fleet>
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Fleet>
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Fleet>
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Fleet> | GaxiosPromise<Readable> {
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Fleets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3945,12 +3983,12 @@ export namespace gkehub_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Fleet>(
+        createAPIRequest<Schema$Operation>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$Fleet>(parameters);
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -3987,7 +4025,13 @@ export namespace gkehub_v1alpha {
      *   console.log(res.data);
      *
      *   // Example response
-     *   // {}
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
      * }
      *
      * main().catch(e => {
@@ -4009,7 +4053,7 @@ export namespace gkehub_v1alpha {
     delete(
       params?: Params$Resource$Projects$Locations$Fleets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosPromise<Schema$Operation>;
     delete(
       params: Params$Resource$Projects$Locations$Fleets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4017,28 +4061,28 @@ export namespace gkehub_v1alpha {
     ): void;
     delete(
       params: Params$Resource$Projects$Locations$Fleets$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
     ): void;
     delete(
       params: Params$Resource$Projects$Locations$Fleets$Delete,
-      callback: BodyResponseCallback<Schema$Empty>
+      callback: BodyResponseCallback<Schema$Operation>
     ): void;
-    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Fleets$Delete
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Fleets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4069,12 +4113,12 @@ export namespace gkehub_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(
+        createAPIRequest<Schema$Operation>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$Empty>(parameters);
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -4115,8 +4159,8 @@ export namespace gkehub_v1alpha {
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
      *   //   "displayName": "my_displayName",
-     *   //   "fleetName": "my_fleetName",
      *   //   "name": "my_name",
+     *   //   "state": {},
      *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -4386,8 +4430,8 @@ export namespace gkehub_v1alpha {
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
      *       //   "displayName": "my_displayName",
-     *       //   "fleetName": "my_fleetName",
      *       //   "name": "my_name",
+     *       //   "state": {},
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -4397,13 +4441,11 @@ export namespace gkehub_v1alpha {
      *
      *   // Example response
      *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "deleteTime": "my_deleteTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "fleetName": "my_fleetName",
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
      *   //   "name": "my_name",
-     *   //   "uid": "my_uid",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "response": {}
      *   // }
      * }
      *
@@ -4426,7 +4468,7 @@ export namespace gkehub_v1alpha {
     patch(
       params?: Params$Resource$Projects$Locations$Fleets$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Fleet>;
+    ): GaxiosPromise<Schema$Operation>;
     patch(
       params: Params$Resource$Projects$Locations$Fleets$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4434,28 +4476,28 @@ export namespace gkehub_v1alpha {
     ): void;
     patch(
       params: Params$Resource$Projects$Locations$Fleets$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$Fleet>,
-      callback: BodyResponseCallback<Schema$Fleet>
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
     ): void;
     patch(
       params: Params$Resource$Projects$Locations$Fleets$Patch,
-      callback: BodyResponseCallback<Schema$Fleet>
+      callback: BodyResponseCallback<Schema$Operation>
     ): void;
-    patch(callback: BodyResponseCallback<Schema$Fleet>): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Fleets$Patch
-        | BodyResponseCallback<Schema$Fleet>
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Fleet>
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Fleet>
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Fleet> | GaxiosPromise<Readable> {
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Fleets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4486,12 +4528,12 @@ export namespace gkehub_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Fleet>(
+        createAPIRequest<Schema$Operation>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$Fleet>(parameters);
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
   }

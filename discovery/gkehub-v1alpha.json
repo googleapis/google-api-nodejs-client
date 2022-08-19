@@ -523,7 +523,7 @@
                     "$ref": "Fleet"
                   },
                   "response": {
-                    "$ref": "Fleet"
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -548,7 +548,7 @@
                   },
                   "path": "v1alpha/{+name}",
                   "response": {
-                    "$ref": "Empty"
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -643,7 +643,7 @@
                     "$ref": "Fleet"
                   },
                   "response": {
-                    "$ref": "Fleet"
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1151,7 +1151,7 @@
       }
     }
   },
-  "revision": "20220621",
+  "revision": "20220805",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -1381,7 +1381,7 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
           "items": {
             "type": "string"
           },
@@ -2124,7 +2124,7 @@
           "description": "Monitoring specifies the configuration of monitoring."
         },
         "mutationEnabled": {
-          "description": "Enable users to try out mutation for PolicyController.",
+          "description": "Enable or disable mutation in policy controller. If true, mutation CRDs, webhook and controller deployment will be deployed to the cluster.",
           "type": "boolean"
         },
         "referentialRulesEnabled": {
@@ -2494,14 +2494,15 @@
           "description": "Optional. A user-assigned display name of the Fleet. When present, it must be between 4 to 30 characters. Allowed characters are: lowercase and uppercase letters, numbers, hyphen, single-quote, double-quote, space, and exclamation point. Example: `Production Fleet`",
           "type": "string"
         },
-        "fleetName": {
-          "description": "The name for the fleet. The name must meet the following constraints: + The name of a fleet should be unique within the organization; + It must consist of lower case alphanumeric characters or `-`; + The length of the name must be less than or equal to 63; + Unicode names must be expressed in Punycode format (rfc3492). Examples: + prod-fleet + xn--wlq33vhyw9jb （Punycode form for \"生产环境\")",
-          "type": "string"
-        },
         "name": {
           "description": "Output only. The full, unique resource name of this fleet in the format of `projects/{project}/locations/{location}/fleets/{fleet}`. Each GCP project can have at most one fleet resource, named \"default\".",
           "readOnly": true,
           "type": "string"
+        },
+        "state": {
+          "$ref": "FleetLifecycleState",
+          "description": "Output only. State of the namespace resource.",
+          "readOnly": true
         },
         "uid": {
           "description": "Output only. Google-generated UUID for this resource. This is unique across all Fleet resources. If a Fleet resource is deleted and another resource with the same name is created, it gets a different uid.",
@@ -2511,6 +2512,32 @@
         "updateTime": {
           "description": "Output only. When the Fleet was last updated.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FleetLifecycleState": {
+      "description": "FleetLifecycleState describes the state of a Fleet resource.",
+      "id": "FleetLifecycleState",
+      "properties": {
+        "code": {
+          "description": "Output only. The current state of the Fleet resource.",
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "DELETING",
+            "UPDATING"
+          ],
+          "enumDescriptions": [
+            "The code is not set.",
+            "The fleet is being created.",
+            "The fleet active.",
+            "The fleet is being deleted.",
+            "The fleet is being updated."
+          ],
           "readOnly": true,
           "type": "string"
         }
@@ -2578,6 +2605,14 @@
       "description": "Configuration of an auth method for a member/cluster. Only one authentication method (e.g., OIDC and LDAP) can be set per AuthMethod.",
       "id": "IdentityServiceAuthMethod",
       "properties": {
+        "azureadConfig": {
+          "$ref": "IdentityServiceAzureADConfig",
+          "description": "AzureAD specific Configuration."
+        },
+        "googleConfig": {
+          "$ref": "IdentityServiceGoogleConfig",
+          "description": "GoogleConfig specific configuration"
+        },
         "name": {
           "description": "Identifier for auth config.",
           "type": "string"
@@ -2589,6 +2624,46 @@
         "proxy": {
           "description": "Proxy server address to use for auth method.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IdentityServiceAzureADConfig": {
+      "description": "Configuration for the AzureAD Auth flow.",
+      "id": "IdentityServiceAzureADConfig",
+      "properties": {
+        "clientId": {
+          "description": "ID for the registered client application that makes authentication requests to the Azure AD identity provider.",
+          "type": "string"
+        },
+        "clientSecret": {
+          "description": "Input only. Unencrypted AzureAD client secret will be passed to the GKE Hub CLH.",
+          "type": "string"
+        },
+        "encryptedClientSecret": {
+          "description": "Output only. Encrypted AzureAD client secret.",
+          "format": "byte",
+          "readOnly": true,
+          "type": "string"
+        },
+        "kubectlRedirectUri": {
+          "description": "The redirect URL that kubectl uses for authorization.",
+          "type": "string"
+        },
+        "tenant": {
+          "description": "Kind of Azure AD account to be authenticated. Supported values are or for accounts belonging to a specific tenant.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IdentityServiceGoogleConfig": {
+      "description": "Configuration for the Google Plugin Auth flow.",
+      "id": "IdentityServiceGoogleConfig",
+      "properties": {
+        "disable": {
+          "description": "Disable automatic configuration of Google Plugin on supported platforms.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -3127,7 +3202,7 @@
         },
         "metering": {
           "$ref": "MeteringMembershipState",
-          "description": "Metering-specific spec."
+          "description": "Metering-specific state."
         },
         "policycontroller": {
           "$ref": "PolicyControllerMembershipState",
@@ -3232,7 +3307,7 @@
           "type": "boolean"
         },
         "resourceLink": {
-          "description": "Immutable. Self-link of the GCP resource for the GKE Multi-Cloud cluster. For example: //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/awsClusters/my-cluster //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/azureClusters/my-cluster",
+          "description": "Immutable. Self-link of the GCP resource for the GKE Multi-Cloud cluster. For example: //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/awsClusters/my-cluster //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/azureClusters/my-cluster //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/attachedClusters/my-cluster",
           "type": "string"
         }
       },
@@ -3433,13 +3508,13 @@
             "INSTALL_SPEC_UNSPECIFIED",
             "INSTALL_SPEC_NOT_INSTALLED",
             "INSTALL_SPEC_ENABLED",
-            "INSTALL_SPEC_DISABLED"
+            "INSTALL_SPEC_SUSPENDED"
           ],
           "enumDescriptions": [
             "Spec is unknown.",
             "Request to uninstall Policy Controller.",
             "Request to install and enable Policy Controller.",
-            "Request to disable Policy Controller. If Policy Controller is not installed, it will be installed but disabled."
+            "Request to suspend Policy Controller i.e. its webhooks. If Policy Controller is not installed, it will be installed but suspended."
           ],
           "type": "string"
         },
@@ -3462,47 +3537,6 @@
         "templateLibraryConfig": {
           "$ref": "PolicyControllerTemplateLibraryConfig",
           "description": "Configures the library templates to install along with Policy Controller."
-        }
-      },
-      "type": "object"
-    },
-    "PolicyControllerHubState": {
-      "description": "State of the Policy Controller.",
-      "id": "PolicyControllerHubState",
-      "properties": {
-        "deploymentStates": {
-          "additionalProperties": {
-            "enum": [
-              "DEPLOYMENT_STATE_UNSPECIFIED",
-              "DEPLOYMENT_STATE_NOT_INSTALLED",
-              "DEPLOYMENT_STATE_INSTALLED",
-              "DEPLOYMENT_STATE_ERROR"
-            ],
-            "enumDescriptions": [
-              "Deployment's state cannot be determined",
-              "Deployment is not installed",
-              "Deployment is installed",
-              "Deployment was attempted to be installed, but has errors"
-            ],
-            "type": "string"
-          },
-          "description": "Map from deployment name to deployment state. Example deployments are gatekeeper-controller-manager, gatekeeper-audit deployment, and gatekeeper-mutation.",
-          "type": "object"
-        },
-        "version": {
-          "$ref": "PolicyControllerHubVersion",
-          "description": "The version of Gatekeeper Policy Controller deployed."
-        }
-      },
-      "type": "object"
-    },
-    "PolicyControllerHubVersion": {
-      "description": "The build version of Gatekeeper that Policy Controller is using.",
-      "id": "PolicyControllerHubVersion",
-      "properties": {
-        "version": {
-          "description": "The gatekeeper image tag that is composed of ACM version, git tag, build number.",
-          "type": "string"
         }
       },
       "type": "object"
@@ -3530,16 +3564,15 @@
           "description": "The user-defined name for the cluster used by ClusterSelectors to group clusters together. This should match Membership's membership_name, unless the user installed PC on the cluster manually prior to enabling the PC hub feature. Unique within a Policy Controller installation.",
           "type": "string"
         },
-        "membershipSpec": {
-          "$ref": "PolicyControllerMembershipSpec",
-          "description": "Membership configuration in the cluster. This represents the actual state in the cluster, while the MembershipSpec in the FeatureSpec represents the intended state"
-        },
-        "policyControllerHubState": {
-          "$ref": "PolicyControllerHubState",
-          "description": "Policy Controller state observed by the Policy Controller Hub"
+        "componentStates": {
+          "additionalProperties": {
+            "$ref": "PolicyControllerOnClusterState"
+          },
+          "description": "Currently these include (also serving as map keys): 1. \"admission\" 2. \"audit\" 3. \"mutation\" 4. \"constraint template library\"",
+          "type": "object"
         },
         "state": {
-          "description": "The lifecycle state Policy Controller is in.",
+          "description": "The overall Policy Controller lifecycle state observed by the Hub Feature controller.",
           "enum": [
             "LIFECYCLE_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
@@ -3585,6 +3618,41 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PolicyControllerOnClusterState": {
+      "description": "OnClusterState represents the state of a sub-component of Policy Controller.",
+      "id": "PolicyControllerOnClusterState",
+      "properties": {
+        "details": {
+          "description": "Surface potential errors or information logs.",
+          "type": "string"
+        },
+        "state": {
+          "description": "The lifecycle state of this component.",
+          "enum": [
+            "LIFECYCLE_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLING",
+            "ACTIVE",
+            "UPDATING",
+            "DECOMISSIONING",
+            "CLUSTER_ERROR",
+            "HUB_ERROR"
+          ],
+          "enumDescriptions": [
+            "The lifecycle state is unspecified.",
+            "The PC does not exist on the given cluster, and no k8s resources of any type that are associated with the PC should exist there. The cluster does not possess a membership with the PCH.",
+            "The PCH possesses a Membership, however the PC is not fully installed on the cluster. In this state the hub can be expected to be taking actions to install the PC on the cluster.",
+            "The PC is fully installed on the cluster and in an operational mode. In this state PCH will be reconciling state with the PC, and the PC will be performing it’s operational tasks per that software. Entering a READY state requires that the hub has confirmed the PC is installed and its pods are operational with the version of the PC the PCH expects.",
+            "The PC is fully installed, but in the process of changing the configuration (including changing the version of PC either up and down, or modifying the manifests of PC) of the resources running on the cluster. The PCH has a Membership, is aware of the version the cluster should be running in, but has not confirmed for itself that the PC is running with that version.",
+            "The PC may have resources on the cluster, but the PCH wishes to remove the Membership. The Membership still exists.",
+            "The PC is not operational, and the PCH is unable to act to make it operational. Entering a CLUSTER_ERROR state happens automatically when the PCH determines that a PC installed on the cluster is non-operative or that the cluster does not meet requirements set for the PCH to administer the cluster but has nevertheless been given an instruction to do so (such as ‘install’).",
+            "In this state, the PC may still be operational, and only the PCH is unable to act. The hub should not issue instructions to change the PC state, or otherwise interfere with the on-cluster resources. Entering a HUB_ERROR state happens automatically when the PCH determines the hub is in an unhealthy state and it wishes to ‘take hands off’ to avoid corrupting the PC or other data."
+          ],
+          "type": "string"
         }
       },
       "type": "object"

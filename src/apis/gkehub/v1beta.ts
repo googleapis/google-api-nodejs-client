@@ -258,7 +258,7 @@ export namespace gkehub_v1beta {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -717,6 +717,10 @@ export namespace gkehub_v1beta {
      */
     monitoring?: Schema$ConfigManagementPolicyControllerMonitoring;
     /**
+     * Enable or disable mutation in policy controller. If true, mutation CRDs, webhook and controller deployment will be deployed to the cluster.
+     */
+    mutationEnabled?: boolean | null;
+    /**
      * Enables the ability to use Constraint Templates that reference to objects other than the object currently being evaluated.
      */
     referentialRulesEnabled?: boolean | null;
@@ -1154,7 +1158,7 @@ export namespace gkehub_v1beta {
      */
     identityservice?: Schema$IdentityServiceMembershipState;
     /**
-     * Metering-specific spec.
+     * Metering-specific state.
      */
     metering?: Schema$MeteringMembershipState;
     /**
@@ -1321,6 +1325,10 @@ export namespace gkehub_v1beta {
      */
     monitoring?: Schema$PolicyControllerMonitoringConfig;
     /**
+     * Enables the ability to mutate resources using Policy Controller.
+     */
+    mutationEnabled?: boolean | null;
+    /**
      * Enables the ability to use Constraint Templates that reference to objects other than the object currently being evaluated.
      */
     referentialRulesEnabled?: boolean | null;
@@ -1328,28 +1336,6 @@ export namespace gkehub_v1beta {
      * Configures the library templates to install along with Policy Controller.
      */
     templateLibraryConfig?: Schema$PolicyControllerTemplateLibraryConfig;
-  }
-  /**
-   * State of the Policy Controller.
-   */
-  export interface Schema$PolicyControllerHubState {
-    /**
-     * Map from deployment name to deployment state. Example deployments are gatekeeper-controller-manager, gatekeeper-audit deployment, and gatekeeper-mutation.
-     */
-    deploymentStates?: {[key: string]: string} | null;
-    /**
-     * The version of Gatekeeper Policy Controller deployed.
-     */
-    version?: Schema$PolicyControllerHubVersion;
-  }
-  /**
-   * The build version of Gatekeeper that Policy Controller is using.
-   */
-  export interface Schema$PolicyControllerHubVersion {
-    /**
-     * The gatekeeper image tag that is composed of ACM version, git tag, build number.
-     */
-    version?: string | null;
   }
   /**
    * **Policy Controller**: Configuration for a single cluster. Intended to parallel the PolicyController CR.
@@ -1373,15 +1359,13 @@ export namespace gkehub_v1beta {
      */
     clusterName?: string | null;
     /**
-     * Membership configuration in the cluster. This represents the actual state in the cluster, while the MembershipSpec in the FeatureSpec represents the intended state
+     * Currently these include (also serving as map keys): 1. "admission" 2. "audit" 3. "mutation" 4. "constraint template library"
      */
-    membershipSpec?: Schema$PolicyControllerMembershipSpec;
+    componentStates?: {
+      [key: string]: Schema$PolicyControllerOnClusterState;
+    } | null;
     /**
-     * Policy Controller state observed by the Policy Controller Hub
-     */
-    policyControllerHubState?: Schema$PolicyControllerHubState;
-    /**
-     * The lifecycle state Policy Controller is in.
+     * The overall Policy Controller lifecycle state observed by the Hub Feature controller.
      */
     state?: string | null;
   }
@@ -1393,6 +1377,19 @@ export namespace gkehub_v1beta {
      * Specifies the list of backends Policy Controller will export to. An empty list would effectively disable metrics export.
      */
     backends?: string[] | null;
+  }
+  /**
+   * OnClusterState represents the state of a sub-component of Policy Controller.
+   */
+  export interface Schema$PolicyControllerOnClusterState {
+    /**
+     * Surface potential errors or information logs.
+     */
+    details?: string | null;
+    /**
+     * The lifecycle state of this component.
+     */
+    state?: string | null;
   }
   /**
    * The config specifying which default library templates to install.
