@@ -818,7 +818,7 @@
                       ],
                       "parameters": {
                         "pageSize": {
-                          "description": "The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 50 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                          "description": "The maximum number of configs to return. The service may return fewer than this value. The maximum value is 1000; values above 1000 will be coerced to 1000.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -2011,7 +2011,7 @@
       }
     }
   },
-  "revision": "20220619",
+  "revision": "20220808",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ApprovalConfig": {
