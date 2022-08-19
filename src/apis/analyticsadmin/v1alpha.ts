@@ -159,7 +159,7 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaAccessDimension {
     /**
-     * The API name of the dimension. Dimensions are referenced by name in `dimensionFilter` and `orderBys`.
+     * The API name of the dimension. See [Data Access Schema](https://developers.google.com/analytics/devguides/config/admin/v1/access-api-schema) for the list of dimensions supported in this API. Dimensions are referenced by name in `dimensionFilter` and `orderBys`.
      */
     dimensionName?: string | null;
   }
@@ -168,7 +168,7 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaAccessDimensionHeader {
     /**
-     * The dimension's name; for example 'country'.
+     * The dimension's name; for example 'userEmail'.
      */
     dimensionName?: string | null;
   }
@@ -254,7 +254,7 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaAccessMetric {
     /**
-     * The API name of the metric. Metrics are referenced by name in `metricFilter` & `orderBys`.
+     * The API name of the metric. See [Data Access Schema](https://developers.google.com/analytics/devguides/config/admin/v1/access-api-schema) for the list of metrics supported in this API. Metrics are referenced by name in `metricFilter` & `orderBys`.
      */
     metricName?: string | null;
   }
@@ -469,6 +469,10 @@ export namespace analyticsadmin_v1alpha {
     displayVideo360AdvertiserLink?: Schema$GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink;
   }
   /**
+   * Request message for ArchiveAudience RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaArchiveAudienceRequest {}
+  /**
    * Request message for ArchiveCustomDimension RPC.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaArchiveCustomDimensionRequest {}
@@ -496,6 +500,273 @@ export namespace analyticsadmin_v1alpha {
      * Required. The reporting attribution model used to calculate conversion credit in this property's reports. Changing the attribution model will apply to both historical and future data. These changes will be reflected in reports with conversion and revenue data. User and session data will be unaffected.
      */
     reportingAttributionModel?: string | null;
+  }
+  /**
+   * A resource message representing a GA4 Audience.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaAudience {
+    /**
+     * Output only. It is automatically set by GA to false if this is an NPA Audience and is excluded from ads personalization.
+     */
+    adsPersonalizationEnabled?: boolean | null;
+    /**
+     * Required. The description of the Audience.
+     */
+    description?: string | null;
+    /**
+     * Required. The display name of the Audience.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. Specifies an event to log when a user joins the Audience. If not set, no event is logged when a user joins the Audience.
+     */
+    eventTrigger?: Schema$GoogleAnalyticsAdminV1alphaAudienceEventTrigger;
+    /**
+     * Immutable. Specifies how long an exclusion lasts for users that meet the exclusion filter. It is applied to all EXCLUDE filter clauses and is ignored when there is no EXCLUDE filter clause in the Audience.
+     */
+    exclusionDurationMode?: string | null;
+    /**
+     * Required. Immutable. null Filter clauses that define the Audience. All clauses will be AND’ed together.
+     */
+    filterClauses?: Schema$GoogleAnalyticsAdminV1alphaAudienceFilterClause[];
+    /**
+     * Required. Immutable. The duration a user should stay in an Audience. It cannot be set to more than 540 days.
+     */
+    membershipDurationDays?: number | null;
+    /**
+     * Output only. The resource name for this Audience resource. Format: properties/{propertyId\}/audiences/{audienceId\}
+     */
+    name?: string | null;
+  }
+  /**
+   * A specific filter for a single dimension or metric.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilter {
+    /**
+     * Optional. Indicates whether this filter needs dynamic evaluation or not. If set to true, users join the Audience if they ever met the condition (static evaluation). If unset or set to false, user evaluation for an Audience is dynamic; users are added to an Audience when they meet the conditions and then removed when they no longer meet them. This can only be set when Audience scope is ACROSS_ALL_SESSIONS.
+     */
+    atAnyPointInTime?: boolean | null;
+    /**
+     * A filter for numeric or date values between certain values on a dimension or metric.
+     */
+    betweenFilter?: Schema$GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterBetweenFilter;
+    /**
+     * Required. Immutable. The dimension name or metric name to filter.
+     */
+    fieldName?: string | null;
+    /**
+     * Optional. If set, specifies the time window for which to evaluate data in number of days. If not set, then audience data is evaluated against lifetime data (i.e., infinite time window). For example, if set to 1 day, only the current day's data is evaluated. The reference point is the current day when at_any_point_in_time is unset or false. It can only be set when Audience scope is ACROSS_ALL_SESSIONS and cannot be greater than 60 days.
+     */
+    inAnyNDayPeriod?: number | null;
+    /**
+     * A filter for a string dimension that matches a particular list of options.
+     */
+    inListFilter?: Schema$GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterInListFilter;
+    /**
+     * A filter for numeric or date values on a dimension or metric.
+     */
+    numericFilter?: Schema$GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterNumericFilter;
+    /**
+     * A filter for a string-type dimension that matches a particular pattern.
+     */
+    stringFilter?: Schema$GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterStringFilter;
+  }
+  /**
+   * A filter for numeric or date values between certain values on a dimension or metric.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterBetweenFilter {
+    /**
+     * Required. Begins with this number, inclusive.
+     */
+    fromValue?: Schema$GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterNumericValue;
+    /**
+     * Required. Ends with this number, inclusive.
+     */
+    toValue?: Schema$GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterNumericValue;
+  }
+  /**
+   * A filter for a string dimension that matches a particular list of options.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterInListFilter {
+    /**
+     * Optional. If true, the match is case-sensitive. If false, the match is case-insensitive.
+     */
+    caseSensitive?: boolean | null;
+    /**
+     * Required. The list of possible string values to match against. Must be non-empty.
+     */
+    values?: string[] | null;
+  }
+  /**
+   * A filter for numeric or date values on a dimension or metric.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterNumericFilter {
+    /**
+     * Required. The operation applied to a numeric filter.
+     */
+    operation?: string | null;
+    /**
+     * Required. The numeric or date value to match against.
+     */
+    value?: Schema$GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterNumericValue;
+  }
+  /**
+   * To represent a number.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterNumericValue {
+    /**
+     * Double value.
+     */
+    doubleValue?: number | null;
+    /**
+     * Integer value.
+     */
+    int64Value?: string | null;
+  }
+  /**
+   * A filter for a string-type dimension that matches a particular pattern.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterStringFilter {
+    /**
+     * Optional. If true, the match is case-sensitive. If false, the match is case-insensitive.
+     */
+    caseSensitive?: boolean | null;
+    /**
+     * Required. The match type for the string filter.
+     */
+    matchType?: string | null;
+    /**
+     * Required. The string value to be matched against.
+     */
+    value?: string | null;
+  }
+  /**
+   * A filter that matches events of a single event name. If an event parameter is specified, only the subset of events that match both the single event name and the parameter filter expressions match this event filter.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaAudienceEventFilter {
+    /**
+     * Required. Immutable. The name of the event to match against.
+     */
+    eventName?: string | null;
+    /**
+     * Optional. If specified, this filter matches events that match both the single event name and the parameter filter expressions. AudienceEventFilter inside the parameter filter expression cannot be set (i.e., nested event filters are not supported). This should be a single and_group of dimension_or_metric_filter or not_expression; ANDs of ORs are not supported. Also, if it includes a filter for "eventCount", only that one will be considered; all the other filters will be ignored.
+     */
+    eventParameterFilterExpression?: Schema$GoogleAnalyticsAdminV1alphaAudienceFilterExpression;
+  }
+  /**
+   * Specifies an event to log when a user joins the Audience.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaAudienceEventTrigger {
+    /**
+     * Required. The event name that will be logged.
+     */
+    eventName?: string | null;
+    /**
+     * Required. When to log the event.
+     */
+    logCondition?: string | null;
+  }
+  /**
+   * A clause for defining either a simple or sequence filter. A filter can be inclusive (i.e., users satisfying the filter clause are included in the Audience) or exclusive (i.e., users satisfying the filter clause are excluded from the Audience).
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaAudienceFilterClause {
+    /**
+     * Required. Specifies whether this is an include or exclude filter clause.
+     */
+    clauseType?: string | null;
+    /**
+     * Filters that must occur in a specific order for the user to be a member of the Audience.
+     */
+    sequenceFilter?: Schema$GoogleAnalyticsAdminV1alphaAudienceSequenceFilter;
+    /**
+     * A simple filter that a user must satisfy to be a member of the Audience.
+     */
+    simpleFilter?: Schema$GoogleAnalyticsAdminV1alphaAudienceSimpleFilter;
+  }
+  /**
+   * A logical expression of Audience dimension, metric, or event filters.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaAudienceFilterExpression {
+    /**
+     * A list of expressions to be AND’ed together. It can only contain AudienceFilterExpressions with or_group. This must be set for the top level AudienceFilterExpression.
+     */
+    andGroup?: Schema$GoogleAnalyticsAdminV1alphaAudienceFilterExpressionList;
+    /**
+     * A filter on a single dimension or metric. This cannot be set on the top level AudienceFilterExpression.
+     */
+    dimensionOrMetricFilter?: Schema$GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilter;
+    /**
+     * Creates a filter that matches a specific event. This cannot be set on the top level AudienceFilterExpression.
+     */
+    eventFilter?: Schema$GoogleAnalyticsAdminV1alphaAudienceEventFilter;
+    /**
+     * A filter expression to be NOT'ed (i.e., inverted, complemented). It can only include a dimension_or_metric_filter. This cannot be set on the top level AudienceFilterExpression.
+     */
+    notExpression?: Schema$GoogleAnalyticsAdminV1alphaAudienceFilterExpression;
+    /**
+     * A list of expressions to OR’ed together. It cannot contain AudienceFilterExpressions with and_group or or_group.
+     */
+    orGroup?: Schema$GoogleAnalyticsAdminV1alphaAudienceFilterExpressionList;
+  }
+  /**
+   * A list of Audience filter expressions.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaAudienceFilterExpressionList {
+    /**
+     * A list of Audience filter expressions.
+     */
+    filterExpressions?: Schema$GoogleAnalyticsAdminV1alphaAudienceFilterExpression[];
+  }
+  /**
+   * Defines filters that must occur in a specific order for the user to be a member of the Audience.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaAudienceSequenceFilter {
+    /**
+     * Required. Immutable. Specifies the scope for this filter.
+     */
+    scope?: string | null;
+    /**
+     * Optional. Defines the time period in which the whole sequence must occur.
+     */
+    sequenceMaximumDuration?: string | null;
+    /**
+     * Required. An ordered sequence of steps. A user must complete each step in order to join the sequence filter.
+     */
+    sequenceSteps?: Schema$GoogleAnalyticsAdminV1alphaAudienceSequenceFilterAudienceSequenceStep[];
+  }
+  /**
+   * A condition that must occur in the specified step order for this user to match the sequence.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaAudienceSequenceFilterAudienceSequenceStep {
+    /**
+     * Optional. When set, this step must be satisfied within the constraint_duration of the previous step (i.e., t[i] - t[i-1] <= constraint_duration). If not set, there is no duration requirement (the duration is effectively unlimited). It is ignored for the first step.
+     */
+    constraintDuration?: string | null;
+    /**
+     * Required. Immutable. A logical expression of Audience dimension, metric, or event filters in each step.
+     */
+    filterExpression?: Schema$GoogleAnalyticsAdminV1alphaAudienceFilterExpression;
+    /**
+     * Optional. If true, the event satisfying this step must be the very next event after the event satisfying the last step. If unset or false, this step indirectly follows the prior step; for example, there may be events between the prior step and this step. It is ignored for the first step.
+     */
+    immediatelyFollows?: boolean | null;
+    /**
+     * Required. Immutable. Specifies the scope for this step.
+     */
+    scope?: string | null;
+  }
+  /**
+   * Defines a simple filter that a user must satisfy to be a member of the Audience.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaAudienceSimpleFilter {
+    /**
+     * Required. Immutable. A logical expression of Audience dimension, metric, or event filters.
+     */
+    filterExpression?: Schema$GoogleAnalyticsAdminV1alphaAudienceFilterExpression;
+    /**
+     * Required. Immutable. Specifies the scope for this filter.
+     */
+    scope?: string | null;
   }
   /**
    * Read-only resource used to summarize a principal's effective roles.
@@ -1146,6 +1417,19 @@ export namespace analyticsadmin_v1alpha {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for ListAudiences RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaListAudiencesResponse {
+    /**
+     * List of Audiences.
+     */
+    audiences?: Schema$GoogleAnalyticsAdminV1alphaAudience[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for ListConversionEvents RPC.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaListConversionEventsResponse {
@@ -1455,9 +1739,9 @@ export namespace analyticsadmin_v1alpha {
      */
     orderBys?: Schema$GoogleAnalyticsAdminV1alphaAccessOrderBy[];
     /**
-     * Toggles whether to return the current state of this Analytics Property's quota. Quota is returned in [PropertyQuota](#PropertyQuota).
+     * Toggles whether to return the current state of this Analytics Property's quota. Quota is returned in [AccessQuota](#AccessQuota).
      */
-    returnPropertyQuota?: boolean | null;
+    returnEntityQuota?: boolean | null;
     /**
      * This request's time zone if specified. If unspecified, the property's time zone is used. The request's time zone is used to interpret the start & end dates of the report. Formatted as strings from the IANA Time Zone database (https://www.iana.org/time-zones); for example "America/New_York" or "Asia/Tokyo".
      */
@@ -4396,6 +4680,7 @@ export namespace analyticsadmin_v1alpha {
 
   export class Resource$Properties {
     context: APIRequestContext;
+    audiences: Resource$Properties$Audiences;
     conversionEvents: Resource$Properties$Conversionevents;
     customDimensions: Resource$Properties$Customdimensions;
     customMetrics: Resource$Properties$Custommetrics;
@@ -4407,6 +4692,7 @@ export namespace analyticsadmin_v1alpha {
     userLinks: Resource$Properties$Userlinks;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.audiences = new Resource$Properties$Audiences(this.context);
       this.conversionEvents = new Resource$Properties$Conversionevents(
         this.context
       );
@@ -5824,7 +6110,7 @@ export namespace analyticsadmin_v1alpha {
      *       //   "metrics": [],
      *       //   "offset": "my_offset",
      *       //   "orderBys": [],
-     *       //   "returnPropertyQuota": false,
+     *       //   "returnEntityQuota": false,
      *       //   "timeZone": "my_timeZone"
      *       // }
      *     },
@@ -6540,6 +6826,827 @@ export namespace analyticsadmin_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaGoogleSignalsSettings;
+  }
+
+  export class Resource$Properties$Audiences {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Archives an Audience on a property.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.audiences.archive({
+     *     // Required. Example format: properties/1234/audiences/5678
+     *     name: 'properties/my-propertie/audiences/my-audience',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    archive(
+      params: Params$Resource$Properties$Audiences$Archive,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    archive(
+      params?: Params$Resource$Properties$Audiences$Archive,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    archive(
+      params: Params$Resource$Properties$Audiences$Archive,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    archive(
+      params: Params$Resource$Properties$Audiences$Archive,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    archive(
+      params: Params$Resource$Properties$Audiences$Archive,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    archive(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    archive(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Audiences$Archive
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Audiences$Archive;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Audiences$Archive;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}:archive').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Creates an Audience.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.audiences.create({
+     *     // Required. Example format: properties/1234
+     *     parent: 'properties/my-propertie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adsPersonalizationEnabled": false,
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "eventTrigger": {},
+     *       //   "exclusionDurationMode": "my_exclusionDurationMode",
+     *       //   "filterClauses": [],
+     *       //   "membershipDurationDays": 0,
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adsPersonalizationEnabled": false,
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "eventTrigger": {},
+     *   //   "exclusionDurationMode": "my_exclusionDurationMode",
+     *   //   "filterClauses": [],
+     *   //   "membershipDurationDays": 0,
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Properties$Audiences$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Properties$Audiences$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAudience>;
+    create(
+      params: Params$Resource$Properties$Audiences$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Audiences$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAudience>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAudience>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Audiences$Create,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAudience>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAudience>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Audiences$Create
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAudience>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAudience>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAudience>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAudience>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Audiences$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Audiences$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/audiences').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAudience>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAudience>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lookup for a single Audience. Audiences created before 2020 may not be supported. Default audiences will not show filter definitions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.audiences.get({
+     *     // Required. The name of the Audience to get. Example format: properties/1234/audiences/5678
+     *     name: 'properties/my-propertie/audiences/my-audience',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adsPersonalizationEnabled": false,
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "eventTrigger": {},
+     *   //   "exclusionDurationMode": "my_exclusionDurationMode",
+     *   //   "filterClauses": [],
+     *   //   "membershipDurationDays": 0,
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Properties$Audiences$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Properties$Audiences$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAudience>;
+    get(
+      params: Params$Resource$Properties$Audiences$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Audiences$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAudience>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAudience>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Audiences$Get,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAudience>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAudience>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Audiences$Get
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAudience>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAudience>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAudience>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAudience>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Audiences$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Audiences$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAudience>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAudience>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists Audiences on a property. Audiences created before 2020 may not be supported. Default audiences will not show filter definitions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.audiences.list({
+     *     // The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListAudiences` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAudiences` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Example format: properties/1234
+     *     parent: 'properties/my-propertie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "audiences": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Properties$Audiences$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Properties$Audiences$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListAudiencesResponse>;
+    list(
+      params: Params$Resource$Properties$Audiences$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Audiences$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAudiencesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAudiencesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Audiences$List,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAudiencesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAudiencesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Audiences$List
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAudiencesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAudiencesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAudiencesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListAudiencesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Audiences$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Audiences$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/audiences').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListAudiencesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListAudiencesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an Audience on a property.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.audiences.patch({
+     *     // Output only. The resource name for this Audience resource. Format: properties/{propertyId\}/audiences/{audienceId\}
+     *     name: 'properties/my-propertie/audiences/my-audience',
+     *     // Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adsPersonalizationEnabled": false,
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "eventTrigger": {},
+     *       //   "exclusionDurationMode": "my_exclusionDurationMode",
+     *       //   "filterClauses": [],
+     *       //   "membershipDurationDays": 0,
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adsPersonalizationEnabled": false,
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "eventTrigger": {},
+     *   //   "exclusionDurationMode": "my_exclusionDurationMode",
+     *   //   "filterClauses": [],
+     *   //   "membershipDurationDays": 0,
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Properties$Audiences$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Properties$Audiences$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAudience>;
+    patch(
+      params: Params$Resource$Properties$Audiences$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Properties$Audiences$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAudience>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAudience>
+    ): void;
+    patch(
+      params: Params$Resource$Properties$Audiences$Patch,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAudience>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAudience>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Audiences$Patch
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAudience>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAudience>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAudience>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAudience>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Audiences$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Audiences$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAudience>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAudience>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Properties$Audiences$Archive
+    extends StandardParameters {
+    /**
+     * Required. Example format: properties/1234/audiences/5678
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaArchiveAudienceRequest;
+  }
+  export interface Params$Resource$Properties$Audiences$Create
+    extends StandardParameters {
+    /**
+     * Required. Example format: properties/1234
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaAudience;
+  }
+  export interface Params$Resource$Properties$Audiences$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the Audience to get. Example format: properties/1234/audiences/5678
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Audiences$List
+    extends StandardParameters {
+    /**
+     * The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListAudiences` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAudiences` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Example format: properties/1234
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Properties$Audiences$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The resource name for this Audience resource. Format: properties/{propertyId\}/audiences/{audienceId\}
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaAudience;
   }
 
   export class Resource$Properties$Conversionevents {
