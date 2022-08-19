@@ -1406,51 +1406,18 @@
               "location": "query",
               "repeated": true,
               "type": "string"
-            },
-            "resource.cueType": {
-              "enum": [
-                "cueTypeUnspecified",
-                "cueTypeAd"
-              ],
-              "enumDescriptions": [
-                "",
-                ""
-              ],
-              "location": "query",
-              "type": "string"
-            },
-            "resource.durationSecs": {
-              "description": "The duration of this cuepoint.",
-              "format": "uint32",
-              "location": "query",
-              "type": "integer"
-            },
-            "resource.etag": {
-              "location": "query",
-              "type": "string"
-            },
-            "resource.id": {
-              "description": "The identifier for cuepoint resource.",
-              "location": "query",
-              "type": "string"
-            },
-            "resource.insertionOffsetTimeMs": {
-              "description": "The time when the cuepoint should be inserted by offset to the broadcast actual start time.",
-              "format": "int64",
-              "location": "query",
-              "type": "string"
-            },
-            "resource.walltimeMs": {
-              "description": "The wall clock time at which the cuepoint should be inserted. Only one of insertion_offset_time_ms and walltime_ms may be set at a time.",
-              "format": "uint64",
-              "location": "query",
-              "type": "string"
             }
           },
           "path": "youtube/v3/liveBroadcasts/cuepoint",
+          "request": {
+            "$ref": "Cuepoint"
+          },
           "response": {
             "$ref": "Cuepoint"
-          }
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/youtubepartner"
+          ]
         },
         "list": {
           "description": "Retrieve the list of broadcasts associated with the given channel.",
@@ -3862,7 +3829,7 @@
       }
     }
   },
-  "revision": "20220628",
+  "revision": "20220817",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -7879,29 +7846,14 @@
           "type": "boolean"
         },
         "enableContentEncryption": {
-          "annotations": {
-            "required": [
-              "youtube.liveBroadcasts.update"
-            ]
-          },
           "description": "This setting indicates whether YouTube should enable content encryption for the broadcast.",
           "type": "boolean"
         },
         "enableDvr": {
-          "annotations": {
-            "required": [
-              "youtube.liveBroadcasts.update"
-            ]
-          },
           "description": "This setting determines whether viewers can access DVR controls while watching the video. DVR controls enable the viewer to control the video playback experience by pausing, rewinding, or fast forwarding content. The default value for this property is true. *Important:* You must set the value to true and also set the enableArchive property's value to true if you want to make playback available immediately after the broadcast ends.",
           "type": "boolean"
         },
         "enableEmbed": {
-          "annotations": {
-            "required": [
-              "youtube.liveBroadcasts.update"
-            ]
-          },
           "description": "This setting indicates whether the broadcast video can be played in an embedded player. If you choose to archive the video (using the enableArchive property), this setting will also apply to the archived video.",
           "type": "boolean"
         },
@@ -7951,20 +7903,10 @@
           "type": "string"
         },
         "recordFromStart": {
-          "annotations": {
-            "required": [
-              "youtube.liveBroadcasts.update"
-            ]
-          },
           "description": "Automatically start recording after the event goes live. The default value for this property is true. *Important:* You must also set the enableDvr property's value to true if you want the playback to be available immediately after the broadcast ends. If you set this property's value to true but do not also set the enableDvr property to true, there may be a delay of around one day before the archived video will be available for playback.",
           "type": "boolean"
         },
         "startWithSlate": {
-          "annotations": {
-            "required": [
-              "youtube.liveBroadcasts.update"
-            ]
-          },
           "description": "This setting indicates whether the broadcast should automatically begin with an in-stream slate when you update the broadcast's status to live. After updating the status, you then need to send a liveCuepoints.insert request that sets the cuepoint's eventState to end to remove the in-stream slate and make your broadcast stream visible to viewers.",
           "type": "boolean"
         },
@@ -11377,7 +11319,7 @@
       "type": "object"
     },
     "VideoStatus": {
-      "description": "Basic details about a video category, such as its localized title. Next Id: 17",
+      "description": "Basic details about a video category, such as its localized title. Next Id: 18",
       "id": "VideoStatus",
       "properties": {
         "embeddable": {
