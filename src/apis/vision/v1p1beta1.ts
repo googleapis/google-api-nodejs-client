@@ -1508,6 +1508,10 @@ export namespace vision_v1p1beta1 {
    */
   export interface Schema$GoogleCloudVisionV1p1beta1TextDetectionParams {
     /**
+     * A list of advanced OCR options to fine-tune OCR behavior.
+     */
+    advancedOcrOptions?: string[] | null;
+    /**
      * By default, Cloud Vision API only includes confidence score for DOCUMENT_TEXT_DETECTION result. Set the flag to true to include confidence score for TEXT_DETECTION as well.
      */
     enableTextDetectionConfidenceScore?: boolean | null;

@@ -449,7 +449,7 @@
       }
     }
   },
-  "revision": "20210820",
+  "revision": "20220805",
   "rootUrl": "https://vision.googleapis.com/",
   "schemas": {
     "AnnotateFileResponse": {
@@ -2710,6 +2710,13 @@
       "description": "Parameters for text detections. This is used to control TEXT_DETECTION and DOCUMENT_TEXT_DETECTION features.",
       "id": "GoogleCloudVisionV1p1beta1TextDetectionParams",
       "properties": {
+        "advancedOcrOptions": {
+          "description": "A list of advanced OCR options to fine-tune OCR behavior.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "enableTextDetectionConfidenceScore": {
           "description": "By default, Cloud Vision API only includes confidence score for DOCUMENT_TEXT_DETECTION result. Set the flag to true to include confidence score for TEXT_DETECTION as well.",
           "type": "boolean"
