@@ -4422,7 +4422,7 @@ export namespace youtube_v3 {
     viewCount?: string | null;
   }
   /**
-   * Basic details about a video category, such as its localized title. Next Id: 17
+   * Basic details about a video category, such as its localized title. Next Id: 18
    */
   export interface Schema$VideoStatus {
     /**
@@ -9090,7 +9090,7 @@ export namespace youtube_v3 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: ['https://www.googleapis.com/auth/youtubepartner'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9108,17 +9108,18 @@ export namespace youtube_v3 {
      *     // The *part* parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
      *     part: 'placeholder-value',
      *
-     *     'resource.cueType': 'placeholder-value',
-     *     // The duration of this cuepoint.
-     *     'resource.durationSecs': 'placeholder-value',
-     *
-     *     'resource.etag': 'placeholder-value',
-     *     // The identifier for cuepoint resource.
-     *     'resource.id': 'placeholder-value',
-     *     // The time when the cuepoint should be inserted by offset to the broadcast actual start time.
-     *     'resource.insertionOffsetTimeMs': 'placeholder-value',
-     *     // The wall clock time at which the cuepoint should be inserted. Only one of insertion_offset_time_ms and walltime_ms may be set at a time.
-     *     'resource.walltimeMs': 'placeholder-value',
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cueType": "my_cueType",
+     *       //   "durationSecs": 0,
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "insertionOffsetTimeMs": "my_insertionOffsetTimeMs",
+     *       //   "walltimeMs": "my_walltimeMs"
+     *       // }
+     *     },
      *   });
      *   console.log(res.data);
      *
@@ -9767,30 +9768,11 @@ export namespace youtube_v3 {
      * The *part* parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
      */
     part?: string[];
+
     /**
-     *
+     * Request body metadata
      */
-    'resource.cueType'?: string;
-    /**
-     * The duration of this cuepoint.
-     */
-    'resource.durationSecs'?: number;
-    /**
-     *
-     */
-    'resource.etag'?: string;
-    /**
-     * The identifier for cuepoint resource.
-     */
-    'resource.id'?: string;
-    /**
-     * The time when the cuepoint should be inserted by offset to the broadcast actual start time.
-     */
-    'resource.insertionOffsetTimeMs'?: string;
-    /**
-     * The wall clock time at which the cuepoint should be inserted. Only one of insertion_offset_time_ms and walltime_ms may be set at a time.
-     */
-    'resource.walltimeMs'?: string;
+    requestBody?: Schema$Cuepoint;
   }
   export interface Params$Resource$Livebroadcasts$List
     extends StandardParameters {
