@@ -362,6 +362,152 @@
             }
           }
         },
+        "customConstraints": {
+          "methods": {
+            "create": {
+              "description": "Creates a CustomConstraint. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the organization does not exist. Returns a `google.rpc.Status` with `google.rpc.Code.ALREADY_EXISTS` if the constraint already exists on the given organization.",
+              "flatPath": "v2/organizations/{organizationsId}/customConstraints",
+              "httpMethod": "POST",
+              "id": "orgpolicy.organizations.customConstraints.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Must be in the following form: * `organizations/{organization_id}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+parent}/customConstraints",
+              "request": {
+                "$ref": "GoogleCloudOrgpolicyV2CustomConstraint"
+              },
+              "response": {
+                "$ref": "GoogleCloudOrgpolicyV2CustomConstraint"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a Custom Constraint. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the constraint does not exist.",
+              "flatPath": "v2/organizations/{organizationsId}/customConstraints/{customConstraintsId}",
+              "httpMethod": "DELETE",
+              "id": "orgpolicy.organizations.customConstraints.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the custom constraint to delete. See `CustomConstraint` for naming rules.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/customConstraints/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Gets a CustomConstraint. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the CustomConstraint does not exist.",
+              "flatPath": "v2/organizations/{organizationsId}/customConstraints/{customConstraintsId}",
+              "httpMethod": "GET",
+              "id": "orgpolicy.organizations.customConstraints.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Resource name of the custom constraint. See `CustomConstraint` for naming requirements.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/customConstraints/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+name}",
+              "response": {
+                "$ref": "GoogleCloudOrgpolicyV2CustomConstraint"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Retrieves all of the `CustomConstraints` that exist on a particular organization resource.",
+              "flatPath": "v2/organizations/{organizationsId}/customConstraints",
+              "httpMethod": "GET",
+              "id": "orgpolicy.organizations.customConstraints.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The target Cloud resource that parents the set of custom constraints that will be returned from this call. Must be in one of the following forms: * `organizations/{organization_id}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+parent}/customConstraints",
+              "response": {
+                "$ref": "GoogleCloudOrgpolicyV2ListCustomConstraintsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "patch": {
+              "description": "Updates a Custom Constraint. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the constraint does not exist. Note: the supplied policy will perform a full overwrite of all fields.",
+              "flatPath": "v2/organizations/{organizationsId}/customConstraints/{customConstraintsId}",
+              "httpMethod": "PATCH",
+              "id": "orgpolicy.organizations.customConstraints.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Immutable. Name of the constraint. This is unique within the organization. Format of the name should be * `organizations/{organization_id}/customConstraints/{custom_constraint_id}` Example : \"organizations/123/customConstraints/custom.createOnlyE2TypeVms\"",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/customConstraints/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+name}",
+              "request": {
+                "$ref": "GoogleCloudOrgpolicyV2CustomConstraint"
+              },
+              "response": {
+                "$ref": "GoogleCloudOrgpolicyV2CustomConstraint"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
         "policies": {
           "methods": {
             "create": {
@@ -751,7 +897,7 @@
       }
     }
   },
-  "revision": "20220321",
+  "revision": "20220817",
   "rootUrl": "https://orgpolicy.googleapis.com/",
   "schemas": {
     "GoogleCloudOrgpolicyV2AlternatePolicySpec": {
@@ -831,6 +977,69 @@
       },
       "type": "object"
     },
+    "GoogleCloudOrgpolicyV2CustomConstraint": {
+      "description": "A custom constraint defined by customers which can *only* be applied to the given resource types and organization. By creating a custom constraint, customers can applied policies of this custom constraint. *Creating a custom constraint itself does NOT apply any policy enforcement*.",
+      "id": "GoogleCloudOrgpolicyV2CustomConstraint",
+      "properties": {
+        "actionType": {
+          "description": "Allow or deny type.",
+          "enum": [
+            "ACTION_TYPE_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Will results in user error.",
+            "Allowed action type.",
+            "Deny action type."
+          ],
+          "type": "string"
+        },
+        "condition": {
+          "description": "Org policy condition/expression. For example: `resource.instanceName.matches(\"[production|test]_.*_(\\d)+\")'` or, `resource.management.auto_upgrade == true`",
+          "type": "string"
+        },
+        "description": {
+          "description": "Detailed information about this custom policy constraint.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "One line display name for the UI.",
+          "type": "string"
+        },
+        "methodTypes": {
+          "description": "All the operations being applied for this constraint.",
+          "items": {
+            "enum": [
+              "METHOD_TYPE_UNSPECIFIED",
+              "CREATE",
+              "UPDATE",
+              "DELETE"
+            ],
+            "enumDescriptions": [
+              "Unspecified. Will results in user error.",
+              "Constraint applied when creating the resource.",
+              "Constraint applied when updating the resource.",
+              "Constraint applied when deleting the resource."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Immutable. Name of the constraint. This is unique within the organization. Format of the name should be * `organizations/{organization_id}/customConstraints/{custom_constraint_id}` Example : \"organizations/123/customConstraints/custom.createOnlyE2TypeVms\"",
+          "type": "string"
+        },
+        "resourceTypes": {
+          "description": "Immutable. The Resource Instance type on which this policy applies to. Format will be of the form : \"/\" Example: * `compute.googleapis.com/Instance`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudOrgpolicyV2ListConstraintsResponse": {
       "description": "The response returned from the ListConstraints method.",
       "id": "GoogleCloudOrgpolicyV2ListConstraintsResponse",
@@ -844,6 +1053,24 @@
         },
         "nextPageToken": {
           "description": "Page token used to retrieve the next page. This is currently not used.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudOrgpolicyV2ListCustomConstraintsResponse": {
+      "description": "The response returned from the ListCustomConstraints method. It will be empty if no `CustomConstraints` are set on the organization resource.",
+      "id": "GoogleCloudOrgpolicyV2ListCustomConstraintsResponse",
+      "properties": {
+        "customConstraints": {
+          "description": "All `CustomConstraints` that exist on the organization resource. It will be empty if no `CustomConstraints` are set.",
+          "items": {
+            "$ref": "GoogleCloudOrgpolicyV2CustomConstraint"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Page token used to retrieve the next page. This is currently not used, but the server may at any point start supplying a valid token.",
           "type": "string"
         }
       },
