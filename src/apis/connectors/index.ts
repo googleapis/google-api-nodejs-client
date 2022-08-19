@@ -15,18 +15,26 @@
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {connectors_v1} from './v1';
+import {connectors_v2} from './v2';
 
 export const VERSIONS = {
   v1: connectors_v1.Connectors,
+  v2: connectors_v2.Connectors,
 };
 
 export function connectors(version: 'v1'): connectors_v1.Connectors;
 export function connectors(
   options: connectors_v1.Options
 ): connectors_v1.Connectors;
-export function connectors<T = connectors_v1.Connectors>(
+export function connectors(version: 'v2'): connectors_v2.Connectors;
+export function connectors(
+  options: connectors_v2.Options
+): connectors_v2.Connectors;
+export function connectors<
+  T = connectors_v1.Connectors | connectors_v2.Connectors
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1' | connectors_v1.Options
+  versionOrOptions: 'v1' | connectors_v1.Options | 'v2' | connectors_v2.Options
 ) {
   return getAPI<T>('connectors', versionOrOptions, VERSIONS, this);
 }
@@ -34,6 +42,7 @@ export function connectors<T = connectors_v1.Connectors>(
 const auth = new AuthPlus();
 export {auth};
 export {connectors_v1};
+export {connectors_v2};
 export {
   AuthPlus,
   GlobalOptions,
