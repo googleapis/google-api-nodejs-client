@@ -2610,7 +2610,7 @@
       }
     }
   },
-  "revision": "20220407",
+  "revision": "20220817",
   "rootUrl": "https://androidenterprise.googleapis.com/",
   "schemas": {
     "Administrator": {
@@ -3948,6 +3948,10 @@
       "description": "A Products resource represents an app in the Google Play store that is available to at least some users in the enterprise. (Some apps are restricted to a single enterprise, and no information about them is made available outside that enterprise.) The information provided for each product (localized name, icon, link to the full Google Play details page) is intended to allow a basic representation of the product within an EMM user interface.",
       "id": "Product",
       "properties": {
+        "appRestrictionsSchema": {
+          "$ref": "AppRestrictionsSchema",
+          "description": "The app restriction schema"
+        },
         "appTracks": {
           "description": "The tracks visible to the enterprise.",
           "items": {
