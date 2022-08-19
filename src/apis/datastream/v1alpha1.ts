@@ -1168,7 +1168,7 @@ export namespace datastream_v1alpha1 {
    */
   export interface Schema$VpcPeeringConfig {
     /**
-     * Required. A free subnet for peering. (CIDR of /29) TODO(b/172995841) add validators.
+     * Required. A free subnet for peering. (CIDR of /29)
      */
     subnet?: string | null;
     /**
