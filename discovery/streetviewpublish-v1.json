@@ -533,7 +533,7 @@
       }
     }
   },
-  "revision": "20220630",
+  "revision": "20220817",
   "rootUrl": "https://streetviewpublish.googleapis.com/",
   "schemas": {
     "BatchDeletePhotosRequest": {
@@ -624,7 +624,7 @@
       "type": "object"
     },
     "GpsDataGapFailureDetails": {
-      "description": "Details related to ProcessingFailureReason#GPS_DATA_GAP.",
+      "description": "Details related to ProcessingFailureReason#GPS_DATA_GAP. If there are multiple GPS data gaps, only the one with the largest duration is reported here.",
       "id": "GpsDataGapFailureDetails",
       "properties": {
         "gapDuration": {
@@ -632,7 +632,7 @@
           "format": "google-duration",
           "type": "string"
         },
-        "gapTime": {
+        "gapStartTime": {
           "description": "Relative time (from the start of the video stream) when the gap started.",
           "format": "google-duration",
           "type": "string"
@@ -669,7 +669,7 @@
       "type": "object"
     },
     "ImuDataGapFailureDetails": {
-      "description": "Details related to ProcessingFailureReason#IMU_DATA_GAP.",
+      "description": "Details related to ProcessingFailureReason#IMU_DATA_GAP. If there are multiple IMU data gaps, only the one with the largest duration is reported here.",
       "id": "ImuDataGapFailureDetails",
       "properties": {
         "gapDuration": {
@@ -677,7 +677,7 @@
           "format": "google-duration",
           "type": "string"
         },
-        "gapTime": {
+        "gapStartTime": {
           "description": "Relative time (from the start of the video stream) when the gap started.",
           "format": "google-duration",
           "type": "string"
@@ -809,10 +809,10 @@
       "type": "object"
     },
     "NotOutdoorsFailureDetails": {
-      "description": "Details related to ProcessingFailureReason#NOT_OUTDOORS.",
+      "description": "Details related to ProcessingFailureReason#NOT_OUTDOORS. If there are multiple indoor frames found, the first frame is recorded here.",
       "id": "NotOutdoorsFailureDetails",
       "properties": {
-        "time": {
+        "startTime": {
           "description": "Relative time (from the start of the video stream) when an indoor frame was found.",
           "format": "google-duration",
           "type": "string"
@@ -1026,9 +1026,12 @@
             "GPS_DATA_GAP",
             "JUMPY_GPS",
             "INVALID_IMU",
+            "INSUFFICIENT_IMU",
+            "INSUFFICIENT_OVERLAP_TIME_SERIES",
             "IMU_DATA_GAP",
             "UNSUPPORTED_CAMERA",
-            "NOT_OUTDOORS"
+            "NOT_OUTDOORS",
+            "INSUFFICIENT_VIDEO_FRAMES"
           ],
           "enumDescriptions": [
             "The failure reason is unspecified, this is the default value.",
@@ -1039,7 +1042,7 @@
             "GPS is invalid (e.x. all GPS points are at (0,0))",
             "The sequence of photos could not be accurately located in the world.",
             "The sequence was taken down for policy reasons.",
-            "The video file was corrupt.",
+            "The video file was corrupt or could not be decoded.",
             "A permanent failure in the underlying system occurred.",
             "The video format is invalid or unsupported.",
             "Invalid image aspect ratio found.",
@@ -1047,9 +1050,12 @@
             "GPS data contains a gap greater than 5 seconds in duration.",
             "GPS data is too erratic to be processed.",
             "IMU (Accelerometer, Gyroscope, etc.) data are not valid. They may be missing required fields (x, y, z or time), may not be formatted correctly, or any other issue that prevents our systems from parsing it.",
+            "Too few IMU points.",
+            "Insufficient overlap in the time frame between GPS, IMU, and other time series data.",
             "IMU (Accelerometer, Gyroscope, etc.) data contain gaps greater than 0.1 seconds in duration.",
             "The camera is not supported.",
-            "Some frames were indoors, which is unsupported."
+            "Some frames were indoors, which is unsupported.",
+            "Not enough video frames."
           ],
           "readOnly": true,
           "type": "string"

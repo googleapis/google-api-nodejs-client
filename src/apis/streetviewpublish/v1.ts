@@ -189,7 +189,7 @@ export namespace streetviewpublish_v1 {
    */
   export interface Schema$Empty {}
   /**
-   * Details related to ProcessingFailureReason#GPS_DATA_GAP.
+   * Details related to ProcessingFailureReason#GPS_DATA_GAP. If there are multiple GPS data gaps, only the one with the largest duration is reported here.
    */
   export interface Schema$GpsDataGapFailureDetails {
     /**
@@ -199,7 +199,7 @@ export namespace streetviewpublish_v1 {
     /**
      * Relative time (from the start of the video stream) when the gap started.
      */
-    gapTime?: string | null;
+    gapStartTime?: string | null;
   }
   /**
    * IMU data from the device sensors.
@@ -219,7 +219,7 @@ export namespace streetviewpublish_v1 {
     magUt?: Schema$Measurement3d[];
   }
   /**
-   * Details related to ProcessingFailureReason#IMU_DATA_GAP.
+   * Details related to ProcessingFailureReason#IMU_DATA_GAP. If there are multiple IMU data gaps, only the one with the largest duration is reported here.
    */
   export interface Schema$ImuDataGapFailureDetails {
     /**
@@ -229,7 +229,7 @@ export namespace streetviewpublish_v1 {
     /**
      * Relative time (from the start of the video stream) when the gap started.
      */
-    gapTime?: string | null;
+    gapStartTime?: string | null;
   }
   /**
    * Details related to ProcessingFailureReason#INSUFFICIENT_GPS.
@@ -327,13 +327,13 @@ export namespace streetviewpublish_v1 {
     z?: number | null;
   }
   /**
-   * Details related to ProcessingFailureReason#NOT_OUTDOORS.
+   * Details related to ProcessingFailureReason#NOT_OUTDOORS. If there are multiple indoor frames found, the first frame is recorded here.
    */
   export interface Schema$NotOutdoorsFailureDetails {
     /**
      * Relative time (from the start of the video stream) when an indoor frame was found.
      */
-    time?: string | null;
+    startTime?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
