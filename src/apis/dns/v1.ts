@@ -338,7 +338,7 @@ export namespace dns_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -1020,12 +1020,17 @@ export namespace dns_v1 {
   export interface Schema$RRSetRoutingPolicy {
     geo?: Schema$RRSetRoutingPolicyGeoPolicy;
     kind?: string | null;
+    primaryBackup?: Schema$RRSetRoutingPolicyPrimaryBackupPolicy;
     wrr?: Schema$RRSetRoutingPolicyWrrPolicy;
   }
   /**
    * Configures a RRSetRoutingPolicy that routes based on the geo location of the querying user.
    */
   export interface Schema$RRSetRoutingPolicyGeoPolicy {
+    /**
+     * Without fencing, if health check fails for all configured items in the current geo bucket, we'll failover to the next nearest geo bucket. With fencing, if health check is enabled, as long as some targets in the current geo bucket are healthy, we'll return only the healthy targets. However, if they're all unhealthy, we won't failover to the next nearest bucket, we'll simply return all the items in the current bucket even though they're unhealthy.
+     */
+    enableFencing?: boolean | null;
     /**
      * The primary geo routing configuration. If there are multiple items with the same location, an error is returned instead.
      */
@@ -1036,6 +1041,10 @@ export namespace dns_v1 {
    * ResourceRecordSet data for one geo location.
    */
   export interface Schema$RRSetRoutingPolicyGeoPolicyGeoPolicyItem {
+    /**
+     * For A and AAAA types only. Endpoints to return in the query result only if they are healthy. These can be specified along with rrdata within this item.
+     */
+    healthCheckedTargets?: Schema$RRSetRoutingPolicyHealthCheckTargets;
     kind?: string | null;
     /**
      * The geo-location granularity is a GCP region. This location string should correspond to a GCP region. e.g. "us-east1", "southamerica-east1", "asia-east1", etc.
@@ -1048,6 +1057,52 @@ export namespace dns_v1 {
     signatureRrdatas?: string[] | null;
   }
   /**
+   * HealthCheckTargets describes endpoints to health-check when responding to Routing Policy queries. Only the healthy endpoints will be included in the response.
+   */
+  export interface Schema$RRSetRoutingPolicyHealthCheckTargets {
+    internalLoadBalancers?: Schema$RRSetRoutingPolicyLoadBalancerTarget[];
+  }
+  export interface Schema$RRSetRoutingPolicyLoadBalancerTarget {
+    /**
+     * The frontend IP address of the
+     */
+    ipAddress?: string | null;
+    ipProtocol?: string | null;
+    kind?: string | null;
+    loadBalancerType?: string | null;
+    /**
+     * The fully qualified url of the network on which the ILB is
+     */
+    networkUrl?: string | null;
+    /**
+     * Load Balancer to health check. The configured port of the Load Balancer.
+     */
+    port?: string | null;
+    /**
+     * present. This should be formatted like https://www.googleapis.com/compute/v1/projects/{project\}/global/networks/{network\} The project ID in which the ILB exists.
+     */
+    project?: string | null;
+    /**
+     * The region for regional ILBs.
+     */
+    region?: string | null;
+  }
+  /**
+   * Configures a RRSetRoutingPolicy such that all queries are responded with the primary_targets if they are healthy. And if all of them are unhealthy, then we fallback to a geo localized policy.
+   */
+  export interface Schema$RRSetRoutingPolicyPrimaryBackupPolicy {
+    /**
+     * Backup targets provide a regional failover policy for the otherwise global primary targets. If serving state is set to BACKUP, this policy essentially becomes a geo routing policy.
+     */
+    backupGeoTargets?: Schema$RRSetRoutingPolicyGeoPolicy;
+    kind?: string | null;
+    primaryTargets?: Schema$RRSetRoutingPolicyHealthCheckTargets;
+    /**
+     * When serving state is PRIMARY, this field provides the option of sending a small percentage of the traffic to the backup targets.
+     */
+    trickleTraffic?: number | null;
+  }
+  /**
    * Configures a RRSetRoutingPolicy that routes in a weighted round robin fashion.
    */
   export interface Schema$RRSetRoutingPolicyWrrPolicy {
@@ -1058,6 +1113,10 @@ export namespace dns_v1 {
    * A routing block which contains the routing information for one WRR item.
    */
   export interface Schema$RRSetRoutingPolicyWrrPolicyWrrPolicyItem {
+    /**
+     * endpoints that need to be health checked before making the routing decision. The unhealthy endpoints will be omitted from the result. If all endpoints within a buckete are unhealthy, we'll choose a different bucket (sampled w.r.t. its weight) for responding. Note that if DNSSEC is enabled for this zone, only one of rrdata or health_checked_targets can be set.
+     */
+    healthCheckedTargets?: Schema$RRSetRoutingPolicyHealthCheckTargets;
     kind?: string | null;
     rrdatas?: string[] | null;
     /**
