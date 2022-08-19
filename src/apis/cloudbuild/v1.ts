@@ -5480,7 +5480,7 @@ export namespace cloudbuild_v1 {
      *   // Do the magic
      *   const res =
      *     await cloudbuild.projects.locations.bitbucketServerConfigs.repos.list({
-     *       // The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 50 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *       // The maximum number of configs to return. The service may return fewer than this value. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *       pageSize: 'placeholder-value',
      *       // A page token, received from a previous `ListBitbucketServerRepositoriesRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBitbucketServerConfigsRequest` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
@@ -5602,7 +5602,7 @@ export namespace cloudbuild_v1 {
   export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$Repos$List
     extends StandardParameters {
     /**
-     * The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 50 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * The maximum number of configs to return. The service may return fewer than this value. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
