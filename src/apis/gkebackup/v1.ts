@@ -211,7 +211,7 @@ export namespace gkebackup_v1 {
      */
     manual?: boolean | null;
     /**
-     * Output only. The fully qualified name of the Backup. projects/x/locations/x/backupPlans/x/backups/x
+     * Output only. The fully qualified name of the Backup. `projects/x/locations/x/backupPlans/x/backups/x`
      */
     name?: string | null;
     /**
@@ -223,7 +223,7 @@ export namespace gkebackup_v1 {
      */
     resourceCount?: number | null;
     /**
-     * The age (in days) after which this Backup will be automatically deleted. Must be an integer value \>= 0: - If 0, no automatic deletion will occur for this Backup. - If not 0, this must be \>= delete_lock_days. Once a Backup is created, this value may only be increased. Defaults to the parent BackupPlan's backup_retain_days value.
+     * The age (in days) after which this Backup will be automatically deleted. Must be an integer value \>= 0: - If 0, no automatic deletion will occur for this Backup. - If not 0, this must be \>= delete_lock_days and <= 365. Once a Backup is created, this value may only be increased. Defaults to the parent BackupPlan's backup_retain_days value.
      */
     retainDays?: number | null;
     /**
@@ -305,7 +305,7 @@ export namespace gkebackup_v1 {
      */
     backupSchedule?: Schema$Schedule;
     /**
-     * Required. Immutable. The source cluster from which Backups will be created via this BackupPlan. Valid formats: - projects/x/locations/x/clusters/x - projects/x/zones/x/clusters/x
+     * Required. Immutable. The source cluster from which Backups will be created via this BackupPlan. Valid formats: - `projects/x/locations/x/clusters/x` - `projects/x/zones/x/clusters/x`
      */
     cluster?: string | null;
     /**
@@ -329,7 +329,7 @@ export namespace gkebackup_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The full name of the BackupPlan resource. Format: projects/x/locations/x/backupPlans/x
+     * Output only. The full name of the BackupPlan resource. Format: `projects/x/locations/x/backupPlans/x`
      */
     name?: string | null;
     /**
@@ -379,7 +379,7 @@ export namespace gkebackup_v1 {
      */
     backupCrdVersions?: {[key: string]: string} | null;
     /**
-     * The source cluster from which this Backup was created. Valid formats: - projects/x/locations/x/clusters/x - projects/x/zones/x/clusters/x This is inherited from the parent BackupPlan's cluster field.
+     * The source cluster from which this Backup was created. Valid formats: - `projects/x/locations/x/clusters/x` - `projects/x/zones/x/clusters/x` This is inherited from the parent BackupPlan's cluster field.
      */
     cluster?: string | null;
     /**
@@ -409,7 +409,7 @@ export namespace gkebackup_v1 {
    */
   export interface Schema$EncryptionKey {
     /**
-     * Google Cloud KMS encryption key. Format: projects/x/locations/x/keyRings/x/cryptoKeys/x
+     * Google Cloud KMS encryption key. Format: `projects/x/locations/x/keyRings/x/cryptoKeys/x`
      */
     gcpKmsEncryptionKey?: string | null;
   }
@@ -724,11 +724,11 @@ export namespace gkebackup_v1 {
    */
   export interface Schema$Restore {
     /**
-     * Required. Immutable. A reference to the Backup used as the source from which this Restore will restore. Note that this Backup must be a sub-resource of the RestorePlan's backup_plan. Format: projects/x/locations/x/backupPlans/x/backups/x.
+     * Required. Immutable. A reference to the Backup used as the source from which this Restore will restore. Note that this Backup must be a sub-resource of the RestorePlan's backup_plan. Format: `projects/x/locations/x/backupPlans/x/backups/x`.
      */
     backup?: string | null;
     /**
-     * Output only. The target cluster into which this Restore will restore data. Valid formats: - projects/x/locations/x/clusters/x - projects/x/zones/x/clusters/x Inherited from parent RestorePlan's cluster value.
+     * Output only. The target cluster into which this Restore will restore data. Valid formats: - `projects/x/locations/x/clusters/x` - `projects/x/zones/x/clusters/x` Inherited from parent RestorePlan's cluster value.
      */
     cluster?: string | null;
     /**
@@ -752,7 +752,7 @@ export namespace gkebackup_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The full name of the Restore resource. Format: projects/x/locations/x/restorePlans/x/restores/x
+     * Output only. The full name of the Restore resource. Format: `projects/x/locations/x/restorePlans/x/restores/x`
      */
     name?: string | null;
     /**
@@ -834,11 +834,11 @@ export namespace gkebackup_v1 {
    */
   export interface Schema$RestorePlan {
     /**
-     * Required. Immutable. A reference to the BackupPlan from which Backups may be used as the source for Restores created via this RestorePlan. Format: projects/x/locations/x/backupPlans/x.
+     * Required. Immutable. A reference to the BackupPlan from which Backups may be used as the source for Restores created via this RestorePlan. Format: `projects/x/locations/x/backupPlans/x`.
      */
     backupPlan?: string | null;
     /**
-     * Required. Immutable. The target cluster into which Restores created via this RestorePlan will restore data. NOTE: the cluster's region must be the same as the RestorePlan. Valid formats: - projects/x/locations/x/clusters/x - projects/x/zones/x/clusters/x
+     * Required. Immutable. The target cluster into which Restores created via this RestorePlan will restore data. NOTE: the cluster's region must be the same as the RestorePlan. Valid formats: - `projects/x/locations/x/clusters/x` - `projects/x/zones/x/clusters/x`
      */
     cluster?: string | null;
     /**
@@ -858,7 +858,7 @@ export namespace gkebackup_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The full name of the RestorePlan resource. Format: projects/x/locations/x/restorePlans/x.
+     * Output only. The full name of the RestorePlan resource. Format: `projects/x/locations/x/restorePlans/x`.
      */
     name?: string | null;
     /**
@@ -883,7 +883,7 @@ export namespace gkebackup_v1 {
      */
     backupDeleteLockDays?: number | null;
     /**
-     * The default maximum age of a Backup created via this BackupPlan. This field MUST be an integer value \>= 0. If specified, a Backup created under this BackupPlan will be automatically deleted after its age reaches (create_time + backup_retain_days). If not specified, Backups created under this BackupPlan will NOT be subject to automatic deletion. Updating this field does NOT affect existing Backups under it. Backups created AFTER a successful update will automatically pick up the new value. NOTE: backup_retain_days must be \>= backup_delete_lock_days. Default: 0 (no automatic deletion)
+     * The default maximum age of a Backup created via this BackupPlan. This field MUST be an integer value \>= 0 and <= 365. If specified, a Backup created under this BackupPlan will be automatically deleted after its age reaches (create_time + backup_retain_days). If not specified, Backups created under this BackupPlan will NOT be subject to automatic deletion. Updating this field does NOT affect existing Backups under it. Backups created AFTER a successful update will automatically pick up the new value. NOTE: backup_retain_days must be \>= backup_delete_lock_days. If cron_schedule is defined, then this must be <= 360 * the creation interval. Default: 0 (no automatic deletion)
      */
     backupRetainDays?: number | null;
     /**
@@ -896,7 +896,7 @@ export namespace gkebackup_v1 {
    */
   export interface Schema$Schedule {
     /**
-     * A standard [cron](https://wikipedia.com/wiki/cron) string that defines a repeating schedule for creating Backups via this BackupPlan. Default (empty): no automatic backup creation will occur.
+     * A standard [cron](https://wikipedia.com/wiki/cron) string that defines a repeating schedule for creating Backups via this BackupPlan. If this is defined, then backup_retain_days must also be defined. Default (empty): no automatic backup creation will occur.
      */
     cronSchedule?: string | null;
     /**
@@ -985,7 +985,7 @@ export namespace gkebackup_v1 {
      */
     format?: string | null;
     /**
-     * Output only. The full name of the VolumeBackup resource. Format: projects/x/locations/x/backupPlans/x/backups/x/volumeBackups/x.
+     * Output only. The full name of the VolumeBackup resource. Format: `projects/x/locations/x/backupPlans/x/backups/x/volumeBackups/x`.
      */
     name?: string | null;
     /**
@@ -1034,7 +1034,7 @@ export namespace gkebackup_v1 {
      */
     etag?: string | null;
     /**
-     * Output only. Full name of the VolumeRestore resource. Format: projects/x/locations/x/restorePlans/x/restores/x/volumeRestores/x.
+     * Output only. Full name of the VolumeRestore resource. Format: `projects/x/locations/x/restorePlans/x/restores/x/volumeRestores/x`
      */
     name?: string | null;
     /**
@@ -1058,7 +1058,7 @@ export namespace gkebackup_v1 {
      */
     updateTime?: string | null;
     /**
-     * Output only. The full name of the VolumeBackup from which the volume will be restored. Format: projects/x/locations/x/backupPlans/x/backups/x/volumeBackups/x.
+     * Output only. The full name of the VolumeBackup from which the volume will be restored. Format: `projects/x/locations/x/backupPlans/x/backups/x/volumeBackups/x`.
      */
     volumeBackup?: string | null;
     /**
@@ -1570,7 +1570,7 @@ export namespace gkebackup_v1 {
      *   const res = await gkebackup.projects.locations.backupPlans.create({
      *     // Required. The client-provided short name for the BackupPlan resource. This name must: - be between 1 and 63 characters long (inclusive) - consist of only lower-case ASCII letters, numbers, and dashes - start with a lower-case letter - end with a lower-case letter or number - be unique within the set of BackupPlans in this location
      *     backupPlanId: 'placeholder-value',
-     *     // Required. The location within which to create the BackupPlan. Format: projects/x/locations/x
+     *     // Required. The location within which to create the BackupPlan. Format: `projects/x/locations/x`
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -1732,7 +1732,7 @@ export namespace gkebackup_v1 {
      *   const res = await gkebackup.projects.locations.backupPlans.delete({
      *     // If provided, this value must match the current value of the target BackupPlan's etag field or the request is rejected.
      *     etag: 'placeholder-value',
-     *     // Required. Fully qualified BackupPlan name. Format: projects/x/locations/x/backupPlans/x
+     *     // Required. Fully qualified BackupPlan name. Format: `projects/x/locations/x/backupPlans/x`
      *     name: 'projects/my-project/locations/my-location/backupPlans/my-backupPlan',
      *   });
      *   console.log(res.data);
@@ -1869,7 +1869,7 @@ export namespace gkebackup_v1 {
      *
      *   // Do the magic
      *   const res = await gkebackup.projects.locations.backupPlans.get({
-     *     // Required. Fully qualified BackupPlan name. Format: projects/x/locations/x/backupPlans/x
+     *     // Required. Fully qualified BackupPlan name. Format: `projects/x/locations/x/backupPlans/x`
      *     name: 'projects/my-project/locations/my-location/backupPlans/my-backupPlan',
      *   });
      *   console.log(res.data);
@@ -2151,7 +2151,7 @@ export namespace gkebackup_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value of next_page_token received from a previous `ListBackupPlans` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListBackupPlans` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The location that contains the BackupPlans to list. Format: projects/x/locations/x
+     *     // Required. The location that contains the BackupPlans to list. Format: `projects/x/locations/x`
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -2287,7 +2287,7 @@ export namespace gkebackup_v1 {
      *
      *   // Do the magic
      *   const res = await gkebackup.projects.locations.backupPlans.patch({
-     *     // Output only. The full name of the BackupPlan resource. Format: projects/x/locations/x/backupPlans/x
+     *     // Output only. The full name of the BackupPlan resource. Format: `projects/x/locations/x/backupPlans/x`
      *     name: 'projects/my-project/locations/my-location/backupPlans/my-backupPlan',
      *     // This is used to specify the fields to be overwritten in the BackupPlan targeted for update. The values for each of these updated fields will be taken from the `backup_plan` provided with this request. Field names are relative to the root of the resource (e.g., `description`, `backup_config.include_volume_data`, etc.) If no `update_mask` is provided, all fields in `backup_plan` will be written to the target BackupPlan resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `backup_plan` are ignored and are not used to update the target BackupPlan.
      *     updateMask: 'placeholder-value',
@@ -2718,7 +2718,7 @@ export namespace gkebackup_v1 {
      */
     backupPlanId?: string;
     /**
-     * Required. The location within which to create the BackupPlan. Format: projects/x/locations/x
+     * Required. The location within which to create the BackupPlan. Format: `projects/x/locations/x`
      */
     parent?: string;
 
@@ -2734,14 +2734,14 @@ export namespace gkebackup_v1 {
      */
     etag?: string;
     /**
-     * Required. Fully qualified BackupPlan name. Format: projects/x/locations/x/backupPlans/x
+     * Required. Fully qualified BackupPlan name. Format: `projects/x/locations/x/backupPlans/x`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Backupplans$Get
     extends StandardParameters {
     /**
-     * Required. Fully qualified BackupPlan name. Format: projects/x/locations/x/backupPlans/x
+     * Required. Fully qualified BackupPlan name. Format: `projects/x/locations/x/backupPlans/x`
      */
     name?: string;
   }
@@ -2775,14 +2775,14 @@ export namespace gkebackup_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The location that contains the BackupPlans to list. Format: projects/x/locations/x
+     * Required. The location that contains the BackupPlans to list. Format: `projects/x/locations/x`
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Backupplans$Patch
     extends StandardParameters {
     /**
-     * Output only. The full name of the BackupPlan resource. Format: projects/x/locations/x/backupPlans/x
+     * Output only. The full name of the BackupPlan resource. Format: `projects/x/locations/x/backupPlans/x`
      */
     name?: string;
     /**
@@ -2860,7 +2860,7 @@ export namespace gkebackup_v1 {
      *   const res = await gkebackup.projects.locations.backupPlans.backups.create({
      *     // The client-provided short name for the Backup resource. This name must: - be between 1 and 63 characters long (inclusive) - consist of only lower-case ASCII letters, numbers, and dashes - start with a lower-case letter - end with a lower-case letter or number - be unique within the set of Backups in this BackupPlan
      *     backupId: 'placeholder-value',
-     *     // Required. The BackupPlan within which to create the Backup. Format: projects/x/locations/x/backupPlans/x
+     *     // Required. The BackupPlan within which to create the Backup. Format: `projects/x/locations/x/backupPlans/x`
      *     parent:
      *       'projects/my-project/locations/my-location/backupPlans/my-backupPlan',
      *
@@ -3040,7 +3040,7 @@ export namespace gkebackup_v1 {
      *     etag: 'placeholder-value',
      *     // If set to true, any VolumeBackups below this Backup will also be deleted. Otherwise, the request will only succeed if the Backup has no VolumeBackups.
      *     force: 'placeholder-value',
-     *     // Required. Name of the Backup resource. Format: projects/x/locations/x/backupPlans/x/backups/x
+     *     // Required. Name of the Backup resource. Format: `projects/x/locations/x/backupPlans/x/backups/x`
      *     name: 'projects/my-project/locations/my-location/backupPlans/my-backupPlan/backups/my-backup',
      *   });
      *   console.log(res.data);
@@ -3178,7 +3178,7 @@ export namespace gkebackup_v1 {
      *
      *   // Do the magic
      *   const res = await gkebackup.projects.locations.backupPlans.backups.get({
-     *     // Required. Full name of the Backup resource. Format: projects/x/locations/x/backupPlans/x/backups/x
+     *     // Required. Full name of the Backup resource. Format: `projects/x/locations/x/backupPlans/x/backups/x`
      *     name: 'projects/my-project/locations/my-location/backupPlans/my-backupPlan/backups/my-backup',
      *   });
      *   console.log(res.data);
@@ -3476,7 +3476,7 @@ export namespace gkebackup_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value of next_page_token received from a previous `ListBackups` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListBackups` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The BackupPlan that contains the Backups to list. Format: projects/x/locations/x/backupPlans/x
+     *     // Required. The BackupPlan that contains the Backups to list. Format: `projects/x/locations/x/backupPlans/x`
      *     parent:
      *       'projects/my-project/locations/my-location/backupPlans/my-backupPlan',
      *   });
@@ -3611,7 +3611,7 @@ export namespace gkebackup_v1 {
      *
      *   // Do the magic
      *   const res = await gkebackup.projects.locations.backupPlans.backups.patch({
-     *     // Output only. The fully qualified name of the Backup. projects/x/locations/x/backupPlans/x/backups/x
+     *     // Output only. The fully qualified name of the Backup. `projects/x/locations/x/backupPlans/x/backups/x`
      *     name: 'projects/my-project/locations/my-location/backupPlans/my-backupPlan/backups/my-backup',
      *     // This is used to specify the fields to be overwritten in the Backup targeted for update. The values for each of these updated fields will be taken from the `backup_plan` provided with this request. Field names are relative to the root of the resource. If no `update_mask` is provided, all fields in `backup` will be written to the target Backup resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `backup` are ignored and are not used to update the target Backup.
      *     updateMask: 'placeholder-value',
@@ -4057,7 +4057,7 @@ export namespace gkebackup_v1 {
      */
     backupId?: string;
     /**
-     * Required. The BackupPlan within which to create the Backup. Format: projects/x/locations/x/backupPlans/x
+     * Required. The BackupPlan within which to create the Backup. Format: `projects/x/locations/x/backupPlans/x`
      */
     parent?: string;
 
@@ -4077,14 +4077,14 @@ export namespace gkebackup_v1 {
      */
     force?: boolean;
     /**
-     * Required. Name of the Backup resource. Format: projects/x/locations/x/backupPlans/x/backups/x
+     * Required. Name of the Backup resource. Format: `projects/x/locations/x/backupPlans/x/backups/x`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Backupplans$Backups$Get
     extends StandardParameters {
     /**
-     * Required. Full name of the Backup resource. Format: projects/x/locations/x/backupPlans/x/backups/x
+     * Required. Full name of the Backup resource. Format: `projects/x/locations/x/backupPlans/x/backups/x`
      */
     name?: string;
   }
@@ -4118,14 +4118,14 @@ export namespace gkebackup_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The BackupPlan that contains the Backups to list. Format: projects/x/locations/x/backupPlans/x
+     * Required. The BackupPlan that contains the Backups to list. Format: `projects/x/locations/x/backupPlans/x`
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Backupplans$Backups$Patch
     extends StandardParameters {
     /**
-     * Output only. The fully qualified name of the Backup. projects/x/locations/x/backupPlans/x/backups/x
+     * Output only. The fully qualified name of the Backup. `projects/x/locations/x/backupPlans/x/backups/x`
      */
     name?: string;
     /**
@@ -4197,7 +4197,7 @@ export namespace gkebackup_v1 {
      *   // Do the magic
      *   const res =
      *     await gkebackup.projects.locations.backupPlans.backups.volumeBackups.get({
-     *       // Required. Full name of the VolumeBackup resource. Format: projects/x/locations/x/backupPlans/x/backups/x/volumeBackups/x
+     *       // Required. Full name of the VolumeBackup resource. Format: `projects/x/locations/x/backupPlans/x/backups/x/volumeBackups/x`
      *       name: 'projects/my-project/locations/my-location/backupPlans/my-backupPlan/backups/my-backup/volumeBackups/my-volumeBackup',
      *     });
      *   console.log(res.data);
@@ -4484,7 +4484,7 @@ export namespace gkebackup_v1 {
      *       pageSize: 'placeholder-value',
      *       // The value of next_page_token received from a previous `ListVolumeBackups` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListVolumeBackups` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
-     *       // Required. The Backup that contains the VolumeBackups to list. Format: projects/x/locations/x/backupPlans/x/backups/x
+     *       // Required. The Backup that contains the VolumeBackups to list. Format: `projects/x/locations/x/backupPlans/x/backups/x`
      *       parent:
      *         'projects/my-project/locations/my-location/backupPlans/my-backupPlan/backups/my-backup',
      *     });
@@ -4895,7 +4895,7 @@ export namespace gkebackup_v1 {
   export interface Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$Get
     extends StandardParameters {
     /**
-     * Required. Full name of the VolumeBackup resource. Format: projects/x/locations/x/backupPlans/x/backups/x/volumeBackups/x
+     * Required. Full name of the VolumeBackup resource. Format: `projects/x/locations/x/backupPlans/x/backups/x/volumeBackups/x`
      */
     name?: string;
   }
@@ -4929,7 +4929,7 @@ export namespace gkebackup_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The Backup that contains the VolumeBackups to list. Format: projects/x/locations/x/backupPlans/x/backups/x
+     * Required. The Backup that contains the VolumeBackups to list. Format: `projects/x/locations/x/backupPlans/x/backups/x`
      */
     parent?: string;
   }
@@ -5453,7 +5453,7 @@ export namespace gkebackup_v1 {
      *
      *   // Do the magic
      *   const res = await gkebackup.projects.locations.restorePlans.create({
-     *     // Required. The location within which to create the RestorePlan. Format: projects/x/locations/x
+     *     // Required. The location within which to create the RestorePlan. Format: `projects/x/locations/x`
      *     parent: 'projects/my-project/locations/my-location',
      *     // Required. The client-provided short name for the RestorePlan resource. This name must: - be between 1 and 63 characters long (inclusive) - consist of only lower-case ASCII letters, numbers, and dashes - start with a lower-case letter - end with a lower-case letter or number - be unique within the set of RestorePlans in this location
      *     restorePlanId: 'placeholder-value',
@@ -5616,7 +5616,7 @@ export namespace gkebackup_v1 {
      *     etag: 'placeholder-value',
      *     // If set to true, any Restores below this RestorePlan will also be deleted. Otherwise, the request will only succeed if the RestorePlan has no Restores.
      *     force: 'placeholder-value',
-     *     // Required. Fully qualified RestorePlan name. Format: projects/x/locations/x/restorePlans/x
+     *     // Required. Fully qualified RestorePlan name. Format: `projects/x/locations/x/restorePlans/x`
      *     name: 'projects/my-project/locations/my-location/restorePlans/my-restorePlan',
      *   });
      *   console.log(res.data);
@@ -5753,7 +5753,7 @@ export namespace gkebackup_v1 {
      *
      *   // Do the magic
      *   const res = await gkebackup.projects.locations.restorePlans.get({
-     *     // Required. Fully qualified RestorePlan name. Format: projects/x/locations/x/restorePlans/x
+     *     // Required. Fully qualified RestorePlan name. Format: `projects/x/locations/x/restorePlans/x`
      *     name: 'projects/my-project/locations/my-location/restorePlans/my-restorePlan',
      *   });
      *   console.log(res.data);
@@ -6032,7 +6032,7 @@ export namespace gkebackup_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value of next_page_token received from a previous `ListRestorePlans` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListRestorePlans` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The location that contains the RestorePlans to list. Format: projects/x/locations/x
+     *     // Required. The location that contains the RestorePlans to list. Format: `projects/x/locations/x`
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -6168,7 +6168,7 @@ export namespace gkebackup_v1 {
      *
      *   // Do the magic
      *   const res = await gkebackup.projects.locations.restorePlans.patch({
-     *     // Output only. The full name of the RestorePlan resource. Format: projects/x/locations/x/restorePlans/x.
+     *     // Output only. The full name of the RestorePlan resource. Format: `projects/x/locations/x/restorePlans/x`.
      *     name: 'projects/my-project/locations/my-location/restorePlans/my-restorePlan',
      *     // This is used to specify the fields to be overwritten in the RestorePlan targeted for update. The values for each of these updated fields will be taken from the `restore_plan` provided with this request. Field names are relative to the root of the resource. If no `update_mask` is provided, all fields in `restore_plan` will be written to the target RestorePlan resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `restore_plan` are ignored and are not used to update the target RestorePlan.
      *     updateMask: 'placeholder-value',
@@ -6591,7 +6591,7 @@ export namespace gkebackup_v1 {
   export interface Params$Resource$Projects$Locations$Restoreplans$Create
     extends StandardParameters {
     /**
-     * Required. The location within which to create the RestorePlan. Format: projects/x/locations/x
+     * Required. The location within which to create the RestorePlan. Format: `projects/x/locations/x`
      */
     parent?: string;
     /**
@@ -6615,14 +6615,14 @@ export namespace gkebackup_v1 {
      */
     force?: boolean;
     /**
-     * Required. Fully qualified RestorePlan name. Format: projects/x/locations/x/restorePlans/x
+     * Required. Fully qualified RestorePlan name. Format: `projects/x/locations/x/restorePlans/x`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Restoreplans$Get
     extends StandardParameters {
     /**
-     * Required. Fully qualified RestorePlan name. Format: projects/x/locations/x/restorePlans/x
+     * Required. Fully qualified RestorePlan name. Format: `projects/x/locations/x/restorePlans/x`
      */
     name?: string;
   }
@@ -6656,14 +6656,14 @@ export namespace gkebackup_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The location that contains the RestorePlans to list. Format: projects/x/locations/x
+     * Required. The location that contains the RestorePlans to list. Format: `projects/x/locations/x`
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Restoreplans$Patch
     extends StandardParameters {
     /**
-     * Output only. The full name of the RestorePlan resource. Format: projects/x/locations/x/restorePlans/x.
+     * Output only. The full name of the RestorePlan resource. Format: `projects/x/locations/x/restorePlans/x`.
      */
     name?: string;
     /**
@@ -6739,7 +6739,7 @@ export namespace gkebackup_v1 {
      *
      *   // Do the magic
      *   const res = await gkebackup.projects.locations.restorePlans.restores.create({
-     *     // Required. The RestorePlan within which to create the Restore. Format: projects/x/locations/x/restorePlans/x
+     *     // Required. The RestorePlan within which to create the Restore. Format: `projects/x/locations/x/restorePlans/x`
      *     parent:
      *       'projects/my-project/locations/my-location/restorePlans/my-restorePlan',
      *     // Required. The client-provided short name for the Restore resource. This name must: - be between 1 and 63 characters long (inclusive) - consist of only lower-case ASCII letters, numbers, and dashes - start with a lower-case letter - end with a lower-case letter or number - be unique within the set of Restores in this RestorePlan.
@@ -6911,7 +6911,7 @@ export namespace gkebackup_v1 {
      *     etag: 'placeholder-value',
      *     // If set to true, any VolumeRestores below this restore will also be deleted. Otherwise, the request will only succeed if the restore has no VolumeRestores.
      *     force: 'placeholder-value',
-     *     // Required. Full name of the Restore Format: projects/x/locations/x/restorePlans/x/restores/x
+     *     // Required. Full name of the Restore Format: `projects/x/locations/x/restorePlans/x/restores/x`
      *     name: 'projects/my-project/locations/my-location/restorePlans/my-restorePlan/restores/my-restore',
      *   });
      *   console.log(res.data);
@@ -7049,7 +7049,7 @@ export namespace gkebackup_v1 {
      *
      *   // Do the magic
      *   const res = await gkebackup.projects.locations.restorePlans.restores.get({
-     *     // Required. Name of the restore resource. Format: projects/x/locations/x/restorePlans/x/restores/x
+     *     // Required. Name of the restore resource. Format: `projects/x/locations/x/restorePlans/x/restores/x`
      *     name: 'projects/my-project/locations/my-location/restorePlans/my-restorePlan/restores/my-restore',
      *   });
      *   console.log(res.data);
@@ -7337,7 +7337,7 @@ export namespace gkebackup_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value of next_page_token received from a previous `ListRestores` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListRestores` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The RestorePlan that contains the Restores to list. Format: projects/x/locations/x/restorePlans/x
+     *     // Required. The RestorePlan that contains the Restores to list. Format: `projects/x/locations/x/restorePlans/x`
      *     parent:
      *       'projects/my-project/locations/my-location/restorePlans/my-restorePlan',
      *   });
@@ -7475,7 +7475,7 @@ export namespace gkebackup_v1 {
      *
      *   // Do the magic
      *   const res = await gkebackup.projects.locations.restorePlans.restores.patch({
-     *     // Output only. The full name of the Restore resource. Format: projects/x/locations/x/restorePlans/x/restores/x
+     *     // Output only. The full name of the Restore resource. Format: `projects/x/locations/x/restorePlans/x/restores/x`
      *     name: 'projects/my-project/locations/my-location/restorePlans/my-restorePlan/restores/my-restore',
      *     // This is used to specify the fields to be overwritten in the Restore targeted for update. The values for each of these updated fields will be taken from the `restore` provided with this request. Field names are relative to the root of the resource. If no `update_mask` is provided, all fields in `restore` will be written to the target Restore resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `restore` are ignored and are not used to update the target Restore.
      *     updateMask: 'placeholder-value',
@@ -7909,7 +7909,7 @@ export namespace gkebackup_v1 {
   export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Create
     extends StandardParameters {
     /**
-     * Required. The RestorePlan within which to create the Restore. Format: projects/x/locations/x/restorePlans/x
+     * Required. The RestorePlan within which to create the Restore. Format: `projects/x/locations/x/restorePlans/x`
      */
     parent?: string;
     /**
@@ -7933,14 +7933,14 @@ export namespace gkebackup_v1 {
      */
     force?: boolean;
     /**
-     * Required. Full name of the Restore Format: projects/x/locations/x/restorePlans/x/restores/x
+     * Required. Full name of the Restore Format: `projects/x/locations/x/restorePlans/x/restores/x`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Get
     extends StandardParameters {
     /**
-     * Required. Name of the restore resource. Format: projects/x/locations/x/restorePlans/x/restores/x
+     * Required. Name of the restore resource. Format: `projects/x/locations/x/restorePlans/x/restores/x`
      */
     name?: string;
   }
@@ -7974,14 +7974,14 @@ export namespace gkebackup_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The RestorePlan that contains the Restores to list. Format: projects/x/locations/x/restorePlans/x
+     * Required. The RestorePlan that contains the Restores to list. Format: `projects/x/locations/x/restorePlans/x`
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Patch
     extends StandardParameters {
     /**
-     * Output only. The full name of the Restore resource. Format: projects/x/locations/x/restorePlans/x/restores/x
+     * Output only. The full name of the Restore resource. Format: `projects/x/locations/x/restorePlans/x/restores/x`
      */
     name?: string;
     /**
@@ -8054,7 +8054,7 @@ export namespace gkebackup_v1 {
      *   const res =
      *     await gkebackup.projects.locations.restorePlans.restores.volumeRestores.get(
      *       {
-     *         // Required. Full name of the VolumeRestore resource. Format: projects/x/locations/x/restorePlans/x/restores/x/volumeRestores/x
+     *         // Required. Full name of the VolumeRestore resource. Format: `projects/x/locations/x/restorePlans/x/restores/x/volumeRestores/x`
      *         name: 'projects/my-project/locations/my-location/restorePlans/my-restorePlan/restores/my-restore/volumeRestores/my-volumeRestore',
      *       }
      *     );
@@ -8342,7 +8342,7 @@ export namespace gkebackup_v1 {
      *         pageSize: 'placeholder-value',
      *         // The value of next_page_token received from a previous `ListVolumeRestores` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListVolumeRestores` must match the call that provided the page token.
      *         pageToken: 'placeholder-value',
-     *         // Required. The Restore that contains the VolumeRestores to list. Format: projects/x/locations/x/restorePlans/x/restores/x
+     *         // Required. The Restore that contains the VolumeRestores to list. Format: `projects/x/locations/x/restorePlans/x/restores/x`
      *         parent:
      *           'projects/my-project/locations/my-location/restorePlans/my-restorePlan/restores/my-restore',
      *       }
@@ -8754,7 +8754,7 @@ export namespace gkebackup_v1 {
   export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$Get
     extends StandardParameters {
     /**
-     * Required. Full name of the VolumeRestore resource. Format: projects/x/locations/x/restorePlans/x/restores/x/volumeRestores/x
+     * Required. Full name of the VolumeRestore resource. Format: `projects/x/locations/x/restorePlans/x/restores/x/volumeRestores/x`
      */
     name?: string;
   }
@@ -8788,7 +8788,7 @@ export namespace gkebackup_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The Restore that contains the VolumeRestores to list. Format: projects/x/locations/x/restorePlans/x/restores/x
+     * Required. The Restore that contains the VolumeRestores to list. Format: `projects/x/locations/x/restorePlans/x/restores/x`
      */
     parent?: string;
   }

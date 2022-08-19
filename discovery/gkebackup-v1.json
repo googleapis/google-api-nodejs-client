@@ -219,7 +219,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The location within which to create the BackupPlan. Format: projects/*/locations/*",
+                      "description": "Required. The location within which to create the BackupPlan. Format: `projects/*/locations/*`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -252,7 +252,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. Fully qualified BackupPlan name. Format: projects/*/locations/*/backupPlans/*",
+                      "description": "Required. Fully qualified BackupPlan name. Format: `projects/*/locations/*/backupPlans/*`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+$",
                       "required": true,
@@ -277,7 +277,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Fully qualified BackupPlan name. Format: projects/*/locations/*/backupPlans/*",
+                      "description": "Required. Fully qualified BackupPlan name. Format: `projects/*/locations/*/backupPlans/*`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+$",
                       "required": true,
@@ -354,7 +354,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The location that contains the BackupPlans to list. Format: projects/*/locations/*",
+                      "description": "Required. The location that contains the BackupPlans to list. Format: `projects/*/locations/*`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -379,7 +379,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The full name of the BackupPlan resource. Format: projects/*/locations/*/backupPlans/*",
+                      "description": "Output only. The full name of the BackupPlan resource. Format: `projects/*/locations/*/backupPlans/*`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+$",
                       "required": true,
@@ -478,7 +478,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The BackupPlan within which to create the Backup. Format: projects/*/locations/*/backupPlans/*",
+                          "description": "Required. The BackupPlan within which to create the Backup. Format: `projects/*/locations/*/backupPlans/*`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+$",
                           "required": true,
@@ -516,7 +516,7 @@
                           "type": "boolean"
                         },
                         "name": {
-                          "description": "Required. Name of the Backup resource. Format: projects/*/locations/*/backupPlans/*/backups/*",
+                          "description": "Required. Name of the Backup resource. Format: `projects/*/locations/*/backupPlans/*/backups/*`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+/backups/[^/]+$",
                           "required": true,
@@ -541,7 +541,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Full name of the Backup resource. Format: projects/*/locations/*/backupPlans/*/backups/*",
+                          "description": "Required. Full name of the Backup resource. Format: `projects/*/locations/*/backupPlans/*/backups/*`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+/backups/[^/]+$",
                           "required": true,
@@ -618,7 +618,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The BackupPlan that contains the Backups to list. Format: projects/*/locations/*/backupPlans/*",
+                          "description": "Required. The BackupPlan that contains the Backups to list. Format: `projects/*/locations/*/backupPlans/*`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+$",
                           "required": true,
@@ -643,7 +643,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. The fully qualified name of the Backup. projects/*/locations/*/backupPlans/*/backups/*",
+                          "description": "Output only. The fully qualified name of the Backup. `projects/*/locations/*/backupPlans/*/backups/*`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+/backups/[^/]+$",
                           "required": true,
@@ -737,7 +737,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. Full name of the VolumeBackup resource. Format: projects/*/locations/*/backupPlans/*/backups/*/volumeBackups/*",
+                              "description": "Required. Full name of the VolumeBackup resource. Format: `projects/*/locations/*/backupPlans/*/backups/*/volumeBackups/*`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+/backups/[^/]+/volumeBackups/[^/]+$",
                               "required": true,
@@ -814,7 +814,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The Backup that contains the VolumeBackups to list. Format: projects/*/locations/*/backupPlans/*/backups/*",
+                              "description": "Required. The Backup that contains the VolumeBackups to list. Format: `projects/*/locations/*/backupPlans/*/backups/*`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+/backups/[^/]+$",
                               "required": true,
@@ -1001,7 +1001,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The location within which to create the RestorePlan. Format: projects/*/locations/*",
+                      "description": "Required. The location within which to create the RestorePlan. Format: `projects/*/locations/*`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1044,7 +1044,7 @@
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "Required. Fully qualified RestorePlan name. Format: projects/*/locations/*/restorePlans/*",
+                      "description": "Required. Fully qualified RestorePlan name. Format: `projects/*/locations/*/restorePlans/*`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/restorePlans/[^/]+$",
                       "required": true,
@@ -1069,7 +1069,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Fully qualified RestorePlan name. Format: projects/*/locations/*/restorePlans/*",
+                      "description": "Required. Fully qualified RestorePlan name. Format: `projects/*/locations/*/restorePlans/*`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/restorePlans/[^/]+$",
                       "required": true,
@@ -1146,7 +1146,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The location that contains the RestorePlans to list. Format: projects/*/locations/*",
+                      "description": "Required. The location that contains the RestorePlans to list. Format: `projects/*/locations/*`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1171,7 +1171,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The full name of the RestorePlan resource. Format: projects/*/locations/*/restorePlans/*.",
+                      "description": "Output only. The full name of the RestorePlan resource. Format: `projects/*/locations/*/restorePlans/*`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/restorePlans/[^/]+$",
                       "required": true,
@@ -1265,7 +1265,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. The RestorePlan within which to create the Restore. Format: projects/*/locations/*/restorePlans/*",
+                          "description": "Required. The RestorePlan within which to create the Restore. Format: `projects/*/locations/*/restorePlans/*`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/restorePlans/[^/]+$",
                           "required": true,
@@ -1308,7 +1308,7 @@
                           "type": "boolean"
                         },
                         "name": {
-                          "description": "Required. Full name of the Restore Format: projects/*/locations/*/restorePlans/*/restores/*",
+                          "description": "Required. Full name of the Restore Format: `projects/*/locations/*/restorePlans/*/restores/*`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/restorePlans/[^/]+/restores/[^/]+$",
                           "required": true,
@@ -1333,7 +1333,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Name of the restore resource. Format: projects/*/locations/*/restorePlans/*/restores/*",
+                          "description": "Required. Name of the restore resource. Format: `projects/*/locations/*/restorePlans/*/restores/*`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/restorePlans/[^/]+/restores/[^/]+$",
                           "required": true,
@@ -1410,7 +1410,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The RestorePlan that contains the Restores to list. Format: projects/*/locations/*/restorePlans/*",
+                          "description": "Required. The RestorePlan that contains the Restores to list. Format: `projects/*/locations/*/restorePlans/*`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/restorePlans/[^/]+$",
                           "required": true,
@@ -1435,7 +1435,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. The full name of the Restore resource. Format: projects/*/locations/*/restorePlans/*/restores/*",
+                          "description": "Output only. The full name of the Restore resource. Format: `projects/*/locations/*/restorePlans/*/restores/*`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/restorePlans/[^/]+/restores/[^/]+$",
                           "required": true,
@@ -1529,7 +1529,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. Full name of the VolumeRestore resource. Format: projects/*/locations/*/restorePlans/*/restores/*/volumeRestores/*",
+                              "description": "Required. Full name of the VolumeRestore resource. Format: `projects/*/locations/*/restorePlans/*/restores/*/volumeRestores/*`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/restorePlans/[^/]+/restores/[^/]+/volumeRestores/[^/]+$",
                               "required": true,
@@ -1606,7 +1606,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The Restore that contains the VolumeRestores to list. Format: projects/*/locations/*/restorePlans/*/restores/*",
+                              "description": "Required. The Restore that contains the VolumeRestores to list. Format: `projects/*/locations/*/restorePlans/*/restores/*`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/restorePlans/[^/]+/restores/[^/]+$",
                               "required": true,
@@ -1688,7 +1688,7 @@
       }
     }
   },
-  "revision": "20220607",
+  "revision": "20220728",
   "rootUrl": "https://gkebackup.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1819,7 +1819,7 @@
           "type": "boolean"
         },
         "name": {
-          "description": "Output only. The fully qualified name of the Backup. projects/*/locations/*/backupPlans/*/backups/*",
+          "description": "Output only. The fully qualified name of the Backup. `projects/*/locations/*/backupPlans/*/backups/*`",
           "readOnly": true,
           "type": "string"
         },
@@ -1836,7 +1836,7 @@
           "type": "integer"
         },
         "retainDays": {
-          "description": "The age (in days) after which this Backup will be automatically deleted. Must be an integer value >= 0: - If 0, no automatic deletion will occur for this Backup. - If not 0, this must be >= delete_lock_days. Once a Backup is created, this value may only be increased. Defaults to the parent BackupPlan's backup_retain_days value.",
+          "description": "The age (in days) after which this Backup will be automatically deleted. Must be an integer value >= 0: - If 0, no automatic deletion will occur for this Backup. - If not 0, this must be >= delete_lock_days and <= 365. Once a Backup is created, this value may only be increased. Defaults to the parent BackupPlan's backup_retain_days value.",
           "format": "int32",
           "type": "integer"
         },
@@ -1952,7 +1952,7 @@
           "description": "Defines a schedule for automatic Backup creation via this BackupPlan."
         },
         "cluster": {
-          "description": "Required. Immutable. The source cluster from which Backups will be created via this BackupPlan. Valid formats: - projects/*/locations/*/clusters/* - projects/*/zones/*/clusters/*",
+          "description": "Required. Immutable. The source cluster from which Backups will be created via this BackupPlan. Valid formats: - `projects/*/locations/*/clusters/*` - `projects/*/zones/*/clusters/*`",
           "type": "string"
         },
         "createTime": {
@@ -1982,7 +1982,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. The full name of the BackupPlan resource. Format: projects/*/locations/*/backupPlans/*",
+          "description": "Output only. The full name of the BackupPlan resource. Format: `projects/*/locations/*/backupPlans/*`",
           "readOnly": true,
           "type": "string"
         },
@@ -2048,7 +2048,7 @@
           "type": "object"
         },
         "cluster": {
-          "description": "The source cluster from which this Backup was created. Valid formats: - projects/*/locations/*/clusters/* - projects/*/zones/*/clusters/* This is inherited from the parent BackupPlan's cluster field.",
+          "description": "The source cluster from which this Backup was created. Valid formats: - `projects/*/locations/*/clusters/*` - `projects/*/zones/*/clusters/*` This is inherited from the parent BackupPlan's cluster field.",
           "type": "string"
         },
         "gkeVersion": {
@@ -2087,7 +2087,7 @@
       "id": "EncryptionKey",
       "properties": {
         "gcpKmsEncryptionKey": {
-          "description": "Google Cloud KMS encryption key. Format: projects/*/locations/*/keyRings/*/cryptoKeys/*",
+          "description": "Google Cloud KMS encryption key. Format: `projects/*/locations/*/keyRings/*/cryptoKeys/*`",
           "type": "string"
         }
       },
@@ -2521,11 +2521,11 @@
       "id": "Restore",
       "properties": {
         "backup": {
-          "description": "Required. Immutable. A reference to the Backup used as the source from which this Restore will restore. Note that this Backup must be a sub-resource of the RestorePlan's backup_plan. Format: projects/*/locations/*/backupPlans/*/backups/*.",
+          "description": "Required. Immutable. A reference to the Backup used as the source from which this Restore will restore. Note that this Backup must be a sub-resource of the RestorePlan's backup_plan. Format: `projects/*/locations/*/backupPlans/*/backups/*`.",
           "type": "string"
         },
         "cluster": {
-          "description": "Output only. The target cluster into which this Restore will restore data. Valid formats: - projects/*/locations/*/clusters/* - projects/*/zones/*/clusters/* Inherited from parent RestorePlan's cluster value.",
+          "description": "Output only. The target cluster into which this Restore will restore data. Valid formats: - `projects/*/locations/*/clusters/*` - `projects/*/zones/*/clusters/*` Inherited from parent RestorePlan's cluster value.",
           "readOnly": true,
           "type": "string"
         },
@@ -2558,7 +2558,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. The full name of the Restore resource. Format: projects/*/locations/*/restorePlans/*/restores/*",
+          "description": "Output only. The full name of the Restore resource. Format: `projects/*/locations/*/restorePlans/*/restores/*`",
           "readOnly": true,
           "type": "string"
         },
@@ -2710,11 +2710,11 @@
       "id": "RestorePlan",
       "properties": {
         "backupPlan": {
-          "description": "Required. Immutable. A reference to the BackupPlan from which Backups may be used as the source for Restores created via this RestorePlan. Format: projects/*/locations/*/backupPlans/*.",
+          "description": "Required. Immutable. A reference to the BackupPlan from which Backups may be used as the source for Restores created via this RestorePlan. Format: `projects/*/locations/*/backupPlans/*`.",
           "type": "string"
         },
         "cluster": {
-          "description": "Required. Immutable. The target cluster into which Restores created via this RestorePlan will restore data. NOTE: the cluster's region must be the same as the RestorePlan. Valid formats: - projects/*/locations/*/clusters/* - projects/*/zones/*/clusters/*",
+          "description": "Required. Immutable. The target cluster into which Restores created via this RestorePlan will restore data. NOTE: the cluster's region must be the same as the RestorePlan. Valid formats: - `projects/*/locations/*/clusters/*` - `projects/*/zones/*/clusters/*`",
           "type": "string"
         },
         "createTime": {
@@ -2740,7 +2740,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. The full name of the RestorePlan resource. Format: projects/*/locations/*/restorePlans/*.",
+          "description": "Output only. The full name of the RestorePlan resource. Format: `projects/*/locations/*/restorePlans/*`.",
           "readOnly": true,
           "type": "string"
         },
@@ -2772,7 +2772,7 @@
           "type": "integer"
         },
         "backupRetainDays": {
-          "description": "The default maximum age of a Backup created via this BackupPlan. This field MUST be an integer value >= 0. If specified, a Backup created under this BackupPlan will be automatically deleted after its age reaches (create_time + backup_retain_days). If not specified, Backups created under this BackupPlan will NOT be subject to automatic deletion. Updating this field does NOT affect existing Backups under it. Backups created AFTER a successful update will automatically pick up the new value. NOTE: backup_retain_days must be >= backup_delete_lock_days. Default: 0 (no automatic deletion)",
+          "description": "The default maximum age of a Backup created via this BackupPlan. This field MUST be an integer value >= 0 and <= 365. If specified, a Backup created under this BackupPlan will be automatically deleted after its age reaches (create_time + backup_retain_days). If not specified, Backups created under this BackupPlan will NOT be subject to automatic deletion. Updating this field does NOT affect existing Backups under it. Backups created AFTER a successful update will automatically pick up the new value. NOTE: backup_retain_days must be >= backup_delete_lock_days. If cron_schedule is defined, then this must be <= 360 * the creation interval. Default: 0 (no automatic deletion)",
           "format": "int32",
           "type": "integer"
         },
@@ -2788,7 +2788,7 @@
       "id": "Schedule",
       "properties": {
         "cronSchedule": {
-          "description": "A standard [cron](https://wikipedia.com/wiki/cron) string that defines a repeating schedule for creating Backups via this BackupPlan. Default (empty): no automatic backup creation will occur.",
+          "description": "A standard [cron](https://wikipedia.com/wiki/cron) string that defines a repeating schedule for creating Backups via this BackupPlan. If this is defined, then backup_retain_days must also be defined. Default (empty): no automatic backup creation will occur.",
           "type": "string"
         },
         "paused": {
@@ -2916,7 +2916,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The full name of the VolumeBackup resource. Format: projects/*/locations/*/backupPlans/*/backups/*/volumeBackups/*.",
+          "description": "Output only. The full name of the VolumeBackup resource. Format: `projects/*/locations/*/backupPlans/*/backups/*/volumeBackups/*`.",
           "readOnly": true,
           "type": "string"
         },
@@ -3000,7 +3000,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. Full name of the VolumeRestore resource. Format: projects/*/locations/*/restorePlans/*/restores/*/volumeRestores/*.",
+          "description": "Output only. Full name of the VolumeRestore resource. Format: `projects/*/locations/*/restorePlans/*/restores/*/volumeRestores/*`",
           "readOnly": true,
           "type": "string"
         },
@@ -3047,7 +3047,7 @@
           "type": "string"
         },
         "volumeBackup": {
-          "description": "Output only. The full name of the VolumeBackup from which the volume will be restored. Format: projects/*/locations/*/backupPlans/*/backups/*/volumeBackups/*.",
+          "description": "Output only. The full name of the VolumeBackup from which the volume will be restored. Format: `projects/*/locations/*/backupPlans/*/backups/*/volumeBackups/*`.",
           "readOnly": true,
           "type": "string"
         },
