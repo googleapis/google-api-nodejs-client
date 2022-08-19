@@ -299,7 +299,7 @@ export namespace firebaserules_v1 {
      */
     name?: string | null;
     /**
-     * Required. Name of the `Ruleset` referred to by this `Release`. The `Ruleset` must exist the `Release` to be created.
+     * Required. Name of the `Ruleset` referred to by this `Release`. The `Ruleset` must exist for the `Release` to be created.
      */
     rulesetName?: string | null;
     /**

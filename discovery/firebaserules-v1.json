@@ -477,7 +477,7 @@
       }
     }
   },
-  "revision": "20220323",
+  "revision": "20220712",
   "rootUrl": "https://firebaserules.googleapis.com/",
   "schemas": {
     "Arg": {
@@ -736,7 +736,7 @@
           "type": "string"
         },
         "rulesetName": {
-          "description": "Required. Name of the `Ruleset` referred to by this `Release`. The `Ruleset` must exist the `Release` to be created.",
+          "description": "Required. Name of the `Ruleset` referred to by this `Release`. The `Ruleset` must exist for the `Release` to be created.",
           "type": "string"
         },
         "updateTime": {
