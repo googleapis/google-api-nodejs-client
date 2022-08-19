@@ -301,7 +301,7 @@ export namespace networkservices_v1 {
      */
     name?: string | null;
     /**
-     * Required. One or more ports that the Gateway must receive traffic on. The proxy binds to the ports specified. Gateway listen on 0.0.0.0 on the ports specified below.
+     * Required. One or more port numbers (1-65535), on which the Gateway will receive traffic. The proxy binds to the specified ports. Gateways of type 'SECURE_WEB_GATEWAY' are limited to 1 port. Gateways of type 'OPEN_MESH' listen on 0.0.0.0 and support multiple ports.
      */
     ports?: number[] | null;
     /**
@@ -317,7 +317,7 @@ export namespace networkservices_v1 {
      */
     serverTlsPolicy?: string | null;
     /**
-     * Immutable. The type of the customer managed gateway.
+     * Immutable. The type of the customer managed gateway. This field is required. If unspecified, an error is returned.
      */
     type?: string | null;
     /**
@@ -465,7 +465,7 @@ export namespace networkservices_v1 {
    */
   export interface Schema$GrpcRouteRetryPolicy {
     /**
-     * Specifies the allowed number of retries. This number must be \> 0. If not specpfied, default to 1.
+     * Specifies the allowed number of retries. This number must be \> 0. If not specified, default to 1.
      */
     numRetries?: number | null;
     /**
@@ -6945,7 +6945,7 @@ export namespace networkservices_v1 {
      *   const res = await networkservices.projects.locations.httpRoutes.list({
      *     // Maximum number of HttpRoutes to return per call.
      *     pageSize: 'placeholder-value',
-     *     // The value returned by the last `ListHttpRoutesResponse` Indicates that this is a continuation of a prior `ListRouters` call, and that the system should return the next page of data.
+     *     // The value returned by the last `ListHttpRoutesResponse` Indicates that this is a continuation of a prior `ListHttpRoutes` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
      *     // Required. The project and location from which the HttpRoutes should be listed, specified in the format `projects/x/locations/global`.
      *     parent: 'projects/my-project/locations/my-location',
@@ -7244,7 +7244,7 @@ export namespace networkservices_v1 {
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListHttpRoutesResponse` Indicates that this is a continuation of a prior `ListRouters` call, and that the system should return the next page of data.
+     * The value returned by the last `ListHttpRoutesResponse` Indicates that this is a continuation of a prior `ListHttpRoutes` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**
@@ -10608,7 +10608,7 @@ export namespace networkservices_v1 {
      *   const res = await networkservices.projects.locations.tcpRoutes.list({
      *     // Maximum number of TcpRoutes to return per call.
      *     pageSize: 'placeholder-value',
-     *     // The value returned by the last `ListTcpRoutesResponse` Indicates that this is a continuation of a prior `ListRouters` call, and that the system should return the next page of data.
+     *     // The value returned by the last `ListTcpRoutesResponse` Indicates that this is a continuation of a prior `ListTcpRoutes` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
      *     // Required. The project and location from which the TcpRoutes should be listed, specified in the format `projects/x/locations/global`.
      *     parent: 'projects/my-project/locations/my-location',
@@ -10906,7 +10906,7 @@ export namespace networkservices_v1 {
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListTcpRoutesResponse` Indicates that this is a continuation of a prior `ListRouters` call, and that the system should return the next page of data.
+     * The value returned by the last `ListTcpRoutesResponse` Indicates that this is a continuation of a prior `ListTcpRoutes` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**
@@ -11382,7 +11382,7 @@ export namespace networkservices_v1 {
      *   const res = await networkservices.projects.locations.tlsRoutes.list({
      *     // Maximum number of TlsRoutes to return per call.
      *     pageSize: 'placeholder-value',
-     *     // The value returned by the last `ListTlsRoutesResponse` Indicates that this is a continuation of a prior `ListRouters` call, and that the system should return the next page of data.
+     *     // The value returned by the last `ListTlsRoutesResponse` Indicates that this is a continuation of a prior `ListTlsRoutes` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
      *     // Required. The project and location from which the TlsRoutes should be listed, specified in the format `projects/x/locations/global`.
      *     parent: 'projects/my-project/locations/my-location',
@@ -11679,7 +11679,7 @@ export namespace networkservices_v1 {
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListTlsRoutesResponse` Indicates that this is a continuation of a prior `ListRouters` call, and that the system should return the next page of data.
+     * The value returned by the last `ListTlsRoutesResponse` Indicates that this is a continuation of a prior `ListTlsRoutes` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**

@@ -923,7 +923,7 @@
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "The value returned by the last `ListHttpRoutesResponse` Indicates that this is a continuation of a prior `ListRouters` call, and that the system should return the next page of data.",
+                      "description": "The value returned by the last `ListHttpRoutesResponse` Indicates that this is a continuation of a prior `ListHttpRoutes` call, and that the system should return the next page of data.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1657,7 +1657,7 @@
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "The value returned by the last `ListTcpRoutesResponse` Indicates that this is a continuation of a prior `ListRouters` call, and that the system should return the next page of data.",
+                      "description": "The value returned by the last `ListTcpRoutesResponse` Indicates that this is a continuation of a prior `ListTcpRoutes` call, and that the system should return the next page of data.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1814,7 +1814,7 @@
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "The value returned by the last `ListTlsRoutesResponse` Indicates that this is a continuation of a prior `ListRouters` call, and that the system should return the next page of data.",
+                      "description": "The value returned by the last `ListTlsRoutesResponse` Indicates that this is a continuation of a prior `ListTlsRoutes` call, and that the system should return the next page of data.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1875,7 +1875,7 @@
       }
     }
   },
-  "revision": "20220520",
+  "revision": "20220802",
   "rootUrl": "https://networkservices.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2088,7 +2088,7 @@
           "type": "string"
         },
         "ports": {
-          "description": "Required. One or more ports that the Gateway must receive traffic on. The proxy binds to the ports specified. Gateway listen on 0.0.0.0 on the ports specified below.",
+          "description": "Required. One or more port numbers (1-65535), on which the Gateway will receive traffic. The proxy binds to the specified ports. Gateways of type 'SECURE_WEB_GATEWAY' are limited to 1 port. Gateways of type 'OPEN_MESH' listen on 0.0.0.0 and support multiple ports.",
           "items": {
             "format": "int32",
             "type": "integer"
@@ -2109,7 +2109,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Immutable. The type of the customer managed gateway.",
+          "description": "Immutable. The type of the customer managed gateway. This field is required. If unspecified, an error is returned.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "OPEN_MESH",
@@ -2330,7 +2330,7 @@
       "id": "GrpcRouteRetryPolicy",
       "properties": {
         "numRetries": {
-          "description": "Specifies the allowed number of retries. This number must be > 0. If not specpfied, default to 1.",
+          "description": "Specifies the allowed number of retries. This number must be > 0. If not specified, default to 1.",
           "format": "uint32",
           "type": "integer"
         },
