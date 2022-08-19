@@ -12,7 +12,7 @@
   "baseUrl": "https://networkconnectivity.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "networkconnectivity",
-  "description": "The Network Connectivity API provides access to Network Connectivity Center.",
+  "description": "This API enables connectivity with and between Google Cloud resources.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/network-connectivity/docs/reference/networkconnectivity/rest",
   "fullyEncodeReservedExpansion": true,
@@ -182,7 +182,7 @@
                 "hubs": {
                   "methods": {
                     "create": {
-                      "description": "Creates a new hub in the specified project.",
+                      "description": "Creates a new Network Connectivity Center hub in the specified project.",
                       "flatPath": "v1/projects/{projectsId}/locations/global/hubs",
                       "httpMethod": "POST",
                       "id": "networkconnectivity.projects.locations.global.hubs.create",
@@ -220,7 +220,7 @@
                       ]
                     },
                     "delete": {
-                      "description": "Deletes the specified hub.",
+                      "description": "Deletes a Network Connectivity Center hub.",
                       "flatPath": "v1/projects/{projectsId}/locations/global/hubs/{hubsId}",
                       "httpMethod": "DELETE",
                       "id": "networkconnectivity.projects.locations.global.hubs.delete",
@@ -250,7 +250,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Gets details about the specified hub.",
+                      "description": "Gets details about a Network Connectivity Center hub.",
                       "flatPath": "v1/projects/{projectsId}/locations/global/hubs/{hubsId}",
                       "httpMethod": "GET",
                       "id": "networkconnectivity.projects.locations.global.hubs.get",
@@ -306,7 +306,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists hubs in a given project.",
+                      "description": "Lists the Network Connectivity Center hubs associated with a given project.",
                       "flatPath": "v1/projects/{projectsId}/locations/global/hubs",
                       "httpMethod": "GET",
                       "id": "networkconnectivity.projects.locations.global.hubs.list",
@@ -352,7 +352,7 @@
                       ]
                     },
                     "patch": {
-                      "description": "Updates the description and/or labels of the specified hub.",
+                      "description": "Updates the description and/or labels of a Network Connectivity Center hub.",
                       "flatPath": "v1/projects/{projectsId}/locations/global/hubs/{hubsId}",
                       "httpMethod": "PATCH",
                       "id": "networkconnectivity.projects.locations.global.hubs.patch",
@@ -667,7 +667,7 @@
             "spokes": {
               "methods": {
                 "create": {
-                  "description": "Creates a spoke in the specified project and location.",
+                  "description": "Creates a Network Connectivity Center spoke.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/spokes",
                   "httpMethod": "POST",
                   "id": "networkconnectivity.projects.locations.spokes.create",
@@ -705,7 +705,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes the specified spoke.",
+                  "description": "Deletes a Network Connectivity Center spoke.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/spokes/{spokesId}",
                   "httpMethod": "DELETE",
                   "id": "networkconnectivity.projects.locations.spokes.delete",
@@ -735,7 +735,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets details about the specified spoke.",
+                  "description": "Gets details about a Network Connectivity Center spoke.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/spokes/{spokesId}",
                   "httpMethod": "GET",
                   "id": "networkconnectivity.projects.locations.spokes.get",
@@ -791,7 +791,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists the spokes in the specified project and location.",
+                  "description": "Lists the Network Connectivity Center spokes in a specified project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/spokes",
                   "httpMethod": "GET",
                   "id": "networkconnectivity.projects.locations.spokes.list",
@@ -837,7 +837,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates the parameters of the specified spoke.",
+                  "description": "Updates the parameters of a Network Connectivity Center spoke.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/spokes/{spokesId}",
                   "httpMethod": "PATCH",
                   "id": "networkconnectivity.projects.locations.spokes.patch",
@@ -938,7 +938,7 @@
       }
     }
   },
-  "revision": "20220505",
+  "revision": "20220817",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -998,7 +998,7 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
           "items": {
             "type": "string"
           },
@@ -1127,7 +1127,7 @@
       "type": "object"
     },
     "Hub": {
-      "description": "A hub is a collection of spokes. A single hub can contain spokes from multiple regions. However, if any of a hub's spokes use the data transfer feature, the resources associated with those spokes must all reside in the same VPC network. Spokes that do not use data transfer can be associated with any VPC network in your project.",
+      "description": "A Network Connectivity Center hub is a collection of spokes. A single hub can contain spokes from multiple regions. However, if any of a hub's spokes use the data transfer feature, the resources associated with those spokes must all reside in the same VPC network. Spokes that do not use data transfer can be associated with any VPC network in your project.",
       "id": "Hub",
       "properties": {
         "createTime": {
@@ -1164,13 +1164,15 @@
             "STATE_UNSPECIFIED",
             "CREATING",
             "ACTIVE",
-            "DELETING"
+            "DELETING",
+            "UPDATING"
           ],
           "enumDescriptions": [
             "No state information available",
             "The resource's create operation is in progress",
             "The resource is active",
-            "The resource's Delete operation is in progress"
+            "The resource's Delete operation is in progress",
+            "The resource's Update operation is in progress"
           ],
           "readOnly": true,
           "type": "string"
@@ -1460,7 +1462,7 @@
       "type": "object"
     },
     "RoutingVPC": {
-      "description": "RoutingVPC contains information about the VPC networks that are associated with a hub's spokes.",
+      "description": "RoutingVPC contains information about the VPC networks associated with the spokes of a Network Connectivity Center hub.",
       "id": "RoutingVPC",
       "properties": {
         "requiredForNewSiteToSiteDataTransferSpokes": {
@@ -1492,7 +1494,7 @@
       "type": "object"
     },
     "Spoke": {
-      "description": "A spoke represents a connection between your Google Cloud network resources and a non-Google-Cloud network. When you create a spoke, you associate it with a hub. You must also identify a value for exactly one of the following fields: * linked_vpn_tunnels * linked_interconnect_attachments * linked_router_appliance_instances",
+      "description": "A Network Connectivity Center spoke represents a connection between your Google Cloud network resources and a non-Google-Cloud network. When you create a spoke, you associate it with a hub. You must also identify a value for exactly one of the following fields: * linked_vpn_tunnels * linked_interconnect_attachments * linked_router_appliance_instances",
       "id": "Spoke",
       "properties": {
         "createTime": {
@@ -1538,13 +1540,15 @@
             "STATE_UNSPECIFIED",
             "CREATING",
             "ACTIVE",
-            "DELETING"
+            "DELETING",
+            "UPDATING"
           ],
           "enumDescriptions": [
             "No state information available",
             "The resource's create operation is in progress",
             "The resource is active",
-            "The resource's Delete operation is in progress"
+            "The resource's Delete operation is in progress",
+            "The resource's Update operation is in progress"
           ],
           "readOnly": true,
           "type": "string"

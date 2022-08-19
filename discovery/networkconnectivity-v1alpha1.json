@@ -12,7 +12,7 @@
   "baseUrl": "https://networkconnectivity.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "networkconnectivity",
-  "description": "The Network Connectivity API provides access to Network Connectivity Center.",
+  "description": "This API enables connectivity with and between Google Cloud resources.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/network-connectivity/docs/reference/networkconnectivity/rest",
   "fullyEncodeReservedExpansion": true,
@@ -273,7 +273,7 @@
                 "hubs": {
                   "methods": {
                     "create": {
-                      "description": "Creates a new Hub in a given project and location.",
+                      "description": "Creates a new Network Connectivity Center hub in the specified project.",
                       "flatPath": "v1alpha1/projects/{projectsId}/locations/global/hubs",
                       "httpMethod": "POST",
                       "id": "networkconnectivity.projects.locations.global.hubs.create",
@@ -311,7 +311,7 @@
                       ]
                     },
                     "delete": {
-                      "description": "Deletes a single Hub.",
+                      "description": "Deletes a Network Connectivity Center hub.",
                       "flatPath": "v1alpha1/projects/{projectsId}/locations/global/hubs/{hubsId}",
                       "httpMethod": "DELETE",
                       "id": "networkconnectivity.projects.locations.global.hubs.delete",
@@ -341,7 +341,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Gets details of a single Hub.",
+                      "description": "Gets details about a Network Connectivity Center hub.",
                       "flatPath": "v1alpha1/projects/{projectsId}/locations/global/hubs/{hubsId}",
                       "httpMethod": "GET",
                       "id": "networkconnectivity.projects.locations.global.hubs.get",
@@ -397,7 +397,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists Hubs in a given project and location.",
+                      "description": "Lists the Network Connectivity Center hubs associated with a given project.",
                       "flatPath": "v1alpha1/projects/{projectsId}/locations/global/hubs",
                       "httpMethod": "GET",
                       "id": "networkconnectivity.projects.locations.global.hubs.list",
@@ -443,7 +443,7 @@
                       ]
                     },
                     "patch": {
-                      "description": "Updates the parameters of a single Hub.",
+                      "description": "Updates the description and/or labels of a Network Connectivity Center hub.",
                       "flatPath": "v1alpha1/projects/{projectsId}/locations/global/hubs/{hubsId}",
                       "httpMethod": "PATCH",
                       "id": "networkconnectivity.projects.locations.global.hubs.patch",
@@ -755,6 +755,97 @@
                 }
               }
             },
+            "serviceIdentifiers": {
+              "methods": {
+                "getIamPolicy": {
+                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/serviceIdentifiers/{serviceIdentifiersId}:getIamPolicy",
+                  "httpMethod": "GET",
+                  "id": "networkconnectivity.projects.locations.serviceIdentifiers.getIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "options.requestedPolicyVersion": {
+                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceIdentifiers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+resource}:getIamPolicy",
+                  "response": {
+                    "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "setIamPolicy": {
+                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
+                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/serviceIdentifiers/{serviceIdentifiersId}:setIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "networkconnectivity.projects.locations.serviceIdentifiers.setIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceIdentifiers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+resource}:setIamPolicy",
+                  "request": {
+                    "$ref": "SetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "testIamPermissions": {
+                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/serviceIdentifiers/{serviceIdentifiersId}:testIamPermissions",
+                  "httpMethod": "POST",
+                  "id": "networkconnectivity.projects.locations.serviceIdentifiers.testIamPermissions",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceIdentifiers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+resource}:testIamPermissions",
+                  "request": {
+                    "$ref": "TestIamPermissionsRequest"
+                  },
+                  "response": {
+                    "$ref": "TestIamPermissionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "serviceInstances": {
               "methods": {
                 "getIamPolicy": {
@@ -849,7 +940,7 @@
             "spokes": {
               "methods": {
                 "create": {
-                  "description": "Creates a new Spoke in a given project and location.",
+                  "description": "Creates a Network Connectivity Center spoke.",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/spokes",
                   "httpMethod": "POST",
                   "id": "networkconnectivity.projects.locations.spokes.create",
@@ -887,7 +978,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a single Spoke.",
+                  "description": "Deletes a Network Connectivity Center spoke.",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/spokes/{spokesId}",
                   "httpMethod": "DELETE",
                   "id": "networkconnectivity.projects.locations.spokes.delete",
@@ -917,7 +1008,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets details of a single Spoke.",
+                  "description": "Gets details about a Network Connectivity Center spoke.",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/spokes/{spokesId}",
                   "httpMethod": "GET",
                   "id": "networkconnectivity.projects.locations.spokes.get",
@@ -973,7 +1064,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists Spokes in a given project and location.",
+                  "description": "Lists the Network Connectivity Center spokes in a specified project and location.",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/spokes",
                   "httpMethod": "GET",
                   "id": "networkconnectivity.projects.locations.spokes.list",
@@ -1019,7 +1110,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates the parameters of a single Spoke.",
+                  "description": "Updates the parameters of a Network Connectivity Center spoke.",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/spokes/{spokesId}",
                   "httpMethod": "PATCH",
                   "id": "networkconnectivity.projects.locations.spokes.patch",
@@ -1120,7 +1211,7 @@
       }
     }
   },
-  "revision": "20220505",
+  "revision": "20220809",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1180,7 +1271,7 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
           "items": {
             "type": "string"
           },
@@ -1346,13 +1437,15 @@
             "STATE_UNSPECIFIED",
             "CREATING",
             "ACTIVE",
-            "DELETING"
+            "DELETING",
+            "UPDATING"
           ],
           "enumDescriptions": [
             "No state information available",
             "The resource's create operation is in progress",
             "The resource is active",
-            "The resource's Delete operation is in progress"
+            "The resource's Delete operation is in progress",
+            "The resource's Update operation is in progress"
           ],
           "readOnly": true,
           "type": "string"
@@ -1636,13 +1729,15 @@
             "STATE_UNSPECIFIED",
             "CREATING",
             "ACTIVE",
-            "DELETING"
+            "DELETING",
+            "UPDATING"
           ],
           "enumDescriptions": [
             "No state information available",
             "The resource's create operation is in progress",
             "The resource is active",
-            "The resource's Delete operation is in progress"
+            "The resource's Delete operation is in progress",
+            "The resource's Update operation is in progress"
           ],
           "readOnly": true,
           "type": "string"
