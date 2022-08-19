@@ -584,7 +584,7 @@
       }
     }
   },
-  "revision": "20220502",
+  "revision": "20220802",
   "rootUrl": "https://memcache.googleapis.com/",
   "schemas": {
     "ApplyParametersRequest": {
@@ -814,7 +814,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Deprecated. The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the referenced policy must define the same policy type. For complete details of MaintenancePolicy, please refer to go/cloud-saas-mw-ug.",
+          "description": "Optional. Deprecated. The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the referenced policy must define the same policy type. For complete details of MaintenancePolicy, please refer to go/cloud-saas-mw-ug.",
           "type": "object"
         },
         "maintenanceSchedules": {
@@ -954,7 +954,7 @@
           "additionalProperties": {
             "$ref": "MaintenancePolicy"
           },
-          "description": "Optional. The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the embedded policy must define the same policy type. For complete details of MaintenancePolicy, please refer to go/cloud-saas-mw-ug. If only the name is needed (like in the deprecated Instance.maintenance_policy_names field) then only populate MaintenancePolicy.name.",
+          "description": "Optional. The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the embedded policy must define the same policy type. For complete details of MaintenancePolicy, please refer to go/cloud-saas-mw-ug. If only the name is needed, then only populate MaintenancePolicy.name.",
           "type": "object"
         }
       },
@@ -1727,12 +1727,18 @@
           "enum": [
             "UPDATE_CHANNEL_UNSPECIFIED",
             "EARLIER",
-            "LATER"
+            "LATER",
+            "WEEK1",
+            "WEEK2",
+            "WEEK5"
           ],
           "enumDescriptions": [
             "Unspecified channel.",
             "Early channel within a customer project.",
-            "Later channel within a customer project."
+            "Later channel within a customer project.",
+            "! ! The follow channels can ONLY be used if you adopt the new MW system! ! ! NOTE: all WEEK channels are assumed to be under a weekly window. ! There is currently no dedicated channel definitions for Daily windows. ! If you use Daily window, the system will assume a 1d (24Hours) advanced ! notification period b/w EARLY and LATER. ! We may consider support more flexible daily channel specifications in ! the future. WEEK1 == EARLIER with minimum 7d advanced notification. {7d, 14d} The system will treat them equally and will use WEEK1 whenever it can. New customers are encouraged to use this channel annotation.",
+            "WEEK2 == LATER with minimum 14d advanced notification {14d, 21d}.",
+            "WEEK5 == 40d support. minimum 35d advanced notification {35d, 42d}."
           ],
           "type": "string"
         },
