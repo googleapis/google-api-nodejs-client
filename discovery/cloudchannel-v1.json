@@ -1901,7 +1901,7 @@
       }
     }
   },
-  "revision": "20220630",
+  "revision": "20220815",
   "rootUrl": "https://cloudchannel.googleapis.com/",
   "schemas": {
     "GoogleCloudChannelV1ActivateEntitlementRequest": {
@@ -2878,7 +2878,7 @@
           "type": "string"
         },
         "languageCode": {
-          "description": "The BCP-47 language code. For example, \"en-US\". The response will localize in the corresponding language code, if specified. The default value is \"en-US\".",
+          "description": "Optional. The BCP-47 language code. For example, \"en-US\". The response will localize in the corresponding language code, if specified. The default value is \"en-US\".",
           "type": "string"
         },
         "pageSize": {
