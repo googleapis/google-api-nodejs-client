@@ -379,7 +379,7 @@
       }
     }
   },
-  "revision": "20220623",
+  "revision": "20220729",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata": {
@@ -399,7 +399,8 @@
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
             "CA_REGIONS_AND_SUPPORT",
-            "ITAR"
+            "ITAR",
+            "AU_REGIONS_AND_US_SUPPORT"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -412,7 +413,8 @@
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
             "Assured Workloads For Canada Regions and Support controls",
-            "International Traffic in Arms Regulations"
+            "International Traffic in Arms Regulations",
+            "Assured Workloads for Australia Regions and Support controls"
           ],
           "type": "string"
         },
@@ -498,7 +500,8 @@
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
             "CA_REGIONS_AND_SUPPORT",
-            "ITAR"
+            "ITAR",
+            "AU_REGIONS_AND_US_SUPPORT"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -511,7 +514,8 @@
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
             "Assured Workloads For Canada Regions and Support controls",
-            "International Traffic in Arms Regulations"
+            "International Traffic in Arms Regulations",
+            "Assured Workloads for Australia Regions and Support controls"
           ],
           "type": "string"
         },
@@ -729,7 +733,8 @@
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
             "CA_REGIONS_AND_SUPPORT",
-            "ITAR"
+            "ITAR",
+            "AU_REGIONS_AND_US_SUPPORT"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -742,7 +747,8 @@
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
             "Assured Workloads For Canada Regions and Support controls",
-            "International Traffic in Arms Regulations"
+            "International Traffic in Arms Regulations",
+            "Assured Workloads for Australia Regions and Support controls"
           ],
           "type": "string"
         },
@@ -794,7 +800,8 @@
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
             "CA_REGIONS_AND_SUPPORT",
-            "ITAR"
+            "ITAR",
+            "AU_REGIONS_AND_US_SUPPORT"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -807,7 +814,8 @@
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
             "Assured Workloads For Canada Regions and Support controls",
-            "International Traffic in Arms Regulations"
+            "International Traffic in Arms Regulations",
+            "Assured Workloads for Australia Regions and Support controls"
           ],
           "type": "string"
         },
@@ -1081,7 +1089,8 @@
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
             "CA_REGIONS_AND_SUPPORT",
-            "ITAR"
+            "ITAR",
+            "AU_REGIONS_AND_US_SUPPORT"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -1094,7 +1103,8 @@
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
             "Assured Workloads For Canada Regions and Support controls",
-            "International Traffic in Arms Regulations"
+            "International Traffic in Arms Regulations",
+            "Assured Workloads for Australia Regions and Support controls"
           ],
           "type": "string"
         },
@@ -1146,7 +1156,8 @@
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
             "CA_REGIONS_AND_SUPPORT",
-            "ITAR"
+            "ITAR",
+            "AU_REGIONS_AND_US_SUPPORT"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -1159,7 +1170,8 @@
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
             "Assured Workloads For Canada Regions and Support controls",
-            "International Traffic in Arms Regulations"
+            "International Traffic in Arms Regulations",
+            "Assured Workloads for Australia Regions and Support controls"
           ],
           "type": "string"
         },
@@ -1270,8 +1282,13 @@
       "description": "Represents the Compliance Status of this workload",
       "id": "GoogleCloudAssuredworkloadsVersioningV1mainWorkloadComplianceStatus",
       "properties": {
+        "acknowledgedViolationCount": {
+          "description": "Count of active Violations which are acknowledged in the Workload.",
+          "format": "int32",
+          "type": "integer"
+        },
         "activeViolationCount": {
-          "description": "Optional. Count of active Violations in the Workload.",
+          "description": "Count of active Violations which haven't been acknowledged.",
           "format": "int32",
           "type": "integer"
         }
