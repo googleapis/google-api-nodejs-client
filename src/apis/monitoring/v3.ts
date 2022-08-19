@@ -833,6 +833,10 @@ export namespace monitoring_v3 {
    */
   export interface Schema$HttpCheck {
     /**
+     * If present, the check will only pass if the HTTP response status code is in this set of status codes. If empty, the HTTP status code will only pass if the HTTP status code is 200-299.
+     */
+    acceptedResponseStatusCodes?: Schema$ResponseStatusCode[];
+    /**
      * The authentication information. Optional when creating an HTTP check; defaults to empty.
      */
     authInfo?: Schema$BasicAuthentication;
@@ -1683,6 +1687,19 @@ export namespace monitoring_v3 {
     resourceType?: string | null;
   }
   /**
+   * A status to accept. Either a status code class like "2xx", or an integer status code like "200".
+   */
+  export interface Schema$ResponseStatusCode {
+    /**
+     * A class of status codes to accept.
+     */
+    statusClass?: string | null;
+    /**
+     * A status code to accept.
+     */
+    statusValue?: number | null;
+  }
+  /**
    * The SendNotificationChannelVerificationCode request.
    */
   export interface Schema$SendNotificationChannelVerificationCodeRequest {}
@@ -2035,7 +2052,7 @@ export namespace monitoring_v3 {
      */
     isInternal?: boolean | null;
     /**
-     * The monitored resource (https://cloud.google.com/monitoring/api/resources) associated with the configuration. The following monitored resource types are valid for this field: uptime_url, gce_instance, gae_app, aws_ec2_instance, aws_elb_load_balancer k8s_service servicedirectory_service
+     * The monitored resource (https://cloud.google.com/monitoring/api/resources) associated with the configuration. The following monitored resource types are valid for this field: uptime_url, gce_instance, gae_app, aws_ec2_instance, aws_elb_load_balancer k8s_service servicedirectory_service cloud_run_revision
      */
     monitoredResource?: Schema$MonitoredResource;
     /**
@@ -2062,6 +2079,10 @@ export namespace monitoring_v3 {
      * The maximum amount of time to wait for the request to complete (must be between 1 and 60 seconds). Required.
      */
     timeout?: string | null;
+    /**
+     * User-supplied key/value data to be used for organizing and identifying the UptimeCheckConfig objects.The field can contain up to 64 entries. Each key and value is limited to 63 Unicode characters or 128 bytes, whichever is smaller. Labels and values can contain only lowercase letters, numerals, underscores, and dashes. Keys must begin with a letter.
+     */
+    userLabels?: {[key: string]: string} | null;
   }
   /**
    * Contains the region, location, and list of IP addresses where checkers in the location run from.
@@ -4648,7 +4669,7 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * Creates a new metric descriptor. The creation is executed asynchronously and callers may check the returned operation to track its progress. User-created metric descriptors define custom metrics (https://cloud.google.com/monitoring/custom-metrics).
+     * Creates a new metric descriptor. The creation is executed asynchronously. User-created metric descriptors define custom metrics (https://cloud.google.com/monitoring/custom-metrics). The metric descriptor is updated if it already exists, except that metric labels are never removed.
      * @example
      * ```js
      * // Before running the sample:
@@ -7987,7 +8008,8 @@ export namespace monitoring_v3 {
      *       //   "resourceGroup": {},
      *       //   "selectedRegions": [],
      *       //   "tcpCheck": {},
-     *       //   "timeout": "my_timeout"
+     *       //   "timeout": "my_timeout",
+     *       //   "userLabels": {}
      *       // }
      *     },
      *   });
@@ -8007,7 +8029,8 @@ export namespace monitoring_v3 {
      *   //   "resourceGroup": {},
      *   //   "selectedRegions": [],
      *   //   "tcpCheck": {},
-     *   //   "timeout": "my_timeout"
+     *   //   "timeout": "my_timeout",
+     *   //   "userLabels": {}
      *   // }
      * }
      *
@@ -8282,7 +8305,8 @@ export namespace monitoring_v3 {
      *   //   "resourceGroup": {},
      *   //   "selectedRegions": [],
      *   //   "tcpCheck": {},
-     *   //   "timeout": "my_timeout"
+     *   //   "timeout": "my_timeout",
+     *   //   "userLabels": {}
      *   // }
      * }
      *
@@ -8576,7 +8600,8 @@ export namespace monitoring_v3 {
      *       //   "resourceGroup": {},
      *       //   "selectedRegions": [],
      *       //   "tcpCheck": {},
-     *       //   "timeout": "my_timeout"
+     *       //   "timeout": "my_timeout",
+     *       //   "userLabels": {}
      *       // }
      *     },
      *   });
@@ -8596,7 +8621,8 @@ export namespace monitoring_v3 {
      *   //   "resourceGroup": {},
      *   //   "selectedRegions": [],
      *   //   "tcpCheck": {},
-     *   //   "timeout": "my_timeout"
+     *   //   "timeout": "my_timeout",
+     *   //   "userLabels": {}
      *   // }
      * }
      *
