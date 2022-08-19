@@ -125,7 +125,7 @@ export namespace recaptchaenterprise_v1 {
   }
 
   /**
-   * Account Defender risk assessment.
+   * Account defender risk assessment.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment {
     /**
@@ -155,7 +155,7 @@ export namespace recaptchaenterprise_v1 {
      */
     annotation?: string | null;
     /**
-     * Optional. Optional unique stable hashed user identifier to apply to the assessment. This is an alternative to setting the hashed_account_id in CreateAssessment, for example when the account identifier is not yet known in the initial request. It is recommended that the identifier is hashed using hmac-sha256 with stable secret.
+     * Optional. Unique stable hashed user identifier to apply to the assessment. This is an alternative to setting the hashed_account_id in CreateAssessment, for example when the account identifier is not yet known in the initial request. It is recommended that the identifier is hashed using hmac-sha256 with stable secret.
      */
     hashedAccountId?: string | null;
     /**
@@ -172,7 +172,7 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1Assessment {
     /**
-     * Assessment returned by Account Defender when a hashed_account_id is provided.
+     * Assessment returned by account defender when a hashed_account_id is provided.
      */
     accountDefenderAssessment?: Schema$GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment;
     /**
@@ -184,7 +184,7 @@ export namespace recaptchaenterprise_v1 {
      */
     name?: string | null;
     /**
-     * The private password leak verification field contains the parameters used to check for leaks privately without sharing user credentials.
+     * The private password leak verification field contains the parameters that are used to to check for leaks privately without sharing user credentials.
      */
     privatePasswordLeakVerification?: Schema$GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification;
     /**
@@ -223,7 +223,7 @@ export namespace recaptchaenterprise_v1 {
      */
     expectedAction?: string | null;
     /**
-     * Optional. Optional unique stable hashed user identifier for the request. The identifier should ideally be hashed using sha256 with stable secret.
+     * Optional. Unique stable hashed user identifier for the request. The identifier must be hashed using hmac-sha256 with stable secret.
      */
     hashedAccountId?: string | null;
     /**
@@ -366,7 +366,7 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification {
     /**
-     * Output only. List of prefixes of the encrypted potential password leaks that matched the given parameters. They should be compared with the client-side decryption prefix of `reencrypted_user_credentials_hash`
+     * Output only. List of prefixes of the encrypted potential password leaks that matched the given parameters. They must be compared with the client-side decryption prefix of `reencrypted_user_credentials_hash`
      */
     encryptedLeakMatchPrefixes?: string[] | null;
     /**
@@ -378,7 +378,7 @@ export namespace recaptchaenterprise_v1 {
      */
     lookupHashPrefix?: string | null;
     /**
-     * Output only. Corresponds to the re-encryption of the `encrypted_user_credentials_hash` field. Used to match potential password leaks within `encrypted_leak_match_prefixes`.
+     * Output only. Corresponds to the re-encryption of the `encrypted_user_credentials_hash` field. It is used to match potential password leaks within `encrypted_leak_match_prefixes`.
      */
     reencryptedUserCredentialsHash?: string | null;
   }
@@ -396,7 +396,7 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupMembership {
     /**
-     * The unique stable hashed user identifier of the member. The identifier corresponds to a `hashed_account_id` provided in a previous CreateAssessment or AnnotateAssessment call.
+     * The unique stable hashed user identifier of the member. The identifier corresponds to a `hashed_account_id` provided in a previous `CreateAssessment` or `AnnotateAssessment` call.
      */
     hashedAccountId?: string | null;
     /**
@@ -405,7 +405,7 @@ export namespace recaptchaenterprise_v1 {
     name?: string | null;
   }
   /**
-   * Secret key used in legacy reCAPTCHA only. Should be used when integrating with a 3rd party which is still using legacy reCAPTCHA.
+   * Secret key is used only in legacy reCAPTCHA. It must be used in a 3rd party integration with legacy reCAPTCHA.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse {
     /**
@@ -455,11 +455,11 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsRequest {
     /**
-     * Optional. The unique stable hashed user identifier we should search connections to. The identifier should correspond to a `hashed_account_id` provided in a previous CreateAssessment or AnnotateAssessment call.
+     * Optional. The unique stable hashed user identifier we should search connections to. The identifier should correspond to a `hashed_account_id` provided in a previous `CreateAssessment` or `AnnotateAssessment` call.
      */
     hashedAccountId?: string | null;
     /**
-     * Optional. The maximum number of groups to return. The service may return fewer than this value. If unspecified, at most 50 groups will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. The maximum number of groups to return. The service might return fewer than this value. If unspecified, at most 50 groups are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
      */
     pageSize?: number | null;
     /**
@@ -1946,7 +1946,7 @@ export namespace recaptchaenterprise_v1 {
     }
 
     /**
-     * Returns the secret key related to the specified public key. You should use the legacy secret key only if you are integrating with a 3rd party using the legacy reCAPTCHA instead of reCAPTCHA Enterprise.
+     * Returns the secret key related to the specified public key. You must use the legacy secret key only in a 3rd party integration with legacy reCAPTCHA.
      * @example
      * ```js
      * // Before running the sample:
@@ -1972,7 +1972,7 @@ export namespace recaptchaenterprise_v1 {
      *
      *   // Do the magic
      *   const res = await recaptchaenterprise.projects.keys.retrieveLegacySecretKey({
-     *     // Required. The public key name linked to the requested secret key , in the format "projects/{project\}/keys/{key\}".
+     *     // Required. The public key name linked to the requested secret key in the format "projects/{project\}/keys/{key\}".
      *     key: 'projects/my-project/keys/my-key',
      *   });
      *   console.log(res.data);
@@ -2164,7 +2164,7 @@ export namespace recaptchaenterprise_v1 {
   export interface Params$Resource$Projects$Keys$Retrievelegacysecretkey
     extends StandardParameters {
     /**
-     * Required. The public key name linked to the requested secret key , in the format "projects/{project\}/keys/{key\}".
+     * Required. The public key name linked to the requested secret key in the format "projects/{project\}/keys/{key\}".
      */
     key?: string;
   }
@@ -2203,7 +2203,7 @@ export namespace recaptchaenterprise_v1 {
      *   // Do the magic
      *   const res =
      *     await recaptchaenterprise.projects.relatedaccountgroupmemberships.search({
-     *       // Required. The name of the project to search related account group memberships from, in the format "projects/{project\}".
+     *       // Required. The name of the project to search related account group memberships from. Specify the project name in the following format: "projects/{project\}".
      *       project: 'projects/my-project',
      *
      *       // Request body metadata
@@ -2330,7 +2330,7 @@ export namespace recaptchaenterprise_v1 {
   export interface Params$Resource$Projects$Relatedaccountgroupmemberships$Search
     extends StandardParameters {
     /**
-     * Required. The name of the project to search related account group memberships from, in the format "projects/{project\}".
+     * Required. The name of the project to search related account group memberships from. Specify the project name in the following format: "projects/{project\}".
      */
     project?: string;
 
@@ -2377,7 +2377,7 @@ export namespace recaptchaenterprise_v1 {
      *
      *   // Do the magic
      *   const res = await recaptchaenterprise.projects.relatedaccountgroups.list({
-     *     // Optional. The maximum number of groups to return. The service may return fewer than this value. If unspecified, at most 50 groups will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     // Optional. The maximum number of groups to return. The service might return fewer than this value. If unspecified, at most 50 groups are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token, received from a previous `ListRelatedAccountGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRelatedAccountGroups` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
@@ -2498,7 +2498,7 @@ export namespace recaptchaenterprise_v1 {
   export interface Params$Resource$Projects$Relatedaccountgroups$List
     extends StandardParameters {
     /**
-     * Optional. The maximum number of groups to return. The service may return fewer than this value. If unspecified, at most 50 groups will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. The maximum number of groups to return. The service might return fewer than this value. If unspecified, at most 50 groups are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
      */
     pageSize?: number;
     /**
@@ -2518,7 +2518,7 @@ export namespace recaptchaenterprise_v1 {
     }
 
     /**
-     * Get the memberships in a group of related accounts.
+     * Get memberships in a group of related accounts.
      * @example
      * ```js
      * // Before running the sample:
@@ -2545,7 +2545,7 @@ export namespace recaptchaenterprise_v1 {
      *   // Do the magic
      *   const res =
      *     await recaptchaenterprise.projects.relatedaccountgroups.memberships.list({
-     *       // Optional. The maximum number of accounts to return. The service may return fewer than this value. If unspecified, at most 50 accounts will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *       // Optional. The maximum number of accounts to return. The service might return fewer than this value. If unspecified, at most 50 accounts are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
      *       pageSize: 'placeholder-value',
      *       // Optional. A page token, received from a previous `ListRelatedAccountGroupMemberships` call. When paginating, all other parameters provided to `ListRelatedAccountGroupMemberships` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
@@ -2667,7 +2667,7 @@ export namespace recaptchaenterprise_v1 {
   export interface Params$Resource$Projects$Relatedaccountgroups$Memberships$List
     extends StandardParameters {
     /**
-     * Optional. The maximum number of accounts to return. The service may return fewer than this value. If unspecified, at most 50 accounts will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. The maximum number of accounts to return. The service might return fewer than this value. If unspecified, at most 50 accounts are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
      */
     pageSize?: number;
     /**
