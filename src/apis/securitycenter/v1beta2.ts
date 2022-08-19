@@ -145,9 +145,21 @@ export namespace securitycenter_v1beta2 {
      */
     methodName?: string | null;
     /**
-     * Associated email, such as "foo@google.com".
+     * Associated email, such as "foo@google.com". The email address of the authenticated user (or service account on behalf of third party principal) making the request. For third party identity callers, the `principal_subject` field is populated instead of this field. For privacy reasons, the principal email address is sometimes redacted. For more information, see [Caller identities in audit logs](https://cloud.google.com/logging/docs/audit#user-id).
      */
     principalEmail?: string | null;
+    /**
+     * A string representing the principal_subject associated with the identity. As compared to `principal_email`, supports principals that aren't associated with email addresses, such as third party principals. For most identities, the format will be `principal://iam.googleapis.com/{identity pool name\}/subject/{subject)` except for some GKE identities (GKE_WORKLOAD, FREEFORM, GKE_HUB_WORKLOAD) that are still in the legacy format `serviceAccount:{identity pool name\}[{subject\}]`
+     */
+    principalSubject?: string | null;
+    /**
+     * Identity delegation history of an authenticated service account that makes the request. It contains information on the real authorities that try to access GCP resources by delegating on a service account. When multiple authorities are present, they are guaranteed to be sorted based on the original ordering of the identity delegation events.
+     */
+    serviceAccountDelegationInfo?: Schema$ServiceAccountDelegationInfo[];
+    /**
+     * The name of the service account key used to create or exchange credentials for authenticating the service account making the request. This is a scheme-less URI full resource name. For example: "//iam.googleapis.com/projects/{PROJECT_ID\}/serviceAccounts/{ACCOUNT\}/keys/{key\}"
+     */
+    serviceAccountKeyName?: string | null;
     /**
      * This is the API service that the service account made a call to, e.g. "iam.googleapis.com"
      */
@@ -156,6 +168,39 @@ export namespace securitycenter_v1beta2 {
      * What kind of user agent is associated, e.g. operating system shells, embedded or stand-alone applications, etc.
      */
     userAgentFamily?: string | null;
+  }
+  /**
+   * Conveys information about a Kubernetes access review (e.g. kubectl auth can-i ...) that was involved in a finding.
+   */
+  export interface Schema$AccessReview {
+    /**
+     * Group is the API Group of the Resource. "*" means all.
+     */
+    group?: string | null;
+    /**
+     * Name is the name of the resource being requested. Empty means all.
+     */
+    name?: string | null;
+    /**
+     * Namespace of the action being requested. Currently, there is no distinction between no namespace and all namespaces. Both are represented by "" (empty).
+     */
+    ns?: string | null;
+    /**
+     * Resource is the optional resource type requested. "*" means all.
+     */
+    resource?: string | null;
+    /**
+     * Subresource is the optional subresource type.
+     */
+    subresource?: string | null;
+    /**
+     * Verb is a Kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy. "*" means all.
+     */
+    verb?: string | null;
+    /**
+     * Version is the API Version of the Resource. "*" means all.
+     */
+    version?: string | null;
   }
   /**
    * Contains compliance information about a security standard indicating unmet recommendations.
@@ -229,6 +274,27 @@ export namespace securitycenter_v1beta2 {
      * A list of contacts
      */
     contacts?: Schema$Contact[];
+  }
+  /**
+   * Container associated with the finding.
+   */
+  export interface Schema$Container {
+    /**
+     * Optional container image id, when provided by the container runtime. Uniquely identifies the container image launched using a container image digest.
+     */
+    imageId?: string | null;
+    /**
+     * Container labels, as provided by the container runtime.
+     */
+    labels?: Schema$Label[];
+    /**
+     * Container name.
+     */
+    name?: string | null;
+    /**
+     * Container image URI provided when configuring a pod/container. May identify a container image version using mutable tags.
+     */
+    uri?: string | null;
   }
   /**
    * Resource capturing the settings for the Container Threat Detection service.
@@ -316,6 +382,31 @@ export namespace securitycenter_v1beta2 {
      * This metric captures the requirement for a human user, other than the attacker, to participate in the successful compromise of the vulnerable component.
      */
     userInteraction?: string | null;
+  }
+  /**
+   * Represents database access information, such as queries. A database may be a sub-resource of an instance (as in the case of CloudSQL instances or Cloud Spanner instances), or the database instance itself. Some database resources may not have the full resource name populated because these resource types are not yet supported by Cloud Asset Inventory (e.g. CloudSQL databases). In these cases only the display name will be provided.
+   */
+  export interface Schema$Database {
+    /**
+     * The human readable name of the database the user connected to.
+     */
+    displayName?: string | null;
+    /**
+     * The target usernames/roles/groups of a SQL privilege grant (not an IAM policy change).
+     */
+    grantees?: string[] | null;
+    /**
+     * The full resource name of the database the user connected to, if it is supported by CAI. (https://google.aip.dev/122#full-resource-names)
+     */
+    name?: string | null;
+    /**
+     * The SQL statement associated with the relevant access.
+     */
+    query?: string | null;
+    /**
+     * The username used to connect to the DB. This may not necessarily be an IAM principal, and has no required format.
+     */
+    userName?: string | null;
   }
   /**
    * Details of a subscription.
@@ -461,13 +552,21 @@ export namespace securitycenter_v1beta2 {
      */
     connections?: Schema$Connection[];
     /**
-     * Output only. Map containing the point of contacts for the given finding. The key represents the type of contact, while the value contains a list of all the contacts that pertain. Please refer to: https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories { “security”: {contact: {email: “person1@company.com”\} contact: {email: “person2@company.com”\} \}
+     * Output only. Map containing the point of contacts for the given finding. The key represents the type of contact, while the value contains a list of all the contacts that pertain. Please refer to: https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories { "security": { "contacts": [ { "email": "person1@company.com" \}, { "email": "person2@company.com" \} ] \}
      */
     contacts?: {[key: string]: Schema$ContactDetails} | null;
+    /**
+     * Containers associated with the finding. containers provides information for both Kubernetes and non-Kubernetes containers.
+     */
+    containers?: Schema$Container[];
     /**
      * The time at which the finding was created in Security Command Center.
      */
     createTime?: string | null;
+    /**
+     * Database associated with the finding.
+     */
+    database?: Schema$Database;
     /**
      * Contains more detail about the finding.
      */
@@ -502,6 +601,10 @@ export namespace securitycenter_v1beta2 {
      * Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
      */
     indicator?: Schema$Indicator;
+    /**
+     * Kubernetes resources associated with the finding.
+     */
+    kubernetes?: Schema$Kubernetes;
     /**
      * MITRE ATT&CK tactics and techniques related to this finding. See: https://attack.mitre.org
      */
@@ -630,6 +733,27 @@ export namespace securitycenter_v1beta2 {
      * Output only. The most recent time at which the big export was updated. This field is set by the server and will be ignored if provided on export creation or update.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Represents a Kubernetes RoleBinding or ClusterRoleBinding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1Binding {
+    /**
+     * Name for binding.
+     */
+    name?: string | null;
+    /**
+     * Namespace for binding.
+     */
+    ns?: string | null;
+    /**
+     * The Role or ClusterRole referenced by the binding.
+     */
+    role?: Schema$Role;
+    /**
+     * Represents the subjects(s) bound to the role. Not always available for PATCH requests.
+     */
+    subjects?: Schema$Subject[];
   }
   /**
    * The response to a BulkMute request. Contains the LRO information.
@@ -935,6 +1059,52 @@ export namespace securitycenter_v1beta2 {
      * The list of matched signatures indicating that the given process is present in the environment.
      */
     signatures?: Schema$ProcessSignature[];
+    /**
+     * The list of URIs associated to the Findings
+     */
+    uris?: string[] | null;
+  }
+  /**
+   * Kubernetes related attributes.
+   */
+  export interface Schema$Kubernetes {
+    /**
+     * Provides information on any Kubernetes access reviews (i.e. privilege checks) relevant to the finding.
+     */
+    accessReviews?: Schema$AccessReview[];
+    /**
+     * Provides Kubernetes role binding information for findings that involve RoleBindings or ClusterRoleBindings.
+     */
+    bindings?: Schema$GoogleCloudSecuritycenterV1Binding[];
+    /**
+     * GKE Node Pools associated with the finding. This field will contain NodePool information for each Node, when it is available.
+     */
+    nodePools?: Schema$NodePool[];
+    /**
+     * Provides Kubernetes Node information.
+     */
+    nodes?: Schema$Node[];
+    /**
+     * Kubernetes Pods associated with the finding. This field will contain Pod records for each container that is owned by a Pod.
+     */
+    pods?: Schema$Pod[];
+    /**
+     * Provides Kubernetes role information for findings that involve Roles or ClusterRoles.
+     */
+    roles?: Schema$Role[];
+  }
+  /**
+   * Label represents a generic name=value label. Label has separate name and value fields to support filtering with contains().
+   */
+  export interface Schema$Label {
+    /**
+     * Label name.
+     */
+    name?: string | null;
+    /**
+     * Label value.
+     */
+    value?: string | null;
   }
   /**
    * A signature corresponding to memory page hashes.
@@ -975,6 +1145,28 @@ export namespace securitycenter_v1beta2 {
     version?: string | null;
   }
   /**
+   * Kubernetes Nodes associated with the finding.
+   */
+  export interface Schema$Node {
+    /**
+     * Full Resource name of the Compute Engine VM running the cluster node.
+     */
+    name?: string | null;
+  }
+  /**
+   * Provides GKE Node Pool information.
+   */
+  export interface Schema$NodePool {
+    /**
+     * Kubernetes Node pool name.
+     */
+    name?: string | null;
+    /**
+     * Nodes associated with the finding.
+     */
+    nodes?: Schema$Node[];
+  }
+  /**
    * Resource capturing onboarding information for a given CRM resource.
    */
   export interface Schema$OnboardingState {
@@ -986,6 +1178,27 @@ export namespace securitycenter_v1beta2 {
      * Describes the level a given organization, folder, or project is onboarded with SCC. If the resource wasn't onboarded, NOT_FOUND would have been thrown.
      */
     onboardingLevel?: string | null;
+  }
+  /**
+   * Kubernetes Pod.
+   */
+  export interface Schema$Pod {
+    /**
+     * Pod containers associated with this finding, if any.
+     */
+    containers?: Schema$Container[];
+    /**
+     * Pod labels. For Kubernetes containers, these are applied to the container.
+     */
+    labels?: Schema$Label[];
+    /**
+     * Kubernetes Pod name.
+     */
+    name?: string | null;
+    /**
+     * Kubernetes Pod namespace.
+     */
+    ns?: string | null;
   }
   /**
    * Represents an operating system process.
@@ -1016,7 +1229,7 @@ export namespace securitycenter_v1beta2 {
      */
     libraries?: Schema$File[];
     /**
-     * The process name visible in utilities like top and ps; it can be accessed via /proc/[pid]/comm and changed with prctl(PR_SET_NAME).
+     * The process name visible in utilities like `top` and `ps`; it can be accessed via `/proc/[pid]/comm` and changed with `prctl(PR_SET_NAME)`.
      */
     name?: string | null;
     /**
@@ -1080,11 +1293,28 @@ export namespace securitycenter_v1beta2 {
     uri?: string | null;
   }
   /**
+   * Kubernetes Role or ClusterRole.
+   */
+  export interface Schema$Role {
+    /**
+     * Role type.
+     */
+    kind?: string | null;
+    /**
+     * Role name.
+     */
+    name?: string | null;
+    /**
+     * Role namespace.
+     */
+    ns?: string | null;
+  }
+  /**
    * Resource capturing the settings for Security Center.
    */
   export interface Schema$SecurityCenterSettings {
     /**
-     * The resource name of the project to send logs to. This project must be part of the organization this resource resides in. The format is `projects/{project_id\}`. An empty value disables logging. This value is only referenced by services that support log sink. Please refer to the documentation for an updated list of compatible services.
+     * The resource name of the project to send logs to. This project must be part of the organization this resource resides in. The format is `projects/{project_id\}`. An empty value disables logging. This value is only referenced by services that support log sink. Please refer to the documentation for an updated list of compatible services. This may only be specified for organization level onboarding.
      */
     logSinkProject?: string | null;
     /**
@@ -1092,11 +1322,11 @@ export namespace securitycenter_v1beta2 {
      */
     name?: string | null;
     /**
-     * Timestamp of when the customer organization was onboarded to SCC.
+     * Output only. Timestamp of when the customer organization was onboarded to SCC.
      */
     onboardingTime?: string | null;
     /**
-     * The organization level service account to be used for security center components.
+     * Output only. The organization level service account to be used for security center components.
      */
     orgServiceAccount?: string | null;
   }
@@ -1141,6 +1371,36 @@ export namespace securitycenter_v1beta2 {
      * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id\}/assets/{asset_id\}/securityMarks" "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks".
      */
     name?: string | null;
+  }
+  /**
+   * Identity delegation history of an authenticated service account.
+   */
+  export interface Schema$ServiceAccountDelegationInfo {
+    /**
+     * The email address of a Google account. .
+     */
+    principalEmail?: string | null;
+    /**
+     * A string representing the principal_subject associated with the identity. As compared to `principal_email`, supports principals that aren't associated with email addresses, such as third party principals. For most identities, the format will be `principal://iam.googleapis.com/{identity pool name\}/subject/{subject)` except for some GKE identities (GKE_WORKLOAD, FREEFORM, GKE_HUB_WORKLOAD) that are still in the legacy format `serviceAccount:{identity pool name\}[{subject\}]`
+     */
+    principalSubject?: string | null;
+  }
+  /**
+   * Represents a Kubernetes Subject.
+   */
+  export interface Schema$Subject {
+    /**
+     * Authentication type for subject.
+     */
+    kind?: string | null;
+    /**
+     * Name for subject.
+     */
+    name?: string | null;
+    /**
+     * Namespace for subject.
+     */
+    ns?: string | null;
   }
   /**
    * Resource capturing the state of an organization's subscription.
