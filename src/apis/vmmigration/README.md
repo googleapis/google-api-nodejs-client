@@ -2,7 +2,7 @@
 
 # vmmigration
 
-> Use the Migrate for Compute Engine API to programmatically migrate workloads.
+> Use the Migrate to Virtual Machines API to programmatically migrate workloads.
 
 ## Support status
 **Note**: Google provides multiple libraries for this service. This library is in
