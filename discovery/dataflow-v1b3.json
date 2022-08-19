@@ -2225,7 +2225,7 @@
       }
     }
   },
-  "revision": "20220526",
+  "revision": "20220812",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -3349,6 +3349,10 @@
           "description": "If true, when processing time is spent almost entirely on garbage collection (GC), saves a heap dump before ending the thread or process. If false, ends the thread or process without saving a heap dump. Does not save a heap dump when the Java Virtual Machine (JVM) has an out of memory error during processing. The location of the heap file is either echoed back to the user, or the user is given the opportunity to download the heap file.",
           "type": "boolean"
         },
+        "enableLauncherVmSerialPortLogging": {
+          "description": "If true serial port logging will be enabled for the launcher VM.",
+          "type": "boolean"
+        },
         "enableStreamingEngine": {
           "description": "Whether to enable Streaming Engine for the job.",
           "type": "boolean"
@@ -3560,6 +3564,20 @@
       },
       "type": "object"
     },
+    "HotKeyDebuggingInfo": {
+      "description": "Information useful for debugging a hot key detection.",
+      "id": "HotKeyDebuggingInfo",
+      "properties": {
+        "detectedHotKeys": {
+          "additionalProperties": {
+            "$ref": "HotKeyInfo"
+          },
+          "description": "Debugging information for each detected hot key. Keyed by a hash of the key.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "HotKeyDetection": {
       "description": "Proto describing a hot key detected on a given WorkItem.",
       "id": "HotKeyDetection",
@@ -3576,6 +3594,26 @@
         "userStepName": {
           "description": "User-provided name of the step that contains this hot key.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "HotKeyInfo": {
+      "description": "Information about a hot key.",
+      "id": "HotKeyInfo",
+      "properties": {
+        "hotKeyAge": {
+          "description": "The age of the hot key measured from when it was first detected.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "key": {
+          "description": "A detected hot key that is causing limited parallelism. This field will be populated only if the following flag is set to true: \"--enable_hot_key_logging\".",
+          "type": "string"
+        },
+        "keyTruncated": {
+          "description": "If true, then the above key is truncated and cannot be deserialized. This occurs if the key above is populated and the key size is >5MB.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -3761,7 +3799,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The user-specified Cloud Dataflow job name. Only one Job with a given name can exist in a project within one region at any given time. Jobs in different regions can have the same name. If a caller attempts to create a Job with the same name as an already-existing Job, the attempt returns the existing Job. The name must match the regular expression `[a-z]([-a-z0-9]{0,38}[a-z0-9])?`",
+          "description": "The user-specified Cloud Dataflow job name. Only one Job with a given name can exist in a project within one region at any given time. Jobs in different regions can have the same name. If a caller attempts to create a Job with the same name as an already-existing Job, the attempt returns the existing Job. The name must match the regular expression `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`",
           "type": "string"
         },
         "pipelineDescription": {
@@ -4159,7 +4197,7 @@
           "description": "The runtime environment for the job."
         },
         "jobName": {
-          "description": "Required. The job name to use for the created job.",
+          "description": "Required. The job name to use for the created job. The name must match the regular expression `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`",
           "type": "string"
         },
         "parameters": {
@@ -5181,12 +5219,14 @@
           "enum": [
             "UNKNOWN",
             "JAVA",
-            "PYTHON"
+            "PYTHON",
+            "GO"
           ],
           "enumDescriptions": [
             "UNKNOWN Language.",
             "Java.",
-            "Python."
+            "Python.",
+            "Go."
           ],
           "type": "string"
         },
@@ -5922,6 +5962,10 @@
             "Execution of the component was cancelled."
           ],
           "type": "string"
+        },
+        "stragglerSummary": {
+          "$ref": "StragglerSummary",
+          "description": "Straggler summary for this stage."
         }
       },
       "type": "object"
@@ -5987,6 +6031,56 @@
           },
           "description": "Named properties associated with the step. Each kind of predefined step has its own required set of properties. Must be provided on Create. Only retrieved with JOB_VIEW_ALL.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "StragglerDebuggingInfo": {
+      "description": "Information useful for debugging a straggler. Each type will provide specialized debugging information relevant for a particular cause. The StragglerDebuggingInfo will be 1:1 mapping to the StragglerCause enum.",
+      "id": "StragglerDebuggingInfo",
+      "properties": {
+        "hotKey": {
+          "$ref": "HotKeyDebuggingInfo",
+          "description": "Hot key debugging details."
+        }
+      },
+      "type": "object"
+    },
+    "StragglerInfo": {
+      "description": "Information useful for straggler identification and debugging.",
+      "id": "StragglerInfo",
+      "properties": {
+        "causes": {
+          "additionalProperties": {
+            "$ref": "StragglerDebuggingInfo"
+          },
+          "description": "The straggler causes, keyed by the string representation of the StragglerCause enum and contains specialized debugging information for each straggler cause.",
+          "type": "object"
+        },
+        "startTime": {
+          "description": "The time when the work item attempt became a straggler.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StragglerSummary": {
+      "description": "Summarized straggler identification details.",
+      "id": "StragglerSummary",
+      "properties": {
+        "stragglerCauseCount": {
+          "additionalProperties": {
+            "format": "int64",
+            "type": "string"
+          },
+          "description": "Aggregated counts of straggler causes, keyed by the string representation of the StragglerCause enum.",
+          "type": "object"
+        },
+        "totalStragglerCount": {
+          "description": "The total count of stragglers.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -6596,6 +6690,10 @@
             "Execution of the component was cancelled."
           ],
           "type": "string"
+        },
+        "stragglerInfo": {
+          "$ref": "StragglerInfo",
+          "description": "Information about straggler detections for this work item."
         },
         "taskId": {
           "description": "Name of this work item.",
