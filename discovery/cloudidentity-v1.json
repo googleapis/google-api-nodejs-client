@@ -20,6 +20,12 @@
         "https://www.googleapis.com/auth/cloud-identity.groups.readonly": {
           "description": "See any Cloud Identity Groups that you can access, including group members and their emails"
         },
+        "https://www.googleapis.com/auth/cloud-identity.userinvitations": {
+          "description": "See, send, or cancel any Cloud Identity UserInvitations to join your organization to users"
+        },
+        "https://www.googleapis.com/auth/cloud-identity.userinvitations.readonly": {
+          "description": "See, send, or cancel any Cloud Identity UserInvitations to join your organization to users"
+        },
         "https://www.googleapis.com/auth/cloud-platform": {
           "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         }
@@ -123,6 +129,169 @@
   },
   "protocol": "rest",
   "resources": {
+    "customers": {
+      "resources": {
+        "userinvitations": {
+          "methods": {
+            "cancel": {
+              "description": "Cancels a UserInvitation that was already sent.",
+              "flatPath": "v1/customers/{customersId}/userinvitations/{userinvitationsId}:cancel",
+              "httpMethod": "POST",
+              "id": "cloudidentity.customers.userinvitations.cancel",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. `UserInvitation` name in the format `customers/{customer}/userinvitations/{user_email_address}`",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+/userinvitations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:cancel",
+              "request": {
+                "$ref": "CancelUserInvitationRequest"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-identity.userinvitations"
+              ]
+            },
+            "get": {
+              "description": "Retrieves a UserInvitation resource. **Note:** New consumer accounts with the customer's verified domain created within the previous 48 hours will not appear in the result. This delay also applies to newly-verified domains.",
+              "flatPath": "v1/customers/{customersId}/userinvitations/{userinvitationsId}",
+              "httpMethod": "GET",
+              "id": "cloudidentity.customers.userinvitations.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. `UserInvitation` name in the format `customers/{customer}/userinvitations/{user_email_address}`",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+/userinvitations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "UserInvitation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-identity.userinvitations",
+                "https://www.googleapis.com/auth/cloud-identity.userinvitations.readonly"
+              ]
+            },
+            "isInvitableUser": {
+              "description": "Verifies whether a user account is eligible to receive a UserInvitation (is an unmanaged account). Eligibility is based on the following criteria: * the email address is a consumer account and it's the primary email address of the account, and * the domain of the email address matches an existing verified Google Workspace or Cloud Identity domain If both conditions are met, the user is eligible. **Note:** This method is not supported for Workspace Essentials customers.",
+              "flatPath": "v1/customers/{customersId}/userinvitations/{userinvitationsId}:isInvitableUser",
+              "httpMethod": "GET",
+              "id": "cloudidentity.customers.userinvitations.isInvitableUser",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. `UserInvitation` name in the format `customers/{customer}/userinvitations/{user_email_address}`",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+/userinvitations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:isInvitableUser",
+              "response": {
+                "$ref": "IsInvitableUserResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-identity.userinvitations",
+                "https://www.googleapis.com/auth/cloud-identity.userinvitations.readonly"
+              ]
+            },
+            "list": {
+              "description": "Retrieves a list of UserInvitation resources. **Note:** New consumer accounts with the customer's verified domain created within the previous 48 hours will not appear in the result. This delay also applies to newly-verified domains.",
+              "flatPath": "v1/customers/{customersId}/userinvitations",
+              "httpMethod": "GET",
+              "id": "cloudidentity.customers.userinvitations.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "Optional. A query string for filtering `UserInvitation` results by their current state, in the format: `\"state=='invited'\"`.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Optional. The sort order of the list results. You can sort the results in descending order based on either email or last update timestamp but not both, using `order_by=\"email desc\"`. Currently, sorting is supported for `update_time asc`, `update_time desc`, `email asc`, and `email desc`. If not specified, results will be returned based on `email asc` order.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. The maximum number of UserInvitation resources to return. If unspecified, at most 100 resources will be returned. The maximum value is 200; values above 200 will be set to 200.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token, received from a previous `ListUserInvitations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBooks` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The customer ID of the Google Workspace or Cloud Identity account the UserInvitation resources are associated with.",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/userinvitations",
+              "response": {
+                "$ref": "ListUserInvitationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-identity.userinvitations",
+                "https://www.googleapis.com/auth/cloud-identity.userinvitations.readonly"
+              ]
+            },
+            "send": {
+              "description": "Sends a UserInvitation to email. If the `UserInvitation` does not exist for this request and it is a valid request, the request creates a `UserInvitation`. **Note:** The `get` and `list` methods have a 48-hour delay where newly-created consumer accounts will not appear in the results. You can still send a `UserInvitation` to those accounts if you know the unmanaged email address and IsInvitableUser==True.",
+              "flatPath": "v1/customers/{customersId}/userinvitations/{userinvitationsId}:send",
+              "httpMethod": "POST",
+              "id": "cloudidentity.customers.userinvitations.send",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. `UserInvitation` name in the format `customers/{customer}/userinvitations/{user_email_address}`",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+/userinvitations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:send",
+              "request": {
+                "$ref": "SendUserInvitationRequest"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-identity.userinvitations"
+              ]
+            }
+          }
+        }
+      }
+    },
     "devices": {
       "methods": {
         "cancelWipe": {
@@ -1439,9 +1608,15 @@
       }
     }
   },
-  "revision": "20220627",
+  "revision": "20220815",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
+    "CancelUserInvitationRequest": {
+      "description": "Request to cancel sent invitation for target email in UserInvitation.",
+      "id": "CancelUserInvitationRequest",
+      "properties": {},
+      "type": "object"
+    },
     "CheckTransitiveMembershipResponse": {
       "description": "The response message for MembershipsService.CheckTransitiveMembership.",
       "id": "CheckTransitiveMembershipResponse",
@@ -2479,6 +2654,17 @@
       },
       "type": "object"
     },
+    "IsInvitableUserResponse": {
+      "description": "Response for IsInvitableUser RPC.",
+      "id": "IsInvitableUserResponse",
+      "properties": {
+        "isInvitableUser": {
+          "description": "Returns true if the email address is invitable.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "ListGroupsResponse": {
       "description": "Response message for ListGroups operation.",
       "id": "ListGroupsResponse",
@@ -2511,6 +2697,24 @@
         "nextPageToken": {
           "description": "A continuation token to retrieve the next page of results, or empty if there are no more results available.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListUserInvitationsResponse": {
+      "description": "Response message for UserInvitation listing request.",
+      "id": "ListUserInvitationsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The token for the next page. If not empty, indicates that there may be more `UserInvitation` resources that match the listing request; this value can be used in a subsequent ListUserInvitationsRequest to get continued results with the current list call.",
+          "type": "string"
+        },
+        "userInvitations": {
+          "description": "The list of UserInvitation resources.",
+          "items": {
+            "$ref": "UserInvitation"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2893,6 +3097,12 @@
       },
       "type": "object"
     },
+    "SendUserInvitationRequest": {
+      "description": "A request to send email for inviting target user corresponding to the UserInvitation.",
+      "id": "SendUserInvitationRequest",
+      "properties": {},
+      "type": "object"
+    },
     "Status": {
       "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -2955,6 +3165,45 @@
         "membershipRole": {
           "$ref": "MembershipRole",
           "description": "The `MembershipRole`s to be updated. Only `MEMBER` `MembershipRole` can currently be updated."
+        }
+      },
+      "type": "object"
+    },
+    "UserInvitation": {
+      "description": "The `UserInvitation` resource represents an email that can be sent to an unmanaged user account inviting them to join the customer's Google Workspace or Cloud Identity account. An unmanaged account shares an email address domain with the Google Workspace or Cloud Identity account but is not managed by it yet. If the user accepts the `UserInvitation`, the user account will become managed.",
+      "id": "UserInvitation",
+      "properties": {
+        "mailsSentCount": {
+          "description": "Number of invitation emails sent to the user.",
+          "format": "int64",
+          "type": "string"
+        },
+        "name": {
+          "description": "Shall be of the form `customers/{customer}/userinvitations/{user_email_address}`.",
+          "type": "string"
+        },
+        "state": {
+          "description": "State of the `UserInvitation`.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "NOT_YET_SENT",
+            "INVITED",
+            "ACCEPTED",
+            "DECLINED"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is used if the state is omitted.",
+            "The `UserInvitation` has been created and is ready for sending as an email.",
+            "The user has been invited by email.",
+            "The user has accepted the invitation and is part of the organization.",
+            "The user declined the invitation."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Time when the `UserInvitation` was last updated.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
