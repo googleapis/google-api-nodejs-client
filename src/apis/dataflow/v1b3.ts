@@ -906,6 +906,10 @@ export namespace dataflow_v1b3 {
      */
     dumpHeapOnOom?: boolean | null;
     /**
+     * If true serial port logging will be enabled for the launcher VM.
+     */
+    enableLauncherVmSerialPortLogging?: boolean | null;
+    /**
      * Whether to enable Streaming Engine for the job.
      */
     enableStreamingEngine?: boolean | null;
@@ -1061,6 +1065,15 @@ export namespace dataflow_v1b3 {
     firstBucketOffset?: number | null;
   }
   /**
+   * Information useful for debugging a hot key detection.
+   */
+  export interface Schema$HotKeyDebuggingInfo {
+    /**
+     * Debugging information for each detected hot key. Keyed by a hash of the key.
+     */
+    detectedHotKeys?: {[key: string]: Schema$HotKeyInfo} | null;
+  }
+  /**
    * Proto describing a hot key detected on a given WorkItem.
    */
   export interface Schema$HotKeyDetection {
@@ -1076,6 +1089,23 @@ export namespace dataflow_v1b3 {
      * User-provided name of the step that contains this hot key.
      */
     userStepName?: string | null;
+  }
+  /**
+   * Information about a hot key.
+   */
+  export interface Schema$HotKeyInfo {
+    /**
+     * The age of the hot key measured from when it was first detected.
+     */
+    hotKeyAge?: string | null;
+    /**
+     * A detected hot key that is causing limited parallelism. This field will be populated only if the following flag is set to true: "--enable_hot_key_logging".
+     */
+    key?: string | null;
+    /**
+     * If true, then the above key is truncated and cannot be deserialized. This occurs if the key above is populated and the key size is \>5MB.
+     */
+    keyTruncated?: boolean | null;
   }
   /**
    * An input of an instruction, as a reference to an output of a producer instruction.
@@ -1203,7 +1233,7 @@ export namespace dataflow_v1b3 {
      */
     location?: string | null;
     /**
-     * The user-specified Cloud Dataflow job name. Only one Job with a given name can exist in a project within one region at any given time. Jobs in different regions can have the same name. If a caller attempts to create a Job with the same name as an already-existing Job, the attempt returns the existing Job. The name must match the regular expression `[a-z]([-a-z0-9]{0,38\}[a-z0-9])?`
+     * The user-specified Cloud Dataflow job name. Only one Job with a given name can exist in a project within one region at any given time. Jobs in different regions can have the same name. If a caller attempts to create a Job with the same name as an already-existing Job, the attempt returns the existing Job. The name must match the regular expression `[a-z]([-a-z0-9]{0,1022\}[a-z0-9])?`
      */
     name?: string | null;
     /**
@@ -1467,7 +1497,7 @@ export namespace dataflow_v1b3 {
      */
     environment?: Schema$RuntimeEnvironment;
     /**
-     * Required. The job name to use for the created job.
+     * Required. The job name to use for the created job. The name must match the regular expression `[a-z]([-a-z0-9]{0,1022\}[a-z0-9])?`
      */
     jobName?: string | null;
     /**
@@ -2722,6 +2752,10 @@ export namespace dataflow_v1b3 {
      * State of this stage.
      */
     state?: string | null;
+    /**
+     * Straggler summary for this stage.
+     */
+    stragglerSummary?: Schema$StragglerSummary;
   }
   /**
    * State family configuration.
@@ -2769,6 +2803,41 @@ export namespace dataflow_v1b3 {
      * Named properties associated with the step. Each kind of predefined step has its own required set of properties. Must be provided on Create. Only retrieved with JOB_VIEW_ALL.
      */
     properties?: {[key: string]: any} | null;
+  }
+  /**
+   * Information useful for debugging a straggler. Each type will provide specialized debugging information relevant for a particular cause. The StragglerDebuggingInfo will be 1:1 mapping to the StragglerCause enum.
+   */
+  export interface Schema$StragglerDebuggingInfo {
+    /**
+     * Hot key debugging details.
+     */
+    hotKey?: Schema$HotKeyDebuggingInfo;
+  }
+  /**
+   * Information useful for straggler identification and debugging.
+   */
+  export interface Schema$StragglerInfo {
+    /**
+     * The straggler causes, keyed by the string representation of the StragglerCause enum and contains specialized debugging information for each straggler cause.
+     */
+    causes?: {[key: string]: Schema$StragglerDebuggingInfo} | null;
+    /**
+     * The time when the work item attempt became a straggler.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * Summarized straggler identification details.
+   */
+  export interface Schema$StragglerSummary {
+    /**
+     * Aggregated counts of straggler causes, keyed by the string representation of the StragglerCause enum.
+     */
+    stragglerCauseCount?: {[key: string]: string} | null;
+    /**
+     * The total count of stragglers.
+     */
+    totalStragglerCount?: string | null;
   }
   /**
    * Streaming appliance snapshot configuration.
@@ -3493,6 +3562,10 @@ export namespace dataflow_v1b3 {
      * State of this work item.
      */
     state?: string | null;
+    /**
+     * Information about straggler detections for this work item.
+     */
+    stragglerInfo?: Schema$StragglerInfo;
     /**
      * Name of this work item.
      */
