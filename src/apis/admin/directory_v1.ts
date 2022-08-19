@@ -499,7 +499,7 @@ export namespace admin_directory_v1 {
      */
     kind?: string | null;
     /**
-     * Additional parameters controlling delivery channel behavior. Optional.
+     * Additional parameters controlling delivery channel behavior. Optional. For example, `params.ttl` specifies the time-to-live in seconds for the notification channel, where the default is 2 hours and the maximum TTL is 2 days.
      */
     params?: {[key: string]: string} | null;
     /**
@@ -617,6 +617,10 @@ export namespace admin_directory_v1 {
      */
     firmwareVersion?: string | null;
     /**
+     * Date and time for the first time the device was enrolled.
+     */
+    firstEnrollmentTime?: string | null;
+    /**
      * The type of resource. For the Chromeosdevices resource, the value is `admin#directory#chromeosdevice`.
      */
     kind?: string | null;
@@ -667,6 +671,10 @@ export namespace admin_directory_v1 {
      * The full parent path with the organizational unit's name associated with the device. Path names are case insensitive. If the parent organizational unit is the top-level organization, it is represented as a forward slash, `/`. This property can be [updated](/admin-sdk/directory/v1/guides/manage-chrome-devices#move_chrome_devices_to_ou) using the API. For more information about how to create an organizational structure for your device, see the [administration help center](https://support.google.com/a/answer/182433).
      */
     orgUnitPath?: string | null;
+    /**
+     * The status of the OS updates for the device.
+     */
+    osUpdateStatus?: Schema$OsUpdateStatus;
     /**
      * The Chrome device's operating system version.
      */
@@ -727,6 +735,9 @@ export namespace admin_directory_v1 {
      */
     willAutoRenew?: boolean | null;
   }
+  /**
+   * The data regarding an action to update the status of a Chrome OS device.
+   */
   export interface Schema$ChromeOsDeviceAction {
     /**
      * Action to be taken on the Chrome OS device.
@@ -1093,7 +1104,7 @@ export namespace admin_directory_v1 {
      */
     adminCreated?: boolean | null;
     /**
-     * Read-only. A list of a group's alias email addresses.
+     * Read-only. A list of a group's alias email addresses. To add, update, or remove a group's aliases, use the `groups.aliases` methods. If edited in a group's POST or PUT request, the edit is ignored.
      */
     aliases?: string[] | null;
     /**
@@ -1125,9 +1136,34 @@ export namespace admin_directory_v1 {
      */
     name?: string | null;
     /**
-     * Read-only. A list of the group's non-editable alias email addresses that are outside of the account's primary domain or subdomains. These are functioning email addresses used by the group. This is a read-only property returned in the API's response for a group. If edited in a group's POST or PUT request, the edit is ignored by the API service.
+     * Read-only. A list of the group's non-editable alias email addresses that are outside of the account's primary domain or subdomains. These are functioning email addresses used by the group. This is a read-only property returned in the API's response for a group. If edited in a group's POST or PUT request, the edit is ignored.
      */
     nonEditableAliases?: string[] | null;
+  }
+  /**
+   * The Directory API manages aliases, which are alternative email addresses.
+   */
+  export interface Schema$GroupAlias {
+    /**
+     * The alias email address.
+     */
+    alias?: string | null;
+    /**
+     * ETag of the resource.
+     */
+    etag?: string | null;
+    /**
+     * The unique ID of the group.
+     */
+    id?: string | null;
+    /**
+     * The type of the API resource. For Alias resources, the value is `admin#directory#alias`.
+     */
+    kind?: string | null;
+    /**
+     * The primary email address of the group.
+     */
+    primaryEmail?: string | null;
   }
   export interface Schema$Groups {
     /**
@@ -1486,6 +1522,35 @@ export namespace admin_directory_v1 {
      * List of organizational unit objects.
      */
     organizationUnits?: Schema$OrgUnit[];
+  }
+  /**
+   * Contains information regarding the current OS update status.
+   */
+  export interface Schema$OsUpdateStatus {
+    /**
+     * Date and time of the last reboot.
+     */
+    rebootTime?: string | null;
+    /**
+     * The update state of an OS update.
+     */
+    state?: string | null;
+    /**
+     * New required platform version from the pending updated kiosk app.
+     */
+    targetKioskAppVersion?: string | null;
+    /**
+     * New platform version of the OS image being downloaded and applied. It is only set when update status is UPDATE_STATUS_DOWNLOAD_IN_PROGRESS or UPDATE_STATUS_NEED_REBOOT. Note this could be a dummy "0.0.0.0" for UPDATE_STATUS_NEED_REBOOT for some edge cases, e.g. update engine is restarted without a reboot.
+     */
+    targetOsVersion?: string | null;
+    /**
+     * Date and time of the last update check.
+     */
+    updateCheckTime?: string | null;
+    /**
+     * Date and time of the last successful OS update.
+     */
+    updateTime?: string | null;
   }
   /**
    * Printer configuration.
@@ -1889,7 +1954,7 @@ export namespace admin_directory_v1 {
      */
     gender?: any | null;
     /**
-     * Stores the hash format of the `password` property. The following `hashFunction` values are allowed: * `MD5` - Accepts simple hex-encoded values. * `SHA1` - Accepts simple hex-encoded values. * `crypt` - Compliant with the [C crypt library](https://en.wikipedia.org/wiki/Crypt_%28C%29). Supports the DES, MD5 (hash prefix `$1$`), SHA-256 (hash prefix `$5$`), and SHA-512 (hash prefix `$6$`) hash algorithms. If rounds are specified as part of the prefix, they must be 10,000 or fewer.
+     * Stores the hash format of the `password` property. The following `hashFunction` values are allowed: * `MD5` - Accepts simple hex-encoded values. * `SHA-1` - Accepts simple hex-encoded values. * `crypt` - Compliant with the [C crypt library](https://en.wikipedia.org/wiki/Crypt_%28C%29). Supports the DES, MD5 (hash prefix `$1$`), SHA-256 (hash prefix `$5$`), and SHA-512 (hash prefix `$6$`) hash algorithms. If rounds are specified as part of the prefix, they must be 10,000 or fewer.
      */
     hashFunction?: string | null;
     /**
@@ -2090,6 +2155,31 @@ export namespace admin_directory_v1 {
      * Each entry can have a type which indicates standard values of that entry. For example address could be of home work etc. In addition to the standard type an entry can have a custom type and can take any value. Such type should have the CUSTOM value as type and also have a customType value.
      */
     type?: string | null;
+  }
+  /**
+   * The Directory API manages aliases, which are alternative email addresses.
+   */
+  export interface Schema$UserAlias {
+    /**
+     * The alias email address.
+     */
+    alias?: string | null;
+    /**
+     * ETag of the resource.
+     */
+    etag?: string | null;
+    /**
+     * The unique ID for the user.
+     */
+    id?: string | null;
+    /**
+     * The type of the API resource. For Alias resources, the value is `admin#directory#alias`.
+     */
+    kind?: string | null;
+    /**
+     * The user's primary email address.
+     */
+    primaryEmail?: string | null;
   }
   /**
    * JSON template for a set of custom properties (i.e. all fields in a particular schema)
@@ -3310,6 +3400,7 @@ export namespace admin_directory_v1 {
      *   //   "ethernetMacAddress": "my_ethernetMacAddress",
      *   //   "ethernetMacAddress0": "my_ethernetMacAddress0",
      *   //   "firmwareVersion": "my_firmwareVersion",
+     *   //   "firstEnrollmentTime": "my_firstEnrollmentTime",
      *   //   "kind": "my_kind",
      *   //   "lastEnrollmentTime": "my_lastEnrollmentTime",
      *   //   "lastKnownNetwork": [],
@@ -3322,6 +3413,7 @@ export namespace admin_directory_v1 {
      *   //   "orderNumber": "my_orderNumber",
      *   //   "orgUnitId": "my_orgUnitId",
      *   //   "orgUnitPath": "my_orgUnitPath",
+     *   //   "osUpdateStatus": {},
      *   //   "osVersion": "my_osVersion",
      *   //   "platformVersion": "my_platformVersion",
      *   //   "recentUsers": [],
@@ -3605,7 +3697,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.chromeosdevices.moveDevicesToOu({
-     *     // Immutable ID of the Google Workspace account
+     *     // Immutable. ID of the Google Workspace account
      *     customerId: 'placeholder-value',
      *     // Full path of the target organizational unit or its ID
      *     orgUnitPath: 'placeholder-value',
@@ -3764,6 +3856,7 @@ export namespace admin_directory_v1 {
      *       //   "ethernetMacAddress": "my_ethernetMacAddress",
      *       //   "ethernetMacAddress0": "my_ethernetMacAddress0",
      *       //   "firmwareVersion": "my_firmwareVersion",
+     *       //   "firstEnrollmentTime": "my_firstEnrollmentTime",
      *       //   "kind": "my_kind",
      *       //   "lastEnrollmentTime": "my_lastEnrollmentTime",
      *       //   "lastKnownNetwork": [],
@@ -3776,6 +3869,7 @@ export namespace admin_directory_v1 {
      *       //   "orderNumber": "my_orderNumber",
      *       //   "orgUnitId": "my_orgUnitId",
      *       //   "orgUnitPath": "my_orgUnitPath",
+     *       //   "osUpdateStatus": {},
      *       //   "osVersion": "my_osVersion",
      *       //   "platformVersion": "my_platformVersion",
      *       //   "recentUsers": [],
@@ -3810,6 +3904,7 @@ export namespace admin_directory_v1 {
      *   //   "ethernetMacAddress": "my_ethernetMacAddress",
      *   //   "ethernetMacAddress0": "my_ethernetMacAddress0",
      *   //   "firmwareVersion": "my_firmwareVersion",
+     *   //   "firstEnrollmentTime": "my_firstEnrollmentTime",
      *   //   "kind": "my_kind",
      *   //   "lastEnrollmentTime": "my_lastEnrollmentTime",
      *   //   "lastKnownNetwork": [],
@@ -3822,6 +3917,7 @@ export namespace admin_directory_v1 {
      *   //   "orderNumber": "my_orderNumber",
      *   //   "orgUnitId": "my_orgUnitId",
      *   //   "orgUnitPath": "my_orgUnitPath",
+     *   //   "osUpdateStatus": {},
      *   //   "osVersion": "my_osVersion",
      *   //   "platformVersion": "my_platformVersion",
      *   //   "recentUsers": [],
@@ -3981,6 +4077,7 @@ export namespace admin_directory_v1 {
      *       //   "ethernetMacAddress": "my_ethernetMacAddress",
      *       //   "ethernetMacAddress0": "my_ethernetMacAddress0",
      *       //   "firmwareVersion": "my_firmwareVersion",
+     *       //   "firstEnrollmentTime": "my_firstEnrollmentTime",
      *       //   "kind": "my_kind",
      *       //   "lastEnrollmentTime": "my_lastEnrollmentTime",
      *       //   "lastKnownNetwork": [],
@@ -3993,6 +4090,7 @@ export namespace admin_directory_v1 {
      *       //   "orderNumber": "my_orderNumber",
      *       //   "orgUnitId": "my_orgUnitId",
      *       //   "orgUnitPath": "my_orgUnitPath",
+     *       //   "osUpdateStatus": {},
      *       //   "osVersion": "my_osVersion",
      *       //   "platformVersion": "my_platformVersion",
      *       //   "recentUsers": [],
@@ -4027,6 +4125,7 @@ export namespace admin_directory_v1 {
      *   //   "ethernetMacAddress": "my_ethernetMacAddress",
      *   //   "ethernetMacAddress0": "my_ethernetMacAddress0",
      *   //   "firmwareVersion": "my_firmwareVersion",
+     *   //   "firstEnrollmentTime": "my_firstEnrollmentTime",
      *   //   "kind": "my_kind",
      *   //   "lastEnrollmentTime": "my_lastEnrollmentTime",
      *   //   "lastKnownNetwork": [],
@@ -4039,6 +4138,7 @@ export namespace admin_directory_v1 {
      *   //   "orderNumber": "my_orderNumber",
      *   //   "orgUnitId": "my_orgUnitId",
      *   //   "orgUnitPath": "my_orgUnitPath",
+     *   //   "osUpdateStatus": {},
      *   //   "osVersion": "my_osVersion",
      *   //   "platformVersion": "my_platformVersion",
      *   //   "recentUsers": [],
@@ -4218,7 +4318,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Chromeosdevices$Movedevicestoou
     extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account
+     * Immutable. ID of the Google Workspace account
      */
     customerId?: string;
     /**
@@ -4327,9 +4427,9 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await admin.customer.devices.chromeos.issueCommand({
-     *     // Immutable. Immutable ID of the Google Workspace account.
+     *     // Immutable. ID of the Google Workspace account.
      *     customerId: 'placeholder-value',
-     *     // Immutable. Immutable ID of Chrome OS Device.
+     *     // Immutable. ID of Chrome OS Device.
      *     deviceId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4453,11 +4553,11 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Customer$Devices$Chromeos$Issuecommand
     extends StandardParameters {
     /**
-     * Immutable. Immutable ID of the Google Workspace account.
+     * Immutable. ID of the Google Workspace account.
      */
     customerId?: string;
     /**
-     * Immutable. Immutable ID of Chrome OS Device.
+     * Immutable. ID of Chrome OS Device.
      */
     deviceId?: string;
 
@@ -4503,11 +4603,11 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await admin.customer.devices.chromeos.commands.get({
-     *     // Immutable. Immutable ID of Chrome OS Device Command.
+     *     // Immutable. ID of Chrome OS Device Command.
      *     commandId: 'placeholder-value',
-     *     // Immutable. Immutable ID of the Google Workspace account.
+     *     // Immutable. ID of the Google Workspace account.
      *     customerId: 'placeholder-value',
-     *     // Immutable. Immutable ID of Chrome OS Device.
+     *     // Immutable. ID of Chrome OS Device.
      *     deviceId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4628,15 +4728,15 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Customer$Devices$Chromeos$Commands$Get
     extends StandardParameters {
     /**
-     * Immutable. Immutable ID of Chrome OS Device Command.
+     * Immutable. ID of Chrome OS Device Command.
      */
     commandId?: string;
     /**
-     * Immutable. Immutable ID of the Google Workspace account.
+     * Immutable. ID of the Google Workspace account.
      */
     customerId?: string;
     /**
-     * Immutable. Immutable ID of Chrome OS Device.
+     * Immutable. ID of Chrome OS Device.
      */
     deviceId?: string;
   }
@@ -9267,7 +9367,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Checks whether the given user is a member of the group. Membership can be direct or nested.
+     * Checks whether the given user is a member of the group. Membership can be direct or nested, but if nested, the `memberKey` and `groupKey` must be entities in the same domain or an `Invalid input` error is returned. To check for nested memberships that include entities outside of the group's domain, use the [`checkTransitiveMembership()`](https://cloud.google.com/identity/docs/reference/rest/v1/groups.memberships/checkTransitiveMembership) method in the Cloud Identity Groups API.
      * @example
      * ```js
      * // Before running the sample:
