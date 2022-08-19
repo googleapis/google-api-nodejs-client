@@ -646,6 +646,10 @@ export namespace datastream_v1 {
      * MySQL objects to retrieve from the source.
      */
     includeObjects?: Schema$MysqlRdbms;
+    /**
+     * Maximum number of concurrent CDC tasks. The number should be non negative. If not set (or set to 0), the system's default value will be used.
+     */
+    maxConcurrentCdcTasks?: number | null;
   }
   /**
    * MySQL SSL configuration information.
@@ -872,6 +876,14 @@ export namespace datastream_v1 {
      * Oracle objects to include in the stream.
      */
     includeObjects?: Schema$OracleRdbms;
+    /**
+     * Maximum number of concurrent CDC tasks. The number should be non negative. If not set (or set to 0), the system's default value will be used.
+     */
+    maxConcurrentCdcTasks?: number | null;
+    /**
+     * Stream large object values.
+     */
+    streamLargeObjects?: Schema$StreamLargeObjects;
   }
   /**
    * Oracle table.
@@ -1096,6 +1108,10 @@ export namespace datastream_v1 {
     updateTime?: string | null;
   }
   /**
+   * Configuration to stream large object values.
+   */
+  export interface Schema$StreamLargeObjects {}
+  /**
    * A specific stream object (e.g a specific DB table).
    */
   export interface Schema$StreamObject {
@@ -1184,7 +1200,7 @@ export namespace datastream_v1 {
    */
   export interface Schema$VpcPeeringConfig {
     /**
-     * Required. A free subnet for peering. (CIDR of /29) TODO(b/172995841) add validators.
+     * Required. A free subnet for peering. (CIDR of /29)
      */
     subnet?: string | null;
     /**
