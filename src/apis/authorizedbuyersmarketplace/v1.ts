@@ -580,6 +580,15 @@ export namespace authorizedbuyersmarketplace_v1 {
     targetedInventorySizes?: Schema$AdSize[];
   }
   /**
+   * Targeting of the inventory types a bid request can originate from.
+   */
+  export interface Schema$InventoryTypeTargeting {
+    /**
+     * The list of targeted inventory types for the bid request.
+     */
+    inventoryTypes?: string[] | null;
+  }
+  /**
    * Response message for listing auction packages.
    */
   export interface Schema$ListAuctionPackagesResponse {
@@ -686,6 +695,10 @@ export namespace authorizedbuyersmarketplace_v1 {
      * Output only. Inventory sizes to be included/excluded.
      */
     inventorySizeTargeting?: Schema$InventorySizeTargeting;
+    /**
+     * Output only. Inventory type targeting information.
+     */
+    inventoryTypeTargeting?: Schema$InventoryTypeTargeting;
     /**
      * Output only. Placement targeting information, for example, URL, mobile applications.
      */

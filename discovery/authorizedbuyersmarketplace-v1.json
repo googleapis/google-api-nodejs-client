@@ -1307,7 +1307,7 @@
       }
     }
   },
-  "revision": "20220616",
+  "revision": "20220817",
   "rootUrl": "https://authorizedbuyersmarketplace.googleapis.com/",
   "schemas": {
     "AcceptProposalRequest": {
@@ -2141,6 +2141,32 @@
       },
       "type": "object"
     },
+    "InventoryTypeTargeting": {
+      "description": "Targeting of the inventory types a bid request can originate from.",
+      "id": "InventoryTypeTargeting",
+      "properties": {
+        "inventoryTypes": {
+          "description": "The list of targeted inventory types for the bid request.",
+          "items": {
+            "enum": [
+              "INVENTORY_TYPE_UNSPECIFIED",
+              "BROWSER",
+              "MOBILE_APP",
+              "VIDEO_PLAYER"
+            ],
+            "enumDescriptions": [
+              "Unspecified inventory type",
+              "Desktop or mobile web browser excluding ads inside a video player",
+              "Mobile apps other than video players and web browsers",
+              "Instream video and audio"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListAuctionPackagesResponse": {
       "description": "Response message for listing auction packages.",
       "id": "ListAuctionPackagesResponse",
@@ -2283,6 +2309,11 @@
         "inventorySizeTargeting": {
           "$ref": "InventorySizeTargeting",
           "description": "Output only. Inventory sizes to be included/excluded.",
+          "readOnly": true
+        },
+        "inventoryTypeTargeting": {
+          "$ref": "InventoryTypeTargeting",
+          "description": "Output only. Inventory type targeting information.",
           "readOnly": true
         },
         "placementTargeting": {
