@@ -143,6 +143,123 @@
             }
           },
           "resources": {
+            "groups": {
+              "methods": {
+                "batchDelete": {
+                  "description": "Delete multiple policy values that are applied to a specific group. All targets must have the same target format. That is to say that they must point to the same target resource and must have the same keys specified in `additionalTargetKeyNames`, though the values for those keys may be different. On failure the request will return the error details as part of the google.rpc.Status.",
+                  "flatPath": "v1/customers/{customersId}/policies/groups:batchDelete",
+                  "httpMethod": "POST",
+                  "id": "chromepolicy.customers.policies.groups.batchDelete",
+                  "parameterOrder": [
+                    "customer"
+                  ],
+                  "parameters": {
+                    "customer": {
+                      "description": "ID of the Google Workspace account or literal \"my_customer\" for the customer associated to the request.",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+customer}/policies/groups:batchDelete",
+                  "request": {
+                    "$ref": "GoogleChromePolicyV1BatchDeleteGroupPoliciesRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.policy"
+                  ]
+                },
+                "batchModify": {
+                  "description": "Modify multiple policy values that are applied to a specific group. All targets must have the same target format. That is to say that they must point to the same target resource and must have the same keys specified in `additionalTargetKeyNames`, though the values for those keys may be different. On failure the request will return the error details as part of the google.rpc.Status.",
+                  "flatPath": "v1/customers/{customersId}/policies/groups:batchModify",
+                  "httpMethod": "POST",
+                  "id": "chromepolicy.customers.policies.groups.batchModify",
+                  "parameterOrder": [
+                    "customer"
+                  ],
+                  "parameters": {
+                    "customer": {
+                      "description": "ID of the Google Workspace account or literal \"my_customer\" for the customer associated to the request.",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+customer}/policies/groups:batchModify",
+                  "request": {
+                    "$ref": "GoogleChromePolicyV1BatchModifyGroupPoliciesRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.policy"
+                  ]
+                },
+                "listGroupPriorityOrdering": {
+                  "description": "Retrieve a group priority ordering for an app. The target app must be supplied in `additionalTargetKeyNames` in the PolicyTargetKey. On failure the request will return the error details as part of the google.rpc.Status.",
+                  "flatPath": "v1/customers/{customersId}/policies/groups:listGroupPriorityOrdering",
+                  "httpMethod": "POST",
+                  "id": "chromepolicy.customers.policies.groups.listGroupPriorityOrdering",
+                  "parameterOrder": [
+                    "customer"
+                  ],
+                  "parameters": {
+                    "customer": {
+                      "description": "Required. ID of the Google Workspace account or literal \"my_customer\" for the customer associated to the request.",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+customer}/policies/groups:listGroupPriorityOrdering",
+                  "request": {
+                    "$ref": "GoogleChromePolicyV1ListGroupPriorityOrderingRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleChromePolicyV1ListGroupPriorityOrderingResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.policy",
+                    "https://www.googleapis.com/auth/chrome.management.policy.readonly"
+                  ]
+                },
+                "updateGroupPriorityOrdering": {
+                  "description": "Update a group priority ordering for an app. The target app must be supplied in `additionalTargetKeyNames` in the PolicyTargetKey. On failure the request will return the error details as part of the google.rpc.Status.",
+                  "flatPath": "v1/customers/{customersId}/policies/groups:updateGroupPriorityOrdering",
+                  "httpMethod": "POST",
+                  "id": "chromepolicy.customers.policies.groups.updateGroupPriorityOrdering",
+                  "parameterOrder": [
+                    "customer"
+                  ],
+                  "parameters": {
+                    "customer": {
+                      "description": "Required. ID of the Google Workspace account or literal \"my_customer\" for the customer associated to the request.",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+customer}/policies/groups:updateGroupPriorityOrdering",
+                  "request": {
+                    "$ref": "GoogleChromePolicyV1UpdateGroupPriorityOrderingRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.policy"
+                  ]
+                }
+              }
+            },
             "orgunits": {
               "methods": {
                 "batchInherit": {
@@ -324,7 +441,7 @@
       }
     }
   },
-  "revision": "20220630",
+  "revision": "20220817",
   "rootUrl": "https://chromepolicy.googleapis.com/",
   "schemas": {
     "ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle": {
@@ -374,6 +491,20 @@
       },
       "type": "object"
     },
+    "GoogleChromePolicyV1BatchDeleteGroupPoliciesRequest": {
+      "description": "Request message for specifying that multiple policy values will be deleted.",
+      "id": "GoogleChromePolicyV1BatchDeleteGroupPoliciesRequest",
+      "properties": {
+        "requests": {
+          "description": "List of policies that will be deleted as defined by the `requests`. All requests in the list must follow these restrictions: 1. All schemas in the list must have the same root namespace. 2. All `policyTargetKey.targetResource` values must point to a group resource. 3. All `policyTargetKey` values must have the same `app_id` key name in the `additionalTargetKeys`. 4. No two modification requests can reference the same `policySchema` + ` policyTargetKey` pair. ",
+          "items": {
+            "$ref": "GoogleChromePolicyV1DeleteGroupPolicyRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromePolicyV1BatchInheritOrgUnitPoliciesRequest": {
       "description": "Request message for specifying that multiple policy values inherit their value from their parents.",
       "id": "GoogleChromePolicyV1BatchInheritOrgUnitPoliciesRequest",
@@ -382,6 +513,20 @@
           "description": "List of policies that have to inherit their values as defined by the `requests`. All requests in the list must follow these restrictions: 1. All schemas in the list must have the same root namespace. 2. All `policyTargetKey.targetResource` values must point to an org unit resource. 3. All `policyTargetKey` values must have the same key names in the ` additionalTargetKeys`. This also means if one of the targets has an empty `additionalTargetKeys` map, all of the targets must have an empty `additionalTargetKeys` map. 4. No two modification requests can reference the same `policySchema` + ` policyTargetKey` pair. ",
           "items": {
             "$ref": "GoogleChromePolicyV1InheritOrgUnitPolicyRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromePolicyV1BatchModifyGroupPoliciesRequest": {
+      "description": "Request message for modifying multiple policy values for a specific group-based target.",
+      "id": "GoogleChromePolicyV1BatchModifyGroupPoliciesRequest",
+      "properties": {
+        "requests": {
+          "description": "List of policies to modify as defined by the `requests`. All requests in the list must follow these restrictions: 1. All schemas in the list must have the same root namespace. 2. All `policyTargetKey.targetResource` values must point to a group resource. 3. All `policyTargetKey` values must have the same `app_id` key name in the `additionalTargetKeys`. 4. No two modification requests can reference the same `policySchema` + ` policyTargetKey` pair. ",
+          "items": {
+            "$ref": "GoogleChromePolicyV1ModifyGroupPolicyRequest"
           },
           "type": "array"
         }
@@ -402,6 +547,21 @@
       },
       "type": "object"
     },
+    "GoogleChromePolicyV1DeleteGroupPolicyRequest": {
+      "description": "Request parameters for deleting the policy value of a specific group target.",
+      "id": "GoogleChromePolicyV1DeleteGroupPolicyRequest",
+      "properties": {
+        "policySchema": {
+          "description": "The fully qualified name of the policy schema that is being inherited.",
+          "type": "string"
+        },
+        "policyTargetKey": {
+          "$ref": "GoogleChromePolicyV1PolicyTargetKey",
+          "description": "Required. The key of the target for which we want to modify a policy. The target resource must point to a Group."
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromePolicyV1InheritOrgUnitPolicyRequest": {
       "description": "Request parameters for inheriting policy value of a specific org unit target from the policy value of its parent org unit.",
       "id": "GoogleChromePolicyV1InheritOrgUnitPolicyRequest",
@@ -413,6 +573,46 @@
         "policyTargetKey": {
           "$ref": "GoogleChromePolicyV1PolicyTargetKey",
           "description": "Required. The key of the target for which we want to modify a policy. The target resource must point to an Org Unit."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromePolicyV1ListGroupPriorityOrderingRequest": {
+      "description": "Request message for listing the group priority ordering of an app.",
+      "id": "GoogleChromePolicyV1ListGroupPriorityOrderingRequest",
+      "properties": {
+        "policyNamespace": {
+          "description": "Required. The namespace of the policy type for the request.",
+          "type": "string"
+        },
+        "policyTargetKey": {
+          "$ref": "GoogleChromePolicyV1PolicyTargetKey",
+          "description": "Required. The key of the target for which we want to retrieve the group priority ordering. The target resource must point to an app."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromePolicyV1ListGroupPriorityOrderingResponse": {
+      "description": "Response message for listing the group priority ordering of an app.",
+      "id": "GoogleChromePolicyV1ListGroupPriorityOrderingResponse",
+      "properties": {
+        "groupIds": {
+          "description": "Output only. The group IDs, in priority ordering.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "policyNamespace": {
+          "description": "Output only. The namespace of the policy type of the group IDs.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "policyTargetKey": {
+          "$ref": "GoogleChromePolicyV1PolicyTargetKey",
+          "description": "Output only. The target resource for which the group priority ordering has been retrieved.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -431,6 +631,26 @@
             "$ref": "GoogleChromePolicyV1PolicySchema"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromePolicyV1ModifyGroupPolicyRequest": {
+      "description": "Request parameters for modifying a policy value for a specific group target.",
+      "id": "GoogleChromePolicyV1ModifyGroupPolicyRequest",
+      "properties": {
+        "policyTargetKey": {
+          "$ref": "GoogleChromePolicyV1PolicyTargetKey",
+          "description": "Required. The key of the target for which we want to modify a policy. The target resource must point to a Group."
+        },
+        "policyValue": {
+          "$ref": "GoogleChromePolicyV1PolicyValue",
+          "description": "The new value for the policy."
+        },
+        "updateMask": {
+          "description": "Required. Policy fields to update. Only fields in this mask will be updated; other fields in `policy_value` will be ignored (even if they have values). If a field is in this list it must have a value in 'policy_value'.",
+          "format": "google-fieldmask",
+          "type": "string"
         }
       },
       "type": "object"
@@ -456,7 +676,7 @@
       "type": "object"
     },
     "GoogleChromePolicyV1PolicySchema": {
-      "description": "Resource representing a policy schema. Next ID: 12",
+      "description": "Resource representing a policy schema. Next ID: 13",
       "id": "GoogleChromePolicyV1PolicySchema",
       "properties": {
         "accessRestrictions": {
@@ -499,10 +719,14 @@
           "readOnly": true,
           "type": "array"
         },
+        "policyApiLifecycle": {
+          "$ref": "ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle",
+          "description": "Output only. Current lifecycle information.",
+          "readOnly": true
+        },
         "policyApiLifeycle": {
           "$ref": "ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle",
-          "description": "Output only. Current life cycle information.",
-          "readOnly": true
+          "description": "Deprecated field because of typo."
         },
         "policyDescription": {
           "description": "Output only. Description about the policy schema for user consumption.",
@@ -510,7 +734,7 @@
           "type": "string"
         },
         "schemaName": {
-          "description": "Output only. The fully qualified name of the policy schema. This value is used to fill the field `policy_schema` in PolicyValue when calling BatchInheritOrgUnitPolicies or BatchModifyOrgUnitPolicies",
+          "description": "Output only. The fully qualified name of the policy schema. This value is used to fill the field `policy_schema` in PolicyValue when calling BatchInheritOrgUnitPolicies BatchModifyOrgUnitPolicies BatchModifyGroupPolicies or BatchDeleteGroupPolicies.",
           "readOnly": true,
           "type": "string"
         },
@@ -686,7 +910,7 @@
           "type": "object"
         },
         "targetResource": {
-          "description": "The target resource on which this policy is applied. The following resources are supported: * Organizational Unit (\"orgunits/{orgunit_id}\")",
+          "description": "The target resource on which this policy is applied. The following resources are supported: * Organizational Unit (\"orgunits/{orgunit_id}\") * Group (\"groups/{group_id}\")",
           "type": "string"
         }
       },
@@ -776,6 +1000,28 @@
           "$ref": "GoogleChromePolicyV1PolicyValue",
           "description": "Output only. The resolved value of the policy.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromePolicyV1UpdateGroupPriorityOrderingRequest": {
+      "description": "Request message for updating the group priority ordering of an app.",
+      "id": "GoogleChromePolicyV1UpdateGroupPriorityOrderingRequest",
+      "properties": {
+        "groupIds": {
+          "description": "Required. The group IDs, in desired priority ordering.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "policyNamespace": {
+          "description": "Required. The namespace of the policy type for the request.",
+          "type": "string"
+        },
+        "policyTargetKey": {
+          "$ref": "GoogleChromePolicyV1PolicyTargetKey",
+          "description": "Required. The key of the target for which we want to update the group priority ordering. The target resource must point to an app."
         }
       },
       "type": "object"
