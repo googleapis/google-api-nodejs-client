@@ -138,7 +138,7 @@
                       "type": "string"
                     },
                     "languageCodes": {
-                      "description": "The language filters applied to the output suggestions. If set, it should contain the language of the query. If not set, suggestions are returned without considering language restrictions. This is the BCP-47 language code, such as \"en-US\" or \"sr-Latn\". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47). The maximum number of language codes is 3.",
+                      "description": "Note that this field applies for `user-data` dataset only. For requests with `cloud-retail` dataset, setting this field has no effect. The language filters applied to the output suggestions. If set, it should contain the language of the query. If not set, suggestions are returned without considering language restrictions. This is the BCP-47 language code, such as \"en-US\" or \"sr-Latn\". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47). The maximum number of language codes is 3.",
                       "location": "query",
                       "repeated": true,
                       "type": "string"
@@ -441,6 +441,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "batchRemoveCatalogAttributes": {
+                      "description": "Removes all specified CatalogAttributes from the AttributesConfig.",
+                      "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/attributesConfig:batchRemoveCatalogAttributes",
+                      "httpMethod": "POST",
+                      "id": "retail.projects.locations.catalogs.attributesConfig.batchRemoveCatalogAttributes",
+                      "parameterOrder": [
+                        "attributesConfig"
+                      ],
+                      "parameters": {
+                        "attributesConfig": {
+                          "description": "Required. The attributes config resource shared by all catalog attributes being deleted. Format: `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/attributesConfig`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/attributesConfig$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2alpha/{+attributesConfig}:batchRemoveCatalogAttributes",
+                      "request": {
+                        "$ref": "GoogleCloudRetailV2alphaBatchRemoveCatalogAttributesRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudRetailV2alphaBatchRemoveCatalogAttributesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "removeCatalogAttribute": {
                       "description": "Removes the specified CatalogAttribute from the AttributesConfig. If the CatalogAttribute to remove does not exist, a NOT_FOUND error is returned.",
                       "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/attributesConfig:removeCatalogAttribute",
@@ -533,7 +561,7 @@
                     "products": {
                       "methods": {
                         "addFulfillmentPlaces": {
-                          "description": "Incrementally adds place IDs to Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the added place IDs are not immediately manifested in the Product queried by GetProduct or ListProducts. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
+                          "description": "Incrementally adds place IDs to Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the added place IDs are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
                           "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/branches/{branchesId}/products/{productsId}:addFulfillmentPlaces",
                           "httpMethod": "POST",
                           "id": "retail.projects.locations.catalogs.branches.products.addFulfillmentPlaces",
@@ -561,7 +589,7 @@
                           ]
                         },
                         "addLocalInventories": {
-                          "description": "Updates local inventory information for a Product at a list of places, while respecting the last update timestamps of each inventory field. This process is asynchronous and does not require the Product to exist before updating inventory information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, updates are not immediately manifested in the Product queried by GetProduct or ListProducts. Local inventory information can only be modified using this method. CreateProduct and UpdateProduct has no effect on local inventories. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
+                          "description": "Updates local inventory information for a Product at a list of places, while respecting the last update timestamps of each inventory field. This process is asynchronous and does not require the Product to exist before updating inventory information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, updates are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. Local inventory information can only be modified using this method. ProductService.CreateProduct and ProductService.UpdateProduct has no effect on local inventories. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
                           "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/branches/{branchesId}/products/{productsId}:addLocalInventories",
                           "httpMethod": "POST",
                           "id": "retail.projects.locations.catalogs.branches.products.addLocalInventories",
@@ -791,7 +819,7 @@
                           ]
                         },
                         "purge": {
-                          "description": "Permanently deletes all selected Products under a branch. This process is asynchronous. If the request is valid, the removal will be enqueued and processed offline. Depending on the number of Products, this operation could take hours to complete. Before the operation completes, some Products may still be returned by GetProduct or ListProducts. Depending on the number of Products, this operation could take hours to complete. To get a sample of Products that would be deleted, set PurgeProductsRequest.force to false.",
+                          "description": "Permanently deletes all selected Products under a branch. This process is asynchronous. If the request is valid, the removal will be enqueued and processed offline. Depending on the number of Products, this operation could take hours to complete. Before the operation completes, some Products may still be returned by ProductService.GetProduct or ProductService.ListProducts. Depending on the number of Products, this operation could take hours to complete. To get a sample of Products that would be deleted, set PurgeProductsRequest.force to false.",
                           "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/branches/{branchesId}/products:purge",
                           "httpMethod": "POST",
                           "id": "retail.projects.locations.catalogs.branches.products.purge",
@@ -819,7 +847,7 @@
                           ]
                         },
                         "removeFulfillmentPlaces": {
-                          "description": "Incrementally removes place IDs from a Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the removed place IDs are not immediately manifested in the Product queried by GetProduct or ListProducts. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
+                          "description": "Incrementally removes place IDs from a Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the removed place IDs are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
                           "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/branches/{branchesId}/products/{productsId}:removeFulfillmentPlaces",
                           "httpMethod": "POST",
                           "id": "retail.projects.locations.catalogs.branches.products.removeFulfillmentPlaces",
@@ -847,7 +875,7 @@
                           ]
                         },
                         "removeLocalInventories": {
-                          "description": "Remove local inventory information for a Product at a list of places at a removal timestamp. This process is asynchronous. If the request is valid, the removal will be enqueued and processed downstream. As a consequence, when a response is returned, removals are not immediately manifested in the Product queried by GetProduct or ListProducts. Local inventory information can only be removed using this method. CreateProduct and UpdateProduct has no effect on local inventories. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
+                          "description": "Remove local inventory information for a Product at a list of places at a removal timestamp. This process is asynchronous. If the request is valid, the removal will be enqueued and processed downstream. As a consequence, when a response is returned, removals are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. Local inventory information can only be removed using this method. ProductService.CreateProduct and ProductService.UpdateProduct has no effect on local inventories. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
                           "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/branches/{branchesId}/products/{productsId}:removeLocalInventories",
                           "httpMethod": "POST",
                           "id": "retail.projects.locations.catalogs.branches.products.removeLocalInventories",
@@ -875,7 +903,7 @@
                           ]
                         },
                         "setInventory": {
-                          "description": "Updates inventory information for a Product while respecting the last update timestamps of each inventory field. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, updates are not immediately manifested in the Product queried by GetProduct or ListProducts. When inventory is updated with CreateProduct and UpdateProduct, the specified inventory field value(s) will overwrite any existing value(s) while ignoring the last update time for this field. Furthermore, the last update time for the specified inventory fields will be overwritten to the time of the CreateProduct or UpdateProduct request. If no inventory fields are set in CreateProductRequest.product, then any pre-existing inventory information for this product will be used. If no inventory fields are set in SetInventoryRequest.set_mask, then any existing inventory information will be preserved. Pre-existing inventory information can only be updated with SetInventory, ProductService.AddFulfillmentPlaces, and RemoveFulfillmentPlaces. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
+                          "description": "Updates inventory information for a Product while respecting the last update timestamps of each inventory field. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, updates are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. When inventory is updated with ProductService.CreateProduct and ProductService.UpdateProduct, the specified inventory field value(s) will overwrite any existing value(s) while ignoring the last update time for this field. Furthermore, the last update time for the specified inventory fields will be overwritten to the time of the ProductService.CreateProduct or ProductService.UpdateProduct request. If no inventory fields are set in CreateProductRequest.product, then any pre-existing inventory information for this product will be used. If no inventory fields are set in SetInventoryRequest.set_mask, then any existing inventory information will be preserved. Pre-existing inventory information can only be updated with ProductService.SetInventory, ProductService.AddFulfillmentPlaces, and ProductService.RemoveFulfillmentPlaces. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
                           "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/branches/{branchesId}/products/{productsId}:setInventory",
                           "httpMethod": "POST",
                           "id": "retail.projects.locations.catalogs.branches.products.setInventory",
@@ -1100,6 +1128,222 @@
                     }
                   }
                 },
+                "models": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a new model.",
+                      "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/models",
+                      "httpMethod": "POST",
+                      "id": "retail.projects.locations.catalogs.models.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "dryRun": {
+                          "description": "Optional. Whether to run a dry run to validate the request (without actually creating the model).",
+                          "location": "query",
+                          "type": "boolean"
+                        },
+                        "parent": {
+                          "description": "Required. The parent resource under which to create the model. Format: projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2alpha/{+parent}/models",
+                      "request": {
+                        "$ref": "GoogleCloudRetailV2alphaModel"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes an existing model.",
+                      "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/models/{modelsId}",
+                      "httpMethod": "DELETE",
+                      "id": "retail.projects.locations.catalogs.models.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the Model to delete. Format: projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/models/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2alpha/{+name}",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all the models linked to this event store.",
+                      "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/models",
+                      "httpMethod": "GET",
+                      "id": "retail.projects.locations.catalogs.models.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous `ListModels` call. Provide this to retrieve the subsequent page.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent for which to list models. Format: projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2alpha/{+parent}/models",
+                      "response": {
+                        "$ref": "GoogleCloudRetailV2alphaListModelsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Update of model metadata. Only fields that currently can be updated are: `filtering_option` and `periodic_tuning_state`. If other values are provided, this API method ignores them.",
+                      "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/models/{modelsId}",
+                      "httpMethod": "PATCH",
+                      "id": "retail.projects.locations.catalogs.models.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The fully qualified resource name of the model. Format: `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}` catalog_id has char limit of 50. recommendation_model_id has char limit of 40.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/models/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Optional. Indicates which fields in the provided 'model' to update. If not set, by default updates all fields.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2alpha/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudRetailV2alphaModel"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudRetailV2alphaModel"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "pause": {
+                      "description": "Pauses the training of an existing model.",
+                      "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/models/{modelsId}:pause",
+                      "httpMethod": "POST",
+                      "id": "retail.projects.locations.catalogs.models.pause",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the model to pause. Format: projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/models/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2alpha/{+name}:pause",
+                      "request": {
+                        "$ref": "GoogleCloudRetailV2alphaPauseModelRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudRetailV2alphaModel"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "resume": {
+                      "description": "Resumes the training of an existing model.",
+                      "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/models/{modelsId}:resume",
+                      "httpMethod": "POST",
+                      "id": "retail.projects.locations.catalogs.models.resume",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the model to resume. Format: projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/models/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2alpha/{+name}:resume",
+                      "request": {
+                        "$ref": "GoogleCloudRetailV2alphaResumeModelRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudRetailV2alphaModel"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "tune": {
+                      "description": "Tunes an existing model.",
+                      "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/models/{modelsId}:tune",
+                      "httpMethod": "POST",
+                      "id": "retail.projects.locations.catalogs.models.tune",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the model to tune. Format: projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/models/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2alpha/{+name}:tune",
+                      "request": {
+                        "$ref": "GoogleCloudRetailV2alphaTuneModelRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
                 "operations": {
                   "methods": {
                     "get": {
@@ -1182,7 +1426,7 @@
                       ],
                       "parameters": {
                         "placement": {
-                          "description": "Required. Full resource name of the format: {placement=projects/*/locations/global/catalogs/default_catalog/servingConfigs/*} or {placement=projects/*/locations/global/catalogs/default_catalog/placements/*}. We recommend using the `servingConfigs` resource. `placements` is a legacy resource. The ID of the Recommendations AI serving config or placement. Before you can request predictions from your model, you must create at least one serving config or placement for it. For more information, see [Managing serving configurations] (https://cloud.google.com/retail/docs/manage-configs). The full list of available serving configs can be seen at https://console.cloud.google.com/ai/retail/catalogs/default_catalog/configs",
+                          "description": "Required. Full resource name of the format: `{placement=projects/*/locations/global/catalogs/default_catalog/servingConfigs/*}` or `{placement=projects/*/locations/global/catalogs/default_catalog/placements/*}`. We recommend using the `servingConfigs` resource. `placements` is a legacy resource. The ID of the Recommendations AI serving config or placement. Before you can request predictions from your model, you must create at least one serving config or placement for it. For more information, see [Managing serving configurations] (https://cloud.google.com/retail/docs/manage-configs). The full list of available serving configs can be seen at https://console.cloud.google.com/ai/retail/catalogs/default_catalog/configs",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/placements/[^/]+$",
                           "required": true,
@@ -1423,7 +1667,7 @@
                       ],
                       "parameters": {
                         "placement": {
-                          "description": "Required. Full resource name of the format: {placement=projects/*/locations/global/catalogs/default_catalog/servingConfigs/*} or {placement=projects/*/locations/global/catalogs/default_catalog/placements/*}. We recommend using the `servingConfigs` resource. `placements` is a legacy resource. The ID of the Recommendations AI serving config or placement. Before you can request predictions from your model, you must create at least one serving config or placement for it. For more information, see [Managing serving configurations] (https://cloud.google.com/retail/docs/manage-configs). The full list of available serving configs can be seen at https://console.cloud.google.com/ai/retail/catalogs/default_catalog/configs",
+                          "description": "Required. Full resource name of the format: `{placement=projects/*/locations/global/catalogs/default_catalog/servingConfigs/*}` or `{placement=projects/*/locations/global/catalogs/default_catalog/placements/*}`. We recommend using the `servingConfigs` resource. `placements` is a legacy resource. The ID of the Recommendations AI serving config or placement. Before you can request predictions from your model, you must create at least one serving config or placement for it. For more information, see [Managing serving configurations] (https://cloud.google.com/retail/docs/manage-configs). The full list of available serving configs can be seen at https://console.cloud.google.com/ai/retail/catalogs/default_catalog/configs",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/servingConfigs/[^/]+$",
                           "required": true,
@@ -1543,7 +1787,7 @@
                       ]
                     },
                     "import": {
-                      "description": "Bulk import of User events. Request processing might be synchronous. Events that already exist are skipped. Use this method for backfilling historical user events. Operation.response is of type ImportResponse. Note that it is possible for a subset of the items to be successfully inserted. Operation.metadata is of type ImportMetadata.",
+                      "description": "Bulk import of User events. Request processing might be synchronous. Events that already exist are skipped. Use this method for backfilling historical user events. `Operation.response` is of type `ImportResponse`. Note that it is possible for a subset of the items to be successfully inserted. `Operation.metadata` is of type `ImportMetadata`.",
                       "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/userEvents:import",
                       "httpMethod": "POST",
                       "id": "retail.projects.locations.catalogs.userEvents.import",
@@ -1803,7 +2047,7 @@
       }
     }
   },
-  "revision": "20220623",
+  "revision": "20220811",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -1999,14 +2243,14 @@
       "id": "GoogleCloudRetailV2ImportErrorsConfig",
       "properties": {
         "gcsPrefix": {
-          "description": "Google Cloud Storage prefix for import errors. This must be an empty, existing Cloud Storage directory. Import errors will be written to sharded files in this directory, one per line, as a JSON-encoded `google.rpc.Status` message.",
+          "description": "Google Cloud Storage prefix for import errors. This must be an empty, existing Cloud Storage directory. Import errors are written to sharded files in this directory, one per line, as a JSON-encoded `google.rpc.Status` message.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleCloudRetailV2ImportMetadata": {
-      "description": "Metadata related to the progress of the Import operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "description": "Metadata related to the progress of the Import operation. This is returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudRetailV2ImportMetadata",
       "properties": {
         "createTime": {
@@ -2020,7 +2264,7 @@
           "type": "string"
         },
         "notificationPubsubTopic": {
-          "description": "Pub/Sub topic for receiving notification. If this field is set, when the import is finished, a notification will be sent to specified Pub/Sub topic. The message data will be JSON string of a Operation. Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.",
+          "description": "Pub/Sub topic for receiving notification. If this field is set, when the import is finished, a notification is sent to specified Pub/Sub topic. The message data is JSON string of a Operation. Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.",
           "type": "string"
         },
         "requestId": {
@@ -2117,37 +2361,37 @@
       "type": "object"
     },
     "GoogleCloudRetailV2RemoveFulfillmentPlacesMetadata": {
-      "description": "Metadata related to the progress of the RemoveFulfillmentPlaces operation. Currently empty because there is no meaningful metadata populated from the RemoveFulfillmentPlaces method.",
+      "description": "Metadata related to the progress of the RemoveFulfillmentPlaces operation. Currently empty because there is no meaningful metadata populated from the ProductService.RemoveFulfillmentPlaces method.",
       "id": "GoogleCloudRetailV2RemoveFulfillmentPlacesMetadata",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudRetailV2RemoveFulfillmentPlacesResponse": {
-      "description": "Response of the RemoveFulfillmentPlacesRequest. Currently empty because there is no meaningful response populated from the RemoveFulfillmentPlaces method.",
+      "description": "Response of the RemoveFulfillmentPlacesRequest. Currently empty because there is no meaningful response populated from the ProductService.RemoveFulfillmentPlaces method.",
       "id": "GoogleCloudRetailV2RemoveFulfillmentPlacesResponse",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudRetailV2RemoveLocalInventoriesMetadata": {
-      "description": "Metadata related to the progress of the RemoveLocalInventories operation. Currently empty because there is no meaningful metadata populated from the RemoveLocalInventories method.",
+      "description": "Metadata related to the progress of the RemoveLocalInventories operation. Currently empty because there is no meaningful metadata populated from the ProductService.RemoveLocalInventories method.",
       "id": "GoogleCloudRetailV2RemoveLocalInventoriesMetadata",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudRetailV2RemoveLocalInventoriesResponse": {
-      "description": "Response of the RemoveLocalInventories API. Currently empty because there is no meaningful response populated from the RemoveLocalInventories method.",
+      "description": "Response of the ProductService.RemoveLocalInventories API. Currently empty because there is no meaningful response populated from the ProductService.RemoveLocalInventories method.",
       "id": "GoogleCloudRetailV2RemoveLocalInventoriesResponse",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudRetailV2SetInventoryMetadata": {
-      "description": "Metadata related to the progress of the SetInventory operation. Currently empty because there is no meaningful metadata populated from the SetInventory method.",
+      "description": "Metadata related to the progress of the SetInventory operation. Currently empty because there is no meaningful metadata populated from the ProductService.SetInventory method.",
       "id": "GoogleCloudRetailV2SetInventoryMetadata",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudRetailV2SetInventoryResponse": {
-      "description": "Response of the SetInventoryRequest. Currently empty because there is no meaningful response populated from the SetInventory method.",
+      "description": "Response of the SetInventoryRequest. Currently empty because there is no meaningful response populated from the ProductService.SetInventory method.",
       "id": "GoogleCloudRetailV2SetInventoryResponse",
       "properties": {},
       "type": "object"
@@ -2282,7 +2526,7 @@
             "CATALOG_LEVEL_ATTRIBUTE_CONFIG"
           ],
           "enumDescriptions": [
-            "Value used when unset. Defaults to CATALOG_LEVEL_ATTRIBUTE_CONFIG.",
+            "Value used when unset. In this case, server behavior defaults to CATALOG_LEVEL_ATTRIBUTE_CONFIG.",
             "At this level, we honor the attribute configurations set in Product.attributes.",
             "At this level, we honor the attribute configurations set in CatalogConfig.attribute_configs."
           ],
@@ -2324,12 +2568,62 @@
       },
       "type": "object"
     },
+    "GoogleCloudRetailV2alphaBatchRemoveCatalogAttributesRequest": {
+      "description": "Request for CatalogService.BatchRemoveCatalogAttributes method.",
+      "id": "GoogleCloudRetailV2alphaBatchRemoveCatalogAttributesRequest",
+      "properties": {
+        "attributeKeys": {
+          "description": "Required. The attribute name keys of the CatalogAttributes to delete. A maximum of 1000 catalog attributes can be deleted in a batch.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaBatchRemoveCatalogAttributesResponse": {
+      "description": "Response of the CatalogService.BatchRemoveCatalogAttributes.",
+      "id": "GoogleCloudRetailV2alphaBatchRemoveCatalogAttributesResponse",
+      "properties": {
+        "deletedCatalogAttributes": {
+          "description": "Catalog attributes that were deleted. Only attributes that are not in use by products can be deleted.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "resetCatalogAttributes": {
+          "description": "Catalog attributes that were reset. Attributes that are in use by products cannot be deleted, however their configuration properties will reset to default values upon removal request.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaBigQueryOutputResult": {
+      "description": "A BigQuery output result.",
+      "id": "GoogleCloudRetailV2alphaBigQueryOutputResult",
+      "properties": {
+        "datasetId": {
+          "description": "The ID of a BigQuery Dataset.",
+          "type": "string"
+        },
+        "tableId": {
+          "description": "The ID of a BigQuery Table.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2alphaBigQuerySource": {
       "description": "BigQuery source import data from.",
       "id": "GoogleCloudRetailV2alphaBigQuerySource",
       "properties": {
         "dataSchema": {
-          "description": "The schema to use when parsing the data from the source. Supported values for product imports: * `product` (default): One JSON Product per line. Each product must have a valid Product.id. * `product_merchant_center`: See [Importing catalog data from Merchant Center](https://cloud.google.com/retail/recommendations-ai/docs/upload-catalog#mc). Supported values for user events imports: * `user_event` (default): One JSON UserEvent per line. * `user_event_ga360`: The schema is available here: https://support.google.com/analytics/answer/3437719. * `user_event_ga4`: This feature is in private preview. Please contact the support team for importing Google Analytics 4 events. The schema is available here: https://support.google.com/analytics/answer/7029846. Supported values for auto-completion imports: * `suggestions` (default): One JSON completion suggestion per line. * `denylist`: One JSON deny suggestion per line. * `allowlist`: One JSON allow suggestion per line.",
+          "description": "The schema to use when parsing the data from the source. Supported values for product imports: * `product` (default): One JSON Product per line. Each product must have a valid Product.id. * `product_merchant_center`: See [Importing catalog data from Merchant Center](https://cloud.google.com/retail/recommendations-ai/docs/upload-catalog#mc). Supported values for user events imports: * `user_event` (default): One JSON UserEvent per line. * `user_event_ga360`: The schema is available here: https://support.google.com/analytics/answer/3437719. * `user_event_ga4`: The schema is available here: https://support.google.com/analytics/answer/7029846. Supported values for auto-completion imports: * `suggestions` (default): One JSON completion suggestion per line. * `denylist`: One JSON deny suggestion per line. * `allowlist`: One JSON allow suggestion per line.",
           "type": "string"
         },
         "datasetId": {
@@ -2342,7 +2636,7 @@
         },
         "partitionDate": {
           "$ref": "GoogleTypeDate",
-          "description": "BigQuery time partitioned table's _PARTITIONDATE in YYYY-MM-DD format. Only supported when ImportProductsRequest.reconciliation_mode is set to `FULL`."
+          "description": "BigQuery time partitioned table's _PARTITIONDATE in YYYY-MM-DD format. Only supported in ImportProductsRequest."
         },
         "projectId": {
           "description": "The project ID (can be project # or ID) that the BigQuery source is in with a length limit of 128 characters. If not specified, inherits the project ID from the parent request.",
@@ -2396,8 +2690,22 @@
           ],
           "type": "string"
         },
+        "exactSearchableOption": {
+          "description": "If EXACT_SEARCHABLE_ENABLED, attribute values will be exact searchable. This property only applies to textual custom attributes and requires indexable set to enabled to enable exact-searchable.",
+          "enum": [
+            "EXACT_SEARCHABLE_OPTION_UNSPECIFIED",
+            "EXACT_SEARCHABLE_ENABLED",
+            "EXACT_SEARCHABLE_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Value used when unset. Defaults to EXACT_SEARCHABLE_DISABLED.",
+            "Exact searchable option enabled for an attribute.",
+            "Exact searchable option disabled for an attribute."
+          ],
+          "type": "string"
+        },
         "inUse": {
-          "description": "Output only. Indicates whether this attribute has been used by any products. `True` if at least one Product is using this attribute in Product.attributes. Otherwise, this field is `False`. CatalogAttribute can be pre-loaded by using CatalogService.AddCatalogAttribute, CatalogService.ImportCatalogAttributes, or CatalogService.UpdateAttributesConfig APIs. This field is `False` for pre-loaded CatalogAttributes. Only CatalogAttributes that are not in use by products can be deleted. CatalogAttributes that are in use by products cannot be deleted; however, their configuration properties will reset to default values upon removal request. After catalog changes, it takes about 10 minutes for this field to update.",
+          "description": "Output only. Indicates whether this attribute has been used by any products. `True` if at least one Product is using this attribute in Product.attributes. Otherwise, this field is `False`. CatalogAttribute can be pre-loaded by using CatalogService.AddCatalogAttribute, CatalogService.ImportCatalogAttributes, or CatalogService.UpdateAttributesConfig APIs. This field is `False` for pre-loaded CatalogAttributes. Only pre-loaded CatalogAttributes that are neither in use by products nor predefined can be deleted. CatalogAttributes that are either in use by products or are predefined cannot be deleted; however, their configuration properties will reset to default values upon removal request. After catalog changes, it takes about 10 minutes for this field to update.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -2427,7 +2735,7 @@
             "RECOMMENDATIONS_FILTERING_ENABLED"
           ],
           "enumDescriptions": [
-            "Value used when unset. Defaults to RECOMMENDATIONS_FILTERING_DISABLED.",
+            "Value used when unset. In this case, server behavior defaults to RECOMMENDATIONS_FILTERING_DISABLED.",
             "Recommendation filtering is disabled.",
             "Recommendation filtering is enabled."
           ],
@@ -2502,7 +2810,7 @@
           "type": "array"
         },
         "recentSearchResults": {
-          "description": "Matched recent searches of this user. The maximum number of recent searches is 10. This field is a restricted feature. Contact Retail Search support team if you are interested in enabling it. This feature is only available when CompleteQueryRequest.visitor_id field is set and UserEvent is imported. The recent searches satisfy the follow rules: * They are ordered from latest to oldest. * They are matched with CompleteQueryRequest.query case insensitively. * They are transformed to lower cases. * They are UTF-8 safe. Recent searches are deduplicated. More recent searches will be reserved when duplication happens.",
+          "description": "Matched recent searches of this user. The maximum number of recent searches is 10. This field is a restricted feature. Contact Retail Search support team if you are interested in enabling it. This feature is only available when CompleteQueryRequest.visitor_id field is set and UserEvent is imported. The recent searches satisfy the follow rules: * They are ordered from latest to oldest. * They are matched with CompleteQueryRequest.query case insensitively. * They are transformed to lower case. * They are UTF-8 safe. Recent searches are deduplicated. More recent searches will be reserved when duplication happens.",
           "items": {
             "$ref": "GoogleCloudRetailV2alphaCompleteQueryResponseRecentSearchResult"
           },
@@ -2519,7 +2827,7 @@
           "additionalProperties": {
             "$ref": "GoogleCloudRetailV2alphaCustomAttribute"
           },
-          "description": "Custom attributes for the suggestion term. * For \"user-data\", the attributes are additional custom attributes ingested through BigQuery. * For \"cloud-retail\", the attributes are product attributes generated by Cloud Retail. This is an experimental feature. Contact Retail Search support team if you are interested in enabling it.",
+          "description": "Custom attributes for the suggestion term. * For \"user-data\", the attributes are additional custom attributes ingested through BigQuery. * For \"cloud-retail\", the attributes are product attributes generated by Cloud Retail. It requires UserEvent.product_details is imported properly.",
           "type": "object"
         },
         "suggestion": {
@@ -2546,7 +2854,7 @@
       "properties": {
         "allowlistInputConfig": {
           "$ref": "GoogleCloudRetailV2alphaCompletionDataInputConfig",
-          "description": "Output only. The input config for the import of the source data that contains the autocomplete allowlist phrases uploaded by the customer.",
+          "description": "Output only. The source data for the latest import of the autocomplete allowlist phrases.",
           "readOnly": true
         },
         "autoLearning": {
@@ -2555,7 +2863,7 @@
         },
         "denylistInputConfig": {
           "$ref": "GoogleCloudRetailV2alphaCompletionDataInputConfig",
-          "description": "Output only. The input config for the import of the source data that contains the / autocomplete denylist phrases uploaded by the customer.",
+          "description": "Output only. The source data for the latest import of the autocomplete denylist phrases.",
           "readOnly": true
         },
         "lastAllowlistImportOperation": {
@@ -2578,12 +2886,12 @@
           "type": "string"
         },
         "maxSuggestions": {
-          "description": "The maximum number of autocomplete suggestions returned per term. The maximum allowed max suggestions is 20. Default value is 20. If left unset or set to 0, then will fallback to default value.",
+          "description": "The maximum number of autocomplete suggestions returned per term. Default value is 20. If left unset or set to 0, then will fallback to default value. Value range is 1 to 20.",
           "format": "int32",
           "type": "integer"
         },
         "minPrefixLength": {
-          "description": "The minimum number of characters needed to be typed in order to get suggestions. Default value is 2. If left unset or set to 0, then will fallback to default value.",
+          "description": "The minimum number of characters needed to be typed in order to get suggestions. Default value is 2. If left unset or set to 0, then will fallback to default value. Value range is 1 to 20.",
           "format": "int32",
           "type": "integer"
         },
@@ -2593,7 +2901,7 @@
         },
         "suggestionsInputConfig": {
           "$ref": "GoogleCloudRetailV2alphaCompletionDataInputConfig",
-          "description": "Output only. The input config for the import of the source data that contains the autocomplete phrases uploaded by the customer.",
+          "description": "Output only. The source data for the latest import of the autocomplete suggestion phrases.",
           "readOnly": true
         }
       },
@@ -2731,6 +3039,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudRetailV2alphaCreateModelMetadata": {
+      "description": "Metadata associated with a create operation.",
+      "id": "GoogleCloudRetailV2alphaCreateModelMetadata",
+      "properties": {
+        "model": {
+          "description": "The resource name of the model that this create applies to. Format: projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2alphaCustomAttribute": {
       "description": "A custom attribute that is not explicitly modeled in Product.",
       "id": "GoogleCloudRetailV2alphaCustomAttribute",
@@ -2803,6 +3122,10 @@
         "errorsConfig": {
           "$ref": "GoogleCloudRetailV2alphaExportErrorsConfig",
           "description": "This field is never set."
+        },
+        "outputResult": {
+          "$ref": "GoogleCloudRetailV2alphaOutputResult",
+          "description": "Output result indicating where the data were exported to."
         }
       },
       "type": "object"
@@ -2821,6 +3144,10 @@
         "errorsConfig": {
           "$ref": "GoogleCloudRetailV2alphaExportErrorsConfig",
           "description": "This field is never set."
+        },
+        "outputResult": {
+          "$ref": "GoogleCloudRetailV2alphaOutputResult",
+          "description": "Output result indicating where the data were exported to."
         }
       },
       "type": "object"
@@ -2844,11 +3171,11 @@
       "type": "object"
     },
     "GoogleCloudRetailV2alphaGcsSource": {
-      "description": "Google Cloud Storage location for input content. format.",
+      "description": "Google Cloud Storage location for input content.",
       "id": "GoogleCloudRetailV2alphaGcsSource",
       "properties": {
         "dataSchema": {
-          "description": "The schema to use when parsing the data from the source. Supported values for product imports: * `product` (default): One JSON Product per line. Each product must have a valid Product.id. * `product_merchant_center`: See [Importing catalog data from Merchant Center](https://cloud.google.com/retail/recommendations-ai/docs/upload-catalog#mc). Supported values for user events imports: * `user_event` (default): One JSON UserEvent per line. * `user_event_ga360`: Using https://support.google.com/analytics/answer/3437719. Supported values for control imports: * 'control' (default): One JSON Control per line. Supported values for catalog attribute imports: * 'catalog_attribute' (default): One CSV CatalogAttribute per line.",
+          "description": "The schema to use when parsing the data from the source. Supported values for product imports: * `product` (default): One JSON Product per line. Each product must have a valid Product.id. * `product_merchant_center`: See [Importing catalog data from Merchant Center](https://cloud.google.com/retail/recommendations-ai/docs/upload-catalog#mc). Supported values for user events imports: * `user_event` (default): One JSON UserEvent per line. * `user_event_ga360`: Using https://support.google.com/analytics/answer/3437719. Supported values for control imports: * `control` (default): One JSON Control per line. Supported values for catalog attribute imports: * `catalog_attribute` (default): One CSV CatalogAttribute per line.",
           "type": "string"
         },
         "inputUris": {
@@ -2911,7 +3238,7 @@
           "description": "Required. The desired input location of the data."
         },
         "notificationPubsubTopic": {
-          "description": "Pub/Sub topic for receiving notification. If this field is set, when the import is finished, a notification will be sent to specified Pub/Sub topic. The message data will be JSON string of a Operation. Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.",
+          "description": "Pub/Sub topic for receiving notification. If this field is set, when the import is finished, a notification is sent to specified Pub/Sub topic. The message data is JSON string of a Operation. Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.",
           "type": "string"
         }
       },
@@ -2936,14 +3263,14 @@
       "id": "GoogleCloudRetailV2alphaImportErrorsConfig",
       "properties": {
         "gcsPrefix": {
-          "description": "Google Cloud Storage prefix for import errors. This must be an empty, existing Cloud Storage directory. Import errors will be written to sharded files in this directory, one per line, as a JSON-encoded `google.rpc.Status` message.",
+          "description": "Google Cloud Storage prefix for import errors. This must be an empty, existing Cloud Storage directory. Import errors are written to sharded files in this directory, one per line, as a JSON-encoded `google.rpc.Status` message.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleCloudRetailV2alphaImportMetadata": {
-      "description": "Metadata related to the progress of the Import operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "description": "Metadata related to the progress of the Import operation. This is returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudRetailV2alphaImportMetadata",
       "properties": {
         "createTime": {
@@ -2957,7 +3284,7 @@
           "type": "string"
         },
         "notificationPubsubTopic": {
-          "description": "Pub/Sub topic for receiving notification. If this field is set, when the import is finished, a notification will be sent to specified Pub/Sub topic. The message data will be JSON string of a Operation. Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.",
+          "description": "Pub/Sub topic for receiving notification. If this field is set, when the import is finished, a notification is sent to specified Pub/Sub topic. The message data is JSON string of a Operation. Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.",
           "type": "string"
         },
         "requestId": {
@@ -2968,6 +3295,10 @@
           "description": "Count of entries that were processed successfully.",
           "format": "int64",
           "type": "string"
+        },
+        "transformedUserEventsMetadata": {
+          "$ref": "GoogleCloudRetailV2alphaTransformedUserEventsMetadata",
+          "description": "Metadata related to transform user events."
         },
         "updateTime": {
           "description": "Operation last update time. If the operation is done, this is also the finish time.",
@@ -2990,7 +3321,7 @@
           "description": "Required. The desired input location of the data."
         },
         "notificationPubsubTopic": {
-          "description": "Full Pub/Sub topic name for receiving notification. If this field is set, when the import is finished, a notification will be sent to specified Pub/Sub topic. The message data will be JSON string of a Operation. Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`. It has to be within the same project as ImportProductsRequest.parent. Make sure that both `cloud-retail-customer-data-access@system.gserviceaccount.com` and `service-@gcp-sa-retail.iam.gserviceaccount.com` have the `pubsub.topics.publish` IAM permission on the topic. Only supported when ImportProductsRequest.reconciliation_mode is set to `FULL`.",
+          "description": "Full Pub/Sub topic name for receiving notification. If this field is set, when the import is finished, a notification is sent to specified Pub/Sub topic. The message data is JSON string of a Operation. Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`. It has to be within the same project as ImportProductsRequest.parent. Make sure that `service-@gcp-sa-retail.iam.gserviceaccount.com` has the `pubsub.topics.publish` IAM permission on the topic.",
           "type": "string"
         },
         "reconciliationMode": {
@@ -3003,7 +3334,7 @@
           "enumDescriptions": [
             "Defaults to INCREMENTAL.",
             "Inserts new products or updates existing products.",
-            "Calculates diff and replaces the entire product dataset. Existing products may be deleted if they are not present in the source location. Can only be set while using BigQuerySource. And the BigQuery dataset must be created in the data location \"us (multiple regions in United States)\", otherwise a PERMISSION_DENIED error is thrown. Add the IAM permission \"BigQuery Data Viewer\" for cloud-retail-customer-data-access@system.gserviceaccount.com before using this feature otherwise an error is thrown."
+            "Calculates diff and replaces the entire product dataset. Existing products may be deleted if they are not present in the source location."
           ],
           "type": "string"
         },
@@ -3012,11 +3343,11 @@
           "type": "string"
         },
         "skipDefaultBranchProtection": {
-          "description": "If true, will perform the FULL import even if it would delete a large proportion of the products in the default branch, which could potentially cause outages if you have live predict/search traffic. Only supported when ImportProductsRequest.reconciliation_mode is set to `FULL`.",
+          "description": "If true, this performs the FULL import even if it would delete a large proportion of the products in the default branch, which could potentially cause outages if you have live predict/search traffic. Only supported when ImportProductsRequest.reconciliation_mode is set to `FULL`.",
           "type": "boolean"
         },
         "updateMask": {
-          "description": "Indicates which fields in the provided imported 'products' to update. If not set, will by default update all fields.",
+          "description": "Indicates which fields in the provided imported `products` to update. If not set, all fields are updated.",
           "format": "google-fieldmask",
           "type": "string"
         }
@@ -3141,6 +3472,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudRetailV2alphaListModelsResponse": {
+      "description": "Response to a ListModelRequest.",
+      "id": "GoogleCloudRetailV2alphaListModelsResponse",
+      "properties": {
+        "models": {
+          "description": "List of Models.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2alphaModel"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Pagination token, if not returned indicates the last page.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2alphaListProductsResponse": {
       "description": "Response message for ProductService.ListProducts method.",
       "id": "GoogleCloudRetailV2alphaListProductsResponse",
@@ -3220,7 +3569,7 @@
           "type": "string"
         },
         "destinations": {
-          "description": "String representing the destination to import for, all if left empty. List of possible values can be found here. [https://support.google.com/merchants/answer/7501026] List of allowed string values: \"Shopping_ads\", \"Buy_on_google_listings\", \"Display_ads\", \"Local_inventory _ads\", \"Free_listings\", \"Free_local_listings\" NOTE: The string values are case sensitive.",
+          "description": "String representing the destination to import for, all if left empty. List of possible values is given in [Included destination](https://support.google.com/merchants/answer/7501026). List of allowed string values: \"Shopping_ads\", \"Buy_on_google_listings\", \"Display_ads\", \"Local_inventory _ads\", \"Free_listings\", \"Free_local_listings\" NOTE: The string values are case sensitive.",
           "items": {
             "type": "string"
           },
@@ -3256,12 +3605,249 @@
       },
       "type": "object"
     },
+    "GoogleCloudRetailV2alphaModel": {
+      "description": "Metadata that describes the training and serving parameters of a Model. A Model can be associated with a ServingConfig and then queried through the Predict API.",
+      "id": "GoogleCloudRetailV2alphaModel",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Timestamp the Recommendation Model was created at.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dataState": {
+          "description": "Output only. The state of data requirements for this model: `DATA_OK` and `DATA_ERROR`. Recommendation model cannot be trained if the data is in `DATA_ERROR` state. Recommendation model can have `DATA_ERROR` state even if serving state is `ACTIVE`: models were trained successfully before, but cannot be refreshed because model no longer has sufficient data for training.",
+          "enum": [
+            "DATA_STATE_UNSPECIFIED",
+            "DATA_OK",
+            "DATA_ERROR"
+          ],
+          "enumDescriptions": [
+            "Unspecified default value, should never be explicitly set.",
+            "The model has sufficient training data.",
+            "The model does not have sufficient training data. Error messages can be queried via Stackdriver."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The display name of the model. Should be human readable, used to display Recommendation Models in the Retail Cloud Console Dashboard. UTF-8 encoded string with limit of 1024 characters.",
+          "type": "string"
+        },
+        "filteringOption": {
+          "description": "Optional. If `RECOMMENDATIONS_FILTERING_ENABLED`, recommendation filtering by attributes is enabled for the model.",
+          "enum": [
+            "RECOMMENDATIONS_FILTERING_OPTION_UNSPECIFIED",
+            "RECOMMENDATIONS_FILTERING_DISABLED",
+            "RECOMMENDATIONS_FILTERING_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Value used when unset. In this case, server behavior defaults to RECOMMENDATIONS_FILTERING_DISABLED.",
+            "Recommendation filtering is disabled.",
+            "Recommendation filtering is enabled."
+          ],
+          "type": "string"
+        },
+        "lastTuneTime": {
+          "description": "Output only. The timestamp when the latest successful tune finished.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. The fully qualified resource name of the model. Format: `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}` catalog_id has char limit of 50. recommendation_model_id has char limit of 40.",
+          "type": "string"
+        },
+        "optimizationObjective": {
+          "description": "Optional. The optimization objective e.g. `cvr`. Currently supported values: `ctr`, `cvr`, `revenue-per-order`. If not specified, we choose default based on model type. Default depends on type of recommendation: `recommended-for-you` => `ctr` `others-you-may-like` => `ctr` `frequently-bought-together` => `revenue_per_order`",
+          "type": "string"
+        },
+        "pageOptimizationConfig": {
+          "$ref": "GoogleCloudRetailV2alphaModelPageOptimizationConfig",
+          "description": "Optional. The page optimization config."
+        },
+        "periodicTuningState": {
+          "description": "Optional. The state of periodic tuning. The period we use is 3 months - to do a one-off tune earlier use the `TuneModel` method. Default value is `PERIODIC_TUNING_ENABLED`.",
+          "enum": [
+            "PERIODIC_TUNING_STATE_UNSPECIFIED",
+            "PERIODIC_TUNING_DISABLED",
+            "ALL_TUNING_DISABLED",
+            "PERIODIC_TUNING_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified default value, should never be explicitly set.",
+            "The model has periodic tuning disabled. Tuning can be reenabled by calling the `EnableModelPeriodicTuning` method or by calling the `TuneModel` method.",
+            "The model cannot be tuned with periodic tuning OR the `TuneModel` method. Hide the options in customer UI and reject any requests through the backend self serve API.",
+            "The model has periodic tuning enabled. Tuning can be disabled by calling the `DisableModelPeriodicTuning` method."
+          ],
+          "type": "string"
+        },
+        "servingConfigLists": {
+          "description": "Output only. The list of valid serving configs associated with the PageOptimizationConfig.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2alphaModelServingConfigList"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "servingState": {
+          "description": "Output only. The serving state of the model: `ACTIVE`, `NOT_ACTIVE`.",
+          "enum": [
+            "SERVING_STATE_UNSPECIFIED",
+            "INACTIVE",
+            "ACTIVE",
+            "TUNED"
+          ],
+          "enumDescriptions": [
+            "Unspecified serving state.",
+            "The model is not serving.",
+            "The model is serving and can be queried.",
+            "The model is trained on tuned hyperparameters and can be queried."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "trainingState": {
+          "description": "Optional. The training state that the model is in (e.g. `TRAINING` or `PAUSED`). Since part of the cost of running the service is frequency of training - this can be used to determine when to train model in order to control cost. If not specified: the default value for `CreateModel` method is `TRAINING`. The default value for `UpdateModel` method is to keep the state the same as before.",
+          "enum": [
+            "TRAINING_STATE_UNSPECIFIED",
+            "PAUSED",
+            "TRAINING"
+          ],
+          "enumDescriptions": [
+            "Unspecified training state.",
+            "The model training is paused.",
+            "The model is training."
+          ],
+          "type": "string"
+        },
+        "tuningOperation": {
+          "description": "Output only. The tune operation associated with the model. Can be used to determine if there is an ongoing tune for this recommendation. Empty field implies no tune is goig on.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. The type of model e.g. `home-page`. Currently supported values: `recommended-for-you`, `others-you-may-like`, `frequently-bought-together`, `page-optimization`, `similar-items`, `buy-it-again`, and `recently-viewed`(readonly value).",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp the Recommendation Model was last updated. E.g. if a Recommendation Model was paused - this would be the time the pause was initiated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaModelPageOptimizationConfig": {
+      "description": "The PageOptimizationConfig for model training. This determines how many panels to optimize for, and which serving configurations to consider for each panel. The purpose of this model is to optimize which ServingConfig to show on which panels in way that optimizes the visitors shopping journey.",
+      "id": "GoogleCloudRetailV2alphaModelPageOptimizationConfig",
+      "properties": {
+        "pageOptimizationEventType": {
+          "description": "Required. The type of UserEvent this page optimization is shown for. Each page has an associated event type - this will be the corresponding event type for the page that the page optimization model is used on. Supported types: * `add-to-cart`: Products being added to cart. * `detail-page-view`: Products detail page viewed. * `home-page-view`: Homepage viewed * `category-page-view`: Homepage viewed * `shopping-cart-page-view`: User viewing a shopping cart. `home-page-view` only allows models with type `recommended-for-you`. All other page_optimization_event_type allow all Model.types.",
+          "type": "string"
+        },
+        "panels": {
+          "description": "Required. A list of panel configurations. Limit = 5.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2alphaModelPageOptimizationConfigPanel"
+          },
+          "type": "array"
+        },
+        "restriction": {
+          "description": "Optional. How to restrict results across panels e.g. can the same ServingConfig be shown on multiple panels at once. If unspecified, default to `UNIQUE_MODEL_RESTRICTION`.",
+          "enum": [
+            "RESTRICTION_UNSPECIFIED",
+            "NO_RESTRICTION",
+            "UNIQUE_SERVING_CONFIG_RESTRICTION",
+            "UNIQUE_MODEL_RESTRICTION",
+            "UNIQUE_MODEL_TYPE_RESTRICTION"
+          ],
+          "enumDescriptions": [
+            "Unspecified value for restriction.",
+            "Allow any ServingConfig to be show on any number of panels. Example: `Panel1 candidates`: pdp_ctr, pdp_cvr, home_page_ctr_no_diversity `Panel2 candidates`: home_page_ctr_no_diversity, home_page_ctr_diversity, pdp_cvr_no_diversity `Restriction` = NO_RESTRICTION `Valid combinations`: * * (pdp_ctr, home_page_ctr_no_diversity) * (pdp_ctr, home_page_ctr_diversity) * (pdp_ctr, pdp_cvr_no_diversity) * (pdp_cvr, home_page_ctr_no_diversity) * (pdp_cvr, home_page_ctr_diversity) * (pdp_cvr, pdp_cvr_no_diversity) * (home_page_ctr_no_diversity, home_page_ctr_no_diversity) * (home_page_ctr_no_diversity, home_page_ctr_diversity) * (home_page_ctr_no_diversity, pdp_cvr_no_diversity) * `Invalid combinations`: []",
+            "Do not allow the same ServingConfig.name to be shown on multiple panels. Example: `Panel1 candidates`: * pdp_ctr, pdp_cvr, home_page_ctr_no_diversity * `Panel2 candidates`: * home_page_ctr_no_diversity, home_page_ctr_diversity_low, pdp_cvr_no_diversity * `Restriction` = `UNIQUE_SERVING_CONFIG_RESTRICTION` `Valid combinations`: * * (pdp_ctr, home_page_ctr_no_diversity) * (pdp_ctr, home_page_ctr_diversity_low) * (pdp_ctr, pdp_cvr_no_diversity) * (pdp_ctr, pdp_cvr_no_diversity) * (pdp_cvr, home_page_ctr_no_diversity) * (pdp_cvr, home_page_ctr_diversity_low) * (pdp_cvr, pdp_cvr_no_diversity) * (home_page_ctr_no_diversity, home_page_ctr_diversity_low) * (home_page_ctr_no_diversity, pdp_cvr_no_diversity) * `Invalid combinations`: * * (home_page_ctr_no_diversity, home_page_ctr_no_diversity) *",
+            "Do not allow multiple ServingConfigs with same Model.name to be show on on different panels. Example: `Panel1 candidates`: * pdp_ctr, pdp_cvr, home_page_ctr_no_diversity * `Panel2 candidates`: * home_page_ctr_no_diversity, home_page_ctr_diversity_low, pdp_cvr_no_diversity * `Restriction` = `UNIQUE_MODEL_RESTRICTION` `Valid combinations`: * * (pdp_ctr, home_page_ctr_no_diversity) * (pdp_ctr, home_page_ctr_diversity) * (pdp_ctr, pdp_cvr_no_diversity) * (pdp_ctr, pdp_cvr_no_diversity) * (pdp_cvr, home_page_ctr_no_diversity) * (pdp_cvr, home_page_ctr_diversity_low) * (home_page_ctr_no_diversity, pdp_cvr_no_diversity) * `Invalid combinations`: * * (home_page_ctr_no_diversity, home_page_ctr_no_diversity) * (pdp_cvr, pdp_cvr_no_diversity) *",
+            "Do not allow multiple ServingConfigs with same Model.type to be shown on different panels. Example: `Panel1 candidates`: * pdp_ctr, pdp_cvr, home_page_ctr_no_diversity * `Panel2 candidates`: * home_page_ctr_no_diversity, home_page_ctr_diversity_low, pdp_cvr_no_diversity * `Restriction` = `UNIQUE_MODEL_RESTRICTION` `Valid combinations`: * * (pdp_ctr, home_page_ctr_no_diversity) * (pdp_ctr, home_page_ctr_diversity) * (pdp_cvr, home_page_ctr_no_diversity) * (pdp_cvr, home_page_ctr_diversity_low) * (home_page_ctr_no_diversity, pdp_cvr_no_diversity) * `Invalid combinations`: * * (pdp_ctr, pdp_cvr_no_diversity) * (pdp_ctr, pdp_cvr_no_diversity) * (pdp_cvr, pdp_cvr_no_diversity) * (home_page_ctr_no_diversity, home_page_ctr_no_diversity) * (home_page_ctr_no_diversity, home_page_ctr_diversity) *"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaModelPageOptimizationConfigCandidate": {
+      "description": "A candidate to consider for a given panel. Currently only ServingConfig are valid candidates.",
+      "id": "GoogleCloudRetailV2alphaModelPageOptimizationConfigCandidate",
+      "properties": {
+        "servingConfigId": {
+          "description": "This has to be a valid ServingConfig identifier. For example, for a ServingConfig with full name: `projects/*/locations/global/catalogs/default_catalog/servingConfigs/my_candidate_config`, this would be `my_candidate_config`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaModelPageOptimizationConfigPanel": {
+      "description": "An individual panel with a list of ServingConfigs to consider for it.",
+      "id": "GoogleCloudRetailV2alphaModelPageOptimizationConfigPanel",
+      "properties": {
+        "candidates": {
+          "description": "Required. The candidates to consider on the panel. Limit = 10.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2alphaModelPageOptimizationConfigCandidate"
+          },
+          "type": "array"
+        },
+        "defaultCandidate": {
+          "$ref": "GoogleCloudRetailV2alphaModelPageOptimizationConfigCandidate",
+          "description": "Required. The default candidate. If the model fails at serving time, we fall back to the default."
+        },
+        "displayName": {
+          "description": "Optional. The name to display for the panel.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaModelServingConfigList": {
+      "description": "Represents an ordered combination of valid serving configs, which can be used for `PAGE_OPTIMIZATION` recommendations.",
+      "id": "GoogleCloudRetailV2alphaModelServingConfigList",
+      "properties": {
+        "servingConfigIds": {
+          "description": "Optional. A set of valid serving configs that may be used for `PAGE_OPTIMIZATION`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaOutputResult": {
+      "description": "Output result.",
+      "id": "GoogleCloudRetailV2alphaOutputResult",
+      "properties": {
+        "bigqueryResult": {
+          "description": "Export result in BigQuery.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2alphaBigQueryOutputResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaPauseModelRequest": {
+      "description": "Request for pausing training of a model.",
+      "id": "GoogleCloudRetailV2alphaPauseModelRequest",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudRetailV2alphaPredictRequest": {
       "description": "Request message for Predict method.",
       "id": "GoogleCloudRetailV2alphaPredictRequest",
       "properties": {
         "filter": {
-          "description": "Filter for restricting prediction results with a length limit of 5,000 characters. Accepts values for tags and the `filterOutOfStockItems` flag. * Tag expressions. Restricts predictions to products that match all of the specified tags. Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses, and must be separated from the tag values by a space. `-\"tagA\"` is also supported and is equivalent to `NOT \"tagA\"`. Tag values must be double quoted UTF-8 encoded strings with a size limit of 1,000 characters. Note: \"Recently viewed\" models don't support tag filtering at the moment. * filterOutOfStockItems. Restricts predictions to products that do not have a stockState value of OUT_OF_STOCK. Examples: * tag=(\"Red\" OR \"Blue\") tag=\"New-Arrival\" tag=(NOT \"promotional\") * filterOutOfStockItems tag=(-\"promotional\") * filterOutOfStockItems If your filter blocks all prediction results, the API will return generic (unfiltered) popular products. If you only want results strictly matching the filters, set `strictFiltering` to True in `PredictRequest.params` to receive empty results instead. Note that the API will never return items with storageStatus of \"EXPIRED\" or \"DELETED\" regardless of filter choices. If `filterSyntaxV2` is set to true under the `params` field, then attribute based expressions are expected instead of the above described tag-based syntax. Examples: * (colors: ANY(\"Red\", \"Blue\")) AND NOT (categories: ANY(\"Phones\")) * (availability: ANY(\"IN_STOCK\")) AND (colors: ANY(\"Red\") OR categories: ANY(\"Phones\"))",
+          "description": "Filter for restricting prediction results with a length limit of 5,000 characters. Accepts values for tags and the `filterOutOfStockItems` flag. * Tag expressions. Restricts predictions to products that match all of the specified tags. Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses, and must be separated from the tag values by a space. `-\"tagA\"` is also supported and is equivalent to `NOT \"tagA\"`. Tag values must be double quoted UTF-8 encoded strings with a size limit of 1,000 characters. Note: \"Recently viewed\" models don't support tag filtering at the moment. * filterOutOfStockItems. Restricts predictions to products that do not have a stockState value of OUT_OF_STOCK. Examples: * tag=(\"Red\" OR \"Blue\") tag=\"New-Arrival\" tag=(NOT \"promotional\") * filterOutOfStockItems tag=(-\"promotional\") * filterOutOfStockItems If your filter blocks all prediction results, the API will return generic (unfiltered) popular products. If you only want results strictly matching the filters, set `strictFiltering` to True in `PredictRequest.params` to receive empty results instead. Note that the API will never return items with storageStatus of \"EXPIRED\" or \"DELETED\" regardless of filter choices. If `filterSyntaxV2` is set to true under the `params` field, then attribute-based expressions are expected instead of the above described tag-based syntax. Examples: * (colors: ANY(\"Red\", \"Blue\")) AND NOT (categories: ANY(\"Phones\")) * (availability: ANY(\"IN_STOCK\")) AND (colors: ANY(\"Red\") OR categories: ANY(\"Phones\"))",
           "type": "string"
         },
         "labels": {
@@ -3272,19 +3858,19 @@
           "type": "object"
         },
         "pageSize": {
-          "description": "Maximum number of results to return per page. Set this property to the number of prediction results needed. If zero, the service will choose a reasonable default. The maximum allowed value is 100. Values above 100 will be coerced to 100.",
+          "description": "Maximum number of results to return. Set this property to the number of prediction results needed. If zero, the service will choose a reasonable default. The maximum allowed value is 100. Values above 100 will be coerced to 100.",
           "format": "int32",
           "type": "integer"
         },
         "pageToken": {
-          "description": "The previous PredictResponse.next_page_token.",
+          "description": "This field is not used; leave it unset.",
           "type": "string"
         },
         "params": {
           "additionalProperties": {
             "type": "any"
           },
-          "description": "Additional domain specific parameters for the predictions. Allowed values: * `returnProduct`: Boolean. If set to true, the associated product object will be returned in the `results.metadata` field in the prediction response. * `returnScore`: Boolean. If set to true, the prediction 'score' corresponding to each returned product will be set in the `results.metadata` field in the prediction response. The given 'score' indicates the probability of an product being clicked/purchased given the user's context and history. * `strictFiltering`: Boolean. True by default. If set to false, the service will return generic (unfiltered) popular products instead of empty if your filter blocks all prediction results. * `priceRerankLevel`: String. Default empty. If set to be non-empty, then it needs to be one of {'no-price-reranking', 'low-price-reranking', 'medium-price-reranking', 'high-price-reranking'}. This gives request-level control and adjusts prediction results based on product price. * `diversityLevel`: String. Default empty. If set to be non-empty, then it needs to be one of {'no-diversity', 'low-diversity', 'medium-diversity', 'high-diversity', 'auto-diversity'}. This gives request-level control and adjusts prediction results based on product category. * `filterSyntaxV2`: Boolean. False by default. If set to true, the `filter` field will be interpreteted according to the new, attribute-based syntax.",
+          "description": "Additional domain specific parameters for the predictions. Allowed values: * `returnProduct`: Boolean. If set to true, the associated product object will be returned in the `results.metadata` field in the prediction response. * `returnScore`: Boolean. If set to true, the prediction 'score' corresponding to each returned product will be set in the `results.metadata` field in the prediction response. The given 'score' indicates the probability of an product being clicked/purchased given the user's context and history. * `strictFiltering`: Boolean. True by default. If set to false, the service will return generic (unfiltered) popular products instead of empty if your filter blocks all prediction results. * `priceRerankLevel`: String. Default empty. If set to be non-empty, then it needs to be one of {'no-price-reranking', 'low-price-reranking', 'medium-price-reranking', 'high-price-reranking'}. This gives request-level control and adjusts prediction results based on product price. * `diversityLevel`: String. Default empty. If set to be non-empty, then it needs to be one of {'no-diversity', 'low-diversity', 'medium-diversity', 'high-diversity', 'auto-diversity'}. This gives request-level control and adjusts prediction results based on product category. * `filterSyntaxV2`: Boolean. False by default. If set to true, the `filter` field is interpreteted according to the new, attribute-based syntax.",
           "type": "object"
         },
         "userEvent": {
@@ -3459,7 +4045,7 @@
           "type": "array"
         },
         "collectionMemberIds": {
-          "description": "The id of the collection members when type is Type.COLLECTION. Non-existent product ids are allowed. The type of the members must be either Type.PRIMARY or Type.VARIANT otherwise and INVALID_ARGUMENT error is thrown. Should not set it for other types. A maximum of 1000 values are allowed. Otherwise, an INVALID_ARGUMENT error is return.",
+          "description": "The id of the collection members when type is Type.COLLECTION. Non-existent product ids are allowed. The type of the members must be either Type.PRIMARY or Type.VARIANT otherwise an INVALID_ARGUMENT error is thrown. Should not set it for other types. A maximum of 1000 values are allowed. Otherwise, an INVALID_ARGUMENT error is return.",
           "items": {
             "type": "string"
           },
@@ -3898,13 +4484,13 @@
       "type": "object"
     },
     "GoogleCloudRetailV2alphaRemoveFulfillmentPlacesMetadata": {
-      "description": "Metadata related to the progress of the RemoveFulfillmentPlaces operation. Currently empty because there is no meaningful metadata populated from the RemoveFulfillmentPlaces method.",
+      "description": "Metadata related to the progress of the RemoveFulfillmentPlaces operation. Currently empty because there is no meaningful metadata populated from the ProductService.RemoveFulfillmentPlaces method.",
       "id": "GoogleCloudRetailV2alphaRemoveFulfillmentPlacesMetadata",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudRetailV2alphaRemoveFulfillmentPlacesRequest": {
-      "description": "Request message for RemoveFulfillmentPlaces method.",
+      "description": "Request message for ProductService.RemoveFulfillmentPlaces method.",
       "id": "GoogleCloudRetailV2alphaRemoveFulfillmentPlacesRequest",
       "properties": {
         "allowMissing": {
@@ -3931,19 +4517,19 @@
       "type": "object"
     },
     "GoogleCloudRetailV2alphaRemoveFulfillmentPlacesResponse": {
-      "description": "Response of the RemoveFulfillmentPlacesRequest. Currently empty because there is no meaningful response populated from the RemoveFulfillmentPlaces method.",
+      "description": "Response of the RemoveFulfillmentPlacesRequest. Currently empty because there is no meaningful response populated from the ProductService.RemoveFulfillmentPlaces method.",
       "id": "GoogleCloudRetailV2alphaRemoveFulfillmentPlacesResponse",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudRetailV2alphaRemoveLocalInventoriesMetadata": {
-      "description": "Metadata related to the progress of the RemoveLocalInventories operation. Currently empty because there is no meaningful metadata populated from the RemoveLocalInventories method.",
+      "description": "Metadata related to the progress of the RemoveLocalInventories operation. Currently empty because there is no meaningful metadata populated from the ProductService.RemoveLocalInventories method.",
       "id": "GoogleCloudRetailV2alphaRemoveLocalInventoriesMetadata",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudRetailV2alphaRemoveLocalInventoriesRequest": {
-      "description": "Request message for RemoveLocalInventories method.",
+      "description": "Request message for ProductService.RemoveLocalInventories method.",
       "id": "GoogleCloudRetailV2alphaRemoveLocalInventoriesRequest",
       "properties": {
         "allowMissing": {
@@ -3966,7 +4552,7 @@
       "type": "object"
     },
     "GoogleCloudRetailV2alphaRemoveLocalInventoriesResponse": {
-      "description": "Response of the RemoveLocalInventories API. Currently empty because there is no meaningful response populated from the RemoveLocalInventories method.",
+      "description": "Response of the ProductService.RemoveLocalInventories API. Currently empty because there is no meaningful response populated from the ProductService.RemoveLocalInventories method.",
       "id": "GoogleCloudRetailV2alphaRemoveLocalInventoriesResponse",
       "properties": {},
       "type": "object"
@@ -3985,6 +4571,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaResumeModelRequest": {
+      "description": "Request for resuming training of a model.",
+      "id": "GoogleCloudRetailV2alphaResumeModelRequest",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudRetailV2alphaRule": {
@@ -4075,7 +4667,7 @@
       "type": "object"
     },
     "GoogleCloudRetailV2alphaRuleFilterAction": {
-      "description": "* Rule Condition: - No Condition provided is a global match. - 1 or more Condition provided is combined with OR operator. * Action Input: The request query and filter that will be applied to the retrieved products, in addition to any filters already provided with the SearchRequest. The AND operator is used to combine the query's existing filters with the filter rule(s). NOTE: May result in 0 results when filters conflict. * Action Result: Filters the returned objects to be ONLY those that passed the filter.",
+      "description": "* Rule Condition: - No Condition.query_terms provided is a global match. - 1 or more Condition.query_terms provided are combined with OR operator. * Action Input: The request query and filter that are applied to the retrieved products, in addition to any filters already provided with the SearchRequest. The AND operator is used to combine the query's existing filters with the filter rule(s). NOTE: May result in 0 results when filters conflict. * Action Result: Filters the returned objects to be ONLY those that passed the filter.",
       "id": "GoogleCloudRetailV2alphaRuleFilterAction",
       "properties": {
         "filter": {
@@ -4128,7 +4720,7 @@
       "type": "object"
     },
     "GoogleCloudRetailV2alphaRuleRedirectAction": {
-      "description": "Redirects a shopper to a specific page. * Rule Condition: - Must specify Condition. * Action Input: Request Query * Action Result: Redirects shopper to provided uri.",
+      "description": "Redirects a shopper to a specific page. * Rule Condition: - Must specify Condition.query_terms. * Action Input: Request Query * Action Result: Redirects shopper to provided uri.",
       "id": "GoogleCloudRetailV2alphaRuleRedirectAction",
       "properties": {
         "redirectUri": {
@@ -4259,7 +4851,7 @@
             "LOWEST"
           ],
           "enumDescriptions": [
-            "Default value. Defaults to RelevanceThreshold.HIGH.",
+            "Default value. In this case, server behavior defaults to RelevanceThreshold.HIGH.",
             "High relevance threshold.",
             "Medium relevance threshold.",
             "Low relevance threshold.",
@@ -4412,7 +5004,7 @@
           "type": "string"
         },
         "orderBy": {
-          "description": "The order in which Facet.values are returned. Allowed values are: * \"count desc\", which means order by Facet.FacetValue.count descending. * \"value desc\", which means order by Facet.FacetValue.value descending. Only applies to textual facets. If not set, textual values are sorted in [natural order](https://en.wikipedia.org/wiki/Natural_sort_order); numerical intervals are sorted in the order given by FacetSpec.FacetKey.intervals; FulfillmentInfo.place_ids are sorted in the order given by FacetSpec.FacetKey.restricted_values.",
+          "description": "The order in which SearchResponse.Facet.values are returned. Allowed values are: * \"count desc\", which means order by SearchResponse.Facet.values.count descending. * \"value desc\", which means order by SearchResponse.Facet.values.value descending. Only applies to textual facets. If not set, textual values are sorted in [natural order](https://en.wikipedia.org/wiki/Natural_sort_order); numerical intervals are sorted in the order given by FacetSpec.FacetKey.intervals; FulfillmentInfo.place_ids are sorted in the order given by FacetSpec.FacetKey.restricted_values.",
           "type": "string"
         },
         "prefixes": {
@@ -4423,7 +5015,7 @@
           "type": "array"
         },
         "query": {
-          "description": "The query that is used to compute facet for the given facet key. When provided, it will override the default behavior of facet computation. The query syntax is the same as a filter expression. See SearchRequest.filter for detail syntax and limitations. Notice that there is no limitation on FacetKey.key when query is specified. In the response, FacetValue.value will be always \"1\" and FacetValue.count will be the number of results that matches the query. For example, you can set a customized facet for \"shipToStore\", where FacetKey.key is \"customizedShipToStore\", and FacetKey.query is \"availability: ANY(\\\"IN_STOCK\\\") AND shipToStore: ANY(\\\"123\\\")\". Then the facet will count the products that are both in stock and ship to store \"123\".",
+          "description": "The query that is used to compute facet for the given facet key. When provided, it will override the default behavior of facet computation. The query syntax is the same as a filter expression. See SearchRequest.filter for detail syntax and limitations. Notice that there is no limitation on FacetKey.key when query is specified. In the response, SearchResponse.Facet.values.value will be always \"1\" and SearchResponse.Facet.values.count will be the number of results that match the query. For example, you can set a customized facet for \"shipToStore\", where FacetKey.key is \"customizedShipToStore\", and FacetKey.query is \"availability: ANY(\\\"IN_STOCK\\\") AND shipToStore: ANY(\\\"123\\\")\". Then the facet will count the products that are both in stock and ship to store \"123\".",
           "type": "string"
         },
         "restrictedValues": {
@@ -4432,6 +5024,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "returnMinMax": {
+          "description": "Returns the min and max value for each numerical facet intervals. Ignored for textual facets.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -4448,8 +5044,8 @@
             "DISABLED"
           ],
           "enumDescriptions": [
-            "Default value. Defaults to Mode.AUTO.",
-            "Let CRS decide whether to use personalization.",
+            "Default value. In this case, server behavior defaults to Mode.AUTO.",
+            "Let CRS decide whether to use personalization based on quality of user event data.",
             "Disable personalization."
           ],
           "type": "string"
@@ -4469,7 +5065,7 @@
             "AUTO"
           ],
           "enumDescriptions": [
-            "Unspecified query expansion condition. This defaults to Condition.DISABLED.",
+            "Unspecified query expansion condition. In this case, server behavior defaults to Condition.DISABLED.",
             "Disabled query expansion. Only the exact search query is used, even if SearchResponse.total_size is zero.",
             "Automatic query expansion built by Google Retail Search."
           ],
@@ -4494,7 +5090,7 @@
             "AUTO"
           ],
           "enumDescriptions": [
-            "Unspecified spell correction mode. This defaults to Mode.AUTO.",
+            "Unspecified spell correction mode. In this case, server behavior defaults to Mode.AUTO.",
             "Google Retail Search will try to find a spell suggestion if there is any and put in the SearchResponse.corrected_query. The spell suggestion will not be used as the search query.",
             "Automatic spell correction built by Google Retail Search. Search will be based on the corrected query if found."
           ],
@@ -4519,7 +5115,7 @@
           "type": "string"
         },
         "correctedQuery": {
-          "description": "Contains the spell corrected query, if found. If the spell correction type is AUTOMATIC, then the search results are based on corrected_query. Otherwise the original query will be used for search.",
+          "description": "Contains the spell corrected query, if found. If the spell correction type is AUTOMATIC, then the search results are based on corrected_query. Otherwise the original query is used for search.",
           "type": "string"
         },
         "facets": {
@@ -4598,6 +5194,16 @@
           "$ref": "GoogleCloudRetailV2alphaInterval",
           "description": "Interval value for a facet, such as [10, 20) for facet \"price\"."
         },
+        "maxValue": {
+          "description": "The maximum value in the FacetValue.interval. Only supported on numerical facets and returned if SearchRequest.FacetSpec.FacetKey.return_min_max is true.",
+          "format": "double",
+          "type": "number"
+        },
+        "minValue": {
+          "description": "The minimum value in the FacetValue.interval. Only supported on numerical facets and returned if SearchRequest.FacetSpec.FacetKey.return_min_max is true.",
+          "format": "double",
+          "type": "number"
+        },
         "value": {
           "description": "Text value of a facet, such as \"Black\" for facet \"colorFamilies\".",
           "type": "string"
@@ -4641,6 +5247,13 @@
           },
           "description": "If a variant Product matches the search query, this map indicates which Product fields are matched. The key is the Product.name, the value is a field mask of the matched Product fields. If matched attributes cannot be determined, this map will be empty. For example, a key \"sku1\" with field mask \"products.color_info\" indicates there is a match between \"sku1\" ColorInfo and the query.",
           "type": "object"
+        },
+        "personalLabels": {
+          "description": "Specifies previous events related to this product for this user based on UserEvent with same SearchRequest.visitor_id or UserInfo.user_id. This is set only when SearchRequest.PersonalizationSpec.mode is SearchRequest.PersonalizationSpec.Mode.AUTO. Possible values: * `purchased`: Indicates that this product has been purchased before.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "product": {
           "$ref": "GoogleCloudRetailV2alphaProduct",
@@ -4791,13 +5404,13 @@
       "type": "object"
     },
     "GoogleCloudRetailV2alphaSetInventoryMetadata": {
-      "description": "Metadata related to the progress of the SetInventory operation. Currently empty because there is no meaningful metadata populated from the SetInventory method.",
+      "description": "Metadata related to the progress of the SetInventory operation. Currently empty because there is no meaningful metadata populated from the ProductService.SetInventory method.",
       "id": "GoogleCloudRetailV2alphaSetInventoryMetadata",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudRetailV2alphaSetInventoryRequest": {
-      "description": "Request message for SetInventory method.",
+      "description": "Request message for ProductService.SetInventory method.",
       "id": "GoogleCloudRetailV2alphaSetInventoryRequest",
       "properties": {
         "allowMissing": {
@@ -4806,7 +5419,7 @@
         },
         "inventory": {
           "$ref": "GoogleCloudRetailV2alphaProduct",
-          "description": "Required. The inventory information to update. The allowable fields to update are: * Product.price_info * Product.availability * Product.available_quantity * Product.fulfillment_info The updated inventory fields must be specified in SetInventoryRequest.set_mask. If SetInventoryRequest.inventory.name is empty or invalid, an INVALID_ARGUMENT error is returned. If the caller does not have permission to update the Product named in Product.name, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the Product to update does not have existing inventory information, the provided inventory information will be inserted. If the Product to update has existing inventory information, the provided inventory information will be merged while respecting the last update time for each inventory field, using the provided or default value for SetInventoryRequest.set_time. The caller can replace place IDs for a subset of fulfillment types in the following ways: * Adds \"fulfillment_info\" in SetInventoryRequest.set_mask * Specifies only the desired fulfillment types and corresponding place IDs to update in SetInventoryRequest.inventory.fulfillment_info The caller can clear all place IDs from a subset of fulfillment types in the following ways: * Adds \"fulfillment_info\" in SetInventoryRequest.set_mask * Specifies only the desired fulfillment types to clear in SetInventoryRequest.inventory.fulfillment_info * Checks that only the desired fulfillment info types have empty SetInventoryRequest.inventory.fulfillment_info.place_ids The last update time is recorded for the following inventory fields: * Product.price_info * Product.availability * Product.available_quantity * Product.fulfillment_info If a full overwrite of inventory information while ignoring timestamps is needed, UpdateProduct should be invoked instead."
+          "description": "Required. The inventory information to update. The allowable fields to update are: * Product.price_info * Product.availability * Product.available_quantity * Product.fulfillment_info The updated inventory fields must be specified in SetInventoryRequest.set_mask. If SetInventoryRequest.inventory.name is empty or invalid, an INVALID_ARGUMENT error is returned. If the caller does not have permission to update the Product named in Product.name, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the Product to update does not have existing inventory information, the provided inventory information will be inserted. If the Product to update has existing inventory information, the provided inventory information will be merged while respecting the last update time for each inventory field, using the provided or default value for SetInventoryRequest.set_time. The caller can replace place IDs for a subset of fulfillment types in the following ways: * Adds \"fulfillment_info\" in SetInventoryRequest.set_mask * Specifies only the desired fulfillment types and corresponding place IDs to update in SetInventoryRequest.inventory.fulfillment_info The caller can clear all place IDs from a subset of fulfillment types in the following ways: * Adds \"fulfillment_info\" in SetInventoryRequest.set_mask * Specifies only the desired fulfillment types to clear in SetInventoryRequest.inventory.fulfillment_info * Checks that only the desired fulfillment info types have empty SetInventoryRequest.inventory.fulfillment_info.place_ids The last update time is recorded for the following inventory fields: * Product.price_info * Product.availability * Product.available_quantity * Product.fulfillment_info If a full overwrite of inventory information while ignoring timestamps is needed, ProductService.UpdateProduct should be invoked instead."
         },
         "setMask": {
           "description": "Indicates which inventory fields in the provided Product to update. At least one field must be provided. If an unsupported or unknown field is provided, an INVALID_ARGUMENT error is returned and the entire update will be ignored.",
@@ -4822,8 +5435,48 @@
       "type": "object"
     },
     "GoogleCloudRetailV2alphaSetInventoryResponse": {
-      "description": "Response of the SetInventoryRequest. Currently empty because there is no meaningful response populated from the SetInventory method.",
+      "description": "Response of the SetInventoryRequest. Currently empty because there is no meaningful response populated from the ProductService.SetInventory method.",
       "id": "GoogleCloudRetailV2alphaSetInventoryResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaTransformedUserEventsMetadata": {
+      "description": "Metadata related to transform user events operation.",
+      "id": "GoogleCloudRetailV2alphaTransformedUserEventsMetadata",
+      "properties": {
+        "sourceEventsCount": {
+          "description": "Count of entries in the source user events BigQuery table.",
+          "format": "int64",
+          "type": "string"
+        },
+        "transformedEventsCount": {
+          "description": "Count of entries in the transformed user events BigQuery table, which could be different from the actually imported number of user events.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaTuneModelMetadata": {
+      "description": "Metadata associated with a tune operation.",
+      "id": "GoogleCloudRetailV2alphaTuneModelMetadata",
+      "properties": {
+        "model": {
+          "description": "The resource name of the model that this tune applies to. Format: projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaTuneModelRequest": {
+      "description": "Request to manually start a tuning process now (instead of waiting for the periodically scheduled tuning to happen).",
+      "id": "GoogleCloudRetailV2alphaTuneModelRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaTuneModelResponse": {
+      "description": "Response associated with a tune operation.",
+      "id": "GoogleCloudRetailV2alphaTuneModelResponse",
       "properties": {},
       "type": "object"
     },
@@ -5025,6 +5678,21 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudRetailV2betaBigQueryOutputResult": {
+      "description": "A BigQuery output result.",
+      "id": "GoogleCloudRetailV2betaBigQueryOutputResult",
+      "properties": {
+        "datasetId": {
+          "description": "The ID of a BigQuery Dataset.",
+          "type": "string"
+        },
+        "tableId": {
+          "description": "The ID of a BigQuery Table.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2betaExportErrorsConfig": {
       "description": "Configuration of destination for Export related errors.",
       "id": "GoogleCloudRetailV2betaExportErrorsConfig",
@@ -5067,6 +5735,10 @@
         "errorsConfig": {
           "$ref": "GoogleCloudRetailV2betaExportErrorsConfig",
           "description": "This field is never set."
+        },
+        "outputResult": {
+          "$ref": "GoogleCloudRetailV2betaOutputResult",
+          "description": "Output result indicating where the data were exported to."
         }
       },
       "type": "object"
@@ -5085,6 +5757,10 @@
         "errorsConfig": {
           "$ref": "GoogleCloudRetailV2betaExportErrorsConfig",
           "description": "This field is never set."
+        },
+        "outputResult": {
+          "$ref": "GoogleCloudRetailV2betaOutputResult",
+          "description": "Output result indicating where the data were exported to."
         }
       },
       "type": "object"
@@ -5108,14 +5784,14 @@
       "id": "GoogleCloudRetailV2betaImportErrorsConfig",
       "properties": {
         "gcsPrefix": {
-          "description": "Google Cloud Storage prefix for import errors. This must be an empty, existing Cloud Storage directory. Import errors will be written to sharded files in this directory, one per line, as a JSON-encoded `google.rpc.Status` message.",
+          "description": "Google Cloud Storage prefix for import errors. This must be an empty, existing Cloud Storage directory. Import errors are written to sharded files in this directory, one per line, as a JSON-encoded `google.rpc.Status` message.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleCloudRetailV2betaImportMetadata": {
-      "description": "Metadata related to the progress of the Import operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "description": "Metadata related to the progress of the Import operation. This is returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudRetailV2betaImportMetadata",
       "properties": {
         "createTime": {
@@ -5129,7 +5805,7 @@
           "type": "string"
         },
         "notificationPubsubTopic": {
-          "description": "Pub/Sub topic for receiving notification. If this field is set, when the import is finished, a notification will be sent to specified Pub/Sub topic. The message data will be JSON string of a Operation. Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.",
+          "description": "Pub/Sub topic for receiving notification. If this field is set, when the import is finished, a notification is sent to specified Pub/Sub topic. The message data is JSON string of a Operation. Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.",
           "type": "string"
         },
         "requestId": {
@@ -5189,6 +5865,20 @@
       },
       "type": "object"
     },
+    "GoogleCloudRetailV2betaOutputResult": {
+      "description": "Output result.",
+      "id": "GoogleCloudRetailV2betaOutputResult",
+      "properties": {
+        "bigqueryResult": {
+          "description": "Export result in BigQuery.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2betaBigQueryOutputResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2betaPurgeMetadata": {
       "description": "Metadata related to the progress of the Purge operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudRetailV2betaPurgeMetadata",
@@ -5226,37 +5916,37 @@
       "type": "object"
     },
     "GoogleCloudRetailV2betaRemoveFulfillmentPlacesMetadata": {
-      "description": "Metadata related to the progress of the RemoveFulfillmentPlaces operation. Currently empty because there is no meaningful metadata populated from the RemoveFulfillmentPlaces method.",
+      "description": "Metadata related to the progress of the RemoveFulfillmentPlaces operation. Currently empty because there is no meaningful metadata populated from the ProductService.RemoveFulfillmentPlaces method.",
       "id": "GoogleCloudRetailV2betaRemoveFulfillmentPlacesMetadata",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudRetailV2betaRemoveFulfillmentPlacesResponse": {
-      "description": "Response of the RemoveFulfillmentPlacesRequest. Currently empty because there is no meaningful response populated from the RemoveFulfillmentPlaces method.",
+      "description": "Response of the RemoveFulfillmentPlacesRequest. Currently empty because there is no meaningful response populated from the ProductService.RemoveFulfillmentPlaces method.",
       "id": "GoogleCloudRetailV2betaRemoveFulfillmentPlacesResponse",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudRetailV2betaRemoveLocalInventoriesMetadata": {
-      "description": "Metadata related to the progress of the RemoveLocalInventories operation. Currently empty because there is no meaningful metadata populated from the RemoveLocalInventories method.",
+      "description": "Metadata related to the progress of the RemoveLocalInventories operation. Currently empty because there is no meaningful metadata populated from the ProductService.RemoveLocalInventories method.",
       "id": "GoogleCloudRetailV2betaRemoveLocalInventoriesMetadata",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudRetailV2betaRemoveLocalInventoriesResponse": {
-      "description": "Response of the RemoveLocalInventories API. Currently empty because there is no meaningful response populated from the RemoveLocalInventories method.",
+      "description": "Response of the ProductService.RemoveLocalInventories API. Currently empty because there is no meaningful response populated from the ProductService.RemoveLocalInventories method.",
       "id": "GoogleCloudRetailV2betaRemoveLocalInventoriesResponse",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudRetailV2betaSetInventoryMetadata": {
-      "description": "Metadata related to the progress of the SetInventory operation. Currently empty because there is no meaningful metadata populated from the SetInventory method.",
+      "description": "Metadata related to the progress of the SetInventory operation. Currently empty because there is no meaningful metadata populated from the ProductService.SetInventory method.",
       "id": "GoogleCloudRetailV2betaSetInventoryMetadata",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudRetailV2betaSetInventoryResponse": {
-      "description": "Response of the SetInventoryRequest. Currently empty because there is no meaningful response populated from the SetInventory method.",
+      "description": "Response of the SetInventoryRequest. Currently empty because there is no meaningful response populated from the ProductService.SetInventory method.",
       "id": "GoogleCloudRetailV2betaSetInventoryResponse",
       "properties": {},
       "type": "object"
