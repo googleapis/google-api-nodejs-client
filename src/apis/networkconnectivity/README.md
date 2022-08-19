@@ -2,7 +2,7 @@
 
 # networkconnectivity
 
-> The Network Connectivity API provides access to Network Connectivity Center.
+> This API enables connectivity with and between Google Cloud resources.
 
 ## Support status
 **Note**: Google provides multiple libraries for this service. This library is in

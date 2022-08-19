@@ -102,7 +102,7 @@ export namespace networkconnectivity_v1 {
   /**
    * Network Connectivity API
    *
-   * The Network Connectivity API provides access to Network Connectivity Center.
+   * This API enables connectivity with and between Google Cloud resources.
    *
    * @example
    * ```js
@@ -159,7 +159,7 @@ export namespace networkconnectivity_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -252,7 +252,7 @@ export namespace networkconnectivity_v1 {
     message?: string | null;
   }
   /**
-   * A hub is a collection of spokes. A single hub can contain spokes from multiple regions. However, if any of a hub's spokes use the data transfer feature, the resources associated with those spokes must all reside in the same VPC network. Spokes that do not use data transfer can be associated with any VPC network in your project.
+   * A Network Connectivity Center hub is a collection of spokes. A single hub can contain spokes from multiple regions. However, if any of a hub's spokes use the data transfer feature, the resources associated with those spokes must all reside in the same VPC network. Spokes that do not use data transfer can be associated with any VPC network in your project.
    */
   export interface Schema$Hub {
     /**
@@ -476,7 +476,7 @@ export namespace networkconnectivity_v1 {
     virtualMachine?: string | null;
   }
   /**
-   * RoutingVPC contains information about the VPC networks that are associated with a hub's spokes.
+   * RoutingVPC contains information about the VPC networks associated with the spokes of a Network Connectivity Center hub.
    */
   export interface Schema$RoutingVPC {
     /**
@@ -502,7 +502,7 @@ export namespace networkconnectivity_v1 {
     updateMask?: string | null;
   }
   /**
-   * A spoke represents a connection between your Google Cloud network resources and a non-Google-Cloud network. When you create a spoke, you associate it with a hub. You must also identify a value for exactly one of the following fields: * linked_vpn_tunnels * linked_interconnect_attachments * linked_router_appliance_instances
+   * A Network Connectivity Center spoke represents a connection between your Google Cloud network resources and a non-Google-Cloud network. When you create a spoke, you associate it with a hub. You must also identify a value for exactly one of the following fields: * linked_vpn_tunnels * linked_interconnect_attachments * linked_router_appliance_instances
    */
   export interface Schema$Spoke {
     /**
@@ -912,7 +912,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Creates a new hub in the specified project.
+     * Creates a new Network Connectivity Center hub in the specified project.
      * @example
      * ```js
      * // Before running the sample:
@@ -1069,7 +1069,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Deletes the specified hub.
+     * Deletes a Network Connectivity Center hub.
      * @example
      * ```js
      * // Before running the sample:
@@ -1209,7 +1209,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Gets details about the specified hub.
+     * Gets details about a Network Connectivity Center hub.
      * @example
      * ```js
      * // Before running the sample:
@@ -1480,7 +1480,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Lists hubs in a given project.
+     * Lists the Network Connectivity Center hubs associated with a given project.
      * @example
      * ```js
      * // Before running the sample:
@@ -1617,7 +1617,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Updates the description and/or labels of the specified hub.
+     * Updates the description and/or labels of a Network Connectivity Center hub.
      * @example
      * ```js
      * // Before running the sample:
@@ -3264,7 +3264,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Creates a spoke in the specified project and location.
+     * Creates a Network Connectivity Center spoke.
      * @example
      * ```js
      * // Before running the sample:
@@ -3427,7 +3427,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Deletes the specified spoke.
+     * Deletes a Network Connectivity Center spoke.
      * @example
      * ```js
      * // Before running the sample:
@@ -3567,7 +3567,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Gets details about the specified spoke.
+     * Gets details about a Network Connectivity Center spoke.
      * @example
      * ```js
      * // Before running the sample:
@@ -3839,7 +3839,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Lists the spokes in the specified project and location.
+     * Lists the Network Connectivity Center spokes in a specified project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -3982,7 +3982,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Updates the parameters of the specified spoke.
+     * Updates the parameters of a Network Connectivity Center spoke.
      * @example
      * ```js
      * // Before running the sample:
