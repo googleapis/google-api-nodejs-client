@@ -102,7 +102,7 @@ export namespace beyondcorp_v1alpha {
   /**
    * BeyondCorp API
    *
-   * Beyondcorp Enterprise provides identity and context aware access controls for enterprise resources and enables zero-trust access. Using the Beyondcorp Enterprise APIs, enterprises can set up multi-cloud and on-prem connectivity using the App Connector hybrid connectivity solution.
+   * Beyondcorp Enterprise provides identity and context aware access controls for enterprise resources and enables zero-trust access. Using the Beyondcorp Enterprise APIs, enterprises can set up multi-cloud and on-prem connectivity solutions.
    *
    * @example
    * ```js
@@ -112,6 +112,7 @@ export namespace beyondcorp_v1alpha {
    */
   export class Beyondcorp {
     context: APIRequestContext;
+    organizations: Resource$Organizations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -120,6 +121,7 @@ export namespace beyondcorp_v1alpha {
         google,
       };
 
+      this.organizations = new Resource$Organizations(this.context);
       this.projects = new Resource$Projects(this.context);
     }
   }
@@ -773,13 +775,17 @@ export namespace beyondcorp_v1alpha {
    */
   export interface Schema$GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnectionGateway {
     /**
-     * Required. AppGateway name in following format: projects/{project_id\}/locations/{location_id\}/appgateways/{gateway_id\}
+     * Required. AppGateway name in following format: `projects/{project_id\}/locations/{location_id\}/appgateways/{gateway_id\}`
      */
     appGateway?: string | null;
     /**
      * Output only. Ingress port reserved on the gateways for this AppConnection, if not specified or zero, the default port is 19443.
      */
     ingressPort?: number | null;
+    /**
+     * Output only. L7 private service connection for this resource.
+     */
+    l7psc?: string | null;
     /**
      * Required. The type of hosting used by the gateway.
      */
@@ -865,9 +871,42 @@ export namespace beyondcorp_v1alpha {
      */
     appConnection?: Schema$GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnection;
     /**
-     * If type=GCP_REGIONAL_MIG, contains most recent VM instances, like "https://www.googleapis.com/compute/v1/projects/{project_id\}/zones/{zone_id\}/instances/{instance_id\}".
+     * If type=GCP_REGIONAL_MIG, contains most recent VM instances, like `https://www.googleapis.com/compute/v1/projects/{project_id\}/zones/{zone_id\}/instances/{instance_id\}`.
      */
     recentMigVms?: string[] | null;
+  }
+  /**
+   * Represents the metadata of the long-running operation.
+   */
+  export interface Schema$GoogleCloudBeyondcorpAppconnectionsV1AppConnectionOperationMetadata {
+    /**
+     * Output only. API version used to start the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     */
+    requestedCancellation?: boolean | null;
+    /**
+     * Output only. Human-readable status of the operation, if any.
+     */
+    statusMessage?: string | null;
+    /**
+     * Output only. Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Output only. Name of the verb executed by the operation.
+     */
+    verb?: string | null;
   }
   /**
    * A BeyondCorp connector resource that represents an application facing component deployed proximal to and with direct access to the application instances. It is used to establish connectivity between the remote enterprise environment and GCP. It initiates connections to the applications and can proxy the data from users over the connection.
@@ -1109,6 +1148,97 @@ export namespace beyondcorp_v1alpha {
   /**
    * Represents the metadata of the long-running operation.
    */
+  export interface Schema$GoogleCloudBeyondcorpAppconnectorsV1AppConnectorOperationMetadata {
+    /**
+     * Output only. API version used to start the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     */
+    requestedCancellation?: boolean | null;
+    /**
+     * Output only. Human-readable status of the operation, if any.
+     */
+    statusMessage?: string | null;
+    /**
+     * Output only. Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Output only. Name of the verb executed by the operation.
+     */
+    verb?: string | null;
+  }
+  /**
+   * ContainerHealthDetails reflects the health details of a container.
+   */
+  export interface Schema$GoogleCloudBeyondcorpAppconnectorsV1ContainerHealthDetails {
+    /**
+     * The version of the current config.
+     */
+    currentConfigVersion?: string | null;
+    /**
+     * The latest error message.
+     */
+    errorMsg?: string | null;
+    /**
+     * The version of the expected config.
+     */
+    expectedConfigVersion?: string | null;
+    /**
+     * The extended status. Such as ExitCode, StartedAt, FinishedAt, etc.
+     */
+    extendedStatus?: {[key: string]: string} | null;
+  }
+  /**
+   * RemoteAgentDetails reflects the details of a remote agent.
+   */
+  export interface Schema$GoogleCloudBeyondcorpAppconnectorsV1RemoteAgentDetails {}
+  /**
+   * Represents the metadata of the long-running operation.
+   */
+  export interface Schema$GoogleCloudBeyondcorpAppgatewaysV1AppGatewayOperationMetadata {
+    /**
+     * Output only. API version used to start the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     */
+    requestedCancellation?: boolean | null;
+    /**
+     * Output only. Human-readable status of the operation, if any.
+     */
+    statusMessage?: string | null;
+    /**
+     * Output only. Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Output only. Name of the verb executed by the operation.
+     */
+    verb?: string | null;
+  }
+  /**
+   * Represents the metadata of the long-running operation.
+   */
   export interface Schema$GoogleCloudBeyondcorpApplicationsV1alphaApplicationOperationMetadata {
     /**
      * Output only. The time the operation was created.
@@ -1134,6 +1264,257 @@ export namespace beyondcorp_v1alpha {
      * Output only. Name of the verb executed by the operation.
      */
     verb?: string | null;
+  }
+  /**
+   * Represents the metadata of the long-running operation.
+   */
+  export interface Schema$GoogleCloudBeyondcorpClientconnectorservicesV1ClientConnectorServiceOperationMetadata {
+    /**
+     * Output only. API version used to start the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     */
+    requestedCancellation?: boolean | null;
+    /**
+     * Output only. Human-readable status of the operation, if any.
+     */
+    statusMessage?: string | null;
+    /**
+     * Output only. Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Output only. Name of the verb executed by the operation.
+     */
+    verb?: string | null;
+  }
+  /**
+   * Represents the metadata of the long-running operation.
+   */
+  export interface Schema$GoogleCloudBeyondcorpClientgatewaysV1ClientGatewayOperationMetadata {
+    /**
+     * Output only. API version used to start the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     */
+    requestedCancellation?: boolean | null;
+    /**
+     * Output only. Human-readable status of the operation, if any.
+     */
+    statusMessage?: string | null;
+    /**
+     * Output only. Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Output only. Name of the verb executed by the operation.
+     */
+    verb?: string | null;
+  }
+  /**
+   * The configuration that was applied to generate the result.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaAppliedConfig {
+    /**
+     * Output only. Aggregation type applied.
+     */
+    aggregation?: string | null;
+    /**
+     * Output only. Customised grouping applied.
+     */
+    customGrouping?: Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaCustomGrouping;
+    /**
+     * Output only. Ending time for the duration for which insight was pulled.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Filters applied.
+     */
+    fieldFilter?: string | null;
+    /**
+     * Output only. Group id of the grouping applied.
+     */
+    group?: string | null;
+    /**
+     * Output only. Starting time for the duration for which insight was pulled.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * The response for the configured insight.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse {
+    /**
+     * Output only. Applied insight config to generate the result data rows.
+     */
+    appliedConfig?: Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaAppliedConfig;
+    /**
+     * Output only. Next page token to be fetched. Set to empty or NULL if there are no more pages available.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. Result rows returned containing the required value(s) for configured insight.
+     */
+    rows?: Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaRow[];
+  }
+  /**
+   * Customised grouping option that allows setting the group_by fields and also the filters togather for a configured insight request.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaCustomGrouping {
+    /**
+     * Optional. Filterable parameters to be added to the grouping clause. Available fields could be fetched by calling insight list and get APIs in `BASIC` view. `=` is the only comparison operator supported. `AND` is the only logical operator supported. Usage: field_filter="fieldName1=fieldVal1 AND fieldName2=fieldVal2". NOTE: Only `AND` conditions are allowed. NOTE: Use the `filter_alias` from `Insight.Metadata.Field` message for the filtering the corresponding fields in this filter field. (These expressions are based on the filter language described at https://google.aip.dev/160).
+     */
+    fieldFilter?: string | null;
+    /**
+     * Required. Fields to be used for grouping. NOTE: Use the `filter_alias` from `Insight.Metadata.Field` message for declaring the fields to be grouped-by here.
+     */
+    groupFields?: string[] | null;
+  }
+  /**
+   * The Insight object with configuration that was returned and actual list of records.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight {
+    /**
+     * Output only. Applied insight config to generate the result data rows.
+     */
+    appliedConfig?: Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaAppliedConfig;
+    /**
+     * Output only. Metadata for the Insight.
+     */
+    metadata?: Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsightMetadata;
+    /**
+     * Output only. The insight resource name. e.g. `organizations/{organization_id\}/locations/{location_id\}/insights/{insight_id\}` OR `projects/{project_id\}/locations/{location_id\}/insights/{insight_id\}`.
+     */
+    name?: string | null;
+    /**
+     * Output only. Result rows returned containing the required value(s).
+     */
+    rows?: Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaRow[];
+  }
+  /**
+   * Insight filters, groupings and aggregations that can be applied for the insight. Examples: aggregations, groups, field filters.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsightMetadata {
+    /**
+     * Output only. List of aggregation types available for insight.
+     */
+    aggregations?: string[] | null;
+    /**
+     * Output only. Category of the insight.
+     */
+    category?: string | null;
+    /**
+     * Output only. Common name of the insight.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. List of fields available for insight.
+     */
+    fields?: Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsightMetadataField[];
+    /**
+     * Output only. List of groupings available for insight.
+     */
+    groups?: string[] | null;
+    /**
+     * Output only. Sub-Category of the insight.
+     */
+    subCategory?: string | null;
+    /**
+     * Output only. Type of the insight. It is metadata describing whether the insight is a metric (e.g. count) or a report (e.g. list, status).
+     */
+    type?: string | null;
+  }
+  /**
+   * Field metadata. Commonly understandable name and description for the field. Multiple such fields constitute the Insight.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsightMetadataField {
+    /**
+     * Output only. Description of the field.
+     */
+    description?: string | null;
+    /**
+     * Output only. Name of the field.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Indicates whether the field can be used for filtering.
+     */
+    filterable?: boolean | null;
+    /**
+     * Output only. Field name to be used in filter while requesting configured insight filtered on this field.
+     */
+    filterAlias?: string | null;
+    /**
+     * Output only. Indicates whether the field can be used for grouping in custom grouping request.
+     */
+    groupable?: boolean | null;
+    /**
+     * Output only. Field id for which this is the metadata.
+     */
+    id?: string | null;
+  }
+  /**
+   * The response for the list of insights.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponse {
+    /**
+     * Output only. List of all insights.
+     */
+    insights?: Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight[];
+    /**
+     * Output only. Next page token to be fetched. Set to empty or NULL if there are no more pages available.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Row of the fetch response consisting of a set of entries.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaRow {
+    /**
+     * Output only. Columns/entries/key-vals in the result.
+     */
+    fieldValues?: Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaRowFieldVal[];
+  }
+  /**
+   * Column or key value pair from the request as part of key to use in query or a single pair of the fetch response.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaRowFieldVal {
+    /**
+     * Output only. Name of the field.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Field name to be used in filter while requesting configured insight filtered on this field.
+     */
+    filterAlias?: string | null;
+    /**
+     * Output only. Field id.
+     */
+    id?: string | null;
+    /**
+     * Output only. Value of the field in string format. Acceptable values are strings or numbers.
+     */
+    value?: string | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -1208,7 +1589,7 @@ export namespace beyondcorp_v1alpha {
      */
     condition?: Schema$GoogleTypeExpr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -1602,6 +1983,565 @@ export namespace beyondcorp_v1alpha {
     totalRetryCount?: number | null;
   }
 
+  export class Resource$Organizations {
+    context: APIRequestContext;
+    locations: Resource$Organizations$Locations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Organizations$Locations(this.context);
+    }
+  }
+
+  export class Resource$Organizations$Locations {
+    context: APIRequestContext;
+    insights: Resource$Organizations$Locations$Insights;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.insights = new Resource$Organizations$Locations$Insights(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Organizations$Locations$Insights {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the value for a selected particular insight based on the provided filters. Use the organization level path for fetching at org level and project level path for fetching the insight value specific to a particular project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/beyondcorp.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const beyondcorp = google.beyondcorp('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await beyondcorp.organizations.locations.insights.configuredInsight({
+     *       // Required. Aggregation type. Available aggregation could be fetched by calling insight list and get APIs in `BASIC` view.
+     *       aggregation: 'placeholder-value',
+     *       // Optional. Filterable parameters to be added to the grouping clause. Available fields could be fetched by calling insight list and get APIs in `BASIC` view. `=` is the only comparison operator supported. `AND` is the only logical operator supported. Usage: field_filter="fieldName1=fieldVal1 AND fieldName2=fieldVal2". NOTE: Only `AND` conditions are allowed. NOTE: Use the `filter_alias` from `Insight.Metadata.Field` message for the filtering the corresponding fields in this filter field. (These expressions are based on the filter language described at https://google.aip.dev/160).
+     *       'customGrouping.fieldFilter': 'placeholder-value',
+     *       // Required. Fields to be used for grouping. NOTE: Use the `filter_alias` from `Insight.Metadata.Field` message for declaring the fields to be grouped-by here.
+     *       'customGrouping.groupFields': 'placeholder-value',
+     *       // Required. Ending time for the duration for which insight is to be pulled.
+     *       endTime: 'placeholder-value',
+     *       // Optional. Other filterable/configurable parameters as applicable to the selected insight. Available fields could be fetched by calling insight list and get APIs in `BASIC` view. `=` is the only comparison operator supported. `AND` is the only logical operator supported. Usage: field_filter="fieldName1=fieldVal1 AND fieldName2=fieldVal2". NOTE: Only `AND` conditions are allowed. NOTE: Use the `filter_alias` from `Insight.Metadata.Field` message for the filtering the corresponding fields in this filter field. (These expressions are based on the filter language described at https://google.aip.dev/160).
+     *       fieldFilter: 'placeholder-value',
+     *       // Optional. Group id of the available groupings for the insight. Available groupings could be fetched by calling insight list and get APIs in `BASIC` view.
+     *       group: 'placeholder-value',
+     *       // Required. The resource name of the insight using the form: `organizations/{organization_id\}/locations/{location_id\}/insights/{insight_id\}` `projects/{project_id\}/locations/{location_id\}/insights/{insight_id\}`.
+     *       insight:
+     *         'organizations/my-organization/locations/my-location/insights/my-insight',
+     *       // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. Used to fetch the page represented by the token. Fetches the first page when not set.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Starting time for the duration for which insight is to be pulled.
+     *       startTime: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appliedConfig": {},
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "rows": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    configuredInsight(
+      params: Params$Resource$Organizations$Locations$Insights$Configuredinsight,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    configuredInsight(
+      params?: Params$Resource$Organizations$Locations$Insights$Configuredinsight,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse>;
+    configuredInsight(
+      params: Params$Resource$Organizations$Locations$Insights$Configuredinsight,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    configuredInsight(
+      params: Params$Resource$Organizations$Locations$Insights$Configuredinsight,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse>
+    ): void;
+    configuredInsight(
+      params: Params$Resource$Organizations$Locations$Insights$Configuredinsight,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse>
+    ): void;
+    configuredInsight(
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse>
+    ): void;
+    configuredInsight(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Insights$Configuredinsight
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Insights$Configuredinsight;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Insights$Configuredinsight;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+insight}:configuredInsight').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['insight'],
+        pathParams: ['insight'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets the value for a selected particular insight with default configuration. The default aggregation level is 'DAILY' and no grouping will be applied or default grouping if applicable. The data will be returned for recent 7 days starting the day before. The insight data size will be limited to 50 rows. Use the organization level path for fetching at org level and project level path for fetching the insight value specific to a particular project. Setting the `view` to `BASIC` will only return the metadata for the insight.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/beyondcorp.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const beyondcorp = google.beyondcorp('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await beyondcorp.organizations.locations.insights.get({
+     *     // Required. The resource name of the insight using the form: `organizations/{organization_id\}/locations/{location_id\}/insights/{insight_id\}` `projects/{project_id\}/locations/{location_id\}/insights/{insight_id\}`
+     *     name: 'organizations/my-organization/locations/my-location/insights/my-insight',
+     *     // Required. Metadata only or full data view.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appliedConfig": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "rows": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Locations$Insights$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Organizations$Locations$Insights$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight>;
+    get(
+      params: Params$Resource$Organizations$Locations$Insights$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Insights$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight>,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Insights$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Insights$Get
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Insights$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Insights$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists for all the available insights that could be fetched from the system. Allows to filter using category. Setting the `view` to `BASIC` will let you iterate over the list of insight metadatas.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/beyondcorp.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const beyondcorp = google.beyondcorp('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await beyondcorp.organizations.locations.insights.list({
+     *     // Optional. Filter expression to restrict the insights returned. Supported filter fields: * `type` * `category` * `subCategory` Examples: * "category = application AND type = count" * "category = application AND subCategory = iap" * "type = status" Allowed values: * type: [count, latency, status, list] * category: [application, device, request, security] * subCategory: [iap, webprotect] NOTE: Only equality based comparison is allowed. Only `AND` conjunction is allowed. NOTE: The 'AND' in the filter field needs to be in capital letters only. NOTE: Just filtering on `subCategory` is not allowed. It should be passed in with the parent `category` too. (These expressions are based on the filter language described at https://google.aip.dev/160).
+     *     filter: 'placeholder-value',
+     *     // Optional. Hint for how to order the results. This is currently ignored.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. NOTE: Default page size is 50.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A token identifying a page of results the server should return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of InsightMetadata using the form: `organizations/{organization_id\}/locations/{location\}` `projects/{project_id\}/locations/{location_id\}`
+     *     parent: 'organizations/my-organization/locations/my-location',
+     *     // Required. List only metadata or full data.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "insights": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$Insights$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Locations$Insights$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponse>;
+    list(
+      params: Params$Resource$Organizations$Locations$Insights$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Insights$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Insights$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Insights$List
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Insights$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Insights$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/insights').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Insights$Configuredinsight
+    extends StandardParameters {
+    /**
+     * Required. Aggregation type. Available aggregation could be fetched by calling insight list and get APIs in `BASIC` view.
+     */
+    aggregation?: string;
+    /**
+     * Optional. Filterable parameters to be added to the grouping clause. Available fields could be fetched by calling insight list and get APIs in `BASIC` view. `=` is the only comparison operator supported. `AND` is the only logical operator supported. Usage: field_filter="fieldName1=fieldVal1 AND fieldName2=fieldVal2". NOTE: Only `AND` conditions are allowed. NOTE: Use the `filter_alias` from `Insight.Metadata.Field` message for the filtering the corresponding fields in this filter field. (These expressions are based on the filter language described at https://google.aip.dev/160).
+     */
+    'customGrouping.fieldFilter'?: string;
+    /**
+     * Required. Fields to be used for grouping. NOTE: Use the `filter_alias` from `Insight.Metadata.Field` message for declaring the fields to be grouped-by here.
+     */
+    'customGrouping.groupFields'?: string[];
+    /**
+     * Required. Ending time for the duration for which insight is to be pulled.
+     */
+    endTime?: string;
+    /**
+     * Optional. Other filterable/configurable parameters as applicable to the selected insight. Available fields could be fetched by calling insight list and get APIs in `BASIC` view. `=` is the only comparison operator supported. `AND` is the only logical operator supported. Usage: field_filter="fieldName1=fieldVal1 AND fieldName2=fieldVal2". NOTE: Only `AND` conditions are allowed. NOTE: Use the `filter_alias` from `Insight.Metadata.Field` message for the filtering the corresponding fields in this filter field. (These expressions are based on the filter language described at https://google.aip.dev/160).
+     */
+    fieldFilter?: string;
+    /**
+     * Optional. Group id of the available groupings for the insight. Available groupings could be fetched by calling insight list and get APIs in `BASIC` view.
+     */
+    group?: string;
+    /**
+     * Required. The resource name of the insight using the form: `organizations/{organization_id\}/locations/{location_id\}/insights/{insight_id\}` `projects/{project_id\}/locations/{location_id\}/insights/{insight_id\}`.
+     */
+    insight?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Used to fetch the page represented by the token. Fetches the first page when not set.
+     */
+    pageToken?: string;
+    /**
+     * Required. Starting time for the duration for which insight is to be pulled.
+     */
+    startTime?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Insights$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the insight using the form: `organizations/{organization_id\}/locations/{location_id\}/insights/{insight_id\}` `projects/{project_id\}/locations/{location_id\}/insights/{insight_id\}`
+     */
+    name?: string;
+    /**
+     * Required. Metadata only or full data view.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Insights$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter expression to restrict the insights returned. Supported filter fields: * `type` * `category` * `subCategory` Examples: * "category = application AND type = count" * "category = application AND subCategory = iap" * "type = status" Allowed values: * type: [count, latency, status, list] * category: [application, device, request, security] * subCategory: [iap, webprotect] NOTE: Only equality based comparison is allowed. Only `AND` conjunction is allowed. NOTE: The 'AND' in the filter field needs to be in capital letters only. NOTE: Just filtering on `subCategory` is not allowed. It should be passed in with the parent `category` too. (These expressions are based on the filter language described at https://google.aip.dev/160).
+     */
+    filter?: string;
+    /**
+     * Optional. Hint for how to order the results. This is currently ignored.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. NOTE: Default page size is 50.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of InsightMetadata using the form: `organizations/{organization_id\}/locations/{location\}` `projects/{project_id\}/locations/{location_id\}`
+     */
+    parent?: string;
+    /**
+     * Required. List only metadata or full data.
+     */
+    view?: string;
+  }
+
   export class Resource$Projects {
     context: APIRequestContext;
     locations: Resource$Projects$Locations;
@@ -1621,6 +2561,7 @@ export namespace beyondcorp_v1alpha {
     clientGateways: Resource$Projects$Locations$Clientgateways;
     connections: Resource$Projects$Locations$Connections;
     connectors: Resource$Projects$Locations$Connectors;
+    insights: Resource$Projects$Locations$Insights;
     operations: Resource$Projects$Locations$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -1647,6 +2588,7 @@ export namespace beyondcorp_v1alpha {
       this.connectors = new Resource$Projects$Locations$Connectors(
         this.context
       );
+      this.insights = new Resource$Projects$Locations$Insights(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
@@ -4519,7 +5461,7 @@ export namespace beyondcorp_v1alpha {
     }
 
     /**
-     * Get instance config for a given AppConnector. An internal method called by a AppConnector to get its container config.
+     * Gets instance configuration for a given AppConnector. An internal method called by a AppConnector to get its container config.
      * @example
      * ```js
      * // Before running the sample:
@@ -7492,7 +8434,7 @@ export namespace beyondcorp_v1alpha {
      *       name: 'projects/my-project/locations/my-location/clientConnectorServices/my-clientConnectorService',
      *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *       requestId: 'placeholder-value',
-     *       // Required. Field mask is used to specify the fields to be overwritten in the ClientConnectorService resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten. Mutable fields: display_name.
+     *       // Required. Field mask is used to specify the fields to be overwritten in the ClientConnectorService resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten. Mutable fields: display_name, ingress.config.destination_routes.
      *       updateMask: 'placeholder-value',
      *       // Optional. If set, validates request by executing a dry-run which would not alter the resource in any way.
      *       validateOnly: 'placeholder-value',
@@ -8016,7 +8958,7 @@ export namespace beyondcorp_v1alpha {
      */
     requestId?: string;
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the ClientConnectorService resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten. Mutable fields: display_name.
+     * Required. Field mask is used to specify the fields to be overwritten in the ClientConnectorService resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten. Mutable fields: display_name, ingress.config.destination_routes.
      */
     updateMask?: string;
     /**
@@ -11710,7 +12652,7 @@ export namespace beyondcorp_v1alpha {
     }
 
     /**
-     * Get instance config for a given connector. An internal method called by a connector to get its container config.
+     * Gets instance configuration for a given connector. An internal method called by a connector to get its container config.
      * @example
      * ```js
      * // Before running the sample:
@@ -12294,6 +13236,543 @@ export namespace beyondcorp_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleIamV1TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Insights {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the value for a selected particular insight based on the provided filters. Use the organization level path for fetching at org level and project level path for fetching the insight value specific to a particular project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/beyondcorp.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const beyondcorp = google.beyondcorp('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await beyondcorp.projects.locations.insights.configuredInsight({
+     *     // Required. Aggregation type. Available aggregation could be fetched by calling insight list and get APIs in `BASIC` view.
+     *     aggregation: 'placeholder-value',
+     *     // Optional. Filterable parameters to be added to the grouping clause. Available fields could be fetched by calling insight list and get APIs in `BASIC` view. `=` is the only comparison operator supported. `AND` is the only logical operator supported. Usage: field_filter="fieldName1=fieldVal1 AND fieldName2=fieldVal2". NOTE: Only `AND` conditions are allowed. NOTE: Use the `filter_alias` from `Insight.Metadata.Field` message for the filtering the corresponding fields in this filter field. (These expressions are based on the filter language described at https://google.aip.dev/160).
+     *     'customGrouping.fieldFilter': 'placeholder-value',
+     *     // Required. Fields to be used for grouping. NOTE: Use the `filter_alias` from `Insight.Metadata.Field` message for declaring the fields to be grouped-by here.
+     *     'customGrouping.groupFields': 'placeholder-value',
+     *     // Required. Ending time for the duration for which insight is to be pulled.
+     *     endTime: 'placeholder-value',
+     *     // Optional. Other filterable/configurable parameters as applicable to the selected insight. Available fields could be fetched by calling insight list and get APIs in `BASIC` view. `=` is the only comparison operator supported. `AND` is the only logical operator supported. Usage: field_filter="fieldName1=fieldVal1 AND fieldName2=fieldVal2". NOTE: Only `AND` conditions are allowed. NOTE: Use the `filter_alias` from `Insight.Metadata.Field` message for the filtering the corresponding fields in this filter field. (These expressions are based on the filter language described at https://google.aip.dev/160).
+     *     fieldFilter: 'placeholder-value',
+     *     // Optional. Group id of the available groupings for the insight. Available groupings could be fetched by calling insight list and get APIs in `BASIC` view.
+     *     group: 'placeholder-value',
+     *     // Required. The resource name of the insight using the form: `organizations/{organization_id\}/locations/{location_id\}/insights/{insight_id\}` `projects/{project_id\}/locations/{location_id\}/insights/{insight_id\}`.
+     *     insight: 'projects/my-project/locations/my-location/insights/my-insight',
+     *     // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Used to fetch the page represented by the token. Fetches the first page when not set.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Starting time for the duration for which insight is to be pulled.
+     *     startTime: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appliedConfig": {},
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "rows": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    configuredInsight(
+      params: Params$Resource$Projects$Locations$Insights$Configuredinsight,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    configuredInsight(
+      params?: Params$Resource$Projects$Locations$Insights$Configuredinsight,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse>;
+    configuredInsight(
+      params: Params$Resource$Projects$Locations$Insights$Configuredinsight,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    configuredInsight(
+      params: Params$Resource$Projects$Locations$Insights$Configuredinsight,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse>
+    ): void;
+    configuredInsight(
+      params: Params$Resource$Projects$Locations$Insights$Configuredinsight,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse>
+    ): void;
+    configuredInsight(
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse>
+    ): void;
+    configuredInsight(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Insights$Configuredinsight
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Insights$Configuredinsight;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Insights$Configuredinsight;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+insight}:configuredInsight').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['insight'],
+        pathParams: ['insight'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets the value for a selected particular insight with default configuration. The default aggregation level is 'DAILY' and no grouping will be applied or default grouping if applicable. The data will be returned for recent 7 days starting the day before. The insight data size will be limited to 50 rows. Use the organization level path for fetching at org level and project level path for fetching the insight value specific to a particular project. Setting the `view` to `BASIC` will only return the metadata for the insight.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/beyondcorp.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const beyondcorp = google.beyondcorp('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await beyondcorp.projects.locations.insights.get({
+     *     // Required. The resource name of the insight using the form: `organizations/{organization_id\}/locations/{location_id\}/insights/{insight_id\}` `projects/{project_id\}/locations/{location_id\}/insights/{insight_id\}`
+     *     name: 'projects/my-project/locations/my-location/insights/my-insight',
+     *     // Required. Metadata only or full data view.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appliedConfig": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "rows": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Insights$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Insights$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight>;
+    get(
+      params: Params$Resource$Projects$Locations$Insights$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Insights$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight>,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Insights$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Insights$Get
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Insights$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Insights$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists for all the available insights that could be fetched from the system. Allows to filter using category. Setting the `view` to `BASIC` will let you iterate over the list of insight metadatas.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/beyondcorp.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const beyondcorp = google.beyondcorp('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await beyondcorp.projects.locations.insights.list({
+     *     // Optional. Filter expression to restrict the insights returned. Supported filter fields: * `type` * `category` * `subCategory` Examples: * "category = application AND type = count" * "category = application AND subCategory = iap" * "type = status" Allowed values: * type: [count, latency, status, list] * category: [application, device, request, security] * subCategory: [iap, webprotect] NOTE: Only equality based comparison is allowed. Only `AND` conjunction is allowed. NOTE: The 'AND' in the filter field needs to be in capital letters only. NOTE: Just filtering on `subCategory` is not allowed. It should be passed in with the parent `category` too. (These expressions are based on the filter language described at https://google.aip.dev/160).
+     *     filter: 'placeholder-value',
+     *     // Optional. Hint for how to order the results. This is currently ignored.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. NOTE: Default page size is 50.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A token identifying a page of results the server should return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of InsightMetadata using the form: `organizations/{organization_id\}/locations/{location\}` `projects/{project_id\}/locations/{location_id\}`
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Required. List only metadata or full data.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "insights": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Insights$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Insights$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Insights$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Insights$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Insights$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Insights$List
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Insights$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Insights$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/insights').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Insights$Configuredinsight
+    extends StandardParameters {
+    /**
+     * Required. Aggregation type. Available aggregation could be fetched by calling insight list and get APIs in `BASIC` view.
+     */
+    aggregation?: string;
+    /**
+     * Optional. Filterable parameters to be added to the grouping clause. Available fields could be fetched by calling insight list and get APIs in `BASIC` view. `=` is the only comparison operator supported. `AND` is the only logical operator supported. Usage: field_filter="fieldName1=fieldVal1 AND fieldName2=fieldVal2". NOTE: Only `AND` conditions are allowed. NOTE: Use the `filter_alias` from `Insight.Metadata.Field` message for the filtering the corresponding fields in this filter field. (These expressions are based on the filter language described at https://google.aip.dev/160).
+     */
+    'customGrouping.fieldFilter'?: string;
+    /**
+     * Required. Fields to be used for grouping. NOTE: Use the `filter_alias` from `Insight.Metadata.Field` message for declaring the fields to be grouped-by here.
+     */
+    'customGrouping.groupFields'?: string[];
+    /**
+     * Required. Ending time for the duration for which insight is to be pulled.
+     */
+    endTime?: string;
+    /**
+     * Optional. Other filterable/configurable parameters as applicable to the selected insight. Available fields could be fetched by calling insight list and get APIs in `BASIC` view. `=` is the only comparison operator supported. `AND` is the only logical operator supported. Usage: field_filter="fieldName1=fieldVal1 AND fieldName2=fieldVal2". NOTE: Only `AND` conditions are allowed. NOTE: Use the `filter_alias` from `Insight.Metadata.Field` message for the filtering the corresponding fields in this filter field. (These expressions are based on the filter language described at https://google.aip.dev/160).
+     */
+    fieldFilter?: string;
+    /**
+     * Optional. Group id of the available groupings for the insight. Available groupings could be fetched by calling insight list and get APIs in `BASIC` view.
+     */
+    group?: string;
+    /**
+     * Required. The resource name of the insight using the form: `organizations/{organization_id\}/locations/{location_id\}/insights/{insight_id\}` `projects/{project_id\}/locations/{location_id\}/insights/{insight_id\}`.
+     */
+    insight?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Used to fetch the page represented by the token. Fetches the first page when not set.
+     */
+    pageToken?: string;
+    /**
+     * Required. Starting time for the duration for which insight is to be pulled.
+     */
+    startTime?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Insights$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the insight using the form: `organizations/{organization_id\}/locations/{location_id\}/insights/{insight_id\}` `projects/{project_id\}/locations/{location_id\}/insights/{insight_id\}`
+     */
+    name?: string;
+    /**
+     * Required. Metadata only or full data view.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Insights$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter expression to restrict the insights returned. Supported filter fields: * `type` * `category` * `subCategory` Examples: * "category = application AND type = count" * "category = application AND subCategory = iap" * "type = status" Allowed values: * type: [count, latency, status, list] * category: [application, device, request, security] * subCategory: [iap, webprotect] NOTE: Only equality based comparison is allowed. Only `AND` conjunction is allowed. NOTE: The 'AND' in the filter field needs to be in capital letters only. NOTE: Just filtering on `subCategory` is not allowed. It should be passed in with the parent `category` too. (These expressions are based on the filter language described at https://google.aip.dev/160).
+     */
+    filter?: string;
+    /**
+     * Optional. Hint for how to order the results. This is currently ignored.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. NOTE: Default page size is 50.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of InsightMetadata using the form: `organizations/{organization_id\}/locations/{location\}` `projects/{project_id\}/locations/{location_id\}`
+     */
+    parent?: string;
+    /**
+     * Required. List only metadata or full data.
+     */
+    view?: string;
   }
 
   export class Resource$Projects$Locations$Operations {
