@@ -125,7 +125,7 @@ export namespace file_v1 {
   }
 
   /**
-   * A Cloud Filestore backup.
+   * A Filestore backup.
    */
   export interface Schema$Backup {
     /**
@@ -157,15 +157,15 @@ export namespace file_v1 {
      */
     satisfiesPzs?: boolean | null;
     /**
-     * Name of the file share in the source Cloud Filestore instance that the backup is created from.
+     * Name of the file share in the source Filestore instance that the backup is created from.
      */
     sourceFileShare?: string | null;
     /**
-     * The resource name of the source Cloud Filestore instance, in the format `projects/{project_number\}/locations/{location_id\}/instances/{instance_id\}`, used to create this backup.
+     * The resource name of the source Filestore instance, in the format `projects/{project_number\}/locations/{location_id\}/instances/{instance_id\}`, used to create this backup.
      */
     sourceInstance?: string | null;
     /**
-     * Output only. The service tier of the source Cloud Filestore instance that this backup is created from.
+     * Output only. The service tier of the source Filestore instance that this backup is created from.
      */
     sourceInstanceTier?: string | null;
     /**
@@ -237,7 +237,7 @@ export namespace file_v1 {
    */
   export interface Schema$FileShareConfig {
     /**
-     * File share capacity in gigabytes (GB). Cloud Filestore defines 1 GB as 1024^3 bytes.
+     * File share capacity in gigabytes (GB). Filestore defines 1 GB as 1024^3 bytes.
      */
     capacityGb?: string | null;
     /**
@@ -271,7 +271,7 @@ export namespace file_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Deprecated. The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the referenced policy must define the same policy type. For complete details of MaintenancePolicy, please refer to go/cloud-saas-mw-ug.
+     * Optional. Deprecated. The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the referenced policy must define the same policy type. For complete details of MaintenancePolicy, please refer to go/cloud-saas-mw-ug.
      */
     maintenancePolicyNames?: {[key: string]: string} | null;
     /**
@@ -369,7 +369,7 @@ export namespace file_v1 {
      */
     isRollback?: boolean | null;
     /**
-     * Optional. The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the embedded policy must define the same policy type. For complete details of MaintenancePolicy, please refer to go/cloud-saas-mw-ug. If only the name is needed (like in the deprecated Instance.maintenance_policy_names field) then only populate MaintenancePolicy.name.
+     * Optional. The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the embedded policy must define the same policy type. For complete details of MaintenancePolicy, please refer to go/cloud-saas-mw-ug. If only the name is needed, then only populate MaintenancePolicy.name.
      */
     maintenancePolicies?: {[key: string]: Schema$MaintenancePolicy} | null;
   }
@@ -456,7 +456,7 @@ export namespace file_v1 {
     tier?: string | null;
   }
   /**
-   * A Cloud Filestore instance.
+   * A Filestore instance.
    */
   export interface Schema$Instance {
     /**
@@ -677,7 +677,7 @@ export namespace file_v1 {
      */
     network?: string | null;
     /**
-     * Optional, reserved_ip_range can have one of the following two types of values. * CIDR range value when using DIRECT_PEERING connect mode. * [Allocated IP address range](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-internal-ip-address) when using PRIVATE_SERVICE_ACCESS connect mode. When the name of an allocated IP address range is specified, it must be one of the ranges associated with the private service access connection. When specified as a direct CIDR value, it must be a /29 CIDR block for Basic tier or a /24 CIDR block for High Scale or Enterprise tier in one of the [internal IP address ranges](https://www.arin.net/reference/research/statistics/address_filters/) that identifies the range of IP addresses reserved for this instance. For example, 10.0.0.0/29 or 192.168.0.0/24. The range you specify can't overlap with either existing subnets or assigned IP address ranges for other Cloud Filestore instances in the selected VPC network.
+     * Optional, reserved_ip_range can have one of the following two types of values. * CIDR range value when using DIRECT_PEERING connect mode. * [Allocated IP address range](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-internal-ip-address) when using PRIVATE_SERVICE_ACCESS connect mode. When the name of an allocated IP address range is specified, it must be one of the ranges associated with the private service access connection. When specified as a direct CIDR value, it must be a /29 CIDR block for Basic tier, a /24 CIDR block for High Scale tier, or a /26 CIDR block for Enterprise tier in one of the [internal IP address ranges](https://www.arin.net/reference/research/statistics/address_filters/) that identifies the range of IP addresses reserved for this instance. For example, 10.0.0.0/29, 192.168.0.0/24 or 192.168.0.0/26, respectively. The range you specify can't overlap with either existing subnets or assigned IP address ranges for other Filestore instances in the selected VPC network.
      */
     reservedIpRange?: string | null;
   }
@@ -769,7 +769,7 @@ export namespace file_v1 {
    */
   export interface Schema$RestoreInstanceRequest {
     /**
-     * Required. Name of the file share in the Cloud Filestore instance that the backup is being restored to.
+     * Required. Name of the file share in the Filestore instance that the backup is being restored to.
      */
     fileShare?: string | null;
     /**
@@ -1251,7 +1251,7 @@ export namespace file_v1 {
      *   const res = await file.projects.locations.backups.create({
      *     // Required. The ID to use for the backup. The ID must be unique within the specified project and location. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen. Values that do not match this pattern will trigger an INVALID_ARGUMENT error.
      *     backupId: 'placeholder-value',
-     *     // Required. The backup's project and location, in the format `projects/{project_number\}/locations/{location\}`. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**.
+     *     // Required. The backup's project and location, in the format `projects/{project_number\}/locations/{location\}`. In Filestore, backup locations map to GCP regions, for example **us-west1**.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -1678,7 +1678,7 @@ export namespace file_v1 {
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value to use if there are additional results to retrieve for this list request.
      *     pageToken: 'placeholder-value',
-     *     // Required. The project and location for which to retrieve backup information, in the format `projects/{project_number\}/locations/{location\}`. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**. To retrieve backup information for all locations, use "-" for the `{location\}` value.
+     *     // Required. The project and location for which to retrieve backup information, in the format `projects/{project_number\}/locations/{location\}`. In Filestore, backup locations map to GCP regions, for example **us-west1**. To retrieve backup information for all locations, use "-" for the `{location\}` value.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -1944,7 +1944,7 @@ export namespace file_v1 {
      */
     backupId?: string;
     /**
-     * Required. The backup's project and location, in the format `projects/{project_number\}/locations/{location\}`. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**.
+     * Required. The backup's project and location, in the format `projects/{project_number\}/locations/{location\}`. In Filestore, backup locations map to GCP regions, for example **us-west1**.
      */
     parent?: string;
 
@@ -1986,7 +1986,7 @@ export namespace file_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The project and location for which to retrieve backup information, in the format `projects/{project_number\}/locations/{location\}`. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**. To retrieve backup information for all locations, use "-" for the `{location\}` value.
+     * Required. The project and location for which to retrieve backup information, in the format `projects/{project_number\}/locations/{location\}`. In Filestore, backup locations map to GCP regions, for example **us-west1**. To retrieve backup information for all locations, use "-" for the `{location\}` value.
      */
     parent?: string;
   }
@@ -2046,7 +2046,7 @@ export namespace file_v1 {
      *   const res = await file.projects.locations.instances.create({
      *     // Required. The name of the instance to create. The name must be unique for the specified project and location.
      *     instanceId: 'placeholder-value',
-     *     // Required. The instance's project and location, in the format `projects/{project_id\}/locations/{location\}`. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**.
+     *     // Required. The instance's project and location, in the format `projects/{project_id\}/locations/{location\}`. In Filestore, locations map to GCP zones, for example **us-west1-b**.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -2888,7 +2888,7 @@ export namespace file_v1 {
      */
     instanceId?: string;
     /**
-     * Required. The instance's project and location, in the format `projects/{project_id\}/locations/{location\}`. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**.
+     * Required. The instance's project and location, in the format `projects/{project_id\}/locations/{location\}`. In Filestore, locations map to GCP zones, for example **us-west1-b**.
      */
     parent?: string;
 
