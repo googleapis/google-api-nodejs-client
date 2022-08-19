@@ -339,7 +339,7 @@
       }
     }
   },
-  "revision": "20220612",
+  "revision": "20220813",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -365,6 +365,19 @@
         "name": {
           "description": "The alias name.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AnalysisCompleted": {
+      "description": "Indicates which analysis completed successfully. Multiple types of analysis can be performed on a single resource.",
+      "id": "AnalysisCompleted",
+      "properties": {
+        "analysisType": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -923,6 +936,16 @@
       "description": "Provides information about the analysis status of a discovered resource.",
       "id": "DiscoveryOccurrence",
       "properties": {
+        "analysisCompleted": {
+          "$ref": "AnalysisCompleted"
+        },
+        "analysisError": {
+          "description": "Indicates any errors encountered during analysis of a resource. There could be 0 or more of these errors.",
+          "items": {
+            "$ref": "Status"
+          },
+          "type": "array"
+        },
         "analysisStatus": {
           "description": "The status of discovery for the resource.",
           "enum": [
@@ -930,6 +953,7 @@
             "PENDING",
             "SCANNING",
             "FINISHED_SUCCESS",
+            "COMPLETE",
             "FINISHED_FAILED",
             "FINISHED_UNSUPPORTED"
           ],
@@ -938,8 +962,9 @@
             "Resource is known but no action has been taken yet.",
             "Resource is being analyzed.",
             "Analysis has finished successfully.",
+            "Analysis has completed",
             "Analysis has finished unsuccessfully, the analysis itself is in a bad state.",
-            "The resource is known not to be supported"
+            "The resource is known not to be supported."
           ],
           "type": "string"
         },

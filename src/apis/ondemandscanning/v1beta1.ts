@@ -138,6 +138,12 @@ export namespace ondemandscanning_v1beta1 {
     name?: string | null;
   }
   /**
+   * Indicates which analysis completed successfully. Multiple types of analysis can be performed on a single resource.
+   */
+  export interface Schema$AnalysisCompleted {
+    analysisType?: string[] | null;
+  }
+  /**
    * AnalyzePackagesMetadata contains metadata for an active scan of a container image.
    */
   export interface Schema$AnalyzePackagesMetadata {
@@ -452,6 +458,11 @@ export namespace ondemandscanning_v1beta1 {
    * Provides information about the analysis status of a discovered resource.
    */
   export interface Schema$DiscoveryOccurrence {
+    analysisCompleted?: Schema$AnalysisCompleted;
+    /**
+     * Indicates any errors encountered during analysis of a resource. There could be 0 or more of these errors.
+     */
+    analysisError?: Schema$Status[];
     /**
      * The status of discovery for the resource.
      */
