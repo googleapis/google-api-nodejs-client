@@ -402,7 +402,7 @@ export namespace language_v1beta2 {
     type?: string | null;
   }
   /**
-   * All available features for sentiment, syntax, and semantic analysis. Setting each one to true will enable that specific analysis for the input. Next ID: 10
+   * All available features for sentiment, syntax, and semantic analysis. Setting each one to true will enable that specific analysis for the input. Next ID: 11
    */
   export interface Schema$Features {
     /**
