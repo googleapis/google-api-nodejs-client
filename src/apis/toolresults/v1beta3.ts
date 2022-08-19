@@ -309,6 +309,10 @@ export namespace toolresults_v1beta3 {
     crashPackage?: string | null;
   }
   /**
+   * A notification that Robo detected a splash screen provided by app (vs. Android OS splash screen).
+   */
+  export interface Schema$DetectedAppSplashScreen {}
+  /**
    * A warning that device ran out of memory
    */
   export interface Schema$DeviceOutOfMemory {}
