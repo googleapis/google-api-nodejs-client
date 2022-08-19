@@ -370,6 +370,10 @@ export namespace blogger_v3 {
      */
     title?: string | null;
     /**
+     * RFC 3339 date-time when this Page was trashed.
+     */
+    trashed?: string | null;
+    /**
      * RFC 3339 date-time when this Page was last updated.
      */
     updated?: string | null;
@@ -493,6 +497,10 @@ export namespace blogger_v3 {
      * The title link URL, similar to atom's related link.
      */
     titleLink?: string | null;
+    /**
+     * RFC 3339 date-time when this Post was last trashed.
+     */
+    trashed?: string | null;
     /**
      * RFC 3339 date-time when this Post was last updated.
      */
@@ -2571,6 +2579,7 @@ export namespace blogger_v3 {
      *   //   "selfLink": "my_selfLink",
      *   //   "status": "my_status",
      *   //   "title": "my_title",
+     *   //   "trashed": "my_trashed",
      *   //   "updated": "my_updated",
      *   //   "url": "my_url"
      *   // }
@@ -2711,6 +2720,7 @@ export namespace blogger_v3 {
      *       //   "selfLink": "my_selfLink",
      *       //   "status": "my_status",
      *       //   "title": "my_title",
+     *       //   "trashed": "my_trashed",
      *       //   "updated": "my_updated",
      *       //   "url": "my_url"
      *       // }
@@ -2730,6 +2740,7 @@ export namespace blogger_v3 {
      *   //   "selfLink": "my_selfLink",
      *   //   "status": "my_status",
      *   //   "title": "my_title",
+     *   //   "trashed": "my_trashed",
      *   //   "updated": "my_updated",
      *   //   "url": "my_url"
      *   // }
@@ -3017,6 +3028,7 @@ export namespace blogger_v3 {
      *       //   "selfLink": "my_selfLink",
      *       //   "status": "my_status",
      *       //   "title": "my_title",
+     *       //   "trashed": "my_trashed",
      *       //   "updated": "my_updated",
      *       //   "url": "my_url"
      *       // }
@@ -3036,6 +3048,7 @@ export namespace blogger_v3 {
      *   //   "selfLink": "my_selfLink",
      *   //   "status": "my_status",
      *   //   "title": "my_title",
+     *   //   "trashed": "my_trashed",
      *   //   "updated": "my_updated",
      *   //   "url": "my_url"
      *   // }
@@ -3176,6 +3189,7 @@ export namespace blogger_v3 {
      *   //   "selfLink": "my_selfLink",
      *   //   "status": "my_status",
      *   //   "title": "my_title",
+     *   //   "trashed": "my_trashed",
      *   //   "updated": "my_updated",
      *   //   "url": "my_url"
      *   // }
@@ -3315,6 +3329,7 @@ export namespace blogger_v3 {
      *   //   "selfLink": "my_selfLink",
      *   //   "status": "my_status",
      *   //   "title": "my_title",
+     *   //   "trashed": "my_trashed",
      *   //   "updated": "my_updated",
      *   //   "url": "my_url"
      *   // }
@@ -3459,6 +3474,7 @@ export namespace blogger_v3 {
      *       //   "selfLink": "my_selfLink",
      *       //   "status": "my_status",
      *       //   "title": "my_title",
+     *       //   "trashed": "my_trashed",
      *       //   "updated": "my_updated",
      *       //   "url": "my_url"
      *       // }
@@ -3478,6 +3494,7 @@ export namespace blogger_v3 {
      *   //   "selfLink": "my_selfLink",
      *   //   "status": "my_status",
      *   //   "title": "my_title",
+     *   //   "trashed": "my_trashed",
      *   //   "updated": "my_updated",
      *   //   "url": "my_url"
      *   // }
@@ -4046,6 +4063,7 @@ export namespace blogger_v3 {
      *   //   "status": "my_status",
      *   //   "title": "my_title",
      *   //   "titleLink": "my_titleLink",
+     *   //   "trashed": "my_trashed",
      *   //   "updated": "my_updated",
      *   //   "url": "my_url"
      *   // }
@@ -4200,6 +4218,7 @@ export namespace blogger_v3 {
      *   //   "status": "my_status",
      *   //   "title": "my_title",
      *   //   "titleLink": "my_titleLink",
+     *   //   "trashed": "my_trashed",
      *   //   "updated": "my_updated",
      *   //   "url": "my_url"
      *   // }
@@ -4351,6 +4370,7 @@ export namespace blogger_v3 {
      *       //   "status": "my_status",
      *       //   "title": "my_title",
      *       //   "titleLink": "my_titleLink",
+     *       //   "trashed": "my_trashed",
      *       //   "updated": "my_updated",
      *       //   "url": "my_url"
      *       // }
@@ -4377,6 +4397,7 @@ export namespace blogger_v3 {
      *   //   "status": "my_status",
      *   //   "title": "my_title",
      *   //   "titleLink": "my_titleLink",
+     *   //   "trashed": "my_trashed",
      *   //   "updated": "my_updated",
      *   //   "url": "my_url"
      *   // }
@@ -4688,6 +4709,7 @@ export namespace blogger_v3 {
      *       //   "status": "my_status",
      *       //   "title": "my_title",
      *       //   "titleLink": "my_titleLink",
+     *       //   "trashed": "my_trashed",
      *       //   "updated": "my_updated",
      *       //   "url": "my_url"
      *       // }
@@ -4714,6 +4736,7 @@ export namespace blogger_v3 {
      *   //   "status": "my_status",
      *   //   "title": "my_title",
      *   //   "titleLink": "my_titleLink",
+     *   //   "trashed": "my_trashed",
      *   //   "updated": "my_updated",
      *   //   "url": "my_url"
      *   // }
@@ -4863,6 +4886,7 @@ export namespace blogger_v3 {
      *   //   "status": "my_status",
      *   //   "title": "my_title",
      *   //   "titleLink": "my_titleLink",
+     *   //   "trashed": "my_trashed",
      *   //   "updated": "my_updated",
      *   //   "url": "my_url"
      *   // }
@@ -5009,6 +5033,7 @@ export namespace blogger_v3 {
      *   //   "status": "my_status",
      *   //   "title": "my_title",
      *   //   "titleLink": "my_titleLink",
+     *   //   "trashed": "my_trashed",
      *   //   "updated": "my_updated",
      *   //   "url": "my_url"
      *   // }
@@ -5306,6 +5331,7 @@ export namespace blogger_v3 {
      *       //   "status": "my_status",
      *       //   "title": "my_title",
      *       //   "titleLink": "my_titleLink",
+     *       //   "trashed": "my_trashed",
      *       //   "updated": "my_updated",
      *       //   "url": "my_url"
      *       // }
@@ -5332,6 +5358,7 @@ export namespace blogger_v3 {
      *   //   "status": "my_status",
      *   //   "title": "my_title",
      *   //   "titleLink": "my_titleLink",
+     *   //   "trashed": "my_trashed",
      *   //   "updated": "my_updated",
      *   //   "url": "my_url"
      *   // }
