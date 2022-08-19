@@ -446,6 +446,43 @@
                   "resources": {
                     "v1": {
                       "methods": {
+                        "labels": {
+                          "description": "Lists labels for metrics.",
+                          "flatPath": "v1/projects/{projectsId}/location/{location}/prometheus/api/v1/labels",
+                          "httpMethod": "POST",
+                          "id": "monitoring.projects.location.prometheus.api.v1.labels",
+                          "parameterOrder": [
+                            "name",
+                            "location"
+                          ],
+                          "parameters": {
+                            "location": {
+                              "description": "Location of the resource information. Has to be \"global\" now.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "The workspace on which to execute the request. It is not part of the open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine. The format is: projects/PROJECT_ID_OR_NUMBER.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}/location/{location}/prometheus/api/v1/labels",
+                          "request": {
+                            "$ref": "ListLabelsRequest"
+                          },
+                          "response": {
+                            "$ref": "HttpBody"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/monitoring",
+                            "https://www.googleapis.com/auth/monitoring.read"
+                          ]
+                        },
                         "query": {
                           "description": "Evaluate a PromQL query at a single point in time.",
                           "flatPath": "v1/projects/{projectsId}/location/{location}/prometheus/api/v1/query",
@@ -619,6 +656,59 @@
                             }
                           }
                         },
+                        "labels": {
+                          "methods": {
+                            "list": {
+                              "description": "Lists labels for metrics.",
+                              "flatPath": "v1/projects/{projectsId}/location/{location}/prometheus/api/v1/labels",
+                              "httpMethod": "GET",
+                              "id": "monitoring.projects.location.prometheus.api.v1.labels.list",
+                              "parameterOrder": [
+                                "name",
+                                "location"
+                              ],
+                              "parameters": {
+                                "end": {
+                                  "description": "The end time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "location": {
+                                  "description": "Location of the resource information. Has to be \"global\" now.",
+                                  "location": "path",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "match": {
+                                  "description": "A list of matchers encoded in the Prometheus label matcher format to constrain the values to series that satisfy them.",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "description": "The workspace on which to execute the request. It is not part of the open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine. The format is: projects/PROJECT_ID_OR_NUMBER.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "start": {
+                                  "description": "The start time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.",
+                                  "location": "query",
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+name}/location/{location}/prometheus/api/v1/labels",
+                              "response": {
+                                "$ref": "HttpBody"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/monitoring",
+                                "https://www.googleapis.com/auth/monitoring.read"
+                              ]
+                            }
+                          }
+                        },
                         "metadata": {
                           "methods": {
                             "list": {
@@ -679,7 +769,7 @@
       }
     }
   },
-  "revision": "20220426",
+  "revision": "20220806",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1228,6 +1318,25 @@
         },
         "nextPageToken": {
           "description": "If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as page_token in the next call to this method.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListLabelsRequest": {
+      "description": "ListLabelsRequest holds all parameters of the Prometheus upstream API for returning a list of label names.",
+      "id": "ListLabelsRequest",
+      "properties": {
+        "end": {
+          "description": "The end time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.",
+          "type": "string"
+        },
+        "match": {
+          "description": "A list of matchers encoded in the Prometheus label matcher format to constrain the values to series that satisfy them.",
+          "type": "string"
+        },
+        "start": {
+          "description": "The start time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.",
           "type": "string"
         }
       },
@@ -1940,6 +2049,20 @@
             "$ref": "TableDataSet"
           },
           "type": "array"
+        },
+        "metricVisualization": {
+          "description": "Optional. Store rendering strategy",
+          "enum": [
+            "METRIC_VISUALIZATION_UNSPECIFIED",
+            "NUMBER",
+            "BAR"
+          ],
+          "enumDescriptions": [
+            "Unspecified state",
+            "Default text rendering",
+            "Horizontal bar rendering"
+          ],
+          "type": "string"
         }
       },
       "type": "object"
