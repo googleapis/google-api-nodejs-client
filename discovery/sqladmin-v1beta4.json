@@ -1916,7 +1916,7 @@
       }
     }
   },
-  "revision": "20220623",
+  "revision": "20220804",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2155,7 +2155,7 @@
           "type": "string"
         },
         "type": {
-          "description": "The type of this run; can be either \"AUTOMATED\" or \"ON_DEMAND\". This field defaults to \"ON_DEMAND\" and is ignored, when specified for insert requests.",
+          "description": "The type of this run; can be either \"AUTOMATED\" or \"ON_DEMAND\" or \"FINAL\". This field defaults to \"ON_DEMAND\" and is ignored, when specified for insert requests.",
           "enum": [
             "SQL_BACKUP_RUN_TYPE_UNSPECIFIED",
             "AUTOMATED",
@@ -2619,7 +2619,7 @@
           "type": "array"
         },
         "rootPassword": {
-          "description": "Initial root password. Use only on creation.",
+          "description": "Initial root password. Use only on creation. You must set root passwords before you can connect to PostgreSQL instances.",
           "type": "string"
         },
         "satisfiesPzs": {
@@ -4068,6 +4068,20 @@
           "description": "The name of server Instance collation.",
           "type": "string"
         },
+        "connectorEnforcement": {
+          "description": "Specifies if connections must use Cloud SQL connectors. Option values include the following: * `NOT_REQUIRED`: Cloud SQL instances can be connected without Cloud SQL Connectors. * `REQUIRED`: Only allow connections that use Cloud SQL Connectors. Note that using REQUIRED disables all existing authorized networks. If this field is not specified when creating a new instance, NOT_REQUIRED is used. If this field is not specified when patching or updating an existing instance, it is left unchanged in the instance.",
+          "enum": [
+            "CONNECTOR_ENFORCEMENT_UNSPECIFIED",
+            "NOT_REQUIRED",
+            "REQUIRED"
+          ],
+          "enumDescriptions": [
+            "The requirement for Cloud SQL connectors is unknown.",
+            "Do not require Cloud SQL connectors.",
+            "Require all connections to use Cloud SQL connectors, including the Cloud SQL Auth Proxy and Cloud SQL Java, Python, and Go connectors. Note: This disables all existing authorized networks."
+          ],
+          "type": "string"
+        },
         "crashSafeReplicationEnabled": {
           "description": "Configuration specific to read replica instances. Indicates whether database flags for crash-safe replication are enabled. This property was only applicable to First Generation instances.",
           "type": "boolean"
@@ -4102,6 +4116,10 @@
         },
         "databaseReplicationEnabled": {
           "description": "Configuration specific to read replica instances. Indicates whether replication is enabled or not. WARNING: Changing this restarts the instance.",
+          "type": "boolean"
+        },
+        "deletionProtectionEnabled": {
+          "description": "Configuration to protect against accidental instance deletion.",
           "type": "boolean"
         },
         "denyMaintenancePeriods": {
