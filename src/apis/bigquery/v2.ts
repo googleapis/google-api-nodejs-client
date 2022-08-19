@@ -547,7 +547,7 @@ export namespace bigquery_v2 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -738,6 +738,10 @@ export namespace bigquery_v2 {
      * [Optional] An custom string that will represent a NULL value in CSV import data.
      */
     null_marker?: string | null;
+    /**
+     * [Optional] Preserves the embedded ASCII control characters (the first 32 characters in the ASCII-table, from '\x00' to '\x1F') when loading from CSV. Only applicable to CSV, ignored for other formats.
+     */
+    preserveAsciiControlCharacters?: boolean | null;
     /**
      * [Optional] The value that is used to quote data sections in a CSV file. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. The default value is a double-quote ('"'). If your data does not contain quoted sections, set the property value to an empty string. If your data contains quoted newline characters, you must also set the allowQuotedNewlines property to true.
      */
@@ -1256,6 +1260,10 @@ export namespace bigquery_v2 {
      * Additional properties to set if sourceFormat is set to Parquet.
      */
     parquetOptions?: Schema$ParquetOptions;
+    /**
+     * [Optional] Provide a referencing file with the expected table schema. Enabled for the format: AVRO, PARQUET, ORC.
+     */
+    referenceFileSchemaUri?: string | null;
     /**
      * [Optional] The schema for the data. Schema is required for CSV and JSON formats. Schema is disallowed for Google Cloud Bigtable, Cloud Datastore backups, and Avro formats.
      */
@@ -1837,6 +1845,10 @@ export namespace bigquery_v2 {
      * [TrustedTester] Range partitioning specification for this table. Only one of timePartitioning and rangePartitioning should be specified.
      */
     rangePartitioning?: Schema$RangePartitioning;
+    /**
+     * User provided referencing file with the expected reader schema, Available for the format: AVRO, PARQUET, ORC.
+     */
+    referenceFileSchemaUri?: string | null;
     /**
      * [Optional] The schema for the destination table. The schema can be omitted if the destination table already exists, or if you're loading data from Google Cloud Datastore.
      */
@@ -2784,7 +2796,7 @@ export namespace bigquery_v2 {
      */
     estimatedRunnableUnits?: string | null;
     /**
-     * Total parallel units of work remaining for the active stages.
+     * Total units of work remaining for the query. This number can be revised (increased or decreased) while the query is running.
      */
     pendingUnits?: string | null;
     /**
@@ -2853,15 +2865,15 @@ export namespace bigquery_v2 {
    */
   export interface Schema$RemoteFunctionOptions {
     /**
-     * Fully qualified name of the user-provided connection object which holds the authentication information to send requests to the remote service. projects/{project_id\}/locations/{location_id\}/connections/{connection_id\}
+     * Fully qualified name of the user-provided connection object which holds the authentication information to send requests to the remote service. Format: ```"projects/{projectId\}/locations/{locationId\}/connections/{connectionId\}"```
      */
     connection?: string | null;
     /**
-     * Endpoint of the user-provided remote service (e.g. a function url in Google Cloud Functions).
+     * Endpoint of the user-provided remote service, e.g. ```https://us-east1-my_gcf_project.cloudfunctions.net/remote_add```
      */
     endpoint?: string | null;
     /**
-     * Max number of rows in each batch sent to the remote service. If absent or if 0, it means no limit.
+     * Max number of rows in each batch sent to the remote service. If absent or if 0, BigQuery dynamically decides the number of rows in a batch.
      */
     maxBatchingRows?: string | null;
     /**
@@ -2929,6 +2941,10 @@ export namespace bigquery_v2 {
      * Required. The type of routine.
      */
     routineType?: string | null;
+    /**
+     * Optional. Spark specific options.
+     */
+    sparkOptions?: Schema$SparkOptions;
     /**
      * Optional. Can be set for procedures only. If true (default), the definition body will be validated in the creation and the updates of the procedure. For procedures with an argument of ANY TYPE, the definition body validtion is not supported at creation/update time, and thus this field must be set to false explicitly.
      */
@@ -3084,6 +3100,47 @@ export namespace bigquery_v2 {
      * [Required] The time at which the base table was snapshot. This value is reported in the JSON response using RFC3339 format.
      */
     snapshotTime?: string | null;
+  }
+  /**
+   * Options for a user-defined Spark routine.
+   */
+  export interface Schema$SparkOptions {
+    /**
+     * Archive files to be extracted into the working directory of each executor. For more information about Apache Spark, see [Apache Spark](https://spark.apache.org/docs/latest/index.html).
+     */
+    archiveUris?: string[] | null;
+    /**
+     * Fully qualified name of the user-provided Spark connection object. Format: ```"projects/{project_id\}/locations/{location_id\}/connections/{connection_id\}"```
+     */
+    connection?: string | null;
+    /**
+     * Custom container image for the runtime environment.
+     */
+    containerImage?: string | null;
+    /**
+     * Files to be placed in the working directory of each executor. For more information about Apache Spark, see [Apache Spark](https://spark.apache.org/docs/latest/index.html).
+     */
+    fileUris?: string[] | null;
+    /**
+     * JARs to include on the driver and executor CLASSPATH. For more information about Apache Spark, see [Apache Spark](https://spark.apache.org/docs/latest/index.html).
+     */
+    jarUris?: string[] | null;
+    /**
+     * The main file URI of the Spark application. Exactly one of the definition_body field and the main_file_uri field must be set.
+     */
+    mainFileUri?: string | null;
+    /**
+     * Configuration properties as a set of key/value pairs, which will be passed on to the Spark application. For more information, see [Apache Spark](https://spark.apache.org/docs/latest/index.html).
+     */
+    properties?: {[key: string]: string} | null;
+    /**
+     * Python files to be placed on the PYTHONPATH for PySpark application. Supported file types: `.py`, `.egg`, and `.zip`. For more information about Apache Spark, see [Apache Spark](https://spark.apache.org/docs/latest/index.html).
+     */
+    pyFileUris?: string[] | null;
+    /**
+     * Runtime version. If not specified, the default runtime version is used.
+     */
+    runtimeVersion?: string | null;
   }
   /**
    * The data type of a variable such as a function argument. Examples include: * INT64: `{"typeKind": "INT64"\}` * ARRAY: { "typeKind": "ARRAY", "arrayElementType": {"typeKind": "STRING"\} \} * STRUCT\>: { "typeKind": "STRUCT", "structType": { "fields": [ { "name": "x", "type": {"typeKind: "STRING"\} \}, { "name": "y", "type": { "typeKind": "ARRAY", "arrayElementType": {"typekind": "DATE"\} \} \} ] \} \}
@@ -3543,6 +3600,10 @@ export namespace bigquery_v2 {
      */
     cleanSpikesAndDips?: boolean | null;
     /**
+     * Enums for color space, used for processing images in Object Table. See more details at https://www.tensorflow.org/io/tutorials/colorspace.
+     */
+    colorSpace?: string | null;
+    /**
      * Subsample ratio of columns for each level for boosted tree models.
      */
     colsampleBylevel?: number | null;
@@ -3731,7 +3792,7 @@ export namespace bigquery_v2 {
      */
     preserveInputStructs?: boolean | null;
     /**
-     * Number of paths for the sampled shapley explain method.
+     * Number of paths for the sampled Shapley explain method.
      */
     sampledShapleyNumPaths?: string | null;
     /**
@@ -3811,6 +3872,10 @@ export namespace bigquery_v2 {
      * Options that were used for this training run, includes user specified and default options that were used.
      */
     trainingOptions?: Schema$TrainingOptions;
+    /**
+     * The start time of this training run, in milliseconds since epoch.
+     */
+    trainingStartTime?: string | null;
     /**
      * The model id in Vertex AI Model Registry for this training run
      */
@@ -7287,6 +7352,7 @@ export namespace bigquery_v2 {
      *   //   "returnType": {},
      *   //   "routineReference": {},
      *   //   "routineType": "my_routineType",
+     *   //   "sparkOptions": {},
      *   //   "strictMode": false
      *   // }
      * }
@@ -7434,6 +7500,7 @@ export namespace bigquery_v2 {
      *       //   "returnType": {},
      *       //   "routineReference": {},
      *       //   "routineType": "my_routineType",
+     *       //   "sparkOptions": {},
      *       //   "strictMode": false
      *       // }
      *     },
@@ -7456,6 +7523,7 @@ export namespace bigquery_v2 {
      *   //   "returnType": {},
      *   //   "routineReference": {},
      *   //   "routineType": "my_routineType",
+     *   //   "sparkOptions": {},
      *   //   "strictMode": false
      *   // }
      * }
@@ -7753,6 +7821,7 @@ export namespace bigquery_v2 {
      *       //   "returnType": {},
      *       //   "routineReference": {},
      *       //   "routineType": "my_routineType",
+     *       //   "sparkOptions": {},
      *       //   "strictMode": false
      *       // }
      *     },
@@ -7775,6 +7844,7 @@ export namespace bigquery_v2 {
      *   //   "returnType": {},
      *   //   "routineReference": {},
      *   //   "routineType": "my_routineType",
+     *   //   "sparkOptions": {},
      *   //   "strictMode": false
      *   // }
      * }

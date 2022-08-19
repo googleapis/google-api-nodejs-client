@@ -1710,7 +1710,7 @@
       }
     }
   },
-  "revision": "20220611",
+  "revision": "20220813",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -2391,7 +2391,7 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
           "items": {
             "type": "string"
           },
@@ -2679,6 +2679,10 @@
         "null_marker": {
           "description": "[Optional] An custom string that will represent a NULL value in CSV import data.",
           "type": "string"
+        },
+        "preserveAsciiControlCharacters": {
+          "description": "[Optional] Preserves the embedded ASCII control characters (the first 32 characters in the ASCII-table, from '\\x00' to '\\x1F') when loading from CSV. Only applicable to CSV, ignored for other formats.",
+          "type": "boolean"
         },
         "quote": {
           "default": "\"",
@@ -3424,6 +3428,10 @@
           "$ref": "ParquetOptions",
           "description": "Additional properties to set if sourceFormat is set to Parquet."
         },
+        "referenceFileSchemaUri": {
+          "description": "[Optional] Provide a referencing file with the expected table schema. Enabled for the format: AVRO, PARQUET, ORC.",
+          "type": "string"
+        },
         "schema": {
           "$ref": "TableSchema",
           "description": "[Optional] The schema for the data. Schema is required for CSV and JSON formats. Schema is disallowed for Google Cloud Bigtable, Cloud Datastore backups, and Avro formats."
@@ -4153,6 +4161,10 @@
         "rangePartitioning": {
           "$ref": "RangePartitioning",
           "description": "[TrustedTester] Range partitioning specification for this table. Only one of timePartitioning and rangePartitioning should be specified."
+        },
+        "referenceFileSchemaUri": {
+          "description": "User provided referencing file with the expected reader schema, Available for the format: AVRO, PARQUET, ORC.",
+          "type": "string"
         },
         "schema": {
           "$ref": "TableSchema",
@@ -5056,6 +5068,8 @@
             "AUTOML_REGRESSOR",
             "AUTOML_CLASSIFIER",
             "PCA",
+            "DNN_LINEAR_COMBINED_CLASSIFIER",
+            "DNN_LINEAR_COMBINED_REGRESSOR",
             "AUTOENCODER",
             "ARIMA_PLUS"
           ],
@@ -5074,6 +5088,8 @@
             "AutoML Tables regression model.",
             "AutoML Tables classification model.",
             "Prinpical Component Analysis model.",
+            "Wide-and-deep classifier model.",
+            "Wide-and-deep regressor model.",
             "Autoencoder model.",
             "New name for the ARIMA model."
           ],
@@ -5567,7 +5583,7 @@
           "type": "string"
         },
         "pendingUnits": {
-          "description": "Total parallel units of work remaining for the active stages.",
+          "description": "Total units of work remaining for the query. This number can be revised (increased or decreased) while the query is running.",
           "format": "int64",
           "type": "string"
         },
@@ -5674,15 +5690,15 @@
       "id": "RemoteFunctionOptions",
       "properties": {
         "connection": {
-          "description": "Fully qualified name of the user-provided connection object which holds the authentication information to send requests to the remote service. projects/{project_id}/locations/{location_id}/connections/{connection_id}",
+          "description": "Fully qualified name of the user-provided connection object which holds the authentication information to send requests to the remote service. Format: ```\"projects/{projectId}/locations/{locationId}/connections/{connectionId}\"```",
           "type": "string"
         },
         "endpoint": {
-          "description": "Endpoint of the user-provided remote service (e.g. a function url in Google Cloud Functions).",
+          "description": "Endpoint of the user-provided remote service, e.g. ```https://us-east1-my_gcf_project.cloudfunctions.net/remote_add```",
           "type": "string"
         },
         "maxBatchingRows": {
-          "description": "Max number of rows in each batch sent to the remote service. If absent or if 0, it means no limit.",
+          "description": "Max number of rows in each batch sent to the remote service. If absent or if 0, BigQuery dynamically decides the number of rows in a batch.",
           "format": "int64",
           "type": "string"
         },
@@ -5798,6 +5814,10 @@
             "Non-builtin permanent TVF."
           ],
           "type": "string"
+        },
+        "sparkOptions": {
+          "$ref": "SparkOptions",
+          "description": "Optional. Spark specific options."
         },
         "strictMode": {
           "description": "Optional. Can be set for procedures only. If true (default), the definition body will be validated in the creation and the updates of the procedure. For procedures with an argument of ANY TYPE, the definition body validtion is not supported at creation/update time, and thus this field must be set to false explicitly.",
@@ -6010,6 +6030,64 @@
         "snapshotTime": {
           "description": "[Required] The time at which the base table was snapshot. This value is reported in the JSON response using RFC3339 format.",
           "format": "date-time",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SparkOptions": {
+      "description": "Options for a user-defined Spark routine.",
+      "id": "SparkOptions",
+      "properties": {
+        "archiveUris": {
+          "description": "Archive files to be extracted into the working directory of each executor. For more information about Apache Spark, see [Apache Spark](https://spark.apache.org/docs/latest/index.html).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "connection": {
+          "description": "Fully qualified name of the user-provided Spark connection object. Format: ```\"projects/{project_id}/locations/{location_id}/connections/{connection_id}\"```",
+          "type": "string"
+        },
+        "containerImage": {
+          "description": "Custom container image for the runtime environment.",
+          "type": "string"
+        },
+        "fileUris": {
+          "description": "Files to be placed in the working directory of each executor. For more information about Apache Spark, see [Apache Spark](https://spark.apache.org/docs/latest/index.html).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "jarUris": {
+          "description": "JARs to include on the driver and executor CLASSPATH. For more information about Apache Spark, see [Apache Spark](https://spark.apache.org/docs/latest/index.html).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "mainFileUri": {
+          "description": "The main file URI of the Spark application. Exactly one of the definition_body field and the main_file_uri field must be set.",
+          "type": "string"
+        },
+        "properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Configuration properties as a set of key/value pairs, which will be passed on to the Spark application. For more information, see [Apache Spark](https://spark.apache.org/docs/latest/index.html).",
+          "type": "object"
+        },
+        "pyFileUris": {
+          "description": "Python files to be placed on the PYTHONPATH for PySpark application. Supported file types: `.py`, `.egg`, and `.zip`. For more information about Apache Spark, see [Apache Spark](https://spark.apache.org/docs/latest/index.html).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "runtimeVersion": {
+          "description": "Runtime version. If not specified, the default runtime version is used.",
           "type": "string"
         }
       },
@@ -6770,6 +6848,26 @@
           "description": "If true, clean spikes and dips in the input time series.",
           "type": "boolean"
         },
+        "colorSpace": {
+          "description": "Enums for color space, used for processing images in Object Table. See more details at https://www.tensorflow.org/io/tutorials/colorspace.",
+          "enum": [
+            "COLOR_SPACE_UNSPECIFIED",
+            "RGB",
+            "HSV",
+            "YIQ",
+            "YUV",
+            "GRAYSCALE"
+          ],
+          "enumDescriptions": [
+            "Unspecified color space",
+            "RGB",
+            "HSV",
+            "YIQ",
+            "YUV",
+            "GRAYSCALE"
+          ],
+          "type": "string"
+        },
         "colsampleBylevel": {
           "description": "Subsample ratio of columns for each level for boosted tree models.",
           "format": "double",
@@ -7286,7 +7384,7 @@
           "type": "boolean"
         },
         "sampledShapleyNumPaths": {
-          "description": "Number of paths for the sampled shapley explain method.",
+          "description": "Number of paths for the sampled Shapley explain method.",
           "format": "int64",
           "type": "string"
         },
@@ -7396,6 +7494,11 @@
         "trainingOptions": {
           "$ref": "TrainingOptions",
           "description": "Options that were used for this training run, includes user specified and default options that were used."
+        },
+        "trainingStartTime": {
+          "description": "The start time of this training run, in milliseconds since epoch.",
+          "format": "int64",
+          "type": "string"
         },
         "vertexAiModelId": {
           "description": "The model id in Vertex AI Model Registry for this training run",
