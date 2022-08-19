@@ -14,27 +14,42 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {identitytoolkit_v2} from './v2';
 import {identitytoolkit_v3} from './v3';
 
 export const VERSIONS = {
+  v2: identitytoolkit_v2.Identitytoolkit,
   v3: identitytoolkit_v3.Identitytoolkit,
 };
 
+export function identitytoolkit(
+  version: 'v2'
+): identitytoolkit_v2.Identitytoolkit;
+export function identitytoolkit(
+  options: identitytoolkit_v2.Options
+): identitytoolkit_v2.Identitytoolkit;
 export function identitytoolkit(
   version: 'v3'
 ): identitytoolkit_v3.Identitytoolkit;
 export function identitytoolkit(
   options: identitytoolkit_v3.Options
 ): identitytoolkit_v3.Identitytoolkit;
-export function identitytoolkit<T = identitytoolkit_v3.Identitytoolkit>(
+export function identitytoolkit<
+  T = identitytoolkit_v2.Identitytoolkit | identitytoolkit_v3.Identitytoolkit
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v3' | identitytoolkit_v3.Options
+  versionOrOptions:
+    | 'v2'
+    | identitytoolkit_v2.Options
+    | 'v3'
+    | identitytoolkit_v3.Options
 ) {
   return getAPI<T>('identitytoolkit', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
+export {identitytoolkit_v2};
 export {identitytoolkit_v3};
 export {
   AuthPlus,
