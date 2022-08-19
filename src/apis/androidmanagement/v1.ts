@@ -441,7 +441,7 @@ export namespace androidmanagement_v1 {
      */
     apkSha256Hash?: string | null;
     /**
-     * Package names of all packages that are associated with the particular user id. In most cases, this will be a single package name, the package that has been assigned that user id. If multiple application share a uid then all packages sharing uid will be included.
+     * Package names of all packages that are associated with the particular user ID. In most cases, this will be a single package name, the package that has been assigned that user ID. If multiple application share a UID then all packages sharing UID will be included.
      */
     packageNames?: string[] | null;
     /**
@@ -1050,7 +1050,7 @@ export namespace androidmanagement_v1 {
      */
     allowPersonalUsage?: string | null;
     /**
-     * The length of time the enrollment token is valid, ranging from 1 minute to 90 days. If not specified, the default duration is 1 hour.
+     * The length of time the enrollment token is valid, ranging from 1 minute to Durations.MAX_VALUE (https://developers.google.com/protocol-buffers/docs/reference/java/com/google/protobuf/util/Durations.html#MAX_VALUE), approximately 10,000 years. If not specified, the default duration is 1 hour. Please note that if requested duration causes the resulting expiration_timestamp to exceed Timestamps.MAX_VALUE (https://developers.google.com/protocol-buffers/docs/reference/java/com/google/protobuf/util/Timestamps.html#MAX_VALUE), then expiration_timestamp is coerced to Timestamps.MAX_VALUE.
      */
     duration?: string | null;
     /**
@@ -2502,7 +2502,7 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$SpecificNonComplianceContext {
     /**
-     * Additional context for non-compliance related to Wi-Fi configuration. See ONC_WIFI_INVALID_VALUE.
+     * Additional context for non-compliance related to Wi-Fi configuration. See ONC_WIFI_INVALID_VALUE and ONC_WIFI_API_LEVEL
      */
     oncWifiContext?: Schema$OncWifiContext;
     /**
@@ -2678,7 +2678,7 @@ export namespace androidmanagement_v1 {
      */
     certValidationFailureEvent?: Schema$CertValidationFailureEvent;
     /**
-     * A TCP connect event was initiated through the standard network stack. Part of NETWORK_LOGS.
+     * A TCP connect event was initiated through the standard network stack. Part of NETWORK_ACTIVITY_LOGS.
      */
     connectEvent?: Schema$ConnectEvent;
     /**
@@ -2686,7 +2686,7 @@ export namespace androidmanagement_v1 {
      */
     cryptoSelfTestCompletedEvent?: Schema$CryptoSelfTestCompletedEvent;
     /**
-     * A DNS lookup event was initiated through the standard network stack. Part of NETWORK_LOGS.
+     * A DNS lookup event was initiated through the standard network stack. Part of NETWORK_ACTIVITY_LOGS.
      */
     dnsEvent?: Schema$DnsEvent;
     /**
@@ -2770,7 +2770,7 @@ export namespace androidmanagement_v1 {
      */
     remoteLockEvent?: Schema$RemoteLockEvent;
     /**
-     * The work profile or company-owned device failed to wipe when when requested. This could be user initiated or admin initiated e.g. delete was received. Part of SECURITY_LOGS.
+     * The work profile or company-owned device failed to wipe when requested. This could be user initiated or admin initiated e.g. delete was received. Part of SECURITY_LOGS.
      */
     wipeFailureEvent?: Schema$WipeFailureEvent;
   }
@@ -2873,7 +2873,7 @@ export namespace androidmanagement_v1 {
     wipeAfterDays?: number | null;
   }
   /**
-   * The work profile or company-owned device failed to wipe when when requested. This could be user initiated or admin initiated e.g. delete was received. Intentionally empty.
+   * The work profile or company-owned device failed to wipe when requested. This could be user initiated or admin initiated e.g. delete was received. Intentionally empty.
    */
   export interface Schema$WipeFailureEvent {}
 
