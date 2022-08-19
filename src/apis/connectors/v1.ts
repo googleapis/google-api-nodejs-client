@@ -193,6 +193,27 @@ export namespace connectors_v1 {
     configVariableTemplates?: Schema$ConfigVariableTemplate[];
   }
   /**
+   * This configuration captures the details required to render an authorization link for the OAuth Authorization Code Flow.
+   */
+  export interface Schema$AuthorizationCodeLink {
+    /**
+     * The client ID assigned to the GCP Connectors OAuth app for the connector data source.
+     */
+    clientId?: string | null;
+    /**
+     * Whether to enable PKCE for the auth code flow.
+     */
+    enablePkce?: boolean | null;
+    /**
+     * The scopes for which the user will authorize GCP Connectors on the connector data source.
+     */
+    scopes?: string[] | null;
+    /**
+     * The base URI the user must click to trigger the authorization code login flow.
+     */
+    uri?: string | null;
+  }
+  /**
    * Associates `members`, or principals, with a `role`.
    */
   export interface Schema$Binding {
@@ -201,7 +222,7 @@ export namespace connectors_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -243,6 +264,10 @@ export namespace connectors_v1 {
    */
   export interface Schema$ConfigVariableTemplate {
     /**
+     * Authorization code link options. To be populated if `ValueType` is `AUTHORIZATION_CODE`
+     */
+    authorizationCodeLink?: Schema$AuthorizationCodeLink;
+    /**
      * Description.
      */
     description?: string | null;
@@ -267,6 +292,10 @@ export namespace connectors_v1 {
      */
     roleGrant?: Schema$RoleGrant;
     /**
+     * State of the config variable.
+     */
+    state?: string | null;
+    /**
      * Regular expression in RE2 syntax used for validating the `value` of a `ConfigVariable`.
      */
     validationRegex?: string | null;
@@ -288,7 +317,7 @@ export namespace connectors_v1 {
      */
     configVariables?: Schema$ConfigVariable[];
     /**
-     * Required. Connector version on which the connection is created. The format is: projects/x/locations/global/providers/x/connectors/x/versions/x
+     * Required. Connector version on which the connection is created. The format is: projects/x/locations/x/providers/x/connectors/x/versions/x Only global location is supported for ConnectorVersion resource.
      */
     connectorVersion?: string | null;
     /**
@@ -300,9 +329,9 @@ export namespace connectors_v1 {
      */
     description?: string | null;
     /**
-     * Output only. Outbound domains/hosts needs to be allowlisted.
+     * Optional. Configuration of the Connector's destination. Only accepted for Connectors that accepts user defined destination(s).
      */
-    egressBackends?: string[] | null;
+    destinationConfigs?: Schema$DestinationConfig[];
     /**
      * Output only. GCR location where the envoy image is stored. formatted like: gcr.io/{bucketName\}/{imageName\}
      */
@@ -323,6 +352,10 @@ export namespace connectors_v1 {
      * Output only. Resource name of the Connection. Format: projects/{project\}/locations/{location\}/connections/{connection\}
      */
     name?: string | null;
+    /**
+     * Optional. Configuration for the connection.
+     */
+    nodeConfig?: Schema$NodeConfig;
     /**
      * Optional. Service account needed for runtime plane to access GCP resources.
      */
@@ -407,7 +440,7 @@ export namespace connectors_v1 {
      */
     launchStage?: string | null;
     /**
-     * Output only. Resource name of the Connector. Format: projects/{project\}/locations/{location\}/providers/{provider\}/connectors/{connector\}
+     * Output only. Resource name of the Connector. Format: projects/{project\}/locations/{location\}/providers/{provider\}/connectors/{connector\} Only global location is supported for Connector resource.
      */
     name?: string | null;
     /**
@@ -452,7 +485,7 @@ export namespace connectors_v1 {
      */
     launchStage?: string | null;
     /**
-     * Output only. Resource name of the Version. Format: projects/{project\}/locations/{location\}/providers/{provider\}/connectors/{connector\}/versions/{version\}
+     * Output only. Resource name of the Version. Format: projects/{project\}/locations/{location\}/providers/{provider\}/connectors/{connector\}/versions/{version\} Only global location is supported for Connector resource.
      */
     name?: string | null;
     /**
@@ -475,6 +508,33 @@ export namespace connectors_v1 {
      * Output only. Updated time.
      */
     updateTime?: string | null;
+  }
+  export interface Schema$Destination {
+    /**
+     * For publicly routable host.
+     */
+    host?: string | null;
+    /**
+     * The port is the target port number that is accepted by the destination.
+     */
+    port?: number | null;
+    /**
+     * PSC service attachments. Format: projects/x/regions/x/serviceAttachments/x
+     */
+    serviceAttachment?: string | null;
+  }
+  /**
+   * Define the Connectors target endpoint.
+   */
+  export interface Schema$DestinationConfig {
+    /**
+     * The destinations for the key.
+     */
+    destinations?: Schema$Destination[];
+    /**
+     * The key is the destination identifier that is supported by the Connector.
+     */
+    key?: string | null;
   }
   /**
    * Egress control config for connector runtime. These configurations define the rules to identify which outbound domains/hosts needs to be whitelisted. It may be a static information for a particular connector version or it is derived from the configurations provided by the customer in Connection resource.
@@ -787,6 +847,19 @@ export namespace connectors_v1 {
     reason?: string | null;
   }
   /**
+   * Configuration for the connection.
+   */
+  export interface Schema$NodeConfig {
+    /**
+     * Maximum number of nodes in the runtime nodes.
+     */
+    maxNodeCount?: number | null;
+    /**
+     * Minimum number of nodes in the runtime nodes.
+     */
+    minNodeCount?: number | null;
+  }
+  /**
    * Parameters to support Oauth 2.0 Client Credentials Grant Authentication. See https://tools.ietf.org/html/rfc6749#section-1.3.4 for more details.
    */
   export interface Schema$Oauth2ClientCredentials {
@@ -924,7 +997,7 @@ export namespace connectors_v1 {
      */
     launchStage?: string | null;
     /**
-     * Output only. Resource name of the Provider. Format: projects/{project\}/locations/{location\}/providers/{provider\}
+     * Output only. Resource name of the Provider. Format: projects/{project\}/locations/{location\}/providers/{provider\} Only global location is supported for Provider resource.
      */
     name?: string | null;
     /**
@@ -1029,6 +1102,10 @@ export namespace connectors_v1 {
      */
     locationId?: string | null;
     /**
+     * Output only. Name of the runtimeConfig resource. Format: projects/{project\}/locations/{location\}/runtimeConfig
+     */
+    name?: string | null;
+    /**
      * Output only. The endpoint of the connectors runtime ingress.
      */
     runtimeEndpoint?: string | null;
@@ -1109,6 +1186,10 @@ export namespace connectors_v1 {
      * SSH Client Cert. It should contain both public and private key.
      */
     sshClientCert?: Schema$Secret;
+    /**
+     * Password (passphrase) for ssh client certificate if it has one.
+     */
+    sshClientCertPass?: Schema$Secret;
     /**
      * The user account used to authenticate.
      */
@@ -1192,7 +1273,6 @@ export namespace connectors_v1 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     connections: Resource$Projects$Locations$Connections;
-    global: Resource$Projects$Locations$Global;
     operations: Resource$Projects$Locations$Operations;
     providers: Resource$Projects$Locations$Providers;
     constructor(context: APIRequestContext) {
@@ -1200,7 +1280,6 @@ export namespace connectors_v1 {
       this.connections = new Resource$Projects$Locations$Connections(
         this.context
       );
-      this.global = new Resource$Projects$Locations$Global(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
@@ -1376,6 +1455,7 @@ export namespace connectors_v1 {
      *   //   "controlPlaneSubscription": "my_controlPlaneSubscription",
      *   //   "controlPlaneTopic": "my_controlPlaneTopic",
      *   //   "locationId": "my_locationId",
+     *   //   "name": "my_name",
      *   //   "runtimeEndpoint": "my_runtimeEndpoint",
      *   //   "schemaGcsBucket": "my_schemaGcsBucket",
      *   //   "serviceDirectory": "my_serviceDirectory",
@@ -1706,12 +1786,13 @@ export namespace connectors_v1 {
      *       //   "connectorVersion": "my_connectorVersion",
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
-     *       //   "egressBackends": [],
+     *       //   "destinationConfigs": [],
      *       //   "envoyImageLocation": "my_envoyImageLocation",
      *       //   "imageLocation": "my_imageLocation",
      *       //   "labels": {},
      *       //   "lockConfig": {},
      *       //   "name": "my_name",
+     *       //   "nodeConfig": {},
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "serviceDirectory": "my_serviceDirectory",
      *       //   "status": {},
@@ -1994,12 +2075,13 @@ export namespace connectors_v1 {
      *   //   "connectorVersion": "my_connectorVersion",
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
-     *   //   "egressBackends": [],
+     *   //   "destinationConfigs": [],
      *   //   "envoyImageLocation": "my_envoyImageLocation",
      *   //   "imageLocation": "my_imageLocation",
      *   //   "labels": {},
      *   //   "lockConfig": {},
      *   //   "name": "my_name",
+     *   //   "nodeConfig": {},
      *   //   "serviceAccount": "my_serviceAccount",
      *   //   "serviceDirectory": "my_serviceDirectory",
      *   //   "status": {},
@@ -2545,7 +2627,7 @@ export namespace connectors_v1 {
      *   const res = await connectors.projects.locations.connections.patch({
      *     // Output only. Resource name of the Connection. Format: projects/{project\}/locations/{location\}/connections/{connection\}
      *     name: 'projects/my-project/locations/my-location/connections/my-connection',
-     *     // Field mask is used to specify the fields to be overwritten in the Connection resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     *     // Required. Field mask is used to specify the fields to be overwritten in the Connection resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2557,12 +2639,13 @@ export namespace connectors_v1 {
      *       //   "connectorVersion": "my_connectorVersion",
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
-     *       //   "egressBackends": [],
+     *       //   "destinationConfigs": [],
      *       //   "envoyImageLocation": "my_envoyImageLocation",
      *       //   "imageLocation": "my_imageLocation",
      *       //   "labels": {},
      *       //   "lockConfig": {},
      *       //   "name": "my_name",
+     *       //   "nodeConfig": {},
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "serviceDirectory": "my_serviceDirectory",
      *       //   "status": {},
@@ -3048,7 +3131,7 @@ export namespace connectors_v1 {
      */
     name?: string;
     /**
-     * Field mask is used to specify the fields to be overwritten in the Connection resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     * Required. Field mask is used to specify the fields to be overwritten in the Connection resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      */
     updateMask?: string;
 
@@ -3430,974 +3513,6 @@ export namespace connectors_v1 {
      * Required. Parent resource of RuntimeEntitySchema Format: projects/{project\}/locations/{location\}/connections/{connection\}
      */
     parent?: string;
-  }
-
-  export class Resource$Projects$Locations$Global {
-    context: APIRequestContext;
-    providers: Resource$Projects$Locations$Global$Providers;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.providers = new Resource$Projects$Locations$Global$Providers(
-        this.context
-      );
-    }
-  }
-
-  export class Resource$Projects$Locations$Global$Providers {
-    context: APIRequestContext;
-    connectors: Resource$Projects$Locations$Global$Providers$Connectors;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.connectors =
-        new Resource$Projects$Locations$Global$Providers$Connectors(
-          this.context
-        );
-    }
-
-    /**
-     * Gets details of a single Provider.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const connectors = google.connectors('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await connectors.projects.locations.global.providers.get({
-     *     // Required. Resource name of the form: `projects/x/locations/x/providers/x`
-     *     name: 'projects/my-project/locations/global/providers/my-provider',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "documentationUri": "my_documentationUri",
-     *   //   "externalUri": "my_externalUri",
-     *   //   "labels": {},
-     *   //   "launchStage": "my_launchStage",
-     *   //   "name": "my_name",
-     *   //   "updateTime": "my_updateTime",
-     *   //   "webAssetsLocation": "my_webAssetsLocation"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Global$Providers$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Projects$Locations$Global$Providers$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Provider>;
-    get(
-      params: Params$Resource$Projects$Locations$Global$Providers$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Global$Providers$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$Provider>,
-      callback: BodyResponseCallback<Schema$Provider>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Global$Providers$Get,
-      callback: BodyResponseCallback<Schema$Provider>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$Provider>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Global$Providers$Get
-        | BodyResponseCallback<Schema$Provider>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Provider>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Provider>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Provider> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Global$Providers$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Providers$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Provider>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Provider>(parameters);
-      }
-    }
-
-    /**
-     * Lists Providers in a given project and location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const connectors = google.connectors('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await connectors.projects.locations.global.providers.list({
-     *     // Page size.
-     *     pageSize: 'placeholder-value',
-     *     // Page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource of the API, of the form: `projects/x/locations/x`
-     *     parent: 'projects/my-project/locations/global',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "providers": [],
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Global$Providers$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Projects$Locations$Global$Providers$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListProvidersResponse>;
-    list(
-      params: Params$Resource$Projects$Locations$Global$Providers$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Global$Providers$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListProvidersResponse>,
-      callback: BodyResponseCallback<Schema$ListProvidersResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Global$Providers$List,
-      callback: BodyResponseCallback<Schema$ListProvidersResponse>
-    ): void;
-    list(callback: BodyResponseCallback<Schema$ListProvidersResponse>): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Global$Providers$List
-        | BodyResponseCallback<Schema$ListProvidersResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListProvidersResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListProvidersResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListProvidersResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Global$Providers$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Providers$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/providers').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListProvidersResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ListProvidersResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Global$Providers$Get
-    extends StandardParameters {
-    /**
-     * Required. Resource name of the form: `projects/x/locations/x/providers/x`
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Global$Providers$List
-    extends StandardParameters {
-    /**
-     * Page size.
-     */
-    pageSize?: number;
-    /**
-     * Page token.
-     */
-    pageToken?: string;
-    /**
-     * Required. Parent resource of the API, of the form: `projects/x/locations/x`
-     */
-    parent?: string;
-  }
-
-  export class Resource$Projects$Locations$Global$Providers$Connectors {
-    context: APIRequestContext;
-    versions: Resource$Projects$Locations$Global$Providers$Connectors$Versions;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.versions =
-        new Resource$Projects$Locations$Global$Providers$Connectors$Versions(
-          this.context
-        );
-    }
-
-    /**
-     * Gets details of a single Connector.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const connectors = google.connectors('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await connectors.projects.locations.global.providers.connectors.get({
-     *       // Required. Resource name of the form: `projects/x/locations/x/providers/x/connectors/x`
-     *       name: 'projects/my-project/locations/global/providers/my-provider/connectors/my-connector',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "documentationUri": "my_documentationUri",
-     *   //   "externalUri": "my_externalUri",
-     *   //   "labels": {},
-     *   //   "launchStage": "my_launchStage",
-     *   //   "name": "my_name",
-     *   //   "updateTime": "my_updateTime",
-     *   //   "webAssetsLocation": "my_webAssetsLocation"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Global$Providers$Connectors$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Projects$Locations$Global$Providers$Connectors$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Connector>;
-    get(
-      params: Params$Resource$Projects$Locations$Global$Providers$Connectors$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Global$Providers$Connectors$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$Connector>,
-      callback: BodyResponseCallback<Schema$Connector>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Global$Providers$Connectors$Get,
-      callback: BodyResponseCallback<Schema$Connector>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$Connector>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Global$Providers$Connectors$Get
-        | BodyResponseCallback<Schema$Connector>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Connector>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Connector>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Connector> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Global$Providers$Connectors$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Global$Providers$Connectors$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Connector>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Connector>(parameters);
-      }
-    }
-
-    /**
-     * Lists Connectors in a given project and location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const connectors = google.connectors('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await connectors.projects.locations.global.providers.connectors.list({
-     *       // Page size.
-     *       pageSize: 'placeholder-value',
-     *       // Page token.
-     *       pageToken: 'placeholder-value',
-     *       // Required. Parent resource of the connectors, of the form: `projects/x/locations/x/providers/x`
-     *       parent: 'projects/my-project/locations/global/providers/my-provider',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "connectors": [],
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Global$Providers$Connectors$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Projects$Locations$Global$Providers$Connectors$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListConnectorsResponse>;
-    list(
-      params: Params$Resource$Projects$Locations$Global$Providers$Connectors$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Global$Providers$Connectors$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListConnectorsResponse>,
-      callback: BodyResponseCallback<Schema$ListConnectorsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Global$Providers$Connectors$List,
-      callback: BodyResponseCallback<Schema$ListConnectorsResponse>
-    ): void;
-    list(callback: BodyResponseCallback<Schema$ListConnectorsResponse>): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Global$Providers$Connectors$List
-        | BodyResponseCallback<Schema$ListConnectorsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListConnectorsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListConnectorsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListConnectorsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Global$Providers$Connectors$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Global$Providers$Connectors$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/connectors').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListConnectorsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ListConnectorsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Global$Providers$Connectors$Get
-    extends StandardParameters {
-    /**
-     * Required. Resource name of the form: `projects/x/locations/x/providers/x/connectors/x`
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Global$Providers$Connectors$List
-    extends StandardParameters {
-    /**
-     * Page size.
-     */
-    pageSize?: number;
-    /**
-     * Page token.
-     */
-    pageToken?: string;
-    /**
-     * Required. Parent resource of the connectors, of the form: `projects/x/locations/x/providers/x`
-     */
-    parent?: string;
-  }
-
-  export class Resource$Projects$Locations$Global$Providers$Connectors$Versions {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Gets details of a single connector version.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const connectors = google.connectors('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await connectors.projects.locations.global.providers.connectors.versions.get(
-     *       {
-     *         // Required. Resource name of the form: `projects/x/locations/x/providers/x/connectors/x/versions/x`
-     *         name: 'projects/my-project/locations/global/providers/my-provider/connectors/my-connector/versions/my-version',
-     *         // Specifies which fields of the ConnectorVersion are returned in the response. Defaults to `CUSTOMER` view.
-     *         view: 'placeholder-value',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "authConfigTemplates": [],
-     *   //   "configVariableTemplates": [],
-     *   //   "createTime": "my_createTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "egressControlConfig": {},
-     *   //   "labels": {},
-     *   //   "launchStage": "my_launchStage",
-     *   //   "name": "my_name",
-     *   //   "releaseVersion": "my_releaseVersion",
-     *   //   "roleGrant": {},
-     *   //   "roleGrants": [],
-     *   //   "supportedRuntimeFeatures": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Global$Providers$Connectors$Versions$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Projects$Locations$Global$Providers$Connectors$Versions$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ConnectorVersion>;
-    get(
-      params: Params$Resource$Projects$Locations$Global$Providers$Connectors$Versions$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Global$Providers$Connectors$Versions$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$ConnectorVersion>,
-      callback: BodyResponseCallback<Schema$ConnectorVersion>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Global$Providers$Connectors$Versions$Get,
-      callback: BodyResponseCallback<Schema$ConnectorVersion>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$ConnectorVersion>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Global$Providers$Connectors$Versions$Get
-        | BodyResponseCallback<Schema$ConnectorVersion>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ConnectorVersion>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ConnectorVersion>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ConnectorVersion> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Global$Providers$Connectors$Versions$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Global$Providers$Connectors$Versions$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ConnectorVersion>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ConnectorVersion>(parameters);
-      }
-    }
-
-    /**
-     * Lists Connector Versions in a given project and location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const connectors = google.connectors('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await connectors.projects.locations.global.providers.connectors.versions.list(
-     *       {
-     *         // Page size.
-     *         pageSize: 'placeholder-value',
-     *         // Page token.
-     *         pageToken: 'placeholder-value',
-     *         // Required. Parent resource of the connectors, of the form: `projects/x/locations/x/providers/x/connectors/x`
-     *         parent:
-     *           'projects/my-project/locations/global/providers/my-provider/connectors/my-connector',
-     *         // Specifies which fields of the ConnectorVersion are returned in the response. Defaults to `CUSTOMER` view.
-     *         view: 'placeholder-value',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "connectorVersions": [],
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Global$Providers$Connectors$Versions$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Projects$Locations$Global$Providers$Connectors$Versions$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListConnectorVersionsResponse>;
-    list(
-      params: Params$Resource$Projects$Locations$Global$Providers$Connectors$Versions$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Global$Providers$Connectors$Versions$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListConnectorVersionsResponse>,
-      callback: BodyResponseCallback<Schema$ListConnectorVersionsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Global$Providers$Connectors$Versions$List,
-      callback: BodyResponseCallback<Schema$ListConnectorVersionsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$ListConnectorVersionsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Global$Providers$Connectors$Versions$List
-        | BodyResponseCallback<Schema$ListConnectorVersionsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListConnectorVersionsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListConnectorVersionsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListConnectorVersionsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Global$Providers$Connectors$Versions$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Global$Providers$Connectors$Versions$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/versions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListConnectorVersionsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ListConnectorVersionsResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Global$Providers$Connectors$Versions$Get
-    extends StandardParameters {
-    /**
-     * Required. Resource name of the form: `projects/x/locations/x/providers/x/connectors/x/versions/x`
-     */
-    name?: string;
-    /**
-     * Specifies which fields of the ConnectorVersion are returned in the response. Defaults to `CUSTOMER` view.
-     */
-    view?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Global$Providers$Connectors$Versions$List
-    extends StandardParameters {
-    /**
-     * Page size.
-     */
-    pageSize?: number;
-    /**
-     * Page token.
-     */
-    pageToken?: string;
-    /**
-     * Required. Parent resource of the connectors, of the form: `projects/x/locations/x/providers/x/connectors/x`
-     */
-    parent?: string;
-    /**
-     * Specifies which fields of the ConnectorVersion are returned in the response. Defaults to `CUSTOMER` view.
-     */
-    view?: string;
   }
 
   export class Resource$Projects$Locations$Operations {
@@ -4980,8 +4095,147 @@ export namespace connectors_v1 {
 
   export class Resource$Projects$Locations$Providers {
     context: APIRequestContext;
+    connectors: Resource$Projects$Locations$Providers$Connectors;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.connectors = new Resource$Projects$Locations$Providers$Connectors(
+        this.context
+      );
+    }
+
+    /**
+     * Gets details of a provider.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await connectors.projects.locations.providers.get({
+     *     // Required. Resource name of the form: `projects/x/locations/x/providers/x` Only global location is supported for Provider resource.
+     *     name: 'projects/my-project/locations/my-location/providers/my-provider',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "documentationUri": "my_documentationUri",
+     *   //   "externalUri": "my_externalUri",
+     *   //   "labels": {},
+     *   //   "launchStage": "my_launchStage",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "webAssetsLocation": "my_webAssetsLocation"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Providers$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Providers$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Provider>;
+    get(
+      params: Params$Resource$Projects$Locations$Providers$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Providers$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Provider>,
+      callback: BodyResponseCallback<Schema$Provider>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Providers$Get,
+      callback: BodyResponseCallback<Schema$Provider>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Provider>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Providers$Get
+        | BodyResponseCallback<Schema$Provider>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Provider>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Provider>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Provider> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Providers$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Providers$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Provider>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Provider>(parameters);
+      }
     }
 
     /**
@@ -5116,6 +4370,146 @@ export namespace connectors_v1 {
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Lists Providers in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await connectors.projects.locations.providers.list({
+     *     // Page size.
+     *     pageSize: 'placeholder-value',
+     *     // Page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Parent resource of the API, of the form: `projects/x/locations/x` Only global location is supported for Provider resource.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "providers": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Providers$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Providers$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListProvidersResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Providers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Providers$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListProvidersResponse>,
+      callback: BodyResponseCallback<Schema$ListProvidersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Providers$List,
+      callback: BodyResponseCallback<Schema$ListProvidersResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListProvidersResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Providers$List
+        | BodyResponseCallback<Schema$ListProvidersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListProvidersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListProvidersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListProvidersResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Providers$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Providers$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/providers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListProvidersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListProvidersResponse>(parameters);
       }
     }
 
@@ -5407,6 +4801,13 @@ export namespace connectors_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Providers$Get
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the form: `projects/x/locations/x/providers/x` Only global location is supported for Provider resource.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Providers$Getiampolicy
     extends StandardParameters {
     /**
@@ -5417,6 +4818,21 @@ export namespace connectors_v1 {
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Providers$List
+    extends StandardParameters {
+    /**
+     * Page size.
+     */
+    pageSize?: number;
+    /**
+     * Page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent resource of the API, of the form: `projects/x/locations/x` Only global location is supported for Provider resource.
+     */
+    parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Providers$Setiampolicy
     extends StandardParameters {
@@ -5441,5 +4857,646 @@ export namespace connectors_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Providers$Connectors {
+    context: APIRequestContext;
+    versions: Resource$Projects$Locations$Providers$Connectors$Versions;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.versions =
+        new Resource$Projects$Locations$Providers$Connectors$Versions(
+          this.context
+        );
+    }
+
+    /**
+     * Gets details of a single Connector.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await connectors.projects.locations.providers.connectors.get({
+     *     // Required. Resource name of the form: `projects/x/locations/x/providers/x/connectors/x` Only global location is supported for Connector resource.
+     *     name: 'projects/my-project/locations/my-location/providers/my-provider/connectors/my-connector',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "documentationUri": "my_documentationUri",
+     *   //   "externalUri": "my_externalUri",
+     *   //   "labels": {},
+     *   //   "launchStage": "my_launchStage",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "webAssetsLocation": "my_webAssetsLocation"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Providers$Connectors$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Connector>;
+    get(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Connector>,
+      callback: BodyResponseCallback<Schema$Connector>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$Get,
+      callback: BodyResponseCallback<Schema$Connector>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Connector>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Providers$Connectors$Get
+        | BodyResponseCallback<Schema$Connector>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Connector>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Connector>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Connector> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Providers$Connectors$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Providers$Connectors$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Connector>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Connector>(parameters);
+      }
+    }
+
+    /**
+     * Lists Connectors in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await connectors.projects.locations.providers.connectors.list({
+     *     // Page size.
+     *     pageSize: 'placeholder-value',
+     *     // Page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Parent resource of the connectors, of the form: `projects/x/locations/x/providers/x` Only global location is supported for Connector resource.
+     *     parent: 'projects/my-project/locations/my-location/providers/my-provider',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "connectors": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Providers$Connectors$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListConnectorsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListConnectorsResponse>,
+      callback: BodyResponseCallback<Schema$ListConnectorsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$List,
+      callback: BodyResponseCallback<Schema$ListConnectorsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListConnectorsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Providers$Connectors$List
+        | BodyResponseCallback<Schema$ListConnectorsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListConnectorsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListConnectorsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListConnectorsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Providers$Connectors$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Providers$Connectors$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/connectors').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListConnectorsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListConnectorsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Providers$Connectors$Get
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the form: `projects/x/locations/x/providers/x/connectors/x` Only global location is supported for Connector resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Providers$Connectors$List
+    extends StandardParameters {
+    /**
+     * Page size.
+     */
+    pageSize?: number;
+    /**
+     * Page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent resource of the connectors, of the form: `projects/x/locations/x/providers/x` Only global location is supported for Connector resource.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Providers$Connectors$Versions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets details of a single connector version.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await connectors.projects.locations.providers.connectors.versions.get({
+     *       // Required. Resource name of the form: `projects/x/locations/x/providers/x/connectors/x/versions/x` Only global location is supported for ConnectorVersion resource.
+     *       name: 'projects/my-project/locations/my-location/providers/my-provider/connectors/my-connector/versions/my-version',
+     *       // Specifies which fields of the ConnectorVersion are returned in the response. Defaults to `CUSTOMER` view.
+     *       view: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "authConfigTemplates": [],
+     *   //   "configVariableTemplates": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "egressControlConfig": {},
+     *   //   "labels": {},
+     *   //   "launchStage": "my_launchStage",
+     *   //   "name": "my_name",
+     *   //   "releaseVersion": "my_releaseVersion",
+     *   //   "roleGrant": {},
+     *   //   "roleGrants": [],
+     *   //   "supportedRuntimeFeatures": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ConnectorVersion>;
+    get(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ConnectorVersion>,
+      callback: BodyResponseCallback<Schema$ConnectorVersion>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Get,
+      callback: BodyResponseCallback<Schema$ConnectorVersion>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ConnectorVersion>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Providers$Connectors$Versions$Get
+        | BodyResponseCallback<Schema$ConnectorVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ConnectorVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ConnectorVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ConnectorVersion> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Providers$Connectors$Versions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Providers$Connectors$Versions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ConnectorVersion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ConnectorVersion>(parameters);
+      }
+    }
+
+    /**
+     * Lists Connector Versions in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await connectors.projects.locations.providers.connectors.versions.list({
+     *       // Page size.
+     *       pageSize: 'placeholder-value',
+     *       // Page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Parent resource of the connectors, of the form: `projects/x/locations/x/providers/x/connectors/x` Only global location is supported for ConnectorVersion resource.
+     *       parent:
+     *         'projects/my-project/locations/my-location/providers/my-provider/connectors/my-connector',
+     *       // Specifies which fields of the ConnectorVersion are returned in the response. Defaults to `BASIC` view.
+     *       view: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "connectorVersions": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Providers$Connectors$Versions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListConnectorVersionsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListConnectorVersionsResponse>,
+      callback: BodyResponseCallback<Schema$ListConnectorVersionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$List,
+      callback: BodyResponseCallback<Schema$ListConnectorVersionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListConnectorVersionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Providers$Connectors$Versions$List
+        | BodyResponseCallback<Schema$ListConnectorVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListConnectorVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListConnectorVersionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListConnectorVersionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Providers$Connectors$Versions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Providers$Connectors$Versions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/versions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListConnectorVersionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListConnectorVersionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Providers$Connectors$Versions$Get
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the form: `projects/x/locations/x/providers/x/connectors/x/versions/x` Only global location is supported for ConnectorVersion resource.
+     */
+    name?: string;
+    /**
+     * Specifies which fields of the ConnectorVersion are returned in the response. Defaults to `CUSTOMER` view.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Providers$Connectors$Versions$List
+    extends StandardParameters {
+    /**
+     * Page size.
+     */
+    pageSize?: number;
+    /**
+     * Page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent resource of the connectors, of the form: `projects/x/locations/x/providers/x/connectors/x` Only global location is supported for ConnectorVersion resource.
+     */
+    parent?: string;
+    /**
+     * Specifies which fields of the ConnectorVersion are returned in the response. Defaults to `BASIC` view.
+     */
+    view?: string;
   }
 }
