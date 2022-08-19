@@ -207,6 +207,34 @@
             },
             "instances": {
               "methods": {
+                "create": {
+                  "description": "Create an Instance.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances",
+                  "httpMethod": "POST",
+                  "id": "baremetalsolution.projects.locations.instances.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent project and location.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/instances",
+                  "request": {
+                    "$ref": "Instance"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "detachLun": {
                   "description": "Detach LUN from Instance.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:detachLun",
@@ -311,7 +339,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The resource name of this `Instance`. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. Format: `projects/{project}/locations/{location}/instances/{instance}`",
+                      "description": "Immutable. The resource name of this `Instance`. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. Format: `projects/{project}/locations/{location}/instances/{instance}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
                       "required": true,
@@ -654,6 +682,35 @@
                 }
               }
             },
+            "operations": {
+              "methods": {
+                "get": {
+                  "description": "Get details about an operation. This method used only to work around CCFE lack of passthrough LRO support (b/221498758).",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "httpMethod": "GET",
+                  "id": "baremetalsolution.projects.locations.operations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/operations/.*$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "provisioningConfigs": {
               "methods": {
                 "create": {
@@ -908,7 +965,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "The list of fields to update. The only currently supported fields are: `snapshot_auto_delete_behavior` `snapshot_schedule_policy_name` 'labels' 'snapshot_enabled' 'snapshot_reservation_detail.reserved_space_percent'",
+                      "description": "The list of fields to update. The only currently supported fields are: 'labels'",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -1027,7 +1084,7 @@
       }
     }
   },
-  "revision": "20220627",
+  "revision": "20220731",
   "rootUrl": "https://baremetalsolution.googleapis.com/",
   "schemas": {
     "AllowedClient": {
@@ -1064,6 +1121,11 @@
           "description": "The network the access point sits on.",
           "type": "string"
         },
+        "nfsPath": {
+          "description": "Output only. The path to access NFS, in format shareIP:/InstanceID InstanceID is the generated ID instead of customer provided name. example like \"10.0.0.0:/g123456789-nfs001\"",
+          "readOnly": true,
+          "type": "string"
+        },
         "noRootSquash": {
           "description": "Disable root squashing, which is a feature of NFS. Root squash is a special mapping of the remote superuser (root) identity when using identity authentication.",
           "type": "boolean"
@@ -1082,6 +1144,10 @@
         "lun": {
           "description": "Required. Name of the Lun to detach.",
           "type": "string"
+        },
+        "skipReboot": {
+          "description": "If true, performs lun unmapping without instance reboot.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1167,11 +1233,13 @@
           "type": "boolean"
         },
         "id": {
-          "description": "An identifier for the `Instance`, generated by the backend.",
+          "description": "Output only. An identifier for the `Instance`, generated by the backend.",
+          "readOnly": true,
           "type": "string"
         },
         "interactiveSerialConsoleEnabled": {
-          "description": "True if the interactive serial console feature is enabled for the instance, false otherwise. The default value is false.",
+          "description": "Output only. True if the interactive serial console feature is enabled for the instance, false otherwise. The default value is false.",
+          "readOnly": true,
           "type": "boolean"
         },
         "labels": {
@@ -1188,20 +1256,24 @@
           },
           "type": "array"
         },
+        "loginInfo": {
+          "description": "Output only. Text field about info for logging in.",
+          "readOnly": true,
+          "type": "string"
+        },
         "luns": {
-          "description": "List of LUNs associated with this server.",
+          "description": "Immutable. List of LUNs associated with this server.",
           "items": {
             "$ref": "Lun"
           },
           "type": "array"
         },
         "machineType": {
-          "description": "The server type. [Available server types](https://cloud.google.com/bare-metal/docs/bms-planning#server_configurations)",
+          "description": "Immutable. The server type. [Available server types](https://cloud.google.com/bare-metal/docs/bms-planning#server_configurations)",
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name of this `Instance`. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. Format: `projects/{project}/locations/{location}/instances/{instance}`",
-          "readOnly": true,
+          "description": "Immutable. The resource name of this `Instance`. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. Format: `projects/{project}/locations/{location}/instances/{instance}`",
           "type": "string"
         },
         "networkTemplate": {
@@ -1209,10 +1281,11 @@
           "type": "string"
         },
         "networks": {
-          "description": "List of networks associated with this server.",
+          "description": "Output only. List of networks associated with this server.",
           "items": {
             "$ref": "Network"
           },
+          "readOnly": true,
           "type": "array"
         },
         "osImage": {
@@ -1224,7 +1297,7 @@
           "type": "string"
         },
         "state": {
-          "description": "The state of the server.",
+          "description": "Output only. The state of the server.",
           "enum": [
             "STATE_UNSPECIFIED",
             "PROVISIONING",
@@ -1237,6 +1310,7 @@
             "The server is running.",
             "The server has been deleted."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "updateTime": {
@@ -1244,6 +1318,13 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "volumes": {
+          "description": "Input only. List of Volumes to attach to this Instance on creation. This field won't be populated in Get/List responses.",
+          "items": {
+            "$ref": "Volume"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1326,8 +1407,12 @@
           "format": "int32",
           "type": "integer"
         },
+        "gcpService": {
+          "description": "The gcp service of the provisioning quota.",
+          "type": "string"
+        },
         "instanceType": {
-          "description": "Instance type.",
+          "description": "Instance type. Deprecated: use gcp_service.",
           "type": "string"
         },
         "location": {
@@ -1752,12 +1837,14 @@
           "enum": [
             "STATE_UNSPECIFIED",
             "PROVISIONING",
-            "PROVISIONED"
+            "PROVISIONED",
+            "DEPROVISIONING"
           ],
           "enumDescriptions": [
             "The Network is in an unknown state.",
             "The Network is provisioning.",
-            "The Network has been provisioned."
+            "The Network has been provisioned.",
+            "The Network is being deprovisioned."
           ],
           "type": "string"
         },
@@ -1991,6 +2078,11 @@
           },
           "type": "array"
         },
+        "id": {
+          "description": "Output only. An identifier for the NFS share, generated by the backend. This is the same value as nfs_share_id and will replace it in the future.",
+          "readOnly": true,
+          "type": "string"
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -2004,7 +2096,7 @@
           "type": "string"
         },
         "nfsShareId": {
-          "description": "Output only. An identifier for the NFS share, generated by the backend.",
+          "description": "Output only. An identifier for the NFS share, generated by the backend. This field will be deprecated in the future, use `id` instead.",
           "readOnly": true,
           "type": "string"
         },
@@ -2517,6 +2609,11 @@
           "format": "int64",
           "type": "string"
         },
+        "bootVolume": {
+          "description": "Output only. Whether this volume is a boot volume. A boot volume is one which contains a boot LUN.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "currentSizeGib": {
           "description": "The current size of this storage volume, in GiB, including space reserved for snapshots. This size might be different than the requested size if the storage volume has been configured with auto grow or auto shrink.",
           "format": "int64",
@@ -2555,6 +2652,21 @@
         },
         "pod": {
           "description": "Immutable. Pod name.",
+          "type": "string"
+        },
+        "protocol": {
+          "description": "Output only. Storage protocol for the Volume.",
+          "enum": [
+            "PROTOCOL_UNSPECIFIED",
+            "FIBRE_CHANNEL",
+            "NFS"
+          ],
+          "enumDescriptions": [
+            "Value is not specified.",
+            "Fibre Channel protocol.",
+            "NFS protocol means Volume is a NFS Share volume. Such volumes cannot be manipulated via Volumes API."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "remainingSpaceGib": {

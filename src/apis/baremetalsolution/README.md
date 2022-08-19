@@ -2,7 +2,16 @@
 
 # baremetalsolution
 
-> Bare Metal Solution provides hardware to run specialized workloads with low latency on Google Cloud.
+> Provides ways to manage Bare Metal Solution hardware installed in a regional extension located near a Google Cloud data center.
+
+## Support status
+**Note**: Google provides multiple libraries for this service. This library is in
+maintenance mode, and will continue to be made available for users who have
+existing applications. If you're building a new application, or modernizing a
+legacy application, please use [@google-cloud/bare-metal-solution](https://www.npmjs.com/package/@google-cloud/bare-metal-solution) instead.
+The [@google-cloud/bare-metal-solution](https://www.npmjs.com/package/@google-cloud/bare-metal-solution) library is faster, easier to use, and better maintained.
+
+To learn more, see [Client Libraries Explained](https://cloud.google.com/apis/docs/client-libraries-explained).
 
 ## Installation
 
