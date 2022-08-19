@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v4.1.0...firebase-v4.2.0) (2022-08-19)
+
+
+### Features
+
+* **firebase:** update the API ([2278ecf](https://github.com/googleapis/google-api-nodejs-client/commit/2278ecf8db688fea95536322f6ad79b055744b75))
+
 ## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v4.0.1...firebase-v4.1.0) (2022-07-04)
 
 

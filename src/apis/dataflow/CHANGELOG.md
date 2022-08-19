@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v4.0.1...dataflow-v4.1.0) (2022-08-19)
+
+
+### Features
+
+* **dataflow:** update the API ([e687662](https://github.com/googleapis/google-api-nodejs-client/commit/e6876627afbac1d7a81bb5e51294e61a8711f45f))
+
 ## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v4.0.0...dataflow-v4.0.1) (2022-06-21)
 
 

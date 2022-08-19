@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/iam-v3.0.1...iam-v3.0.2) (2022-08-19)
+
+
+### Bug Fixes
+
+* **iam:** update the API ([a511a30](https://github.com/googleapis/google-api-nodejs-client/commit/a511a303187494b327ae4a46b5910870eb634e31))
+
 ## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/iam-v3.0.0...iam-v3.0.1) (2022-06-21)
 
 

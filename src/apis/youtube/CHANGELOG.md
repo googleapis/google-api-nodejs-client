@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v6.0.0...youtube-v7.0.0) (2022-08-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **youtube:** This release has breaking changes.
+
+### Features
+
+* **youtube:** update the API ([959fbf0](https://github.com/googleapis/google-api-nodejs-client/commit/959fbf078adc02bc1bb704b1c1670fde75b52e58))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v5.0.0...youtube-v6.0.0) (2022-07-04)
 
 

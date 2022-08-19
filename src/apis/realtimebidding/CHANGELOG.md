@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/realtimebidding-v3.0.1...realtimebidding-v3.0.2) (2022-08-19)
+
+
+### Bug Fixes
+
+* **realtimebidding:** update the API ([62ef22a](https://github.com/googleapis/google-api-nodejs-client/commit/62ef22ad9be486a4887df49dee8a590dbad597dd))
+
 ## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/realtimebidding-v3.0.0...realtimebidding-v3.0.1) (2022-06-21)
 
 

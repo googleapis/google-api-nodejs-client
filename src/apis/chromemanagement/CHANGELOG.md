@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v2.1.0...chromemanagement-v2.2.0) (2022-08-19)
+
+
+### Features
+
+* **chromemanagement:** update the API ([dd36abc](https://github.com/googleapis/google-api-nodejs-client/commit/dd36abc363e25821bd189e2eec7398c3d07d58c5))
+
 ## [2.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v2.0.1...chromemanagement-v2.1.0) (2022-07-04)
 
 
