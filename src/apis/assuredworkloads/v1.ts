@@ -602,7 +602,11 @@ export namespace assuredworkloads_v1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadComplianceStatus {
     /**
-     * Optional. Count of active Violations in the Workload.
+     * Count of active Violations which are acknowledged in the Workload.
+     */
+    acknowledgedViolationCount?: number | null;
+    /**
+     * Count of active Violations which haven't been acknowledged.
      */
     activeViolationCount?: number | null;
   }
