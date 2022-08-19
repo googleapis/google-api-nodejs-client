@@ -2612,6 +2612,11 @@
                 "parent"
               ],
               "parameters": {
+                "filter": {
+                  "description": "Optional. Filters to restrict results to specific answer records. Marked deprecated as it hasn't been, and isn't currently, supported. For more information about filtering, see [API Filtering](https://aip.dev/160).",
+                  "location": "query",
+                  "type": "string"
+                },
                 "pageSize": {
                   "description": "Optional. The maximum number of records to return in a single page. The server may return fewer records than this. If unspecified, we use 10. The maximum is 100.",
                   "format": "int32",
@@ -6303,6 +6308,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "Optional. Filters to restrict results to specific answer records. Marked deprecated as it hasn't been, and isn't currently, supported. For more information about filtering, see [API Filtering](https://aip.dev/160).",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "Optional. The maximum number of records to return in a single page. The server may return fewer records than this. If unspecified, we use 10. The maximum is 100.",
                       "format": "int32",
@@ -8067,7 +8077,7 @@
       }
     }
   },
-  "revision": "20220616",
+  "revision": "20220817",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -15512,7 +15522,7 @@
         },
         "text": {
           "$ref": "GoogleCloudDialogflowV2TextInput",
-          "description": "The natural language text to be processed."
+          "description": "The natural language text to be processed. Text length must not exceed 256 character for virtual agent interactions."
         }
       },
       "type": "object"
@@ -16201,7 +16211,7 @@
           "type": "string"
         },
         "text": {
-          "description": "Required. The UTF-8 encoded natural language text to be processed. Text length must not exceed 256 characters.",
+          "description": "Required. The UTF-8 encoded natural language text to be processed. Text length must not exceed 256 characters for virtual agent interactions.",
           "type": "string"
         }
       },
