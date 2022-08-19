@@ -964,6 +964,10 @@ export namespace serviceconsumermanagement_v1 {
    */
   export interface Schema$OAuthRequirements {
     /**
+     * UNIMPLEMENTED: If enabled, ESF will allow OAuth credentials with any scope, more details in http://go/esf-oauth-any-scope. WARNING: Enabling this option will bring security risks. Customers enabling this feature accidentally may have the risk of losing authentication enforcement. Please reach out to api-auth@ and esf-team@ for approval and allowlisting before you enable this option.
+     */
+    allowAnyScope?: boolean | null;
+    /**
      * The list of publicly documented OAuth scopes that are allowed access. An OAuth token containing any of these scopes will be accepted. Example: canonical_scopes: https://www.googleapis.com/auth/calendar, https://www.googleapis.com/auth/calendar.read
      */
     canonicalScopes?: string | null;
