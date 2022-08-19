@@ -371,7 +371,7 @@
               ]
             },
             "retrieveLegacySecretKey": {
-              "description": "Returns the secret key related to the specified public key. You should use the legacy secret key only if you are integrating with a 3rd party using the legacy reCAPTCHA instead of reCAPTCHA Enterprise.",
+              "description": "Returns the secret key related to the specified public key. You must use the legacy secret key only in a 3rd party integration with legacy reCAPTCHA.",
               "flatPath": "v1/projects/{projectsId}/keys/{keysId}:retrieveLegacySecretKey",
               "httpMethod": "GET",
               "id": "recaptchaenterprise.projects.keys.retrieveLegacySecretKey",
@@ -380,7 +380,7 @@
               ],
               "parameters": {
                 "key": {
-                  "description": "Required. The public key name linked to the requested secret key , in the format \"projects/{project}/keys/{key}\".",
+                  "description": "Required. The public key name linked to the requested secret key in the format \"projects/{project}/keys/{key}\".",
                   "location": "path",
                   "pattern": "^projects/[^/]+/keys/[^/]+$",
                   "required": true,
@@ -409,7 +409,7 @@
               ],
               "parameters": {
                 "project": {
-                  "description": "Required. The name of the project to search related account group memberships from, in the format \"projects/{project}\".",
+                  "description": "Required. The name of the project to search related account group memberships from. Specify the project name in the following format: \"projects/{project}\".",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -441,7 +441,7 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "Optional. The maximum number of groups to return. The service may return fewer than this value. If unspecified, at most 50 groups will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                  "description": "Optional. The maximum number of groups to return. The service might return fewer than this value. If unspecified, at most 50 groups are returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -472,7 +472,7 @@
             "memberships": {
               "methods": {
                 "list": {
-                  "description": "Get the memberships in a group of related accounts.",
+                  "description": "Get memberships in a group of related accounts.",
                   "flatPath": "v1/projects/{projectsId}/relatedaccountgroups/{relatedaccountgroupsId}/memberships",
                   "httpMethod": "GET",
                   "id": "recaptchaenterprise.projects.relatedaccountgroups.memberships.list",
@@ -481,7 +481,7 @@
                   ],
                   "parameters": {
                     "pageSize": {
-                      "description": "Optional. The maximum number of accounts to return. The service may return fewer than this value. If unspecified, at most 50 accounts will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "description": "Optional. The maximum number of accounts to return. The service might return fewer than this value. If unspecified, at most 50 accounts are returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -514,11 +514,11 @@
       }
     }
   },
-  "revision": "20220625",
+  "revision": "20220812",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
-      "description": "Account Defender risk assessment.",
+      "description": "Account defender risk assessment.",
       "id": "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment",
       "properties": {
         "labels": {
@@ -534,9 +534,9 @@
             "enumDescriptions": [
               "Default unspecified type.",
               "The request matches a known good profile for the user.",
-              "The request is potentially a suspicious login event and should be further verified either via multi-factor authentication or another system.",
-              "The request matched a profile that previously had suspicious account creation behavior. This could mean this is a fake account.",
-              "The account in the request has a high number of related accounts. It does not necessarily imply that the account is bad but could require investigating."
+              "The request is potentially a suspicious login event and must be further verified either through multi-factor authentication or another system.",
+              "The request matched a profile that previously had suspicious account creation behavior. This can mean that this is a fake account.",
+              "The account in the request has a high number of related accounts. It does not necessarily imply that the account is bad but can require further investigation."
             ],
             "type": "string"
           },
@@ -586,7 +586,7 @@
           "type": "string"
         },
         "hashedAccountId": {
-          "description": "Optional. Optional unique stable hashed user identifier to apply to the assessment. This is an alternative to setting the hashed_account_id in CreateAssessment, for example when the account identifier is not yet known in the initial request. It is recommended that the identifier is hashed using hmac-sha256 with stable secret.",
+          "description": "Optional. Unique stable hashed user identifier to apply to the assessment. This is an alternative to setting the hashed_account_id in CreateAssessment, for example when the account identifier is not yet known in the initial request. It is recommended that the identifier is hashed using hmac-sha256 with stable secret.",
           "format": "byte",
           "type": "string"
         },
@@ -598,6 +598,10 @@
               "CHARGEBACK",
               "CHARGEBACK_FRAUD",
               "CHARGEBACK_DISPUTE",
+              "REFUND",
+              "REFUND_FRAUD",
+              "TRANSACTION_ACCEPTED",
+              "TRANSACTION_DECLINED",
               "PAYMENT_HEURISTICS",
               "INITIATED_TWO_FACTOR",
               "PASSED_TWO_FACTOR",
@@ -607,9 +611,13 @@
             ],
             "enumDescriptions": [
               "Default unspecified reason.",
-              "Indicates a chargeback issued for the transaction with no other details. When possible, specify the type by using CHARGEBACK_FRAUD or CHARGEBACK_DISPUTE instead.",
-              "Indicates a chargeback related to an alleged unauthorized transaction from the cardholder's perspective (for example, the card number was stolen).",
-              "Indicates a chargeback related to the cardholder having provided their card details but allegedly not being satisfied with the purchase (for example, misrepresentation, attempted cancellation).",
+              "Indicates that the transaction had a chargeback issued with no other details. When possible, specify the type by using CHARGEBACK_FRAUD or CHARGEBACK_DISPUTE instead.",
+              "Indicates that the transaction had a chargeback issued related to an alleged unauthorized transaction from the cardholder's perspective (for example, the card number was stolen).",
+              "Indicates that the transaction had a chargeback issued related to the cardholder having provided their card details but allegedly not being satisfied with the purchase (for example, misrepresentation, attempted cancellation).",
+              "Indicates that the completed payment transaction was refunded by the seller.",
+              "Indicates that the completed payment transaction was determined to be fraudulent by the seller, and was cancelled and refunded as a result.",
+              "Indicates that the payment transaction was accepted, and the user was charged.",
+              "Indicates that the payment transaction was declined, for example due to invalid card details.",
               "Indicates the transaction associated with the assessment is suspected of being fraudulent based on the payment method, billing details, shipping address or other transaction information.",
               "Indicates that the user was served a 2FA challenge. An old assessment with `ENUM_VALUES.INITIATED_TWO_FACTOR` reason that has not been overwritten with `PASSED_TWO_FACTOR` is treated as an abandoned 2FA flow. This is equivalent to `FAILED_TWO_FACTOR`.",
               "Indicates that the user passed a 2FA challenge.",
@@ -636,7 +644,7 @@
       "properties": {
         "accountDefenderAssessment": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment",
-          "description": "Assessment returned by Account Defender when a hashed_account_id is provided."
+          "description": "Assessment returned by account defender when a hashed_account_id is provided."
         },
         "event": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1Event",
@@ -649,7 +657,7 @@
         },
         "privatePasswordLeakVerification": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification",
-          "description": "The private password leak verification field contains the parameters used to check for leaks privately without sharing user credentials."
+          "description": "The private password leak verification field contains the parameters that are used to to check for leaks privately without sharing user credentials."
         },
         "riskAnalysis": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1RiskAnalysis",
@@ -699,7 +707,7 @@
           "type": "string"
         },
         "hashedAccountId": {
-          "description": "Optional. Optional unique stable hashed user identifier for the request. The identifier should ideally be hashed using sha256 with stable secret.",
+          "description": "Optional. Unique stable hashed user identifier for the request. The identifier must be hashed using hmac-sha256 with stable secret.",
           "format": "byte",
           "type": "string"
         },
@@ -883,7 +891,7 @@
       "id": "GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification",
       "properties": {
         "encryptedLeakMatchPrefixes": {
-          "description": "Output only. List of prefixes of the encrypted potential password leaks that matched the given parameters. They should be compared with the client-side decryption prefix of `reencrypted_user_credentials_hash`",
+          "description": "Output only. List of prefixes of the encrypted potential password leaks that matched the given parameters. They must be compared with the client-side decryption prefix of `reencrypted_user_credentials_hash`",
           "items": {
             "format": "byte",
             "type": "string"
@@ -902,7 +910,7 @@
           "type": "string"
         },
         "reencryptedUserCredentialsHash": {
-          "description": "Output only. Corresponds to the re-encryption of the `encrypted_user_credentials_hash` field. Used to match potential password leaks within `encrypted_leak_match_prefixes`.",
+          "description": "Output only. Corresponds to the re-encryption of the `encrypted_user_credentials_hash` field. It is used to match potential password leaks within `encrypted_leak_match_prefixes`.",
           "format": "byte",
           "readOnly": true,
           "type": "string"
@@ -926,7 +934,7 @@
       "id": "GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupMembership",
       "properties": {
         "hashedAccountId": {
-          "description": "The unique stable hashed user identifier of the member. The identifier corresponds to a `hashed_account_id` provided in a previous CreateAssessment or AnnotateAssessment call.",
+          "description": "The unique stable hashed user identifier of the member. The identifier corresponds to a `hashed_account_id` provided in a previous `CreateAssessment` or `AnnotateAssessment` call.",
           "format": "byte",
           "type": "string"
         },
@@ -938,7 +946,7 @@
       "type": "object"
     },
     "GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse": {
-      "description": "Secret key used in legacy reCAPTCHA only. Should be used when integrating with a 3rd party which is still using legacy reCAPTCHA.",
+      "description": "Secret key is used only in legacy reCAPTCHA. It must be used in a 3rd party integration with legacy reCAPTCHA.",
       "id": "GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse",
       "properties": {
         "legacySecretKey": {
@@ -1021,12 +1029,12 @@
       "id": "GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsRequest",
       "properties": {
         "hashedAccountId": {
-          "description": "Optional. The unique stable hashed user identifier we should search connections to. The identifier should correspond to a `hashed_account_id` provided in a previous CreateAssessment or AnnotateAssessment call.",
+          "description": "Optional. The unique stable hashed user identifier we should search connections to. The identifier should correspond to a `hashed_account_id` provided in a previous `CreateAssessment` or `AnnotateAssessment` call.",
           "format": "byte",
           "type": "string"
         },
         "pageSize": {
-          "description": "Optional. The maximum number of groups to return. The service may return fewer than this value. If unspecified, at most 50 groups will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+          "description": "Optional. The maximum number of groups to return. The service might return fewer than this value. If unspecified, at most 50 groups are returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
           "format": "int32",
           "type": "integer"
         },
