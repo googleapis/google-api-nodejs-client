@@ -1136,6 +1136,10 @@ export namespace notebooks_v1 {
      */
     customGpuDriverPath?: string | null;
     /**
+     * Bool indicating whether JupyterLab terminal will be available or not. Default: False
+     */
+    disableTerminal?: boolean | null;
+    /**
      * Verifies core internal services are running. Default: True
      */
     enableHealthMonitoring?: boolean | null;
@@ -1544,7 +1548,7 @@ export namespace notebooks_v1 {
      */
     metadata?: {[key: string]: string} | null;
     /**
-     * Optional. The Compute Engine network to be used for machine communications. Cannot be specified with subnetwork. If neither `network` nor `subnet` is specified, the "default" network of the project is used, if it exists. A full URL or partial URI. Examples: * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default` * `projects/[project_id]/regions/global/default` Runtimes are managed resources inside Google Infrastructure. Runtimes support the following network configurations: * Google Managed Network (Network & subnet are empty) * Consumer Project VPC (network & subnet are required). Requires configuring Private Service Access. * Shared VPC (network & subnet are required). Requires configuring Private Service Access.
+     * Optional. The Compute Engine network to be used for machine communications. Cannot be specified with subnetwork. If neither `network` nor `subnet` is specified, the "default" network of the project is used, if it exists. A full URL or partial URI. Examples: * `https://www.googleapis.com/compute/v1/projects/[project_id]/global/networks/default` * `projects/[project_id]/global/networks/default` Runtimes are managed resources inside Google Infrastructure. Runtimes support the following network configurations: * Google Managed Network (Network & subnet are empty) * Consumer Project VPC (network & subnet are required). Requires configuring Private Service Access. * Shared VPC (network & subnet are required). Requires configuring Private Service Access.
      */
     network?: string | null;
     /**
@@ -8011,7 +8015,7 @@ export namespace notebooks_v1 {
      *     name: 'projects/my-project/locations/my-location/runtimes/my-runtime',
      *     // Idempotent request UUID.
      *     requestId: 'placeholder-value',
-     *     // Required. Specifies the path, relative to `Runtime`, of the field to update. For example, to change the software configuration kernels, the `update_mask` parameter would be specified as `software_config.kernels`, and the `PATCH` request body would specify the new value, as follows: { "software_config":{ "kernels": [{ 'repository': 'gcr.io/deeplearning-platform-release/pytorch-gpu', 'tag': 'latest' \}], \} \} Currently, only the following fields can be updated: - software_config.kernels - software_config.post_startup_script - software_config.custom_gpu_driver_path - software_config.idle_shutdown - software_config.idle_shutdown_timeout
+     *     // Required. Specifies the path, relative to `Runtime`, of the field to update. For example, to change the software configuration kernels, the `update_mask` parameter would be specified as `software_config.kernels`, and the `PATCH` request body would specify the new value, as follows: { "software_config":{ "kernels": [{ 'repository': 'gcr.io/deeplearning-platform-release/pytorch-gpu', 'tag': 'latest' \}], \} \} Currently, only the following fields can be updated: - software_config.kernels - software_config.post_startup_script - software_config.custom_gpu_driver_path - software_config.idle_shutdown - software_config.idle_shutdown_timeout - software_config.disable_terminal
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -9335,7 +9339,7 @@ export namespace notebooks_v1 {
      */
     requestId?: string;
     /**
-     * Required. Specifies the path, relative to `Runtime`, of the field to update. For example, to change the software configuration kernels, the `update_mask` parameter would be specified as `software_config.kernels`, and the `PATCH` request body would specify the new value, as follows: { "software_config":{ "kernels": [{ 'repository': 'gcr.io/deeplearning-platform-release/pytorch-gpu', 'tag': 'latest' \}], \} \} Currently, only the following fields can be updated: - software_config.kernels - software_config.post_startup_script - software_config.custom_gpu_driver_path - software_config.idle_shutdown - software_config.idle_shutdown_timeout
+     * Required. Specifies the path, relative to `Runtime`, of the field to update. For example, to change the software configuration kernels, the `update_mask` parameter would be specified as `software_config.kernels`, and the `PATCH` request body would specify the new value, as follows: { "software_config":{ "kernels": [{ 'repository': 'gcr.io/deeplearning-platform-release/pytorch-gpu', 'tag': 'latest' \}], \} \} Currently, only the following fields can be updated: - software_config.kernels - software_config.post_startup_script - software_config.custom_gpu_driver_path - software_config.idle_shutdown - software_config.idle_shutdown_timeout - software_config.disable_terminal
      */
     updateMask?: string;
 
