@@ -133,6 +133,10 @@ export namespace documentai_v1beta2 {
      * The list of response details of each document.
      */
     individualBatchDeleteStatuses?: Schema$GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadataIndividualBatchDeleteStatus[];
+    /**
+     * Total number of documents deleting from dataset.
+     */
+    totalDocumentCount?: number | null;
   }
   /**
    * The status of each individual document in the batch delete process.
@@ -143,7 +147,7 @@ export namespace documentai_v1beta2 {
      */
     documentId?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentId;
     /**
-     * The status of deleting the document.
+     * The status of deleting the document in storage.
      */
     status?: Schema$GoogleRpcStatus;
   }
@@ -363,9 +367,30 @@ export namespace documentai_v1beta2 {
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
     /**
+     * Validation statuses of the batch documents import config.
+     */
+    importConfigValidationResults?: Schema$GoogleCloudDocumentaiUiv1beta3ImportDocumentsMetadataImportConfigValidationResult[];
+    /**
      * The list of response details of each document.
      */
     individualImportStatuses?: Schema$GoogleCloudDocumentaiUiv1beta3ImportDocumentsMetadataIndividualImportStatus[];
+    /**
+     * Total number of the documents that are qualified for importing.
+     */
+    totalDocumentCount?: number | null;
+  }
+  /**
+   * The validation status of each import config. Status is ok if the configuration is valid and the specified documents are valid for importing. Otherwise status will be set as errors.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3ImportDocumentsMetadataImportConfigValidationResult {
+    /**
+     * The source Cloud Storage URI specified in the import config.
+     */
+    inputGcsSource?: string | null;
+    /**
+     * The validation status of import config.
+     */
+    status?: Schema$GoogleRpcStatus;
   }
   /**
    * The status of each individual document in the import process.
@@ -397,9 +422,47 @@ export namespace documentai_v1beta2 {
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
     /**
+     * The list of dataset resync statuses. Not checked when `dataset_documents` is specified in ResyncRequest.
+     */
+    datasetResyncStatuses?: Schema$GoogleCloudDocumentaiUiv1beta3ResyncDatasetMetadataDatasetResyncStatus[];
+    /**
+     * The list of document resync statuses. The same document could have multiple `individual_document_resync_statuses` if it has multiple inconsistencies.
+     */
+    individualDocumentResyncStatuses?: Schema$GoogleCloudDocumentaiUiv1beta3ResyncDatasetMetadataIndividualDocumentResyncStatus[];
+    /**
      * Returns the newly added document Cloud Storage prefix if the documents are founded in Cloud Storage while not in Document Service storage.
      */
     newlyAddedDocuments?: Schema$GoogleCloudDocumentaiUiv1beta3ResyncDatasetMetadataUpdatedDocument[];
+  }
+  /**
+   * Resync status against inconsistency types on the dataset level.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3ResyncDatasetMetadataDatasetResyncStatus {
+    /**
+     * The type of the inconsistency of the dataset.
+     */
+    datasetInconsistencyType?: string | null;
+    /**
+     * The status of resyncing the dataset with regards to the detected inconsistency. Empty if `validate_only` is true in the request.
+     */
+    status?: Schema$GoogleRpcStatus;
+  }
+  /**
+   * Resync status for each document per inconsistency type.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3ResyncDatasetMetadataIndividualDocumentResyncStatus {
+    /**
+     * The document identifier.
+     */
+    documentId?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentId;
+    /**
+     * The type of document inconsistency.
+     */
+    documentInconsistencyType?: string | null;
+    /**
+     * The status of resyncing the document with regards to the detected inconsistency. Empty if `validate_only` is true in the request.
+     */
+    status?: Schema$GoogleRpcStatus;
   }
   /**
    * The proto for updated document in resync pipeline.
@@ -612,7 +675,7 @@ export namespace documentai_v1beta2 {
      */
     outputGcsDestination?: string | null;
     /**
-     * The status of the processing of the document.
+     * The status processing the document.
      */
     status?: Schema$GoogleRpcStatus;
   }
@@ -620,6 +683,23 @@ export namespace documentai_v1beta2 {
    * Response message for batch process document method.
    */
   export interface Schema$GoogleCloudDocumentaiV1BatchProcessResponse {}
+  /**
+   * Encodes the detailed information of a barcode.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1Barcode {
+    /**
+     * Format of a barcode. The supported formats are: CODE_128: Code 128 type. CODE_39: Code 39 type. CODE_93: Code 93 type. CODABAR: Codabar type. DATA_MATRIX: 2D Data Matrix type. ITF: ITF type. EAN_13: EAN-13 type. EAN_8: EAN-8 type. QR_CODE: 2D QR code type. UPC_A: UPC-A type. UPC_E: UPC-E type. PDF417: PDF417 type. AZTEC: 2D Aztec code type. DATABAR: GS1 DataBar code type.
+     */
+    format?: string | null;
+    /**
+     * Raw value encoded in the barcode. For example, 'MEBKM:TITLE:Google;URL:https://www.google.com;;'.
+     */
+    rawValue?: string | null;
+    /**
+     * Value format describes the format of the value that a barcode encodes. The supported formats are: CONTACT_INFO: Contact information. EMAIL: Email address. ISBN: ISBN identifier. PHONE: Phone number. PRODUCT: Product. SMS: SMS message. TEXT: Text string. URL: URL address. WIFI: Wifi information. GEO: Geo-localization. CALENDAR_EVENT: Calendar event. DRIVER_LICENSE: Driver's license.
+     */
+    valueFormat?: string | null;
+  }
   /**
    * Response to an batch document processing request. This is returned in the LRO Operation after the operation is complete.
    */
@@ -716,10 +796,6 @@ export namespace documentai_v1beta2 {
      */
     mentionText?: string | null;
     /**
-     * Optional. This attribute indicates that the processing didn't actually identify this entity, but a confidence score was assigned that represent the potential that this could be a false negative. A non-present entity should have an empty mention_text and text_anchor.
-     */
-    nonPresent?: boolean | null;
-    /**
      * Optional. Normalized entity value. Absent if the extracted value could not be converted or the type (e.g. address) is not supported for certain parsers. This field is also only populated for certain supported document types.
      */
     normalizedValue?: Schema$GoogleCloudDocumentaiV1beta1DocumentEntityNormalizedValue;
@@ -810,6 +886,10 @@ export namespace documentai_v1beta2 {
      * A list of visually detected text blocks on the page. A block has a set of lines (collected into paragraphs) that have a common line-spacing and orientation.
      */
     blocks?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageBlock[];
+    /**
+     * A list of detected barcodes.
+     */
+    detectedBarcodes?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageDetectedBarcode[];
     /**
      * A list of detected languages together with confidence.
      */
@@ -917,6 +997,19 @@ export namespace documentai_v1beta2 {
      * The history of this annotation.
      */
     provenance?: Schema$GoogleCloudDocumentaiV1beta1DocumentProvenance;
+  }
+  /**
+   * A detected barcode.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentPageDetectedBarcode {
+    /**
+     * Detailed barcode information of the DetectedBarcode.
+     */
+    barcode?: Schema$GoogleCloudDocumentaiV1beta1Barcode;
+    /**
+     * Layout for DetectedBarcode.
+     */
+    layout?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageLayout;
   }
   /**
    * Detected language for a structural component.
@@ -1491,6 +1584,23 @@ export namespace documentai_v1beta2 {
     model?: string | null;
   }
   /**
+   * Encodes the detailed information of a barcode.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2Barcode {
+    /**
+     * Format of a barcode. The supported formats are: CODE_128: Code 128 type. CODE_39: Code 39 type. CODE_93: Code 93 type. CODABAR: Codabar type. DATA_MATRIX: 2D Data Matrix type. ITF: ITF type. EAN_13: EAN-13 type. EAN_8: EAN-8 type. QR_CODE: 2D QR code type. UPC_A: UPC-A type. UPC_E: UPC-E type. PDF417: PDF417 type. AZTEC: 2D Aztec code type. DATABAR: GS1 DataBar code type.
+     */
+    format?: string | null;
+    /**
+     * Raw value encoded in the barcode. For example, 'MEBKM:TITLE:Google;URL:https://www.google.com;;'.
+     */
+    rawValue?: string | null;
+    /**
+     * Value format describes the format of the value that a barcode encodes. The supported formats are: CONTACT_INFO: Contact information. EMAIL: Email address. ISBN: ISBN identifier. PHONE: Phone number. PRODUCT: Product. SMS: SMS message. TEXT: Text string. URL: URL address. WIFI: Wifi information. GEO: Geo-localization. CALENDAR_EVENT: Calendar event. DRIVER_LICENSE: Driver's license.
+     */
+    valueFormat?: string | null;
+  }
+  /**
    * Request to batch process documents as an asynchronous operation. The output is written to Cloud Storage as JSON in the [Document] format.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2BatchProcessDocumentsRequest {
@@ -1598,10 +1708,6 @@ export namespace documentai_v1beta2 {
      * Optional. Text value in the document e.g. `1600 Amphitheatre Pkwy`. If the entity is not present in the document, this field will be empty.
      */
     mentionText?: string | null;
-    /**
-     * Optional. This attribute indicates that the processing didn't actually identify this entity, but a confidence score was assigned that represent the potential that this could be a false negative. A non-present entity should have an empty mention_text and text_anchor.
-     */
-    nonPresent?: boolean | null;
     /**
      * Optional. Normalized entity value. Absent if the extracted value could not be converted or the type (e.g. address) is not supported for certain parsers. This field is also only populated for certain supported document types.
      */
@@ -1711,6 +1817,10 @@ export namespace documentai_v1beta2 {
      */
     blocks?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageBlock[];
     /**
+     * A list of detected barcodes.
+     */
+    detectedBarcodes?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageDetectedBarcode[];
+    /**
      * A list of detected languages together with confidence.
      */
     detectedLanguages?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage[];
@@ -1817,6 +1927,19 @@ export namespace documentai_v1beta2 {
      * The history of this annotation.
      */
     provenance?: Schema$GoogleCloudDocumentaiV1beta2DocumentProvenance;
+  }
+  /**
+   * A detected barcode.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentPageDetectedBarcode {
+    /**
+     * Detailed barcode information of the DetectedBarcode.
+     */
+    barcode?: Schema$GoogleCloudDocumentaiV1beta2Barcode;
+    /**
+     * Layout for DetectedBarcode.
+     */
+    layout?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageLayout;
   }
   /**
    * Detected language for a structural component.
@@ -2558,7 +2681,7 @@ export namespace documentai_v1beta2 {
      */
     outputGcsDestination?: string | null;
     /**
-     * The status of the processing of the document.
+     * The status processing the document.
      */
     status?: Schema$GoogleRpcStatus;
   }
@@ -2977,31 +3100,31 @@ export namespace documentai_v1beta2 {
     year?: number | null;
   }
   /**
-   * Represents civil time (or occasionally physical time). This type can represent a civil time in one of a few possible ways: * When utc_offset is set and time_zone is unset: a civil time on a calendar day with a particular offset from UTC. * When time_zone is set and utc_offset is unset: a civil time on a calendar day in a particular time zone. * When neither time_zone nor utc_offset is set: a civil time on a calendar day in local time. The date is relative to the Proleptic Gregorian Calendar. If year is 0, the DateTime is considered not to have a specific year. month and day must have valid, non-zero values. This type may also be used to represent a physical time if all the date and time fields are set and either case of the `time_offset` oneof is set. Consider using `Timestamp` message for physical time instead. If your use case also would like to store the user's timezone, that can be done in another field. This type is more flexible than some applications may want. Make sure to document and validate your application's limitations.
+   * Represents civil time (or occasionally physical time). This type can represent a civil time in one of a few possible ways: * When utc_offset is set and time_zone is unset: a civil time on a calendar day with a particular offset from UTC. * When time_zone is set and utc_offset is unset: a civil time on a calendar day in a particular time zone. * When neither time_zone nor utc_offset is set: a civil time on a calendar day in local time. The date is relative to the Proleptic Gregorian Calendar. If year, month, or day are 0, the DateTime is considered not to have a specific year, month, or day respectively. This type may also be used to represent a physical time if all the date and time fields are set and either case of the `time_offset` oneof is set. Consider using `Timestamp` message for physical time instead. If your use case also would like to store the user's timezone, that can be done in another field. This type is more flexible than some applications may want. Make sure to document and validate your application's limitations.
    */
   export interface Schema$GoogleTypeDateTime {
     /**
-     * Required. Day of month. Must be from 1 to 31 and valid for the year and month.
+     * Optional. Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a datetime without a day.
      */
     day?: number | null;
     /**
-     * Required. Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     * Optional. Hours of day in 24 hour format. Should be from 0 to 23, defaults to 0 (midnight). An API may choose to allow the value "24:00:00" for scenarios like business closing time.
      */
     hours?: number | null;
     /**
-     * Required. Minutes of hour of day. Must be from 0 to 59.
+     * Optional. Minutes of hour of day. Must be from 0 to 59, defaults to 0.
      */
     minutes?: number | null;
     /**
-     * Required. Month of year. Must be from 1 to 12.
+     * Optional. Month of year. Must be from 1 to 12, or 0 if specifying a datetime without a month.
      */
     month?: number | null;
     /**
-     * Required. Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     * Optional. Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999, defaults to 0.
      */
     nanos?: number | null;
     /**
-     * Required. Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     * Optional. Seconds of minutes of the time. Must normally be from 0 to 59, defaults to 0. An API may allow the value 60 if it allows leap-seconds.
      */
     seconds?: number | null;
     /**
@@ -3035,7 +3158,7 @@ export namespace documentai_v1beta2 {
     units?: string | null;
   }
   /**
-   * Represents a postal address, e.g. for postal delivery or payments addresses. Given a postal address, a postal service can deliver items to a premise, P.O. Box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage an address would be created via user input or from importing existing data, depending on the type of process. Advice on address input / editing: - Use an i18n-ready address widget such as https://github.com/google/libaddressinput) - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, please see: https://support.google.com/business/answer/6397478
+   * Represents a postal address, e.g. for postal delivery or payments addresses. Given a postal address, a postal service can deliver items to a premise, P.O. Box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage an address would be created via user input or from importing existing data, depending on the type of process. Advice on address input / editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput) - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, please see: https://support.google.com/business/answer/6397478
    */
   export interface Schema$GoogleTypePostalAddress {
     /**
