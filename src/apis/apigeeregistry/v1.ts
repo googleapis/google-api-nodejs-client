@@ -1292,6 +1292,8 @@ export namespace apigeeregistry_v1 {
      *
      *   // Do the magic
      *   const res = await apigeeregistry.projects.locations.apis.delete({
+     *     // If set to true, any child resources will also be deleted. (Otherwise, the request will only work if there are no child resources.)
+     *     force: 'placeholder-value',
      *     // Required. The name of the API to delete. Format: projects/x/locations/x/apis/x
      *     name: 'projects/my-project/locations/my-location/apis/my-api',
      *   });
@@ -2256,6 +2258,10 @@ export namespace apigeeregistry_v1 {
   }
   export interface Params$Resource$Projects$Locations$Apis$Delete
     extends StandardParameters {
+    /**
+     * If set to true, any child resources will also be deleted. (Otherwise, the request will only work if there are no child resources.)
+     */
+    force?: boolean;
     /**
      * Required. The name of the API to delete. Format: projects/x/locations/x/apis/x
      */
@@ -6777,6 +6783,8 @@ export namespace apigeeregistry_v1 {
      *
      *   // Do the magic
      *   const res = await apigeeregistry.projects.locations.apis.versions.delete({
+     *     // If set to true, any child resources will also be deleted. (Otherwise, the request will only work if there are no child resources.)
+     *     force: 'placeholder-value',
      *     // Required. The name of the version to delete. Format: projects/x/locations/x/apis/x/versions/x
      *     name: 'projects/my-project/locations/my-location/apis/my-api/versions/my-version',
      *   });
@@ -7751,6 +7759,10 @@ export namespace apigeeregistry_v1 {
   }
   export interface Params$Resource$Projects$Locations$Apis$Versions$Delete
     extends StandardParameters {
+    /**
+     * If set to true, any child resources will also be deleted. (Otherwise, the request will only work if there are no child resources.)
+     */
+    force?: boolean;
     /**
      * Required. The name of the version to delete. Format: projects/x/locations/x/apis/x/versions/x
      */
