@@ -7027,7 +7027,7 @@ export namespace dialogflow_v2 {
      */
     event?: Schema$GoogleCloudDialogflowV2EventInput;
     /**
-     * The natural language text to be processed.
+     * The natural language text to be processed. Text length must not exceed 256 character for virtual agent interactions.
      */
     text?: Schema$GoogleCloudDialogflowV2TextInput;
   }
@@ -7506,7 +7506,7 @@ export namespace dialogflow_v2 {
      */
     languageCode?: string | null;
     /**
-     * Required. The UTF-8 encoded natural language text to be processed. Text length must not exceed 256 characters.
+     * Required. The UTF-8 encoded natural language text to be processed. Text length must not exceed 256 characters for virtual agent interactions.
      */
     text?: string | null;
   }
@@ -20241,6 +20241,8 @@ export namespace dialogflow_v2 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.answerRecords.list({
+     *     // Optional. Filters to restrict results to specific answer records. Marked deprecated as it hasn't been, and isn't currently, supported. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     *     filter: 'placeholder-value',
      *     // Optional. The maximum number of records to return in a single page. The server may return fewer records than this. If unspecified, we use 10. The maximum is 100.
      *     pageSize: 'placeholder-value',
      *     // Optional. The ListAnswerRecordsResponse.next_page_token value returned from a previous list request used to continue listing on the next page.
@@ -20512,6 +20514,10 @@ export namespace dialogflow_v2 {
 
   export interface Params$Resource$Projects$Answerrecords$List
     extends StandardParameters {
+    /**
+     * Optional. Filters to restrict results to specific answer records. Marked deprecated as it hasn't been, and isn't currently, supported. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     */
+    filter?: string;
     /**
      * Optional. The maximum number of records to return in a single page. The server may return fewer records than this. If unspecified, we use 10. The maximum is 100.
      */
@@ -38799,6 +38805,8 @@ export namespace dialogflow_v2 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.locations.answerRecords.list({
+     *     // Optional. Filters to restrict results to specific answer records. Marked deprecated as it hasn't been, and isn't currently, supported. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     *     filter: 'placeholder-value',
      *     // Optional. The maximum number of records to return in a single page. The server may return fewer records than this. If unspecified, we use 10. The maximum is 100.
      *     pageSize: 'placeholder-value',
      *     // Optional. The ListAnswerRecordsResponse.next_page_token value returned from a previous list request used to continue listing on the next page.
@@ -39070,6 +39078,10 @@ export namespace dialogflow_v2 {
 
   export interface Params$Resource$Projects$Locations$Answerrecords$List
     extends StandardParameters {
+    /**
+     * Optional. Filters to restrict results to specific answer records. Marked deprecated as it hasn't been, and isn't currently, supported. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     */
+    filter?: string;
     /**
      * Optional. The maximum number of records to return in a single page. The server may return fewer records than this. If unspecified, we use 10. The maximum is 100.
      */
