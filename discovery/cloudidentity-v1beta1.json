@@ -158,7 +158,6 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity",
                 "https://www.googleapis.com/auth/cloud-identity.userinvitations"
               ]
             },
@@ -184,7 +183,6 @@
                 "$ref": "UserInvitation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity",
                 "https://www.googleapis.com/auth/cloud-identity.userinvitations",
                 "https://www.googleapis.com/auth/cloud-identity.userinvitations.readonly"
               ]
@@ -211,7 +209,6 @@
                 "$ref": "IsInvitableUserResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity",
                 "https://www.googleapis.com/auth/cloud-identity.userinvitations",
                 "https://www.googleapis.com/auth/cloud-identity.userinvitations.readonly"
               ]
@@ -259,7 +256,6 @@
                 "$ref": "ListUserInvitationsResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity",
                 "https://www.googleapis.com/auth/cloud-identity.userinvitations",
                 "https://www.googleapis.com/auth/cloud-identity.userinvitations.readonly"
               ]
@@ -289,7 +285,6 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity",
                 "https://www.googleapis.com/auth/cloud-identity.userinvitations"
               ]
             }
@@ -1570,10 +1565,7 @@
               "path": "v1beta1/{+parent}/memberships",
               "response": {
                 "$ref": "ListOrgMembershipsResponse"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity"
-              ]
+              }
             },
             "move": {
               "description": "Move an OrgMembership to a new OrgUnit. NOTE: This is an atomic copy-and-delete. The resource will have a new copy under the destination OrgUnit and be deleted from the source OrgUnit. The resource can only be searched under the destination OrgUnit afterwards.",
@@ -1598,17 +1590,14 @@
               },
               "response": {
                 "$ref": "Operation"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity"
-              ]
+              }
             }
           }
         }
       }
     }
   },
-  "revision": "20220627",
+  "revision": "20220815",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AndroidAttributes": {
@@ -3043,13 +3032,6 @@
       "description": "A group within the Cloud Identity Groups API. A `Group` is a collection of entities, where each entity is either a user, another group, or a service account.",
       "id": "Group",
       "properties": {
-        "additionalGroupKeys": {
-          "description": "Additional entity key aliases for a Group.",
-          "items": {
-            "$ref": "EntityKey"
-          },
-          "type": "array"
-        },
         "createTime": {
           "description": "Output only. The time when the `Group` was created.",
           "format": "google-datetime",

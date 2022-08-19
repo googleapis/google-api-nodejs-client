@@ -112,6 +112,7 @@ export namespace cloudidentity_v1 {
    */
   export class Cloudidentity {
     context: APIRequestContext;
+    customers: Resource$Customers;
     devices: Resource$Devices;
     groups: Resource$Groups;
 
@@ -121,11 +122,16 @@ export namespace cloudidentity_v1 {
         google,
       };
 
+      this.customers = new Resource$Customers(this.context);
       this.devices = new Resource$Devices(this.context);
       this.groups = new Resource$Groups(this.context);
     }
   }
 
+  /**
+   * Request to cancel sent invitation for target email in UserInvitation.
+   */
+  export interface Schema$CancelUserInvitationRequest {}
   /**
    * The response message for MembershipsService.CheckTransitiveMembership.
    */
@@ -781,6 +787,15 @@ export namespace cloudidentity_v1 {
     roles?: Schema$TransitiveMembershipRole[];
   }
   /**
+   * Response for IsInvitableUser RPC.
+   */
+  export interface Schema$IsInvitableUserResponse {
+    /**
+     * Returns true if the email address is invitable.
+     */
+    isInvitableUser?: boolean | null;
+  }
+  /**
    * Response message for ListGroups operation.
    */
   export interface Schema$ListGroupsResponse {
@@ -805,6 +820,19 @@ export namespace cloudidentity_v1 {
      * A continuation token to retrieve the next page of results, or empty if there are no more results available.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Response message for UserInvitation listing request.
+   */
+  export interface Schema$ListUserInvitationsResponse {
+    /**
+     * The token for the next page. If not empty, indicates that there may be more `UserInvitation` resources that match the listing request; this value can be used in a subsequent ListUserInvitationsRequest to get continued results with the current list call.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of UserInvitation resources.
+     */
+    userInvitations?: Schema$UserInvitation[];
   }
   /**
    * The response message for GroupsService.LookupGroupName.
@@ -1048,6 +1076,10 @@ export namespace cloudidentity_v1 {
     name?: string | null;
   }
   /**
+   * A request to send email for inviting target user corresponding to the UserInvitation.
+   */
+  export interface Schema$SendUserInvitationRequest {}
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -1093,6 +1125,804 @@ export namespace cloudidentity_v1 {
      * The `MembershipRole`s to be updated. Only `MEMBER` `MembershipRole` can currently be updated.
      */
     membershipRole?: Schema$MembershipRole;
+  }
+  /**
+   * The `UserInvitation` resource represents an email that can be sent to an unmanaged user account inviting them to join the customer's Google Workspace or Cloud Identity account. An unmanaged account shares an email address domain with the Google Workspace or Cloud Identity account but is not managed by it yet. If the user accepts the `UserInvitation`, the user account will become managed.
+   */
+  export interface Schema$UserInvitation {
+    /**
+     * Number of invitation emails sent to the user.
+     */
+    mailsSentCount?: string | null;
+    /**
+     * Shall be of the form `customers/{customer\}/userinvitations/{user_email_address\}`.
+     */
+    name?: string | null;
+    /**
+     * State of the `UserInvitation`.
+     */
+    state?: string | null;
+    /**
+     * Time when the `UserInvitation` was last updated.
+     */
+    updateTime?: string | null;
+  }
+
+  export class Resource$Customers {
+    context: APIRequestContext;
+    userinvitations: Resource$Customers$Userinvitations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.userinvitations = new Resource$Customers$Userinvitations(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Customers$Userinvitations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Cancels a UserInvitation that was already sent.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-identity.userinvitations'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.customers.userinvitations.cancel({
+     *     // Required. `UserInvitation` name in the format `customers/{customer\}/userinvitations/{user_email_address\}`
+     *     name: 'customers/my-customer/userinvitations/my-userinvitation',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Customers$Userinvitations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
+      params?: Params$Resource$Customers$Userinvitations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    cancel(
+      params: Params$Resource$Customers$Userinvitations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Customers$Userinvitations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    cancel(
+      params: Params$Resource$Customers$Userinvitations$Cancel,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$Operation>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Userinvitations$Cancel
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Userinvitations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Userinvitations$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a UserInvitation resource. **Note:** New consumer accounts with the customer's verified domain created within the previous 48 hours will not appear in the result. This delay also applies to newly-verified domains.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.userinvitations',
+     *       'https://www.googleapis.com/auth/cloud-identity.userinvitations.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.customers.userinvitations.get({
+     *     // Required. `UserInvitation` name in the format `customers/{customer\}/userinvitations/{user_email_address\}`
+     *     name: 'customers/my-customer/userinvitations/my-userinvitation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "mailsSentCount": "my_mailsSentCount",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Customers$Userinvitations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Customers$Userinvitations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserInvitation>;
+    get(
+      params: Params$Resource$Customers$Userinvitations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Userinvitations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$UserInvitation>,
+      callback: BodyResponseCallback<Schema$UserInvitation>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Userinvitations$Get,
+      callback: BodyResponseCallback<Schema$UserInvitation>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$UserInvitation>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Userinvitations$Get
+        | BodyResponseCallback<Schema$UserInvitation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserInvitation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UserInvitation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$UserInvitation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Userinvitations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Userinvitations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UserInvitation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UserInvitation>(parameters);
+      }
+    }
+
+    /**
+     * Verifies whether a user account is eligible to receive a UserInvitation (is an unmanaged account). Eligibility is based on the following criteria: * the email address is a consumer account and it's the primary email address of the account, and * the domain of the email address matches an existing verified Google Workspace or Cloud Identity domain If both conditions are met, the user is eligible. **Note:** This method is not supported for Workspace Essentials customers.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.userinvitations',
+     *       'https://www.googleapis.com/auth/cloud-identity.userinvitations.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.customers.userinvitations.isInvitableUser({
+     *     // Required. `UserInvitation` name in the format `customers/{customer\}/userinvitations/{user_email_address\}`
+     *     name: 'customers/my-customer/userinvitations/my-userinvitation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "isInvitableUser": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    isInvitableUser(
+      params: Params$Resource$Customers$Userinvitations$Isinvitableuser,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    isInvitableUser(
+      params?: Params$Resource$Customers$Userinvitations$Isinvitableuser,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$IsInvitableUserResponse>;
+    isInvitableUser(
+      params: Params$Resource$Customers$Userinvitations$Isinvitableuser,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    isInvitableUser(
+      params: Params$Resource$Customers$Userinvitations$Isinvitableuser,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$IsInvitableUserResponse>,
+      callback: BodyResponseCallback<Schema$IsInvitableUserResponse>
+    ): void;
+    isInvitableUser(
+      params: Params$Resource$Customers$Userinvitations$Isinvitableuser,
+      callback: BodyResponseCallback<Schema$IsInvitableUserResponse>
+    ): void;
+    isInvitableUser(
+      callback: BodyResponseCallback<Schema$IsInvitableUserResponse>
+    ): void;
+    isInvitableUser(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Userinvitations$Isinvitableuser
+        | BodyResponseCallback<Schema$IsInvitableUserResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$IsInvitableUserResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$IsInvitableUserResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$IsInvitableUserResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Userinvitations$Isinvitableuser;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Userinvitations$Isinvitableuser;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:isInvitableUser').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$IsInvitableUserResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$IsInvitableUserResponse>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a list of UserInvitation resources. **Note:** New consumer accounts with the customer's verified domain created within the previous 48 hours will not appear in the result. This delay also applies to newly-verified domains.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.userinvitations',
+     *       'https://www.googleapis.com/auth/cloud-identity.userinvitations.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.customers.userinvitations.list({
+     *     // Optional. A query string for filtering `UserInvitation` results by their current state, in the format: `"state=='invited'"`.
+     *     filter: 'placeholder-value',
+     *     // Optional. The sort order of the list results. You can sort the results in descending order based on either email or last update timestamp but not both, using `order_by="email desc"`. Currently, sorting is supported for `update_time asc`, `update_time desc`, `email asc`, and `email desc`. If not specified, results will be returned based on `email asc` order.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The maximum number of UserInvitation resources to return. If unspecified, at most 100 resources will be returned. The maximum value is 200; values above 200 will be set to 200.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListUserInvitations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBooks` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The customer ID of the Google Workspace or Cloud Identity account the UserInvitation resources are associated with.
+     *     parent: 'customers/my-customer',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "userInvitations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Customers$Userinvitations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Customers$Userinvitations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListUserInvitationsResponse>;
+    list(
+      params: Params$Resource$Customers$Userinvitations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Userinvitations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListUserInvitationsResponse>,
+      callback: BodyResponseCallback<Schema$ListUserInvitationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Userinvitations$List,
+      callback: BodyResponseCallback<Schema$ListUserInvitationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListUserInvitationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Userinvitations$List
+        | BodyResponseCallback<Schema$ListUserInvitationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListUserInvitationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListUserInvitationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListUserInvitationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Userinvitations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Userinvitations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/userinvitations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListUserInvitationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListUserInvitationsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Sends a UserInvitation to email. If the `UserInvitation` does not exist for this request and it is a valid request, the request creates a `UserInvitation`. **Note:** The `get` and `list` methods have a 48-hour delay where newly-created consumer accounts will not appear in the results. You can still send a `UserInvitation` to those accounts if you know the unmanaged email address and IsInvitableUser==True.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-identity.userinvitations'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.customers.userinvitations.send({
+     *     // Required. `UserInvitation` name in the format `customers/{customer\}/userinvitations/{user_email_address\}`
+     *     name: 'customers/my-customer/userinvitations/my-userinvitation',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    send(
+      params: Params$Resource$Customers$Userinvitations$Send,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    send(
+      params?: Params$Resource$Customers$Userinvitations$Send,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    send(
+      params: Params$Resource$Customers$Userinvitations$Send,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    send(
+      params: Params$Resource$Customers$Userinvitations$Send,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    send(
+      params: Params$Resource$Customers$Userinvitations$Send,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    send(callback: BodyResponseCallback<Schema$Operation>): void;
+    send(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Userinvitations$Send
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Userinvitations$Send;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Userinvitations$Send;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:send').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Customers$Userinvitations$Cancel
+    extends StandardParameters {
+    /**
+     * Required. `UserInvitation` name in the format `customers/{customer\}/userinvitations/{user_email_address\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelUserInvitationRequest;
+  }
+  export interface Params$Resource$Customers$Userinvitations$Get
+    extends StandardParameters {
+    /**
+     * Required. `UserInvitation` name in the format `customers/{customer\}/userinvitations/{user_email_address\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Customers$Userinvitations$Isinvitableuser
+    extends StandardParameters {
+    /**
+     * Required. `UserInvitation` name in the format `customers/{customer\}/userinvitations/{user_email_address\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Customers$Userinvitations$List
+    extends StandardParameters {
+    /**
+     * Optional. A query string for filtering `UserInvitation` results by their current state, in the format: `"state=='invited'"`.
+     */
+    filter?: string;
+    /**
+     * Optional. The sort order of the list results. You can sort the results in descending order based on either email or last update timestamp but not both, using `order_by="email desc"`. Currently, sorting is supported for `update_time asc`, `update_time desc`, `email asc`, and `email desc`. If not specified, results will be returned based on `email asc` order.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of UserInvitation resources to return. If unspecified, at most 100 resources will be returned. The maximum value is 200; values above 200 will be set to 200.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListUserInvitations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBooks` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The customer ID of the Google Workspace or Cloud Identity account the UserInvitation resources are associated with.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Customers$Userinvitations$Send
+    extends StandardParameters {
+    /**
+     * Required. `UserInvitation` name in the format `customers/{customer\}/userinvitations/{user_email_address\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SendUserInvitationRequest;
   }
 
   export class Resource$Devices {

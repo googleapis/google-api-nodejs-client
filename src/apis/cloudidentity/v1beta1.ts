@@ -975,10 +975,6 @@ export namespace cloudidentity_v1beta1 {
    */
   export interface Schema$Group {
     /**
-     * Additional entity key aliases for a Group.
-     */
-    additionalGroupKeys?: Schema$EntityKey[];
-    /**
      * Output only. The time when the `Group` was created.
      */
     createTime?: string | null;
@@ -1592,10 +1588,7 @@ export namespace cloudidentity_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-identity',
-     *       'https://www.googleapis.com/auth/cloud-identity.userinvitations',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/cloud-identity.userinvitations'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1736,7 +1729,6 @@ export namespace cloudidentity_v1beta1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-identity',
      *       'https://www.googleapis.com/auth/cloud-identity.userinvitations',
      *       'https://www.googleapis.com/auth/cloud-identity.userinvitations.readonly',
      *     ],
@@ -1870,7 +1862,6 @@ export namespace cloudidentity_v1beta1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-identity',
      *       'https://www.googleapis.com/auth/cloud-identity.userinvitations',
      *       'https://www.googleapis.com/auth/cloud-identity.userinvitations.readonly',
      *     ],
@@ -2012,7 +2003,6 @@ export namespace cloudidentity_v1beta1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-identity',
      *       'https://www.googleapis.com/auth/cloud-identity.userinvitations',
      *       'https://www.googleapis.com/auth/cloud-identity.userinvitations.readonly',
      *     ],
@@ -2161,10 +2151,7 @@ export namespace cloudidentity_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-identity',
-     *       'https://www.googleapis.com/auth/cloud-identity.userinvitations',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/cloud-identity.userinvitations'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4936,7 +4923,6 @@ export namespace cloudidentity_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "additionalGroupKeys": [],
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
@@ -5223,7 +5209,6 @@ export namespace cloudidentity_v1beta1 {
      *
      *   // Example response
      *   // {
-     *   //   "additionalGroupKeys": [],
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
@@ -5786,7 +5771,6 @@ export namespace cloudidentity_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "additionalGroupKeys": [],
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
@@ -7938,7 +7922,7 @@ export namespace cloudidentity_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-identity'],
+     *     scopes: [],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8084,7 +8068,7 @@ export namespace cloudidentity_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-identity'],
+     *     scopes: [],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
