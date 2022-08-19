@@ -1065,7 +1065,7 @@
       }
     }
   },
-  "revision": "20220613",
+  "revision": "20220808",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -1193,7 +1193,7 @@
           "type": "string"
         },
         "packageNames": {
-          "description": "Package names of all packages that are associated with the particular user id. In most cases, this will be a single package name, the package that has been assigned that user id. If multiple application share a uid then all packages sharing uid will be included.",
+          "description": "Package names of all packages that are associated with the particular user ID. In most cases, this will be a single package name, the package that has been assigned that user ID. If multiple application share a UID then all packages sharing UID will be included.",
           "items": {
             "type": "string"
           },
@@ -1583,7 +1583,9 @@
               "BLOCK_UNINSTALL",
               "PERMISSION_GRANT",
               "PACKAGE_ACCESS",
-              "ENABLE_SYSTEM_APP"
+              "ENABLE_SYSTEM_APP",
+              "NETWORK_ACTIVITY_LOGS",
+              "SECURITY_LOGS"
             ],
             "enumDescriptions": [
               "No delegation scope specified.",
@@ -1592,7 +1594,9 @@
               "Grants access to blocking uninstallation.",
               "Grants access to permission policy and permission grant state.",
               "Grants access to package access state.",
-              "Grants access for enabling system apps."
+              "Grants access for enabling system apps.",
+              "Grants access to network activity logs. Allows the delegated application to call setNetworkLoggingEnabled (https://developer.android.com/reference/android/app/admin/DevicePolicyManager#setNetworkLoggingEnabled%28android.content.ComponentName,%20boolean%29), isNetworkLoggingEnabled (https://developer.android.com/reference/android/app/admin/DevicePolicyManager#isNetworkLoggingEnabled%28android.content.ComponentName%29) and retrieveNetworkLogs (https://developer.android.com/reference/android/app/admin/DevicePolicyManager#retrieveNetworkLogs%28android.content.ComponentName,%20long%29) methods. This scope can be delegated to at most one application. Supported for fully managed devices on Android 10 and above. Supported for a work profile on Android 12 and above. When delegation is supported and set, NETWORK_ACTIVITY_LOGS is ignored.",
+              "Grants access to security logs. Allows the delegated application to call setSecurityLoggingEnabled (https://developer.android.com/reference/android/app/admin/DevicePolicyManager#setSecurityLoggingEnabled%28android.content.ComponentName,%20boolean%29), isSecurityLoggingEnabled (https://developer.android.com/reference/android/app/admin/DevicePolicyManager#isSecurityLoggingEnabled%28android.content.ComponentName%29), retrieveSecurityLogs (https://developer.android.com/reference/android/app/admin/DevicePolicyManager#retrieveSecurityLogs%28android.content.ComponentName%29) and retrievePreRebootSecurityLogs (https://developer.android.com/reference/android/app/admin/DevicePolicyManager#retrievePreRebootSecurityLogs%28android.content.ComponentName%29) methods. This scope can be delegated to at most one application. Supported for fully managed devices and company-owned devices with a work profile on Android 12 and above. When delegation is supported and set, SECURITY_LOGS is ignored."
             ],
             "type": "string"
           },
@@ -2603,7 +2607,7 @@
           "type": "string"
         },
         "duration": {
-          "description": "The length of time the enrollment token is valid, ranging from 1 minute to 90 days. If not specified, the default duration is 1 hour.",
+          "description": "The length of time the enrollment token is valid, ranging from 1 minute to Durations.MAX_VALUE (https://developers.google.com/protocol-buffers/docs/reference/java/com/google/protobuf/util/Durations.html#MAX_VALUE), approximately 10,000 years. If not specified, the default duration is 1 hour. Please note that if requested duration causes the resulting expiration_timestamp to exceed Timestamps.MAX_VALUE (https://developers.google.com/protocol-buffers/docs/reference/java/com/google/protobuf/util/Timestamps.html#MAX_VALUE), then expiration_timestamp is coerced to Timestamps.MAX_VALUE.",
           "format": "google-duration",
           "type": "string"
         },
@@ -3613,14 +3617,16 @@
             "PASSWORD_POLICIES_USER_CREDENTIALS_CONFIRMATION_REQUIRED",
             "PASSWORD_POLICIES_PASSWORD_EXPIRED",
             "PASSWORD_POLICIES_PASSWORD_NOT_SUFFICIENT",
-            "ONC_WIFI_INVALID_VALUE"
+            "ONC_WIFI_INVALID_VALUE",
+            "ONC_WIFI_API_LEVEL"
           ],
           "enumDescriptions": [
             "Specific non-compliance reason is not specified. Fields in specific_non_compliance_context are not set.",
             "User needs to confirm credentials by entering the screen lock. Fields in specific_non_compliance_context are not set. nonComplianceReason is set to USER_ACTION.",
             "The device or profile password has expired. passwordPoliciesContext is set. nonComplianceReason is set to USER_ACTION.",
             "The device password does not satisfy password requirements. passwordPoliciesContext is set. nonComplianceReason is set to USER_ACTION.",
-            "There is an incorrect value in ONC Wi-Fi configuration. fieldPath specifies which field value is incorrect. oncWifiContext is set. nonComplianceReason is set to INVALID_VALUE."
+            "There is an incorrect value in ONC Wi-Fi configuration. fieldPath specifies which field value is incorrect. oncWifiContext is set. nonComplianceReason is set to INVALID_VALUE.",
+            "The ONC Wi-Fi setting is not supported in the API level of the Android version running on the device. fieldPath specifies which field value is not supported. oncWifiContext is set. nonComplianceReason is set to API_LEVEL."
           ],
           "type": "string"
         }
@@ -4957,7 +4963,7 @@
       "properties": {
         "oncWifiContext": {
           "$ref": "OncWifiContext",
-          "description": "Additional context for non-compliance related to Wi-Fi configuration. See ONC_WIFI_INVALID_VALUE."
+          "description": "Additional context for non-compliance related to Wi-Fi configuration. See ONC_WIFI_INVALID_VALUE and ONC_WIFI_API_LEVEL"
         },
         "passwordPoliciesContext": {
           "$ref": "PasswordPoliciesContext",
@@ -5158,8 +5164,8 @@
             ],
             "enumDescriptions": [
               "This value is not used.",
-              "Enable logging of on-device security events, like when the device password is incorrectly entered or removable storage is mounted. See UsageLogEvent for a complete description of the logged security events. Supported for fully managed devices on Android 7 and above. Supported for company-owned devices with a work profile on Android 12 and above, on which only security events from the work profile are logged.",
-              "Enable logging of on-device network events, like DNS lookups and TCP connections. See UsageLogEvent for a complete description of the logged network events. Supported for fully managed devices on Android 8 and above. Supported for company-owned devices with a work profile on Android 12 and above, on which only network events from the work profile are logged."
+              "Enable logging of on-device security events, like when the device password is incorrectly entered or removable storage is mounted. See UsageLogEvent for a complete description of the logged security events. Supported for fully managed devices on Android 7 and above. Supported for company-owned devices with a work profile on Android 12 and above, on which only security events from the work profile are logged. Can be overridden by the application delegated scope SECURITY_LOGS",
+              "Enable logging of on-device network events, like DNS lookups and TCP connections. See UsageLogEvent for a complete description of the logged network events. Supported for fully managed devices on Android 8 and above. Supported for company-owned devices with a work profile on Android 12 and above, on which only network events from the work profile are logged. Can be overridden by the application delegated scope NETWORK_ACTIVITY_LOGS"
             ],
             "type": "string"
           },
@@ -5175,8 +5181,8 @@
             ],
             "enumDescriptions": [
               "This value is not used.",
-              "Enable logging of on-device security events, like when the device password is incorrectly entered or removable storage is mounted. See UsageLogEvent for a complete description of the logged security events. Supported for fully managed devices on Android 7 and above. Supported for company-owned devices with a work profile on Android 12 and above, on which only security events from the work profile are logged.",
-              "Enable logging of on-device network events, like DNS lookups and TCP connections. See UsageLogEvent for a complete description of the logged network events. Supported for fully managed devices on Android 8 and above. Supported for company-owned devices with a work profile on Android 12 and above, on which only network events from the work profile are logged."
+              "Enable logging of on-device security events, like when the device password is incorrectly entered or removable storage is mounted. See UsageLogEvent for a complete description of the logged security events. Supported for fully managed devices on Android 7 and above. Supported for company-owned devices with a work profile on Android 12 and above, on which only security events from the work profile are logged. Can be overridden by the application delegated scope SECURITY_LOGS",
+              "Enable logging of on-device network events, like DNS lookups and TCP connections. See UsageLogEvent for a complete description of the logged network events. Supported for fully managed devices on Android 8 and above. Supported for company-owned devices with a work profile on Android 12 and above, on which only network events from the work profile are logged. Can be overridden by the application delegated scope NETWORK_ACTIVITY_LOGS"
             ],
             "type": "string"
           },
@@ -5215,7 +5221,7 @@
         },
         "connectEvent": {
           "$ref": "ConnectEvent",
-          "description": "A TCP connect event was initiated through the standard network stack. Part of NETWORK_LOGS."
+          "description": "A TCP connect event was initiated through the standard network stack. Part of NETWORK_ACTIVITY_LOGS."
         },
         "cryptoSelfTestCompletedEvent": {
           "$ref": "CryptoSelfTestCompletedEvent",
@@ -5223,7 +5229,7 @@
         },
         "dnsEvent": {
           "$ref": "DnsEvent",
-          "description": "A DNS lookup event was initiated through the standard network stack. Part of NETWORK_LOGS."
+          "description": "A DNS lookup event was initiated through the standard network stack. Part of NETWORK_ACTIVITY_LOGS."
         },
         "eventId": {
           "description": "Unique id of the event.",
@@ -5369,7 +5375,7 @@
         },
         "wipeFailureEvent": {
           "$ref": "WipeFailureEvent",
-          "description": "The work profile or company-owned device failed to wipe when when requested. This could be user initiated or admin initiated e.g. delete was received. Part of SECURITY_LOGS."
+          "description": "The work profile or company-owned device failed to wipe when requested. This could be user initiated or admin initiated e.g. delete was received. Part of SECURITY_LOGS."
         }
       },
       "type": "object"
@@ -5537,7 +5543,7 @@
       "type": "object"
     },
     "WipeFailureEvent": {
-      "description": "The work profile or company-owned device failed to wipe when when requested. This could be user initiated or admin initiated e.g. delete was received. Intentionally empty.",
+      "description": "The work profile or company-owned device failed to wipe when requested. This could be user initiated or admin initiated e.g. delete was received. Intentionally empty.",
       "id": "WipeFailureEvent",
       "properties": {},
       "type": "object"
