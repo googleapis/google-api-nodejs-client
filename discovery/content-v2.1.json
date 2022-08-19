@@ -973,48 +973,6 @@
         }
       }
     },
-    "accountstatusesbyexternalsellerid": {
-      "methods": {
-        "get": {
-          "description": "Gets status of the account with the specified external_seller_id belonging to the MCA with the specified merchant_id.",
-          "flatPath": "{merchantId}/accountstatusesbyexternalsellerid/{externalSellerId}",
-          "httpMethod": "GET",
-          "id": "content.accountstatusesbyexternalsellerid.get",
-          "parameterOrder": [
-            "merchantId",
-            "externalSellerId"
-          ],
-          "parameters": {
-            "destinations": {
-              "description": "If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.",
-              "location": "query",
-              "repeated": true,
-              "type": "string"
-            },
-            "externalSellerId": {
-              "description": "Required. The External Seller ID of the seller account to be retrieved.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "merchantId": {
-              "description": "Required. The ID of the MCA containing the seller.",
-              "format": "int64",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "{merchantId}/accountstatusesbyexternalsellerid/{externalSellerId}",
-          "response": {
-            "$ref": "AccountStatus"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/content"
-          ]
-        }
-      }
-    },
     "accounttax": {
       "methods": {
         "custombatch": {
@@ -5950,7 +5908,7 @@
       }
     }
   },
-  "revision": "20220623",
+  "revision": "20220812",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -6791,7 +6749,7 @@
         },
         "errors": {
           "$ref": "Errors",
-          "description": "A list of errors defined if and only if the request failed."
+          "description": "A list of errors for failed custombatch entries. *Note:* Schema errors fail the whole request."
         },
         "kind": {
           "description": "Identifies what kind of resource this is. Value: the fixed string \"`content#accountsCustomBatchResponseEntry`\"",
@@ -6986,7 +6944,7 @@
         },
         "errors": {
           "$ref": "Errors",
-          "description": "A list of errors defined if and only if the request failed."
+          "description": "A list of errors for failed custombatch entries. *Note:* Schema errors fail the whole request."
         }
       },
       "type": "object"
@@ -7086,7 +7044,7 @@
         },
         "errors": {
           "$ref": "Errors",
-          "description": "A list of errors defined if and only if the request failed."
+          "description": "A list of errors for failed custombatch entries. *Note:* Schema errors fail the whole request."
         },
         "kind": {
           "description": "Identifies what kind of resource this is. Value: the fixed string \"`content#accounttaxCustomBatchResponseEntry`\"",
@@ -7456,7 +7414,7 @@
           "type": "array"
         },
         "creationDate": {
-          "description": "Date on which the collection has been created in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format: Date, time, and offset, e.g. \"2020-01-02T09:00:00+01:00\" or \"2020-01-02T09:00:00Z\"",
+          "description": "Date on which the collection has been created in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format: Date, time, and offset, for example \"2020-01-02T09:00:00+01:00\" or \"2020-01-02T09:00:00Z\"",
           "type": "string"
         },
         "destinationStatuses": {
@@ -7471,7 +7429,7 @@
           "type": "string"
         },
         "lastUpdateDate": {
-          "description": "Date on which the collection has been last updated in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format: Date, time, and offset, e.g. \"2020-01-02T09:00:00+01:00\" or \"2020-01-02T09:00:00Z\"",
+          "description": "Date on which the collection has been last updated in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format: Date, time, and offset, for example \"2020-01-02T09:00:00+01:00\" or \"2020-01-02T09:00:00Z\"",
           "type": "string"
         }
       },
@@ -7486,7 +7444,7 @@
           "type": "string"
         },
         "status": {
-          "description": "The status for the specified destination.",
+          "description": "The status for the specified destination in the collections target country.",
           "type": "string"
         }
       },
@@ -7945,7 +7903,7 @@
         },
         "errors": {
           "$ref": "Errors",
-          "description": "A list of errors defined if and only if the request failed."
+          "description": "A list of errors for failed custombatch entries. *Note:* Schema errors fail the whole request."
         }
       },
       "type": "object"
@@ -8059,7 +8017,7 @@
         },
         "errors": {
           "$ref": "Errors",
-          "description": "A list of errors defined if and only if the request failed."
+          "description": "A list of errors for failed custombatch entries. *Note:* Schema errors fail the whole request."
         }
       },
       "type": "object"
@@ -8107,36 +8065,36 @@
       "type": "object"
     },
     "DateTime": {
-      "description": "Represents civil time (or occasionally physical time). This type can represent a civil time in one of a few possible ways: * When utc_offset is set and time_zone is unset: a civil time on a calendar day with a particular offset from UTC. * When time_zone is set and utc_offset is unset: a civil time on a calendar day in a particular time zone. * When neither time_zone nor utc_offset is set: a civil time on a calendar day in local time. The date is relative to the Proleptic Gregorian Calendar. If year is 0, the DateTime is considered not to have a specific year. month and day must have valid, non-zero values. This type may also be used to represent a physical time if all the date and time fields are set and either case of the `time_offset` oneof is set. Consider using `Timestamp` message for physical time instead. If your use case also would like to store the user's timezone, that can be done in another field. This type is more flexible than some applications may want. Make sure to document and validate your application's limitations.",
+      "description": "Represents civil time (or occasionally physical time). This type can represent a civil time in one of a few possible ways: * When utc_offset is set and time_zone is unset: a civil time on a calendar day with a particular offset from UTC. * When time_zone is set and utc_offset is unset: a civil time on a calendar day in a particular time zone. * When neither time_zone nor utc_offset is set: a civil time on a calendar day in local time. The date is relative to the Proleptic Gregorian Calendar. If year, month, or day are 0, the DateTime is considered not to have a specific year, month, or day respectively. This type may also be used to represent a physical time if all the date and time fields are set and either case of the `time_offset` oneof is set. Consider using `Timestamp` message for physical time instead. If your use case also would like to store the user's timezone, that can be done in another field. This type is more flexible than some applications may want. Make sure to document and validate your application's limitations.",
       "id": "DateTime",
       "properties": {
         "day": {
-          "description": "Required. Day of month. Must be from 1 to 31 and valid for the year and month.",
+          "description": "Optional. Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a datetime without a day.",
           "format": "int32",
           "type": "integer"
         },
         "hours": {
-          "description": "Required. Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "description": "Optional. Hours of day in 24 hour format. Should be from 0 to 23, defaults to 0 (midnight). An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
           "format": "int32",
           "type": "integer"
         },
         "minutes": {
-          "description": "Required. Minutes of hour of day. Must be from 0 to 59.",
+          "description": "Optional. Minutes of hour of day. Must be from 0 to 59, defaults to 0.",
           "format": "int32",
           "type": "integer"
         },
         "month": {
-          "description": "Required. Month of year. Must be from 1 to 12.",
+          "description": "Optional. Month of year. Must be from 1 to 12, or 0 if specifying a datetime without a month.",
           "format": "int32",
           "type": "integer"
         },
         "nanos": {
-          "description": "Required. Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.",
+          "description": "Optional. Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999, defaults to 0.",
           "format": "int32",
           "type": "integer"
         },
         "seconds": {
-          "description": "Required. Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.",
+          "description": "Optional. Seconds of minutes of the time. Must normally be from 0 to 59, defaults to 0. An API may allow the value 60 if it allows leap-seconds.",
           "format": "int32",
           "type": "integer"
         },
@@ -9344,7 +9302,7 @@
         },
         "errors": {
           "$ref": "Errors",
-          "description": "A list of errors defined if and only if the request failed."
+          "description": "A list of errors for failed custombatch entries. *Note:* Schema errors fail the whole request."
         },
         "kind": {
           "description": "Identifies what kind of resource this is. Value: the fixed string \"`content#localinventoryCustomBatchResponseEntry`\"",
@@ -12613,6 +12571,10 @@
           "description": "Required for multi-seller accounts. Use this attribute if you're a marketplace uploading products for various sellers to your multi-seller account.",
           "type": "string"
         },
+        "feedLabel": {
+          "description": "Feed label for the item. Either `targetCountry` or `feedLabel` is required.",
+          "type": "string"
+        },
         "gender": {
           "description": "Target gender of the item.",
           "type": "string"
@@ -13300,6 +13262,208 @@
       },
       "type": "object"
     },
+    "ProductView": {
+      "description": "Product fields. Values are only set for fields requested explicitly in the request's search query.",
+      "id": "ProductView",
+      "properties": {
+        "aggregatedDestinationStatus": {
+          "description": "Aggregated destination status.",
+          "enum": [
+            "AGGREGATED_STATUS_UNSPECIFIED",
+            "NOT_ELIGIBLE_OR_DISAPPROVED",
+            "PENDING",
+            "ELIGIBLE_LIMITED",
+            "ELIGIBLE"
+          ],
+          "enumDescriptions": [
+            "Undefined aggregated status.",
+            "Offer isn't eligible, or is disapproved for all destinations.",
+            "Offer's status is pending in all destinations.",
+            "Offer is eligible for some (but not all) destinations.",
+            "Offer is eligible for all destinations."
+          ],
+          "type": "string"
+        },
+        "availability": {
+          "description": "Availability of the product.",
+          "type": "string"
+        },
+        "brand": {
+          "description": "Brand of the product.",
+          "type": "string"
+        },
+        "channel": {
+          "description": "Channel of the product (online versus local).",
+          "enum": [
+            "CHANNEL_UNSPECIFIED",
+            "LOCAL",
+            "ONLINE"
+          ],
+          "enumDescriptions": [
+            "Indicates that the channel is unspecified.",
+            "Indicates that the channel is local.",
+            "Indicates that the channel is online."
+          ],
+          "type": "string"
+        },
+        "condition": {
+          "description": "Condition of the product.",
+          "type": "string"
+        },
+        "creationTime": {
+          "description": "The time the merchant created the product in timestamp seconds.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "currencyCode": {
+          "description": "Product price currency code (for example, ISO 4217). Absent if product price is not available.",
+          "type": "string"
+        },
+        "expirationDate": {
+          "$ref": "Date",
+          "description": "Expiration date for the product. Specified on insertion."
+        },
+        "gtin": {
+          "description": "GTIN of the product.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "The REST ID of the product, in the form of channel:contentLanguage:targetCountry:offerId. Content API methods that operate on products take this as their productId parameter. Should always be included in the SELECT clause.",
+          "type": "string"
+        },
+        "itemGroupId": {
+          "description": "Item group ID provided by the merchant for grouping variants together.",
+          "type": "string"
+        },
+        "itemIssues": {
+          "description": "List of item issues for the product.",
+          "items": {
+            "$ref": "ProductViewItemIssue"
+          },
+          "type": "array"
+        },
+        "languageCode": {
+          "description": "Language code of the product in BCP 47 format.",
+          "type": "string"
+        },
+        "offerId": {
+          "description": "Merchant-provided id of the product.",
+          "type": "string"
+        },
+        "priceMicros": {
+          "description": "Product price specified as micros in the product currency. Absent in case the information about the price of the product is not available.",
+          "format": "int64",
+          "type": "string"
+        },
+        "shippingLabel": {
+          "description": "The normalized shipping label specified in the feed",
+          "type": "string"
+        },
+        "title": {
+          "description": "Title of the product.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ProductViewItemIssue": {
+      "description": "Item issue associated with the product.",
+      "id": "ProductViewItemIssue",
+      "properties": {
+        "issueType": {
+          "$ref": "ProductViewItemIssueItemIssueType",
+          "description": "Item issue type."
+        },
+        "resolution": {
+          "description": "Item issue resolution.",
+          "enum": [
+            "UNKNOWN",
+            "MERCHANT_ACTION",
+            "PENDING_PROCESSING"
+          ],
+          "enumDescriptions": [
+            "Unknown resolution type.",
+            "The merchant has to fix the issue.",
+            "The issue will be resolved automatically (for example, image crawl), or Google review. No merchant action is required now. Resolution might lead to another issue (for example, if crawl fails)."
+          ],
+          "type": "string"
+        },
+        "severity": {
+          "$ref": "ProductViewItemIssueItemIssueSeverity",
+          "description": "Item issue severity."
+        }
+      },
+      "type": "object"
+    },
+    "ProductViewItemIssueIssueSeverityPerDestination": {
+      "description": "Issue severity for all affected regions in a destination.",
+      "id": "ProductViewItemIssueIssueSeverityPerDestination",
+      "properties": {
+        "demotedCountries": {
+          "description": "List of demoted countries in the destination.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "destination": {
+          "description": "Issue destination.",
+          "type": "string"
+        },
+        "disapprovedCountries": {
+          "description": "List of disapproved countries in the destination.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ProductViewItemIssueItemIssueSeverity": {
+      "description": "Severity of an issue per destination in a region, and aggregated severity.",
+      "id": "ProductViewItemIssueItemIssueSeverity",
+      "properties": {
+        "aggregatedSeverity": {
+          "description": "Severity of an issue aggregated for destination.",
+          "enum": [
+            "AGGREGATED_ISSUE_SEVERITY_UNSPECIFIED",
+            "DISAPPROVED",
+            "DEMOTED",
+            "PENDING"
+          ],
+          "enumDescriptions": [
+            "Undefined Issue severity.",
+            "Issue disapproves the product in at least one of the selected destinations.",
+            "Issue demotes the product in all selected destinations it affects.",
+            "Issue resolution is `PENDING_PROCESSING`."
+          ],
+          "type": "string"
+        },
+        "severityPerDestination": {
+          "description": "Item issue severity for every destination.",
+          "items": {
+            "$ref": "ProductViewItemIssueIssueSeverityPerDestination"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ProductViewItemIssueItemIssueType": {
+      "description": "Type of the item issue.",
+      "id": "ProductViewItemIssueItemIssueType",
+      "properties": {
+        "canonicalAttribute": {
+          "description": "Canonical attribute name for attribute-specific issues.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ProductWeight": {
       "id": "ProductWeight",
       "properties": {
@@ -13395,7 +13559,7 @@
         },
         "errors": {
           "$ref": "Errors",
-          "description": "A list of errors defined if and only if the request failed."
+          "description": "A list of errors for failed custombatch entries. *Note:* Schema errors fail the whole request."
         },
         "kind": {
           "description": "Identifies what kind of resource this is. Value: the fixed string \"`content#productsCustomBatchResponseEntry`\"",
@@ -13505,7 +13669,7 @@
         },
         "errors": {
           "$ref": "Errors",
-          "description": "A list of errors, if the request failed."
+          "description": "A list of errors for failed custombatch entries. *Note:* Schema errors fail the whole request."
         },
         "kind": {
           "description": "Identifies what kind of resource this is. Value: the fixed string \"`content#productstatusesCustomBatchResponseEntry`\"",
@@ -14059,7 +14223,7 @@
         },
         "errors": {
           "$ref": "Errors",
-          "description": "A list of errors defined if and only if the request failed."
+          "description": "A list of errors for failed custombatch entries. *Note:* Schema errors fail the whole request."
         },
         "kind": {
           "description": "Identifies what kind of resource this is. Value: the fixed string \"`content#regionalinventoryCustomBatchResponseEntry`\".",
@@ -14079,6 +14243,10 @@
         "metrics": {
           "$ref": "Metrics",
           "description": "Metrics requested by the merchant in the query. Metric values are only set for metrics requested explicitly in the query."
+        },
+        "productView": {
+          "$ref": "ProductView",
+          "description": "Product fields requested by the merchant in the query. Field values are only set if the merchant queries `ProductView`. `product_view` field is available only to allowlisted users who can query the `ProductView` table."
         },
         "segments": {
           "$ref": "Segments",
@@ -15215,7 +15383,7 @@
       "type": "object"
     },
     "Segments": {
-      "description": "Dimensions according to which metrics are segmented in the response. Values of product dimensions, e.g., offer id, reflect the state of a product at the time of the corresponding event, e.g., impression or order. Segment fields cannot be selected in queries without also selecting at least one metric field. Values are only set for dimensions requested explicitly in the request's search query.",
+      "description": "Dimensions according to which metrics are segmented in the response. Values of product dimensions, such as `offer_id`, reflect the state of a product at the time of the corresponding event, for example, impression or order. Segment fields cannot be selected in queries without also selecting at least one metric field. Values are only set for dimensions requested explicitly in the request's search query.",
       "id": "Segments",
       "properties": {
         "brand": {
@@ -15243,7 +15411,7 @@
           "type": "string"
         },
         "currencyCode": {
-          "description": "Currency in which price metrics are represented, e.g., if you select `ordered_item_sales_micros`, the returned value will be represented by this currency.",
+          "description": "Currency in which price metrics are represented, for example, if you select `ordered_item_sales_micros`, the returned value will be represented by this currency.",
           "type": "string"
         },
         "customLabel0": {
@@ -15299,7 +15467,7 @@
           "type": "string"
         },
         "program": {
-          "description": "Program to which metrics apply, e.g., Free Product Listing.",
+          "description": "Program to which metrics apply, for example, Free Product Listing.",
           "enum": [
             "PROGRAM_UNSPECIFIED",
             "SHOPPING_ADS",
@@ -15731,7 +15899,7 @@
         },
         "errors": {
           "$ref": "Errors",
-          "description": "A list of errors defined if, and only if, the request failed."
+          "description": "A list of errors for failed custombatch entries. *Note:* Schema errors fail the whole request."
         },
         "kind": {
           "description": "Identifies what kind of resource this is. Value: the fixed string \"`content#shippingsettingsCustomBatchResponseEntry`\"",

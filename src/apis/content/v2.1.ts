@@ -114,7 +114,6 @@ export namespace content_v2_1 {
     context: APIRequestContext;
     accounts: Resource$Accounts;
     accountstatuses: Resource$Accountstatuses;
-    accountstatusesbyexternalsellerid: Resource$Accountstatusesbyexternalsellerid;
     accounttax: Resource$Accounttax;
     buyongoogleprograms: Resource$Buyongoogleprograms;
     collections: Resource$Collections;
@@ -156,8 +155,6 @@ export namespace content_v2_1 {
 
       this.accounts = new Resource$Accounts(this.context);
       this.accountstatuses = new Resource$Accountstatuses(this.context);
-      this.accountstatusesbyexternalsellerid =
-        new Resource$Accountstatusesbyexternalsellerid(this.context);
       this.accounttax = new Resource$Accounttax(this.context);
       this.buyongoogleprograms = new Resource$Buyongoogleprograms(this.context);
       this.collections = new Resource$Collections(this.context);
@@ -616,7 +613,7 @@ export namespace content_v2_1 {
      */
     batchId?: number | null;
     /**
-     * A list of errors defined if and only if the request failed.
+     * A list of errors for failed custombatch entries. *Note:* Schema errors fail the whole request.
      */
     errors?: Schema$Errors;
     /**
@@ -803,7 +800,7 @@ export namespace content_v2_1 {
      */
     batchId?: number | null;
     /**
-     * A list of errors defined if and only if the request failed.
+     * A list of errors for failed custombatch entries. *Note:* Schema errors fail the whole request.
      */
     errors?: Schema$Errors;
   }
@@ -975,7 +972,7 @@ export namespace content_v2_1 {
      */
     batchId?: number | null;
     /**
-     * A list of errors defined if and only if the request failed.
+     * A list of errors for failed custombatch entries. *Note:* Schema errors fail the whole request.
      */
     errors?: Schema$Errors;
     /**
@@ -1278,7 +1275,7 @@ export namespace content_v2_1 {
      */
     collectionLevelIssuses?: Schema$CollectionStatusItemLevelIssue[];
     /**
-     * Date on which the collection has been created in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format: Date, time, and offset, e.g. "2020-01-02T09:00:00+01:00" or "2020-01-02T09:00:00Z"
+     * Date on which the collection has been created in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format: Date, time, and offset, for example "2020-01-02T09:00:00+01:00" or "2020-01-02T09:00:00Z"
      */
     creationDate?: string | null;
     /**
@@ -1290,7 +1287,7 @@ export namespace content_v2_1 {
      */
     id?: string | null;
     /**
-     * Date on which the collection has been last updated in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format: Date, time, and offset, e.g. "2020-01-02T09:00:00+01:00" or "2020-01-02T09:00:00Z"
+     * Date on which the collection has been last updated in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format: Date, time, and offset, for example "2020-01-02T09:00:00+01:00" or "2020-01-02T09:00:00Z"
      */
     lastUpdateDate?: string | null;
   }
@@ -1303,7 +1300,7 @@ export namespace content_v2_1 {
      */
     destination?: string | null;
     /**
-     * The status for the specified destination.
+     * The status for the specified destination in the collections target country.
      */
     status?: string | null;
   }
@@ -1561,7 +1558,7 @@ export namespace content_v2_1 {
      */
     datafeed?: Schema$Datafeed;
     /**
-     * A list of errors defined if and only if the request failed.
+     * A list of errors for failed custombatch entries. *Note:* Schema errors fail the whole request.
      */
     errors?: Schema$Errors;
   }
@@ -1706,7 +1703,7 @@ export namespace content_v2_1 {
      */
     datafeedStatus?: Schema$DatafeedStatus;
     /**
-     * A list of errors defined if and only if the request failed.
+     * A list of errors for failed custombatch entries. *Note:* Schema errors fail the whole request.
      */
     errors?: Schema$Errors;
   }
@@ -1774,31 +1771,31 @@ export namespace content_v2_1 {
     year?: number | null;
   }
   /**
-   * Represents civil time (or occasionally physical time). This type can represent a civil time in one of a few possible ways: * When utc_offset is set and time_zone is unset: a civil time on a calendar day with a particular offset from UTC. * When time_zone is set and utc_offset is unset: a civil time on a calendar day in a particular time zone. * When neither time_zone nor utc_offset is set: a civil time on a calendar day in local time. The date is relative to the Proleptic Gregorian Calendar. If year is 0, the DateTime is considered not to have a specific year. month and day must have valid, non-zero values. This type may also be used to represent a physical time if all the date and time fields are set and either case of the `time_offset` oneof is set. Consider using `Timestamp` message for physical time instead. If your use case also would like to store the user's timezone, that can be done in another field. This type is more flexible than some applications may want. Make sure to document and validate your application's limitations.
+   * Represents civil time (or occasionally physical time). This type can represent a civil time in one of a few possible ways: * When utc_offset is set and time_zone is unset: a civil time on a calendar day with a particular offset from UTC. * When time_zone is set and utc_offset is unset: a civil time on a calendar day in a particular time zone. * When neither time_zone nor utc_offset is set: a civil time on a calendar day in local time. The date is relative to the Proleptic Gregorian Calendar. If year, month, or day are 0, the DateTime is considered not to have a specific year, month, or day respectively. This type may also be used to represent a physical time if all the date and time fields are set and either case of the `time_offset` oneof is set. Consider using `Timestamp` message for physical time instead. If your use case also would like to store the user's timezone, that can be done in another field. This type is more flexible than some applications may want. Make sure to document and validate your application's limitations.
    */
   export interface Schema$DateTime {
     /**
-     * Required. Day of month. Must be from 1 to 31 and valid for the year and month.
+     * Optional. Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a datetime without a day.
      */
     day?: number | null;
     /**
-     * Required. Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     * Optional. Hours of day in 24 hour format. Should be from 0 to 23, defaults to 0 (midnight). An API may choose to allow the value "24:00:00" for scenarios like business closing time.
      */
     hours?: number | null;
     /**
-     * Required. Minutes of hour of day. Must be from 0 to 59.
+     * Optional. Minutes of hour of day. Must be from 0 to 59, defaults to 0.
      */
     minutes?: number | null;
     /**
-     * Required. Month of year. Must be from 1 to 12.
+     * Optional. Month of year. Must be from 1 to 12, or 0 if specifying a datetime without a month.
      */
     month?: number | null;
     /**
-     * Required. Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     * Optional. Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999, defaults to 0.
      */
     nanos?: number | null;
     /**
-     * Required. Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     * Optional. Seconds of minutes of the time. Must normally be from 0 to 59, defaults to 0. An API may allow the value 60 if it allows leap-seconds.
      */
     seconds?: number | null;
     /**
@@ -2624,7 +2621,7 @@ export namespace content_v2_1 {
      */
     batchId?: number | null;
     /**
-     * A list of errors defined if and only if the request failed.
+     * A list of errors for failed custombatch entries. *Note:* Schema errors fail the whole request.
      */
     errors?: Schema$Errors;
     /**
@@ -5187,6 +5184,10 @@ export namespace content_v2_1 {
      */
     externalSellerId?: string | null;
     /**
+     * Feed label for the item. Either `targetCountry` or `feedLabel` is required.
+     */
+    feedLabel?: string | null;
+    /**
      * Target gender of the item.
      */
     gender?: string | null;
@@ -5575,7 +5576,7 @@ export namespace content_v2_1 {
      */
     batchId?: number | null;
     /**
-     * A list of errors defined if and only if the request failed.
+     * A list of errors for failed custombatch entries. *Note:* Schema errors fail the whole request.
      */
     errors?: Schema$Errors;
     /**
@@ -5781,7 +5782,7 @@ export namespace content_v2_1 {
      */
     batchId?: number | null;
     /**
-     * A list of errors, if the request failed.
+     * A list of errors for failed custombatch entries. *Note:* Schema errors fail the whole request.
      */
     errors?: Schema$Errors;
     /**
@@ -5901,6 +5902,135 @@ export namespace content_v2_1 {
      * The measure of an item.
      */
     value?: number | null;
+  }
+  /**
+   * Product fields. Values are only set for fields requested explicitly in the request's search query.
+   */
+  export interface Schema$ProductView {
+    /**
+     * Aggregated destination status.
+     */
+    aggregatedDestinationStatus?: string | null;
+    /**
+     * Availability of the product.
+     */
+    availability?: string | null;
+    /**
+     * Brand of the product.
+     */
+    brand?: string | null;
+    /**
+     * Channel of the product (online versus local).
+     */
+    channel?: string | null;
+    /**
+     * Condition of the product.
+     */
+    condition?: string | null;
+    /**
+     * The time the merchant created the product in timestamp seconds.
+     */
+    creationTime?: string | null;
+    /**
+     * Product price currency code (for example, ISO 4217). Absent if product price is not available.
+     */
+    currencyCode?: string | null;
+    /**
+     * Expiration date for the product. Specified on insertion.
+     */
+    expirationDate?: Schema$Date;
+    /**
+     * GTIN of the product.
+     */
+    gtin?: string[] | null;
+    /**
+     * The REST ID of the product, in the form of channel:contentLanguage:targetCountry:offerId. Content API methods that operate on products take this as their productId parameter. Should always be included in the SELECT clause.
+     */
+    id?: string | null;
+    /**
+     * Item group ID provided by the merchant for grouping variants together.
+     */
+    itemGroupId?: string | null;
+    /**
+     * List of item issues for the product.
+     */
+    itemIssues?: Schema$ProductViewItemIssue[];
+    /**
+     * Language code of the product in BCP 47 format.
+     */
+    languageCode?: string | null;
+    /**
+     * Merchant-provided id of the product.
+     */
+    offerId?: string | null;
+    /**
+     * Product price specified as micros in the product currency. Absent in case the information about the price of the product is not available.
+     */
+    priceMicros?: string | null;
+    /**
+     * The normalized shipping label specified in the feed
+     */
+    shippingLabel?: string | null;
+    /**
+     * Title of the product.
+     */
+    title?: string | null;
+  }
+  /**
+   * Item issue associated with the product.
+   */
+  export interface Schema$ProductViewItemIssue {
+    /**
+     * Item issue type.
+     */
+    issueType?: Schema$ProductViewItemIssueItemIssueType;
+    /**
+     * Item issue resolution.
+     */
+    resolution?: string | null;
+    /**
+     * Item issue severity.
+     */
+    severity?: Schema$ProductViewItemIssueItemIssueSeverity;
+  }
+  /**
+   * Issue severity for all affected regions in a destination.
+   */
+  export interface Schema$ProductViewItemIssueIssueSeverityPerDestination {
+    /**
+     * List of demoted countries in the destination.
+     */
+    demotedCountries?: string[] | null;
+    /**
+     * Issue destination.
+     */
+    destination?: string | null;
+    /**
+     * List of disapproved countries in the destination.
+     */
+    disapprovedCountries?: string[] | null;
+  }
+  /**
+   * Severity of an issue per destination in a region, and aggregated severity.
+   */
+  export interface Schema$ProductViewItemIssueItemIssueSeverity {
+    /**
+     * Severity of an issue aggregated for destination.
+     */
+    aggregatedSeverity?: string | null;
+    /**
+     * Item issue severity for every destination.
+     */
+    severityPerDestination?: Schema$ProductViewItemIssueIssueSeverityPerDestination[];
+  }
+  /**
+   * Type of the item issue.
+   */
+  export interface Schema$ProductViewItemIssueItemIssueType {
+    /**
+     * Canonical attribute name for attribute-specific issues.
+     */
+    canonicalAttribute?: string | null;
   }
   export interface Schema$ProductWeight {
     /**
@@ -6230,7 +6360,7 @@ export namespace content_v2_1 {
      */
     batchId?: number | null;
     /**
-     * A list of errors defined if and only if the request failed.
+     * A list of errors for failed custombatch entries. *Note:* Schema errors fail the whole request.
      */
     errors?: Schema$Errors;
     /**
@@ -6285,6 +6415,10 @@ export namespace content_v2_1 {
      * Metrics requested by the merchant in the query. Metric values are only set for metrics requested explicitly in the query.
      */
     metrics?: Schema$Metrics;
+    /**
+     * Product fields requested by the merchant in the query. Field values are only set if the merchant queries `ProductView`. `product_view` field is available only to allowlisted users who can query the `ProductView` table.
+     */
+    productView?: Schema$ProductView;
     /**
      * Segmentation dimensions requested by the merchant in the query. Dimension values are only set for dimensions requested explicitly in the query.
      */
@@ -7069,7 +7203,7 @@ export namespace content_v2_1 {
     results?: Schema$ReportRow[];
   }
   /**
-   * Dimensions according to which metrics are segmented in the response. Values of product dimensions, e.g., offer id, reflect the state of a product at the time of the corresponding event, e.g., impression or order. Segment fields cannot be selected in queries without also selecting at least one metric field. Values are only set for dimensions requested explicitly in the request's search query.
+   * Dimensions according to which metrics are segmented in the response. Values of product dimensions, such as `offer_id`, reflect the state of a product at the time of the corresponding event, for example, impression or order. Segment fields cannot be selected in queries without also selecting at least one metric field. Values are only set for dimensions requested explicitly in the request's search query.
    */
   export interface Schema$Segments {
     /**
@@ -7097,7 +7231,7 @@ export namespace content_v2_1 {
      */
     categoryL5?: string | null;
     /**
-     * Currency in which price metrics are represented, e.g., if you select `ordered_item_sales_micros`, the returned value will be represented by this currency.
+     * Currency in which price metrics are represented, for example, if you select `ordered_item_sales_micros`, the returned value will be represented by this currency.
      */
     currencyCode?: string | null;
     /**
@@ -7153,7 +7287,7 @@ export namespace content_v2_1 {
      */
     productTypeL5?: string | null;
     /**
-     * Program to which metrics apply, e.g., Free Product Listing.
+     * Program to which metrics apply, for example, Free Product Listing.
      */
     program?: string | null;
     /**
@@ -7465,7 +7599,7 @@ export namespace content_v2_1 {
      */
     batchId?: number | null;
     /**
-     * A list of errors defined if, and only if, the request failed.
+     * A list of errors for failed custombatch entries. *Note:* Schema errors fail the whole request.
      */
     errors?: Schema$Errors;
     /**
@@ -12016,168 +12150,6 @@ export namespace content_v2_1 {
      * The token returned by the previous request.
      */
     pageToken?: string;
-  }
-
-  export class Resource$Accountstatusesbyexternalsellerid {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Gets status of the account with the specified external_seller_id belonging to the MCA with the specified merchant_id.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accountstatusesbyexternalsellerid.get({
-     *     // If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
-     *     destinations: 'placeholder-value',
-     *     // Required. The External Seller ID of the seller account to be retrieved.
-     *     externalSellerId: 'placeholder-value',
-     *     // Required. The ID of the MCA containing the seller.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "accountLevelIssues": [],
-     *   //   "accountManagement": "my_accountManagement",
-     *   //   "kind": "my_kind",
-     *   //   "products": [],
-     *   //   "websiteClaimed": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Accountstatusesbyexternalsellerid$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Accountstatusesbyexternalsellerid$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountStatus>;
-    get(
-      params: Params$Resource$Accountstatusesbyexternalsellerid$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Accountstatusesbyexternalsellerid$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$AccountStatus>,
-      callback: BodyResponseCallback<Schema$AccountStatus>
-    ): void;
-    get(
-      params: Params$Resource$Accountstatusesbyexternalsellerid$Get,
-      callback: BodyResponseCallback<Schema$AccountStatus>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$AccountStatus>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Accountstatusesbyexternalsellerid$Get
-        | BodyResponseCallback<Schema$AccountStatus>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$AccountStatus>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$AccountStatus>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$AccountStatus> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accountstatusesbyexternalsellerid$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accountstatusesbyexternalsellerid$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/content/v2.1/{merchantId}/accountstatusesbyexternalsellerid/{externalSellerId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['merchantId', 'externalSellerId'],
-        pathParams: ['externalSellerId', 'merchantId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$AccountStatus>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$AccountStatus>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Accountstatusesbyexternalsellerid$Get
-    extends StandardParameters {
-    /**
-     * If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
-     */
-    destinations?: string[];
-    /**
-     * Required. The External Seller ID of the seller account to be retrieved.
-     */
-    externalSellerId?: string;
-    /**
-     * Required. The ID of the MCA containing the seller.
-     */
-    merchantId?: string;
   }
 
   export class Resource$Accounttax {
@@ -26376,6 +26348,7 @@ export namespace content_v2_1 {
      *   //   "excludedDestinations": [],
      *   //   "expirationDate": "my_expirationDate",
      *   //   "externalSellerId": "my_externalSellerId",
+     *   //   "feedLabel": "my_feedLabel",
      *   //   "gender": "my_gender",
      *   //   "googleProductCategory": "my_googleProductCategory",
      *   //   "gtin": "my_gtin",
@@ -26596,6 +26569,7 @@ export namespace content_v2_1 {
      *       //   "excludedDestinations": [],
      *       //   "expirationDate": "my_expirationDate",
      *       //   "externalSellerId": "my_externalSellerId",
+     *       //   "feedLabel": "my_feedLabel",
      *       //   "gender": "my_gender",
      *       //   "googleProductCategory": "my_googleProductCategory",
      *       //   "gtin": "my_gtin",
@@ -26694,6 +26668,7 @@ export namespace content_v2_1 {
      *   //   "excludedDestinations": [],
      *   //   "expirationDate": "my_expirationDate",
      *   //   "externalSellerId": "my_externalSellerId",
+     *   //   "feedLabel": "my_feedLabel",
      *   //   "gender": "my_gender",
      *   //   "googleProductCategory": "my_googleProductCategory",
      *   //   "gtin": "my_gtin",
@@ -27057,6 +27032,7 @@ export namespace content_v2_1 {
      *       //   "excludedDestinations": [],
      *       //   "expirationDate": "my_expirationDate",
      *       //   "externalSellerId": "my_externalSellerId",
+     *       //   "feedLabel": "my_feedLabel",
      *       //   "gender": "my_gender",
      *       //   "googleProductCategory": "my_googleProductCategory",
      *       //   "gtin": "my_gtin",
@@ -27155,6 +27131,7 @@ export namespace content_v2_1 {
      *   //   "excludedDestinations": [],
      *   //   "expirationDate": "my_expirationDate",
      *   //   "externalSellerId": "my_externalSellerId",
+     *   //   "feedLabel": "my_feedLabel",
      *   //   "gender": "my_gender",
      *   //   "googleProductCategory": "my_googleProductCategory",
      *   //   "gtin": "my_gtin",
