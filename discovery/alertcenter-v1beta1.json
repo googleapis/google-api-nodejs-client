@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20220606",
+  "revision": "20220808",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
     "AccountSuspensionDetails": {
@@ -727,6 +727,26 @@
         "updateTime": {
           "description": "Output only. The time this metadata was last updated.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ApnsCertificateExpirationInfo": {
+      "description": "The explanation message associated with ApnsCertificationExpiring and ApnsCertificationExpired alerts.",
+      "id": "ApnsCertificateExpirationInfo",
+      "properties": {
+        "appleId": {
+          "description": "The Apple ID used for the certificate, may be blank if admins did not enter it.",
+          "type": "string"
+        },
+        "expirationTime": {
+          "description": "The expiration date of the APNS Certificate.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "uid": {
+          "description": "The UID for the certificate.",
           "type": "string"
         }
       },
