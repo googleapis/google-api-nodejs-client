@@ -1305,7 +1305,7 @@
       }
     }
   },
-  "revision": "20220613",
+  "revision": "20220817",
   "rootUrl": "https://realtimebidding.googleapis.com/",
   "schemas": {
     "ActivatePretargetingConfigRequest": {
@@ -1820,7 +1820,7 @@
           "type": "array"
         },
         "version": {
-          "description": "Output only. The version of this creative. Version for a new creative is 1 and it increments during subsequent creative updates.",
+          "description": "Output only. The version of the creative. Version for a new creative is 1 and it increments during subsequent creative updates.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
