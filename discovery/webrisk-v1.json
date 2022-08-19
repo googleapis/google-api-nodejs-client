@@ -127,14 +127,14 @@
                 "MALWARE",
                 "SOCIAL_ENGINEERING",
                 "UNWANTED_SOFTWARE",
-                "HIGH_RECALL"
+                "SOCIAL_ENGINEERING_EXTENDED_COVERAGE"
               ],
               "enumDescriptions": [
                 "No entries should match this threat type. This threat type is unused.",
                 "Malware targeting any platform.",
                 "Social engineering targeting any platform.",
                 "Unwanted software targeting any platform.",
-                "High Recall Social Engineering list targeting any platform."
+                "Extended Coverage Social Engineering list targeting any platform."
               ],
               "location": "query",
               "repeated": true,
@@ -377,14 +377,14 @@
                 "MALWARE",
                 "SOCIAL_ENGINEERING",
                 "UNWANTED_SOFTWARE",
-                "HIGH_RECALL"
+                "SOCIAL_ENGINEERING_EXTENDED_COVERAGE"
               ],
               "enumDescriptions": [
                 "No entries should match this threat type. This threat type is unused.",
                 "Malware targeting any platform.",
                 "Social engineering targeting any platform.",
                 "Unwanted software targeting any platform.",
-                "High Recall Social Engineering list targeting any platform."
+                "Extended Coverage Social Engineering list targeting any platform."
               ],
               "location": "query",
               "type": "string"
@@ -422,14 +422,14 @@
                 "MALWARE",
                 "SOCIAL_ENGINEERING",
                 "UNWANTED_SOFTWARE",
-                "HIGH_RECALL"
+                "SOCIAL_ENGINEERING_EXTENDED_COVERAGE"
               ],
               "enumDescriptions": [
                 "No entries should match this threat type. This threat type is unused.",
                 "Malware targeting any platform.",
                 "Social engineering targeting any platform.",
                 "Unwanted software targeting any platform.",
-                "High Recall Social Engineering list targeting any platform."
+                "Extended Coverage Social Engineering list targeting any platform."
               ],
               "location": "query",
               "repeated": true,
@@ -452,7 +452,7 @@
       }
     }
   },
-  "revision": "20220625",
+  "revision": "20220806",
   "rootUrl": "https://webrisk.googleapis.com/",
   "schemas": {
     "GoogleCloudWebriskV1ComputeThreatListDiffResponse": {
@@ -608,14 +608,14 @@
               "MALWARE",
               "SOCIAL_ENGINEERING",
               "UNWANTED_SOFTWARE",
-              "HIGH_RECALL"
+              "SOCIAL_ENGINEERING_EXTENDED_COVERAGE"
             ],
             "enumDescriptions": [
               "No entries should match this threat type. This threat type is unused.",
               "Malware targeting any platform.",
               "Social engineering targeting any platform.",
               "Unwanted software targeting any platform.",
-              "High Recall Social Engineering list targeting any platform."
+              "Extended Coverage Social Engineering list targeting any platform."
             ],
             "type": "string"
           },
@@ -651,14 +651,14 @@
               "MALWARE",
               "SOCIAL_ENGINEERING",
               "UNWANTED_SOFTWARE",
-              "HIGH_RECALL"
+              "SOCIAL_ENGINEERING_EXTENDED_COVERAGE"
             ],
             "enumDescriptions": [
               "No entries should match this threat type. This threat type is unused.",
               "Malware targeting any platform.",
               "Social engineering targeting any platform.",
               "Unwanted software targeting any platform.",
-              "High Recall Social Engineering list targeting any platform."
+              "Extended Coverage Social Engineering list targeting any platform."
             ],
             "type": "string"
           },
@@ -679,14 +679,14 @@
               "MALWARE",
               "SOCIAL_ENGINEERING",
               "UNWANTED_SOFTWARE",
-              "HIGH_RECALL"
+              "SOCIAL_ENGINEERING_EXTENDED_COVERAGE"
             ],
             "enumDescriptions": [
               "No entries should match this threat type. This threat type is unused.",
               "Malware targeting any platform.",
               "Social engineering targeting any platform.",
               "Unwanted software targeting any platform.",
-              "High Recall Social Engineering list targeting any platform."
+              "Extended Coverage Social Engineering list targeting any platform."
             ],
             "type": "string"
           },
@@ -715,14 +715,16 @@
             "RUNNING",
             "SUCCEEDED",
             "CANCELLED",
-            "FAILED"
+            "FAILED",
+            "CLOSED"
           ],
           "enumDescriptions": [
             "Default unspecified state.",
             "The operation is currently running.",
             "The operation finished with a success status.",
             "The operation was cancelled.",
-            "The operation finished with a failure status."
+            "The operation finished with a failure status.",
+            "The operation was closed with no action taken."
           ],
           "type": "string"
         },

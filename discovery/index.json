@@ -577,7 +577,7 @@
       "name": "baremetalsolution",
       "version": "v1alpha1",
       "title": "Bare Metal Solution API",
-      "description": "Bare Metal Solution provides hardware to run specialized workloads with low latency on Google Cloud.",
+      "description": "Provides ways to manage Bare Metal Solution hardware installed in a regional extension located near a Google Cloud data center.",
       "discoveryRestUrl": "https://baremetalsolution.googleapis.com/$discovery/rest?version=v1alpha1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -592,7 +592,7 @@
       "name": "baremetalsolution",
       "version": "v1",
       "title": "Bare Metal Solution API",
-      "description": "Bare Metal Solution provides hardware to run specialized workloads with low latency on Google Cloud.",
+      "description": "Provides ways to manage Bare Metal Solution hardware installed in a regional extension located near a Google Cloud data center.",
       "discoveryRestUrl": "https://baremetalsolution.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -607,7 +607,7 @@
       "name": "baremetalsolution",
       "version": "v2",
       "title": "Bare Metal Solution API",
-      "description": "Bare Metal Solution provides hardware to run specialized workloads with low latency on Google Cloud.",
+      "description": "Provides ways to manage Bare Metal Solution hardware installed in a regional extension located near a Google Cloud data center.",
       "discoveryRestUrl": "https://baremetalsolution.googleapis.com/$discovery/rest?version=v2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -622,7 +622,7 @@
       "name": "beyondcorp",
       "version": "v1alpha",
       "title": "BeyondCorp API",
-      "description": "Beyondcorp Enterprise provides identity and context aware access controls for enterprise resources and enables zero-trust access. Using the Beyondcorp Enterprise APIs, enterprises can set up multi-cloud and on-prem connectivity using the App Connector hybrid connectivity solution.",
+      "description": "Beyondcorp Enterprise provides identity and context aware access controls for enterprise resources and enables zero-trust access. Using the Beyondcorp Enterprise APIs, enterprises can set up multi-cloud and on-prem connectivity solutions.",
       "discoveryRestUrl": "https://beyondcorp.googleapis.com/$discovery/rest?version=v1alpha",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -637,7 +637,7 @@
       "name": "beyondcorp",
       "version": "v1",
       "title": "BeyondCorp API",
-      "description": "Beyondcorp Enterprise provides identity and context aware access controls for enterprise resources and enables zero-trust access. Using the Beyondcorp Enterprise APIs, enterprises can set up multi-cloud and on-prem connectivity using the App Connector hybrid connectivity solution.",
+      "description": "Beyondcorp Enterprise provides identity and context aware access controls for enterprise resources and enables zero-trust access. Using the Beyondcorp Enterprise APIs, enterprises can set up multi-cloud and on-prem connectivity solutions.",
       "discoveryRestUrl": "https://beyondcorp.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -984,21 +984,6 @@
       "title": "Cloud Asset API",
       "description": "The cloud asset API manages the history and inventory of cloud resources.",
       "discoveryRestUrl": "https://cloudasset.googleapis.com/$discovery/rest?version=v1p1beta1",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/asset-inventory/docs/quickstart",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "cloudasset:v1p4beta1",
-      "name": "cloudasset",
-      "version": "v1p4beta1",
-      "title": "Cloud Asset API",
-      "description": "The cloud asset API manages the history and inventory of cloud resources.",
-      "discoveryRestUrl": "https://cloudasset.googleapis.com/$discovery/rest?version=v1p4beta1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -1662,6 +1647,21 @@
       "title": "Connectors API",
       "description": "Enables users to create and manage connections to Google Cloud services and third-party business applications using the Connectors interface.",
       "discoveryRestUrl": "https://connectors.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/apigee/docs/api-platform/connectors/about-connectors",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "connectors:v2",
+      "name": "connectors",
+      "version": "v2",
+      "title": "Connectors API",
+      "description": "Enables users to create and manage connections to Google Cloud services and third-party business applications using the Connectors interface.",
+      "discoveryRestUrl": "https://connectors.googleapis.com/$discovery/rest?version=v2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -2468,6 +2468,36 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "drivelabels:v2beta",
+      "name": "drivelabels",
+      "version": "v2beta",
+      "title": "Drive Labels API",
+      "description": "An API for managing Drive Labels",
+      "discoveryRestUrl": "https://drivelabels.googleapis.com/$discovery/rest?version=v2beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/drive/labels",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "drivelabels:v2",
+      "name": "drivelabels",
+      "version": "v2",
+      "title": "Drive Labels API",
+      "description": "An API for managing Drive Labels",
+      "discoveryRestUrl": "https://drivelabels.googleapis.com/$discovery/rest?version=v2",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/drive/labels",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "essentialcontacts:v1",
       "name": "essentialcontacts",
       "version": "v1",
@@ -3248,6 +3278,36 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "identitytoolkit:v1",
+      "name": "identitytoolkit",
+      "version": "v1",
+      "title": "Identity Toolkit API",
+      "description": "The Google Identity Toolkit API lets you use open standards to verify a user's identity.",
+      "discoveryRestUrl": "https://identitytoolkit.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/identity-platform",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "identitytoolkit:v2",
+      "name": "identitytoolkit",
+      "version": "v2",
+      "title": "Identity Toolkit API",
+      "description": "The Google Identity Toolkit API lets you use open standards to verify a user's identity.",
+      "discoveryRestUrl": "https://identitytoolkit.googleapis.com/$discovery/rest?version=v2",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/identity-platform",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "identitytoolkit:v3",
       "name": "identitytoolkit",
       "version": "v3",
@@ -3258,7 +3318,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://firebase.google.com/docs/auth/",
+      "documentationLink": "https://cloud.google.com/identity-platform",
       "preferred": true
     },
     {
@@ -3777,7 +3837,7 @@
       "name": "networkconnectivity",
       "version": "v1alpha1",
       "title": "Network Connectivity API",
-      "description": "The Network Connectivity API provides access to Network Connectivity Center.",
+      "description": "This API enables connectivity with and between Google Cloud resources.",
       "discoveryRestUrl": "https://networkconnectivity.googleapis.com/$discovery/rest?version=v1alpha1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -3792,7 +3852,7 @@
       "name": "networkconnectivity",
       "version": "v1",
       "title": "Network Connectivity API",
-      "description": "The Network Connectivity API provides access to Network Connectivity Center.",
+      "description": "This API enables connectivity with and between Google Cloud resources.",
       "discoveryRestUrl": "https://networkconnectivity.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -4191,6 +4251,21 @@
       },
       "documentationLink": "https://www.google.com",
       "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "policysimulator:v1alpha",
+      "name": "policysimulator",
+      "version": "v1alpha",
+      "title": "Policy Simulator API",
+      "description": "Policy Simulator is a collection of endpoints for creating, running, and viewing a [Replay][google.cloud.policysimulator.v1beta1.Replay]. A `Replay` is a type of simulation that lets you see how your members' access to resources might change if you changed your IAM policy. During a `Replay`, Policy Simulator re-evaluates, or replays, past access attempts under both the current policy and your proposed policy, and compares those results to determine how your members' access might change under the proposed policy.",
+      "discoveryRestUrl": "https://policysimulator.googleapis.com/$discovery/rest?version=v1alpha",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/iam/docs/simulating-access",
+      "preferred": false
     },
     {
       "kind": "discovery#directoryItem",
@@ -5049,21 +5124,6 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "speech:v2beta1",
-      "name": "speech",
-      "version": "v2beta1",
-      "title": "Cloud Speech-to-Text API",
-      "description": "Converts audio to text by applying powerful neural network models.",
-      "discoveryRestUrl": "https://speech.googleapis.com/$discovery/rest?version=v2beta1",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/speech-to-text/docs/quickstart-protocol",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
       "id": "speech:v1",
       "name": "speech",
       "version": "v1",
@@ -5593,13 +5653,13 @@
       "name": "vmmigration",
       "version": "v1alpha1",
       "title": "VM Migration API",
-      "description": "Use the Migrate for Compute Engine API to programmatically migrate workloads.",
+      "description": "Use the Migrate to Virtual Machines API to programmatically migrate workloads.",
       "discoveryRestUrl": "https://vmmigration.googleapis.com/$discovery/rest?version=v1alpha1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://cloud.google.com/migrate/compute-engine",
+      "documentationLink": "https://cloud.google.com/migrate/virtual-machines",
       "preferred": false
     },
     {
@@ -5608,13 +5668,13 @@
       "name": "vmmigration",
       "version": "v1",
       "title": "VM Migration API",
-      "description": "Use the Migrate for Compute Engine API to programmatically migrate workloads.",
+      "description": "Use the Migrate to Virtual Machines API to programmatically migrate workloads.",
       "discoveryRestUrl": "https://vmmigration.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://cloud.google.com/migrate/compute-engine",
+      "documentationLink": "https://cloud.google.com/migrate/virtual-machines",
       "preferred": true
     },
     {

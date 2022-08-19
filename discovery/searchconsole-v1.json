@@ -400,7 +400,7 @@
       }
     }
   },
-  "revision": "20220305",
+  "revision": "20220817",
   "rootUrl": "https://searchconsole.googleapis.com/",
   "schemas": {
     "AmpInspectionResult": {
@@ -419,7 +419,7 @@
           "enumDescriptions": [
             "Unknown verdict.",
             "Equivalent to \"Valid\" for the page or item in Search Console.",
-            "Equivalent to \"Valid with warnings\" for the page or item in Search Console.",
+            "Reserved, no longer in use.",
             "Equivalent to \"Error\" or \"Invalid\" for the page or item in Search Console.",
             "Equivalent to \"Excluded\" for the page or item in Search Console."
           ],
@@ -515,7 +515,7 @@
           "enumDescriptions": [
             "Unknown verdict.",
             "Equivalent to \"Valid\" for the page or item in Search Console.",
-            "Equivalent to \"Valid with warnings\" for the page or item in Search Console.",
+            "Reserved, no longer in use.",
             "Equivalent to \"Error\" or \"Invalid\" for the page or item in Search Console.",
             "Equivalent to \"Excluded\" for the page or item in Search Console."
           ],
@@ -815,7 +815,7 @@
           "enumDescriptions": [
             "Unknown verdict.",
             "Equivalent to \"Valid\" for the page or item in Search Console.",
-            "Equivalent to \"Valid with warnings\" for the page or item in Search Console.",
+            "Reserved, no longer in use.",
             "Equivalent to \"Error\" or \"Invalid\" for the page or item in Search Console.",
             "Equivalent to \"Excluded\" for the page or item in Search Console."
           ],
@@ -924,7 +924,7 @@
           "enumDescriptions": [
             "Unknown verdict.",
             "Equivalent to \"Valid\" for the page or item in Search Console.",
-            "Equivalent to \"Valid with warnings\" for the page or item in Search Console.",
+            "Reserved, no longer in use.",
             "Equivalent to \"Error\" or \"Invalid\" for the page or item in Search Console.",
             "Equivalent to \"Excluded\" for the page or item in Search Console."
           ],
@@ -1014,7 +1014,7 @@
           "enumDescriptions": [
             "Unknown verdict.",
             "Equivalent to \"Valid\" for the page or item in Search Console.",
-            "Equivalent to \"Valid with warnings\" for the page or item in Search Console.",
+            "Reserved, no longer in use.",
             "Equivalent to \"Error\" or \"Invalid\" for the page or item in Search Console.",
             "Equivalent to \"Excluded\" for the page or item in Search Console."
           ],

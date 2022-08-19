@@ -404,7 +404,7 @@
     "package": "@google-cloud/talent"
   },
   {
-    "api": "cloudtasks",
+    "api": "tasks",
     "package": "@google-cloud/tasks"
   },
   {
@@ -456,8 +456,20 @@
     "package": "@google-cloud/bigquery-data-exchange"
   },
   {
+    "api": "apigeeregistry",
+    "package": "@google-cloud/apigee-registry"
+  },
+  {
     "api": "area120tables",
     "package": "@google/area120-tables"
+  },
+  {
+    "api": "baremetalsolution",
+    "package": "@google-cloud/bare-metal-solution"
+  },
+  {
+    "api": "bigquerymigration",
+    "package": "@google-cloud/bigquery-migration"
   },
   {
     "api": "datalabeling",
@@ -470,6 +482,10 @@
   {
     "api": "dataflow",
     "package": "@google-cloud/dataflow"
+  },
+  {
+    "api": "dataform",
+    "package": "@google-cloud/dataform"
   },
   {
     "api": "connectgateway",
