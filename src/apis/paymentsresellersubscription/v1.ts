@@ -344,6 +344,19 @@ export namespace paymentsresellersubscription_v1 {
     recurrenceCount?: number | null;
   }
   /**
+   * A description of what time period or moment in time the product or service is being delivered over.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1ServicePeriod {
+    /**
+     * Optional. The end time of the service period. Time is exclusive.
+     */
+    endTime?: string | null;
+    /**
+     * Required. The start time of the service period. Time is inclusive.
+     */
+    startTime?: string | null;
+  }
+  /**
    * A Subscription resource managed by 3P Partners.
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription {
@@ -430,7 +443,7 @@ export namespace paymentsresellersubscription_v1 {
     reason?: string | null;
   }
   /**
-   * Individual line item definition of a subscription. Next id: 6
+   * Individual line item definition of a subscription. Next id: 8
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem {
     /**
@@ -446,13 +459,30 @@ export namespace paymentsresellersubscription_v1 {
      */
     lineItemPromotionSpecs?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionPromotionSpec[];
     /**
+     * Output only. Details only set for a ONE_TIME recurrence line item.
+     */
+    oneTimeRecurrenceDetails?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItemOneTimeRecurrenceDetails;
+    /**
      * Required. Product resource name that identifies one the line item The format is 'partners/{partner_id\}/products/{product_id\}'.
      */
     product?: string | null;
     /**
+     * Output only. The recurrence type of the line item.
+     */
+    recurrenceType?: string | null;
+    /**
      * Output only. The state of the line item.
      */
     state?: string | null;
+  }
+  /**
+   * Details for a ONE_TIME recurrence line item.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItemOneTimeRecurrenceDetails {
+    /**
+     * The service period of the ONE_TIME line item.
+     */
+    servicePeriod?: Schema$GoogleCloudPaymentsResellerSubscriptionV1ServicePeriod;
   }
   /**
    * Describes the spec for one promotion.
