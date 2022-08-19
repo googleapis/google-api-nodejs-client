@@ -1022,6 +1022,163 @@
         }
       },
       "resources": {
+        "audiences": {
+          "methods": {
+            "archive": {
+              "description": "Archives an Audience on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/audiences/{audiencesId}:archive",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.audiences.archive",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Example format: properties/1234/audiences/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/audiences/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}:archive",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaArchiveAudienceRequest"
+              },
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "create": {
+              "description": "Creates an Audience.",
+              "flatPath": "v1alpha/properties/{propertiesId}/audiences",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.audiences.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Example format: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/audiences",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAudience"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAudience"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "get": {
+              "description": "Lookup for a single Audience. Audiences created before 2020 may not be supported. Default audiences will not show filter definitions.",
+              "flatPath": "v1alpha/properties/{propertiesId}/audiences/{audiencesId}",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.audiences.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the Audience to get. Example format: properties/1234/audiences/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/audiences/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAudience"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "list": {
+              "description": "Lists Audiences on a property. Audiences created before 2020 may not be supported. Default audiences will not show filter definitions.",
+              "flatPath": "v1alpha/properties/{propertiesId}/audiences",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.audiences.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListAudiences` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAudiences` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Example format: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/audiences",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaListAudiencesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates an Audience on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/audiences/{audiencesId}",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.properties.audiences.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. The resource name for this Audience resource. Format: properties/{propertyId}/audiences/{audienceId}",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/audiences/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The list of fields to be updated. Field names must be in snake case (e.g., \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAudience"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAudience"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            }
+          }
+        },
         "conversionEvents": {
           "methods": {
             "create": {
@@ -2645,7 +2802,7 @@
       }
     }
   },
-  "revision": "20220629",
+  "revision": "20220817",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -2683,7 +2840,7 @@
       "id": "GoogleAnalyticsAdminV1alphaAccessDimension",
       "properties": {
         "dimensionName": {
-          "description": "The API name of the dimension. Dimensions are referenced by name in `dimensionFilter` and `orderBys`.",
+          "description": "The API name of the dimension. See [Data Access Schema](https://developers.google.com/analytics/devguides/config/admin/v1/access-api-schema) for the list of dimensions supported in this API. Dimensions are referenced by name in `dimensionFilter` and `orderBys`.",
           "type": "string"
         }
       },
@@ -2694,7 +2851,7 @@
       "id": "GoogleAnalyticsAdminV1alphaAccessDimensionHeader",
       "properties": {
         "dimensionName": {
-          "description": "The dimension's name; for example 'country'.",
+          "description": "The dimension's name; for example 'userEmail'.",
           "type": "string"
         }
       },
@@ -2798,7 +2955,7 @@
       "id": "GoogleAnalyticsAdminV1alphaAccessMetric",
       "properties": {
         "metricName": {
-          "description": "The API name of the metric. Metrics are referenced by name in `metricFilter` & `orderBys`.",
+          "description": "The API name of the metric. See [Data Access Schema](https://developers.google.com/analytics/devguides/config/admin/v1/access-api-schema) for the list of metrics supported in this API. Metrics are referenced by name in `metricFilter` & `orderBys`.",
           "type": "string"
         }
       },
@@ -3109,6 +3266,12 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaArchiveAudienceRequest": {
+      "description": "Request message for ArchiveAudience RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaArchiveAudienceRequest",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaArchiveCustomDimensionRequest": {
       "description": "Request message for ArchiveCustomDimension RPC.",
       "id": "GoogleAnalyticsAdminV1alphaArchiveCustomDimensionRequest",
@@ -3181,6 +3344,417 @@
             "Attributes 40% credit to the first and last interaction, and the remaining 20% credit is distributed evenly to the middle interactions.",
             "Gives more credit to the touchpoints that happened closer in time to the conversion.",
             "Attributes 100% of the conversion value to the last Google Ads channel that the customer clicked through before converting."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaAudience": {
+      "description": "A resource message representing a GA4 Audience.",
+      "id": "GoogleAnalyticsAdminV1alphaAudience",
+      "properties": {
+        "adsPersonalizationEnabled": {
+          "description": "Output only. It is automatically set by GA to false if this is an NPA Audience and is excluded from ads personalization.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "description": {
+          "description": "Required. The description of the Audience.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The display name of the Audience.",
+          "type": "string"
+        },
+        "eventTrigger": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAudienceEventTrigger",
+          "description": "Optional. Specifies an event to log when a user joins the Audience. If not set, no event is logged when a user joins the Audience."
+        },
+        "exclusionDurationMode": {
+          "description": "Immutable. Specifies how long an exclusion lasts for users that meet the exclusion filter. It is applied to all EXCLUDE filter clauses and is ignored when there is no EXCLUDE filter clause in the Audience.",
+          "enum": [
+            "AUDIENCE_EXCLUSION_DURATION_MODE_UNSPECIFIED",
+            "EXCLUDE_TEMPORARILY",
+            "EXCLUDE_PERMANENTLY"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Exclude users from the Audience during periods when they meet the filter clause.",
+            "Exclude users from the Audience if they've ever met the filter clause."
+          ],
+          "type": "string"
+        },
+        "filterClauses": {
+          "description": "Required. Immutable. null Filter clauses that define the Audience. All clauses will be AND’ed together.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaAudienceFilterClause"
+          },
+          "type": "array"
+        },
+        "membershipDurationDays": {
+          "description": "Required. Immutable. The duration a user should stay in an Audience. It cannot be set to more than 540 days.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "Output only. The resource name for this Audience resource. Format: properties/{propertyId}/audiences/{audienceId}",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilter": {
+      "description": "A specific filter for a single dimension or metric.",
+      "id": "GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilter",
+      "properties": {
+        "atAnyPointInTime": {
+          "description": "Optional. Indicates whether this filter needs dynamic evaluation or not. If set to true, users join the Audience if they ever met the condition (static evaluation). If unset or set to false, user evaluation for an Audience is dynamic; users are added to an Audience when they meet the conditions and then removed when they no longer meet them. This can only be set when Audience scope is ACROSS_ALL_SESSIONS.",
+          "type": "boolean"
+        },
+        "betweenFilter": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterBetweenFilter",
+          "description": "A filter for numeric or date values between certain values on a dimension or metric."
+        },
+        "fieldName": {
+          "description": "Required. Immutable. The dimension name or metric name to filter.",
+          "type": "string"
+        },
+        "inAnyNDayPeriod": {
+          "description": "Optional. If set, specifies the time window for which to evaluate data in number of days. If not set, then audience data is evaluated against lifetime data (i.e., infinite time window). For example, if set to 1 day, only the current day's data is evaluated. The reference point is the current day when at_any_point_in_time is unset or false. It can only be set when Audience scope is ACROSS_ALL_SESSIONS and cannot be greater than 60 days.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "inListFilter": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterInListFilter",
+          "description": "A filter for a string dimension that matches a particular list of options."
+        },
+        "numericFilter": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterNumericFilter",
+          "description": "A filter for numeric or date values on a dimension or metric."
+        },
+        "stringFilter": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterStringFilter",
+          "description": "A filter for a string-type dimension that matches a particular pattern."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterBetweenFilter": {
+      "description": "A filter for numeric or date values between certain values on a dimension or metric.",
+      "id": "GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterBetweenFilter",
+      "properties": {
+        "fromValue": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterNumericValue",
+          "description": "Required. Begins with this number, inclusive."
+        },
+        "toValue": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterNumericValue",
+          "description": "Required. Ends with this number, inclusive."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterInListFilter": {
+      "description": "A filter for a string dimension that matches a particular list of options.",
+      "id": "GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterInListFilter",
+      "properties": {
+        "caseSensitive": {
+          "description": "Optional. If true, the match is case-sensitive. If false, the match is case-insensitive.",
+          "type": "boolean"
+        },
+        "values": {
+          "description": "Required. The list of possible string values to match against. Must be non-empty.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterNumericFilter": {
+      "description": "A filter for numeric or date values on a dimension or metric.",
+      "id": "GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterNumericFilter",
+      "properties": {
+        "operation": {
+          "description": "Required. The operation applied to a numeric filter.",
+          "enum": [
+            "OPERATION_UNSPECIFIED",
+            "EQUAL",
+            "LESS_THAN",
+            "GREATER_THAN"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Equal.",
+            "Less than.",
+            "Greater than."
+          ],
+          "type": "string"
+        },
+        "value": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterNumericValue",
+          "description": "Required. The numeric or date value to match against."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterNumericValue": {
+      "description": "To represent a number.",
+      "id": "GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterNumericValue",
+      "properties": {
+        "doubleValue": {
+          "description": "Double value.",
+          "format": "double",
+          "type": "number"
+        },
+        "int64Value": {
+          "description": "Integer value.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterStringFilter": {
+      "description": "A filter for a string-type dimension that matches a particular pattern.",
+      "id": "GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterStringFilter",
+      "properties": {
+        "caseSensitive": {
+          "description": "Optional. If true, the match is case-sensitive. If false, the match is case-insensitive.",
+          "type": "boolean"
+        },
+        "matchType": {
+          "description": "Required. The match type for the string filter.",
+          "enum": [
+            "MATCH_TYPE_UNSPECIFIED",
+            "EXACT",
+            "BEGINS_WITH",
+            "ENDS_WITH",
+            "CONTAINS",
+            "FULL_REGEXP"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "Exact match of the string value.",
+            "Begins with the string value.",
+            "Ends with the string value.",
+            "Contains the string value.",
+            "Full regular expression matches with the string value."
+          ],
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. The string value to be matched against.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaAudienceEventFilter": {
+      "description": "A filter that matches events of a single event name. If an event parameter is specified, only the subset of events that match both the single event name and the parameter filter expressions match this event filter.",
+      "id": "GoogleAnalyticsAdminV1alphaAudienceEventFilter",
+      "properties": {
+        "eventName": {
+          "description": "Required. Immutable. The name of the event to match against.",
+          "type": "string"
+        },
+        "eventParameterFilterExpression": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAudienceFilterExpression",
+          "description": "Optional. If specified, this filter matches events that match both the single event name and the parameter filter expressions. AudienceEventFilter inside the parameter filter expression cannot be set (i.e., nested event filters are not supported). This should be a single and_group of dimension_or_metric_filter or not_expression; ANDs of ORs are not supported. Also, if it includes a filter for \"eventCount\", only that one will be considered; all the other filters will be ignored."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaAudienceEventTrigger": {
+      "description": "Specifies an event to log when a user joins the Audience.",
+      "id": "GoogleAnalyticsAdminV1alphaAudienceEventTrigger",
+      "properties": {
+        "eventName": {
+          "description": "Required. The event name that will be logged.",
+          "type": "string"
+        },
+        "logCondition": {
+          "description": "Required. When to log the event.",
+          "enum": [
+            "LOG_CONDITION_UNSPECIFIED",
+            "AUDIENCE_JOINED",
+            "AUDIENCE_MEMBERSHIP_RENEWED"
+          ],
+          "enumDescriptions": [
+            "Log condition is not specified.",
+            "The event should be logged only when a user is joined.",
+            "The event should be logged whenever the Audience condition is met, even if the user is already a member of the Audience."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaAudienceFilterClause": {
+      "description": "A clause for defining either a simple or sequence filter. A filter can be inclusive (i.e., users satisfying the filter clause are included in the Audience) or exclusive (i.e., users satisfying the filter clause are excluded from the Audience).",
+      "id": "GoogleAnalyticsAdminV1alphaAudienceFilterClause",
+      "properties": {
+        "clauseType": {
+          "description": "Required. Specifies whether this is an include or exclude filter clause.",
+          "enum": [
+            "AUDIENCE_CLAUSE_TYPE_UNSPECIFIED",
+            "INCLUDE",
+            "EXCLUDE"
+          ],
+          "enumDescriptions": [
+            "Unspecified clause type.",
+            "Users will be included in the Audience if the filter clause is met.",
+            "Users will be excluded from the Audience if the filter clause is met."
+          ],
+          "type": "string"
+        },
+        "sequenceFilter": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAudienceSequenceFilter",
+          "description": "Filters that must occur in a specific order for the user to be a member of the Audience."
+        },
+        "simpleFilter": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAudienceSimpleFilter",
+          "description": "A simple filter that a user must satisfy to be a member of the Audience."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaAudienceFilterExpression": {
+      "description": "A logical expression of Audience dimension, metric, or event filters.",
+      "id": "GoogleAnalyticsAdminV1alphaAudienceFilterExpression",
+      "properties": {
+        "andGroup": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAudienceFilterExpressionList",
+          "description": "A list of expressions to be AND’ed together. It can only contain AudienceFilterExpressions with or_group. This must be set for the top level AudienceFilterExpression."
+        },
+        "dimensionOrMetricFilter": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilter",
+          "description": "A filter on a single dimension or metric. This cannot be set on the top level AudienceFilterExpression."
+        },
+        "eventFilter": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAudienceEventFilter",
+          "description": "Creates a filter that matches a specific event. This cannot be set on the top level AudienceFilterExpression."
+        },
+        "notExpression": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAudienceFilterExpression",
+          "description": "A filter expression to be NOT'ed (i.e., inverted, complemented). It can only include a dimension_or_metric_filter. This cannot be set on the top level AudienceFilterExpression."
+        },
+        "orGroup": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAudienceFilterExpressionList",
+          "description": "A list of expressions to OR’ed together. It cannot contain AudienceFilterExpressions with and_group or or_group."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaAudienceFilterExpressionList": {
+      "description": "A list of Audience filter expressions.",
+      "id": "GoogleAnalyticsAdminV1alphaAudienceFilterExpressionList",
+      "properties": {
+        "filterExpressions": {
+          "description": "A list of Audience filter expressions.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaAudienceFilterExpression"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaAudienceSequenceFilter": {
+      "description": "Defines filters that must occur in a specific order for the user to be a member of the Audience.",
+      "id": "GoogleAnalyticsAdminV1alphaAudienceSequenceFilter",
+      "properties": {
+        "scope": {
+          "description": "Required. Immutable. Specifies the scope for this filter.",
+          "enum": [
+            "AUDIENCE_FILTER_SCOPE_UNSPECIFIED",
+            "AUDIENCE_FILTER_SCOPE_WITHIN_SAME_EVENT",
+            "AUDIENCE_FILTER_SCOPE_WITHIN_SAME_SESSION",
+            "AUDIENCE_FILTER_SCOPE_ACROSS_ALL_SESSIONS"
+          ],
+          "enumDescriptions": [
+            "Scope is not specified.",
+            "User joins the Audience if the filter condition is met within one event.",
+            "User joins the Audience if the filter condition is met within one session.",
+            "User joins the Audience if the filter condition is met by any event across any session."
+          ],
+          "type": "string"
+        },
+        "sequenceMaximumDuration": {
+          "description": "Optional. Defines the time period in which the whole sequence must occur.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "sequenceSteps": {
+          "description": "Required. An ordered sequence of steps. A user must complete each step in order to join the sequence filter.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaAudienceSequenceFilterAudienceSequenceStep"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaAudienceSequenceFilterAudienceSequenceStep": {
+      "description": "A condition that must occur in the specified step order for this user to match the sequence.",
+      "id": "GoogleAnalyticsAdminV1alphaAudienceSequenceFilterAudienceSequenceStep",
+      "properties": {
+        "constraintDuration": {
+          "description": "Optional. When set, this step must be satisfied within the constraint_duration of the previous step (i.e., t[i] - t[i-1] <= constraint_duration). If not set, there is no duration requirement (the duration is effectively unlimited). It is ignored for the first step.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "filterExpression": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAudienceFilterExpression",
+          "description": "Required. Immutable. A logical expression of Audience dimension, metric, or event filters in each step."
+        },
+        "immediatelyFollows": {
+          "description": "Optional. If true, the event satisfying this step must be the very next event after the event satisfying the last step. If unset or false, this step indirectly follows the prior step; for example, there may be events between the prior step and this step. It is ignored for the first step.",
+          "type": "boolean"
+        },
+        "scope": {
+          "description": "Required. Immutable. Specifies the scope for this step.",
+          "enum": [
+            "AUDIENCE_FILTER_SCOPE_UNSPECIFIED",
+            "AUDIENCE_FILTER_SCOPE_WITHIN_SAME_EVENT",
+            "AUDIENCE_FILTER_SCOPE_WITHIN_SAME_SESSION",
+            "AUDIENCE_FILTER_SCOPE_ACROSS_ALL_SESSIONS"
+          ],
+          "enumDescriptions": [
+            "Scope is not specified.",
+            "User joins the Audience if the filter condition is met within one event.",
+            "User joins the Audience if the filter condition is met within one session.",
+            "User joins the Audience if the filter condition is met by any event across any session."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaAudienceSimpleFilter": {
+      "description": "Defines a simple filter that a user must satisfy to be a member of the Audience.",
+      "id": "GoogleAnalyticsAdminV1alphaAudienceSimpleFilter",
+      "properties": {
+        "filterExpression": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAudienceFilterExpression",
+          "description": "Required. Immutable. A logical expression of Audience dimension, metric, or event filters."
+        },
+        "scope": {
+          "description": "Required. Immutable. Specifies the scope for this filter.",
+          "enum": [
+            "AUDIENCE_FILTER_SCOPE_UNSPECIFIED",
+            "AUDIENCE_FILTER_SCOPE_WITHIN_SAME_EVENT",
+            "AUDIENCE_FILTER_SCOPE_WITHIN_SAME_SESSION",
+            "AUDIENCE_FILTER_SCOPE_ACROSS_ALL_SESSIONS"
+          ],
+          "enumDescriptions": [
+            "Scope is not specified.",
+            "User joins the Audience if the filter condition is met within one event.",
+            "User joins the Audience if the filter condition is met within one session.",
+            "User joins the Audience if the filter condition is met by any event across any session."
           ],
           "type": "string"
         }
@@ -4135,6 +4709,24 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaListAudiencesResponse": {
+      "description": "Response message for ListAudiences RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListAudiencesResponse",
+      "properties": {
+        "audiences": {
+          "description": "List of Audiences.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaAudience"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaListConversionEventsResponse": {
       "description": "Response message for ListConversionEvents RPC.",
       "id": "GoogleAnalyticsAdminV1alphaListConversionEventsResponse",
@@ -4631,8 +5223,8 @@
           },
           "type": "array"
         },
-        "returnPropertyQuota": {
-          "description": "Toggles whether to return the current state of this Analytics Property's quota. Quota is returned in [PropertyQuota](#PropertyQuota).",
+        "returnEntityQuota": {
+          "description": "Toggles whether to return the current state of this Analytics Property's quota. Quota is returned in [AccessQuota](#AccessQuota).",
           "type": "boolean"
         },
         "timeZone": {
@@ -4749,6 +5341,7 @@
               "DATA_RETENTION_SETTINGS",
               "DISPLAY_VIDEO_360_ADVERTISER_LINK",
               "DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL",
+              "SEARCH_ADS_360_LINK",
               "DATA_STREAM",
               "ATTRIBUTION_SETTINGS"
             ],
@@ -4766,6 +5359,7 @@
               "DataRetentionSettings resource",
               "DisplayVideo360AdvertiserLink resource",
               "DisplayVideo360AdvertiserLinkProposal resource",
+              "SearchAds360Link resource",
               "DataStream resource",
               "AttributionSettings resource"
             ],
