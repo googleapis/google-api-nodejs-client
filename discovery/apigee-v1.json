@@ -165,7 +165,7 @@
           ]
         },
         "delete": {
-          "description": "Delete an Apigee organization. For organizations with BillingType EVALUATION, an immediate deletion is performed. For paid organizations, a soft-deletion is performed. The organization can be restored within the soft-deletion period - which can be controlled using the retention field in the request.",
+          "description": "Delete an Apigee organization. For organizations with BillingType EVALUATION, an immediate deletion is performed. For paid organizations, a soft-deletion is performed. The organization can be restored within the soft-deletion period which can be controlled using the retention field in the request.",
           "flatPath": "v1/organizations/{organizationsId}",
           "httpMethod": "DELETE",
           "id": "apigee.organizations.delete",
@@ -181,13 +181,13 @@
               "type": "string"
             },
             "retention": {
-              "description": "Optional. This setting is only applicable for organizations that are soft-deleted (i.e. BillingType is not EVALUATION). It controls how long Organization data will be retained after the initial delete operation completes. During this period, the Organization may be restored to its last known state. After this period, the Organization will no longer be able to be restored.",
+              "description": "Optional. This setting is applicable only for organizations that are soft-deleted (i.e., BillingType is not EVALUATION). It controls how long Organization data will be retained after the initial delete operation completes. During this period, the Organization may be restored to its last known state. After this period, the Organization will no longer be able to be restored.",
               "enum": [
                 "DELETION_RETENTION_UNSPECIFIED",
                 "MINIMUM"
               ],
               "enumDescriptions": [
-                "Default data retention settings will be applied.",
+                "Default data retention setting of seven days will be applied.",
                 "Organization data will be retained for the minimum period of 24 hours."
               ],
               "location": "query",
@@ -2276,7 +2276,7 @@
                   ]
                 },
                 "generateKeyPairOrUpdateDeveloperAppStatus": {
-                  "description": "Manages access to a developer app by enabling you to: * Approve or revoke a developer app * Generate a new consumer key and secret for a developer app To approve or revoke a developer app, set the `action` query parameter to `approved` or `revoked`, respectively, and the `Content-Type` header to `application/octet-stream`. If a developer app is revoked, none of its API keys are valid for API calls even though the keys are still `approved`. If successful, the API call returns the following HTTP status code: `204 No Content` To generate a new consumer key and secret for a developer app, pass the new key/secret details. Rather than replace an existing key, this API generates a new key. In this case, multiple key pairs may be associated with a single developer app. Each key pair has an independent status (`approved` or `revoked`) and expiration time. Any approved, non-expired key can be used in an API call. For example, if you're using API key rotation, you can generate new keys with expiration times that overlap keys that are going to expire. You might also generate a new consumer key/secret if the security of the original key/secret is compromised. The `keyExpiresIn` property defines the expiration time for the API key in milliseconds. If you don't set this property or set it to `-1`, the API key never expires. **Notes**: * When generating a new key/secret, this API replaces the existing attributes, notes, and callback URLs with those specified in the request. Include or exclude any existing information that you want to retain or delete, respectively. * To migrate existing consumer keys and secrets to hybrid from another system, see the CreateDeveloperAppKey API.",
+                  "description": "Manages access to a developer app by enabling you to: * Approve or revoke a developer app * Generate a new consumer key and secret for a developer app To approve or revoke a developer app, set the `action` query parameter to `approve` or `revoke`, respectively, and the `Content-Type` header to `application/octet-stream`. If a developer app is revoked, none of its API keys are valid for API calls even though the keys are still approved. If successful, the API call returns the following HTTP status code: `204 No Content` To generate a new consumer key and secret for a developer app, pass the new key/secret details. Rather than replace an existing key, this API generates a new key. In this case, multiple key pairs may be associated with a single developer app. Each key pair has an independent status (`approve` or `revoke`) and expiration time. Any approved, non-expired key can be used in an API call. For example, if you're using API key rotation, you can generate new keys with expiration times that overlap keys that are going to expire. You might also generate a new consumer key/secret if the security of the original key/secret is compromised. The `keyExpiresIn` property defines the expiration time for the API key in milliseconds. If you don't set this property or set it to `-1`, the API key never expires. **Notes**: * When generating a new key/secret, this API replaces the existing attributes, notes, and callback URLs with those specified in the request. Include or exclude any existing information that you want to retain or delete, respectively. * To migrate existing consumer keys and secrets to hybrid from another system, see the CreateDeveloperAppKey API.",
                   "flatPath": "v1/organizations/{organizationsId}/developers/{developersId}/apps/{appsId}",
                   "httpMethod": "POST",
                   "id": "apigee.organizations.developers.apps.generateKeyPairOrUpdateDeveloperAppStatus",
@@ -3490,7 +3490,7 @@
               ]
             },
             "delete": {
-              "description": "Deletes an environment from an organization. **Note**: You must delete all key value maps and key value entries before you can delete an environment.",
+              "description": "Deletes an environment from an organization. **Warning: You must delete all key value maps and key value entries before you delete an environment.** Otherwise, if you re-create the environment the key value map entry operations will encounter encryption/decryption discrepancies.",
               "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}",
               "httpMethod": "DELETE",
               "id": "apigee.organizations.environments.delete",
@@ -3640,6 +3640,40 @@
               "path": "v1/{+name}",
               "response": {
                 "$ref": "GoogleCloudApigeeV1TraceConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "modifyEnvironment": {
+              "description": "Updates properties for an Apigee environment with patch semantics using a field mask. **Note:** Not supported for Apigee hybrid.",
+              "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}",
+              "httpMethod": "PATCH",
+              "id": "apigee.organizations.environments.modifyEnvironment",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the environment. Use the following structure in your request: `organizations/{org}/environments/{environment}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/environments/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "List of fields to be updated. Fields that can be updated: node_config.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1Environment"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -5938,6 +5972,66 @@
                   "path": "v1/{+parent}/securityReports",
                   "response": {
                     "$ref": "GoogleCloudApigeeV1ListSecurityReportsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "securityStats": {
+              "methods": {
+                "queryTabularStats": {
+                  "description": "Retrieve security statistics as tabular rows.",
+                  "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/securityStats:queryTabularStats",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.environments.securityStats.queryTabularStats",
+                  "parameterOrder": [
+                    "orgenv"
+                  ],
+                  "parameters": {
+                    "orgenv": {
+                      "description": "Required. Should be of the form organizations//environments/.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/environments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+orgenv}/securityStats:queryTabularStats",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1QueryTabularStatsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1QueryTabularStatsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "queryTimeSeriesStats": {
+                  "description": "Retrieve security statistics as a collection of time series.",
+                  "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/securityStats:queryTimeSeriesStats",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.environments.securityStats.queryTimeSeriesStats",
+                  "parameterOrder": [
+                    "orgenv"
+                  ],
+                  "parameters": {
+                    "orgenv": {
+                      "description": "Required. Should be of the form organizations//environments/.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/environments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+orgenv}/securityStats:queryTimeSeriesStats",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1QueryTimeSeriesStatsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1QueryTimeSeriesStatsResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -8515,7 +8609,7 @@
       }
     }
   },
-  "revision": "20220629",
+  "revision": "20220811",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -8797,6 +8891,7 @@
       "id": "GoogleCloudApigeeV1ApiProduct",
       "properties": {
         "apiResources": {
+          "description": "Comma-separated list of API resources to be bundled in the API product. By default, the resource paths are mapped from the `proxy.pathsuffix` variable. The proxy path suffix is defined as the URI fragment following the ProxyEndpoint base path. For example, if the `apiResources` element is defined to be `/forecastrss` and the base path defined for the API proxy is `/weather`, then only requests to `/weather/forecastrss` are permitted by the API product. You can select a specific path, or you can select all subpaths with the following wildcard: - `/**`: Indicates that all sub-URIs are included. - `/*` : Indicates that only URIs one level down are included. By default, / supports the same resources as /** as well as the base path defined by the API proxy. For example, if the base path of the API proxy is `/v1/weatherapikey`, then the API product supports requests to `/v1/weatherapikey` and to any sub-URIs, such as `/v1/weatherapikey/forecastrss`, `/v1/weatherapikey/region/CA`, and so on. For more information, see Managing API products.",
           "items": {
             "type": "string"
           },
@@ -8819,7 +8914,7 @@
           "type": "string"
         },
         "description": {
-          "description": "Description of the API product. Include key information about the API product that is not captured by other fields. Comma-separated list of API resources to be bundled in the API product. By default, the resource paths are mapped from the `proxy.pathsuffix` variable. The proxy path suffix is defined as the URI fragment following the ProxyEndpoint base path. For example, if the `apiResources` element is defined to be `/forecastrss` and the base path defined for the API proxy is `/weather`, then only requests to `/weather/forecastrss` are permitted by the API product. You can select a specific path, or you can select all subpaths with the following wildcard: - `/**`: Indicates that all sub-URIs are included. - `/*` : Indicates that only URIs one level down are included. By default, / supports the same resources as /** as well as the base path defined by the API proxy. For example, if the base path of the API proxy is `/v1/weatherapikey`, then the API product supports requests to `/v1/weatherapikey` and to any sub-URIs, such as `/v1/weatherapikey/forecastrss`, `/v1/weatherapikey/region/CA`, and so on. For more information, see Managing API products.",
+          "description": "Description of the API product. Include key information about the API product that is not captured by other fields.",
           "type": "string"
         },
         "displayName": {
@@ -8859,6 +8954,20 @@
         },
         "quota": {
           "description": "Number of request messages permitted per app by this API product for the specified `quotaInterval` and `quotaTimeUnit`. For example, a `quota` of 50, for a `quotaInterval` of 12 and a `quotaTimeUnit` of hours means 50 requests are allowed every 12 hours.",
+          "type": "string"
+        },
+        "quotaCounterScope": {
+          "description": "Scope of the quota decides how the quota counter gets applied and evaluate for quota violation. If the Scope is set as PROXY, then all the operations defined for the APIproduct that are associated with the same proxy will share the same quota counter set at the APIproduct level, making it a global counter at a proxy level. If the Scope is set as OPERATION, then each operations get the counter set at the API product dedicated, making it a local counter. Note that, the QuotaCounterScope applies only when an operation does not have dedicated quota set for itself.",
+          "enum": [
+            "QUOTA_COUNTER_SCOPE_UNSPECIFIED",
+            "PROXY",
+            "OPERATION"
+          ],
+          "enumDescriptions": [
+            "When quota is not explicitly defined for each operation(REST/GraphQL), the limits set at product level will be used as a local counter for quota evaluation by all the operations, independent of proxy association.",
+            "When quota is not explicitly defined for each operation(REST/GraphQL), set at product level will be used as a global counter for quota evaluation by all the operations associated with a particular proxy.",
+            "When quota is not explicitly defined for each operation(REST/GraphQL), the limits set at product level will be used as a local counter for quota evaluation by all the operations, independent of proxy association. This behavior mimics the same as QUOTA_COUNTER_SCOPE_UNSPECIFIED."
+          ],
           "type": "string"
         },
         "quotaInterval": {
@@ -10654,9 +10763,34 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1EndpointAttachment": {
-      "description": "Apigee endpoint attachment. For more information, see Southbound networking patterns.",
+      "description": "Apigee endpoint attachment. For more information, see [Southbound networking patterns] (https://cloud.google.com/apigee/docs/api-platform/architecture/southbound-networking-patterns-endpoints).",
       "id": "GoogleCloudApigeeV1EndpointAttachment",
       "properties": {
+        "connectionState": {
+          "description": "Output only. State of the endpoint attachment connection to the service attachment.",
+          "enum": [
+            "CONNECTION_STATE_UNSPECIFIED",
+            "UNAVAILABLE",
+            "PENDING",
+            "ACCEPTED",
+            "REJECTED",
+            "CLOSED",
+            "FROZEN",
+            "NEEDS_ATTENTION"
+          ],
+          "enumDescriptions": [
+            "The connection state has not been set.",
+            "The connection state is unavailable at this time, possibly because the endpoint attachment is currently being provisioned.",
+            "The connection is pending acceptance by the PSC producer.",
+            "The connection has been accepted by the PSC producer.",
+            "The connection has been rejected by the PSC producer.",
+            "The connection has been closed by the PSC producer and will not serve traffic going forward.",
+            "The connection has been frozen by the PSC producer and will not serve traffic.",
+            "The connection has been accepted by the PSC producer, but it is not ready to serve the traffic due to producer side issues."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "host": {
           "description": "Output only. Host that can be used in either the HTTP target endpoint directly or as the host in target server.",
           "readOnly": true,
@@ -10775,6 +10909,10 @@
         "name": {
           "description": "Required. Name of the environment. Values must match the regular expression `^[.\\\\p{Alnum}-_]{1,255}$`",
           "type": "string"
+        },
+        "nodeConfig": {
+          "$ref": "GoogleCloudApigeeV1NodeConfig",
+          "description": "Optional. NodeConfig of the environment."
         },
         "properties": {
           "$ref": "GoogleCloudApigeeV1Properties",
@@ -11356,7 +11494,7 @@
           "type": "string"
         },
         "ipRange": {
-          "description": "Optional. IP range represents the customer-provided CIDR block of length 22 that will be used for the Apigee instance creation. This optional range, if provided, should be freely available as part of larger named range the customer has allocated to the Service Networking peering. If this is not provided, Apigee will automatically request for any available /22 CIDR block from Service Networking. The customer should use this CIDR block for configuring their firewall needs to allow traffic from Apigee. Input format: \"a.b.c.d/22\", Output format: a.b.c.d/22, e.f.g.h/28\"",
+          "description": "Optional. Comma-separated list of CIDR blocks of length 22 and/or 28 used to create the Apigee instance. Providing CIDR ranges is optional. You can provide just /22 or /28 or both (or neither). Ranges you provide should be freely available as part of a larger named range you have allocated to the Service Networking peering. If this parameter is not provided, Apigee automatically requests an available /22 and /28 CIDR block from Service Networking. Use the /22 CIDR block for configuring your firewall needs to allow traffic from Apigee. Input formats: `a.b.c.d/22` or `e.f.g.h/28` or `a.b.c.d/22,e.f.g.h/28`",
           "type": "string"
         },
         "lastModifiedAt": {
@@ -11589,7 +11727,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Required. Resource ID for this keystore. Values must match the regular expression `[\\w[:space:]-.]{1,255}`.",
+          "description": "Required. Resource ID for this keystore. Values must match the regular expression `[\\w[:space:].-]{1,255}`.",
           "type": "string"
         }
       },
@@ -12153,6 +12291,51 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1MetricAggregation": {
+      "description": "The optionally aggregated metric to query with its ordering.",
+      "id": "GoogleCloudApigeeV1MetricAggregation",
+      "properties": {
+        "aggregation": {
+          "description": "Aggregation function associated with the metric.",
+          "enum": [
+            "AGGREGATION_FUNCTION_UNSPECIFIED",
+            "AVG",
+            "SUM",
+            "MIN",
+            "MAX",
+            "COUNT_DISTINCT"
+          ],
+          "enumDescriptions": [
+            "Unspecified Aggregation function.",
+            "Average.",
+            "Summation.",
+            "Min.",
+            "Max.",
+            "Count distinct"
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the metric",
+          "type": "string"
+        },
+        "order": {
+          "description": "Ordering for this aggregation in the result. For time series this is ignored since the ordering of points depends only on the timestamp, not the values.",
+          "enum": [
+            "ORDER_UNSPECIFIED",
+            "ASCENDING",
+            "DESCENDING"
+          ],
+          "enumDescriptions": [
+            "Unspecified order. Default is Descending.",
+            "Ascending sort order.",
+            "Descending sort order."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1MonetizationConfig": {
       "description": "Configuration for the Monetization add-on.",
       "id": "GoogleCloudApigeeV1MonetizationConfig",
@@ -12194,6 +12377,29 @@
             "The NAT address is being deleted."
           ],
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1NodeConfig": {
+      "description": "NodeConfig for setting the min/max number of nodes associated with the environment.",
+      "id": "GoogleCloudApigeeV1NodeConfig",
+      "properties": {
+        "currentAggregateNodeCount": {
+          "description": "Output only. The current total number of gateway nodes that each environment currently has across all instances.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "maxNodeCount": {
+          "description": "Optional. The maximum total number of gateway nodes that the is reserved for all instances that has the specified environment. If not specified, the default is determined by the recommended maximum number of nodes for that gateway.",
+          "format": "int64",
+          "type": "string"
+        },
+        "minNodeCount": {
+          "description": "Optional. The minimum total number of gateway nodes that the is reserved for all instances that has the specified environment. If not specified, the default is determined by the recommended minimum number of nodes for that gateway.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -12438,12 +12644,14 @@
           "enum": [
             "BILLING_TYPE_UNSPECIFIED",
             "SUBSCRIPTION",
-            "EVALUATION"
+            "EVALUATION",
+            "PAYG"
           ],
           "enumDescriptions": [
             "Billing type not specified.",
             "A pre-paid subscription to Apigee.",
-            "Free and limited access to Apigee for evaluation purposes only. only."
+            "Free and limited access to Apigee for evaluation purposes only. only.",
+            "Access to Apigee using a Pay-As-You-Go plan."
           ],
           "type": "string"
         },
@@ -12833,6 +13041,191 @@
         "value": {
           "description": "Operand value should be provided when operator is set.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1QueryTabularStatsRequest": {
+      "description": "Request payload representing the query to be run for fetching security statistics as rows.",
+      "id": "GoogleCloudApigeeV1QueryTabularStatsRequest",
+      "properties": {
+        "dimensions": {
+          "description": "Required. List of dimension names to group the aggregations by.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "filter": {
+          "description": "Filter further on specific dimension values. Follows the same grammar as custom report's filter expressions. Example, apiproxy eq 'foobar'. https://cloud.google.com/apigee/docs/api-platform/analytics/analytics-reference#filters",
+          "type": "string"
+        },
+        "metrics": {
+          "description": "Required. List of metrics and their aggregations.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1MetricAggregation"
+          },
+          "type": "array"
+        },
+        "pageSize": {
+          "description": "Page size represents the number of rows.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageToken": {
+          "description": "Identifies a sequence of rows.",
+          "type": "string"
+        },
+        "timeRange": {
+          "$ref": "GoogleTypeInterval",
+          "description": "Time range for the stats."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1QueryTabularStatsResponse": {
+      "description": "Encapsulates two kinds of stats that are results of the dimensions and aggregations requested. - Tabular rows. - Time series data. Example of tabular rows, Represents security stats results as a row of flat values.",
+      "id": "GoogleCloudApigeeV1QueryTabularStatsResponse",
+      "properties": {
+        "columns": {
+          "description": "Column names corresponding to the same order as the inner values in the stats field.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Next page token.",
+          "type": "string"
+        },
+        "values": {
+          "description": "Resultant rows from the executed query.",
+          "items": {
+            "items": {
+              "type": "any"
+            },
+            "type": "array"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1QueryTimeSeriesStatsRequest": {
+      "description": "QueryTimeSeriesStatsRequest represents a query that returns a collection of time series sequences grouped by their values.",
+      "id": "GoogleCloudApigeeV1QueryTimeSeriesStatsRequest",
+      "properties": {
+        "dimensions": {
+          "description": "List of dimension names to group the aggregations by. If no dimensions are passed, a single trend line representing the requested metric aggregations grouped by environment is returned.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "filter": {
+          "description": "Filter further on specific dimension values. Follows the same grammar as custom report's filter expressions. Example, apiproxy eq 'foobar'. https://cloud.google.com/apigee/docs/api-platform/analytics/analytics-reference#filters",
+          "type": "string"
+        },
+        "metrics": {
+          "description": "Required. List of metrics and their aggregations.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1MetricAggregation"
+          },
+          "type": "array"
+        },
+        "pageSize": {
+          "description": "Page size represents the number of time series sequences, one per unique set of dimensions and their values.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageToken": {
+          "description": "Page token stands for a specific collection of time series sequences.",
+          "type": "string"
+        },
+        "timeRange": {
+          "$ref": "GoogleTypeInterval",
+          "description": "Required. Time range for the stats."
+        },
+        "timestampOrder": {
+          "description": "Order the sequences in increasing or decreasing order of timestamps. Default is descending order of timestamps (latest first).",
+          "enum": [
+            "ORDER_UNSPECIFIED",
+            "ASCENDING",
+            "DESCENDING"
+          ],
+          "enumDescriptions": [
+            "Unspecified order. Default is Descending.",
+            "Ascending sort order.",
+            "Descending sort order."
+          ],
+          "type": "string"
+        },
+        "windowSize": {
+          "description": "Time buckets to group the stats by.",
+          "enum": [
+            "WINDOW_SIZE_UNSPECIFIED",
+            "MINUTE",
+            "HOUR",
+            "DAY",
+            "MONTH"
+          ],
+          "enumDescriptions": [
+            "Unspecified window size. Default is 1 hour.",
+            "1 Minute window",
+            "1 Hour window",
+            "1 Day window",
+            "1 Month window"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1QueryTimeSeriesStatsResponse": {
+      "description": "Represents security stats result as a collection of time series sequences.",
+      "id": "GoogleCloudApigeeV1QueryTimeSeriesStatsResponse",
+      "properties": {
+        "columns": {
+          "description": "Column names corresponding to the same order as the inner values in the stats field.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Next page token.",
+          "type": "string"
+        },
+        "values": {
+          "description": "Results of the query returned as a JSON array.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1QueryTimeSeriesStatsResponseSequence"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1QueryTimeSeriesStatsResponseSequence": {
+      "description": "A sequence of time series.",
+      "id": "GoogleCloudApigeeV1QueryTimeSeriesStatsResponseSequence",
+      "properties": {
+        "dimensions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Map of dimensions and their values that uniquely identifies a time series sequence.",
+          "type": "object"
+        },
+        "points": {
+          "description": "List of points. First value of each inner list is a timestamp.",
+          "items": {
+            "items": {
+              "type": "any"
+            },
+            "type": "array"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -14633,7 +15026,7 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
           "items": {
             "type": "string"
           },
