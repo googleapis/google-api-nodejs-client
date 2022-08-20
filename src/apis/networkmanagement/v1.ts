@@ -133,6 +133,10 @@ export namespace networkmanagement_v1 {
      */
     cause?: string | null;
     /**
+     * List of project IDs that the user has specified in the request but does not have permission to access network configs. Analysis is aborted in this case with the PERMISSION_DENIED cause.
+     */
+    projectsMissingPermission?: string[] | null;
+    /**
      * URI of the resource that caused the abort.
      */
     resourceUri?: string | null;
@@ -172,7 +176,7 @@ export namespace networkmanagement_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -184,6 +188,36 @@ export namespace networkmanagement_v1 {
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
+  /**
+   * Wrapper for cloud function attributes.
+   */
+  export interface Schema$CloudFunctionEndpoint {
+    /**
+     * A [Cloud function](https://cloud.google.com/functions) name.
+     */
+    uri?: string | null;
+  }
+  /**
+   * For display only. Metadata associated with a Cloud function.
+   */
+  export interface Schema$CloudFunctionInfo {
+    /**
+     * Name of a Cloud function.
+     */
+    displayName?: string | null;
+    /**
+     * Location in which the Cloud function is deployed.
+     */
+    location?: string | null;
+    /**
+     * URI of a Cloud function.
+     */
+    uri?: string | null;
+    /**
+     * Latest successfully deployed version id of the Cloud function.
+     */
+    versionId?: string | null;
+  }
   /**
    * For display only. Metadata associated with a Cloud SQL instance.
    */
@@ -296,6 +330,10 @@ export namespace networkmanagement_v1 {
    * Source or destination of the Connectivity Test.
    */
   export interface Schema$Endpoint {
+    /**
+     * A [Cloud function](https://cloud.google.com/functions).
+     */
+    cloudFunction?: Schema$CloudFunctionEndpoint;
     /**
      * A [Cloud SQL](https://cloud.google.com/sql) instance URI.
      */
@@ -855,6 +893,10 @@ export namespace networkmanagement_v1 {
      */
     causesDrop?: boolean | null;
     /**
+     * Display information of a Cloud function.
+     */
+    cloudFunction?: Schema$CloudFunctionInfo;
+    /**
      * Display information of a Cloud SQL instance.
      */
     cloudSqlInstance?: Schema$CloudSQLInstanceInfo;
@@ -915,6 +957,10 @@ export namespace networkmanagement_v1 {
      */
     state?: string | null;
     /**
+     * Display information of a VPC connector.
+     */
+    vpcConnector?: Schema$VpcConnectorInfo;
+    /**
      * Display information of a Compute Engine VPN gateway.
      */
     vpnGateway?: Schema$VpnGatewayInfo;
@@ -953,6 +999,23 @@ export namespace networkmanagement_v1 {
      * A trace of a test contains multiple steps from the initial state to the final state (delivered, dropped, forwarded, or aborted). The steps are ordered by the processing sequence within the simulated network state machine. It is critical to preserve the order of the steps and avoid reordering or sorting them.
      */
     steps?: Schema$Step[];
+  }
+  /**
+   * For display only. Metadata associated with a VPC connector.
+   */
+  export interface Schema$VpcConnectorInfo {
+    /**
+     * Name of a VPC connector.
+     */
+    displayName?: string | null;
+    /**
+     * Location in which the VPC connector is deployed.
+     */
+    location?: string | null;
+    /**
+     * URI of a VPC connector.
+     */
+    uri?: string | null;
   }
   /**
    * For display only. Metadata associated with a Compute Engine VPN gateway.
