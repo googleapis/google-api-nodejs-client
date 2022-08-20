@@ -135,7 +135,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2Action {
     /**
-     * Create a de-identified copy of the input data. Applicable for non-image data only. The de-identified copy is in the same location as the original data.
+     * Create a de-identified copy of the input data.
      */
     deidentify?: Schema$GooglePrivacyDlpV2Deidentify;
     /**
@@ -167,6 +167,14 @@ export namespace dlp_v2 {
    * Request message for ActivateJobTrigger.
    */
   export interface Schema$GooglePrivacyDlpV2ActivateJobTriggerRequest {}
+  /**
+   * Apply transformation to all findings.
+   */
+  export interface Schema$GooglePrivacyDlpV2AllInfoTypes {}
+  /**
+   * Apply to all text.
+   */
+  export interface Schema$GooglePrivacyDlpV2AllText {}
   /**
    * Result of a risk analysis operation request.
    */
@@ -980,11 +988,11 @@ export namespace dlp_v2 {
     timeZone?: Schema$GooglePrivacyDlpV2TimeZone;
   }
   /**
-   * Create a de-identified copy of the requested table or files. . A TransformationDetail will be created for each transformation. If any rows in BigQuery are skipped during de-identification (transformation errors or row size exceeds BigQuery insert API limits) they are placed in the failure output table. If the original row exceeds the BigQuery insert API limit it will be truncated when written to the failure output table. The failure output table can be set in the action.deidentify.output.big_query_output.deidentified_failure_output_table field, if no table is set, a table will be automatically created in the same project and dataset as the original table. Compatible with: Inspect
+   * Create a de-identified copy of the requested table or files. A TransformationDetail will be created for each transformation. If any rows in BigQuery are skipped during de-identification (transformation errors or row size exceeds BigQuery insert API limits) they are placed in the failure output table. If the original row exceeds the BigQuery insert API limit it will be truncated when written to the failure output table. The failure output table can be set in the action.deidentify.output.big_query_output.deidentified_failure_output_table field, if no table is set, a table will be automatically created in the same project and dataset as the original table. Compatible with: Inspect
    */
   export interface Schema$GooglePrivacyDlpV2Deidentify {
     /**
-     * Required. User settable GCS bucket and folders to store de-identified files. This field must be set for cloud storage deidentification. The output GCS bucket must be different from the input bucket. De-identified files will overwrite files in the output path. Form of: gs://bucket/folder/ or gs://bucket
+     * Required. User settable Cloud Storage bucket and folders to store de-identified files. This field must be set for cloud storage deidentification. The output Cloud Storage bucket must be different from the input bucket. De-identified files will overwrite files in the output path. Form of: gs://bucket/folder/ or gs://bucket
      */
     cloudStorageOutput?: string | null;
     /**
@@ -1004,6 +1012,10 @@ export namespace dlp_v2 {
    * The configuration that controls how the data will change.
    */
   export interface Schema$GooglePrivacyDlpV2DeidentifyConfig {
+    /**
+     * Treat the dataset as an image and redact.
+     */
+    imageTransformations?: Schema$GooglePrivacyDlpV2ImageTransformations;
     /**
      * Treat the dataset as free-form text and apply the same free text transformation everywhere.
      */
@@ -1582,6 +1594,33 @@ export namespace dlp_v2 {
     redactionColor?: Schema$GooglePrivacyDlpV2Color;
   }
   /**
+   * Configuration for determining how redaction of images should occur.
+   */
+  export interface Schema$GooglePrivacyDlpV2ImageTransformation {
+    /**
+     * Apply transformation to all findings not specified in other ImageTransformation's selected_info_types. Only one instance is allowed within the ImageTransformations message.
+     */
+    allInfoTypes?: Schema$GooglePrivacyDlpV2AllInfoTypes;
+    /**
+     * Apply transformation to all text that doesn't match an infoType. Only one instance is allowed within the ImageTransformations message.
+     */
+    allText?: Schema$GooglePrivacyDlpV2AllText;
+    /**
+     * The color to use when redacting content from an image. If not specified, the default is black.
+     */
+    redactionColor?: Schema$GooglePrivacyDlpV2Color;
+    /**
+     * Apply transformation to the selected info_types.
+     */
+    selectedInfoTypes?: Schema$GooglePrivacyDlpV2SelectedInfoTypes;
+  }
+  /**
+   * A type of transformation that is applied over images.
+   */
+  export interface Schema$GooglePrivacyDlpV2ImageTransformations {
+    transforms?: Schema$GooglePrivacyDlpV2ImageTransformation[];
+  }
+  /**
    * Type of information detected by the API.
    */
   export interface Schema$GooglePrivacyDlpV2InfoType {
@@ -1871,7 +1910,7 @@ export namespace dlp_v2 {
     updateTime?: string | null;
   }
   /**
-   * Enable email notification to project owners and editors on jobs's completion/failure.
+   * Sends an email when the job completes. The email goes to IAM project owners and technical [Essential Contacts](https://cloud.google.com/resource-manager/docs/managing-notification-contacts).
    */
   export interface Schema$GooglePrivacyDlpV2JobNotificationEmails {}
   /**
@@ -2671,6 +2710,20 @@ export namespace dlp_v2 {
      */
     condition?: Schema$GooglePrivacyDlpV2RecordCondition;
   }
+  export interface Schema$GooglePrivacyDlpV2RecordTransformation {
+    /**
+     * Findings container modification timestamp, if applicable.
+     */
+    containerTimestamp?: string | null;
+    /**
+     * Container version, if available ("generation" for Cloud Storage).
+     */
+    containerVersion?: string | null;
+    /**
+     * For record transformations, provide a field.
+     */
+    fieldId?: Schema$GooglePrivacyDlpV2FieldId;
+  }
   /**
    * A type of transformation that is applied over structured data such as a table.
    */
@@ -2893,6 +2946,15 @@ export namespace dlp_v2 {
      * With this option a job is started on a regular periodic basis. For example: every day (86400 seconds). A scheduled start time will be skipped if the previous execution has not ended when its scheduled time occurs. This value must be set to a time duration greater than or equal to 1 day and can be no longer than 60 days.
      */
     recurrencePeriodDuration?: string | null;
+  }
+  /**
+   * Apply transformation to the selected info_types.
+   */
+  export interface Schema$GooglePrivacyDlpV2SelectedInfoTypes {
+    /**
+     * Required. InfoTypes to apply the transformation to. Required. Provided InfoType must be unique within the ImageTransformations message.
+     */
+    infoTypes?: Schema$GooglePrivacyDlpV2InfoType[];
   }
   /**
    * Score is a summary of all elements in the data profile. A higher number means more sensitive.
@@ -3276,6 +3338,56 @@ export namespace dlp_v2 {
     structuredDeidentifyTemplate?: string | null;
   }
   /**
+   * A flattened description of a `PrimitiveTransformation` or `RecordSuppression`.
+   */
+  export interface Schema$GooglePrivacyDlpV2TransformationDescription {
+    /**
+     * A human-readable string representation of the `RecordCondition` corresponding to this transformation. Set if a `RecordCondition` was used to determine whether or not to apply this transformation. Examples: * (age_field \> 85) * (age_field <= 18) * (zip_field exists) * (zip_field == 01234) && (city_field != "Springville") * (zip_field == 01234) && (age_field <= 18) && (city_field exists)
+     */
+    condition?: string | null;
+    /**
+     * A description of the transformation. This is empty for a RECORD_SUPPRESSION, or is the output of calling toString() on the `PrimitiveTransformation` protocol buffer message for any other type of transformation.
+     */
+    description?: string | null;
+    /**
+     * Set if the transformation was limited to a specific `InfoType`.
+     */
+    infoType?: Schema$GooglePrivacyDlpV2InfoType;
+    /**
+     * The transformation type.
+     */
+    type?: string | null;
+  }
+  /**
+   * Details about a single transformation. This object contains a description of the transformation, information about whether the transformation was successfully applied, and the precise location where the transformation occurred. These details are stored in a user-specified BigQuery table.
+   */
+  export interface Schema$GooglePrivacyDlpV2TransformationDetails {
+    /**
+     * The top level name of the container where the transformation is located (this will be the source file name or table name).
+     */
+    containerName?: string | null;
+    /**
+     * The name of the job that completed the transformation.
+     */
+    resourceName?: string | null;
+    /**
+     * Status of the transformation, if transformation was not successful, this will specify what caused it to fail, otherwise it will show that the transformation was successful.
+     */
+    statusDetails?: Schema$GooglePrivacyDlpV2TransformationResultStatus;
+    /**
+     * Description of transformation. This would only contain more than one element if there were multiple matching transformations and which one to apply was ambiguous. Not set for states that contain no transformation, currently only state that contains no transformation is TransformationResultStateType.METADATA_UNRETRIEVABLE.
+     */
+    transformation?: Schema$GooglePrivacyDlpV2TransformationDescription[];
+    /**
+     * The precise location of the transformed content in the original container.
+     */
+    transformationLocation?: Schema$GooglePrivacyDlpV2TransformationLocation;
+    /**
+     * The number of bytes that were transformed. If transformation was unsuccessful or did not take place because there was no content to transform, this will be zero.
+     */
+    transformedBytes?: string | null;
+  }
+  /**
    * Config for storing transformation details.
    */
   export interface Schema$GooglePrivacyDlpV2TransformationDetailsStorageConfig {
@@ -3298,6 +3410,23 @@ export namespace dlp_v2 {
     throwError?: Schema$GooglePrivacyDlpV2ThrowError;
   }
   /**
+   * Specifies the location of a transformation.
+   */
+  export interface Schema$GooglePrivacyDlpV2TransformationLocation {
+    /**
+     * Information about the functionality of the container where this finding occurred, if available.
+     */
+    containerType?: string | null;
+    /**
+     * For infotype transformations, link to the corresponding findings ID so that location information does not need to be duplicated. Each findings ID correlates to an entry in the findings output table, this table only gets created when users specify to save findings (add the save findings action to the request).
+     */
+    findingId?: string | null;
+    /**
+     * For record transformations, provide a field and container information.
+     */
+    recordTransformation?: Schema$GooglePrivacyDlpV2RecordTransformation;
+  }
+  /**
    * Overview of the modifications that occurred.
    */
   export interface Schema$GooglePrivacyDlpV2TransformationOverview {
@@ -3309,6 +3438,16 @@ export namespace dlp_v2 {
      * Total size in bytes that were transformed in some way.
      */
     transformedBytes?: string | null;
+  }
+  export interface Schema$GooglePrivacyDlpV2TransformationResultStatus {
+    /**
+     * Detailed error codes and messages
+     */
+    details?: Schema$GoogleRpcStatus;
+    /**
+     * Transformation result status type, this will be either SUCCESS, or it will be the reason for why the transformation was not completely successful.
+     */
+    resultStatusType?: string | null;
   }
   /**
    * Summary of a single transformation. Only one of 'transformation', 'field_transformation', or 'record_suppress' will be set.
@@ -8557,7 +8696,7 @@ export namespace dlp_v2 {
      *     pageSize: 'placeholder-value',
      *     // Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'organizations/my-organization/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -8863,7 +9002,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }
@@ -9335,7 +9474,7 @@ export namespace dlp_v2 {
      *     pageSize: 'placeholder-value',
      *     // Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -9639,7 +9778,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }
@@ -18626,7 +18765,7 @@ export namespace dlp_v2 {
      *     pageSize: 'placeholder-value',
      *     // Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -18930,7 +19069,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }
@@ -19402,7 +19541,7 @@ export namespace dlp_v2 {
      *     pageSize: 'placeholder-value',
      *     // Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     *     // Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -19706,7 +19845,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }
