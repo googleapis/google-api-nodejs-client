@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/eventarc-v3.1.1...eventarc-v4.0.0) (2022-08-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3044](https://github.com/googleapis/google-api-nodejs-client/issues/3044)) ([d049dac](https://github.com/googleapis/google-api-nodejs-client/commit/d049dac11775614fe3c0116f6a09887abe915bbe))
+
 ## [3.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/eventarc-v3.1.0...eventarc-v3.1.1) (2022-08-19)
 
 
