@@ -1178,7 +1178,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3",
+                      "description": "Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1336,7 +1336,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3",
+                  "description": "Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -3206,7 +3206,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3",
+                      "description": "Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -3364,7 +3364,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3",
+                  "description": "Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -3412,7 +3412,7 @@
       }
     }
   },
-  "revision": "20220806",
+  "revision": "20220812",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -3421,7 +3421,7 @@
       "properties": {
         "deidentify": {
           "$ref": "GooglePrivacyDlpV2Deidentify",
-          "description": "Create a de-identified copy of the input data. Applicable for non-image data only. The de-identified copy is in the same location as the original data."
+          "description": "Create a de-identified copy of the input data."
         },
         "jobNotificationEmails": {
           "$ref": "GooglePrivacyDlpV2JobNotificationEmails",
@@ -3453,6 +3453,18 @@
     "GooglePrivacyDlpV2ActivateJobTriggerRequest": {
       "description": "Request message for ActivateJobTrigger.",
       "id": "GooglePrivacyDlpV2ActivateJobTriggerRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2AllInfoTypes": {
+      "description": "Apply transformation to all findings.",
+      "id": "GooglePrivacyDlpV2AllInfoTypes",
+      "properties": {},
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2AllText": {
+      "description": "Apply to all text.",
+      "id": "GooglePrivacyDlpV2AllText",
       "properties": {},
       "type": "object"
     },
@@ -4636,11 +4648,11 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2Deidentify": {
-      "description": "Create a de-identified copy of the requested table or files. . A TransformationDetail will be created for each transformation. If any rows in BigQuery are skipped during de-identification (transformation errors or row size exceeds BigQuery insert API limits) they are placed in the failure output table. If the original row exceeds the BigQuery insert API limit it will be truncated when written to the failure output table. The failure output table can be set in the action.deidentify.output.big_query_output.deidentified_failure_output_table field, if no table is set, a table will be automatically created in the same project and dataset as the original table. Compatible with: Inspect",
+      "description": "Create a de-identified copy of the requested table or files. A TransformationDetail will be created for each transformation. If any rows in BigQuery are skipped during de-identification (transformation errors or row size exceeds BigQuery insert API limits) they are placed in the failure output table. If the original row exceeds the BigQuery insert API limit it will be truncated when written to the failure output table. The failure output table can be set in the action.deidentify.output.big_query_output.deidentified_failure_output_table field, if no table is set, a table will be automatically created in the same project and dataset as the original table. Compatible with: Inspect",
       "id": "GooglePrivacyDlpV2Deidentify",
       "properties": {
         "cloudStorageOutput": {
-          "description": "Required. User settable GCS bucket and folders to store de-identified files. This field must be set for cloud storage deidentification. The output GCS bucket must be different from the input bucket. De-identified files will overwrite files in the output path. Form of: gs://bucket/folder/ or gs://bucket",
+          "description": "Required. User settable Cloud Storage bucket and folders to store de-identified files. This field must be set for cloud storage deidentification. The output Cloud Storage bucket must be different from the input bucket. De-identified files will overwrite files in the output path. Form of: gs://bucket/folder/ or gs://bucket",
           "type": "string"
         },
         "fileTypesToTransform": {
@@ -4691,6 +4703,10 @@
       "description": "The configuration that controls how the data will change.",
       "id": "GooglePrivacyDlpV2DeidentifyConfig",
       "properties": {
+        "imageTransformations": {
+          "$ref": "GooglePrivacyDlpV2ImageTransformations",
+          "description": "Treat the dataset as an image and redact."
+        },
         "infoTypeTransformations": {
           "$ref": "GooglePrivacyDlpV2InfoTypeTransformations",
           "description": "Treat the dataset as free-form text and apply the same free text transformation everywhere."
@@ -5472,6 +5488,42 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2ImageTransformation": {
+      "description": "Configuration for determining how redaction of images should occur.",
+      "id": "GooglePrivacyDlpV2ImageTransformation",
+      "properties": {
+        "allInfoTypes": {
+          "$ref": "GooglePrivacyDlpV2AllInfoTypes",
+          "description": "Apply transformation to all findings not specified in other ImageTransformation's selected_info_types. Only one instance is allowed within the ImageTransformations message."
+        },
+        "allText": {
+          "$ref": "GooglePrivacyDlpV2AllText",
+          "description": "Apply transformation to all text that doesn't match an infoType. Only one instance is allowed within the ImageTransformations message."
+        },
+        "redactionColor": {
+          "$ref": "GooglePrivacyDlpV2Color",
+          "description": "The color to use when redacting content from an image. If not specified, the default is black."
+        },
+        "selectedInfoTypes": {
+          "$ref": "GooglePrivacyDlpV2SelectedInfoTypes",
+          "description": "Apply transformation to the selected info_types."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2ImageTransformations": {
+      "description": "A type of transformation that is applied over images.",
+      "id": "GooglePrivacyDlpV2ImageTransformations",
+      "properties": {
+        "transforms": {
+          "items": {
+            "$ref": "GooglePrivacyDlpV2ImageTransformation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2InfoType": {
       "description": "Type of information detected by the API.",
       "id": "GooglePrivacyDlpV2InfoType",
@@ -5997,7 +6049,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2JobNotificationEmails": {
-      "description": "Enable email notification to project owners and editors on jobs's completion/failure.",
+      "description": "Sends an email when the job completes. The email goes to IAM project owners and technical [Essential Contacts](https://cloud.google.com/resource-manager/docs/managing-notification-contacts).",
       "id": "GooglePrivacyDlpV2JobNotificationEmails",
       "properties": {},
       "type": "object"
@@ -7135,6 +7187,25 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2RecordTransformation": {
+      "id": "GooglePrivacyDlpV2RecordTransformation",
+      "properties": {
+        "containerTimestamp": {
+          "description": "Findings container modification timestamp, if applicable.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "containerVersion": {
+          "description": "Container version, if available (\"generation\" for Cloud Storage).",
+          "type": "string"
+        },
+        "fieldId": {
+          "$ref": "GooglePrivacyDlpV2FieldId",
+          "description": "For record transformations, provide a field."
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2RecordTransformations": {
       "description": "A type of transformation that is applied over structured data such as a table.",
       "id": "GooglePrivacyDlpV2RecordTransformations",
@@ -7414,6 +7485,20 @@
           "description": "With this option a job is started on a regular periodic basis. For example: every day (86400 seconds). A scheduled start time will be skipped if the previous execution has not ended when its scheduled time occurs. This value must be set to a time duration greater than or equal to 1 day and can be no longer than 60 days.",
           "format": "google-duration",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2SelectedInfoTypes": {
+      "description": "Apply transformation to the selected info_types.",
+      "id": "GooglePrivacyDlpV2SelectedInfoTypes",
+      "properties": {
+        "infoTypes": {
+          "description": "Required. InfoTypes to apply the transformation to. Required. Provided InfoType must be unique within the ImageTransformations message.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2InfoType"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -7971,6 +8056,98 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2TransformationDescription": {
+      "description": "A flattened description of a `PrimitiveTransformation` or `RecordSuppression`.",
+      "id": "GooglePrivacyDlpV2TransformationDescription",
+      "properties": {
+        "condition": {
+          "description": "A human-readable string representation of the `RecordCondition` corresponding to this transformation. Set if a `RecordCondition` was used to determine whether or not to apply this transformation. Examples: * (age_field > 85) * (age_field <= 18) * (zip_field exists) * (zip_field == 01234) && (city_field != \"Springville\") * (zip_field == 01234) && (age_field <= 18) && (city_field exists)",
+          "type": "string"
+        },
+        "description": {
+          "description": "A description of the transformation. This is empty for a RECORD_SUPPRESSION, or is the output of calling toString() on the `PrimitiveTransformation` protocol buffer message for any other type of transformation.",
+          "type": "string"
+        },
+        "infoType": {
+          "$ref": "GooglePrivacyDlpV2InfoType",
+          "description": "Set if the transformation was limited to a specific `InfoType`."
+        },
+        "type": {
+          "description": "The transformation type.",
+          "enum": [
+            "TRANSFORMATION_TYPE_UNSPECIFIED",
+            "RECORD_SUPPRESSION",
+            "REPLACE_VALUE",
+            "REPLACE_DICTIONARY",
+            "REDACT",
+            "CHARACTER_MASK",
+            "CRYPTO_REPLACE_FFX_FPE",
+            "FIXED_SIZE_BUCKETING",
+            "BUCKETING",
+            "REPLACE_WITH_INFO_TYPE",
+            "TIME_PART",
+            "CRYPTO_HASH",
+            "DATE_SHIFT",
+            "CRYPTO_DETERMINISTIC_CONFIG",
+            "REDACT_IMAGE"
+          ],
+          "enumDescriptions": [
+            "Unused",
+            "Record suppression",
+            "Replace value",
+            "Replace value using a dictionary.",
+            "Redact",
+            "Character mask",
+            "FFX-FPE",
+            "Fixed size bucketing",
+            "Bucketing",
+            "Replace with info type",
+            "Time part",
+            "Crypto hash",
+            "Date shift",
+            "Deterministic crypto",
+            "Redact image"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2TransformationDetails": {
+      "description": "Details about a single transformation. This object contains a description of the transformation, information about whether the transformation was successfully applied, and the precise location where the transformation occurred. These details are stored in a user-specified BigQuery table.",
+      "id": "GooglePrivacyDlpV2TransformationDetails",
+      "properties": {
+        "containerName": {
+          "description": "The top level name of the container where the transformation is located (this will be the source file name or table name).",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "The name of the job that completed the transformation.",
+          "type": "string"
+        },
+        "statusDetails": {
+          "$ref": "GooglePrivacyDlpV2TransformationResultStatus",
+          "description": "Status of the transformation, if transformation was not successful, this will specify what caused it to fail, otherwise it will show that the transformation was successful."
+        },
+        "transformation": {
+          "description": "Description of transformation. This would only contain more than one element if there were multiple matching transformations and which one to apply was ambiguous. Not set for states that contain no transformation, currently only state that contains no transformation is TransformationResultStateType.METADATA_UNRETRIEVABLE.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2TransformationDescription"
+          },
+          "type": "array"
+        },
+        "transformationLocation": {
+          "$ref": "GooglePrivacyDlpV2TransformationLocation",
+          "description": "The precise location of the transformed content in the original container."
+        },
+        "transformedBytes": {
+          "description": "The number of bytes that were transformed. If transformation was unsuccessful or did not take place because there was no content to transform, this will be zero.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2TransformationDetailsStorageConfig": {
       "description": "Config for storing transformation details.",
       "id": "GooglePrivacyDlpV2TransformationDetailsStorageConfig",
@@ -7997,6 +8174,37 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2TransformationLocation": {
+      "description": "Specifies the location of a transformation.",
+      "id": "GooglePrivacyDlpV2TransformationLocation",
+      "properties": {
+        "containerType": {
+          "description": "Information about the functionality of the container where this finding occurred, if available.",
+          "enum": [
+            "TRANSFORM_UNKNOWN_CONTAINER",
+            "TRANSFORM_BODY",
+            "TRANSFORM_METADATA",
+            "TRANSFORM_TABLE"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "findingId": {
+          "description": "For infotype transformations, link to the corresponding findings ID so that location information does not need to be duplicated. Each findings ID correlates to an entry in the findings output table, this table only gets created when users specify to save findings (add the save findings action to the request).",
+          "type": "string"
+        },
+        "recordTransformation": {
+          "$ref": "GooglePrivacyDlpV2RecordTransformation",
+          "description": "For record transformations, provide a field and container information."
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2TransformationOverview": {
       "description": "Overview of the modifications that occurred.",
       "id": "GooglePrivacyDlpV2TransformationOverview",
@@ -8011,6 +8219,34 @@
         "transformedBytes": {
           "description": "Total size in bytes that were transformed in some way.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2TransformationResultStatus": {
+      "id": "GooglePrivacyDlpV2TransformationResultStatus",
+      "properties": {
+        "details": {
+          "$ref": "GoogleRpcStatus",
+          "description": "Detailed error codes and messages"
+        },
+        "resultStatusType": {
+          "description": "Transformation result status type, this will be either SUCCESS, or it will be the reason for why the transformation was not completely successful.",
+          "enum": [
+            "STATE_TYPE_UNSPECIFIED",
+            "INVALID_TRANSFORM",
+            "BIGQUERY_MAX_ROW_SIZE_EXCEEDED",
+            "METADATA_UNRETRIEVABLE",
+            "SUCCESS"
+          ],
+          "enumDescriptions": [
+            "",
+            "This will be set when a finding could not be transformed (i.e. outside user set bucket range).",
+            "This will be set when a BigQuery transformation was successful but could not be stored back in BigQuery because the transformed row exceeds BigQuery's max row size.",
+            "This will be set when there is a finding in the custom metadata of a file, but at the write time of the transformed file, this key / value pair is unretrievable.",
+            "This will be set when the transformation and storing of it is successful."
+          ],
           "type": "string"
         }
       },
