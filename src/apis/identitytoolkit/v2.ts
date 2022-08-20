@@ -182,6 +182,28 @@ export namespace identitytoolkit_v2 {
     permissions?: Schema$GoogleCloudIdentitytoolkitAdminV2Permissions;
   }
   /**
+   * Options related to how clients making requests on behalf of a tenant should be configured.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitAdminV2ClientPermissionConfig {
+    /**
+     * Configuration related to restricting a user's ability to affect their account.
+     */
+    permissions?: Schema$GoogleCloudIdentitytoolkitAdminV2ClientPermissions;
+  }
+  /**
+   * Configuration related to restricting a user's ability to affect their account.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitAdminV2ClientPermissions {
+    /**
+     * When true, end users cannot delete their account on the associated project through any of our API methods
+     */
+    disabledUserDeletion?: boolean | null;
+    /**
+     * When true, end users cannot sign up for a new account on the associated project through any of our API methods
+     */
+    disabledUserSignup?: boolean | null;
+  }
+  /**
    * Additional config for Apple for code flow.
    */
   export interface Schema$GoogleCloudIdentitytoolkitAdminV2CodeFlowConfig {
@@ -853,6 +875,10 @@ export namespace identitytoolkit_v2 {
      * Whether anonymous users will be auto-deleted after a period of 30 days.
      */
     autodeleteAnonymousUsers?: boolean | null;
+    /**
+     * Options related to how clients making requests on behalf of a project should be configured.
+     */
+    client?: Schema$GoogleCloudIdentitytoolkitAdminV2ClientPermissionConfig;
     /**
      * Whether authentication is disabled for the tenant. If true, the users under the disabled tenant are not allowed to sign-in. Admins of the disabled tenant are not able to manage its users.
      */
@@ -5099,6 +5125,7 @@ export namespace identitytoolkit_v2 {
      *       // {
      *       //   "allowPasswordSignup": false,
      *       //   "autodeleteAnonymousUsers": false,
+     *       //   "client": {},
      *       //   "disableAuth": false,
      *       //   "displayName": "my_displayName",
      *       //   "enableAnonymousUser": false,
@@ -5117,6 +5144,7 @@ export namespace identitytoolkit_v2 {
      *   // {
      *   //   "allowPasswordSignup": false,
      *   //   "autodeleteAnonymousUsers": false,
+     *   //   "client": {},
      *   //   "disableAuth": false,
      *   //   "displayName": "my_displayName",
      *   //   "enableAnonymousUser": false,
@@ -5400,6 +5428,7 @@ export namespace identitytoolkit_v2 {
      *   // {
      *   //   "allowPasswordSignup": false,
      *   //   "autodeleteAnonymousUsers": false,
+     *   //   "client": {},
      *   //   "disableAuth": false,
      *   //   "displayName": "my_displayName",
      *   //   "enableAnonymousUser": false,
@@ -5847,6 +5876,7 @@ export namespace identitytoolkit_v2 {
      *       // {
      *       //   "allowPasswordSignup": false,
      *       //   "autodeleteAnonymousUsers": false,
+     *       //   "client": {},
      *       //   "disableAuth": false,
      *       //   "displayName": "my_displayName",
      *       //   "enableAnonymousUser": false,
@@ -5865,6 +5895,7 @@ export namespace identitytoolkit_v2 {
      *   // {
      *   //   "allowPasswordSignup": false,
      *   //   "autodeleteAnonymousUsers": false,
+     *   //   "client": {},
      *   //   "disableAuth": false,
      *   //   "displayName": "my_displayName",
      *   //   "enableAnonymousUser": false,

@@ -17,7 +17,7 @@
   "canonicalName": "Identity Toolkit",
   "description": "The Google Identity Toolkit API lets you use open standards to verify a user's identity.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://firebase.google.com/docs/auth/",
+  "documentationLink": "https://cloud.google.com/identity-platform",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -1237,7 +1237,7 @@
       }
     }
   },
-  "revision": "20220806",
+  "revision": "20220815",
   "rootUrl": "https://identitytoolkit.googleapis.com/",
   "schemas": {
     "GoogleCloudIdentitytoolkitV1Argon2Parameters": {
@@ -3371,7 +3371,6 @@
           "type": "integer"
         },
         "delegatedProjectNumber": {
-          "description": "If true, the service will do the following list of checks before an account is uploaded: * Duplicate emails * Duplicate federated IDs * Federated ID provider validation If the duplication exists within the list of accounts to be uploaded, it will prevent the entire list from being uploaded. If the email or federated ID is a duplicate of a user already within the project/tenant, the account will not be uploaded, but the rest of the accounts will be unaffected. If false, these checks will be skipped.",
           "format": "int64",
           "type": "string"
         },
@@ -3419,6 +3418,7 @@
           "type": "string"
         },
         "sanityCheck": {
+          "description": "If true, the service will do the following list of checks before an account is uploaded: * Duplicate emails * Duplicate federated IDs * Federated ID provider validation If the duplication exists within the list of accounts to be uploaded, it will prevent the entire list from being uploaded. If the email or federated ID is a duplicate of a user already within the project/tenant, the account will not be uploaded, but the rest of the accounts will be unaffected. If false, these checks will be skipped.",
           "type": "boolean"
         },
         "signerKey": {
@@ -3431,7 +3431,7 @@
           "type": "string"
         },
         "users": {
-          "description": "A list of accounts to upload.",
+          "description": "A list of accounts to upload. `local_id` is required for each user; everything else is optional.",
           "items": {
             "$ref": "GoogleCloudIdentitytoolkitV1UserInfo"
           },
