@@ -1151,7 +1151,7 @@
       }
     }
   },
-  "revision": "20220805",
+  "revision": "20220812",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -2605,14 +2605,6 @@
       "description": "Configuration of an auth method for a member/cluster. Only one authentication method (e.g., OIDC and LDAP) can be set per AuthMethod.",
       "id": "IdentityServiceAuthMethod",
       "properties": {
-        "azureadConfig": {
-          "$ref": "IdentityServiceAzureADConfig",
-          "description": "AzureAD specific Configuration."
-        },
-        "googleConfig": {
-          "$ref": "IdentityServiceGoogleConfig",
-          "description": "GoogleConfig specific configuration"
-        },
         "name": {
           "description": "Identifier for auth config.",
           "type": "string"
@@ -2624,46 +2616,6 @@
         "proxy": {
           "description": "Proxy server address to use for auth method.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "IdentityServiceAzureADConfig": {
-      "description": "Configuration for the AzureAD Auth flow.",
-      "id": "IdentityServiceAzureADConfig",
-      "properties": {
-        "clientId": {
-          "description": "ID for the registered client application that makes authentication requests to the Azure AD identity provider.",
-          "type": "string"
-        },
-        "clientSecret": {
-          "description": "Input only. Unencrypted AzureAD client secret will be passed to the GKE Hub CLH.",
-          "type": "string"
-        },
-        "encryptedClientSecret": {
-          "description": "Output only. Encrypted AzureAD client secret.",
-          "format": "byte",
-          "readOnly": true,
-          "type": "string"
-        },
-        "kubectlRedirectUri": {
-          "description": "The redirect URL that kubectl uses for authorization.",
-          "type": "string"
-        },
-        "tenant": {
-          "description": "Kind of Azure AD account to be authenticated. Supported values are or for accounts belonging to a specific tenant.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "IdentityServiceGoogleConfig": {
-      "description": "Configuration for the Google Plugin Auth flow.",
-      "id": "IdentityServiceGoogleConfig",
-      "properties": {
-        "disable": {
-          "description": "Disable automatic configuration of Google Plugin on supported platforms.",
-          "type": "boolean"
         }
       },
       "type": "object"
