@@ -1097,14 +1097,6 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$IdentityServiceAuthMethod {
     /**
-     * AzureAD specific Configuration.
-     */
-    azureadConfig?: Schema$IdentityServiceAzureADConfig;
-    /**
-     * GoogleConfig specific configuration
-     */
-    googleConfig?: Schema$IdentityServiceGoogleConfig;
-    /**
      * Identifier for auth config.
      */
     name?: string | null;
@@ -1116,40 +1108,6 @@ export namespace gkehub_v1alpha {
      * Proxy server address to use for auth method.
      */
     proxy?: string | null;
-  }
-  /**
-   * Configuration for the AzureAD Auth flow.
-   */
-  export interface Schema$IdentityServiceAzureADConfig {
-    /**
-     * ID for the registered client application that makes authentication requests to the Azure AD identity provider.
-     */
-    clientId?: string | null;
-    /**
-     * Input only. Unencrypted AzureAD client secret will be passed to the GKE Hub CLH.
-     */
-    clientSecret?: string | null;
-    /**
-     * Output only. Encrypted AzureAD client secret.
-     */
-    encryptedClientSecret?: string | null;
-    /**
-     * The redirect URL that kubectl uses for authorization.
-     */
-    kubectlRedirectUri?: string | null;
-    /**
-     * Kind of Azure AD account to be authenticated. Supported values are or for accounts belonging to a specific tenant.
-     */
-    tenant?: string | null;
-  }
-  /**
-   * Configuration for the Google Plugin Auth flow.
-   */
-  export interface Schema$IdentityServiceGoogleConfig {
-    /**
-     * Disable automatic configuration of Google Plugin on supported platforms.
-     */
-    disable?: boolean | null;
   }
   /**
    * **Anthos Identity Service**: Configuration for a single Membership.
