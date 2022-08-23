@@ -836,7 +836,7 @@
       }
     }
   },
-  "revision": "20220815",
+  "revision": "20220821",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata": {
@@ -845,6 +845,11 @@
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
           "description": "The basic metadata of the long running operation."
+        },
+        "errorDocumentCount": {
+          "description": "Total number of documents that failed to be deleted in storage.",
+          "format": "int32",
+          "type": "integer"
         },
         "individualBatchDeleteStatuses": {
           "description": "The list of response details of each document.",
@@ -1207,7 +1212,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3ImportDocumentsMetadataImportConfigValidationResult": {
-      "description": "The validation status of each import config. Status is ok if the configuration is valid and the specified documents are valid for importing. Otherwise status will be set as errors.",
+      "description": "The validation status of each import config. Status is set to errors if there is no documents to import in the import_config, or OK if the operation will try to proceed at least one document.",
       "id": "GoogleCloudDocumentaiUiv1beta3ImportDocumentsMetadataImportConfigValidationResult",
       "properties": {
         "inputGcsSource": {
@@ -1267,13 +1272,6 @@
             "$ref": "GoogleCloudDocumentaiUiv1beta3ResyncDatasetMetadataIndividualDocumentResyncStatus"
           },
           "type": "array"
-        },
-        "newlyAddedDocuments": {
-          "description": "Returns the newly added document Cloud Storage prefix if the documents are founded in Cloud Storage while not in Document Service storage.",
-          "items": {
-            "$ref": "GoogleCloudDocumentaiUiv1beta3ResyncDatasetMetadataUpdatedDocument"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -1328,25 +1326,6 @@
         "status": {
           "$ref": "GoogleRpcStatus",
           "description": "The status of resyncing the document with regards to the detected inconsistency. Empty if `validate_only` is true in the request."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDocumentaiUiv1beta3ResyncDatasetMetadataUpdatedDocument": {
-      "description": "The proto for updated document in resync pipeline.",
-      "id": "GoogleCloudDocumentaiUiv1beta3ResyncDatasetMetadataUpdatedDocument",
-      "properties": {
-        "destinationPrefix": {
-          "description": "The prefix of cloud storage, identifies the destination document which should be updated by resync pipeline.",
-          "type": "string"
-        },
-        "sourcePrefix": {
-          "description": "The prefix of cloud storage, identifies the original document which should be updated by resync pipeline.",
-          "type": "string"
-        },
-        "status": {
-          "$ref": "GoogleRpcStatus",
-          "description": "The final status of the documents which should be updated by resync pipeline."
         }
       },
       "type": "object"
@@ -5633,6 +5612,10 @@
           "description": "User defined name for the type.",
           "type": "string"
         },
+        "entityTypeMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1beta3EntityTypeMetadata",
+          "description": "Metadata for the entity type."
+        },
         "enumValues": {
           "$ref": "GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeEnumValues",
           "description": "If specified, lists all the possible values for this entity. This should not be more than a handful of values. If the number of values is >10 or could change frequently use the `EntityType.value_ontology` field and specify a list of all possible values in a value ontology file."
@@ -5690,6 +5673,10 @@
             "The entity type will appear once or more times."
           ],
           "type": "string"
+        },
+        "propertyMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1beta3PropertyMetadata",
+          "description": "Any additional metadata about the property can be added here."
         },
         "valueType": {
           "description": "A reference to the value type of the property. This type is subject to the same conventions as the `Entity.base_types` field.",
@@ -5874,6 +5861,29 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1beta3EntityTypeMetadata": {
+      "description": "Metadata about an entity type.",
+      "id": "GoogleCloudDocumentaiV1beta3EntityTypeMetadata",
+      "properties": {
+        "humanReviewLabelingMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1beta3HumanReviewLabelingMetadata",
+          "description": "Human review labeling config on the property."
+        },
+        "humanReviewMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1beta3HumanReviewValidationMetadata",
+          "description": "Human review config on the entity type."
+        },
+        "inactive": {
+          "description": "Whether the entity type should be considered as \"inactive\".",
+          "type": "boolean"
+        },
+        "prefixedNamingOnProperties": {
+          "description": "If set, the properties of this entity type must be prefixed with the parents.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponse": {
       "description": "Response message for fetch processor types.",
       "id": "GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponse",
@@ -5928,6 +5938,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1beta3HumanReviewLabelingMetadata": {
+      "description": "Metadata for human review labeling config.",
+      "id": "GoogleCloudDocumentaiV1beta3HumanReviewLabelingMetadata",
+      "properties": {
+        "enableNormalizationEditing": {
+          "description": "Whether to enable normalization editing.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1beta3HumanReviewStatus": {
       "description": "The status of human review on a processed document.",
       "id": "GoogleCloudDocumentaiV1beta3HumanReviewStatus",
@@ -5957,6 +5978,22 @@
         "stateMessage": {
           "description": "A message providing more details about the human review state.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3HumanReviewValidationMetadata": {
+      "description": "Metadata for Human Review config.",
+      "id": "GoogleCloudDocumentaiV1beta3HumanReviewValidationMetadata",
+      "properties": {
+        "confidenceThreshold": {
+          "description": "The confidence threshold if human review validation is enabled.",
+          "format": "float",
+          "type": "number"
+        },
+        "enableValidation": {
+          "description": "Whether to enable human review validation.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -6279,6 +6316,25 @@
         "replacementProcessorVersion": {
           "description": "If set, the processor version that will be used as a replacement.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3PropertyMetadata": {
+      "description": "Metadata about a property.",
+      "id": "GoogleCloudDocumentaiV1beta3PropertyMetadata",
+      "properties": {
+        "humanReviewLabelingMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1beta3HumanReviewLabelingMetadata",
+          "description": "Human review labeling config on the property."
+        },
+        "humanReviewMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1beta3HumanReviewValidationMetadata",
+          "description": "Human review validation config on the property."
+        },
+        "inactive": {
+          "description": "Whether the property should be considered as \"inactive\".",
+          "type": "boolean"
         }
       },
       "type": "object"

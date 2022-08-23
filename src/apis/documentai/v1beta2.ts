@@ -130,6 +130,10 @@ export namespace documentai_v1beta2 {
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
     /**
+     * Total number of documents that failed to be deleted in storage.
+     */
+    errorDocumentCount?: number | null;
+    /**
      * The list of response details of each document.
      */
     individualBatchDeleteStatuses?: Schema$GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadataIndividualBatchDeleteStatus[];
@@ -380,7 +384,7 @@ export namespace documentai_v1beta2 {
     totalDocumentCount?: number | null;
   }
   /**
-   * The validation status of each import config. Status is ok if the configuration is valid and the specified documents are valid for importing. Otherwise status will be set as errors.
+   * The validation status of each import config. Status is set to errors if there is no documents to import in the import_config, or OK if the operation will try to proceed at least one document.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3ImportDocumentsMetadataImportConfigValidationResult {
     /**
@@ -429,10 +433,6 @@ export namespace documentai_v1beta2 {
      * The list of document resync statuses. The same document could have multiple `individual_document_resync_statuses` if it has multiple inconsistencies.
      */
     individualDocumentResyncStatuses?: Schema$GoogleCloudDocumentaiUiv1beta3ResyncDatasetMetadataIndividualDocumentResyncStatus[];
-    /**
-     * Returns the newly added document Cloud Storage prefix if the documents are founded in Cloud Storage while not in Document Service storage.
-     */
-    newlyAddedDocuments?: Schema$GoogleCloudDocumentaiUiv1beta3ResyncDatasetMetadataUpdatedDocument[];
   }
   /**
    * Resync status against inconsistency types on the dataset level.
@@ -461,23 +461,6 @@ export namespace documentai_v1beta2 {
     documentInconsistencyType?: string | null;
     /**
      * The status of resyncing the document with regards to the detected inconsistency. Empty if `validate_only` is true in the request.
-     */
-    status?: Schema$GoogleRpcStatus;
-  }
-  /**
-   * The proto for updated document in resync pipeline.
-   */
-  export interface Schema$GoogleCloudDocumentaiUiv1beta3ResyncDatasetMetadataUpdatedDocument {
-    /**
-     * The prefix of cloud storage, identifies the destination document which should be updated by resync pipeline.
-     */
-    destinationPrefix?: string | null;
-    /**
-     * The prefix of cloud storage, identifies the original document which should be updated by resync pipeline.
-     */
-    sourcePrefix?: string | null;
-    /**
-     * The final status of the documents which should be updated by resync pipeline.
      */
     status?: Schema$GoogleRpcStatus;
   }
