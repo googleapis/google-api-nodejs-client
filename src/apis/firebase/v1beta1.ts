@@ -656,6 +656,36 @@ export namespace firebase_v1beta1 {
      */
     streamId?: string | null;
   }
+  export interface Schema$UndeleteAndroidAppRequest {
+    /**
+     * Checksum provided in the AndroidApp entity, which if provided ensures the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
+     * If set to true, only validate the request and do not undelete the app.
+     */
+    validateOnly?: boolean | null;
+  }
+  export interface Schema$UndeleteIosAppRequest {
+    /**
+     * Checksum provided in the IosApp entity, which if provided ensures the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
+     * If set to true, only validate the request and do not undelete the app.
+     */
+    validateOnly?: boolean | null;
+  }
+  export interface Schema$UndeleteWebAppRequest {
+    /**
+     * Checksum provided in the WebApp entity, which if provided ensures the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
+     * If set to true, only validate the request and do not undelete the app.
+     */
+    validateOnly?: boolean | null;
+  }
   /**
    * Details of a Firebase App for the web.
    */
@@ -1800,6 +1830,8 @@ export namespace firebase_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // Token returned from a previous call to `ListFirebaseProjects` indicating where in the set of Projects to resume listing.
      *     pageToken: 'placeholder-value',
+     *     // Optional. Controls whether Projects in the DELETING state should be returned. Defaults to false.
+     *     showDeleted: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -2400,6 +2432,10 @@ export namespace firebase_v1beta1 {
      * Token returned from a previous call to `ListFirebaseProjects` indicating where in the set of Projects to resume listing.
      */
     pageToken?: string;
+    /**
+     * Optional. Controls whether Projects in the DELETING state should be returned. Defaults to false.
+     */
+    showDeleted?: boolean;
   }
   export interface Params$Resource$Projects$Patch extends StandardParameters {
     /**
@@ -3318,6 +3354,148 @@ export namespace firebase_v1beta1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Restores the specified AndroidApp to the project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.androidApps.undelete({
+     *     // Required. The resource name of the AndroidApp, in the format: projects/ PROJECT_IDENTIFIER/androidApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/androidApps/APP_ID Refer to the AndroidApp [name](../projects.androidApps#AndroidApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.
+     *     name: 'projects/my-project/androidApps/my-androidApp',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "validateOnly": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    undelete(
+      params: Params$Resource$Projects$Androidapps$Undelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    undelete(
+      params?: Params$Resource$Projects$Androidapps$Undelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    undelete(
+      params: Params$Resource$Projects$Androidapps$Undelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    undelete(
+      params: Params$Resource$Projects$Androidapps$Undelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    undelete(
+      params: Params$Resource$Projects$Androidapps$Undelete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    undelete(callback: BodyResponseCallback<Schema$Operation>): void;
+    undelete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Androidapps$Undelete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Androidapps$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Androidapps$Undelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firebase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Androidapps$Create
@@ -3392,6 +3570,18 @@ export namespace firebase_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$RemoveAndroidAppRequest;
+  }
+  export interface Params$Resource$Projects$Androidapps$Undelete
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the AndroidApp, in the format: projects/ PROJECT_IDENTIFIER/androidApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/androidApps/APP_ID Refer to the AndroidApp [name](../projects.androidApps#AndroidApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UndeleteAndroidAppRequest;
   }
 
   export class Resource$Projects$Androidapps$Sha {
@@ -5044,6 +5234,148 @@ export namespace firebase_v1beta1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Restores the specified IosApp to the project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.iosApps.undelete({
+     *     // Required. The resource name of the IosApp, in the format: projects/ PROJECT_IDENTIFIER/iosApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/iosApps/APP_ID Refer to the IosApp [name](../projects.iosApps#IosApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.
+     *     name: 'projects/my-project/iosApps/my-iosApp',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "validateOnly": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    undelete(
+      params: Params$Resource$Projects$Iosapps$Undelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    undelete(
+      params?: Params$Resource$Projects$Iosapps$Undelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    undelete(
+      params: Params$Resource$Projects$Iosapps$Undelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    undelete(
+      params: Params$Resource$Projects$Iosapps$Undelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    undelete(
+      params: Params$Resource$Projects$Iosapps$Undelete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    undelete(callback: BodyResponseCallback<Schema$Operation>): void;
+    undelete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Iosapps$Undelete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Iosapps$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Iosapps$Undelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firebase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Iosapps$Create
@@ -5118,6 +5450,18 @@ export namespace firebase_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$RemoveIosAppRequest;
+  }
+  export interface Params$Resource$Projects$Iosapps$Undelete
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the IosApp, in the format: projects/ PROJECT_IDENTIFIER/iosApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/iosApps/APP_ID Refer to the IosApp [name](../projects.iosApps#IosApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UndeleteIosAppRequest;
   }
 
   export class Resource$Projects$Webapps {
@@ -5993,6 +6337,148 @@ export namespace firebase_v1beta1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Restores the specified WebApp to the project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebase = google.firebase('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebase.projects.webApps.undelete({
+     *     // Required. The resource name of the WebApp, in the format: projects/ PROJECT_IDENTIFIER/webApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/webApps/APP_ID Refer to the WebApp [name](../projects.webApps#WebApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.
+     *     name: 'projects/my-project/webApps/my-webApp',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "validateOnly": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    undelete(
+      params: Params$Resource$Projects$Webapps$Undelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    undelete(
+      params?: Params$Resource$Projects$Webapps$Undelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    undelete(
+      params: Params$Resource$Projects$Webapps$Undelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    undelete(
+      params: Params$Resource$Projects$Webapps$Undelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    undelete(
+      params: Params$Resource$Projects$Webapps$Undelete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    undelete(callback: BodyResponseCallback<Schema$Operation>): void;
+    undelete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Webapps$Undelete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Webapps$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Webapps$Undelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firebase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Webapps$Create
@@ -6067,5 +6553,17 @@ export namespace firebase_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$RemoveWebAppRequest;
+  }
+  export interface Params$Resource$Projects$Webapps$Undelete
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the WebApp, in the format: projects/ PROJECT_IDENTIFIER/webApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/webApps/APP_ID Refer to the WebApp [name](../projects.webApps#WebApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UndeleteWebAppRequest;
   }
 }

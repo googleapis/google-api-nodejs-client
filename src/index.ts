@@ -330,6 +330,7 @@ export {plus_v1} from './apis/plus/v1';
 export {policyanalyzer_v1} from './apis/policyanalyzer/v1';
 export {policyanalyzer_v1beta1} from './apis/policyanalyzer/v1beta1';
 export {policysimulator_v1} from './apis/policysimulator/v1';
+export {policysimulator_v1alpha} from './apis/policysimulator/v1alpha';
 export {policysimulator_v1beta1} from './apis/policysimulator/v1beta1';
 export {policytroubleshooter_v1} from './apis/policytroubleshooter/v1';
 export {policytroubleshooter_v1beta} from './apis/policytroubleshooter/v1beta';

@@ -856,7 +856,7 @@ export namespace vmmigration_v1alpha1 {
    */
   export interface Schema$LocalizedMessage {
     /**
-     * The locale used following the specification defined at http://www.rfc-editor.org/rfc/bcp/bcp47.txt. Examples are: "en-US", "fr-CH", "es-MX"
+     * The locale used following the specification defined at https://www.rfc-editor.org/rfc/bcp/bcp47.txt. Examples are: "en-US", "fr-CH", "es-MX"
      */
     locale?: string | null;
     /**

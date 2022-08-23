@@ -2195,10 +2195,6 @@ export namespace cloudsearch_v1 {
      */
     streamingSessions?: Schema$StreamingSessionInfo[];
     /**
-     * Supported caption languages in BCP 47 language code format, e.g.'en-US'.
-     */
-    supportedCaptionLanguages?: string[] | null;
-    /**
      * Information about active transcription session in the ongoing conference.
      */
     transcriptionSessionInfo?: Schema$TranscriptionSessionInfo;
@@ -7630,10 +7626,6 @@ export namespace cloudsearch_v1 {
      * The uri for whiteboard document.
      */
     uri?: string | null;
-    /**
-     * This field is deprecated and will be removed. Please use "uri" instead.
-     */
-    whiteboardUri?: string | null;
   }
   export interface Schema$WidgetMarkup {
     /**
