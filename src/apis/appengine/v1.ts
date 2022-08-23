@@ -125,7 +125,7 @@ export namespace appengine_v1 {
   }
 
   /**
-   * Google Cloud Endpoints (https://cloud.google.com/appengine/docs/python/endpoints/) configuration for API handlers.
+   * Cloud Endpoints (https://cloud.google.com/endpoints/) configuration for API handlers.
    */
   export interface Schema$ApiConfigHandler {
     /**
@@ -1454,7 +1454,7 @@ export namespace appengine_v1 {
    */
   export interface Schema$Version {
     /**
-     * Serving configuration for Google Cloud Endpoints (https://cloud.google.com/appengine/docs/python/endpoints/).Only returned in GET requests if view=FULL is set.
+     * Serving configuration for Cloud Endpoints (https://cloud.google.com/endpoints/).Only returned in GET requests if view=FULL is set.
      */
     apiConfig?: Schema$ApiConfigHandler;
     /**
