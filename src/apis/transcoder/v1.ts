@@ -269,6 +269,23 @@ export namespace transcoder_v1 {
     sampleRateHertz?: number | null;
   }
   /**
+   * Bob Weaver Deinterlacing Filter Configuration.
+   */
+  export interface Schema$BwdifConfig {
+    /**
+     * Deinterlace all frames rather than just the frames identified as interlaced. The default is `false`.
+     */
+    deinterlaceAllFrames?: boolean | null;
+    /**
+     * Specifies the deinterlacing mode to adopt. The default is `send_frame`. Supported values: - `send_frame`: Output one frame for each frame - `send_field`: Output one frame for each field
+     */
+    mode?: string | null;
+    /**
+     * The picture field parity assumed for the input interlaced video. The default is `auto`. Supported values: - `tff`: Assume the top field is first - `bff`: Assume the bottom field is first - `auto`: Enable automatic detection of field parity
+     */
+    parity?: string | null;
+  }
+  /**
    * Color preprocessing configuration. **Note:** This configuration is not supported.
    */
   export interface Schema$Color {
@@ -318,6 +335,19 @@ export namespace transcoder_v1 {
      * Set strength of the deblocker. Enter a value between 0 and 1. The higher the value, the stronger the block removal. 0 is no deblocking. The default is 0.
      */
     strength?: number | null;
+  }
+  /**
+   * Deinterlace configuration for input video.
+   */
+  export interface Schema$Deinterlace {
+    /**
+     * Specifies the Bob Weaver Deinterlacing Filter Configuration.
+     */
+    bwdif?: Schema$BwdifConfig;
+    /**
+     * Specifies the Yet Another Deinterlacing Filter Configuration.
+     */
+    yadif?: Schema$YadifConfig;
   }
   /**
    * Denoise preprocessing configuration. **Note:** This configuration is not supported.
@@ -846,6 +876,10 @@ export namespace transcoder_v1 {
      */
     deblock?: Schema$Deblock;
     /**
+     * Specify the video deinterlace configuration.
+     */
+    deinterlace?: Schema$Deinterlace;
+    /**
      * Denoise preprocessing configuration.
      */
     denoise?: Schema$Denoise;
@@ -1033,6 +1067,27 @@ export namespace transcoder_v1 {
      * The width of the video in pixels. Must be an even integer. When not specified, the width is adjusted to match the specified height and input aspect ratio. If both are omitted, the input width is used.
      */
     widthPixels?: number | null;
+  }
+  /**
+   * Yet Another Deinterlacing Filter Configuration.
+   */
+  export interface Schema$YadifConfig {
+    /**
+     * Deinterlace all frames rather than just the frames identified as interlaced. The default is `false`.
+     */
+    deinterlaceAllFrames?: boolean | null;
+    /**
+     * Disable spacial interlacing. The default is `false`.
+     */
+    disableSpatialInterlacing?: boolean | null;
+    /**
+     * Specifies the deinterlacing mode to adopt. The default is `send_frame`. Supported values: - `send_frame`: Output one frame for each frame - `send_field`: Output one frame for each field
+     */
+    mode?: string | null;
+    /**
+     * The picture field parity assumed for the input interlaced video. The default is `auto`. Supported values: - `tff`: Assume the top field is first - `bff`: Assume the bottom field is first - `auto`: Enable automatic detection of field parity
+     */
+    parity?: string | null;
   }
 
   export class Resource$Projects {
