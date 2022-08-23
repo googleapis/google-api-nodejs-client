@@ -3058,7 +3058,7 @@
       }
     }
   },
-  "revision": "20220811",
+  "revision": "20220817",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -5074,7 +5074,8 @@
               "DOMAIN_POLICY_MODIFICATION",
               "IMPAIR_DEFENSES",
               "NETWORK_SERVICE_DISCOVERY",
-              "ACCESS_TOKEN_MANIPULATION"
+              "ACCESS_TOKEN_MANIPULATION",
+              "ABUSE_ELEVATION_CONTROL_MECHANISM"
             ],
             "enumDescriptions": [
               "Unspecified value.",
@@ -5110,7 +5111,8 @@
               "T1484",
               "T1562",
               "T1046",
-              "T1134"
+              "T1134",
+              "T1548"
             ],
             "type": "string"
           },
@@ -5191,7 +5193,8 @@
               "DOMAIN_POLICY_MODIFICATION",
               "IMPAIR_DEFENSES",
               "NETWORK_SERVICE_DISCOVERY",
-              "ACCESS_TOKEN_MANIPULATION"
+              "ACCESS_TOKEN_MANIPULATION",
+              "ABUSE_ELEVATION_CONTROL_MECHANISM"
             ],
             "enumDescriptions": [
               "Unspecified value.",
@@ -5227,7 +5230,8 @@
               "T1484",
               "T1562",
               "T1046",
-              "T1134"
+              "T1134",
+              "T1548"
             ],
             "type": "string"
           },
