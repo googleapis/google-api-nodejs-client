@@ -2059,7 +2059,7 @@
       }
     }
   },
-  "revision": "20220808",
+  "revision": "20220816",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "AbuseReportingConfig": {
@@ -5466,13 +5466,6 @@
             "$ref": "StreamingSessionInfo"
           },
           "readOnly": true,
-          "type": "array"
-        },
-        "supportedCaptionLanguages": {
-          "description": "Supported caption languages in BCP 47 language code format, e.g.'en-US'.",
-          "items": {
-            "type": "string"
-          },
           "type": "array"
         },
         "transcriptionSessionInfo": {
@@ -15698,10 +15691,6 @@
         },
         "uri": {
           "description": "The uri for whiteboard document.",
-          "type": "string"
-        },
-        "whiteboardUri": {
-          "description": "This field is deprecated and will be removed. Please use \"uri\" instead.",
           "type": "string"
         }
       },
