@@ -1595,11 +1595,11 @@
       }
     }
   },
-  "revision": "20220612",
+  "revision": "20220813",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
-      "description": "Google Cloud Endpoints (https://cloud.google.com/appengine/docs/python/endpoints/) configuration for API handlers.",
+      "description": "Cloud Endpoints (https://cloud.google.com/endpoints/) configuration for API handlers.",
       "id": "ApiConfigHandler",
       "properties": {
         "authFailAction": {
@@ -3494,7 +3494,7 @@
       "properties": {
         "apiConfig": {
           "$ref": "ApiConfigHandler",
-          "description": "Serving configuration for Google Cloud Endpoints (https://cloud.google.com/appengine/docs/python/endpoints/).Only returned in GET requests if view=FULL is set."
+          "description": "Serving configuration for Cloud Endpoints (https://cloud.google.com/endpoints/).Only returned in GET requests if view=FULL is set."
         },
         "appEngineApis": {
           "description": "Allows App Engine second generation runtimes to access the legacy bundled services.",
