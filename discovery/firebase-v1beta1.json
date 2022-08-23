@@ -341,6 +341,11 @@
               "description": "Token returned from a previous call to `ListFirebaseProjects` indicating where in the set of Projects to resume listing.",
               "location": "query",
               "type": "string"
+            },
+            "showDeleted": {
+              "description": "Optional. Controls whether Projects in the DELETING state should be returned. Defaults to false.",
+              "location": "query",
+              "type": "boolean"
             }
           },
           "path": "v1beta1/projects",
@@ -655,6 +660,34 @@
               "path": "v1beta1/{+name}:remove",
               "request": {
                 "$ref": "RemoveAndroidAppRequest"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "undelete": {
+              "description": "Restores the specified AndroidApp to the project.",
+              "flatPath": "v1beta1/projects/{projectsId}/androidApps/{androidAppsId}:undelete",
+              "httpMethod": "POST",
+              "id": "firebase.projects.androidApps.undelete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the AndroidApp, in the format: projects/ PROJECT_IDENTIFIER/androidApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/androidApps/APP_ID Refer to the AndroidApp [name](../projects.androidApps#AndroidApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/androidApps/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}:undelete",
+              "request": {
+                "$ref": "UndeleteAndroidAppRequest"
               },
               "response": {
                 "$ref": "Operation"
@@ -1023,6 +1056,34 @@
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
+            },
+            "undelete": {
+              "description": "Restores the specified IosApp to the project.",
+              "flatPath": "v1beta1/projects/{projectsId}/iosApps/{iosAppsId}:undelete",
+              "httpMethod": "POST",
+              "id": "firebase.projects.iosApps.undelete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the IosApp, in the format: projects/ PROJECT_IDENTIFIER/iosApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/iosApps/APP_ID Refer to the IosApp [name](../projects.iosApps#IosApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/iosApps/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}:undelete",
+              "request": {
+                "$ref": "UndeleteIosAppRequest"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
             }
           }
         },
@@ -1219,13 +1280,41 @@
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
+            },
+            "undelete": {
+              "description": "Restores the specified WebApp to the project.",
+              "flatPath": "v1beta1/projects/{projectsId}/webApps/{webAppsId}:undelete",
+              "httpMethod": "POST",
+              "id": "firebase.projects.webApps.undelete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the WebApp, in the format: projects/ PROJECT_IDENTIFIER/webApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/webApps/APP_ID Refer to the WebApp [name](../projects.webApps#WebApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/webApps/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}:undelete",
+              "request": {
+                "$ref": "UndeleteWebAppRequest"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
             }
           }
         }
       }
     }
   },
-  "revision": "20220817",
+  "revision": "20220819",
   "rootUrl": "https://firebase.googleapis.com/",
   "schemas": {
     "AddFirebaseRequest": {
@@ -2009,6 +2098,48 @@
           "description": "The unique Google-assigned identifier of the Google Analytics data stream associated with the Firebase App. Learn more about Google Analytics data streams in the [Analytics documentation](https://support.google.com/analytics/answer/9303323).",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UndeleteAndroidAppRequest": {
+      "id": "UndeleteAndroidAppRequest",
+      "properties": {
+        "etag": {
+          "description": "Checksum provided in the AndroidApp entity, which if provided ensures the client has an up-to-date value before proceeding.",
+          "type": "string"
+        },
+        "validateOnly": {
+          "description": "If set to true, only validate the request and do not undelete the app.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "UndeleteIosAppRequest": {
+      "id": "UndeleteIosAppRequest",
+      "properties": {
+        "etag": {
+          "description": "Checksum provided in the IosApp entity, which if provided ensures the client has an up-to-date value before proceeding.",
+          "type": "string"
+        },
+        "validateOnly": {
+          "description": "If set to true, only validate the request and do not undelete the app.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "UndeleteWebAppRequest": {
+      "id": "UndeleteWebAppRequest",
+      "properties": {
+        "etag": {
+          "description": "Checksum provided in the WebApp entity, which if provided ensures the client has an up-to-date value before proceeding.",
+          "type": "string"
+        },
+        "validateOnly": {
+          "description": "If set to true, only validate the request and do not undelete the app.",
+          "type": "boolean"
         }
       },
       "type": "object"
