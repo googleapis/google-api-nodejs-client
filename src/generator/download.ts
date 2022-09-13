@@ -221,7 +221,7 @@ export function flattenObject(doc: Schema, flat: Schema = {}, prefix = '') {
     const fullKey = newPrefix + key;
     const value = doc[key];
     if (!Array.isArray(value) && typeof value === 'object') {
-      flattenObject(value, flat, fullKey);
+      flattenObject(value as Schema, flat, fullKey);
     } else {
       flat[fullKey] = value;
     }
