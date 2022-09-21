@@ -163,7 +163,7 @@ export namespace tagmanager_v2 {
     permission?: string | null;
   }
   /**
-   * Built-in variables are a special category of variables that are pre-created and non-customizable. They provide common functionality like accessing propeties of the gtm data layer, monitoring clicks, or accessing elements of a page URL.
+   * Built-in variables are a special category of variables that are pre-created and non-customizable. They provide common functionality like accessing properties of the gtm data layer, monitoring clicks, or accessing elements of a page URL.
    */
   export interface Schema$BuiltInVariable {
     /**
@@ -369,7 +369,7 @@ export namespace tagmanager_v2 {
      */
     name?: string | null;
     /**
-     * GTM ContainerVersions's API relative path.
+     * GTM Container Version's API relative path.
      */
     path?: string | null;
     /**
@@ -450,7 +450,7 @@ export namespace tagmanager_v2 {
      */
     numZones?: string | null;
     /**
-     * GTM Container Versions's API relative path.
+     * GTM Container Version's API relative path.
      */
     path?: string | null;
   }
@@ -1651,7 +1651,7 @@ export namespace tagmanager_v2 {
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.get({
-     *     // GTM Accounts's API relative path. Example: accounts/{account_id\}
+     *     // GTM Account's API relative path. Example: accounts/{account_id\}
      *     path: 'accounts/my-account',
      *   });
      *   console.log(res.data);
@@ -2046,7 +2046,7 @@ export namespace tagmanager_v2 {
 
   export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
-     * GTM Accounts's API relative path. Example: accounts/{account_id\}
+     * GTM Account's API relative path. Example: accounts/{account_id\}
      */
     path?: string;
   }
@@ -11598,7 +11598,7 @@ export namespace tagmanager_v2 {
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.triggers.create({
-     *     // GTM Workspaces's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     *     // GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
      *     parent:
      *       'accounts/my-account/containers/my-container/workspaces/my-workspace',
      *
@@ -12091,7 +12091,7 @@ export namespace tagmanager_v2 {
      *   const res = await tagmanager.accounts.containers.workspaces.triggers.list({
      *     // Continuation token for fetching the next page of results.
      *     pageToken: 'placeholder-value',
-     *     // GTM Workspaces's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     *     // GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
      *     parent:
      *       'accounts/my-account/containers/my-container/workspaces/my-workspace',
      *   });
@@ -12544,7 +12544,7 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Create
     extends StandardParameters {
     /**
-     * GTM Workspaces's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
      */
     parent?: string;
 
@@ -12574,7 +12574,7 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
     /**
-     * GTM Workspaces's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
      */
     parent?: string;
   }
