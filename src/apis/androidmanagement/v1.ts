@@ -1172,7 +1172,7 @@ export namespace androidmanagement_v1 {
     filePath?: string | null;
   }
   /**
-   * A system freeze period. When a device’s clock is within the freeze period, all incoming system updates (including security patches) are blocked and won’t be installed. When a device is outside the freeze period, normal update behavior applies. Leap years are ignored in freeze period calculations, in particular: * If Feb. 29th is set as the start or end date of a freeze period, the freeze period will start or end on Feb. 28th instead. * When a device’s system clock reads Feb. 29th, it’s treated as Feb. 28th. * When calculating the number of days in a freeze period or the time between two freeze periods, Feb. 29th is ignored and not counted as a day.
+   * A system freeze period. When a device’s clock is within the freeze period, all incoming system updates (including security patches) are blocked and won’t be installed. When a device is outside the freeze period, normal update behavior applies. Leap years are ignored in freeze period calculations, in particular: * If Feb. 29th is set as the start or end date of a freeze period, the freeze period will start or end on Feb. 28th instead. * When a device’s system clock reads Feb. 29th, it’s treated as Feb. 28th. * When calculating the number of days in a freeze period or the time between two freeze periods, Feb. 29th is ignored and not counted as a day.Note: For Freeze Periods to take effect, SystemUpdateType cannot be specified as SYSTEM_UPDATE_TYPE_UNSPECIFIED, because freeze periods require a defined policy to be specified.
    */
   export interface Schema$FreezePeriod {
     /**
@@ -2227,7 +2227,7 @@ export namespace androidmanagement_v1 {
      */
     setWallpaperDisabled?: boolean | null;
     /**
-     * Whether location sharing is disabled.
+     * Whether location sharing is disabled. share_location_disabled is supported for both fully managed devices and personally owned work profiles.
      */
     shareLocationDisabled?: boolean | null;
     /**
@@ -2263,7 +2263,7 @@ export namespace androidmanagement_v1 {
      */
     tetheringConfigDisabled?: boolean | null;
     /**
-     * Whether user uninstallation of applications is disabled.
+     * Whether user uninstallation of applications is disabled. This prevents apps from being uninstalled, even those removed using applications
      */
     uninstallAppsDisabled?: boolean | null;
     /**
@@ -2275,7 +2275,7 @@ export namespace androidmanagement_v1 {
      */
     usageLog?: Schema$UsageLog;
     /**
-     * Whether transferring files over USB is disabled.
+     * Whether transferring files over USB is disabled. This is supported only on company-owned devices.
      */
     usbFileTransferDisabled?: boolean | null;
     /**
@@ -2291,7 +2291,7 @@ export namespace androidmanagement_v1 {
      */
     vpnConfigDisabled?: boolean | null;
     /**
-     * Whether configuring Wi-Fi access points is disabled.Note: If a network connection can't be made at boot time and configuring Wi-Fi is disabled then network escape hatch will be shown in order to refresh the device policy (see networkEscapeHatchEnabled).
+     * Whether configuring Wi-Fi access points is disabled. Note: If a network connection can't be made at boot time and configuring Wi-Fi is disabled then network escape hatch will be shown in order to refresh the device policy (see networkEscapeHatchEnabled).
      */
     wifiConfigDisabled?: boolean | null;
     /**
