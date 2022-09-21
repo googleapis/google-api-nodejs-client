@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.3](https://github.com/googleapis/google-api-nodejs-client/compare/books-v0.3.2...books-v0.3.3) (2022-09-21)
+
+
+### Bug Fixes
+
+* **books:** update the API ([01d79f4](https://github.com/googleapis/google-api-nodejs-client/commit/01d79f4beea11394f0a80d7f206a620102bbd434))
+
 ## [0.3.2](https://github.com/googleapis/google-api-nodejs-client/compare/books-v0.3.1...books-v0.3.2) (2022-06-21)
 
 

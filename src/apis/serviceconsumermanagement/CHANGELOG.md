@@ -1,5 +1,16 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v5.1.0...serviceconsumermanagement-v6.0.0) (2022-09-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **serviceconsumermanagement:** This release has breaking changes.
+
+### Features
+
+* **serviceconsumermanagement:** update the API ([6906817](https://github.com/googleapis/google-api-nodejs-client/commit/69068171ba8a8c093ef0406a5b583a7797fa8c56))
+
 ## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v5.0.0...serviceconsumermanagement-v5.1.0) (2022-08-19)
 
 

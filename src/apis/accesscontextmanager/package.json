@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/accesscontextmanager",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "accesscontextmanager",
   "main": "build/index.js",
   "types": "build/index.d.ts",

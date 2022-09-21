@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.3](https://github.com/googleapis/google-api-nodejs-client/compare/reseller-v0.5.2...reseller-v0.5.3) (2022-09-21)
+
+
+### Bug Fixes
+
+* **reseller:** update the API ([11508bf](https://github.com/googleapis/google-api-nodejs-client/commit/11508bf1f5e4700545870558ae4d467267ca1731))
+
 ## [0.5.2](https://github.com/googleapis/google-api-nodejs-client/compare/reseller-v0.5.1...reseller-v0.5.2) (2022-06-21)
 
 

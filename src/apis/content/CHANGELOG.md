@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v8.0.0...content-v8.1.0) (2022-09-21)
+
+
+### Features
+
+* **content:** update the API ([fc7133b](https://github.com/googleapis/google-api-nodejs-client/commit/fc7133bcd859e81383fd365787336e73eeb49dc8))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v7.1.0...content-v8.0.0) (2022-08-19)
 
 

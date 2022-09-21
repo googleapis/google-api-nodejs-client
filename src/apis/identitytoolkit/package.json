@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/identitytoolkit",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "identitytoolkit",
   "main": "build/index.js",
   "types": "build/index.d.ts",

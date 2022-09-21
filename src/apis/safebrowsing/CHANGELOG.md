@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/safebrowsing-v2.0.2...safebrowsing-v2.0.3) (2022-09-21)
+
+
+### Bug Fixes
+
+* **safebrowsing:** update the API ([f81230e](https://github.com/googleapis/google-api-nodejs-client/commit/f81230eb471a62a3905102f607c3955fe2da3711))
+
 ## [2.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/safebrowsing-v2.0.1...safebrowsing-v2.0.2) (2022-06-21)
 
 

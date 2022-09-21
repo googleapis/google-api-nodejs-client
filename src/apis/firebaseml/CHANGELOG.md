@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.3](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseml-v0.2.2...firebaseml-v0.2.3) (2022-09-21)
+
+
+### Bug Fixes
+
+* **firebaseml:** update the API ([b347077](https://github.com/googleapis/google-api-nodejs-client/commit/b3470778b2e7a7c0b4903aa94fd04a9e1995bcb8))
+
 ## [0.2.2](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseml-v0.2.1...firebaseml-v0.2.2) (2022-06-21)
 
 

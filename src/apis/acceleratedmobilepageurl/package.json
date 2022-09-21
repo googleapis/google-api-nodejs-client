@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/acceleratedmobilepageurl",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "acceleratedmobilepageurl",
   "main": "build/index.js",
   "types": "build/index.d.ts",

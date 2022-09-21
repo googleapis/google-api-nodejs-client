@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/policysimulator-v2.1.4...policysimulator-v2.2.0) (2022-09-21)
+
+
+### Features
+
+* regenerate index files ([f841e13](https://github.com/googleapis/google-api-nodejs-client/commit/f841e1353cb8868a4503662a5fb2136b1b2b06b0))
+
+
+### Bug Fixes
+
+* **policysimulator:** update the API ([b6aa81c](https://github.com/googleapis/google-api-nodejs-client/commit/b6aa81ccec46513fdcc45d53796562e73d862680))
+* **policysimulator:** update the API ([daec4de](https://github.com/googleapis/google-api-nodejs-client/commit/daec4de46464f5b8d8d6a87405c48aee7b5925c5))
+
 ## [2.1.4](https://github.com/googleapis/google-api-nodejs-client/compare/policysimulator-v2.1.3...policysimulator-v2.1.4) (2022-08-19)
 
 

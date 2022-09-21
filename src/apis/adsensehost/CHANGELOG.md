@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/googleapis/google-api-nodejs-client/compare/adsensehost-v0.2.1...adsensehost-v0.2.2) (2022-09-21)
+
+
+### Bug Fixes
+
+* **adsensehost:** update the API ([5bedf1a](https://github.com/googleapis/google-api-nodejs-client/commit/5bedf1a651ee082bbc39f2e20484a03dc9b25d9d))
+
 ## [0.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/adsensehost-v0.2.0...adsensehost-v0.2.1) (2022-06-21)
 
 

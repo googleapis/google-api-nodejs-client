@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.4](https://github.com/googleapis/google-api-nodejs-client/compare/verifiedaccess-v0.3.3...verifiedaccess-v0.3.4) (2022-09-21)
+
+
+### Bug Fixes
+
+* **verifiedaccess:** update the API ([97ba50f](https://github.com/googleapis/google-api-nodejs-client/commit/97ba50f23fcc265c9e7b0f48729f777ced2af198))
+
 ## [0.3.3](https://github.com/googleapis/google-api-nodejs-client/compare/verifiedaccess-v0.3.2...verifiedaccess-v0.3.3) (2022-07-04)
 
 

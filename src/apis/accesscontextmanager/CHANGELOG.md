@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/accesscontextmanager-v1.0.3...accesscontextmanager-v1.0.4) (2022-09-21)
+
+
+### Bug Fixes
+
+* **accesscontextmanager:** update the API ([573eba2](https://github.com/googleapis/google-api-nodejs-client/commit/573eba29332dff0e358d59666bbfceab8c2240b4))
+
 ## [1.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/accesscontextmanager-v1.0.2...accesscontextmanager-v1.0.3) (2022-08-19)
 
 

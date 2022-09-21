@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudidentity-v6.0.0...cloudidentity-v7.0.0) (2022-09-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cloudidentity:** This release has breaking changes.
+
+### Features
+
+* **cloudidentity:** update the API ([fed4691](https://github.com/googleapis/google-api-nodejs-client/commit/fed469180f1be1829358fad6a2e20f8d584d41d7))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudidentity-v5.1.0...cloudidentity-v6.0.0) (2022-08-19)
 
 

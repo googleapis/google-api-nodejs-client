@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/ondemandscanning-v4.2.0...ondemandscanning-v4.2.1) (2022-09-21)
+
+
+### Bug Fixes
+
+* **ondemandscanning:** update the API ([ec356bd](https://github.com/googleapis/google-api-nodejs-client/commit/ec356bdaef4c5aab6874226599ccb1366e99f667))
+
 ## [4.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/ondemandscanning-v4.1.0...ondemandscanning-v4.2.0) (2022-08-19)
 
 
