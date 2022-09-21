@@ -219,6 +219,10 @@ export namespace orgpolicy_v2 {
      * Immutable. The Resource Instance type on which this policy applies to. Format will be of the form : "/" Example: * `compute.googleapis.com/Instance`.
      */
     resourceTypes?: string[] | null;
+    /**
+     * Output only. The last time this custom constraint was updated. This represents the last time that the `CreateCustomConstraint` or `UpdateCustomConstraint` RPC was called
+     */
+    updateTime?: string | null;
   }
   /**
    * The response returned from the ListConstraints method.
@@ -1681,7 +1685,8 @@ export namespace orgpolicy_v2 {
      *       //   "displayName": "my_displayName",
      *       //   "methodTypes": [],
      *       //   "name": "my_name",
-     *       //   "resourceTypes": []
+     *       //   "resourceTypes": [],
+     *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
      *   });
@@ -1695,7 +1700,8 @@ export namespace orgpolicy_v2 {
      *   //   "displayName": "my_displayName",
      *   //   "methodTypes": [],
      *   //   "name": "my_name",
-     *   //   "resourceTypes": []
+     *   //   "resourceTypes": [],
+     *   //   "updateTime": "my_updateTime"
      *   // }
      * }
      *
@@ -1966,7 +1972,8 @@ export namespace orgpolicy_v2 {
      *   //   "displayName": "my_displayName",
      *   //   "methodTypes": [],
      *   //   "name": "my_name",
-     *   //   "resourceTypes": []
+     *   //   "resourceTypes": [],
+     *   //   "updateTime": "my_updateTime"
      *   // }
      * }
      *
@@ -2250,7 +2257,8 @@ export namespace orgpolicy_v2 {
      *       //   "displayName": "my_displayName",
      *       //   "methodTypes": [],
      *       //   "name": "my_name",
-     *       //   "resourceTypes": []
+     *       //   "resourceTypes": [],
+     *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
      *   });
@@ -2264,7 +2272,8 @@ export namespace orgpolicy_v2 {
      *   //   "displayName": "my_displayName",
      *   //   "methodTypes": [],
      *   //   "name": "my_name",
-     *   //   "resourceTypes": []
+     *   //   "resourceTypes": [],
+     *   //   "updateTime": "my_updateTime"
      *   // }
      * }
      *
