@@ -282,7 +282,7 @@
       }
     }
   },
-  "revision": "20220808",
+  "revision": "20220913",
   "rootUrl": "https://testing.googleapis.com/",
   "schemas": {
     "Account": {
@@ -775,6 +775,15 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "versionCode": {
+          "description": "Version number used internally by the app.",
+          "format": "int64",
+          "type": "string"
+        },
+        "versionName": {
+          "description": "Version number shown to users.",
+          "type": "string"
         }
       },
       "type": "object"
