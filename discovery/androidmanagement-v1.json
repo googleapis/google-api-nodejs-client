@@ -1065,7 +1065,7 @@
       }
     }
   },
-  "revision": "20220808",
+  "revision": "20220912",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -2772,7 +2772,7 @@
       "type": "object"
     },
     "FreezePeriod": {
-      "description": "A system freeze period. When a device’s clock is within the freeze period, all incoming system updates (including security patches) are blocked and won’t be installed. When a device is outside the freeze period, normal update behavior applies. Leap years are ignored in freeze period calculations, in particular: * If Feb. 29th is set as the start or end date of a freeze period, the freeze period will start or end on Feb. 28th instead. * When a device’s system clock reads Feb. 29th, it’s treated as Feb. 28th. * When calculating the number of days in a freeze period or the time between two freeze periods, Feb. 29th is ignored and not counted as a day.",
+      "description": "A system freeze period. When a device’s clock is within the freeze period, all incoming system updates (including security patches) are blocked and won’t be installed. When a device is outside the freeze period, normal update behavior applies. Leap years are ignored in freeze period calculations, in particular: * If Feb. 29th is set as the start or end date of a freeze period, the freeze period will start or end on Feb. 28th instead. * When a device’s system clock reads Feb. 29th, it’s treated as Feb. 28th. * When calculating the number of days in a freeze period or the time between two freeze periods, Feb. 29th is ignored and not counted as a day.Note: For Freeze Periods to take effect, SystemUpdateType cannot be specified as SYSTEM_UPDATE_TYPE_UNSPECIFIED, because freeze periods require a defined policy to be specified.",
       "id": "FreezePeriod",
       "properties": {
         "endDate": {
@@ -4579,7 +4579,7 @@
           "type": "array"
         },
         "shareLocationDisabled": {
-          "description": "Whether location sharing is disabled.",
+          "description": "Whether location sharing is disabled. share_location_disabled is supported for both fully managed devices and personally owned work profiles.",
           "type": "boolean"
         },
         "shortSupportMessage": {
@@ -4630,7 +4630,7 @@
           "type": "boolean"
         },
         "uninstallAppsDisabled": {
-          "description": "Whether user uninstallation of applications is disabled.",
+          "description": "Whether user uninstallation of applications is disabled. This prevents apps from being uninstalled, even those removed using applications",
           "type": "boolean"
         },
         "unmuteMicrophoneDisabled": {
@@ -4642,7 +4642,7 @@
           "description": "Configuration of device activity logging."
         },
         "usbFileTransferDisabled": {
-          "description": "Whether transferring files over USB is disabled.",
+          "description": "Whether transferring files over USB is disabled. This is supported only on company-owned devices.",
           "type": "boolean"
         },
         "usbMassStorageEnabled": {
@@ -4659,7 +4659,7 @@
           "type": "boolean"
         },
         "wifiConfigDisabled": {
-          "description": "Whether configuring Wi-Fi access points is disabled.Note: If a network connection can't be made at boot time and configuring Wi-Fi is disabled then network escape hatch will be shown in order to refresh the device policy (see networkEscapeHatchEnabled).",
+          "description": "Whether configuring Wi-Fi access points is disabled. Note: If a network connection can't be made at boot time and configuring Wi-Fi is disabled then network escape hatch will be shown in order to refresh the device policy (see networkEscapeHatchEnabled).",
           "type": "boolean"
         },
         "wifiConfigsLockdownEnabled": {
