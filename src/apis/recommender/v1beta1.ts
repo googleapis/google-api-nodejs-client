@@ -165,7 +165,7 @@ export namespace recommender_v1beta1 {
     sustainabilityProjection?: Schema$GoogleCloudRecommenderV1beta1SustainabilityProjection;
   }
   /**
-   * An insight along with the information used to derive the insight. The insight may have associated recomendations as well.
+   * An insight along with the information used to derive the insight. The insight may have associated recommendations as well.
    */
   export interface Schema$GoogleCloudRecommenderV1beta1Insight {
     /**
