@@ -931,7 +931,7 @@
       }
     }
   },
-  "revision": "20220805",
+  "revision": "20220909",
   "rootUrl": "https://translation.googleapis.com/",
   "schemas": {
     "BatchDocumentInputConfig": {
@@ -1591,6 +1591,10 @@
       "description": "A document translation request.",
       "id": "TranslateDocumentRequest",
       "properties": {
+        "customizedAttribution": {
+          "description": "Optional. This flag is to support user customized attribution. If not provided, the default is `Machine Translated by Google`. Customized attribution should follow rules in https://cloud.google.com/translate/attribution#attribution_and_logos",
+          "type": "string"
+        },
         "documentInputConfig": {
           "$ref": "DocumentInputConfig",
           "description": "Required. Input configurations."
