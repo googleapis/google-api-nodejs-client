@@ -5908,7 +5908,7 @@
       }
     }
   },
-  "revision": "20220812",
+  "revision": "20220912",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -5957,7 +5957,7 @@
           "description": "The Business Profile which is linked or in the process of being linked with the Merchant Center account."
         },
         "id": {
-          "description": "Required for update. Merchant Center account ID.",
+          "description": "Required. 64-bit Merchant Center account ID.",
           "format": "uint64",
           "type": "string"
         },
@@ -7439,9 +7439,30 @@
       "description": "Destination status message.",
       "id": "CollectionStatusDestinationStatus",
       "properties": {
+        "approvedCountries": {
+          "description": "Country codes (ISO 3166-1 alpha-2) where the collection is approved.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "destination": {
           "description": "The name of the destination",
           "type": "string"
+        },
+        "disapprovedCountries": {
+          "description": "Country codes (ISO 3166-1 alpha-2) where the collection is disapproved.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "pendingCountries": {
+          "description": "Country codes (ISO 3166-1 alpha-2) where the collection is pending approval.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "status": {
           "description": "The status for the specified destination in the collections target country.",
@@ -7454,6 +7475,13 @@
       "description": "Issue associated with the collection.",
       "id": "CollectionStatusItemLevelIssue",
       "properties": {
+        "applicableCountries": {
+          "description": "Country codes (ISO 3166-1 alpha-2) where issue applies to the offer.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "attributeName": {
           "description": "The attribute's name, if the issue is caused by a single attribute.",
           "type": "string"
@@ -9191,6 +9219,13 @@
         "availability": {
           "description": "Availability of the product. For accepted attribute values, see the local product inventory feed specification.",
           "type": "string"
+        },
+        "customAttributes": {
+          "description": "A list of custom (merchant-provided) attributes. Can also be used to submit any attribute of the feed specification in its generic form, for example, `{ \"name\": \"size type\", \"value\": \"regular\" }`.",
+          "items": {
+            "$ref": "CustomAttribute"
+          },
+          "type": "array"
         },
         "instoreProductLocation": {
           "description": "In-store product location.",
