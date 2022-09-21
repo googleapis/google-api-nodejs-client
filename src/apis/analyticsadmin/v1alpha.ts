@@ -345,9 +345,13 @@ export namespace analyticsadmin_v1alpha {
      */
     tokensPerDay?: Schema$GoogleAnalyticsAdminV1alphaAccessQuotaStatus;
     /**
-     * Properties can use 50,000 tokens per hour. An API request consumes a single number of tokens, and that number is deducted from both the hourly and daily quotas.
+     * Properties can use 50,000 tokens per hour. An API request consumes a single number of tokens, and that number is deducted from all of the hourly, daily, and per project hourly quotas.
      */
     tokensPerHour?: Schema$GoogleAnalyticsAdminV1alphaAccessQuotaStatus;
+    /**
+     * Properties can use up to 25% of their tokens per project per hour. This amounts to Analytics 360 Properties can use 12,500 tokens per project per hour. An API request consumes a single number of tokens, and that number is deducted from all of the hourly, daily, and per project hourly quotas.
+     */
+    tokensPerProjectPerHour?: Schema$GoogleAnalyticsAdminV1alphaAccessQuotaStatus;
   }
   /**
    * Current state for a particular quota group.
