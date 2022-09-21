@@ -479,6 +479,14 @@ export namespace testing_v1 {
      * Permissions declared to be used by the application
      */
     usesPermission?: string[] | null;
+    /**
+     * Version number used internally by the app.
+     */
+    versionCode?: string | null;
+    /**
+     * Version number shown to users.
+     */
+    versionName?: string | null;
   }
   /**
    * An Android App Bundle file format, containing a BundleConfig.pb file, a base module directory, zero or more dynamic feature module directories. See https://developer.android.com/guide/app-bundle/build for guidance on building App Bundles.
