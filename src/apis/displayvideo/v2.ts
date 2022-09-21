@@ -35,9 +35,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace displayvideo_v1 {
+export namespace displayvideo_v2 {
   export interface Options extends GlobalOptions {
-    version: 'v1';
+    version: 'v2';
   }
 
   interface StandardParameters {
@@ -107,7 +107,7 @@ export namespace displayvideo_v1 {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const displayvideo = google.displayvideo('v1');
+   * const displayvideo = google.displayvideo('v2');
    * ```
    */
   export class Displayvideo {
@@ -342,10 +342,6 @@ export namespace displayvideo_v1 {
      * The age range of an audience. We only support targeting a continuous age range of an audience. Thus, the age range represented in this field can be 1) targeted solely, or, 2) part of a larger continuous age range. The reach of a continuous age range targeting can be expanded by also targeting an audience of an unknown age. Output only in v1. Required in v2.
      */
     ageRange?: string | null;
-    /**
-     * Required. The targeting_option_id of a TargetingOption of type `TARGETING_TYPE_AGE_RANGE`.
-     */
-    targetingOptionId?: string | null;
   }
   /**
    * Represents a targetable age range. This will be populated in the age_range_details field when targeting_type is `TARGETING_TYPE_AGE_RANGE`.
@@ -722,10 +718,6 @@ export namespace displayvideo_v1 {
      * The audio content type. Output only in v1. Required in v2.
      */
     audioContentType?: string | null;
-    /**
-     * Required. The targeting_option_id field when targeting_type is `TARGETING_TYPE_AUDIO_CONTENT_TYPE`.
-     */
-    targetingOptionId?: string | null;
   }
   /**
    * Represents a targetable audio content type. This will be populated in the audio_content_type_details field when targeting_type is `TARGETING_TYPE_AUDIO_CONTENT_TYPE`.
@@ -948,6 +940,37 @@ export namespace displayvideo_v1 {
     assignedLocations?: Schema$AssignedLocation[];
   }
   /**
+   * Request message for BulkEditLineItemsAssignedTargetingOptions.
+   */
+  export interface Schema$BulkEditAssignedTargetingOptionsRequest {
+    /**
+     * The assigned targeting options to create in batch, specified as a list of CreateAssignedTargetingOptionsRequest.
+     */
+    createRequests?: Schema$CreateAssignedTargetingOptionsRequest[];
+    /**
+     * The assigned targeting options to delete in batch, specified as a list of DeleteAssignedTargetingOptionsRequest.
+     */
+    deleteRequests?: Schema$DeleteAssignedTargetingOptionsRequest[];
+    /**
+     * Required. The ID of the line items whose targeting is being updated.
+     */
+    lineItemIds?: string[] | null;
+  }
+  export interface Schema$BulkEditAssignedTargetingOptionsResponse {
+    /**
+     * The error information for each line item that failed to update.
+     */
+    errors?: Schema$Status[];
+    /**
+     * Output only. The IDs of the line items which failed.
+     */
+    failedLineItemIds?: string[] | null;
+    /**
+     * Output only. The IDs of the line items which successfully updated.
+     */
+    updatedLineItemIds?: string[] | null;
+  }
+  /**
    * Request message for BulkEditAssignedUserRoles.
    */
   export interface Schema$BulkEditAssignedUserRolesRequest {
@@ -965,25 +988,6 @@ export namespace displayvideo_v1 {
      * The list of assigned user roles that have been successfully created. This list will be absent if empty.
      */
     createdAssignedUserRoles?: Schema$AssignedUserRole[];
-  }
-  /**
-   * Request message for BulkEditLineItemAssignedTargetingOptions.
-   */
-  export interface Schema$BulkEditLineItemAssignedTargetingOptionsRequest {
-    /**
-     * The assigned targeting options to create in batch, specified as a list of `CreateAssignedTargetingOptionsRequest`.
-     */
-    createRequests?: Schema$CreateAssignedTargetingOptionsRequest[];
-    /**
-     * The assigned targeting options to delete in batch, specified as a list of `DeleteAssignedTargetingOptionsRequest`.
-     */
-    deleteRequests?: Schema$DeleteAssignedTargetingOptionsRequest[];
-  }
-  export interface Schema$BulkEditLineItemAssignedTargetingOptionsResponse {
-    /**
-     * The list of assigned targeting options that have been successfully created. This list will be absent if empty.
-     */
-    createdAssignedTargetingOptions?: Schema$AssignedTargetingOption[];
   }
   /**
    * Request message for NegativeKeywordService.BulkEditNegativeKeywords.
@@ -1066,6 +1070,16 @@ export namespace displayvideo_v1 {
      */
     nextPageToken?: string | null;
   }
+  export interface Schema$BulkListAssignedTargetingOptionsResponse {
+    /**
+     * The list of wrapper objects, each providing an assigned targeting option and the line item it is assigned to. This list will be absent if empty.
+     */
+    lineItemAssignedTargetingOptions?: Schema$LineItemAssignedTargetingOption[];
+    /**
+     * A token identifying the next page of results. This value should be specified as the pageToken in a subsequent call to `BulkListAssignedTargetingOptions` to fetch the next page of results. This token will be absent if there are no more line_item_assigned_targeting_options to return.
+     */
+    nextPageToken?: string | null;
+  }
   /**
    * Response message for BulkListCampaignAssignedTargetingOptions.
    */
@@ -1092,15 +1106,43 @@ export namespace displayvideo_v1 {
      */
     nextPageToken?: string | null;
   }
-  export interface Schema$BulkListLineItemAssignedTargetingOptionsResponse {
+  /**
+   * Request message for LineItemService.BulkUpdateLineItems.
+   */
+  export interface Schema$BulkUpdateLineItemsRequest {
     /**
-     * The list of assigned targeting options. This list will be absent if empty.
+     * Required. IDs of line items to update.
      */
-    assignedTargetingOptions?: Schema$AssignedTargetingOption[];
+    lineItemIds?: string[] | null;
     /**
-     * A token identifying the next page of results. This value should be specified as the pageToken in a subsequent BulkListLineItemAssignedTargetingOptionsRequest to fetch the next page of results. This token will be absent if there are no more assigned_targeting_options to return.
+     * Required. A line item object containing the fields to be updated and the new values to assign to all line items specified in line_item_ids."
      */
-    nextPageToken?: string | null;
+    targetLineItem?: Schema$LineItem;
+    /**
+     * Required. A field mask identifying which fields to update. Only the following fields are currently supported: * entityStatus
+     */
+    updateMask?: string | null;
+  }
+  /**
+   * Response message for LineItemService.BulkUpdateLineItems.
+   */
+  export interface Schema$BulkUpdateLineItemsResponse {
+    /**
+     * Errors returned by line items that failed to update.
+     */
+    errors?: Schema$Status[];
+    /**
+     * The IDs of line items that failed to update.
+     */
+    failedLineItemIds?: string[] | null;
+    /**
+     * The IDs of line items that are skipped for updates. For example, unnecessary mutates that will result in effectively no changes to line items will be skipped and corresponding line item IDs can be tracked here.
+     */
+    skippedLineItemIds?: string[] | null;
+    /**
+     * The IDs of successfully updated line items.
+     */
+    updatedLineItemIds?: string[] | null;
   }
   /**
    * Details for assigned Business chain targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_BUSINESS_CHAIN`.
@@ -1546,10 +1588,6 @@ export namespace displayvideo_v1 {
      * The content instream position for video or audio ads. Output only in v1. Required in v2.
      */
     contentInstreamPosition?: string | null;
-    /**
-     * Required. The targeting_option_id field when targeting_type is `TARGETING_TYPE_CONTENT_INSTREAM_POSITION`.
-     */
-    targetingOptionId?: string | null;
   }
   /**
    * Represents a targetable content instream position, which could be used by video and audio ads. This will be populated in the content_instream_position_details field when targeting_type is `TARGETING_TYPE_CONTENT_INSTREAM_POSITION`.
@@ -1572,10 +1610,6 @@ export namespace displayvideo_v1 {
      * The content outstream position. Output only in v1. Required in v2.
      */
     contentOutstreamPosition?: string | null;
-    /**
-     * Required. The targeting_option_id field when targeting_type is `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION`.
-     */
-    targetingOptionId?: string | null;
   }
   /**
    * Represents a targetable content outstream position, which could be used by display and video ads. This will be populated in the content_outstream_position_details field when targeting_type is `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION`.
@@ -1917,10 +1951,6 @@ export namespace displayvideo_v1 {
      */
     customBiddingAlgorithmId?: string | null;
     /**
-     * Output only. The status of custom bidding algorithm.
-     */
-    customBiddingAlgorithmState?: string | null;
-    /**
      * Required. Immutable. The type of custom bidding algorithm.
      */
     customBiddingAlgorithmType?: string | null;
@@ -1933,9 +1963,9 @@ export namespace displayvideo_v1 {
      */
     entityStatus?: string | null;
     /**
-     * Output only. The state of custom bidding model readiness for each advertiser who has access. This field may only include the state of the queried advertiser if the algorithm [`owner`](/display-video/api/reference/rest/v1/customBiddingAlgorithms#CustomBiddingAlgorithm.FIELDS.oneof_owner) is a partner and is being retrieved using an advertiser [`accessor`](/display-video/api/reference/rest/v1/customBiddingAlgorithms/list#body.QUERY_PARAMETERS.oneof_accessor).
+     * Output only. The details of custom bidding models for each advertiser who has access. This field may only include the details of the queried advertiser if the algorithm [`owner`](/display-video/api/reference/rest/v1/customBiddingAlgorithms#CustomBiddingAlgorithm.FIELDS.oneof_owner) is a partner and is being retrieved using an advertiser [`accessor`](/display-video/api/reference/rest/v1/customBiddingAlgorithms/list#body.QUERY_PARAMETERS.oneof_accessor).
      */
-    modelReadiness?: Schema$CustomBiddingModelReadinessState[];
+    modelDetails?: Schema$CustomBiddingModelDetails[];
     /**
      * Output only. The resource name of the custom bidding algorithm.
      */
@@ -1950,9 +1980,9 @@ export namespace displayvideo_v1 {
     sharedAdvertiserIds?: string[] | null;
   }
   /**
-   * The custom bidding algorithm model readiness state for a single shared advertiser.
+   * The details of a custom bidding algorithm model for a single shared advertiser.
    */
-  export interface Schema$CustomBiddingModelReadinessState {
+  export interface Schema$CustomBiddingModelDetails {
     /**
      * The unique ID of the relevant advertiser.
      */
@@ -1961,6 +1991,10 @@ export namespace displayvideo_v1 {
      * The readiness state of custom bidding model.
      */
     readinessState?: string | null;
+    /**
+     * Output only. The suspension state of custom bidding model.
+     */
+    suspensionState?: string | null;
   }
   /**
    * A single custom bidding script.
@@ -2146,9 +2180,9 @@ export namespace displayvideo_v1 {
      */
     deviceType?: string | null;
     /**
-     * Required. ID of the device type.
+     * Output only. Bid multiplier allows you to show your ads more or less frequently based on the device type. It will apply a multiplier on the original bid price. When this field is 0, it indicates this field is not applicable instead of multiplying 0 on the original bid price. For example, if the bid price without multiplier is $10.0 and the multiplier is 1.5 for Tablet, the resulting bid price for Tablet will be $15.0. Only applicable to YouTube and Partners line items.
      */
-    targetingOptionId?: string | null;
+    youtubeAndPartnersBidMultiplier?: number | null;
   }
   /**
    * Represents a targetable device type. This will be populated in the device_type_details field of a TargetingOption when targeting_type is `TARGETING_TYPE_DEVICE_TYPE`.
@@ -2164,13 +2198,9 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$DigitalContentLabelAssignedTargetingOptionDetails {
     /**
-     * Output only. The display name of the digital content label rating tier.
+     * Required. The display name of the digital content label rating tier to be EXCLUDED.
      */
-    contentRatingTier?: string | null;
-    /**
-     * Required. ID of the digital content label to be EXCLUDED.
-     */
-    excludedTargetingOptionId?: string | null;
+    excludedContentRatingTier?: string | null;
   }
   /**
    * Represents a targetable digital content label rating tier. This will be populated in the digital_content_label_details field of the TargetingOption when targeting_type is `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION`.
@@ -2399,10 +2429,6 @@ export namespace displayvideo_v1 {
      * The serving environment. Output only in v1. Required in v2.
      */
     environment?: string | null;
-    /**
-     * Required. The targeting_option_id of a TargetingOption of type `TARGETING_TYPE_ENVIRONMENT` (e.g., "508010" for targeting the `ENVIRONMENT_WEB_OPTIMIZED` option).
-     */
-    targetingOptionId?: string | null;
   }
   /**
    * Represents a targetable environment. This will be populated in the environment_details field of a TargetingOption when targeting_type is `TARGETING_TYPE_ENVIRONMENT`.
@@ -2418,9 +2444,9 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$ExchangeAssignedTargetingOptionDetails {
     /**
-     * Required. The targeting_option_id of a TargetingOption of type `TARGETING_TYPE_EXCHANGE`.
+     * Required. The enum value for the exchange.
      */
-    targetingOptionId?: string | null;
+    exchange?: string | null;
   }
   /**
    * Settings that control which exchanges are enabled for a partner.
@@ -2645,6 +2671,10 @@ export namespace displayvideo_v1 {
      */
     maxImpressions?: number | null;
     /**
+     * The maximum number of times a user may click-through or fully view an ad during this period until it is no longer served to them. Must be greater than 0. Only applicable to YouTube and Partners resources. Required when unlimited is `false` and max_impressions is not set.
+     */
+    maxViews?: number | null;
+    /**
      * The time unit in which the frequency cap will be applied. Required when unlimited is `false`.
      */
     timeUnit?: string | null;
@@ -2665,10 +2695,6 @@ export namespace displayvideo_v1 {
      * The gender of the audience. Output only in v1. Required in v2.
      */
     gender?: string | null;
-    /**
-     * Required. The targeting_option_id of a TargetingOption of type `TARGETING_TYPE_GENDER`.
-     */
-    targetingOptionId?: string | null;
   }
   /**
    * Represents a targetable gender. This will be populated in the gender_details field of a TargetingOption when targeting_type is `TARGETING_TYPE_GENDER`.
@@ -2877,10 +2903,6 @@ export namespace displayvideo_v1 {
      * The household income of the audience. Output only in v1. Required in v2.
      */
     householdIncome?: string | null;
-    /**
-     * Required. The targeting_option_id of a TargetingOption of type `TARGETING_TYPE_HOUSEHOLD_INCOME`.
-     */
-    targetingOptionId?: string | null;
   }
   /**
    * Represents a targetable household income. This will be populated in the household_income_details field of a TargetingOption when targeting_type is `TARGETING_TYPE_HOUSEHOLD_INCOME`.
@@ -3489,10 +3511,6 @@ export namespace displayvideo_v1 {
      */
     integrationDetails?: Schema$IntegrationDetails;
     /**
-     * The IDs of the private inventory sources assigned to the line item.
-     */
-    inventorySourceIds?: string[] | null;
-    /**
      * Output only. The unique ID of the line item. Assigned by the system.
      */
     lineItemId?: string | null;
@@ -3536,6 +3554,23 @@ export namespace displayvideo_v1 {
      * Output only. The warning messages generated by the line item. These warnings do not block saving the line item, but some may block the line item from running.
      */
     warningMessages?: string[] | null;
+    /**
+     * Output only. Settings specific to YouTube and Partners line items.
+     */
+    youtubeAndPartnersSettings?: Schema$YoutubeAndPartnersSettings;
+  }
+  /**
+   * Wrapper object associating an assigned_targeting_option resource and the line item it is assigned to.
+   */
+  export interface Schema$LineItemAssignedTargetingOption {
+    /**
+     * The assigned targeting option resource.
+     */
+    assignedTargetingOption?: Schema$AssignedTargetingOption;
+    /**
+     * The ID of the line item the assigned targeting option is assigned to.
+     */
+    lineItemId?: string | null;
   }
   /**
    * Settings that control how budget is allocated.
@@ -3566,10 +3601,6 @@ export namespace displayvideo_v1 {
      * Required. The type of the line item's flight dates.
      */
     flightDateType?: string | null;
-    /**
-     * The ID of the manual trigger associated with the line item. * Required when flight_date_type is `LINE_ITEM_FLIGHT_DATE_TYPE_TRIGGER`. Must not be set otherwise. * When set, the line item's flight dates are inherited from its parent insertion order. * Active line items will spend when the selected trigger is activated within the parent insertion order's flight dates.
-     */
-    triggerId?: string | null;
   }
   /**
    * Response message for ListAdvertiserAssignedTargetingOptions.
@@ -4080,10 +4111,6 @@ export namespace displayvideo_v1 {
      * The content position. Output only in v1. Required in v2.
      */
     contentPosition?: string | null;
-    /**
-     * Required. The targeting_option_id field when targeting_type is `TARGETING_TYPE_NATIVE_CONTENT_POSITION`.
-     */
-    targetingOptionId?: string | null;
   }
   /**
    * Represents a targetable native content position. This will be populated in the native_content_position_details field when targeting_type is `TARGETING_TYPE_NATIVE_CONTENT_POSITION`.
@@ -4186,10 +4213,6 @@ export namespace displayvideo_v1 {
      * The type of Open Measurement enabled inventory. Output only in v1. Required in v2.
      */
     omid?: string | null;
-    /**
-     * Required. The targeting_option_id of a TargetingOption of type `TARGETING_TYPE_OMID`.
-     */
-    targetingOptionId?: string | null;
   }
   /**
    * Represents a targetable Open Measurement enabled inventory type. This will be populated in the omid_details field when targeting_type is `TARGETING_TYPE_OMID`.
@@ -4306,10 +4329,6 @@ export namespace displayvideo_v1 {
      * The parental status of the audience. Output only in v1. Required in v2.
      */
     parentalStatus?: string | null;
-    /**
-     * Required. The targeting_option_id of a TargetingOption of type `TARGETING_TYPE_PARENTAL_STATUS`.
-     */
-    targetingOptionId?: string | null;
   }
   /**
    * Represents a targetable parental status. This will be populated in the parental_status_details field of a TargetingOption when targeting_type is `TARGETING_TYPE_PARENTAL_STATUS`.
@@ -4587,9 +4606,13 @@ export namespace displayvideo_v1 {
      */
     proximityLocationListId?: string | null;
     /**
-     * Required. Radius range for proximity location list. This represents the size of the area around a chosen location that will be targeted. `All` proximity location targeting under a single resource must have the same radius range value. Set this value to match any existing targeting. If updated, this field will change the radius range for all proximity targeting under the resource.
+     * Required. Radius expressed in the distance units set in proximity_radius_unit. This represents the size of the area around a chosen location that will be targeted. Radius should be between 1 and 500 miles or 800 kilometers.
      */
-    proximityRadiusRange?: string | null;
+    proximityRadius?: number | null;
+    /**
+     * Required. Radius distance units.
+     */
+    proximityRadiusUnit?: string | null;
   }
   /**
    * Publisher review status for the creative.
@@ -4814,13 +4837,9 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$SensitiveCategoryAssignedTargetingOptionDetails {
     /**
-     * Required. ID of the sensitive category to be EXCLUDED.
+     * Required. An enum for the DV360 Sensitive category content classified to be EXCLUDED.
      */
-    excludedTargetingOptionId?: string | null;
-    /**
-     * Output only. An enum for the DV360 Sensitive category content classifier.
-     */
-    sensitiveCategory?: string | null;
+    excludedSensitiveCategory?: string | null;
   }
   /**
    * Represents a targetable sensitive category. This will be populated in the sensitive_category_details field of the TargetingOption when targeting_type is `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`.
@@ -5064,6 +5083,19 @@ export namespace displayvideo_v1 {
     url?: string | null;
   }
   /**
+   * Settings that control how third-party measurement vendors are configured.
+   */
+  export interface Schema$ThirdPartyVendorConfig {
+    /**
+     * The ID used by the platform of the third-party vendor to identify the line item.
+     */
+    placementId?: string | null;
+    /**
+     * The third-party measurement vendor.
+     */
+    vendor?: string | null;
+  }
+  /**
    * Assigned third party verifier targeting option details. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_THIRD_PARTY_VERIFIER`.
    */
   export interface Schema$ThirdPartyVerifierAssignedTargetingOptionDetails {
@@ -5242,10 +5274,6 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$VideoPlayerSizeAssignedTargetingOptionDetails {
     /**
-     * Required. The targeting_option_id field when targeting_type is `TARGETING_TYPE_VIDEO_PLAYER_SIZE`.
-     */
-    targetingOptionId?: string | null;
-    /**
      * The video player size. Output only in v1. Required in v2.
      */
     videoPlayerSize?: string | null;
@@ -5264,10 +5292,6 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$ViewabilityAssignedTargetingOptionDetails {
     /**
-     * Required. The targeting_option_id of a TargetingOption of type `TARGETING_TYPE_VIEWABILITY` (e.g., "509010" for targeting the `VIEWABILITY_10_PERCENT_OR_MORE` option).
-     */
-    targetingOptionId?: string | null;
-    /**
      * The predicted viewability percentage. Output only in v1. Required in v2.
      */
     viewability?: string | null;
@@ -5280,6 +5304,82 @@ export namespace displayvideo_v1 {
      * Output only. The predicted viewability percentage.
      */
     viewability?: string | null;
+  }
+  /**
+   * Settings that control the bid strategy for YouTube and Partners resources.
+   */
+  export interface Schema$YoutubeAndPartnersBiddingStrategy {
+    /**
+     * The type of the bidding strategy.
+     */
+    type?: string | null;
+    /**
+     * The value used by the bidding strategy. When the bidding strategy is assigned at the line item level, this field is only applicable for the following strategy types: * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPA` When the bidding strategy is assigned at the ad group level, this field is only applicable for the following strategy types: * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_MANUAL_CPM` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_MANUAL_CPV` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPA` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPM` If not using an applicable strategy, the value of this field will be 0.
+     */
+    value?: string | null;
+  }
+  /**
+   * Settings that control what YouTube related inventories the YouTube and Partners line item will target.
+   */
+  export interface Schema$YoutubeAndPartnersInventorySourceConfig {
+    /**
+     * Whether to target inventory on the YouTube search results page.
+     */
+    includeYoutubeSearch?: boolean | null;
+    /**
+     * Whether to target inventory on a collection of partner sites and apps that follow the same brand safety standards as YouTube.
+     */
+    includeYoutubeVideoPartners?: boolean | null;
+    /**
+     * Whether to target inventory of channels and videos on YouTube and YouTube videos embedded on other sites.
+     */
+    includeYoutubeVideos?: boolean | null;
+  }
+  /**
+   * Settings for YouTube and Partners line items.
+   */
+  export interface Schema$YoutubeAndPartnersSettings {
+    /**
+     * The bidding strategy of the YouTube and Partners line item.
+     */
+    biddingStrategy?: Schema$YoutubeAndPartnersBiddingStrategy;
+    /**
+     * The kind of content on which the YouTube and Partners ads will be shown.
+     */
+    contentCategory?: string | null;
+    /**
+     * Settings that control what YouTube and Partners inventories the line item will target.
+     */
+    inventorySourceSettings?: Schema$YoutubeAndPartnersInventorySourceConfig;
+    /**
+     * The third-party measurement settings of the line item.
+     */
+    thirdPartyMeasurementSettings?: Schema$YoutubeAndPartnersThirdPartyMeasurementSettings;
+    /**
+     * The view frequency cap settings of the line item. The max_views field in this settings object must be used if assigning a limited cap.
+     */
+    viewFrequencyCap?: Schema$FrequencyCap;
+  }
+  /**
+   * Settings that control what third-party vendors are measuring specific line item metrics.
+   */
+  export interface Schema$YoutubeAndPartnersThirdPartyMeasurementSettings {
+    /**
+     * The third-party vendors measuring brand lift. The following third-party vendors are applicable: * `THIRD_PARTY_VENDOR_DYNATA` * `THIRD_PARTY_VENDOR_KANTAR`
+     */
+    brandLiftVendorConfigs?: Schema$ThirdPartyVendorConfig[];
+    /**
+     * The third-party vendors measuring brand safety. The following third-party vendors are applicable: * `THIRD_PARTY_VENDOR_ZERF` * `THIRD_PARTY_VENDOR_DOUBLE_VERIFY` * `THIRD_PARTY_VENDOR_INTEGRAL_AD_SCIENCE`
+     */
+    brandSafetyVendorConfigs?: Schema$ThirdPartyVendorConfig[];
+    /**
+     * The third-party vendors measuring reach. The following third-party vendors are applicable: * `THIRD_PARTY_VENDOR_NIELSEN` * `THIRD_PARTY_VENDOR_COMSCORE` * `THIRD_PARTY_VENDOR_KANTAR`
+     */
+    reachVendorConfigs?: Schema$ThirdPartyVendorConfig[];
+    /**
+     * The third-party vendors measuring viewability. The following third-party vendors are applicable: * `THIRD_PARTY_VENDOR_MOAT` * `THIRD_PARTY_VENDOR_DOUBLE_VERIFY` * `THIRD_PARTY_VENDOR_INTEGRAL_AD_SCIENCE` * `THIRD_PARTY_VENDOR_COMSCORE` * `THIRD_PARTY_VENDOR_TELEMETRY` * `THIRD_PARTY_VENDOR_MEETRICS`
+     */
+    viewabilityVendorConfigs?: Schema$ThirdPartyVendorConfig[];
   }
 
   export class Resource$Advertisers {
@@ -5331,7 +5431,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5438,7 +5538,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/advertisers/{+advertiserId}:audit').replace(
+            url: (rootUrl + '/v2/advertisers/{+advertiserId}:audit').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -5462,304 +5562,6 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * Bulk edits targeting options under a single advertiser. The operation will delete the assigned targeting options provided in BulkEditAdvertiserAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditAdvertiserAssignedTargetingOptionsRequest.create_requests .
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.bulkEditAdvertiserAssignedTargetingOptions({
-     *       // Required. The ID of the advertiser.
-     *       advertiserId: '[^/]+',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "createRequests": [],
-     *         //   "deleteRequests": []
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createdAssignedTargetingOptions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    bulkEditAdvertiserAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Bulkeditadvertiserassignedtargetingoptions,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    bulkEditAdvertiserAssignedTargetingOptions(
-      params?: Params$Resource$Advertisers$Bulkeditadvertiserassignedtargetingoptions,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>;
-    bulkEditAdvertiserAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Bulkeditadvertiserassignedtargetingoptions,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    bulkEditAdvertiserAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Bulkeditadvertiserassignedtargetingoptions,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>,
-      callback: BodyResponseCallback<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>
-    ): void;
-    bulkEditAdvertiserAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Bulkeditadvertiserassignedtargetingoptions,
-      callback: BodyResponseCallback<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>
-    ): void;
-    bulkEditAdvertiserAssignedTargetingOptions(
-      callback: BodyResponseCallback<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>
-    ): void;
-    bulkEditAdvertiserAssignedTargetingOptions(
-      paramsOrCallback?:
-        | Params$Resource$Advertisers$Bulkeditadvertiserassignedtargetingoptions
-        | BodyResponseCallback<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Advertisers$Bulkeditadvertiserassignedtargetingoptions;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Advertisers$Bulkeditadvertiserassignedtargetingoptions;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v1/advertisers/{+advertiserId}:bulkEditAdvertiserAssignedTargetingOptions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['advertiserId'],
-        pathParams: ['advertiserId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Lists assigned targeting options of an advertiser across targeting types.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.bulkListAdvertiserAssignedTargetingOptions({
-     *       // Required. The ID of the advertiser the line item belongs to.
-     *       advertiserId: '[^/]+',
-     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`.. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` Examples: * targetingType with value TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_CHANNEL"` The length of this field should be no more than 500 characters.
-     *       filter: 'placeholder-value',
-     *       // Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
-     *       orderBy: 'placeholder-value',
-     *       // Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is '5000'. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *       pageSize: 'placeholder-value',
-     *       // A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListAdvertiserAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     *       pageToken: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "assignedTargetingOptions": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    bulkListAdvertiserAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Bulklistadvertiserassignedtargetingoptions,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    bulkListAdvertiserAssignedTargetingOptions(
-      params?: Params$Resource$Advertisers$Bulklistadvertiserassignedtargetingoptions,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>;
-    bulkListAdvertiserAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Bulklistadvertiserassignedtargetingoptions,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    bulkListAdvertiserAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Bulklistadvertiserassignedtargetingoptions,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>,
-      callback: BodyResponseCallback<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>
-    ): void;
-    bulkListAdvertiserAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Bulklistadvertiserassignedtargetingoptions,
-      callback: BodyResponseCallback<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>
-    ): void;
-    bulkListAdvertiserAssignedTargetingOptions(
-      callback: BodyResponseCallback<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>
-    ): void;
-    bulkListAdvertiserAssignedTargetingOptions(
-      paramsOrCallback?:
-        | Params$Resource$Advertisers$Bulklistadvertiserassignedtargetingoptions
-        | BodyResponseCallback<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Advertisers$Bulklistadvertiserassignedtargetingoptions;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Advertisers$Bulklistadvertiserassignedtargetingoptions;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v1/advertisers/{+advertiserId}:bulkListAdvertiserAssignedTargetingOptions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['advertiserId'],
-        pathParams: ['advertiserId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
      * Creates a new advertiser. Returns the newly created advertiser if successful. This method can take up to 180 seconds to complete.
      * @example
      * ```js
@@ -5772,7 +5574,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5894,7 +5696,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/advertisers').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/advertisers').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
@@ -5927,7 +5729,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6018,7 +5820,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/advertisers/{+advertiserId}').replace(
+            url: (rootUrl + '/v2/advertisers/{+advertiserId}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6042,6 +5844,153 @@ export namespace displayvideo_v1 {
     }
 
     /**
+     * Edits targeting options under a single advertiser. The operation will delete the assigned targeting options provided in BulkEditAdvertiserAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditAdvertiserAssignedTargetingOptionsRequest.create_requests .
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.editAssignedTargetingOptions({
+     *     // Required. The ID of the advertiser.
+     *     advertiserId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createRequests": [],
+     *       //   "deleteRequests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createdAssignedTargetingOptions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    editAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Editassignedtargetingoptions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    editAssignedTargetingOptions(
+      params?: Params$Resource$Advertisers$Editassignedtargetingoptions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>;
+    editAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Editassignedtargetingoptions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    editAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Editassignedtargetingoptions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>,
+      callback: BodyResponseCallback<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>
+    ): void;
+    editAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Editassignedtargetingoptions,
+      callback: BodyResponseCallback<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>
+    ): void;
+    editAssignedTargetingOptions(
+      callback: BodyResponseCallback<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>
+    ): void;
+    editAssignedTargetingOptions(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Editassignedtargetingoptions
+        | BodyResponseCallback<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Editassignedtargetingoptions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Editassignedtargetingoptions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2/advertisers/{+advertiserId}:editAssignedTargetingOptions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId'],
+        pathParams: ['advertiserId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets an advertiser.
      * @example
      * ```js
@@ -6054,7 +6003,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6158,7 +6107,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/advertisers/{+advertiserId}').replace(
+            url: (rootUrl + '/v2/advertisers/{+advertiserId}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6194,7 +6143,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6300,7 +6249,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/advertisers').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/advertisers').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -6321,6 +6270,153 @@ export namespace displayvideo_v1 {
     }
 
     /**
+     * Lists assigned targeting options of an advertiser across targeting types.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.listAssignedTargetingOptions({
+     *     // Required. The ID of the advertiser the line item belongs to.
+     *     advertiserId: '[^/]+',
+     *     // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`.. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` Examples: * targetingType with value TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_CHANNEL"` The length of this field should be no more than 500 characters.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is '5000'. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     pageSize: 'placeholder-value',
+     *     // A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListAdvertiserAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedTargetingOptions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Listassignedtargetingoptions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listAssignedTargetingOptions(
+      params?: Params$Resource$Advertisers$Listassignedtargetingoptions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>;
+    listAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Listassignedtargetingoptions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Listassignedtargetingoptions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>,
+      callback: BodyResponseCallback<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>
+    ): void;
+    listAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Listassignedtargetingoptions,
+      callback: BodyResponseCallback<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>
+    ): void;
+    listAssignedTargetingOptions(
+      callback: BodyResponseCallback<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>
+    ): void;
+    listAssignedTargetingOptions(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Listassignedtargetingoptions
+        | BodyResponseCallback<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Listassignedtargetingoptions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Listassignedtargetingoptions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2/advertisers/{+advertiserId}:listAssignedTargetingOptions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId'],
+        pathParams: ['advertiserId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates an existing advertiser. Returns the updated advertiser if successful.
      * @example
      * ```js
@@ -6333,7 +6429,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6460,7 +6556,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/advertisers/{+advertiserId}').replace(
+            url: (rootUrl + '/v2/advertisers/{+advertiserId}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6495,41 +6591,6 @@ export namespace displayvideo_v1 {
      */
     readMask?: string;
   }
-  export interface Params$Resource$Advertisers$Bulkeditadvertiserassignedtargetingoptions
-    extends StandardParameters {
-    /**
-     * Required. The ID of the advertiser.
-     */
-    advertiserId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$BulkEditAdvertiserAssignedTargetingOptionsRequest;
-  }
-  export interface Params$Resource$Advertisers$Bulklistadvertiserassignedtargetingoptions
-    extends StandardParameters {
-    /**
-     * Required. The ID of the advertiser the line item belongs to.
-     */
-    advertiserId?: string;
-    /**
-     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`.. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` Examples: * targetingType with value TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_CHANNEL"` The length of this field should be no more than 500 characters.
-     */
-    filter?: string;
-    /**
-     * Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
-     */
-    orderBy?: string;
-    /**
-     * Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is '5000'. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     */
-    pageSize?: number;
-    /**
-     * A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListAdvertiserAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     */
-    pageToken?: string;
-  }
   export interface Params$Resource$Advertisers$Create
     extends StandardParameters {
     /**
@@ -6543,6 +6604,18 @@ export namespace displayvideo_v1 {
      * The ID of the advertiser we need to delete.
      */
     advertiserId?: string;
+  }
+  export interface Params$Resource$Advertisers$Editassignedtargetingoptions
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser.
+     */
+    advertiserId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BulkEditAdvertiserAssignedTargetingOptionsRequest;
   }
   export interface Params$Resource$Advertisers$Get extends StandardParameters {
     /**
@@ -6571,6 +6644,29 @@ export namespace displayvideo_v1 {
      * Required. The ID of the partner that the fetched advertisers should all belong to. The system only supports listing advertisers for one partner at a time.
      */
     partnerId?: string;
+  }
+  export interface Params$Resource$Advertisers$Listassignedtargetingoptions
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser the line item belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`.. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` Examples: * targetingType with value TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_CHANNEL"` The length of this field should be no more than 500 characters.
+     */
+    filter?: string;
+    /**
+     * Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is '5000'. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListAdvertiserAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
   }
   export interface Params$Resource$Advertisers$Patch
     extends StandardParameters {
@@ -6608,7 +6704,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6716,7 +6812,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/advertisers/{+advertiserId}/assets').replace(
+            url: (rootUrl + '/v2/advertisers/{+advertiserId}/assets').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6726,7 +6822,7 @@ export namespace displayvideo_v1 {
         ),
         params,
         mediaUrl: (
-          rootUrl + '/upload/v1/advertisers/{+advertiserId}/assets'
+          rootUrl + '/upload/v2/advertisers/{+advertiserId}/assets'
         ).replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['advertiserId'],
         pathParams: ['advertiserId'],
@@ -6782,159 +6878,6 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * Lists assigned targeting options of a campaign across targeting types.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.campaigns.bulkListCampaignAssignedTargetingOptions(
-     *       {
-     *         // Required. The ID of the advertiser the campaign belongs to.
-     *         advertiserId: '[^/]+',
-     *         // Required. The ID of the campaign to list assigned targeting options for.
-     *         campaignId: '[^/]+',
-     *         // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_LANGUAGE or TARGETING_TYPE_GENDER `targetingType="TARGETING_TYPE_LANGUAGE" OR targetingType="TARGETING_TYPE_GENDER"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
-     *         filter: 'placeholder-value',
-     *         // Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
-     *         orderBy: 'placeholder-value',
-     *         // Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *         pageSize: 'placeholder-value',
-     *         // A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListCampaignAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     *         pageToken: 'placeholder-value',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "assignedTargetingOptions": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    bulkListCampaignAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Campaigns$Bulklistcampaignassignedtargetingoptions,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    bulkListCampaignAssignedTargetingOptions(
-      params?: Params$Resource$Advertisers$Campaigns$Bulklistcampaignassignedtargetingoptions,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$BulkListCampaignAssignedTargetingOptionsResponse>;
-    bulkListCampaignAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Campaigns$Bulklistcampaignassignedtargetingoptions,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    bulkListCampaignAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Campaigns$Bulklistcampaignassignedtargetingoptions,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BulkListCampaignAssignedTargetingOptionsResponse>,
-      callback: BodyResponseCallback<Schema$BulkListCampaignAssignedTargetingOptionsResponse>
-    ): void;
-    bulkListCampaignAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Campaigns$Bulklistcampaignassignedtargetingoptions,
-      callback: BodyResponseCallback<Schema$BulkListCampaignAssignedTargetingOptionsResponse>
-    ): void;
-    bulkListCampaignAssignedTargetingOptions(
-      callback: BodyResponseCallback<Schema$BulkListCampaignAssignedTargetingOptionsResponse>
-    ): void;
-    bulkListCampaignAssignedTargetingOptions(
-      paramsOrCallback?:
-        | Params$Resource$Advertisers$Campaigns$Bulklistcampaignassignedtargetingoptions
-        | BodyResponseCallback<Schema$BulkListCampaignAssignedTargetingOptionsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$BulkListCampaignAssignedTargetingOptionsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$BulkListCampaignAssignedTargetingOptionsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$BulkListCampaignAssignedTargetingOptionsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Advertisers$Campaigns$Bulklistcampaignassignedtargetingoptions;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Advertisers$Campaigns$Bulklistcampaignassignedtargetingoptions;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v1/advertisers/{+advertiserId}/campaigns/{+campaignId}:bulkListCampaignAssignedTargetingOptions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['advertiserId', 'campaignId'],
-        pathParams: ['advertiserId', 'campaignId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$BulkListCampaignAssignedTargetingOptionsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$BulkListCampaignAssignedTargetingOptionsResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
      * Creates a new campaign. Returns the newly created campaign if successful.
      * @example
      * ```js
@@ -6947,7 +6890,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7070,7 +7013,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/advertisers/{+advertiserId}/campaigns'
+              rootUrl + '/v2/advertisers/{+advertiserId}/campaigns'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -7104,7 +7047,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7202,7 +7145,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/campaigns/{+campaignId}'
+              '/v2/advertisers/{+advertiserId}/campaigns/{+campaignId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -7236,7 +7179,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7345,7 +7288,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/campaigns/{+campaignId}'
+              '/v2/advertisers/{+advertiserId}/campaigns/{+campaignId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -7379,7 +7322,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7490,7 +7433,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/advertisers/{+advertiserId}/campaigns'
+              rootUrl + '/v2/advertisers/{+advertiserId}/campaigns'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -7512,6 +7455,157 @@ export namespace displayvideo_v1 {
     }
 
     /**
+     * Lists assigned targeting options of a campaign across targeting types.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.campaigns.listAssignedTargetingOptions({
+     *       // Required. The ID of the advertiser the campaign belongs to.
+     *       advertiserId: '[^/]+',
+     *       // Required. The ID of the campaign to list assigned targeting options for.
+     *       campaignId: '[^/]+',
+     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_LANGUAGE or TARGETING_TYPE_GENDER `targetingType="TARGETING_TYPE_LANGUAGE" OR targetingType="TARGETING_TYPE_GENDER"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     *       filter: 'placeholder-value',
+     *       // Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
+     *       orderBy: 'placeholder-value',
+     *       // Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *       pageSize: 'placeholder-value',
+     *       // A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListCampaignAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     *       pageToken: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedTargetingOptions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Campaigns$Listassignedtargetingoptions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listAssignedTargetingOptions(
+      params?: Params$Resource$Advertisers$Campaigns$Listassignedtargetingoptions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BulkListCampaignAssignedTargetingOptionsResponse>;
+    listAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Campaigns$Listassignedtargetingoptions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Campaigns$Listassignedtargetingoptions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BulkListCampaignAssignedTargetingOptionsResponse>,
+      callback: BodyResponseCallback<Schema$BulkListCampaignAssignedTargetingOptionsResponse>
+    ): void;
+    listAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Campaigns$Listassignedtargetingoptions,
+      callback: BodyResponseCallback<Schema$BulkListCampaignAssignedTargetingOptionsResponse>
+    ): void;
+    listAssignedTargetingOptions(
+      callback: BodyResponseCallback<Schema$BulkListCampaignAssignedTargetingOptionsResponse>
+    ): void;
+    listAssignedTargetingOptions(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Campaigns$Listassignedtargetingoptions
+        | BodyResponseCallback<Schema$BulkListCampaignAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BulkListCampaignAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BulkListCampaignAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BulkListCampaignAssignedTargetingOptionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Campaigns$Listassignedtargetingoptions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Advertisers$Campaigns$Listassignedtargetingoptions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2/advertisers/{+advertiserId}/campaigns/{+campaignId}:listAssignedTargetingOptions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'campaignId'],
+        pathParams: ['advertiserId', 'campaignId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BulkListCampaignAssignedTargetingOptionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BulkListCampaignAssignedTargetingOptionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates an existing campaign. Returns the updated campaign if successful.
      * @example
      * ```js
@@ -7524,7 +7618,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7652,7 +7746,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/campaigns/{+campaignId}'
+              '/v2/advertisers/{+advertiserId}/campaigns/{+campaignId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -7674,33 +7768,6 @@ export namespace displayvideo_v1 {
     }
   }
 
-  export interface Params$Resource$Advertisers$Campaigns$Bulklistcampaignassignedtargetingoptions
-    extends StandardParameters {
-    /**
-     * Required. The ID of the advertiser the campaign belongs to.
-     */
-    advertiserId?: string;
-    /**
-     * Required. The ID of the campaign to list assigned targeting options for.
-     */
-    campaignId?: string;
-    /**
-     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_LANGUAGE or TARGETING_TYPE_GENDER `targetingType="TARGETING_TYPE_LANGUAGE" OR targetingType="TARGETING_TYPE_GENDER"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
-     */
-    filter?: string;
-    /**
-     * Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
-     */
-    orderBy?: string;
-    /**
-     * Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     */
-    pageSize?: number;
-    /**
-     * A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListCampaignAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     */
-    pageToken?: string;
-  }
   export interface Params$Resource$Advertisers$Campaigns$Create
     extends StandardParameters {
     /**
@@ -7758,6 +7825,33 @@ export namespace displayvideo_v1 {
      */
     pageToken?: string;
   }
+  export interface Params$Resource$Advertisers$Campaigns$Listassignedtargetingoptions
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser the campaign belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the campaign to list assigned targeting options for.
+     */
+    campaignId?: string;
+    /**
+     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_LANGUAGE or TARGETING_TYPE_GENDER `targetingType="TARGETING_TYPE_LANGUAGE" OR targetingType="TARGETING_TYPE_GENDER"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     */
+    filter?: string;
+    /**
+     * Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListCampaignAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+  }
   export interface Params$Resource$Advertisers$Campaigns$Patch
     extends StandardParameters {
     /**
@@ -7810,7 +7904,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7968,7 +8062,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/campaigns/{+campaignId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
+              '/v2/advertisers/{+advertiserId}/campaigns/{+campaignId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -8012,7 +8106,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -8131,7 +8225,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/campaigns/{+campaignId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
+              '/v2/advertisers/{+advertiserId}/campaigns/{+campaignId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -8227,7 +8321,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -8342,7 +8436,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/advertisers/{+advertiserId}/channels').replace(
+            url: (rootUrl + '/v2/advertisers/{+advertiserId}/channels').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -8378,7 +8472,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -8482,7 +8576,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/advertisers/{+advertiserId}/channels/{+channelId}'
+              rootUrl + '/v2/advertisers/{+advertiserId}/channels/{+channelId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -8516,7 +8610,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -8625,7 +8719,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/advertisers/{+advertiserId}/channels').replace(
+            url: (rootUrl + '/v2/advertisers/{+advertiserId}/channels').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -8661,7 +8755,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -8781,7 +8875,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/advertisers/{+advertiserId}/channels/{channelId}'
+              rootUrl + '/v2/advertisers/{+advertiserId}/channels/{channelId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -8905,7 +8999,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -9020,7 +9114,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{advertiserId}/channels/{+channelId}/sites:bulkEdit'
+              '/v2/advertisers/{advertiserId}/channels/{+channelId}/sites:bulkEdit'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -9054,7 +9148,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -9163,7 +9257,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{advertiserId}/channels/{+channelId}/sites'
+              '/v2/advertisers/{advertiserId}/channels/{+channelId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -9197,7 +9291,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -9296,7 +9390,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{advertiserId}/channels/{+channelId}/sites/{+urlOrAppId}'
+              '/v2/advertisers/{advertiserId}/channels/{+channelId}/sites/{+urlOrAppId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -9330,7 +9424,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -9441,7 +9535,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/channels/{+channelId}/sites'
+              '/v2/advertisers/{+advertiserId}/channels/{+channelId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -9475,7 +9569,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -9587,7 +9681,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{advertiserId}/channels/{+channelId}/sites:replace'
+              '/v2/advertisers/{advertiserId}/channels/{+channelId}/sites:replace'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -9731,7 +9825,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -9925,7 +10019,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/advertisers/{+advertiserId}/creatives'
+              rootUrl + '/v2/advertisers/{+advertiserId}/creatives'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -9959,7 +10053,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -10054,7 +10148,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/creatives/{+creativeId}'
+              '/v2/advertisers/{+advertiserId}/creatives/{+creativeId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -10088,7 +10182,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -10231,7 +10325,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/creatives/{+creativeId}'
+              '/v2/advertisers/{+advertiserId}/creatives/{+creativeId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -10265,7 +10359,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -10373,7 +10467,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/advertisers/{+advertiserId}/creatives'
+              rootUrl + '/v2/advertisers/{+advertiserId}/creatives'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -10407,7 +10501,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -10606,7 +10700,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/creatives/{+creativeId}'
+              '/v2/advertisers/{+advertiserId}/creatives/{+creativeId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -10716,159 +10810,6 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * Lists assigned targeting options of an insertion order across targeting types.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.insertionOrders.bulkListInsertionOrderAssignedTargetingOptions(
-     *       {
-     *         // Required. The ID of the advertiser the insertion order belongs to.
-     *         advertiserId: '[^/]+',
-     *         // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_PROXIMITY_LOCATION_LIST or TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
-     *         filter: 'placeholder-value',
-     *         // Required. The ID of the insertion order to list assigned targeting options for.
-     *         insertionOrderId: '[^/]+',
-     *         // Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
-     *         orderBy: 'placeholder-value',
-     *         // Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *         pageSize: 'placeholder-value',
-     *         // A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListInsertionOrderAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     *         pageToken: 'placeholder-value',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "assignedTargetingOptions": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    bulkListInsertionOrderAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Insertionorders$Bulklistinsertionorderassignedtargetingoptions,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    bulkListInsertionOrderAssignedTargetingOptions(
-      params?: Params$Resource$Advertisers$Insertionorders$Bulklistinsertionorderassignedtargetingoptions,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>;
-    bulkListInsertionOrderAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Insertionorders$Bulklistinsertionorderassignedtargetingoptions,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    bulkListInsertionOrderAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Insertionorders$Bulklistinsertionorderassignedtargetingoptions,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>,
-      callback: BodyResponseCallback<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>
-    ): void;
-    bulkListInsertionOrderAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Insertionorders$Bulklistinsertionorderassignedtargetingoptions,
-      callback: BodyResponseCallback<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>
-    ): void;
-    bulkListInsertionOrderAssignedTargetingOptions(
-      callback: BodyResponseCallback<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>
-    ): void;
-    bulkListInsertionOrderAssignedTargetingOptions(
-      paramsOrCallback?:
-        | Params$Resource$Advertisers$Insertionorders$Bulklistinsertionorderassignedtargetingoptions
-        | BodyResponseCallback<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Advertisers$Insertionorders$Bulklistinsertionorderassignedtargetingoptions;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Advertisers$Insertionorders$Bulklistinsertionorderassignedtargetingoptions;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v1/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}:bulkListInsertionOrderAssignedTargetingOptions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['advertiserId', 'insertionOrderId'],
-        pathParams: ['advertiserId', 'insertionOrderId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
      * Creates a new insertion order. Returns the newly created insertion order if successful.
      * @example
      * ```js
@@ -10881,7 +10822,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -11015,7 +10956,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/advertisers/{+advertiserId}/insertionOrders'
+              rootUrl + '/v2/advertisers/{+advertiserId}/insertionOrders'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -11049,7 +10990,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -11144,7 +11085,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}'
+              '/v2/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -11178,7 +11119,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -11291,7 +11232,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}'
+              '/v2/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -11325,7 +11266,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -11435,7 +11376,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/advertisers/{+advertiserId}/insertionOrders'
+              rootUrl + '/v2/advertisers/{+advertiserId}/insertionOrders'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -11457,6 +11398,159 @@ export namespace displayvideo_v1 {
     }
 
     /**
+     * Lists assigned targeting options of an insertion order across targeting types.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.insertionOrders.listAssignedTargetingOptions(
+     *       {
+     *         // Required. The ID of the advertiser the insertion order belongs to.
+     *         advertiserId: '[^/]+',
+     *         // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_PROXIMITY_LOCATION_LIST or TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     *         filter: 'placeholder-value',
+     *         // Required. The ID of the insertion order to list assigned targeting options for.
+     *         insertionOrderId: '[^/]+',
+     *         // Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
+     *         orderBy: 'placeholder-value',
+     *         // Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *         pageSize: 'placeholder-value',
+     *         // A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListInsertionOrderAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     *         pageToken: 'placeholder-value',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedTargetingOptions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Insertionorders$Listassignedtargetingoptions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listAssignedTargetingOptions(
+      params?: Params$Resource$Advertisers$Insertionorders$Listassignedtargetingoptions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>;
+    listAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Insertionorders$Listassignedtargetingoptions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Insertionorders$Listassignedtargetingoptions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>,
+      callback: BodyResponseCallback<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>
+    ): void;
+    listAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Insertionorders$Listassignedtargetingoptions,
+      callback: BodyResponseCallback<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>
+    ): void;
+    listAssignedTargetingOptions(
+      callback: BodyResponseCallback<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>
+    ): void;
+    listAssignedTargetingOptions(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Insertionorders$Listassignedtargetingoptions
+        | BodyResponseCallback<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Insertionorders$Listassignedtargetingoptions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Advertisers$Insertionorders$Listassignedtargetingoptions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}:listAssignedTargetingOptions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'insertionOrderId'],
+        pathParams: ['advertiserId', 'insertionOrderId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates an existing insertion order. Returns the updated insertion order if successful.
      * @example
      * ```js
@@ -11469,7 +11563,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -11608,7 +11702,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}'
+              '/v2/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -11630,33 +11724,6 @@ export namespace displayvideo_v1 {
     }
   }
 
-  export interface Params$Resource$Advertisers$Insertionorders$Bulklistinsertionorderassignedtargetingoptions
-    extends StandardParameters {
-    /**
-     * Required. The ID of the advertiser the insertion order belongs to.
-     */
-    advertiserId?: string;
-    /**
-     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_PROXIMITY_LOCATION_LIST or TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
-     */
-    filter?: string;
-    /**
-     * Required. The ID of the insertion order to list assigned targeting options for.
-     */
-    insertionOrderId?: string;
-    /**
-     * Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
-     */
-    orderBy?: string;
-    /**
-     * Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     */
-    pageSize?: number;
-    /**
-     * A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListInsertionOrderAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     */
-    pageToken?: string;
-  }
   export interface Params$Resource$Advertisers$Insertionorders$Create
     extends StandardParameters {
     /**
@@ -11714,6 +11781,33 @@ export namespace displayvideo_v1 {
      */
     pageToken?: string;
   }
+  export interface Params$Resource$Advertisers$Insertionorders$Listassignedtargetingoptions
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser the insertion order belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_PROXIMITY_LOCATION_LIST or TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     */
+    filter?: string;
+    /**
+     * Required. The ID of the insertion order to list assigned targeting options for.
+     */
+    insertionOrderId?: string;
+    /**
+     * Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListInsertionOrderAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+  }
   export interface Params$Resource$Advertisers$Insertionorders$Patch
     extends StandardParameters {
     /**
@@ -11766,7 +11860,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -11924,7 +12018,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
+              '/v2/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -11968,7 +12062,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -12087,7 +12181,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
+              '/v2/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -12181,7 +12275,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -12291,7 +12385,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/advertisers/{+advertiserId}/invoices').replace(
+            url: (rootUrl + '/v2/advertisers/{+advertiserId}/invoices').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -12327,7 +12421,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -12435,7 +12529,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/invoices:lookupInvoiceCurrency'
+              '/v2/advertisers/{+advertiserId}/invoices:lookupInvoiceCurrency'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -12505,7 +12599,7 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * Bulk edits targeting options under a single line item. The operation will delete the assigned targeting options provided in BulkEditLineItemAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditLineItemAssignedTargetingOptionsRequest.create_requests. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditLineItemAssignedTargetingOptions * UpdateLineItem * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption
+     * Bulk edits targeting options under multiple line items. The operation will delete the assigned targeting options provided in BulkEditAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditAssignedTargetingOptionsRequest.create_requests .
      * @example
      * ```js
      * // Before running the sample:
@@ -12517,7 +12611,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -12531,28 +12625,27 @@ export namespace displayvideo_v1 {
      *
      *   // Do the magic
      *   const res =
-     *     await displayvideo.advertisers.lineItems.bulkEditLineItemAssignedTargetingOptions(
-     *       {
-     *         // Required. The ID of the advertiser the line item belongs to.
-     *         advertiserId: '[^/]+',
-     *         // Required. The ID of the line item the assigned targeting option will belong to.
-     *         lineItemId: '[^/]+',
+     *     await displayvideo.advertisers.lineItems.bulkEditAssignedTargetingOptions({
+     *       // Required. The ID of the advertiser the line items belong to.
+     *       advertiserId: '[^/]+',
      *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "createRequests": [],
-     *           //   "deleteRequests": []
-     *           // }
-     *         },
-     *       }
-     *     );
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createRequests": [],
+     *         //   "deleteRequests": [],
+     *         //   "lineItemIds": []
+     *         // }
+     *       },
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
-     *   //   "createdAssignedTargetingOptions": []
+     *   //   "errors": [],
+     *   //   "failedLineItemIds": [],
+     *   //   "updatedLineItemIds": []
      *   // }
      * }
      *
@@ -12568,58 +12661,58 @@ export namespace displayvideo_v1 {
      * @param callback - Optional callback that handles the response.
      * @returns A promise if used with async/await, or void if used with a callback.
      */
-    bulkEditLineItemAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Lineitems$Bulkeditlineitemassignedtargetingoptions,
+    bulkEditAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Lineitems$Bulkeditassignedtargetingoptions,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
-    bulkEditLineItemAssignedTargetingOptions(
-      params?: Params$Resource$Advertisers$Lineitems$Bulkeditlineitemassignedtargetingoptions,
+    bulkEditAssignedTargetingOptions(
+      params?: Params$Resource$Advertisers$Lineitems$Bulkeditassignedtargetingoptions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BulkEditLineItemAssignedTargetingOptionsResponse>;
-    bulkEditLineItemAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Lineitems$Bulkeditlineitemassignedtargetingoptions,
+    ): GaxiosPromise<Schema$BulkEditAssignedTargetingOptionsResponse>;
+    bulkEditAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Lineitems$Bulkeditassignedtargetingoptions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
-    bulkEditLineItemAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Lineitems$Bulkeditlineitemassignedtargetingoptions,
+    bulkEditAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Lineitems$Bulkeditassignedtargetingoptions,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$BulkEditLineItemAssignedTargetingOptionsResponse>,
-      callback: BodyResponseCallback<Schema$BulkEditLineItemAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Schema$BulkEditAssignedTargetingOptionsResponse>,
+      callback: BodyResponseCallback<Schema$BulkEditAssignedTargetingOptionsResponse>
     ): void;
-    bulkEditLineItemAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Lineitems$Bulkeditlineitemassignedtargetingoptions,
-      callback: BodyResponseCallback<Schema$BulkEditLineItemAssignedTargetingOptionsResponse>
+    bulkEditAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Lineitems$Bulkeditassignedtargetingoptions,
+      callback: BodyResponseCallback<Schema$BulkEditAssignedTargetingOptionsResponse>
     ): void;
-    bulkEditLineItemAssignedTargetingOptions(
-      callback: BodyResponseCallback<Schema$BulkEditLineItemAssignedTargetingOptionsResponse>
+    bulkEditAssignedTargetingOptions(
+      callback: BodyResponseCallback<Schema$BulkEditAssignedTargetingOptionsResponse>
     ): void;
-    bulkEditLineItemAssignedTargetingOptions(
+    bulkEditAssignedTargetingOptions(
       paramsOrCallback?:
-        | Params$Resource$Advertisers$Lineitems$Bulkeditlineitemassignedtargetingoptions
-        | BodyResponseCallback<Schema$BulkEditLineItemAssignedTargetingOptionsResponse>
+        | Params$Resource$Advertisers$Lineitems$Bulkeditassignedtargetingoptions
+        | BodyResponseCallback<Schema$BulkEditAssignedTargetingOptionsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$BulkEditLineItemAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Schema$BulkEditAssignedTargetingOptionsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$BulkEditLineItemAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Schema$BulkEditAssignedTargetingOptionsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BulkEditLineItemAssignedTargetingOptionsResponse>
+      | GaxiosPromise<Schema$BulkEditAssignedTargetingOptionsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Advertisers$Lineitems$Bulkeditlineitemassignedtargetingoptions;
+        {}) as Params$Resource$Advertisers$Lineitems$Bulkeditassignedtargetingoptions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
         params =
-          {} as Params$Resource$Advertisers$Lineitems$Bulkeditlineitemassignedtargetingoptions;
+          {} as Params$Resource$Advertisers$Lineitems$Bulkeditassignedtargetingoptions;
         options = {};
       }
 
@@ -12634,31 +12727,31 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/lineItems/{+lineItemId}:bulkEditLineItemAssignedTargetingOptions'
+              '/v2/advertisers/{+advertiserId}/lineItems:bulkEditAssignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
         ),
         params,
-        requiredParams: ['advertiserId', 'lineItemId'],
-        pathParams: ['advertiserId', 'lineItemId'],
+        requiredParams: ['advertiserId'],
+        pathParams: ['advertiserId'],
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BulkEditLineItemAssignedTargetingOptionsResponse>(
+        createAPIRequest<Schema$BulkEditAssignedTargetingOptionsResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$BulkEditLineItemAssignedTargetingOptionsResponse>(
+        return createAPIRequest<Schema$BulkEditAssignedTargetingOptionsResponse>(
           parameters
         );
       }
     }
 
     /**
-     * Lists assigned targeting options of a line item across targeting types.
+     * Lists assigned targeting options for multiple line items across targeting types.
      * @example
      * ```js
      * // Before running the sample:
@@ -12670,7 +12763,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -12684,27 +12777,25 @@ export namespace displayvideo_v1 {
      *
      *   // Do the magic
      *   const res =
-     *     await displayvideo.advertisers.lineItems.bulkListLineItemAssignedTargetingOptions(
-     *       {
-     *         // Required. The ID of the advertiser the line item belongs to.
-     *         advertiserId: '[^/]+',
-     *         // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_PROXIMITY_LOCATION_LIST or TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
-     *         filter: 'placeholder-value',
-     *         // Required. The ID of the line item to list assigned targeting options for.
-     *         lineItemId: '[^/]+',
-     *         // Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
-     *         orderBy: 'placeholder-value',
-     *         // Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is '5000'. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *         pageSize: 'placeholder-value',
-     *         // A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListLineItemAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     *         pageToken: 'placeholder-value',
-     *       }
-     *     );
+     *     await displayvideo.advertisers.lineItems.bulkListAssignedTargetingOptions({
+     *       // Required. The ID of the advertiser the line items belongs to.
+     *       advertiserId: '[^/]+',
+     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_PROXIMITY_LOCATION_LIST or TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     *       filter: 'placeholder-value',
+     *       // Required. The IDs of the line items to list assigned targeting options for.
+     *       lineItemIds: 'placeholder-value',
+     *       // Field by which to sort the list. Acceptable values are: * `lineItemId` (default) * `assignedTargetingOption.targetingType` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
+     *       orderBy: 'placeholder-value',
+     *       // Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is '5000'. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *       pageSize: 'placeholder-value',
+     *       // A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to the `BulkListAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     *       pageToken: 'placeholder-value',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
-     *   //   "assignedTargetingOptions": [],
+     *   //   "lineItemAssignedTargetingOptions": [],
      *   //   "nextPageToken": "my_nextPageToken"
      *   // }
      * }
@@ -12721,58 +12812,58 @@ export namespace displayvideo_v1 {
      * @param callback - Optional callback that handles the response.
      * @returns A promise if used with async/await, or void if used with a callback.
      */
-    bulkListLineItemAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Lineitems$Bulklistlineitemassignedtargetingoptions,
+    bulkListAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Lineitems$Bulklistassignedtargetingoptions,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
-    bulkListLineItemAssignedTargetingOptions(
-      params?: Params$Resource$Advertisers$Lineitems$Bulklistlineitemassignedtargetingoptions,
+    bulkListAssignedTargetingOptions(
+      params?: Params$Resource$Advertisers$Lineitems$Bulklistassignedtargetingoptions,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BulkListLineItemAssignedTargetingOptionsResponse>;
-    bulkListLineItemAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Lineitems$Bulklistlineitemassignedtargetingoptions,
+    ): GaxiosPromise<Schema$BulkListAssignedTargetingOptionsResponse>;
+    bulkListAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Lineitems$Bulklistassignedtargetingoptions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
-    bulkListLineItemAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Lineitems$Bulklistlineitemassignedtargetingoptions,
+    bulkListAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Lineitems$Bulklistassignedtargetingoptions,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$BulkListLineItemAssignedTargetingOptionsResponse>,
-      callback: BodyResponseCallback<Schema$BulkListLineItemAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Schema$BulkListAssignedTargetingOptionsResponse>,
+      callback: BodyResponseCallback<Schema$BulkListAssignedTargetingOptionsResponse>
     ): void;
-    bulkListLineItemAssignedTargetingOptions(
-      params: Params$Resource$Advertisers$Lineitems$Bulklistlineitemassignedtargetingoptions,
-      callback: BodyResponseCallback<Schema$BulkListLineItemAssignedTargetingOptionsResponse>
+    bulkListAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Lineitems$Bulklistassignedtargetingoptions,
+      callback: BodyResponseCallback<Schema$BulkListAssignedTargetingOptionsResponse>
     ): void;
-    bulkListLineItemAssignedTargetingOptions(
-      callback: BodyResponseCallback<Schema$BulkListLineItemAssignedTargetingOptionsResponse>
+    bulkListAssignedTargetingOptions(
+      callback: BodyResponseCallback<Schema$BulkListAssignedTargetingOptionsResponse>
     ): void;
-    bulkListLineItemAssignedTargetingOptions(
+    bulkListAssignedTargetingOptions(
       paramsOrCallback?:
-        | Params$Resource$Advertisers$Lineitems$Bulklistlineitemassignedtargetingoptions
-        | BodyResponseCallback<Schema$BulkListLineItemAssignedTargetingOptionsResponse>
+        | Params$Resource$Advertisers$Lineitems$Bulklistassignedtargetingoptions
+        | BodyResponseCallback<Schema$BulkListAssignedTargetingOptionsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$BulkListLineItemAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Schema$BulkListAssignedTargetingOptionsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$BulkListLineItemAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Schema$BulkListAssignedTargetingOptionsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BulkListLineItemAssignedTargetingOptionsResponse>
+      | GaxiosPromise<Schema$BulkListAssignedTargetingOptionsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Advertisers$Lineitems$Bulklistlineitemassignedtargetingoptions;
+        {}) as Params$Resource$Advertisers$Lineitems$Bulklistassignedtargetingoptions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
         params =
-          {} as Params$Resource$Advertisers$Lineitems$Bulklistlineitemassignedtargetingoptions;
+          {} as Params$Resource$Advertisers$Lineitems$Bulklistassignedtargetingoptions;
         options = {};
       }
 
@@ -12787,26 +12878,173 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/lineItems/{+lineItemId}:bulkListLineItemAssignedTargetingOptions'
+              '/v2/advertisers/{+advertiserId}/lineItems:bulkListAssignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
         ),
         params,
-        requiredParams: ['advertiserId', 'lineItemId'],
-        pathParams: ['advertiserId', 'lineItemId'],
+        requiredParams: ['advertiserId'],
+        pathParams: ['advertiserId'],
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BulkListLineItemAssignedTargetingOptionsResponse>(
+        createAPIRequest<Schema$BulkListAssignedTargetingOptionsResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$BulkListLineItemAssignedTargetingOptionsResponse>(
+        return createAPIRequest<Schema$BulkListAssignedTargetingOptionsResponse>(
           parameters
         );
+      }
+    }
+
+    /**
+     * Updates multiple line items.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.lineItems.bulkUpdate({
+     *     advertisersId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "lineItemIds": [],
+     *       //   "targetLineItem": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "errors": [],
+     *   //   "failedLineItemIds": [],
+     *   //   "skippedLineItemIds": [],
+     *   //   "updatedLineItemIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    bulkUpdate(
+      params: Params$Resource$Advertisers$Lineitems$Bulkupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulkUpdate(
+      params?: Params$Resource$Advertisers$Lineitems$Bulkupdate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BulkUpdateLineItemsResponse>;
+    bulkUpdate(
+      params: Params$Resource$Advertisers$Lineitems$Bulkupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkUpdate(
+      params: Params$Resource$Advertisers$Lineitems$Bulkupdate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BulkUpdateLineItemsResponse>,
+      callback: BodyResponseCallback<Schema$BulkUpdateLineItemsResponse>
+    ): void;
+    bulkUpdate(
+      params: Params$Resource$Advertisers$Lineitems$Bulkupdate,
+      callback: BodyResponseCallback<Schema$BulkUpdateLineItemsResponse>
+    ): void;
+    bulkUpdate(
+      callback: BodyResponseCallback<Schema$BulkUpdateLineItemsResponse>
+    ): void;
+    bulkUpdate(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Lineitems$Bulkupdate
+        | BodyResponseCallback<Schema$BulkUpdateLineItemsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BulkUpdateLineItemsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BulkUpdateLineItemsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BulkUpdateLineItemsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Lineitems$Bulkupdate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Lineitems$Bulkupdate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2/advertisers/{advertisersId}/lineItems:bulkUpdate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertisersId'],
+        pathParams: ['advertisersId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BulkUpdateLineItemsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BulkUpdateLineItemsResponse>(parameters);
       }
     }
 
@@ -12823,7 +13061,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -12857,7 +13095,6 @@ export namespace displayvideo_v1 {
      *       //   "frequencyCap": {},
      *       //   "insertionOrderId": "my_insertionOrderId",
      *       //   "integrationDetails": {},
-     *       //   "inventorySourceIds": [],
      *       //   "lineItemId": "my_lineItemId",
      *       //   "lineItemType": "my_lineItemType",
      *       //   "mobileApp": {},
@@ -12868,7 +13105,8 @@ export namespace displayvideo_v1 {
      *       //   "reservationType": "my_reservationType",
      *       //   "targetingExpansion": {},
      *       //   "updateTime": "my_updateTime",
-     *       //   "warningMessages": []
+     *       //   "warningMessages": [],
+     *       //   "youtubeAndPartnersSettings": {}
      *       // }
      *     },
      *   });
@@ -12889,7 +13127,6 @@ export namespace displayvideo_v1 {
      *   //   "frequencyCap": {},
      *   //   "insertionOrderId": "my_insertionOrderId",
      *   //   "integrationDetails": {},
-     *   //   "inventorySourceIds": [],
      *   //   "lineItemId": "my_lineItemId",
      *   //   "lineItemType": "my_lineItemType",
      *   //   "mobileApp": {},
@@ -12900,7 +13137,8 @@ export namespace displayvideo_v1 {
      *   //   "reservationType": "my_reservationType",
      *   //   "targetingExpansion": {},
      *   //   "updateTime": "my_updateTime",
-     *   //   "warningMessages": []
+     *   //   "warningMessages": [],
+     *   //   "youtubeAndPartnersSettings": {}
      *   // }
      * }
      *
@@ -12973,7 +13211,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/advertisers/{+advertiserId}/lineItems'
+              rootUrl + '/v2/advertisers/{+advertiserId}/lineItems'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -13007,7 +13245,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -13102,7 +13340,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/lineItems/{+lineItemId}'
+              '/v2/advertisers/{+advertiserId}/lineItems/{+lineItemId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -13136,7 +13374,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -13181,7 +13419,6 @@ export namespace displayvideo_v1 {
      *   //   "frequencyCap": {},
      *   //   "insertionOrderId": "my_insertionOrderId",
      *   //   "integrationDetails": {},
-     *   //   "inventorySourceIds": [],
      *   //   "lineItemId": "my_lineItemId",
      *   //   "lineItemType": "my_lineItemType",
      *   //   "mobileApp": {},
@@ -13192,7 +13429,8 @@ export namespace displayvideo_v1 {
      *   //   "reservationType": "my_reservationType",
      *   //   "targetingExpansion": {},
      *   //   "updateTime": "my_updateTime",
-     *   //   "warningMessages": []
+     *   //   "warningMessages": [],
+     *   //   "youtubeAndPartnersSettings": {}
      *   // }
      * }
      *
@@ -13266,7 +13504,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/lineItems:generateDefault'
+              '/v2/advertisers/{+advertiserId}/lineItems:generateDefault'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -13300,7 +13538,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -13336,7 +13574,6 @@ export namespace displayvideo_v1 {
      *   //   "frequencyCap": {},
      *   //   "insertionOrderId": "my_insertionOrderId",
      *   //   "integrationDetails": {},
-     *   //   "inventorySourceIds": [],
      *   //   "lineItemId": "my_lineItemId",
      *   //   "lineItemType": "my_lineItemType",
      *   //   "mobileApp": {},
@@ -13347,7 +13584,8 @@ export namespace displayvideo_v1 {
      *   //   "reservationType": "my_reservationType",
      *   //   "targetingExpansion": {},
      *   //   "updateTime": "my_updateTime",
-     *   //   "warningMessages": []
+     *   //   "warningMessages": [],
+     *   //   "youtubeAndPartnersSettings": {}
      *   // }
      * }
      *
@@ -13421,7 +13659,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/lineItems/{+lineItemId}'
+              '/v2/advertisers/{+advertiserId}/lineItems/{+lineItemId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -13455,7 +13693,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -13563,7 +13801,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/advertisers/{+advertiserId}/lineItems'
+              rootUrl + '/v2/advertisers/{+advertiserId}/lineItems'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -13597,7 +13835,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -13635,7 +13873,6 @@ export namespace displayvideo_v1 {
      *       //   "frequencyCap": {},
      *       //   "insertionOrderId": "my_insertionOrderId",
      *       //   "integrationDetails": {},
-     *       //   "inventorySourceIds": [],
      *       //   "lineItemId": "my_lineItemId",
      *       //   "lineItemType": "my_lineItemType",
      *       //   "mobileApp": {},
@@ -13646,7 +13883,8 @@ export namespace displayvideo_v1 {
      *       //   "reservationType": "my_reservationType",
      *       //   "targetingExpansion": {},
      *       //   "updateTime": "my_updateTime",
-     *       //   "warningMessages": []
+     *       //   "warningMessages": [],
+     *       //   "youtubeAndPartnersSettings": {}
      *       // }
      *     },
      *   });
@@ -13667,7 +13905,6 @@ export namespace displayvideo_v1 {
      *   //   "frequencyCap": {},
      *   //   "insertionOrderId": "my_insertionOrderId",
      *   //   "integrationDetails": {},
-     *   //   "inventorySourceIds": [],
      *   //   "lineItemId": "my_lineItemId",
      *   //   "lineItemType": "my_lineItemType",
      *   //   "mobileApp": {},
@@ -13678,7 +13915,8 @@ export namespace displayvideo_v1 {
      *   //   "reservationType": "my_reservationType",
      *   //   "targetingExpansion": {},
      *   //   "updateTime": "my_updateTime",
-     *   //   "warningMessages": []
+     *   //   "warningMessages": [],
+     *   //   "youtubeAndPartnersSettings": {}
      *   // }
      * }
      *
@@ -13752,7 +13990,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/lineItems/{+lineItemId}'
+              '/v2/advertisers/{+advertiserId}/lineItems/{+lineItemId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -13774,26 +14012,22 @@ export namespace displayvideo_v1 {
     }
   }
 
-  export interface Params$Resource$Advertisers$Lineitems$Bulkeditlineitemassignedtargetingoptions
+  export interface Params$Resource$Advertisers$Lineitems$Bulkeditassignedtargetingoptions
     extends StandardParameters {
     /**
-     * Required. The ID of the advertiser the line item belongs to.
+     * Required. The ID of the advertiser the line items belong to.
      */
     advertiserId?: string;
-    /**
-     * Required. The ID of the line item the assigned targeting option will belong to.
-     */
-    lineItemId?: string;
 
     /**
      * Request body metadata
      */
-    requestBody?: Schema$BulkEditLineItemAssignedTargetingOptionsRequest;
+    requestBody?: Schema$BulkEditAssignedTargetingOptionsRequest;
   }
-  export interface Params$Resource$Advertisers$Lineitems$Bulklistlineitemassignedtargetingoptions
+  export interface Params$Resource$Advertisers$Lineitems$Bulklistassignedtargetingoptions
     extends StandardParameters {
     /**
-     * Required. The ID of the advertiser the line item belongs to.
+     * Required. The ID of the advertiser the line items belongs to.
      */
     advertiserId?: string;
     /**
@@ -13801,11 +14035,11 @@ export namespace displayvideo_v1 {
      */
     filter?: string;
     /**
-     * Required. The ID of the line item to list assigned targeting options for.
+     * Required. The IDs of the line items to list assigned targeting options for.
      */
-    lineItemId?: string;
+    lineItemIds?: string[];
     /**
-     * Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
+     * Field by which to sort the list. Acceptable values are: * `lineItemId` (default) * `assignedTargetingOption.targetingType` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
      */
     orderBy?: string;
     /**
@@ -13813,9 +14047,21 @@ export namespace displayvideo_v1 {
      */
     pageSize?: number;
     /**
-     * A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListLineItemAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     * A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to the `BulkListAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
      */
     pageToken?: string;
+  }
+  export interface Params$Resource$Advertisers$Lineitems$Bulkupdate
+    extends StandardParameters {
+    /**
+     *
+     */
+    advertisersId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BulkUpdateLineItemsRequest;
   }
   export interface Params$Resource$Advertisers$Lineitems$Create
     extends StandardParameters {
@@ -13938,7 +14184,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -14152,7 +14398,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
+              '/v2/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -14186,7 +14432,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -14289,7 +14535,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
+              '/v2/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -14333,7 +14579,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -14491,7 +14737,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
+              '/v2/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -14535,7 +14781,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -14654,7 +14900,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
+              '/v2/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -14790,7 +15036,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -14900,7 +15146,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/advertisers/{+advertiserId}/locationLists'
+              rootUrl + '/v2/advertisers/{+advertiserId}/locationLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -14934,7 +15180,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -15035,7 +15281,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/locationLists/{+locationListId}'
+              '/v2/advertisers/{+advertiserId}/locationLists/{+locationListId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -15069,7 +15315,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -15179,7 +15425,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/advertisers/{+advertiserId}/locationLists'
+              rootUrl + '/v2/advertisers/{+advertiserId}/locationLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -15213,7 +15459,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -15328,7 +15574,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/locationLists/{locationListId}'
+              '/v2/advertisers/{+advertiserId}/locationLists/{locationListId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -15436,7 +15682,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -15551,7 +15797,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{advertiserId}/locationLists/{+locationListId}/assignedLocations:bulkEdit'
+              '/v2/advertisers/{advertiserId}/locationLists/{+locationListId}/assignedLocations:bulkEdit'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -15587,7 +15833,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -15698,7 +15944,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations'
+              '/v2/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -15732,7 +15978,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -15831,7 +16077,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations/{+assignedLocationId}'
+              '/v2/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations/{+assignedLocationId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -15869,7 +16115,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -15984,7 +16230,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations'
+              '/v2/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -16102,7 +16348,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -16211,7 +16457,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/manualTriggers/{+triggerId}:activate'
+              '/v2/advertisers/{+advertiserId}/manualTriggers/{+triggerId}:activate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -16245,7 +16491,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -16359,7 +16605,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/advertisers/{+advertiserId}/manualTriggers'
+              rootUrl + '/v2/advertisers/{+advertiserId}/manualTriggers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -16393,7 +16639,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -16502,7 +16748,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/manualTriggers/{+triggerId}:deactivate'
+              '/v2/advertisers/{+advertiserId}/manualTriggers/{+triggerId}:deactivate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -16536,7 +16782,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -16639,7 +16885,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/manualTriggers/{+triggerId}'
+              '/v2/advertisers/{+advertiserId}/manualTriggers/{+triggerId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -16673,7 +16919,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -16783,7 +17029,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/advertisers/{+advertiserId}/manualTriggers'
+              rootUrl + '/v2/advertisers/{+advertiserId}/manualTriggers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -16817,7 +17063,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -16936,7 +17182,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/manualTriggers/{+triggerId}'
+              '/v2/advertisers/{+advertiserId}/manualTriggers/{+triggerId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -17081,7 +17327,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -17194,7 +17440,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/advertisers/{+advertiserId}/negativeKeywordLists'
+              rootUrl + '/v2/advertisers/{+advertiserId}/negativeKeywordLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -17228,7 +17474,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -17323,7 +17569,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}'
+              '/v2/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -17357,7 +17603,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -17461,7 +17707,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}'
+              '/v2/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -17495,7 +17741,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -17601,7 +17847,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/advertisers/{+advertiserId}/negativeKeywordLists'
+              rootUrl + '/v2/advertisers/{+advertiserId}/negativeKeywordLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -17637,7 +17883,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -17755,7 +18001,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/negativeKeywordLists/{negativeKeywordListId}'
+              '/v2/advertisers/{+advertiserId}/negativeKeywordLists/{negativeKeywordListId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -17866,7 +18112,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -17983,7 +18229,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords:bulkEdit'
+              '/v2/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords:bulkEdit'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -18019,7 +18265,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -18130,7 +18376,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords'
+              '/v2/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -18164,7 +18410,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -18265,7 +18511,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords/{+keywordValue}'
+              '/v2/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords/{+keywordValue}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -18303,7 +18549,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -18418,7 +18664,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords'
+              '/v2/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -18454,7 +18700,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -18570,7 +18816,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords:replace'
+              '/v2/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords:replace'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -18716,7 +18962,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -18928,7 +19174,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
+              '/v2/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -18962,7 +19208,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -19063,7 +19309,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
+              '/v2/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -19105,7 +19351,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -19259,7 +19505,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
+              '/v2/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -19301,7 +19547,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -19418,7 +19664,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
+              '/v2/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -19535,7 +19781,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -19635,7 +19881,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/combinedAudiences/{+combinedAudienceId}'
+              rootUrl + '/v2/combinedAudiences/{+combinedAudienceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -19669,7 +19915,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -19780,7 +20026,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/combinedAudiences').replace(
+            url: (rootUrl + '/v2/combinedAudiences').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -19870,7 +20116,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -19890,11 +20136,10 @@ export namespace displayvideo_v1 {
      *       // {
      *       //   "advertiserId": "my_advertiserId",
      *       //   "customBiddingAlgorithmId": "my_customBiddingAlgorithmId",
-     *       //   "customBiddingAlgorithmState": "my_customBiddingAlgorithmState",
      *       //   "customBiddingAlgorithmType": "my_customBiddingAlgorithmType",
      *       //   "displayName": "my_displayName",
      *       //   "entityStatus": "my_entityStatus",
-     *       //   "modelReadiness": [],
+     *       //   "modelDetails": [],
      *       //   "name": "my_name",
      *       //   "partnerId": "my_partnerId",
      *       //   "sharedAdvertiserIds": []
@@ -19907,11 +20152,10 @@ export namespace displayvideo_v1 {
      *   // {
      *   //   "advertiserId": "my_advertiserId",
      *   //   "customBiddingAlgorithmId": "my_customBiddingAlgorithmId",
-     *   //   "customBiddingAlgorithmState": "my_customBiddingAlgorithmState",
      *   //   "customBiddingAlgorithmType": "my_customBiddingAlgorithmType",
      *   //   "displayName": "my_displayName",
      *   //   "entityStatus": "my_entityStatus",
-     *   //   "modelReadiness": [],
+     *   //   "modelDetails": [],
      *   //   "name": "my_name",
      *   //   "partnerId": "my_partnerId",
      *   //   "sharedAdvertiserIds": []
@@ -19991,7 +20235,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/customBiddingAlgorithms').replace(
+            url: (rootUrl + '/v2/customBiddingAlgorithms').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -20027,7 +20271,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -20054,11 +20298,10 @@ export namespace displayvideo_v1 {
      *   // {
      *   //   "advertiserId": "my_advertiserId",
      *   //   "customBiddingAlgorithmId": "my_customBiddingAlgorithmId",
-     *   //   "customBiddingAlgorithmState": "my_customBiddingAlgorithmState",
      *   //   "customBiddingAlgorithmType": "my_customBiddingAlgorithmType",
      *   //   "displayName": "my_displayName",
      *   //   "entityStatus": "my_entityStatus",
-     *   //   "modelReadiness": [],
+     *   //   "modelDetails": [],
      *   //   "name": "my_name",
      *   //   "partnerId": "my_partnerId",
      *   //   "sharedAdvertiserIds": []
@@ -20140,7 +20383,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/customBiddingAlgorithms/{+customBiddingAlgorithmId}'
+              '/v2/customBiddingAlgorithms/{+customBiddingAlgorithmId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -20174,7 +20417,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -20285,7 +20528,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/customBiddingAlgorithms').replace(
+            url: (rootUrl + '/v2/customBiddingAlgorithms').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -20323,7 +20566,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -20348,11 +20591,10 @@ export namespace displayvideo_v1 {
      *       // {
      *       //   "advertiserId": "my_advertiserId",
      *       //   "customBiddingAlgorithmId": "my_customBiddingAlgorithmId",
-     *       //   "customBiddingAlgorithmState": "my_customBiddingAlgorithmState",
      *       //   "customBiddingAlgorithmType": "my_customBiddingAlgorithmType",
      *       //   "displayName": "my_displayName",
      *       //   "entityStatus": "my_entityStatus",
-     *       //   "modelReadiness": [],
+     *       //   "modelDetails": [],
      *       //   "name": "my_name",
      *       //   "partnerId": "my_partnerId",
      *       //   "sharedAdvertiserIds": []
@@ -20365,11 +20607,10 @@ export namespace displayvideo_v1 {
      *   // {
      *   //   "advertiserId": "my_advertiserId",
      *   //   "customBiddingAlgorithmId": "my_customBiddingAlgorithmId",
-     *   //   "customBiddingAlgorithmState": "my_customBiddingAlgorithmState",
      *   //   "customBiddingAlgorithmType": "my_customBiddingAlgorithmType",
      *   //   "displayName": "my_displayName",
      *   //   "entityStatus": "my_entityStatus",
-     *   //   "modelReadiness": [],
+     *   //   "modelDetails": [],
      *   //   "name": "my_name",
      *   //   "partnerId": "my_partnerId",
      *   //   "sharedAdvertiserIds": []
@@ -20451,7 +20692,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/customBiddingAlgorithms/{+customBiddingAlgorithmId}'
+              '/v2/customBiddingAlgorithms/{+customBiddingAlgorithmId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -20485,7 +20726,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -20591,7 +20832,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/customBiddingAlgorithms/{+customBiddingAlgorithmId}:uploadScript'
+              '/v2/customBiddingAlgorithms/{+customBiddingAlgorithmId}:uploadScript'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -20713,7 +20954,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -20837,7 +21078,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/customBiddingAlgorithms/{+customBiddingAlgorithmId}/scripts'
+              '/v2/customBiddingAlgorithms/{+customBiddingAlgorithmId}/scripts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -20871,7 +21112,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -20982,7 +21223,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/customBiddingAlgorithms/{+customBiddingAlgorithmId}/scripts/{+customBiddingScriptId}'
+              '/v2/customBiddingAlgorithms/{+customBiddingAlgorithmId}/scripts/{+customBiddingScriptId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -21016,7 +21257,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -21129,7 +21370,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/customBiddingAlgorithms/{+customBiddingAlgorithmId}/scripts'
+              '/v2/customBiddingAlgorithms/{+customBiddingAlgorithmId}/scripts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -21239,7 +21480,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -21335,7 +21576,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/customLists/{+customListId}').replace(
+            url: (rootUrl + '/v2/customLists/{+customListId}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -21371,7 +21612,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -21477,7 +21718,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/customLists').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/customLists').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -21550,7 +21791,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -21692,7 +21933,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/firstAndThirdPartyAudiences').replace(
+            url: (rootUrl + '/v2/firstAndThirdPartyAudiences').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -21728,7 +21969,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -21842,7 +22083,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/firstAndThirdPartyAudiences/{+firstAndThirdPartyAudienceId}:editCustomerMatchMembers'
+              '/v2/firstAndThirdPartyAudiences/{+firstAndThirdPartyAudienceId}:editCustomerMatchMembers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -21878,7 +22119,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -22001,7 +22242,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/firstAndThirdPartyAudiences/{+firstAndThirdPartyAudienceId}'
+              '/v2/firstAndThirdPartyAudiences/{+firstAndThirdPartyAudienceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -22035,7 +22276,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -22146,7 +22387,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/firstAndThirdPartyAudiences').replace(
+            url: (rootUrl + '/v2/firstAndThirdPartyAudiences').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -22184,7 +22425,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -22332,7 +22573,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/firstAndThirdPartyAudiences/{+firstAndThirdPartyAudienceId}'
+              '/v2/firstAndThirdPartyAudiences/{+firstAndThirdPartyAudienceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -22460,7 +22701,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -22562,7 +22803,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/floodlightGroups/{+floodlightGroupId}'
+              rootUrl + '/v2/floodlightGroups/{+floodlightGroupId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -22596,7 +22837,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -22713,7 +22954,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/floodlightGroups/{floodlightGroupId}').replace(
+            url: (rootUrl + '/v2/floodlightGroups/{floodlightGroupId}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -22788,7 +23029,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -22888,7 +23129,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/googleAudiences/{+googleAudienceId}').replace(
+            url: (rootUrl + '/v2/googleAudiences/{+googleAudienceId}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -22924,7 +23165,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -23035,7 +23276,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/googleAudiences').replace(
+            url: (rootUrl + '/v2/googleAudiences').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -23121,7 +23362,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -23250,7 +23491,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/guaranteedOrders').replace(
+            url: (rootUrl + '/v2/guaranteedOrders').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -23286,7 +23527,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -23402,7 +23643,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/guaranteedOrders/{+guaranteedOrderId}:editGuaranteedOrderReadAccessors'
+              '/v2/guaranteedOrders/{+guaranteedOrderId}:editGuaranteedOrderReadAccessors'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -23438,7 +23679,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -23549,7 +23790,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/guaranteedOrders/{+guaranteedOrderId}'
+              rootUrl + '/v2/guaranteedOrders/{+guaranteedOrderId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -23583,7 +23824,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -23694,7 +23935,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/guaranteedOrders').replace(
+            url: (rootUrl + '/v2/guaranteedOrders').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -23732,7 +23973,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -23866,7 +24107,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/guaranteedOrders/{+guaranteedOrderId}'
+              rootUrl + '/v2/guaranteedOrders/{+guaranteedOrderId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -24007,7 +24248,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -24119,7 +24360,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/inventorySourceGroups').replace(
+            url: (rootUrl + '/v2/inventorySourceGroups').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -24155,7 +24396,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -24251,7 +24492,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/inventorySourceGroups/{+inventorySourceGroupId}'
+              rootUrl + '/v2/inventorySourceGroups/{+inventorySourceGroupId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -24285,7 +24526,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -24390,7 +24631,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/inventorySourceGroups/{+inventorySourceGroupId}'
+              rootUrl + '/v2/inventorySourceGroups/{+inventorySourceGroupId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -24424,7 +24665,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -24535,7 +24776,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/inventorySourceGroups').replace(
+            url: (rootUrl + '/v2/inventorySourceGroups').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -24573,7 +24814,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -24690,7 +24931,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/inventorySourceGroups/{inventorySourceGroupId}'
+              rootUrl + '/v2/inventorySourceGroups/{inventorySourceGroupId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -24829,7 +25070,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -24944,7 +25185,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources:bulkEdit'
+              '/v2/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources:bulkEdit'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -24980,7 +25221,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -25100,7 +25341,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources'
+              '/v2/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -25134,7 +25375,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -25235,7 +25476,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources/{+assignedInventorySourceId}'
+              '/v2/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources/{+assignedInventorySourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -25269,7 +25510,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -25386,7 +25627,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources'
+              '/v2/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -25512,7 +25753,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -25653,7 +25894,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/inventorySources').replace(
+            url: (rootUrl + '/v2/inventorySources').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -25689,7 +25930,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -25804,7 +26045,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/inventorySources/{+inventorySourceId}:editInventorySourceReadWriteAccessors'
+              '/v2/inventorySources/{+inventorySourceId}:editInventorySourceReadWriteAccessors'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -25838,7 +26079,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -25953,7 +26194,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/inventorySources/{+inventorySourceId}'
+              rootUrl + '/v2/inventorySources/{+inventorySourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -25987,7 +26228,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -26098,7 +26339,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/inventorySources').replace(
+            url: (rootUrl + '/v2/inventorySources').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -26136,7 +26377,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -26282,7 +26523,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/inventorySources/{+inventorySourceId}'
+              rootUrl + '/v2/inventorySources/{+inventorySourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -26414,7 +26655,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -26552,7 +26793,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -26736,7 +26977,7 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * Bulk edits targeting options under a single partner. The operation will delete the assigned targeting options provided in BulkEditPartnerAssignedTargetingOptionsRequest.deleteRequests and then create the assigned targeting options provided in BulkEditPartnerAssignedTargetingOptionsRequest.createRequests .
+     * Edits targeting options under a single partner. The operation will delete the assigned targeting options provided in BulkEditPartnerAssignedTargetingOptionsRequest.deleteRequests and then create the assigned targeting options provided in BulkEditPartnerAssignedTargetingOptionsRequest.createRequests .
      * @example
      * ```js
      * // Before running the sample:
@@ -26748,7 +26989,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -26761,20 +27002,19 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res =
-     *     await displayvideo.partners.bulkEditPartnerAssignedTargetingOptions({
-     *       // Required. The ID of the partner.
-     *       partnerId: '[^/]+',
+     *   const res = await displayvideo.partners.editAssignedTargetingOptions({
+     *     // Required. The ID of the partner.
+     *     partnerId: '[^/]+',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "createRequests": [],
-     *         //   "deleteRequests": []
-     *         // }
-     *       },
-     *     });
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createRequests": [],
+     *       //   "deleteRequests": []
+     *       // }
+     *     },
+     *   });
      *   console.log(res.data);
      *
      *   // Example response
@@ -26795,36 +27035,36 @@ export namespace displayvideo_v1 {
      * @param callback - Optional callback that handles the response.
      * @returns A promise if used with async/await, or void if used with a callback.
      */
-    bulkEditPartnerAssignedTargetingOptions(
-      params: Params$Resource$Partners$Bulkeditpartnerassignedtargetingoptions,
+    editAssignedTargetingOptions(
+      params: Params$Resource$Partners$Editassignedtargetingoptions,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
-    bulkEditPartnerAssignedTargetingOptions(
-      params?: Params$Resource$Partners$Bulkeditpartnerassignedtargetingoptions,
+    editAssignedTargetingOptions(
+      params?: Params$Resource$Partners$Editassignedtargetingoptions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BulkEditPartnerAssignedTargetingOptionsResponse>;
-    bulkEditPartnerAssignedTargetingOptions(
-      params: Params$Resource$Partners$Bulkeditpartnerassignedtargetingoptions,
+    editAssignedTargetingOptions(
+      params: Params$Resource$Partners$Editassignedtargetingoptions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
-    bulkEditPartnerAssignedTargetingOptions(
-      params: Params$Resource$Partners$Bulkeditpartnerassignedtargetingoptions,
+    editAssignedTargetingOptions(
+      params: Params$Resource$Partners$Editassignedtargetingoptions,
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$BulkEditPartnerAssignedTargetingOptionsResponse>,
       callback: BodyResponseCallback<Schema$BulkEditPartnerAssignedTargetingOptionsResponse>
     ): void;
-    bulkEditPartnerAssignedTargetingOptions(
-      params: Params$Resource$Partners$Bulkeditpartnerassignedtargetingoptions,
+    editAssignedTargetingOptions(
+      params: Params$Resource$Partners$Editassignedtargetingoptions,
       callback: BodyResponseCallback<Schema$BulkEditPartnerAssignedTargetingOptionsResponse>
     ): void;
-    bulkEditPartnerAssignedTargetingOptions(
+    editAssignedTargetingOptions(
       callback: BodyResponseCallback<Schema$BulkEditPartnerAssignedTargetingOptionsResponse>
     ): void;
-    bulkEditPartnerAssignedTargetingOptions(
+    editAssignedTargetingOptions(
       paramsOrCallback?:
-        | Params$Resource$Partners$Bulkeditpartnerassignedtargetingoptions
+        | Params$Resource$Partners$Editassignedtargetingoptions
         | BodyResponseCallback<Schema$BulkEditPartnerAssignedTargetingOptionsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -26840,13 +27080,12 @@ export namespace displayvideo_v1 {
       | GaxiosPromise<Schema$BulkEditPartnerAssignedTargetingOptionsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Partners$Bulkeditpartnerassignedtargetingoptions;
+        {}) as Params$Resource$Partners$Editassignedtargetingoptions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Partners$Bulkeditpartnerassignedtargetingoptions;
+        params = {} as Params$Resource$Partners$Editassignedtargetingoptions;
         options = {};
       }
 
@@ -26860,8 +27099,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl +
-              '/v1/partners/{+partnerId}:bulkEditPartnerAssignedTargetingOptions'
+              rootUrl + '/v2/partners/{+partnerId}:editAssignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -26897,7 +27135,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -26997,7 +27235,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/partners/{+partnerId}').replace(
+            url: (rootUrl + '/v2/partners/{+partnerId}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -27033,7 +27271,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -27137,7 +27375,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/partners').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/partners').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -27158,7 +27396,7 @@ export namespace displayvideo_v1 {
     }
   }
 
-  export interface Params$Resource$Partners$Bulkeditpartnerassignedtargetingoptions
+  export interface Params$Resource$Partners$Editassignedtargetingoptions
     extends StandardParameters {
     /**
      * Required. The ID of the partner.
@@ -27216,7 +27454,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -27331,7 +27569,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/partners/{+partnerId}/channels').replace(
+            url: (rootUrl + '/v2/partners/{+partnerId}/channels').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -27367,7 +27605,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -27471,7 +27709,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/partners/{+partnerId}/channels/{+channelId}'
+              rootUrl + '/v2/partners/{+partnerId}/channels/{+channelId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -27505,7 +27743,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -27614,7 +27852,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/partners/{+partnerId}/channels').replace(
+            url: (rootUrl + '/v2/partners/{+partnerId}/channels').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -27650,7 +27888,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -27770,7 +28008,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/partners/{+partnerId}/channels/{channelId}'
+              rootUrl + '/v2/partners/{+partnerId}/channels/{channelId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -27894,7 +28132,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -28009,7 +28247,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/partners/{partnerId}/channels/{+channelId}/sites:bulkEdit'
+              '/v2/partners/{partnerId}/channels/{+channelId}/sites:bulkEdit'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -28043,7 +28281,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -28151,7 +28389,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/partners/{partnerId}/channels/{+channelId}/sites'
+              rootUrl + '/v2/partners/{partnerId}/channels/{+channelId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -28185,7 +28423,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -28284,7 +28522,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/partners/{partnerId}/channels/{+channelId}/sites/{+urlOrAppId}'
+              '/v2/partners/{partnerId}/channels/{+channelId}/sites/{+urlOrAppId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -28318,7 +28556,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -28428,7 +28666,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/partners/{+partnerId}/channels/{+channelId}/sites'
+              rootUrl + '/v2/partners/{+partnerId}/channels/{+channelId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -28462,7 +28700,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -28574,7 +28812,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/partners/{partnerId}/channels/{+channelId}/sites:replace'
+              '/v2/partners/{partnerId}/channels/{+channelId}/sites:replace'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -28730,7 +28968,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -28940,7 +29178,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
+              '/v2/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -28974,7 +29212,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -29073,7 +29311,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
+              '/v2/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -29111,7 +29349,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -29265,7 +29503,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
+              '/v2/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -29303,7 +29541,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -29418,7 +29656,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
+              '/v2/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -29537,7 +29775,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -29644,7 +29882,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/sdfdownloadtasks').replace(
+            url: (rootUrl + '/v2/sdfdownloadtasks').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -29695,7 +29933,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -29795,7 +30033,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -29854,7 +30092,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -29988,7 +30226,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/targetingTypes/{+targetingType}/targetingOptions/{+targetingOptionId}'
+              '/v2/targetingTypes/{+targetingType}/targetingOptions/{+targetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -30022,7 +30260,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -30134,7 +30372,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/targetingTypes/{+targetingType}/targetingOptions'
+              rootUrl + '/v2/targetingTypes/{+targetingType}/targetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -30170,7 +30408,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -30286,7 +30524,7 @@ export namespace displayvideo_v1 {
           {
             url: (
               rootUrl +
-              '/v1/targetingTypes/{+targetingType}/targetingOptions:search'
+              '/v2/targetingTypes/{+targetingType}/targetingOptions:search'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -30384,7 +30622,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -30494,7 +30732,7 @@ export namespace displayvideo_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/users/{+userId}:bulkEditAssignedUserRoles'
+              rootUrl + '/v2/users/{+userId}:bulkEditAssignedUserRoles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -30530,7 +30768,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -30635,7 +30873,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/users').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/users').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
@@ -30668,7 +30906,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -30758,7 +30996,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/users/{+userId}').replace(
+            url: (rootUrl + '/v2/users/{+userId}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -30794,7 +31032,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -30890,7 +31128,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/users/{+userId}').replace(
+            url: (rootUrl + '/v2/users/{+userId}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -30926,7 +31164,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -31028,7 +31266,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/users').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/users').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -31061,7 +31299,7 @@ export namespace displayvideo_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v1');
+     * const displayvideo = google.displayvideo('v2');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -31171,7 +31409,7 @@ export namespace displayvideo_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/users/{+userId}').replace(
+            url: (rootUrl + '/v2/users/{+userId}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
