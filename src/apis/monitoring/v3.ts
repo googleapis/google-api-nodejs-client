@@ -861,6 +861,10 @@ export namespace monitoring_v3 {
      */
     path?: string | null;
     /**
+     * Contains information needed to add pings to an HTTP check.
+     */
+    pingConfig?: Schema$PingConfig;
+    /**
      * Optional (defaults to 80 when use_ssl is false, and 443 when use_ssl is true). The TCP port on the HTTP server against which to run the check. Will be combined with host (specified within the monitored_resource) and path to construct the full URL.
      */
     port?: number | null;
@@ -1584,6 +1588,15 @@ export namespace monitoring_v3 {
     threshold?: number | null;
   }
   /**
+   * Information involved in sending ICMP pings alongside public HTTP/TCP checks. For HTTP, the pings are performed for each part of the redirect chain.
+   */
+  export interface Schema$PingConfig {
+    /**
+     * Number of ICMP pings. A maximum of 3 ICMP pings is currently supported.
+     */
+    pingsCount?: number | null;
+  }
+  /**
    * A single data point in a time series.
    */
   export interface Schema$Point {
@@ -1853,6 +1866,10 @@ export namespace monitoring_v3 {
    * Information required for a TCP Uptime check request.
    */
   export interface Schema$TcpCheck {
+    /**
+     * Contains information needed to add pings to a TCP check.
+     */
+    pingConfig?: Schema$PingConfig;
     /**
      * The TCP port on the server against which to run the check. Will be combined with host (specified within the monitored_resource) to construct the full URL. Required.
      */
@@ -8432,6 +8449,8 @@ export namespace monitoring_v3 {
      *
      *   // Do the magic
      *   const res = await monitoring.projects.uptimeCheckConfigs.list({
+     *     // If provided, this field specifies the criteria that must be met by uptime checks to be included in the response.For more details, see Filtering syntax (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering#filter_syntax).
+     *     filter: 'placeholder-value',
      *     // The maximum number of results to return in a single response. The server may further constrain the maximum number of results returned in a single page. If the page_size is <=0, the server will decide the number of results to be returned.
      *     pageSize: 'placeholder-value',
      *     // If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return more results from the previous method call.
@@ -8746,6 +8765,10 @@ export namespace monitoring_v3 {
   }
   export interface Params$Resource$Projects$Uptimecheckconfigs$List
     extends StandardParameters {
+    /**
+     * If provided, this field specifies the criteria that must be met by uptime checks to be included in the response.For more details, see Filtering syntax (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering#filter_syntax).
+     */
+    filter?: string;
     /**
      * The maximum number of results to return in a single response. The server may further constrain the maximum number of results returned in a single page. If the page_size is <=0, the server will decide the number of results to be returned.
      */
