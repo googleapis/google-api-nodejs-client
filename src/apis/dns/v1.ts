@@ -338,7 +338,7 @@ export namespace dns_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -560,11 +560,22 @@ export namespace dns_v1 {
     networkUrl?: string | null;
   }
   export interface Schema$ManagedZonePrivateVisibilityConfig {
+    /**
+     * The list of Google Kubernetes Engine clusters that can see this zone.
+     */
+    gkeClusters?: Schema$ManagedZonePrivateVisibilityConfigGKECluster[];
     kind?: string | null;
     /**
      * The list of VPC networks that can see this zone.
      */
     networks?: Schema$ManagedZonePrivateVisibilityConfigNetwork[];
+  }
+  export interface Schema$ManagedZonePrivateVisibilityConfigGKECluster {
+    /**
+     * The resource name of the cluster to bind this ManagedZone to. This should be specified in the format like: projects/x/locations/x/clusters/x. This is referenced from GKE projects.locations.clusters.get API: https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters/get
+     */
+    gkeClusterName?: string | null;
+    kind?: string | null;
   }
   export interface Schema$ManagedZonePrivateVisibilityConfigNetwork {
     kind?: string | null;
@@ -947,6 +958,10 @@ export namespace dns_v1 {
      */
     description?: string | null;
     /**
+     * The list of Google Kubernetes Engine clusters to which this response policy is applied.
+     */
+    gkeClusters?: Schema$ResponsePolicyGKECluster[];
+    /**
      * Unique identifier for the resource; defined by the server (output only).
      */
     id?: string | null;
@@ -959,6 +974,13 @@ export namespace dns_v1 {
      * User assigned name for this Response Policy.
      */
     responsePolicyName?: string | null;
+  }
+  export interface Schema$ResponsePolicyGKECluster {
+    /**
+     * The resource name of the cluster to bind this response policy to. This should be specified in the format like: projects/x/locations/x/clusters/x. This is referenced from GKE projects.locations.clusters.get API: https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters/get
+     */
+    gkeClusterName?: string | null;
+    kind?: string | null;
   }
   export interface Schema$ResponsePolicyNetwork {
     kind?: string | null;
@@ -5972,6 +5994,7 @@ export namespace dns_v1 {
      *       // request body parameters
      *       // {
      *       //   "description": "my_description",
+     *       //   "gkeClusters": [],
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
      *       //   "networks": [],
@@ -5984,6 +6007,7 @@ export namespace dns_v1 {
      *   // Example response
      *   // {
      *   //   "description": "my_description",
+     *   //   "gkeClusters": [],
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "networks": [],
@@ -6254,6 +6278,7 @@ export namespace dns_v1 {
      *   // Example response
      *   // {
      *   //   "description": "my_description",
+     *   //   "gkeClusters": [],
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "networks": [],
@@ -6542,6 +6567,7 @@ export namespace dns_v1 {
      *       // request body parameters
      *       // {
      *       //   "description": "my_description",
+     *       //   "gkeClusters": [],
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
      *       //   "networks": [],
@@ -6700,6 +6726,7 @@ export namespace dns_v1 {
      *       // request body parameters
      *       // {
      *       //   "description": "my_description",
+     *       //   "gkeClusters": [],
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
      *       //   "networks": [],
