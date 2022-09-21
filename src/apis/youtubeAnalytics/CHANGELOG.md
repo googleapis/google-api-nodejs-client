@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/googleapis/google-api-nodejs-client/compare/youtubeAnalytics-v0.2.1...youtubeAnalytics-v0.2.2) (2022-09-21)
+
+
+### Bug Fixes
+
+* **youtubeAnalytics:** update the API ([fbacc30](https://github.com/googleapis/google-api-nodejs-client/commit/fbacc309c643a92b439f49a36e9a953e5d865e7e))
+
 ## [0.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/youtubeAnalytics-v0.2.0...youtubeAnalytics-v0.2.1) (2022-06-21)
 
 

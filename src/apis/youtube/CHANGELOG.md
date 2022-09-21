@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v7.0.0...youtube-v7.0.1) (2022-09-21)
+
+
+### Bug Fixes
+
+* **youtube:** update the API ([33f7b09](https://github.com/googleapis/google-api-nodejs-client/commit/33f7b09dfb74e6deeaf3e2e2875f8da12d512dd6))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v6.0.0...youtube-v7.0.0) (2022-08-19)
 
 

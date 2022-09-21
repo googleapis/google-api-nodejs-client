@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.2](https://github.com/googleapis/google-api-nodejs-client/compare/smartdevicemanagement-v0.4.1...smartdevicemanagement-v0.4.2) (2022-09-21)
+
+
+### Bug Fixes
+
+* **smartdevicemanagement:** update the API ([a8908a2](https://github.com/googleapis/google-api-nodejs-client/commit/a8908a22e51bb93529599db3cf9ad9ffe474c88c))
+
 ## [0.4.1](https://github.com/googleapis/google-api-nodejs-client/compare/smartdevicemanagement-v0.4.0...smartdevicemanagement-v0.4.1) (2022-06-21)
 
 

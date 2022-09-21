@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/sourcerepo",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "description": "sourcerepo",
   "main": "build/index.js",
   "types": "build/index.d.ts",

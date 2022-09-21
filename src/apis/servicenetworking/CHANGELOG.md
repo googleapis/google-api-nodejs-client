@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v6.1.0...servicenetworking-v7.0.0) (2022-09-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **servicenetworking:** This release has breaking changes.
+
+### Features
+
+* **servicenetworking:** update the API ([541cc3a](https://github.com/googleapis/google-api-nodejs-client/commit/541cc3a7f65368541a3f578aabb55b19be14c555))
+
 ## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v6.0.0...servicenetworking-v6.1.0) (2022-08-19)
 
 

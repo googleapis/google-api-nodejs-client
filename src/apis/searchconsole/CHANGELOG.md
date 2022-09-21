@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.2](https://github.com/googleapis/google-api-nodejs-client/compare/searchconsole-v0.5.1...searchconsole-v0.5.2) (2022-09-21)
+
+
+### Bug Fixes
+
+* **searchconsole:** update the API ([661466b](https://github.com/googleapis/google-api-nodejs-client/commit/661466bd53f47417b13ec612fbb9c867926a89d4))
+
 ## [0.5.1](https://github.com/googleapis/google-api-nodejs-client/compare/searchconsole-v0.5.0...searchconsole-v0.5.1) (2022-06-21)
 
 

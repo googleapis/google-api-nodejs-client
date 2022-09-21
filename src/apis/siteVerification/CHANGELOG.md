@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.2](https://github.com/googleapis/google-api-nodejs-client/compare/siteVerification-v0.3.1...siteVerification-v0.3.2) (2022-09-21)
+
+
+### Bug Fixes
+
+* **siteVerification:** update the API ([402c9c2](https://github.com/googleapis/google-api-nodejs-client/commit/402c9c2e722b2125c5ba77a722b4f3290568ec49))
+
 ## [0.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/siteVerification-v0.3.0...siteVerification-v0.3.1) (2022-06-21)
 
 
