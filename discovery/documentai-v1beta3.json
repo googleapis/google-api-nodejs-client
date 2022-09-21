@@ -836,7 +836,7 @@
       }
     }
   },
-  "revision": "20220821",
+  "revision": "20220916",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata": {
@@ -1157,6 +1157,84 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3ExportDocumentsMetadata": {
+      "description": "Metadata of the batch export documents operation.",
+      "id": "GoogleCloudDocumentaiUiv1beta3ExportDocumentsMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        },
+        "individualExportStatuses": {
+          "description": "The list of response details of each document.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiUiv1beta3ExportDocumentsMetadataIndividualExportStatus"
+          },
+          "type": "array"
+        },
+        "splitExportStats": {
+          "description": "The list of statistics for each dataset split type.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiUiv1beta3ExportDocumentsMetadataSplitExportStat"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3ExportDocumentsMetadataIndividualExportStatus": {
+      "description": "The status of each individual document in the export process.",
+      "id": "GoogleCloudDocumentaiUiv1beta3ExportDocumentsMetadataIndividualExportStatus",
+      "properties": {
+        "documentId": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentId",
+          "description": "The path to source docproto of the document."
+        },
+        "outputGcsDestination": {
+          "description": "The output_gcs_destination of the exported document if it was successful, otherwise empty.",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The status of the exporting of the document."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3ExportDocumentsMetadataSplitExportStat": {
+      "description": "The statistic representing a dataset split type for this export.",
+      "id": "GoogleCloudDocumentaiUiv1beta3ExportDocumentsMetadataSplitExportStat",
+      "properties": {
+        "splitType": {
+          "description": "The dataset split type.",
+          "enum": [
+            "DATASET_SPLIT_TYPE_UNSPECIFIED",
+            "DATASET_SPLIT_TRAIN",
+            "DATASET_SPLIT_TEST",
+            "DATASET_SPLIT_UNASSIGNED"
+          ],
+          "enumDescriptions": [
+            "Default value if the enum is not set. go/protodosdonts#do-include-an-unspecified-value-in-an-enum",
+            "Identifies the train documents.",
+            "Identifies the test documents.",
+            "Identifies the unassigned documents."
+          ],
+          "type": "string"
+        },
+        "totalDocumentCount": {
+          "description": "Total number of documents with the given dataset split type to be exported.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3ExportDocumentsResponse": {
+      "description": "The response proto of ExportDocuments method.",
+      "id": "GoogleCloudDocumentaiUiv1beta3ExportDocumentsResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3ExportProcessorVersionMetadata": {
@@ -2844,6 +2922,10 @@
           "$ref": "GoogleTypeColor",
           "description": "Text color."
         },
+        "fontFamily": {
+          "description": "Font family such as \"Arial\", \"Times New Roman\". https://www.w3schools.com/cssref/pr_font_font-family.asp",
+          "type": "string"
+        },
         "fontSize": {
           "$ref": "GoogleCloudDocumentaiV1beta1DocumentStyleFontSize",
           "description": "Font size."
@@ -4097,6 +4179,10 @@
         "color": {
           "$ref": "GoogleTypeColor",
           "description": "Text color."
+        },
+        "fontFamily": {
+          "description": "Font family such as \"Arial\", \"Times New Roman\". https://www.w3schools.com/cssref/pr_font_font-family.asp",
+          "type": "string"
         },
         "fontSize": {
           "$ref": "GoogleCloudDocumentaiV1beta2DocumentStyleFontSize",
@@ -5741,6 +5827,10 @@
         "color": {
           "$ref": "GoogleTypeColor",
           "description": "Text color."
+        },
+        "fontFamily": {
+          "description": "Font family such as \"Arial\", \"Times New Roman\". https://www.w3schools.com/cssref/pr_font_font-family.asp",
+          "type": "string"
         },
         "fontSize": {
           "$ref": "GoogleCloudDocumentaiV1beta3DocumentStyleFontSize",
