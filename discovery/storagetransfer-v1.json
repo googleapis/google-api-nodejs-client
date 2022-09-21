@@ -318,6 +318,38 @@
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
+        "delete": {
+          "description": "Deletes a transfer job. Deleting a transfer job sets its status to DELETED.",
+          "flatPath": "v1/transferJobs/{transferJobsId}",
+          "httpMethod": "DELETE",
+          "id": "storagetransfer.transferJobs.delete",
+          "parameterOrder": [
+            "jobName",
+            "projectId"
+          ],
+          "parameters": {
+            "jobName": {
+              "description": "Required. The job to delete.",
+              "location": "path",
+              "pattern": "^transferJobs/.*$",
+              "required": true,
+              "type": "string"
+            },
+            "projectId": {
+              "description": "Required. The ID of the Google Cloud project that owns the job.",
+              "location": "query",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+jobName}",
+          "response": {
+            "$ref": "Empty"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
         "get": {
           "description": "Gets a transfer job.",
           "flatPath": "v1/transferJobs/{transferJobsId}",
@@ -600,7 +632,7 @@
       }
     }
   },
-  "revision": "20220814",
+  "revision": "20220908",
   "rootUrl": "https://storagetransfer.googleapis.com/",
   "schemas": {
     "AgentPool": {
@@ -1823,7 +1855,7 @@
         },
         "transferJob": {
           "$ref": "TransferJob",
-          "description": "Required. The job to update. `transferJob` is expected to specify one or more of five fields: description, transfer_spec, notification_config, logging_config, and status. An `UpdateTransferJobRequest` that specifies other fields are rejected with the error INVALID_ARGUMENT. Updating a job status to DELETED requires `storagetransfer.jobs.delete` permissions."
+          "description": "Required. The job to update. `transferJob` is expected to specify one or more of five fields: description, transfer_spec, notification_config, logging_config, and status. An `UpdateTransferJobRequest` that specifies other fields are rejected with the error INVALID_ARGUMENT. Updating a job status to DELETED requires `storagetransfer.jobs.delete` permission."
         },
         "updateTransferJobFieldMask": {
           "description": "The field mask of the fields in `transferJob` that are to be updated in this request. Fields in `transferJob` that can be updated are: description, transfer_spec, notification_config, logging_config, and status. To update the `transfer_spec` of the job, a complete transfer specification must be provided. An incomplete specification missing any required fields is rejected with the error INVALID_ARGUMENT.",
