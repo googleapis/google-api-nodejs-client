@@ -110,7 +110,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "Optional. Specifies the filters for the products results. The syntax defined in the EBNF grammar: https://google.aip.dev/assets/misc/ebnf-filtering.txt. An error will be thrown if any specified parameter is not supported. Currently, it can only be used by Youtube partners. Allowed parameters are: - regionCodes - zipCode - eligibilityId Multiple parameters can be specified, for example: \"regionCodes=US zipCode=94043 eligibilityId=2022H1Campaign\"",
+                  "description": "Optional. Specifies the filters for the product results. The syntax is defined in https://google.aip.dev/160 with the following caveats: - Only the following features are supported: - Logical operator `AND` - Comparison operator `=` (no wildcards `*`) - Traversal operator `.` - Has operator `:` (no wildcards `*`) - Only the following fields are supported: - `regionCodes` - `youtubePayload.partnerEligibilityId` - `youtubePayload.postalCode` - Unless explicitly mentioned above, other features are not supported. Example: `regionCodes:US AND youtubePayload.postalCode=94043 AND youtubePayload.partnerEligibilityId=eligibility-id`",
                   "location": "query",
                   "type": "string"
                 },
@@ -177,7 +177,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "Optional. Specifies the filters for the promotion results. The syntax defined in the EBNF grammar: https://google.aip.dev/assets/misc/ebnf-filtering.txt. An error will be thrown if the specified parameter(s) is not supported. Currently, it can only be used by Youtube partners. Allowed parameters are: - region_codes: \"US\" - zip_code: \"94043\" - eligibility_id: \"2022H1Campaign\" Multiple parameters can be specified, for example: \"region_codes=US zip_code=94043 eligibility_id=2022H1Campaign\"",
+                  "description": "Optional. Specifies the filters for the promotion results. The syntax is defined in https://google.aip.dev/160 with the following caveats: - Only the following features are supported: - Logical operator `AND` - Comparison operator `=` (no wildcards `*`) - Traversal operator `.` - Has operator `:` (no wildcards `*`) - Only the following fields are supported: - `applicableProducts` - `regionCodes` - `youtubePayload.partnerEligibilityId` - `youtubePayload.postalCode` - Unless explicitly mentioned above, other features are not supported. Example: `applicableProducts:partners/partner1/products/product1 AND regionCodes:US AND youtubePayload.postalCode=94043 AND youtubePayload.partnerEligibilityId=eligibility-id`",
                   "location": "query",
                   "type": "string"
                 },
@@ -396,9 +396,25 @@
       }
     }
   },
-  "revision": "20220818",
+  "revision": "20220919",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
+    "GoogleCloudPaymentsResellerSubscriptionV1Amount": {
+      "description": "Describes the amount unit including the currency code.",
+      "id": "GoogleCloudPaymentsResellerSubscriptionV1Amount",
+      "properties": {
+        "amountMicros": {
+          "description": "Required. Amount in micros (1_000_000 micros = 1 currency unit)",
+          "format": "int64",
+          "type": "string"
+        },
+        "currencyCode": {
+          "description": "Required. Currency codes in accordance with [ISO-4217 Currency Codes] (https://en.wikipedia.org/wiki/ISO_4217). For example, USD.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionRequest": {
       "id": "GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionRequest",
       "properties": {
@@ -543,7 +559,7 @@
       "id": "GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsRequest",
       "properties": {
         "filter": {
-          "description": "Optional. Specifies the filters for the promotion results. The syntax defined in the EBNF grammar: https://google.aip.dev/assets/misc/ebnf-filtering.txt. An error will be thrown if any specified parameter is not supported. Currently, it can only be used by Youtube partners. Allowed parameters are: - regionCodes - zipCode - eligibilityId - applicableProducts Multiple parameters can be specified, for example: \"regionCodes=US zipCode=94043 eligibilityId=2022H1Campaign\", or \"applicableProducts=partners/p1/products/product2\"",
+          "description": "Optional. Specifies the filters for the promotion results. The syntax is defined in https://google.aip.dev/160 with the following caveats: - Only the following features are supported: - Logical operator `AND` - Comparison operator `=` (no wildcards `*`) - Traversal operator `.` - Has operator `:` (no wildcards `*`) - Only the following fields are supported: - `applicableProducts` - `regionCodes` - `youtubePayload.partnerEligibilityId` - `youtubePayload.postalCode` - Unless explicitly mentioned above, other features are not supported. Example: `applicableProducts:partners/partner1/products/product1 AND regionCodes:US AND youtubePayload.postalCode=94043 AND youtubePayload.partnerEligibilityId=eligibility-id`",
           "type": "string"
         },
         "pageSize": {
@@ -630,9 +646,17 @@
       "id": "GoogleCloudPaymentsResellerSubscriptionV1Product",
       "properties": {
         "name": {
-          "description": "Output only. Response only. Resource name of the subscription. It will have the format of \"partners/{partner_id}/products/{product_id}\"",
+          "description": "Output only. Response only. Resource name of the product. It will have the format of \"partners/{partner_id}/products/{product_id}\"",
           "readOnly": true,
           "type": "string"
+        },
+        "priceConfigs": {
+          "description": "Output only. Price configs for the product in the available regions.",
+          "items": {
+            "$ref": "GoogleCloudPaymentsResellerSubscriptionV1ProductPriceConfig"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "regionCodes": {
           "description": "Output only. 2-letter ISO region code where the product is available in. Ex. \"US\" Please refers to: https://en.wikipedia.org/wiki/ISO_3166-1",
@@ -654,6 +678,23 @@
           },
           "readOnly": true,
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPaymentsResellerSubscriptionV1ProductPriceConfig": {
+      "description": "Configs the prices in an available region.",
+      "id": "GoogleCloudPaymentsResellerSubscriptionV1ProductPriceConfig",
+      "properties": {
+        "amount": {
+          "$ref": "GoogleCloudPaymentsResellerSubscriptionV1Amount",
+          "description": "Output only. The price in the region.",
+          "readOnly": true
+        },
+        "regionCode": {
+          "description": "Output only. 2-letter ISO region code where the product is available in. Ex. \"US\".",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -745,6 +786,17 @@
       "description": "The duration of an introductory pricing promotion.",
       "id": "GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetailsIntroductoryPricingSpec",
       "properties": {
+        "discountAmount": {
+          "$ref": "GoogleCloudPaymentsResellerSubscriptionV1Amount",
+          "description": "Output only. The discount amount. The value is positive.",
+          "readOnly": true
+        },
+        "discountRatioMicros": {
+          "description": "Output only. The discount percentage in micros. For example, 50,000 represents 5%.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "recurrenceCount": {
           "description": "Output only. Output Only. The duration of an introductory offer in billing cycles.",
           "format": "int32",
@@ -811,8 +863,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Output only. Response only. Resource name of the subscription. It will have the format of \"partners/{partner_id}/subscriptions/{subscription_id}\"",
-          "readOnly": true,
+          "description": "Optional. Resource name of the subscription. It will have the format of \"partners/{partner_id}/subscriptions/{subscription_id}\". This is available for authorizeAddon, but otherwise is response only.",
           "type": "string"
         },
         "partnerUserToken": {
