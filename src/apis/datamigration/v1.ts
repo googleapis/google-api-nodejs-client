@@ -125,6 +125,37 @@ export namespace datamigration_v1 {
   }
 
   /**
+   * Specifies required connection parameters, and the parameters required to create an AlloyDB destination cluster.
+   */
+  export interface Schema$AlloyDbConnectionProfile {
+    /**
+     * Required. The AlloyDB cluster ID that this connection profile is associated with.
+     */
+    clusterId?: string | null;
+    /**
+     * Immutable. Metadata used to create the destination AlloyDB cluster.
+     */
+    settings?: Schema$AlloyDbSettings;
+  }
+  /**
+   * Settings for creating an AlloyDB cluster.
+   */
+  export interface Schema$AlloyDbSettings {
+    /**
+     * Required. Input only. Initial user to setup during cluster creation. Required.
+     */
+    initialUser?: Schema$UserPassword;
+    /**
+     * Labels for the AlloyDB cluster created by DMS. An object containing a list of 'key', 'value' pairs.
+     */
+    labels?: {[key: string]: string} | null;
+    primaryInstanceSettings?: Schema$PrimaryInstanceSettings;
+    /**
+     * Required. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: "projects/{project_number\}/global/networks/{network_id\}". This is required to create a cluster.
+     */
+    vpcNetwork?: string | null;
+  }
+  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -159,7 +190,7 @@ export namespace datamigration_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -265,6 +296,10 @@ export namespace datamigration_v1 {
    * A connection profile definition.
    */
   export interface Schema$ConnectionProfile {
+    /**
+     * An AlloyDB cluster connection profile.
+     */
+    alloydb?: Schema$AlloyDbConnectionProfile;
     /**
      * A CloudSQL database connection profile.
      */
@@ -510,6 +545,15 @@ export namespace datamigration_v1 {
     name?: string | null;
   }
   /**
+   * MachineConfig describes the configuration of a machine.
+   */
+  export interface Schema$MachineConfig {
+    /**
+     * The number of CPU's in the VM instance.
+     */
+    cpuCount?: number | null;
+  }
+  /**
    * Represents a Database Migration Service migration job object.
    */
   export interface Schema$MigrationJob {
@@ -703,6 +747,10 @@ export namespace datamigration_v1 {
      */
     host?: string | null;
     /**
+     * Output only. If the source is a Cloud SQL database, this field indicates the network architecture it's associated with.
+     */
+    networkArchitecture?: string | null;
+    /**
      * Required. Input only. The password for the user that Database Migration Service will be using to connect to the database. This field is not returned on request, and the value is encrypted when stored in Database Migration Service.
      */
     password?: string | null;
@@ -722,6 +770,31 @@ export namespace datamigration_v1 {
      * Required. The username that Database Migration Service will use to connect to the database. The value is encrypted when stored in Database Migration Service.
      */
     username?: string | null;
+  }
+  /**
+   * Settings for the cluster's primary instance
+   */
+  export interface Schema$PrimaryInstanceSettings {
+    /**
+     * Database flags to pass to AlloyDB when DMS is creating the AlloyDB cluster and instances. See the AlloyDB documentation for how these can be used.
+     */
+    databaseFlags?: {[key: string]: string} | null;
+    /**
+     * Required. The ID of the AlloyDB primary instance. The ID must satisfy the regex expression "[a-z0-9-]+".
+     */
+    id?: string | null;
+    /**
+     * Labels for the AlloyDB primary instance created by DMS. An object containing a list of 'key', 'value' pairs.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Configuration for the machines that host the underlying database engine.
+     */
+    machineConfig?: Schema$MachineConfig;
+    /**
+     * Output only. The private IP address for the Instance. This is the connection endpoint for an end-user application.
+     */
+    privateIp?: string | null;
   }
   /**
    * Request message for 'PromoteMigrationJob' request.
@@ -887,6 +960,23 @@ export namespace datamigration_v1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
+  }
+  /**
+   * The username/password for a database user. Used for specifying initial users at cluster creation time.
+   */
+  export interface Schema$UserPassword {
+    /**
+     * The initial password for the user.
+     */
+    password?: string | null;
+    /**
+     * Output only. Indicates if the initial_user.password field has been set.
+     */
+    passwordSet?: boolean | null;
+    /**
+     * The database username.
+     */
+    user?: string | null;
   }
   /**
    * Request message for 'VerifyMigrationJob' request.
@@ -1299,6 +1389,7 @@ export namespace datamigration_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "alloydb": {},
      *       //   "cloudsql": {},
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
@@ -1588,6 +1679,7 @@ export namespace datamigration_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "alloydb": {},
      *   //   "cloudsql": {},
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
@@ -2021,6 +2113,7 @@ export namespace datamigration_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "alloydb": {},
      *       //   "cloudsql": {},
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
