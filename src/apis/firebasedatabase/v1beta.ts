@@ -100,7 +100,7 @@ export namespace firebasedatabase_v1beta {
   }
 
   /**
-   * Firebase Realtime Database Management API
+   * Firebase Realtime Database API
    *
    * The Firebase Realtime Database Management API enables programmatic provisioning and management of Realtime Database instances.
    *
