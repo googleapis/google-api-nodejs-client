@@ -134,7 +134,7 @@
           ],
           "parameters": {
             "path": {
-              "description": "GTM Accounts's API relative path. Example: accounts/{account_id}",
+              "description": "GTM Account's API relative path. Example: accounts/{account_id}",
               "location": "path",
               "pattern": "^accounts/[^/]+$",
               "required": true,
@@ -2663,7 +2663,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "GTM Workspaces's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                          "description": "GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
                           "required": true,
@@ -2744,7 +2744,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "GTM Workspaces's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                          "description": "GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
                           "location": "path",
                           "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
                           "required": true,
@@ -3317,7 +3317,7 @@
       }
     }
   },
-  "revision": "20220817",
+  "revision": "20220914",
   "rootUrl": "https://tagmanager.googleapis.com/",
   "schemas": {
     "Account": {
@@ -3375,7 +3375,7 @@
       "type": "object"
     },
     "BuiltInVariable": {
-      "description": "Built-in variables are a special category of variables that are pre-created and non-customizable. They provide common functionality like accessing propeties of the gtm data layer, monitoring clicks, or accessing elements of a page URL.",
+      "description": "Built-in variables are a special category of variables that are pre-created and non-customizable. They provide common functionality like accessing properties of the gtm data layer, monitoring clicks, or accessing elements of a page URL.",
       "id": "BuiltInVariable",
       "properties": {
         "accountId": {
@@ -3793,7 +3793,8 @@
         "name": {
           "annotations": {
             "required": [
-              "tagmanager.accounts.containers.create"
+              "tagmanager.accounts.containers.create",
+              "tagmanager.accounts.containers.update"
             ]
           },
           "description": "Container display name. @mutable tagmanager.accounts.containers.create @mutable tagmanager.accounts.containers.update",
@@ -3947,7 +3948,7 @@
           "type": "string"
         },
         "path": {
-          "description": "GTM ContainerVersions's API relative path.",
+          "description": "GTM Container Version's API relative path.",
           "type": "string"
         },
         "tag": {
@@ -4042,7 +4043,7 @@
           "type": "string"
         },
         "path": {
-          "description": "GTM Container Versions's API relative path.",
+          "description": "GTM Container Version's API relative path.",
           "type": "string"
         }
       },
