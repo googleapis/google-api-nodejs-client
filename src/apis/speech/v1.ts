@@ -274,6 +274,10 @@ export namespace speech_v1 {
      */
     outputError?: Schema$Status;
     /**
+     * The ID associated with the request. This is a unique ID specific only to the given request.
+     */
+    requestId?: string | null;
+    /**
      * Sequential list of transcription results corresponding to sequential portions of audio.
      */
     results?: Schema$SpeechRecognitionResult[];
@@ -485,6 +489,10 @@ export namespace speech_v1 {
    * The only message returned to the client by the `Recognize` method. It contains the result as zero or more sequential `SpeechRecognitionResult` messages.
    */
   export interface Schema$RecognizeResponse {
+    /**
+     * The ID associated with the request. This is a unique ID specific only to the given request.
+     */
+    requestId?: string | null;
     /**
      * Sequential list of transcription results corresponding to sequential portions of audio.
      */
@@ -2622,6 +2630,7 @@ export namespace speech_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "requestId": "my_requestId",
      *   //   "results": [],
      *   //   "totalBilledTime": "my_totalBilledTime"
      *   // }
