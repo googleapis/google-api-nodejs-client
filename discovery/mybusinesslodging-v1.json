@@ -194,7 +194,7 @@
       }
     }
   },
-  "revision": "20220201",
+  "revision": "20220919",
   "rootUrl": "https://mybusinesslodging.googleapis.com/",
   "schemas": {
     "Accessibility": {
@@ -4982,7 +4982,7 @@
           "type": "array"
         },
         "leedCertification": {
-          "description": "LEED certification.",
+          "description": "LEED certification. Deprecated: this field is no longer populated. LEED certification status is now provided directly by USGBC.",
           "enum": [
             "LEED_CERTIFICATION_UNSPECIFIED",
             "NO_LEED_CERTIFICATION",
@@ -5002,7 +5002,7 @@
           "type": "string"
         },
         "leedCertificationException": {
-          "description": "LEED certification exception.",
+          "description": "LEED certification exception. Deprecated: this field is no longer populated. LEED certification status is now provided directly by USGBC.",
           "enum": [
             "EXCEPTION_UNSPECIFIED",
             "UNDER_CONSTRUCTION",
