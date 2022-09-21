@@ -450,6 +450,10 @@ export namespace tpu_v2alpha1 {
      */
     serviceAccount?: Schema$ServiceAccount;
     /**
+     * Shielded Instance options.
+     */
+    shieldedInstanceConfig?: Schema$ShieldedInstanceConfig;
+    /**
      * Output only. The current state for the TPU Node.
      */
     state?: string | null;
@@ -567,6 +571,15 @@ export namespace tpu_v2alpha1 {
      * The email address of the service identity.
      */
     email?: string | null;
+  }
+  /**
+   * A set of Shielded Instance options.
+   */
+  export interface Schema$ShieldedInstanceConfig {
+    /**
+     * Defines whether the instance has Secure Boot enabled.
+     */
+    enableSecureBoot?: boolean | null;
   }
   /**
    * Request for SimulateMaintenanceEvent.
@@ -1482,6 +1495,7 @@ export namespace tpu_v2alpha1 {
      *       //   "runtimeVersion": "my_runtimeVersion",
      *       //   "schedulingConfig": {},
      *       //   "serviceAccount": {},
+     *       //   "shieldedInstanceConfig": {},
      *       //   "state": "my_state",
      *       //   "symptoms": [],
      *       //   "tags": []
@@ -1774,6 +1788,7 @@ export namespace tpu_v2alpha1 {
      *   //   "runtimeVersion": "my_runtimeVersion",
      *   //   "schedulingConfig": {},
      *   //   "serviceAccount": {},
+     *   //   "shieldedInstanceConfig": {},
      *   //   "state": "my_state",
      *   //   "symptoms": [],
      *   //   "tags": []
@@ -2205,6 +2220,7 @@ export namespace tpu_v2alpha1 {
      *       //   "runtimeVersion": "my_runtimeVersion",
      *       //   "schedulingConfig": {},
      *       //   "serviceAccount": {},
+     *       //   "shieldedInstanceConfig": {},
      *       //   "state": "my_state",
      *       //   "symptoms": [],
      *       //   "tags": []
