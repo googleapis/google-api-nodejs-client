@@ -1262,7 +1262,7 @@
               ]
             },
             "list": {
-              "description": "Lists publisher profiles",
+              "description": "Lists publisher profiles. The returned publisher profiles aren't in any defined order. The order of the results might change. A new publisher profile can appear in any place in the list of returned results.",
               "flatPath": "v1/buyers/{buyersId}/publisherProfiles",
               "httpMethod": "GET",
               "id": "authorizedbuyersmarketplace.buyers.publisherProfiles.list",
@@ -1307,7 +1307,7 @@
       }
     }
   },
-  "revision": "20220817",
+  "revision": "20220920",
   "rootUrl": "https://authorizedbuyersmarketplace.googleapis.com/",
   "schemas": {
     "AcceptProposalRequest": {
