@@ -144,6 +144,10 @@ export namespace playintegrity_v1 {
     /**
      * Required. Indicates the account risk level of the current user session.
      */
+    risk?: string | null;
+    /**
+     * Required. Indicates the account risk level of the current user session.
+     */
     riskLevel?: string | null;
   }
   /**
@@ -155,7 +159,7 @@ export namespace playintegrity_v1 {
      */
     appRecognitionVerdict?: string | null;
     /**
-     * Hex fingerprint of the application signing certificate. e.g. “ABCE1F....” Set iff app_recognition_verdict != UNEVALUATED.
+     * The SHA256 hash of the requesting app's signing certificates (base64 web-safe encoded). Set iff app_recognition_verdict != UNEVALUATED.
      */
     certificateSha256Digest?: string[] | null;
     /**
