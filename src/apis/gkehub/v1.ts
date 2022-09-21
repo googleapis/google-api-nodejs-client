@@ -262,7 +262,7 @@ export namespace gkehub_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -305,6 +305,10 @@ export namespace gkehub_v1 {
    */
   export interface Schema$ConfigManagementConfigSync {
     /**
+     * Set to true to allow the vertical scaling. Defaults to false which disallows vertical scaling.
+     */
+    allowVerticalScale?: boolean | null;
+    /**
      * Enables the installation of ConfigSync. If set to true, ConfigSync resources will be created and the other ConfigSync fields will be applied if exist. If set to false, all other ConfigSync fields will be ignored, ConfigSync resources will be deleted. If omitted, ConfigSync resources will be managed depends on the presence of git field.
      */
     enabled?: boolean | null;
@@ -321,7 +325,7 @@ export namespace gkehub_v1 {
      */
     preventDrift?: boolean | null;
     /**
-     * Specifies whether the Config Sync Repo is in “hierarchical” or “unstructured” mode.
+     * Specifies whether the Config Sync Repo is in "hierarchical" or "unstructured" mode.
      */
     sourceFormat?: string | null;
   }
@@ -441,6 +445,10 @@ export namespace gkehub_v1 {
      * Status of gatekeeper-controller-manager pod.
      */
     gatekeeperControllerManagerState?: string | null;
+    /**
+     * Status of the pod serving the mutation webhook.
+     */
+    gatekeeperMutation?: string | null;
   }
   /**
    * Git repo configuration for a single cluster.
@@ -933,6 +941,10 @@ export namespace gkehub_v1 {
    */
   export interface Schema$IdentityServiceAuthMethod {
     /**
+     * GoogleConfig specific configuration
+     */
+    googleConfig?: Schema$IdentityServiceGoogleConfig;
+    /**
      * Identifier for auth config.
      */
     name?: string | null;
@@ -944,6 +956,15 @@ export namespace gkehub_v1 {
      * Proxy server address to use for auth method.
      */
     proxy?: string | null;
+  }
+  /**
+   * Configuration for the Google Plugin Auth flow.
+   */
+  export interface Schema$IdentityServiceGoogleConfig {
+    /**
+     * Disable automatic configuration of Google Plugin on supported platforms.
+     */
+    disable?: boolean | null;
   }
   /**
    * **Anthos Identity Service**: Configuration for a single Membership.
@@ -995,6 +1016,10 @@ export namespace gkehub_v1 {
      * Flag to denote if reverse proxy is used to connect to auth provider. This flag should be set to true when provider is not reachable by Google Cloud Console.
      */
     deployCloudConsoleProxy?: boolean | null;
+    /**
+     * Enable access token.
+     */
+    enableAccessToken?: boolean | null;
     /**
      * Output only. Encrypted OIDC Client secret
      */
@@ -1495,6 +1520,19 @@ export namespace gkehub_v1 {
     state?: string | null;
   }
   /**
+   * Status of data plane management. Only reported per-member.
+   */
+  export interface Schema$ServiceMeshDataPlaneManagement {
+    /**
+     * Explanation of the status.
+     */
+    details?: Schema$ServiceMeshStatusDetails[];
+    /**
+     * Lifecycle status of data plane management.
+     */
+    state?: string | null;
+  }
+  /**
    * **Service Mesh**: Spec for a single Membership for the servicemesh feature
    */
   export interface Schema$ServiceMeshMembershipSpec {
@@ -1502,6 +1540,10 @@ export namespace gkehub_v1 {
      * Enables automatic control plane management.
      */
     controlPlane?: string | null;
+    /**
+     * Enables automatic Service Mesh management.
+     */
+    management?: string | null;
   }
   /**
    * **Service Mesh**: State for a single Membership, as analyzed by the Service Mesh Hub Controller.
@@ -1511,6 +1553,10 @@ export namespace gkehub_v1 {
      * Output only. Status of control plane management
      */
     controlPlaneManagement?: Schema$ServiceMeshControlPlaneManagement;
+    /**
+     * Output only. Status of data plane management.
+     */
+    dataPlaneManagement?: Schema$ServiceMeshDataPlaneManagement;
   }
   /**
    * ServiceMeshSpec contains the serviceMesh subfeature configuration.

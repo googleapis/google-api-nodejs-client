@@ -503,7 +503,7 @@ export namespace recaptchaenterprise_v1 {
      */
     createTime?: string | null;
     /**
-     * The hostname of the page on which the token was generated.
+     * The hostname of the page on which the token was generated (Web keys only).
      */
     hostname?: string | null;
     /**

@@ -626,7 +626,7 @@
       }
     }
   },
-  "revision": "20220808",
+  "revision": "20220830",
   "rootUrl": "https://datastore.googleapis.com/",
   "schemas": {
     "AllocateIdsRequest": {
@@ -1130,7 +1130,7 @@
           "type": "string"
         },
         "properties": {
-          "description": "Required. An ordered sequence of property names and their index attributes.",
+          "description": "Required. An ordered sequence of property names and their index attributes. Requires: * A maximum of 100 properties.",
           "items": {
             "$ref": "GoogleDatastoreAdminV1IndexedProperty"
           },

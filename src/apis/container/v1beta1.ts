@@ -258,7 +258,7 @@ export namespace container_v1beta1 {
      */
     management?: Schema$NodeManagement;
     /**
-     * Deprecated. Minimum CPU platform to be used for NAP created node pools. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: Intel Haswell or minCpuPlatform: Intel Sandy Bridge. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform) This field is deprecated, min_cpu_platform should be specified using https://cloud.google.com/requested-min-cpu-platform label selector on the pod. To unset the min cpu platform field pass "automatic" as field value.
+     * Deprecated. Minimum CPU platform to be used for NAP created node pools. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: Intel Haswell or minCpuPlatform: Intel Sandy Bridge. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform). This field is deprecated, min_cpu_platform should be specified using https://cloud.google.com/requested-min-cpu-platform label selector on the pod. To unset the min cpu platform field pass "automatic" as field value.
      */
     minCpuPlatform?: string | null;
     /**
@@ -855,6 +855,10 @@ export namespace container_v1beta1 {
      * The node pool to be upgraded. This field is mandatory if "desired_node_version", "desired_image_family", "desired_node_pool_autoscaling", or "desired_workload_metadata_config" is specified and there is more than one node pool on the cluster.
      */
     desiredNodePoolId?: string | null;
+    /**
+     * The desired node pool logging configuration defaults for the cluster.
+     */
+    desiredNodePoolLoggingConfig?: Schema$NodePoolLoggingConfig;
     /**
      * The Kubernetes version to change the nodes to (typically an upgrade). Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior: - "latest": picks the highest valid Kubernetes version - "1.X": picks the highest valid patch+gke.N patch in the 1.X version - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version - "1.X.Y-gke.N": picks an explicit Kubernetes version - "-": picks the Kubernetes master version
      */
@@ -1552,6 +1556,15 @@ export namespace container_v1beta1 {
     componentConfig?: Schema$LoggingComponentConfig;
   }
   /**
+   * LoggingVariantConfig specifies the behaviour of the logging component.
+   */
+  export interface Schema$LoggingVariantConfig {
+    /**
+     * Logging variant deployed on nodes.
+     */
+    variant?: string | null;
+  }
+  /**
    * Represents the Maintenance exclusion option.
    */
   export interface Schema$MaintenanceExclusionOptions {
@@ -1849,6 +1862,10 @@ export namespace container_v1beta1 {
      */
     localSsdCount?: number | null;
     /**
+     * Logging configuration.
+     */
+    loggingConfig?: Schema$NodePoolLoggingConfig;
+    /**
      * The name of a Google Compute Engine [machine type](https://cloud.google.com/compute/docs/machine-types). If unspecified, the default machine type is `e2-medium`.
      */
     machineType?: string | null;
@@ -1857,7 +1874,7 @@ export namespace container_v1beta1 {
      */
     metadata?: {[key: string]: string} | null;
     /**
-     * Minimum CPU platform to be used by this instance. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as `minCpuPlatform: "Intel Haswell"` or `minCpuPlatform: "Intel Sandy Bridge"`. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+     * Minimum CPU platform to be used by this instance. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as `minCpuPlatform: "Intel Haswell"` or `minCpuPlatform: "Intel Sandy Bridge"`. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform).
      */
     minCpuPlatform?: string | null;
     /**
@@ -1913,6 +1930,10 @@ export namespace container_v1beta1 {
      * GCFS (Google Container File System, also known as Riptide) options.
      */
     gcfsConfig?: Schema$GcfsConfig;
+    /**
+     * Logging configuration for node pools.
+     */
+    loggingConfig?: Schema$NodePoolLoggingConfig;
   }
   /**
    * Node kubelet configs.
@@ -2109,6 +2130,15 @@ export namespace container_v1beta1 {
      * Subset of NodeConfig message that has defaults.
      */
     nodeConfigDefaults?: Schema$NodeConfigDefaults;
+  }
+  /**
+   * NodePoolLoggingConfig specifies logging configuration for nodepools.
+   */
+  export interface Schema$NodePoolLoggingConfig {
+    /**
+     * Logging variant configuration.
+     */
+    variantConfig?: Schema$LoggingVariantConfig;
   }
   /**
    * Kubernetes taint is comprised of three fields: key, value, and effect. Effect can only be one of three types: NoSchedule, PreferNoSchedule or NoExecute. See [here](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration) for more information, including usage and the valid values.
@@ -2369,7 +2399,7 @@ export namespace container_v1beta1 {
      */
     consumeReservationType?: string | null;
     /**
-     * Corresponds to the label key of a reservation resource. To target a SPECIFIC_RESERVATION by name, specify "googleapis.com/reservation-name" as the key and specify the name of your reservation as its value.
+     * Corresponds to the label key of a reservation resource. To target a SPECIFIC_RESERVATION by name, specify "compute.googleapis.com/reservation-name" as the key and specify the name of your reservation as its value.
      */
     key?: string | null;
     /**
@@ -3091,6 +3121,10 @@ export namespace container_v1beta1 {
      * The desired list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the node pool's nodes should be located. Changing the locations for a node pool will result in nodes being either created or removed from the node pool, depending on whether locations are being added or removed.
      */
     locations?: string[] | null;
+    /**
+     * Logging configuration.
+     */
+    loggingConfig?: Schema$NodePoolLoggingConfig;
     /**
      * The name (project, location, cluster, node pool) of the node pool to update. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
@@ -8313,6 +8347,7 @@ export namespace container_v1beta1 {
      *       //   "labels": {},
      *       //   "linuxNodeConfig": {},
      *       //   "locations": [],
+     *       //   "loggingConfig": {},
      *       //   "name": "my_name",
      *       //   "nodeNetworkConfig": {},
      *       //   "nodePoolId": "my_nodePoolId",
@@ -13763,6 +13798,7 @@ export namespace container_v1beta1 {
      *       //   "labels": {},
      *       //   "linuxNodeConfig": {},
      *       //   "locations": [],
+     *       //   "loggingConfig": {},
      *       //   "name": "my_name",
      *       //   "nodeNetworkConfig": {},
      *       //   "nodePoolId": "my_nodePoolId",

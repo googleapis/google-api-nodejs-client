@@ -1532,6 +1532,81 @@
                           ]
                         }
                       }
+                    },
+                    "replicationCycles": {
+                      "methods": {
+                        "get": {
+                          "description": "Gets details of a single ReplicationCycle.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}/migratingVms/{migratingVmsId}/replicationCycles/{replicationCyclesId}",
+                          "httpMethod": "GET",
+                          "id": "vmmigration.projects.locations.sources.migratingVms.replicationCycles.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the ReplicationCycle.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/sources/[^/]+/migratingVms/[^/]+/replicationCycles/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "ReplicationCycle"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists ReplicationCycles in a given MigratingVM.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}/migratingVms/{migratingVmsId}/replicationCycles",
+                          "httpMethod": "GET",
+                          "id": "vmmigration.projects.locations.sources.migratingVms.replicationCycles.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "Optional. The filter request.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "orderBy": {
+                              "description": "Optional. the order by fields for the result.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "Optional. The maximum number of replication cycles to return. The service may return fewer than this value. If unspecified, at most 100 migrating VMs will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Required. A page token, received from a previous `ListReplicationCycles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReplicationCycles` must match the call that provided the page token.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The parent, which owns this collection of ReplicationCycles.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/sources/[^/]+/migratingVms/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/replicationCycles",
+                          "response": {
+                            "$ref": "ListReplicationCyclesResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
                     }
                   }
                 },
@@ -1897,7 +1972,7 @@
       }
     }
   },
-  "revision": "20220811",
+  "revision": "20220908",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AddGroupMigrationRequest": {
@@ -1954,7 +2029,7 @@
             "Unspecified license for the OS.",
             "No license available for the OS.",
             "The license type is Pay As You Go license type.",
-            "The license type is is Bring Your Own License type."
+            "The license type is Bring Your Own License type."
           ],
           "type": "string"
         }
@@ -2779,6 +2854,34 @@
           "items": {
             "$ref": "Operation"
           },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListReplicationCyclesResponse": {
+      "description": "Response message for 'ListReplicationCycles' request.",
+      "id": "ListReplicationCyclesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Output only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "replicationCycles": {
+          "description": "Output only. The list of replication cycles response.",
+          "items": {
+            "$ref": "ReplicationCycle"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Output only. Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
           "type": "array"
         }
       },

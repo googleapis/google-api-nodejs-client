@@ -124,6 +124,19 @@ export namespace paymentsresellersubscription_v1 {
     }
   }
 
+  /**
+   * Describes the amount unit including the currency code.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1Amount {
+    /**
+     * Required. Amount in micros (1_000_000 micros = 1 currency unit)
+     */
+    amountMicros?: string | null;
+    /**
+     * Required. Currency codes in accordance with [ISO-4217 Currency Codes] (https://en.wikipedia.org/wiki/ISO_4217). For example, USD.
+     */
+    currencyCode?: string | null;
+  }
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionRequest {
     /**
      * Optional. If true, the subscription will be cancelled immediately. Otherwise, the subscription will be cancelled at renewal_time, and therefore no prorated refund will be issued for the rest of the cycle.
@@ -205,7 +218,7 @@ export namespace paymentsresellersubscription_v1 {
   }
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsRequest {
     /**
-     * Optional. Specifies the filters for the promotion results. The syntax defined in the EBNF grammar: https://google.aip.dev/assets/misc/ebnf-filtering.txt. An error will be thrown if any specified parameter is not supported. Currently, it can only be used by Youtube partners. Allowed parameters are: - regionCodes - zipCode - eligibilityId - applicableProducts Multiple parameters can be specified, for example: "regionCodes=US zipCode=94043 eligibilityId=2022H1Campaign", or "applicableProducts=partners/p1/products/product2"
+     * Optional. Specifies the filters for the promotion results. The syntax is defined in https://google.aip.dev/160 with the following caveats: - Only the following features are supported: - Logical operator `AND` - Comparison operator `=` (no wildcards `*`) - Traversal operator `.` - Has operator `:` (no wildcards `*`) - Only the following fields are supported: - `applicableProducts` - `regionCodes` - `youtubePayload.partnerEligibilityId` - `youtubePayload.postalCode` - Unless explicitly mentioned above, other features are not supported. Example: `applicableProducts:partners/partner1/products/product1 AND regionCodes:US AND youtubePayload.postalCode=94043 AND youtubePayload.partnerEligibilityId=eligibility-id`
      */
     filter?: string | null;
     /**
@@ -268,9 +281,13 @@ export namespace paymentsresellersubscription_v1 {
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1Product {
     /**
-     * Output only. Response only. Resource name of the subscription. It will have the format of "partners/{partner_id\}/products/{product_id\}"
+     * Output only. Response only. Resource name of the product. It will have the format of "partners/{partner_id\}/products/{product_id\}"
      */
     name?: string | null;
+    /**
+     * Output only. Price configs for the product in the available regions.
+     */
+    priceConfigs?: Schema$GoogleCloudPaymentsResellerSubscriptionV1ProductPriceConfig[];
     /**
      * Output only. 2-letter ISO region code where the product is available in. Ex. "US" Please refers to: https://en.wikipedia.org/wiki/ISO_3166-1
      */
@@ -283,6 +300,19 @@ export namespace paymentsresellersubscription_v1 {
      * Output only. Localized human readable name of the product.
      */
     titles?: Schema$GoogleTypeLocalizedText[];
+  }
+  /**
+   * Configs the prices in an available region.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1ProductPriceConfig {
+    /**
+     * Output only. The price in the region.
+     */
+    amount?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Amount;
+    /**
+     * Output only. 2-letter ISO region code where the product is available in. Ex. "US".
+     */
+    regionCode?: string | null;
   }
   /**
    * A Promotion resource that defines a promotion for a subscription that can be resold.
@@ -339,6 +369,14 @@ export namespace paymentsresellersubscription_v1 {
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetailsIntroductoryPricingSpec {
     /**
+     * Output only. The discount amount. The value is positive.
+     */
+    discountAmount?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Amount;
+    /**
+     * Output only. The discount percentage in micros. For example, 50,000 represents 5%.
+     */
+    discountRatioMicros?: string | null;
+    /**
      * Output only. Output Only. The duration of an introductory offer in billing cycles.
      */
     recurrenceCount?: number | null;
@@ -385,7 +423,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     lineItems?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem[];
     /**
-     * Output only. Response only. Resource name of the subscription. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}"
+     * Optional. Resource name of the subscription. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}". This is available for authorizeAddon, but otherwise is response only.
      */
     name?: string | null;
     /**
@@ -591,7 +629,7 @@ export namespace paymentsresellersubscription_v1 {
      *
      *   // Do the magic
      *   const res = await paymentsresellersubscription.partners.products.list({
-     *     // Optional. Specifies the filters for the products results. The syntax defined in the EBNF grammar: https://google.aip.dev/assets/misc/ebnf-filtering.txt. An error will be thrown if any specified parameter is not supported. Currently, it can only be used by Youtube partners. Allowed parameters are: - regionCodes - zipCode - eligibilityId Multiple parameters can be specified, for example: "regionCodes=US zipCode=94043 eligibilityId=2022H1Campaign"
+     *     // Optional. Specifies the filters for the product results. The syntax is defined in https://google.aip.dev/160 with the following caveats: - Only the following features are supported: - Logical operator `AND` - Comparison operator `=` (no wildcards `*`) - Traversal operator `.` - Has operator `:` (no wildcards `*`) - Only the following fields are supported: - `regionCodes` - `youtubePayload.partnerEligibilityId` - `youtubePayload.postalCode` - Unless explicitly mentioned above, other features are not supported. Example: `regionCodes:US AND youtubePayload.postalCode=94043 AND youtubePayload.partnerEligibilityId=eligibility-id`
      *     filter: 'placeholder-value',
      *     // Optional. The maximum number of products to return. The service may return fewer than this value. If unspecified, at most 50 products will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
@@ -715,7 +753,7 @@ export namespace paymentsresellersubscription_v1 {
   export interface Params$Resource$Partners$Products$List
     extends StandardParameters {
     /**
-     * Optional. Specifies the filters for the products results. The syntax defined in the EBNF grammar: https://google.aip.dev/assets/misc/ebnf-filtering.txt. An error will be thrown if any specified parameter is not supported. Currently, it can only be used by Youtube partners. Allowed parameters are: - regionCodes - zipCode - eligibilityId Multiple parameters can be specified, for example: "regionCodes=US zipCode=94043 eligibilityId=2022H1Campaign"
+     * Optional. Specifies the filters for the product results. The syntax is defined in https://google.aip.dev/160 with the following caveats: - Only the following features are supported: - Logical operator `AND` - Comparison operator `=` (no wildcards `*`) - Traversal operator `.` - Has operator `:` (no wildcards `*`) - Only the following fields are supported: - `regionCodes` - `youtubePayload.partnerEligibilityId` - `youtubePayload.postalCode` - Unless explicitly mentioned above, other features are not supported. Example: `regionCodes:US AND youtubePayload.postalCode=94043 AND youtubePayload.partnerEligibilityId=eligibility-id`
      */
     filter?: string;
     /**
@@ -917,7 +955,7 @@ export namespace paymentsresellersubscription_v1 {
      *
      *   // Do the magic
      *   const res = await paymentsresellersubscription.partners.promotions.list({
-     *     // Optional. Specifies the filters for the promotion results. The syntax defined in the EBNF grammar: https://google.aip.dev/assets/misc/ebnf-filtering.txt. An error will be thrown if the specified parameter(s) is not supported. Currently, it can only be used by Youtube partners. Allowed parameters are: - region_codes: "US" - zip_code: "94043" - eligibility_id: "2022H1Campaign" Multiple parameters can be specified, for example: "region_codes=US zip_code=94043 eligibility_id=2022H1Campaign"
+     *     // Optional. Specifies the filters for the promotion results. The syntax is defined in https://google.aip.dev/160 with the following caveats: - Only the following features are supported: - Logical operator `AND` - Comparison operator `=` (no wildcards `*`) - Traversal operator `.` - Has operator `:` (no wildcards `*`) - Only the following fields are supported: - `applicableProducts` - `regionCodes` - `youtubePayload.partnerEligibilityId` - `youtubePayload.postalCode` - Unless explicitly mentioned above, other features are not supported. Example: `applicableProducts:partners/partner1/products/product1 AND regionCodes:US AND youtubePayload.postalCode=94043 AND youtubePayload.partnerEligibilityId=eligibility-id`
      *     filter: 'placeholder-value',
      *     // Optional. The maximum number of promotions to return. The service may return fewer than this value. If unspecified, at most 50 products will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
@@ -1053,7 +1091,7 @@ export namespace paymentsresellersubscription_v1 {
   export interface Params$Resource$Partners$Promotions$List
     extends StandardParameters {
     /**
-     * Optional. Specifies the filters for the promotion results. The syntax defined in the EBNF grammar: https://google.aip.dev/assets/misc/ebnf-filtering.txt. An error will be thrown if the specified parameter(s) is not supported. Currently, it can only be used by Youtube partners. Allowed parameters are: - region_codes: "US" - zip_code: "94043" - eligibility_id: "2022H1Campaign" Multiple parameters can be specified, for example: "region_codes=US zip_code=94043 eligibility_id=2022H1Campaign"
+     * Optional. Specifies the filters for the promotion results. The syntax is defined in https://google.aip.dev/160 with the following caveats: - Only the following features are supported: - Logical operator `AND` - Comparison operator `=` (no wildcards `*`) - Traversal operator `.` - Has operator `:` (no wildcards `*`) - Only the following fields are supported: - `applicableProducts` - `regionCodes` - `youtubePayload.partnerEligibilityId` - `youtubePayload.postalCode` - Unless explicitly mentioned above, other features are not supported. Example: `applicableProducts:partners/partner1/products/product1 AND regionCodes:US AND youtubePayload.postalCode=94043 AND youtubePayload.partnerEligibilityId=eligibility-id`
      */
     filter?: string;
     /**

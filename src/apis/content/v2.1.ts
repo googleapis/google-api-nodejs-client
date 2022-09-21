@@ -233,7 +233,7 @@ export namespace content_v2_1 {
      */
     googleMyBusinessLink?: Schema$AccountGoogleMyBusinessLink;
     /**
-     * Required for update. Merchant Center account ID.
+     * Required. 64-bit Merchant Center account ID.
      */
     id?: string | null;
     /**
@@ -1296,9 +1296,21 @@ export namespace content_v2_1 {
    */
   export interface Schema$CollectionStatusDestinationStatus {
     /**
+     * Country codes (ISO 3166-1 alpha-2) where the collection is approved.
+     */
+    approvedCountries?: string[] | null;
+    /**
      * The name of the destination
      */
     destination?: string | null;
+    /**
+     * Country codes (ISO 3166-1 alpha-2) where the collection is disapproved.
+     */
+    disapprovedCountries?: string[] | null;
+    /**
+     * Country codes (ISO 3166-1 alpha-2) where the collection is pending approval.
+     */
+    pendingCountries?: string[] | null;
     /**
      * The status for the specified destination in the collections target country.
      */
@@ -1308,6 +1320,10 @@ export namespace content_v2_1 {
    * Issue associated with the collection.
    */
   export interface Schema$CollectionStatusItemLevelIssue {
+    /**
+     * Country codes (ISO 3166-1 alpha-2) where issue applies to the offer.
+     */
+    applicableCountries?: string[] | null;
     /**
      * The attribute's name, if the issue is caused by a single attribute.
      */
@@ -2534,6 +2550,10 @@ export namespace content_v2_1 {
      * Availability of the product. For accepted attribute values, see the local product inventory feed specification.
      */
     availability?: string | null;
+    /**
+     * A list of custom (merchant-provided) attributes. Can also be used to submit any attribute of the feed specification in its generic form, for example, `{ "name": "size type", "value": "regular" \}`.
+     */
+    customAttributes?: Schema$CustomAttribute[];
     /**
      * In-store product location.
      */
@@ -18725,6 +18745,7 @@ export namespace content_v2_1 {
      *       // request body parameters
      *       // {
      *       //   "availability": "my_availability",
+     *       //   "customAttributes": [],
      *       //   "instoreProductLocation": "my_instoreProductLocation",
      *       //   "kind": "my_kind",
      *       //   "pickupMethod": "my_pickupMethod",
@@ -18742,6 +18763,7 @@ export namespace content_v2_1 {
      *   // Example response
      *   // {
      *   //   "availability": "my_availability",
+     *   //   "customAttributes": [],
      *   //   "instoreProductLocation": "my_instoreProductLocation",
      *   //   "kind": "my_kind",
      *   //   "pickupMethod": "my_pickupMethod",

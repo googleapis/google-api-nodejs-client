@@ -550,6 +550,11 @@
                   "location": "query",
                   "type": "boolean"
                 },
+                "deviceTierConfigId": {
+                  "description": "Device tier config (DTC) to be used for generating deliverables (APKs). Contains id of the DTC or \"LATEST\" for last uploaded DTC.",
+                  "location": "query",
+                  "type": "string"
+                },
                 "editId": {
                   "description": "Identifier of the edit.",
                   "location": "path",
@@ -3915,7 +3920,7 @@
       }
     }
   },
-  "revision": "20220817",
+  "revision": "20220919",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "AcquisitionTargetingRule": {

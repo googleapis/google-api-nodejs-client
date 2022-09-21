@@ -624,6 +624,10 @@ export namespace translate_v3 {
    */
   export interface Schema$TranslateDocumentRequest {
     /**
+     * Optional. This flag is to support user customized attribution. If not provided, the default is `Machine Translated by Google`. Customized attribution should follow rules in https://cloud.google.com/translate/attribution#attribution_and_logos
+     */
+    customizedAttribution?: string | null;
+    /**
      * Required. Input configurations.
      */
     documentInputConfig?: Schema$DocumentInputConfig;
@@ -2170,6 +2174,7 @@ export namespace translate_v3 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "customizedAttribution": "my_customizedAttribution",
      *       //   "documentInputConfig": {},
      *       //   "documentOutputConfig": {},
      *       //   "glossaryConfig": {},

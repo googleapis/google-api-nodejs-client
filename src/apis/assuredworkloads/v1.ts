@@ -154,7 +154,7 @@ export namespace assuredworkloads_v1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1Workload {
     /**
-     * Input only. The billing account used for the resources which are direct children of workload. This billing account is initially associated with the resources created as part of Workload creation. After the initial creation of these resources, the customer can change the assigned billing account. The resource name has the form `billingAccounts/{billing_account_id\}`. For example, `billingAccounts/012345-567890-ABCDEF`.
+     * Optional. The billing account used for the resources which are direct children of workload. This billing account is initially associated with the resources created as part of Workload creation. After the initial creation of these resources, the customer can change the assigned billing account. The resource name has the form `billingAccounts/{billing_account_id\}`. For example, `billingAccounts/012345-567890-ABCDEF`.
      */
     billingAccount?: string | null;
     /**
@@ -165,6 +165,10 @@ export namespace assuredworkloads_v1 {
      * Required. Immutable. Compliance Regime associated with this workload.
      */
     complianceRegime?: string | null;
+    /**
+     * Output only. Urls for services which are compliant for this Assured Workload, but which are currently disallowed by the ResourceUsageRestriction org policy. Invoke RestrictAllowedResources endpoint to allow your project developers to use these services in their environment."
+     */
+    compliantButDisallowedServices?: string[] | null;
     /**
      * Output only. Immutable. The Workload creation timestamp.
      */
@@ -378,6 +382,10 @@ export namespace assuredworkloads_v1 {
      */
     complianceRegime?: string | null;
     /**
+     * Output only. Urls for services which are compliant for this Assured Workload, but which are currently disallowed by the ResourceUsageRestriction org policy. Invoke RestrictAllowedResources endpoint to allow your project developers to use these services in their environment."
+     */
+    compliantButDisallowedServices?: string[] | null;
+    /**
      * Output only. Immutable. The Workload creation timestamp.
      */
     createTime?: string | null;
@@ -512,7 +520,7 @@ export namespace assuredworkloads_v1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkload {
     /**
-     * Input only. The billing account used for the resources which are direct children of workload. This billing account is initially associated with the resources created as part of Workload creation. After the initial creation of these resources, the customer can change the assigned billing account. The resource name has the form `billingAccounts/{billing_account_id\}`. For example, `billingAccounts/012345-567890-ABCDEF`.
+     * Optional. The billing account used for the resources which are direct children of workload. This billing account is initially associated with the resources created as part of Workload creation. After the initial creation of these resources, the customer can change the assigned billing account. The resource name has the form `billingAccounts/{billing_account_id\}`. For example, `billingAccounts/012345-567890-ABCDEF`.
      */
     billingAccount?: string | null;
     /**
@@ -527,6 +535,10 @@ export namespace assuredworkloads_v1 {
      * Output only. Count of active Violations in the Workload.
      */
     complianceStatus?: Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadComplianceStatus;
+    /**
+     * Output only. Urls for services which are compliant for this Assured Workload, but which are currently disallowed by the ResourceUsageRestriction org policy. Invoke RestrictAllowedResources endpoint to allow your project developers to use these services in their environment."
+     */
+    compliantButDisallowedServices?: string[] | null;
     /**
      * Output only. Immutable. The Workload creation timestamp.
      */
@@ -1139,6 +1151,7 @@ export namespace assuredworkloads_v1 {
      *       // {
      *       //   "billingAccount": "my_billingAccount",
      *       //   "complianceRegime": "my_complianceRegime",
+     *       //   "compliantButDisallowedServices": [],
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
      *       //   "enableSovereignControls": false,
@@ -1431,6 +1444,7 @@ export namespace assuredworkloads_v1 {
      *   // {
      *   //   "billingAccount": "my_billingAccount",
      *   //   "complianceRegime": "my_complianceRegime",
+     *   //   "compliantButDisallowedServices": [],
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "enableSovereignControls": false,
@@ -1728,6 +1742,7 @@ export namespace assuredworkloads_v1 {
      *       // {
      *       //   "billingAccount": "my_billingAccount",
      *       //   "complianceRegime": "my_complianceRegime",
+     *       //   "compliantButDisallowedServices": [],
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
      *       //   "enableSovereignControls": false,
@@ -1749,6 +1764,7 @@ export namespace assuredworkloads_v1 {
      *   // {
      *   //   "billingAccount": "my_billingAccount",
      *   //   "complianceRegime": "my_complianceRegime",
+     *   //   "compliantButDisallowedServices": [],
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "enableSovereignControls": false,

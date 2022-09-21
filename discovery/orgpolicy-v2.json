@@ -897,7 +897,7 @@
       }
     }
   },
-  "revision": "20220817",
+  "revision": "20220919",
   "rootUrl": "https://orgpolicy.googleapis.com/",
   "schemas": {
     "GoogleCloudOrgpolicyV2AlternatePolicySpec": {
@@ -1036,6 +1036,12 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "updateTime": {
+          "description": "Output only. The last time this custom constraint was updated. This represents the last time that the `CreateCustomConstraint` or `UpdateCustomConstraint` RPC was called",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"

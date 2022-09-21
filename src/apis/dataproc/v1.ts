@@ -346,7 +346,7 @@ export namespace dataproc_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. members can have the following values: allUsers: A special identifier that represents anyone who is on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone who is authenticated with a Google account or a service account. user:{emailid\}: An email address that represents a specific Google account. For example, alice@example.com . serviceAccount:{emailid\}: An email address that represents a Google service account. For example, my-other-app@appspot.gserviceaccount.com. serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]: An identifier for a Kubernetes service account (https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, my-project.svc.id.goog[my-namespace/my-kubernetes-sa]. group:{emailid\}: An email address that represents a Google group. For example, admins@example.com. deleted:user:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a user that has been recently deleted. For example, alice@example.com?uid=123456789012345678901. If the user is recovered, this value reverts to user:{emailid\} and the recovered user retains the role in the binding. deleted:serviceAccount:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901. If the service account is undeleted, this value reverts to serviceAccount:{emailid\} and the undeleted service account retains the role in the binding. deleted:group:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, admins@example.com?uid=123456789012345678901. If the group is recovered, this value reverts to group:{emailid\} and the recovered group retains the role in the binding. domain:{domain\}: The G Suite domain (primary) that represents all the users of that domain. For example, google.com or example.com.
+     * Specifies the principals requesting access for a Google Cloud resource. members can have the following values: allUsers: A special identifier that represents anyone who is on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. user:{emailid\}: An email address that represents a specific Google account. For example, alice@example.com . serviceAccount:{emailid\}: An email address that represents a Google service account. For example, my-other-app@appspot.gserviceaccount.com. serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]: An identifier for a Kubernetes service account (https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, my-project.svc.id.goog[my-namespace/my-kubernetes-sa]. group:{emailid\}: An email address that represents a Google group. For example, admins@example.com. deleted:user:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a user that has been recently deleted. For example, alice@example.com?uid=123456789012345678901. If the user is recovered, this value reverts to user:{emailid\} and the recovered user retains the role in the binding. deleted:serviceAccount:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901. If the service account is undeleted, this value reverts to serviceAccount:{emailid\} and the undeleted service account retains the role in the binding. deleted:group:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, admins@example.com?uid=123456789012345678901. If the group is recovered, this value reverts to group:{emailid\} and the recovered group retains the role in the binding. domain:{domain\}: The G Suite domain (primary) that represents all the users of that domain. For example, google.com or example.com.
      */
     members?: string[] | null;
     /**
@@ -690,6 +690,10 @@ export namespace dataproc_v1 {
    */
   export interface Schema$ExecutionConfig {
     /**
+     * Optional. The duration to keep the session alive while it's idling. Passing this threshold will cause the session to be terminated. Minimum value is 30 minutes; maximum value is 14 days (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).
+     */
+    idleTtl?: string | null;
+    /**
      * Optional. The Cloud KMS key to use for encryption.
      */
     kmsKey?: string | null;
@@ -787,6 +791,43 @@ export namespace dataproc_v1 {
      * Optional. The zone where the Compute Engine cluster will be located. On a create request, it is required in the "global" region. If omitted in a non-global Dataproc region, the service will pick a zone in the corresponding Compute Engine region. On a get request, zone will always be present.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone] projects/[project_id]/zones/[zone] us-central1-f
      */
     zoneUri?: string | null;
+  }
+  /**
+   * Metadata describing the Compute Engine node pool operation.
+   */
+  export interface Schema$GceNodePoolOperationMetadata {
+    /**
+     * Output only. Cluster UUID associated with the Compute Engine node pool operation.
+     */
+    clusterUuid?: string | null;
+    /**
+     * Output only. Short description of operation.
+     */
+    description?: string | null;
+    /**
+     * Output only. Compute Engine node pool ID for the operation.
+     */
+    gceNodePoolId?: string | null;
+    /**
+     * Output only. Labels associated with the operation
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * The operation type.
+     */
+    operationType?: string | null;
+    /**
+     * Output only. Current operation status.
+     */
+    status?: Schema$ClusterOperationStatus;
+    /**
+     * Output only. The previous operation status.
+     */
+    statusHistory?: Schema$ClusterOperationStatus[];
+    /**
+     * Output only. Errors encountered during operation execution.
+     */
+    warnings?: string[] | null;
   }
   /**
    * Request message for GetIamPolicy method.
@@ -1188,6 +1229,10 @@ export namespace dataproc_v1 {
      * Output only. The previous job status.
      */
     statusHistory?: Schema$JobStatus[];
+    /**
+     * Optional. Job is a Trino job.
+     */
+    trinoJob?: Schema$TrinoJob;
     /**
      * Output only. The collection of YARN applications spun up by this job.Beta Feature: This report is available for testing purposes only. It may be changed before final release.
      */
@@ -1662,6 +1707,10 @@ export namespace dataproc_v1 {
      * Required. The step id. The id must be unique among all jobs within the template.The step id is used as prefix for job id, as job goog-dataproc-workflow-step-id label, and in prerequisiteStepIds field from other steps.The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). Cannot begin or end with underscore or hyphen. Must consist of between 3 and 50 characters.
      */
     stepId?: string | null;
+    /**
+     * Optional. Job is a Trino job.
+     */
+    trinoJob?: Schema$TrinoJob;
   }
   /**
    * Configuration for parameter validation.
@@ -2332,6 +2381,39 @@ export namespace dataproc_v1 {
      * A subset of TestPermissionsRequest.permissions that the caller is allowed.
      */
     permissions?: string[] | null;
+  }
+  /**
+   * A Dataproc job for running Trino (https://trino.io/) queries. IMPORTANT: The Dataproc Trino Optional Component (https://cloud.google.com/dataproc/docs/concepts/components/trino) must be enabled when the cluster is created to submit a Trino job to the cluster.
+   */
+  export interface Schema$TrinoJob {
+    /**
+     * Optional. Trino client tags to attach to this query
+     */
+    clientTags?: string[] | null;
+    /**
+     * Optional. Whether to continue executing queries if a query fails. The default value is false. Setting to true can be useful when executing independent parallel queries.
+     */
+    continueOnFailure?: boolean | null;
+    /**
+     * Optional. The runtime log config for job execution.
+     */
+    loggingConfig?: Schema$LoggingConfig;
+    /**
+     * Optional. The format in which query output will be displayed. See the Trino documentation for supported output formats
+     */
+    outputFormat?: string | null;
+    /**
+     * Optional. A mapping of property names to values. Used to set Trino session properties (https://trino.io/docs/current/sql/set-session.html) Equivalent to using the --session flag in the Trino CLI
+     */
+    properties?: {[key: string]: string} | null;
+    /**
+     * The HCFS URI of the script that contains SQL queries.
+     */
+    queryFileUri?: string | null;
+    /**
+     * A list of queries.
+     */
+    queryList?: Schema$QueryList;
   }
   /**
    * Validation based on a list of allowed values.
@@ -3982,7 +4064,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.locations.batches.delete({
-     *     // Required. The name of the batch resource to delete.
+     *     // Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID"
      *     name: 'projects/my-project/locations/my-location/batches/my-batche',
      *   });
      *   console.log(res.data);
@@ -4106,7 +4188,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.locations.batches.get({
-     *     // Required. The name of the batch to retrieve.
+     *     // Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID"
      *     name: 'projects/my-project/locations/my-location/batches/my-batche',
      *   });
      *   console.log(res.data);
@@ -4382,14 +4464,14 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Locations$Batches$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the batch resource to delete.
+     * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID"
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Batches$Get
     extends StandardParameters {
     /**
-     * Required. The name of the batch to retrieve.
+     * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID"
      */
     name?: string;
   }
@@ -9452,6 +9534,7 @@ export namespace dataproc_v1 {
      *   //   "sparkSqlJob": {},
      *   //   "status": {},
      *   //   "statusHistory": [],
+     *   //   "trinoJob": {},
      *   //   "yarnApplications": []
      *   // }
      * }
@@ -9733,6 +9816,7 @@ export namespace dataproc_v1 {
      *   //   "sparkSqlJob": {},
      *   //   "status": {},
      *   //   "statusHistory": [],
+     *   //   "trinoJob": {},
      *   //   "yarnApplications": []
      *   // }
      * }
@@ -10165,6 +10249,7 @@ export namespace dataproc_v1 {
      *       //   "sparkSqlJob": {},
      *       //   "status": {},
      *       //   "statusHistory": [],
+     *       //   "trinoJob": {},
      *       //   "yarnApplications": []
      *       // }
      *     },
@@ -10191,6 +10276,7 @@ export namespace dataproc_v1 {
      *   //   "sparkSqlJob": {},
      *   //   "status": {},
      *   //   "statusHistory": [],
+     *   //   "trinoJob": {},
      *   //   "yarnApplications": []
      *   // }
      * }
@@ -10487,6 +10573,7 @@ export namespace dataproc_v1 {
      *   //   "sparkSqlJob": {},
      *   //   "status": {},
      *   //   "statusHistory": [],
+     *   //   "trinoJob": {},
      *   //   "yarnApplications": []
      *   // }
      * }

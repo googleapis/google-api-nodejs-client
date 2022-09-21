@@ -138,7 +138,7 @@
       }
     }
   },
-  "revision": "20220817",
+  "revision": "20220916",
   "rootUrl": "https://playintegrity.googleapis.com/",
   "schemas": {
     "AccountDetails": {
@@ -172,6 +172,26 @@
       "description": "Contains information about account risk that indicates if the current user session seems low risk, unknown, or risky before you allow important actions to proceed.",
       "id": "AccountRiskVerdict",
       "properties": {
+        "risk": {
+          "description": "Required. Indicates the account risk level of the current user session.",
+          "enum": [
+            "RISK_UNSPECIFIED",
+            "UNEVALUATED",
+            "HIGHER",
+            "UNKNOWN",
+            "LOWER",
+            "LOWEST"
+          ],
+          "enumDescriptions": [
+            "Risk has not been set.",
+            "The account risk is not evaluated, because the device is not trusted or the user does not have a Play app license.",
+            "Play thinks that at least one of the user accounts on the device has some unusual store engagement behavior that could be risky.",
+            "Play does not have sufficient information to assess the risk. The account may be new, or it may lack activity on the Play Store.",
+            "Play thinks the user could be genuine, since there is some store engagement. However, some signals to support the trust level are missing.",
+            "Play thinks the user is more likely to be genuine due to harder to replicate store engagement signals."
+          ],
+          "type": "string"
+        },
         "riskLevel": {
           "description": "Required. Indicates the account risk level of the current user session.",
           "enum": [
@@ -216,7 +236,7 @@
           "type": "string"
         },
         "certificateSha256Digest": {
-          "description": "Hex fingerprint of the application signing certificate. e.g. “ABCE1F....” Set iff app_recognition_verdict != UNEVALUATED.",
+          "description": "The SHA256 hash of the requesting app's signing certificates (base64 web-safe encoded). Set iff app_recognition_verdict != UNEVALUATED.",
           "items": {
             "type": "string"
           },

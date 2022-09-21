@@ -588,7 +588,7 @@ export namespace forms_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * The returned responses.
+     * The returned form responses. Note: The `formId` field is not returned in the `FormResponse` object for list requests.
      */
     responses?: Schema$FormResponse[];
   }

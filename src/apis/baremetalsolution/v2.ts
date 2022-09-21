@@ -157,7 +157,7 @@ export namespace baremetalsolution_v2 {
      */
     noRootSquash?: boolean | null;
     /**
-     * The IP address of the share on this network.
+     * Output only. The IP address of the share on this network. Assigned automatically during provisioning based on the network's services_cidr.
      */
     shareIp?: string | null;
   }
@@ -626,6 +626,10 @@ export namespace baremetalsolution_v2 {
      */
     ipAddress?: string | null;
     /**
+     * Whether network uses standard frames or jumbo ones.
+     */
+    jumboFramesEnabled?: boolean | null;
+    /**
      * Labels as key value pairs.
      */
     labels?: {[key: string]: string} | null;
@@ -634,9 +638,17 @@ export namespace baremetalsolution_v2 {
      */
     macAddress?: string[] | null;
     /**
+     * Input only. List of mount points to attach the network to.
+     */
+    mountPoints?: Schema$NetworkMountPoint[];
+    /**
      * Output only. The resource name of this `Network`. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. Format: `projects/{project\}/locations/{location\}/networks/{network\}`
      */
     name?: string | null;
+    /**
+     * Output only. Pod name.
+     */
+    pod?: string | null;
     /**
      * List of IP address reservations in this network. When updating this field, an error will be generated if a reservation conflicts with an IP address already allocated to a physical server.
      */
@@ -746,6 +758,27 @@ export namespace baremetalsolution_v2 {
     vlanSameProject?: boolean | null;
   }
   /**
+   * Mount point for a network.
+   */
+  export interface Schema$NetworkMountPoint {
+    /**
+     * Network should be a default gateway.
+     */
+    defaultGateway?: boolean | null;
+    /**
+     * Instance to attach network to.
+     */
+    instance?: string | null;
+    /**
+     * Ip address of the server.
+     */
+    ipAddress?: string | null;
+    /**
+     * Logical interface to detach from.
+     */
+    logicalInterface?: string | null;
+  }
+  /**
    * Network with all used IP addresses.
    */
   export interface Schema$NetworkUsage {
@@ -808,7 +841,7 @@ export namespace baremetalsolution_v2 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The name of the NFS share.
+     * Immutable. The name of the NFS share.
      */
     name?: string | null;
     /**
@@ -820,11 +853,15 @@ export namespace baremetalsolution_v2 {
      */
     requestedSizeGib?: string | null;
     /**
-     * The state of the NFS share.
+     * Output only. The state of the NFS share.
      */
     state?: string | null;
     /**
-     * The volume containing the share.
+     * Immutable. The storage type of the underlying volume.
+     */
+    storageType?: string | null;
+    /**
+     * Output only. The underlying volume of the share. Created automatically during provisioning.
      */
     volume?: string | null;
   }
@@ -1121,6 +1158,14 @@ export namespace baremetalsolution_v2 {
    */
   export interface Schema$VlanAttachment {
     /**
+     * Immutable. The identifier of the attachment within vrf.
+     */
+    id?: string | null;
+    /**
+     * Input only. Pairing key.
+     */
+    pairingKey?: string | null;
+    /**
      * The peer IP of the attachment.
      */
     peerIp?: string | null;
@@ -1128,6 +1173,10 @@ export namespace baremetalsolution_v2 {
      * The peer vlan ID of the attachment.
      */
     peerVlanId?: string | null;
+    /**
+     * The QOS policy applied to this VLAN attachment. This value should be preferred to using qos at vrf level.
+     */
+    qosPolicy?: Schema$QosPolicy;
     /**
      * The router IP of the attachment.
      */
@@ -1170,9 +1219,17 @@ export namespace baremetalsolution_v2 {
      */
     name?: string | null;
     /**
+     * Input only. User-specified notes for new Volume. Used to provision Volumes that require manual intervention.
+     */
+    notes?: string | null;
+    /**
      * Originally requested size, in GiB.
      */
     originallyRequestedSizeGib?: string | null;
+    /**
+     * Immutable. Performance tier of the Volume. Default is SHARED.
+     */
+    performanceTier?: string | null;
     /**
      * Immutable. Pod name.
      */
@@ -1243,6 +1300,10 @@ export namespace baremetalsolution_v2 {
      */
     nfsExports?: Schema$NfsExport[];
     /**
+     * Performance tier of the Volume. Default is SHARED.
+     */
+    performanceTier?: string | null;
+    /**
      * Volume protocol.
      */
     protocol?: string | null;
@@ -1272,7 +1333,7 @@ export namespace baremetalsolution_v2 {
      */
     name?: string | null;
     /**
-     * The QOS policy applied to this VRF.
+     * The QOS policy applied to this VRF. The value is only meaningful when all the vlan attachments have the same QoS. This field should not be used for new integrations, use vlan attachment level qos instead. The field is left for backward-compatibility.
      */
     qosPolicy?: Schema$QosPolicy;
     /**
@@ -3089,9 +3150,12 @@ export namespace baremetalsolution_v2 {
      *   //   "cidr": "my_cidr",
      *   //   "id": "my_id",
      *   //   "ipAddress": "my_ipAddress",
+     *   //   "jumboFramesEnabled": false,
      *   //   "labels": {},
      *   //   "macAddress": [],
+     *   //   "mountPoints": [],
      *   //   "name": "my_name",
+     *   //   "pod": "my_pod",
      *   //   "reservations": [],
      *   //   "servicesCidr": "my_servicesCidr",
      *   //   "state": "my_state",
@@ -3510,9 +3574,12 @@ export namespace baremetalsolution_v2 {
      *       //   "cidr": "my_cidr",
      *       //   "id": "my_id",
      *       //   "ipAddress": "my_ipAddress",
+     *       //   "jumboFramesEnabled": false,
      *       //   "labels": {},
      *       //   "macAddress": [],
+     *       //   "mountPoints": [],
      *       //   "name": "my_name",
+     *       //   "pod": "my_pod",
      *       //   "reservations": [],
      *       //   "servicesCidr": "my_servicesCidr",
      *       //   "state": "my_state",
@@ -3681,6 +3748,287 @@ export namespace baremetalsolution_v2 {
     }
 
     /**
+     * Create an NFS share.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/baremetalsolution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const baremetalsolution = google.baremetalsolution('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await baremetalsolution.projects.locations.nfsShares.create({
+     *     // Required. The parent project and location.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowedClients": [],
+     *       //   "id": "my_id",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "nfsShareId": "my_nfsShareId",
+     *       //   "requestedSizeGib": "my_requestedSizeGib",
+     *       //   "state": "my_state",
+     *       //   "storageType": "my_storageType",
+     *       //   "volume": "my_volume"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Nfsshares$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Nfsshares$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Nfsshares$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Nfsshares$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Nfsshares$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Nfsshares$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Nfsshares$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Nfsshares$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://baremetalsolution.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/nfsShares').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Delete an NFS share. The underlying volume is automatically deleted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/baremetalsolution.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const baremetalsolution = google.baremetalsolution('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await baremetalsolution.projects.locations.nfsShares.delete({
+     *     // Required. The name of the NFS share to delete.
+     *     name: 'projects/my-project/locations/my-location/nfsShares/my-nfsShare',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Nfsshares$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Nfsshares$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Nfsshares$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Nfsshares$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Nfsshares$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Nfsshares$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Nfsshares$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Nfsshares$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://baremetalsolution.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Get details of a single NFS share.
      * @example
      * ```js
@@ -3721,6 +4069,7 @@ export namespace baremetalsolution_v2 {
      *   //   "nfsShareId": "my_nfsShareId",
      *   //   "requestedSizeGib": "my_requestedSizeGib",
      *   //   "state": "my_state",
+     *   //   "storageType": "my_storageType",
      *   //   "volume": "my_volume"
      *   // }
      * }
@@ -3984,9 +4333,9 @@ export namespace baremetalsolution_v2 {
      *
      *   // Do the magic
      *   const res = await baremetalsolution.projects.locations.nfsShares.patch({
-     *     // Output only. The name of the NFS share.
+     *     // Immutable. The name of the NFS share.
      *     name: 'projects/my-project/locations/my-location/nfsShares/my-nfsShare',
-     *     // The list of fields to update. The only currently supported fields are: `labels`
+     *     // The list of fields to update. The only currently supported fields are: `labels` `allowed_clients`
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4000,6 +4349,7 @@ export namespace baremetalsolution_v2 {
      *       //   "nfsShareId": "my_nfsShareId",
      *       //   "requestedSizeGib": "my_requestedSizeGib",
      *       //   "state": "my_state",
+     *       //   "storageType": "my_storageType",
      *       //   "volume": "my_volume"
      *       // }
      *     },
@@ -4106,6 +4456,25 @@ export namespace baremetalsolution_v2 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Nfsshares$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent project and location.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NfsShare;
+  }
+  export interface Params$Resource$Projects$Locations$Nfsshares$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the NFS share to delete.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Nfsshares$Get
     extends StandardParameters {
     /**
@@ -4135,11 +4504,11 @@ export namespace baremetalsolution_v2 {
   export interface Params$Resource$Projects$Locations$Nfsshares$Patch
     extends StandardParameters {
     /**
-     * Output only. The name of the NFS share.
+     * Immutable. The name of the NFS share.
      */
     name?: string;
     /**
-     * The list of fields to update. The only currently supported fields are: `labels`
+     * The list of fields to update. The only currently supported fields are: `labels` `allowed_clients`
      */
     updateMask?: string;
 
@@ -5208,7 +5577,9 @@ export namespace baremetalsolution_v2 {
      *   //   "labels": {},
      *   //   "maxSizeGib": "my_maxSizeGib",
      *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
      *   //   "originallyRequestedSizeGib": "my_originallyRequestedSizeGib",
+     *   //   "performanceTier": "my_performanceTier",
      *   //   "pod": "my_pod",
      *   //   "protocol": "my_protocol",
      *   //   "remainingSpaceGib": "my_remainingSpaceGib",
@@ -5496,7 +5867,9 @@ export namespace baremetalsolution_v2 {
      *       //   "labels": {},
      *       //   "maxSizeGib": "my_maxSizeGib",
      *       //   "name": "my_name",
+     *       //   "notes": "my_notes",
      *       //   "originallyRequestedSizeGib": "my_originallyRequestedSizeGib",
+     *       //   "performanceTier": "my_performanceTier",
      *       //   "pod": "my_pod",
      *       //   "protocol": "my_protocol",
      *       //   "remainingSpaceGib": "my_remainingSpaceGib",

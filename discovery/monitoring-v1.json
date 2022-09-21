@@ -769,7 +769,7 @@
       }
     }
   },
-  "revision": "20220806",
+  "revision": "20220916",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1837,15 +1837,7 @@
     "TableDisplayOptions": {
       "description": "Table display options that can be reused.",
       "id": "TableDisplayOptions",
-      "properties": {
-        "shownColumns": {
-          "description": "Optional. Columns to display in the table. Leave empty to display all available columns. Note: This field is for future features and is not currently used.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
+      "properties": {},
       "type": "object"
     },
     "Text": {

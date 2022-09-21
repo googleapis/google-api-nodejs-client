@@ -156,7 +156,8 @@
             "$ref": "AdBlockingRecoveryTag"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/adsense"
+            "https://www.googleapis.com/auth/adsense",
+            "https://www.googleapis.com/auth/adsense.readonly"
           ]
         },
         "list": {
@@ -744,6 +745,7 @@
                     "MONTH",
                     "ACCOUNT_NAME",
                     "AD_CLIENT_ID",
+                    "HOSTED_AD_CLIENT_ID",
                     "PRODUCT_NAME",
                     "PRODUCT_CODE",
                     "AD_UNIT_NAME",
@@ -792,6 +794,7 @@
                     "Month dimension in YYYY-MM format (e.g. \"2010-02\").",
                     "Account name. The members of this dimension match the values from Account.display_name.",
                     "Unique ID of an ad client. The members of this dimension match the values from AdClient.reporting_dimension_id.",
+                    "Unique ID of a sub-account's ad client. The members of this dimension match the values from AdClient.reporting_dimension_id (for the sub-account).",
                     "Localized product name (e.g. \"AdSense for Content\", \"AdSense for Search\").",
                     "Product code (e.g. \"AFC\", \"AFS\"). The members of this dimension match the values from AdClient.product_code.",
                     "Ad unit name (within which an ad was served). The members of this dimension match the values from AdUnit.display_name.",
@@ -1052,6 +1055,7 @@
                     "MONTH",
                     "ACCOUNT_NAME",
                     "AD_CLIENT_ID",
+                    "HOSTED_AD_CLIENT_ID",
                     "PRODUCT_NAME",
                     "PRODUCT_CODE",
                     "AD_UNIT_NAME",
@@ -1100,6 +1104,7 @@
                     "Month dimension in YYYY-MM format (e.g. \"2010-02\").",
                     "Account name. The members of this dimension match the values from Account.display_name.",
                     "Unique ID of an ad client. The members of this dimension match the values from AdClient.reporting_dimension_id.",
+                    "Unique ID of a sub-account's ad client. The members of this dimension match the values from AdClient.reporting_dimension_id (for the sub-account).",
                     "Localized product name (e.g. \"AdSense for Content\", \"AdSense for Search\").",
                     "Product code (e.g. \"AFC\", \"AFS\"). The members of this dimension match the values from AdClient.product_code.",
                     "Ad unit name (within which an ad was served). The members of this dimension match the values from AdUnit.display_name.",
@@ -1670,7 +1675,7 @@
       }
     }
   },
-  "revision": "20220817",
+  "revision": "20220920",
   "rootUrl": "https://adsense.googleapis.com/",
   "schemas": {
     "Account": {

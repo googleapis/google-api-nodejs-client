@@ -2802,7 +2802,7 @@
       }
     }
   },
-  "revision": "20220817",
+  "revision": "20220920",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -3089,7 +3089,11 @@
         },
         "tokensPerHour": {
           "$ref": "GoogleAnalyticsAdminV1alphaAccessQuotaStatus",
-          "description": "Properties can use 50,000 tokens per hour. An API request consumes a single number of tokens, and that number is deducted from both the hourly and daily quotas."
+          "description": "Properties can use 50,000 tokens per hour. An API request consumes a single number of tokens, and that number is deducted from all of the hourly, daily, and per project hourly quotas."
+        },
+        "tokensPerProjectPerHour": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAccessQuotaStatus",
+          "description": "Properties can use up to 25% of their tokens per project per hour. This amounts to Analytics 360 Properties can use 12,500 tokens per project per hour. An API request consumes a single number of tokens, and that number is deducted from all of the hourly, daily, and per project hourly quotas."
         }
       },
       "type": "object"

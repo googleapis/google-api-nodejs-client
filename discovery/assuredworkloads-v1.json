@@ -379,7 +379,7 @@
       }
     }
   },
-  "revision": "20220729",
+  "revision": "20220909",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata": {
@@ -399,8 +399,7 @@
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
             "CA_REGIONS_AND_SUPPORT",
-            "ITAR",
-            "AU_REGIONS_AND_US_SUPPORT"
+            "ITAR"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -413,8 +412,7 @@
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
             "Assured Workloads For Canada Regions and Support controls",
-            "International Traffic in Arms Regulations",
-            "Assured Workloads for Australia Regions and Support controls"
+            "International Traffic in Arms Regulations"
           ],
           "type": "string"
         },
@@ -500,8 +498,7 @@
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
             "CA_REGIONS_AND_SUPPORT",
-            "ITAR",
-            "AU_REGIONS_AND_US_SUPPORT"
+            "ITAR"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -514,10 +511,17 @@
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
             "Assured Workloads For Canada Regions and Support controls",
-            "International Traffic in Arms Regulations",
-            "Assured Workloads for Australia Regions and Support controls"
+            "International Traffic in Arms Regulations"
           ],
           "type": "string"
+        },
+        "compliantButDisallowedServices": {
+          "description": "Output only. Urls for services which are compliant for this Assured Workload, but which are currently disallowed by the ResourceUsageRestriction org policy. Invoke RestrictAllowedResources endpoint to allow your project developers to use these services in their environment.\"",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "createTime": {
           "description": "Output only. Immutable. The Workload creation timestamp.",
@@ -733,8 +737,7 @@
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
             "CA_REGIONS_AND_SUPPORT",
-            "ITAR",
-            "AU_REGIONS_AND_US_SUPPORT"
+            "ITAR"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -747,8 +750,7 @@
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
             "Assured Workloads For Canada Regions and Support controls",
-            "International Traffic in Arms Regulations",
-            "Assured Workloads for Australia Regions and Support controls"
+            "International Traffic in Arms Regulations"
           ],
           "type": "string"
         },
@@ -780,7 +782,7 @@
       "id": "GoogleCloudAssuredworkloadsV1beta1Workload",
       "properties": {
         "billingAccount": {
-          "description": "Input only. The billing account used for the resources which are direct children of workload. This billing account is initially associated with the resources created as part of Workload creation. After the initial creation of these resources, the customer can change the assigned billing account. The resource name has the form `billingAccounts/{billing_account_id}`. For example, `billingAccounts/012345-567890-ABCDEF`.",
+          "description": "Optional. The billing account used for the resources which are direct children of workload. This billing account is initially associated with the resources created as part of Workload creation. After the initial creation of these resources, the customer can change the assigned billing account. The resource name has the form `billingAccounts/{billing_account_id}`. For example, `billingAccounts/012345-567890-ABCDEF`.",
           "type": "string"
         },
         "cjisSettings": {
@@ -800,8 +802,7 @@
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
             "CA_REGIONS_AND_SUPPORT",
-            "ITAR",
-            "AU_REGIONS_AND_US_SUPPORT"
+            "ITAR"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -814,10 +815,17 @@
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
             "Assured Workloads For Canada Regions and Support controls",
-            "International Traffic in Arms Regulations",
-            "Assured Workloads for Australia Regions and Support controls"
+            "International Traffic in Arms Regulations"
           ],
           "type": "string"
+        },
+        "compliantButDisallowedServices": {
+          "description": "Output only. Urls for services which are compliant for this Assured Workload, but which are currently disallowed by the ResourceUsageRestriction org policy. Invoke RestrictAllowedResources endpoint to allow your project developers to use these services in their environment.\"",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "createTime": {
           "description": "Output only. Immutable. The Workload creation timestamp.",
@@ -1089,8 +1097,7 @@
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
             "CA_REGIONS_AND_SUPPORT",
-            "ITAR",
-            "AU_REGIONS_AND_US_SUPPORT"
+            "ITAR"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -1103,8 +1110,7 @@
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
             "Assured Workloads For Canada Regions and Support controls",
-            "International Traffic in Arms Regulations",
-            "Assured Workloads for Australia Regions and Support controls"
+            "International Traffic in Arms Regulations"
           ],
           "type": "string"
         },
@@ -1136,7 +1142,7 @@
       "id": "GoogleCloudAssuredworkloadsVersioningV1mainWorkload",
       "properties": {
         "billingAccount": {
-          "description": "Input only. The billing account used for the resources which are direct children of workload. This billing account is initially associated with the resources created as part of Workload creation. After the initial creation of these resources, the customer can change the assigned billing account. The resource name has the form `billingAccounts/{billing_account_id}`. For example, `billingAccounts/012345-567890-ABCDEF`.",
+          "description": "Optional. The billing account used for the resources which are direct children of workload. This billing account is initially associated with the resources created as part of Workload creation. After the initial creation of these resources, the customer can change the assigned billing account. The resource name has the form `billingAccounts/{billing_account_id}`. For example, `billingAccounts/012345-567890-ABCDEF`.",
           "type": "string"
         },
         "cjisSettings": {
@@ -1156,8 +1162,7 @@
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
             "CA_REGIONS_AND_SUPPORT",
-            "ITAR",
-            "AU_REGIONS_AND_US_SUPPORT"
+            "ITAR"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -1170,8 +1175,7 @@
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
             "Assured Workloads For Canada Regions and Support controls",
-            "International Traffic in Arms Regulations",
-            "Assured Workloads for Australia Regions and Support controls"
+            "International Traffic in Arms Regulations"
           ],
           "type": "string"
         },
@@ -1179,6 +1183,14 @@
           "$ref": "GoogleCloudAssuredworkloadsVersioningV1mainWorkloadComplianceStatus",
           "description": "Output only. Count of active Violations in the Workload.",
           "readOnly": true
+        },
+        "compliantButDisallowedServices": {
+          "description": "Output only. Urls for services which are compliant for this Assured Workload, but which are currently disallowed by the ResourceUsageRestriction org policy. Invoke RestrictAllowedResources endpoint to allow your project developers to use these services in their environment.\"",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "createTime": {
           "description": "Output only. Immutable. The Workload creation timestamp.",

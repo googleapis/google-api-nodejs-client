@@ -524,7 +524,7 @@
       }
     }
   },
-  "revision": "20220602",
+  "revision": "20220915",
   "rootUrl": "https://speech.googleapis.com/",
   "schemas": {
     "ClassItem": {
@@ -731,6 +731,11 @@
         "outputError": {
           "$ref": "Status",
           "description": "If the transcript output fails this field contains the relevant error."
+        },
+        "requestId": {
+          "description": "The ID associated with the request. This is a unique ID specific only to the given request.",
+          "format": "int64",
+          "type": "string"
         },
         "results": {
           "description": "Sequential list of transcription results corresponding to sequential portions of audio.",
@@ -1092,6 +1097,11 @@
       "description": "The only message returned to the client by the `Recognize` method. It contains the result as zero or more sequential `SpeechRecognitionResult` messages.",
       "id": "RecognizeResponse",
       "properties": {
+        "requestId": {
+          "description": "The ID associated with the request. This is a unique ID specific only to the given request.",
+          "format": "int64",
+          "type": "string"
+        },
         "results": {
           "description": "Sequential list of transcription results corresponding to sequential portions of audio.",
           "items": {

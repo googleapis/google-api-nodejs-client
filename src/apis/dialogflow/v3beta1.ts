@@ -2412,7 +2412,7 @@ export namespace dialogflow_v3beta1 {
      */
     enableAudioRedaction?: boolean | null;
     /**
-     * Cloud Storage bucket to export audio record to. You need to grant `service-@gcp-sa-dialogflow.iam.gserviceaccount.com` the `Storage Object Admin` role in this bucket.
+     * Cloud Storage bucket to export audio record to. Settings this field would grant the Storage Object Creator role to the Dialogflow Service Agent. API caller that tries to modify this field should have the permission of storage.buckets.setIamPolicy.
      */
     gcsBucket?: string | null;
   }
@@ -6169,7 +6169,12 @@ export namespace dialogflow_v3beta1 {
   /**
    * Metadata for ConversationDatasets.
    */
-  export interface Schema$GoogleCloudDialogflowV2CreateConversationDatasetOperationMetadata {}
+  export interface Schema$GoogleCloudDialogflowV2CreateConversationDatasetOperationMetadata {
+    /**
+     * The resource name of the conversation dataset that will be created. Format: `projects//locations//conversationDatasets/`
+     */
+    conversationDataset?: string | null;
+  }
   /**
    * Metadata for a ConversationModels.CreateConversationModelEvaluation operation.
    */

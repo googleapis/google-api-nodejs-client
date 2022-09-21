@@ -5041,7 +5041,12 @@ export namespace dialogflow_v2 {
   /**
    * Metadata for ConversationDatasets.
    */
-  export interface Schema$GoogleCloudDialogflowV2CreateConversationDatasetOperationMetadata {}
+  export interface Schema$GoogleCloudDialogflowV2CreateConversationDatasetOperationMetadata {
+    /**
+     * The resource name of the conversation dataset that will be created. Format: `projects//locations//conversationDatasets/`
+     */
+    conversationDataset?: string | null;
+  }
   /**
    * Metadata for a ConversationModels.CreateConversationModelEvaluation operation.
    */

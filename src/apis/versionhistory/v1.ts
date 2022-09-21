@@ -100,7 +100,7 @@ export namespace versionhistory_v1 {
   }
 
   /**
-   * Version History API
+   * versionhistory.googleapis.com API
    *
    * Version History API - Prod
    *

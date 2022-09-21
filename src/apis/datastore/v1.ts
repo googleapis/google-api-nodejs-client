@@ -554,7 +554,7 @@ export namespace datastore_v1 {
      */
     projectId?: string | null;
     /**
-     * Required. An ordered sequence of property names and their index attributes.
+     * Required. An ordered sequence of property names and their index attributes. Requires: * A maximum of 100 properties.
      */
     properties?: Schema$GoogleDatastoreAdminV1IndexedProperty[];
     /**

@@ -308,6 +308,10 @@ export namespace sqladmin_v1beta4 {
      */
     status?: string | null;
     /**
+     * Backup time zone to prevent restores to an instance with a different time zone. Now relevant only for SQL Server.
+     */
+    timeZone?: string | null;
+    /**
      * The type of this run; can be either "AUTOMATED" or "ON_DEMAND" or "FINAL". This field defaults to "ON_DEMAND" and is ignored, when specified for insert requests.
      */
     type?: string | null;
@@ -362,6 +366,10 @@ export namespace sqladmin_v1beta4 {
      * Binary log coordinates, if specified, identify the position up to which the source instance is cloned. If not specified, the source instance is cloned up to the most recent binary log coordinates.
      */
     binLogCoordinates?: Schema$BinLogCoordinates;
+    /**
+     * (SQL Server only) Clone only the specified databases from the source instance. Clone all databases if empty.
+     */
+    databaseNames?: string[] | null;
     /**
      * Name of the Cloud SQL instance to be created as a clone.
      */
@@ -1498,6 +1506,10 @@ export namespace sqladmin_v1beta4 {
      */
     collation?: string | null;
     /**
+     * Specifies if connections must use Cloud SQL connectors. Option values include the following: `NOT_REQUIRED` (Cloud SQL instances can be connected without Cloud SQL Connectors) and `REQUIRED` (Only allow connections that use Cloud SQL Connectors) Note that using REQUIRED disables all existing authorized networks. If this field is not specified when creating a new instance, NOT_REQUIRED is used. If this field is not specified when patching or updating an existing instance, it is left unchanged in the instance.
+     */
+    connectorEnforcement?: string | null;
+    /**
      * Configuration specific to read replica instances. Indicates whether database flags for crash-safe replication are enabled. This property was only applicable to First Generation instances.
      */
     crashSafeReplicationEnabled?: boolean | null;
@@ -1577,6 +1589,10 @@ export namespace sqladmin_v1beta4 {
      * The tier (or machine type) for this instance, for example `db-custom-1-3840`. WARNING: Changing this restarts the instance.
      */
     tier?: string | null;
+    /**
+     * Server timezone, relevant only for Cloud SQL for SQL Server.
+     */
+    timeZone?: string | null;
     /**
      * User-provided labels, represented as a dictionary where each label is a single key value pair.
      */
@@ -2223,6 +2239,7 @@ export namespace sqladmin_v1beta4 {
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
+     *   //   "timeZone": "my_timeZone",
      *   //   "type": "my_type",
      *   //   "windowStartTime": "my_windowStartTime"
      *   // }
@@ -2371,6 +2388,7 @@ export namespace sqladmin_v1beta4 {
      *       //   "selfLink": "my_selfLink",
      *       //   "startTime": "my_startTime",
      *       //   "status": "my_status",
+     *       //   "timeZone": "my_timeZone",
      *       //   "type": "my_type",
      *       //   "windowStartTime": "my_windowStartTime"
      *       // }
@@ -5927,7 +5945,7 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * Updates settings of a Cloud SQL instance. This method supports patch semantics.
+     * Partially updates settings of a Cloud SQL instance by merging the request with the current configuration. This method supports patch semantics.
      * @example
      * ```js
      * // Before running the sample:
