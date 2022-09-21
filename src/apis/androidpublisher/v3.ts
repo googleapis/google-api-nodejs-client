@@ -4251,6 +4251,8 @@ export namespace androidpublisher_v3 {
      *   const res = await androidpublisher.edits.bundles.upload({
      *     // Must be set to true if the app bundle installation may trigger a warning on user devices (for example, if installation size may be over a threshold, typically 100 MB).
      *     ackBundleInstallationWarning: 'placeholder-value',
+     *     // Device tier config (DTC) to be used for generating deliverables (APKs). Contains id of the DTC or "LATEST" for last uploaded DTC.
+     *     deviceTierConfigId: 'placeholder-value',
      *     // Identifier of the edit.
      *     editId: 'placeholder-value',
      *     // Package name of the app.
@@ -4388,6 +4390,10 @@ export namespace androidpublisher_v3 {
      * Must be set to true if the app bundle installation may trigger a warning on user devices (for example, if installation size may be over a threshold, typically 100 MB).
      */
     ackBundleInstallationWarning?: boolean;
+    /**
+     * Device tier config (DTC) to be used for generating deliverables (APKs). Contains id of the DTC or "LATEST" for last uploaded DTC.
+     */
+    deviceTierConfigId?: string;
     /**
      * Identifier of the edit.
      */
