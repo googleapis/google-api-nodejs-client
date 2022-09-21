@@ -176,7 +176,7 @@ export namespace networkmanagement_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -189,32 +189,32 @@ export namespace networkmanagement_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
-   * Wrapper for cloud function attributes.
+   * Wrapper for Cloud Function attributes.
    */
   export interface Schema$CloudFunctionEndpoint {
     /**
-     * A [Cloud function](https://cloud.google.com/functions) name.
+     * A [Cloud Function](https://cloud.google.com/functions) name.
      */
     uri?: string | null;
   }
   /**
-   * For display only. Metadata associated with a Cloud function.
+   * For display only. Metadata associated with a Cloud Function.
    */
   export interface Schema$CloudFunctionInfo {
     /**
-     * Name of a Cloud function.
+     * Name of a Cloud Function.
      */
     displayName?: string | null;
     /**
-     * Location in which the Cloud function is deployed.
+     * Location in which the Cloud Function is deployed.
      */
     location?: string | null;
     /**
-     * URI of a Cloud function.
+     * URI of a Cloud Function.
      */
     uri?: string | null;
     /**
-     * Latest successfully deployed version id of the Cloud function.
+     * Latest successfully deployed version id of the Cloud Function.
      */
     versionId?: string | null;
   }
@@ -331,7 +331,7 @@ export namespace networkmanagement_v1 {
    */
   export interface Schema$Endpoint {
     /**
-     * A [Cloud function](https://cloud.google.com/functions).
+     * A [Cloud Function](https://cloud.google.com/functions).
      */
     cloudFunction?: Schema$CloudFunctionEndpoint;
     /**
@@ -893,7 +893,7 @@ export namespace networkmanagement_v1 {
      */
     causesDrop?: boolean | null;
     /**
-     * Display information of a Cloud function.
+     * Display information of a Cloud Function.
      */
     cloudFunction?: Schema$CloudFunctionInfo;
     /**
