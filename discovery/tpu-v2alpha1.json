@@ -759,7 +759,7 @@
       }
     }
   },
-  "revision": "20220629",
+  "revision": "20220907",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorType": {
@@ -1223,6 +1223,10 @@
           "$ref": "ServiceAccount",
           "description": "The Google Cloud Platform Service Account to be used by the TPU node VMs. If None is specified, the default compute service account will be used."
         },
+        "shieldedInstanceConfig": {
+          "$ref": "ShieldedInstanceConfig",
+          "description": "Shielded Instance options."
+        },
         "state": {
           "description": "Output only. The current state for the TPU Node.",
           "enum": [
@@ -1407,6 +1411,17 @@
         "email": {
           "description": "The email address of the service identity.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ShieldedInstanceConfig": {
+      "description": "A set of Shielded Instance options.",
+      "id": "ShieldedInstanceConfig",
+      "properties": {
+        "enableSecureBoot": {
+          "description": "Defines whether the instance has Secure Boot enabled.",
+          "type": "boolean"
         }
       },
       "type": "object"
