@@ -343,7 +343,7 @@
               "type": "string"
             },
             "showDeleted": {
-              "description": "Optional. Controls whether Projects in the DELETING state should be returned. Defaults to false.",
+              "description": "Optional. Controls whether Projects in the DELETED state should be returned in the response. If not specified, only `ACTIVE` Projects will be returned.",
               "location": "query",
               "type": "boolean"
             }
@@ -376,7 +376,7 @@
               "type": "string"
             },
             "updateMask": {
-              "description": "Specifies which fields to update. If this list is empty, then no state will be updated. Note that the fields `name`, `projectId`, and `projectNumber` are all immutable.",
+              "description": "Specifies which fields of the FirebaseProject to update. Note that the following fields are immutable: `name`, `project_id`, and `project_number`. To update `state`, use any of the following Google Cloud endpoints: [`projects.delete`](https://cloud.google.com/resource-manager/reference/rest/v1/projects/delete) or [`projects.undelete`](https://cloud.google.com/resource-manager/reference/rest/v1/projects/undelete)",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -456,7 +456,7 @@
               "type": "string"
             },
             "showDeleted": {
-              "description": "Controls whether Apps in the DELETED state should be returned. Defaults to false.",
+              "description": "Controls whether Apps in the DELETED state should be returned. If not specified, only `ACTIVE` Apps will be returned.",
               "location": "query",
               "type": "boolean"
             }
@@ -589,7 +589,7 @@
                   "type": "string"
                 },
                 "showDeleted": {
-                  "description": "Controls whether Apps in the DELETED state should be returned. Defaults to false.",
+                  "description": "Controls whether Apps in the DELETED state should be returned in the response. If not specified, only `ACTIVE` Apps will be returned.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -622,7 +622,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Specifies which fields to update. Note that the fields `name`, `app_id`, `project_id`, `package_name`, and `state` are all immutable.",
+                  "description": "Specifies which fields of the AndroidApp to update. Note that the following fields are immutable: `name`, `app_id`, `project_id`, and `package_name`. To update `state`, use any of the following endpoints: RemoveAndroidApp or UndeleteAndroidApp.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -641,7 +641,7 @@
               ]
             },
             "remove": {
-              "description": "Removes the specified AndroidApp from the project.",
+              "description": "Removes the specified AndroidApp from the FirebaseProject.",
               "flatPath": "v1beta1/projects/{projectsId}/androidApps/{androidAppsId}:remove",
               "httpMethod": "POST",
               "id": "firebase.projects.androidApps.remove",
@@ -665,11 +665,12 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
               ]
             },
             "undelete": {
-              "description": "Restores the specified AndroidApp to the project.",
+              "description": "Restores the specified AndroidApp to the FirebaseProject.",
               "flatPath": "v1beta1/projects/{projectsId}/androidApps/{androidAppsId}:undelete",
               "httpMethod": "POST",
               "id": "firebase.projects.androidApps.undelete",
@@ -693,7 +694,8 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
               ]
             }
           },
@@ -978,7 +980,7 @@
                   "type": "string"
                 },
                 "showDeleted": {
-                  "description": "Controls whether Apps in the DELETED state should be returned. Defaults to false.",
+                  "description": "Controls whether Apps in the DELETED state should be returned in the response. If not specified, only `ACTIVE` Apps will be returned.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -1011,7 +1013,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Specifies which fields to update. Note that the fields `name`, `appId`, `projectId`, `bundleId`, and `state` are all immutable",
+                  "description": "Specifies which fields of the IosApp to update. Note that the following fields are immutable: `name`, `app_id`, `project_id`, and `bundle_id`. To update `state`, use any of the following endpoints: RemoveIosApp or UndeleteIosApp.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -1030,7 +1032,7 @@
               ]
             },
             "remove": {
-              "description": "Removes the specified IosApp from the project.",
+              "description": "Removes the specified IosApp from the FirebaseProject.",
               "flatPath": "v1beta1/projects/{projectsId}/iosApps/{iosAppsId}:remove",
               "httpMethod": "POST",
               "id": "firebase.projects.iosApps.remove",
@@ -1054,11 +1056,12 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
               ]
             },
             "undelete": {
-              "description": "Restores the specified IosApp to the project.",
+              "description": "Restores the specified IosApp to the FirebaseProject.",
               "flatPath": "v1beta1/projects/{projectsId}/iosApps/{iosAppsId}:undelete",
               "httpMethod": "POST",
               "id": "firebase.projects.iosApps.undelete",
@@ -1082,7 +1085,8 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
               ]
             }
           }
@@ -1202,7 +1206,7 @@
                   "type": "string"
                 },
                 "showDeleted": {
-                  "description": "Controls whether Apps in the DELETED state should be returned. Defaults to false.",
+                  "description": "Controls whether Apps in the DELETED state should be returned in the response. If not specified, only `ACTIVE` Apps will be returned.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -1235,7 +1239,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Specifies which fields to update. Note that the fields `name`, `appId`, `projectId` and `state` are all immutable",
+                  "description": "Specifies which fields of the WebApp to update. Note that the following fields are immutable: `name`, `app_id`, and `project_id`. To update `state`, use any of the following endpoints: RemoveWebApp or UndeleteWebApp.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -1254,7 +1258,7 @@
               ]
             },
             "remove": {
-              "description": "Removes the specified WebApp from the project.",
+              "description": "Removes the specified WebApp from the FirebaseProject.",
               "flatPath": "v1beta1/projects/{projectsId}/webApps/{webAppsId}:remove",
               "httpMethod": "POST",
               "id": "firebase.projects.webApps.remove",
@@ -1278,11 +1282,12 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
               ]
             },
             "undelete": {
-              "description": "Restores the specified WebApp to the project.",
+              "description": "Restores the specified WebApp to the FirebaseProject.",
               "flatPath": "v1beta1/projects/{projectsId}/webApps/{webAppsId}:undelete",
               "httpMethod": "POST",
               "id": "firebase.projects.webApps.undelete",
@@ -1306,7 +1311,8 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
               ]
             }
           }
@@ -1314,7 +1320,7 @@
       }
     }
   },
-  "revision": "20220819",
+  "revision": "20220917",
   "rootUrl": "https://firebase.googleapis.com/",
   "schemas": {
     "AddFirebaseRequest": {
@@ -1431,6 +1437,20 @@
           "readOnly": true,
           "type": "string"
         },
+        "sha1Hashes": {
+          "description": "The SHA1 certificate hashes for the AndroidApp.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "sha256Hashes": {
+          "description": "The SHA256 certificate hashes for the AndroidApp.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "state": {
           "description": "Output only. The lifecycle state of the App.",
           "enum": [
@@ -1440,8 +1460,8 @@
           ],
           "enumDescriptions": [
             "Unspecified state.",
-            "The normal and active state.",
-            "The app has been soft deleted."
+            "The App is active.",
+            "The App has been soft-deleted. Firebase permanantely deletes an App after it has been in the `DELETED` state for more than 30 days. Up until this time, you can restore the App by calling `Undelete` ([Android](projects.androidApps/undelete) | [iOS](projects.iosApps/undelete) | [web](projects.webApps/undelete))."
           ],
           "readOnly": true,
           "type": "string"
@@ -1559,8 +1579,8 @@
           ],
           "enumDescriptions": [
             "Unspecified state.",
-            "The normal and active state.",
-            "The app has been soft deleted."
+            "The App is active.",
+            "The App has been soft-deleted. Firebase permanantely deletes an App after it has been in the `DELETED` state for more than 30 days. Up until this time, you can restore the App by calling `Undelete` ([Android](projects.androidApps/undelete) | [iOS](projects.iosApps/undelete) | [web](projects.webApps/undelete))."
           ],
           "readOnly": true,
           "type": "string"
@@ -1608,7 +1628,7 @@
           "readOnly": true
         },
         "state": {
-          "description": "Output only. The lifecycle state of the Project. Updates to the state must be performed via com.google.cloudresourcemanager.v1.Projects.DeleteProject and com.google.cloudresourcemanager.v1.Projects.UndeleteProject",
+          "description": "Output only. The lifecycle state of the Project.",
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
@@ -1616,8 +1636,8 @@
           ],
           "enumDescriptions": [
             "Unspecified state.",
-            "The normal and active state.",
-            "The Project has been marked for deletion by the user."
+            "The Project is active.",
+            "The Project has been soft-deleted."
           ],
           "readOnly": true,
           "type": "string"
@@ -1668,8 +1688,8 @@
           ],
           "enumDescriptions": [
             "Unspecified state.",
-            "The normal and active state.",
-            "The app has been soft deleted."
+            "The App is active.",
+            "The App has been soft-deleted. Firebase permanantely deletes an App after it has been in the `DELETED` state for more than 30 days. Up until this time, you can restore the App by calling `Undelete` ([Android](projects.androidApps/undelete) | [iOS](projects.iosApps/undelete) | [web](projects.webApps/undelete))."
           ],
           "readOnly": true,
           "type": "string"
@@ -1938,7 +1958,7 @@
           "type": "string"
         },
         "validateOnly": {
-          "description": "If set to true, only validate the request and do not delete the app.",
+          "description": "If set to true, the request is only validated. The App will _not_ be removed.",
           "type": "boolean"
         }
       },
@@ -1956,7 +1976,7 @@
           "type": "string"
         },
         "validateOnly": {
-          "description": "If set to true, only validate the request and do not delete the app.",
+          "description": "If set to true, the request is only validated. The App will _not_ be removed.",
           "type": "boolean"
         }
       },
@@ -1974,7 +1994,7 @@
           "type": "string"
         },
         "validateOnly": {
-          "description": "If set to true, only validate the request and do not delete the app.",
+          "description": "If set to true, the request is only validated. The App will _not_ be removed.",
           "type": "boolean"
         }
       },
@@ -2110,7 +2130,7 @@
           "type": "string"
         },
         "validateOnly": {
-          "description": "If set to true, only validate the request and do not undelete the app.",
+          "description": "If set to true, the request is only validated. The App will _not_ be undeleted.",
           "type": "boolean"
         }
       },
@@ -2124,7 +2144,7 @@
           "type": "string"
         },
         "validateOnly": {
-          "description": "If set to true, only validate the request and do not undelete the app.",
+          "description": "If set to true, the request is only validated. The App will _not_ be undeleted.",
           "type": "boolean"
         }
       },
@@ -2138,7 +2158,7 @@
           "type": "string"
         },
         "validateOnly": {
-          "description": "If set to true, only validate the request and do not undelete the app.",
+          "description": "If set to true, the request is only validated. The App will _not_ be undeleted.",
           "type": "boolean"
         }
       },
@@ -2186,8 +2206,8 @@
           ],
           "enumDescriptions": [
             "Unspecified state.",
-            "The normal and active state.",
-            "The app has been soft deleted."
+            "The App is active.",
+            "The App has been soft-deleted. Firebase permanantely deletes an App after it has been in the `DELETED` state for more than 30 days. Up until this time, you can restore the App by calling `Undelete` ([Android](projects.androidApps/undelete) | [iOS](projects.iosApps/undelete) | [web](projects.webApps/undelete))."
           ],
           "readOnly": true,
           "type": "string"
