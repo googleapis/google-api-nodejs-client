@@ -580,6 +580,59 @@
             },
             "nfsShares": {
               "methods": {
+                "create": {
+                  "description": "Create an NFS share.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/nfsShares",
+                  "httpMethod": "POST",
+                  "id": "baremetalsolution.projects.locations.nfsShares.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent project and location.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/nfsShares",
+                  "request": {
+                    "$ref": "NfsShare"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Delete an NFS share. The underlying volume is automatically deleted.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/nfsShares/{nfsSharesId}",
+                  "httpMethod": "DELETE",
+                  "id": "baremetalsolution.projects.locations.nfsShares.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the NFS share to delete.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/nfsShares/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Get details of a single NFS share.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/nfsShares/{nfsSharesId}",
@@ -656,14 +709,14 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The name of the NFS share.",
+                      "description": "Immutable. The name of the NFS share.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/nfsShares/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "The list of fields to update. The only currently supported fields are: `labels`",
+                      "description": "The list of fields to update. The only currently supported fields are: `labels` `allowed_clients`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -1084,7 +1137,7 @@
       }
     }
   },
-  "revision": "20220731",
+  "revision": "20220829",
   "rootUrl": "https://baremetalsolution.googleapis.com/",
   "schemas": {
     "AllowedClient": {
@@ -1131,7 +1184,8 @@
           "type": "boolean"
         },
         "shareIp": {
-          "description": "The IP address of the share on this network.",
+          "description": "Output only. The IP address of the share on this network. Assigned automatically during provisioning based on the network's services_cidr.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1802,6 +1856,10 @@
           "description": "IP address configured.",
           "type": "string"
         },
+        "jumboFramesEnabled": {
+          "description": "Whether network uses standard frames or jumbo ones.",
+          "type": "boolean"
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -1816,8 +1874,20 @@
           },
           "type": "array"
         },
+        "mountPoints": {
+          "description": "Input only. List of mount points to attach the network to.",
+          "items": {
+            "$ref": "NetworkMountPoint"
+          },
+          "type": "array"
+        },
         "name": {
           "description": "Output only. The resource name of this `Network`. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. Format: `projects/{project}/locations/{location}/networks/{network}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "pod": {
+          "description": "Output only. Pod name.",
           "readOnly": true,
           "type": "string"
         },
@@ -2004,6 +2074,29 @@
       },
       "type": "object"
     },
+    "NetworkMountPoint": {
+      "description": "Mount point for a network.",
+      "id": "NetworkMountPoint",
+      "properties": {
+        "defaultGateway": {
+          "description": "Network should be a default gateway.",
+          "type": "boolean"
+        },
+        "instance": {
+          "description": "Instance to attach network to.",
+          "type": "string"
+        },
+        "ipAddress": {
+          "description": "Ip address of the server.",
+          "type": "string"
+        },
+        "logicalInterface": {
+          "description": "Logical interface to detach from.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NetworkUsage": {
       "description": "Network with all used IP addresses.",
       "id": "NetworkUsage",
@@ -2091,8 +2184,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. The name of the NFS share.",
-          "readOnly": true,
+          "description": "Immutable. The name of the NFS share.",
           "type": "string"
         },
         "nfsShareId": {
@@ -2106,7 +2198,7 @@
           "type": "string"
         },
         "state": {
-          "description": "The state of the NFS share.",
+          "description": "Output only. The state of the NFS share.",
           "enum": [
             "STATE_UNSPECIFIED",
             "PROVISIONED",
@@ -2121,10 +2213,26 @@
             "The NFS Share is being updated.",
             "The NFS Share has been requested to be deleted."
           ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "storageType": {
+          "description": "Immutable. The storage type of the underlying volume.",
+          "enum": [
+            "STORAGE_TYPE_UNSPECIFIED",
+            "SSD",
+            "HDD"
+          ],
+          "enumDescriptions": [
+            "The storage type for this volume is unknown.",
+            "The storage type for this volume is SSD.",
+            "This storage type for this volume is HDD."
+          ],
           "type": "string"
         },
         "volume": {
-          "description": "The volume containing the share.",
+          "description": "Output only. The underlying volume of the share. Created automatically during provisioning.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2554,7 +2662,7 @@
         },
         "qosPolicy": {
           "$ref": "QosPolicy",
-          "description": "The QOS policy applied to this VRF."
+          "description": "The QOS policy applied to this VRF. The value is only meaningful when all the vlan attachments have the same QoS. This field should not be used for new integrations, use vlan attachment level qos instead. The field is left for backward-compatibility."
         },
         "state": {
           "description": "The possible state of VRF.",
@@ -2584,6 +2692,14 @@
       "description": "VLAN attachment details.",
       "id": "VlanAttachment",
       "properties": {
+        "id": {
+          "description": "Immutable. The identifier of the attachment within vrf.",
+          "type": "string"
+        },
+        "pairingKey": {
+          "description": "Input only. Pairing key.",
+          "type": "string"
+        },
         "peerIp": {
           "description": "The peer IP of the attachment.",
           "type": "string"
@@ -2592,6 +2708,10 @@
           "description": "The peer vlan ID of the attachment.",
           "format": "int64",
           "type": "string"
+        },
+        "qosPolicy": {
+          "$ref": "QosPolicy",
+          "description": "The QOS policy applied to this VLAN attachment. This value should be preferred to using qos at vrf level."
         },
         "routerIp": {
           "description": "The router IP of the attachment.",
@@ -2645,9 +2765,27 @@
           "readOnly": true,
           "type": "string"
         },
+        "notes": {
+          "description": "Input only. User-specified notes for new Volume. Used to provision Volumes that require manual intervention.",
+          "type": "string"
+        },
         "originallyRequestedSizeGib": {
           "description": "Originally requested size, in GiB.",
           "format": "int64",
+          "type": "string"
+        },
+        "performanceTier": {
+          "description": "Immutable. Performance tier of the Volume. Default is SHARED.",
+          "enum": [
+            "VOLUME_PERFORMANCE_TIER_UNSPECIFIED",
+            "VOLUME_PERFORMANCE_TIER_SHARED",
+            "VOLUME_PERFORMANCE_TIER_DEDICATED"
+          ],
+          "enumDescriptions": [
+            "Value is not specified.",
+            "Regular volumes, shared aggregates.",
+            "Dedicated (assigned) aggregates."
+          ],
           "type": "string"
         },
         "pod": {
@@ -2777,6 +2915,20 @@
             "$ref": "NfsExport"
           },
           "type": "array"
+        },
+        "performanceTier": {
+          "description": "Performance tier of the Volume. Default is SHARED.",
+          "enum": [
+            "VOLUME_PERFORMANCE_TIER_UNSPECIFIED",
+            "VOLUME_PERFORMANCE_TIER_SHARED",
+            "VOLUME_PERFORMANCE_TIER_DEDICATED"
+          ],
+          "enumDescriptions": [
+            "Value is not specified.",
+            "Regular volumes, shared aggregates.",
+            "Dedicated (assigned) aggregates."
+          ],
+          "type": "string"
         },
         "protocol": {
           "description": "Volume protocol.",
