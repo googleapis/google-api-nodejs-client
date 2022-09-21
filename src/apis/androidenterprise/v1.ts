@@ -4443,7 +4443,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * Removes an entitlement to an app for a user.
+     * Removes an entitlement to an app for a user. **Note:** This item has been deprecated. New integrations cannot use this method and can refer to our new recommendations.
      * @example
      * ```js
      * // Before running the sample:
@@ -4570,7 +4570,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * Retrieves details of an entitlement.
+     * Retrieves details of an entitlement. **Note:** This item has been deprecated. New integrations cannot use this method and can refer to our new recommendations.
      * @example
      * ```js
      * // Before running the sample:
@@ -4704,7 +4704,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * Lists all entitlements for the specified user. Only the ID is set.
+     * Lists all entitlements for the specified user. Only the ID is set. **Note:** This item has been deprecated. New integrations cannot use this method and can refer to our new recommendations.
      * @example
      * ```js
      * // Before running the sample:
@@ -4841,7 +4841,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * Adds or updates an entitlement to an app for a user.
+     * Adds or updates an entitlement to an app for a user. **Note:** This item has been deprecated. New integrations cannot use this method and can refer to our new recommendations.
      * @example
      * ```js
      * // Before running the sample:
@@ -5059,7 +5059,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * Retrieves details of an enterprise's group license for a product.
+     * Retrieves details of an enterprise's group license for a product. **Note:** This item has been deprecated. New integrations cannot use this method and can refer to our new recommendations.
      * @example
      * ```js
      * // Before running the sample:
@@ -5196,7 +5196,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * Retrieves IDs of all products for which the enterprise has a group license.
+     * Retrieves IDs of all products for which the enterprise has a group license. **Note:** This item has been deprecated. New integrations cannot use this method and can refer to our new recommendations.
      * @example
      * ```js
      * // Before running the sample:
@@ -5359,7 +5359,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * Retrieves the IDs of the users who have been granted entitlements under the license.
+     * Retrieves the IDs of the users who have been granted entitlements under the license. **Note:** This item has been deprecated. New integrations cannot use this method and can refer to our new recommendations.
      * @example
      * ```js
      * // Before running the sample:
@@ -7790,7 +7790,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     *  Approves the specified product and the relevant app permissions, if any. The maximum number of products that you can approve per enterprise customer is 1,000. To learn how to use managed Google Play to design and create a store layout to display approved products to your users, see Store Layout Design.
+     *  Approves the specified product and the relevant app permissions, if any. The maximum number of products that you can approve per enterprise customer is 1,000. To learn how to use managed Google Play to design and create a store layout to display approved products to your users, see Store Layout Design. **Note:** This item has been deprecated. New integrations cannot use this method and can refer to our new recommendations.
      * @example
      * ```js
      * // Before running the sample:
@@ -7923,7 +7923,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * Generates a URL that can be rendered in an iframe to display the permissions (if any) of a product. An enterprise admin must view these permissions and accept them on behalf of their organization in order to approve that product. Admins should accept the displayed permissions by interacting with a separate UI element in the EMM console, which in turn should trigger the use of this URL as the approvalUrlInfo.approvalUrl property in a Products.approve call to approve the product. This URL can only be used to display permissions for up to 1 day.
+     * Generates a URL that can be rendered in an iframe to display the permissions (if any) of a product. An enterprise admin must view these permissions and accept them on behalf of their organization in order to approve that product. Admins should accept the displayed permissions by interacting with a separate UI element in the EMM console, which in turn should trigger the use of this URL as the approvalUrlInfo.approvalUrl property in a Products.approve call to approve the product. This URL can only be used to display permissions for up to 1 day. **Note:** This item has been deprecated. New integrations cannot use this method and can refer to our new recommendations.
      * @example
      * ```js
      * // Before running the sample:
@@ -8503,7 +8503,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * Finds approved products that match a query, or all approved products if there is no query.
+     * Finds approved products that match a query, or all approved products if there is no query. **Note:** This item has been deprecated. New integrations cannot use this method and can refer to our new recommendations.
      * @example
      * ```js
      * // Before running the sample:
@@ -8649,7 +8649,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * Unapproves the specified product (and the relevant app permissions, if any)
+     * Unapproves the specified product (and the relevant app permissions, if any) **Note:** This item has been deprecated. New integrations cannot use this method and can refer to our new recommendations.
      * @example
      * ```js
      * // Before running the sample:
@@ -11268,7 +11268,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * Retrieves the set of products a user is entitled to access.
+     * Retrieves the set of products a user is entitled to access. **Note:** This item has been deprecated. New integrations cannot use this method and can refer to our new recommendations.
      * @example
      * ```js
      * // Before running the sample:
@@ -11808,7 +11808,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * Modifies the set of products that a user is entitled to access (referred to as *whitelisted* products). Only products that are approved or products that were previously approved (products with revoked approval) can be whitelisted.
+     * Modifies the set of products that a user is entitled to access (referred to as *whitelisted* products). Only products that are approved or products that were previously approved (products with revoked approval) can be whitelisted. **Note:** This item has been deprecated. New integrations cannot use this method and can refer to our new recommendations.
      * @example
      * ```js
      * // Before running the sample:
