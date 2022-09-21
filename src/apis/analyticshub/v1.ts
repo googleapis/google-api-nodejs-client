@@ -35,9 +35,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace analyticshub_v1beta1 {
+export namespace analyticshub_v1 {
   export interface Options extends GlobalOptions {
-    version: 'v1beta1';
+    version: 'v1';
   }
 
   interface StandardParameters {
@@ -107,7 +107,7 @@ export namespace analyticshub_v1beta1 {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const analyticshub = google.analyticshub('v1beta1');
+   * const analyticshub = google.analyticshub('v1');
    * ```
    */
   export class Analyticshub {
@@ -548,7 +548,7 @@ export namespace analyticshub_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const analyticshub = google.analyticshub('v1beta1');
+     * const analyticshub = google.analyticshub('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -657,7 +657,7 @@ export namespace analyticshub_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+organization}/dataExchanges').replace(
+            url: (rootUrl + '/v1/{+organization}/dataExchanges').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -742,7 +742,7 @@ export namespace analyticshub_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const analyticshub = google.analyticshub('v1beta1');
+     * const analyticshub = google.analyticshub('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -860,7 +860,7 @@ export namespace analyticshub_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/dataExchanges').replace(
+            url: (rootUrl + '/v1/{+parent}/dataExchanges').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -896,7 +896,7 @@ export namespace analyticshub_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const analyticshub = google.analyticshub('v1beta1');
+     * const analyticshub = google.analyticshub('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -990,7 +990,7 @@ export namespace analyticshub_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -1023,7 +1023,7 @@ export namespace analyticshub_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const analyticshub = google.analyticshub('v1beta1');
+     * const analyticshub = google.analyticshub('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1125,7 +1125,7 @@ export namespace analyticshub_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1158,7 +1158,7 @@ export namespace analyticshub_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const analyticshub = google.analyticshub('v1beta1');
+     * const analyticshub = google.analyticshub('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1267,7 +1267,7 @@ export namespace analyticshub_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1303,7 +1303,7 @@ export namespace analyticshub_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const analyticshub = google.analyticshub('v1beta1');
+     * const analyticshub = google.analyticshub('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1411,7 +1411,7 @@ export namespace analyticshub_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/dataExchanges').replace(
+            url: (rootUrl + '/v1/{+parent}/dataExchanges').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1447,7 +1447,7 @@ export namespace analyticshub_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const analyticshub = google.analyticshub('v1beta1');
+     * const analyticshub = google.analyticshub('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1565,7 +1565,7 @@ export namespace analyticshub_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -1598,7 +1598,7 @@ export namespace analyticshub_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const analyticshub = google.analyticshub('v1beta1');
+     * const analyticshub = google.analyticshub('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1708,7 +1708,7 @@ export namespace analyticshub_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1744,7 +1744,7 @@ export namespace analyticshub_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const analyticshub = google.analyticshub('v1beta1');
+     * const analyticshub = google.analyticshub('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1858,7 +1858,7 @@ export namespace analyticshub_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions').replace(
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1999,7 +1999,7 @@ export namespace analyticshub_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const analyticshub = google.analyticshub('v1beta1');
+     * const analyticshub = google.analyticshub('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2130,7 +2130,7 @@ export namespace analyticshub_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/listings').replace(
+            url: (rootUrl + '/v1/{+parent}/listings').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2166,7 +2166,7 @@ export namespace analyticshub_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const analyticshub = google.analyticshub('v1beta1');
+     * const analyticshub = google.analyticshub('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2262,7 +2262,7 @@ export namespace analyticshub_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -2295,7 +2295,7 @@ export namespace analyticshub_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const analyticshub = google.analyticshub('v1beta1');
+     * const analyticshub = google.analyticshub('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2403,7 +2403,7 @@ export namespace analyticshub_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -2436,7 +2436,7 @@ export namespace analyticshub_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const analyticshub = google.analyticshub('v1beta1');
+     * const analyticshub = google.analyticshub('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2546,7 +2546,7 @@ export namespace analyticshub_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2582,7 +2582,7 @@ export namespace analyticshub_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const analyticshub = google.analyticshub('v1beta1');
+     * const analyticshub = google.analyticshub('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2692,7 +2692,7 @@ export namespace analyticshub_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/listings').replace(
+            url: (rootUrl + '/v1/{+parent}/listings').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2728,7 +2728,7 @@ export namespace analyticshub_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const analyticshub = google.analyticshub('v1beta1');
+     * const analyticshub = google.analyticshub('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2858,7 +2858,7 @@ export namespace analyticshub_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -2891,7 +2891,7 @@ export namespace analyticshub_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const analyticshub = google.analyticshub('v1beta1');
+     * const analyticshub = google.analyticshub('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3002,7 +3002,7 @@ export namespace analyticshub_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3038,7 +3038,7 @@ export namespace analyticshub_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const analyticshub = google.analyticshub('v1beta1');
+     * const analyticshub = google.analyticshub('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3149,7 +3149,7 @@ export namespace analyticshub_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:subscribe').replace(
+            url: (rootUrl + '/v1/{+name}:subscribe').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3185,7 +3185,7 @@ export namespace analyticshub_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const analyticshub = google.analyticshub('v1beta1');
+     * const analyticshub = google.analyticshub('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3301,7 +3301,7 @@ export namespace analyticshub_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions').replace(
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),

@@ -23,7 +23,7 @@
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
-  "id": "analyticshub:v1beta1",
+  "id": "analyticshub:v1",
   "kind": "discovery#restDescription",
   "mtlsRootUrl": "https://analyticshub.mtls.googleapis.com/",
   "name": "analyticshub",
@@ -116,7 +116,7 @@
               "methods": {
                 "list": {
                   "description": "Lists all data exchanges from projects in a given organization and location.",
-                  "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/dataExchanges",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/dataExchanges",
                   "httpMethod": "GET",
                   "id": "analyticshub.organizations.locations.dataExchanges.list",
                   "parameterOrder": [
@@ -142,7 +142,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+organization}/dataExchanges",
+                  "path": "v1/{+organization}/dataExchanges",
                   "response": {
                     "$ref": "ListOrgDataExchangesResponse"
                   },
@@ -165,7 +165,7 @@
               "methods": {
                 "create": {
                   "description": "Creates a new data exchange.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dataExchanges",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataExchanges",
                   "httpMethod": "POST",
                   "id": "analyticshub.projects.locations.dataExchanges.create",
                   "parameterOrder": [
@@ -185,7 +185,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+parent}/dataExchanges",
+                  "path": "v1/{+parent}/dataExchanges",
                   "request": {
                     "$ref": "DataExchange"
                   },
@@ -199,7 +199,7 @@
                 },
                 "delete": {
                   "description": "Deletes an existing data exchange.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}",
                   "httpMethod": "DELETE",
                   "id": "analyticshub.projects.locations.dataExchanges.delete",
                   "parameterOrder": [
@@ -214,7 +214,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -225,7 +225,7 @@
                 },
                 "get": {
                   "description": "Gets the details of a data exchange.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}",
                   "httpMethod": "GET",
                   "id": "analyticshub.projects.locations.dataExchanges.get",
                   "parameterOrder": [
@@ -240,7 +240,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "DataExchange"
                   },
@@ -251,7 +251,7 @@
                 },
                 "getIamPolicy": {
                   "description": "Gets the IAM policy.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}:getIamPolicy",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}:getIamPolicy",
                   "httpMethod": "POST",
                   "id": "analyticshub.projects.locations.dataExchanges.getIamPolicy",
                   "parameterOrder": [
@@ -266,7 +266,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+resource}:getIamPolicy",
+                  "path": "v1/{+resource}:getIamPolicy",
                   "request": {
                     "$ref": "GetIamPolicyRequest"
                   },
@@ -280,7 +280,7 @@
                 },
                 "list": {
                   "description": "Lists all data exchanges in a given project and location.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dataExchanges",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataExchanges",
                   "httpMethod": "GET",
                   "id": "analyticshub.projects.locations.dataExchanges.list",
                   "parameterOrder": [
@@ -306,7 +306,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+parent}/dataExchanges",
+                  "path": "v1/{+parent}/dataExchanges",
                   "response": {
                     "$ref": "ListDataExchangesResponse"
                   },
@@ -317,7 +317,7 @@
                 },
                 "patch": {
                   "description": "Updates an existing data exchange.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}",
                   "httpMethod": "PATCH",
                   "id": "analyticshub.projects.locations.dataExchanges.patch",
                   "parameterOrder": [
@@ -338,7 +338,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "DataExchange"
                   },
@@ -352,7 +352,7 @@
                 },
                 "setIamPolicy": {
                   "description": "Sets the IAM policy.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}:setIamPolicy",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}:setIamPolicy",
                   "httpMethod": "POST",
                   "id": "analyticshub.projects.locations.dataExchanges.setIamPolicy",
                   "parameterOrder": [
@@ -367,7 +367,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+resource}:setIamPolicy",
+                  "path": "v1/{+resource}:setIamPolicy",
                   "request": {
                     "$ref": "SetIamPolicyRequest"
                   },
@@ -381,7 +381,7 @@
                 },
                 "testIamPermissions": {
                   "description": "Returns the permissions that a caller has.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}:testIamPermissions",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}:testIamPermissions",
                   "httpMethod": "POST",
                   "id": "analyticshub.projects.locations.dataExchanges.testIamPermissions",
                   "parameterOrder": [
@@ -396,7 +396,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+resource}:testIamPermissions",
+                  "path": "v1/{+resource}:testIamPermissions",
                   "request": {
                     "$ref": "TestIamPermissionsRequest"
                   },
@@ -414,7 +414,7 @@
                   "methods": {
                     "create": {
                       "description": "Creates a new listing.",
-                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}/listings",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}/listings",
                       "httpMethod": "POST",
                       "id": "analyticshub.projects.locations.dataExchanges.listings.create",
                       "parameterOrder": [
@@ -434,7 +434,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta1/{+parent}/listings",
+                      "path": "v1/{+parent}/listings",
                       "request": {
                         "$ref": "Listing"
                       },
@@ -448,7 +448,7 @@
                     },
                     "delete": {
                       "description": "Deletes a listing.",
-                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}/listings/{listingsId}",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}/listings/{listingsId}",
                       "httpMethod": "DELETE",
                       "id": "analyticshub.projects.locations.dataExchanges.listings.delete",
                       "parameterOrder": [
@@ -463,7 +463,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta1/{+name}",
+                      "path": "v1/{+name}",
                       "response": {
                         "$ref": "Empty"
                       },
@@ -474,7 +474,7 @@
                     },
                     "get": {
                       "description": "Gets the details of a listing.",
-                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}/listings/{listingsId}",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}/listings/{listingsId}",
                       "httpMethod": "GET",
                       "id": "analyticshub.projects.locations.dataExchanges.listings.get",
                       "parameterOrder": [
@@ -489,7 +489,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta1/{+name}",
+                      "path": "v1/{+name}",
                       "response": {
                         "$ref": "Listing"
                       },
@@ -500,7 +500,7 @@
                     },
                     "getIamPolicy": {
                       "description": "Gets the IAM policy.",
-                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}/listings/{listingsId}:getIamPolicy",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}/listings/{listingsId}:getIamPolicy",
                       "httpMethod": "POST",
                       "id": "analyticshub.projects.locations.dataExchanges.listings.getIamPolicy",
                       "parameterOrder": [
@@ -515,7 +515,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta1/{+resource}:getIamPolicy",
+                      "path": "v1/{+resource}:getIamPolicy",
                       "request": {
                         "$ref": "GetIamPolicyRequest"
                       },
@@ -529,7 +529,7 @@
                     },
                     "list": {
                       "description": "Lists all listings in a given project and location.",
-                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}/listings",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}/listings",
                       "httpMethod": "GET",
                       "id": "analyticshub.projects.locations.dataExchanges.listings.list",
                       "parameterOrder": [
@@ -555,7 +555,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta1/{+parent}/listings",
+                      "path": "v1/{+parent}/listings",
                       "response": {
                         "$ref": "ListListingsResponse"
                       },
@@ -566,7 +566,7 @@
                     },
                     "patch": {
                       "description": "Updates an existing listing.",
-                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}/listings/{listingsId}",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}/listings/{listingsId}",
                       "httpMethod": "PATCH",
                       "id": "analyticshub.projects.locations.dataExchanges.listings.patch",
                       "parameterOrder": [
@@ -587,7 +587,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta1/{+name}",
+                      "path": "v1/{+name}",
                       "request": {
                         "$ref": "Listing"
                       },
@@ -601,7 +601,7 @@
                     },
                     "setIamPolicy": {
                       "description": "Sets the IAM policy.",
-                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}/listings/{listingsId}:setIamPolicy",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}/listings/{listingsId}:setIamPolicy",
                       "httpMethod": "POST",
                       "id": "analyticshub.projects.locations.dataExchanges.listings.setIamPolicy",
                       "parameterOrder": [
@@ -616,7 +616,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta1/{+resource}:setIamPolicy",
+                      "path": "v1/{+resource}:setIamPolicy",
                       "request": {
                         "$ref": "SetIamPolicyRequest"
                       },
@@ -630,7 +630,7 @@
                     },
                     "subscribe": {
                       "description": "Subscribes to a listing. Currently, with Analytics Hub, you can create listings that reference only BigQuery datasets. Upon subscription to a listing for a BigQuery dataset, Analytics Hub creates a linked dataset in the subscriber's project.",
-                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}/listings/{listingsId}:subscribe",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}/listings/{listingsId}:subscribe",
                       "httpMethod": "POST",
                       "id": "analyticshub.projects.locations.dataExchanges.listings.subscribe",
                       "parameterOrder": [
@@ -645,7 +645,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta1/{+name}:subscribe",
+                      "path": "v1/{+name}:subscribe",
                       "request": {
                         "$ref": "SubscribeListingRequest"
                       },
@@ -659,7 +659,7 @@
                     },
                     "testIamPermissions": {
                       "description": "Returns the permissions that a caller has.",
-                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}/listings/{listingsId}:testIamPermissions",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}/listings/{listingsId}:testIamPermissions",
                       "httpMethod": "POST",
                       "id": "analyticshub.projects.locations.dataExchanges.listings.testIamPermissions",
                       "parameterOrder": [
@@ -674,7 +674,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta1/{+resource}:testIamPermissions",
+                      "path": "v1/{+resource}:testIamPermissions",
                       "request": {
                         "$ref": "TestIamPermissionsRequest"
                       },
@@ -1251,6 +1251,6 @@
   },
   "servicePath": "",
   "title": "Analytics Hub API",
-  "version": "v1beta1",
+  "version": "v1",
   "version_module": true
 }

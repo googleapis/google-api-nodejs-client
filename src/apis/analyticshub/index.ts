@@ -14,27 +14,40 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {analyticshub_v1} from './v1';
 import {analyticshub_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
+  v1: analyticshub_v1.Analyticshub,
   v1beta1: analyticshub_v1beta1.Analyticshub,
 };
 
+export function analyticshub(version: 'v1'): analyticshub_v1.Analyticshub;
+export function analyticshub(
+  options: analyticshub_v1.Options
+): analyticshub_v1.Analyticshub;
 export function analyticshub(
   version: 'v1beta1'
 ): analyticshub_v1beta1.Analyticshub;
 export function analyticshub(
   options: analyticshub_v1beta1.Options
 ): analyticshub_v1beta1.Analyticshub;
-export function analyticshub<T = analyticshub_v1beta1.Analyticshub>(
+export function analyticshub<
+  T = analyticshub_v1.Analyticshub | analyticshub_v1beta1.Analyticshub
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1beta1' | analyticshub_v1beta1.Options
+  versionOrOptions:
+    | 'v1'
+    | analyticshub_v1.Options
+    | 'v1beta1'
+    | analyticshub_v1beta1.Options
 ) {
   return getAPI<T>('analyticshub', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
+export {analyticshub_v1};
 export {analyticshub_v1beta1};
 export {
   AuthPlus,
