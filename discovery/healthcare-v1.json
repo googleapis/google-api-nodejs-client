@@ -4053,7 +4053,7 @@
       }
     }
   },
-  "revision": "20220810",
+  "revision": "20220818",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "ActivateConsentRequest": {
@@ -5311,8 +5311,8 @@
           "enumDescriptions": [
             "Default behavior is the same as WRITE_EMPTY.",
             "Only export data if the destination table is empty.",
-            "Erase all existing data in a table before writing the instances.",
-            "Append data to the existing table."
+            "Erase all existing data in the destination table before writing the instances.",
+            "Append data to the destination table."
           ],
           "type": "string"
         }
@@ -5372,8 +5372,8 @@
           "enumDescriptions": [
             "Default behavior is the same as WRITE_EMPTY.",
             "Only export data if the destination tables are empty.",
-            "Erase all existing data in the tables before writing the instances.",
-            "Append data to the existing tables."
+            "Erase all existing data in the destination tables before writing the FHIR resources.",
+            "Append data to the destination tables."
           ],
           "type": "string"
         }
