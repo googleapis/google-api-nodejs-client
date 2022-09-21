@@ -2,9 +2,6 @@
   "auth": {
     "oauth2": {
       "scopes": {
-        "https://www.googleapis.com/auth/cloud-identity": {
-          "description": "Private Service: https://www.googleapis.com/auth/cloud-identity"
-        },
         "https://www.googleapis.com/auth/cloud-identity.devices": {
           "description": "Private Service: https://www.googleapis.com/auth/cloud-identity.devices"
         },
@@ -19,12 +16,6 @@
         },
         "https://www.googleapis.com/auth/cloud-identity.groups.readonly": {
           "description": "See any Cloud Identity Groups that you can access, including group members and their emails"
-        },
-        "https://www.googleapis.com/auth/cloud-identity.userinvitations": {
-          "description": "See, send, or cancel any Cloud Identity UserInvitations to join your organization to users"
-        },
-        "https://www.googleapis.com/auth/cloud-identity.userinvitations.readonly": {
-          "description": "See, send, or cancel any Cloud Identity UserInvitations to join your organization to users"
         },
         "https://www.googleapis.com/auth/cloud-platform": {
           "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
@@ -156,10 +147,7 @@
               },
               "response": {
                 "$ref": "Operation"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity.userinvitations"
-              ]
+              }
             },
             "get": {
               "description": "Retrieves a UserInvitation resource. **Note:** New consumer accounts with the customer's verified domain created within the previous 48 hours will not appear in the result. This delay also applies to newly-verified domains.",
@@ -181,11 +169,7 @@
               "path": "v1/{+name}",
               "response": {
                 "$ref": "UserInvitation"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity.userinvitations",
-                "https://www.googleapis.com/auth/cloud-identity.userinvitations.readonly"
-              ]
+              }
             },
             "isInvitableUser": {
               "description": "Verifies whether a user account is eligible to receive a UserInvitation (is an unmanaged account). Eligibility is based on the following criteria: * the email address is a consumer account and it's the primary email address of the account, and * the domain of the email address matches an existing verified Google Workspace or Cloud Identity domain If both conditions are met, the user is eligible. **Note:** This method is not supported for Workspace Essentials customers.",
@@ -207,11 +191,7 @@
               "path": "v1/{+name}:isInvitableUser",
               "response": {
                 "$ref": "IsInvitableUserResponse"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity.userinvitations",
-                "https://www.googleapis.com/auth/cloud-identity.userinvitations.readonly"
-              ]
+              }
             },
             "list": {
               "description": "Retrieves a list of UserInvitation resources. **Note:** New consumer accounts with the customer's verified domain created within the previous 48 hours will not appear in the result. This delay also applies to newly-verified domains.",
@@ -254,11 +234,7 @@
               "path": "v1/{+parent}/userinvitations",
               "response": {
                 "$ref": "ListUserInvitationsResponse"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity.userinvitations",
-                "https://www.googleapis.com/auth/cloud-identity.userinvitations.readonly"
-              ]
+              }
             },
             "send": {
               "description": "Sends a UserInvitation to email. If the `UserInvitation` does not exist for this request and it is a valid request, the request creates a `UserInvitation`. **Note:** The `get` and `list` methods have a 48-hour delay where newly-created consumer accounts will not appear in the results. You can still send a `UserInvitation` to those accounts if you know the unmanaged email address and IsInvitableUser==True.",
@@ -283,10 +259,7 @@
               },
               "response": {
                 "$ref": "Operation"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity.userinvitations"
-              ]
+              }
             }
           }
         }
@@ -319,7 +292,6 @@
             "$ref": "Operation"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-identity",
             "https://www.googleapis.com/auth/cloud-identity.devices"
           ]
         },
@@ -344,7 +316,6 @@
             "$ref": "Operation"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-identity",
             "https://www.googleapis.com/auth/cloud-identity.devices"
           ]
         },
@@ -375,7 +346,6 @@
             "$ref": "Operation"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-identity",
             "https://www.googleapis.com/auth/cloud-identity.devices"
           ]
         },
@@ -406,7 +376,6 @@
             "$ref": "GoogleAppsCloudidentityDevicesV1Device"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-identity",
             "https://www.googleapis.com/auth/cloud-identity.devices",
             "https://www.googleapis.com/auth/cloud-identity.devices.readonly"
           ]
@@ -465,7 +434,6 @@
             "$ref": "GoogleAppsCloudidentityDevicesV1ListDevicesResponse"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-identity",
             "https://www.googleapis.com/auth/cloud-identity.devices",
             "https://www.googleapis.com/auth/cloud-identity.devices.readonly"
           ]
@@ -495,7 +463,6 @@
             "$ref": "Operation"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-identity",
             "https://www.googleapis.com/auth/cloud-identity.devices"
           ]
         }
@@ -528,7 +495,6 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity",
                 "https://www.googleapis.com/auth/cloud-identity.devices"
               ]
             },
@@ -557,7 +523,6 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity",
                 "https://www.googleapis.com/auth/cloud-identity.devices"
               ]
             },
@@ -586,7 +551,6 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity",
                 "https://www.googleapis.com/auth/cloud-identity.devices"
               ]
             },
@@ -617,7 +581,6 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity",
                 "https://www.googleapis.com/auth/cloud-identity.devices"
               ]
             },
@@ -648,7 +611,6 @@
                 "$ref": "GoogleAppsCloudidentityDevicesV1DeviceUser"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity",
                 "https://www.googleapis.com/auth/cloud-identity.devices",
                 "https://www.googleapis.com/auth/cloud-identity.devices.readonly"
               ]
@@ -701,7 +663,6 @@
                 "$ref": "GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity",
                 "https://www.googleapis.com/auth/cloud-identity.devices",
                 "https://www.googleapis.com/auth/cloud-identity.devices.readonly"
               ]
@@ -782,7 +743,6 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity",
                 "https://www.googleapis.com/auth/cloud-identity.devices"
               ]
             }
@@ -817,7 +777,6 @@
                     "$ref": "GoogleAppsCloudidentityDevicesV1ClientState"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-identity",
                     "https://www.googleapis.com/auth/cloud-identity.devices",
                     "https://www.googleapis.com/auth/cloud-identity.devices.readonly"
                   ]
@@ -864,7 +823,6 @@
                     "$ref": "GoogleAppsCloudidentityDevicesV1ListClientStatesResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-identity",
                     "https://www.googleapis.com/auth/cloud-identity.devices",
                     "https://www.googleapis.com/auth/cloud-identity.devices.readonly"
                   ]
@@ -905,7 +863,6 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-identity",
                     "https://www.googleapis.com/auth/cloud-identity.devices"
                   ]
                 }
@@ -948,7 +905,6 @@
             "$ref": "Operation"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-identity",
             "https://www.googleapis.com/auth/cloud-identity.groups",
             "https://www.googleapis.com/auth/cloud-platform"
           ]
@@ -975,7 +931,6 @@
             "$ref": "Operation"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-identity",
             "https://www.googleapis.com/auth/cloud-identity.groups",
             "https://www.googleapis.com/auth/cloud-platform"
           ]
@@ -1002,7 +957,6 @@
             "$ref": "Group"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-identity",
             "https://www.googleapis.com/auth/cloud-identity.groups",
             "https://www.googleapis.com/auth/cloud-identity.groups.readonly",
             "https://www.googleapis.com/auth/cloud-platform"
@@ -1036,7 +990,6 @@
             "$ref": "SecuritySettings"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-identity",
             "https://www.googleapis.com/auth/cloud-identity.groups",
             "https://www.googleapis.com/auth/cloud-identity.groups.readonly",
             "https://www.googleapis.com/auth/cloud-platform"
@@ -1086,7 +1039,6 @@
             "$ref": "ListGroupsResponse"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-identity",
             "https://www.googleapis.com/auth/cloud-identity.groups",
             "https://www.googleapis.com/auth/cloud-identity.groups.readonly",
             "https://www.googleapis.com/auth/cloud-platform"
@@ -1115,7 +1067,6 @@
             "$ref": "LookupGroupNameResponse"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-identity",
             "https://www.googleapis.com/auth/cloud-identity.groups",
             "https://www.googleapis.com/auth/cloud-identity.groups.readonly",
             "https://www.googleapis.com/auth/cloud-platform"
@@ -1152,7 +1103,6 @@
             "$ref": "Operation"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-identity",
             "https://www.googleapis.com/auth/cloud-identity.groups",
             "https://www.googleapis.com/auth/cloud-platform"
           ]
@@ -1201,7 +1151,6 @@
             "$ref": "SearchGroupsResponse"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-identity",
             "https://www.googleapis.com/auth/cloud-identity.groups",
             "https://www.googleapis.com/auth/cloud-identity.groups.readonly",
             "https://www.googleapis.com/auth/cloud-platform"
@@ -1238,7 +1187,6 @@
             "$ref": "Operation"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-identity",
             "https://www.googleapis.com/auth/cloud-identity.groups",
             "https://www.googleapis.com/auth/cloud-platform"
           ]
@@ -1274,7 +1222,6 @@
                 "$ref": "CheckTransitiveMembershipResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity",
                 "https://www.googleapis.com/auth/cloud-identity.groups",
                 "https://www.googleapis.com/auth/cloud-identity.groups.readonly",
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -1305,7 +1252,6 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity",
                 "https://www.googleapis.com/auth/cloud-identity.groups",
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
@@ -1332,7 +1278,6 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity",
                 "https://www.googleapis.com/auth/cloud-identity.groups",
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
@@ -1359,7 +1304,6 @@
                 "$ref": "Membership"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity",
                 "https://www.googleapis.com/auth/cloud-identity.groups",
                 "https://www.googleapis.com/auth/cloud-identity.groups.readonly",
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -1392,7 +1336,6 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity",
                 "https://www.googleapis.com/auth/cloud-identity.groups",
                 "https://www.googleapis.com/auth/cloud-identity.groups.readonly",
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -1446,7 +1389,6 @@
                 "$ref": "ListMembershipsResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity",
                 "https://www.googleapis.com/auth/cloud-identity.groups",
                 "https://www.googleapis.com/auth/cloud-identity.groups.readonly",
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -1484,7 +1426,6 @@
                 "$ref": "LookupMembershipNameResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity",
                 "https://www.googleapis.com/auth/cloud-identity.groups",
                 "https://www.googleapis.com/auth/cloud-identity.groups.readonly",
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -1515,7 +1456,6 @@
                 "$ref": "ModifyMembershipRolesResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity",
                 "https://www.googleapis.com/auth/cloud-identity.groups",
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
@@ -1558,7 +1498,6 @@
                 "$ref": "SearchTransitiveGroupsResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity",
                 "https://www.googleapis.com/auth/cloud-identity.groups",
                 "https://www.googleapis.com/auth/cloud-identity.groups.readonly",
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -1597,7 +1536,6 @@
                 "$ref": "SearchTransitiveMembershipsResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-identity",
                 "https://www.googleapis.com/auth/cloud-identity.groups",
                 "https://www.googleapis.com/auth/cloud-identity.groups.readonly",
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -1608,7 +1546,7 @@
       }
     }
   },
-  "revision": "20220815",
+  "revision": "20220913",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "CancelUserInvitationRequest": {
