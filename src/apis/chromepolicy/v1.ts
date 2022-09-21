@@ -293,7 +293,7 @@ export namespace chromepolicy_v1 {
     updateMask?: string | null;
   }
   /**
-   * Resource representing a policy schema. Next ID: 13
+   * Resource representing a policy schema. Next ID: 14
    */
   export interface Schema$GoogleChromePolicyV1PolicySchema {
     /**
@@ -304,6 +304,10 @@ export namespace chromepolicy_v1 {
      * Output only. Additional key names that will be used to identify the target of the policy value. When specifying a `policyTargetKey`, each of the additional keys specified here will have to be included in the `additionalTargetKeys` map.
      */
     additionalTargetKeyNames?: Schema$GoogleChromePolicyV1AdditionalTargetKeyName[];
+    /**
+     * Output only. Title of the category in which a setting belongs.
+     */
+    categoryTitle?: string | null;
     /**
      * Schema definition using proto descriptor.
      */
@@ -363,7 +367,7 @@ export namespace chromepolicy_v1 {
    */
   export interface Schema$GoogleChromePolicyV1PolicySchemaFieldDescription {
     /**
-     * Output only. The description for the field.
+     * Deprecated. Use name and field_description instead. The description for the field.
      */
     description?: string | null;
     /**
@@ -375,6 +379,10 @@ export namespace chromepolicy_v1 {
      */
     fieldDependencies?: Schema$GoogleChromePolicyV1PolicySchemaFieldDependencies[];
     /**
+     * Output only. The description of the field.
+     */
+    fieldDescription?: string | null;
+    /**
      * Output only. Any input constraints associated on the values for the field.
      */
     inputConstraint?: string | null;
@@ -382,6 +390,10 @@ export namespace chromepolicy_v1 {
      * Output only. If the field has a set of known values, this field will provide a description for these values.
      */
     knownValueDescriptions?: Schema$GoogleChromePolicyV1PolicySchemaFieldKnownValueDescription[];
+    /**
+     * Output only. The name of the field.
+     */
+    name?: string | null;
     /**
      * Output only. Provides the description of the fields nested in this field, if the field is a message type that defines multiple fields.
      */
@@ -539,7 +551,7 @@ export namespace chromepolicy_v1 {
   /**
    * Request message for uploading a file for a policy. Next ID: 5
    */
-  export interface Schema$GoogleChromePolicyV1UploadPolicyFileRequest {
+  export interface Schema$GoogleChromePolicyVersionsV1UploadPolicyFileRequest {
     /**
      * Required. The fully qualified policy schema and field name this file is uploaded for. This information will be used to validate the content type of the file.
      */
@@ -548,7 +560,7 @@ export namespace chromepolicy_v1 {
   /**
    * Response message for downloading an uploaded file. Next ID: 2
    */
-  export interface Schema$GoogleChromePolicyV1UploadPolicyFileResponse {
+  export interface Schema$GoogleChromePolicyVersionsV1UploadPolicyFileResponse {
     /**
      * The uri for end user to download the file.
      */
@@ -1835,6 +1847,7 @@ export namespace chromepolicy_v1 {
      *   // {
      *   //   "accessRestrictions": [],
      *   //   "additionalTargetKeyNames": [],
+     *   //   "categoryTitle": "my_categoryTitle",
      *   //   "definition": {},
      *   //   "fieldDescriptions": [],
      *   //   "name": "my_name",
@@ -2196,7 +2209,7 @@ export namespace chromepolicy_v1 {
     upload(
       params?: Params$Resource$Media$Upload,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleChromePolicyV1UploadPolicyFileResponse>;
+    ): GaxiosPromise<Schema$GoogleChromePolicyVersionsV1UploadPolicyFileResponse>;
     upload(
       params: Params$Resource$Media$Upload,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2206,32 +2219,32 @@ export namespace chromepolicy_v1 {
       params: Params$Resource$Media$Upload,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleChromePolicyV1UploadPolicyFileResponse>,
-      callback: BodyResponseCallback<Schema$GoogleChromePolicyV1UploadPolicyFileResponse>
+        | BodyResponseCallback<Schema$GoogleChromePolicyVersionsV1UploadPolicyFileResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromePolicyVersionsV1UploadPolicyFileResponse>
     ): void;
     upload(
       params: Params$Resource$Media$Upload,
-      callback: BodyResponseCallback<Schema$GoogleChromePolicyV1UploadPolicyFileResponse>
+      callback: BodyResponseCallback<Schema$GoogleChromePolicyVersionsV1UploadPolicyFileResponse>
     ): void;
     upload(
-      callback: BodyResponseCallback<Schema$GoogleChromePolicyV1UploadPolicyFileResponse>
+      callback: BodyResponseCallback<Schema$GoogleChromePolicyVersionsV1UploadPolicyFileResponse>
     ): void;
     upload(
       paramsOrCallback?:
         | Params$Resource$Media$Upload
-        | BodyResponseCallback<Schema$GoogleChromePolicyV1UploadPolicyFileResponse>
+        | BodyResponseCallback<Schema$GoogleChromePolicyVersionsV1UploadPolicyFileResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleChromePolicyV1UploadPolicyFileResponse>
+        | BodyResponseCallback<Schema$GoogleChromePolicyVersionsV1UploadPolicyFileResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleChromePolicyV1UploadPolicyFileResponse>
+        | BodyResponseCallback<Schema$GoogleChromePolicyVersionsV1UploadPolicyFileResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleChromePolicyV1UploadPolicyFileResponse>
+      | GaxiosPromise<Schema$GoogleChromePolicyVersionsV1UploadPolicyFileResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2267,12 +2280,12 @@ export namespace chromepolicy_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleChromePolicyV1UploadPolicyFileResponse>(
+        createAPIRequest<Schema$GoogleChromePolicyVersionsV1UploadPolicyFileResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleChromePolicyV1UploadPolicyFileResponse>(
+        return createAPIRequest<Schema$GoogleChromePolicyVersionsV1UploadPolicyFileResponse>(
           parameters
         );
       }
@@ -2288,7 +2301,7 @@ export namespace chromepolicy_v1 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleChromePolicyV1UploadPolicyFileRequest;
+    requestBody?: Schema$GoogleChromePolicyVersionsV1UploadPolicyFileRequest;
 
     /**
      * Media metadata

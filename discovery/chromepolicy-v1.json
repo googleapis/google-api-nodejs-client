@@ -428,10 +428,10 @@
           },
           "path": "v1/{+customer}/policies/files:uploadPolicyFile",
           "request": {
-            "$ref": "GoogleChromePolicyV1UploadPolicyFileRequest"
+            "$ref": "GoogleChromePolicyVersionsV1UploadPolicyFileRequest"
           },
           "response": {
-            "$ref": "GoogleChromePolicyV1UploadPolicyFileResponse"
+            "$ref": "GoogleChromePolicyVersionsV1UploadPolicyFileResponse"
           },
           "scopes": [
             "https://www.googleapis.com/auth/chrome.management.policy"
@@ -441,7 +441,7 @@
       }
     }
   },
-  "revision": "20220817",
+  "revision": "20220919",
   "rootUrl": "https://chromepolicy.googleapis.com/",
   "schemas": {
     "ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle": {
@@ -676,7 +676,7 @@
       "type": "object"
     },
     "GoogleChromePolicyV1PolicySchema": {
-      "description": "Resource representing a policy schema. Next ID: 13",
+      "description": "Resource representing a policy schema. Next ID: 14",
       "id": "GoogleChromePolicyV1PolicySchema",
       "properties": {
         "accessRestrictions": {
@@ -694,6 +694,11 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "categoryTitle": {
+          "description": "Output only. Title of the category in which a setting belongs.",
+          "readOnly": true,
+          "type": "string"
         },
         "definition": {
           "$ref": "Proto2FileDescriptorProto",
@@ -784,8 +789,7 @@
       "id": "GoogleChromePolicyV1PolicySchemaFieldDescription",
       "properties": {
         "description": {
-          "description": "Output only. The description for the field.",
-          "readOnly": true,
+          "description": "Deprecated. Use name and field_description instead. The description for the field.",
           "type": "string"
         },
         "field": {
@@ -801,6 +805,11 @@
           "readOnly": true,
           "type": "array"
         },
+        "fieldDescription": {
+          "description": "Output only. The description of the field.",
+          "readOnly": true,
+          "type": "string"
+        },
         "inputConstraint": {
           "description": "Output only. Any input constraints associated on the values for the field.",
           "readOnly": true,
@@ -813,6 +822,11 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "name": {
+          "description": "Output only. The name of the field.",
+          "readOnly": true,
+          "type": "string"
         },
         "nestedFieldDescriptions": {
           "description": "Output only. Provides the description of the fields nested in this field, if the field is a message type that defines multiple fields.",
@@ -1026,9 +1040,9 @@
       },
       "type": "object"
     },
-    "GoogleChromePolicyV1UploadPolicyFileRequest": {
+    "GoogleChromePolicyVersionsV1UploadPolicyFileRequest": {
       "description": "Request message for uploading a file for a policy. Next ID: 5",
-      "id": "GoogleChromePolicyV1UploadPolicyFileRequest",
+      "id": "GoogleChromePolicyVersionsV1UploadPolicyFileRequest",
       "properties": {
         "policyField": {
           "description": "Required. The fully qualified policy schema and field name this file is uploaded for. This information will be used to validate the content type of the file.",
@@ -1037,9 +1051,9 @@
       },
       "type": "object"
     },
-    "GoogleChromePolicyV1UploadPolicyFileResponse": {
+    "GoogleChromePolicyVersionsV1UploadPolicyFileResponse": {
       "description": "Response message for downloading an uploaded file. Next ID: 2",
-      "id": "GoogleChromePolicyV1UploadPolicyFileResponse",
+      "id": "GoogleChromePolicyVersionsV1UploadPolicyFileResponse",
       "properties": {
         "downloadUri": {
           "description": "The uri for end user to download the file.",
