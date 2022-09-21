@@ -2512,7 +2512,7 @@
       }
     }
   },
-  "revision": "20220727",
+  "revision": "20220826",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2678,7 +2678,7 @@
           "description": "NodeManagement configuration for this NodePool."
         },
         "minCpuPlatform": {
-          "description": "Deprecated. Minimum CPU platform to be used for NAP created node pools. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: Intel Haswell or minCpuPlatform: Intel Sandy Bridge. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform) This field is deprecated, min_cpu_platform should be specified using https://cloud.google.com/requested-min-cpu-platform label selector on the pod. To unset the min cpu platform field pass \"automatic\" as field value.",
+          "description": "Deprecated. Minimum CPU platform to be used for NAP created node pools. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: Intel Haswell or minCpuPlatform: Intel Sandy Bridge. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform). This field is deprecated, min_cpu_platform should be specified using https://cloud.google.com/requested-min-cpu-platform label selector on the pod. To unset the min cpu platform field pass \"automatic\" as field value.",
           "type": "string"
         },
         "oauthScopes": {
@@ -3415,6 +3415,10 @@
         "desiredNodePoolId": {
           "description": "The node pool to be upgraded. This field is mandatory if \"desired_node_version\", \"desired_image_family\", \"desired_node_pool_autoscaling\", or \"desired_workload_metadata_config\" is specified and there is more than one node pool on the cluster.",
           "type": "string"
+        },
+        "desiredNodePoolLoggingConfig": {
+          "$ref": "NodePoolLoggingConfig",
+          "description": "The desired node pool logging configuration defaults for the cluster."
         },
         "desiredNodeVersion": {
           "description": "The Kubernetes version to change the nodes to (typically an upgrade). Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior: - \"latest\": picks the highest valid Kubernetes version - \"1.X\": picks the highest valid patch+gke.N patch in the 1.X version - \"1.X.Y\": picks the highest valid gke.N patch in the 1.X.Y version - \"1.X.Y-gke.N\": picks an explicit Kubernetes version - \"-\": picks the Kubernetes master version",
@@ -4380,6 +4384,27 @@
       },
       "type": "object"
     },
+    "LoggingVariantConfig": {
+      "description": "LoggingVariantConfig specifies the behaviour of the logging component.",
+      "id": "LoggingVariantConfig",
+      "properties": {
+        "variant": {
+          "description": "Logging variant deployed on nodes.",
+          "enum": [
+            "VARIANT_UNSPECIFIED",
+            "DEFAULT",
+            "MAX_THROUGHPUT"
+          ],
+          "enumDescriptions": [
+            "Default value. This shouldn't be used.",
+            "default logging variant.",
+            "maximum logging throughput variant."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "MaintenanceExclusionOptions": {
       "description": "Represents the Maintenance exclusion option.",
       "id": "MaintenanceExclusionOptions",
@@ -4808,6 +4833,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "loggingConfig": {
+          "$ref": "NodePoolLoggingConfig",
+          "description": "Logging configuration."
+        },
         "machineType": {
           "description": "The name of a Google Compute Engine [machine type](https://cloud.google.com/compute/docs/machine-types). If unspecified, the default machine type is `e2-medium`.",
           "type": "string"
@@ -4820,7 +4849,7 @@
           "type": "object"
         },
         "minCpuPlatform": {
-          "description": "Minimum CPU platform to be used by this instance. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as `minCpuPlatform: \"Intel Haswell\"` or `minCpuPlatform: \"Intel Sandy Bridge\"`. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)",
+          "description": "Minimum CPU platform to be used by this instance. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as `minCpuPlatform: \"Intel Haswell\"` or `minCpuPlatform: \"Intel Sandy Bridge\"`. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform).",
           "type": "string"
         },
         "nodeGroup": {
@@ -4886,6 +4915,10 @@
         "gcfsConfig": {
           "$ref": "GcfsConfig",
           "description": "GCFS (Google Container File System, also known as Riptide) options."
+        },
+        "loggingConfig": {
+          "$ref": "NodePoolLoggingConfig",
+          "description": "Logging configuration for node pools."
         }
       },
       "type": "object"
@@ -5146,6 +5179,17 @@
         "nodeConfigDefaults": {
           "$ref": "NodeConfigDefaults",
           "description": "Subset of NodeConfig message that has defaults."
+        }
+      },
+      "type": "object"
+    },
+    "NodePoolLoggingConfig": {
+      "description": "NodePoolLoggingConfig specifies logging configuration for nodepools.",
+      "id": "NodePoolLoggingConfig",
+      "properties": {
+        "variantConfig": {
+          "$ref": "LoggingVariantConfig",
+          "description": "Logging variant configuration."
         }
       },
       "type": "object"
@@ -5582,7 +5626,7 @@
           "type": "string"
         },
         "key": {
-          "description": "Corresponds to the label key of a reservation resource. To target a SPECIFIC_RESERVATION by name, specify \"googleapis.com/reservation-name\" as the key and specify the name of your reservation as its value.",
+          "description": "Corresponds to the label key of a reservation resource. To target a SPECIFIC_RESERVATION by name, specify \"compute.googleapis.com/reservation-name\" as the key and specify the name of your reservation as its value.",
           "type": "string"
         },
         "values": {
@@ -6493,6 +6537,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "loggingConfig": {
+          "$ref": "NodePoolLoggingConfig",
+          "description": "Logging configuration."
         },
         "name": {
           "description": "The name (project, location, cluster, node pool) of the node pool to update. Specified in the format `projects/*/locations/*/clusters/*/nodePools/*`.",
