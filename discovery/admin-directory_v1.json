@@ -416,8 +416,7 @@
                 "lastSync",
                 "notes",
                 "serialNumber",
-                "status",
-                "supportEndDate"
+                "status"
               ],
               "enumDescriptions": [
                 "Chrome device location as annotated by the administrator.",
@@ -425,8 +424,7 @@
                 "The date and time the Chrome device was last synchronized with the policy settings in the Admin console.",
                 "Chrome device notes as annotated by the administrator.",
                 "The Chrome device serial number entered when the device was enabled.",
-                "Chrome device status. For more information, see the <a [chromeosdevices](/admin-sdk/directory/v1/reference/chromeosdevices.html).",
-                "Chrome device support end date. This is applicable only for devices purchased directly from Google."
+                "Chrome device status. For more information, see the <a [chromeosdevices](/admin-sdk/directory/v1/reference/chromeosdevices.html)."
               ],
               "location": "query",
               "type": "string"
@@ -4407,7 +4405,7 @@
       }
     }
   },
-  "revision": "20220816",
+  "revision": "20220913",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -5801,7 +5799,7 @@
             "DATA_LOSS"
           ],
           "enumDescriptions": [
-            "Not an error; returned on success HTTP Mapping: 200 OK",
+            "Not an error; returned on success. HTTP Mapping: 200 OK",
             "The operation was cancelled, typically by the caller. HTTP Mapping: 499 Client Closed Request",
             "Unknown error. For example, this error may be returned when a `Status` value received from another address space belongs to an error space that is not known in this address space. Also errors raised by APIs that do not return enough error information may be converted to this error. HTTP Mapping: 500 Internal Server Error",
             "The client specified an invalid argument. Note that this differs from `FAILED_PRECONDITION`. `INVALID_ARGUMENT` indicates arguments that are problematic regardless of the state of the system (e.g., a malformed file name). HTTP Mapping: 400 Bad Request",
