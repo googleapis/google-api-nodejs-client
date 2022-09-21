@@ -125,7 +125,7 @@ export namespace appengine_v1 {
   }
 
   /**
-   * Cloud Endpoints (https://cloud.google.com/endpoints/) configuration for API handlers.
+   * Google Cloud Endpoints (https://cloud.google.com/endpoints) configuration for API handlers.
    */
   export interface Schema$ApiConfigHandler {
     /**
@@ -514,7 +514,7 @@ export namespace appengine_v1 {
    */
   export interface Schema$Empty {}
   /**
-   * Cloud Endpoints (https://cloud.google.com/endpoints) configuration. The Endpoints API Service provides tooling for serving Open API and gRPC endpoints via an NGINX proxy. Only valid for App Engine Flexible environment deployments.The fields here refer to the name and configuration ID of a "service" resource in the Service Management API (https://cloud.google.com/service-management/overview).
+   * Google Cloud Endpoints (https://cloud.google.com/endpoints) configuration. The Endpoints API Service provides tooling for serving Open API and gRPC endpoints via an NGINX proxy. Only valid for App Engine Flexible environment deployments.The fields here refer to the name and configuration ID of a "service" resource in the Service Management API (https://cloud.google.com/service-management/overview).
    */
   export interface Schema$EndpointsApiService {
     /**
@@ -1454,7 +1454,7 @@ export namespace appengine_v1 {
    */
   export interface Schema$Version {
     /**
-     * Serving configuration for Cloud Endpoints (https://cloud.google.com/endpoints/).Only returned in GET requests if view=FULL is set.
+     * Serving configuration for Google Cloud Endpoints (https://cloud.google.com/endpoints).Only returned in GET requests if view=FULL is set.
      */
     apiConfig?: Schema$ApiConfigHandler;
     /**
