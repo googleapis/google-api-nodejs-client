@@ -350,13 +350,17 @@ export namespace cloudsearch_v1 {
     value?: string | null;
   }
   /**
-   * Next Id: 5
+   * Next Id: 7
    */
   export interface Schema$AppsDynamiteSharedActivityFeedAnnotationData {
     /**
-     * Unique id of the Activity Feed message. This will be in the form of "space-id/message-id" or "dm-id/message-id", where the space-/dm-id and message-id components are extracted from the top-level MessageId in message.proto (http://shortn/_SulV51DNfF). This is copied into annotations so that no client changes are needed to access this value. Clients will need a unique id for every Activity Feed message to implement click-to-source.
+     * Timestamp of when the Activity Feed message that contains this annotation was created. This is roughly when the activity happened, such as when a reaction happened, but will have at least some small delay, since the Activity Feed message is created asynchronously after. This timestamp should only be used for display when the activity create time is not available in the Chat UI, like the time of a reaction.
      */
-    activityFeedMessageId?: string | null;
+    activityFeedMessageCreateTime?: string | null;
+    /**
+     * Unique id of the Activity Feed message used by clients to implement click-to-source. This is the same messageId as the top-level id field for the Activity Feed item.
+     */
+    activityFeedMessageId?: Schema$MessageId;
     chatItem?: Schema$AppsDynamiteSharedChatItem;
     /**
      * Only populated on read path and should not be persisted in storage.
@@ -1309,13 +1313,17 @@ export namespace cloudsearch_v1 {
     meetingUrl?: string | null;
   }
   /**
-   * Information that references a Dynamite chat message.
+   * Information that references a Dynamite chat message. This is only used for Activity Feed messages.
    */
   export interface Schema$AppsDynamiteSharedMessageInfo {
     /**
      * Id of the source chat message. This is kept here because the top-level message ID to refers the AF message ID.
      */
     messageId?: Schema$MessageId;
+    /**
+     * The type of the source chat message.
+     */
+    messageType?: string | null;
     /**
      * Timestamp of when the topic containing the message has been read by the user. This is populated if the message references an inline reply, in which case the space may be marked as read but the topic still has unread messages.
      */
@@ -1462,6 +1470,20 @@ export namespace cloudsearch_v1 {
      * The retention state.
      */
     state?: string | null;
+  }
+  /**
+   * Contains info on membership count for member types: HUMAN_USER, APP_USER & ROSTER_MEMBER different states: INVITED, JOINED
+   */
+  export interface Schema$AppsDynamiteSharedSegmentedMembershipCount {
+    /**
+     * count of members with given type and state
+     */
+    membershipCount?: number | null;
+    membershipState?: string | null;
+    memberType?: string | null;
+  }
+  export interface Schema$AppsDynamiteSharedSegmentedMembershipCounts {
+    value?: Schema$AppsDynamiteSharedSegmentedMembershipCount[];
   }
   /**
    * A widget that creates a UI item (for example, a drop-down list) with options for users to select.
@@ -2232,7 +2254,7 @@ export namespace cloudsearch_v1 {
      */
     cseEnabled?: boolean | null;
     /**
-     * Indicates whether the current call is moderated. go/meet-multimod-dd
+     * Indicates whether the current call is moderated.
      */
     moderationEnabled?: boolean | null;
     /**
@@ -3798,7 +3820,7 @@ export namespace cloudsearch_v1 {
     text?: string | null;
   }
   /**
-   * The corpus specific metadata for office-type documents, from Google Docs and other sources. This message is passed to the scorer and beyond. Next tag: 7
+   * The corpus specific metadata for office-type documents, from Google Docs and other sources. This message is passed to the scorer and beyond. Next tag: 9
    */
   export interface Schema$GoogleDocsMetadata {
     /**
@@ -3817,6 +3839,14 @@ export namespace cloudsearch_v1 {
      * The last time this document was modified, in seconds since epoch. Only counts content modifications.
      */
     lastContentModifiedTimestamp?: string | null;
+    /**
+     * Contains number of subscribers for the document.
+     */
+    numSubscribers?: number | null;
+    /**
+     * Size of untruncated viewers list.
+     */
+    numViewers?: number | null;
     /**
      * Additional per-result information, akin to Gmail's SingleThreadResponse. Note: GWS no longer seems to use this field, but there's still one reference to it for Scribe, so we can't remove it.
      */
@@ -4656,7 +4686,7 @@ export namespace cloudsearch_v1 {
      */
     gatewaySipAccess?: Schema$GatewaySipAccess[];
     /**
-     * An optional alias for the meeting space. The alias can in some cases be resolved to the meeting space, similar to the meeting code. The limitation is that the user needs to be in the same meeting domain as the meeting space. See go/thor-backend/meeting-alias for more details.
+     * An optional alias for the meeting space. The alias can in some cases be resolved to the meeting space, similar to the meeting code. The limitation is that the user needs to be in the same meeting domain as the meeting space.
      */
     meetingAlias?: string | null;
     /**
@@ -4672,7 +4702,7 @@ export namespace cloudsearch_v1 {
      */
     meetingUrl?: string | null;
     /**
-     * Output only. A URL that clients (e.g. Calendar) can use to show the web page with all join methods available for this meeting space. This link is also used in iOS universal links and Android intents, used for opening the "More ways to join" view in the Thor mobile apps. Example: https://tel.meet/mee-ting-cod?pin=1234567891011 Here, "pin" is the universal phone PIN. We include it explicitly to better support the offline case on the mobile. This is set when the meeting space has either a universal PIN or an interop PIN and clients who can show a "more ways to join" button should show it whenever this field is set.
+     * Output only. A URL that clients (e.g. Calendar) can use to show the web page with all join methods available for this meeting space. This link is also used in iOS universal links and Android intents, used for opening the "More ways to join" view in the Meet mobile apps. Example: https://tel.meet/mee-ting-cod?pin=1234567891011 Here, "pin" is the universal phone PIN. We include it explicitly to better support the offline case on the mobile. This is set when the meeting space has either a universal PIN or an interop PIN and clients who can show a "more ways to join" button should show it whenever this field is set.
      */
     moreJoinUrl?: string | null;
     /**
@@ -4835,6 +4865,10 @@ export namespace cloudsearch_v1 {
      * ID of the resource.
      */
     id?: Schema$MessageId;
+    /**
+     * Whether the message is content purged. Content purged messages contain only data required for tombstone (see go/chat-infinite-tombstone). This field is only used by Vault to display tombstone and should only be set to true if the message is a tombstone.
+     */
+    isContentPurged?: boolean | null;
     /**
      * Output only. Indicates if the message is an inline reply. Set to true only if the message's ParentPath is non-NULL. Currently, only inline replies have non-NULL ParentPath. See go/chat-be-inline-reply-indicator.
      */
@@ -5966,7 +6000,7 @@ export namespace cloudsearch_v1 {
      */
     debugOptions?: Schema$DebugOptions;
     /**
-     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. The suggest API does not use this parameter. Instead, suggest autocompletes only based on characters in the query.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. From Suggest API perspective, for 3p suggest this is used as a hint while making predictions to add language boosting.
      */
     languageCode?: string | null;
     /**
@@ -6129,6 +6163,10 @@ export namespace cloudsearch_v1 {
      * Roster deletion state - considered active unless set to deleted
      */
     rosterState?: string | null;
+    /**
+     * Roster membership count. May contain counts based on member type and membership state.
+     */
+    segmentedMembershipCounts?: Schema$AppsDynamiteSharedSegmentedMembershipCounts;
   }
   /**
    * Primary key for Roster resource.
@@ -6558,7 +6596,7 @@ export namespace cloudsearch_v1 {
      */
     defaultAsViewer?: boolean | null;
     /**
-     * Indicates whether the meeting space is moderated. go/meet-multimod-dd
+     * Indicates whether the meeting space is moderated.
      */
     moderationEnabled?: boolean | null;
     /**
@@ -7457,7 +7495,7 @@ export namespace cloudsearch_v1 {
     type?: string | null;
   }
   /**
-   * Contains info regarding the updater of an Activity Feed item. Next Id: 6
+   * Contains info regarding the updater of an Activity Feed item. Next Id: 7
    */
   export interface Schema$UserInfo {
     /**
@@ -7476,6 +7514,10 @@ export namespace cloudsearch_v1 {
      * The gaia id of the updater for clients to show used for Gmail items. If the updater is an external user, the email field below should be populated.
      */
     updaterToShowGaiaId?: string | null;
+    /**
+     * The display name of the updater for clients to show used for Gmail items. This (along with the updater fields above) will be populated in the thread pipeline (http://shortn/_rPS0GCp94Y) when converting Activity Feed message attributes into client-renderable Activity Feed items.
+     */
+    updaterToShowName?: string | null;
     /**
      * The updater for clients to show used for Dynamite Chat items.
      */
@@ -11442,7 +11484,7 @@ export namespace cloudsearch_v1 {
      *     pageToken: 'placeholder-value',
      *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'requestOptions.debugOptions.enableDebugging': 'placeholder-value',
-     *     // The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. The suggest API does not use this parameter. Instead, suggest autocompletes only based on characters in the query.
+     *     // The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. From Suggest API perspective, for 3p suggest this is used as a hint while making predictions to add language boosting.
      *     'requestOptions.languageCode': 'placeholder-value',
      *     // The ID generated when you create a search application using the [admin console](https://support.google.com/a/answer/9043922).
      *     'requestOptions.searchApplicationId': 'placeholder-value',
@@ -11563,7 +11605,7 @@ export namespace cloudsearch_v1 {
      */
     'requestOptions.debugOptions.enableDebugging'?: boolean;
     /**
-     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. The suggest API does not use this parameter. Instead, suggest autocompletes only based on characters in the query.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. From Suggest API perspective, for 3p suggest this is used as a hint while making predictions to add language boosting.
      */
     'requestOptions.languageCode'?: string;
     /**
