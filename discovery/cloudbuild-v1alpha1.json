@@ -306,7 +306,7 @@
       }
     }
   },
-  "revision": "20220609",
+  "revision": "20220908",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ApprovalConfig": {
@@ -814,8 +814,8 @@
             "VERIFIED"
           ],
           "enumDescriptions": [
-            "Not a verifiable build. (default)",
-            "Verified build."
+            "Not a verifiable build (the default).",
+            "Build must be verified."
           ],
           "type": "string"
         },
@@ -873,6 +873,18 @@
       "description": "A step in the build pipeline.",
       "id": "BuildStep",
       "properties": {
+        "allowExitCodes": {
+          "description": "Allow this build step to fail without failing the entire build if and only if the exit code is one of the specified codes. If allow_failure is also specified, this field will take precedence.",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "allowFailure": {
+          "description": "Allow this build step to fail without failing the entire build. If false, the entire build will fail if this step fails. Otherwise, the build will succeed, but this step will still have a failure status. Error information will be reported in the failure_detail field.",
+          "type": "boolean"
+        },
         "args": {
           "description": "A list of arguments that will be presented to the step when it is started. If the image used to run the step's container has an entrypoint, the `args` are used as arguments to that entrypoint. If the image does not define an entrypoint, the first element in args is used as the entrypoint, and the remainder will be used as arguments.",
           "items": {
@@ -894,6 +906,12 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "exitCode": {
+          "description": "Output only. Return code from running the step.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         },
         "id": {
           "description": "Unique identifier for this build step, used in `wait_for` to reference this build step as a dependency.",

@@ -112,6 +112,7 @@ export namespace cloudbuild_v1 {
    */
   export class Cloudbuild {
     context: APIRequestContext;
+    githubDotComWebhook: Resource$Githubdotcomwebhook;
     locations: Resource$Locations;
     operations: Resource$Operations;
     projects: Resource$Projects;
@@ -123,6 +124,7 @@ export namespace cloudbuild_v1 {
         google,
       };
 
+      this.githubDotComWebhook = new Resource$Githubdotcomwebhook(this.context);
       this.locations = new Resource$Locations(this.context);
       this.operations = new Resource$Operations(this.context);
       this.projects = new Resource$Projects(this.context);
@@ -610,6 +612,14 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$BuildStep {
     /**
+     * Allow this build step to fail without failing the entire build if and only if the exit code is one of the specified codes. If allow_failure is also specified, this field will take precedence.
+     */
+    allowExitCodes?: number[] | null;
+    /**
+     * Allow this build step to fail without failing the entire build. If false, the entire build will fail if this step fails. Otherwise, the build will succeed, but this step will still have a failure status. Error information will be reported in the failure_detail field.
+     */
+    allowFailure?: boolean | null;
+    /**
      * A list of arguments that will be presented to the step when it is started. If the image used to run the step's container has an entrypoint, the `args` are used as arguments to that entrypoint. If the image does not define an entrypoint, the first element in args is used as the entrypoint, and the remainder will be used as arguments.
      */
     args?: string[] | null;
@@ -625,6 +635,10 @@ export namespace cloudbuild_v1 {
      * A list of environment variable definitions to be used when running a step. The elements are of the form "KEY=VALUE" for the environment variable "KEY" being given the value "VALUE".
      */
     env?: string[] | null;
+    /**
+     * Output only. Return code from running the step.
+     */
+    exitCode?: number | null;
     /**
      * Unique identifier for this build step, used in `wait_for` to reference this build step as a dependency.
      */
@@ -2001,6 +2015,163 @@ export namespace cloudbuild_v1 {
      * Output only. Time at which the request to update the `WorkerPool` was received.
      */
     updateTime?: string | null;
+  }
+
+  export class Resource$Githubdotcomwebhook {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * ReceiveGitHubDotComWebhook is called when the API receives a github.com webhook.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.githubDotComWebhook.receive({
+     *     // For GitHub Enterprise webhooks, this key is used to associate the webhook request with the GitHubEnterpriseConfig to use for validation.
+     *     webhookKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentType": "my_contentType",
+     *       //   "data": "my_data",
+     *       //   "extensions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    receive(
+      params: Params$Resource$Githubdotcomwebhook$Receive,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    receive(
+      params?: Params$Resource$Githubdotcomwebhook$Receive,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    receive(
+      params: Params$Resource$Githubdotcomwebhook$Receive,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    receive(
+      params: Params$Resource$Githubdotcomwebhook$Receive,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    receive(
+      params: Params$Resource$Githubdotcomwebhook$Receive,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    receive(callback: BodyResponseCallback<Schema$Empty>): void;
+    receive(
+      paramsOrCallback?:
+        | Params$Resource$Githubdotcomwebhook$Receive
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Githubdotcomwebhook$Receive;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Githubdotcomwebhook$Receive;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/githubDotComWebhook:receive').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Githubdotcomwebhook$Receive
+    extends StandardParameters {
+    /**
+     * For GitHub Enterprise webhooks, this key is used to associate the webhook request with the GitHubEnterpriseConfig to use for validation.
+     */
+    webhookKey?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HttpBody;
   }
 
   export class Resource$Locations {
