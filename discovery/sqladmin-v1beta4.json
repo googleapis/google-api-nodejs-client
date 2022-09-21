@@ -979,7 +979,7 @@
           ]
         },
         "patch": {
-          "description": "Updates settings of a Cloud SQL instance. This method supports patch semantics.",
+          "description": "Partially updates settings of a Cloud SQL instance by merging the request with the current configuration. This method supports patch semantics.",
           "flatPath": "sql/v1beta4/projects/{project}/instances/{instance}",
           "httpMethod": "PATCH",
           "id": "sql.instances.patch",
@@ -1916,7 +1916,7 @@
       }
     }
   },
-  "revision": "20220724",
+  "revision": "20220905",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2154,6 +2154,10 @@
           ],
           "type": "string"
         },
+        "timeZone": {
+          "description": "Backup time zone to prevent restores to an instance with a different time zone. Now relevant only for SQL Server.",
+          "type": "string"
+        },
         "type": {
           "description": "The type of this run; can be either \"AUTOMATED\" or \"ON_DEMAND\" or \"FINAL\". This field defaults to \"ON_DEMAND\" and is ignored, when specified for insert requests.",
           "enum": [
@@ -2230,6 +2234,13 @@
           "$ref": "BinLogCoordinates",
           "description": "Binary log coordinates, if specified, identify the position up to which the source instance is cloned. If not specified, the source instance is cloned up to the most recent binary log coordinates."
         },
+        "databaseNames": {
+          "description": "(SQL Server only) Clone only the specified databases from the source instance. Clone all databases if empty.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "destinationInstanceName": {
           "description": "Name of the Cloud SQL instance to be created as a clone.",
           "type": "string"
@@ -2293,6 +2304,7 @@
             "MYSQL_8_0_27",
             "MYSQL_8_0_28",
             "MYSQL_8_0_29",
+            "MYSQL_8_0_30",
             "POSTGRES_13",
             "POSTGRES_14",
             "SQLSERVER_2019_STANDARD",
@@ -2320,6 +2332,7 @@
             "The database major version is MySQL 8.0 and the minor version is 27.",
             "The database major version is MySQL 8.0 and the minor version is 28.",
             "The database major version is MySQL 8.0 and the minor version is 29.",
+            "The database major version is MySQL 8.0 and the minor version is 30.",
             "The database version is PostgreSQL 13.",
             "The database version is PostgreSQL 14.",
             "The database version is SQL Server 2019 Standard.",
@@ -2477,6 +2490,7 @@
             "MYSQL_8_0_27",
             "MYSQL_8_0_28",
             "MYSQL_8_0_29",
+            "MYSQL_8_0_30",
             "POSTGRES_13",
             "POSTGRES_14",
             "SQLSERVER_2019_STANDARD",
@@ -2504,6 +2518,7 @@
             "The database major version is MySQL 8.0 and the minor version is 27.",
             "The database major version is MySQL 8.0 and the minor version is 28.",
             "The database major version is MySQL 8.0 and the minor version is 29.",
+            "The database major version is MySQL 8.0 and the minor version is 30.",
             "The database version is PostgreSQL 13.",
             "The database version is PostgreSQL 14.",
             "The database version is SQL Server 2019 Standard.",
@@ -2992,6 +3007,7 @@
               "MYSQL_8_0_27",
               "MYSQL_8_0_28",
               "MYSQL_8_0_29",
+              "MYSQL_8_0_30",
               "POSTGRES_13",
               "POSTGRES_14",
               "SQLSERVER_2019_STANDARD",
@@ -3019,6 +3035,7 @@
               "The database major version is MySQL 8.0 and the minor version is 27.",
               "The database major version is MySQL 8.0 and the minor version is 28.",
               "The database major version is MySQL 8.0 and the minor version is 29.",
+              "The database major version is MySQL 8.0 and the minor version is 30.",
               "The database version is PostgreSQL 13.",
               "The database version is PostgreSQL 14.",
               "The database version is SQL Server 2019 Standard.",
@@ -4068,6 +4085,20 @@
           "description": "The name of server Instance collation.",
           "type": "string"
         },
+        "connectorEnforcement": {
+          "description": "Specifies if connections must use Cloud SQL connectors. Option values include the following: `NOT_REQUIRED` (Cloud SQL instances can be connected without Cloud SQL Connectors) and `REQUIRED` (Only allow connections that use Cloud SQL Connectors) Note that using REQUIRED disables all existing authorized networks. If this field is not specified when creating a new instance, NOT_REQUIRED is used. If this field is not specified when patching or updating an existing instance, it is left unchanged in the instance.",
+          "enum": [
+            "CONNECTOR_ENFORCEMENT_UNSPECIFIED",
+            "NOT_REQUIRED",
+            "REQUIRED"
+          ],
+          "enumDescriptions": [
+            "The requirement for Cloud SQL connectors is unknown.",
+            "Do not require Cloud SQL connectors.",
+            "Require all connections to use Cloud SQL connectors, including the Cloud SQL Auth Proxy and Cloud SQL Java, Python, and Go connectors. Note: This disables all existing authorized networks."
+          ],
+          "type": "string"
+        },
         "crashSafeReplicationEnabled": {
           "description": "Configuration specific to read replica instances. Indicates whether database flags for crash-safe replication are enabled. This property was only applicable to First Generation instances.",
           "type": "boolean"
@@ -4187,6 +4218,10 @@
         },
         "tier": {
           "description": "The tier (or machine type) for this instance, for example `db-custom-1-3840`. WARNING: Changing this restarts the instance.",
+          "type": "string"
+        },
+        "timeZone": {
+          "description": "Server timezone, relevant only for Cloud SQL for SQL Server.",
           "type": "string"
         },
         "userLabels": {
