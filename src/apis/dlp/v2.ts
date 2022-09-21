@@ -155,7 +155,7 @@ export namespace dlp_v2 {
      */
     publishToStackdriver?: Schema$GooglePrivacyDlpV2PublishToStackdriver;
     /**
-     * Publish a notification to a pubsub topic.
+     * Publish a notification to a Pub/Sub topic.
      */
     pubSub?: Schema$GooglePrivacyDlpV2PublishToPubSub;
     /**
@@ -893,7 +893,7 @@ export namespace dlp_v2 {
     organizationId?: string | null;
   }
   /**
-   * A condition for determining whether a PubSub should be triggered.
+   * A condition for determining whether a Pub/Sub should be triggered.
    */
   export interface Schema$GooglePrivacyDlpV2DataProfilePubSubCondition {
     /**
@@ -902,7 +902,7 @@ export namespace dlp_v2 {
     expressions?: Schema$GooglePrivacyDlpV2PubSubExpressions;
   }
   /**
-   * Pub/Sub topic message for a DataProfileAction.PubSubNotification event. To receive a message of protocol buffer schema type, convert the message data to an object of this proto class. https://cloud.google.com/pubsub/docs/samples/pubsub-subscribe-proto-messages
+   * Pub/Sub topic message for a DataProfileAction.PubSubNotification event. To receive a message of protocol buffer schema type, convert the message data to an object of this proto class.
    */
   export interface Schema$GooglePrivacyDlpV2DataProfilePubSubMessage {
     /**
@@ -1709,10 +1709,6 @@ export namespace dlp_v2 {
    * The infoType details for this column.
    */
   export interface Schema$GooglePrivacyDlpV2InfoTypeSummary {
-    /**
-     * Approximate percentage of non-null rows that contained data detected by this infotype.
-     */
-    estimatedPrevalence?: number | null;
     /**
      * The infoType.
      */
@@ -3214,7 +3210,7 @@ export namespace dlp_v2 {
      */
     resourceVisibility?: string | null;
     /**
-     * Number of rows in the table when the profile was generated.
+     * Number of rows in the table when the profile was generated. This will not be populated for BigLake tables.
      */
     rowCount?: string | null;
     /**
@@ -3295,7 +3291,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2TimespanConfig {
     /**
-     * When the job is started by a JobTrigger we will automatically figure out a valid start_time to avoid scanning files that have not been modified since the last time the JobTrigger executed. This will be based on the time of the execution of the last run of the JobTrigger.
+     * When the job is started by a JobTrigger we will automatically figure out a valid start_time to avoid scanning files that have not been modified since the last time the JobTrigger executed. This will be based on the time of the execution of the last run of the JobTrigger or the timespan end_time used in the last run of the JobTrigger.
      */
     enableAutoPopulationOfTimespanConfig?: boolean | null;
     /**
