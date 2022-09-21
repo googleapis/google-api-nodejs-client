@@ -149,7 +149,7 @@ export namespace securitycenter_v1beta2 {
      */
     principalEmail?: string | null;
     /**
-     * A string representing the principal_subject associated with the identity. As compared to `principal_email`, supports principals that aren't associated with email addresses, such as third party principals. For most identities, the format will be `principal://iam.googleapis.com/{identity pool name\}/subject/{subject)` except for some GKE identities (GKE_WORKLOAD, FREEFORM, GKE_HUB_WORKLOAD) that are still in the legacy format `serviceAccount:{identity pool name\}[{subject\}]`
+     * A string representing the principal_subject associated with the identity. As compared to `principal_email`, supports principals that aren't associated with email addresses, such as third party principals. For most identities, the format will be `principal://iam.googleapis.com/{identity pool name\}/subjects/{subject\}` except for some GKE identities (GKE_WORKLOAD, FREEFORM, GKE_HUB_WORKLOAD) that are still in the legacy format `serviceAccount:{identity pool name\}[{subject\}]`
      */
     principalSubject?: string | null;
     /**
@@ -552,7 +552,7 @@ export namespace securitycenter_v1beta2 {
      */
     connections?: Schema$Connection[];
     /**
-     * Output only. Map containing the point of contacts for the given finding. The key represents the type of contact, while the value contains a list of all the contacts that pertain. Please refer to: https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories { "security": { "contacts": [ { "email": "person1@company.com" \}, { "email": "person2@company.com" \} ] \}
+     * Output only. Map containing the points of contact for the given finding. The key represents the type of contact, while the value contains a list of all the contacts that pertain. Please refer to: https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories { "security": { "contacts": [ { "email": "person1@company.com" \}, { "email": "person2@company.com" \} ] \} \}
      */
     contacts?: {[key: string]: Schema$ContactDetails} | null;
     /**
@@ -633,6 +633,10 @@ export namespace securitycenter_v1beta2 {
      * The relative resource name of the source the finding belongs to. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name This field is immutable after creation time. For example: "organizations/{organization_id\}/sources/{source_id\}"
      */
     parent?: string | null;
+    /**
+     * Output only. The human readable display name of the finding source such as "Event Threat Detection" or "Security Health Analytics".
+     */
+    parentDisplayName?: string | null;
     /**
      * Represents operating system processes associated with the Finding.
      */
@@ -1014,6 +1018,23 @@ export namespace securitycenter_v1beta2 {
     type?: string | null;
   }
   /**
+   * A resource value config is a mapping configuration of user's tag values to resource values. Used by the attack path simulation.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ResourceValueConfig {
+    /**
+     * Name for the resource value config
+     */
+    name?: string | null;
+    /**
+     * Required. Resource value level this expression represents
+     */
+    resourceValue?: string | null;
+    /**
+     * Required. Tag values combined with AND to check against. Values in the form "tagValues/123" E.g. [ "tagValues/123", "tagValues/456", "tagValues/789" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
+     */
+    tagValues?: string[] | null;
+  }
+  /**
    * Response of asset discovery run
    */
   export interface Schema$GoogleCloudSecuritycenterV1RunAssetDiscoveryResponse {
@@ -1060,7 +1081,7 @@ export namespace securitycenter_v1beta2 {
      */
     signatures?: Schema$ProcessSignature[];
     /**
-     * The list of URIs associated to the Findings
+     * The list of URIs associated to the Findings.
      */
     uris?: string[] | null;
   }
@@ -1377,11 +1398,11 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$ServiceAccountDelegationInfo {
     /**
-     * The email address of a Google account. .
+     * The email address of a Google account.
      */
     principalEmail?: string | null;
     /**
-     * A string representing the principal_subject associated with the identity. As compared to `principal_email`, supports principals that aren't associated with email addresses, such as third party principals. For most identities, the format will be `principal://iam.googleapis.com/{identity pool name\}/subject/{subject)` except for some GKE identities (GKE_WORKLOAD, FREEFORM, GKE_HUB_WORKLOAD) that are still in the legacy format `serviceAccount:{identity pool name\}[{subject\}]`
+     * A string representing the principal_subject associated with the identity. As compared to `principal_email`, supports principals that aren't associated with email addresses, such as third party principals. For most identities, the format will be `principal://iam.googleapis.com/{identity pool name\}/subjects/{subject\}` except for some GKE identities (GKE_WORKLOAD, FREEFORM, GKE_HUB_WORKLOAD) that are still in the legacy format `serviceAccount:{identity pool name\}[{subject\}]`
      */
     principalSubject?: string | null;
   }

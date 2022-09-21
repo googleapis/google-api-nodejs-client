@@ -1981,7 +1981,7 @@
       }
     }
   },
-  "revision": "20220817",
+  "revision": "20220915",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -2005,7 +2005,7 @@
           "type": "string"
         },
         "principalSubject": {
-          "description": "A string representing the principal_subject associated with the identity. As compared to `principal_email`, supports principals that aren't associated with email addresses, such as third party principals. For most identities, the format will be `principal://iam.googleapis.com/{identity pool name}/subject/{subject)` except for some GKE identities (GKE_WORKLOAD, FREEFORM, GKE_HUB_WORKLOAD) that are still in the legacy format `serviceAccount:{identity pool name}[{subject}]`",
+          "description": "A string representing the principal_subject associated with the identity. As compared to `principal_email`, supports principals that aren't associated with email addresses, such as third party principals. For most identities, the format will be `principal://iam.googleapis.com/{identity pool name}/subjects/{subject}` except for some GKE identities (GKE_WORKLOAD, FREEFORM, GKE_HUB_WORKLOAD) that are still in the legacy format `serviceAccount:{identity pool name}[{subject}]`",
           "type": "string"
         },
         "serviceAccountDelegationInfo": {
@@ -2663,7 +2663,7 @@
           "additionalProperties": {
             "$ref": "ContactDetails"
           },
-          "description": "Output only. Map containing the point of contacts for the given finding. The key represents the type of contact, while the value contains a list of all the contacts that pertain. Please refer to: https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories { \"security\": { \"contacts\": [ { \"email\": \"person1@company.com\" }, { \"email\": \"person2@company.com\" } ] }",
+          "description": "Output only. Map containing the points of contact for the given finding. The key represents the type of contact, while the value contains a list of all the contacts that pertain. Please refer to: https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories { \"security\": { \"contacts\": [ { \"email\": \"person1@company.com\" }, { \"email\": \"person2@company.com\" } ] } }",
           "readOnly": true,
           "type": "object"
         },
@@ -2783,6 +2783,11 @@
         },
         "parent": {
           "description": "The relative resource name of the source the finding belongs to. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name This field is immutable after creation time. For example: \"organizations/{organization_id}/sources/{source_id}\"",
+          "type": "string"
+        },
+        "parentDisplayName": {
+          "description": "Output only. The human readable display name of the finding source such as \"Event Threat Detection\" or \"Security Health Analytics\".",
+          "readOnly": true,
           "type": "string"
         },
         "processes": {
@@ -3079,6 +3084,42 @@
         "type": {
           "description": "The full resource type of the resource.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV1ResourceValueConfig": {
+      "description": "A resource value config is a mapping configuration of user's tag values to resource values. Used by the attack path simulation.",
+      "id": "GoogleCloudSecuritycenterV1ResourceValueConfig",
+      "properties": {
+        "name": {
+          "description": "Name for the resource value config",
+          "type": "string"
+        },
+        "resourceValue": {
+          "description": "Required. Resource value level this expression represents",
+          "enum": [
+            "RESOURCE_VALUE_UNSPECIFIED",
+            "HIGH",
+            "MEDIUM",
+            "LOW",
+            "NONE"
+          ],
+          "enumDescriptions": [
+            "Unspecific value",
+            "High resource value",
+            "Medium resource value",
+            "Low resource value",
+            "No resource value, e.g. ignore these resources"
+          ],
+          "type": "string"
+        },
+        "tagValues": {
+          "description": "Required. Tag values combined with AND to check against. Values in the form \"tagValues/123\" E.g. [ \"tagValues/123\", \"tagValues/456\", \"tagValues/789\" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3398,7 +3439,7 @@
           "type": "array"
         },
         "uris": {
-          "description": "The list of URIs associated to the Findings",
+          "description": "The list of URIs associated to the Findings.",
           "items": {
             "type": "string"
           },
@@ -4079,11 +4120,11 @@
       "id": "ServiceAccountDelegationInfo",
       "properties": {
         "principalEmail": {
-          "description": "The email address of a Google account. .",
+          "description": "The email address of a Google account.",
           "type": "string"
         },
         "principalSubject": {
-          "description": "A string representing the principal_subject associated with the identity. As compared to `principal_email`, supports principals that aren't associated with email addresses, such as third party principals. For most identities, the format will be `principal://iam.googleapis.com/{identity pool name}/subject/{subject)` except for some GKE identities (GKE_WORKLOAD, FREEFORM, GKE_HUB_WORKLOAD) that are still in the legacy format `serviceAccount:{identity pool name}[{subject}]`",
+          "description": "A string representing the principal_subject associated with the identity. As compared to `principal_email`, supports principals that aren't associated with email addresses, such as third party principals. For most identities, the format will be `principal://iam.googleapis.com/{identity pool name}/subjects/{subject}` except for some GKE identities (GKE_WORKLOAD, FREEFORM, GKE_HUB_WORKLOAD) that are still in the legacy format `serviceAccount:{identity pool name}[{subject}]`",
           "type": "string"
         }
       },
