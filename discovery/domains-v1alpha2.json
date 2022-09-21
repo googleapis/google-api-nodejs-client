@@ -627,7 +627,7 @@
                   ]
                 },
                 "retrieveImportableDomains": {
-                  "description": "Lists domain names from [Google Domains](https://domains.google/) that can be imported to Cloud Domains using the `ImportDomain` method. Since individual users can own domains in Google Domains, the list of domains returned depends on the individual user making the call. Domains supported by Google Domains, but not supported by Cloud Domains, are not returned.",
+                  "description": "Lists domain names from [Google Domains](https://domains.google/) that can be imported to Cloud Domains using the `ImportDomain` method. Since individual users can own domains in Google Domains, the list of domains returned depends on the individual user making the call. Domains already managed by Cloud Domains are not returned.",
                   "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations:retrieveImportableDomains",
                   "httpMethod": "GET",
                   "id": "domains.projects.locations.registrations.retrieveImportableDomains",
@@ -843,7 +843,7 @@
       }
     }
   },
-  "revision": "20220808",
+  "revision": "20220830",
   "rootUrl": "https://domains.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1123,7 +1123,7 @@
             "A `Registration` resource cannot be created for this domain because it is not supported by Cloud Domains; for example, the top-level domain is not supported or the registry charges non-standard pricing for yearly renewals.",
             "A `Registration` resource cannot be created for this domain because it is suspended and needs to be resolved with Google Domains.",
             "A `Registration` resource cannot be created for this domain because it is expired and needs to be renewed with Google Domains.",
-            "A `Registration` resource cannot be created for this domain because it is deleted, but can be restored with Google Domains."
+            "A `Registration` resource cannot be created for this domain because it is deleted, but it may be possible to restore it with Google Domains."
           ],
           "type": "string"
         },
@@ -2082,7 +2082,7 @@
           "type": "string"
         },
         "currentRegistrarUri": {
-          "description": "The URL of registrar that currently manages the domain.",
+          "description": "The URL of the registrar that currently manages the domain.",
           "type": "string"
         },
         "domainName": {
