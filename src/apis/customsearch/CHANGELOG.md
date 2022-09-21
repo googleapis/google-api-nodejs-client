@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.3](https://github.com/googleapis/google-api-nodejs-client/compare/customsearch-v0.3.2...customsearch-v0.3.3) (2022-09-21)
+
+
+### Bug Fixes
+
+* **customsearch:** update the API ([eb55bc9](https://github.com/googleapis/google-api-nodejs-client/commit/eb55bc9af39c34221f6a79859609650f867b4d56))
+
 ## [0.3.2](https://github.com/googleapis/google-api-nodejs-client/compare/customsearch-v0.3.1...customsearch-v0.3.2) (2022-06-21)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/composer-v3.0.3...composer-v3.0.4) (2022-09-21)
+
+
+### Bug Fixes
+
+* **composer:** update the API ([c515c29](https://github.com/googleapis/google-api-nodejs-client/commit/c515c2978bd075168cd0ebc01e8cad2e212716ef))
+
 ## [3.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/composer-v3.0.2...composer-v3.0.3) (2022-08-19)
 
 

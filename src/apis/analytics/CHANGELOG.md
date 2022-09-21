@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/analytics-v2.1.1...analytics-v2.1.2) (2022-09-21)
+
+
+### Bug Fixes
+
+* **analytics:** update the API ([091cafd](https://github.com/googleapis/google-api-nodejs-client/commit/091cafd30267c55c3c6bbe21610ca6d98368e485))
+
 ## [2.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/analytics-v2.1.0...analytics-v2.1.1) (2022-06-21)
 
 

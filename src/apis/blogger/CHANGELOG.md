@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/googleapis/google-api-nodejs-client/compare/blogger-v0.4.0...blogger-v0.4.1) (2022-09-21)
+
+
+### Bug Fixes
+
+* **blogger:** update the API ([1f25ec1](https://github.com/googleapis/google-api-nodejs-client/commit/1f25ec1c2e28cf87d0d414920b2eb26dbc27f7d0))
+
 ## [0.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/blogger-v0.3.2...blogger-v0.4.0) (2022-08-19)
 
 
