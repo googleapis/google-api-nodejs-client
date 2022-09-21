@@ -131,7 +131,7 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$AnthosObservabilityFeatureSpec {
     /**
-     * default membership spec for unconfigured memberships
+     * Default membership spec for unconfigured memberships
      */
     defaultMembershipSpec?: Schema$AnthosObservabilityMembershipSpec;
   }
@@ -140,11 +140,11 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$AnthosObservabilityMembershipSpec {
     /**
-     * use full of metrics rather than optimized metrics. See https://cloud.google.com/anthos/clusters/docs/on-prem/1.8/concepts/logging-and-monitoring#optimized_metrics_default_metrics
+     * Use full of metrics rather than optimized metrics. See https://cloud.google.com/anthos/clusters/docs/on-prem/1.8/concepts/logging-and-monitoring#optimized_metrics_default_metrics
      */
     doNotOptimizeMetrics?: boolean | null;
     /**
-     * enable collecting and reporting metrics and logs from user apps See go/onyx-application-metrics-logs-user-guide
+     * Enable collecting and reporting metrics and logs from user apps.
      */
     enableStackdriverOnApplications?: boolean | null;
     /**
@@ -290,7 +290,7 @@ export namespace gkehub_v1alpha {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -402,6 +402,10 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$ConfigManagementConfigSync {
     /**
+     * Set to true to allow the vertical scaling. Defaults to false which disallows vertical scaling.
+     */
+    allowVerticalScale?: boolean | null;
+    /**
      * Enables the installation of ConfigSync. If set to true, ConfigSync resources will be created and the other ConfigSync fields will be applied if exist. If set to false, all other ConfigSync fields will be ignored, ConfigSync resources will be deleted. If omitted, ConfigSync resources will be managed depends on the presence of git field.
      */
     enabled?: boolean | null;
@@ -418,7 +422,7 @@ export namespace gkehub_v1alpha {
      */
     preventDrift?: boolean | null;
     /**
-     * Specifies whether the Config Sync Repo is in “hierarchical” or “unstructured” mode.
+     * Specifies whether the Config Sync Repo is in "hierarchical" or "unstructured" mode.
      */
     sourceFormat?: string | null;
   }
@@ -1097,6 +1101,10 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$IdentityServiceAuthMethod {
     /**
+     * GoogleConfig specific configuration
+     */
+    googleConfig?: Schema$IdentityServiceGoogleConfig;
+    /**
      * Identifier for auth config.
      */
     name?: string | null;
@@ -1108,6 +1116,15 @@ export namespace gkehub_v1alpha {
      * Proxy server address to use for auth method.
      */
     proxy?: string | null;
+  }
+  /**
+   * Configuration for the Google Plugin Auth flow.
+   */
+  export interface Schema$IdentityServiceGoogleConfig {
+    /**
+     * Disable automatic configuration of Google Plugin on supported platforms.
+     */
+    disable?: boolean | null;
   }
   /**
    * **Anthos Identity Service**: Configuration for a single Membership.
@@ -1914,6 +1931,10 @@ export namespace gkehub_v1alpha {
      * Determines which release channel to use for default injection and service mesh APIs.
      */
     defaultChannel?: string | null;
+    /**
+     * Enables automatic Service Mesh management.
+     */
+    management?: string | null;
   }
   /**
    * **Service Mesh**: State for a single Membership, as analyzed by the Service Mesh Hub Controller.
@@ -2026,6 +2047,45 @@ export namespace gkehub_v1alpha {
      * Kind of the resource (e.g. Deployment).
      */
     kind?: string | null;
+  }
+  /**
+   * Request message for the `GkeHub.ValidateCreateMembership` method.
+   */
+  export interface Schema$ValidateCreateMembershipRequest {
+    /**
+     * Required. Membership resource to be created.
+     */
+    membership?: Schema$Membership;
+    /**
+     * Required. Client chosen membership id.
+     */
+    membershipId?: string | null;
+  }
+  /**
+   * Response message for the `GkeHub.ValidateCreateMembership` method.
+   */
+  export interface Schema$ValidateCreateMembershipResponse {
+    /**
+     * Wraps all the validator results.
+     */
+    validationResults?: Schema$ValidationResult[];
+  }
+  /**
+   * ValidationResults are results set by each validator running during ValidateCreateMembership.
+   */
+  export interface Schema$ValidationResult {
+    /**
+     * Additional information for the validation.
+     */
+    result?: string | null;
+    /**
+     * Whether the validation is passed or not.
+     */
+    success?: boolean | null;
+    /**
+     * Validator type to validate membership with.
+     */
+    validator?: string | null;
   }
 
   export class Resource$Organizations {
@@ -6006,6 +6066,153 @@ export namespace gkehub_v1alpha {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
+
+    /**
+     * ValidateCreateMembership is a preflight check for CreateMembership. It checks the following: 1. Caller has the required `gkehub.memberships.create` permission. 2. The membership_id is still available.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gkehub = google.gkehub('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkehub.projects.locations.memberships.validateCreate({
+     *     // Required. The parent (project and location) where the Memberships will be created. Specified in the format `projects/x/locations/x`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "membership": {},
+     *       //   "membershipId": "my_membershipId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "validationResults": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    validateCreate(
+      params: Params$Resource$Projects$Locations$Memberships$Validatecreate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    validateCreate(
+      params?: Params$Resource$Projects$Locations$Memberships$Validatecreate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ValidateCreateMembershipResponse>;
+    validateCreate(
+      params: Params$Resource$Projects$Locations$Memberships$Validatecreate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    validateCreate(
+      params: Params$Resource$Projects$Locations$Memberships$Validatecreate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ValidateCreateMembershipResponse>,
+      callback: BodyResponseCallback<Schema$ValidateCreateMembershipResponse>
+    ): void;
+    validateCreate(
+      params: Params$Resource$Projects$Locations$Memberships$Validatecreate,
+      callback: BodyResponseCallback<Schema$ValidateCreateMembershipResponse>
+    ): void;
+    validateCreate(
+      callback: BodyResponseCallback<Schema$ValidateCreateMembershipResponse>
+    ): void;
+    validateCreate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Memberships$Validatecreate
+        | BodyResponseCallback<Schema$ValidateCreateMembershipResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ValidateCreateMembershipResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ValidateCreateMembershipResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ValidateCreateMembershipResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Memberships$Validatecreate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Memberships$Validatecreate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/memberships:validateCreate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ValidateCreateMembershipResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ValidateCreateMembershipResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Memberships$Create
@@ -6177,6 +6384,18 @@ export namespace gkehub_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Memberships$Validatecreate
+    extends StandardParameters {
+    /**
+     * Required. The parent (project and location) where the Memberships will be created. Specified in the format `projects/x/locations/x`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ValidateCreateMembershipRequest;
   }
 
   export class Resource$Projects$Locations$Operations {
