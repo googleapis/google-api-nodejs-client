@@ -468,6 +468,26 @@
     "package": "@google-cloud/bare-metal-solution"
   },
   {
+    "api": "google",
+    "package": "@google-cloud/appconnections"
+  },
+  {
+    "api": "google",
+    "package": "@google-cloud/appconnectors"
+  },
+  {
+    "api": "google",
+    "package": "@google-cloud/appgateways"
+  },
+  {
+    "api": "google",
+    "package": "@google-cloud/clientconnectorservices"
+  },
+  {
+    "api": "google",
+    "package": "@google-cloud/clientgateways"
+  },
+  {
     "api": "bigquerymigration",
     "package": "@google-cloud/bigquery-migration"
   },

@@ -1352,7 +1352,7 @@
                 "entries": {
                   "methods": {
                     "create": {
-                      "description": "Creates key value entries in a key value map scoped to an organization, environment, or API proxy.",
+                      "description": "Creates key value entries in a key value map scoped to an organization, environment, or API proxy. **Note**: Supported for Apigee hybrid 1.8.x and higher.",
                       "flatPath": "v1/organizations/{organizationsId}/apis/{apisId}/keyvaluemaps/{keyvaluemapsId}/entries",
                       "httpMethod": "POST",
                       "id": "apigee.organizations.apis.keyvaluemaps.entries.create",
@@ -1380,7 +1380,7 @@
                       ]
                     },
                     "delete": {
-                      "description": "Deletes a key value entry from a key value map scoped to an organization, environment, or API proxy. **Note:** After you delete the key value entry, the policy consuming the entry will continue to function with its cached values for a few minutes. This is expected behavior.",
+                      "description": "Deletes a key value entry from a key value map scoped to an organization, environment, or API proxy. **Notes:** * After you delete the key value entry, the policy consuming the entry will continue to function with its cached values for a few minutes. This is expected behavior. * Supported for Apigee hybrid 1.8.x and higher.",
                       "flatPath": "v1/organizations/{organizationsId}/apis/{apisId}/keyvaluemaps/{keyvaluemapsId}/entries/{entriesId}",
                       "httpMethod": "DELETE",
                       "id": "apigee.organizations.apis.keyvaluemaps.entries.delete",
@@ -1405,7 +1405,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Get the Key value entry value for org, env or apis scoped Key value map.",
+                      "description": "Get the key value entry value for a key value map scoped to an organization, environment, or API proxy. **Note**: Supported for Apigee hybrid 1.8.x and higher.",
                       "flatPath": "v1/organizations/{organizationsId}/apis/{apisId}/keyvaluemaps/{keyvaluemapsId}/entries/{entriesId}",
                       "httpMethod": "GET",
                       "id": "apigee.organizations.apis.keyvaluemaps.entries.get",
@@ -1430,7 +1430,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists key value entries for key values maps scoped to an organization, environment, or API proxy.",
+                      "description": "Lists key value entries for key values maps scoped to an organization, environment, or API proxy. **Note**: Supported for Apigee hybrid 1.8.x and higher.",
                       "flatPath": "v1/organizations/{organizationsId}/apis/{apisId}/keyvaluemaps/{keyvaluemapsId}/entries",
                       "httpMethod": "GET",
                       "id": "apigee.organizations.apis.keyvaluemaps.entries.list",
@@ -5094,7 +5094,7 @@
                 "entries": {
                   "methods": {
                     "create": {
-                      "description": "Creates key value entries in a key value map scoped to an organization, environment, or API proxy.",
+                      "description": "Creates key value entries in a key value map scoped to an organization, environment, or API proxy. **Note**: Supported for Apigee hybrid 1.8.x and higher.",
                       "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/keyvaluemaps/{keyvaluemapsId}/entries",
                       "httpMethod": "POST",
                       "id": "apigee.organizations.environments.keyvaluemaps.entries.create",
@@ -5122,7 +5122,7 @@
                       ]
                     },
                     "delete": {
-                      "description": "Deletes a key value entry from a key value map scoped to an organization, environment, or API proxy. **Note:** After you delete the key value entry, the policy consuming the entry will continue to function with its cached values for a few minutes. This is expected behavior.",
+                      "description": "Deletes a key value entry from a key value map scoped to an organization, environment, or API proxy. **Notes:** * After you delete the key value entry, the policy consuming the entry will continue to function with its cached values for a few minutes. This is expected behavior. * Supported for Apigee hybrid 1.8.x and higher.",
                       "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/keyvaluemaps/{keyvaluemapsId}/entries/{entriesId}",
                       "httpMethod": "DELETE",
                       "id": "apigee.organizations.environments.keyvaluemaps.entries.delete",
@@ -5147,7 +5147,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Get the Key value entry value for org, env or apis scoped Key value map.",
+                      "description": "Get the key value entry value for a key value map scoped to an organization, environment, or API proxy. **Note**: Supported for Apigee hybrid 1.8.x and higher.",
                       "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/keyvaluemaps/{keyvaluemapsId}/entries/{entriesId}",
                       "httpMethod": "GET",
                       "id": "apigee.organizations.environments.keyvaluemaps.entries.get",
@@ -5172,7 +5172,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists key value entries for key values maps scoped to an organization, environment, or API proxy.",
+                      "description": "Lists key value entries for key values maps scoped to an organization, environment, or API proxy. **Note**: Supported for Apigee hybrid 1.8.x and higher.",
                       "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/keyvaluemaps/{keyvaluemapsId}/entries",
                       "httpMethod": "GET",
                       "id": "apigee.organizations.environments.keyvaluemaps.entries.list",
@@ -7540,7 +7540,7 @@
             "entries": {
               "methods": {
                 "create": {
-                  "description": "Creates key value entries in a key value map scoped to an organization, environment, or API proxy.",
+                  "description": "Creates key value entries in a key value map scoped to an organization, environment, or API proxy. **Note**: Supported for Apigee hybrid 1.8.x and higher.",
                   "flatPath": "v1/organizations/{organizationsId}/keyvaluemaps/{keyvaluemapsId}/entries",
                   "httpMethod": "POST",
                   "id": "apigee.organizations.keyvaluemaps.entries.create",
@@ -7568,7 +7568,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a key value entry from a key value map scoped to an organization, environment, or API proxy. **Note:** After you delete the key value entry, the policy consuming the entry will continue to function with its cached values for a few minutes. This is expected behavior.",
+                  "description": "Deletes a key value entry from a key value map scoped to an organization, environment, or API proxy. **Notes:** * After you delete the key value entry, the policy consuming the entry will continue to function with its cached values for a few minutes. This is expected behavior. * Supported for Apigee hybrid 1.8.x and higher.",
                   "flatPath": "v1/organizations/{organizationsId}/keyvaluemaps/{keyvaluemapsId}/entries/{entriesId}",
                   "httpMethod": "DELETE",
                   "id": "apigee.organizations.keyvaluemaps.entries.delete",
@@ -7593,7 +7593,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Get the Key value entry value for org, env or apis scoped Key value map.",
+                  "description": "Get the key value entry value for a key value map scoped to an organization, environment, or API proxy. **Note**: Supported for Apigee hybrid 1.8.x and higher.",
                   "flatPath": "v1/organizations/{organizationsId}/keyvaluemaps/{keyvaluemapsId}/entries/{entriesId}",
                   "httpMethod": "GET",
                   "id": "apigee.organizations.keyvaluemaps.entries.get",
@@ -7618,7 +7618,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists key value entries for key values maps scoped to an organization, environment, or API proxy.",
+                  "description": "Lists key value entries for key values maps scoped to an organization, environment, or API proxy. **Note**: Supported for Apigee hybrid 1.8.x and higher.",
                   "flatPath": "v1/organizations/{organizationsId}/keyvaluemaps/{keyvaluemapsId}/entries",
                   "httpMethod": "GET",
                   "id": "apigee.organizations.keyvaluemaps.entries.list",
@@ -8609,7 +8609,7 @@
       }
     }
   },
-  "revision": "20220811",
+  "revision": "20220908",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -11685,7 +11685,7 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1KeyValueEntry": {
-      "description": "Key value map pair where the value represents the data associated with the corresponding key.",
+      "description": "Key value map pair where the value represents the data associated with the corresponding key. **Note**: Supported for Apigee hybrid 1.8.x and higher.",
       "id": "GoogleCloudApigeeV1KeyValueEntry",
       "properties": {
         "name": {
@@ -12088,7 +12088,7 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1ListKeyValueEntriesResponse": {
-      "description": "The request structure for listing Key value map keys and its corrresponding values.",
+      "description": "The request structure for listing key value map keys and its corresponding values.",
       "id": "GoogleCloudApigeeV1ListKeyValueEntriesResponse",
       "properties": {
         "keyValueEntries": {
@@ -15026,7 +15026,7 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
           "items": {
             "type": "string"
           },
