@@ -2188,11 +2188,11 @@ export namespace mybusinesslodging_v1 {
      */
     ecoCertifications?: Schema$EcoCertification[];
     /**
-     * LEED certification.
+     * LEED certification. Deprecated: this field is no longer populated. LEED certification status is now provided directly by USGBC.
      */
     leedCertification?: string | null;
     /**
-     * LEED certification exception.
+     * LEED certification exception. Deprecated: this field is no longer populated. LEED certification status is now provided directly by USGBC.
      */
     leedCertificationException?: string | null;
   }
