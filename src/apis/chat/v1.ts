@@ -537,7 +537,7 @@ export namespace chat_v1 {
      */
     parameters?: Schema$GoogleAppsCardV1ActionParameter[];
     /**
-     * Indicates whether form values persist after the action. The default value is `false`. If `true`, form values remain after the action is triggered. When using [LoadIndicator.NONE](workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) for actions, `persist_values` = `true`is recommended, as it ensures that any changes made by the user after form or on change actions are sent to the server are not overwritten by the response. If `false`, the form values are cleared when the action is triggered. When `persist_values` is set to `false`, it is strongly recommended that the card use [LoadIndicator.SPINNER](workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) for all actions, as this locks the UI to ensure no changes are made by the user while the action is being processed. Not supported by Google Chat apps.
+     * Indicates whether form values persist after the action. The default value is `false`. If `true`, form values remain after the action is triggered. When using [LoadIndicator.NONE](https://developers.google.com/workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) for actions, `persist_values` = `true`is recommended, as it ensures that any changes made by the user after form or on change actions are sent to the server are not overwritten by the response. If `false`, the form values are cleared when the action is triggered. When `persist_values` is set to `false`, it is strongly recommended that the card use [LoadIndicator.SPINNER](https://developers.google.com/workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) for all actions, as this locks the UI to ensure no changes are made by the user while the action is being processed. Not supported by Google Chat apps.
      */
     persistValues?: boolean | null;
   }
@@ -1076,7 +1076,7 @@ export namespace chat_v1 {
     value?: string | null;
   }
   /**
-   * A paragraph of text that supports formatting. See [Text formatting](workspace/add-ons/concepts/widgets#text_formatting) for details.
+   * A paragraph of text that supports formatting. See [Text formatting](https://developers.google.com/workspace/add-ons/concepts/widgets#text_formatting) for details.
    */
   export interface Schema$GoogleAppsCardV1TextParagraph {
     /**
@@ -1439,7 +1439,7 @@ export namespace chat_v1 {
      */
     name?: string | null;
     /**
-     * Output only. Whether the space is a DM between a Chat app and a single human.
+     * Optional. Whether the space is a DM between a Chat app and a single human.
      */
     singleUserBotDm?: boolean | null;
     /**
@@ -4174,7 +4174,7 @@ export namespace chat_v1 {
      *   const res = await chat.spaces.messages.update({
      *     // Resource name in the form `spaces/x/messages/x`. Example: `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`
      *     name: 'spaces/my-space/messages/my-message',
-     *     // Required. The field paths to update. Separate multiple values with commas. Currently supported field paths: - text - cards (Requires [service account authentication](/chat/api/guides/auth/service-accounts).)
+     *     // Required. The field paths to update. Separate multiple values with commas. Currently supported field paths: - text - cards (Requires [service account authentication](/chat/api/guides/auth/service-accounts).) - cards_v2
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4353,7 +4353,7 @@ export namespace chat_v1 {
      */
     name?: string;
     /**
-     * Required. The field paths to update. Separate multiple values with commas. Currently supported field paths: - text - cards (Requires [service account authentication](/chat/api/guides/auth/service-accounts).)
+     * Required. The field paths to update. Separate multiple values with commas. Currently supported field paths: - text - cards (Requires [service account authentication](/chat/api/guides/auth/service-accounts).) - cards_v2
      */
     updateMask?: string;
 

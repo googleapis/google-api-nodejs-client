@@ -595,7 +595,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. The field paths to update. Separate multiple values with commas. Currently supported field paths: - text - cards (Requires [service account authentication](/chat/api/guides/auth/service-accounts).) ",
+                  "description": "Required. The field paths to update. Separate multiple values with commas. Currently supported field paths: - text - cards (Requires [service account authentication](/chat/api/guides/auth/service-accounts).) - cards_v2 ",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -642,7 +642,7 @@
       }
     }
   },
-  "revision": "20220816",
+  "revision": "20220917",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -721,7 +721,7 @@
             "DATA_LOSS"
           ],
           "enumDescriptions": [
-            "Not an error; returned on success HTTP Mapping: 200 OK",
+            "Not an error; returned on success. HTTP Mapping: 200 OK",
             "The operation was cancelled, typically by the caller. HTTP Mapping: 499 Client Closed Request",
             "Unknown error. For example, this error may be returned when a `Status` value received from another address space belongs to an error space that is not known in this address space. Also errors raised by APIs that do not return enough error information may be converted to this error. HTTP Mapping: 500 Internal Server Error",
             "The client specified an invalid argument. Note that this differs from `FAILED_PRECONDITION`. `INVALID_ARGUMENT` indicates arguments that are problematic regardless of the state of the system (e.g., a malformed file name). HTTP Mapping: 400 Bad Request",
@@ -1021,6 +1021,7 @@
             "DRIVE",
             "DEMO",
             "DOCS",
+            "MEET",
             "SHEETS",
             "SLIDES",
             "DRAWINGS",
@@ -1033,6 +1034,7 @@
             "The add-on launches from Google Drive.",
             "Not used.",
             "The add-on launches from Google Docs.",
+            "The add-on launches from Google Meet.",
             "The add-on launches from Google Sheets.",
             "The add-on launches from Google Slides.",
             "The add-on launches from Google Drawings.",
@@ -1281,7 +1283,7 @@
           "type": "array"
         },
         "persistValues": {
-          "description": "Indicates whether form values persist after the action. The default value is `false`. If `true`, form values remain after the action is triggered. When using [LoadIndicator.NONE](workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) for actions, `persist_values` = `true`is recommended, as it ensures that any changes made by the user after form or on change actions are sent to the server are not overwritten by the response. If `false`, the form values are cleared when the action is triggered. When `persist_values` is set to `false`, it is strongly recommended that the card use [LoadIndicator.SPINNER](workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) for all actions, as this locks the UI to ensure no changes are made by the user while the action is being processed. Not supported by Google Chat apps.",
+          "description": "Indicates whether form values persist after the action. The default value is `false`. If `true`, form values remain after the action is triggered. When using [LoadIndicator.NONE](https://developers.google.com/workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) for actions, `persist_values` = `true`is recommended, as it ensures that any changes made by the user after form or on change actions are sent to the server are not overwritten by the response. If `false`, the form values are cleared when the action is triggered. When `persist_values` is set to `false`, it is strongly recommended that the card use [LoadIndicator.SPINNER](https://developers.google.com/workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) for all actions, as this locks the UI to ensure no changes are made by the user while the action is being processed. Not supported by Google Chat apps.",
           "type": "boolean"
         }
       },
@@ -2031,7 +2033,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1TextParagraph": {
-      "description": "A paragraph of text that supports formatting. See [Text formatting](workspace/add-ons/concepts/widgets#text_formatting) for details.",
+      "description": "A paragraph of text that supports formatting. See [Text formatting](https://developers.google.com/workspace/add-ons/concepts/widgets#text_formatting) for details.",
       "id": "GoogleAppsCardV1TextParagraph",
       "properties": {
         "text": {
@@ -2645,8 +2647,7 @@
           "type": "string"
         },
         "singleUserBotDm": {
-          "description": "Output only. Whether the space is a DM between a Chat app and a single human.",
-          "readOnly": true,
+          "description": "Optional. Whether the space is a DM between a Chat app and a single human.",
           "type": "boolean"
         },
         "spaceDetails": {
