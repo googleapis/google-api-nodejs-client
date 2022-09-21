@@ -389,7 +389,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the batch resource to delete.",
+                      "description": "Required. The fully qualified name of the batch to retrieve in the format \"projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID\"",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/batches/[^/]+$",
                       "required": true,
@@ -414,7 +414,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the batch to retrieve.",
+                      "description": "Required. The fully qualified name of the batch to retrieve in the format \"projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID\"",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/batches/[^/]+$",
                       "required": true,
@@ -2444,7 +2444,7 @@
       }
     }
   },
-  "revision": "20220804",
+  "revision": "20220911",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2750,7 +2750,7 @@
           "description": "The condition that is associated with this binding.If the condition evaluates to true, then this binding applies to the current request.If the condition evaluates to false, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. members can have the following values: allUsers: A special identifier that represents anyone who is on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone who is authenticated with a Google account or a service account. user:{emailid}: An email address that represents a specific Google account. For example, alice@example.com . serviceAccount:{emailid}: An email address that represents a Google service account. For example, my-other-app@appspot.gserviceaccount.com. serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]: An identifier for a Kubernetes service account (https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, my-project.svc.id.goog[my-namespace/my-kubernetes-sa]. group:{emailid}: An email address that represents a Google group. For example, admins@example.com. deleted:user:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a user that has been recently deleted. For example, alice@example.com?uid=123456789012345678901. If the user is recovered, this value reverts to user:{emailid} and the recovered user retains the role in the binding. deleted:serviceAccount:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901. If the service account is undeleted, this value reverts to serviceAccount:{emailid} and the undeleted service account retains the role in the binding. deleted:group:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, admins@example.com?uid=123456789012345678901. If the group is recovered, this value reverts to group:{emailid} and the recovered group retains the role in the binding. domain:{domain}: The G Suite domain (primary) that represents all the users of that domain. For example, google.com or example.com.",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. members can have the following values: allUsers: A special identifier that represents anyone who is on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. user:{emailid}: An email address that represents a specific Google account. For example, alice@example.com . serviceAccount:{emailid}: An email address that represents a Google service account. For example, my-other-app@appspot.gserviceaccount.com. serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]: An identifier for a Kubernetes service account (https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, my-project.svc.id.goog[my-namespace/my-kubernetes-sa]. group:{emailid}: An email address that represents a Google group. For example, admins@example.com. deleted:user:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a user that has been recently deleted. For example, alice@example.com?uid=123456789012345678901. If the user is recovered, this value reverts to user:{emailid} and the recovered user retains the role in the binding. deleted:serviceAccount:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901. If the service account is undeleted, this value reverts to serviceAccount:{emailid} and the undeleted service account retains the role in the binding. deleted:group:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, admins@example.com?uid=123456789012345678901. If the group is recovered, this value reverts to group:{emailid} and the recovered group retains the role in the binding. domain:{domain}: The G Suite domain (primary) that represents all the users of that domain. For example, google.com or example.com.",
           "items": {
             "type": "string"
           },
@@ -3250,6 +3250,11 @@
       "description": "Execution configuration for a workload.",
       "id": "ExecutionConfig",
       "properties": {
+        "idleTtl": {
+          "description": "Optional. The duration to keep the session alive while it's idling. Passing this threshold will cause the session to be terminated. Minimum value is 30 minutes; maximum value is 14 days (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).",
+          "format": "google-duration",
+          "type": "string"
+        },
         "kmsKey": {
           "description": "Optional. The Cloud KMS key to use for encryption.",
           "type": "string"
@@ -3375,6 +3380,75 @@
         "zoneUri": {
           "description": "Optional. The zone where the Compute Engine cluster will be located. On a create request, it is required in the \"global\" region. If omitted in a non-global Dataproc region, the service will pick a zone in the corresponding Compute Engine region. On a get request, zone will always be present.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone] projects/[project_id]/zones/[zone] us-central1-f",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GceNodePoolOperationMetadata": {
+      "description": "Metadata describing the Compute Engine node pool operation.",
+      "id": "GceNodePoolOperationMetadata",
+      "properties": {
+        "clusterUuid": {
+          "description": "Output only. Cluster UUID associated with the Compute Engine node pool operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Output only. Short description of operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "gceNodePoolId": {
+          "description": "Output only. Compute Engine node pool ID for the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. Labels associated with the operation",
+          "readOnly": true,
+          "type": "object"
+        },
+        "operationType": {
+          "description": "The operation type.",
+          "enum": [
+            "GCE_NODE_POOL_OPERATION_TYPE_UNSPECIFIED",
+            "CREATE",
+            "UPDATE",
+            "DELETE",
+            "RESIZE"
+          ],
+          "enumDescriptions": [
+            "Compute Engine node pool operation type is unknown.",
+            "Create Compute Engine node pool operation type.",
+            "Update Compute Engine node pool operation type.",
+            "Delete Compute Engine node pool operation type.",
+            "Resize Compute Engine node pool operation type."
+          ],
+          "type": "string"
+        },
+        "status": {
+          "$ref": "ClusterOperationStatus",
+          "description": "Output only. Current operation status.",
+          "readOnly": true
+        },
+        "statusHistory": {
+          "description": "Output only. The previous operation status.",
+          "items": {
+            "$ref": "ClusterOperationStatus"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "warnings": {
+          "description": "Output only. Errors encountered during operation execution.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -3766,12 +3840,14 @@
           "enum": [
             "PREEMPTIBILITY_UNSPECIFIED",
             "NON_PREEMPTIBLE",
-            "PREEMPTIBLE"
+            "PREEMPTIBLE",
+            "SPOT"
           ],
           "enumDescriptions": [
             "Preemptibility is unspecified, the system will choose the appropriate setting for each instance group.",
             "Instances are non-preemptible.This option is allowed for all instance groups and is the only valid value for Master and Worker instance groups.",
-            "Instances are preemptible.This option is allowed only for secondary worker groups."
+            "Instances are preemptible.This option is allowed only for secondary worker groups.",
+            "Instances are Spot VMsThis option is allowed only for secondary worker groups. See Spot VMs (https://cloud.google.com/compute/docs/instances/spot)."
           ],
           "type": "string"
         }
@@ -3911,6 +3987,10 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "trinoJob": {
+          "$ref": "TrinoJob",
+          "description": "Optional. Job is a Trino job."
         },
         "yarnApplications": {
           "description": "Output only. The collection of YARN applications spun up by this job.Beta Feature: This report is available for testing purposes only. It may be changed before final release.",
@@ -4607,6 +4687,10 @@
         "stepId": {
           "description": "Required. The step id. The id must be unique among all jobs within the template.The step id is used as prefix for job id, as job goog-dataproc-workflow-step-id label, and in prerequisiteStepIds field from other steps.The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). Cannot begin or end with underscore or hyphen. Must consist of between 3 and 50 characters.",
           "type": "string"
+        },
+        "trinoJob": {
+          "$ref": "TrinoJob",
+          "description": "Optional. Job is a Trino job."
         }
       },
       "type": "object"
@@ -5595,6 +5679,47 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TrinoJob": {
+      "description": "A Dataproc job for running Trino (https://trino.io/) queries. IMPORTANT: The Dataproc Trino Optional Component (https://cloud.google.com/dataproc/docs/concepts/components/trino) must be enabled when the cluster is created to submit a Trino job to the cluster.",
+      "id": "TrinoJob",
+      "properties": {
+        "clientTags": {
+          "description": "Optional. Trino client tags to attach to this query",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "continueOnFailure": {
+          "description": "Optional. Whether to continue executing queries if a query fails. The default value is false. Setting to true can be useful when executing independent parallel queries.",
+          "type": "boolean"
+        },
+        "loggingConfig": {
+          "$ref": "LoggingConfig",
+          "description": "Optional. The runtime log config for job execution."
+        },
+        "outputFormat": {
+          "description": "Optional. The format in which query output will be displayed. See the Trino documentation for supported output formats",
+          "type": "string"
+        },
+        "properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. A mapping of property names to values. Used to set Trino session properties (https://trino.io/docs/current/sql/set-session.html) Equivalent to using the --session flag in the Trino CLI",
+          "type": "object"
+        },
+        "queryFileUri": {
+          "description": "The HCFS URI of the script that contains SQL queries.",
+          "type": "string"
+        },
+        "queryList": {
+          "$ref": "QueryList",
+          "description": "A list of queries."
         }
       },
       "type": "object"
