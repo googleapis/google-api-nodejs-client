@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.4](https://github.com/googleapis/google-api-nodejs-client/compare/licensing-v0.3.3...licensing-v0.3.4) (2022-09-21)
+
+
+### Bug Fixes
+
+* **licensing:** update the API ([1d1223d](https://github.com/googleapis/google-api-nodejs-client/commit/1d1223d675b71f8884e40763c23bea917f14a2bb))
+
 ## [0.3.3](https://github.com/googleapis/google-api-nodejs-client/compare/licensing-v0.3.2...licensing-v0.3.3) (2022-06-21)
 
 

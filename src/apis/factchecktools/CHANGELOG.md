@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.3](https://github.com/googleapis/google-api-nodejs-client/compare/factchecktools-v0.3.2...factchecktools-v0.3.3) (2022-09-21)
+
+
+### Bug Fixes
+
+* **factchecktools:** update the API ([39cd6e9](https://github.com/googleapis/google-api-nodejs-client/commit/39cd6e9b16f052f89a2850e33588434fe80ee655))
+
 ## [0.3.2](https://github.com/googleapis/google-api-nodejs-client/compare/factchecktools-v0.3.1...factchecktools-v0.3.2) (2022-06-21)
 
 
