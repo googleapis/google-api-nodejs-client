@@ -345,6 +345,57 @@ export namespace documentai_v1beta2 {
     evaluation?: string | null;
   }
   /**
+   * Metadata of the batch export documents operation.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3ExportDocumentsMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
+    /**
+     * The list of response details of each document.
+     */
+    individualExportStatuses?: Schema$GoogleCloudDocumentaiUiv1beta3ExportDocumentsMetadataIndividualExportStatus[];
+    /**
+     * The list of statistics for each dataset split type.
+     */
+    splitExportStats?: Schema$GoogleCloudDocumentaiUiv1beta3ExportDocumentsMetadataSplitExportStat[];
+  }
+  /**
+   * The status of each individual document in the export process.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3ExportDocumentsMetadataIndividualExportStatus {
+    /**
+     * The path to source docproto of the document.
+     */
+    documentId?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentId;
+    /**
+     * The output_gcs_destination of the exported document if it was successful, otherwise empty.
+     */
+    outputGcsDestination?: string | null;
+    /**
+     * The status of the exporting of the document.
+     */
+    status?: Schema$GoogleRpcStatus;
+  }
+  /**
+   * The statistic representing a dataset split type for this export.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3ExportDocumentsMetadataSplitExportStat {
+    /**
+     * The dataset split type.
+     */
+    splitType?: string | null;
+    /**
+     * Total number of documents with the given dataset split type to be exported.
+     */
+    totalDocumentCount?: number | null;
+  }
+  /**
+   * The response proto of ExportDocuments method.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3ExportDocumentsResponse {}
+  /**
    * Metadata message associated with the ExportProcessorVersion operation.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3ExportProcessorVersionMetadata {
@@ -1383,6 +1434,10 @@ export namespace documentai_v1beta2 {
      */
     color?: Schema$GoogleTypeColor;
     /**
+     * Font family such as "Arial", "Times New Roman". https://www.w3schools.com/cssref/pr_font_font-family.asp
+     */
+    fontFamily?: string | null;
+    /**
      * Font size.
      */
     fontSize?: Schema$GoogleCloudDocumentaiV1beta1DocumentStyleFontSize;
@@ -2312,6 +2367,10 @@ export namespace documentai_v1beta2 {
      * Text color.
      */
     color?: Schema$GoogleTypeColor;
+    /**
+     * Font family such as "Arial", "Times New Roman". https://www.w3schools.com/cssref/pr_font_font-family.asp
+     */
+    fontFamily?: string | null;
     /**
      * Font size.
      */
