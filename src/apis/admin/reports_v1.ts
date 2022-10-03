@@ -373,7 +373,7 @@ export namespace admin_reports_v1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const admin = google.admin('reports_v1');
+     * const reports = google.admin('reports_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
