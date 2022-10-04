@@ -1,0 +1,25 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+name: ci
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [14]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - run: node --version
+      - run: npm install
+      - run: cd src/apis/abusiveexperiencereport
+      - run: npm install
+      - run: npm run compile
+      - run: npm lint
+        env:
+          MOCHA_THROW_DEPRECATION: false
