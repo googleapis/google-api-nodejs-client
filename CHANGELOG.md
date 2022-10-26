@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [108.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v108.0.0...googleapis-v108.0.1) (2022-10-25)
+
+
+### Bug Fixes
+
+* **deps:** pin @types/prettier to v2.6.0 ([#3093](https://github.com/googleapis/google-api-nodejs-client/issues/3093)) ([f6e9441](https://github.com/googleapis/google-api-nodejs-client/commit/f6e9441bf77ca68c9e1dca0d6236de8999a07695))
+
 ## [108.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v107.0.0...googleapis-v108.0.0) (2022-09-21)
 
 
