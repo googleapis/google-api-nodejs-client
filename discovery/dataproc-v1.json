@@ -467,6 +467,126 @@
                 }
               }
             },
+            "operations": {
+              "methods": {
+                "cancel": {
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns google.rpc.Code.UNIMPLEMENTED. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to Code.CANCELLED.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
+                  "httpMethod": "POST",
+                  "id": "dataproc.projects.locations.operations.cancel",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource to be cancelled.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:cancel",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns google.rpc.Code.UNIMPLEMENTED.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "httpMethod": "DELETE",
+                  "id": "dataproc.projects.locations.operations.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource to be deleted.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "httpMethod": "GET",
+                  "id": "dataproc.projects.locations.operations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.NOTE: the name binding allows API services to override the binding to use different resource name schemes, such as users/*/operations. To override the binding, API services can add a binding such as \"/v1/{name=users/*}/operations\" to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
+                  "httpMethod": "GET",
+                  "id": "dataproc.projects.locations.operations.list",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "The standard list filter.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The name of the operation's parent resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/operations$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The standard list page size.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The standard list page token.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "ListOperationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "workflowTemplates": {
               "methods": {
                 "create": {
@@ -2444,7 +2564,7 @@
       }
     }
   },
-  "revision": "20220911",
+  "revision": "20221025",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3384,75 +3504,6 @@
       },
       "type": "object"
     },
-    "GceNodePoolOperationMetadata": {
-      "description": "Metadata describing the Compute Engine node pool operation.",
-      "id": "GceNodePoolOperationMetadata",
-      "properties": {
-        "clusterUuid": {
-          "description": "Output only. Cluster UUID associated with the Compute Engine node pool operation.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "description": {
-          "description": "Output only. Short description of operation.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "gceNodePoolId": {
-          "description": "Output only. Compute Engine node pool ID for the operation.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "labels": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "Output only. Labels associated with the operation",
-          "readOnly": true,
-          "type": "object"
-        },
-        "operationType": {
-          "description": "The operation type.",
-          "enum": [
-            "GCE_NODE_POOL_OPERATION_TYPE_UNSPECIFIED",
-            "CREATE",
-            "UPDATE",
-            "DELETE",
-            "RESIZE"
-          ],
-          "enumDescriptions": [
-            "Compute Engine node pool operation type is unknown.",
-            "Create Compute Engine node pool operation type.",
-            "Update Compute Engine node pool operation type.",
-            "Delete Compute Engine node pool operation type.",
-            "Resize Compute Engine node pool operation type."
-          ],
-          "type": "string"
-        },
-        "status": {
-          "$ref": "ClusterOperationStatus",
-          "description": "Output only. Current operation status.",
-          "readOnly": true
-        },
-        "statusHistory": {
-          "description": "Output only. The previous operation status.",
-          "items": {
-            "$ref": "ClusterOperationStatus"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "warnings": {
-          "description": "Output only. Errors encountered during operation execution.",
-          "items": {
-            "type": "string"
-          },
-          "readOnly": true,
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "GetIamPolicyRequest": {
       "description": "Request message for GetIamPolicy method.",
       "id": "GetIamPolicyRequest",
@@ -3527,11 +3578,11 @@
           "type": "string"
         },
         "preemptible": {
-          "description": "Optional. Whether the nodes are created as preemptible VM instances (https://cloud.google.com/compute/docs/instances/preemptible). Preemptible nodes cannot be used in a node pool with the CONTROLLER role or in the DEFAULT node pool if the CONTROLLER role is not assigned (the DEFAULT node pool will assume the CONTROLLER role).",
+          "description": "Optional. Whether the nodes are created as legacy preemptible VM instances (https://cloud.google.com/compute/docs/instances/preemptible). Also see Spot VMs, preemptible VM instances without a maximum lifetime. Legacy and Spot preemptible nodes cannot be used in a node pool with the CONTROLLER role or in the DEFAULT node pool if the CONTROLLER role is not assigned (the DEFAULT node pool will assume the CONTROLLER role).",
           "type": "boolean"
         },
         "spot": {
-          "description": "Optional. Spot flag for enabling Spot VM, which is a rebrand of the existing preemptible flag.",
+          "description": "Optional. Whether the nodes are created as Spot VM instances (https://cloud.google.com/compute/docs/instances/spot). Spot VMs are the latest update to legacy preemptible VMs. Spot VMs do not have a maximum lifetime. Legacy and Spot preemptible nodes cannot be used in a node pool with the CONTROLLER role or in the DEFAULT node pool if the CONTROLLER role is not assigned (the DEFAULT node pool will assume the CONTROLLER role).",
           "type": "boolean"
         }
       },
@@ -3846,8 +3897,8 @@
           "enumDescriptions": [
             "Preemptibility is unspecified, the system will choose the appropriate setting for each instance group.",
             "Instances are non-preemptible.This option is allowed for all instance groups and is the only valid value for Master and Worker instance groups.",
-            "Instances are preemptible.This option is allowed only for secondary worker groups.",
-            "Instances are Spot VMsThis option is allowed only for secondary worker groups. See Spot VMs (https://cloud.google.com/compute/docs/instances/spot)."
+            "Instances are preemptible (https://cloud.google.com/compute/docs/instances/preemptible).This option is allowed only for secondary worker (https://cloud.google.com/dataproc/docs/concepts/compute/secondary-vms) groups.",
+            "Instances are Spot VMs (https://cloud.google.com/compute/docs/instances/spot).This option is allowed only for secondary worker (https://cloud.google.com/dataproc/docs/concepts/compute/secondary-vms) groups. Spot VMs are the latest version of preemptible VMs (https://cloud.google.com/compute/docs/instances/preemptible), and provide additional features."
           ],
           "type": "string"
         }
@@ -4549,6 +4600,75 @@
       },
       "type": "object"
     },
+    "NodeGroupOperationMetadata": {
+      "description": "Metadata describing the node group operation.",
+      "id": "NodeGroupOperationMetadata",
+      "properties": {
+        "clusterUuid": {
+          "description": "Output only. Cluster UUID associated with the node group operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Output only. Short description of operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. Labels associated with the operation.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "nodeGroupId": {
+          "description": "Output only. Node group ID for the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "operationType": {
+          "description": "The operation type.",
+          "enum": [
+            "NODE_GROUP_OPERATION_TYPE_UNSPECIFIED",
+            "CREATE",
+            "UPDATE",
+            "DELETE",
+            "RESIZE"
+          ],
+          "enumDescriptions": [
+            "Node group operation type is unknown.",
+            "Create node group operation type.",
+            "Update node group operation type.",
+            "Delete node group operation type.",
+            "Resize node group operation type."
+          ],
+          "type": "string"
+        },
+        "status": {
+          "$ref": "ClusterOperationStatus",
+          "description": "Output only. Current operation status.",
+          "readOnly": true
+        },
+        "statusHistory": {
+          "description": "Output only. The previous operation status.",
+          "items": {
+            "$ref": "ClusterOperationStatus"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "warnings": {
+          "description": "Output only. Errors encountered during operation execution.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "NodeInitializationAction": {
       "description": "Specifies an executable to run on a fully configured node and a timeout period for executable completion.",
       "id": "NodeInitializationAction",
@@ -5056,6 +5176,11 @@
       "description": "Runtime information about workload execution.",
       "id": "RuntimeInfo",
       "properties": {
+        "approximateUsage": {
+          "$ref": "UsageMetrics",
+          "description": "Output only. Approximate workload resource usage calculated after workload finishes.",
+          "readOnly": true
+        },
         "diagnosticOutputUri": {
           "description": "Output only. A URI pointing to the location of the diagnostics tarball.",
           "readOnly": true,
@@ -5720,6 +5845,23 @@
         "queryList": {
           "$ref": "QueryList",
           "description": "A list of queries."
+        }
+      },
+      "type": "object"
+    },
+    "UsageMetrics": {
+      "description": "Usage metrics represent total resources consumed by a workload.",
+      "id": "UsageMetrics",
+      "properties": {
+        "milliDcuSeconds": {
+          "description": "Optional. DCU usage in milliDCU*seconds.",
+          "format": "int64",
+          "type": "string"
+        },
+        "shuffleStorageGbSeconds": {
+          "description": "Optional. Shuffle storage usage in GB*Seconds",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
