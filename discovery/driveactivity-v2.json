@@ -132,7 +132,7 @@
       }
     }
   },
-  "revision": "20210319",
+  "revision": "20221025",
   "rootUrl": "https://driveactivity.googleapis.com/",
   "schemas": {
     "Action": {
@@ -167,6 +167,10 @@
       "description": "Data describing the type and additional information of an action.",
       "id": "ActionDetail",
       "properties": {
+        "appliedLabelChange": {
+          "$ref": "AppliedLabelChange",
+          "description": "Label was changed."
+        },
         "comment": {
           "$ref": "Comment",
           "description": "A change about comments was made."
@@ -276,6 +280,63 @@
             "Comments were made regarding a Drive item."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AppliedLabelChange": {
+      "description": "Label changes that were made on the Target.",
+      "id": "AppliedLabelChange",
+      "properties": {
+        "changes": {
+          "description": "Changes that were made to the Label on the Target.",
+          "items": {
+            "$ref": "AppliedLabelChangeDetail"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AppliedLabelChangeDetail": {
+      "description": "A change made to a Label on the Target.",
+      "id": "AppliedLabelChangeDetail",
+      "properties": {
+        "fieldChanges": {
+          "description": "Field Changes. Only present if `types` contains `LABEL_FIELD_VALUE_CHANGED`.",
+          "items": {
+            "$ref": "FieldValueChange"
+          },
+          "type": "array"
+        },
+        "label": {
+          "description": "The Label name representing the Label that changed. This name always contains the revision of the Label that was used when this Action occurred. The format is `labels/id@revision`.",
+          "type": "string"
+        },
+        "title": {
+          "description": "The human-readable title of the label that changed.",
+          "type": "string"
+        },
+        "types": {
+          "description": "The types of changes made to the Label on the Target.",
+          "items": {
+            "enum": [
+              "TYPE_UNSPECIFIED",
+              "LABEL_ADDED",
+              "LABEL_REMOVED",
+              "LABEL_FIELD_VALUE_CHANGED",
+              "LABEL_APPLIED_BY_ITEM_CREATE"
+            ],
+            "enumDescriptions": [
+              "The type of change to this Label is not available.",
+              "The identified Label was added to the Target.",
+              "The identified Label was removed from the Target.",
+              "Field values were changed on the Target.",
+              "The Label was applied as a side-effect of Drive item creation."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -402,6 +463,18 @@
             "Document has been flagged as containing sensitive content.",
             "Document is no longer flagged as containing sensitive content."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Date": {
+      "description": "Wrapper for Date Field value.",
+      "id": "Date",
+      "properties": {
+        "value": {
+          "description": "Date value.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
@@ -629,6 +702,68 @@
       "properties": {},
       "type": "object"
     },
+    "FieldValue": {
+      "description": "Contains a value of a Field.",
+      "id": "FieldValue",
+      "properties": {
+        "date": {
+          "$ref": "Date",
+          "description": "Date Field value."
+        },
+        "integer": {
+          "$ref": "Integer",
+          "description": "Integer Field value."
+        },
+        "selection": {
+          "$ref": "Selection",
+          "description": "Selection Field value."
+        },
+        "selectionList": {
+          "$ref": "SelectionList",
+          "description": "Selection List Field value."
+        },
+        "text": {
+          "$ref": "Text",
+          "description": "Text Field value."
+        },
+        "textList": {
+          "$ref": "TextList",
+          "description": "Text List Field value."
+        },
+        "user": {
+          "$ref": "SingleUser",
+          "description": "User Field value."
+        },
+        "userList": {
+          "$ref": "UserList",
+          "description": "User List Field value."
+        }
+      },
+      "type": "object"
+    },
+    "FieldValueChange": {
+      "description": "Change to a Field value.",
+      "id": "FieldValueChange",
+      "properties": {
+        "displayName": {
+          "description": "The human-readable display name for this field.",
+          "type": "string"
+        },
+        "fieldId": {
+          "description": "The ID of this field. Field IDs are unique within a Label.",
+          "type": "string"
+        },
+        "newValue": {
+          "$ref": "FieldValue",
+          "description": "The value that is now set on the field. If not present, the field was cleared. At least one of {old_value|new_value} is always set."
+        },
+        "oldValue": {
+          "$ref": "FieldValue",
+          "description": "The value that was previously set on the field. If not present, the field was newly set. At least one of {old_value|new_value} is always set."
+        }
+      },
+      "type": "object"
+    },
     "File": {
       "description": "This item is deprecated; please see `DriveFile` instead.",
       "id": "File",
@@ -703,6 +838,18 @@
         "impersonatedUser": {
           "$ref": "User",
           "description": "The impersonated user."
+        }
+      },
+      "type": "object"
+    },
+    "Integer": {
+      "description": "Wrapper for Integer Field value.",
+      "id": "Integer",
+      "properties": {
+        "value": {
+          "description": "Integer value.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1008,6 +1155,35 @@
       },
       "type": "object"
     },
+    "Selection": {
+      "description": "Wrapper for Selection Field value as combined value/display_name pair for selected choice.",
+      "id": "Selection",
+      "properties": {
+        "displayName": {
+          "description": "Selection value as human-readable display string.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Selection value as Field Choice ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SelectionList": {
+      "description": "Wrapper for SelectionList Field value.",
+      "id": "SelectionList",
+      "properties": {
+        "values": {
+          "description": "Selection values.",
+          "items": {
+            "$ref": "Selection"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "SettingsChange": {
       "description": "Information about settings changes.",
       "id": "SettingsChange",
@@ -1018,6 +1194,17 @@
             "$ref": "RestrictionChange"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SingleUser": {
+      "description": "Wrapper for User Field value.",
+      "id": "SingleUser",
+      "properties": {
+        "value": {
+          "description": "User value as email.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1152,6 +1339,31 @@
       },
       "type": "object"
     },
+    "Text": {
+      "description": "Wrapper for Text Field value.",
+      "id": "Text",
+      "properties": {
+        "value": {
+          "description": "Value of Text Field.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TextList": {
+      "description": "Wrapper for Text List Field value.",
+      "id": "TextList",
+      "properties": {
+        "values": {
+          "description": "Text values.",
+          "items": {
+            "$ref": "Text"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "TimeRange": {
       "description": "Information about time ranges.",
       "id": "TimeRange",
@@ -1196,6 +1408,20 @@
         "unknownUser": {
           "$ref": "UnknownUser",
           "description": "A user about whom nothing is currently known."
+        }
+      },
+      "type": "object"
+    },
+    "UserList": {
+      "description": "Wrapper for UserList Field value.",
+      "id": "UserList",
+      "properties": {
+        "values": {
+          "description": "User values.",
+          "items": {
+            "$ref": "SingleUser"
+          },
+          "type": "array"
         }
       },
       "type": "object"
