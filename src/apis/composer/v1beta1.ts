@@ -462,6 +462,15 @@ export namespace composer_v1beta1 {
     enabled?: boolean | null;
   }
   /**
+   * Configuration options for networking connections in the Composer 2 environment.
+   */
+  export interface Schema$NetworkingConfig {
+    /**
+     * Optional. Indicates the user requested specifc connection type between Tenant and Customer projects. You cannot set networking connection type in public IP environment.
+     */
+    connectionType?: string | null;
+  }
+  /**
    * The configuration information for the Kubernetes Engine nodes running the Apache Airflow software.
    */
   export interface Schema$NodeConfig {
@@ -609,6 +618,10 @@ export namespace composer_v1beta1 {
      * Optional. When enabled, IPs from public (non-RFC1918) ranges can be used for `IPAllocationPolicy.cluster_ipv4_cidr_block` and `IPAllocationPolicy.service_ipv4_cidr_block`.
      */
     enablePrivatelyUsedPublicIps?: boolean | null;
+    /**
+     * Optional. Configuration for the network connections configuration in the environment.
+     */
+    networkingConfig?: Schema$NetworkingConfig;
     /**
      * Optional. Configuration for the private GKE cluster for a Private IP Cloud Composer environment.
      */

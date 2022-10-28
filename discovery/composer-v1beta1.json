@@ -518,7 +518,7 @@
       }
     }
   },
-  "revision": "20220808",
+  "revision": "20221012",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AllowedIpRange": {
@@ -972,6 +972,27 @@
       },
       "type": "object"
     },
+    "NetworkingConfig": {
+      "description": "Configuration options for networking connections in the Composer 2 environment.",
+      "id": "NetworkingConfig",
+      "properties": {
+        "connectionType": {
+          "description": "Optional. Indicates the user requested specifc connection type between Tenant and Customer projects. You cannot set networking connection type in public IP environment.",
+          "enum": [
+            "CONNECTION_TYPE_UNSPECIFIED",
+            "VPC_PEERING",
+            "PRIVATE_SERVICE_CONNECT"
+          ],
+          "enumDescriptions": [
+            "No specific connection type was requested, so the environment uses the default value corresponding to the rest of its configuration.",
+            "Requests the use of VPC peerings for connecting the Customer and Tenant projects.",
+            "Requests the use of Private Service Connect for connecting the Customer and Tenant projects."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NodeConfig": {
       "description": "The configuration information for the Kubernetes Engine nodes running the Apache Airflow software.",
       "id": "NodeConfig",
@@ -1179,6 +1200,10 @@
         "enablePrivatelyUsedPublicIps": {
           "description": "Optional. When enabled, IPs from public (non-RFC1918) ranges can be used for `IPAllocationPolicy.cluster_ipv4_cidr_block` and `IPAllocationPolicy.service_ipv4_cidr_block`.",
           "type": "boolean"
+        },
+        "networkingConfig": {
+          "$ref": "NetworkingConfig",
+          "description": "Optional. Configuration for the network connections configuration in the environment."
         },
         "privateClusterConfig": {
           "$ref": "PrivateClusterConfig",
