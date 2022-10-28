@@ -1,5 +1,16 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v5.0.3...displayvideo-v6.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** update deps make Node 12 minimum (#3096)
+
+### Bug Fixes
+
+* **build:** update deps make Node 12 minimum ([#3096](https://github.com/googleapis/google-api-nodejs-client/issues/3096)) ([669a75c](https://github.com/googleapis/google-api-nodejs-client/commit/669a75c5c7958bc5a0eac3055ff34cf4618cdbd9))
+
 ## [5.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v5.0.2...displayvideo-v5.0.3) (2022-09-21)
 
 

@@ -4,6 +4,17 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [109.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v108.0.1...googleapis-v109.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** update deps make Node 12 minimum (#3096)
+
+### Bug Fixes
+
+* **build:** update deps make Node 12 minimum ([#3096](https://github.com/googleapis/google-api-nodejs-client/issues/3096)) ([669a75c](https://github.com/googleapis/google-api-nodejs-client/commit/669a75c5c7958bc5a0eac3055ff34cf4618cdbd9))
+
 ## [108.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v108.0.0...googleapis-v108.0.1) (2022-10-25)
 
 
