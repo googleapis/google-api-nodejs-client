@@ -216,6 +216,9 @@ export namespace cloudsearch_v1 {
     key?: string | null;
     value?: string | null;
   }
+  export interface Schema$AddonComposeUiActionMarkup {
+    type?: string | null;
+  }
   /**
    * Earlier we used to populate just the affected_members list and inferred the new membership state (roles didn't exist back then) from the Type. go/dynamite-finra required backend to know the previous membership state to reconstruct membership history. The proper solution involved cleaning up up Type enum, but it was used in many, many places. This was added as a stop-gap solution to unblock FINRA without breaking everything. Later role update and target audience update started relying on this to communicate information to clients about what transition happened. So this is now required to be populated and should be in sync with affected_members for new messages.
    */
@@ -1349,6 +1352,10 @@ export namespace cloudsearch_v1 {
      */
     action?: Schema$AppsDynamiteSharedAction;
     /**
+     * Triggers host app action on click directly without invoking form actions. This is currently not available to end-users and is used internal only.
+     */
+    hostAppAction?: Schema$HostAppActionMarkup;
+    /**
      * An add-on triggers this action when the action needs to open a link. This differs from the open_link above in that this needs to talk to server to get the link. Thus some preparation work is required for web client to do before the open link action response comes back.
      */
     openDynamicLinkAction?: Schema$AppsDynamiteSharedAction;
@@ -1890,6 +1897,136 @@ export namespace cloudsearch_v1 {
      */
     value?: string | null;
   }
+  export interface Schema$AppsExtensionsMarkupCalendarClientActionMarkupAddAttachmentsActionMarkup {
+    addonAttachments?: Schema$AppsExtensionsMarkupCalendarClientActionMarkupAddAttachmentsActionMarkupAddonAttachment[];
+  }
+  export interface Schema$AppsExtensionsMarkupCalendarClientActionMarkupAddAttachmentsActionMarkupAddonAttachment {
+    /**
+     * Link to the resource's icon.
+     */
+    iconUrl?: string | null;
+    /**
+     * MIME type of the content in resource_url.
+     */
+    mimeType?: string | null;
+    resourceUrl?: string | null;
+    /**
+     * Title of the attachment.
+     */
+    title?: string | null;
+  }
+  /**
+   * Markup that defines conference data associated to a Google Calendar event.
+   */
+  export interface Schema$AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkup {
+    /**
+     * Unique identifier for this conference data. Maximum 512 characters long.
+     */
+    conferenceId?: string | null;
+    /**
+     * An identifier of the conferencing solution. Must match a value from the deployment's `calendar.conferenceSolution.id` field.
+     */
+    conferenceSolutionId?: string | null;
+    /**
+     * Entry points to the conference. Maximum 300 entry points are allowed.
+     */
+    entryPoints?: Schema$AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupEntryPointMarkup[];
+    /**
+     * If set, it means an error occurred during conference creation.
+     */
+    error?: Schema$AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupError;
+    /**
+     * Additional notes (such as instructions from the administrator, legal notices) to display to the user. Can contain HTML. Max length 2048 characters.
+     */
+    note?: string | null;
+    /**
+     * Additional add-on parameters. Maximum 300 parameters are allowed.
+     */
+    parameters?: Schema$AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupParameter[];
+  }
+  /**
+   * A way to join the conference.
+   */
+  export interface Schema$AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupEntryPointMarkup {
+    /**
+     * An access code for accessing the conference. Maximum 128 characters long.
+     */
+    accessCode?: string | null;
+    /**
+     * Features of the entry point, such as being toll or toll-free. One entry point can have multiple features.
+     */
+    features?: string[] | null;
+    /**
+     * The label of the entry point to display to the user. Maximum 512 characters long.
+     */
+    label?: string | null;
+    /**
+     * A meeting code for accessing the conference. Maximum 128 characters long.
+     */
+    meetingCode?: string | null;
+    /**
+     * A passcode for accessing the conference. Maximum 128 characters long.
+     */
+    passcode?: string | null;
+    /**
+     * A password for accessing the conference. Maximum 128 characters long.
+     */
+    password?: string | null;
+    /**
+     * A PIN for accessing the conference. Maximum 128 characters long.
+     */
+    pin?: string | null;
+    /**
+     * The CLDR/ISO 3166 region code for the country associated with this entry point. Applicable only to `Type.PHONE`.
+     */
+    regionCode?: string | null;
+    /**
+     * The type of the entry point. Required.
+     */
+    type?: string | null;
+    /**
+     * A URI for joining the conference. Supports tel: and http(s): and should be at most 1300 characters long. Required.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Represents an error that occurred during conference creation.
+   */
+  export interface Schema$AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupError {
+    /**
+     * If the error type is `AUTHENTICATION`, the add-on can provide a URL allowing users to log in. Maximum 1300 characters long.
+     */
+    authenticationUrl?: string | null;
+    /**
+     * The type of error. Required.
+     */
+    type?: string | null;
+  }
+  /**
+   * Solution-specific parameters that are persisted with the event data and, if an update or delete is needed, are passed to the add-on. For example: `[{key: 'sessionKey', value: '123'\}, {key: 'meetingId', value: '456'\}]`
+   */
+  export interface Schema$AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupParameter {
+    /**
+     * The key of the parameter. Maximum 50 characters long. Required.
+     */
+    key?: string | null;
+    /**
+     * The value of the parameter. Maximum 1024 characters long. Required.
+     */
+    value?: string | null;
+  }
+  export interface Schema$AppsExtensionsMarkupCalendarClientActionMarkupEditAttendeesActionMarkup {
+    /**
+     * A list of attendees to add to the Google Calendar event.
+     */
+    addAttendeeEmails?: string[] | null;
+  }
+  export interface Schema$AppsExtensionsMarkupCalendarClientActionMarkupEditConferenceDataActionMarkup {
+    /**
+     * The conference data to add to the Google Calendar event.
+     */
+    conferenceData?: Schema$AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkup;
+  }
   /**
    * Attachments that follow the message text.
    */
@@ -2039,6 +2176,7 @@ export namespace cloudsearch_v1 {
    * Bot-specific profile information.
    */
   export interface Schema$BotInfo {
+    appAllowlistStatus?: string | null;
     /**
      * Identifier of the application associated with the bot.
      */
@@ -2072,10 +2210,13 @@ export namespace cloudsearch_v1 {
      */
     supportedUses?: string[] | null;
     /**
+     * If the app supports a home screen.
+     */
+    supportHomeScreen?: boolean | null;
+    /**
      * Urls with additional information related to the bot. This field should always be set even if all the fields within it are empty, so that it is convenient for clients to work with this field in javascript.
      */
     supportUrls?: Schema$SupportUrls;
-    whitelistStatus?: string | null;
   }
   /**
    * Information about a bot response, branched from shared/bot_response.proto without frontend User proto as we never store it.
@@ -2135,6 +2276,20 @@ export namespace cloudsearch_v1 {
   export interface Schema$Button {
     imageButton?: Schema$ImageButton;
     textButton?: Schema$TextButton;
+  }
+  export interface Schema$CalendarClientActionMarkup {
+    /**
+     * An action that adds attachments to the Google Calendar event.
+     */
+    addAttachmentsActionMarkup?: Schema$AppsExtensionsMarkupCalendarClientActionMarkupAddAttachmentsActionMarkup;
+    /**
+     * An action that adds attendees to the Google Calendar event.
+     */
+    editAttendeesActionMarkup?: Schema$AppsExtensionsMarkupCalendarClientActionMarkupEditAttendeesActionMarkup;
+    /**
+     * An action that adds conference data to the Google Calendar event.
+     */
+    editConferenceDataActionMarkup?: Schema$AppsExtensionsMarkupCalendarClientActionMarkupEditConferenceDataActionMarkup;
   }
   /**
    * Contains information regarding an ongoing conference (aka call) for a meeting space.
@@ -2238,6 +2393,14 @@ export namespace cloudsearch_v1 {
      */
     accessLock?: boolean | null;
     /**
+     * The current access type of the conference.
+     */
+    accessType?: string | null;
+    /**
+     * Whether users can join this conference before a host (Host or Cohost).
+     */
+    allowJoiningBeforeHost?: boolean | null;
+    /**
      * Indicates whether the attendance report is currently enabled or disabled.
      */
     attendanceReportEnabled?: boolean | null;
@@ -2254,17 +2417,13 @@ export namespace cloudsearch_v1 {
      */
     cseEnabled?: boolean | null;
     /**
-     * Indicates whether the current call is moderated.
+     * Indicates whether moderation is currently on or off.
      */
     moderationEnabled?: boolean | null;
     /**
      * Indicates whether the present lock is currently on or off.
      */
     presentLock?: boolean | null;
-    /**
-     * Indicates whether project Dino is currently on or off. WARNING: This is currently an experimental field. It should not be used without getting an explicit review and approval from the Meet team.
-     */
-    projectDinoEnabled?: boolean | null;
     /**
      * Indicates whether the reactions lock is currently on or off.
      */
@@ -2327,6 +2486,10 @@ export namespace cloudsearch_v1 {
      */
     title?: string | null;
   }
+  /**
+   * Actions handled by Chat Clients.
+   */
+  export interface Schema$ChatClientActionMarkup {}
   /**
    * Configuration of the in meeting chat.
    */
@@ -2746,6 +2909,19 @@ export namespace cloudsearch_v1 {
     thirtyDaysActiveUsersCount?: string | null;
   }
   /**
+   * The result of a user running a custom function.
+   */
+  export interface Schema$CustomFunctionReturnValueMarkup {
+    /**
+     * The error message to show to the user if something went wrong.
+     */
+    errorMessage?: string | null;
+    /**
+     * The value that resulted from running the custom function.
+     */
+    value?: any | null;
+  }
+  /**
    * Annotation metadata for Data Loss Prevention that pertains to DLP violation on message send or edit events. It is used for client -\> BE communication and other downstream process in BE (e.g. storage and audit logging), and it should never be returned to the client.
    */
   export interface Schema$DataLossPreventionMetadata {
@@ -3024,6 +3200,9 @@ export namespace cloudsearch_v1 {
   export interface Schema$DoubleValues {
     values?: number[] | null;
   }
+  export interface Schema$DriveClientActionMarkup {
+    requestFileScope?: Schema$RequestFileScope;
+  }
   /**
    * Drive follow-up search restricts (e.g. "followup:suggestions").
    */
@@ -3169,6 +3348,9 @@ export namespace cloudsearch_v1 {
    * A message edit in Dynamite inserts a Babel-only item containing this field.
    */
   export interface Schema$EditMetadata {}
+  export interface Schema$EditorClientActionMarkup {
+    requestFileScopeForActiveDocument?: Schema$RequestFileScopeForActiveDocument;
+  }
   /**
    * A person's email address.
    */
@@ -3560,6 +3742,12 @@ export namespace cloudsearch_v1 {
   export interface Schema$GetSearchApplicationUserStatsResponse {
     stats?: Schema$SearchApplicationUserStats[];
   }
+  export interface Schema$GmailClientActionMarkup {
+    addonComposeUiActionMarkup?: Schema$AddonComposeUiActionMarkup;
+    openCreatedDraftActionMarkup?: Schema$OpenCreatedDraftActionMarkup;
+    taskAction?: Schema$TaskActionMarkup;
+    updateDraftActionMarkup?: Schema$UpdateDraftActionMarkup;
+  }
   /**
    * Configuration of the Google Chat in Meet.
    */
@@ -3600,7 +3788,7 @@ export namespace cloudsearch_v1 {
     sections?: Schema$GoogleChatV1ContextualAddOnMarkupCardSection[];
   }
   /**
-   * A card action is the action associated with the card. For an invoice card, a typical action would be: delete invoice, email invoice or open the invoice in browser.
+   * A card action is the action associated with the card. For an invoice card, a typical action would be: delete invoice, email invoice or open the invoice in browser. Not supported by Google Chat apps.
    */
   export interface Schema$GoogleChatV1ContextualAddOnMarkupCardCardAction {
     /**
@@ -4002,6 +4190,35 @@ export namespace cloudsearch_v1 {
     searchText?: string | null;
   }
   /**
+   * Actions handled by individual host apps.
+   */
+  export interface Schema$HostAppActionMarkup {
+    /**
+     * Actions handled by Calendar.
+     */
+    calendarAction?: Schema$CalendarClientActionMarkup;
+    /**
+     * Actions handled by Chat.
+     */
+    chatAction?: Schema$ChatClientActionMarkup;
+    /**
+     * Actions handled by Drive.
+     */
+    driveAction?: Schema$DriveClientActionMarkup;
+    /**
+     * Actions handled by Docs, Sheets, or Slides.
+     */
+    editorAction?: Schema$EditorClientActionMarkup;
+    /**
+     * Actions handled by Gmail.
+     */
+    gmailAction?: Schema$GmailClientActionMarkup;
+    /**
+     * Actions handled by Sheets.
+     */
+    sheetsAction?: Schema$SheetsClientActionMarkup;
+  }
+  /**
    * Represents a single host. Optionally, the MDB owner of the host can be specified.
    */
   export interface Schema$HostProto {
@@ -4184,6 +4401,17 @@ export namespace cloudsearch_v1 {
    * Request message for `InitializeCustomer` method.
    */
   export interface Schema$InitializeCustomerRequest {}
+  export interface Schema$InsertContent {
+    /**
+     * The content to be inserted.
+     */
+    content?: string | null;
+    /**
+     * The type of inserted content.
+     */
+    contentType?: string | null;
+    mimeType?: string | null;
+  }
   /**
    * Used to provide a search operator for integer properties. This is optional. Search operators let users restrict the query to specific fields relevant to the type of item being searched.
    */
@@ -4736,7 +4964,7 @@ export namespace cloudsearch_v1 {
     userId?: Schema$UserId;
   }
   /**
-   * Annotation metadata to display system messages for membership changes.
+   * Annotation metadata to display system messages for membership changes. Next Tag: 8
    */
   export interface Schema$MembershipChangedMetadata {
     affectedMemberProfiles?: Schema$Member[];
@@ -4753,6 +4981,10 @@ export namespace cloudsearch_v1 {
      * Complete member profiles, when ListTopicsRequest FetchOptions.USER is set. Otherwise, only the id will be filled in.
      */
     initiatorProfile?: Schema$User;
+    /**
+     * The type of the user who initiated this membership change.
+     */
+    initiatorType?: string | null;
     type?: string | null;
   }
   export interface Schema$MembershipChangeEvent {
@@ -5161,6 +5393,24 @@ export namespace cloudsearch_v1 {
      * An add-on triggers this action when the form action needs to open a link. This differs from the open_link above in that this needs to talk to server to get the link. Thus some preparation work is required for web client to do before the open link action response comes back.
      */
     openLinkAction?: Schema$FormAction;
+  }
+  export interface Schema$OpenCreatedDraftActionMarkup {
+    /**
+     * The ID of the newly created draft in the form "r123".
+     */
+    draftId?: string | null;
+    /**
+     * The server storage ID in hex format, for example,"15e9fa622ce1029d".
+     */
+    draftStorageId?: string | null;
+    /**
+     * The ID of the thread containing the newly created draft, for example, "15e9fa622ce1029d".
+     */
+    draftThreadId?: string | null;
+    /**
+     * The server permanent ID for the draft's thread. This field isn't set anywhere, and it's ignored when processing OpenCreatedDraftActionMarkup. Supply and use draftThreadStorageId instead.
+     */
+    draftThreadServerPermId?: string | null;
   }
   export interface Schema$OpenLink {
     /**
@@ -5596,7 +5846,7 @@ export namespace cloudsearch_v1 {
      */
     isSuggestable?: boolean | null;
     /**
-     * Indicates that users can perform wildcard search for this property. Only supported for Text properties. IsReturnable must be true to set this option. In a given datasource maximum of 5 properties can be marked as is_wildcard_searchable.
+     * Indicates that users can perform wildcard search for this property. Only supported for Text properties. IsReturnable must be true to set this option. In a given datasource maximum of 5 properties can be marked as is_wildcard_searchable. For more details, see [Define object properties](https://developers.google.com/cloud-search/docs/guides/schema-guide#properties)
      */
     isWildcardSearchable?: boolean | null;
     /**
@@ -5844,9 +6094,17 @@ export namespace cloudsearch_v1 {
      */
     botAttachmentState?: string | null;
     /**
+     * Output only. Time when the quoted message was posted in microseconds.
+     */
+    createTimeMicros?: string | null;
+    /**
      * Output only. ID of the User who posted the quoted message. This includes information to identify if the quoted message was posted by an App on behalf of a user.
      */
     creatorId?: Schema$UserId;
+    /**
+     * Output only. Time when the quoted message was last edited by a user at the time when quoting action happens. Time is in microseconds.
+     */
+    lastEditTimeMicros?: string | null;
     /**
      * The `last_update_time` of the original message when the client initiated the quote creation. This is derived from the request payload passed from clients. Used to fetch the quoted message contents at a specific time on the read path. This field is populated from storage directly.
      */
@@ -5868,7 +6126,11 @@ export namespace cloudsearch_v1 {
      */
     textBody?: string | null;
     /**
-     * Output only. Upload metadata of the quoted message. NEXT TAG: 11
+     * Output only. ID of the User who last updated (created/edited/deleted) the quoted message at the time when quoting action happens. This includes information to identify if the quoted message was posted by an App on behalf of a user.
+     */
+    updaterId?: Schema$UserId;
+    /**
+     * Output only. Upload metadata of the quoted message.
      */
     uploadMetadata?: Schema$UploadMetadata[];
   }
@@ -5910,6 +6172,9 @@ export namespace cloudsearch_v1 {
      * The new read receipts state.
      */
     readReceiptsEnabled?: boolean | null;
+  }
+  export interface Schema$Recipient {
+    email?: string | null;
   }
   /**
    * A recording event is something that happens to the recording in a conference.
@@ -5991,6 +6256,10 @@ export namespace cloudsearch_v1 {
      */
     type?: string | null;
   }
+  export interface Schema$RequestFileScope {
+    itemId?: string | null;
+  }
+  export interface Schema$RequestFileScopeForActiveDocument {}
   /**
    * Shared request options for all RPC methods.
    */
@@ -6037,10 +6306,6 @@ export namespace cloudsearch_v1 {
    * Debugging information about the response.
    */
   export interface Schema$ResponseDebugInfo {
-    /**
-     * Experiments enabled in QAPI.
-     */
-    enabledExperiments?: number[] | null;
     /**
      * General debug info formatted for display.
      */
@@ -6153,6 +6418,10 @@ export namespace cloudsearch_v1 {
   export interface Schema$Roster {
     avatarUrl?: string | null;
     id?: Schema$RosterId;
+    /**
+     * Whether caller has visibility into members of the roster.
+     */
+    isMembershipVisibleToCaller?: boolean | null;
     membershipCount?: number | null;
     name?: string | null;
     /**
@@ -6568,23 +6837,31 @@ export namespace cloudsearch_v1 {
     sessionStopReason?: string | null;
   }
   /**
-   * Settings of a meeting space that can be viewed and edited by users with permissions. These settings are always populated for output.
+   * Settings of a meeting space that can be edited by users with corresponding manage privilege. These settings are always populated in responses.
    */
   export interface Schema$Settings {
     /**
-     * The access lock of the meeting space that lets owner control who can join the meeting. True if the access lock feature is enabled for the meeting space.
+     * The access lock of the meeting space that lets hosts control who can join the meeting.
      */
     accessLock?: boolean | null;
+    /**
+     * The access type of the meeting space.
+     */
+    accessType?: string | null;
+    /**
+     * Whether users can join before host in the conferences of this meeting space.
+     */
+    allowJoiningBeforeHost?: boolean | null;
     /**
      * Whether attendance report is enabled for the meeting space.
      */
     attendanceReportEnabled?: boolean | null;
     /**
-     * The chat lock of the meeting space that lets owner control whether the participants can send chat messages. True if the chat lock feature is enabled for the meeting space.
+     * The chat lock of the meeting space that lets owner control whether the participants can send chat messages.
      */
     chatLock?: boolean | null;
     /**
-     * Whether meeting artifacts will be shared with co-hosts.
+     * Whether meeting artifacts will be shared with cohosts.
      */
     cohostArtifactSharingEnabled?: boolean | null;
     /**
@@ -6600,11 +6877,11 @@ export namespace cloudsearch_v1 {
      */
     moderationEnabled?: boolean | null;
     /**
-     * The present lock of the meeting space that lets owner control whether the participants can present their screen. True if the present lock feature is enabled for the meeting space.
+     * The present lock of the meeting space that lets owner control whether the participants can present their screen.
      */
     presentLock?: boolean | null;
     /**
-     * The reactions lock of the meeting space that lets owner control whether the participants can send reactions. True if the reactions lock feature is enabled for the meeting space.
+     * The reactions lock of the meeting space that lets owner control whether the participants can send reactions.
      */
     reactionsLock?: boolean | null;
   }
@@ -6617,6 +6894,9 @@ export namespace cloudsearch_v1 {
      * The scope to which the content was shared.
      */
     scope?: string | null;
+  }
+  export interface Schema$SheetsClientActionMarkup {
+    customFunctionReturnValueMarkup?: Schema$CustomFunctionReturnValueMarkup;
   }
   /**
    * Represents a principal who possesses a signing key corresponding to the verification key or keyset described here.
@@ -7024,6 +7304,9 @@ export namespace cloudsearch_v1 {
      */
     value?: string | null;
   }
+  export interface Schema$TaskActionMarkup {
+    reloadTasks?: boolean | null;
+  }
   export interface Schema$TextButton {
     /**
      * The alternative text used for accessibility Next field number: 7.
@@ -7251,12 +7534,51 @@ export namespace cloudsearch_v1 {
      */
     queue?: string | null;
   }
+  export interface Schema$UpdateBccRecipients {
+    bccRecipients?: Schema$Recipient[];
+  }
+  export interface Schema$UpdateBody {
+    /**
+     * A repeated field that contains a series of content to insert into the draft that the user is currently editing. The content can contain HTML content or plain text content.
+     */
+    insertContents?: Schema$InsertContent[];
+    type?: string | null;
+  }
+  export interface Schema$UpdateCcRecipients {
+    ccRecipients?: Schema$Recipient[];
+  }
   export interface Schema$UpdateDataSourceRequest {
     /**
      * Common debug options.
      */
     debugOptions?: Schema$DebugOptions;
     source?: Schema$DataSource;
+    /**
+     * Only applies to [`settings.datasources.patch`](https://developers.google.com/cloud-search/docs/reference/rest/v1/settings.datasources/patch). Update mask to control which fields to update. Example field paths: `name`, `displayName`. * If `update_mask` is non-empty, then only the fields specified in the `update_mask` are updated. * If you specify a field in the `update_mask`, but don't specify its value in the source, that field is cleared. * If the `update_mask` is not present or empty or has the value `*`, then all fields are updated.
+     */
+    updateMask?: string | null;
+  }
+  export interface Schema$UpdateDraftActionMarkup {
+    /**
+     * If set, replaces the existing Bcc recipients of the draft the user is currently editing.
+     */
+    updateBccRecipients?: Schema$UpdateBccRecipients;
+    /**
+     * A field that contains a series of update actions to perform on the draft body that the user is currently editing.
+     */
+    updateBody?: Schema$UpdateBody;
+    /**
+     * If set, replaces the existing Cc recipients of the draft the user is currently editing.
+     */
+    updateCcRecipients?: Schema$UpdateCcRecipients;
+    /**
+     * If set, replaces the existing subject of the draft the user is currently editing.
+     */
+    updateSubject?: Schema$UpdateSubject;
+    /**
+     * If set, replaces the existing To recipients of the draft the user is currently editing.
+     */
+    updateToRecipients?: Schema$UpdateToRecipients;
   }
   export interface Schema$UpdateSchemaRequest {
     /**
@@ -7271,6 +7593,12 @@ export namespace cloudsearch_v1 {
      * If true, the schema will be checked for validity, but will not be registered with the data source, even if valid.
      */
     validateOnly?: boolean | null;
+  }
+  export interface Schema$UpdateSubject {
+    subject?: string | null;
+  }
+  export interface Schema$UpdateToRecipients {
+    toRecipients?: Schema$Recipient[];
   }
   /**
    * Represents an upload session reference. This reference is created via upload method. This reference is valid for 30 days after its creation. Updating of item content may refer to this uploaded content via contentDataRef.
@@ -7371,7 +7699,11 @@ export namespace cloudsearch_v1 {
      */
     intImageWidth?: number | null;
     /**
-     * Mime type of the content (Currently mapped from Page Render Service ItemType) Note that this is not necessarily the mime type of the http resource. For example a text/html from youtube or vimeo may actually be classified as a video type. Then we shall mark it as video/x since we don't know exactly what type of video it is. NEXT TAG : 16
+     * NEXT TAG : 18
+     */
+    linkType?: string | null;
+    /**
+     * Mime type of the content (Currently mapped from Page Render Service ItemType) Note that this is not necessarily the mime type of the http resource. For example a text/html from youtube or vimeo may actually be classified as a video type. Then we shall mark it as video/x since we don't know exactly what type of video it is.
      */
     mimeType?: string | null;
     /**
@@ -7394,6 +7726,7 @@ export namespace cloudsearch_v1 {
      * The original URL.
      */
     url?: Schema$SafeUrlProto;
+    urlSource?: string | null;
   }
   /**
    * User profile information. This user is not necessarily member of a space.
@@ -7495,9 +7828,13 @@ export namespace cloudsearch_v1 {
     type?: string | null;
   }
   /**
-   * Contains info regarding the updater of an Activity Feed item. Next Id: 7
+   * Contains info regarding the updater of an Activity Feed item. Next Id: 8
    */
   export interface Schema$UserInfo {
+    /**
+     * Avatar url of the user who triggered the Drive Notification email. This field will be populated if we can extract such information from the Drive Notification email. This should only be used to fetch user avatars when updater_to_show_email is not populated. This field is not set for non-Drive Notification items.
+     */
+    driveNotificationAvatarUrl?: string | null;
     /**
      * Describes how updater_count_to_show should be used.
      */
@@ -7507,7 +7844,7 @@ export namespace cloudsearch_v1 {
      */
     updaterCountToShow?: number | null;
     /**
-     * The email of the updater for clients to show used for Gmail items.
+     * The email of the updater for clients to show used for Gmail items. For Drive Notifications, this is the email of the user who triggered the Drive Notification email. This field will be populated if we can extract such information from the Drive Notification email. This is not the actual sender of the email, as the sender is always comments-noreply@docs.google.com.
      */
     updaterToShowEmail?: string | null;
     /**
@@ -7515,7 +7852,7 @@ export namespace cloudsearch_v1 {
      */
     updaterToShowGaiaId?: string | null;
     /**
-     * The display name of the updater for clients to show used for Gmail items. This (along with the updater fields above) will be populated in the thread pipeline (http://shortn/_rPS0GCp94Y) when converting Activity Feed message attributes into client-renderable Activity Feed items.
+     * The display name of the updater for clients to show used for Gmail items. For non-Drive Notification items, this field will always be populated. If the display name cannot be found for the user, the fallback string will be the email address. For Drive Notification items, this is the name of the user who triggered the Drive notification email. This field will be populated if we can extract such information from the Drive Notification email. If the name cannot be extracted, then the email will be the fallback string, which is used as the display name text in the UI when needed. This is not the actual sender of the email, as the sender is always comments-noreply@docs.google.com.
      */
     updaterToShowName?: string | null;
     /**
@@ -12539,6 +12876,8 @@ export namespace cloudsearch_v1 {
      *     'debugOptions.enableDebugging': 'placeholder-value',
      *     // The name of the datasource resource. Format: datasources/{source_id\}. The name is ignored when creating a datasource.
      *     name: 'datasources/my-datasource',
+     *     // Only applies to [`settings.datasources.patch`](https://developers.google.com/cloud-search/docs/reference/rest/v1/settings.datasources/patch). Update mask to control which fields to update. Example field paths: `name`, `displayName`. * If `update_mask` is non-empty, then only the fields specified in the `update_mask` are updated. * If you specify a field in the `update_mask`, but don't specify its value in the source, that field is cleared. * If the `update_mask` is not present or empty or has the value `*`, then all fields are updated.
+     *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -12698,7 +13037,8 @@ export namespace cloudsearch_v1 {
      *       // request body parameters
      *       // {
      *       //   "debugOptions": {},
-     *       //   "source": {}
+     *       //   "source": {},
+     *       //   "updateMask": "my_updateMask"
      *       // }
      *     },
      *   });
@@ -12860,6 +13200,10 @@ export namespace cloudsearch_v1 {
      * The name of the datasource resource. Format: datasources/{source_id\}. The name is ignored when creating a datasource.
      */
     name?: string;
+    /**
+     * Only applies to [`settings.datasources.patch`](https://developers.google.com/cloud-search/docs/reference/rest/v1/settings.datasources/patch). Update mask to control which fields to update. Example field paths: `name`, `displayName`. * If `update_mask` is non-empty, then only the fields specified in the `update_mask` are updated. * If you specify a field in the `update_mask`, but don't specify its value in the source, that field is cleared. * If the `update_mask` is not present or empty or has the value `*`, then all fields are updated.
+     */
+    updateMask?: string;
 
     /**
      * Request body metadata
@@ -13504,6 +13848,8 @@ export namespace cloudsearch_v1 {
      *   const res = await cloudsearch.settings.searchapplications.patch({
      *     // The name of the Search Application. Format: searchapplications/{application_id\}.
      *     name: 'searchapplications/my-searchapplication',
+     *     // Only applies to [`settings.searchapplications.patch`](https://developers.google.com/cloud-search/docs/reference/rest/v1/settings.searchapplications/patch). Update mask to control which fields to update. Example field paths: `search_application.name`, `search_application.displayName`. * If `update_mask` is non-empty, then only the fields specified in the `update_mask` are updated. * If you specify a field in the `update_mask`, but don't specify its value in the `search_application`, then that field is cleared. * If the `update_mask` is not present or empty or has the value `*`, then all fields are updated.
+     *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -13804,6 +14150,8 @@ export namespace cloudsearch_v1 {
      *   const res = await cloudsearch.settings.searchapplications.update({
      *     // The name of the Search Application. Format: searchapplications/{application_id\}.
      *     name: 'searchapplications/my-searchapplication',
+     *     // Only applies to [`settings.searchapplications.patch`](https://developers.google.com/cloud-search/docs/reference/rest/v1/settings.searchapplications/patch). Update mask to control which fields to update. Example field paths: `search_application.name`, `search_application.displayName`. * If `update_mask` is non-empty, then only the fields specified in the `update_mask` are updated. * If you specify a field in the `update_mask`, but don't specify its value in the `search_application`, then that field is cleared. * If the `update_mask` is not present or empty or has the value `*`, then all fields are updated.
+     *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -13977,6 +14325,10 @@ export namespace cloudsearch_v1 {
      * The name of the Search Application. Format: searchapplications/{application_id\}.
      */
     name?: string;
+    /**
+     * Only applies to [`settings.searchapplications.patch`](https://developers.google.com/cloud-search/docs/reference/rest/v1/settings.searchapplications/patch). Update mask to control which fields to update. Example field paths: `search_application.name`, `search_application.displayName`. * If `update_mask` is non-empty, then only the fields specified in the `update_mask` are updated. * If you specify a field in the `update_mask`, but don't specify its value in the `search_application`, then that field is cleared. * If the `update_mask` is not present or empty or has the value `*`, then all fields are updated.
+     */
+    updateMask?: string;
 
     /**
      * Request body metadata
@@ -14001,6 +14353,10 @@ export namespace cloudsearch_v1 {
      * The name of the Search Application. Format: searchapplications/{application_id\}.
      */
     name?: string;
+    /**
+     * Only applies to [`settings.searchapplications.patch`](https://developers.google.com/cloud-search/docs/reference/rest/v1/settings.searchapplications/patch). Update mask to control which fields to update. Example field paths: `search_application.name`, `search_application.displayName`. * If `update_mask` is non-empty, then only the fields specified in the `update_mask` are updated. * If you specify a field in the `update_mask`, but don't specify its value in the `search_application`, then that field is cleared. * If the `update_mask` is not present or empty or has the value `*`, then all fields are updated.
+     */
+    updateMask?: string;
 
     /**
      * Request body metadata
