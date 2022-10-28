@@ -3777,7 +3777,7 @@ export namespace logging_v2 {
      *     // Required. The bucket in which to create the view `"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"` For example:"projects/my-project/locations/global/buckets/my-bucket"
      *     parent:
      *       'billingAccounts/my-billingAccount/locations/my-location/buckets/my-bucket',
-     *     // Required. The id to use for this view.
+     *     // Required. A client-assigned identifier such as "my-view". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
      *     viewId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4460,7 +4460,7 @@ export namespace logging_v2 {
      */
     parent?: string;
     /**
-     * Required. The id to use for this view.
+     * Required. A client-assigned identifier such as "my-view". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
      */
     viewId?: string;
 
@@ -10352,7 +10352,7 @@ export namespace logging_v2 {
      *   const res = await logging.folders.locations.buckets.views.create({
      *     // Required. The bucket in which to create the view `"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"` For example:"projects/my-project/locations/global/buckets/my-bucket"
      *     parent: 'folders/my-folder/locations/my-location/buckets/my-bucket',
-     *     // Required. The id to use for this view.
+     *     // Required. A client-assigned identifier such as "my-view". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
      *     viewId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -11029,7 +11029,7 @@ export namespace logging_v2 {
      */
     parent?: string;
     /**
-     * Required. The id to use for this view.
+     * Required. A client-assigned identifier such as "my-view". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
      */
     viewId?: string;
 
@@ -14302,7 +14302,7 @@ export namespace logging_v2 {
      *   const res = await logging.locations.buckets.views.create({
      *     // Required. The bucket in which to create the view `"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"` For example:"projects/my-project/locations/global/buckets/my-bucket"
      *     parent: '[^/]+/[^/]+/locations/my-location/buckets/my-bucket',
-     *     // Required. The id to use for this view.
+     *     // Required. A client-assigned identifier such as "my-view". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
      *     viewId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -14979,7 +14979,7 @@ export namespace logging_v2 {
      */
     parent?: string;
     /**
-     * Required. The id to use for this view.
+     * Required. A client-assigned identifier such as "my-view". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
      */
     viewId?: string;
 
@@ -18673,7 +18673,7 @@ export namespace logging_v2 {
      *     // Required. The bucket in which to create the view `"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"` For example:"projects/my-project/locations/global/buckets/my-bucket"
      *     parent:
      *       'organizations/my-organization/locations/my-location/buckets/my-bucket',
-     *     // Required. The id to use for this view.
+     *     // Required. A client-assigned identifier such as "my-view". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
      *     viewId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -19356,7 +19356,7 @@ export namespace logging_v2 {
      */
     parent?: string;
     /**
-     * Required. The id to use for this view.
+     * Required. A client-assigned identifier such as "my-view". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
      */
     viewId?: string;
 
@@ -23718,7 +23718,7 @@ export namespace logging_v2 {
      *   const res = await logging.projects.locations.buckets.views.create({
      *     // Required. The bucket in which to create the view `"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"` For example:"projects/my-project/locations/global/buckets/my-bucket"
      *     parent: 'projects/my-project/locations/my-location/buckets/my-bucket',
-     *     // Required. The id to use for this view.
+     *     // Required. A client-assigned identifier such as "my-view". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
      *     viewId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -24395,7 +24395,7 @@ export namespace logging_v2 {
      */
     parent?: string;
     /**
-     * Required. The id to use for this view.
+     * Required. A client-assigned identifier such as "my-view". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
      */
     viewId?: string;
 
