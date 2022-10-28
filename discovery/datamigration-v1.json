@@ -1049,7 +1049,7 @@
       }
     }
   },
-  "revision": "20220901",
+  "revision": "20221018",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -1312,7 +1312,7 @@
           "type": "object"
         },
         "zone": {
-          "description": "The Google Cloud Platform zone where your Cloud SQL datdabse instance is located.",
+          "description": "The Google Cloud Platform zone where your Cloud SQL database instance is located.",
           "type": "string"
         }
       },
