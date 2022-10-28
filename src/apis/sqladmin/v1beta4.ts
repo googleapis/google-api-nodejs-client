@@ -359,7 +359,7 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$CloneContext {
     /**
-     * The name of the allocated ip range for the private ip CloudSQL instance. For example: "google-managed-services-default". If set, the cloned instance ip will be created in the allocated range. The range name must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. Reserved for future use.
+     * The name of the allocated ip range for the private ip Cloud SQL instance. For example: "google-managed-services-default". If set, the cloned instance ip will be created in the allocated range. The range name must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. Reserved for future use.
      */
     allocatedIpRange?: string | null;
     /**
@@ -743,6 +743,7 @@ export namespace sqladmin_v1beta4 {
    * Database instance export context.
    */
   export interface Schema$ExportContext {
+    bakExportOptions?: {stripeCount?: number; striped?: boolean} | null;
     /**
      * Options for exporting data as CSV. `MySQL` and `PostgreSQL` instances only.
      */
@@ -896,6 +897,7 @@ export namespace sqladmin_v1beta4 {
         pvkPassword?: string;
         pvkPath?: string;
       };
+      striped?: boolean;
     } | null;
     /**
      * Options for importing data as CSV.
@@ -1083,13 +1085,17 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$IpConfiguration {
     /**
-     * The name of the allocated ip range for the private ip CloudSQL instance. For example: "google-managed-services-default". If set, the instance ip will be created in the allocated range. The range name must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?.`
+     * The name of the allocated ip range for the private ip Cloud SQL instance. For example: "google-managed-services-default". If set, the instance ip will be created in the allocated range. The range name must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?.`
      */
     allocatedIpRange?: string | null;
     /**
      * The list of external networks that are allowed to connect to the instance using the IP. In 'CIDR' notation, also known as 'slash' notation (for example: `157.197.200.0/24`).
      */
     authorizedNetworks?: Schema$AclEntry[];
+    /**
+     * Controls connectivity to private IP instances from Google services, such as BigQuery.
+     */
+    enablePrivatePathForGoogleCloudServices?: boolean | null;
     /**
      * Whether the instance is assigned a public IP address or not.
      */
@@ -9835,9 +9841,11 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Do the magic
      *   const res = await sql.users.get({
+     *     // Host of a user of the instance.
+     *     host: 'placeholder-value',
      *     // Database instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
-     *     // User of the instance. If the database user has a host, this is specified as {username\}@{host\} else as {username\}.
+     *     // User of the instance.
      *     name: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
@@ -10445,11 +10453,15 @@ export namespace sqladmin_v1beta4 {
   }
   export interface Params$Resource$Users$Get extends StandardParameters {
     /**
+     * Host of a user of the instance.
+     */
+    host?: string;
+    /**
      * Database instance ID. This does not include the project ID.
      */
     instance?: string;
     /**
-     * User of the instance. If the database user has a host, this is specified as {username\}@{host\} else as {username\}.
+     * User of the instance.
      */
     name?: string;
     /**
