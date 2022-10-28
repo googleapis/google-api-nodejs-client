@@ -331,11 +331,11 @@ export namespace firebase_v1beta1 {
      */
     name?: string | null;
     /**
-     * Output only. A user-assigned unique identifier for the Project. This identifier may appear in URLs or names for some Firebase resources associated with the Project, but it should generally be treated as a convenience alias to reference the Project.
+     * Output only. Immutable. A user-assigned unique identifier for the Project. This identifier may appear in URLs or names for some Firebase resources associated with the Project, but it should generally be treated as a convenience alias to reference the Project.
      */
     projectId?: string | null;
     /**
-     * Output only. The globally unique, Google-assigned canonical identifier for the Project. Use this identifier when configuring integrations and/or making API calls to Firebase or third-party services.
+     * Output only. Immutable. The globally unique, Google-assigned canonical identifier for the Project. Use this identifier when configuring integrations and/or making API calls to Firebase or third-party services.
      */
     projectNumber?: string | null;
     /**
@@ -546,6 +546,10 @@ export namespace firebase_v1beta1 {
      */
     etag?: string | null;
     /**
+     * Determines whether to _immediately_ delete the App. If set to true, the App is immediately deleted from the Project and cannot be restored to the Project. If not set, defaults to false, which means that the App may be restored to the Project within 30 days using UndeleteAndroidApp.
+     */
+    immediate?: boolean | null;
+    /**
      * If set to true, the request is only validated. The App will _not_ be removed.
      */
     validateOnly?: boolean | null;
@@ -560,6 +564,10 @@ export namespace firebase_v1beta1 {
      */
     etag?: string | null;
     /**
+     * Determines whether to _immediately_ delete the App. If set to true, the App is immediately deleted from the Project and cannot be restored to the Project. If not set, defaults to false, which means that the App may be restored to the Project within 30 days using UndeleteIosApp
+     */
+    immediate?: boolean | null;
+    /**
      * If set to true, the request is only validated. The App will _not_ be removed.
      */
     validateOnly?: boolean | null;
@@ -573,6 +581,10 @@ export namespace firebase_v1beta1 {
      * Checksum provided in the WebApp entity, which if provided ensures the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
+    /**
+     * Determines whether to _immediately_ delete the App. If set to true, the App is immediately deleted from the Project and cannot be restored to the Project. If not set, defaults to false, which means that the App may be restored to the Project within 30 days using UndeleteWebApp
+     */
+    immediate?: boolean | null;
     /**
      * If set to true, the request is only validated. The App will _not_ be removed.
      */
@@ -3267,6 +3279,7 @@ export namespace firebase_v1beta1 {
      *       // {
      *       //   "allowMissing": false,
      *       //   "etag": "my_etag",
+     *       //   "immediate": false,
      *       //   "validateOnly": false
      *       // }
      *     },
@@ -5153,6 +5166,7 @@ export namespace firebase_v1beta1 {
      *       // {
      *       //   "allowMissing": false,
      *       //   "etag": "my_etag",
+     *       //   "immediate": false,
      *       //   "validateOnly": false
      *       // }
      *     },
@@ -6262,6 +6276,7 @@ export namespace firebase_v1beta1 {
      *       // {
      *       //   "allowMissing": false,
      *       //   "etag": "my_etag",
+     *       //   "immediate": false,
      *       //   "validateOnly": false
      *       // }
      *     },
