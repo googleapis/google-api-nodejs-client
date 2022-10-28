@@ -665,7 +665,7 @@
         "alertPolicies": {
           "methods": {
             "create": {
-              "description": "Creates a new alerting policy.",
+              "description": "Creates a new alerting policy.Design your application to single-thread API calls that modify the state of alerting policies in a single project. This includes calls to CreateAlertPolicy, DeleteAlertPolicy and UpdateAlertPolicy.",
               "flatPath": "v3/projects/{projectsId}/alertPolicies",
               "httpMethod": "POST",
               "id": "monitoring.projects.alertPolicies.create",
@@ -694,7 +694,7 @@
               ]
             },
             "delete": {
-              "description": "Deletes an alerting policy.",
+              "description": "Deletes an alerting policy.Design your application to single-thread API calls that modify the state of alerting policies in a single project. This includes calls to CreateAlertPolicy, DeleteAlertPolicy and UpdateAlertPolicy.",
               "flatPath": "v3/projects/{projectsId}/alertPolicies/{alertPoliciesId}",
               "httpMethod": "DELETE",
               "id": "monitoring.projects.alertPolicies.delete",
@@ -795,7 +795,7 @@
               ]
             },
             "patch": {
-              "description": "Updates an alerting policy. You can either replace the entire policy with a new one or replace only certain fields in the current alerting policy by specifying the fields to be updated via updateMask. Returns the updated alerting policy.",
+              "description": "Updates an alerting policy. You can either replace the entire policy with a new one or replace only certain fields in the current alerting policy by specifying the fields to be updated via updateMask. Returns the updated alerting policy.Design your application to single-thread API calls that modify the state of alerting policies in a single project. This includes calls to CreateAlertPolicy, DeleteAlertPolicy and UpdateAlertPolicy.",
               "flatPath": "v3/projects/{projectsId}/alertPolicies/{alertPoliciesId}",
               "httpMethod": "PATCH",
               "id": "monitoring.projects.alertPolicies.patch",
@@ -1389,7 +1389,7 @@
         "notificationChannels": {
           "methods": {
             "create": {
-              "description": "Creates a new notification channel, representing a single notification endpoint such as an email address, SMS number, or PagerDuty service.",
+              "description": "Creates a new notification channel, representing a single notification endpoint such as an email address, SMS number, or PagerDuty service.Design your application to single-thread API calls that modify the state of notification channels in a single project. This includes calls to CreateNotificationChannel, DeleteNotificationChannel and UpdateNotificationChannel.",
               "flatPath": "v3/projects/{projectsId}/notificationChannels",
               "httpMethod": "POST",
               "id": "monitoring.projects.notificationChannels.create",
@@ -1418,7 +1418,7 @@
               ]
             },
             "delete": {
-              "description": "Deletes a notification channel.",
+              "description": "Deletes a notification channel.Design your application to single-thread API calls that modify the state of notification channels in a single project. This includes calls to CreateNotificationChannel, DeleteNotificationChannel and UpdateNotificationChannel.",
               "flatPath": "v3/projects/{projectsId}/notificationChannels/{notificationChannelsId}",
               "httpMethod": "DELETE",
               "id": "monitoring.projects.notificationChannels.delete",
@@ -1553,7 +1553,7 @@
               ]
             },
             "patch": {
-              "description": "Updates a notification channel. Fields not specified in the field mask remain unchanged.",
+              "description": "Updates a notification channel. Fields not specified in the field mask remain unchanged.Design your application to single-thread API calls that modify the state of notification channels in a single project. This includes calls to CreateNotificationChannel, DeleteNotificationChannel and UpdateNotificationChannel.",
               "flatPath": "v3/projects/{projectsId}/notificationChannels/{notificationChannelsId}",
               "httpMethod": "PATCH",
               "id": "monitoring.projects.notificationChannels.patch",
@@ -2576,7 +2576,7 @@
       }
     }
   },
-  "revision": "20220916",
+  "revision": "20221024",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2799,6 +2799,24 @@
         },
         "username": {
           "description": "The username to use when authenticating with the HTTP server.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BasicService": {
+      "description": "A well-known service type, defined by its service type and service labels. Documentation and examples here (https://cloud.google.com/stackdriver/docs/solutions/slo-monitoring/api/api-structures#basic-svc-w-basic-sli).",
+      "id": "BasicService",
+      "properties": {
+        "serviceLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Labels that specify the resource that emits the monitoring data which is used for SLO reporting of this Service. Documentation and valid values for given service types here (https://cloud.google.com/stackdriver/docs/solutions/slo-monitoring/api/api-structures#basic-svc-w-basic-sli).",
+          "type": "object"
+        },
+        "serviceType": {
+          "description": "The type of service that this basic service defines, e.g. APP_ENGINE service type. Documentation and valid values here (https://cloud.google.com/stackdriver/docs/solutions/slo-monitoring/api/api-structures#basic-svc-w-basic-sli).",
           "type": "string"
         }
       },
@@ -3174,7 +3192,7 @@
       "type": "object"
     },
     "Custom": {
-      "description": "Custom view of service telemetry. Currently a place-holder pending final design.",
+      "description": "Use a custom service to designate a service that you want to monitor when none of the other service types (like App Engine, Cloud Run, or a GKE type) matches your intended service.",
       "id": "Custom",
       "properties": {},
       "type": "object"
@@ -5006,6 +5024,10 @@
         "appEngine": {
           "$ref": "AppEngine",
           "description": "Type used for App Engine services."
+        },
+        "basicService": {
+          "$ref": "BasicService",
+          "description": "Message that contains the service type and service labels of this service if it is a basic service. Documentation and examples here (https://cloud.google.com/stackdriver/docs/solutions/slo-monitoring/api/api-structures#basic-svc-w-basic-sli)."
         },
         "cloudEndpoints": {
           "$ref": "CloudEndpoints",

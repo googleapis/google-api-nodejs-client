@@ -246,6 +246,19 @@ export namespace monitoring_v3 {
     username?: string | null;
   }
   /**
+   * A well-known service type, defined by its service type and service labels. Documentation and examples here (https://cloud.google.com/stackdriver/docs/solutions/slo-monitoring/api/api-structures#basic-svc-w-basic-sli).
+   */
+  export interface Schema$BasicService {
+    /**
+     * Labels that specify the resource that emits the monitoring data which is used for SLO reporting of this Service. Documentation and valid values for given service types here (https://cloud.google.com/stackdriver/docs/solutions/slo-monitoring/api/api-structures#basic-svc-w-basic-sli).
+     */
+    serviceLabels?: {[key: string]: string} | null;
+    /**
+     * The type of service that this basic service defines, e.g. APP_ENGINE service type. Documentation and valid values here (https://cloud.google.com/stackdriver/docs/solutions/slo-monitoring/api/api-structures#basic-svc-w-basic-sli).
+     */
+    serviceType?: string | null;
+  }
+  /**
    * An SLI measuring performance on a well-known service type. Performance will be computed on the basis of pre-defined metrics. The type of the service_resource determines the metrics to use and the service_resource.labels and metric_labels are used to construct a monitoring filter to filter that metric down to just the data relevant to this service.
    */
   export interface Schema$BasicSli {
@@ -517,7 +530,7 @@ export namespace monitoring_v3 {
     totalPointCount?: number | null;
   }
   /**
-   * Custom view of service telemetry. Currently a place-holder pending final design.
+   * Use a custom service to designate a service that you want to monitor when none of the other service types (like App Engine, Cloud Run, or a GKE type) matches your intended service.
    */
   export interface Schema$Custom {}
   /**
@@ -1725,6 +1738,10 @@ export namespace monitoring_v3 {
      */
     appEngine?: Schema$AppEngine;
     /**
+     * Message that contains the service type and service labels of this service if it is a basic service. Documentation and examples here (https://cloud.google.com/stackdriver/docs/solutions/slo-monitoring/api/api-structures#basic-svc-w-basic-sli).
+     */
+    basicService?: Schema$BasicService;
+    /**
      * Type used for Cloud Endpoints services.
      */
     cloudEndpoints?: Schema$CloudEndpoints;
@@ -2726,7 +2743,7 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * Creates a new alerting policy.
+     * Creates a new alerting policy.Design your application to single-thread API calls that modify the state of alerting policies in a single project. This includes calls to CreateAlertPolicy, DeleteAlertPolicy and UpdateAlertPolicy.
      * @example
      * ```js
      * // Before running the sample:
@@ -2888,7 +2905,7 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * Deletes an alerting policy.
+     * Deletes an alerting policy.Design your application to single-thread API calls that modify the state of alerting policies in a single project. This includes calls to CreateAlertPolicy, DeleteAlertPolicy and UpdateAlertPolicy.
      * @example
      * ```js
      * // Before running the sample:
@@ -3306,7 +3323,7 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * Updates an alerting policy. You can either replace the entire policy with a new one or replace only certain fields in the current alerting policy by specifying the fields to be updated via updateMask. Returns the updated alerting policy.
+     * Updates an alerting policy. You can either replace the entire policy with a new one or replace only certain fields in the current alerting policy by specifying the fields to be updated via updateMask. Returns the updated alerting policy.Design your application to single-thread API calls that modify the state of alerting policies in a single project. This includes calls to CreateAlertPolicy, DeleteAlertPolicy and UpdateAlertPolicy.
      * @example
      * ```js
      * // Before running the sample:
@@ -5970,7 +5987,7 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * Creates a new notification channel, representing a single notification endpoint such as an email address, SMS number, or PagerDuty service.
+     * Creates a new notification channel, representing a single notification endpoint such as an email address, SMS number, or PagerDuty service.Design your application to single-thread API calls that modify the state of notification channels in a single project. This includes calls to CreateNotificationChannel, DeleteNotificationChannel and UpdateNotificationChannel.
      * @example
      * ```js
      * // Before running the sample:
@@ -6131,7 +6148,7 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * Deletes a notification channel.
+     * Deletes a notification channel.Design your application to single-thread API calls that modify the state of notification channels in a single project. This includes calls to CreateNotificationChannel, DeleteNotificationChannel and UpdateNotificationChannel.
      * @example
      * ```js
      * // Before running the sample:
@@ -6706,7 +6723,7 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * Updates a notification channel. Fields not specified in the field mask remain unchanged.
+     * Updates a notification channel. Fields not specified in the field mask remain unchanged.Design your application to single-thread API calls that modify the state of notification channels in a single project. This includes calls to CreateNotificationChannel, DeleteNotificationChannel and UpdateNotificationChannel.
      * @example
      * ```js
      * // Before running the sample:
@@ -8848,6 +8865,7 @@ export namespace monitoring_v3 {
      *       // request body parameters
      *       // {
      *       //   "appEngine": {},
+     *       //   "basicService": {},
      *       //   "cloudEndpoints": {},
      *       //   "cloudRun": {},
      *       //   "clusterIstio": {},
@@ -8869,6 +8887,7 @@ export namespace monitoring_v3 {
      *   // Example response
      *   // {
      *   //   "appEngine": {},
+     *   //   "basicService": {},
      *   //   "cloudEndpoints": {},
      *   //   "cloudRun": {},
      *   //   "clusterIstio": {},
@@ -9140,6 +9159,7 @@ export namespace monitoring_v3 {
      *   // Example response
      *   // {
      *   //   "appEngine": {},
+     *   //   "basicService": {},
      *   //   "cloudEndpoints": {},
      *   //   "cloudRun": {},
      *   //   "clusterIstio": {},
@@ -9427,6 +9447,7 @@ export namespace monitoring_v3 {
      *       // request body parameters
      *       // {
      *       //   "appEngine": {},
+     *       //   "basicService": {},
      *       //   "cloudEndpoints": {},
      *       //   "cloudRun": {},
      *       //   "clusterIstio": {},
@@ -9448,6 +9469,7 @@ export namespace monitoring_v3 {
      *   // Example response
      *   // {
      *   //   "appEngine": {},
+     *   //   "basicService": {},
      *   //   "cloudEndpoints": {},
      *   //   "cloudRun": {},
      *   //   "clusterIstio": {},
