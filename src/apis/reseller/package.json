@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/reseller",
-  "version": "0.5.3",
+  "version": "1.0.0",
   "description": "reseller",
   "main": "build/index.js",
   "types": "build/index.d.ts",

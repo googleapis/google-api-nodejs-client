@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/groupssettings",
-  "version": "2.0.2",
+  "version": "3.0.0",
   "description": "groupssettings",
   "main": "build/index.js",
   "types": "build/index.d.ts",

@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/firebasedynamiclinks",
-  "version": "0.2.3",
+  "version": "1.0.0",
   "description": "firebasedynamiclinks",
   "main": "build/index.js",
   "types": "build/index.d.ts",

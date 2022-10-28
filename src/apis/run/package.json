@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/run",
-  "version": "10.2.0",
+  "version": "11.0.0",
   "description": "run",
   "main": "build/index.js",
   "types": "build/index.d.ts",

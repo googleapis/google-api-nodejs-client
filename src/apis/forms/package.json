@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/forms",
-  "version": "1.1.2",
+  "version": "2.0.0",
   "description": "forms",
   "main": "build/index.js",
   "types": "build/index.d.ts",

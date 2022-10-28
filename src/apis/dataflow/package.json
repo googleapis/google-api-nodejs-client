@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/dataflow",
-  "version": "4.1.1",
+  "version": "5.0.0",
   "description": "dataflow",
   "main": "build/index.js",
   "types": "build/index.d.ts",

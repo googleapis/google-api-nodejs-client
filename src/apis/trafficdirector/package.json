@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/trafficdirector",
-  "version": "0.3.3",
+  "version": "1.0.0",
   "description": "trafficdirector",
   "main": "build/index.js",
   "types": "build/index.d.ts",

@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/abusiveexperiencereport",
-  "version": "0.3.2",
+  "version": "1.0.0",
   "description": "abusiveexperiencereport",
   "main": "build/index.js",
   "types": "build/index.d.ts",

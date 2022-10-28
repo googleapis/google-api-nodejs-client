@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/smartdevicemanagement",
-  "version": "0.4.2",
+  "version": "1.0.0",
   "description": "smartdevicemanagement",
   "main": "build/index.js",
   "types": "build/index.d.ts",
