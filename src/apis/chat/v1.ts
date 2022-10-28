@@ -279,7 +279,7 @@ export namespace chat_v1 {
     sections?: Schema$Section[];
   }
   /**
-   * A card action is the action associated with the card. For an invoice card, a typical action would be: delete invoice, email invoice or open the invoice in browser.
+   * A card action is the action associated with the card. For an invoice card, a typical action would be: delete invoice, email invoice or open the invoice in browser. Not supported by Google Chat apps.
    */
   export interface Schema$CardAction {
     /**
@@ -610,11 +610,11 @@ export namespace chat_v1 {
     buttons?: Schema$GoogleAppsCardV1Button[];
   }
   /**
-   * A card is a UI element that can contain UI widgets such as text and images. For more information, see Cards . For example, the following JSON creates a card that has a header with the name, position, icons, and link for a contact, followed by a section with contact information like email and phone number. ``` { "header": { "title": "Sasha", "subtitle": "Software Engineer", "imageStyle": "ImageStyle.AVATAR", "imageUrl": "https://example.com/sasha.png", "imageAltText": "Avatar for Sasha" \}, "sections" : [ { "header": "Contact Info", "widgets": [ { "decorated_text": { "icon": { "knownIcon": "EMAIL" \}, "content": "sasha@example.com" \} \}, { "decoratedText": { "icon": { "knownIcon": "PERSON" \}, "content": "Online" \} \}, { "decoratedText": { "icon": { "knownIcon": "PHONE" \}, "content": "+1 (555) 555-1234" \} \}, { "buttons": [ { "textButton": { "text": "Share", \}, "onClick": { "openLink": { "url": "https://example.com/share" \} \} \}, { "textButton": { "text": "Edit", \}, "onClick": { "action": { "function": "goToView", "parameters": [ { "key": "viewType", "value": "EDIT" \} ], "loadIndicator": "LoadIndicator.SPINNER" \} \} \} ] \} ], "collapsible": true, "uncollapsibleWidgetsCount": 3 \} ], "cardActions": [ { "actionLabel": "Send Feedback", "onClick": { "openLink": { "url": "https://example.com/feedback" \} \} \} ], "name": "contact-card-K3wB6arF2H9L" \} ```
+   * Cards support a defined layout, interactive UI elements like buttons, and rich media like images. Use cards to present detailed information, gather information from users, and guide users to take a next step. In Google Chat, cards appear in several places: - As stand-alone messages. - Accompanying a text message, just beneath the text message. - As a [dialog](https://developers.google.com/chat/how-tos/dialogs). The following example JSON creates a "contact card" that features: - A header with the contact's name, job title, avatar picture. - A section with the contact information, including formatted text. - Buttons that users can click to share the contact or see more or less info. ![Example contact card](/chat/images/card_api_reference.png) ``` { "cardsV2": [ { "cardId": "unique-card-id", "card": { "header": { "title": "Sasha", "subtitle": "Software Engineer", "imageUrl": "https://developers.google.com/chat/images/quickstart-app-avatar.png", "imageType": "CIRCLE", "imageAltText": "Avatar for Sasha", \}, "sections": [ { "header": "Contact Info", "collapsible": true, "uncollapsibleWidgetsCount": 1, "widgets": [ { "decoratedText": { "startIcon": { "knownIcon": "EMAIL", \}, "text": "sasha@example.com", \} \}, { "decoratedText": { "startIcon": { "knownIcon": "PERSON", \}, "text": "Online", \}, \}, { "decoratedText": { "startIcon": { "knownIcon": "PHONE", \}, "text": "+1 (555) 555-1234", \} \}, { "buttonList": { "buttons": [ { "text": "Share", "onClick": { "openLink": { "url": "https://example.com/share", \} \} \}, { "text": "Edit", "onClick": { "action": { "function": "goToView", "parameters": [ { "key": "viewType", "value": "EDIT", \} ], \} \} \}, ], \} \}, ], \}, ], \}, \} ], \} ```
    */
   export interface Schema$GoogleAppsCardV1Card {
     /**
-     * The card's actions. Actions are added to the card's generated toolbar menu. For example, the following JSON constructs a card action menu with Settings and Send Feedback options: ``` "card_actions": [ { "actionLabel": "Settings", "onClick": { "action": { "functionName": "goToView", "parameters": [ { "key": "viewType", "value": "SETTING" \} ], "loadIndicator": "LoadIndicator.SPINNER" \} \} \}, { "actionLabel": "Send Feedback", "onClick": { "openLink": { "url": "https://example.com/feedback" \} \} \} ] ```
+     * The card's actions. Actions are added to the card's generated toolbar menu. Not supported by Google Chat apps. For example, the following JSON constructs a card action menu with Settings and Send Feedback options: ``` "card_actions": [ { "actionLabel": "Settings", "onClick": { "action": { "functionName": "goToView", "parameters": [ { "key": "viewType", "value": "SETTING" \} ], "loadIndicator": "LoadIndicator.SPINNER" \} \} \}, { "actionLabel": "Send Feedback", "onClick": { "openLink": { "url": "https://example.com/feedback" \} \} \} ] ```
      */
     cardActions?: Schema$GoogleAppsCardV1CardAction[];
     /**
@@ -643,7 +643,7 @@ export namespace chat_v1 {
     sections?: Schema$GoogleAppsCardV1Section[];
   }
   /**
-   * A card action is the action associated with the card. For example, an invoice card might include actions such as delete invoice, email invoice, or open the invoice in a browser.
+   * A card action is the action associated with the card. For example, an invoice card might include actions such as delete invoice, email invoice, or open the invoice in a browser. Not supported by Google Chat apps.
    */
   export interface Schema$GoogleAppsCardV1CardAction {
     /**
@@ -1231,13 +1231,13 @@ export namespace chat_v1 {
      */
     memberships?: Schema$Membership[];
     /**
-     * Continuation token to retrieve the next page of results. It will be empty for the last page of results.
+     * A token that can be sent as `pageToken` to retrieve the next page of results. If empty, there are no subsequent pages.
      */
     nextPageToken?: string | null;
   }
   export interface Schema$ListSpacesResponse {
     /**
-     * Continuation token to retrieve the next page of results. It will be empty for the last page of results. Tokens expire in an hour. An error is thrown if an expired token is passed.
+     * A token that can be sent as `pageToken` to retrieve the next page of results. If empty, there are no subsequent pages.
      */
     nextPageToken?: string | null;
     /**
@@ -1309,13 +1309,17 @@ export namespace chat_v1 {
      */
     attachment?: Schema$Attachment[];
     /**
-     * Rich, formatted and interactive cards that can be used to display UI elements such as: formatted texts, buttons, clickable images. Cards are normally displayed below the plain-text body of the message.
+     * Deprecated: Use `cards_v2` instead. Rich, formatted and interactive cards that can be used to display UI elements such as: formatted texts, buttons, clickable images. Cards are normally displayed below the plain-text body of the message.
      */
     cards?: Schema$Card[];
     /**
-     * Richly formatted and interactive cards that display UI elements and editable widgets, such as: - Formatted text - Buttons - Clickable images - Checkboxes - Radio buttons - Input widgets. Cards are usually displayed below the text-body of a Chat message, but can situationally appear other places, such as [dialogs](https://developers.google.com/chat/how-tos/dialogs). The `cardId` is a unique identifier among cards in the same message and for identifying user input values. Currently supported widgets include: - `TextParagraph` - `DecoratedText` - `Image` - `ButtonList`
+     * Richly formatted and interactive cards that display UI elements and editable widgets, such as: - Formatted text - Buttons - Clickable images - Checkboxes - Radio buttons - Input widgets. Cards are usually displayed below the text-body of a Chat message, but can situationally appear other places, such as [dialogs](https://developers.google.com/chat/how-tos/dialogs). The `cardId` is a unique identifier among cards in the same message and for identifying user input values. Currently supported widgets include: - `TextParagraph` - `DecoratedText` - `Image` - `ButtonList` - `Divider`
      */
     cardsV2?: Schema$CardWithId[];
+    /**
+     * A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
+     */
+    clientAssignedMessageId?: string | null;
     /**
      * Output only. The time at which the message was created in Google Chat server.
      */
@@ -1345,7 +1349,7 @@ export namespace chat_v1 {
      */
     slashCommand?: Schema$SlashCommand;
     /**
-     * The space the message belongs to.
+     * The space the message belongs to. When accessed with [user authentication](https://developers.google.com/chat/api/guides/auth/users), only the name of the Space is populated.
      */
     space?: Schema$Space;
     /**
@@ -1353,9 +1357,13 @@ export namespace chat_v1 {
      */
     text?: string | null;
     /**
-     * The thread the message belongs to.
+     * The thread the message belongs to. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
      */
     thread?: Schema$Thread;
+    /**
+     * Output only. When `true`, the message is a response in a reply thread. When `false`, the message is visible in the space's top-level conversation as either the first message of a thread or a message with no threaded replies. If the space doesn't support reply in threads, this field is always `false`.
+     */
+    threadReply?: boolean | null;
   }
   /**
    * An onclick action (e.g. open a link).
@@ -1447,7 +1455,11 @@ export namespace chat_v1 {
      */
     spaceDetails?: Schema$SpaceDetails;
     /**
-     * Output only. Whether messages are threaded in this space.
+     * Output only. The threading state in the Chat space.
+     */
+    spaceThreadingState?: string | null;
+    /**
+     * Output only. Deprecated: Use `spaceThreadingState` instead. Whether messages are threaded in this space.
      */
     threaded?: boolean | null;
     /**
@@ -1518,9 +1530,13 @@ export namespace chat_v1 {
    */
   export interface Schema$Thread {
     /**
-     * Resource name, in the form "spaces/x/threads/x". Example: spaces/AAAAAAAAAAA/threads/TTTTTTTTTTT
+     * Resource name of the thread. Example: spaces/{space\}/threads/{thread\}
      */
     name?: string | null;
+    /**
+     * Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread). For other requests, this is an output only field.
+     */
+    threadKey?: string | null;
   }
   /**
    * Time input values. Not supported by Chat apps.
@@ -1565,7 +1581,7 @@ export namespace chat_v1 {
      */
     isAnonymous?: boolean | null;
     /**
-     * Resource name for a Google Chat user. Represents a [person](https://developers.google.com/people/api/rest/v1/people#Person) in the People API or a [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Admin SDK Directory API. Formatted as: `users/{user\}`
+     * Resource name for a Google Chat user. For human users, represents a person in the People API or a user in the Admin SDK Directory API. Format: `users/{user\}`
      */
     name?: string | null;
     /**
@@ -1643,11 +1659,15 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.dms.messages({
-     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
+     *     // Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
+     *     messageId: 'placeholder-value',
+     *     // Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
+     *     messageReplyOption: 'placeholder-value',
+     *     // Required. The resource name of the space in which to create a message. Format: spaces/{space\}
      *     parent: 'dms/my-dm',
      *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      *     requestId: 'placeholder-value',
-     *     // Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
+     *     // Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
      *     threadKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1660,6 +1680,7 @@ export namespace chat_v1 {
      *       //   "attachment": [],
      *       //   "cards": [],
      *       //   "cardsV2": [],
+     *       //   "clientAssignedMessageId": "my_clientAssignedMessageId",
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
      *       //   "lastUpdateTime": "my_lastUpdateTime",
@@ -1669,7 +1690,8 @@ export namespace chat_v1 {
      *       //   "slashCommand": {},
      *       //   "space": {},
      *       //   "text": "my_text",
-     *       //   "thread": {}
+     *       //   "thread": {},
+     *       //   "threadReply": false
      *       // }
      *     },
      *   });
@@ -1683,6 +1705,7 @@ export namespace chat_v1 {
      *   //   "attachment": [],
      *   //   "cards": [],
      *   //   "cardsV2": [],
+     *   //   "clientAssignedMessageId": "my_clientAssignedMessageId",
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
@@ -1692,7 +1715,8 @@ export namespace chat_v1 {
      *   //   "slashCommand": {},
      *   //   "space": {},
      *   //   "text": "my_text",
-     *   //   "thread": {}
+     *   //   "thread": {},
+     *   //   "threadReply": false
      *   // }
      * }
      *
@@ -1813,11 +1837,15 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.dms.webhooks({
-     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
+     *     // Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
+     *     messageId: 'placeholder-value',
+     *     // Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
+     *     messageReplyOption: 'placeholder-value',
+     *     // Required. The resource name of the space in which to create a message. Format: spaces/{space\}
      *     parent: 'dms/my-dm',
      *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      *     requestId: 'placeholder-value',
-     *     // Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
+     *     // Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
      *     threadKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1830,6 +1858,7 @@ export namespace chat_v1 {
      *       //   "attachment": [],
      *       //   "cards": [],
      *       //   "cardsV2": [],
+     *       //   "clientAssignedMessageId": "my_clientAssignedMessageId",
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
      *       //   "lastUpdateTime": "my_lastUpdateTime",
@@ -1839,7 +1868,8 @@ export namespace chat_v1 {
      *       //   "slashCommand": {},
      *       //   "space": {},
      *       //   "text": "my_text",
-     *       //   "thread": {}
+     *       //   "thread": {},
+     *       //   "threadReply": false
      *       // }
      *     },
      *   });
@@ -1853,6 +1883,7 @@ export namespace chat_v1 {
      *   //   "attachment": [],
      *   //   "cards": [],
      *   //   "cardsV2": [],
+     *   //   "clientAssignedMessageId": "my_clientAssignedMessageId",
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
@@ -1862,7 +1893,8 @@ export namespace chat_v1 {
      *   //   "slashCommand": {},
      *   //   "space": {},
      *   //   "text": "my_text",
-     *   //   "thread": {}
+     *   //   "thread": {},
+     *   //   "threadReply": false
      *   // }
      * }
      *
@@ -1959,7 +1991,15 @@ export namespace chat_v1 {
 
   export interface Params$Resource$Dms$Messages extends StandardParameters {
     /**
-     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
+     * Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
+     */
+    messageId?: string;
+    /**
+     * Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
+     */
+    messageReplyOption?: string;
+    /**
+     * Required. The resource name of the space in which to create a message. Format: spaces/{space\}
      */
     parent?: string;
     /**
@@ -1967,7 +2007,7 @@ export namespace chat_v1 {
      */
     requestId?: string;
     /**
-     * Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
+     * Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
      */
     threadKey?: string;
 
@@ -1978,7 +2018,15 @@ export namespace chat_v1 {
   }
   export interface Params$Resource$Dms$Webhooks extends StandardParameters {
     /**
-     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
+     * Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
+     */
+    messageId?: string;
+    /**
+     * Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
+     */
+    messageReplyOption?: string;
+    /**
+     * Required. The resource name of the space in which to create a message. Format: spaces/{space\}
      */
     parent?: string;
     /**
@@ -1986,7 +2034,7 @@ export namespace chat_v1 {
      */
     requestId?: string;
     /**
-     * Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
+     * Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
      */
     threadKey?: string;
 
@@ -2029,11 +2077,15 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.dms.conversations.messages({
-     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
+     *     // Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
+     *     messageId: 'placeholder-value',
+     *     // Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
+     *     messageReplyOption: 'placeholder-value',
+     *     // Required. The resource name of the space in which to create a message. Format: spaces/{space\}
      *     parent: 'dms/my-dm/conversations/my-conversation',
      *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      *     requestId: 'placeholder-value',
-     *     // Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
+     *     // Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
      *     threadKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2046,6 +2098,7 @@ export namespace chat_v1 {
      *       //   "attachment": [],
      *       //   "cards": [],
      *       //   "cardsV2": [],
+     *       //   "clientAssignedMessageId": "my_clientAssignedMessageId",
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
      *       //   "lastUpdateTime": "my_lastUpdateTime",
@@ -2055,7 +2108,8 @@ export namespace chat_v1 {
      *       //   "slashCommand": {},
      *       //   "space": {},
      *       //   "text": "my_text",
-     *       //   "thread": {}
+     *       //   "thread": {},
+     *       //   "threadReply": false
      *       // }
      *     },
      *   });
@@ -2069,6 +2123,7 @@ export namespace chat_v1 {
      *   //   "attachment": [],
      *   //   "cards": [],
      *   //   "cardsV2": [],
+     *   //   "clientAssignedMessageId": "my_clientAssignedMessageId",
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
@@ -2078,7 +2133,8 @@ export namespace chat_v1 {
      *   //   "slashCommand": {},
      *   //   "space": {},
      *   //   "text": "my_text",
-     *   //   "thread": {}
+     *   //   "thread": {},
+     *   //   "threadReply": false
      *   // }
      * }
      *
@@ -2177,7 +2233,15 @@ export namespace chat_v1 {
   export interface Params$Resource$Dms$Conversations$Messages
     extends StandardParameters {
     /**
-     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
+     * Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
+     */
+    messageId?: string;
+    /**
+     * Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
+     */
+    messageReplyOption?: string;
+    /**
+     * Required. The resource name of the space in which to create a message. Format: spaces/{space\}
      */
     parent?: string;
     /**
@@ -2185,7 +2249,7 @@ export namespace chat_v1 {
      */
     requestId?: string;
     /**
-     * Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
+     * Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
      */
     threadKey?: string;
 
@@ -2372,11 +2436,15 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.rooms.messages({
-     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
+     *     // Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
+     *     messageId: 'placeholder-value',
+     *     // Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
+     *     messageReplyOption: 'placeholder-value',
+     *     // Required. The resource name of the space in which to create a message. Format: spaces/{space\}
      *     parent: 'rooms/my-room',
      *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      *     requestId: 'placeholder-value',
-     *     // Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
+     *     // Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
      *     threadKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2389,6 +2457,7 @@ export namespace chat_v1 {
      *       //   "attachment": [],
      *       //   "cards": [],
      *       //   "cardsV2": [],
+     *       //   "clientAssignedMessageId": "my_clientAssignedMessageId",
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
      *       //   "lastUpdateTime": "my_lastUpdateTime",
@@ -2398,7 +2467,8 @@ export namespace chat_v1 {
      *       //   "slashCommand": {},
      *       //   "space": {},
      *       //   "text": "my_text",
-     *       //   "thread": {}
+     *       //   "thread": {},
+     *       //   "threadReply": false
      *       // }
      *     },
      *   });
@@ -2412,6 +2482,7 @@ export namespace chat_v1 {
      *   //   "attachment": [],
      *   //   "cards": [],
      *   //   "cardsV2": [],
+     *   //   "clientAssignedMessageId": "my_clientAssignedMessageId",
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
@@ -2421,7 +2492,8 @@ export namespace chat_v1 {
      *   //   "slashCommand": {},
      *   //   "space": {},
      *   //   "text": "my_text",
-     *   //   "thread": {}
+     *   //   "thread": {},
+     *   //   "threadReply": false
      *   // }
      * }
      *
@@ -2542,11 +2614,15 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.rooms.webhooks({
-     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
+     *     // Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
+     *     messageId: 'placeholder-value',
+     *     // Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
+     *     messageReplyOption: 'placeholder-value',
+     *     // Required. The resource name of the space in which to create a message. Format: spaces/{space\}
      *     parent: 'rooms/my-room',
      *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      *     requestId: 'placeholder-value',
-     *     // Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
+     *     // Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
      *     threadKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2559,6 +2635,7 @@ export namespace chat_v1 {
      *       //   "attachment": [],
      *       //   "cards": [],
      *       //   "cardsV2": [],
+     *       //   "clientAssignedMessageId": "my_clientAssignedMessageId",
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
      *       //   "lastUpdateTime": "my_lastUpdateTime",
@@ -2568,7 +2645,8 @@ export namespace chat_v1 {
      *       //   "slashCommand": {},
      *       //   "space": {},
      *       //   "text": "my_text",
-     *       //   "thread": {}
+     *       //   "thread": {},
+     *       //   "threadReply": false
      *       // }
      *     },
      *   });
@@ -2582,6 +2660,7 @@ export namespace chat_v1 {
      *   //   "attachment": [],
      *   //   "cards": [],
      *   //   "cardsV2": [],
+     *   //   "clientAssignedMessageId": "my_clientAssignedMessageId",
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
@@ -2591,7 +2670,8 @@ export namespace chat_v1 {
      *   //   "slashCommand": {},
      *   //   "space": {},
      *   //   "text": "my_text",
-     *   //   "thread": {}
+     *   //   "thread": {},
+     *   //   "threadReply": false
      *   // }
      * }
      *
@@ -2688,7 +2768,15 @@ export namespace chat_v1 {
 
   export interface Params$Resource$Rooms$Messages extends StandardParameters {
     /**
-     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
+     * Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
+     */
+    messageId?: string;
+    /**
+     * Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
+     */
+    messageReplyOption?: string;
+    /**
+     * Required. The resource name of the space in which to create a message. Format: spaces/{space\}
      */
     parent?: string;
     /**
@@ -2696,7 +2784,7 @@ export namespace chat_v1 {
      */
     requestId?: string;
     /**
-     * Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
+     * Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
      */
     threadKey?: string;
 
@@ -2707,7 +2795,15 @@ export namespace chat_v1 {
   }
   export interface Params$Resource$Rooms$Webhooks extends StandardParameters {
     /**
-     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
+     * Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
+     */
+    messageId?: string;
+    /**
+     * Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
+     */
+    messageReplyOption?: string;
+    /**
+     * Required. The resource name of the space in which to create a message. Format: spaces/{space\}
      */
     parent?: string;
     /**
@@ -2715,7 +2811,7 @@ export namespace chat_v1 {
      */
     requestId?: string;
     /**
-     * Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
+     * Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
      */
     threadKey?: string;
 
@@ -2758,11 +2854,15 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.rooms.conversations.messages({
-     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
+     *     // Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
+     *     messageId: 'placeholder-value',
+     *     // Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
+     *     messageReplyOption: 'placeholder-value',
+     *     // Required. The resource name of the space in which to create a message. Format: spaces/{space\}
      *     parent: 'rooms/my-room/conversations/my-conversation',
      *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      *     requestId: 'placeholder-value',
-     *     // Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
+     *     // Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
      *     threadKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2775,6 +2875,7 @@ export namespace chat_v1 {
      *       //   "attachment": [],
      *       //   "cards": [],
      *       //   "cardsV2": [],
+     *       //   "clientAssignedMessageId": "my_clientAssignedMessageId",
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
      *       //   "lastUpdateTime": "my_lastUpdateTime",
@@ -2784,7 +2885,8 @@ export namespace chat_v1 {
      *       //   "slashCommand": {},
      *       //   "space": {},
      *       //   "text": "my_text",
-     *       //   "thread": {}
+     *       //   "thread": {},
+     *       //   "threadReply": false
      *       // }
      *     },
      *   });
@@ -2798,6 +2900,7 @@ export namespace chat_v1 {
      *   //   "attachment": [],
      *   //   "cards": [],
      *   //   "cardsV2": [],
+     *   //   "clientAssignedMessageId": "my_clientAssignedMessageId",
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
@@ -2807,7 +2910,8 @@ export namespace chat_v1 {
      *   //   "slashCommand": {},
      *   //   "space": {},
      *   //   "text": "my_text",
-     *   //   "thread": {}
+     *   //   "thread": {},
+     *   //   "threadReply": false
      *   // }
      * }
      *
@@ -2906,7 +3010,15 @@ export namespace chat_v1 {
   export interface Params$Resource$Rooms$Conversations$Messages
     extends StandardParameters {
     /**
-     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
+     * Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
+     */
+    messageId?: string;
+    /**
+     * Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
+     */
+    messageReplyOption?: string;
+    /**
+     * Required. The resource name of the space in which to create a message. Format: spaces/{space\}
      */
     parent?: string;
     /**
@@ -2914,7 +3026,7 @@ export namespace chat_v1 {
      */
     requestId?: string;
     /**
-     * Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
+     * Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
      */
     threadKey?: string;
 
@@ -2972,6 +3084,7 @@ export namespace chat_v1 {
      *   //   "name": "my_name",
      *   //   "singleUserBotDm": false,
      *   //   "spaceDetails": {},
+     *   //   "spaceThreadingState": "my_spaceThreadingState",
      *   //   "threaded": false,
      *   //   "type": "my_type"
      *   // }
@@ -3091,9 +3204,9 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.list({
-     *     // Optional. Requested page size. The value is capped at 1000. Server may return fewer results than requested. If unspecified, server will default to 100.
+     *     // Optional. The maximum number of spaces to return. The service may return fewer than this value. If unspecified, at most 100 spaces are returned. The maximum value is 1000; values above 1000 are coerced to 1000. Negative values return an INVALID_ARGUMENT error.
      *     pageSize: 'placeholder-value',
-     *     // Optional. A token identifying a page of results the server should return.
+     *     // Optional. A page token, received from a previous list spaces call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3222,11 +3335,15 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.webhooks({
-     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
+     *     // Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
+     *     messageId: 'placeholder-value',
+     *     // Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
+     *     messageReplyOption: 'placeholder-value',
+     *     // Required. The resource name of the space in which to create a message. Format: spaces/{space\}
      *     parent: 'spaces/my-space',
      *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      *     requestId: 'placeholder-value',
-     *     // Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
+     *     // Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
      *     threadKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3239,6 +3356,7 @@ export namespace chat_v1 {
      *       //   "attachment": [],
      *       //   "cards": [],
      *       //   "cardsV2": [],
+     *       //   "clientAssignedMessageId": "my_clientAssignedMessageId",
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
      *       //   "lastUpdateTime": "my_lastUpdateTime",
@@ -3248,7 +3366,8 @@ export namespace chat_v1 {
      *       //   "slashCommand": {},
      *       //   "space": {},
      *       //   "text": "my_text",
-     *       //   "thread": {}
+     *       //   "thread": {},
+     *       //   "threadReply": false
      *       // }
      *     },
      *   });
@@ -3262,6 +3381,7 @@ export namespace chat_v1 {
      *   //   "attachment": [],
      *   //   "cards": [],
      *   //   "cardsV2": [],
+     *   //   "clientAssignedMessageId": "my_clientAssignedMessageId",
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
@@ -3271,7 +3391,8 @@ export namespace chat_v1 {
      *   //   "slashCommand": {},
      *   //   "space": {},
      *   //   "text": "my_text",
-     *   //   "thread": {}
+     *   //   "thread": {},
+     *   //   "threadReply": false
      *   // }
      * }
      *
@@ -3374,17 +3495,25 @@ export namespace chat_v1 {
   }
   export interface Params$Resource$Spaces$List extends StandardParameters {
     /**
-     * Optional. Requested page size. The value is capped at 1000. Server may return fewer results than requested. If unspecified, server will default to 100.
+     * Optional. The maximum number of spaces to return. The service may return fewer than this value. If unspecified, at most 100 spaces are returned. The maximum value is 1000; values above 1000 are coerced to 1000. Negative values return an INVALID_ARGUMENT error.
      */
     pageSize?: number;
     /**
-     * Optional. A token identifying a page of results the server should return.
+     * Optional. A page token, received from a previous list spaces call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided must match the call that provided the page token.
      */
     pageToken?: string;
   }
   export interface Params$Resource$Spaces$Webhooks extends StandardParameters {
     /**
-     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
+     * Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
+     */
+    messageId?: string;
+    /**
+     * Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
+     */
+    messageReplyOption?: string;
+    /**
+     * Required. The resource name of the space in which to create a message. Format: spaces/{space\}
      */
     parent?: string;
     /**
@@ -3392,7 +3521,7 @@ export namespace chat_v1 {
      */
     requestId?: string;
     /**
-     * Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
+     * Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
      */
     threadKey?: string;
 
@@ -3426,7 +3555,7 @@ export namespace chat_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: ['https://www.googleapis.com/auth/chat.memberships'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3539,7 +3668,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Lists human memberships in a space. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
+     * Lists human memberships in a space for joined members. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
      * @example
      * ```js
      * // Before running the sample:
@@ -3556,7 +3685,7 @@ export namespace chat_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: ['https://www.googleapis.com/auth/chat.memberships'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3565,9 +3694,9 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.members.list({
-     *     // Requested page size. The value is capped at 1000. Server may return fewer results than requested. If unspecified, server will default to 100.
+     *     // The maximum number of memberships to return. The service may return fewer than this value. If unspecified, at most 100 memberships are returned. The maximum value is 1000; values above 1000 are coerced to 1000. Negative values return an INVALID_ARGUMENT error.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
+     *     // A page token, received from a previous list memberships call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
      *     // Required. The resource name of the space for which to fetch a membership list. Format: spaces/{space\}
      *     parent: 'spaces/my-space',
@@ -3688,11 +3817,11 @@ export namespace chat_v1 {
   export interface Params$Resource$Spaces$Members$List
     extends StandardParameters {
     /**
-     * Requested page size. The value is capped at 1000. Server may return fewer results than requested. If unspecified, server will default to 100.
+     * The maximum number of memberships to return. The service may return fewer than this value. If unspecified, at most 100 memberships are returned. The maximum value is 1000; values above 1000 are coerced to 1000. Negative values return an INVALID_ARGUMENT error.
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results the server should return.
+     * A page token, received from a previous list memberships call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -3710,7 +3839,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Creates a message. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
+     * Creates a message. For example usage, see [Create a message](https://developers.google.com/chat/api/guides/crudl/messages#create_a_message). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts). Supports [user authentication](https://developers.google.com/chat/api/guides/auth/users) as part of the [Google Workspace Developer Preview Program](https://developers.google.com/workspace/preview), which grants early access to certain features. [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.messages` or `chat.messages.create` authorization scope.
      * @example
      * ```js
      * // Before running the sample:
@@ -3736,11 +3865,15 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.messages.create({
-     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
+     *     // Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
+     *     messageId: 'placeholder-value',
+     *     // Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
+     *     messageReplyOption: 'placeholder-value',
+     *     // Required. The resource name of the space in which to create a message. Format: spaces/{space\}
      *     parent: 'spaces/my-space',
      *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      *     requestId: 'placeholder-value',
-     *     // Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
+     *     // Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
      *     threadKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3753,6 +3886,7 @@ export namespace chat_v1 {
      *       //   "attachment": [],
      *       //   "cards": [],
      *       //   "cardsV2": [],
+     *       //   "clientAssignedMessageId": "my_clientAssignedMessageId",
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
      *       //   "lastUpdateTime": "my_lastUpdateTime",
@@ -3762,7 +3896,8 @@ export namespace chat_v1 {
      *       //   "slashCommand": {},
      *       //   "space": {},
      *       //   "text": "my_text",
-     *       //   "thread": {}
+     *       //   "thread": {},
+     *       //   "threadReply": false
      *       // }
      *     },
      *   });
@@ -3776,6 +3911,7 @@ export namespace chat_v1 {
      *   //   "attachment": [],
      *   //   "cards": [],
      *   //   "cardsV2": [],
+     *   //   "clientAssignedMessageId": "my_clientAssignedMessageId",
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
@@ -3785,7 +3921,8 @@ export namespace chat_v1 {
      *   //   "slashCommand": {},
      *   //   "space": {},
      *   //   "text": "my_text",
-     *   //   "thread": {}
+     *   //   "thread": {},
+     *   //   "threadReply": false
      *   // }
      * }
      *
@@ -3881,7 +4018,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Deletes a message. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
+     * Deletes a message. For example usage, see [Delete a message](https://developers.google.com/chat/api/guides/crudl/messages#delete_a_message). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts). Supports [user authentication](https://developers.google.com/chat/api/guides/auth/users) as part of the [Google Workspace Developer Preview Program](https://developers.google.com/workspace/preview), which grants early access to certain features. [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.messages` authorization scope.
      * @example
      * ```js
      * // Before running the sample:
@@ -4005,7 +4142,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Returns a message. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
+     * Returns a message. For example usage, see [Read a message](https://developers.google.com/chat/api/guides/crudl/messages#read_a_message). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [Service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts). Supports [user authentication](https://developers.google.com/chat/api/guides/auth/users) as part of the [Google Workspace Developer Preview Program](https://developers.google.com/workspace/preview), which grants early access to certain features. [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.messages` or `chat.messages.readonly` authorization scope. Note: Might return a message from a blocked member or space.
      * @example
      * ```js
      * // Before running the sample:
@@ -4031,7 +4168,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.messages.get({
-     *     // Required. Resource name of the message to be retrieved, in the form "spaces/x/messages/x". Example: spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB
+     *     // Required. Resource name of the message to retrieve. Format: spaces/{space\}/messages/{message\} If the message begins with `client-`, then it has a custom name assigned by a Chat app that created it with the Chat REST API. That Chat app (but not others) can pass the custom name to get, update, or delete the message. To learn more, see [create and name a message] (https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
      *     name: 'spaces/my-space/messages/my-message',
      *   });
      *   console.log(res.data);
@@ -4044,6 +4181,7 @@ export namespace chat_v1 {
      *   //   "attachment": [],
      *   //   "cards": [],
      *   //   "cardsV2": [],
+     *   //   "clientAssignedMessageId": "my_clientAssignedMessageId",
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
@@ -4053,7 +4191,8 @@ export namespace chat_v1 {
      *   //   "slashCommand": {},
      *   //   "space": {},
      *   //   "text": "my_text",
-     *   //   "thread": {}
+     *   //   "thread": {},
+     *   //   "threadReply": false
      *   // }
      * }
      *
@@ -4146,7 +4285,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Updates a message. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
+     * Updates a message. For example usage, see [Update a message](https://developers.google.com/chat/api/guides/crudl/messages#update_a_message). Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
      * @example
      * ```js
      * // Before running the sample:
@@ -4172,6 +4311,8 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.messages.update({
+     *     // Optional. If `true` and the message is not found, a new message is created and `updateMask` is ignored. The specified message ID must be [client-assigned](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message) or the request fails.
+     *     allowMissing: 'placeholder-value',
      *     // Resource name in the form `spaces/x/messages/x`. Example: `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`
      *     name: 'spaces/my-space/messages/my-message',
      *     // Required. The field paths to update. Separate multiple values with commas. Currently supported field paths: - text - cards (Requires [service account authentication](/chat/api/guides/auth/service-accounts).) - cards_v2
@@ -4187,6 +4328,7 @@ export namespace chat_v1 {
      *       //   "attachment": [],
      *       //   "cards": [],
      *       //   "cardsV2": [],
+     *       //   "clientAssignedMessageId": "my_clientAssignedMessageId",
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
      *       //   "lastUpdateTime": "my_lastUpdateTime",
@@ -4196,7 +4338,8 @@ export namespace chat_v1 {
      *       //   "slashCommand": {},
      *       //   "space": {},
      *       //   "text": "my_text",
-     *       //   "thread": {}
+     *       //   "thread": {},
+     *       //   "threadReply": false
      *       // }
      *     },
      *   });
@@ -4210,6 +4353,7 @@ export namespace chat_v1 {
      *   //   "attachment": [],
      *   //   "cards": [],
      *   //   "cardsV2": [],
+     *   //   "clientAssignedMessageId": "my_clientAssignedMessageId",
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "lastUpdateTime": "my_lastUpdateTime",
@@ -4219,7 +4363,8 @@ export namespace chat_v1 {
      *   //   "slashCommand": {},
      *   //   "space": {},
      *   //   "text": "my_text",
-     *   //   "thread": {}
+     *   //   "thread": {},
+     *   //   "threadReply": false
      *   // }
      * }
      *
@@ -4315,7 +4460,15 @@ export namespace chat_v1 {
   export interface Params$Resource$Spaces$Messages$Create
     extends StandardParameters {
     /**
-     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
+     * Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
+     */
+    messageId?: string;
+    /**
+     * Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
+     */
+    messageReplyOption?: string;
+    /**
+     * Required. The resource name of the space in which to create a message. Format: spaces/{space\}
      */
     parent?: string;
     /**
@@ -4323,7 +4476,7 @@ export namespace chat_v1 {
      */
     requestId?: string;
     /**
-     * Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.
+     * Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
      */
     threadKey?: string;
 
@@ -4342,12 +4495,16 @@ export namespace chat_v1 {
   export interface Params$Resource$Spaces$Messages$Get
     extends StandardParameters {
     /**
-     * Required. Resource name of the message to be retrieved, in the form "spaces/x/messages/x". Example: spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB
+     * Required. Resource name of the message to retrieve. Format: spaces/{space\}/messages/{message\} If the message begins with `client-`, then it has a custom name assigned by a Chat app that created it with the Chat REST API. That Chat app (but not others) can pass the custom name to get, update, or delete the message. To learn more, see [create and name a message] (https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
      */
     name?: string;
   }
   export interface Params$Resource$Spaces$Messages$Update
     extends StandardParameters {
+    /**
+     * Optional. If `true` and the message is not found, a new message is created and `updateMask` is ignored. The specified message ID must be [client-assigned](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message) or the request fails.
+     */
+    allowMissing?: boolean;
     /**
      * Resource name in the form `spaces/x/messages/x`. Example: `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`
      */
