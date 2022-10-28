@@ -514,7 +514,7 @@
       }
     }
   },
-  "revision": "20220916",
+  "revision": "20221023",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -1016,7 +1016,7 @@
           "additionalProperties": {
             "$ref": "GoogleCloudRecaptchaenterpriseV1ScoreDistribution"
           },
-          "description": "Action-based metrics. The map key is the action name which specified by the site owners at time of the \"execute\" client-side call. Populated only for SCORE keys.",
+          "description": "Action-based metrics. The map key is the action name which specified by the site owners at time of the \"execute\" client-side call.",
           "type": "object"
         },
         "overallMetrics": {
