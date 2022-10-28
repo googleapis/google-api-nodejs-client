@@ -1074,6 +1074,7 @@ export namespace drive_v3 {
     emailAddress?: string | null;
     /**
      * The time at which this permission will expire (RFC 3339 date-time). Expiration times have the following restrictions:
+     * - They cannot be set on shared drive items
      * - They can only be set on user and group permissions
      * - The time must be in the future
      * - The time cannot be more than a year in the future

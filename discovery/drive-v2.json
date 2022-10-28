@@ -38,7 +38,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/Pp29cn2zOwAam8Wlmn7HNXRwCW0\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/HvNXm3E7ARcVP_rbssfNJotZAR4\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -3668,7 +3668,7 @@
       }
     }
   },
-  "revision": "20220815",
+  "revision": "20221002",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -5861,7 +5861,7 @@
           "type": "string"
         },
         "expirationDate": {
-          "description": "The time at which this permission will expire (RFC 3339 date-time). Expiration dates have the following restrictions:  \n- They cannot be set on shared drive items \n- They can only be set on user and group permissions \n- The date must be in the future \n- The date cannot be more than a year in the future \n- The date can only be set on drive.permissions.update or drive.permissions.patch requests",
+          "description": "The time at which this permission will expire (RFC 3339 date-time). Expiration dates have the following restrictions:  \n- They cannot be set on shared drive items \n- They can only be set on user and group permissions \n- The date must be in the future \n- The date cannot be more than a year in the future",
           "format": "date-time",
           "type": "string"
         },
