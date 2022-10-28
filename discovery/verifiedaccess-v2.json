@@ -146,11 +146,11 @@
       }
     }
   },
-  "revision": "20220519",
+  "revision": "20221018",
   "rootUrl": "https://verifiedaccess.googleapis.com/",
   "schemas": {
     "Challenge": {
-      "description": "Result message for VerifiedAccess.CreateChallenge.",
+      "description": "Result message for VerifiedAccess.GenerateChallenge.",
       "id": "Challenge",
       "properties": {
         "alternativeChallenge": {
@@ -192,6 +192,10 @@
       "description": "Result message for VerifiedAccess.VerifyChallengeResponse.",
       "id": "VerifyChallengeResponseResult",
       "properties": {
+        "customerId": {
+          "description": "Unique customer id that this device belongs to, as defined by the Google Admin SDK at https://developers.google.com/admin-sdk/directory/v1/guides/manage-customers",
+          "type": "string"
+        },
         "devicePermanentId": {
           "description": "Device permanent id is returned in this field (for the machine response only).",
           "type": "string"
@@ -206,20 +210,24 @@
             "KEY_TRUST_LEVEL_UNSPECIFIED",
             "CHROME_OS_VERIFIED_MODE",
             "CHROME_OS_DEVELOPER_MODE",
-            "CHROME_BROWSER_TPM_KEY",
+            "CHROME_BROWSER_HW_KEY",
             "CHROME_BROWSER_OS_KEY"
           ],
           "enumDescriptions": [
             "UNSPECIFIED.",
             "ChromeOS device in verified mode.",
             "ChromeOS device in developer mode.",
-            "Chrome Browser with the key stored in TPM.",
+            "Chrome Browser with the key stored in the device hardware.",
             "Chrome Browser with the key stored at OS level."
           ],
           "type": "string"
         },
         "signedPublicKeyAndChallenge": {
           "description": "Certificate Signing Request (in the SPKAC format, base64 encoded) is returned in this field. This field will be set only if device has included CSR in its challenge response. (the option to include CSR is now available for both user and machine responses)",
+          "type": "string"
+        },
+        "virtualDeviceId": {
+          "description": "Virtual device id of the device. The definition of virtual device id is platform-specific.",
           "type": "string"
         }
       },
