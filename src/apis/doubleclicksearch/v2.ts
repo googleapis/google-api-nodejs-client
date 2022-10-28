@@ -145,6 +145,10 @@ export namespace doubleclicksearch_v2 {
      */
     availabilityTimestamp?: string | null;
     /**
+     * Customer ID of a client account in the new Search Ads 360 experience.
+     */
+    customerId?: string | null;
+    /**
      * The numeric segmentation identifier (for example, DoubleClick Search Floodlight activity ID).
      */
     segmentationId?: string | null;
@@ -221,6 +225,10 @@ export namespace doubleclicksearch_v2 {
      * Custom dimensions for the conversion, which can be used to filter data in a report.
      */
     customDimension?: Schema$CustomDimension[];
+    /**
+     * Customer ID of a client account in the new Search Ads 360 experience.
+     */
+    customerId?: string | null;
     /**
      * Custom metrics for the conversion.
      */
@@ -602,6 +610,8 @@ export namespace doubleclicksearch_v2 {
      *     campaignId: 'placeholder-value',
      *     // Numeric ID of the criterion.
      *     criterionId: 'placeholder-value',
+     *     // Customer ID of a client account in the new Search Ads 360 experience.
+     *     customerId: 'placeholder-value',
      *     // Last date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
      *     endDate: 'placeholder-value',
      *     // Numeric ID of the engine account.
@@ -709,6 +719,164 @@ export namespace doubleclicksearch_v2 {
           'startRow',
         ],
         pathParams: ['advertiserId', 'agencyId', 'engineAccountId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ConversionList>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ConversionList>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a list of conversions from a DoubleClick Search engine account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const doubleclicksearch = google.doubleclicksearch('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await doubleclicksearch.conversion.GetCustomerId({
+     *     // Numeric ID of the ad group.
+     *     adGroupId: 'placeholder-value',
+     *     // Numeric ID of the ad.
+     *     adId: 'placeholder-value',
+     *     // Numeric ID of the advertiser.
+     *     advertiserId: 'placeholder-value',
+     *     // Numeric ID of the agency.
+     *     agencyId: 'placeholder-value',
+     *     // Numeric ID of the campaign.
+     *     campaignId: 'placeholder-value',
+     *     // Numeric ID of the criterion.
+     *     criterionId: 'placeholder-value',
+     *     // Customer ID of a client account in the new Search Ads 360 experience.
+     *     customerId: 'placeholder-value',
+     *     // Last date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
+     *     endDate: 'placeholder-value',
+     *     // Numeric ID of the engine account.
+     *     engineAccountId: 'placeholder-value',
+     *     // The number of conversions to return per call.
+     *     rowCount: 'placeholder-value',
+     *     // First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
+     *     startDate: 'placeholder-value',
+     *     // The 0-based starting index for retrieving conversions results.
+     *     startRow: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversion": [],
+     *   //   "kind": "my_kind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    GetCustomerId(
+      params: Params$Resource$Conversion$Getcustomerid,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    GetCustomerId(
+      params?: Params$Resource$Conversion$Getcustomerid,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ConversionList>;
+    GetCustomerId(
+      params: Params$Resource$Conversion$Getcustomerid,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    GetCustomerId(
+      params: Params$Resource$Conversion$Getcustomerid,
+      options: MethodOptions | BodyResponseCallback<Schema$ConversionList>,
+      callback: BodyResponseCallback<Schema$ConversionList>
+    ): void;
+    GetCustomerId(
+      params: Params$Resource$Conversion$Getcustomerid,
+      callback: BodyResponseCallback<Schema$ConversionList>
+    ): void;
+    GetCustomerId(callback: BodyResponseCallback<Schema$ConversionList>): void;
+    GetCustomerId(
+      paramsOrCallback?:
+        | Params$Resource$Conversion$Getcustomerid
+        | BodyResponseCallback<Schema$ConversionList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ConversionList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ConversionList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ConversionList> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Conversion$Getcustomerid;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Conversion$Getcustomerid;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://doubleclicksearch.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/doubleclicksearch/v2/customer/{customerId}/conversion'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'customerId',
+          'endDate',
+          'rowCount',
+          'startDate',
+          'startRow',
+        ],
+        pathParams: ['customerId'],
         context: this.context,
       };
       if (callback) {
@@ -1162,6 +1330,61 @@ export namespace doubleclicksearch_v2 {
      * Numeric ID of the criterion.
      */
     criterionId?: string;
+    /**
+     * Customer ID of a client account in the new Search Ads 360 experience.
+     */
+    customerId?: string;
+    /**
+     * Last date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
+     */
+    endDate?: number;
+    /**
+     * Numeric ID of the engine account.
+     */
+    engineAccountId?: string;
+    /**
+     * The number of conversions to return per call.
+     */
+    rowCount?: number;
+    /**
+     * First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
+     */
+    startDate?: number;
+    /**
+     * The 0-based starting index for retrieving conversions results.
+     */
+    startRow?: number;
+  }
+  export interface Params$Resource$Conversion$Getcustomerid
+    extends StandardParameters {
+    /**
+     * Numeric ID of the ad group.
+     */
+    adGroupId?: string;
+    /**
+     * Numeric ID of the ad.
+     */
+    adId?: string;
+    /**
+     * Numeric ID of the advertiser.
+     */
+    advertiserId?: string;
+    /**
+     * Numeric ID of the agency.
+     */
+    agencyId?: string;
+    /**
+     * Numeric ID of the campaign.
+     */
+    campaignId?: string;
+    /**
+     * Numeric ID of the criterion.
+     */
+    criterionId?: string;
+    /**
+     * Customer ID of a client account in the new Search Ads 360 experience.
+     */
+    customerId?: string;
     /**
      * Last date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
      */
