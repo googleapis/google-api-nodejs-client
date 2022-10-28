@@ -772,6 +772,10 @@ export namespace artifactregistry_v1 {
      */
     name?: string | null;
     /**
+     * Output only. If set, the repository satisfies physical zone separation.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Output only. The size, in bytes, of all artifact storage in this repository. Repositories that are generally available or in public preview use this to calculate storage costs.
      */
     sizeBytes?: string | null;
@@ -928,7 +932,7 @@ export namespace artifactregistry_v1 {
      */
     description?: string | null;
     /**
-     * Output only. Repository-specific Metadata stored against this version. The fields returned are defined by the underlying repository-specific resource. Currently, the only resource in use is DockerImage
+     * Output only. Repository-specific Metadata stored against this version. The fields returned are defined by the underlying repository-specific resource. Currently, the resources could be: DockerImage MavenArtifact
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -1825,6 +1829,7 @@ export namespace artifactregistry_v1 {
      *       //   "labels": {},
      *       //   "mavenConfig": {},
      *       //   "name": "my_name",
+     *       //   "satisfiesPzs": false,
      *       //   "sizeBytes": "my_sizeBytes",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -2109,6 +2114,7 @@ export namespace artifactregistry_v1 {
      *   //   "labels": {},
      *   //   "mavenConfig": {},
      *   //   "name": "my_name",
+     *   //   "satisfiesPzs": false,
      *   //   "sizeBytes": "my_sizeBytes",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -2529,6 +2535,7 @@ export namespace artifactregistry_v1 {
      *       //   "labels": {},
      *       //   "mavenConfig": {},
      *       //   "name": "my_name",
+     *       //   "satisfiesPzs": false,
      *       //   "sizeBytes": "my_sizeBytes",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -2545,6 +2552,7 @@ export namespace artifactregistry_v1 {
      *   //   "labels": {},
      *   //   "mavenConfig": {},
      *   //   "name": "my_name",
+     *   //   "satisfiesPzs": false,
      *   //   "sizeBytes": "my_sizeBytes",
      *   //   "updateTime": "my_updateTime"
      *   // }
