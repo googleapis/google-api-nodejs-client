@@ -168,6 +168,10 @@ export namespace securitycenter_v1beta2 {
      * What kind of user agent is associated, e.g. operating system shells, embedded or stand-alone applications, etc.
      */
     userAgentFamily?: string | null;
+    /**
+     * A string representing a username. This is likely not an IAM principal. For instance, this may be the system user name if the finding is VM-related, or this may be some type of application login user name, depending on the type of finding.
+     */
+    userName?: string | null;
   }
   /**
    * Conveys information about a Kubernetes access review (e.g. kubectl auth can-i ...) that was involved in a finding.
@@ -201,6 +205,19 @@ export namespace securitycenter_v1beta2 {
      * Version is the API Version of the Resource. "*" means all.
      */
     version?: string | null;
+  }
+  /**
+   * A finding that is associated with this node in the exposure path.
+   */
+  export interface Schema$AssociatedFinding {
+    /**
+     * Canonical name of the associated findings. Example: organizations/123/sources/456/findings/789
+     */
+    canonicalFindingName?: string | null;
+    /**
+     * The additional taxonomy group within findings from a given source.
+     */
+    findingCategory?: string | null;
   }
   /**
    * Contains compliance information about a security standard indicating unmet recommendations.
@@ -437,6 +454,19 @@ export namespace securitycenter_v1beta2 {
      * The percentage of memory page hashes in the signature that were matched.
      */
     percentPagesMatched?: number | null;
+  }
+  /**
+   * Represents a connection between a source node and a destination node in this exposure path.
+   */
+  export interface Schema$Edge {
+    /**
+     * This is the resource name of the destination node.
+     */
+    destination?: string | null;
+    /**
+     * This is the resource name of the source node.
+     */
+    source?: string | null;
   }
   /**
    * EnvironmentVariable is a name-value pair to store environment variables for Process.
@@ -763,6 +793,56 @@ export namespace securitycenter_v1beta2 {
    * The response to a BulkMute request. Contains the LRO information.
    */
   export interface Schema$GoogleCloudSecuritycenterV1BulkMuteFindingsResponse {}
+  /**
+   * A resource that is exposed as a result of a finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ExposedResource {
+    /**
+     * Human readable name of the resource that is exposed.
+     */
+    displayName?: string | null;
+    /**
+     * The ways in which this resource is exposed. Examples: Read, Write
+     */
+    methods?: string[] | null;
+    /**
+     * Exposed Resource Name e.g.: `organizations/123/attackExposureResults/456/exposedResources/789`
+     */
+    name?: string | null;
+    /**
+     * The name of the resource that is exposed. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
+     */
+    resource?: string | null;
+    /**
+     * The resource type of the exposed resource. See: https://cloud.google.com/asset-inventory/docs/supported-asset-types
+     */
+    resourceType?: string | null;
+    /**
+     * How valuable this resource is.
+     */
+    resourceValue?: string | null;
+  }
+  /**
+   * A path that an attacker could take to reach an exposed resource.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ExposurePath {
+    /**
+     * A list of the edges between nodes in this exposure path.
+     */
+    edges?: Schema$Edge[];
+    /**
+     * The leaf node of this exposure path.
+     */
+    exposedResource?: Schema$GoogleCloudSecuritycenterV1ExposedResource;
+    /**
+     * Exposure Path Name e.g.: `organizations/123/attackExposureResults/456/exposurePaths/789`
+     */
+    name?: string | null;
+    /**
+     * A list of nodes that exist in this exposure path.
+     */
+    pathNodes?: Schema$PathNode[];
+  }
   /**
    * Representation of third party SIEM/SOAR fields within SCC.
    */
@@ -1199,6 +1279,27 @@ export namespace securitycenter_v1beta2 {
      * Describes the level a given organization, folder, or project is onboarded with SCC. If the resource wasn't onboarded, NOT_FOUND would have been thrown.
      */
     onboardingLevel?: string | null;
+  }
+  /**
+   * Represents one point that an attacker passes through in this exposure path.
+   */
+  export interface Schema$PathNode {
+    /**
+     * The findings associated with this node in the exposure path.
+     */
+    associatedFindings?: Schema$AssociatedFinding[];
+    /**
+     * Human readable name of this resource.
+     */
+    displayName?: string | null;
+    /**
+     * The name of the resource at this point in the exposure path. The format of the name is: https://cloud.google.com/apis/design/resource_names#full_resource_name
+     */
+    resource?: string | null;
+    /**
+     * The resource type of this resource. See: https://cloud.google.com/asset-inventory/docs/supported-asset-types
+     */
+    resourceType?: string | null;
   }
   /**
    * Kubernetes Pod.
