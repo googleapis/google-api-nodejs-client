@@ -842,6 +842,10 @@ export namespace bigquery_v2 {
      */
     selfLink?: string | null;
     /**
+     * [Optional] Storage billing model to be used for all tables in the dataset. Can be set to PHYSICAL. Default is LOGICAL.
+     */
+    storageBillingModel?: string | null;
+    /**
      * [Optional]The tags associated with this dataset. Tag keys are globally unique.
      */
     tags?: Array<{tagKey?: string; tagValue?: string}> | null;
@@ -1262,6 +1266,14 @@ export namespace bigquery_v2 {
      * [Optional] The maximum number of bad records that BigQuery can ignore when reading data. If the number of bad records exceeds this value, an invalid error is returned in the job result. This is only valid for CSV, JSON, and Google Sheets. The default value is 0, which requires that all records are valid. This setting is ignored for Google Cloud Bigtable, Google Cloud Datastore backups and Avro formats.
      */
     maxBadRecords?: number | null;
+    /**
+     * [Optional] Metadata Cache Mode for the table. Set this to enable caching of metadata from external data source.
+     */
+    metadataCacheMode?: string | null;
+    /**
+     * ObjectMetadata is used to create Object Tables. Object Tables contain a listing of objects (with their metadata) found at the source_uris. If ObjectMetadata is set, source_format should be omitted. Currently SIMPLE is the only supported Object Metadata type.
+     */
+    objectMetadata?: string | null;
     /**
      * Additional properties to set if sourceFormat is set to Parquet.
      */
@@ -1792,6 +1804,10 @@ export namespace bigquery_v2 {
      */
     createDisposition?: string | null;
     /**
+     * If true, creates a new session, where session id will be a server generated random id. If false, runs query with an existing session_id passed in ConnectionProperty, otherwise runs the load job in non-session mode.
+     */
+    createSession?: boolean | null;
+    /**
      * [Optional] Defines the list of possible SQL data types to which the source decimal values are converted. This list and the precision and the scale parameters of the decimal field determine the target type. In the order of NUMERIC, BIGNUMERIC, and STRING, a type is picked if it is in the specified list and if it supports the precision and the scale. STRING supports all precision and scale values. If none of the listed types supports the precision and the scale, the type supporting the widest range in the specified list is picked, and if a value exceeds the supported range when reading the data, an error will be thrown. Example: Suppose the value of this field is ["NUMERIC", "BIGNUMERIC"]. If (precision,scale) is: (38,9) -\> NUMERIC; (39,9) -\> BIGNUMERIC (NUMERIC cannot hold 30 integer digits); (38,10) -\> BIGNUMERIC (NUMERIC cannot hold 10 fractional digits); (76,38) -\> BIGNUMERIC; (77,38) -\> BIGNUMERIC (error if value exeeds supported range). This field cannot contain duplicate types. The order of the types in this field is ignored. For example, ["BIGNUMERIC", "NUMERIC"] is the same as ["NUMERIC", "BIGNUMERIC"] and NUMERIC always takes precedence over BIGNUMERIC. Defaults to ["NUMERIC", "STRING"] for ORC and ["NUMERIC"] for the other file formats.
      */
     decimalTargetTypes?: string[] | null;
@@ -2158,23 +2174,23 @@ export namespace bigquery_v2 {
   }
   export interface Schema$JobStatistics2 {
     /**
-     * BI Engine specific Statistics. [Output-only] BI Engine specific Statistics.
+     * BI Engine specific Statistics. [Output only] BI Engine specific Statistics.
      */
     biEngineStatistics?: Schema$BiEngineStatistics;
     /**
-     * [Output-only] Billing tier for the job.
+     * [Output only] Billing tier for the job.
      */
     billingTier?: number | null;
     /**
-     * [Output-only] Whether the query result was fetched from the query cache.
+     * [Output only] Whether the query result was fetched from the query cache.
      */
     cacheHit?: boolean | null;
     /**
-     * [Output-only] [Preview] The number of row access policies affected by a DDL statement. Present only for DROP ALL ROW ACCESS POLICIES queries.
+     * [Output only] [Preview] The number of row access policies affected by a DDL statement. Present only for DROP ALL ROW ACCESS POLICIES queries.
      */
     ddlAffectedRowAccessPolicyCount?: string | null;
     /**
-     * [Output-only] The DDL destination table. Present only for ALTER TABLE RENAME TO queries. Note that ddl_target_table is used just for its type information.
+     * [Output only] The DDL destination table. Present only for ALTER TABLE RENAME TO queries. Note that ddl_target_table is used just for its type information.
      */
     ddlDestinationTable?: Schema$TableReference;
     /**
@@ -2182,7 +2198,7 @@ export namespace bigquery_v2 {
      */
     ddlOperationPerformed?: string | null;
     /**
-     * [Output-only] The DDL target dataset. Present only for CREATE/ALTER/DROP SCHEMA queries.
+     * [Output only] The DDL target dataset. Present only for CREATE/ALTER/DROP SCHEMA queries.
      */
     ddlTargetDataset?: Schema$DatasetReference;
     /**
@@ -2190,67 +2206,67 @@ export namespace bigquery_v2 {
      */
     ddlTargetRoutine?: Schema$RoutineReference;
     /**
-     * [Output-only] [Preview] The DDL target row access policy. Present only for CREATE/DROP ROW ACCESS POLICY queries.
+     * [Output only] [Preview] The DDL target row access policy. Present only for CREATE/DROP ROW ACCESS POLICY queries.
      */
     ddlTargetRowAccessPolicy?: Schema$RowAccessPolicyReference;
     /**
-     * [Output-only] The DDL target table. Present only for CREATE/DROP TABLE/VIEW and DROP ALL ROW ACCESS POLICIES queries.
+     * [Output only] The DDL target table. Present only for CREATE/DROP TABLE/VIEW and DROP ALL ROW ACCESS POLICIES queries.
      */
     ddlTargetTable?: Schema$TableReference;
     /**
-     * [Output-only] Detailed statistics for DML statements Present only for DML statements INSERT, UPDATE, DELETE or TRUNCATE.
+     * [Output only] Detailed statistics for DML statements Present only for DML statements INSERT, UPDATE, DELETE or TRUNCATE.
      */
     dmlStats?: Schema$DmlStatistics;
     /**
-     * [Output-only] The original estimate of bytes processed for the job.
+     * [Output only] The original estimate of bytes processed for the job.
      */
     estimatedBytesProcessed?: string | null;
     /**
-     * [Output-only] Statistics of a BigQuery ML training job.
+     * [Output only] Statistics of a BigQuery ML training job.
      */
     mlStatistics?: Schema$MlStatistics;
     /**
-     * [Output-only, Beta] Information about create model query job progress.
+     * [Output only, Beta] Information about create model query job progress.
      */
     modelTraining?: Schema$BigQueryModelTraining;
     /**
-     * [Output-only, Beta] Deprecated; do not use.
+     * [Output only, Beta] Deprecated; do not use.
      */
     modelTrainingCurrentIteration?: number | null;
     /**
-     * [Output-only, Beta] Deprecated; do not use.
+     * [Output only, Beta] Deprecated; do not use.
      */
     modelTrainingExpectedTotalIteration?: string | null;
     /**
-     * [Output-only] The number of rows affected by a DML statement. Present only for DML statements INSERT, UPDATE or DELETE.
+     * [Output only] The number of rows affected by a DML statement. Present only for DML statements INSERT, UPDATE or DELETE.
      */
     numDmlAffectedRows?: string | null;
     /**
-     * [Output-only] Describes execution plan for the query.
+     * [Output only] Describes execution plan for the query.
      */
     queryPlan?: Schema$ExplainQueryStage[];
     /**
-     * [Output-only] Referenced routines (persistent user-defined functions and stored procedures) for the job.
+     * [Output only] Referenced routines (persistent user-defined functions and stored procedures) for the job.
      */
     referencedRoutines?: Schema$RoutineReference[];
     /**
-     * [Output-only] Referenced tables for the job. Queries that reference more than 50 tables will not have a complete list.
+     * [Output only] Referenced tables for the job. Queries that reference more than 50 tables will not have a complete list.
      */
     referencedTables?: Schema$TableReference[];
     /**
-     * [Output-only] Job resource usage breakdown by reservation.
+     * [Output only] Job resource usage breakdown by reservation.
      */
     reservationUsage?: Array<{name?: string; slotMs?: string}> | null;
     /**
-     * [Output-only] The schema of the results. Present only for successful dry run of non-legacy SQL queries.
+     * [Output only] The schema of the results. Present only for successful dry run of non-legacy SQL queries.
      */
     schema?: Schema$TableSchema;
     /**
-     * [Output-only] Search query specific statistics.
+     * [Output only] Search query specific statistics.
      */
     searchStatistics?: Schema$SearchStatistics;
     /**
-     * [Output-only] Statistics of a Spark procedure job.
+     * [Output only] Statistics of a Spark procedure job.
      */
     sparkStatistics?: Schema$SparkStatistics;
     /**
@@ -2258,29 +2274,33 @@ export namespace bigquery_v2 {
      */
     statementType?: string | null;
     /**
-     * [Output-only] [Beta] Describes a timeline of job execution.
+     * [Output only] [Beta] Describes a timeline of job execution.
      */
     timeline?: Schema$QueryTimelineSample[];
     /**
-     * [Output-only] Total bytes billed for the job.
+     * [Output only] Total bytes billed for the job.
      */
     totalBytesBilled?: string | null;
     /**
-     * [Output-only] Total bytes processed for the job.
+     * [Output only] Total bytes processed for the job.
      */
     totalBytesProcessed?: string | null;
     /**
-     * [Output-only] For dry-run jobs, totalBytesProcessed is an estimate and this field specifies the accuracy of the estimate. Possible values can be: UNKNOWN: accuracy of the estimate is unknown. PRECISE: estimate is precise. LOWER_BOUND: estimate is lower bound of what the query would cost. UPPER_BOUND: estimate is upper bound of what the query would cost.
+     * [Output only] For dry-run jobs, totalBytesProcessed is an estimate and this field specifies the accuracy of the estimate. Possible values can be: UNKNOWN: accuracy of the estimate is unknown. PRECISE: estimate is precise. LOWER_BOUND: estimate is lower bound of what the query would cost. UPPER_BOUND: estimate is upper bound of what the query would cost.
      */
     totalBytesProcessedAccuracy?: string | null;
     /**
-     * [Output-only] Total number of partitions processed from all partitioned tables referenced in the job.
+     * [Output only] Total number of partitions processed from all partitioned tables referenced in the job.
      */
     totalPartitionsProcessed?: string | null;
     /**
-     * [Output-only] Slot-milliseconds for the job.
+     * [Output only] Slot-milliseconds for the job.
      */
     totalSlotMs?: string | null;
+    /**
+     * [Output-only] Total bytes transferred for cross-cloud queries such as Cross Cloud Transfer and CREATE TABLE AS SELECT (CTAS).
+     */
+    transferredBytes?: string | null;
     /**
      * Standard SQL only: list of undeclared query parameters detected during a dry run validation.
      */
@@ -2495,7 +2515,7 @@ export namespace bigquery_v2 {
      */
     optimalTrialIds?: string[] | null;
     /**
-     * Output only. Information for all training runs in increasing order of start_time.
+     * Information for all training runs in increasing order of start_time.
      */
     trainingRuns?: Schema$TrainingRun[];
   }
@@ -3891,43 +3911,43 @@ export namespace bigquery_v2 {
    */
   export interface Schema$TrainingRun {
     /**
-     * Global explanation contains the explanation of top features on the class level. Applies to classification models only.
+     * Output only. Global explanation contains the explanation of top features on the class level. Applies to classification models only.
      */
     classLevelGlobalExplanations?: Schema$GlobalExplanation[];
     /**
-     * Data split result of the training run. Only set when the input data is actually split.
+     * Output only. Data split result of the training run. Only set when the input data is actually split.
      */
     dataSplitResult?: Schema$DataSplitResult;
     /**
-     * The evaluation metrics over training/eval data that were computed at the end of training.
+     * Output only. The evaluation metrics over training/eval data that were computed at the end of training.
      */
     evaluationMetrics?: Schema$EvaluationMetrics;
     /**
-     * Global explanation contains the explanation of top features on the model level. Applies to both regression and classification models.
+     * Output only. Global explanation contains the explanation of top features on the model level. Applies to both regression and classification models.
      */
     modelLevelGlobalExplanation?: Schema$GlobalExplanation;
     /**
-     * Output of each iteration run, results.size() <= max_iterations.
+     * Output only. Output of each iteration run, results.size() <= max_iterations.
      */
     results?: Schema$IterationResult[];
     /**
-     * The start time of this training run.
+     * Output only. The start time of this training run.
      */
     startTime?: string | null;
     /**
-     * Options that were used for this training run, includes user specified and default options that were used.
+     * Output only. Options that were used for this training run, includes user specified and default options that were used.
      */
     trainingOptions?: Schema$TrainingOptions;
     /**
-     * The start time of this training run, in milliseconds since epoch.
+     * Output only. The start time of this training run, in milliseconds since epoch.
      */
     trainingStartTime?: string | null;
     /**
-     * The model id in Vertex AI Model Registry for this training run
+     * The model id in the [Vertex AI Model Registry](https://cloud.google.com/vertex-ai/docs/model-registry/introduction) for this training run.
      */
     vertexAiModelId?: string | null;
     /**
-     * The model version in Vertex AI Model Registry for this training run
+     * Output only. The model version in the [Vertex AI Model Registry](https://cloud.google.com/vertex-ai/docs/model-registry/introduction) for this training run.
      */
     vertexAiModelVersion?: string | null;
   }
@@ -4161,6 +4181,7 @@ export namespace bigquery_v2 {
      *   //   "maxTimeTravelHours": "my_maxTimeTravelHours",
      *   //   "satisfiesPzs": false,
      *   //   "selfLink": "my_selfLink",
+     *   //   "storageBillingModel": "my_storageBillingModel",
      *   //   "tags": []
      *   // }
      * }
@@ -4310,6 +4331,7 @@ export namespace bigquery_v2 {
      *       //   "maxTimeTravelHours": "my_maxTimeTravelHours",
      *       //   "satisfiesPzs": false,
      *       //   "selfLink": "my_selfLink",
+     *       //   "storageBillingModel": "my_storageBillingModel",
      *       //   "tags": []
      *       // }
      *     },
@@ -4337,6 +4359,7 @@ export namespace bigquery_v2 {
      *   //   "maxTimeTravelHours": "my_maxTimeTravelHours",
      *   //   "satisfiesPzs": false,
      *   //   "selfLink": "my_selfLink",
+     *   //   "storageBillingModel": "my_storageBillingModel",
      *   //   "tags": []
      *   // }
      * }
@@ -4630,6 +4653,7 @@ export namespace bigquery_v2 {
      *       //   "maxTimeTravelHours": "my_maxTimeTravelHours",
      *       //   "satisfiesPzs": false,
      *       //   "selfLink": "my_selfLink",
+     *       //   "storageBillingModel": "my_storageBillingModel",
      *       //   "tags": []
      *       // }
      *     },
@@ -4657,6 +4681,7 @@ export namespace bigquery_v2 {
      *   //   "maxTimeTravelHours": "my_maxTimeTravelHours",
      *   //   "satisfiesPzs": false,
      *   //   "selfLink": "my_selfLink",
+     *   //   "storageBillingModel": "my_storageBillingModel",
      *   //   "tags": []
      *   // }
      * }
@@ -4808,6 +4833,7 @@ export namespace bigquery_v2 {
      *       //   "maxTimeTravelHours": "my_maxTimeTravelHours",
      *       //   "satisfiesPzs": false,
      *       //   "selfLink": "my_selfLink",
+     *       //   "storageBillingModel": "my_storageBillingModel",
      *       //   "tags": []
      *       // }
      *     },
@@ -4835,6 +4861,7 @@ export namespace bigquery_v2 {
      *   //   "maxTimeTravelHours": "my_maxTimeTravelHours",
      *   //   "satisfiesPzs": false,
      *   //   "selfLink": "my_selfLink",
+     *   //   "storageBillingModel": "my_storageBillingModel",
      *   //   "tags": []
      *   // }
      * }
