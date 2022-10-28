@@ -2329,6 +2329,10 @@ export namespace container_v1beta1 {
      * WorkloadConfig defines which actions are enabled for a cluster's workload configurations.
      */
     workloadConfig?: Schema$WorkloadConfig;
+    /**
+     * Sets which mode to use for Protect workload vulnerability scanning feature.
+     */
+    workloadVulnerabilityMode?: string | null;
   }
   /**
    * Pub/Sub specific notification config.

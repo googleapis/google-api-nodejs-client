@@ -170,6 +170,10 @@ export namespace container_v1 {
      */
     gcpFilestoreCsiDriverConfig?: Schema$GcpFilestoreCsiDriverConfig;
     /**
+     * Configuration for the Backup for GKE agent addon.
+     */
+    gkeBackupAgentConfig?: Schema$GkeBackupAgentConfig;
+    /**
      * Configuration for the horizontal pod autoscaling feature, which increases or decreases the number of replica pods a replication controller has based on the resource usage of the existing pods.
      */
     horizontalPodAutoscaling?: Schema$HorizontalPodAutoscaling;
@@ -427,6 +431,10 @@ export namespace container_v1 {
      * Configuration of Confidential Nodes. All the nodes in the cluster will be Confidential VM once enabled.
      */
     confidentialNodes?: Schema$ConfidentialNodes;
+    /**
+     * Configuration for the fine-grained cost management feature.
+     */
+    costManagementConfig?: Schema$CostManagementConfig;
     /**
      * [Output only] The time the cluster was created, in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      */
@@ -686,6 +694,10 @@ export namespace container_v1 {
      */
     desiredClusterAutoscaling?: Schema$ClusterAutoscaling;
     /**
+     * The desired configuration for the fine-grained cost management feature.
+     */
+    desiredCostManagementConfig?: Schema$CostManagementConfig;
+    /**
      * Configuration of etcd encryption.
      */
     desiredDatabaseEncryption?: Schema$DatabaseEncryption;
@@ -859,6 +871,15 @@ export namespace container_v1 {
   export interface Schema$ConsumptionMeteringConfig {
     /**
      * Whether to enable consumption metering for this cluster. If enabled, a second BigQuery table will be created to hold resource consumption records.
+     */
+    enabled?: boolean | null;
+  }
+  /**
+   * Configuration for fine-grained cost management feature.
+   */
+  export interface Schema$CostManagementConfig {
+    /**
+     * Whether the feature is enabled or not.
      */
     enabled?: boolean | null;
   }
@@ -1060,6 +1081,15 @@ export namespace container_v1 {
     subject_types_supported?: string[] | null;
   }
   /**
+   * Configuration for the Backup for GKE Agent.
+   */
+  export interface Schema$GkeBackupAgentConfig {
+    /**
+     * Whether the Backup for GKE agent is enabled for this cluster.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * GPUSharingConfig represents the GPU sharing configuration for Hardware Accelerators.
    */
   export interface Schema$GPUSharingConfig {
@@ -1155,6 +1185,10 @@ export namespace container_v1 {
      */
     createSubnetwork?: boolean | null;
     /**
+     * The ipv6 access type (internal or external) when create_subnetwork is true
+     */
+    ipv6AccessType?: string | null;
+    /**
      * This field is deprecated, use node_ipv4_cidr_block.
      */
     nodeIpv4Cidr?: string | null;
@@ -1174,6 +1208,10 @@ export namespace container_v1 {
      * The name of the secondary range to be used as for the services CIDR block. The secondary range will be used for service ClusterIPs. This must be an existing secondary range associated with the cluster subnetwork. This field is only applicable with use_ip_aliases is true and create_subnetwork is false.
      */
     servicesSecondaryRangeName?: string | null;
+    /**
+     * The IP stack type of the cluster
+     */
+    stackType?: string | null;
     /**
      * A custom subnetwork name to be used if `create_subnetwork` is true. If this field is empty, then an automatic name will be chosen for the new subnetwork.
      */
@@ -3896,6 +3934,7 @@ export namespace container_v1 {
      *   //   "clusterIpv4Cidr": "my_clusterIpv4Cidr",
      *   //   "conditions": [],
      *   //   "confidentialNodes": {},
+     *   //   "costManagementConfig": {},
      *   //   "createTime": "my_createTime",
      *   //   "currentMasterVersion": "my_currentMasterVersion",
      *   //   "currentNodeCount": 0,
@@ -9577,6 +9616,7 @@ export namespace container_v1 {
      *   //   "clusterIpv4Cidr": "my_clusterIpv4Cidr",
      *   //   "conditions": [],
      *   //   "confidentialNodes": {},
+     *   //   "costManagementConfig": {},
      *   //   "createTime": "my_createTime",
      *   //   "currentMasterVersion": "my_currentMasterVersion",
      *   //   "currentNodeCount": 0,
