@@ -177,6 +177,139 @@
             }
           },
           "resources": {
+            "certificateIssuanceConfigs": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new CertificateIssuanceConfig in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/certificateIssuanceConfigs",
+                  "httpMethod": "POST",
+                  "id": "certificatemanager.projects.locations.certificateIssuanceConfigs.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "certificateIssuanceConfigId": {
+                      "description": "Required. A user-provided name of the certificate config.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource of the certificate issuance config. Must be in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/certificateIssuanceConfigs",
+                  "request": {
+                    "$ref": "CertificateIssuanceConfig"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single CertificateIssuanceConfig.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/certificateIssuanceConfigs/{certificateIssuanceConfigsId}",
+                  "httpMethod": "DELETE",
+                  "id": "certificatemanager.projects.locations.certificateIssuanceConfigs.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. A name of the certificate issuance config to delete. Must be in the format `projects/*/locations/*/certificateIssuanceConfigs/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/certificateIssuanceConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single CertificateIssuanceConfig.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/certificateIssuanceConfigs/{certificateIssuanceConfigsId}",
+                  "httpMethod": "GET",
+                  "id": "certificatemanager.projects.locations.certificateIssuanceConfigs.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. A name of the certificate issuance config to describe. Must be in the format `projects/*/locations/*/certificateIssuanceConfigs/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/certificateIssuanceConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "CertificateIssuanceConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists CertificateIssuanceConfigs in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/certificateIssuanceConfigs",
+                  "httpMethod": "GET",
+                  "id": "certificatemanager.projects.locations.certificateIssuanceConfigs.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Filter expression to restrict the Certificates Configs returned.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "A list of Certificate Config field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix \" desc\".",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Maximum number of certificate configs to return per call.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The value returned by the last `ListCertificateIssuanceConfigsResponse`. Indicates that this is a continuation of a prior `ListCertificateIssuanceConfigs` call, and that the system should return the next page of data.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project and location from which the certificate should be listed, specified in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/certificateIssuanceConfigs",
+                  "response": {
+                    "$ref": "ListCertificateIssuanceConfigsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "certificateMaps": {
               "methods": {
                 "create": {
@@ -975,7 +1108,7 @@
       }
     }
   },
-  "revision": "20220804",
+  "revision": "20220927",
   "rootUrl": "https://certificatemanager.googleapis.com/",
   "schemas": {
     "AuthorizationAttemptInfo": {
@@ -1107,6 +1240,90 @@
       },
       "type": "object"
     },
+    "CertificateAuthorityConfig": {
+      "description": "The CA that issues the workload certificate. It includes CA address, type, authentication to CA service, etc.",
+      "id": "CertificateAuthorityConfig",
+      "properties": {
+        "certificateAuthorityServiceConfig": {
+          "$ref": "CertificateAuthorityServiceConfig",
+          "description": "Defines a CertificateAuthorityServiceConfig."
+        }
+      },
+      "type": "object"
+    },
+    "CertificateAuthorityServiceConfig": {
+      "description": "Contains information required to contact CA service.",
+      "id": "CertificateAuthorityServiceConfig",
+      "properties": {
+        "caPool": {
+          "description": "Required. A CA pool resource used to issue a certificate. The CA pool string has a relative resource path following the form \"projects/{project}/locations/{location}/caPools/{ca_pool}\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CertificateIssuanceConfig": {
+      "description": "CertificateIssuanceConfig specifies how to issue and manage a certificate.",
+      "id": "CertificateIssuanceConfig",
+      "properties": {
+        "certificateAuthorityConfig": {
+          "$ref": "CertificateAuthorityConfig",
+          "description": "Required. The CA that issues the workload certificate. It includes the CA address, type, authentication to CA service, etc."
+        },
+        "createTime": {
+          "description": "Output only. The creation timestamp of a CertificateIssuanceConfig.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "One or more paragraphs of text description of a CertificateIssuanceConfig.",
+          "type": "string"
+        },
+        "keyAlgorithm": {
+          "description": "Required. The key algorithm to use when generating the private key.",
+          "enum": [
+            "KEY_ALGORITHM_UNSPECIFIED",
+            "RSA_2048",
+            "ECDSA_P256"
+          ],
+          "enumDescriptions": [
+            "Unspecified key algorithm.",
+            "Specifies RSA with a 2048-bit modulus.",
+            "Specifies ECDSA with curve P256."
+          ],
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Set of labels associated with a CertificateIssuanceConfig.",
+          "type": "object"
+        },
+        "lifetime": {
+          "description": "Required. Workload certificate lifetime requested.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "name": {
+          "description": "A user-defined name of the certificate issuance config. CertificateIssuanceConfig names must be unique globally and match pattern `projects/*/locations/*/certificateIssuanceConfigs/*`.",
+          "type": "string"
+        },
+        "rotationWindowPercentage": {
+          "description": "Required. Specifies the percentage of elapsed time of the certificate lifetime to wait before renewing the certificate. Must be a number between 1-99, inclusive.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "updateTime": {
+          "description": "Output only. The last update timestamp of a CertificateIssuanceConfig.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CertificateMap": {
       "description": "Defines a collection of certificate configurations.",
       "id": "CertificateMap",
@@ -1122,7 +1339,7 @@
           "type": "string"
         },
         "gclbTargets": {
-          "description": "Output only. A list of GCLB targets which use this Certificate Map.",
+          "description": "Output only. A list of GCLB targets which use this Certificate Map. A Target Proxy is only present on this list if it's attached to a Forwarding Rule.",
           "items": {
             "$ref": "GclbTarget"
           },
@@ -1338,6 +1555,31 @@
       },
       "type": "object"
     },
+    "ListCertificateIssuanceConfigsResponse": {
+      "description": "Response for the `ListCertificateIssuanceConfigs` method.",
+      "id": "ListCertificateIssuanceConfigsResponse",
+      "properties": {
+        "certificateIssuanceConfigs": {
+          "description": "A list of certificate configs for the parent resource.",
+          "items": {
+            "$ref": "CertificateIssuanceConfig"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListCertificateMapEntriesResponse": {
       "description": "Response for the `ListCertificateMapEntries` method.",
       "id": "ListCertificateMapEntriesResponse",
@@ -1533,6 +1775,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "issuanceConfig": {
+          "description": "Immutable. The resource name for a CertificateIssuanceConfig used to configure private PKI certificates in the format `projects/*/locations/*/certificateIssuanceConfigs/*`. If this field is not set, the certificates will instead be publicly signed as documented at https://cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs#caa.",
+          "type": "string"
         },
         "provisioningIssue": {
           "$ref": "ProvisioningIssue",
