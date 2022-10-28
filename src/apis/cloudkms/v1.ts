@@ -1082,10 +1082,12 @@ export namespace cloudkms_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    ekmConfig: Resource$Projects$Locations$Ekmconfig;
     ekmConnections: Resource$Projects$Locations$Ekmconnections;
     keyRings: Resource$Projects$Locations$Keyrings;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.ekmConfig = new Resource$Projects$Locations$Ekmconfig(this.context);
       this.ekmConnections = new Resource$Projects$Locations$Ekmconnections(
         this.context
       );
@@ -1556,6 +1558,480 @@ export namespace cloudkms_v1 {
      * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Ekmconfig {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.ekmConfig.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/ekmConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Ekmconfig$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
+      params?: Params$Resource$Projects$Locations$Ekmconfig$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Ekmconfig$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Ekmconfig$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Ekmconfig$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ekmconfig$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ekmconfig$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Ekmconfig$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.ekmConfig.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/ekmConfig',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Ekmconfig$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
+      params?: Params$Resource$Projects$Locations$Ekmconfig$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Ekmconfig$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Ekmconfig$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Ekmconfig$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ekmconfig$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ekmconfig$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Ekmconfig$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.ekmConfig.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/ekmConfig',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Ekmconfig$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
+      params?: Params$Resource$Projects$Locations$Ekmconfig$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Ekmconfig$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Ekmconfig$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Ekmconfig$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ekmconfig$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ekmconfig$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Ekmconfig$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestIamPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Ekmconfig$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Ekmconfig$Setiampolicy
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Ekmconfig$Testiampermissions
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
 
   export class Resource$Projects$Locations$Ekmconnections {
