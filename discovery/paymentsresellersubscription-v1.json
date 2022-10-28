@@ -396,7 +396,7 @@
       }
     }
   },
-  "revision": "20220919",
+  "revision": "20221026",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1Amount": {
@@ -419,7 +419,7 @@
       "id": "GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionRequest",
       "properties": {
         "cancelImmediately": {
-          "description": "Optional. If true, the subscription will be cancelled immediately. Otherwise, the subscription will be cancelled at renewal_time, and therefore no prorated refund will be issued for the rest of the cycle.",
+          "description": "Optional. If true, Google will cancel the subscription immediately, and issue a prorated refund for the remainder of the billing cycle. Otherwise, Google defers the cancelation at renewal_time, and therefore, will not issue a refund.",
           "type": "boolean"
         },
         "cancellationReason": {
@@ -802,6 +802,11 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        },
+        "regionCode": {
+          "description": "Output only. 2-letter ISO region code where the product is available in. Ex. \"US\".",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -929,7 +934,8 @@
             "STATE_ACTIVE",
             "STATE_CANCELLED",
             "STATE_IN_GRACE_PERIOD",
-            "STATE_CANCEL_AT_END_OF_CYCLE"
+            "STATE_CANCEL_AT_END_OF_CYCLE",
+            "STATE_SUSPENDED"
           ],
           "enumDescriptions": [
             "The state is unspecified.",
@@ -937,7 +943,8 @@
             "The subscription is active.",
             "The subscription is cancelled.",
             "The subscription has not been extended by the partner after the end of current cycle.",
-            "The subscription is waiting to be cancelled by the next recurrence cycle."
+            "The subscription is waiting to be cancelled by the next recurrence cycle.",
+            "The subscription is suspended."
           ],
           "readOnly": true,
           "type": "string"

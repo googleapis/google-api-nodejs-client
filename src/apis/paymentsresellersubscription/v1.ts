@@ -139,7 +139,7 @@ export namespace paymentsresellersubscription_v1 {
   }
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionRequest {
     /**
-     * Optional. If true, the subscription will be cancelled immediately. Otherwise, the subscription will be cancelled at renewal_time, and therefore no prorated refund will be issued for the rest of the cycle.
+     * Optional. If true, Google will cancel the subscription immediately, and issue a prorated refund for the remainder of the billing cycle. Otherwise, Google defers the cancelation at renewal_time, and therefore, will not issue a refund.
      */
     cancelImmediately?: boolean | null;
     /**
@@ -380,6 +380,10 @@ export namespace paymentsresellersubscription_v1 {
      * Output only. Output Only. The duration of an introductory offer in billing cycles.
      */
     recurrenceCount?: number | null;
+    /**
+     * Output only. 2-letter ISO region code where the product is available in. Ex. "US".
+     */
+    regionCode?: string | null;
   }
   /**
    * A description of what time period or moment in time the product or service is being delivered over.
