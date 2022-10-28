@@ -1937,6 +1937,10 @@ export namespace dataflow_v1b3 {
      * Description of each transform in the pipeline and collections between them.
      */
     originalPipelineTransform?: Schema$TransformSummary[];
+    /**
+     * A hash value of the submitted pipeline portable graph step names if exists.
+     */
+    stepNamesHash?: string | null;
   }
   /**
    * A point in the timeseries.
@@ -4074,6 +4078,8 @@ export namespace dataflow_v1b3 {
      *     filter: 'placeholder-value',
      *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      *     location: 'placeholder-value',
+     *     // Optional. The job name. Optional.
+     *     name: 'placeholder-value',
      *     // If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
      *     pageSize: 'placeholder-value',
      *     // Set this to the 'next_page_token' field of a previous response to request additional results in a long list.
@@ -4719,6 +4725,8 @@ export namespace dataflow_v1b3 {
      *     filter: 'placeholder-value',
      *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      *     location: 'placeholder-value',
+     *     // Optional. The job name. Optional.
+     *     name: 'placeholder-value',
      *     // If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
      *     pageSize: 'placeholder-value',
      *     // Set this to the 'next_page_token' field of a previous response to request additional results in a long list.
@@ -5190,6 +5198,10 @@ export namespace dataflow_v1b3 {
      */
     location?: string;
     /**
+     * Optional. The job name. Optional.
+     */
+    name?: string;
+    /**
      * If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
      */
     pageSize?: number;
@@ -5278,6 +5290,10 @@ export namespace dataflow_v1b3 {
      * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      */
     location?: string;
+    /**
+     * Optional. The job name. Optional.
+     */
+    name?: string;
     /**
      * If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
      */
@@ -7300,6 +7316,8 @@ export namespace dataflow_v1b3 {
      *     filter: 'placeholder-value',
      *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      *     location: 'placeholder-value',
+     *     // Optional. The job name. Optional.
+     *     name: 'placeholder-value',
      *     // If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
      *     pageSize: 'placeholder-value',
      *     // Set this to the 'next_page_token' field of a previous response to request additional results in a long list.
@@ -7857,6 +7875,10 @@ export namespace dataflow_v1b3 {
      * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      */
     location?: string;
+    /**
+     * Optional. The job name. Optional.
+     */
+    name?: string;
     /**
      * If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
      */
