@@ -237,7 +237,7 @@ export namespace webrisk_v1 {
   }
   export interface Schema$GoogleCloudWebriskV1SearchUrisResponse {
     /**
-     * The threat list matches. This may be empty if the URI is on no list.
+     * The threat list matches. This might be empty if the URI is on no list.
      */
     threat?: Schema$GoogleCloudWebriskV1SearchUrisResponseThreatUri;
   }
@@ -259,7 +259,7 @@ export namespace webrisk_v1 {
    */
   export interface Schema$GoogleCloudWebriskV1Submission {
     /**
-     * ThreatTypes found to be associated with the submitted URI after reviewing it. This may be empty if the URI was not added to any list.
+     * ThreatTypes found to be associated with the submitted URI after reviewing it. This might be empty if the URI was not added to any list.
      */
     threatTypes?: string[] | null;
     /**
@@ -349,11 +349,11 @@ export namespace webrisk_v1 {
      */
     error?: Schema$GoogleRpcStatus;
     /**
-     * This field will contain a `SubmitUriMetadata` object.
+     * Contains a `SubmitUriMetadata` object.
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * This will match the pattern `/v1/{project-name\}/operations/{operation-id\}`.
+     * Matches the `/v1/{project-name\}/operations/{operation-id\}` pattern.
      */
     name?: string | null;
     /**
