@@ -209,6 +209,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "checkMigrationPermission": {
+                      "description": "AuditMigration API gets the current state of DomainMigration",
+                      "flatPath": "v1alpha1/projects/{projectsId}/locations/global/domains/{domainsId}:checkMigrationPermission",
+                      "httpMethod": "POST",
+                      "id": "managedidentities.projects.locations.global.domains.checkMigrationPermission",
+                      "parameterOrder": [
+                        "domain"
+                      ],
+                      "parameters": {
+                        "domain": {
+                          "description": "Required. The domain resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/domains/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha1/{+domain}:checkMigrationPermission",
+                      "request": {
+                        "$ref": "CheckMigrationPermissionRequest"
+                      },
+                      "response": {
+                        "$ref": "CheckMigrationPermissionResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "create": {
                       "description": "Creates a Microsoft AD Domain in a given project. Operation",
                       "flatPath": "v1alpha1/projects/{projectsId}/locations/global/domains",
@@ -287,6 +315,62 @@
                       "path": "v1alpha1/{+name}:detachTrust",
                       "request": {
                         "$ref": "DetachTrustRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "disableMigration": {
+                      "description": "Disable Domain Migration",
+                      "flatPath": "v1alpha1/projects/{projectsId}/locations/global/domains/{domainsId}:disableMigration",
+                      "httpMethod": "POST",
+                      "id": "managedidentities.projects.locations.global.domains.disableMigration",
+                      "parameterOrder": [
+                        "domain"
+                      ],
+                      "parameters": {
+                        "domain": {
+                          "description": "Required. The domain resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/domains/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha1/{+domain}:disableMigration",
+                      "request": {
+                        "$ref": "DisableMigrationRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "enableMigration": {
+                      "description": "Enable Domain Migration",
+                      "flatPath": "v1alpha1/projects/{projectsId}/locations/global/domains/{domainsId}:enableMigration",
+                      "httpMethod": "POST",
+                      "id": "managedidentities.projects.locations.global.domains.enableMigration",
+                      "parameterOrder": [
+                        "domain"
+                      ],
+                      "parameters": {
+                        "domain": {
+                          "description": "Required. The domain resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/domains/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha1/{+domain}:enableMigration",
+                      "request": {
+                        "$ref": "EnableMigrationRequest"
                       },
                       "response": {
                         "$ref": "Operation"
@@ -1403,7 +1487,7 @@
       }
     }
   },
-  "revision": "20220826",
+  "revision": "20220926",
   "rootUrl": "https://managedidentities.googleapis.com/",
   "schemas": {
     "AttachTrustRequest": {
@@ -1551,6 +1635,42 @@
       },
       "type": "object"
     },
+    "CheckMigrationPermissionRequest": {
+      "description": "CheckMigrationPermissionRequest is the request message for CheckMigrationPermission method.",
+      "id": "CheckMigrationPermissionRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "CheckMigrationPermissionResponse": {
+      "description": "CheckMigrationPermissionResponse is the response message for CheckMigrationPermission method.",
+      "id": "CheckMigrationPermissionResponse",
+      "properties": {
+        "onpremDomains": {
+          "description": "The state of SID filtering of all the domains which has trust established.",
+          "items": {
+            "$ref": "OnPremDomainSIDDetails"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "The state of DomainMigration.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED",
+            "NEEDS_MAINTENANCE"
+          ],
+          "enumDescriptions": [
+            "DomainMigration is in unspecified state.",
+            "Domain Migration is Disabled.",
+            "Domain Migration is Enabled.",
+            "Domain Migration is not in valid state."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DailyCycle": {
       "description": "Time window specified for daily operations.",
       "id": "DailyCycle",
@@ -1616,6 +1736,12 @@
           "description": "The domain trust resource to removed."
         }
       },
+      "type": "object"
+    },
+    "DisableMigrationRequest": {
+      "description": "DisableMigrationRequest is the request message for DisableMigration method.",
+      "id": "DisableMigrationRequest",
+      "properties": {},
       "type": "object"
     },
     "Domain": {
@@ -1715,6 +1841,20 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "EnableMigrationRequest": {
+      "description": "EnableMigrationRequest is the request message for EnableMigration method.",
+      "id": "EnableMigrationRequest",
+      "properties": {
+        "migratingDomains": {
+          "description": "Required. List of the on-prem domains to be migrated.",
+          "items": {
+            "$ref": "OnPremDomainDetails"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "Expr": {
@@ -2428,6 +2568,46 @@
         "weeklyCycle": {
           "$ref": "WeeklyCycle",
           "description": "Weekly cycle."
+        }
+      },
+      "type": "object"
+    },
+    "OnPremDomainDetails": {
+      "description": "OnPremDomainDetails is the message which contains details of on-prem domain which is trusted and needs to be migrated.",
+      "id": "OnPremDomainDetails",
+      "properties": {
+        "disableSidFiltering": {
+          "description": "Optional. Option to disable SID filtering.",
+          "type": "boolean"
+        },
+        "domainName": {
+          "description": "Required. FQDN of the on-prem domain being migrated.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OnPremDomainSIDDetails": {
+      "description": "OnPremDomainDetails is the message which contains details of on-prem domain which is trusted and needs to be migrated.",
+      "id": "OnPremDomainSIDDetails",
+      "properties": {
+        "name": {
+          "description": "FQDN of the on-prem domain being migrated.",
+          "type": "string"
+        },
+        "sidFilteringState": {
+          "description": "Current SID filtering state.",
+          "enum": [
+            "SID_FILTERING_STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "SID Filtering is in unspecified state.",
+            "SID Filtering is Enabled.",
+            "SID Filtering is Disabled."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
