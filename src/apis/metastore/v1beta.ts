@@ -239,7 +239,7 @@ export namespace metastore_v1beta {
      */
     endpointUri?: string | null;
     /**
-     * The subnetwork of the customer project from which an IP address is reserved and used as the Dataproc Metastore service's endpoint. It is accessible to hosts in the subnet and to all hosts in a subnet in the same region and same network. There must be at least one IP address available in the subnet's primary range. The subnet is specified in the following form:`projects/{project_number\}/regions/{region_id\}/subnetworks/{subnetwork_id\}
+     * Immutable. The subnetwork of the customer project from which an IP address is reserved and used as the Dataproc Metastore service's endpoint. It is accessible to hosts in the subnet and to all hosts in a subnet in the same region and same network. There must be at least one IP address available in the subnet's primary range. The subnet is specified in the following form:`projects/{project_number\}/regions/{region_id\}/subnetworks/{subnetwork_id\}
      */
     subnetwork?: string | null;
   }
@@ -876,7 +876,7 @@ export namespace metastore_v1beta {
      */
     network?: string | null;
     /**
-     * Immutable. The configuration specifying the network settings for the Dataproc Metastore service.
+     * The configuration specifying the network settings for the Dataproc Metastore service.
      */
     networkConfig?: Schema$NetworkConfig;
     /**
@@ -895,6 +895,10 @@ export namespace metastore_v1beta {
      * Output only. Additional information about the current state of the metastore service, if available.
      */
     stateMessage?: string | null;
+    /**
+     * The configuration specifying telemetry settings for the Dataproc Metastore service. If unspecified defaults to JSON.
+     */
+    telemetryConfig?: Schema$TelemetryConfig;
     /**
      * The tier of the service.
      */
@@ -937,6 +941,12 @@ export namespace metastore_v1beta {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Telemetry Configuration for the Dataproc Metastore service.
+   */
+  export interface Schema$TelemetryConfig {
+    logFormat?: string | null;
   }
   /**
    * Request message for TestIamPermissions method.
@@ -3056,6 +3066,7 @@ export namespace metastore_v1beta {
      *       //   "releaseChannel": "my_releaseChannel",
      *       //   "state": "my_state",
      *       //   "stateMessage": "my_stateMessage",
+     *       //   "telemetryConfig": {},
      *       //   "tier": "my_tier",
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
@@ -3492,6 +3503,7 @@ export namespace metastore_v1beta {
      *   //   "releaseChannel": "my_releaseChannel",
      *   //   "state": "my_state",
      *   //   "stateMessage": "my_stateMessage",
+     *   //   "telemetryConfig": {},
      *   //   "tier": "my_tier",
      *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
@@ -3919,6 +3931,7 @@ export namespace metastore_v1beta {
      *       //   "releaseChannel": "my_releaseChannel",
      *       //   "state": "my_state",
      *       //   "stateMessage": "my_stateMessage",
+     *       //   "telemetryConfig": {},
      *       //   "tier": "my_tier",
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
