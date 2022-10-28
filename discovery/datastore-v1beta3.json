@@ -277,6 +277,34 @@
             "https://www.googleapis.com/auth/datastore"
           ]
         },
+        "runAggregationQuery": {
+          "description": "Runs an aggregation query.",
+          "flatPath": "v1beta3/projects/{projectId}:runAggregationQuery",
+          "httpMethod": "POST",
+          "id": "datastore.projects.runAggregationQuery",
+          "parameterOrder": [
+            "projectId"
+          ],
+          "parameters": {
+            "projectId": {
+              "description": "Required. The ID of the project against which to make the request.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta3/projects/{projectId}:runAggregationQuery",
+          "request": {
+            "$ref": "RunAggregationQueryRequest"
+          },
+          "response": {
+            "$ref": "RunAggregationQueryResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/datastore"
+          ]
+        },
         "runQuery": {
           "description": "Queries for entities.",
           "flatPath": "v1beta3/projects/{projectId}:runQuery",
@@ -308,9 +336,93 @@
       }
     }
   },
-  "revision": "20220808",
+  "revision": "20221018",
   "rootUrl": "https://datastore.googleapis.com/",
   "schemas": {
+    "Aggregation": {
+      "description": "Defines a aggregation that produces a single result.",
+      "id": "Aggregation",
+      "properties": {
+        "alias": {
+          "description": "Optional. Optional name of the property to store the result of the aggregation. If not provided, Datastore will pick a default name following the format `property_`. For example: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2), COUNT_UP_TO(3) AS count_up_to_3, COUNT_UP_TO(4) OVER ( ... ); ``` becomes: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2) AS property_1, COUNT_UP_TO(3) AS count_up_to_3, COUNT_UP_TO(4) AS property_2 OVER ( ... ); ``` Requires: * Must be unique across all aggregation aliases. * Conform to entity property name limitations.",
+          "type": "string"
+        },
+        "count": {
+          "$ref": "Count",
+          "description": "Count aggregator."
+        }
+      },
+      "type": "object"
+    },
+    "AggregationQuery": {
+      "description": "Datastore query for running an aggregation over a Query.",
+      "id": "AggregationQuery",
+      "properties": {
+        "aggregations": {
+          "description": "Optional. Series of aggregations to apply over the results of the `nested_query`. Requires: * A minimum of one and maximum of five aggregations per query.",
+          "items": {
+            "$ref": "Aggregation"
+          },
+          "type": "array"
+        },
+        "nestedQuery": {
+          "$ref": "Query",
+          "description": "Nested query for aggregation"
+        }
+      },
+      "type": "object"
+    },
+    "AggregationResult": {
+      "description": "The result of a single bucket from a Datastore aggregation query. The keys of `aggregate_properties` are the same for all results in an aggregation query, unlike entity queries which can have different fields present for each result.",
+      "id": "AggregationResult",
+      "properties": {
+        "aggregateProperties": {
+          "additionalProperties": {
+            "$ref": "Value"
+          },
+          "description": "The result of the aggregation functions, ex: `COUNT(*) AS total_entities`. The key is the alias assigned to the aggregation function on input and the size of this map equals the number of aggregation functions in the query.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "AggregationResultBatch": {
+      "description": "A batch of aggregation results produced by an aggregation query.",
+      "id": "AggregationResultBatch",
+      "properties": {
+        "aggregationResults": {
+          "description": "The aggregation results for this batch.",
+          "items": {
+            "$ref": "AggregationResult"
+          },
+          "type": "array"
+        },
+        "moreResults": {
+          "description": "The state of the query after the current batch. Only COUNT(*) aggregations are supported in the initial launch. Therefore, expected result type is limited to `NO_MORE_RESULTS`.",
+          "enum": [
+            "MORE_RESULTS_TYPE_UNSPECIFIED",
+            "NOT_FINISHED",
+            "MORE_RESULTS_AFTER_LIMIT",
+            "MORE_RESULTS_AFTER_CURSOR",
+            "NO_MORE_RESULTS"
+          ],
+          "enumDescriptions": [
+            "Unspecified. This value is never used.",
+            "There may be additional batches to fetch from this query.",
+            "The query is finished, but there may be more results after the limit.",
+            "The query is finished, but there may be more results after the end cursor.",
+            "The query is finished, and there are no more results."
+          ],
+          "type": "string"
+        },
+        "readTime": {
+          "description": "Read timestamp this batch was returned from. In a single transaction, subsequent query result batches for the same query can have a greater timestamp. Each batch's read timestamp is valid for all preceding batches.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AllocateIdsRequest": {
       "description": "The request for Datastore.AllocateIds.",
       "id": "AllocateIdsRequest",
@@ -454,6 +566,18 @@
             "Unspecified. This value must not be used.",
             "The results are required to satisfy each of the combined filters."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Count": {
+      "description": "Count of entities that match the query. The `COUNT(*)` aggregation function operates on the entire entity so it does not require a field reference.",
+      "id": "Count",
+      "properties": {
+        "upTo": {
+          "description": "Optional. Optional constraint on the maximum number of entities to count. This provides a way to set an upper bound on the number of entities to scan, limiting latency and cost. Unspecified is interpreted as no bound. If a zero value is provided, a count result of zero should always be expected. High-Level Example: ``` AGGREGATE COUNT_UP_TO(1000) OVER ( SELECT * FROM k ); ``` Requires: * Must be non-negative when present.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -1578,6 +1702,44 @@
       "description": "The response for Datastore.Rollback. (an empty message).",
       "id": "RollbackResponse",
       "properties": {},
+      "type": "object"
+    },
+    "RunAggregationQueryRequest": {
+      "description": "The request for Datastore.RunAggregationQuery.",
+      "id": "RunAggregationQueryRequest",
+      "properties": {
+        "aggregationQuery": {
+          "$ref": "AggregationQuery",
+          "description": "The query to run."
+        },
+        "gqlQuery": {
+          "$ref": "GqlQuery",
+          "description": "The GQL query to run. This query must be an aggregation query."
+        },
+        "partitionId": {
+          "$ref": "PartitionId",
+          "description": "Entities are partitioned into subsets, identified by a partition ID. Queries are scoped to a single partition. This partition ID is normalized with the standard default context partition ID."
+        },
+        "readOptions": {
+          "$ref": "ReadOptions",
+          "description": "The options for this query."
+        }
+      },
+      "type": "object"
+    },
+    "RunAggregationQueryResponse": {
+      "description": "The response for Datastore.RunAggregationQuery.",
+      "id": "RunAggregationQueryResponse",
+      "properties": {
+        "batch": {
+          "$ref": "AggregationResultBatch",
+          "description": "A batch of aggregation results. Always present."
+        },
+        "query": {
+          "$ref": "AggregationQuery",
+          "description": "The parsed form of the `GqlQuery` from the request, if it was set."
+        }
+      },
       "type": "object"
     },
     "RunQueryRequest": {
