@@ -113,7 +113,6 @@ export namespace baremetalsolution_v1 {
   export class Baremetalsolution {
     context: APIRequestContext;
     operations: Resource$Operations;
-    projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -122,7 +121,6 @@ export namespace baremetalsolution_v1 {
       };
 
       this.operations = new Resource$Operations(this.context);
-      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -172,14 +170,6 @@ export namespace baremetalsolution_v1 {
      */
     response?: {[key: string]: any} | null;
   }
-  /**
-   * Request for ResetInstance.
-   */
-  export interface Schema$ResetInstanceRequest {}
-  /**
-   * Response for ResetInstance.
-   */
-  export interface Schema$ResetInstanceResponse {}
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
@@ -771,187 +761,5 @@ export namespace baremetalsolution_v1 {
      * The standard list page token.
      */
     pageToken?: string;
-  }
-
-  export class Resource$Projects {
-    context: APIRequestContext;
-    locations: Resource$Projects$Locations;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.locations = new Resource$Projects$Locations(this.context);
-    }
-  }
-
-  export class Resource$Projects$Locations {
-    context: APIRequestContext;
-    instances: Resource$Projects$Locations$Instances;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.instances = new Resource$Projects$Locations$Instances(this.context);
-    }
-  }
-
-  export class Resource$Projects$Locations$Instances {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Perform an ungraceful, hard reset on a machine (equivalent to shutting the power off, and then turning it back on).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/baremetalsolution.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const baremetalsolution = google.baremetalsolution('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await baremetalsolution.projects.locations.instances.resetInstance({
-     *       // Required. Name of the instance to reset.
-     *       instance:
-     *         'projects/my-project/locations/my-location/instances/my-instance',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {}
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    resetInstance(
-      params: Params$Resource$Projects$Locations$Instances$Resetinstance,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    resetInstance(
-      params?: Params$Resource$Projects$Locations$Instances$Resetinstance,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ResetInstanceResponse>;
-    resetInstance(
-      params: Params$Resource$Projects$Locations$Instances$Resetinstance,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    resetInstance(
-      params: Params$Resource$Projects$Locations$Instances$Resetinstance,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ResetInstanceResponse>,
-      callback: BodyResponseCallback<Schema$ResetInstanceResponse>
-    ): void;
-    resetInstance(
-      params: Params$Resource$Projects$Locations$Instances$Resetinstance,
-      callback: BodyResponseCallback<Schema$ResetInstanceResponse>
-    ): void;
-    resetInstance(
-      callback: BodyResponseCallback<Schema$ResetInstanceResponse>
-    ): void;
-    resetInstance(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Instances$Resetinstance
-        | BodyResponseCallback<Schema$ResetInstanceResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ResetInstanceResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ResetInstanceResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ResetInstanceResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Instances$Resetinstance;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Instances$Resetinstance;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://baremetalsolution.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+instance}:resetInstance').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['instance'],
-        pathParams: ['instance'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ResetInstanceResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ResetInstanceResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Instances$Resetinstance
-    extends StandardParameters {
-    /**
-     * Required. Name of the instance to reset.
-     */
-    instance?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$ResetInstanceRequest;
   }
 }

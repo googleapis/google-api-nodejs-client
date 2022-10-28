@@ -226,49 +226,9 @@
           ]
         }
       }
-    },
-    "projects": {
-      "resources": {
-        "locations": {
-          "resources": {
-            "instances": {
-              "methods": {
-                "resetInstance": {
-                  "description": "Perform an ungraceful, hard reset on a machine (equivalent to shutting the power off, and then turning it back on).",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:resetInstance",
-                  "httpMethod": "POST",
-                  "id": "baremetalsolution.projects.locations.instances.resetInstance",
-                  "parameterOrder": [
-                    "instance"
-                  ],
-                  "parameters": {
-                    "instance": {
-                      "description": "Required. Name of the instance to reset.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+instance}:resetInstance",
-                  "request": {
-                    "$ref": "ResetInstanceRequest"
-                  },
-                  "response": {
-                    "$ref": "ResetInstanceResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
     }
   },
-  "revision": "20220322",
+  "revision": "20221017",
   "rootUrl": "https://baremetalsolution.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -334,18 +294,6 @@
           "type": "object"
         }
       },
-      "type": "object"
-    },
-    "ResetInstanceRequest": {
-      "description": "Request for ResetInstance.",
-      "id": "ResetInstanceRequest",
-      "properties": {},
-      "type": "object"
-    },
-    "ResetInstanceResponse": {
-      "description": "Response for ResetInstance.",
-      "id": "ResetInstanceResponse",
-      "properties": {},
       "type": "object"
     },
     "Status": {
