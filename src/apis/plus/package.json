@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/plus",
-  "version": "0.3.1",
+  "version": "1.0.0",
   "description": "plus",
   "main": "build/index.js",
   "types": "build/index.d.ts",

@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/groupsmigration",
-  "version": "0.3.2",
+  "version": "1.0.0",
   "description": "groupsmigration",
   "main": "build/index.js",
   "types": "build/index.d.ts",

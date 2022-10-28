@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/gmailpostmastertools",
-  "version": "0.2.2",
+  "version": "1.0.0",
   "description": "gmailpostmastertools",
   "main": "build/index.js",
   "types": "build/index.d.ts",
