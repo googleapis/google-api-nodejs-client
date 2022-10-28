@@ -818,6 +818,10 @@ export namespace networkmanagement_v1 {
      */
     destIpRange?: string | null;
     /**
+     * Destination port ranges of the route. Policy based routes only.
+     */
+    destPortRanges?: string[] | null;
+    /**
      * Name of a Compute Engine route.
      */
     displayName?: string | null;
@@ -842,9 +846,21 @@ export namespace networkmanagement_v1 {
      */
     priority?: number | null;
     /**
+     * Protocols of the route. Policy based routes only.
+     */
+    protocols?: string[] | null;
+    /**
      * Type of route.
      */
     routeType?: string | null;
+    /**
+     * Source IP address range of the route. Policy based routes only.
+     */
+    srcIpRange?: string | null;
+    /**
+     * Source port ranges of the route. Policy based routes only.
+     */
+    srcPortRanges?: string[] | null;
     /**
      * URI of a Compute Engine route. Dynamic route from cloud router does not have a URI. Advertised route from Google Cloud VPC to on-premises network also does not have a URI.
      */

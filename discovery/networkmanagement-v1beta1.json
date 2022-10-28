@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20220908",
+  "revision": "20220922",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -617,7 +617,8 @@
             "DESTINATION_ENDPOINT_NOT_FOUND",
             "MISMATCHED_DESTINATION_NETWORK",
             "UNSUPPORTED",
-            "MISMATCHED_IP_VERSION"
+            "MISMATCHED_IP_VERSION",
+            "GKE_KONNECTIVITY_PROXY_UNSUPPORTED"
           ],
           "enumDescriptions": [
             "Cause is unspecified.",
@@ -636,7 +637,8 @@
             "Aborted because the destination endpoint could not be found.",
             "Aborted because the destination network does not match the destination endpoint.",
             "Aborted because the test scenario is not supported.",
-            "Aborted because the source and destination resources have no common IP version."
+            "Aborted because the source and destination resources have no common IP version.",
+            "Aborted because the connection between the control plane and the node of the source cluster is initiated by the node and managed by the Konnectivity proxy."
           ],
           "type": "string"
         },
@@ -1804,6 +1806,13 @@
           "description": "Destination IP range of the route.",
           "type": "string"
         },
+        "destPortRanges": {
+          "description": "Destination port ranges of the route. Policy based routes only.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "displayName": {
           "description": "Name of a Compute Engine route.",
           "type": "string"
@@ -1860,6 +1869,13 @@
           "format": "int32",
           "type": "integer"
         },
+        "protocols": {
+          "description": "Protocols of the route. Policy based routes only.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "routeType": {
           "description": "Type of route.",
           "enum": [
@@ -1869,7 +1885,8 @@
             "DYNAMIC",
             "PEERING_SUBNET",
             "PEERING_STATIC",
-            "PEERING_DYNAMIC"
+            "PEERING_DYNAMIC",
+            "POLICY_BASED"
           ],
           "enumDescriptions": [
             "Unspecified type. Default value.",
@@ -1878,9 +1895,21 @@
             "Dynamic route exchanged between BGP peers.",
             "A subnet route received from peering network.",
             "A static route received from peering network.",
-            "A dynamic route received from peering network."
+            "A dynamic route received from peering network.",
+            "Policy based route."
           ],
           "type": "string"
+        },
+        "srcIpRange": {
+          "description": "Source IP address range of the route. Policy based routes only.",
+          "type": "string"
+        },
+        "srcPortRanges": {
+          "description": "Source port ranges of the route. Policy based routes only.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "uri": {
           "description": "URI of a Compute Engine route. Dynamic route from cloud router does not have a URI. Advertised route from Google Cloud VPC to on-premises network also does not have a URI.",
