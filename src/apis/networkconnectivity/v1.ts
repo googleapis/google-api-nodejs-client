@@ -289,6 +289,63 @@ export namespace networkconnectivity_v1 {
     updateTime?: string | null;
   }
   /**
+   * The InternalRange resource for IPAM operations within a VPC network. Used to represent a private address range along with behavioral characterstics of that range (it's usage and peering behavior). Networking resources can link to this range if they are created as belonging to it. Next id: 14
+   */
+  export interface Schema$InternalRange {
+    /**
+     * Time when the InternalRange was created.
+     */
+    createTime?: string | null;
+    /**
+     * A description of this resource.
+     */
+    description?: string | null;
+    /**
+     * IP range that this InternalRange defines.
+     */
+    ipCidrRange?: string | null;
+    /**
+     * User-defined labels.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Immutable. The name of a InternalRange. Format: projects/{project\}/locations/{location\}/internalRanges/{internal_range\} See: https://google.aip.dev/122#fields-representing-resource-names
+     */
+    name?: string | null;
+    /**
+     * The URL or resource ID of the network in which to reserve the Internal Range. The network cannot be deleted if there are any reserved Internal Ranges referring to it. Legacy network is not supported. This can only be specified for a global internal address. Example: - URL: /compute/v1/projects/{project\}/global/networks/{resourceId\} - ID: network123
+     */
+    network?: string | null;
+    /**
+     * Optional. Types of resources that are allowed to overlap with the current InternalRange.
+     */
+    overlaps?: string[] | null;
+    /**
+     * The type of peering set for this InternalRange.
+     */
+    peering?: string | null;
+    /**
+     * An alternate to ip_cidr_range. Can be set when trying to create a reservation that automatically finds a free range of the given size. If both ip_cidr_range and prefix_length are set, it's an error if the range sizes don't match. Can also be used during updates to change the range size.
+     */
+    prefixLength?: number | null;
+    /**
+     * Optional. Can be set to narrow down or pick a different address space while searching for a free range. If not set, defaults to the "10.0.0.0/8" address space. This can be used to search in other rfc-1918 address spaces like "172.16.0.0/12" and "192.168.0.0/16" or non-rfc-1918 address spaces used in the VPC.
+     */
+    targetCidrRange?: string[] | null;
+    /**
+     * Time when the InternalRange was updated.
+     */
+    updateTime?: string | null;
+    /**
+     * The type of usage set for this InternalRange.
+     */
+    usage?: string | null;
+    /**
+     * Output only. The list of resources that refer to this internal range. Resources that use the InternalRange for their range allocation are referred to as users of the range. Other resources mark themselves as users while doing so by creating a reference to this InternalRange. Having a user, based on this reference, prevents deletion of the InternalRange referred to. Can be empty.
+     */
+    users?: string[] | null;
+  }
+  /**
    * A collection of VLAN attachment resources. These resources should be redundant attachments that all advertise the same prefixes to Google Cloud. Alternatively, in active/passive configurations, all attachments should be capable of advertising the same prefixes.
    */
   export interface Schema$LinkedInterconnectAttachments {
@@ -300,6 +357,10 @@ export namespace networkconnectivity_v1 {
      * The URIs of linked interconnect attachment resources
      */
     uris?: string[] | null;
+    /**
+     * Output only. The VPC network where these VLAN attachments are located.
+     */
+    vpcNetwork?: string | null;
   }
   /**
    * A collection of router appliance instances. If you configure multiple router appliance instances to receive data from the same set of sites outside of Google Cloud, we recommend that you associate those instances with the same spoke.
@@ -313,6 +374,10 @@ export namespace networkconnectivity_v1 {
      * A value that controls whether site-to-site data transfer is enabled for these resources. Data transfer is available only in [supported locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).
      */
     siteToSiteDataTransfer?: boolean | null;
+    /**
+     * Output only. The VPC network where these router appliance instances are located.
+     */
+    vpcNetwork?: string | null;
   }
   /**
    * A collection of Cloud VPN tunnel resources. These resources should be redundant HA VPN tunnels that all advertise the same prefixes to Google Cloud. Alternatively, in a passive/active configuration, all tunnels should be capable of advertising the same prefixes.
@@ -326,6 +391,10 @@ export namespace networkconnectivity_v1 {
      * The URIs of linked VPN tunnel resources.
      */
     uris?: string[] | null;
+    /**
+     * Output only. The VPC network where these VPN tunnels are located.
+     */
+    vpcNetwork?: string | null;
   }
   /**
    * Response for HubService.ListHubs method.
@@ -335,6 +404,23 @@ export namespace networkconnectivity_v1 {
      * The requested hubs.
      */
     hubs?: Schema$Hub[];
+    /**
+     * The next pagination token in the List response. It should be used as page_token for the following request. An empty value means no more result.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response for InternalRange.ListInternalRanges
+   */
+  export interface Schema$ListInternalRangesResponse {
+    /**
+     * InternalRanges to be returned.
+     */
+    internalRanges?: Schema$InternalRange[];
     /**
      * The next pagination token in the List response. It should be used as page_token for the following request. An empty value means no more result.
      */
@@ -581,14 +667,28 @@ export namespace networkconnectivity_v1 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     global: Resource$Projects$Locations$Global;
+    internalRanges: Resource$Projects$Locations$Internalranges;
     operations: Resource$Projects$Locations$Operations;
+    serviceClasses: Resource$Projects$Locations$Serviceclasses;
+    serviceConnectionMaps: Resource$Projects$Locations$Serviceconnectionmaps;
+    serviceConnectionPolicies: Resource$Projects$Locations$Serviceconnectionpolicies;
     spokes: Resource$Projects$Locations$Spokes;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.global = new Resource$Projects$Locations$Global(this.context);
+      this.internalRanges = new Resource$Projects$Locations$Internalranges(
+        this.context
+      );
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
+      this.serviceClasses = new Resource$Projects$Locations$Serviceclasses(
+        this.context
+      );
+      this.serviceConnectionMaps =
+        new Resource$Projects$Locations$Serviceconnectionmaps(this.context);
+      this.serviceConnectionPolicies =
+        new Resource$Projects$Locations$Serviceconnectionpolicies(this.context);
       this.spokes = new Resource$Projects$Locations$Spokes(this.context);
     }
 
@@ -2664,6 +2764,852 @@ export namespace networkconnectivity_v1 {
     requestBody?: Schema$TestIamPermissionsRequest;
   }
 
+  export class Resource$Projects$Locations$Internalranges {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new InternalRange in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.internalRanges.create({
+     *       // Optional. Resource ID (i.e. 'foo' in '[...]/projects/p/locations/l/internalRanges/foo') See https://google.aip.dev/122#resource-id-segments Unique per location.
+     *       internalRangeId: 'placeholder-value',
+     *       // Required. The parent resource's name of the InternalRange.
+     *       parent: 'projects/my-project/locations/my-location',
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "description": "my_description",
+     *         //   "ipCidrRange": "my_ipCidrRange",
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "network": "my_network",
+     *         //   "overlaps": [],
+     *         //   "peering": "my_peering",
+     *         //   "prefixLength": 0,
+     *         //   "targetCidrRange": [],
+     *         //   "updateTime": "my_updateTime",
+     *         //   "usage": "my_usage",
+     *         //   "users": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Internalranges$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Internalranges$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Projects$Locations$Internalranges$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Internalranges$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Internalranges$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Internalranges$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Internalranges$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Internalranges$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/internalRanges').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single InternalRange.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.internalRanges.delete({
+     *       // Required. The name of the InternalRange to delete.
+     *       name: 'projects/my-project/locations/my-location/internalRanges/my-internalRange',
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Internalranges$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Internalranges$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Internalranges$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Internalranges$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Internalranges$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Internalranges$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Internalranges$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Internalranges$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single InternalRange.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkconnectivity.projects.locations.internalRanges.get({
+     *     // Required. Name of the InternalRange to get.
+     *     name: 'projects/my-project/locations/my-location/internalRanges/my-internalRange',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "ipCidrRange": "my_ipCidrRange",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "network": "my_network",
+     *   //   "overlaps": [],
+     *   //   "peering": "my_peering",
+     *   //   "prefixLength": 0,
+     *   //   "targetCidrRange": [],
+     *   //   "updateTime": "my_updateTime",
+     *   //   "usage": "my_usage",
+     *   //   "users": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Internalranges$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Internalranges$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InternalRange>;
+    get(
+      params: Params$Resource$Projects$Locations$Internalranges$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Internalranges$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$InternalRange>,
+      callback: BodyResponseCallback<Schema$InternalRange>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Internalranges$Get,
+      callback: BodyResponseCallback<Schema$InternalRange>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$InternalRange>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Internalranges$Get
+        | BodyResponseCallback<Schema$InternalRange>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InternalRange>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InternalRange>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$InternalRange> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Internalranges$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Internalranges$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$InternalRange>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$InternalRange>(parameters);
+      }
+    }
+
+    /**
+     * Lists InternalRanges in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkconnectivity.projects.locations.internalRanges.list({
+     *     // A filter expression that filters the results listed in the response.
+     *     filter: 'placeholder-value',
+     *     // Sort the results by a certain order.
+     *     orderBy: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     pageSize: 'placeholder-value',
+     *     // The page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource's name.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "internalRanges": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Internalranges$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Internalranges$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListInternalRangesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Internalranges$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Internalranges$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListInternalRangesResponse>,
+      callback: BodyResponseCallback<Schema$ListInternalRangesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Internalranges$List,
+      callback: BodyResponseCallback<Schema$ListInternalRangesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListInternalRangesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Internalranges$List
+        | BodyResponseCallback<Schema$ListInternalRangesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListInternalRangesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListInternalRangesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListInternalRangesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Internalranges$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Internalranges$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/internalRanges').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListInternalRangesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListInternalRangesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates the parameters of a single InternalRange.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkconnectivity.projects.locations.internalRanges.patch(
+     *     {
+     *       // Immutable. The name of a InternalRange. Format: projects/{project\}/locations/{location\}/internalRanges/{internal_range\} See: https://google.aip.dev/122#fields-representing-resource-names
+     *       name: 'projects/my-project/locations/my-location/internalRanges/my-internalRange',
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *       // Optional. Field mask is used to specify the fields to be overwritten in the InternalRange resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "description": "my_description",
+     *         //   "ipCidrRange": "my_ipCidrRange",
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "network": "my_network",
+     *         //   "overlaps": [],
+     *         //   "peering": "my_peering",
+     *         //   "prefixLength": 0,
+     *         //   "targetCidrRange": [],
+     *         //   "updateTime": "my_updateTime",
+     *         //   "usage": "my_usage",
+     *         //   "users": []
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Internalranges$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Internalranges$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Internalranges$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Internalranges$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Internalranges$Patch,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Internalranges$Patch
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Internalranges$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Internalranges$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Internalranges$Create
+    extends StandardParameters {
+    /**
+     * Optional. Resource ID (i.e. 'foo' in '[...]/projects/p/locations/l/internalRanges/foo') See https://google.aip.dev/122#resource-id-segments Unique per location.
+     */
+    internalRangeId?: string;
+    /**
+     * Required. The parent resource's name of the InternalRange.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InternalRange;
+  }
+  export interface Params$Resource$Projects$Locations$Internalranges$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the InternalRange to delete.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Internalranges$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the InternalRange to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Internalranges$List
+    extends StandardParameters {
+    /**
+     * A filter expression that filters the results listed in the response.
+     */
+    filter?: string;
+    /**
+     * Sort the results by a certain order.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of results per page that should be returned.
+     */
+    pageSize?: number;
+    /**
+     * The page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource's name.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Internalranges$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. The name of a InternalRange. Format: projects/{project\}/locations/{location\}/internalRanges/{internal_range\} See: https://google.aip.dev/122#fields-representing-resource-names
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. Field mask is used to specify the fields to be overwritten in the InternalRange resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InternalRange;
+  }
+
   export class Resource$Projects$Locations$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -3255,6 +4201,1442 @@ export namespace networkconnectivity_v1 {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Serviceclasses {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.serviceClasses.getIamPolicy({
+     *       // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       'options.requestedPolicyVersion': 'placeholder-value',
+     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/serviceClasses/my-serviceClasse',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Serviceclasses$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
+      params?: Params$Resource$Projects$Locations$Serviceclasses$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Serviceclasses$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Serviceclasses$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Serviceclasses$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Serviceclasses$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Serviceclasses$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Serviceclasses$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.serviceClasses.setIamPolicy({
+     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/serviceClasses/my-serviceClasse',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {},
+     *         //   "updateMask": "my_updateMask"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Serviceclasses$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
+      params?: Params$Resource$Projects$Locations$Serviceclasses$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Serviceclasses$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Serviceclasses$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Serviceclasses$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Serviceclasses$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Serviceclasses$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Serviceclasses$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.serviceClasses.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/serviceClasses/my-serviceClasse',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Serviceclasses$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
+      params?: Params$Resource$Projects$Locations$Serviceclasses$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Serviceclasses$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Serviceclasses$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Serviceclasses$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Serviceclasses$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Serviceclasses$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Serviceclasses$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestIamPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Serviceclasses$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Serviceclasses$Setiampolicy
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Serviceclasses$Testiampermissions
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Serviceconnectionmaps {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.serviceConnectionMaps.getIamPolicy(
+     *       {
+     *         // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *         'options.requestedPolicyVersion': 'placeholder-value',
+     *         // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/serviceConnectionMaps/my-serviceConnectionMap',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
+      params?: Params$Resource$Projects$Locations$Serviceconnectionmaps$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Serviceconnectionmaps$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Serviceconnectionmaps$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Serviceconnectionmaps$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.serviceConnectionMaps.setIamPolicy(
+     *       {
+     *         // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/serviceConnectionMaps/my-serviceConnectionMap',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "policy": {},
+     *           //   "updateMask": "my_updateMask"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
+      params?: Params$Resource$Projects$Locations$Serviceconnectionmaps$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Serviceconnectionmaps$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Serviceconnectionmaps$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Serviceconnectionmaps$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.serviceConnectionMaps.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/serviceConnectionMaps/my-serviceConnectionMap',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
+      params?: Params$Resource$Projects$Locations$Serviceconnectionmaps$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Serviceconnectionmaps$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Serviceconnectionmaps$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Serviceconnectionmaps$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestIamPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Serviceconnectionmaps$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Serviceconnectionmaps$Setiampolicy
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Serviceconnectionmaps$Testiampermissions
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Serviceconnectionpolicies {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.serviceConnectionPolicies.getIamPolicy(
+     *       {
+     *         // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *         'options.requestedPolicyVersion': 'placeholder-value',
+     *         // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/serviceConnectionPolicies/my-serviceConnectionPolicie',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
+      params?: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Serviceconnectionpolicies$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Serviceconnectionpolicies$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Serviceconnectionpolicies$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.serviceConnectionPolicies.setIamPolicy(
+     *       {
+     *         // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/serviceConnectionPolicies/my-serviceConnectionPolicie',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "policy": {},
+     *           //   "updateMask": "my_updateMask"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
+      params?: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Serviceconnectionpolicies$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Serviceconnectionpolicies$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Serviceconnectionpolicies$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.serviceConnectionPolicies.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/serviceConnectionPolicies/my-serviceConnectionPolicie',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
+      params?: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Serviceconnectionpolicies$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Serviceconnectionpolicies$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Serviceconnectionpolicies$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestIamPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Serviceconnectionpolicies$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Serviceconnectionpolicies$Setiampolicy
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Serviceconnectionpolicies$Testiampermissions
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
 
   export class Resource$Projects$Locations$Spokes {
