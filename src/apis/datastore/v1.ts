@@ -125,6 +125,58 @@ export namespace datastore_v1 {
   }
 
   /**
+   * Defines a aggregation that produces a single result.
+   */
+  export interface Schema$Aggregation {
+    /**
+     * Optional. Optional name of the property to store the result of the aggregation. If not provided, Datastore will pick a default name following the format `property_`. For example: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2), COUNT_UP_TO(3) AS count_up_to_3, COUNT_UP_TO(4) OVER ( ... ); ``` becomes: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2) AS property_1, COUNT_UP_TO(3) AS count_up_to_3, COUNT_UP_TO(4) AS property_2 OVER ( ... ); ``` Requires: * Must be unique across all aggregation aliases. * Conform to entity property name limitations.
+     */
+    alias?: string | null;
+    /**
+     * Count aggregator.
+     */
+    count?: Schema$Count;
+  }
+  /**
+   * Datastore query for running an aggregation over a Query.
+   */
+  export interface Schema$AggregationQuery {
+    /**
+     * Optional. Series of aggregations to apply over the results of the `nested_query`. Requires: * A minimum of one and maximum of five aggregations per query.
+     */
+    aggregations?: Schema$Aggregation[];
+    /**
+     * Nested query for aggregation
+     */
+    nestedQuery?: Schema$Query;
+  }
+  /**
+   * The result of a single bucket from a Datastore aggregation query. The keys of `aggregate_properties` are the same for all results in an aggregation query, unlike entity queries which can have different fields present for each result.
+   */
+  export interface Schema$AggregationResult {
+    /**
+     * The result of the aggregation functions, ex: `COUNT(*) AS total_entities`. The key is the alias assigned to the aggregation function on input and the size of this map equals the number of aggregation functions in the query.
+     */
+    aggregateProperties?: {[key: string]: Schema$Value} | null;
+  }
+  /**
+   * A batch of aggregation results produced by an aggregation query.
+   */
+  export interface Schema$AggregationResultBatch {
+    /**
+     * The aggregation results for this batch.
+     */
+    aggregationResults?: Schema$AggregationResult[];
+    /**
+     * The state of the query after the current batch. Only COUNT(*) aggregations are supported in the initial launch. Therefore, expected result type is limited to `NO_MORE_RESULTS`.
+     */
+    moreResults?: string | null;
+    /**
+     * Read timestamp this batch was returned from. In a single transaction, subsequent query result batches for the same query can have a greater timestamp. Each batch's read timestamp is valid for all preceding batches.
+     */
+    readTime?: string | null;
+  }
+  /**
    * The request for Datastore.AllocateIds.
    */
   export interface Schema$AllocateIdsRequest {
@@ -227,6 +279,15 @@ export namespace datastore_v1 {
      * The operator for combining multiple filters.
      */
     op?: string | null;
+  }
+  /**
+   * Count of entities that match the query. The `COUNT(*)` aggregation function operates on the entire entity so it does not require a field reference.
+   */
+  export interface Schema$Count {
+    /**
+     * Optional. Optional constraint on the maximum number of entities to count. This provides a way to set an upper bound on the number of entities to scan, limiting latency and cost. Unspecified is interpreted as no bound. If a zero value is provided, a count result of zero should always be expected. High-Level Example: ``` AGGREGATE COUNT_UP_TO(1000) OVER ( SELECT * FROM k ); ``` Requires: * Must be non-negative when present.
+     */
+    upTo?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -1086,6 +1147,44 @@ export namespace datastore_v1 {
    * The response for Datastore.Rollback. (an empty message).
    */
   export interface Schema$RollbackResponse {}
+  /**
+   * The request for Datastore.RunAggregationQuery.
+   */
+  export interface Schema$RunAggregationQueryRequest {
+    /**
+     * The query to run.
+     */
+    aggregationQuery?: Schema$AggregationQuery;
+    /**
+     * The ID of the database against which to make the request. '(default)' is not allowed; please use empty string '' to refer the default database.
+     */
+    databaseId?: string | null;
+    /**
+     * The GQL query to run. This query must be an aggregation query.
+     */
+    gqlQuery?: Schema$GqlQuery;
+    /**
+     * Entities are partitioned into subsets, identified by a partition ID. Queries are scoped to a single partition. This partition ID is normalized with the standard default context partition ID.
+     */
+    partitionId?: Schema$PartitionId;
+    /**
+     * The options for this query.
+     */
+    readOptions?: Schema$ReadOptions;
+  }
+  /**
+   * The response for Datastore.RunAggregationQuery.
+   */
+  export interface Schema$RunAggregationQueryResponse {
+    /**
+     * A batch of aggregation results. Always present.
+     */
+    batch?: Schema$AggregationResultBatch;
+    /**
+     * The parsed form of the `GqlQuery` from the request, if it was set.
+     */
+    query?: Schema$AggregationQuery;
+  }
   /**
    * The request for Datastore.RunQuery.
    */
@@ -2389,6 +2488,157 @@ export namespace datastore_v1 {
     }
 
     /**
+     * Runs an aggregation query.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datastore = google.datastore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datastore.projects.runAggregationQuery({
+     *     // Required. The ID of the project against which to make the request.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "aggregationQuery": {},
+     *       //   "databaseId": "my_databaseId",
+     *       //   "gqlQuery": {},
+     *       //   "partitionId": {},
+     *       //   "readOptions": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "batch": {},
+     *   //   "query": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    runAggregationQuery(
+      params: Params$Resource$Projects$Runaggregationquery,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    runAggregationQuery(
+      params?: Params$Resource$Projects$Runaggregationquery,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RunAggregationQueryResponse>;
+    runAggregationQuery(
+      params: Params$Resource$Projects$Runaggregationquery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    runAggregationQuery(
+      params: Params$Resource$Projects$Runaggregationquery,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RunAggregationQueryResponse>,
+      callback: BodyResponseCallback<Schema$RunAggregationQueryResponse>
+    ): void;
+    runAggregationQuery(
+      params: Params$Resource$Projects$Runaggregationquery,
+      callback: BodyResponseCallback<Schema$RunAggregationQueryResponse>
+    ): void;
+    runAggregationQuery(
+      callback: BodyResponseCallback<Schema$RunAggregationQueryResponse>
+    ): void;
+    runAggregationQuery(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Runaggregationquery
+        | BodyResponseCallback<Schema$RunAggregationQueryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RunAggregationQueryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RunAggregationQueryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RunAggregationQueryResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Runaggregationquery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Runaggregationquery;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/projects/{projectId}:runAggregationQuery'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RunAggregationQueryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RunAggregationQueryResponse>(parameters);
+      }
+    }
+
+    /**
      * Queries for entities.
      * @example
      * ```js
@@ -2625,6 +2875,18 @@ export namespace datastore_v1 {
      * Request body metadata
      */
     requestBody?: Schema$RollbackRequest;
+  }
+  export interface Params$Resource$Projects$Runaggregationquery
+    extends StandardParameters {
+    /**
+     * Required. The ID of the project against which to make the request.
+     */
+    projectId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RunAggregationQueryRequest;
   }
   export interface Params$Resource$Projects$Runquery
     extends StandardParameters {

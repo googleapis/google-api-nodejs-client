@@ -111,7 +111,7 @@
     "effectiveTags": {
       "methods": {
         "list": {
-          "description": "Return a list of effective tags for the given cloud resource, as specified in `parent`.",
+          "description": "Return a list of effective tags for the given Google Cloud resource, as specified in `parent`.",
           "flatPath": "v3/effectiveTags",
           "httpMethod": "GET",
           "id": "cloudresourcemanager.effectiveTags.list",
@@ -1073,7 +1073,7 @@
     "tagBindings": {
       "methods": {
         "create": {
-          "description": "Creates a TagBinding between a TagValue and a cloud resource (currently project, folder, or organization).",
+          "description": "Creates a TagBinding between a TagValue and a Google Cloud resource.",
           "flatPath": "v3/tagBindings",
           "httpMethod": "POST",
           "id": "cloudresourcemanager.tagBindings.create",
@@ -1122,20 +1122,20 @@
           ]
         },
         "list": {
-          "description": "Lists the TagBindings for the given cloud resource, as specified with `parent`. NOTE: The `parent` field is expected to be a full resource name: https://cloud.google.com/apis/design/resource_names#full_resource_name",
+          "description": "Lists the TagBindings for the given Google Cloud resource, as specified with `parent`. NOTE: The `parent` field is expected to be a full resource name: https://cloud.google.com/apis/design/resource_names#full_resource_name",
           "flatPath": "v3/tagBindings",
           "httpMethod": "GET",
           "id": "cloudresourcemanager.tagBindings.list",
           "parameterOrder": [],
           "parameters": {
             "pageSize": {
-              "description": "Optional. The maximum number of TagBindings to return in the response. The server allows a maximum of 300 TagBindings to return. If unspecified, the server will use 100 as the default. Currently this api returns unpaginated response and `page_size` is ignored.",
+              "description": "Optional. The maximum number of TagBindings to return in the response. The server allows a maximum of 300 TagBindings to return. If unspecified, the server will use 100 as the default.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "pageToken": {
-              "description": "Optional. A pagination token returned from a previous call to `ListTagBindings` that indicates where this listing should continue from. Currently this api returns unpaginated response and `page_token` is ignored.",
+              "description": "Optional. A pagination token returned from a previous call to `ListTagBindings` that indicates where this listing should continue from.",
               "location": "query",
               "type": "string"
             },
@@ -1760,7 +1760,7 @@
       }
     }
   },
-  "revision": "20220914",
+  "revision": "20221020",
   "rootUrl": "https://cloudresourcemanager.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2731,7 +2731,7 @@
       "type": "object"
     },
     "TagBinding": {
-      "description": "A TagBinding represents a connection between a TagValue and a cloud resource (currently project, folder, or organization). Once a TagBinding is created, the TagValue is applied to all the descendants of the cloud resource.",
+      "description": "A TagBinding represents a connection between a TagValue and a cloud resource Once a TagBinding is created, the TagValue is applied to all the descendants of the Google Cloud resource.",
       "id": "TagBinding",
       "properties": {
         "name": {
@@ -2819,7 +2819,7 @@
           ],
           "enumDescriptions": [
             "Unspecified purpose.",
-            "Purpose for Compute Engine firewalls. A corresponding purpose_data should be set for the network the tag is intended for. The key should be 'network' and the value should be in the format of the network url id string: https://compute.googleapis.com/v1/projects/{project_number}/global/networks/{network_id}"
+            "Purpose for Compute Engine firewalls. A corresponding purpose_data should be set for the network the tag is intended for. The key should be 'network' and the value should be in either of these two formats: -https://www.googleapis.com/compute/{compute_version}/projects/{project_id}/global/networks/{network_id} -{project_id}/{network_name} Examples: -https://www.googleapis.com/compute/staging_v1/projects/fail-closed-load-testing/global/networks/6992953698831725600 -fail-closed-load-testing/load-testing-network"
           ],
           "type": "string"
         },

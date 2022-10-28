@@ -131,6 +131,24 @@ export namespace identitytoolkit_v2 {
   }
 
   /**
+   * Defines a policy of allowing every region by default and adding disallowed regions to a disallow list.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitAdminV2AllowByDefault {
+    /**
+     * Two letter unicode region codes to disallow as defined by https://cldr.unicode.org/ The full list of these region codes is here: https://github.com/unicode-cldr/cldr-localenames-full/blob/master/main/en/territories.json
+     */
+    disallowedRegions?: string[] | null;
+  }
+  /**
+   * Defines a policy of only allowing regions by explicitly adding them to an allowlist.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitAdminV2AllowlistOnly {
+    /**
+     * Two letter unicode region codes to allow as defined by https://cldr.unicode.org/ The full list of these region codes is here: https://github.com/unicode-cldr/cldr-localenames-full/blob/master/main/en/territories.json
+     */
+    allowedRegions?: string[] | null;
+  }
+  /**
    * Configuration options related to authenticating an anonymous user.
    */
   export interface Schema$GoogleCloudIdentitytoolkitAdminV2Anonymous {
@@ -268,6 +286,10 @@ export namespace identitytoolkit_v2 {
      * Configuration related to local sign in methods.
      */
     signIn?: Schema$GoogleCloudIdentitytoolkitAdminV2SignInConfig;
+    /**
+     * Configures which regions are enabled for SMS verification code sending.
+     */
+    smsRegionConfig?: Schema$GoogleCloudIdentitytoolkitAdminV2SmsRegionConfig;
     /**
      * Output only. The subtype of this config.
      */
@@ -787,6 +809,19 @@ export namespace identitytoolkit_v2 {
     phoneNumber?: Schema$GoogleCloudIdentitytoolkitAdminV2PhoneNumber;
   }
   /**
+   * Configures the regions where users are allowed to send verification SMS for the project or tenant. This is based on the calling code of the destination phone number.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitAdminV2SmsRegionConfig {
+    /**
+     * A policy of allowing SMS to every region by default and adding disallowed regions to a disallow list.
+     */
+    allowByDefault?: Schema$GoogleCloudIdentitytoolkitAdminV2AllowByDefault;
+    /**
+     * A policy of only allowing regions by explicitly adding them to an allowlist.
+     */
+    allowlistOnly?: Schema$GoogleCloudIdentitytoolkitAdminV2AllowlistOnly;
+  }
+  /**
    * The template to use when sending an SMS.
    */
   export interface Schema$GoogleCloudIdentitytoolkitAdminV2SmsTemplate {
@@ -923,6 +958,10 @@ export namespace identitytoolkit_v2 {
      * Output only. Resource name of a tenant. For example: "projects/{project-id\}/tenants/{tenant-id\}"
      */
     name?: string | null;
+    /**
+     * Configures which regions are enabled for SMS verification code sending.
+     */
+    smsRegionConfig?: Schema$GoogleCloudIdentitytoolkitAdminV2SmsRegionConfig;
     /**
      * A map of pairs that can be used for MFA. The phone number should be in E.164 format (https://www.itu.int/rec/T-REC-E.164/) and a maximum of 10 pairs can be added (error will be thrown once exceeded).
      */
@@ -2354,6 +2393,7 @@ export namespace identitytoolkit_v2 {
      *   //   "notification": {},
      *   //   "quota": {},
      *   //   "signIn": {},
+     *   //   "smsRegionConfig": {},
      *   //   "subtype": "my_subtype"
      *   // }
      * }
@@ -2506,6 +2546,7 @@ export namespace identitytoolkit_v2 {
      *       //   "notification": {},
      *       //   "quota": {},
      *       //   "signIn": {},
+     *       //   "smsRegionConfig": {},
      *       //   "subtype": "my_subtype"
      *       // }
      *     },
@@ -2525,6 +2566,7 @@ export namespace identitytoolkit_v2 {
      *   //   "notification": {},
      *   //   "quota": {},
      *   //   "signIn": {},
+     *   //   "smsRegionConfig": {},
      *   //   "subtype": "my_subtype"
      *   // }
      * }
@@ -5313,6 +5355,7 @@ export namespace identitytoolkit_v2 {
      *       //   "mfaConfig": {},
      *       //   "monitoring": {},
      *       //   "name": "my_name",
+     *       //   "smsRegionConfig": {},
      *       //   "testPhoneNumbers": {}
      *       // }
      *     },
@@ -5333,6 +5376,7 @@ export namespace identitytoolkit_v2 {
      *   //   "mfaConfig": {},
      *   //   "monitoring": {},
      *   //   "name": "my_name",
+     *   //   "smsRegionConfig": {},
      *   //   "testPhoneNumbers": {}
      *   // }
      * }
@@ -5618,6 +5662,7 @@ export namespace identitytoolkit_v2 {
      *   //   "mfaConfig": {},
      *   //   "monitoring": {},
      *   //   "name": "my_name",
+     *   //   "smsRegionConfig": {},
      *   //   "testPhoneNumbers": {}
      *   // }
      * }
@@ -6067,6 +6112,7 @@ export namespace identitytoolkit_v2 {
      *       //   "mfaConfig": {},
      *       //   "monitoring": {},
      *       //   "name": "my_name",
+     *       //   "smsRegionConfig": {},
      *       //   "testPhoneNumbers": {}
      *       // }
      *     },
@@ -6087,6 +6133,7 @@ export namespace identitytoolkit_v2 {
      *   //   "mfaConfig": {},
      *   //   "monitoring": {},
      *   //   "name": "my_name",
+     *   //   "smsRegionConfig": {},
      *   //   "testPhoneNumbers": {}
      *   // }
      * }

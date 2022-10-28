@@ -440,7 +440,7 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1ScoreMetrics {
     /**
-     * Action-based metrics. The map key is the action name which specified by the site owners at time of the "execute" client-side call. Populated only for SCORE keys.
+     * Action-based metrics. The map key is the action name which specified by the site owners at time of the "execute" client-side call.
      */
     actionMetrics?: {
       [key: string]: Schema$GoogleCloudRecaptchaenterpriseV1ScoreDistribution;

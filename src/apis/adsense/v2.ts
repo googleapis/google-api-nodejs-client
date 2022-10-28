@@ -290,6 +290,10 @@ export namespace adsense_v2 {
    */
   export interface Schema$CustomChannel {
     /**
+     * Whether the custom channel is active and collecting data. See https://support.google.com/adsense/answer/10077192.
+     */
+    active?: boolean | null;
+    /**
      * Required. Display name of the custom channel.
      */
     displayName?: string | null;
@@ -319,6 +323,10 @@ export namespace adsense_v2 {
      */
     year?: number | null;
   }
+  /**
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
+   */
+  export interface Schema$Empty {}
   /**
    * The header information of the columns requested in the report.
    */
@@ -1702,6 +1710,151 @@ export namespace adsense_v2 {
     }
 
     /**
+     * Creates an ad unit. This method can only be used by projects enabled for the [AdSense for Platforms](https://developers.google.com/adsense/platforms/) product. Note that ad units can only be created for ad clients with an "AFC" product code. For more info see the [AdClient resource](/adsense/management/reference/rest/v2/accounts.adclients). For now, this method can only be used to create `DISPLAY` ad units. See: https://support.google.com/adsense/answer/9183566
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adsense'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.adunits.create({
+     *     // Required. Ad client to create an ad unit under. Format: accounts/{account\}/adclients/{adclient\}
+     *     parent: 'accounts/my-account/adclients/my-adclient',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentAdsSettings": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "reportingDimensionId": "my_reportingDimensionId",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentAdsSettings": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "reportingDimensionId": "my_reportingDimensionId",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Accounts$Adclients$Adunits$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Accounts$Adclients$Adunits$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdUnit>;
+    create(
+      params: Params$Resource$Accounts$Adclients$Adunits$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Accounts$Adclients$Adunits$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$AdUnit>,
+      callback: BodyResponseCallback<Schema$AdUnit>
+    ): void;
+    create(
+      params: Params$Resource$Accounts$Adclients$Adunits$Create,
+      callback: BodyResponseCallback<Schema$AdUnit>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$AdUnit>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Adclients$Adunits$Create
+        | BodyResponseCallback<Schema$AdUnit>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdUnit>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdUnit>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdUnit> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Adclients$Adunits$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Adclients$Adunits$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://adsense.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/adunits').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AdUnit>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AdUnit>(parameters);
+      }
+    }
+
+    /**
      * Gets an ad unit from a specified account and ad client.
      * @example
      * ```js
@@ -2251,8 +2404,164 @@ export namespace adsense_v2 {
         );
       }
     }
+
+    /**
+     * Updates an ad unit. This method can only be used by projects enabled for the [AdSense for Platforms](https://developers.google.com/adsense/platforms/) product. For now, this method can only be used to update `DISPLAY` ad units. See: https://support.google.com/adsense/answer/9183566
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adsense'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.adunits.patch({
+     *     // Output only. Resource name of the ad unit. Format: accounts/{account\}/adclients/{adclient\}/adunits/{adunit\}
+     *     name: 'accounts/my-account/adclients/my-adclient/adunits/my-adunit',
+     *     // The list of fields to update. If empty, a full update is performed.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentAdsSettings": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "reportingDimensionId": "my_reportingDimensionId",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentAdsSettings": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "reportingDimensionId": "my_reportingDimensionId",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Accounts$Adclients$Adunits$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Accounts$Adclients$Adunits$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdUnit>;
+    patch(
+      params: Params$Resource$Accounts$Adclients$Adunits$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Adclients$Adunits$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$AdUnit>,
+      callback: BodyResponseCallback<Schema$AdUnit>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Adclients$Adunits$Patch,
+      callback: BodyResponseCallback<Schema$AdUnit>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$AdUnit>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Adclients$Adunits$Patch
+        | BodyResponseCallback<Schema$AdUnit>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdUnit>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdUnit>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdUnit> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Adclients$Adunits$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Adclients$Adunits$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://adsense.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AdUnit>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AdUnit>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Accounts$Adclients$Adunits$Create
+    extends StandardParameters {
+    /**
+     * Required. Ad client to create an ad unit under. Format: accounts/{account\}/adclients/{adclient\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AdUnit;
+  }
   export interface Params$Resource$Accounts$Adclients$Adunits$Get
     extends StandardParameters {
     /**
@@ -2297,11 +2606,294 @@ export namespace adsense_v2 {
      */
     parent?: string;
   }
+  export interface Params$Resource$Accounts$Adclients$Adunits$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Resource name of the ad unit. Format: accounts/{account\}/adclients/{adclient\}/adunits/{adunit\}
+     */
+    name?: string;
+    /**
+     * The list of fields to update. If empty, a full update is performed.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AdUnit;
+  }
 
   export class Resource$Accounts$Adclients$Customchannels {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Creates a custom channel. This method can only be used by projects enabled for the [AdSense for Platforms](https://developers.google.com/adsense/platforms/) product.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adsense'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.customchannels.create({
+     *     // Required. The ad client to create a custom channel under. Format: accounts/{account\}/adclients/{adclient\}
+     *     parent: 'accounts/my-account/adclients/my-adclient',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "active": false,
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "reportingDimensionId": "my_reportingDimensionId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "active": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "reportingDimensionId": "my_reportingDimensionId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Accounts$Adclients$Customchannels$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Accounts$Adclients$Customchannels$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomChannel>;
+    create(
+      params: Params$Resource$Accounts$Adclients$Customchannels$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Accounts$Adclients$Customchannels$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomChannel>,
+      callback: BodyResponseCallback<Schema$CustomChannel>
+    ): void;
+    create(
+      params: Params$Resource$Accounts$Adclients$Customchannels$Create,
+      callback: BodyResponseCallback<Schema$CustomChannel>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$CustomChannel>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Adclients$Customchannels$Create
+        | BodyResponseCallback<Schema$CustomChannel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomChannel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomChannel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomChannel> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Adclients$Customchannels$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Adclients$Customchannels$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://adsense.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/customchannels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CustomChannel>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CustomChannel>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a custom channel. This method can only be used by projects enabled for the [AdSense for Platforms](https://developers.google.com/adsense/platforms/) product.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adsense'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.customchannels.delete({
+     *     // Required. Name of the custom channel to delete. Format: accounts/{account\}/adclients/{adclient\}/customchannels/{customchannel\}
+     *     name: 'accounts/my-account/adclients/my-adclient/customchannels/my-customchannel',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Accounts$Adclients$Customchannels$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Accounts$Adclients$Customchannels$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Accounts$Adclients$Customchannels$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Accounts$Adclients$Customchannels$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Accounts$Adclients$Customchannels$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Adclients$Customchannels$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Adclients$Customchannels$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Adclients$Customchannels$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://adsense.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
     }
 
     /**
@@ -2341,6 +2933,7 @@ export namespace adsense_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "active": false,
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
      *   //   "reportingDimensionId": "my_reportingDimensionId"
@@ -2726,8 +3319,169 @@ export namespace adsense_v2 {
         return createAPIRequest<Schema$ListLinkedAdUnitsResponse>(parameters);
       }
     }
+
+    /**
+     * Updates a custom channel. This method can only be used by projects enabled for the [AdSense for Platforms](https://developers.google.com/adsense/platforms/) product.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adsense = google.adsense('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adsense'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsense.accounts.adclients.customchannels.patch({
+     *     // Output only. Resource name of the custom channel. Format: accounts/{account\}/adclients/{adclient\}/customchannels/{customchannel\}
+     *     name: 'accounts/my-account/adclients/my-adclient/customchannels/my-customchannel',
+     *     // The list of fields to update. If empty, a full update is performed.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "active": false,
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "reportingDimensionId": "my_reportingDimensionId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "active": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "reportingDimensionId": "my_reportingDimensionId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Accounts$Adclients$Customchannels$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Accounts$Adclients$Customchannels$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomChannel>;
+    patch(
+      params: Params$Resource$Accounts$Adclients$Customchannels$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Adclients$Customchannels$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomChannel>,
+      callback: BodyResponseCallback<Schema$CustomChannel>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Adclients$Customchannels$Patch,
+      callback: BodyResponseCallback<Schema$CustomChannel>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$CustomChannel>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Adclients$Customchannels$Patch
+        | BodyResponseCallback<Schema$CustomChannel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomChannel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomChannel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomChannel> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Adclients$Customchannels$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Adclients$Customchannels$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://adsense.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CustomChannel>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CustomChannel>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Accounts$Adclients$Customchannels$Create
+    extends StandardParameters {
+    /**
+     * Required. The ad client to create a custom channel under. Format: accounts/{account\}/adclients/{adclient\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CustomChannel;
+  }
+  export interface Params$Resource$Accounts$Adclients$Customchannels$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the custom channel to delete. Format: accounts/{account\}/adclients/{adclient\}/customchannels/{customchannel\}
+     */
+    name?: string;
+  }
   export interface Params$Resource$Accounts$Adclients$Customchannels$Get
     extends StandardParameters {
     /**
@@ -2764,6 +3518,22 @@ export namespace adsense_v2 {
      * Required. The custom channel which owns the collection of ad units. Format: accounts/{account\}/adclients/{adclient\}/customchannels/{customchannel\}
      */
     parent?: string;
+  }
+  export interface Params$Resource$Accounts$Adclients$Customchannels$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Resource name of the custom channel. Format: accounts/{account\}/adclients/{adclient\}/customchannels/{customchannel\}
+     */
+    name?: string;
+    /**
+     * The list of fields to update. If empty, a full update is performed.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CustomChannel;
   }
 
   export class Resource$Accounts$Adclients$Urlchannels {
@@ -3429,7 +4199,7 @@ export namespace adsense_v2 {
      *     'endDate.month': 'placeholder-value',
      *     // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      *     'endDate.year': 'placeholder-value',
-     *     // Filters to be run on the report.
+     *     // A list of [filters](/adsense/management/reporting/filtering) to apply to the report. All provided filters must match in order for the data to be included in the report.
      *     filters: 'placeholder-value',
      *     // The language to use for translating report output. If unspecified, this defaults to English ("en"). If the given language is not supported, report output will be returned in English. The language is specified as an [IETF BCP-47 language code](https://en.wikipedia.org/wiki/IETF_language_tag).
      *     languageCode: 'placeholder-value',
@@ -3598,7 +4368,7 @@ export namespace adsense_v2 {
      *     'endDate.month': 'placeholder-value',
      *     // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      *     'endDate.year': 'placeholder-value',
-     *     // Filters to be run on the report.
+     *     // A list of [filters](/adsense/management/reporting/filtering) to apply to the report. All provided filters must match in order for the data to be included in the report.
      *     filters: 'placeholder-value',
      *     // The language to use for translating report output. If unspecified, this defaults to English ("en"). If the given language is not supported, report output will be returned in English. The language is specified as an [IETF BCP-47 language code](https://en.wikipedia.org/wiki/IETF_language_tag).
      *     languageCode: 'placeholder-value',
@@ -3880,7 +4650,7 @@ export namespace adsense_v2 {
      */
     'endDate.year'?: number;
     /**
-     * Filters to be run on the report.
+     * A list of [filters](/adsense/management/reporting/filtering) to apply to the report. All provided filters must match in order for the data to be included in the report.
      */
     filters?: string[];
     /**
@@ -3947,7 +4717,7 @@ export namespace adsense_v2 {
      */
     'endDate.year'?: number;
     /**
-     * Filters to be run on the report.
+     * A list of [filters](/adsense/management/reporting/filtering) to apply to the report. All provided filters must match in order for the data to be included in the report.
      */
     filters?: string[];
     /**

@@ -406,7 +406,7 @@
       }
     }
   },
-  "revision": "20220808",
+  "revision": "20221012",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AllowedIpRange": {
@@ -783,6 +783,12 @@
       },
       "type": "object"
     },
+    "LoadSnapshotResponse": {
+      "description": "Response to LoadSnapshotRequest.",
+      "id": "LoadSnapshotResponse",
+      "properties": {},
+      "type": "object"
+    },
     "MaintenanceWindow": {
       "description": "The configuration settings for Cloud Composer maintenance window. The following example: ``` { \"startTime\":\"2019-08-01T01:00:00Z\" \"endTime\":\"2019-08-01T07:00:00Z\" \"recurrence\":\"FREQ=WEEKLY;BYDAY=TU,WE\" } ``` would define a maintenance window between 01 and 07 hours UTC during each Tuesday and Wednesday.",
       "id": "MaintenanceWindow",
@@ -818,6 +824,27 @@
         "enabled": {
           "description": "Whether or not master authorized networks feature is enabled.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "NetworkingConfig": {
+      "description": "Configuration options for networking connections in the Composer 2 environment.",
+      "id": "NetworkingConfig",
+      "properties": {
+        "connectionType": {
+          "description": "Optional. Indicates the user requested specifc connection type between Tenant and Customer projects. You cannot set networking connection type in public IP environment.",
+          "enum": [
+            "CONNECTION_TYPE_UNSPECIFIED",
+            "VPC_PEERING",
+            "PRIVATE_SERVICE_CONNECT"
+          ],
+          "enumDescriptions": [
+            "No specific connection type was requested, so the environment uses the default value corresponding to the rest of its configuration.",
+            "Requests the use of VPC peerings for connecting the Customer and Tenant projects.",
+            "Requests the use of Private Service Connect for connecting the Customer and Tenant projects."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1027,6 +1054,10 @@
           "description": "Optional. When enabled, IPs from public (non-RFC1918) ranges can be used for `IPAllocationPolicy.cluster_ipv4_cidr_block` and `IPAllocationPolicy.service_ipv4_cidr_block`.",
           "type": "boolean"
         },
+        "networkingConfig": {
+          "$ref": "NetworkingConfig",
+          "description": "Optional. Configuration for the network connections configuration in the environment."
+        },
         "privateClusterConfig": {
           "$ref": "PrivateClusterConfig",
           "description": "Optional. Configuration for the private GKE cluster for a Private IP Cloud Composer environment."
@@ -1038,6 +1069,17 @@
         "webServerIpv4ReservedRange": {
           "description": "Output only. The IP range reserved for the tenant project's App Engine VMs. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SaveSnapshotResponse": {
+      "description": "Response to SaveSnapshotRequest.",
+      "id": "SaveSnapshotResponse",
+      "properties": {
+        "snapshotPath": {
+          "description": "The fully-resolved Cloud Storage path of the created snapshot, e.g.: \"gs://my-bucket/snapshots/project_location_environment_timestamp\". This field is populated only if the snapshot creation was successful.",
           "type": "string"
         }
       },

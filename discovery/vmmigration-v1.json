@@ -1972,7 +1972,7 @@
       }
     }
   },
-  "revision": "20220908",
+  "revision": "20221017",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AddGroupMigrationRequest": {
@@ -3835,7 +3835,7 @@
     }
   },
   "servicePath": "",
-  "title": "VM Migration API",
+  "title": "Migrate to Virtual Machines API",
   "version": "v1",
   "version_module": true
 }

@@ -1217,7 +1217,7 @@
       }
     }
   },
-  "revision": "20220906",
+  "revision": "20221019",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AvroFileFormat": {
@@ -2294,7 +2294,7 @@
         },
         "streamLargeObjects": {
           "$ref": "StreamLargeObjects",
-          "description": "Stream large object values."
+          "description": "Stream large object values. NOTE: This feature is currently experimental."
         }
       },
       "type": "object"
@@ -2452,7 +2452,7 @@
           "type": "string"
         },
         "replicationSlot": {
-          "description": "Required. The name of the logical replication slot that's configured with the pgoutput plugin.",
+          "description": "Required. Immutable. The name of the logical replication slot that's configured with the pgoutput plugin.",
           "type": "string"
         }
       },

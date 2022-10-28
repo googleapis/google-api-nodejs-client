@@ -238,7 +238,7 @@ export namespace billingbudgets_v1beta1 {
      */
     labels?: {[key: string]: any[]} | null;
     /**
-     * Optional. A set of projects of the form `projects/{project\}`, specifying that usage from only this set of projects should be included in the budget. If omitted, the report will include all usage for the billing account, regardless of which project the usage occurred on. Only zero or one project can be specified currently.
+     * Optional. A set of projects of the form `projects/{project\}`, specifying that usage from only this set of projects should be included in the budget. If omitted, the report will include all usage for the billing account, regardless of which project the usage occurred on.
      */
     projects?: string[] | null;
     /**

@@ -288,7 +288,7 @@ export namespace datamigration_v1 {
      */
     userLabels?: {[key: string]: string} | null;
     /**
-     * The Google Cloud Platform zone where your Cloud SQL datdabse instance is located.
+     * The Google Cloud Platform zone where your Cloud SQL database instance is located.
      */
     zone?: string | null;
   }

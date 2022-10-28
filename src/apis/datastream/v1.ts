@@ -940,7 +940,7 @@ export namespace datastream_v1 {
      */
     maxConcurrentCdcTasks?: number | null;
     /**
-     * Stream large object values.
+     * Stream large object values. NOTE: This feature is currently experimental.
      */
     streamLargeObjects?: Schema$StreamLargeObjects;
   }
@@ -1071,7 +1071,7 @@ export namespace datastream_v1 {
      */
     publication?: string | null;
     /**
-     * Required. The name of the logical replication slot that's configured with the pgoutput plugin.
+     * Required. Immutable. The name of the logical replication slot that's configured with the pgoutput plugin.
      */
     replicationSlot?: string | null;
   }

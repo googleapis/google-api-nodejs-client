@@ -158,6 +158,11 @@
           "id": "tagmanager.accounts.list",
           "parameterOrder": [],
           "parameters": {
+            "includeGoogleTags": {
+              "description": "Also retrieve accounts associated with Google Tag when true.",
+              "location": "query",
+              "type": "boolean"
+            },
             "pageToken": {
               "description": "Continuation token for fetching the next page of results.",
               "location": "query",
@@ -189,7 +194,7 @@
               "type": "string"
             },
             "path": {
-              "description": "GTM Accounts's API relative path. Example: accounts/{account_id}",
+              "description": "GTM Account's API relative path. Example: accounts/{account_id}",
               "location": "path",
               "pattern": "^accounts/[^/]+$",
               "required": true,
@@ -211,6 +216,56 @@
       "resources": {
         "containers": {
           "methods": {
+            "combine": {
+              "description": "Combines Containers.",
+              "flatPath": "tagmanager/v2/accounts/{accountsId}/containers/{containersId}:combine",
+              "httpMethod": "POST",
+              "id": "tagmanager.accounts.containers.combine",
+              "parameterOrder": [
+                "path"
+              ],
+              "parameters": {
+                "allowUserPermissionFeatureUpdate": {
+                  "description": "Must be set to true to allow features.user_permissions to change from false to true. If this operation causes an update but this bit is false, the operation will fail.",
+                  "location": "query",
+                  "type": "boolean"
+                },
+                "containerId": {
+                  "description": "ID of container that will be merged into the current container.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "path": {
+                  "description": "GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/containers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "settingSource": {
+                  "description": "Specify the source of config setting after combine",
+                  "enum": [
+                    "settingSourceUnspecified",
+                    "current",
+                    "other"
+                  ],
+                  "enumDescriptions": [
+                    "",
+                    "Keep the current container config setting after combine",
+                    "Use config setting from the other tag after combine"
+                  ],
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "tagmanager/v2/{+path}:combine",
+              "response": {
+                "$ref": "Container"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/tagmanager.edit.containers"
+              ]
+            },
             "create": {
               "description": "Creates a Container.",
               "flatPath": "tagmanager/v2/accounts/{accountsId}/containers",
@@ -302,7 +357,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "GTM Accounts's API relative path. Example: accounts/{account_id}.",
+                  "description": "GTM Account's API relative path. Example: accounts/{account_id}.",
                   "location": "path",
                   "pattern": "^accounts/[^/]+$",
                   "required": true,
@@ -312,6 +367,109 @@
               "path": "tagmanager/v2/{+parent}/containers",
               "response": {
                 "$ref": "ListContainersResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/tagmanager.edit.containers",
+                "https://www.googleapis.com/auth/tagmanager.readonly"
+              ]
+            },
+            "lookup": {
+              "description": "Looks up a Container by destination ID.",
+              "flatPath": "tagmanager/v2/accounts/containers:lookup",
+              "httpMethod": "GET",
+              "id": "tagmanager.accounts.containers.lookup",
+              "parameterOrder": [],
+              "parameters": {
+                "destinationId": {
+                  "description": "Destination ID linked to a GTM Container, e.g. AW-123456789. Example: accounts/containers:lookup?destination_id={destination_id}.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "tagmanager/v2/accounts/containers:lookup",
+              "response": {
+                "$ref": "Container"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/tagmanager.edit.containers",
+                "https://www.googleapis.com/auth/tagmanager.readonly"
+              ]
+            },
+            "move_tag_id": {
+              "description": "Move Tag ID out of a Container.",
+              "flatPath": "tagmanager/v2/accounts/{accountsId}/containers/{containersId}:move_tag_id",
+              "httpMethod": "POST",
+              "id": "tagmanager.accounts.containers.move_tag_id",
+              "parameterOrder": [
+                "path"
+              ],
+              "parameters": {
+                "allowUserPermissionFeatureUpdate": {
+                  "description": "Must be set to true to allow features.user_permissions to change from false to true. If this operation causes an update but this bit is false, the operation will fail.",
+                  "location": "query",
+                  "type": "boolean"
+                },
+                "copySettings": {
+                  "description": "Whether or not to copy tag settings from this tag to the new tag.",
+                  "location": "query",
+                  "type": "boolean"
+                },
+                "copyTermsOfService": {
+                  "description": "Must be set to true to accept all terms of service agreements copied from the current tag to the newly created tag. If this bit is false, the operation will fail.",
+                  "location": "query",
+                  "type": "boolean"
+                },
+                "copyUsers": {
+                  "description": "Whether or not to copy users from this tag to the new tag.",
+                  "location": "query",
+                  "type": "boolean"
+                },
+                "path": {
+                  "description": "GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/containers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "tagId": {
+                  "description": "Tag ID to be removed from the current Container.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "tagName": {
+                  "description": "The name for the newly created tag.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "tagmanager/v2/{+path}:move_tag_id",
+              "response": {
+                "$ref": "Container"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/tagmanager.edit.containers"
+              ]
+            },
+            "snippet": {
+              "description": "Gets the tagging snippet for a Container.",
+              "flatPath": "tagmanager/v2/accounts/{accountsId}/containers/{containersId}:snippet",
+              "httpMethod": "GET",
+              "id": "tagmanager.accounts.containers.snippet",
+              "parameterOrder": [
+                "path"
+              ],
+              "parameters": {
+                "path": {
+                  "description": "Container snippet's API relative path. Example: accounts/{account_id}/containers/{container_id}:snippet",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/containers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "tagmanager/v2/{+path}:snippet",
+              "response": {
+                "$ref": "GetContainerSnippetResponse"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/tagmanager.edit.containers",
@@ -353,6 +511,97 @@
             }
           },
           "resources": {
+            "destinations": {
+              "methods": {
+                "get": {
+                  "description": "Gets a Destination.",
+                  "flatPath": "tagmanager/v2/accounts/{accountsId}/containers/{containersId}/destinations/{destinationsId}",
+                  "httpMethod": "GET",
+                  "id": "tagmanager.accounts.containers.destinations.get",
+                  "parameterOrder": [
+                    "path"
+                  ],
+                  "parameters": {
+                    "path": {
+                      "description": "Google Tag Destination's API relative path. Example: accounts/{account_id}/containers/{container_id}/destinations/{destination_link_id}",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/containers/[^/]+/destinations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "tagmanager/v2/{+path}",
+                  "response": {
+                    "$ref": "Destination"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/tagmanager.edit.containers",
+                    "https://www.googleapis.com/auth/tagmanager.readonly"
+                  ]
+                },
+                "link": {
+                  "description": "Adds a Destination to this Container and removes it from the Container to which it is currently linked.",
+                  "flatPath": "tagmanager/v2/accounts/{accountsId}/containers/{containersId}/destinations:link",
+                  "httpMethod": "POST",
+                  "id": "tagmanager.accounts.containers.destinations.link",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "allowUserPermissionFeatureUpdate": {
+                      "description": "Must be set to true to allow features.user_permissions to change from false to true. If this operation causes an update but this bit is false, the operation will fail.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "destinationId": {
+                      "description": "Destination ID to be linked to the current container.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "GTM parent Container's API relative path. Example: accounts/{account_id}/containers/{container_id}",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/containers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "tagmanager/v2/{+parent}/destinations:link",
+                  "response": {
+                    "$ref": "Destination"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/tagmanager.edit.containers"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all Destinations linked to a GTM Container.",
+                  "flatPath": "tagmanager/v2/accounts/{accountsId}/containers/{containersId}/destinations",
+                  "httpMethod": "GET",
+                  "id": "tagmanager.accounts.containers.destinations.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "GTM parent Container's API relative path. Example: accounts/{account_id}/containers/{container_id}",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/containers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "tagmanager/v2/{+parent}/destinations",
+                  "response": {
+                    "$ref": "ListDestinationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/tagmanager.edit.containers",
+                    "https://www.googleapis.com/auth/tagmanager.readonly"
+                  ]
+                }
+              }
+            },
             "environments": {
               "methods": {
                 "create": {
@@ -2303,6 +2552,150 @@
                     }
                   }
                 },
+                "gtag_config": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a Google tag config.",
+                      "flatPath": "tagmanager/v2/accounts/{accountsId}/containers/{containersId}/workspaces/{workspacesId}/gtag_config",
+                      "httpMethod": "POST",
+                      "id": "tagmanager.accounts.containers.workspaces.gtag_config.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                          "location": "path",
+                          "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "tagmanager/v2/{+parent}/gtag_config",
+                      "request": {
+                        "$ref": "GtagConfig"
+                      },
+                      "response": {
+                        "$ref": "GtagConfig"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/tagmanager.edit.containers"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a Google tag config.",
+                      "flatPath": "tagmanager/v2/accounts/{accountsId}/containers/{containersId}/workspaces/{workspacesId}/gtag_config/{gtag_configId}",
+                      "httpMethod": "DELETE",
+                      "id": "tagmanager.accounts.containers.workspaces.gtag_config.delete",
+                      "parameterOrder": [
+                        "path"
+                      ],
+                      "parameters": {
+                        "path": {
+                          "description": "Google tag config's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/gtag_config/{gtag_config_id}",
+                          "location": "path",
+                          "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/gtag_config/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "tagmanager/v2/{+path}",
+                      "scopes": [
+                        "https://www.googleapis.com/auth/tagmanager.edit.containers"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets a Google tag config.",
+                      "flatPath": "tagmanager/v2/accounts/{accountsId}/containers/{containersId}/workspaces/{workspacesId}/gtag_config/{gtag_configId}",
+                      "httpMethod": "GET",
+                      "id": "tagmanager.accounts.containers.workspaces.gtag_config.get",
+                      "parameterOrder": [
+                        "path"
+                      ],
+                      "parameters": {
+                        "path": {
+                          "description": "Google tag config's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/gtag_config/{gtag_config_id}",
+                          "location": "path",
+                          "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/gtag_config/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "tagmanager/v2/{+path}",
+                      "response": {
+                        "$ref": "GtagConfig"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/tagmanager.edit.containers",
+                        "https://www.googleapis.com/auth/tagmanager.readonly"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all Google tag configs in a Container.",
+                      "flatPath": "tagmanager/v2/accounts/{accountsId}/containers/{containersId}/workspaces/{workspacesId}/gtag_config",
+                      "httpMethod": "GET",
+                      "id": "tagmanager.accounts.containers.workspaces.gtag_config.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageToken": {
+                          "description": "Continuation token for fetching the next page of results.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                          "location": "path",
+                          "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "tagmanager/v2/{+parent}/gtag_config",
+                      "response": {
+                        "$ref": "ListGtagConfigResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/tagmanager.edit.containers",
+                        "https://www.googleapis.com/auth/tagmanager.readonly"
+                      ]
+                    },
+                    "update": {
+                      "description": "Updates a Google tag config.",
+                      "flatPath": "tagmanager/v2/accounts/{accountsId}/containers/{containersId}/workspaces/{workspacesId}/gtag_config/{gtag_configId}",
+                      "httpMethod": "PUT",
+                      "id": "tagmanager.accounts.containers.workspaces.gtag_config.update",
+                      "parameterOrder": [
+                        "path"
+                      ],
+                      "parameters": {
+                        "fingerprint": {
+                          "description": "When provided, this fingerprint must match the fingerprint of the config in storage.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "path": {
+                          "description": "Google tag config's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/gtag_config/{gtag_config_id}",
+                          "location": "path",
+                          "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/gtag_config/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "tagmanager/v2/{+path}",
+                      "request": {
+                        "$ref": "GtagConfig"
+                      },
+                      "response": {
+                        "$ref": "GtagConfig"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/tagmanager.edit.containers"
+                      ]
+                    }
+                  }
+                },
                 "tags": {
                   "methods": {
                     "create": {
@@ -3269,7 +3662,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "GTM Accounts's API relative path. Example: accounts/{account_id}",
+                  "description": "GTM Account's API relative path. Example: accounts/{account_id}",
                   "location": "path",
                   "pattern": "^accounts/[^/]+$",
                   "required": true,
@@ -3317,7 +3710,7 @@
       }
     }
   },
-  "revision": "20220914",
+  "revision": "20221026",
   "rootUrl": "https://tagmanager.googleapis.com/",
   "schemas": {
     "Account": {
@@ -3327,6 +3720,10 @@
         "accountId": {
           "description": "The Account ID uniquely identifies the GTM Account.",
           "type": "string"
+        },
+        "features": {
+          "$ref": "AccountFeatures",
+          "description": "Read-only Account feature set"
         },
         "fingerprint": {
           "description": "The fingerprint of the GTM Account as computed at storage time. This value is recomputed whenever the account is modified.",
@@ -3370,6 +3767,20 @@
             ""
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AccountFeatures": {
+      "id": "AccountFeatures",
+      "properties": {
+        "supportMultipleContainers": {
+          "description": "Whether this Account supports multiple Containers.",
+          "type": "boolean"
+        },
+        "supportUserPermissions": {
+          "description": "Whether this Account supports user permissions managed by GTM.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -3786,6 +4197,10 @@
           },
           "type": "array"
         },
+        "features": {
+          "$ref": "ContainerFeatures",
+          "description": "Read-only Container feature set."
+        },
         "fingerprint": {
           "description": "The fingerprint of the GTM Container as computed at storage time. This value is recomputed whenever the account is modified.",
           "type": "string"
@@ -3811,6 +4226,13 @@
         "publicId": {
           "description": "Container Public ID.",
           "type": "string"
+        },
+        "tagIds": {
+          "description": "All Tag IDs that refer to this Container.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "tagManagerUrl": {
           "description": "Auto generated link to the tag manager UI",
@@ -3883,6 +4305,64 @@
       },
       "type": "object"
     },
+    "ContainerFeatures": {
+      "id": "ContainerFeatures",
+      "properties": {
+        "supportBuiltInVariables": {
+          "description": "Whether this Container supports built-in variables",
+          "type": "boolean"
+        },
+        "supportClients": {
+          "description": "Whether this Container supports clients.",
+          "type": "boolean"
+        },
+        "supportEnvironments": {
+          "description": "Whether this Container supports environments.",
+          "type": "boolean"
+        },
+        "supportFolders": {
+          "description": "Whether this Container supports folders.",
+          "type": "boolean"
+        },
+        "supportGtagConfigs": {
+          "description": "Whether this Container supports Google tag config.",
+          "type": "boolean"
+        },
+        "supportTags": {
+          "description": "Whether this Container supports tags.",
+          "type": "boolean"
+        },
+        "supportTemplates": {
+          "description": "Whether this Container supports templates.",
+          "type": "boolean"
+        },
+        "supportTriggers": {
+          "description": "Whether this Container supports triggers.",
+          "type": "boolean"
+        },
+        "supportUserPermissions": {
+          "description": "Whether this Container supports user permissions managed by GTM.",
+          "type": "boolean"
+        },
+        "supportVariables": {
+          "description": "Whether this Container supports variables.",
+          "type": "boolean"
+        },
+        "supportVersions": {
+          "description": "Whether this Container supports Container versions.",
+          "type": "boolean"
+        },
+        "supportWorkspaces": {
+          "description": "Whether this Container supports workspaces.",
+          "type": "boolean"
+        },
+        "supportZones": {
+          "description": "Whether this Container supports zones.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "ContainerVersion": {
       "description": "Represents a Google Tag Manager Container Version.",
       "id": "ContainerVersion",
@@ -3940,6 +4420,13 @@
           "description": "The folders in the container that this version was taken from.",
           "items": {
             "$ref": "Folder"
+          },
+          "type": "array"
+        },
+        "gtagConfig": {
+          "description": "The Google tag configs in the container that this version was taken from.",
+          "items": {
+            "$ref": "GtagConfig"
           },
           "type": "array"
         },
@@ -4016,6 +4503,10 @@
         },
         "numCustomTemplates": {
           "description": "Number of custom templates in the container version.",
+          "type": "string"
+        },
+        "numGtagConfigs": {
+          "description": "Number of Google tag configs in the container version.",
           "type": "string"
         },
         "numMacros": {
@@ -4142,6 +4633,45 @@
         },
         "workspaceId": {
           "description": "GTM Workspace ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Destination": {
+      "description": "Represents a Google Tag Destination.",
+      "id": "Destination",
+      "properties": {
+        "accountId": {
+          "description": "GTM Account ID.",
+          "type": "string"
+        },
+        "containerId": {
+          "description": "GTM Container ID.",
+          "type": "string"
+        },
+        "destinationId": {
+          "description": "Destination ID.",
+          "type": "string"
+        },
+        "destinationLinkId": {
+          "description": "The Destination link ID uniquely identifies the Destination.",
+          "type": "string"
+        },
+        "fingerprint": {
+          "description": "The fingerprint of the Google Tag Destination as computed at storage time. This value is recomputed whenever the destination is modified.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Destination display name.",
+          "type": "string"
+        },
+        "path": {
+          "description": "Destination's API relative path.",
+          "type": "string"
+        },
+        "tagManagerUrl": {
+          "description": "Auto generated link to the tag manager UI.",
           "type": "string"
         }
       },
@@ -4390,6 +4920,16 @@
       },
       "type": "object"
     },
+    "GetContainerSnippetResponse": {
+      "id": "GetContainerSnippetResponse",
+      "properties": {
+        "snippet": {
+          "description": "Tagging snippet for a Container.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GetWorkspaceStatusResponse": {
       "description": "The changes that have occurred in the workspace since the base container version.",
       "id": "GetWorkspaceStatusResponse",
@@ -4407,6 +4947,52 @@
             "$ref": "Entity"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GtagConfig": {
+      "description": "Represents a Google tag configuration.",
+      "id": "GtagConfig",
+      "properties": {
+        "accountId": {
+          "description": "Google tag account ID.",
+          "type": "string"
+        },
+        "containerId": {
+          "description": "Google tag container ID.",
+          "type": "string"
+        },
+        "fingerprint": {
+          "description": "The fingerprint of the Google tag config as computed at storage time. This value is recomputed whenever the config is modified.",
+          "type": "string"
+        },
+        "gtagConfigId": {
+          "description": "The ID uniquely identifies the Google tag config.",
+          "type": "string"
+        },
+        "parameter": {
+          "description": "The Google tag config's parameters. @mutable tagmanager.accounts.containers.workspaces.gtag_config.create @mutable tagmanager.accounts.containers.workspaces.gtag_config.update",
+          "items": {
+            "$ref": "Parameter"
+          },
+          "type": "array"
+        },
+        "path": {
+          "description": "Google tag config's API relative path.",
+          "type": "string"
+        },
+        "tagManagerUrl": {
+          "description": "Auto generated link to the tag manager UI",
+          "type": "string"
+        },
+        "type": {
+          "description": "Google tag config type. @required tagmanager.accounts.containers.workspaces.gtag_config.create @required tagmanager.accounts.containers.workspaces.gtag_config.update @mutable tagmanager.accounts.containers.workspaces.gtag_config.create @mutable tagmanager.accounts.containers.workspaces.gtag_config.update",
+          "type": "string"
+        },
+        "workspaceId": {
+          "description": "Google tag workspace ID. Only used by GTM containers. Set to 0 otherwise.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4482,6 +5068,23 @@
       },
       "type": "object"
     },
+    "ListDestinationsResponse": {
+      "id": "ListDestinationsResponse",
+      "properties": {
+        "destination": {
+          "description": "All Destinations linked to a GTM Container.",
+          "items": {
+            "$ref": "Destination"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Continuation token for fetching the next page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListEnabledBuiltInVariablesResponse": {
       "description": "A list of enabled built-in variables.",
       "id": "ListEnabledBuiltInVariablesResponse",
@@ -4526,6 +5129,23 @@
           "description": "All GTM Folders of a GTM Container.",
           "items": {
             "$ref": "Folder"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Continuation token for fetching the next page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListGtagConfigResponse": {
+      "id": "ListGtagConfigResponse",
+      "properties": {
+        "gtagConfig": {
+          "description": "All Google tag configs in a Container.",
+          "items": {
+            "$ref": "GtagConfig"
           },
           "type": "array"
         },

@@ -164,6 +164,10 @@ export namespace securitycenter_v1beta1 {
      * What kind of user agent is associated, e.g. operating system shells, embedded or stand-alone applications, etc.
      */
     userAgentFamily?: string | null;
+    /**
+     * A string representing a username. This is likely not an IAM principal. For instance, this may be the system user name if the finding is VM-related, or this may be some type of application login user name, depending on the type of finding.
+     */
+    userName?: string | null;
   }
   /**
    * Conveys information about a Kubernetes access review (e.g. kubectl auth can-i ...) that was involved in a finding.
@@ -239,6 +243,19 @@ export namespace securitycenter_v1beta1 {
      * The project ids to use for filtering asset discovery.
      */
     projectIds?: string[] | null;
+  }
+  /**
+   * A finding that is associated with this node in the exposure path.
+   */
+  export interface Schema$AssociatedFinding {
+    /**
+     * Canonical name of the associated findings. Example: organizations/123/sources/456/findings/789
+     */
+    canonicalFindingName?: string | null;
+    /**
+     * The additional taxonomy group within findings from a given source.
+     */
+    findingCategory?: string | null;
   }
   /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
@@ -467,6 +484,19 @@ export namespace securitycenter_v1beta1 {
      * The percentage of memory page hashes in the signature that were matched.
      */
     percentPagesMatched?: number | null;
+  }
+  /**
+   * Represents a connection between a source node and a destination node in this exposure path.
+   */
+  export interface Schema$Edge {
+    /**
+     * This is the resource name of the destination node.
+     */
+    destination?: string | null;
+    /**
+     * This is the resource name of the source node.
+     */
+    source?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -873,6 +903,56 @@ export namespace securitycenter_v1beta1 {
    * The response to a BulkMute request. Contains the LRO information.
    */
   export interface Schema$GoogleCloudSecuritycenterV1BulkMuteFindingsResponse {}
+  /**
+   * A resource that is exposed as a result of a finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ExposedResource {
+    /**
+     * Human readable name of the resource that is exposed.
+     */
+    displayName?: string | null;
+    /**
+     * The ways in which this resource is exposed. Examples: Read, Write
+     */
+    methods?: string[] | null;
+    /**
+     * Exposed Resource Name e.g.: `organizations/123/attackExposureResults/456/exposedResources/789`
+     */
+    name?: string | null;
+    /**
+     * The name of the resource that is exposed. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
+     */
+    resource?: string | null;
+    /**
+     * The resource type of the exposed resource. See: https://cloud.google.com/asset-inventory/docs/supported-asset-types
+     */
+    resourceType?: string | null;
+    /**
+     * How valuable this resource is.
+     */
+    resourceValue?: string | null;
+  }
+  /**
+   * A path that an attacker could take to reach an exposed resource.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ExposurePath {
+    /**
+     * A list of the edges between nodes in this exposure path.
+     */
+    edges?: Schema$Edge[];
+    /**
+     * The leaf node of this exposure path.
+     */
+    exposedResource?: Schema$GoogleCloudSecuritycenterV1ExposedResource;
+    /**
+     * Exposure Path Name e.g.: `organizations/123/attackExposureResults/456/exposurePaths/789`
+     */
+    name?: string | null;
+    /**
+     * A list of nodes that exist in this exposure path.
+     */
+    pathNodes?: Schema$PathNode[];
+  }
   /**
    * Representation of third party SIEM/SOAR fields within SCC.
    */
@@ -1520,6 +1600,27 @@ export namespace securitycenter_v1beta1 {
      * The relative resource name of the settings. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/organizationSettings".
      */
     name?: string | null;
+  }
+  /**
+   * Represents one point that an attacker passes through in this exposure path.
+   */
+  export interface Schema$PathNode {
+    /**
+     * The findings associated with this node in the exposure path.
+     */
+    associatedFindings?: Schema$AssociatedFinding[];
+    /**
+     * Human readable name of this resource.
+     */
+    displayName?: string | null;
+    /**
+     * The name of the resource at this point in the exposure path. The format of the name is: https://cloud.google.com/apis/design/resource_names#full_resource_name
+     */
+    resource?: string | null;
+    /**
+     * The resource type of this resource. See: https://cloud.google.com/asset-inventory/docs/supported-asset-types
+     */
+    resourceType?: string | null;
   }
   /**
    * Kubernetes Pod.

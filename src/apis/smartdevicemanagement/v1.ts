@@ -281,10 +281,7 @@ export namespace smartdevicemanagement_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/sdm.service',
-     *       'https://www.googleapis.com/auth/sdm.thermostat.service',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -432,10 +429,7 @@ export namespace smartdevicemanagement_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/sdm.service',
-     *       'https://www.googleapis.com/auth/sdm.thermostat.service',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -574,10 +568,7 @@ export namespace smartdevicemanagement_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/sdm.service',
-     *       'https://www.googleapis.com/auth/sdm.thermostat.service',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -771,10 +762,7 @@ export namespace smartdevicemanagement_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/sdm.service',
-     *       'https://www.googleapis.com/auth/sdm.thermostat.service',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -911,10 +899,7 @@ export namespace smartdevicemanagement_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/sdm.service',
-     *       'https://www.googleapis.com/auth/sdm.thermostat.service',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1094,10 +1079,7 @@ export namespace smartdevicemanagement_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/sdm.service',
-     *       'https://www.googleapis.com/auth/sdm.thermostat.service',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1234,10 +1216,7 @@ export namespace smartdevicemanagement_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/sdm.service',
-     *       'https://www.googleapis.com/auth/sdm.thermostat.service',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/sdm.service'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls

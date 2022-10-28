@@ -2331,6 +2331,24 @@ export namespace displayvideo_v2 {
     videoViewableRate?: string | null;
   }
   /**
+   * Request message for LineItemService.DuplicateLineItem.
+   */
+  export interface Schema$DuplicateLineItemRequest {
+    /**
+     * The display name of the resulting line item. Must be UTF-8 encoded with a maximum size of 240 bytes.
+     */
+    targetDisplayName?: string | null;
+  }
+  /**
+   * Response message for LineItemService.DuplicateLineItem.
+   */
+  export interface Schema$DuplicateLineItemResponse {
+    /**
+     * The ID of the successfully created line item.
+     */
+    duplicateLineItemId?: string | null;
+  }
+  /**
    * Request message for FirstAndThirdPartyAudienceService.EditCustomerMatchMembers.
    */
   export interface Schema$EditCustomerMatchMembersRequest {
@@ -11848,6 +11866,401 @@ export namespace displayvideo_v2 {
     }
 
     /**
+     * Assigns a targeting option to an insertion order. Returns the assigned targeting option if successful. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_VIEWABILITY`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.insertionOrders.targetingTypes.assignedTargetingOptions.create(
+     *       {
+     *         // Required. The ID of the advertiser the insertion order belongs to.
+     *         advertiserId: '[^/]+',
+     *         // Required. The ID of the insertion order the assigned targeting option will belong to.
+     *         insertionOrderId: '[^/]+',
+     *         // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_VIEWABILITY`
+     *         targetingType: '[^/]+',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "ageRangeDetails": {},
+     *           //   "appCategoryDetails": {},
+     *           //   "appDetails": {},
+     *           //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *           //   "audienceGroupDetails": {},
+     *           //   "audioContentTypeDetails": {},
+     *           //   "authorizedSellerStatusDetails": {},
+     *           //   "browserDetails": {},
+     *           //   "businessChainDetails": {},
+     *           //   "carrierAndIspDetails": {},
+     *           //   "categoryDetails": {},
+     *           //   "channelDetails": {},
+     *           //   "contentDurationDetails": {},
+     *           //   "contentGenreDetails": {},
+     *           //   "contentInstreamPositionDetails": {},
+     *           //   "contentOutstreamPositionDetails": {},
+     *           //   "contentStreamTypeDetails": {},
+     *           //   "dayAndTimeDetails": {},
+     *           //   "deviceMakeModelDetails": {},
+     *           //   "deviceTypeDetails": {},
+     *           //   "digitalContentLabelExclusionDetails": {},
+     *           //   "environmentDetails": {},
+     *           //   "exchangeDetails": {},
+     *           //   "genderDetails": {},
+     *           //   "geoRegionDetails": {},
+     *           //   "householdIncomeDetails": {},
+     *           //   "inheritance": "my_inheritance",
+     *           //   "inventorySourceDetails": {},
+     *           //   "inventorySourceGroupDetails": {},
+     *           //   "keywordDetails": {},
+     *           //   "languageDetails": {},
+     *           //   "name": "my_name",
+     *           //   "nativeContentPositionDetails": {},
+     *           //   "negativeKeywordListDetails": {},
+     *           //   "omidDetails": {},
+     *           //   "onScreenPositionDetails": {},
+     *           //   "operatingSystemDetails": {},
+     *           //   "parentalStatusDetails": {},
+     *           //   "poiDetails": {},
+     *           //   "proximityLocationListDetails": {},
+     *           //   "regionalLocationListDetails": {},
+     *           //   "sensitiveCategoryExclusionDetails": {},
+     *           //   "subExchangeDetails": {},
+     *           //   "targetingType": "my_targetingType",
+     *           //   "thirdPartyVerifierDetails": {},
+     *           //   "urlDetails": {},
+     *           //   "userRewardedContentDetails": {},
+     *           //   "videoPlayerSizeDetails": {},
+     *           //   "viewabilityDetails": {}
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ageRangeDetails": {},
+     *   //   "appCategoryDetails": {},
+     *   //   "appDetails": {},
+     *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *   //   "audienceGroupDetails": {},
+     *   //   "audioContentTypeDetails": {},
+     *   //   "authorizedSellerStatusDetails": {},
+     *   //   "browserDetails": {},
+     *   //   "businessChainDetails": {},
+     *   //   "carrierAndIspDetails": {},
+     *   //   "categoryDetails": {},
+     *   //   "channelDetails": {},
+     *   //   "contentDurationDetails": {},
+     *   //   "contentGenreDetails": {},
+     *   //   "contentInstreamPositionDetails": {},
+     *   //   "contentOutstreamPositionDetails": {},
+     *   //   "contentStreamTypeDetails": {},
+     *   //   "dayAndTimeDetails": {},
+     *   //   "deviceMakeModelDetails": {},
+     *   //   "deviceTypeDetails": {},
+     *   //   "digitalContentLabelExclusionDetails": {},
+     *   //   "environmentDetails": {},
+     *   //   "exchangeDetails": {},
+     *   //   "genderDetails": {},
+     *   //   "geoRegionDetails": {},
+     *   //   "householdIncomeDetails": {},
+     *   //   "inheritance": "my_inheritance",
+     *   //   "inventorySourceDetails": {},
+     *   //   "inventorySourceGroupDetails": {},
+     *   //   "keywordDetails": {},
+     *   //   "languageDetails": {},
+     *   //   "name": "my_name",
+     *   //   "nativeContentPositionDetails": {},
+     *   //   "negativeKeywordListDetails": {},
+     *   //   "omidDetails": {},
+     *   //   "onScreenPositionDetails": {},
+     *   //   "operatingSystemDetails": {},
+     *   //   "parentalStatusDetails": {},
+     *   //   "poiDetails": {},
+     *   //   "proximityLocationListDetails": {},
+     *   //   "regionalLocationListDetails": {},
+     *   //   "sensitiveCategoryExclusionDetails": {},
+     *   //   "subExchangeDetails": {},
+     *   //   "targetingType": "my_targetingType",
+     *   //   "thirdPartyVerifierDetails": {},
+     *   //   "urlDetails": {},
+     *   //   "userRewardedContentDetails": {},
+     *   //   "videoPlayerSizeDetails": {},
+     *   //   "viewabilityDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AssignedTargetingOption>;
+    create(
+      params: Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AssignedTargetingOption>,
+      callback: BodyResponseCallback<Schema$AssignedTargetingOption>
+    ): void;
+    create(
+      params: Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Create,
+      callback: BodyResponseCallback<Schema$AssignedTargetingOption>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$AssignedTargetingOption>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Create
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AssignedTargetingOption>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'insertionOrderId', 'targetingType'],
+        pathParams: ['advertiserId', 'insertionOrderId', 'targetingType'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AssignedTargetingOption>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AssignedTargetingOption>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an assigned targeting option from an insertion order. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_VIEWABILITY`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.advertisers.insertionOrders.targetingTypes.assignedTargetingOptions.delete(
+     *       {
+     *         // Required. The ID of the advertiser the insertion order belongs to.
+     *         advertiserId: '[^/]+',
+     *         // Required. The ID of the assigned targeting option to delete.
+     *         assignedTargetingOptionId: '[^/]+',
+     *         // Required. The ID of the insertion order the assigned targeting option belongs to.
+     *         insertionOrderId: '[^/]+',
+     *         // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_VIEWABILITY`
+     *         targetingType: '[^/]+',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'advertiserId',
+          'insertionOrderId',
+          'targetingType',
+          'assignedTargetingOptionId',
+        ],
+        pathParams: [
+          'advertiserId',
+          'assignedTargetingOptionId',
+          'insertionOrderId',
+          'targetingType',
+        ],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
      * Gets a single targeting option assigned to an insertion order.
      * @example
      * ```js
@@ -12205,6 +12618,45 @@ export namespace displayvideo_v2 {
     }
   }
 
+  export interface Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser the insertion order belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the insertion order the assigned targeting option will belong to.
+     */
+    insertionOrderId?: string;
+    /**
+     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_VIEWABILITY`
+     */
+    targetingType?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AssignedTargetingOption;
+  }
+  export interface Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Delete
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser the insertion order belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the assigned targeting option to delete.
+     */
+    assignedTargetingOptionId?: string;
+    /**
+     * Required. The ID of the insertion order the assigned targeting option belongs to.
+     */
+    insertionOrderId?: string;
+    /**
+     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_VIEWABILITY`
+     */
+    targetingType?: string;
+  }
   export interface Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Get
     extends StandardParameters {
     /**
@@ -13362,6 +13814,152 @@ export namespace displayvideo_v2 {
     }
 
     /**
+     * Duplicates a line item. Returns the newly created line item id if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.lineItems.duplicate({
+     *     // Required. The ID of the advertiser this line item belongs to.
+     *     advertiserId: '[^/]+',
+     *     // Required. The ID of the line item to duplicate.
+     *     lineItemId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "targetDisplayName": "my_targetDisplayName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "duplicateLineItemId": "my_duplicateLineItemId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    duplicate(
+      params: Params$Resource$Advertisers$Lineitems$Duplicate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    duplicate(
+      params?: Params$Resource$Advertisers$Lineitems$Duplicate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DuplicateLineItemResponse>;
+    duplicate(
+      params: Params$Resource$Advertisers$Lineitems$Duplicate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    duplicate(
+      params: Params$Resource$Advertisers$Lineitems$Duplicate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DuplicateLineItemResponse>,
+      callback: BodyResponseCallback<Schema$DuplicateLineItemResponse>
+    ): void;
+    duplicate(
+      params: Params$Resource$Advertisers$Lineitems$Duplicate,
+      callback: BodyResponseCallback<Schema$DuplicateLineItemResponse>
+    ): void;
+    duplicate(
+      callback: BodyResponseCallback<Schema$DuplicateLineItemResponse>
+    ): void;
+    duplicate(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Lineitems$Duplicate
+        | BodyResponseCallback<Schema$DuplicateLineItemResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DuplicateLineItemResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DuplicateLineItemResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DuplicateLineItemResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Lineitems$Duplicate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Lineitems$Duplicate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2/advertisers/{+advertiserId}/lineItems/{+lineItemId}:duplicate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'lineItemId'],
+        pathParams: ['advertiserId', 'lineItemId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DuplicateLineItemResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DuplicateLineItemResponse>(parameters);
+      }
+    }
+
+    /**
      * Creates a new line item with settings (including targeting) inherited from the insertion order and an `ENTITY_STATUS_DRAFT` entity_status. Returns the newly created line item if successful. There are default values based on the three fields: * The insertion order's insertion_order_type * The insertion order's automation_type * The given line_item_type
      * @example
      * ```js
@@ -14085,6 +14683,22 @@ export namespace displayvideo_v2 {
      * The ID of the line item to delete.
      */
     lineItemId?: string;
+  }
+  export interface Params$Resource$Advertisers$Lineitems$Duplicate
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser this line item belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the line item to duplicate.
+     */
+    lineItemId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DuplicateLineItemRequest;
   }
   export interface Params$Resource$Advertisers$Lineitems$Generatedefault
     extends StandardParameters {

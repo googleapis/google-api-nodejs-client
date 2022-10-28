@@ -189,7 +189,7 @@
       }
     }
   },
-  "revision": "20210820",
+  "revision": "20221022",
   "rootUrl": "https://language.googleapis.com/",
   "schemas": {
     "AnalyzeEntitiesRequest": {
@@ -592,7 +592,7 @@
       "type": "object"
     },
     "Document": {
-      "description": "################################################################ # Represents the input to API methods.",
+      "description": "Represents the input to API methods.",
       "id": "Document",
       "properties": {
         "content": {

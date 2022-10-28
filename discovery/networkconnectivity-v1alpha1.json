@@ -177,97 +177,6 @@
             }
           },
           "resources": {
-            "connectionPolicies": {
-              "methods": {
-                "getIamPolicy": {
-                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/connectionPolicies/{connectionPoliciesId}:getIamPolicy",
-                  "httpMethod": "GET",
-                  "id": "networkconnectivity.projects.locations.connectionPolicies.getIamPolicy",
-                  "parameterOrder": [
-                    "resource"
-                  ],
-                  "parameters": {
-                    "options.requestedPolicyVersion": {
-                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
-                      "format": "int32",
-                      "location": "query",
-                      "type": "integer"
-                    },
-                    "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/connectionPolicies/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha1/{+resource}:getIamPolicy",
-                  "response": {
-                    "$ref": "Policy"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "setIamPolicy": {
-                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/connectionPolicies/{connectionPoliciesId}:setIamPolicy",
-                  "httpMethod": "POST",
-                  "id": "networkconnectivity.projects.locations.connectionPolicies.setIamPolicy",
-                  "parameterOrder": [
-                    "resource"
-                  ],
-                  "parameters": {
-                    "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/connectionPolicies/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha1/{+resource}:setIamPolicy",
-                  "request": {
-                    "$ref": "SetIamPolicyRequest"
-                  },
-                  "response": {
-                    "$ref": "Policy"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "testIamPermissions": {
-                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/connectionPolicies/{connectionPoliciesId}:testIamPermissions",
-                  "httpMethod": "POST",
-                  "id": "networkconnectivity.projects.locations.connectionPolicies.testIamPermissions",
-                  "parameterOrder": [
-                    "resource"
-                  ],
-                  "parameters": {
-                    "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/connectionPolicies/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha1/{+resource}:testIamPermissions",
-                  "request": {
-                    "$ref": "TestIamPermissionsRequest"
-                  },
-                  "response": {
-                    "$ref": "TestIamPermissionsResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                }
-              }
-            },
             "global": {
               "resources": {
                 "hubs": {
@@ -755,13 +664,13 @@
                 }
               }
             },
-            "serviceIdentifiers": {
+            "serviceClasses": {
               "methods": {
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/serviceIdentifiers/{serviceIdentifiersId}:getIamPolicy",
+                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/serviceClasses/{serviceClassesId}:getIamPolicy",
                   "httpMethod": "GET",
-                  "id": "networkconnectivity.projects.locations.serviceIdentifiers.getIamPolicy",
+                  "id": "networkconnectivity.projects.locations.serviceClasses.getIamPolicy",
                   "parameterOrder": [
                     "resource"
                   ],
@@ -775,7 +684,7 @@
                     "resource": {
                       "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceIdentifiers/[^/]+$",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceClasses/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
@@ -790,9 +699,9 @@
                 },
                 "setIamPolicy": {
                   "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/serviceIdentifiers/{serviceIdentifiersId}:setIamPolicy",
+                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/serviceClasses/{serviceClassesId}:setIamPolicy",
                   "httpMethod": "POST",
-                  "id": "networkconnectivity.projects.locations.serviceIdentifiers.setIamPolicy",
+                  "id": "networkconnectivity.projects.locations.serviceClasses.setIamPolicy",
                   "parameterOrder": [
                     "resource"
                   ],
@@ -800,7 +709,7 @@
                     "resource": {
                       "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceIdentifiers/[^/]+$",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceClasses/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
@@ -818,9 +727,9 @@
                 },
                 "testIamPermissions": {
                   "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/serviceIdentifiers/{serviceIdentifiersId}:testIamPermissions",
+                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/serviceClasses/{serviceClassesId}:testIamPermissions",
                   "httpMethod": "POST",
-                  "id": "networkconnectivity.projects.locations.serviceIdentifiers.testIamPermissions",
+                  "id": "networkconnectivity.projects.locations.serviceClasses.testIamPermissions",
                   "parameterOrder": [
                     "resource"
                   ],
@@ -828,7 +737,7 @@
                     "resource": {
                       "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceIdentifiers/[^/]+$",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceClasses/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
@@ -846,13 +755,13 @@
                 }
               }
             },
-            "serviceInstances": {
+            "serviceConnectionMaps": {
               "methods": {
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/serviceInstances/{serviceInstancesId}:getIamPolicy",
+                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/serviceConnectionMaps/{serviceConnectionMapsId}:getIamPolicy",
                   "httpMethod": "GET",
-                  "id": "networkconnectivity.projects.locations.serviceInstances.getIamPolicy",
+                  "id": "networkconnectivity.projects.locations.serviceConnectionMaps.getIamPolicy",
                   "parameterOrder": [
                     "resource"
                   ],
@@ -866,7 +775,7 @@
                     "resource": {
                       "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceInstances/[^/]+$",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceConnectionMaps/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
@@ -881,9 +790,9 @@
                 },
                 "setIamPolicy": {
                   "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/serviceInstances/{serviceInstancesId}:setIamPolicy",
+                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/serviceConnectionMaps/{serviceConnectionMapsId}:setIamPolicy",
                   "httpMethod": "POST",
-                  "id": "networkconnectivity.projects.locations.serviceInstances.setIamPolicy",
+                  "id": "networkconnectivity.projects.locations.serviceConnectionMaps.setIamPolicy",
                   "parameterOrder": [
                     "resource"
                   ],
@@ -891,7 +800,7 @@
                     "resource": {
                       "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceInstances/[^/]+$",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceConnectionMaps/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
@@ -909,9 +818,9 @@
                 },
                 "testIamPermissions": {
                   "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/serviceInstances/{serviceInstancesId}:testIamPermissions",
+                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/serviceConnectionMaps/{serviceConnectionMapsId}:testIamPermissions",
                   "httpMethod": "POST",
-                  "id": "networkconnectivity.projects.locations.serviceInstances.testIamPermissions",
+                  "id": "networkconnectivity.projects.locations.serviceConnectionMaps.testIamPermissions",
                   "parameterOrder": [
                     "resource"
                   ],
@@ -919,7 +828,98 @@
                     "resource": {
                       "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                       "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceInstances/[^/]+$",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceConnectionMaps/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+resource}:testIamPermissions",
+                  "request": {
+                    "$ref": "TestIamPermissionsRequest"
+                  },
+                  "response": {
+                    "$ref": "TestIamPermissionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "serviceConnectionPolicies": {
+              "methods": {
+                "getIamPolicy": {
+                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/serviceConnectionPolicies/{serviceConnectionPoliciesId}:getIamPolicy",
+                  "httpMethod": "GET",
+                  "id": "networkconnectivity.projects.locations.serviceConnectionPolicies.getIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "options.requestedPolicyVersion": {
+                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceConnectionPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+resource}:getIamPolicy",
+                  "response": {
+                    "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "setIamPolicy": {
+                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
+                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/serviceConnectionPolicies/{serviceConnectionPoliciesId}:setIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "networkconnectivity.projects.locations.serviceConnectionPolicies.setIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceConnectionPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+resource}:setIamPolicy",
+                  "request": {
+                    "$ref": "SetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "testIamPermissions": {
+                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/serviceConnectionPolicies/{serviceConnectionPoliciesId}:testIamPermissions",
+                  "httpMethod": "POST",
+                  "id": "networkconnectivity.projects.locations.serviceConnectionPolicies.testIamPermissions",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceConnectionPolicies/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
@@ -1211,7 +1211,7 @@
       }
     }
   },
-  "revision": "20220912",
+  "revision": "20221020",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AuditConfig": {

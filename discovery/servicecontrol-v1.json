@@ -197,7 +197,7 @@
       }
     }
   },
-  "revision": "20220602",
+  "revision": "20220915",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "AllocateInfo": {
@@ -531,7 +531,8 @@
             "LOAS_PROJECT_LOOKUP_UNAVAILABLE",
             "CLOUD_RESOURCE_MANAGER_BACKEND_UNAVAILABLE",
             "SECURITY_POLICY_BACKEND_UNAVAILABLE",
-            "LOCATION_POLICY_BACKEND_UNAVAILABLE"
+            "LOCATION_POLICY_BACKEND_UNAVAILABLE",
+            "INJECTED_ERROR"
           ],
           "enumDescriptions": [
             "This is never used in `CheckResponse`.",
@@ -569,7 +570,8 @@
             "The Spanner for looking up LOAS project is unavailable.",
             "Cloud Resource Manager backend server is unavailable.",
             "NOTE: for customers in the scope of Beta/GA of https://cloud.google.com/vpc-service-controls, this error is no longer returned. If the security backend is unavailable, rpc UNAVAILABLE status will be returned instead. It should be ignored and should not be used to reject client requests.",
-            "Backend server for evaluating location policy is unavailable."
+            "Backend server for evaluating location policy is unavailable.",
+            "Part of the project of fault injection: go/chemist-slo-validation. To distinguish between artificially injected errors and organic ones, this value will be exported for the per_service_check_error_count streamz. http://google3/apiserving/servicecontrol/server/controller_service.cc;l=196 Rpcinjectz2 works by injecting errors early in the rpc life cycle, before any of the chemist business logic runs."
           ],
           "type": "string"
         },
@@ -1299,7 +1301,7 @@
           "type": "string"
         },
         "principal": {
-          "description": "The identity of this peer. Similar to `Request.auth.principal`, but relative to the peer instead of the request. For example, the idenity associated with a load balancer that forwared the request.",
+          "description": "The identity of this peer. Similar to `Request.auth.principal`, but relative to the peer instead of the request. For example, the identity associated with a load balancer that forwarded the request.",
           "type": "string"
         },
         "regionCode": {

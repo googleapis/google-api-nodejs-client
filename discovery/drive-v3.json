@@ -35,7 +35,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/WveG9q_CVnWogOpzbn8ICFVS5lc\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/pqc6_FFI8R5V0mO3Ezlrf52ddCQ\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -2312,7 +2312,7 @@
       }
     }
   },
-  "revision": "20220815",
+  "revision": "20221002",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -3856,7 +3856,7 @@
           "type": "string"
         },
         "expirationTime": {
-          "description": "The time at which this permission will expire (RFC 3339 date-time). Expiration times have the following restrictions:  \n- They can only be set on user and group permissions \n- The time must be in the future \n- The time cannot be more than a year in the future",
+          "description": "The time at which this permission will expire (RFC 3339 date-time). Expiration times have the following restrictions:  \n- They cannot be set on shared drive items \n- They can only be set on user and group permissions \n- The time must be in the future \n- The time cannot be more than a year in the future",
           "format": "date-time",
           "type": "string"
         },

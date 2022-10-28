@@ -218,6 +218,11 @@
                   "location": "query",
                   "type": "string"
                 },
+                "name": {
+                  "description": "Optional. The job name. Optional.",
+                  "location": "query",
+                  "type": "string"
+                },
                 "pageSize": {
                   "description": "If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.",
                   "format": "int32",
@@ -450,6 +455,11 @@
                 },
                 "location": {
                   "description": "The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Optional. The job name. Optional.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1156,6 +1166,11 @@
                       "description": "The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.",
                       "location": "path",
                       "required": true,
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Optional. The job name. Optional.",
+                      "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
@@ -2225,7 +2240,7 @@
       }
     }
   },
-  "revision": "20220812",
+  "revision": "20221005",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -4820,6 +4835,10 @@
             "$ref": "TransformSummary"
           },
           "type": "array"
+        },
+        "stepNamesHash": {
+          "description": "A hash value of the submitted pipeline portable graph step names if exists.",
+          "type": "string"
         }
       },
       "type": "object"

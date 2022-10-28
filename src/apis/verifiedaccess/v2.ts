@@ -125,7 +125,7 @@ export namespace verifiedaccess_v2 {
   }
 
   /**
-   * Result message for VerifiedAccess.CreateChallenge.
+   * Result message for VerifiedAccess.GenerateChallenge.
    */
   export interface Schema$Challenge {
     /**
@@ -159,6 +159,10 @@ export namespace verifiedaccess_v2 {
    */
   export interface Schema$VerifyChallengeResponseResult {
     /**
+     * Unique customer id that this device belongs to, as defined by the Google Admin SDK at https://developers.google.com/admin-sdk/directory/v1/guides/manage-customers
+     */
+    customerId?: string | null;
+    /**
      * Device permanent id is returned in this field (for the machine response only).
      */
     devicePermanentId?: string | null;
@@ -174,6 +178,10 @@ export namespace verifiedaccess_v2 {
      * Certificate Signing Request (in the SPKAC format, base64 encoded) is returned in this field. This field will be set only if device has included CSR in its challenge response. (the option to include CSR is now available for both user and machine responses)
      */
     signedPublicKeyAndChallenge?: string | null;
+    /**
+     * Virtual device id of the device. The definition of virtual device id is platform-specific.
+     */
+    virtualDeviceId?: string | null;
   }
 
   export class Resource$Challenge {
@@ -356,10 +364,12 @@ export namespace verifiedaccess_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "customerId": "my_customerId",
      *   //   "devicePermanentId": "my_devicePermanentId",
      *   //   "deviceSignal": "my_deviceSignal",
      *   //   "keyTrustLevel": "my_keyTrustLevel",
-     *   //   "signedPublicKeyAndChallenge": "my_signedPublicKeyAndChallenge"
+     *   //   "signedPublicKeyAndChallenge": "my_signedPublicKeyAndChallenge",
+     *   //   "virtualDeviceId": "my_virtualDeviceId"
      *   // }
      * }
      *

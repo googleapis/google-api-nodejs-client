@@ -304,6 +304,27 @@ export namespace integrations_v1alpha {
     title?: string | null;
   }
   /**
+   * Cloud Scheduler Trigger configuration
+   */
+  export interface Schema$EnterpriseCrmEventbusProtoCloudSchedulerConfig {
+    /**
+     * Required. The cron tab of cloud scheduler trigger.
+     */
+    cronTab?: string | null;
+    /**
+     * Optional. When the job was deleted from Pantheon UI, error_message will be populated when Get/List integrations
+     */
+    errorMessage?: string | null;
+    /**
+     * Required. The location where associated cloud scheduler job will be created
+     */
+    location?: string | null;
+    /**
+     * Required. Service account used by Cloud Scheduler to trigger the integration at scheduled time
+     */
+    serviceAccountEmail?: string | null;
+  }
+  /**
    * This message recursively combines constituent conditions using logical AND.
    */
   export interface Schema$EnterpriseCrmEventbusProtoCombinedCondition {
@@ -1872,13 +1893,14 @@ export namespace integrations_v1alpha {
     uiConfig?: Schema$EnterpriseCrmEventbusProtoTaskUiConfig;
   }
   /**
-   * Configuration detail of a trigger. Next available id: 16
+   * Configuration detail of a trigger. Next available id: 17
    */
   export interface Schema$EnterpriseCrmFrontendsEventbusProtoTriggerConfig {
     /**
      * An alert threshold configuration for the [trigger + client + workflow] tuple. If these values are not specified in the trigger config, default values will be populated by the system. Note that there must be exactly one alert threshold configured per [client + trigger + workflow] when published.
      */
     alertConfig?: Schema$EnterpriseCrmEventbusProtoWorkflowAlertConfig[];
+    cloudSchedulerConfig?: Schema$EnterpriseCrmEventbusProtoCloudSchedulerConfig;
     /**
      * User-provided description intended to give more business context about the task.
      */
@@ -2099,10 +2121,6 @@ export namespace integrations_v1alpha {
      * Format of SSH Client cert.
      */
     certType?: string | null;
-    /**
-     * This is an optional field used in case client has enabled multi-factor authentication
-     */
-    password?: Schema$GoogleCloudConnectorsV1Secret;
     /**
      * SSH Client Cert. It should contain both public and private key.
      */
@@ -2525,6 +2543,27 @@ export namespace integrations_v1alpha {
      * The ssl certificate encoded in PEM format. This string must include the begin header and end footer lines. For example, -----BEGIN CERTIFICATE----- MIICTTCCAbagAwIBAgIJAPT0tSKNxan/MA0GCSqGSIb3DQEBCwUAMCoxFzAVBgNV BAoTDkdvb2dsZSBURVNUSU5HMQ8wDQYDVQQDEwZ0ZXN0Q0EwHhcNMTUwMTAxMDAw MDAwWhcNMjUwMTAxMDAwMDAwWjAuMRcwFQYDVQQKEw5Hb29nbGUgVEVTVElORzET MBEGA1UEAwwKam9lQGJhbmFuYTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA vDYFgMgxi5W488d9J7UpCInl0NXmZQpJDEHE4hvkaRlH7pnC71H0DLt0/3zATRP1 JzY2+eqBmbGl4/sgZKYv8UrLnNyQNUTsNx1iZAfPUflf5FwgVsai8BM0pUciq1NB xD429VFcrGZNucvFLh72RuRFIKH8WUpiK/iZNFkWhZ0CAwEAAaN3MHUwDgYDVR0P AQH/BAQDAgWgMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjAMBgNVHRMB Af8EAjAAMBkGA1UdDgQSBBCVgnFBCWgL/iwCqnGrhTPQMBsGA1UdIwQUMBKAEKey Um2o4k2WiEVA0ldQvNYwDQYJKoZIhvcNAQELBQADgYEAYK986R4E3L1v+Q6esBtW JrUwA9UmJRSQr0N5w3o9XzarU37/bkjOP0Fw0k/A6Vv1n3vlciYfBFaBIam1qRHr 5dMsYf4CZS6w50r7hyzqyrwDoyNxkLnd2PdcHT/sym1QmflsjEs7pejtnohO6N2H wQW6M0H7Zt8claGRla4fKkg= -----END CERTIFICATE-----
      */
     sslCertificate?: string | null;
+  }
+  /**
+   * Cloud Scheduler Trigger configuration
+   */
+  export interface Schema$GoogleCloudIntegrationsV1alphaCloudSchedulerConfig {
+    /**
+     * Required. The cron tab of cloud scheduler trigger.
+     */
+    cronTab?: string | null;
+    /**
+     * Optional. When the job was deleted from Pantheon UI, error_message will be populated when Get/List integrations
+     */
+    errorMessage?: string | null;
+    /**
+     * Required. The location where associated cloud scheduler job will be created
+     */
+    location?: string | null;
+    /**
+     * Required. Service account used by Cloud Scheduler to trigger the integration at scheduled time
+     */
+    serviceAccountEmail?: string | null;
   }
   /**
    * Metadata of runtime connection schema.
@@ -4160,6 +4199,10 @@ export namespace integrations_v1alpha {
      * Optional. An alert threshold configuration for the [trigger + client + integration] tuple. If these values are not specified in the trigger config, default values will be populated by the system. Note that there must be exactly one alert threshold configured per [client + trigger + integration] when published.
      */
     alertConfig?: Schema$GoogleCloudIntegrationsV1alphaIntegrationAlertConfig[];
+    /**
+     * Optional. Cloud Scheduler Trigger related metadata
+     */
+    cloudSchedulerConfig?: Schema$GoogleCloudIntegrationsV1alphaCloudSchedulerConfig;
     /**
      * Optional. User-provided description intended to give additional business context about the task.
      */
@@ -7653,8 +7696,6 @@ export namespace integrations_v1alpha {
      *       'filterParams.startTime': 'placeholder-value',
      *       // List of possible task statuses.
      *       'filterParams.taskStatuses': 'placeholder-value',
-     *       // Trigger id.
-     *       'filterParams.triggerId': 'placeholder-value',
      *       // Workflow name.
      *       'filterParams.workflowName': 'placeholder-value',
      *       // Optional. The results would be returned in order you specified here. Currently supporting "last_modified_time" and "create_time".
@@ -7835,10 +7876,6 @@ export namespace integrations_v1alpha {
      * List of possible task statuses.
      */
     'filterParams.taskStatuses'?: string[];
-    /**
-     * Trigger id.
-     */
-    'filterParams.triggerId'?: string;
     /**
      * Workflow name.
      */
@@ -12682,8 +12719,6 @@ export namespace integrations_v1alpha {
      *         'filterParams.startTime': 'placeholder-value',
      *         // List of possible task statuses.
      *         'filterParams.taskStatuses': 'placeholder-value',
-     *         // Trigger id.
-     *         'filterParams.triggerId': 'placeholder-value',
      *         // Workflow name.
      *         'filterParams.workflowName': 'placeholder-value',
      *         // Optional. The results would be returned in order you specified here. Currently supporting "last_modified_time" and "create_time".
@@ -12884,10 +12919,6 @@ export namespace integrations_v1alpha {
      * List of possible task statuses.
      */
     'filterParams.taskStatuses'?: string[];
-    /**
-     * Trigger id.
-     */
-    'filterParams.triggerId'?: string;
     /**
      * Workflow name.
      */

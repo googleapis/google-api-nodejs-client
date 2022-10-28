@@ -197,7 +197,7 @@ export namespace retail_v2beta {
     responseStatusCode?: number | null;
   }
   /**
-   * The error payload that is populated on LRO import APIs. Including: "google.cloud.retail.v2.ProductService.ImportProducts" "google.cloud.retail.v2.EventService.ImportUserEvents"
+   * The error payload that is populated on LRO import APIs, including "google.cloud.retail.v2.ProductService.ImportProducts" and "google.cloud.retail.v2.EventService.ImportUserEvents".
    */
   export interface Schema$GoogleCloudRetailLoggingImportErrorContext {
     /**
@@ -352,6 +352,15 @@ export namespace retail_v2beta {
      * Output result indicating where the data were exported to.
      */
     outputResult?: Schema$GoogleCloudRetailV2alphaOutputResult;
+  }
+  /**
+   * A Gcs output result.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaGcsOutputResult {
+    /**
+     * The uri of Gcs output
+     */
+    outputUri?: string | null;
   }
   /**
    * Response of the ImportCompletionDataRequest. If the long running operation is done, this message is returned by the google.longrunning.Operations.response field if the operation is successful.
@@ -530,7 +539,7 @@ export namespace retail_v2beta {
    */
   export interface Schema$GoogleCloudRetailV2alphaModelPageOptimizationConfigPanel {
     /**
-     * Required. The candidates to consider on the panel. Limit = 10.
+     * Required. The candidates to consider on the panel.
      */
     candidates?: Schema$GoogleCloudRetailV2alphaModelPageOptimizationConfigCandidate[];
     /**
@@ -552,13 +561,17 @@ export namespace retail_v2beta {
     servingConfigIds?: string[] | null;
   }
   /**
-   * Output result.
+   * Output result that stores the information about where the exported data is stored.
    */
   export interface Schema$GoogleCloudRetailV2alphaOutputResult {
     /**
-     * Export result in BigQuery.
+     * The BigQuery location where the result is stored.
      */
     bigqueryResult?: Schema$GoogleCloudRetailV2alphaBigQueryOutputResult[];
+    /**
+     * The Google Cloud Storage location where the result is stored.
+     */
+    gcsResult?: Schema$GoogleCloudRetailV2alphaGcsOutputResult[];
   }
   /**
    * Metadata related to the progress of the Purge operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -881,7 +894,7 @@ export namespace retail_v2beta {
    */
   export interface Schema$GoogleCloudRetailV2betaCatalogAttribute {
     /**
-     * If DYNAMIC_FACETABLE_ENABLED, attribute values are available for dynamic facet. Could only be DYNAMIC_FACETABLE_DISABLED if CatalogAttribute.indexable_option is INDEXABLE_DISABLED. Otherwise, an INVALID_ARGUMENT error is returned.
+     * If DYNAMIC_FACETABLE_ENABLED, attribute values are available for dynamic facet. Could only be DYNAMIC_FACETABLE_DISABLED if CatalogAttribute.indexable_option is INDEXABLE_DISABLED. Otherwise, an INVALID_ARGUMENT error is returned. Must be specified, otherwise throws INVALID_FORMAT error.
      */
     dynamicFacetableOption?: string | null;
     /**
@@ -889,7 +902,7 @@ export namespace retail_v2beta {
      */
     exactSearchableOption?: string | null;
     /**
-     * When AttributesConfig.attribute_config_level is CATALOG_LEVEL_ATTRIBUTE_CONFIG, if INDEXABLE_ENABLED attribute values are indexed so that it can be filtered, faceted, or boosted in SearchService.Search.
+     * When AttributesConfig.attribute_config_level is CATALOG_LEVEL_ATTRIBUTE_CONFIG, if INDEXABLE_ENABLED attribute values are indexed so that it can be filtered, faceted, or boosted in SearchService.Search. Must be specified, otherwise throws INVALID_FORMAT error.
      */
     indexableOption?: string | null;
     /**
@@ -905,7 +918,7 @@ export namespace retail_v2beta {
      */
     recommendationsFilteringOption?: string | null;
     /**
-     * When AttributesConfig.attribute_config_level is CATALOG_LEVEL_ATTRIBUTE_CONFIG, if SEARCHABLE_ENABLED, attribute values are searchable by text queries in SearchService.Search. If SEARCHABLE_ENABLED but attribute type is numerical, attribute values will not be searchable by text queries in SearchService.Search, as there are no text values associated to numerical attributes.
+     * When AttributesConfig.attribute_config_level is CATALOG_LEVEL_ATTRIBUTE_CONFIG, if SEARCHABLE_ENABLED, attribute values are searchable by text queries in SearchService.Search. If SEARCHABLE_ENABLED but attribute type is numerical, attribute values will not be searchable by text queries in SearchService.Search, as there are no text values associated to numerical attributes. Must be specified, otherwise throws INVALID_FORMAT error.
      */
     searchableOption?: string | null;
     /**
@@ -1214,6 +1227,15 @@ export namespace retail_v2beta {
     type?: string | null;
   }
   /**
+   * A Gcs output result.
+   */
+  export interface Schema$GoogleCloudRetailV2betaGcsOutputResult {
+    /**
+     * The uri of Gcs output
+     */
+    outputUri?: string | null;
+  }
+  /**
    * Google Cloud Storage location for input content.
    */
   export interface Schema$GoogleCloudRetailV2betaGcsSource {
@@ -1502,11 +1524,11 @@ export namespace retail_v2beta {
     priceInfo?: Schema$GoogleCloudRetailV2betaPriceInfo;
   }
   /**
-   * Merchant Center Feed filter criterrion.
+   * Merchant Center Feed filter criterion.
    */
   export interface Schema$GoogleCloudRetailV2betaMerchantCenterFeedFilter {
     /**
-     * Merchant Center primary feed id.
+     * Merchant Center primary feed ID.
      */
     primaryFeedId?: string | null;
     /**
@@ -1519,7 +1541,7 @@ export namespace retail_v2beta {
    */
   export interface Schema$GoogleCloudRetailV2betaMerchantCenterLink {
     /**
-     * The branch id (e.g. 0/1/2) within this catalog that products from merchant_center_account_id are streamed to. When updating this field, an empty value will use the currently configured default branch. However, changing the default branch later on won't change the linked branch here. A single branch id can only have one linked merchant center account id.
+     * The branch ID (e.g. 0/1/2) within this catalog that products from merchant_center_account_id are streamed to. When updating this field, an empty value will use the currently configured default branch. However, changing the default branch later on won't change the linked branch here. A single branch ID can only have one linked merchant center account ID.
      */
     branchId?: string | null;
     /**
@@ -1535,7 +1557,7 @@ export namespace retail_v2beta {
      */
     languageCode?: string | null;
     /**
-     * Required. The linked [Merchant center account id](https://developers.google.com/shopping-content/guides/accountstatuses). The account must be a standalone account or a sub-account of a MCA.
+     * Required. The linked [Merchant center account ID](https://developers.google.com/shopping-content/guides/accountstatuses). The account must be a standalone account or a sub-account of a MCA.
      */
     merchantCenterAccountId?: string | null;
     /**
@@ -1623,13 +1645,17 @@ export namespace retail_v2beta {
     servingConfigIds?: string[] | null;
   }
   /**
-   * Output result.
+   * Output result that stores the information about where the exported data is stored.
    */
   export interface Schema$GoogleCloudRetailV2betaOutputResult {
     /**
-     * Export result in BigQuery.
+     * The BigQuery location where the result is stored.
      */
     bigqueryResult?: Schema$GoogleCloudRetailV2betaBigQueryOutputResult[];
+    /**
+     * The Google Cloud Storage location where the result is stored.
+     */
+    gcsResult?: Schema$GoogleCloudRetailV2betaGcsOutputResult[];
   }
   /**
    * Request for pausing training of a model.
@@ -1640,7 +1666,7 @@ export namespace retail_v2beta {
    */
   export interface Schema$GoogleCloudRetailV2betaPredictRequest {
     /**
-     * Filter for restricting prediction results with a length limit of 5,000 characters. Accepts values for tags and the `filterOutOfStockItems` flag. * Tag expressions. Restricts predictions to products that match all of the specified tags. Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses, and must be separated from the tag values by a space. `-"tagA"` is also supported and is equivalent to `NOT "tagA"`. Tag values must be double quoted UTF-8 encoded strings with a size limit of 1,000 characters. Note: "Recently viewed" models don't support tag filtering at the moment. * filterOutOfStockItems. Restricts predictions to products that do not have a stockState value of OUT_OF_STOCK. Examples: * tag=("Red" OR "Blue") tag="New-Arrival" tag=(NOT "promotional") * filterOutOfStockItems tag=(-"promotional") * filterOutOfStockItems If your filter blocks all prediction results, the API will return generic (unfiltered) popular products. If you only want results strictly matching the filters, set `strictFiltering` to True in `PredictRequest.params` to receive empty results instead. Note that the API will never return items with storageStatus of "EXPIRED" or "DELETED" regardless of filter choices. If `filterSyntaxV2` is set to true under the `params` field, then attribute-based expressions are expected instead of the above described tag-based syntax. Examples: * (colors: ANY("Red", "Blue")) AND NOT (categories: ANY("Phones")) * (availability: ANY("IN_STOCK")) AND (colors: ANY("Red") OR categories: ANY("Phones"))
+     * Filter for restricting prediction results with a length limit of 5,000 characters. Accepts values for tags and the `filterOutOfStockItems` flag. * Tag expressions. Restricts predictions to products that match all of the specified tags. Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses, and must be separated from the tag values by a space. `-"tagA"` is also supported and is equivalent to `NOT "tagA"`. Tag values must be double quoted UTF-8 encoded strings with a size limit of 1,000 characters. Note: "Recently viewed" models don't support tag filtering at the moment. * filterOutOfStockItems. Restricts predictions to products that do not have a stockState value of OUT_OF_STOCK. Examples: * tag=("Red" OR "Blue") tag="New-Arrival" tag=(NOT "promotional") * filterOutOfStockItems tag=(-"promotional") * filterOutOfStockItems If your filter blocks all prediction results, the API will return *no* results. If instead you want empty result sets to return generic (unfiltered) popular products, set `strictFiltering` to False in `PredictRequest.params`. Note that the API will never return items with storageStatus of "EXPIRED" or "DELETED" regardless of filter choices. If `filterSyntaxV2` is set to true under the `params` field, then attribute-based expressions are expected instead of the above described tag-based syntax. Examples: * (colors: ANY("Red", "Blue")) AND NOT (categories: ANY("Phones")) * (availability: ANY("IN_STOCK")) AND (colors: ANY("Red") OR categories: ANY("Phones"))
      */
     filter?: string | null;
     /**
@@ -1656,7 +1682,7 @@ export namespace retail_v2beta {
      */
     pageToken?: string | null;
     /**
-     * Additional domain specific parameters for the predictions. Allowed values: * `returnProduct`: Boolean. If set to true, the associated product object will be returned in the `results.metadata` field in the prediction response. * `returnScore`: Boolean. If set to true, the prediction 'score' corresponding to each returned product will be set in the `results.metadata` field in the prediction response. The given 'score' indicates the probability of an product being clicked/purchased given the user's context and history. * `strictFiltering`: Boolean. True by default. If set to false, the service will return generic (unfiltered) popular products instead of empty if your filter blocks all prediction results. * `priceRerankLevel`: String. Default empty. If set to be non-empty, then it needs to be one of {'no-price-reranking', 'low-price-reranking', 'medium-price-reranking', 'high-price-reranking'\}. This gives request-level control and adjusts prediction results based on product price. * `diversityLevel`: String. Default empty. If set to be non-empty, then it needs to be one of {'no-diversity', 'low-diversity', 'medium-diversity', 'high-diversity', 'auto-diversity'\}. This gives request-level control and adjusts prediction results based on product category. * `filterSyntaxV2`: Boolean. False by default. If set to true, the `filter` field is interpreteted according to the new, attribute-based syntax.
+     * Additional domain specific parameters for the predictions. Allowed values: * `returnProduct`: Boolean. If set to true, the associated product object will be returned in the `results.metadata` field in the prediction response. * `returnScore`: Boolean. If set to true, the prediction 'score' corresponding to each returned product will be set in the `results.metadata` field in the prediction response. The given 'score' indicates the probability of a product being clicked/purchased given the user's context and history. * `strictFiltering`: Boolean. True by default. If set to false, the service will return generic (unfiltered) popular products instead of empty if your filter blocks all prediction results. * `priceRerankLevel`: String. Default empty. If set to be non-empty, then it needs to be one of {'no-price-reranking', 'low-price-reranking', 'medium-price-reranking', 'high-price-reranking'\}. This gives request-level control and adjusts prediction results based on product price. * `diversityLevel`: String. Default empty. If set to be non-empty, then it needs to be one of {'no-diversity', 'low-diversity', 'medium-diversity', 'high-diversity', 'auto-diversity'\}. This gives request-level control and adjusts prediction results based on product category. * `filterSyntaxV2`: Boolean. False by default. If set to true, the `filter` field is interpreteted according to the new, attribute-based syntax.
      */
     params?: {[key: string]: any} | null;
     /**
@@ -2409,7 +2435,7 @@ export namespace retail_v2beta {
      */
     facetKey?: Schema$GoogleCloudRetailV2betaSearchRequestFacetSpecFacetKey;
     /**
-     * Maximum of facet values that should be returned for this facet. If unspecified, defaults to 20. The maximum allowed value is 300. Values above 300 will be coerced to 300. If this field is negative, an INVALID_ARGUMENT is returned.
+     * Maximum of facet values that should be returned for this facet. If unspecified, defaults to 50. The maximum allowed value is 300. Values above 300 will be coerced to 300. If this field is negative, an INVALID_ARGUMENT is returned.
      */
     limit?: number | null;
   }
@@ -3216,7 +3242,7 @@ export namespace retail_v2beta {
      *     catalog: 'projects/my-project/locations/my-location/catalogs/my-catalog',
      *     // Determines which dataset to use for fetching completion. "user-data" will use the imported dataset through CompletionService.ImportCompletionData. "cloud-retail" will use the dataset generated by cloud retail based on user events. If leave empty, it will use the "user-data". Current supported values: * user-data * cloud-retail: This option requires enabling auto-learning function first. See [guidelines](https://cloud.google.com/retail/docs/completion-overview#generated-completion-dataset).
      *     dataset: 'placeholder-value',
-     *     // The device type context for completion suggestions. It is useful to apply different suggestions on different device types, e.g. `DESKTOP`, `MOBILE`. If it is empty, the suggestions are across all device types. Supported formats: * `UNKNOWN_DEVICE_TYPE` * `DESKTOP` * `MOBILE` * A customized string starts with `OTHER_`, e.g. `OTHER_IPHONE`.
+     *     // The device type context for completion suggestions. We recommend that you leave this field empty. It can apply different suggestions on different device types, e.g. `DESKTOP`, `MOBILE`. If it is empty, the suggestions are across all device types. Supported formats: * `UNKNOWN_DEVICE_TYPE` * `DESKTOP` * `MOBILE` * A customized string starts with `OTHER_`, e.g. `OTHER_IPHONE`.
      *     deviceType: 'placeholder-value',
      *     // Note that this field applies for `user-data` dataset only. For requests with `cloud-retail` dataset, setting this field has no effect. The language filters applied to the output suggestions. If set, it should contain the language of the query. If not set, suggestions are returned without considering language restrictions. This is the BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47). The maximum number of language codes is 3.
      *     languageCodes: 'placeholder-value',
@@ -4528,7 +4554,7 @@ export namespace retail_v2beta {
      */
     dataset?: string;
     /**
-     * The device type context for completion suggestions. It is useful to apply different suggestions on different device types, e.g. `DESKTOP`, `MOBILE`. If it is empty, the suggestions are across all device types. Supported formats: * `UNKNOWN_DEVICE_TYPE` * `DESKTOP` * `MOBILE` * A customized string starts with `OTHER_`, e.g. `OTHER_IPHONE`.
+     * The device type context for completion suggestions. We recommend that you leave this field empty. It can apply different suggestions on different device types, e.g. `DESKTOP`, `MOBILE`. If it is empty, the suggestions are across all device types. Supported formats: * `UNKNOWN_DEVICE_TYPE` * `DESKTOP` * `MOBILE` * A customized string starts with `OTHER_`, e.g. `OTHER_IPHONE`.
      */
     deviceType?: string;
     /**
@@ -11883,6 +11909,10 @@ export namespace retail_v2beta {
      *     ets: 'placeholder-value',
      *     // Required. The parent catalog name, such as `projects/1234/locations/global/catalogs/default_catalog`.
      *     parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *     // The prebuilt rule name that can convert a specific type of raw_json. For example: "default_schema/v1.0"
+     *     prebuiltRule: 'placeholder-value',
+     *     // An arbitrary serialized JSON string that contains necessary information that can comprise a user event. When this field is specified, the user_event field will be ignored. Note: line-delimited JSON is not supported, a single JSON only.
+     *     rawJson: 'placeholder-value',
      *     // The URL including cgi-parameters but excluding the hash fragment with a length limit of 5,000 characters. This is often more useful than the referer URL, because many browsers only send the domain for 3rd party requests.
      *     uri: 'placeholder-value',
      *     // Required. URL encoded UserEvent proto with a length limit of 2,000,000 characters.
@@ -12638,6 +12668,14 @@ export namespace retail_v2beta {
      * Required. The parent catalog name, such as `projects/1234/locations/global/catalogs/default_catalog`.
      */
     parent?: string;
+    /**
+     * The prebuilt rule name that can convert a specific type of raw_json. For example: "default_schema/v1.0"
+     */
+    prebuiltRule?: string;
+    /**
+     * An arbitrary serialized JSON string that contains necessary information that can comprise a user event. When this field is specified, the user_event field will be ignored. Note: line-delimited JSON is not supported, a single JSON only.
+     */
+    rawJson?: string;
     /**
      * The URL including cgi-parameters but excluding the hash fragment with a length limit of 5,000 characters. This is often more useful than the referer URL, because many browsers only send the domain for 3rd party requests.
      */

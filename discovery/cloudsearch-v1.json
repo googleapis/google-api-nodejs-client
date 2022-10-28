@@ -1213,6 +1213,12 @@
                   "pattern": "^datasources/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "updateMask": {
+                  "description": "Only applies to [`settings.datasources.patch`](https://developers.google.com/cloud-search/docs/reference/rest/v1/settings.datasources/patch). Update mask to control which fields to update. Example field paths: `name`, `displayName`. * If `update_mask` is non-empty, then only the fields specified in the `update_mask` are updated. * If you specify a field in the `update_mask`, but don't specify its value in the source, that field is cleared. * If the `update_mask` is not present or empty or has the value `*`, then all fields are updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
                 }
               },
               "path": "v1/settings/{+name}",
@@ -1395,6 +1401,12 @@
                   "pattern": "^searchapplications/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "updateMask": {
+                  "description": "Only applies to [`settings.searchapplications.patch`](https://developers.google.com/cloud-search/docs/reference/rest/v1/settings.searchapplications/patch). Update mask to control which fields to update. Example field paths: `search_application.name`, `search_application.displayName`. * If `update_mask` is non-empty, then only the fields specified in the `update_mask` are updated. * If you specify a field in the `update_mask`, but don't specify its value in the `search_application`, then that field is cleared. * If the `update_mask` is not present or empty or has the value `*`, then all fields are updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
                 }
               },
               "path": "v1/settings/{+name}",
@@ -1454,6 +1466,12 @@
                   "location": "path",
                   "pattern": "^searchapplications/[^/]+$",
                   "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Only applies to [`settings.searchapplications.patch`](https://developers.google.com/cloud-search/docs/reference/rest/v1/settings.searchapplications/patch). Update mask to control which fields to update. Example field paths: `search_application.name`, `search_application.displayName`. * If `update_mask` is non-empty, then only the fields specified in the `update_mask` are updated. * If you specify a field in the `update_mask`, but don't specify its value in the `search_application`, then that field is cleared. * If the `update_mask` is not present or empty or has the value `*`, then all fields are updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
                   "type": "string"
                 }
               },
@@ -2059,7 +2077,7 @@
       }
     }
   },
-  "revision": "20220913",
+  "revision": "20221018",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "AbuseReportingConfig": {
@@ -2214,6 +2232,23 @@
           "type": "string"
         },
         "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AddonComposeUiActionMarkup": {
+      "id": "AddonComposeUiActionMarkup",
+      "properties": {
+        "type": {
+          "enum": [
+            "UNSPECIFIED",
+            "DISMISS"
+          ],
+          "enumDescriptions": [
+            "Default. When unspecified, no action is taken.",
+            "Dismisses the add-on compose UI."
+          ],
           "type": "string"
         }
       },
@@ -3530,6 +3565,9 @@
             "SPAM",
             "CONFIDENTIAL_INFORMATION",
             "SENSITIVE_INFORMATION",
+            "FRAUD",
+            "MALWARE",
+            "ILLEGAL_ACTIVITIES",
             "OTHER"
           ],
           "enumDescriptions": [
@@ -3540,6 +3578,9 @@
             "\"Spam\"",
             "\"Confidential information\"",
             "\"Sensitive information\"",
+            "Phishing, impersonation/misrepresentation, or deceiving other users into sharing information under false pretenses.",
+            "Malware, viruses, Trojan horses, corrupted files, destructive code, etc.",
+            "Promoting, organizing, or engaging in illegal activities.",
             "\"Something else\""
           ],
           "type": "string"
@@ -4220,6 +4261,10 @@
           "$ref": "AppsDynamiteSharedAction",
           "description": "If specified, an action is triggered by this onClick."
         },
+        "hostAppAction": {
+          "$ref": "HostAppActionMarkup",
+          "description": "Triggers host app action on click directly without invoking form actions. This is currently not available to end-users and is used internal only."
+        },
         "openDynamicLinkAction": {
           "$ref": "AppsDynamiteSharedAction",
           "description": "An add-on triggers this action when the action needs to open a link. This differs from the open_link above in that this needs to talk to server to get the link. Thus some preparation work is required for web client to do before the open link action response comes back."
@@ -4804,9 +4849,13 @@
             "UNKNOWN_STATUS",
             "SUCCESS",
             "ERROR",
-            "NOT_APPLICABLE"
+            "NOT_APPLICABLE",
+            "THUMBNAIL_SUCCESS",
+            "GO_LIVE_SUCCESS"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -5046,6 +5095,219 @@
       },
       "type": "object"
     },
+    "AppsExtensionsMarkupCalendarClientActionMarkupAddAttachmentsActionMarkup": {
+      "id": "AppsExtensionsMarkupCalendarClientActionMarkupAddAttachmentsActionMarkup",
+      "properties": {
+        "addonAttachments": {
+          "items": {
+            "$ref": "AppsExtensionsMarkupCalendarClientActionMarkupAddAttachmentsActionMarkupAddonAttachment"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AppsExtensionsMarkupCalendarClientActionMarkupAddAttachmentsActionMarkupAddonAttachment": {
+      "id": "AppsExtensionsMarkupCalendarClientActionMarkupAddAttachmentsActionMarkupAddonAttachment",
+      "properties": {
+        "iconUrl": {
+          "description": "Link to the resource's icon.",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "MIME type of the content in resource_url.",
+          "type": "string"
+        },
+        "resourceUrl": {
+          "type": "string"
+        },
+        "title": {
+          "description": "Title of the attachment.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkup": {
+      "description": "Markup that defines conference data associated to a Google Calendar event.",
+      "id": "AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkup",
+      "properties": {
+        "conferenceId": {
+          "description": "Unique identifier for this conference data. Maximum 512 characters long.",
+          "type": "string"
+        },
+        "conferenceSolutionId": {
+          "description": "An identifier of the conferencing solution. Must match a value from the deployment's `calendar.conferenceSolution.id` field.",
+          "type": "string"
+        },
+        "entryPoints": {
+          "description": "Entry points to the conference. Maximum 300 entry points are allowed.",
+          "items": {
+            "$ref": "AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupEntryPointMarkup"
+          },
+          "type": "array"
+        },
+        "error": {
+          "$ref": "AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupError",
+          "description": "If set, it means an error occurred during conference creation."
+        },
+        "note": {
+          "description": "Additional notes (such as instructions from the administrator, legal notices) to display to the user. Can contain HTML. Max length 2048 characters.",
+          "type": "string"
+        },
+        "parameters": {
+          "description": "Additional add-on parameters. Maximum 300 parameters are allowed.",
+          "items": {
+            "$ref": "AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupParameter"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupEntryPointMarkup": {
+      "description": "A way to join the conference.",
+      "id": "AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupEntryPointMarkup",
+      "properties": {
+        "accessCode": {
+          "description": "An access code for accessing the conference. Maximum 128 characters long.",
+          "type": "string"
+        },
+        "features": {
+          "description": "Features of the entry point, such as being toll or toll-free. One entry point can have multiple features.",
+          "items": {
+            "enum": [
+              "UNKNOWN_FEATURE",
+              "TOLL",
+              "TOLL_FREE"
+            ],
+            "enumDescriptions": [
+              "Unknown feature.",
+              "Applies to `PHONE` entry point. A call to a toll number is charged to the calling party. A number can't be toll and toll-free at the same time.",
+              "Applies to `PHONE` entry point. For the calling party, a call to a toll-free number is free of charge. A number can't be toll and toll-free at the same time."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "label": {
+          "description": "The label of the entry point to display to the user. Maximum 512 characters long.",
+          "type": "string"
+        },
+        "meetingCode": {
+          "description": "A meeting code for accessing the conference. Maximum 128 characters long.",
+          "type": "string"
+        },
+        "passcode": {
+          "description": "A passcode for accessing the conference. Maximum 128 characters long.",
+          "type": "string"
+        },
+        "password": {
+          "description": "A password for accessing the conference. Maximum 128 characters long.",
+          "type": "string"
+        },
+        "pin": {
+          "description": "A PIN for accessing the conference. Maximum 128 characters long.",
+          "type": "string"
+        },
+        "regionCode": {
+          "description": "The CLDR/ISO 3166 region code for the country associated with this entry point. Applicable only to `Type.PHONE`.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the entry point. Required.",
+          "enum": [
+            "UNKNOWN",
+            "VIDEO",
+            "PHONE",
+            "MORE",
+            "SIP"
+          ],
+          "enumDescriptions": [
+            "Unknown conference type.",
+            "A video conference.",
+            "A phone conference.",
+            "Used to provide a link to further conference joining information.",
+            "A conference using [Session Initiation Protocol](https://en.wikipedia.org/wiki/Session_Initiation_Protocol)"
+          ],
+          "type": "string"
+        },
+        "uri": {
+          "description": "A URI for joining the conference. Supports tel: and http(s): and should be at most 1300 characters long. Required.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupError": {
+      "description": "Represents an error that occurred during conference creation.",
+      "id": "AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupError",
+      "properties": {
+        "authenticationUrl": {
+          "description": "If the error type is `AUTHENTICATION`, the add-on can provide a URL allowing users to log in. Maximum 1300 characters long.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of error. Required.",
+          "enum": [
+            "UNKNOWN",
+            "AUTHENTICATION",
+            "TEMPORARY",
+            "PERMANENT",
+            "PERMISSION_DENIED",
+            "CONFERENCE_SOLUTION_FORBIDDEN"
+          ],
+          "enumDescriptions": [
+            "Unknown error.",
+            "An authentication error.",
+            "A temporary error.",
+            "A permanent error.",
+            "The user isn't allowed to perform some action in the third-party conferencing system.",
+            "The user isn't allowed to use the selected conference solution (but might be allowed to use other solutions offered by the add-on)."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupParameter": {
+      "description": "Solution-specific parameters that are persisted with the event data and, if an update or delete is needed, are passed to the add-on. For example: `[{key: 'sessionKey', value: '123'}, {key: 'meetingId', value: '456'}]`",
+      "id": "AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupParameter",
+      "properties": {
+        "key": {
+          "description": "The key of the parameter. Maximum 50 characters long. Required.",
+          "type": "string"
+        },
+        "value": {
+          "description": "The value of the parameter. Maximum 1024 characters long. Required.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AppsExtensionsMarkupCalendarClientActionMarkupEditAttendeesActionMarkup": {
+      "id": "AppsExtensionsMarkupCalendarClientActionMarkupEditAttendeesActionMarkup",
+      "properties": {
+        "addAttendeeEmails": {
+          "description": "A list of attendees to add to the Google Calendar event.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AppsExtensionsMarkupCalendarClientActionMarkupEditConferenceDataActionMarkup": {
+      "id": "AppsExtensionsMarkupCalendarClientActionMarkupEditConferenceDataActionMarkup",
+      "properties": {
+        "conferenceData": {
+          "$ref": "AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkup",
+          "description": "The conference data to add to the Google Calendar event."
+        }
+      },
+      "type": "object"
+    },
     "Attachment": {
       "description": "Attachments that follow the message text.",
       "id": "Attachment",
@@ -5245,6 +5507,21 @@
       "description": "Bot-specific profile information.",
       "id": "BotInfo",
       "properties": {
+        "appAllowlistStatus": {
+          "enum": [
+            "UNSPECIFIED_STATUS",
+            "ALLOWED",
+            "ALL_APPS_DISABLED_BY_ADMIN",
+            "APP_NOT_ALLOWLISTED_BY_ADMIN"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "For both ALL_APPS_DISABLED_BY_ADMIN and APP_NOT_ALLOWLISTED_BY_ADMIN, the app should still be visible in the catalog, but usage of the app will be disabled. Indicates that all apps have been disabled by the dasher admin.",
+            "Indicates that the customer is using allowlisting, but that the bot is not allowlisted."
+          ],
+          "type": "string"
+        },
         "appId": {
           "$ref": "AppId",
           "description": "Identifier of the application associated with the bot."
@@ -5283,6 +5560,10 @@
           ],
           "type": "string"
         },
+        "supportHomeScreen": {
+          "description": "If the app supports a home screen.",
+          "type": "boolean"
+        },
         "supportUrls": {
           "$ref": "SupportUrls",
           "description": "Urls with additional information related to the bot. This field should always be set even if all the fields within it are empty, so that it is convenient for clients to work with this field in javascript."
@@ -5305,21 +5586,6 @@
             "type": "string"
           },
           "type": "array"
-        },
-        "whitelistStatus": {
-          "enum": [
-            "UNSPECIFIED_STATUS",
-            "ALLOWED",
-            "ALL_BOTS_DISABLED_BY_ADMIN",
-            "BOT_NOT_WHITELISTED_BY_ADMIN"
-          ],
-          "enumDescriptions": [
-            "",
-            "",
-            "For both ALL_BOTS_DISABLED_BY_ADMIN and BOT_NOT_WHITELISTED_BY_ADMIN, the bot should still be visible in the catalog, but usage of the bot will be disabled. Indicates that all bots has been disabled by the dasher admin.",
-            "Indicates that the customer is using whitelisting, but that the bot is not whitelisted."
-          ],
-          "type": "string"
         }
       },
       "type": "object"
@@ -5351,7 +5617,8 @@
             "SETUP_REQUIRED",
             "DISABLED_BY_ADMIN",
             "DISABLED_BY_DEVELOPER",
-            "PRIVATE"
+            "PRIVATE",
+            "APP_SUGGESTION"
           ],
           "enumDescriptions": [
             "",
@@ -5359,7 +5626,8 @@
             "Bot requires auth or config",
             "Bot fails to respond because it is disabled by domain admin",
             "Bot fails to respond because it is disabled by the bot's developer",
-            "Message to bot should be permanently private."
+            "Message to bot should be permanently private.",
+            "A suggestion to promote an app."
           ],
           "type": "string"
         },
@@ -5439,6 +5707,24 @@
         },
         "textButton": {
           "$ref": "TextButton"
+        }
+      },
+      "type": "object"
+    },
+    "CalendarClientActionMarkup": {
+      "id": "CalendarClientActionMarkup",
+      "properties": {
+        "addAttachmentsActionMarkup": {
+          "$ref": "AppsExtensionsMarkupCalendarClientActionMarkupAddAttachmentsActionMarkup",
+          "description": "An action that adds attachments to the Google Calendar event."
+        },
+        "editAttendeesActionMarkup": {
+          "$ref": "AppsExtensionsMarkupCalendarClientActionMarkupEditAttendeesActionMarkup",
+          "description": "An action that adds attendees to the Google Calendar event."
+        },
+        "editConferenceDataActionMarkup": {
+          "$ref": "AppsExtensionsMarkupCalendarClientActionMarkupEditConferenceDataActionMarkup",
+          "description": "An action that adds conference data to the Google Calendar event."
         }
       },
       "type": "object"
@@ -5568,6 +5854,26 @@
           "description": "Indicates whether the access lock is currently on or off.",
           "type": "boolean"
         },
+        "accessType": {
+          "description": "The current access type of the conference.",
+          "enum": [
+            "ACCESS_TYPE_UNSPECIFIED",
+            "ACCESS_TYPE_OPEN",
+            "ACCESS_TYPE_TRUSTED",
+            "ACCESS_TYPE_RESTRICTED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Anyone with meeting join information (url, phone access...) can join, no knocking required. (Subject to organization policies)",
+            "Members of the Host's organization, invited external users, and dial-in users can join without knocking, everyone else must knock. (Subject to organization policies)",
+            "Only participants invited by a host can automatically join, everyone else must knock and be admitted. (Subject to organization policies) Participants cannot dial out from the meeting. And only hosts can accept knocks."
+          ],
+          "type": "string"
+        },
+        "allowJoiningBeforeHost": {
+          "description": "Whether users can join this conference before a host (Host or Cohost).",
+          "type": "boolean"
+        },
         "attendanceReportEnabled": {
           "description": "Indicates whether the attendance report is currently enabled or disabled.",
           "type": "boolean"
@@ -5585,15 +5891,11 @@
           "type": "boolean"
         },
         "moderationEnabled": {
-          "description": "Indicates whether the current call is moderated.",
+          "description": "Indicates whether moderation is currently on or off.",
           "type": "boolean"
         },
         "presentLock": {
           "description": "Indicates whether the present lock is currently on or off.",
-          "type": "boolean"
-        },
-        "projectDinoEnabled": {
-          "description": "Indicates whether project Dino is currently on or off. WARNING: This is currently an experimental field. It should not be used without getting an explicit review and approval from the Meet team.",
           "type": "boolean"
         },
         "reactionsLock": {
@@ -5734,6 +6036,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "ChatClientActionMarkup": {
+      "description": "Actions handled by Chat Clients.",
+      "id": "ChatClientActionMarkup",
+      "properties": {},
       "type": "object"
     },
     "ChatConfig": {
@@ -6245,6 +6553,21 @@
       "properties": {
         "customEmoji": {
           "$ref": "AppsDynamiteSharedCustomEmoji"
+        }
+      },
+      "type": "object"
+    },
+    "CustomFunctionReturnValueMarkup": {
+      "description": "The result of a user running a custom function.",
+      "id": "CustomFunctionReturnValueMarkup",
+      "properties": {
+        "errorMessage": {
+          "description": "The error message to show to the user if something went wrong.",
+          "type": "string"
+        },
+        "value": {
+          "description": "The value that resulted from running the custom function.",
+          "type": "any"
         }
       },
       "type": "object"
@@ -6808,6 +7131,15 @@
       },
       "type": "object"
     },
+    "DriveClientActionMarkup": {
+      "id": "DriveClientActionMarkup",
+      "properties": {
+        "requestFileScope": {
+          "$ref": "RequestFileScope"
+        }
+      },
+      "type": "object"
+    },
     "DriveFollowUpRestrict": {
       "description": "Drive follow-up search restricts (e.g. \"followup:suggestions\").",
       "id": "DriveFollowUpRestrict",
@@ -7128,6 +7460,15 @@
       "description": "A message edit in Dynamite inserts a Babel-only item containing this field.",
       "id": "EditMetadata",
       "properties": {},
+      "type": "object"
+    },
+    "EditorClientActionMarkup": {
+      "id": "EditorClientActionMarkup",
+      "properties": {
+        "requestFileScopeForActiveDocument": {
+          "$ref": "RequestFileScopeForActiveDocument"
+        }
+      },
       "type": "object"
     },
     "EmailAddress": {
@@ -8668,6 +9009,24 @@
       },
       "type": "object"
     },
+    "GmailClientActionMarkup": {
+      "id": "GmailClientActionMarkup",
+      "properties": {
+        "addonComposeUiActionMarkup": {
+          "$ref": "AddonComposeUiActionMarkup"
+        },
+        "openCreatedDraftActionMarkup": {
+          "$ref": "OpenCreatedDraftActionMarkup"
+        },
+        "taskAction": {
+          "$ref": "TaskActionMarkup"
+        },
+        "updateDraftActionMarkup": {
+          "$ref": "UpdateDraftActionMarkup"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChatConfig": {
       "description": "Configuration of the Google Chat in Meet.",
       "id": "GoogleChatConfig",
@@ -8723,7 +9082,7 @@
       "type": "object"
     },
     "GoogleChatV1ContextualAddOnMarkupCardCardAction": {
-      "description": "A card action is the action associated with the card. For an invoice card, a typical action would be: delete invoice, email invoice or open the invoice in browser.",
+      "description": "A card action is the action associated with the card. For an invoice card, a typical action would be: delete invoice, email invoice or open the invoice in browser. Not supported by Google Chat apps.",
       "id": "GoogleChatV1ContextualAddOnMarkupCardCardAction",
       "properties": {
         "actionLabel": {
@@ -9505,6 +9864,37 @@
       },
       "type": "object"
     },
+    "HostAppActionMarkup": {
+      "description": "Actions handled by individual host apps.",
+      "id": "HostAppActionMarkup",
+      "properties": {
+        "calendarAction": {
+          "$ref": "CalendarClientActionMarkup",
+          "description": "Actions handled by Calendar."
+        },
+        "chatAction": {
+          "$ref": "ChatClientActionMarkup",
+          "description": "Actions handled by Chat."
+        },
+        "driveAction": {
+          "$ref": "DriveClientActionMarkup",
+          "description": "Actions handled by Drive."
+        },
+        "editorAction": {
+          "$ref": "EditorClientActionMarkup",
+          "description": "Actions handled by Docs, Sheets, or Slides."
+        },
+        "gmailAction": {
+          "$ref": "GmailClientActionMarkup",
+          "description": "Actions handled by Gmail."
+        },
+        "sheetsAction": {
+          "$ref": "SheetsClientActionMarkup",
+          "description": "Actions handled by Sheets."
+        }
+      },
+      "type": "object"
+    },
     "HostProto": {
       "description": "Represents a single host. Optionally, the MDB owner of the host can be specified.",
       "id": "HostProto",
@@ -10037,6 +10427,45 @@
       "description": "Request message for `InitializeCustomer` method.",
       "id": "InitializeCustomerRequest",
       "properties": {},
+      "type": "object"
+    },
+    "InsertContent": {
+      "id": "InsertContent",
+      "properties": {
+        "content": {
+          "description": "The content to be inserted.",
+          "type": "string"
+        },
+        "contentType": {
+          "description": "The type of inserted content.",
+          "enum": [
+            "UNSPECIFIED_CONTENT_TYPE",
+            "TEXT",
+            "MUTABLE_HTML",
+            "IMMUTABLE_HTML"
+          ],
+          "enumDescriptions": [
+            "Default value when nothing is set for ContentType.",
+            "Specifies that the content is in plain text.",
+            "Specifies that the content is in HTML and is mutable (can be edited).",
+            "Specifies that the content is in HTML and is immutable (cannot be edited)."
+          ],
+          "type": "string"
+        },
+        "mimeType": {
+          "enum": [
+            "UNSPECIFIED_EMAIL_MIME_TYPE",
+            "PLAIN_TEXT",
+            "HTML"
+          ],
+          "enumDescriptions": [
+            "Default value when nothing is set for EmailMimeType.",
+            "Specifies that the inserted content is in plain text.",
+            "Specifies that the inserted content is in HTML."
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "IntegerOperatorOptions": {
@@ -11051,7 +11480,7 @@
       "type": "object"
     },
     "MembershipChangedMetadata": {
-      "description": "Annotation metadata to display system messages for membership changes.",
+      "description": "Annotation metadata to display system messages for membership changes. Next Tag: 8",
       "id": "MembershipChangedMetadata",
       "properties": {
         "affectedMemberProfiles": {
@@ -11080,6 +11509,20 @@
         "initiatorProfile": {
           "$ref": "User",
           "description": "Complete member profiles, when ListTopicsRequest FetchOptions.USER is set. Otherwise, only the id will be filled in."
+        },
+        "initiatorType": {
+          "description": "The type of the user who initiated this membership change.",
+          "enum": [
+            "INITIATOR_TYPE_UNSPECIFIED",
+            "INITIATOR_TYPE_END_USER",
+            "INITIATOR_TYPE_ADMIN"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
         },
         "type": {
           "enum": [
@@ -11425,7 +11868,7 @@
           ],
           "enumDescriptions": [
             "Unspecified state for QuotedByState.",
-            "State to indicate that this message is quoted by another message (excluding soft-deleted message and purged ones).",
+            "State to indicate that this message is quoted by another message (excluding purged message).",
             "State to indicate that this message are not quoted by another message."
           ],
           "readOnly": true,
@@ -11782,6 +12225,28 @@
         "openLinkAction": {
           "$ref": "FormAction",
           "description": "An add-on triggers this action when the form action needs to open a link. This differs from the open_link above in that this needs to talk to server to get the link. Thus some preparation work is required for web client to do before the open link action response comes back."
+        }
+      },
+      "type": "object"
+    },
+    "OpenCreatedDraftActionMarkup": {
+      "id": "OpenCreatedDraftActionMarkup",
+      "properties": {
+        "draftId": {
+          "description": "The ID of the newly created draft in the form \"r123\".",
+          "type": "string"
+        },
+        "draftStorageId": {
+          "description": "The server storage ID in hex format, for example,\"15e9fa622ce1029d\".",
+          "type": "string"
+        },
+        "draftThreadId": {
+          "description": "The ID of the thread containing the newly created draft, for example, \"15e9fa622ce1029d\".",
+          "type": "string"
+        },
+        "draftThreadServerPermId": {
+          "description": "The server permanent ID for the draft's thread. This field isn't set anywhere, and it's ignored when processing OpenCreatedDraftActionMarkup. Supply and use draftThreadStorageId instead.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -12537,7 +13002,7 @@
           "type": "boolean"
         },
         "isWildcardSearchable": {
-          "description": "Indicates that users can perform wildcard search for this property. Only supported for Text properties. IsReturnable must be true to set this option. In a given datasource maximum of 5 properties can be marked as is_wildcard_searchable.",
+          "description": "Indicates that users can perform wildcard search for this property. Only supported for Text properties. IsReturnable must be true to set this option. In a given datasource maximum of 5 properties can be marked as is_wildcard_searchable. For more details, see [Define object properties](https://developers.google.com/cloud-search/docs/guides/schema-guide#properties)",
           "type": "boolean"
         },
         "name": {
@@ -12912,10 +13377,22 @@
           "readOnly": true,
           "type": "string"
         },
+        "createTimeMicros": {
+          "description": "Output only. Time when the quoted message was posted in microseconds.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "creatorId": {
           "$ref": "UserId",
           "description": "Output only. ID of the User who posted the quoted message. This includes information to identify if the quoted message was posted by an App on behalf of a user.",
           "readOnly": true
+        },
+        "lastEditTimeMicros": {
+          "description": "Output only. Time when the quoted message was last edited by a user at the time when quoting action happens. Time is in microseconds.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         },
         "lastUpdateTimeWhenQuotedMicros": {
           "description": "The `last_update_time` of the original message when the client initiated the quote creation. This is derived from the request payload passed from clients. Used to fetch the quoted message contents at a specific time on the read path. This field is populated from storage directly.",
@@ -12953,8 +13430,13 @@
           "readOnly": true,
           "type": "string"
         },
+        "updaterId": {
+          "$ref": "UserId",
+          "description": "Output only. ID of the User who last updated (created/edited/deleted) the quoted message at the time when quoting action happens. This includes information to identify if the quoted message was posted by an App on behalf of a user.",
+          "readOnly": true
+        },
         "uploadMetadata": {
-          "description": "Output only. Upload metadata of the quoted message. NEXT TAG: 11",
+          "description": "Output only. Upload metadata of the quoted message.",
           "items": {
             "$ref": "UploadMetadata"
           },
@@ -13013,6 +13495,15 @@
         "readReceiptsEnabled": {
           "description": "The new read receipts state.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "Recipient": {
+      "id": "Recipient",
+      "properties": {
+        "email": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -13188,6 +13679,20 @@
       },
       "type": "object"
     },
+    "RequestFileScope": {
+      "id": "RequestFileScope",
+      "properties": {
+        "itemId": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RequestFileScopeForActiveDocument": {
+      "id": "RequestFileScopeForActiveDocument",
+      "properties": {},
+      "type": "object"
+    },
     "RequestOptions": {
       "description": "Shared request options for all RPC methods.",
       "id": "RequestOptions",
@@ -13268,14 +13773,6 @@
       "description": "Debugging information about the response.",
       "id": "ResponseDebugInfo",
       "properties": {
-        "enabledExperiments": {
-          "description": "Experiments enabled in QAPI.",
-          "items": {
-            "format": "int32",
-            "type": "integer"
-          },
-          "type": "array"
-        },
         "formattedDebugInfo": {
           "description": "General debug info formatted for display.",
           "type": "string"
@@ -13468,6 +13965,10 @@
         },
         "id": {
           "$ref": "RosterId"
+        },
+        "isMembershipVisibleToCaller": {
+          "description": "Whether caller has visibility into members of the roster.",
+          "type": "boolean"
         },
         "membershipCount": {
           "format": "int32",
@@ -14115,11 +14616,31 @@
       "type": "object"
     },
     "Settings": {
-      "description": "Settings of a meeting space that can be viewed and edited by users with permissions. These settings are always populated for output.",
+      "description": "Settings of a meeting space that can be edited by users with corresponding manage privilege. These settings are always populated in responses.",
       "id": "Settings",
       "properties": {
         "accessLock": {
-          "description": "The access lock of the meeting space that lets owner control who can join the meeting. True if the access lock feature is enabled for the meeting space.",
+          "description": "The access lock of the meeting space that lets hosts control who can join the meeting.",
+          "type": "boolean"
+        },
+        "accessType": {
+          "description": "The access type of the meeting space.",
+          "enum": [
+            "ACCESS_TYPE_UNSPECIFIED",
+            "ACCESS_TYPE_OPEN",
+            "ACCESS_TYPE_TRUSTED",
+            "ACCESS_TYPE_RESTRICTED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Anyone with meeting join information (url, phone access...) can join, no knocking required. (Subject to organization policies)",
+            "Members of the Host's organization, invited external users, and dial-in users can join without knocking, everyone else must knock. (Subject to organization policies)",
+            "Only participants invited by a host can automatically join, everyone else must knock and be admitted. (Subject to organization policies) Participants cannot dial out from the meeting. And only hosts can accept knocks."
+          ],
+          "type": "string"
+        },
+        "allowJoiningBeforeHost": {
+          "description": "Whether users can join before host in the conferences of this meeting space.",
           "type": "boolean"
         },
         "attendanceReportEnabled": {
@@ -14127,11 +14648,11 @@
           "type": "boolean"
         },
         "chatLock": {
-          "description": "The chat lock of the meeting space that lets owner control whether the participants can send chat messages. True if the chat lock feature is enabled for the meeting space.",
+          "description": "The chat lock of the meeting space that lets owner control whether the participants can send chat messages.",
           "type": "boolean"
         },
         "cohostArtifactSharingEnabled": {
-          "description": "Whether meeting artifacts will be shared with co-hosts.",
+          "description": "Whether meeting artifacts will be shared with cohosts.",
           "type": "boolean"
         },
         "cseEnabled": {
@@ -14147,11 +14668,11 @@
           "type": "boolean"
         },
         "presentLock": {
-          "description": "The present lock of the meeting space that lets owner control whether the participants can present their screen. True if the present lock feature is enabled for the meeting space.",
+          "description": "The present lock of the meeting space that lets owner control whether the participants can present their screen.",
           "type": "boolean"
         },
         "reactionsLock": {
-          "description": "The reactions lock of the meeting space that lets owner control whether the participants can send reactions. True if the reactions lock feature is enabled for the meeting space.",
+          "description": "The reactions lock of the meeting space that lets owner control whether the participants can send reactions.",
           "type": "boolean"
         }
       },
@@ -14183,6 +14704,15 @@
             ""
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SheetsClientActionMarkup": {
+      "id": "SheetsClientActionMarkup",
+      "properties": {
+        "customFunctionReturnValueMarkup": {
+          "$ref": "CustomFunctionReturnValueMarkup"
         }
       },
       "type": "object"
@@ -14816,6 +15346,15 @@
       },
       "type": "object"
     },
+    "TaskActionMarkup": {
+      "id": "TaskActionMarkup",
+      "properties": {
+        "reloadTasks": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "TextButton": {
       "id": "TextButton",
       "properties": {
@@ -15183,6 +15722,60 @@
       },
       "type": "object"
     },
+    "UpdateBccRecipients": {
+      "id": "UpdateBccRecipients",
+      "properties": {
+        "bccRecipients": {
+          "items": {
+            "$ref": "Recipient"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateBody": {
+      "id": "UpdateBody",
+      "properties": {
+        "insertContents": {
+          "description": "A repeated field that contains a series of content to insert into the draft that the user is currently editing. The content can contain HTML content or plain text content.",
+          "items": {
+            "$ref": "InsertContent"
+          },
+          "type": "array"
+        },
+        "type": {
+          "enum": [
+            "UNSPECIFIED_ACTION_TYPE",
+            "IN_PLACE_INSERT",
+            "INSERT_AT_START",
+            "INSERT_AT_END",
+            "REPLACE"
+          ],
+          "enumDescriptions": [
+            "Default value when nothing is set for Type.",
+            "Indicates this action is to perform an in-place insertion. By default the content is inserted at the current cursor position, if there is selected content, it replaces the selected content.",
+            "Indicates this action is to perform insert at the start of the message body.",
+            "Indicates this action is to perform insert at the end of the message body.",
+            "Indicates this action is to replace the message body."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateCcRecipients": {
+      "id": "UpdateCcRecipients",
+      "properties": {
+        "ccRecipients": {
+          "items": {
+            "$ref": "Recipient"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "UpdateDataSourceRequest": {
       "id": "UpdateDataSourceRequest",
       "properties": {
@@ -15192,6 +15785,37 @@
         },
         "source": {
           "$ref": "DataSource"
+        },
+        "updateMask": {
+          "description": "Only applies to [`settings.datasources.patch`](https://developers.google.com/cloud-search/docs/reference/rest/v1/settings.datasources/patch). Update mask to control which fields to update. Example field paths: `name`, `displayName`. * If `update_mask` is non-empty, then only the fields specified in the `update_mask` are updated. * If you specify a field in the `update_mask`, but don't specify its value in the source, that field is cleared. * If the `update_mask` is not present or empty or has the value `*`, then all fields are updated.",
+          "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateDraftActionMarkup": {
+      "id": "UpdateDraftActionMarkup",
+      "properties": {
+        "updateBccRecipients": {
+          "$ref": "UpdateBccRecipients",
+          "description": "If set, replaces the existing Bcc recipients of the draft the user is currently editing."
+        },
+        "updateBody": {
+          "$ref": "UpdateBody",
+          "description": "A field that contains a series of update actions to perform on the draft body that the user is currently editing."
+        },
+        "updateCcRecipients": {
+          "$ref": "UpdateCcRecipients",
+          "description": "If set, replaces the existing Cc recipients of the draft the user is currently editing."
+        },
+        "updateSubject": {
+          "$ref": "UpdateSubject",
+          "description": "If set, replaces the existing subject of the draft the user is currently editing."
+        },
+        "updateToRecipients": {
+          "$ref": "UpdateToRecipients",
+          "description": "If set, replaces the existing To recipients of the draft the user is currently editing."
         }
       },
       "type": "object"
@@ -15210,6 +15834,27 @@
         "validateOnly": {
           "description": "If true, the schema will be checked for validity, but will not be registered with the data source, even if valid.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateSubject": {
+      "id": "UpdateSubject",
+      "properties": {
+        "subject": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateToRecipients": {
+      "id": "UpdateToRecipients",
+      "properties": {
+        "toRecipients": {
+          "items": {
+            "$ref": "Recipient"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -15347,8 +15992,26 @@
           "format": "int32",
           "type": "integer"
         },
+        "linkType": {
+          "description": "NEXT TAG : 18",
+          "enum": [
+            "UNDEFINED",
+            "AUTO_DETECTED_PLAIN_TEXT",
+            "RICH_TEXT",
+            "MARKDOWN",
+            "NO_ASSOCIATED_TEXT"
+          ],
+          "enumDescriptions": [
+            "",
+            "Set by the server, when it detects a URL in the message text",
+            "Set by the client, when the user adds a link via the rich-text editing (RTE) toolbar",
+            "Set by the server, when it detects a URL in markdown-syntax in the message text",
+            "Set by the server when a URL annotation received from client has 0 length and 0 start index"
+          ],
+          "type": "string"
+        },
         "mimeType": {
-          "description": "Mime type of the content (Currently mapped from Page Render Service ItemType) Note that this is not necessarily the mime type of the http resource. For example a text/html from youtube or vimeo may actually be classified as a video type. Then we shall mark it as video/* since we don't know exactly what type of video it is. NEXT TAG : 16",
+          "description": "Mime type of the content (Currently mapped from Page Render Service ItemType) Note that this is not necessarily the mime type of the http resource. For example a text/html from youtube or vimeo may actually be classified as a video type. Then we shall mark it as video/* since we don't know exactly what type of video it is.",
           "type": "string"
         },
         "redirectUrl": {
@@ -15370,6 +16033,19 @@
         "url": {
           "$ref": "SafeUrlProto",
           "description": "The original URL."
+        },
+        "urlSource": {
+          "enum": [
+            "URL_SOURCE_UNKNOWN",
+            "USER_SUPPLIED_URL",
+            "SERVER_SUPPLIED_POLICY_VIOLATION"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -15523,9 +16199,13 @@
       "type": "object"
     },
     "UserInfo": {
-      "description": "Contains info regarding the updater of an Activity Feed item. Next Id: 7",
+      "description": "Contains info regarding the updater of an Activity Feed item. Next Id: 8",
       "id": "UserInfo",
       "properties": {
+        "driveNotificationAvatarUrl": {
+          "description": "Avatar url of the user who triggered the Drive Notification email. This field will be populated if we can extract such information from the Drive Notification email. This should only be used to fetch user avatars when updater_to_show_email is not populated. This field is not set for non-Drive Notification items.",
+          "type": "string"
+        },
         "updaterCountDisplayType": {
           "description": "Describes how updater_count_to_show should be used.",
           "enum": [
@@ -15548,7 +16228,7 @@
           "type": "integer"
         },
         "updaterToShowEmail": {
-          "description": "The email of the updater for clients to show used for Gmail items.",
+          "description": "The email of the updater for clients to show used for Gmail items. For Drive Notifications, this is the email of the user who triggered the Drive Notification email. This field will be populated if we can extract such information from the Drive Notification email. This is not the actual sender of the email, as the sender is always comments-noreply@docs.google.com.",
           "type": "string"
         },
         "updaterToShowGaiaId": {
@@ -15557,7 +16237,7 @@
           "type": "string"
         },
         "updaterToShowName": {
-          "description": "The display name of the updater for clients to show used for Gmail items. This (along with the updater fields above) will be populated in the thread pipeline (http://shortn/_rPS0GCp94Y) when converting Activity Feed message attributes into client-renderable Activity Feed items.",
+          "description": "The display name of the updater for clients to show used for Gmail items. For non-Drive Notification items, this field will always be populated. If the display name cannot be found for the user, the fallback string will be the email address. For Drive Notification items, this is the name of the user who triggered the Drive notification email. This field will be populated if we can extract such information from the Drive Notification email. If the name cannot be extracted, then the email will be the fallback string, which is used as the display name text in the UI when needed. This is not the actual sender of the email, as the sender is always comments-noreply@docs.google.com.",
           "type": "string"
         },
         "updaterToShowUserId": {

@@ -406,6 +406,10 @@ export namespace composer_v1 {
     operations?: Schema$Operation[];
   }
   /**
+   * Response to LoadSnapshotRequest.
+   */
+  export interface Schema$LoadSnapshotResponse {}
+  /**
    * The configuration settings for Cloud Composer maintenance window. The following example: ``` { "startTime":"2019-08-01T01:00:00Z" "endTime":"2019-08-01T07:00:00Z" "recurrence":"FREQ=WEEKLY;BYDAY=TU,WE" \} ``` would define a maintenance window between 01 and 07 hours UTC during each Tuesday and Wednesday.
    */
   export interface Schema$MaintenanceWindow {
@@ -434,6 +438,15 @@ export namespace composer_v1 {
      * Whether or not master authorized networks feature is enabled.
      */
     enabled?: boolean | null;
+  }
+  /**
+   * Configuration options for networking connections in the Composer 2 environment.
+   */
+  export interface Schema$NetworkingConfig {
+    /**
+     * Optional. Indicates the user requested specifc connection type between Tenant and Customer projects. You cannot set networking connection type in public IP environment.
+     */
+    connectionType?: string | null;
   }
   /**
    * The configuration information for the Kubernetes Engine nodes running the Apache Airflow software.
@@ -580,6 +593,10 @@ export namespace composer_v1 {
      */
     enablePrivatelyUsedPublicIps?: boolean | null;
     /**
+     * Optional. Configuration for the network connections configuration in the environment.
+     */
+    networkingConfig?: Schema$NetworkingConfig;
+    /**
      * Optional. Configuration for the private GKE cluster for a Private IP Cloud Composer environment.
      */
     privateClusterConfig?: Schema$PrivateClusterConfig;
@@ -591,6 +608,15 @@ export namespace composer_v1 {
      * Output only. The IP range reserved for the tenant project's App Engine VMs. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*.
      */
     webServerIpv4ReservedRange?: string | null;
+  }
+  /**
+   * Response to SaveSnapshotRequest.
+   */
+  export interface Schema$SaveSnapshotResponse {
+    /**
+     * The fully-resolved Cloud Storage path of the created snapshot, e.g.: "gs://my-bucket/snapshots/project_location_environment_timestamp". This field is populated only if the snapshot creation was successful.
+     */
+    snapshotPath?: string | null;
   }
   /**
    * Configuration for resources used by Airflow schedulers.

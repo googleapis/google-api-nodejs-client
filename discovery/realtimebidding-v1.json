@@ -1305,7 +1305,7 @@
       }
     }
   },
-  "revision": "20220920",
+  "revision": "20221027",
   "rootUrl": "https://realtimebidding.googleapis.com/",
   "schemas": {
     "ActivatePretargetingConfigRequest": {
@@ -1805,7 +1805,7 @@
           "description": "A native creative."
         },
         "renderUrl": {
-          "description": "Experimental field that can be used during the [FLEDGE Origin Trial](/authorized-buyers/rtb/fledge-origin-trial). The URL to fetch an interest group ad used in [TURTLEDOVE on-device auction](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#1-browsers-record-interest-groups\") This should be unique among all creatives for a given creative.account_id",
+          "description": "Experimental field that can be used during the [FLEDGE Origin Trial](/authorized-buyers/rtb/fledge-origin-trial). The URL to fetch an interest group ad used in [TURTLEDOVE on-device auction](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#1-browsers-record-interest-groups\"). This should be unique among all creatives for a given `accountId`.",
           "type": "string"
         },
         "restrictedCategories": {

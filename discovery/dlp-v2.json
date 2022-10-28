@@ -3412,7 +3412,7 @@
       }
     }
   },
-  "revision": "20220910",
+  "revision": "20221023",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -3425,7 +3425,7 @@
         },
         "jobNotificationEmails": {
           "$ref": "GooglePrivacyDlpV2JobNotificationEmails",
-          "description": "Enable email notification for project owners and editors on job's completion/failure."
+          "description": "Sends an email when the job completes. The email goes to IAM project owners and technical [Essential Contacts](https://cloud.google.com/resource-manager/docs/managing-notification-contacts)."
         },
         "pubSub": {
           "$ref": "GooglePrivacyDlpV2PublishToPubSub",
@@ -4100,7 +4100,6 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2ContentItem": {
-      "description": "Container structure for the content to inspect.",
       "id": "GooglePrivacyDlpV2ContentItem",
       "properties": {
         "byteItem": {
@@ -5529,7 +5528,7 @@
       "id": "GooglePrivacyDlpV2InfoType",
       "properties": {
         "name": {
-          "description": "Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/dlp/docs/infotypes-reference when specifying a built-in type. When sending Cloud DLP results to Data Catalog, infoType names should conform to the pattern `[A-Za-z0-9$-_]{1,64}`.",
+          "description": "Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/dlp/docs/infotypes-reference when specifying a built-in type. When sending Cloud DLP results to Data Catalog, infoType names should conform to the pattern `[A-Za-z0-9$_-]{1,64}`.",
           "type": "string"
         },
         "version": {
@@ -5699,6 +5698,10 @@
           "description": "Internal name of the infoType.",
           "type": "string"
         },
+        "sensitivityScore": {
+          "$ref": "GooglePrivacyDlpV2SensitivityScore",
+          "description": "The default sensitivity of the infoType."
+        },
         "supportedBy": {
           "description": "Which parts of the API supports this InfoType.",
           "items": {
@@ -5762,6 +5765,11 @@
       "description": "The infoType details for this column.",
       "id": "GooglePrivacyDlpV2InfoTypeSummary",
       "properties": {
+        "estimatedPrevalence": {
+          "description": "Not populated for predicted infotypes.",
+          "format": "int32",
+          "type": "integer"
+        },
         "infoType": {
           "$ref": "GooglePrivacyDlpV2InfoType",
           "description": "The infoType."

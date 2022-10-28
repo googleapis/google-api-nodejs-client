@@ -8146,7 +8146,7 @@
       }
     }
   },
-  "revision": "20220916",
+  "revision": "20221027",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -8497,17 +8497,7 @@
             "AGE_RANGE_45_54",
             "AGE_RANGE_55_64",
             "AGE_RANGE_65_PLUS",
-            "AGE_RANGE_UNKNOWN",
-            "AGE_RANGE_18_20",
-            "AGE_RANGE_21_24",
-            "AGE_RANGE_25_29",
-            "AGE_RANGE_30_34",
-            "AGE_RANGE_35_39",
-            "AGE_RANGE_40_44",
-            "AGE_RANGE_45_49",
-            "AGE_RANGE_50_54",
-            "AGE_RANGE_55_59",
-            "AGE_RANGE_60_64"
+            "AGE_RANGE_UNKNOWN"
           ],
           "enumDescriptions": [
             "Default value when age range is not specified in this version. This enum is a placeholder for default value and does not represent a real age range option.",
@@ -8517,17 +8507,7 @@
             "The age range of the audience is 45 to 54.",
             "The age range of the audience is 55 to 64.",
             "The age range of the audience is 65 and up.",
-            "The age range of the audience is unknown.",
-            "The age range of the audience is 18 to 20, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
-            "The age range of the audience is 21 to 24, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
-            "The age range of the audience is 25 to 29, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
-            "The age range of the audience is 30 to 34, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
-            "The age range of the audience is 35 to 39, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
-            "The age range of the audience is 40 to 44, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
-            "The age range of the audience is 45 to 49, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
-            "The age range of the audience is 50 to 54, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
-            "The age range of the audience is 55 to 59, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
-            "The age range of the audience is 60 to 64, only supported for the AdGroup of YouTube Programmatic Reservation line item."
+            "The age range of the audience is unknown."
           ],
           "type": "string"
         },
@@ -8552,17 +8532,7 @@
             "AGE_RANGE_45_54",
             "AGE_RANGE_55_64",
             "AGE_RANGE_65_PLUS",
-            "AGE_RANGE_UNKNOWN",
-            "AGE_RANGE_18_20",
-            "AGE_RANGE_21_24",
-            "AGE_RANGE_25_29",
-            "AGE_RANGE_30_34",
-            "AGE_RANGE_35_39",
-            "AGE_RANGE_40_44",
-            "AGE_RANGE_45_49",
-            "AGE_RANGE_50_54",
-            "AGE_RANGE_55_59",
-            "AGE_RANGE_60_64"
+            "AGE_RANGE_UNKNOWN"
           ],
           "enumDescriptions": [
             "Default value when age range is not specified in this version. This enum is a placeholder for default value and does not represent a real age range option.",
@@ -8572,17 +8542,7 @@
             "The age range of the audience is 45 to 54.",
             "The age range of the audience is 55 to 64.",
             "The age range of the audience is 65 and up.",
-            "The age range of the audience is unknown.",
-            "The age range of the audience is 18 to 20, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
-            "The age range of the audience is 21 to 24, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
-            "The age range of the audience is 25 to 29, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
-            "The age range of the audience is 30 to 34, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
-            "The age range of the audience is 35 to 39, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
-            "The age range of the audience is 40 to 44, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
-            "The age range of the audience is 45 to 49, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
-            "The age range of the audience is 50 to 54, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
-            "The age range of the audience is 55 to 59, only supported for the AdGroup of YouTube Programmatic Reservation line item.",
-            "The age range of the audience is 60 to 64, only supported for the AdGroup of YouTube Programmatic Reservation line item."
+            "The age range of the audience is unknown."
           ],
           "readOnly": true,
           "type": "string"

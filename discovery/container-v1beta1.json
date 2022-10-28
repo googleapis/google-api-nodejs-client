@@ -2512,7 +2512,7 @@
       }
     }
   },
-  "revision": "20220826",
+  "revision": "20220927",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -5503,6 +5503,20 @@
         "workloadConfig": {
           "$ref": "WorkloadConfig",
           "description": "WorkloadConfig defines which actions are enabled for a cluster's workload configurations."
+        },
+        "workloadVulnerabilityMode": {
+          "description": "Sets which mode to use for Protect workload vulnerability scanning feature.",
+          "enum": [
+            "WORKLOAD_VULNERABILITY_MODE_UNSPECIFIED",
+            "DISABLED",
+            "BASIC"
+          ],
+          "enumDescriptions": [
+            "Default value not specified.",
+            "Disables Workload Vulnerability Scanning feature on the cluster.",
+            "Applies basic vulnerability scanning settings for cluster workloads."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -6341,7 +6355,7 @@
             "DATA_LOSS"
           ],
           "enumDescriptions": [
-            "Not an error; returned on success HTTP Mapping: 200 OK",
+            "Not an error; returned on success. HTTP Mapping: 200 OK",
             "The operation was cancelled, typically by the caller. HTTP Mapping: 499 Client Closed Request",
             "Unknown error. For example, this error may be returned when a `Status` value received from another address space belongs to an error space that is not known in this address space. Also errors raised by APIs that do not return enough error information may be converted to this error. HTTP Mapping: 500 Internal Server Error",
             "The client specified an invalid argument. Note that this differs from `FAILED_PRECONDITION`. `INVALID_ARGUMENT` indicates arguments that are problematic regardless of the state of the system (e.g., a malformed file name). HTTP Mapping: 400 Bad Request",

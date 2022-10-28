@@ -1229,7 +1229,7 @@
       }
     }
   },
-  "revision": "20220902",
+  "revision": "20221015",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AnalysisCompleted": {
@@ -1463,6 +1463,128 @@
         "signature": {
           "description": "Signature of the related `BuildProvenance`, encoded in a base64 string.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BuildStep": {
+      "description": "A step in the build pipeline. Next ID: 20",
+      "id": "BuildStep",
+      "properties": {
+        "allowExitCodes": {
+          "description": "Allow this build step to fail without failing the entire build if and only if the exit code is one of the specified codes. If allow_failure is also specified, this field will take precedence.",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "allowFailure": {
+          "description": "Allow this build step to fail without failing the entire build. If false, the entire build will fail if this step fails. Otherwise, the build will succeed, but this step will still have a failure status. Error information will be reported in the failure_detail field.",
+          "type": "boolean"
+        },
+        "args": {
+          "description": "A list of arguments that will be presented to the step when it is started. If the image used to run the step's container has an entrypoint, the `args` are used as arguments to that entrypoint. If the image does not define an entrypoint, the first element in args is used as the entrypoint, and the remainder will be used as arguments.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "dir": {
+          "description": "Working directory to use when running this step's container. If this value is a relative path, it is relative to the build's working directory. If this value is absolute, it may be outside the build's working directory, in which case the contents of the path may not be persisted across build step executions, unless a `volume` for that path is specified. If the build specifies a `RepoSource` with `dir` and a step with a `dir`, which specifies an absolute path, the `RepoSource` `dir` is ignored for the step's execution.",
+          "type": "string"
+        },
+        "entrypoint": {
+          "description": "Entrypoint to be used instead of the build step image's default entrypoint. If unset, the image's default entrypoint is used.",
+          "type": "string"
+        },
+        "env": {
+          "description": "A list of environment variable definitions to be used when running a step. The elements are of the form \"KEY=VALUE\" for the environment variable \"KEY\" being given the value \"VALUE\".",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "exitCode": {
+          "description": "Output only. Return code from running the step.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "id": {
+          "description": "Unique identifier for this build step, used in `wait_for` to reference this build step as a dependency.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. The name of the container image that will run this particular build step. If the image is available in the host's Docker daemon's cache, it will be run directly. If not, the host will attempt to pull the image first, using the builder service account's credentials if necessary. The Docker daemon's cache will already have the latest versions of all of the officially supported build steps ([https://github.com/GoogleCloudPlatform/cloud-builders](https://github.com/GoogleCloudPlatform/cloud-builders)). The Docker daemon will also have cached many of the layers for some popular images, like \"ubuntu\", \"debian\", but they will be refreshed at the time you attempt to use them. If you built an image in a previous build step, it will be stored in the host's Docker daemon's cache and is available to use as the name for a later build step.",
+          "type": "string"
+        },
+        "pullTiming": {
+          "$ref": "TimeSpan",
+          "description": "Output only. Stores timing information for pulling this build step's builder image only."
+        },
+        "script": {
+          "description": "A shell script to be executed in the step. When script is provided, the user cannot specify the entrypoint or args.",
+          "type": "string"
+        },
+        "secretEnv": {
+          "description": "A list of environment variables which are encrypted using a Cloud Key Management Service crypto key. These values must be specified in the build's `Secret`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "status": {
+          "description": "Output only. Status of the build step. At this time, build step status is only updated on build completion; step status is not updated in real-time as the build progresses.",
+          "enum": [
+            "STATUS_UNKNOWN",
+            "PENDING",
+            "QUEUING",
+            "QUEUED",
+            "WORKING",
+            "SUCCESS",
+            "FAILURE",
+            "INTERNAL_ERROR",
+            "TIMEOUT",
+            "CANCELLED",
+            "EXPIRED"
+          ],
+          "enumDescriptions": [
+            "Status of the build is unknown.",
+            "Build has been created and is pending execution and queuing. It has not been queued.",
+            "Build has been received and is being queued.",
+            "Build or step is queued; work has not yet begun.",
+            "Build or step is being executed.",
+            "Build or step finished successfully.",
+            "Build or step failed to complete successfully.",
+            "Build or step failed due to an internal cause.",
+            "Build or step took longer than was allowed.",
+            "Build or step was canceled by a user.",
+            "Build was enqueued for longer than the value of `queue_ttl`."
+          ],
+          "type": "string"
+        },
+        "timeout": {
+          "description": "Time limit for executing this build step. If not defined, the step has no time limit and will be allowed to continue to run until either it completes or the build itself times out.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "timing": {
+          "$ref": "TimeSpan",
+          "description": "Output only. Stores timing information for executing this build step."
+        },
+        "volumes": {
+          "description": "List of volumes to mount into the build step. Each volume is created as an empty volume prior to execution of the build step. Upon completion of the build, volumes and their contents are discarded. Using a named volume in only one step is not valid as it is indicative of a build request with an incorrect configuration.",
+          "items": {
+            "$ref": "Volume"
+          },
+          "type": "array"
+        },
+        "waitFor": {
+          "description": "The ID(s) of the step(s) that this build step depends on. This build step will not start until all the build steps in `wait_for` have completed successfully. If `wait_for` is empty, this build step will start when all previous build steps in the `Build.Steps` list have completed successfully.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1894,9 +2016,23 @@
           },
           "type": "array"
         },
+        "mavenArtifacts": {
+          "description": "A list of Maven artifacts to be uploaded to Artifact Registry upon successful completion of all build steps. Artifacts in the workspace matching specified paths globs will be uploaded to the specified Artifact Registry repository using the builder service account's credentials. If any artifacts fail to be pushed, the build is marked FAILURE.",
+          "items": {
+            "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsMavenArtifact"
+          },
+          "type": "array"
+        },
         "objects": {
           "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsArtifactObjects",
           "description": "A list of objects to be uploaded to Cloud Storage upon successful completion of all build steps. Files in the workspace matching specified paths globs will be uploaded to the specified Cloud Storage location using the builder service account's credentials. The location and generation of the uploaded objects will be stored in the Build resource's results field. If any objects fail to be pushed, the build is marked FAILURE."
+        },
+        "pythonPackages": {
+          "description": "A list of Python packages to be uploaded to Artifact Registry upon successful completion of all build steps. The build service account credentials will be used to perform the upload. If any objects fail to be pushed, the build is marked FAILURE.",
+          "items": {
+            "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsPythonPackage"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1920,6 +2056,51 @@
           "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan",
           "description": "Output only. Stores timing information for pushing all artifact objects.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsMavenArtifact": {
+      "description": "A Maven artifact to upload to Artifact Registry upon successful completion of all build steps.",
+      "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsMavenArtifact",
+      "properties": {
+        "artifactId": {
+          "description": "Maven `artifactId` value used when uploading the artifact to Artifact Registry.",
+          "type": "string"
+        },
+        "groupId": {
+          "description": "Maven `groupId` value used when uploading the artifact to Artifact Registry.",
+          "type": "string"
+        },
+        "path": {
+          "description": "Path to an artifact in the build's workspace to be uploaded to Artifact Registry. This can be either an absolute path, e.g. /workspace/my-app/target/my-app-1.0.SNAPSHOT.jar or a relative path from /workspace, e.g. my-app/target/my-app-1.0.SNAPSHOT.jar.",
+          "type": "string"
+        },
+        "repository": {
+          "description": "Artifact Registry repository, in the form \"https://$REGION-maven.pkg.dev/$PROJECT/$REPOSITORY\" Artifact in the workspace specified by path will be uploaded to Artifact Registry with this location as a prefix.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Maven `version` value used when uploading the artifact to Artifact Registry.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsPythonPackage": {
+      "description": "Python package to upload to Artifact Registry upon successful completion of all build steps. A package can encapsulate multiple objects to be uploaded to a single repository.",
+      "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsPythonPackage",
+      "properties": {
+        "paths": {
+          "description": "Path globs used to match files in the build's workspace. For Python/ Twine, this is usually `dist/*`, and sometimes additionally an `.asc` file.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "repository": {
+          "description": "Artifact Registry repository, in the form \"https://$REGION-python.pkg.dev/$PROJECT/$REPOSITORY\" Files in the workspace matching any path pattern will be uploaded to Artifact Registry with this location as a prefix.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2098,7 +2279,7 @@
           "additionalProperties": {
             "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan"
           },
-          "description": "Output only. Stores timing information for phases of the build. Valid keys are: * BUILD: time to execute all build steps. * PUSH: time to push all specified images. * FETCHSOURCE: time to fetch source. * SETUPBUILD: time to set up build. If the build does not specify source or images, these keys will not be included.",
+          "description": "Output only. Stores timing information for phases of the build. Valid keys are: * BUILD: time to execute all build steps. * PUSH: time to push all artifacts including docker images and non docker artifacts. * FETCHSOURCE: time to fetch source. * SETUPBUILD: time to set up build. If the build does not specify source or images, these keys will not be included.",
           "readOnly": true,
           "type": "object"
         },
@@ -2608,12 +2789,12 @@
       "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1Results",
       "properties": {
         "artifactManifest": {
-          "description": "Path to the artifact manifest. Only populated when artifacts are uploaded.",
+          "description": "Path to the artifact manifest for non-container artifacts uploaded to Cloud Storage. Only populated when artifacts are uploaded to Cloud Storage.",
           "type": "string"
         },
         "artifactTiming": {
           "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan",
-          "description": "Time to push all non-container artifacts."
+          "description": "Time to push all non-container artifacts to Cloud Storage."
         },
         "buildStepImages": {
           "description": "List of build step digests, in the order corresponding to build step indices.",
@@ -2637,10 +2818,24 @@
           },
           "type": "array"
         },
+        "mavenArtifacts": {
+          "description": "Maven artifacts uploaded to Artifact Registry at the end of the build.",
+          "items": {
+            "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedMavenArtifact"
+          },
+          "type": "array"
+        },
         "numArtifacts": {
-          "description": "Number of artifacts uploaded. Only populated when artifacts are uploaded.",
+          "description": "Number of non-container artifacts uploaded to Cloud Storage. Only populated when artifacts are uploaded to Cloud Storage.",
           "format": "int64",
           "type": "string"
+        },
+        "pythonPackages": {
+          "description": "Python artifacts uploaded to Artifact Registry at the end of the build.",
+          "items": {
+            "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedPythonPackage"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2798,6 +2993,46 @@
         "startTime": {
           "description": "Start of time span.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedMavenArtifact": {
+      "description": "A Maven artifact uploaded using the MavenArtifact directive.",
+      "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedMavenArtifact",
+      "properties": {
+        "fileHashes": {
+          "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes",
+          "description": "Hash types and values of the Maven Artifact."
+        },
+        "pushTiming": {
+          "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan",
+          "description": "Output only. Stores timing information for pushing the specified artifact.",
+          "readOnly": true
+        },
+        "uri": {
+          "description": "URI of the uploaded artifact.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedPythonPackage": {
+      "description": "Artifact uploaded using the PythonPackage directive.",
+      "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedPythonPackage",
+      "properties": {
+        "fileHashes": {
+          "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes",
+          "description": "Hash types and values of the Python Artifact."
+        },
+        "pushTiming": {
+          "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan",
+          "description": "Output only. Stores timing information for pushing the specified artifact.",
+          "readOnly": true
+        },
+        "uri": {
+          "description": "URI of the uploaded artifact.",
           "type": "string"
         }
       },
@@ -5372,7 +5607,7 @@
         },
         "storageSource": {
           "$ref": "StorageSource",
-          "description": "If provided, get the source from this location in in Google Cloud Storage."
+          "description": "If provided, get the source from this location in Google Cloud Storage."
         }
       },
       "type": "object"
@@ -5466,6 +5701,23 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TimeSpan": {
+      "description": "Start and end times for a build execution phase. Next ID: 3",
+      "id": "TimeSpan",
+      "properties": {
+        "endTime": {
+          "description": "End of time span.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Start of time span.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5586,6 +5838,21 @@
         },
         "revision": {
           "description": "The iteration of the package build from the above version.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Volume": {
+      "description": "Volume describes a Docker container volume which is mounted into build steps in order to persist files across build step execution. Next ID: 3",
+      "id": "Volume",
+      "properties": {
+        "name": {
+          "description": "Name of the volume to mount. Volume names must be unique per build step and must be valid names for Docker volumes. Each named volume must be used by at least two build steps.",
+          "type": "string"
+        },
+        "path": {
+          "description": "Path at which to mount the volume. Paths must be absolute and cannot conflict with other volume paths on the same build step or with certain reserved volume paths.",
           "type": "string"
         }
       },

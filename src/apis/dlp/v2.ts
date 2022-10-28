@@ -139,7 +139,7 @@ export namespace dlp_v2 {
      */
     deidentify?: Schema$GooglePrivacyDlpV2Deidentify;
     /**
-     * Enable email notification for project owners and editors on job's completion/failure.
+     * Sends an email when the job completes. The email goes to IAM project owners and technical [Essential Contacts](https://cloud.google.com/resource-manager/docs/managing-notification-contacts).
      */
     jobNotificationEmails?: Schema$GooglePrivacyDlpV2JobNotificationEmails;
     /**
@@ -584,9 +584,6 @@ export namespace dlp_v2 {
      */
     version?: string | null;
   }
-  /**
-   * Container structure for the content to inspect.
-   */
   export interface Schema$GooglePrivacyDlpV2ContentItem {
     /**
      * Content data to inspect or redact. Replaces `type` and `data`.
@@ -1625,7 +1622,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2InfoType {
     /**
-     * Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/dlp/docs/infotypes-reference when specifying a built-in type. When sending Cloud DLP results to Data Catalog, infoType names should conform to the pattern `[A-Za-z0-9$-_]{1,64\}`.
+     * Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/dlp/docs/infotypes-reference when specifying a built-in type. When sending Cloud DLP results to Data Catalog, infoType names should conform to the pattern `[A-Za-z0-9$_-]{1,64\}`.
      */
     name?: string | null;
     /**
@@ -1671,6 +1668,10 @@ export namespace dlp_v2 {
      */
     name?: string | null;
     /**
+     * The default sensitivity of the infoType.
+     */
+    sensitivityScore?: Schema$GooglePrivacyDlpV2SensitivityScore;
+    /**
      * Which parts of the API supports this InfoType.
      */
     supportedBy?: string[] | null;
@@ -1709,6 +1710,10 @@ export namespace dlp_v2 {
    * The infoType details for this column.
    */
   export interface Schema$GooglePrivacyDlpV2InfoTypeSummary {
+    /**
+     * Not populated for predicted infotypes.
+     */
+    estimatedPrevalence?: number | null;
     /**
      * The infoType.
      */
