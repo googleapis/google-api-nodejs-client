@@ -493,6 +493,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "diagnose": {
+                  "description": "Creates a Diagnostic File and runs Diagnostic Tool given an Instance.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:diagnose",
+                  "httpMethod": "POST",
+                  "id": "notebooks.projects.locations.instances.diagnose",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Format: `projects/{project_id}/locations/{location}/instances/{instance_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:diagnose",
+                  "request": {
+                    "$ref": "DiagnoseInstanceRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Gets details of a single Instance.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}",
@@ -1297,6 +1325,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "diagnose": {
+                  "description": "Creates a Diagnostic File and runs Diagnostic Tool given a Runtime.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/runtimes/{runtimesId}:diagnose",
+                  "httpMethod": "POST",
+                  "id": "notebooks.projects.locations.runtimes.diagnose",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Format: `projects/{project_id}/locations/{location}/runtimes/{runtimes_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/runtimes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:diagnose",
+                  "request": {
+                    "$ref": "DiagnoseRuntimeRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Gets details of a single Runtime. The location must be a regional endpoint rather than zonal.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/runtimes/{runtimesId}",
@@ -1651,6 +1707,34 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "upgrade": {
+                  "description": "Upgrades a Managed Notebook Runtime to the latest version.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/runtimes/{runtimesId}:upgrade",
+                  "httpMethod": "POST",
+                  "id": "notebooks.projects.locations.runtimes.upgrade",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Format: `projects/{project_id}/locations/{location}/runtimes/{runtime_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/runtimes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:upgrade",
+                  "request": {
+                    "$ref": "UpgradeRuntimeRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             },
@@ -1820,7 +1904,7 @@
       }
     }
   },
-  "revision": "20220909",
+  "revision": "20221017",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1923,6 +2007,55 @@
         "cluster": {
           "description": "URI for cluster used to run Dataproc execution. Format: `projects/{PROJECT_ID}/regions/{REGION}/clusters/{CLUSTER_NAME}`",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DiagnoseInstanceRequest": {
+      "description": "Request for creating a notebook instance diagnostic file.",
+      "id": "DiagnoseInstanceRequest",
+      "properties": {
+        "diagnosticConfig": {
+          "$ref": "DiagnosticConfig",
+          "description": "Required. Defines flags that are used to run the diagnostic tool"
+        }
+      },
+      "type": "object"
+    },
+    "DiagnoseRuntimeRequest": {
+      "description": "Request for creating a notebook instance diagnostic file.",
+      "id": "DiagnoseRuntimeRequest",
+      "properties": {
+        "diagnosticConfig": {
+          "$ref": "DiagnosticConfig",
+          "description": "Required. Defines flags that are used to run the diagnostic tool"
+        }
+      },
+      "type": "object"
+    },
+    "DiagnosticConfig": {
+      "description": "Defines flags that are used to run the diagnostic tool",
+      "id": "DiagnosticConfig",
+      "properties": {
+        "copyHomeFilesFlagEnabled": {
+          "description": "Optional. Enables flag to copy all `/home/jupyter` folder contents",
+          "type": "boolean"
+        },
+        "gcsBucket": {
+          "description": "Required. User Cloud Storage bucket location (REQUIRED) ## Must be formatted with path prefix (gs://$GCS_BUCKET) Permissions: User Managed Notebooks: - storage.buckets.writer: Must be given to the project's service account attached to VM. Google Managed Notebooks: - storage.buckets.writer: Must be given to the project's service account or ## user credentials attached to VM depending on authentication mode. Cloud Storage bucket Log file will be written to gs://$GCS_BUCKET/$RELATIVE_PATH/$VM_DATE_$TIME.tar.gz",
+          "type": "string"
+        },
+        "packetCaptureFlagEnabled": {
+          "description": "Optional. Enables flag to capture packets from the instance for 30 seconds",
+          "type": "boolean"
+        },
+        "relativePath": {
+          "description": "Optional. Defines the relative storage path in the Cloud Storage bucket where the diagnostic logs will be written: Default path will be the root directory of the Cloud Storage bucket (gs://$GCS_BUCKET/$DATE_$TIME.tar.gz) Example of full path where Log file will be written: gs://$GCS_BUCKET/$RELATIVE_PATH/",
+          "type": "string"
+        },
+        "repairFlagEnabled": {
+          "description": "Optional. Enables flag to repair service for instance",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -3277,7 +3410,7 @@
           ],
           "enumDescriptions": [
             "Accelerator type is not specified.",
-            "b/241005111 K80 deprecation in Google Managed Notebooks Accelerator type is Nvidia Tesla K80.",
+            "Accelerator type is Nvidia Tesla K80.",
             "Accelerator type is Nvidia Tesla P100.",
             "Accelerator type is Nvidia Tesla V100.",
             "Accelerator type is Nvidia Tesla P4.",
@@ -3929,6 +4062,17 @@
             "Upgrade CUDA.",
             "Upgrade All (OS, Framework and CUDA)."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpgradeRuntimeRequest": {
+      "description": "Request for upgrading a Managed Notebook Runtime to the latest version. option (google.api.message_visibility).restriction = \"TRUSTED_TESTER,SPECIAL_TESTER\";",
+      "id": "UpgradeRuntimeRequest",
+      "properties": {
+        "requestId": {
+          "description": "Idempotent request UUID.",
           "type": "string"
         }
       },
