@@ -295,10 +295,6 @@ export namespace datacatalog_v1 {
      */
     description?: string | null;
     /**
-     * Looker specific column info of this column.
-     */
-    lookerColumnSpec?: Schema$GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpec;
-    /**
      * Optional. A column's mode indicates whether values in this column are required, nullable, or repeated. Only `NULLABLE`, `REQUIRED`, and `REPEATED` values are supported. Default mode is `NULLABLE`.
      */
     mode?: string | null;
@@ -308,15 +304,6 @@ export namespace datacatalog_v1 {
     subcolumns?: Schema$GoogleCloudDatacatalogV1ColumnSchema[];
     /**
      * Required. Type of the column. Must be a UTF-8 string with the maximum size of 128 bytes.
-     */
-    type?: string | null;
-  }
-  /**
-   * Column info specific to Looker System.
-   */
-  export interface Schema$GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpec {
-    /**
-     * Looker specific column type of this column.
      */
     type?: string | null;
   }
@@ -539,7 +526,7 @@ export namespace datacatalog_v1 {
      */
     schema?: Schema$GoogleCloudDatacatalogV1Schema;
     /**
-     * Timestamps from the underlying resource, not from the Data Catalog entry. Output only when the entry has a type listed in the `EntryType` enum. For entries with `user_specified_type`, this field is optional and defaults to an empty timestamp.
+     * Timestamps from the underlying resource, not from the Data Catalog entry. Output only when the entry has a system listed in the `IntegratedSystem` enum. For entries with `user_specified_system`, this field is optional and defaults to an empty timestamp.
      */
     sourceSystemTimestamps?: Schema$GoogleCloudDatacatalogV1SystemTimestamps;
     /**
@@ -1330,10 +1317,6 @@ export namespace datacatalog_v1 {
    * The set of all usage signals that Data Catalog stores. Note: Usually, these signals are updated daily. In rare cases, an update may fail but will be performed again on the next day.
    */
   export interface Schema$GoogleCloudDatacatalogV1UsageSignal {
-    /**
-     * Favorite count in the source system.
-     */
-    favoriteCount?: string | null;
     /**
      * The end timestamp of the duration of usage statistics.
      */

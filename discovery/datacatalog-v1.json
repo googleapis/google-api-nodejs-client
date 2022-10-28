@@ -1953,7 +1953,7 @@
       }
     }
   },
-  "revision": "20220912",
+  "revision": "20221017",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -2187,10 +2187,6 @@
           "description": "Optional. Description of the column. Default value is an empty string. The description must be a UTF-8 string with the maximum size of 2000 bytes.",
           "type": "string"
         },
-        "lookerColumnSpec": {
-          "$ref": "GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpec",
-          "description": "Looker specific column info of this column."
-        },
         "mode": {
           "description": "Optional. A column's mode indicates whether values in this column are required, nullable, or repeated. Only `NULLABLE`, `REQUIRED`, and `REPEATED` values are supported. Default mode is `NULLABLE`.",
           "type": "string"
@@ -2204,33 +2200,6 @@
         },
         "type": {
           "description": "Required. Type of the column. Must be a UTF-8 string with the maximum size of 128 bytes.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpec": {
-      "description": "Column info specific to Looker System.",
-      "id": "GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpec",
-      "properties": {
-        "type": {
-          "description": "Looker specific column type of this column.",
-          "enum": [
-            "LOOKER_COLUMN_TYPE_UNSPECIFIED",
-            "DIMENSION",
-            "DIMENSION_GROUP",
-            "FILTER",
-            "MEASURE",
-            "PAREMETER"
-          ],
-          "enumDescriptions": [
-            "Unspecified.",
-            "Dimension.",
-            "Dimension group - parent for Dimension.",
-            "Filter.",
-            "Measure.",
-            "Parameter."
-          ],
           "type": "string"
         }
       },
@@ -2541,7 +2510,7 @@
         },
         "sourceSystemTimestamps": {
           "$ref": "GoogleCloudDatacatalogV1SystemTimestamps",
-          "description": "Timestamps from the underlying resource, not from the Data Catalog entry. Output only when the entry has a type listed in the `EntryType` enum. For entries with `user_specified_type`, this field is optional and defaults to an empty timestamp."
+          "description": "Timestamps from the underlying resource, not from the Data Catalog entry. Output only when the entry has a system listed in the `IntegratedSystem` enum. For entries with `user_specified_system`, this field is optional and defaults to an empty timestamp."
         },
         "type": {
           "description": "The type of the entry. Only used for entries with types listed in the `EntryType` enum. Currently, only `FILESET` enum value is allowed. All other entries created in Data Catalog must use the `user_specified_type`.",
@@ -3657,11 +3626,6 @@
       "description": "The set of all usage signals that Data Catalog stores. Note: Usually, these signals are updated daily. In rare cases, an update may fail but will be performed again on the next day.",
       "id": "GoogleCloudDatacatalogV1UsageSignal",
       "properties": {
-        "favoriteCount": {
-          "description": "Favorite count in the source system.",
-          "format": "int64",
-          "type": "string"
-        },
         "updateTime": {
           "description": "The end timestamp of the duration of usage statistics.",
           "format": "google-datetime",
