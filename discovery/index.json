@@ -367,7 +367,7 @@
       "name": "androidpublisher",
       "version": "v3",
       "title": "Google Play Android Developer API",
-      "description": "Lets Android application developers access their Google Play accounts.",
+      "description": "Lets Android application developers access their Google Play accounts. At a high level, the expected workflow is to \"insert\" an Edit, make changes as necessary, and then \"commit\" it.",
       "discoveryRestUrl": "https://androidpublisher.googleapis.com/$discovery/rest?version=v3",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -568,7 +568,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://cloud.google.com",
+      "documentationLink": "https://cloud.google.com/learnmoreurl",
       "preferred": false
     },
     {
@@ -583,7 +583,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://cloud.google.com",
+      "documentationLink": "https://cloud.google.com/learnmoreurl",
       "preferred": true
     },
     {
@@ -644,6 +644,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/bare-metal",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "batch:v1",
+      "name": "batch",
+      "version": "v1",
+      "title": "Batch API",
+      "description": "An API to manage the running of batch jobs on Google Cloud Platform.",
+      "discoveryRestUrl": "https://batch.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/batch/",
       "preferred": true
     },
     {
@@ -720,21 +735,6 @@
       },
       "documentationLink": "https://cloud.google.com/bigquery-transfer/",
       "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "bigqueryreservation:v1beta1",
-      "name": "bigqueryreservation",
-      "version": "v1beta1",
-      "title": "BigQuery Reservation API",
-      "description": "A service to modify your BigQuery flat-rate reservations.",
-      "discoveryRestUrl": "https://bigqueryreservation.googleapis.com/$discovery/rest?version=v1beta1",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/bigquery/",
-      "preferred": false
     },
     {
       "kind": "discovery#directoryItem",
@@ -1817,6 +1817,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/shopping-content/v2/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "contentwarehouse:v1",
+      "name": "contentwarehouse",
+      "version": "v1",
+      "title": "contentwarehouse API",
+      "description": "",
+      "discoveryRestUrl": "https://contentwarehouse.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/document-warehouse",
       "preferred": true
     },
     {
@@ -3423,7 +3438,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "http://www.google.com",
+      "documentationLink": "https://cloud.google.com/application-integration",
       "preferred": true
     },
     {
@@ -5450,6 +5465,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/tpu/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "tpu:v2",
+      "name": "tpu",
+      "version": "v2",
+      "title": "Cloud TPU API",
+      "description": "TPU API provides customers with access to Google TPU technology.",
+      "discoveryRestUrl": "https://tpu.googleapis.com/$discovery/rest?version=v2",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/tpu/",
       "preferred": true
     },
     {
@@ -5577,7 +5607,7 @@
       "id": "versionhistory:v1",
       "name": "versionhistory",
       "version": "v1",
-      "title": "Version History API",
+      "title": "versionhistory.googleapis.com API",
       "description": "Version History API - Prod",
       "discoveryRestUrl": "https://versionhistory.googleapis.com/$discovery/rest?version=v1",
       "icons": {
@@ -5712,7 +5742,7 @@
       "id": "vmmigration:v1alpha1",
       "name": "vmmigration",
       "version": "v1alpha1",
-      "title": "VM Migration API",
+      "title": "Migrate to Virtual Machines API",
       "description": "Use the Migrate to Virtual Machines API to programmatically migrate workloads.",
       "discoveryRestUrl": "https://vmmigration.googleapis.com/$discovery/rest?version=v1alpha1",
       "icons": {
@@ -5727,7 +5757,7 @@
       "id": "vmmigration:v1",
       "name": "vmmigration",
       "version": "v1",
-      "title": "VM Migration API",
+      "title": "Migrate to Virtual Machines API",
       "description": "Use the Migrate to Virtual Machines API to programmatically migrate workloads.",
       "discoveryRestUrl": "https://vmmigration.googleapis.com/$discovery/rest?version=v1",
       "icons": {
