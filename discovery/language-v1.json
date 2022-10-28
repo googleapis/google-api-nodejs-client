@@ -227,7 +227,7 @@
       }
     }
   },
-  "revision": "20210820",
+  "revision": "20221022",
   "rootUrl": "https://language.googleapis.com/",
   "schemas": {
     "AnalyzeEntitiesRequest": {
@@ -511,10 +511,29 @@
       },
       "type": "object"
     },
+    "ClassificationModelOptions": {
+      "description": "Model options available for classification requests.",
+      "id": "ClassificationModelOptions",
+      "properties": {
+        "v1Model": {
+          "$ref": "V1Model",
+          "description": "Setting this field will use the V1 model and V1 content categories version. The V1 model is a legacy model; support for this will be discontinued in the future."
+        },
+        "v2Model": {
+          "$ref": "V2Model",
+          "description": "Setting this field will use the V2 model with the appropriate content categories version. The V2 model is a better performing model."
+        }
+      },
+      "type": "object"
+    },
     "ClassifyTextRequest": {
       "description": "The document classification request message.",
       "id": "ClassifyTextRequest",
       "properties": {
+        "classificationModelOptions": {
+          "$ref": "ClassificationModelOptions",
+          "description": "Model options to use for classification. Defaults to v1 options if not specified."
+        },
         "document": {
           "$ref": "Document",
           "description": "Required. Input document."
@@ -723,7 +742,7 @@
       "type": "object"
     },
     "Document": {
-      "description": "################################################################ # Represents the input to API methods.",
+      "description": "Represents the input to API methods.",
       "id": "Document",
       "properties": {
         "content": {
@@ -856,6 +875,10 @@
       "description": "All available features for sentiment, syntax, and semantic analysis. Setting each one to true will enable that specific analysis for the input.",
       "id": "Features",
       "properties": {
+        "classificationModelOptions": {
+          "$ref": "ClassificationModelOptions",
+          "description": "The model options to use for classification. Defaults to v1 options if not specified. Only used if `classify_text` is set to true."
+        },
         "classifyText": {
           "description": "Classify the full document into categories.",
           "type": "boolean"
@@ -1240,6 +1263,33 @@
         "text": {
           "$ref": "TextSpan",
           "description": "The token text."
+        }
+      },
+      "type": "object"
+    },
+    "V1Model": {
+      "description": "Options for the V1 model.",
+      "id": "V1Model",
+      "properties": {},
+      "type": "object"
+    },
+    "V2Model": {
+      "description": "Options for the V2 model.",
+      "id": "V2Model",
+      "properties": {
+        "contentCategoriesVersion": {
+          "description": "The content categories used for classification.",
+          "enum": [
+            "CONTENT_CATEGORIES_VERSION_UNSPECIFIED",
+            "V1",
+            "V2"
+          ],
+          "enumDescriptions": [
+            "If `ContentCategoriesVersion` is not specified, this option will default to `V1`.",
+            "Legacy content categories of our initial launch in 2017.",
+            "Updated content categories in 2022."
+          ],
+          "type": "string"
         }
       },
       "type": "object"

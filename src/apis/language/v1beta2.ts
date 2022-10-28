@@ -296,9 +296,26 @@ export namespace language_v1beta2 {
     name?: string | null;
   }
   /**
+   * Model options available for classification requests.
+   */
+  export interface Schema$ClassificationModelOptions {
+    /**
+     * Setting this field will use the V1 model and V1 content categories version. The V1 model is a legacy model; support for this will be discontinued in the future.
+     */
+    v1Model?: Schema$V1Model;
+    /**
+     * Setting this field will use the V2 model with the appropriate content categories version. The V2 model is a better performing model.
+     */
+    v2Model?: Schema$V2Model;
+  }
+  /**
    * The document classification request message.
    */
   export interface Schema$ClassifyTextRequest {
+    /**
+     * Model options to use for classification. Defaults to v1 options if not specified.
+     */
+    classificationModelOptions?: Schema$ClassificationModelOptions;
     /**
      * Required. Input document.
      */
@@ -327,7 +344,7 @@ export namespace language_v1beta2 {
     label?: string | null;
   }
   /**
-   * ################################################################ # Represents the input to API methods.
+   * Represents the input to API methods.
    */
   export interface Schema$Document {
     /**
@@ -405,6 +422,10 @@ export namespace language_v1beta2 {
    * All available features for sentiment, syntax, and semantic analysis. Setting each one to true will enable that specific analysis for the input. Next ID: 11
    */
   export interface Schema$Features {
+    /**
+     * The model options to use for classification. Defaults to v1 options if not specified. Only used if `classify_text` is set to true.
+     */
+    classificationModelOptions?: Schema$ClassificationModelOptions;
     /**
      * Classify the full document into categories. If this is true, the API will use the default model which classifies into a [predefined taxonomy](https://cloud.google.com/natural-language/docs/categories).
      */
@@ -555,6 +576,19 @@ export namespace language_v1beta2 {
      * The token text.
      */
     text?: Schema$TextSpan;
+  }
+  /**
+   * Options for the V1 model.
+   */
+  export interface Schema$V1Model {}
+  /**
+   * Options for the V2 model.
+   */
+  export interface Schema$V2Model {
+    /**
+     * The content categories used for classification.
+     */
+    contentCategoriesVersion?: string | null;
   }
 
   export class Resource$Documents {
@@ -1335,6 +1369,7 @@ export namespace language_v1beta2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "classificationModelOptions": {},
      *       //   "document": {}
      *       // }
      *     },

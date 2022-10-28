@@ -266,7 +266,7 @@ export namespace language_v1beta1 {
     label?: string | null;
   }
   /**
-   * ################################################################ # Represents the input to API methods.
+   * Represents the input to API methods.
    */
   export interface Schema$Document {
     /**
