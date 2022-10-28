@@ -214,9 +214,17 @@ export namespace cloudbuild_v1 {
      */
     images?: string[] | null;
     /**
+     * A list of Maven artifacts to be uploaded to Artifact Registry upon successful completion of all build steps. Artifacts in the workspace matching specified paths globs will be uploaded to the specified Artifact Registry repository using the builder service account's credentials. If any artifacts fail to be pushed, the build is marked FAILURE.
+     */
+    mavenArtifacts?: Schema$MavenArtifact[];
+    /**
      * A list of objects to be uploaded to Cloud Storage upon successful completion of all build steps. Files in the workspace matching specified paths globs will be uploaded to the specified Cloud Storage location using the builder service account's credentials. The location and generation of the uploaded objects will be stored in the Build resource's results field. If any objects fail to be pushed, the build is marked FAILURE.
      */
     objects?: Schema$ArtifactObjects;
+    /**
+     * A list of Python packages to be uploaded to Artifact Registry upon successful completion of all build steps. The build service account credentials will be used to perform the upload. If any objects fail to be pushed, the build is marked FAILURE.
+     */
+    pythonPackages?: Schema$PythonPackage[];
   }
   /**
    * RPC request object accepted by BatchCreateBitbucketServerConnectedRepositories RPC method.
@@ -246,6 +254,41 @@ export namespace cloudbuild_v1 {
     completeTime?: string | null;
     /**
      * The name of the `BitbucketServerConfig` that added connected repositories. Format: `projects/{project\}/locations/{location\}/bitbucketServerConfigs/{config\}`
+     */
+    config?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+  }
+  /**
+   * RPC request object accepted by BatchCreateGitLabConnectedRepositories RPC method.
+   */
+  export interface Schema$BatchCreateGitLabConnectedRepositoriesRequest {
+    /**
+     * Required. Requests to connect GitLab repositories.
+     */
+    requests?: Schema$CreateGitLabConnectedRepositoryRequest[];
+  }
+  /**
+   * Response of BatchCreateGitLabConnectedRepositories RPC method.
+   */
+  export interface Schema$BatchCreateGitLabConnectedRepositoriesResponse {
+    /**
+     * The GitLab connected repository requests' responses.
+     */
+    gitlabConnectedRepositories?: Schema$GitLabConnectedRepository[];
+  }
+  /**
+   * Metadata for `BatchCreateGitLabConnectedRepositories` operation.
+   */
+  export interface Schema$BatchCreateGitLabConnectedRepositoriesResponseMetadata {
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * The name of the `GitLabConfig` that added connected repositories. Format: `projects/{project\}/locations/{location\}/gitLabConfigs/{config\}`
      */
     config?: string | null;
     /**
@@ -516,7 +559,7 @@ export namespace cloudbuild_v1 {
      */
     timeout?: string | null;
     /**
-     * Output only. Stores timing information for phases of the build. Valid keys are: * BUILD: time to execute all build steps. * PUSH: time to push all specified images. * FETCHSOURCE: time to fetch source. * SETUPBUILD: time to set up build. If the build does not specify source or images, these keys will not be included.
+     * Output only. Stores timing information for phases of the build. Valid keys are: * BUILD: time to execute all build steps. * PUSH: time to push all artifacts including docker images and non docker artifacts. * FETCHSOURCE: time to fetch source. * SETUPBUILD: time to set up build. If the build does not specify source or images, these keys will not be included.
      */
     timing?: {[key: string]: Schema$TimeSpan} | null;
     /**
@@ -733,6 +776,10 @@ export namespace cloudbuild_v1 {
      */
     github?: Schema$GitHubEventsConfig;
     /**
+     * GitLabEnterpriseEventsConfig describes the configuration of a trigger that creates a build whenever a GitLab Enterprise event is received.
+     */
+    gitlabEnterpriseEventsConfig?: Schema$GitLabEventsConfig;
+    /**
      * Output only. Unique identifier of the trigger.
      */
     id?: string | null;
@@ -871,6 +918,36 @@ export namespace cloudbuild_v1 {
     githubEnterpriseConfig?: string | null;
   }
   /**
+   * Metadata for `CreateGitLabConfig` operation.
+   */
+  export interface Schema$CreateGitLabConfigOperationMetadata {
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The resource name of the GitLabConfig to be created. Format: `projects/{project\}/locations/{location\}/gitlabConfigs/{id\}`.
+     */
+    gitlabConfig?: string | null;
+  }
+  /**
+   * Request to connect a repository from a connected GitLab host.
+   */
+  export interface Schema$CreateGitLabConnectedRepositoryRequest {
+    /**
+     * Required. The GitLab repository to connect.
+     */
+    gitlabConnectedRepository?: Schema$GitLabConnectedRepository;
+    /**
+     * Required. The name of the `GitLabConfig` that adds connected repository. Format: `projects/{project\}/locations/{location\}/gitLabConfigs/{config\}`
+     */
+    parent?: string | null;
+  }
+  /**
    * Metadata for the `CreateWorkerPool` operation.
    */
   export interface Schema$CreateWorkerPoolOperationMetadata {
@@ -920,6 +997,23 @@ export namespace cloudbuild_v1 {
      * The resource name of the GitHubEnterprise to be deleted. Format: `projects/{project\}/locations/{location\}/githubEnterpriseConfigs/{id\}`.
      */
     githubEnterpriseConfig?: string | null;
+  }
+  /**
+   * Metadata for `DeleteGitLabConfig` operation.
+   */
+  export interface Schema$DeleteGitLabConfigOperationMetadata {
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The resource name of the GitLabConfig to be created. Format: `projects/{project\}/locations/{location\}/gitlabConfigs/{id\}`.
+     */
+    gitlabConfig?: string | null;
   }
   /**
    * Metadata for the `DeleteWorkerPool` operation.
@@ -1101,6 +1195,157 @@ export namespace cloudbuild_v1 {
     push?: Schema$PushFilter;
   }
   /**
+   * GitLabConfig represents the configuration for a GitLab integration.
+   */
+  export interface Schema$GitLabConfig {
+    /**
+     * Connected GitLab.com or GitLabEnterprise repositories for this config.
+     */
+    connectedRepositories?: Schema$GitLabRepositoryId[];
+    /**
+     * Output only. Time when the config was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. GitLabEnterprise config.
+     */
+    enterpriseConfig?: Schema$GitLabEnterpriseConfig;
+    /**
+     * The resource name for the config.
+     */
+    name?: string | null;
+    /**
+     * Required. Secret Manager secrets needed by the config.
+     */
+    secrets?: Schema$GitLabSecrets;
+    /**
+     * Username of the GitLab.com or GitLab Enterprise account Cloud Build will use.
+     */
+    username?: string | null;
+    /**
+     * Output only. UUID included in webhook requests. The UUID is used to look up the corresponding config.
+     */
+    webhookKey?: string | null;
+  }
+  /**
+   * GitLabConnectedRepository represents a GitLab connected repository request response.
+   */
+  export interface Schema$GitLabConnectedRepository {
+    /**
+     * The name of the `GitLabConfig` that added connected repository. Format: `projects/{project\}/locations/{location\}/gitLabConfigs/{config\}`
+     */
+    parent?: string | null;
+    /**
+     * The GitLab repositories to connect.
+     */
+    repo?: Schema$GitLabRepositoryId;
+    /**
+     * Output only. The status of the repo connection request.
+     */
+    status?: Schema$Status;
+  }
+  /**
+   * GitLabEnterpriseConfig represents the configuration for a GitLabEnterprise integration.
+   */
+  export interface Schema$GitLabEnterpriseConfig {
+    /**
+     * Immutable. The URI of the GitlabEnterprise host.
+     */
+    hostUri?: string | null;
+    /**
+     * The Service Directory configuration to be used when reaching out to the GitLab Enterprise instance.
+     */
+    serviceDirectoryConfig?: Schema$ServiceDirectoryConfig;
+    /**
+     * The SSL certificate to use in requests to GitLab Enterprise instances.
+     */
+    sslCa?: string | null;
+  }
+  /**
+   * GitLabEventsConfig describes the configuration of a trigger that creates a build whenever a GitLab event is received.
+   */
+  export interface Schema$GitLabEventsConfig {
+    /**
+     * Output only. The GitLabConfig specified in the gitlab_config_resource field.
+     */
+    gitlabConfig?: Schema$GitLabConfig;
+    /**
+     * The GitLab config resource that this trigger config maps to.
+     */
+    gitlabConfigResource?: string | null;
+    /**
+     * Namespace of the GitLab project.
+     */
+    projectNamespace?: string | null;
+    /**
+     * Filter to match changes in pull requests.
+     */
+    pullRequest?: Schema$PullRequestFilter;
+    /**
+     * Filter to match changes in refs like branches, tags.
+     */
+    push?: Schema$PushFilter;
+  }
+  /**
+   * Proto Representing a GitLabRepository
+   */
+  export interface Schema$GitLabRepository {
+    /**
+     * Link to the browse repo page on the GitLab instance
+     */
+    browseUri?: string | null;
+    /**
+     * Description of the repository
+     */
+    description?: string | null;
+    /**
+     * Display name of the repository
+     */
+    displayName?: string | null;
+    /**
+     * The resource name of the repository
+     */
+    name?: string | null;
+    /**
+     * Identifier for a repository
+     */
+    repositoryId?: Schema$GitLabRepositoryId;
+  }
+  /**
+   * GitLabRepositoryId identifies a specific repository hosted on GitLab.com or GitLabEnterprise
+   */
+  export interface Schema$GitLabRepositoryId {
+    /**
+     * Required. Identifier for the repository. example: "namespace/project-slug", namespace is usually the username or group ID
+     */
+    id?: string | null;
+    /**
+     * Output only. The ID of the webhook that was created for receiving events from this repo. We only create and manage a single webhook for each repo.
+     */
+    webhookId?: number | null;
+  }
+  /**
+   * GitLabSecrets represents the secrets in Secret Manager for a GitLab integration.
+   */
+  export interface Schema$GitLabSecrets {
+    /**
+     * Required. The resource name for the api access token’s secret version
+     */
+    apiAccessTokenVersion?: string | null;
+    /**
+     * Required. Immutable. API Key that will be attached to webhook requests from GitLab to Cloud Build.
+     */
+    apiKeyVersion?: string | null;
+    /**
+     * Required. The resource name for the read access token’s secret version
+     */
+    readAccessTokenVersion?: string | null;
+    /**
+     * Required. Immutable. The resource name for the webhook secret’s secret version. Once this field has been set, it cannot be changed. If you need to change it, please create another GitLabConfig.
+     */
+    webhookSecretVersion?: string | null;
+  }
+  /**
    * GitRepoSource describes a repo and ref of a code repository.
    */
   export interface Schema$GitRepoSource {
@@ -1272,6 +1517,32 @@ export namespace cloudbuild_v1 {
     configs?: Schema$GitHubEnterpriseConfig[];
   }
   /**
+   * RPC response object returned by ListGitLabConfigs RPC method.
+   */
+  export interface Schema$ListGitLabConfigsResponse {
+    /**
+     * A list of GitLabConfigs
+     */
+    gitlabConfigs?: Schema$GitLabConfig[];
+    /**
+     * A token that can be sent as `page_token` to retrieve the next page If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * RPC response object returned by the ListGitLabRepositories RPC method.
+   */
+  export interface Schema$ListGitLabRepositoriesResponse {
+    /**
+     * List of GitLab repositories
+     */
+    gitlabRepositories?: Schema$GitLabRepository[];
+    /**
+     * A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response containing existing `WorkerPools`.
    */
   export interface Schema$ListWorkerPoolsResponse {
@@ -1283,6 +1554,31 @@ export namespace cloudbuild_v1 {
      * `WorkerPools` for the specified project.
      */
     workerPools?: Schema$WorkerPool[];
+  }
+  /**
+   * A Maven artifact to upload to Artifact Registry upon successful completion of all build steps.
+   */
+  export interface Schema$MavenArtifact {
+    /**
+     * Maven `artifactId` value used when uploading the artifact to Artifact Registry.
+     */
+    artifactId?: string | null;
+    /**
+     * Maven `groupId` value used when uploading the artifact to Artifact Registry.
+     */
+    groupId?: string | null;
+    /**
+     * Path to an artifact in the build's workspace to be uploaded to Artifact Registry. This can be either an absolute path, e.g. /workspace/my-app/target/my-app-1.0.SNAPSHOT.jar or a relative path from /workspace, e.g. my-app/target/my-app-1.0.SNAPSHOT.jar.
+     */
+    path?: string | null;
+    /**
+     * Artifact Registry repository, in the form "https://$REGION-maven.pkg.dev/$PROJECT/$REPOSITORY" Artifact in the workspace specified by path will be uploaded to Artifact Registry with this location as a prefix.
+     */
+    repository?: string | null;
+    /**
+     * Maven `version` value used when uploading the artifact to Artifact Registry.
+     */
+    version?: string | null;
   }
   /**
    * Defines the network configuration for the pool.
@@ -1544,6 +1840,19 @@ export namespace cloudbuild_v1 {
     tag?: string | null;
   }
   /**
+   * Python package to upload to Artifact Registry upon successful completion of all build steps. A package can encapsulate multiple objects to be uploaded to a single repository.
+   */
+  export interface Schema$PythonPackage {
+    /**
+     * Path globs used to match files in the build's workspace. For Python/ Twine, this is usually `dist/x`, and sometimes additionally an `.asc` file.
+     */
+    paths?: string[] | null;
+    /**
+     * Artifact Registry repository, in the form "https://$REGION-python.pkg.dev/$PROJECT/$REPOSITORY" Files in the workspace matching any path pattern will be uploaded to Artifact Registry with this location as a prefix.
+     */
+    repository?: string | null;
+  }
+  /**
    * ReceiveTriggerWebhookResponse [Experimental] is the response object for the ReceiveTriggerWebhook method.
    */
   export interface Schema$ReceiveTriggerWebhookResponse {}
@@ -1555,6 +1864,15 @@ export namespace cloudbuild_v1 {
      * The connected repository to remove.
      */
     connectedRepository?: Schema$BitbucketServerRepositoryId;
+  }
+  /**
+   * RPC request object accepted by RemoveGitLabConnectedRepository RPC method.
+   */
+  export interface Schema$RemoveGitLabConnectedRepositoryRequest {
+    /**
+     * The connected repository to remove.
+     */
+    connectedRepository?: Schema$GitLabRepositoryId;
   }
   /**
    * Location of the source in a Google Cloud Source Repository.
@@ -1598,11 +1916,11 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$Results {
     /**
-     * Path to the artifact manifest. Only populated when artifacts are uploaded.
+     * Path to the artifact manifest for non-container artifacts uploaded to Cloud Storage. Only populated when artifacts are uploaded to Cloud Storage.
      */
     artifactManifest?: string | null;
     /**
-     * Time to push all non-container artifacts.
+     * Time to push all non-container artifacts to Cloud Storage.
      */
     artifactTiming?: Schema$TimeSpan;
     /**
@@ -1618,9 +1936,17 @@ export namespace cloudbuild_v1 {
      */
     images?: Schema$BuiltImage[];
     /**
-     * Number of artifacts uploaded. Only populated when artifacts are uploaded.
+     * Maven artifacts uploaded to Artifact Registry at the end of the build.
+     */
+    mavenArtifacts?: Schema$UploadedMavenArtifact[];
+    /**
+     * Number of non-container artifacts uploaded to Cloud Storage. Only populated when artifacts are uploaded to Cloud Storage.
      */
     numArtifacts?: string | null;
+    /**
+     * Python artifacts uploaded to Artifact Registry at the end of the build.
+     */
+    pythonPackages?: Schema$UploadedPythonPackage[];
   }
   /**
    * Specifies a build to retry.
@@ -1727,6 +2053,15 @@ export namespace cloudbuild_v1 {
      * Secrets in Secret Manager and associated secret environment variable.
      */
     secretManager?: Schema$SecretManagerSecret[];
+  }
+  /**
+   * ServiceDirectoryConfig represents Service Directory configuration for a SCM host connection.
+   */
+  export interface Schema$ServiceDirectoryConfig {
+    /**
+     * The Service Directory service name. Format: projects/{project\}/locations/{location\}/namespaces/{namespace\}/services/{service\}.
+     */
+    service?: string | null;
   }
   /**
    * SlackDelivery is the delivery configuration for delivering Slack messages via webhooks. See Slack webhook documentation at: https://api.slack.com/messaging/webhooks.
@@ -1903,6 +2238,23 @@ export namespace cloudbuild_v1 {
     githubEnterpriseConfig?: string | null;
   }
   /**
+   * Metadata for `UpdateGitLabConfig` operation.
+   */
+  export interface Schema$UpdateGitLabConfigOperationMetadata {
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The resource name of the GitLabConfig to be created. Format: `projects/{project\}/locations/{location\}/gitlabConfigs/{id\}`.
+     */
+    gitlabConfig?: string | null;
+  }
+  /**
    * Metadata for the `UpdateWorkerPool` operation.
    */
   export interface Schema$UpdateWorkerPoolOperationMetadata {
@@ -1918,6 +2270,40 @@ export namespace cloudbuild_v1 {
      * The resource name of the `WorkerPool` being updated. Format: `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`.
      */
     workerPool?: string | null;
+  }
+  /**
+   * A Maven artifact uploaded using the MavenArtifact directive.
+   */
+  export interface Schema$UploadedMavenArtifact {
+    /**
+     * Hash types and values of the Maven Artifact.
+     */
+    fileHashes?: Schema$FileHashes;
+    /**
+     * Output only. Stores timing information for pushing the specified artifact.
+     */
+    pushTiming?: Schema$TimeSpan;
+    /**
+     * URI of the uploaded artifact.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Artifact uploaded using the PythonPackage directive.
+   */
+  export interface Schema$UploadedPythonPackage {
+    /**
+     * Hash types and values of the Python Artifact.
+     */
+    fileHashes?: Schema$FileHashes;
+    /**
+     * Output only. Stores timing information for pushing the specified artifact.
+     */
+    pushTiming?: Schema$TimeSpan;
+    /**
+     * URI of the uploaded artifact.
+     */
+    uri?: string | null;
   }
   /**
    * Volume describes a Docker container volume which is mounted into build steps in order to persist files across build step execution.
@@ -4478,6 +4864,7 @@ export namespace cloudbuild_v1 {
     bitbucketServerConfigs: Resource$Projects$Locations$Bitbucketserverconfigs;
     builds: Resource$Projects$Locations$Builds;
     githubEnterpriseConfigs: Resource$Projects$Locations$Githubenterpriseconfigs;
+    gitLabConfigs: Resource$Projects$Locations$Gitlabconfigs;
     operations: Resource$Projects$Locations$Operations;
     triggers: Resource$Projects$Locations$Triggers;
     workerPools: Resource$Projects$Locations$Workerpools;
@@ -4488,6 +4875,9 @@ export namespace cloudbuild_v1 {
       this.builds = new Resource$Projects$Locations$Builds(this.context);
       this.githubEnterpriseConfigs =
         new Resource$Projects$Locations$Githubenterpriseconfigs(this.context);
+      this.gitLabConfigs = new Resource$Projects$Locations$Gitlabconfigs(
+        this.context
+      );
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
@@ -7611,6 +8001,1268 @@ export namespace cloudbuild_v1 {
     requestBody?: Schema$GitHubEnterpriseConfig;
   }
 
+  export class Resource$Projects$Locations$Gitlabconfigs {
+    context: APIRequestContext;
+    connectedRepositories: Resource$Projects$Locations$Gitlabconfigs$Connectedrepositories;
+    repos: Resource$Projects$Locations$Gitlabconfigs$Repos;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.connectedRepositories =
+        new Resource$Projects$Locations$Gitlabconfigs$Connectedrepositories(
+          this.context
+        );
+      this.repos = new Resource$Projects$Locations$Gitlabconfigs$Repos(
+        this.context
+      );
+    }
+
+    /**
+     * Creates a new `GitLabConfig`. This API is experimental
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.locations.gitLabConfigs.create({
+     *     // Optional. The ID to use for the GitLabConfig, which will become the final component of the GitLabConfig’s resource name. gitlab_config_id must meet the following requirements: + They must contain only alphanumeric characters and dashes. + They can be 1-64 characters long. + They must begin and end with an alphanumeric character
+     *     gitlabConfigId: 'placeholder-value',
+     *     // Required. Name of the parent resource.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "connectedRepositories": [],
+     *       //   "createTime": "my_createTime",
+     *       //   "enterpriseConfig": {},
+     *       //   "name": "my_name",
+     *       //   "secrets": {},
+     *       //   "username": "my_username",
+     *       //   "webhookKey": "my_webhookKey"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Gitlabconfigs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Gitlabconfigs$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Gitlabconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Gitlabconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/gitLabConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Delete a `GitLabConfig`. This API is experimental
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.locations.gitLabConfigs.delete({
+     *     // Required. The config resource name.
+     *     name: 'projects/my-project/locations/my-location/gitLabConfigs/my-gitLabConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Gitlabconfigs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Gitlabconfigs$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Gitlabconfigs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Gitlabconfigs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a `GitLabConfig`. This API is experimental
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.locations.gitLabConfigs.get({
+     *     // Required. The config resource name.
+     *     name: 'projects/my-project/locations/my-location/gitLabConfigs/my-gitLabConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "connectedRepositories": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "enterpriseConfig": {},
+     *   //   "name": "my_name",
+     *   //   "secrets": {},
+     *   //   "username": "my_username",
+     *   //   "webhookKey": "my_webhookKey"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Gitlabconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GitLabConfig>;
+    get(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$GitLabConfig>,
+      callback: BodyResponseCallback<Schema$GitLabConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Get,
+      callback: BodyResponseCallback<Schema$GitLabConfig>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$GitLabConfig>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Gitlabconfigs$Get
+        | BodyResponseCallback<Schema$GitLabConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GitLabConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GitLabConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$GitLabConfig> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Gitlabconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Gitlabconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GitLabConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GitLabConfig>(parameters);
+      }
+    }
+
+    /**
+     * List all `GitLabConfigs` for a given project. This API is experimental
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.locations.gitLabConfigs.list({
+     *     // The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 50 configs will be returned. The maximum value is 1000;, values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous ‘ListGitlabConfigsRequest’ call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ‘ListGitlabConfigsRequest’ must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Name of the parent resource
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "gitlabConfigs": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Gitlabconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListGitLabConfigsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGitLabConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListGitLabConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$List,
+      callback: BodyResponseCallback<Schema$ListGitLabConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListGitLabConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Gitlabconfigs$List
+        | BodyResponseCallback<Schema$ListGitLabConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListGitLabConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListGitLabConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListGitLabConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Gitlabconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Gitlabconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/gitLabConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListGitLabConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListGitLabConfigsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates an existing `GitLabConfig`. This API is experimental
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.locations.gitLabConfigs.patch({
+     *     // The resource name for the config.
+     *     name: 'projects/my-project/locations/my-location/gitLabConfigs/my-gitLabConfig',
+     *     // Update mask for the resource. If this is set, the server will only update the fields specified in the field mask. Otherwise, a full update of the mutable resource fields will be performed.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "connectedRepositories": [],
+     *       //   "createTime": "my_createTime",
+     *       //   "enterpriseConfig": {},
+     *       //   "name": "my_name",
+     *       //   "secrets": {},
+     *       //   "username": "my_username",
+     *       //   "webhookKey": "my_webhookKey"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Gitlabconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Gitlabconfigs$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Gitlabconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Gitlabconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Remove a GitLab repository from a given GitLabConfig's connected repositories. This API is experimental.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudbuild.projects.locations.gitLabConfigs.removeGitLabConnectedRepository(
+     *       {
+     *         // Required. The name of the `GitLabConfig` to remove a connected repository. Format: `projects/{project\}/locations/{location\}/gitLabConfigs/{config\}`
+     *         config:
+     *           'projects/my-project/locations/my-location/gitLabConfigs/my-gitLabConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "connectedRepository": {}
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    removeGitLabConnectedRepository(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Removegitlabconnectedrepository,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    removeGitLabConnectedRepository(
+      params?: Params$Resource$Projects$Locations$Gitlabconfigs$Removegitlabconnectedrepository,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    removeGitLabConnectedRepository(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Removegitlabconnectedrepository,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    removeGitLabConnectedRepository(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Removegitlabconnectedrepository,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    removeGitLabConnectedRepository(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Removegitlabconnectedrepository,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    removeGitLabConnectedRepository(
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    removeGitLabConnectedRepository(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Gitlabconfigs$Removegitlabconnectedrepository
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Gitlabconfigs$Removegitlabconnectedrepository;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Gitlabconfigs$Removegitlabconnectedrepository;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+config}:removeGitLabConnectedRepository'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['config'],
+        pathParams: ['config'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Gitlabconfigs$Create
+    extends StandardParameters {
+    /**
+     * Optional. The ID to use for the GitLabConfig, which will become the final component of the GitLabConfig’s resource name. gitlab_config_id must meet the following requirements: + They must contain only alphanumeric characters and dashes. + They can be 1-64 characters long. + They must begin and end with an alphanumeric character
+     */
+    gitlabConfigId?: string;
+    /**
+     * Required. Name of the parent resource.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GitLabConfig;
+  }
+  export interface Params$Resource$Projects$Locations$Gitlabconfigs$Delete
+    extends StandardParameters {
+    /**
+     * Required. The config resource name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Gitlabconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. The config resource name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Gitlabconfigs$List
+    extends StandardParameters {
+    /**
+     * The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 50 configs will be returned. The maximum value is 1000;, values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous ‘ListGitlabConfigsRequest’ call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ‘ListGitlabConfigsRequest’ must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the parent resource
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Gitlabconfigs$Patch
+    extends StandardParameters {
+    /**
+     * The resource name for the config.
+     */
+    name?: string;
+    /**
+     * Update mask for the resource. If this is set, the server will only update the fields specified in the field mask. Otherwise, a full update of the mutable resource fields will be performed.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GitLabConfig;
+  }
+  export interface Params$Resource$Projects$Locations$Gitlabconfigs$Removegitlabconnectedrepository
+    extends StandardParameters {
+    /**
+     * Required. The name of the `GitLabConfig` to remove a connected repository. Format: `projects/{project\}/locations/{location\}/gitLabConfigs/{config\}`
+     */
+    config?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RemoveGitLabConnectedRepositoryRequest;
+  }
+
+  export class Resource$Projects$Locations$Gitlabconfigs$Connectedrepositories {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Batch connecting GitLab repositories to Cloud Build. This API is experimental.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudbuild.projects.locations.gitLabConfigs.connectedRepositories.batchCreate(
+     *       {
+     *         // The name of the `GitLabConfig` that adds connected repositories. Format: `projects/{project\}/locations/{location\}/gitLabConfigs/{config\}`
+     *         parent:
+     *           'projects/my-project/locations/my-location/gitLabConfigs/my-gitLabConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "requests": []
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Connectedrepositories$Batchcreate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchCreate(
+      params?: Params$Resource$Projects$Locations$Gitlabconfigs$Connectedrepositories$Batchcreate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Connectedrepositories$Batchcreate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Connectedrepositories$Batchcreate,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Connectedrepositories$Batchcreate,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    batchCreate(callback: BodyResponseCallback<Schema$Operation>): void;
+    batchCreate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Gitlabconfigs$Connectedrepositories$Batchcreate
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Gitlabconfigs$Connectedrepositories$Batchcreate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Gitlabconfigs$Connectedrepositories$Batchcreate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/connectedRepositories:batchCreate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Gitlabconfigs$Connectedrepositories$Batchcreate
+    extends StandardParameters {
+    /**
+     * The name of the `GitLabConfig` that adds connected repositories. Format: `projects/{project\}/locations/{location\}/gitLabConfigs/{config\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchCreateGitLabConnectedRepositoriesRequest;
+  }
+
+  export class Resource$Projects$Locations$Gitlabconfigs$Repos {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * List all repositories for a given `GitLabConfig`. This API is experimental
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.locations.gitLabConfigs.repos.list({
+     *     // The maximum number of repositories to return. The service may return fewer than this value.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous ListGitLabRepositoriesRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListGitLabRepositoriesRequest` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Name of the parent resource.
+     *     parent:
+     *       'projects/my-project/locations/my-location/gitLabConfigs/my-gitLabConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "gitlabRepositories": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Repos$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Gitlabconfigs$Repos$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListGitLabRepositoriesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Repos$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Repos$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGitLabRepositoriesResponse>,
+      callback: BodyResponseCallback<Schema$ListGitLabRepositoriesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Gitlabconfigs$Repos$List,
+      callback: BodyResponseCallback<Schema$ListGitLabRepositoriesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListGitLabRepositoriesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Gitlabconfigs$Repos$List
+        | BodyResponseCallback<Schema$ListGitLabRepositoriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListGitLabRepositoriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListGitLabRepositoriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListGitLabRepositoriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Gitlabconfigs$Repos$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Gitlabconfigs$Repos$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/repos').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListGitLabRepositoriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListGitLabRepositoriesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Gitlabconfigs$Repos$List
+    extends StandardParameters {
+    /**
+     * The maximum number of repositories to return. The service may return fewer than this value.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous ListGitLabRepositoriesRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListGitLabRepositoriesRequest` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the parent resource.
+     */
+    parent?: string;
+  }
+
   export class Resource$Projects$Locations$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -7952,6 +9604,7 @@ export namespace cloudbuild_v1 {
      *       //   "filter": "my_filter",
      *       //   "gitFileSource": {},
      *       //   "github": {},
+     *       //   "gitlabEnterpriseEventsConfig": {},
      *       //   "id": "my_id",
      *       //   "ignoredFiles": [],
      *       //   "includeBuildLogs": "my_includeBuildLogs",
@@ -7984,6 +9637,7 @@ export namespace cloudbuild_v1 {
      *   //   "filter": "my_filter",
      *   //   "gitFileSource": {},
      *   //   "github": {},
+     *   //   "gitlabEnterpriseEventsConfig": {},
      *   //   "id": "my_id",
      *   //   "ignoredFiles": [],
      *   //   "includeBuildLogs": "my_includeBuildLogs",
@@ -8269,6 +9923,7 @@ export namespace cloudbuild_v1 {
      *   //   "filter": "my_filter",
      *   //   "gitFileSource": {},
      *   //   "github": {},
+     *   //   "gitlabEnterpriseEventsConfig": {},
      *   //   "id": "my_id",
      *   //   "ignoredFiles": [],
      *   //   "includeBuildLogs": "my_includeBuildLogs",
@@ -8567,6 +10222,7 @@ export namespace cloudbuild_v1 {
      *       //   "filter": "my_filter",
      *       //   "gitFileSource": {},
      *       //   "github": {},
+     *       //   "gitlabEnterpriseEventsConfig": {},
      *       //   "id": "my_id",
      *       //   "ignoredFiles": [],
      *       //   "includeBuildLogs": "my_includeBuildLogs",
@@ -8599,6 +10255,7 @@ export namespace cloudbuild_v1 {
      *   //   "filter": "my_filter",
      *   //   "gitFileSource": {},
      *   //   "github": {},
+     *   //   "gitlabEnterpriseEventsConfig": {},
      *   //   "id": "my_id",
      *   //   "ignoredFiles": [],
      *   //   "includeBuildLogs": "my_includeBuildLogs",
@@ -9979,6 +11636,7 @@ export namespace cloudbuild_v1 {
      *       //   "filter": "my_filter",
      *       //   "gitFileSource": {},
      *       //   "github": {},
+     *       //   "gitlabEnterpriseEventsConfig": {},
      *       //   "id": "my_id",
      *       //   "ignoredFiles": [],
      *       //   "includeBuildLogs": "my_includeBuildLogs",
@@ -10011,6 +11669,7 @@ export namespace cloudbuild_v1 {
      *   //   "filter": "my_filter",
      *   //   "gitFileSource": {},
      *   //   "github": {},
+     *   //   "gitlabEnterpriseEventsConfig": {},
      *   //   "id": "my_id",
      *   //   "ignoredFiles": [],
      *   //   "includeBuildLogs": "my_includeBuildLogs",
@@ -10298,6 +11957,7 @@ export namespace cloudbuild_v1 {
      *   //   "filter": "my_filter",
      *   //   "gitFileSource": {},
      *   //   "github": {},
+     *   //   "gitlabEnterpriseEventsConfig": {},
      *   //   "id": "my_id",
      *   //   "ignoredFiles": [],
      *   //   "includeBuildLogs": "my_includeBuildLogs",
@@ -10595,6 +12255,7 @@ export namespace cloudbuild_v1 {
      *       //   "filter": "my_filter",
      *       //   "gitFileSource": {},
      *       //   "github": {},
+     *       //   "gitlabEnterpriseEventsConfig": {},
      *       //   "id": "my_id",
      *       //   "ignoredFiles": [],
      *       //   "includeBuildLogs": "my_includeBuildLogs",
@@ -10627,6 +12288,7 @@ export namespace cloudbuild_v1 {
      *   //   "filter": "my_filter",
      *   //   "gitFileSource": {},
      *   //   "github": {},
+     *   //   "gitlabEnterpriseEventsConfig": {},
      *   //   "id": "my_id",
      *   //   "ignoredFiles": [],
      *   //   "includeBuildLogs": "my_includeBuildLogs",
