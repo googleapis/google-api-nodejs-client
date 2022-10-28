@@ -943,6 +943,10 @@ export namespace analyticsadmin_v1alpha {
      */
     displayVideo360AdvertiserLinkProposal?: Schema$GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal;
     /**
+     * A snapshot of an ExpandedDataSet resource in change history.
+     */
+    expandedDataSet?: Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet;
+    /**
      * A snapshot of a FirebaseLink resource in change history.
      */
     firebaseLink?: Schema$GoogleAnalyticsAdminV1alphaFirebaseLink;
@@ -962,6 +966,10 @@ export namespace analyticsadmin_v1alpha {
      * A snapshot of a Property resource in change history.
      */
     property?: Schema$GoogleAnalyticsAdminV1alphaProperty;
+    /**
+     * A snapshot of a SearchAds360Link resource in change history.
+     */
+    searchAds360Link?: Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link;
   }
   /**
    * A set of changes within a Google Analytics account or its child properties that resulted from the same cause. Common causes would be updates made in the Google Analytics UI, changes from customer support, or automatic Google Analytics system changes.
@@ -1298,6 +1306,112 @@ export namespace analyticsadmin_v1alpha {
     validationEmail?: string | null;
   }
   /**
+   * A resource message representing a GA4 ExpandedDataSet.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet {
+    /**
+     * Output only. Time when expanded data set began (or will begin) collecing data.
+     */
+    dataCollectionStartTime?: string | null;
+    /**
+     * Optional. The description of the ExpandedDataSet. Max 50 chars.
+     */
+    description?: string | null;
+    /**
+     * Immutable. A logical expression of ExpandedDataSet filters applied to dimension included in the ExpandedDataSet. This filter is used to reduce the number of rows and thus the change of encountering `other row`.
+     */
+    dimensionFilterExpression?: Schema$GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpression;
+    /**
+     * Immutable. The list of dimensions included in the ExpandedDataSet. See the [API Dimensions](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#dimensions) for the list of dimension names.
+     */
+    dimensionNames?: string[] | null;
+    /**
+     * Required. The display name of the ExpandedDataSet. Max 200 chars.
+     */
+    displayName?: string | null;
+    /**
+     * Immutable. The list of metrics included in the ExpandedDataSet. See the [API Metrics](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#metrics) for the list of dimension names.
+     */
+    metricNames?: string[] | null;
+    /**
+     * Output only. The resource name for this ExpandedDataSet resource. Format: properties/{property_id\}/expandedDataSets/{expanded_data_set\}
+     */
+    name?: string | null;
+  }
+  /**
+   * A specific filter for a single dimension
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaExpandedDataSetFilter {
+    /**
+     * Required. The dimension name to filter.
+     */
+    fieldName?: string | null;
+    /**
+     * A filter for a string dimension that matches a particular list of options.
+     */
+    inListFilter?: Schema$GoogleAnalyticsAdminV1alphaExpandedDataSetFilterInListFilter;
+    /**
+     * A filter for a string-type dimension that matches a particular pattern.
+     */
+    stringFilter?: Schema$GoogleAnalyticsAdminV1alphaExpandedDataSetFilterStringFilter;
+  }
+  /**
+   * A logical expression of EnhancedDataSet dimension filters.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpression {
+    /**
+     * A list of expressions to be AND’ed together. It must contain a ExpandedDataSetFilterExpression with either not_expression or dimension_filter. This must be set for the top level ExpandedDataSetFilterExpression.
+     */
+    andGroup?: Schema$GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpressionList;
+    /**
+     * A filter on a single dimension. This cannot be set on the top level ExpandedDataSetFilterExpression.
+     */
+    filter?: Schema$GoogleAnalyticsAdminV1alphaExpandedDataSetFilter;
+    /**
+     * A filter expression to be NOT'ed (i.e., inverted, complemented). It must include a dimension_filter. This cannot be set on the top level ExpandedDataSetFilterExpression.
+     */
+    notExpression?: Schema$GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpression;
+  }
+  /**
+   * A list of ExpandedDataSet filter expressions.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpressionList {
+    /**
+     * A list of ExpandedDataSet filter expressions.
+     */
+    filterExpressions?: Schema$GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpression[];
+  }
+  /**
+   * A filter for a string dimension that matches a particular list of options.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaExpandedDataSetFilterInListFilter {
+    /**
+     * Optional. If true, the match is case-sensitive. If false, the match is case-insensitive. Must be true.
+     */
+    caseSensitive?: boolean | null;
+    /**
+     * Required. The list of possible string values to match against. Must be non-empty.
+     */
+    values?: string[] | null;
+  }
+  /**
+   * A filter for a string-type dimension that matches a particular pattern.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaExpandedDataSetFilterStringFilter {
+    /**
+     * Optional. If true, the match is case-sensitive. If false, the match is case-insensitive. Must be true when match_type is EXACT. Must be false when match_type is CONTAINS.
+     */
+    caseSensitive?: boolean | null;
+    /**
+     * Required. The match type for the string filter.
+     */
+    matchType?: string | null;
+    /**
+     * Required. The string value to be matched against.
+     */
+    value?: string | null;
+  }
+  /**
    * A link between a GA4 property and a Firebase project.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaFirebaseLink {
@@ -1564,6 +1678,19 @@ export namespace analyticsadmin_v1alpha {
     properties?: Schema$GoogleAnalyticsAdminV1alphaProperty[];
   }
   /**
+   * Response message for ListSearchAds360Links RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of SearchAds360Links.
+     */
+    searchAds360Links?: Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link[];
+  }
+  /**
    * Response message for ListUserLinks RPC.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse {
@@ -1775,6 +1902,39 @@ export namespace analyticsadmin_v1alpha {
      * Rows of dimension value combinations and metric values in the report.
      */
     rows?: Schema$GoogleAnalyticsAdminV1alphaAccessRow[];
+  }
+  /**
+   * A link between a GA4 property and a Search Ads 360 entity.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link {
+    /**
+     * Enables personalized advertising features with this integration. If this field is not set on create, it will be defaulted to true.
+     */
+    adsPersonalizationEnabled?: boolean | null;
+    /**
+     * Output only. The display name of the Search Ads 360 Advertiser. Allows users to easily identify the linked resource.
+     */
+    advertiserDisplayName?: string | null;
+    /**
+     * Immutable. This field represents the Advertiser ID of the Search Ads 360 Advertiser. that has been linked.
+     */
+    advertiserId?: string | null;
+    /**
+     * Immutable. Enables the import of campaign data from Search Ads 360 into the GA4 property. After link creation, this can only be updated from the Search Ads 360 product. If this field is not set on create, it will be defaulted to true.
+     */
+    campaignDataSharingEnabled?: boolean | null;
+    /**
+     * Immutable. Enables the import of cost data from Search Ads 360 to the GA4 property. This can only be enabled if campaign_data_sharing_enabled is enabled. After link creation, this can only be updated from the Search Ads 360 product. If this field is not set on create, it will be defaulted to true.
+     */
+    costDataSharingEnabled?: boolean | null;
+    /**
+     * Output only. The resource name for this SearchAds360Link resource. Format: properties/{propertyId\}/searchAds360Links/{linkId\} Note: linkId is not the Search Ads 360 advertiser ID
+     */
+    name?: string | null;
+    /**
+     * Enables export of site stats with this integration. If this field is not set on create, it will be defaulted to true.
+     */
+    siteStatsSharingEnabled?: boolean | null;
   }
   /**
    * Request message for SearchChangeHistoryEvents RPC.
@@ -4693,6 +4853,7 @@ export namespace analyticsadmin_v1alpha {
     displayVideo360AdvertiserLinks: Resource$Properties$Displayvideo360advertiserlinks;
     firebaseLinks: Resource$Properties$Firebaselinks;
     googleAdsLinks: Resource$Properties$Googleadslinks;
+    searchAds360Links: Resource$Properties$Searchads360links;
     userLinks: Resource$Properties$Userlinks;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -4713,6 +4874,9 @@ export namespace analyticsadmin_v1alpha {
         new Resource$Properties$Displayvideo360advertiserlinks(this.context);
       this.firebaseLinks = new Resource$Properties$Firebaselinks(this.context);
       this.googleAdsLinks = new Resource$Properties$Googleadslinks(
+        this.context
+      );
+      this.searchAds360Links = new Resource$Properties$Searchads360links(
         this.context
       );
       this.userLinks = new Resource$Properties$Userlinks(this.context);
@@ -14554,6 +14718,808 @@ export namespace analyticsadmin_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink;
+  }
+
+  export class Resource$Properties$Searchads360links {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a SearchAds360Link.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.searchAds360Links.create({
+     *     // Required. Example format: properties/1234
+     *     parent: 'properties/my-propertie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adsPersonalizationEnabled": false,
+     *       //   "advertiserDisplayName": "my_advertiserDisplayName",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "campaignDataSharingEnabled": false,
+     *       //   "costDataSharingEnabled": false,
+     *       //   "name": "my_name",
+     *       //   "siteStatsSharingEnabled": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adsPersonalizationEnabled": false,
+     *   //   "advertiserDisplayName": "my_advertiserDisplayName",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "campaignDataSharingEnabled": false,
+     *   //   "costDataSharingEnabled": false,
+     *   //   "name": "my_name",
+     *   //   "siteStatsSharingEnabled": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Properties$Searchads360links$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Properties$Searchads360links$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>;
+    create(
+      params: Params$Resource$Properties$Searchads360links$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Searchads360links$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Searchads360links$Create,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Searchads360links$Create
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Searchads360links$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Searchads360links$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/searchAds360Links').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a SearchAds360Link on a property.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.searchAds360Links.delete({
+     *     // Required. The name of the SearchAds360Link to delete. Example format: properties/1234/SearchAds360Links/5678
+     *     name: 'properties/my-propertie/searchAds360Links/my-searchAds360Link',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Properties$Searchads360links$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Properties$Searchads360links$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Properties$Searchads360links$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Properties$Searchads360links$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Properties$Searchads360links$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Searchads360links$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Searchads360links$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Searchads360links$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Look up a single SearchAds360Link
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.searchAds360Links.get({
+     *     // Required. The name of the SearchAds360Link to get. Example format: properties/1234/SearchAds360Link/5678
+     *     name: 'properties/my-propertie/searchAds360Links/my-searchAds360Link',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adsPersonalizationEnabled": false,
+     *   //   "advertiserDisplayName": "my_advertiserDisplayName",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "campaignDataSharingEnabled": false,
+     *   //   "costDataSharingEnabled": false,
+     *   //   "name": "my_name",
+     *   //   "siteStatsSharingEnabled": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Properties$Searchads360links$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Properties$Searchads360links$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>;
+    get(
+      params: Params$Resource$Properties$Searchads360links$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Searchads360links$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Searchads360links$Get,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Searchads360links$Get
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Searchads360links$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Searchads360links$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all SearchAds360Links on a property.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.searchAds360Links.list({
+     *     // The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListSearchAds360Links` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSearchAds360Links` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Example format: properties/1234
+     *     parent: 'properties/my-propertie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "searchAds360Links": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Properties$Searchads360links$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Properties$Searchads360links$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponse>;
+    list(
+      params: Params$Resource$Properties$Searchads360links$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Searchads360links$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponse>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Searchads360links$List,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Searchads360links$List
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Searchads360links$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Searchads360links$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/searchAds360Links').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a SearchAds360Link on a property.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.searchAds360Links.patch({
+     *     // Output only. The resource name for this SearchAds360Link resource. Format: properties/{propertyId\}/searchAds360Links/{linkId\} Note: linkId is not the Search Ads 360 advertiser ID
+     *     name: 'properties/my-propertie/searchAds360Links/my-searchAds360Link',
+     *     // Required. The list of fields to be updated. Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adsPersonalizationEnabled": false,
+     *       //   "advertiserDisplayName": "my_advertiserDisplayName",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "campaignDataSharingEnabled": false,
+     *       //   "costDataSharingEnabled": false,
+     *       //   "name": "my_name",
+     *       //   "siteStatsSharingEnabled": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adsPersonalizationEnabled": false,
+     *   //   "advertiserDisplayName": "my_advertiserDisplayName",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "campaignDataSharingEnabled": false,
+     *   //   "costDataSharingEnabled": false,
+     *   //   "name": "my_name",
+     *   //   "siteStatsSharingEnabled": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Properties$Searchads360links$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Properties$Searchads360links$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>;
+    patch(
+      params: Params$Resource$Properties$Searchads360links$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Properties$Searchads360links$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>
+    ): void;
+    patch(
+      params: Params$Resource$Properties$Searchads360links$Patch,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Searchads360links$Patch
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Searchads360links$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Searchads360links$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Properties$Searchads360links$Create
+    extends StandardParameters {
+    /**
+     * Required. Example format: properties/1234
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link;
+  }
+  export interface Params$Resource$Properties$Searchads360links$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the SearchAds360Link to delete. Example format: properties/1234/SearchAds360Links/5678
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Searchads360links$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the SearchAds360Link to get. Example format: properties/1234/SearchAds360Link/5678
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Searchads360links$List
+    extends StandardParameters {
+    /**
+     * The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListSearchAds360Links` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSearchAds360Links` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Example format: properties/1234
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Properties$Searchads360links$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The resource name for this SearchAds360Link resource. Format: properties/{propertyId\}/searchAds360Links/{linkId\} Note: linkId is not the Search Ads 360 advertiser ID
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to be updated. Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link;
   }
 
   export class Resource$Properties$Userlinks {
