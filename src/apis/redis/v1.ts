@@ -555,6 +555,19 @@ export namespace redis_v1 {
     rdbSnapshotStartTime?: string | null;
   }
   /**
+   * Operation metadata returned by the CLH during resource state reconciliation.
+   */
+  export interface Schema$ReconciliationOperationMetadata {
+    /**
+     * DEPRECATED. Use exclusive_action instead.
+     */
+    deleteResource?: boolean | null;
+    /**
+     * Excluisive action returned by the CLH.
+     */
+    exclusiveAction?: string | null;
+  }
+  /**
    * Request for RescheduleMaintenance.
    */
   export interface Schema$RescheduleMaintenanceRequest {

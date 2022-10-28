@@ -624,7 +624,7 @@
       }
     }
   },
-  "revision": "20220601",
+  "revision": "20221007",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -1299,6 +1299,31 @@
         "rdbSnapshotStartTime": {
           "description": "Optional. Date and time that the first snapshot was/will be attempted, and to which future snapshots will be aligned. If not provided, the current time will be used.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReconciliationOperationMetadata": {
+      "description": "Operation metadata returned by the CLH during resource state reconciliation.",
+      "id": "ReconciliationOperationMetadata",
+      "properties": {
+        "deleteResource": {
+          "description": "DEPRECATED. Use exclusive_action instead.",
+          "type": "boolean"
+        },
+        "exclusiveAction": {
+          "description": "Excluisive action returned by the CLH.",
+          "enum": [
+            "UNKNOWN_REPAIR_ACTION",
+            "DELETE",
+            "RETRY"
+          ],
+          "enumDescriptions": [
+            "Unknown repair action.",
+            "The resource has to be deleted. When using this bit, the CLH should fail the operation. DEPRECATED. Instead use DELETE_RESOURCE OperationSignal in SideChannel. For more information - go/ccfe-delete-on-upsert, go/ccfe-reconciliation-protocol-ug#apply_delete",
+            "This resource could not be repaired but the repair should be tried again at a later time. This can happen if there is a dependency that needs to be resolved first- e.g. if a parent resource must be repaired before a child resource."
+          ],
           "type": "string"
         }
       },
