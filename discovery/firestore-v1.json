@@ -1089,6 +1089,35 @@
                     "https://www.googleapis.com/auth/datastore"
                   ]
                 },
+                "runAggregationQuery": {
+                  "description": "Runs an aggregation query. Rather than producing Document results like Firestore.RunQuery, this API allows running an aggregation to produce a series of AggregationResult server-side. High-Level Example: ``` -- Return the number of documents in table given a filter. SELECT COUNT(*) FROM ( SELECT * FROM k where a = true ); ```",
+                  "flatPath": "v1/projects/{projectsId}/databases/{databasesId}/documents/{documentsId}/{documentsId1}:runAggregationQuery",
+                  "httpMethod": "POST",
+                  "id": "firestore.projects.databases.documents.runAggregationQuery",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource name. In the format: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/databases/[^/]+/documents/[^/]+/.*$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}:runAggregationQuery",
+                  "request": {
+                    "$ref": "RunAggregationQueryRequest"
+                  },
+                  "response": {
+                    "$ref": "RunAggregationQueryResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/datastore"
+                  ]
+                },
                 "runQuery": {
                   "description": "Runs a query.",
                   "flatPath": "v1/projects/{projectsId}/databases/{databasesId}/documents/{documentsId}/{documentsId1}:runQuery",
@@ -1353,9 +1382,38 @@
       }
     }
   },
-  "revision": "20220831",
+  "revision": "20221017",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
+    "Aggregation": {
+      "description": "Defines a aggregation that produces a single result.",
+      "id": "Aggregation",
+      "properties": {
+        "alias": {
+          "description": "Optional. Optional name of the field to store the result of the aggregation into. If not provided, Firestore will pick a default name following the format `field_`. For example: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2), COUNT_UP_TO(3) AS count_up_to_3, COUNT_UP_TO(4) OVER ( ... ); ``` becomes: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2) AS field_1, COUNT_UP_TO(3) AS count_up_to_3, COUNT_UP_TO(4) AS field_2 OVER ( ... ); ``` Requires: * Must be unique across all aggregation aliases. * Conform to document field name limitations.",
+          "type": "string"
+        },
+        "count": {
+          "$ref": "Count",
+          "description": "Count aggregator."
+        }
+      },
+      "type": "object"
+    },
+    "AggregationResult": {
+      "description": "The result of a single bucket from a Firestore aggregation query. The keys of `aggregate_fields` are the same for all results in an aggregation query, unlike document queries which can have different fields present for each result.",
+      "id": "AggregationResult",
+      "properties": {
+        "aggregateFields": {
+          "additionalProperties": {
+            "$ref": "Value"
+          },
+          "description": "The result of the aggregation functions, ex: `COUNT(*) AS total_docs`. The key is the alias assigned to the aggregation function on input and the size of this map equals the number of aggregation functions in the query.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "ArrayValue": {
       "description": "An array value.",
       "id": "ArrayValue",
@@ -1566,6 +1624,18 @@
             "Unspecified. This value must not be used.",
             "Documents are required to satisfy all of the combined filters."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Count": {
+      "description": "Count of documents that match the query. The `COUNT(*)` aggregation function operates on the entire document so it does not require a field reference.",
+      "id": "Count",
+      "properties": {
+        "upTo": {
+          "description": "Optional. Optional constraint on the maximum number of documents to count. This provides a way to set an upper bound on the number of documents to scan, limiting latency and cost. Unspecified is interpreted as no bound. High-Level Example: ``` AGGREGATE COUNT_UP_TO(1000) OVER ( SELECT * FROM k ); ``` Requires: * Must be greater than zero when present.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -2018,6 +2088,13 @@
           },
           "type": "array"
         },
+        "namespaceIds": {
+          "description": "An empty list represents all namespaces. This is the preferred usage for databases that don't use namespaces. An empty string element represents the default namespace. This should be used if the database has data in non-default namespaces, but doesn't want to include them. Each namespace in this list must be unique.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "outputUriPrefix": {
           "description": "The output URI. Currently only supports Google Cloud Storage URIs of the form: `gs://BUCKET_NAME[/NAMESPACE_PATH]`, where `BUCKET_NAME` is the name of the Google Cloud Storage bucket and `NAMESPACE_PATH` is an optional Google Cloud Storage namespace path. When choosing a name, be sure to consider Google Cloud Storage naming guidelines: https://cloud.google.com/storage/docs/naming. If the URI is a bucket (without a namespace path), a prefix will be generated based on the start time.",
           "type": "string"
@@ -2193,6 +2270,13 @@
         "inputUriPrefix": {
           "description": "Location of the exported files. This must match the output_uri_prefix of an ExportDocumentsResponse from an export that has completed successfully. See: google.firestore.admin.v1.ExportDocumentsResponse.output_uri_prefix.",
           "type": "string"
+        },
+        "namespaceIds": {
+          "description": "An empty list represents all namespaces. This is the preferred usage for databases that don't use namespaces. An empty string element represents the default namespace. This should be used if the database has data in non-default namespaces, but doesn't want to include them. Each namespace in this list must be unique.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2913,6 +2997,52 @@
       },
       "type": "object"
     },
+    "RunAggregationQueryRequest": {
+      "description": "The request for Firestore.RunAggregationQuery.",
+      "id": "RunAggregationQueryRequest",
+      "properties": {
+        "newTransaction": {
+          "$ref": "TransactionOptions",
+          "description": "Starts a new transaction as part of the query, defaulting to read-only. The new transaction ID will be returned as the first response in the stream."
+        },
+        "readTime": {
+          "description": "Executes the query at the given timestamp. Requires: * Cannot be more than 270 seconds in the past.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "structuredAggregationQuery": {
+          "$ref": "StructuredAggregationQuery",
+          "description": "An aggregation query."
+        },
+        "transaction": {
+          "description": "Run the aggregation within an already active transaction. The value here is the opaque transaction ID to execute the query in.",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RunAggregationQueryResponse": {
+      "description": "The response for Firestore.RunAggregationQuery.",
+      "id": "RunAggregationQueryResponse",
+      "properties": {
+        "readTime": {
+          "description": "The time at which the aggregate value is valid for.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "result": {
+          "$ref": "AggregationResult",
+          "description": "A single aggregation result. Not present when reporting partial progress."
+        },
+        "transaction": {
+          "description": "The transaction that was started as part of this request. Only present on the first response when the request requested to start a new transaction.",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RunQueryRequest": {
       "description": "The request for Firestore.RunQuery.",
       "id": "RunQueryRequest",
@@ -2991,6 +3121,24 @@
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StructuredAggregationQuery": {
+      "description": "Firestore query for running an aggregation over a StructuredQuery.",
+      "id": "StructuredAggregationQuery",
+      "properties": {
+        "aggregations": {
+          "description": "Optional. Series of aggregations to apply over the results of the `structured_query`. Requires: * A minimum of one and maximum of five aggregations per query.",
+          "items": {
+            "$ref": "Aggregation"
+          },
+          "type": "array"
+        },
+        "structuredQuery": {
+          "$ref": "StructuredQuery",
+          "description": "Nested structured query."
         }
       },
       "type": "object"
