@@ -238,7 +238,7 @@
       }
     }
   },
-  "revision": "20220318",
+  "revision": "20221014",
   "rootUrl": "https://firebasestorage.googleapis.com/",
   "schemas": {
     "AddFirebaseRequest": {
@@ -251,19 +251,9 @@
       "description": "A storage bucket and its relation to a parent Firebase project.",
       "id": "Bucket",
       "properties": {
-        "location": {
-          "description": "Output only. Location of the storage bucket.",
-          "readOnly": true,
-          "type": "string"
-        },
         "name": {
           "description": "Resource name of the bucket.",
           "type": "string"
-        },
-        "reconciling": {
-          "description": "Output only. Represents whether a bucket is being moved to a new location, in which case reconciling is set to true.",
-          "readOnly": true,
-          "type": "boolean"
         }
       },
       "type": "object"

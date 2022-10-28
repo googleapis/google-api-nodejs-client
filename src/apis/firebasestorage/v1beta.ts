@@ -133,17 +133,9 @@ export namespace firebasestorage_v1beta {
    */
   export interface Schema$Bucket {
     /**
-     * Output only. Location of the storage bucket.
-     */
-    location?: string | null;
-    /**
      * Resource name of the bucket.
      */
     name?: string | null;
-    /**
-     * Output only. Represents whether a bucket is being moved to a new location, in which case reconciling is set to true.
-     */
-    reconciling?: boolean | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -259,9 +251,7 @@ export namespace firebasestorage_v1beta {
      *
      *   // Example response
      *   // {
-     *   //   "location": "my_location",
-     *   //   "name": "my_name",
-     *   //   "reconciling": false
+     *   //   "name": "my_name"
      *   // }
      * }
      *
@@ -394,9 +384,7 @@ export namespace firebasestorage_v1beta {
      *
      *   // Example response
      *   // {
-     *   //   "location": "my_location",
-     *   //   "name": "my_name",
-     *   //   "reconciling": false
+     *   //   "name": "my_name"
      *   // }
      * }
      *
