@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/appsactivity",
-  "version": "0.3.1",
+  "version": "1.0.0",
   "description": "appsactivity",
   "main": "build/index.js",
   "types": "build/index.d.ts",

@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/discovery",
-  "version": "0.4.2",
+  "version": "1.0.0",
   "description": "discovery",
   "main": "build/index.js",
   "types": "build/index.d.ts",
