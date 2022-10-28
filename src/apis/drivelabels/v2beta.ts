@@ -3156,6 +3156,164 @@ export namespace drivelabels_v2beta {
         );
       }
     }
+
+    /**
+     * Updates a Label's permissions. If a permission for the indicated principal doesn't exist, a new Label Permission is created, otherwise the existing permission is updated. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.labels.updatePermissions({
+     *     // Required. The parent Label resource name.
+     *     parent: 'labels/my-label',
+     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     *     useAdminAccess: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "audience": "my_audience",
+     *       //   "email": "my_email",
+     *       //   "group": "my_group",
+     *       //   "name": "my_name",
+     *       //   "person": "my_person",
+     *       //   "role": "my_role"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "audience": "my_audience",
+     *   //   "email": "my_email",
+     *   //   "group": "my_group",
+     *   //   "name": "my_name",
+     *   //   "person": "my_person",
+     *   //   "role": "my_role"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updatePermissions(
+      params: Params$Resource$Labels$Updatepermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updatePermissions(
+      params?: Params$Resource$Labels$Updatepermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>;
+    updatePermissions(
+      params: Params$Resource$Labels$Updatepermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updatePermissions(
+      params: Params$Resource$Labels$Updatepermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>,
+      callback: BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
+    ): void;
+    updatePermissions(
+      params: Params$Resource$Labels$Updatepermissions,
+      callback: BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
+    ): void;
+    updatePermissions(
+      callback: BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
+    ): void;
+    updatePermissions(
+      paramsOrCallback?:
+        | Params$Resource$Labels$Updatepermissions
+        | BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Labels$Updatepermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Labels$Updatepermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://drivelabels.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta/{+parent}/permissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Labels$Create extends StandardParameters {
@@ -3290,6 +3448,22 @@ export namespace drivelabels_v2beta {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAppsDriveLabelsV2betaUpdateLabelCopyModeRequest;
+  }
+  export interface Params$Resource$Labels$Updatepermissions
+    extends StandardParameters {
+    /**
+     * Required. The parent Label resource name.
+     */
+    parent?: string;
+    /**
+     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     */
+    useAdminAccess?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAppsDriveLabelsV2betaLabelPermission;
   }
 
   export class Resource$Labels$Locks {
@@ -3491,7 +3665,8 @@ export namespace drivelabels_v2beta {
      *
      *   // Do the magic
      *   const res = await drivelabels.labels.permissions.batchDelete({
-     *     labelsId: 'placeholder-value',
+     *     // Required. The parent Label resource name shared by all permissions being deleted. Format: labels/{label\} If this is set, the parent field in the UpdateLabelPermissionRequest messages must either be empty or match this field.
+     *     parent: 'labels/my-label',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -3582,15 +3757,15 @@ export namespace drivelabels_v2beta {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2beta/labels/{labelsId}/permissions:batchDelete'
+              rootUrl + '/v2beta/{+parent}/permissions:batchDelete'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
         ),
         params,
-        requiredParams: ['labelsId'],
-        pathParams: ['labelsId'],
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -4180,169 +4355,14 @@ export namespace drivelabels_v2beta {
         );
       }
     }
-
-    /**
-     * Updates a Label's permissions. If a permission for the indicated principal doesn't exist, a new Label Permission is created, otherwise the existing permission is updated. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drivelabels = google.drivelabels('v2beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drivelabels.labels.permissions.patch({
-     *     // Required. The parent Label resource name.
-     *     parent: 'labels/my-label/permissions/my-permission',
-     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
-     *     useAdminAccess: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "audience": "my_audience",
-     *       //   "email": "my_email",
-     *       //   "group": "my_group",
-     *       //   "name": "my_name",
-     *       //   "person": "my_person",
-     *       //   "role": "my_role"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "audience": "my_audience",
-     *   //   "email": "my_email",
-     *   //   "group": "my_group",
-     *   //   "name": "my_name",
-     *   //   "person": "my_person",
-     *   //   "role": "my_role"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Labels$Permissions$Patch,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    patch(
-      params?: Params$Resource$Labels$Permissions$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>;
-    patch(
-      params: Params$Resource$Labels$Permissions$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Labels$Permissions$Patch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>,
-      callback: BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
-    ): void;
-    patch(
-      params: Params$Resource$Labels$Permissions$Patch,
-      callback: BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
-    ): void;
-    patch(
-      callback: BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
-    ): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Labels$Permissions$Patch
-        | BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Labels$Permissions$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Labels$Permissions$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://drivelabels.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2beta/{+parent}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>(
-          parameters
-        );
-      }
-    }
   }
 
   export interface Params$Resource$Labels$Permissions$Batchdelete
     extends StandardParameters {
     /**
-     *
+     * Required. The parent Label resource name shared by all permissions being deleted. Format: labels/{label\} If this is set, the parent field in the UpdateLabelPermissionRequest messages must either be empty or match this field.
      */
-    labelsId?: string;
+    parent?: string;
 
     /**
      * Request body metadata
@@ -4407,7 +4427,179 @@ export namespace drivelabels_v2beta {
      */
     useAdminAccess?: boolean;
   }
-  export interface Params$Resource$Labels$Permissions$Patch
+
+  export class Resource$Labels$Revisions {
+    context: APIRequestContext;
+    locks: Resource$Labels$Revisions$Locks;
+    permissions: Resource$Labels$Revisions$Permissions;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locks = new Resource$Labels$Revisions$Locks(this.context);
+      this.permissions = new Resource$Labels$Revisions$Permissions(
+        this.context
+      );
+    }
+
+    /**
+     * Updates a Label's permissions. If a permission for the indicated principal doesn't exist, a new Label Permission is created, otherwise the existing permission is updated. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const drivelabels = google.drivelabels('v2beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drivelabels.labels.revisions.updatePermissions({
+     *     // Required. The parent Label resource name.
+     *     parent: 'labels/my-label/revisions/my-revision',
+     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     *     useAdminAccess: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "audience": "my_audience",
+     *       //   "email": "my_email",
+     *       //   "group": "my_group",
+     *       //   "name": "my_name",
+     *       //   "person": "my_person",
+     *       //   "role": "my_role"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "audience": "my_audience",
+     *   //   "email": "my_email",
+     *   //   "group": "my_group",
+     *   //   "name": "my_name",
+     *   //   "person": "my_person",
+     *   //   "role": "my_role"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updatePermissions(
+      params: Params$Resource$Labels$Revisions$Updatepermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updatePermissions(
+      params?: Params$Resource$Labels$Revisions$Updatepermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>;
+    updatePermissions(
+      params: Params$Resource$Labels$Revisions$Updatepermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updatePermissions(
+      params: Params$Resource$Labels$Revisions$Updatepermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>,
+      callback: BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
+    ): void;
+    updatePermissions(
+      params: Params$Resource$Labels$Revisions$Updatepermissions,
+      callback: BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
+    ): void;
+    updatePermissions(
+      callback: BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
+    ): void;
+    updatePermissions(
+      paramsOrCallback?:
+        | Params$Resource$Labels$Revisions$Updatepermissions
+        | BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Labels$Revisions$Updatepermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Labels$Revisions$Updatepermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://drivelabels.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta/{+parent}/permissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Labels$Revisions$Updatepermissions
     extends StandardParameters {
     /**
      * Required. The parent Label resource name.
@@ -4422,19 +4614,6 @@ export namespace drivelabels_v2beta {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAppsDriveLabelsV2betaLabelPermission;
-  }
-
-  export class Resource$Labels$Revisions {
-    context: APIRequestContext;
-    locks: Resource$Labels$Revisions$Locks;
-    permissions: Resource$Labels$Revisions$Permissions;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.locks = new Resource$Labels$Revisions$Locks(this.context);
-      this.permissions = new Resource$Labels$Revisions$Permissions(
-        this.context
-      );
-    }
   }
 
   export class Resource$Labels$Revisions$Locks {
@@ -4636,9 +4815,8 @@ export namespace drivelabels_v2beta {
      *
      *   // Do the magic
      *   const res = await drivelabels.labels.revisions.permissions.batchDelete({
-     *     labelsId: 'placeholder-value',
-     *
-     *     revisionsId: 'placeholder-value',
+     *     // Required. The parent Label resource name shared by all permissions being deleted. Format: labels/{label\} If this is set, the parent field in the UpdateLabelPermissionRequest messages must either be empty or match this field.
+     *     parent: 'labels/my-label/revisions/my-revision',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -4729,16 +4907,15 @@ export namespace drivelabels_v2beta {
         options: Object.assign(
           {
             url: (
-              rootUrl +
-              '/v2beta/labels/{labelsId}/revisions/{revisionsId}/permissions:batchDelete'
+              rootUrl + '/v2beta/{+parent}/permissions:batchDelete'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
         ),
         params,
-        requiredParams: ['labelsId', 'revisionsId'],
-        pathParams: ['labelsId', 'revisionsId'],
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -5328,173 +5505,14 @@ export namespace drivelabels_v2beta {
         );
       }
     }
-
-    /**
-     * Updates a Label's permissions. If a permission for the indicated principal doesn't exist, a new Label Permission is created, otherwise the existing permission is updated. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drivelabels.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drivelabels = google.drivelabels('v2beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drivelabels.labels.revisions.permissions.patch({
-     *     // Required. The parent Label resource name.
-     *     parent: 'labels/my-label/revisions/my-revision/permissions/my-permission',
-     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
-     *     useAdminAccess: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "audience": "my_audience",
-     *       //   "email": "my_email",
-     *       //   "group": "my_group",
-     *       //   "name": "my_name",
-     *       //   "person": "my_person",
-     *       //   "role": "my_role"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "audience": "my_audience",
-     *   //   "email": "my_email",
-     *   //   "group": "my_group",
-     *   //   "name": "my_name",
-     *   //   "person": "my_person",
-     *   //   "role": "my_role"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Labels$Revisions$Permissions$Patch,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    patch(
-      params?: Params$Resource$Labels$Revisions$Permissions$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>;
-    patch(
-      params: Params$Resource$Labels$Revisions$Permissions$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Labels$Revisions$Permissions$Patch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>,
-      callback: BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
-    ): void;
-    patch(
-      params: Params$Resource$Labels$Revisions$Permissions$Patch,
-      callback: BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
-    ): void;
-    patch(
-      callback: BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
-    ): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Labels$Revisions$Permissions$Patch
-        | BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Labels$Revisions$Permissions$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Labels$Revisions$Permissions$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://drivelabels.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2beta/{+parent}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAppsDriveLabelsV2betaLabelPermission>(
-          parameters
-        );
-      }
-    }
   }
 
   export interface Params$Resource$Labels$Revisions$Permissions$Batchdelete
     extends StandardParameters {
     /**
-     *
+     * Required. The parent Label resource name shared by all permissions being deleted. Format: labels/{label\} If this is set, the parent field in the UpdateLabelPermissionRequest messages must either be empty or match this field.
      */
-    labelsId?: string;
-    /**
-     *
-     */
-    revisionsId?: string;
+    parent?: string;
 
     /**
      * Request body metadata
@@ -5558,22 +5576,6 @@ export namespace drivelabels_v2beta {
      * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
      */
     useAdminAccess?: boolean;
-  }
-  export interface Params$Resource$Labels$Revisions$Permissions$Patch
-    extends StandardParameters {
-    /**
-     * Required. The parent Label resource name.
-     */
-    parent?: string;
-    /**
-     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
-     */
-    useAdminAccess?: boolean;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleAppsDriveLabelsV2betaLabelPermission;
   }
 
   export class Resource$Limits {
