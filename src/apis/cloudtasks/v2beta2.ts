@@ -112,6 +112,7 @@ export namespace cloudtasks_v2beta2 {
    */
   export class Cloudtasks {
     context: APIRequestContext;
+    api: Resource$Api;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -120,6 +121,7 @@ export namespace cloudtasks_v2beta2 {
         google,
       };
 
+      this.api = new Resource$Api(this.context);
       this.projects = new Resource$Projects(this.context);
     }
   }
@@ -227,11 +229,11 @@ export namespace cloudtasks_v2beta2 {
     role?: string | null;
   }
   /**
-   * Request message for BufferTask.
+   * LINT.IfChange Request message for BufferTask.
    */
   export interface Schema$BufferTaskRequest {
     /**
-     * Optional. Body of the HTTP request. The body can take any generic value. The value will be written to the HttpRequest of the [Task].
+     * Optional. Body of the HTTP request. The body can take any generic value. The value is written to the HttpRequest of the [Task].
      */
     body?: Schema$HttpBody;
   }
@@ -317,7 +319,13 @@ export namespace cloudtasks_v2beta2 {
    * Defines a header message. A header can have a key and a value.
    */
   export interface Schema$Header {
+    /**
+     * The key of the header.
+     */
     key?: string | null;
+    /**
+     * The value of the header.
+     */
     value?: string | null;
   }
   /**
@@ -396,7 +404,7 @@ export namespace cloudtasks_v2beta2 {
      */
     oidcToken?: Schema$OidcToken;
     /**
-     * Uri override. When specified modifies the execution Uri for all the tasks in the queue.
+     * Uri override. When specified, modifies the execution Uri for all the tasks in the queue.
      */
     uriOverride?: Schema$UriOverride;
   }
@@ -838,6 +846,171 @@ export namespace cloudtasks_v2beta2 {
      * Scheme override. When specified, the Uri scheme is replaced by the provided value.
      */
     scheme?: string | null;
+    /**
+     * Uri Override Enforce Mode Determines the Target UriOverride mode.
+     */
+    uriOverrideEnforceMode?: string | null;
+  }
+
+  export class Resource$Api {
+    context: APIRequestContext;
+    queue: Resource$Api$Queue;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.queue = new Resource$Api$Queue(this.context);
+    }
+  }
+
+  export class Resource$Api$Queue {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Update queue list by uploading a queue.yaml file. The queue.yaml file is supplied in the request body as a YAML encoded string. This method was added to support gcloud clients versions before 322.0.0. New clients should use CreateQueue instead of this method.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudtasks = google.cloudtasks('v2beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudtasks.api.queue.update({
+     *     // Required. The App ID is supplied as an HTTP parameter. Unlike internal usage of App ID, it does not include a region prefix. Rather, the App ID represents the Project ID against which to make the request.
+     *     appId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentType": "my_contentType",
+     *       //   "data": "my_data",
+     *       //   "extensions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    update(
+      params: Params$Resource$Api$Queue$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
+      params?: Params$Resource$Api$Queue$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    update(
+      params: Params$Resource$Api$Queue$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    update(
+      params: Params$Resource$Api$Queue$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    update(
+      params: Params$Resource$Api$Queue$Update,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    update(callback: BodyResponseCallback<Schema$Empty>): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Api$Queue$Update
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Api$Queue$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Api$Queue$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/api/queue/update').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Api$Queue$Update extends StandardParameters {
+    /**
+     * Required. The App ID is supplied as an HTTP parameter. Unlike internal usage of App ID, it does not include a region prefix. Rather, the App ID represents the Project ID against which to make the request.
+     */
+    appId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HttpBody;
   }
 
   export class Resource$Projects {
@@ -3024,7 +3197,7 @@ export namespace cloudtasks_v2beta2 {
     }
 
     /**
-     * Creates and buffers a new task without the need to explicitly define a Task message. The queue must have HTTP target. Note: This feature is in its experimental stage. You must request access to the API through the [Cloud Tasks BufferTasks Experiment Signup form](https://forms.gle/X8Zr5hiXH5tTGFqh8).
+     * Creates and buffers a new task without the need to explicitly define a Task message. The queue must have HTTP target. To create the task with a custom ID, use the following format and set TASK_ID to your desired ID: projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID:buffer To create the task with an automatically generated ID, use the following format: projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks:buffer. Note: This feature is in its experimental stage. You must request access to the API through the [Cloud Tasks BufferTask Experiment Signup form](https://forms.gle/X8Zr5hiXH5tTGFqh8).
      * @example
      * ```js
      * // Before running the sample:
@@ -3051,7 +3224,9 @@ export namespace cloudtasks_v2beta2 {
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.tasks.buffer({
      *     // Required. The parent queue name. For example: projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` The queue must already exist.
-     *     parent: 'projects/my-project/locations/my-location/queues/my-queue',
+     *     queue: 'projects/my-project/locations/my-location/queues/my-queue',
+     *     // Optional. Task ID for the task being created. If not provided, a random task ID is assigned to the task.
+     *     taskId: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -3140,7 +3315,7 @@ export namespace cloudtasks_v2beta2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{+parent}/tasks:buffer').replace(
+            url: (rootUrl + '/v2beta2/{+queue}/tasks/{taskId}:buffer').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3149,8 +3324,8 @@ export namespace cloudtasks_v2beta2 {
           options
         ),
         params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
+        requiredParams: ['queue', 'taskId'],
+        pathParams: ['queue', 'taskId'],
         context: this.context,
       };
       if (callback) {
@@ -4304,7 +4479,11 @@ export namespace cloudtasks_v2beta2 {
     /**
      * Required. The parent queue name. For example: projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` The queue must already exist.
      */
-    parent?: string;
+    queue?: string;
+    /**
+     * Optional. Task ID for the task being created. If not provided, a random task ID is assigned to the task.
+     */
+    taskId?: string;
 
     /**
      * Request body metadata

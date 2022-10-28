@@ -105,6 +105,38 @@
   },
   "protocol": "rest",
   "resources": {
+    "api": {
+      "resources": {
+        "queue": {
+          "methods": {
+            "update": {
+              "description": "Update queue list by uploading a queue.yaml file. The queue.yaml file is supplied in the request body as a YAML encoded string. This method was added to support gcloud clients versions before 322.0.0. New clients should use CreateQueue instead of this method.",
+              "flatPath": "api/queue/update",
+              "httpMethod": "POST",
+              "id": "cloudtasks.api.queue.update",
+              "parameterOrder": [],
+              "parameters": {
+                "appId": {
+                  "description": "Required. The App ID is supplied as an HTTP parameter. Unlike internal usage of App ID, it does not include a region prefix. Rather, the App ID represents the Project ID against which to make the request.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "api/queue/update",
+              "request": {
+                "$ref": "HttpBody"
+              },
+              "response": {
+                "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        }
+      }
+    },
     "projects": {
       "resources": {
         "locations": {
@@ -545,23 +577,30 @@
                       ]
                     },
                     "buffer": {
-                      "description": "Creates and buffers a new task without the need to explicitly define a Task message. The queue must have HTTP target. Note: This feature is in its experimental stage. You must request access to the API through the [Cloud Tasks BufferTasks Experiment Signup form](https://forms.gle/X8Zr5hiXH5tTGFqh8).",
-                      "flatPath": "v2beta2/projects/{projectsId}/locations/{locationsId}/queues/{queuesId}/tasks:buffer",
+                      "description": "Creates and buffers a new task without the need to explicitly define a Task message. The queue must have HTTP target. To create the task with a custom ID, use the following format and set TASK_ID to your desired ID: projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID:buffer To create the task with an automatically generated ID, use the following format: projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks:buffer. Note: This feature is in its experimental stage. You must request access to the API through the [Cloud Tasks BufferTask Experiment Signup form](https://forms.gle/X8Zr5hiXH5tTGFqh8).",
+                      "flatPath": "v2beta2/projects/{projectsId}/locations/{locationsId}/queues/{queuesId}/tasks/{taskId}:buffer",
                       "httpMethod": "POST",
                       "id": "cloudtasks.projects.locations.queues.tasks.buffer",
                       "parameterOrder": [
-                        "parent"
+                        "queue",
+                        "taskId"
                       ],
                       "parameters": {
-                        "parent": {
+                        "queue": {
                           "description": "Required. The parent queue name. For example: projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` The queue must already exist.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/queues/[^/]+$",
                           "required": true,
                           "type": "string"
+                        },
+                        "taskId": {
+                          "description": "Optional. Task ID for the task being created. If not provided, a random task ID is assigned to the task.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
                         }
                       },
-                      "path": "v2beta2/{+parent}/tasks:buffer",
+                      "path": "v2beta2/{+queue}/tasks/{taskId}:buffer",
                       "request": {
                         "$ref": "BufferTaskRequest"
                       },
@@ -837,7 +876,7 @@
       }
     }
   },
-  "revision": "20220909",
+  "revision": "20221014",
   "rootUrl": "https://cloudtasks.googleapis.com/",
   "schemas": {
     "AcknowledgeTaskRequest": {
@@ -986,12 +1025,12 @@
       "type": "object"
     },
     "BufferTaskRequest": {
-      "description": "Request message for BufferTask.",
+      "description": "LINT.IfChange Request message for BufferTask.",
       "id": "BufferTaskRequest",
       "properties": {
         "body": {
           "$ref": "HttpBody",
-          "description": "Optional. Body of the HTTP request. The body can take any generic value. The value will be written to the HttpRequest of the [Task]."
+          "description": "Optional. Body of the HTTP request. The body can take any generic value. The value is written to the HttpRequest of the [Task]."
         }
       },
       "type": "object"
@@ -1115,11 +1154,11 @@
       "id": "Header",
       "properties": {
         "key": {
-          "format": "byte",
+          "description": "The key of the header.",
           "type": "string"
         },
         "value": {
-          "format": "byte",
+          "description": "The value of the header.",
           "type": "string"
         }
       },
@@ -1263,7 +1302,7 @@
         },
         "uriOverride": {
           "$ref": "UriOverride",
-          "description": "Uri override. When specified modifies the execution Uri for all the tasks in the queue."
+          "description": "Uri override. When specified, modifies the execution Uri for all the tasks in the queue."
         }
       },
       "type": "object"
@@ -1887,6 +1926,20 @@
             "Scheme unspecified. Defaults to HTTPS.",
             "Convert the scheme to HTTP, e.g., https://www.google.ca will change to http://www.google.ca.",
             "Convert the scheme to HTTPS, e.g., http://www.google.ca will change to https://www.google.ca."
+          ],
+          "type": "string"
+        },
+        "uriOverrideEnforceMode": {
+          "description": "Uri Override Enforce Mode Determines the Target UriOverride mode.",
+          "enum": [
+            "URI_OVERRIDE_ENFORCE_MODE_UNSPECIFIED",
+            "IF_NOT_EXISTS",
+            "ALWAYS"
+          ],
+          "enumDescriptions": [
+            "OverrideMode Unspecified. Defaults to ALWAYS.",
+            "In the IF_NOT_EXISTS mode, queue-level configuration is only applied where task-level configuration does not exist.",
+            "In the ALWAYS mode, queue-level configuration overrides all task-level configuration"
           ],
           "type": "string"
         }
