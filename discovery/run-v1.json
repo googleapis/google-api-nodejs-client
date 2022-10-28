@@ -2289,7 +2289,7 @@
       }
     }
   },
-  "revision": "20220911",
+  "revision": "20221023",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "Addressable": {
@@ -2569,7 +2569,7 @@
         },
         "livenessProbe": {
           "$ref": "Probe",
-          "description": "Not supported by Cloud Run."
+          "description": "Periodic probe of container liveness. Container will be restarted if the probe fails. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes"
         },
         "name": {
           "description": "Name of the container specified as a DNS_LABEL. Currently unused in Cloud Run. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-label-names",
@@ -2862,7 +2862,7 @@
         },
         "template": {
           "$ref": "TaskTemplateSpec",
-          "description": "Optional. Describes the task(s) that will be created when executing an execution."
+          "description": "Optional. The template used to create tasks for this execution."
         }
       },
       "type": "object"
@@ -3069,7 +3069,7 @@
       "id": "HTTPHeader",
       "properties": {
         "name": {
-          "description": "The header field name",
+          "description": "Required. The header field name",
           "type": "string"
         },
         "value": {
@@ -4434,7 +4434,7 @@
           "type": "string"
         },
         "latestRevision": {
-          "description": "Optional. LatestRevision may be provided to indicate that the latest ready Revision of the Configuration should be used for this traffic target. When provided LatestRevision must be true if RevisionName is empty; it must be false when RevisionName is non-empty.",
+          "description": "Optional. LatestRevision may be provided to indicate that the latest ready Revision of the Configuration should be used for this traffic target. When provided LatestRevision must be true if RevisionName is empty; it must be false when RevisionName is non-empty in spec. When shown in status, this indicates that the RevisionName was resolved from a spec's ConfigurationName.",
           "type": "boolean"
         },
         "percent": {

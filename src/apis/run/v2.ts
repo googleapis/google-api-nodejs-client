@@ -204,6 +204,10 @@ export namespace run_v2 {
      */
     image?: string | null;
     /**
+     * Periodic probe of container liveness. Container will be restarted if the probe fails. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     */
+    livenessProbe?: Schema$GoogleCloudRunV2Probe;
+    /**
      * Name of the container specified as a DNS_LABEL.
      */
     name?: string | null;
@@ -215,6 +219,10 @@ export namespace run_v2 {
      * Compute Resource requirements by this container. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources
      */
     resources?: Schema$GoogleCloudRunV2ResourceRequirements;
+    /**
+     * Startup probe of application within the container. All other probes are disabled if a startup probe is provided, until it succeeds. Container will not be added to service endpoints if the probe fails. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     */
+    startupProbe?: Schema$GoogleCloudRunV2Probe;
     /**
      * Volume to mount into the container's filesystem.
      */
@@ -348,7 +356,7 @@ export namespace run_v2 {
      */
     taskCount?: number | null;
     /**
-     * Output only. Describes the task(s) that will be created when executing an execution.
+     * Output only. The template used to create tasks for this execution.
      */
     template?: Schema$GoogleCloudRunV2TaskTemplate;
     /**
@@ -401,6 +409,32 @@ export namespace run_v2 {
      * Required. Describes the task(s) that will be created when executing an execution.
      */
     template?: Schema$GoogleCloudRunV2TaskTemplate;
+  }
+  /**
+   * HTTPGetAction describes an action based on HTTP Get requests.
+   */
+  export interface Schema$GoogleCloudRunV2HTTPGetAction {
+    /**
+     * Custom headers to set in the request. HTTP allows repeated headers.
+     */
+    httpHeaders?: Schema$GoogleCloudRunV2HTTPHeader[];
+    /**
+     * Path to access on the HTTP server. Defaults to '/'.
+     */
+    path?: string | null;
+  }
+  /**
+   * HTTPHeader describes a custom header to be used in HTTP probes
+   */
+  export interface Schema$GoogleCloudRunV2HTTPHeader {
+    /**
+     * Required. The header field name
+     */
+    name?: string | null;
+    /**
+     * The header field value
+     */
+    value?: string | null;
   }
   /**
    * Job represents the configuration of a single job. A job an immutable resource that references a container image which is run to completion.
@@ -563,6 +597,35 @@ export namespace run_v2 {
      * The resulting list of Tasks.
      */
     tasks?: Schema$GoogleCloudRunV2Task[];
+  }
+  /**
+   * Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.
+   */
+  export interface Schema$GoogleCloudRunV2Probe {
+    /**
+     * Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
+     */
+    failureThreshold?: number | null;
+    /**
+     * HTTPGet specifies the http request to perform. Exactly one of HTTPGet or TCPSocket must be specified.
+     */
+    httpGet?: Schema$GoogleCloudRunV2HTTPGetAction;
+    /**
+     * Number of seconds after the container has started before the probe is initiated. Defaults to 0 seconds. Minimum value is 0. Maximum value for liveness probe is 3600. Maximum value for startup probe is 240. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     */
+    initialDelaySeconds?: number | null;
+    /**
+     * How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1. Maximum value for liveness probe is 3600. Maximum value for startup probe is 240. Must be greater or equal than timeout_seconds.
+     */
+    periodSeconds?: number | null;
+    /**
+     * TCPSocket specifies an action involving a TCP port. Exactly one of HTTPGet or TCPSocket must be specified.
+     */
+    tcpSocket?: Schema$GoogleCloudRunV2TCPSocketAction;
+    /**
+     * Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. Maximum value is 3600. Must be smaller than period_seconds. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     */
+    timeoutSeconds?: number | null;
   }
   /**
    * ResourceRequirements describes the compute resource requirements.
@@ -1080,6 +1143,15 @@ export namespace run_v2 {
     vpcAccess?: Schema$GoogleCloudRunV2VpcAccess;
   }
   /**
+   * TCPSocketAction describes an action based on opening a socket
+   */
+  export interface Schema$GoogleCloudRunV2TCPSocketAction {
+    /**
+     * Port number to access on the container. Must be in the range 1 to 65535. If not specified, defaults to 8080.
+     */
+    port?: number | null;
+  }
+  /**
    * Holds a single traffic routing entry for the Service. Allocations can be done to a specific Revision name, or pointing to the latest Ready Revision.
    */
   export interface Schema$GoogleCloudRunV2TrafficTarget {
@@ -1424,7 +1496,7 @@ export namespace run_v2 {
      *   const res = await run.projects.locations.jobs.create({
      *     // Required. The unique identifier for the Job. The name of the job becomes {parent\}/jobs/{job_id\}.
      *     jobId: 'placeholder-value',
-     *     // Required. The location and project in which this Job should be created. Format: projects/{projectnumber\}/locations/{location\}
+     *     // Required. The location and project in which this Job should be created. Format: projects/{project\}/locations/{location\}
      *     parent: 'projects/my-project/locations/my-location',
      *     // Indicates that the request should be validated and default values populated, without persisting the request or creating any resources.
      *     validateOnly: 'placeholder-value',
@@ -1595,9 +1667,7 @@ export namespace run_v2 {
      *   const res = await run.projects.locations.jobs.delete({
      *     // A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.
      *     etag: 'placeholder-value',
-     *     // If set to true, the Job and its Executions will be deleted no matter whether any Executions are still running or not. If set to false or unset, the Job and its Executions can only be deleted if there are no running Executions. Any running Execution will fail the deletion.
-     *     force: 'placeholder-value',
-     *     // Required. The full name of the Job. Format: projects/{projectnumber\}/locations/{location\}/jobs/{job\}
+     *     // Required. The full name of the Job. Format: projects/{project\}/locations/{location\}/jobs/{job\}
      *     name: 'projects/my-project/locations/my-location/jobs/my-job',
      *     // Indicates that the request should be validated without actually deleting any resources.
      *     validateOnly: 'placeholder-value',
@@ -1736,7 +1806,7 @@ export namespace run_v2 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.jobs.get({
-     *     // Required. The full name of the Job. Format: projects/{projectnumber\}/locations/{location\}/jobs/{job\}
+     *     // Required. The full name of the Job. Format: projects/{project\}/locations/{location\}/jobs/{job\}
      *     name: 'projects/my-project/locations/my-location/jobs/my-job',
      *   });
      *   console.log(res.data);
@@ -2030,7 +2100,7 @@ export namespace run_v2 {
      *     pageSize: 'placeholder-value',
      *     // A page token received from a previous call to ListJobs. All other parameters must match.
      *     pageToken: 'placeholder-value',
-     *     // Required. The location and project to list resources on. Format: projects/{projectnumber\}/locations/{location\}
+     *     // Required. The location and project to list resources on. Format: projects/{project\}/locations/{location\}
      *     parent: 'projects/my-project/locations/my-location',
      *     // If true, returns deleted (but unexpired) resources along with active ones.
      *     showDeleted: 'placeholder-value',
@@ -2339,7 +2409,7 @@ export namespace run_v2 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.jobs.run({
-     *     // Required. The full name of the Job. Format: projects/{projectnumber\}/locations/{location\}/jobs/{job\}
+     *     // Required. The full name of the Job. Format: projects/{project\}/locations/{location\}/jobs/{job\}
      *     name: 'projects/my-project/locations/my-location/jobs/my-job',
      *
      *     // Request body metadata
@@ -2759,7 +2829,7 @@ export namespace run_v2 {
      */
     jobId?: string;
     /**
-     * Required. The location and project in which this Job should be created. Format: projects/{projectnumber\}/locations/{location\}
+     * Required. The location and project in which this Job should be created. Format: projects/{project\}/locations/{location\}
      */
     parent?: string;
     /**
@@ -2779,11 +2849,7 @@ export namespace run_v2 {
      */
     etag?: string;
     /**
-     * If set to true, the Job and its Executions will be deleted no matter whether any Executions are still running or not. If set to false or unset, the Job and its Executions can only be deleted if there are no running Executions. Any running Execution will fail the deletion.
-     */
-    force?: boolean;
-    /**
-     * Required. The full name of the Job. Format: projects/{projectnumber\}/locations/{location\}/jobs/{job\}
+     * Required. The full name of the Job. Format: projects/{project\}/locations/{location\}/jobs/{job\}
      */
     name?: string;
     /**
@@ -2794,7 +2860,7 @@ export namespace run_v2 {
   export interface Params$Resource$Projects$Locations$Jobs$Get
     extends StandardParameters {
     /**
-     * Required. The full name of the Job. Format: projects/{projectnumber\}/locations/{location\}/jobs/{job\}
+     * Required. The full name of the Job. Format: projects/{project\}/locations/{location\}/jobs/{job\}
      */
     name?: string;
   }
@@ -2820,7 +2886,7 @@ export namespace run_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The location and project to list resources on. Format: projects/{projectnumber\}/locations/{location\}
+     * Required. The location and project to list resources on. Format: projects/{project\}/locations/{location\}
      */
     parent?: string;
     /**
@@ -2851,7 +2917,7 @@ export namespace run_v2 {
   export interface Params$Resource$Projects$Locations$Jobs$Run
     extends StandardParameters {
     /**
-     * Required. The full name of the Job. Format: projects/{projectnumber\}/locations/{location\}/jobs/{job\}
+     * Required. The full name of the Job. Format: projects/{project\}/locations/{location\}/jobs/{job\}
      */
     name?: string;
 
@@ -4206,9 +4272,9 @@ export namespace run_v2 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.create({
-     *     // Required. The location and project in which this service should be created. Format: projects/{projectnumber\}/locations/{location\} Only lowercase, digits, and hyphens; must begin with letter, and may not end with hyphen; must contain fewer than 50 characters.
+     *     // Required. The location and project in which this service should be created. Format: projects/{project\}/locations/{location\} Only lowercase characters, digits, and hyphens.
      *     parent: 'projects/my-project/locations/my-location',
-     *     // Required. The unique identifier for the Service. The name of the service becomes {parent\}/services/{service_id\}.
+     *     // Required. The unique identifier for the Service. It must begin with letter, and may not end with hyphen; must contain fewer than 50 characters. The name of the service becomes {parent\}/services/{service_id\}.
      *     serviceId: 'placeholder-value',
      *     // Indicates that the request should be validated and default values populated, without persisting the request or creating any resources.
      *     validateOnly: 'placeholder-value',
@@ -4387,7 +4453,7 @@ export namespace run_v2 {
      *   const res = await run.projects.locations.services.delete({
      *     // A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.
      *     etag: 'placeholder-value',
-     *     // Required. The full name of the Service. Format: projects/{projectnumber\}/locations/{location\}/services/{service\}
+     *     // Required. The full name of the Service. Format: projects/{project\}/locations/{location\}/services/{service\}
      *     name: 'projects/my-project/locations/my-location/services/my-service',
      *     // Indicates that the request should be validated without actually deleting any resources.
      *     validateOnly: 'placeholder-value',
@@ -4526,7 +4592,7 @@ export namespace run_v2 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.get({
-     *     // Required. The full name of the Service. Format: projects/{projectnumber\}/locations/{location\}/services/{service\}
+     *     // Required. The full name of the Service. Format: projects/{project\}/locations/{location\}/services/{service\}
      *     name: 'projects/my-project/locations/my-location/services/my-service',
      *   });
      *   console.log(res.data);
@@ -4827,7 +4893,7 @@ export namespace run_v2 {
      *     pageSize: 'placeholder-value',
      *     // A page token received from a previous call to ListServices. All other parameters must match.
      *     pageToken: 'placeholder-value',
-     *     // Required. The location and project to list resources on. Location must be a valid GCP region, and may not be the "-" wildcard. Format: projects/{projectnumber\}/locations/{location\}
+     *     // Required. The location and project to list resources on. Location must be a valid GCP region, and may not be the "-" wildcard. Format: projects/{project\}/locations/{location\}
      *     parent: 'projects/my-project/locations/my-location',
      *     // If true, returns deleted (but unexpired) resources along with active ones.
      *     showDeleted: 'placeholder-value',
@@ -5414,11 +5480,11 @@ export namespace run_v2 {
   export interface Params$Resource$Projects$Locations$Services$Create
     extends StandardParameters {
     /**
-     * Required. The location and project in which this service should be created. Format: projects/{projectnumber\}/locations/{location\} Only lowercase, digits, and hyphens; must begin with letter, and may not end with hyphen; must contain fewer than 50 characters.
+     * Required. The location and project in which this service should be created. Format: projects/{project\}/locations/{location\} Only lowercase characters, digits, and hyphens.
      */
     parent?: string;
     /**
-     * Required. The unique identifier for the Service. The name of the service becomes {parent\}/services/{service_id\}.
+     * Required. The unique identifier for the Service. It must begin with letter, and may not end with hyphen; must contain fewer than 50 characters. The name of the service becomes {parent\}/services/{service_id\}.
      */
     serviceId?: string;
     /**
@@ -5438,7 +5504,7 @@ export namespace run_v2 {
      */
     etag?: string;
     /**
-     * Required. The full name of the Service. Format: projects/{projectnumber\}/locations/{location\}/services/{service\}
+     * Required. The full name of the Service. Format: projects/{project\}/locations/{location\}/services/{service\}
      */
     name?: string;
     /**
@@ -5449,7 +5515,7 @@ export namespace run_v2 {
   export interface Params$Resource$Projects$Locations$Services$Get
     extends StandardParameters {
     /**
-     * Required. The full name of the Service. Format: projects/{projectnumber\}/locations/{location\}/services/{service\}
+     * Required. The full name of the Service. Format: projects/{project\}/locations/{location\}/services/{service\}
      */
     name?: string;
   }
@@ -5475,7 +5541,7 @@ export namespace run_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The location and project to list resources on. Location must be a valid GCP region, and may not be the "-" wildcard. Format: projects/{projectnumber\}/locations/{location\}
+     * Required. The location and project to list resources on. Location must be a valid GCP region, and may not be the "-" wildcard. Format: projects/{project\}/locations/{location\}
      */
     parent?: string;
     /**

@@ -335,7 +335,7 @@ export namespace run_v1 {
      */
     imagePullPolicy?: string | null;
     /**
-     * Not supported by Cloud Run.
+     * Periodic probe of container liveness. Container will be restarted if the probe fails. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
      */
     livenessProbe?: Schema$Probe;
     /**
@@ -574,7 +574,7 @@ export namespace run_v1 {
      */
     taskCount?: number | null;
     /**
-     * Optional. Describes the task(s) that will be created when executing an execution.
+     * Optional. The template used to create tasks for this execution.
      */
     template?: Schema$TaskTemplateSpec;
   }
@@ -742,7 +742,7 @@ export namespace run_v1 {
    */
   export interface Schema$HTTPHeader {
     /**
-     * The header field name
+     * Required. The header field name
      */
     name?: string | null;
     /**
@@ -1817,7 +1817,7 @@ export namespace run_v1 {
      */
     configurationName?: string | null;
     /**
-     * Optional. LatestRevision may be provided to indicate that the latest ready Revision of the Configuration should be used for this traffic target. When provided LatestRevision must be true if RevisionName is empty; it must be false when RevisionName is non-empty.
+     * Optional. LatestRevision may be provided to indicate that the latest ready Revision of the Configuration should be used for this traffic target. When provided LatestRevision must be true if RevisionName is empty; it must be false when RevisionName is non-empty in spec. When shown in status, this indicates that the RevisionName was resolved from a spec's ConfigurationName.
      */
     latestRevision?: boolean | null;
     /**
