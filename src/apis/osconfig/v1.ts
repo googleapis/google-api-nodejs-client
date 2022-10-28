@@ -792,7 +792,7 @@ export namespace osconfig_v1 {
     resourceGroups?: Schema$OSPolicyResourceGroup[];
   }
   /**
-   * OS policy assignment is an API resource that is used to apply a set of OS policies to a dynamically targeted group of Compute Engine VM instances. An OS policy is used to define the desired state configuration for a Compute Engine VM instance through a set of configuration resources that provide capabilities such as installing or removing software packages, or executing a script. For more information, see [OS policy and OS policy assignment](https://cloud.google.com/compute/docs/os-configuration-management/working-with-os-policies).
+   * OS policy assignment is an API resource that is used to apply a set of OS policies to a dynamically targeted group of Compute Engine VM instances. An OS policy is used to define the desired state configuration for a Compute Engine VM instance through a set of configuration resources that provide capabilities such as installing or removing software packages, or executing a script. For more information about the OS policy resource definitions and examples, see [OS policy and OS policy assignment](https://cloud.google.com/compute/docs/os-configuration-management/working-with-os-policies).
    */
   export interface Schema$OSPolicyAssignment {
     /**
@@ -3059,7 +3059,7 @@ export namespace osconfig_v1 {
      *   const res = await osconfig.projects.locations.osPolicyAssignments.create({
      *     // Required. The logical name of the OS policy assignment in the project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the project.
      *     osPolicyAssignmentId: 'placeholder-value',
-     *     // Required. The parent resource name in the form: projects/{project\}/locations/{location\}
+     *     // Required. The parent resource name in the form: projects/{project\}/locations/{location\}. Note: Specify the zone of your VMs as the location.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -3909,7 +3909,7 @@ export namespace osconfig_v1 {
      */
     osPolicyAssignmentId?: string;
     /**
-     * Required. The parent resource name in the form: projects/{project\}/locations/{location\}
+     * Required. The parent resource name in the form: projects/{project\}/locations/{location\}. Note: Specify the zone of your VMs as the location.
      */
     parent?: string;
 
