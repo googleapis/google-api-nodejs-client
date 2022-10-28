@@ -169,7 +169,7 @@
       }
     }
   },
-  "revision": "20220425",
+  "revision": "20220915",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "Api": {
@@ -547,7 +547,7 @@
           "type": "string"
         },
         "principal": {
-          "description": "The identity of this peer. Similar to `Request.auth.principal`, but relative to the peer instead of the request. For example, the idenity associated with a load balancer that forwared the request.",
+          "description": "The identity of this peer. Similar to `Request.auth.principal`, but relative to the peer instead of the request. For example, the identity associated with a load balancer that forwarded the request.",
           "type": "string"
         },
         "regionCode": {

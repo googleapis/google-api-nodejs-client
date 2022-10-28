@@ -879,7 +879,7 @@ export namespace servicecontrol_v1 {
      */
     port?: string | null;
     /**
-     * The identity of this peer. Similar to `Request.auth.principal`, but relative to the peer instead of the request. For example, the idenity associated with a load balancer that forwared the request.
+     * The identity of this peer. Similar to `Request.auth.principal`, but relative to the peer instead of the request. For example, the identity associated with a load balancer that forwarded the request.
      */
     principal?: string | null;
     /**
