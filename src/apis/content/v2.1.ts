@@ -135,6 +135,7 @@ export namespace content_v2_1 {
     productstatuses: Resource$Productstatuses;
     promotions: Resource$Promotions;
     pubsubnotificationsettings: Resource$Pubsubnotificationsettings;
+    quotas: Resource$Quotas;
     regionalinventory: Resource$Regionalinventory;
     regions: Resource$Regions;
     reports: Resource$Reports;
@@ -180,6 +181,7 @@ export namespace content_v2_1 {
       this.pubsubnotificationsettings = new Resource$Pubsubnotificationsettings(
         this.context
       );
+      this.quotas = new Resource$Quotas(this.context);
       this.regionalinventory = new Resource$Regionalinventory(this.context);
       this.regions = new Resource$Regions(this.context);
       this.reports = new Resource$Reports(this.context);
@@ -2482,6 +2484,19 @@ export namespace content_v2_1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for the ListMethodQuotas method.
+   */
+  export interface Schema$ListMethodQuotasResponse {
+    /**
+     * The current quota usage and limits per each method.
+     */
+    methodQuotas?: Schema$MethodQuota[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for the `ListRegions` method.
    */
   export interface Schema$ListRegionsResponse {
@@ -2757,6 +2772,23 @@ export namespace content_v2_1 {
      * Code of the rejection reason.
      */
     reasonCode?: string | null;
+  }
+  /**
+   * The quota information per method in the Content API.
+   */
+  export interface Schema$MethodQuota {
+    /**
+     * The method name, for example “products.list”. Method name does not contain version because quota can be shared between different API versions of the same method.
+     */
+    method?: string | null;
+    /**
+     * The current quota limit, for example the maximum number of calls for the method.
+     */
+    quotaLimit?: string | null;
+    /**
+     * The current quota usage, for example the number of calls for the method.
+     */
+    quotaUsage?: string | null;
   }
   /**
    * Performance metrics. Values are only set for metrics requested explicitly in the request's search query.
@@ -5924,7 +5956,7 @@ export namespace content_v2_1 {
     value?: number | null;
   }
   /**
-   * Product fields. Values are only set for fields requested explicitly in the request's search query.
+   * Product fields. Values are only set for fields requested explicitly in the request's search query. Available only to selected merchants. Submit the [interest form](https://forms.gle/7Uy8htzAN8oNokz9A) to request access.
    */
   export interface Schema$ProductView {
     /**
@@ -6436,7 +6468,7 @@ export namespace content_v2_1 {
      */
     metrics?: Schema$Metrics;
     /**
-     * Product fields requested by the merchant in the query. Field values are only set if the merchant queries `ProductView`. `product_view` field is available only to allowlisted users who can query the `ProductView` table.
+     * Product fields requested by the merchant in the query. Field values are only set if the merchant queries `ProductView`. Available only to selected merchants. Submit the [interest form](https://forms.gle/7Uy8htzAN8oNokz9A) to request access.
      */
     productView?: Schema$ProductView;
     /**
@@ -28068,7 +28100,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Inserts a promotion for your Merchant Center account. If the promotion already exists, then it updates the promotion instead.
+     * Inserts a promotion for your Merchant Center account. If the promotion already exists, then it updates the promotion instead. To [end or delete] (https://developers.google.com/shopping-content/guides/promotions#end_a_promotion) a promotion update the time period of the promotion to a time that has already passed.
      * @example
      * ```js
      * // Before running the sample:
@@ -28775,6 +28807,167 @@ export namespace content_v2_1 {
      * Request body metadata
      */
     requestBody?: Schema$PubsubNotificationSettings;
+  }
+
+  export class Resource$Quotas {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the quota limit and quota usage per method for your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.quotas.list({
+     *     // Required. The ID of the account that has quota. This account must be an admin.
+     *     merchantId: 'placeholder-value',
+     *     // The maximum number of quotas to return in the response, used for paging. Defaults to 500; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "methodQuotas": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Quotas$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Quotas$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMethodQuotasResponse>;
+    list(
+      params: Params$Resource$Quotas$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Quotas$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMethodQuotasResponse>,
+      callback: BodyResponseCallback<Schema$ListMethodQuotasResponse>
+    ): void;
+    list(
+      params: Params$Resource$Quotas$List,
+      callback: BodyResponseCallback<Schema$ListMethodQuotasResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListMethodQuotasResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Quotas$List
+        | BodyResponseCallback<Schema$ListMethodQuotasResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMethodQuotasResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMethodQuotasResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMethodQuotasResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Quotas$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Quotas$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/content/v2.1/{merchantId}/quotas').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMethodQuotasResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListMethodQuotasResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Quotas$List extends StandardParameters {
+    /**
+     * Required. The ID of the account that has quota. This account must be an admin.
+     */
+    merchantId?: string;
+    /**
+     * The maximum number of quotas to return in the response, used for paging. Defaults to 500; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
+     */
+    pageToken?: string;
   }
 
   export class Resource$Regionalinventory {
