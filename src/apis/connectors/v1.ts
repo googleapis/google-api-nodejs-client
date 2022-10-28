@@ -378,7 +378,7 @@ export namespace connectors_v1 {
     updateTime?: string | null;
   }
   /**
-   * Metadata of connection schema.
+   * ConnectionSchemaMetadata is the singleton resource of each connection. It includes the entity and action names of runtime resources exposed by a connection backend.
    */
   export interface Schema$ConnectionSchemaMetadata {
     /**
@@ -389,6 +389,22 @@ export namespace connectors_v1 {
      * Output only. List of entity names.
      */
     entities?: string[] | null;
+    /**
+     * Output only. Resource name. Format: projects/{project\}/locations/{location\}/connections/{connection\}/connectionSchemaMetadata
+     */
+    name?: string | null;
+    /**
+     * Output only. Timestamp when the connection runtime schema refresh was triggered.
+     */
+    refreshTime?: string | null;
+    /**
+     * Output only. The current state of runtime schema.
+     */
+    state?: string | null;
+    /**
+     * Output only. Timestamp when the connection runtime schema was updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * ConnectionStatus indicates the state of the connection.
@@ -1178,10 +1194,6 @@ export namespace connectors_v1 {
      * Format of SSH Client cert.
      */
     certType?: string | null;
-    /**
-     * This is an optional field used in case client has enabled multi-factor authentication
-     */
-    password?: Schema$Secret;
     /**
      * SSH Client Cert. It should contain both public and private key.
      */
@@ -2216,7 +2228,11 @@ export namespace connectors_v1 {
      *   // Example response
      *   // {
      *   //   "actions": [],
-     *   //   "entities": []
+     *   //   "entities": [],
+     *   //   "name": "my_name",
+     *   //   "refreshTime": "my_refreshTime",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
      *   // }
      * }
      *
@@ -2627,7 +2643,7 @@ export namespace connectors_v1 {
      *   const res = await connectors.projects.locations.connections.patch({
      *     // Output only. Resource name of the Connection. Format: projects/{project\}/locations/{location\}/connections/{connection\}
      *     name: 'projects/my-project/locations/my-location/connections/my-connection',
-     *     // Required. Field mask is used to specify the fields to be overwritten in the Connection resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     *     // Required. You can modify only the fields listed below. To lock/unlock a connection: * `lock_config` To suspend/resume a connection: * `suspended` To update the connection details: * `description` * `labels` * `connector_version` * `config_variables` * `auth_config` * `destination_configs` * `node_config`
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3131,7 +3147,7 @@ export namespace connectors_v1 {
      */
     name?: string;
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the Connection resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     * Required. You can modify only the fields listed below. To lock/unlock a connection: * `lock_config` To suspend/resume a connection: * `suspended` To update the connection details: * `description` * `labels` * `connector_version` * `config_variables` * `auth_config` * `destination_configs` * `node_config`
      */
     updateMask?: string;
 

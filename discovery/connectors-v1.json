@@ -436,7 +436,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Field mask is used to specify the fields to be overwritten in the Connection resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "description": "Required. You can modify only the fields listed below. To lock/unlock a connection: * `lock_config` To suspend/resume a connection: * `suspended` To update the connection details: * `description` * `labels` * `connector_version` * `config_variables` * `auth_config` * `destination_configs` * `node_config`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -1047,7 +1047,7 @@
       }
     }
   },
-  "revision": "20220912",
+  "revision": "20221018",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1436,7 +1436,7 @@
       "type": "object"
     },
     "ConnectionSchemaMetadata": {
-      "description": "Metadata of connection schema.",
+      "description": "ConnectionSchemaMetadata is the singleton resource of each connection. It includes the entity and action names of runtime resources exposed by a connection backend.",
       "id": "ConnectionSchemaMetadata",
       "properties": {
         "actions": {
@@ -1454,6 +1454,38 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "name": {
+          "description": "Output only. Resource name. Format: projects/{project}/locations/{location}/connections/{connection}/connectionSchemaMetadata",
+          "readOnly": true,
+          "type": "string"
+        },
+        "refreshTime": {
+          "description": "Output only. Timestamp when the connection runtime schema refresh was triggered.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of runtime schema.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "REFRESHING",
+            "UPDATED"
+          ],
+          "enumDescriptions": [
+            "Default state.",
+            "Schema refresh is in progress.",
+            "Schema has been updated."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when the connection runtime schema was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -2877,10 +2909,6 @@
         "certType": {
           "description": "Format of SSH Client cert.",
           "type": "string"
-        },
-        "password": {
-          "$ref": "Secret",
-          "description": "This is an optional field used in case client has enabled multi-factor authentication"
         },
         "sshClientCert": {
           "$ref": "Secret",
