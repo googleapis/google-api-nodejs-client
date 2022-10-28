@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/searchconsole",
-  "version": "0.5.2",
+  "version": "1.0.0",
   "description": "searchconsole",
   "main": "build/index.js",
   "types": "build/index.d.ts",

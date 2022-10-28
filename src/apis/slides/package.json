@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/slides",
-  "version": "0.7.3",
+  "version": "1.0.0",
   "description": "slides",
   "main": "build/index.js",
   "types": "build/index.d.ts",
