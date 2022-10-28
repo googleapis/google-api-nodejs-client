@@ -747,7 +747,7 @@ export namespace dns_v1 {
      */
     forwardingPath?: string | null;
     /**
-     * IPv4 address to forward to.
+     * IPv4 address to forward queries to.
      */
     ipv4Address?: string | null;
     kind?: string | null;
@@ -933,7 +933,7 @@ export namespace dns_v1 {
   export interface Schema$ResponsePoliciesListResponse {
     header?: Schema$ResponseHeader;
     /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token. This lets you the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You cannot retrieve a consistent snapshot of a collection larger than the maximum page size.
+     * The presence of this field indicates that more results exist following your last page of results in pagination order. To fetch them, make another list request by using this value as your page token. This lets you view the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You cannot retrieve a consistent snapshot of a collection larger than the maximum page size.
      */
     nextPageToken?: string | null;
     /**
@@ -966,6 +966,10 @@ export namespace dns_v1 {
      */
     id?: string | null;
     kind?: string | null;
+    /**
+     * User labels.
+     */
+    labels?: {[key: string]: string} | null;
     /**
      * List of network names specifying networks to which this policy is applied.
      */
@@ -3446,7 +3450,7 @@ export namespace dns_v1 {
     }
 
     /**
-     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this returns an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * ```js
      * // Before running the sample:
@@ -5997,6 +6001,7 @@ export namespace dns_v1 {
      *       //   "gkeClusters": [],
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
+     *       //   "labels": {},
      *       //   "networks": [],
      *       //   "responsePolicyName": "my_responsePolicyName"
      *       // }
@@ -6010,6 +6015,7 @@ export namespace dns_v1 {
      *   //   "gkeClusters": [],
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
+     *   //   "labels": {},
      *   //   "networks": [],
      *   //   "responsePolicyName": "my_responsePolicyName"
      *   // }
@@ -6281,6 +6287,7 @@ export namespace dns_v1 {
      *   //   "gkeClusters": [],
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
+     *   //   "labels": {},
      *   //   "networks": [],
      *   //   "responsePolicyName": "my_responsePolicyName"
      *   // }
@@ -6559,7 +6566,7 @@ export namespace dns_v1 {
      *     clientOperationId: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
-     *     // User assigned name of the Respones Policy addressed by this request.
+     *     // User assigned name of the response policy addressed by this request.
      *     responsePolicy: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6570,6 +6577,7 @@ export namespace dns_v1 {
      *       //   "gkeClusters": [],
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
+     *       //   "labels": {},
      *       //   "networks": [],
      *       //   "responsePolicyName": "my_responsePolicyName"
      *       // }
@@ -6729,6 +6737,7 @@ export namespace dns_v1 {
      *       //   "gkeClusters": [],
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
+     *       //   "labels": {},
      *       //   "networks": [],
      *       //   "responsePolicyName": "my_responsePolicyName"
      *       // }
@@ -6916,7 +6925,7 @@ export namespace dns_v1 {
      */
     project?: string;
     /**
-     * User assigned name of the Respones Policy addressed by this request.
+     * User assigned name of the response policy addressed by this request.
      */
     responsePolicy?: string;
 
