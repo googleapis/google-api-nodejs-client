@@ -129,7 +129,7 @@ export namespace admob_v1 {
    */
   export interface Schema$AdUnit {
     /**
-     * AdFormat of the ad unit. Possible values are as follows: "BANNER" - Banner ad format. "BANNER_INTERSTITIAL" - Legacy format that can be used as either banner or interstitial. This format can no longer be created but can be targeted by mediation groups. "INTERSTITIAL" - A full screen ad. Supported ad types are "RICH_MEDIA" and "VIDEO". "NATIVE" - Native ad format. "REWARDED" - An ad that, once viewed, gets a callback verifying the view so that a reward can be given to the user. Supported ad types are "RICH_MEDIA" (interactive) and video where video can not be excluded.
+     * AdFormat of the ad unit. Possible values are as follows: "APP_OPEN" - App Open ad format. "BANNER" - Banner ad format. "BANNER_INTERSTITIAL" - Legacy format that can be used as either banner or interstitial. This format can no longer be created but can be targeted by mediation groups. "INTERSTITIAL" - A full screen ad. Supported ad types are "RICH_MEDIA" and "VIDEO". "NATIVE" - Native ad format. "REWARDED" - An ad that, once viewed, gets a callback verifying the view so that a reward can be given to the user. Supported ad types are "RICH_MEDIA" (interactive) and video where video can not be excluded. "REWARDED_INTERSTITIAL" - Rewarded Interstitial ad format. Only supports video ad type. See https://support.google.com/admob/answer/9884467.
      */
     adFormat?: string | null;
     /**
@@ -231,7 +231,7 @@ export namespace admob_v1 {
     startDate?: Schema$Date;
   }
   /**
-   * Request to generate an AdMob Mediation report.
+   * Request to generate an AdMob mediation report.
    */
   export interface Schema$GenerateMediationReportRequest {
     /**
@@ -240,7 +240,7 @@ export namespace admob_v1 {
     reportSpec?: Schema$MediationReportSpec;
   }
   /**
-   * The streaming response for the AdMob Mediation report where the first response contains the report header, then a stream of row responses, and finally a footer as the last response message. For example: [{ "header": { "date_range": { "start_date": {"year": 2018, "month": 9, "day": 1\}, "end_date": {"year": 2018, "month": 9, "day": 1\} \}, "localization_settings": { "currency_code": "USD", "language_code": "en-US" \} \} \}, { "row": { "dimension_values": { "DATE": {"value": "20180918"\}, "APP": { "value": "ca-app-pub-8123415297019784~1001342552", "display_label": "My app name!" \} \}, "metric_values": { "ESTIMATED_EARNINGS": {"decimal_value": "1324746"\} \} \} \}, { "footer": {"matching_row_count": 1\} \}]
+   * The streaming response for the AdMob mediation report where the first response contains the report header, then a stream of row responses, and finally a footer as the last response message. For example: [{ "header": { "date_range": { "start_date": {"year": 2018, "month": 9, "day": 1\}, "end_date": {"year": 2018, "month": 9, "day": 1\} \}, "localization_settings": { "currency_code": "USD", "language_code": "en-US" \} \} \}, { "row": { "dimension_values": { "DATE": {"value": "20180918"\}, "APP": { "value": "ca-app-pub-8123415297019784~1001342552", "display_label": "My app name!" \} \}, "metric_values": { "ESTIMATED_EARNINGS": {"decimal_value": "1324746"\} \} \} \}, { "footer": {"matching_row_count": 1\} \}]
    */
   export interface Schema$GenerateMediationReportResponse {
     /**
@@ -1211,7 +1211,7 @@ export namespace admob_v1 {
     }
 
     /**
-     * Generates an AdMob Mediation report based on the provided report specification. Returns result of a server-side streaming RPC. The result is returned in a sequence of responses.
+     * Generates an AdMob mediation report based on the provided report specification. Returns result of a server-side streaming RPC. The result is returned in a sequence of responses.
      * @example
      * ```js
      * // Before running the sample:
