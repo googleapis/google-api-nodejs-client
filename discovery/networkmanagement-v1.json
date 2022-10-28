@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20220908",
+  "revision": "20220922",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -1661,6 +1661,13 @@
           "description": "Destination IP range of the route.",
           "type": "string"
         },
+        "destPortRanges": {
+          "description": "Destination port ranges of the route. Policy based routes only.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "displayName": {
           "description": "Name of a Compute Engine route.",
           "type": "string"
@@ -1717,6 +1724,13 @@
           "format": "int32",
           "type": "integer"
         },
+        "protocols": {
+          "description": "Protocols of the route. Policy based routes only.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "routeType": {
           "description": "Type of route.",
           "enum": [
@@ -1726,7 +1740,8 @@
             "DYNAMIC",
             "PEERING_SUBNET",
             "PEERING_STATIC",
-            "PEERING_DYNAMIC"
+            "PEERING_DYNAMIC",
+            "POLICY_BASED"
           ],
           "enumDescriptions": [
             "Unspecified type. Default value.",
@@ -1735,9 +1750,21 @@
             "Dynamic route exchanged between BGP peers.",
             "A subnet route received from peering network.",
             "A static route received from peering network.",
-            "A dynamic route received from peering network."
+            "A dynamic route received from peering network.",
+            "Policy based route."
           ],
           "type": "string"
+        },
+        "srcIpRange": {
+          "description": "Source IP address range of the route. Policy based routes only.",
+          "type": "string"
+        },
+        "srcPortRanges": {
+          "description": "Source port ranges of the route. Policy based routes only.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "uri": {
           "description": "URI of a Compute Engine route. Dynamic route from cloud router does not have a URI. Advertised route from Google Cloud VPC to on-premises network also does not have a URI.",

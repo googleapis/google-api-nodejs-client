@@ -154,6 +154,10 @@ export namespace driveactivity_v2 {
    */
   export interface Schema$ActionDetail {
     /**
+     * Label was changed.
+     */
+    appliedLabelChange?: Schema$AppliedLabelChange;
+    /**
      * A change about comments was made.
      */
     comment?: Schema$Comment;
@@ -245,6 +249,36 @@ export namespace driveactivity_v2 {
     type?: string | null;
   }
   /**
+   * Label changes that were made on the Target.
+   */
+  export interface Schema$AppliedLabelChange {
+    /**
+     * Changes that were made to the Label on the Target.
+     */
+    changes?: Schema$AppliedLabelChangeDetail[];
+  }
+  /**
+   * A change made to a Label on the Target.
+   */
+  export interface Schema$AppliedLabelChangeDetail {
+    /**
+     * Field Changes. Only present if `types` contains `LABEL_FIELD_VALUE_CHANGED`.
+     */
+    fieldChanges?: Schema$FieldValueChange[];
+    /**
+     * The Label name representing the Label that changed. This name always contains the revision of the Label that was used when this Action occurred. The format is `labels/id@revision`.
+     */
+    label?: string | null;
+    /**
+     * The human-readable title of the label that changed.
+     */
+    title?: string | null;
+    /**
+     * The types of changes made to the Label on the Target.
+     */
+    types?: string[] | null;
+  }
+  /**
    * A comment with an assignment.
    */
   export interface Schema$Assignment {
@@ -325,6 +359,15 @@ export namespace driveactivity_v2 {
      * The type of Data Leak Prevention (DLP) change.
      */
     type?: string | null;
+  }
+  /**
+   * Wrapper for Date Field value.
+   */
+  export interface Schema$Date {
+    /**
+     * Date value.
+     */
+    value?: string | null;
   }
   /**
    * An object was deleted.
@@ -495,6 +538,64 @@ export namespace driveactivity_v2 {
    */
   export interface Schema$Edit {}
   /**
+   * Contains a value of a Field.
+   */
+  export interface Schema$FieldValue {
+    /**
+     * Date Field value.
+     */
+    date?: Schema$Date;
+    /**
+     * Integer Field value.
+     */
+    integer?: Schema$Integer;
+    /**
+     * Selection Field value.
+     */
+    selection?: Schema$Selection;
+    /**
+     * Selection List Field value.
+     */
+    selectionList?: Schema$SelectionList;
+    /**
+     * Text Field value.
+     */
+    text?: Schema$Text;
+    /**
+     * Text List Field value.
+     */
+    textList?: Schema$TextList;
+    /**
+     * User Field value.
+     */
+    user?: Schema$SingleUser;
+    /**
+     * User List Field value.
+     */
+    userList?: Schema$UserList;
+  }
+  /**
+   * Change to a Field value.
+   */
+  export interface Schema$FieldValueChange {
+    /**
+     * The human-readable display name for this field.
+     */
+    displayName?: string | null;
+    /**
+     * The ID of this field. Field IDs are unique within a Label.
+     */
+    fieldId?: string | null;
+    /**
+     * The value that is now set on the field. If not present, the field was cleared. At least one of {old_value|new_value\} is always set.
+     */
+    newValue?: Schema$FieldValue;
+    /**
+     * The value that was previously set on the field. If not present, the field was newly set. At least one of {old_value|new_value\} is always set.
+     */
+    oldValue?: Schema$FieldValue;
+  }
+  /**
    * This item is deprecated; please see `DriveFile` instead.
    */
   export interface Schema$File {}
@@ -549,6 +650,15 @@ export namespace driveactivity_v2 {
      * The impersonated user.
      */
     impersonatedUser?: Schema$User;
+  }
+  /**
+   * Wrapper for Integer Field value.
+   */
+  export interface Schema$Integer {
+    /**
+     * Integer value.
+     */
+    value?: string | null;
   }
   /**
    * A known user.
@@ -738,6 +848,28 @@ export namespace driveactivity_v2 {
     newRestriction?: string | null;
   }
   /**
+   * Wrapper for Selection Field value as combined value/display_name pair for selected choice.
+   */
+  export interface Schema$Selection {
+    /**
+     * Selection value as human-readable display string.
+     */
+    displayName?: string | null;
+    /**
+     * Selection value as Field Choice ID.
+     */
+    value?: string | null;
+  }
+  /**
+   * Wrapper for SelectionList Field value.
+   */
+  export interface Schema$SelectionList {
+    /**
+     * Selection values.
+     */
+    values?: Schema$Selection[];
+  }
+  /**
    * Information about settings changes.
    */
   export interface Schema$SettingsChange {
@@ -745,6 +877,15 @@ export namespace driveactivity_v2 {
      * The set of changes made to restrictions.
      */
     restrictionChanges?: Schema$RestrictionChange[];
+  }
+  /**
+   * Wrapper for User Field value.
+   */
+  export interface Schema$SingleUser {
+    /**
+     * User value as email.
+     */
+    value?: string | null;
   }
   /**
    * A suggestion.
@@ -833,6 +974,24 @@ export namespace driveactivity_v2 {
     title?: string | null;
   }
   /**
+   * Wrapper for Text Field value.
+   */
+  export interface Schema$Text {
+    /**
+     * Value of Text Field.
+     */
+    value?: string | null;
+  }
+  /**
+   * Wrapper for Text List Field value.
+   */
+  export interface Schema$TextList {
+    /**
+     * Text values.
+     */
+    values?: Schema$Text[];
+  }
+  /**
    * Information about time ranges.
    */
   export interface Schema$TimeRange {
@@ -869,6 +1028,15 @@ export namespace driveactivity_v2 {
      * A user about whom nothing is currently known.
      */
     unknownUser?: Schema$UnknownUser;
+  }
+  /**
+   * Wrapper for UserList Field value.
+   */
+  export interface Schema$UserList {
+    /**
+     * User values.
+     */
+    values?: Schema$SingleUser[];
   }
 
   export class Resource$Activity {

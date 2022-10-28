@@ -102,7 +102,7 @@ export namespace androidpublisher_v3 {
   /**
    * Google Play Android Developer API
    *
-   * Lets Android application developers access their Google Play accounts.
+   * Lets Android application developers access their Google Play accounts. At a high level, the expected workflow is to &quot;insert&quot; an Edit, make changes as necessary, and then &quot;commit&quot; it.
    *
    * @example
    * ```js
@@ -275,6 +275,10 @@ export namespace androidpublisher_v3 {
      * Whether the renewing base plan is backward compatible. The backward compatible base plan is returned by the Google Play Billing Library deprecated method querySkuDetailsAsync(). Only one renewing base plan can be marked as legacy compatible for a given subscription.
      */
     legacyCompatible?: boolean | null;
+    /**
+     * Subscription offer id which is legacy compatible. The backward compatible subscription offer is returned by the Google Play Billing Library deprecated method querySkuDetailsAsync(). Only one subscription offer can be marked as legacy compatible for a given renewing base plan. To have no Subscription offer as legacy compatible set this field as empty string.
+     */
+    legacyCompatibleSubscriptionOfferId?: string | null;
     /**
      * The proration mode for the base plan determines what happens when a user switches to this plan from another base plan. If unspecified, defaults to CHARGE_ON_NEXT_BILLING_DATE.
      */
@@ -1341,7 +1345,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$PrepaidPlan {
     /**
-     * After this time, the subscription is allowed for a new top-up purchase. Not present if the subscription is already extended by a top-up purchase.
+     * If present, this is the time after which top up purchases are allowed for the prepaid plan. Will not be present for expired prepaid plans.
      */
     allowExtendAfterTime?: string | null;
   }
@@ -1500,6 +1504,10 @@ export namespace androidpublisher_v3 {
      * You must tell us if your app contains streaming products to correctly charge US state and local sales tax. Field only supported in United States.
      */
     eligibleForStreamingServiceTaxRate?: boolean | null;
+    /**
+     * To collect communications or amusement taxes in the United States, choose the appropriate tax category. By default Google will determine the collected rate based on the buyer ZIP code. [Learn more](https://support.google.com/googleplay/android-developer/answer/10463498#streaming_tax).
+     */
+    streamingTaxType?: string | null;
     /**
      * Tax tier to specify reduced tax rate. Developers who sell digital news, magazines, newspapers, books, or audiobooks in various regions may be eligible for reduced tax rates. [Learn more](https://support.google.com/googleplay/android-developer/answer/10463498).
      */

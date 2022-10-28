@@ -12,7 +12,7 @@
   "baseUrl": "https://androidpublisher.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Android Publisher",
-  "description": "Lets Android application developers access their Google Play accounts.",
+  "description": "Lets Android application developers access their Google Play accounts. At a high level, the expected workflow is to \"insert\" an Edit, make changes as necessary, and then \"commit\" it. ",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/android-publisher",
   "icons": {
@@ -3920,7 +3920,7 @@
       }
     }
   },
-  "revision": "20220919",
+  "revision": "20221027",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "AcquisitionTargetingRule": {
@@ -4078,6 +4078,10 @@
         "legacyCompatible": {
           "description": "Whether the renewing base plan is backward compatible. The backward compatible base plan is returned by the Google Play Billing Library deprecated method querySkuDetailsAsync(). Only one renewing base plan can be marked as legacy compatible for a given subscription.",
           "type": "boolean"
+        },
+        "legacyCompatibleSubscriptionOfferId": {
+          "description": "Subscription offer id which is legacy compatible. The backward compatible subscription offer is returned by the Google Play Billing Library deprecated method querySkuDetailsAsync(). Only one subscription offer can be marked as legacy compatible for a given renewing base plan. To have no Subscription offer as legacy compatible set this field as empty string.",
+          "type": "string"
         },
         "prorationMode": {
           "description": "The proration mode for the base plan determines what happens when a user switches to this plan from another base plan. If unspecified, defaults to CHARGE_ON_NEXT_BILLING_DATE.",
@@ -5543,7 +5547,7 @@
       "id": "PrepaidPlan",
       "properties": {
         "allowExtendAfterTime": {
-          "description": "After this time, the subscription is allowed for a new top-up purchase. Not present if the subscription is already extended by a top-up purchase.",
+          "description": "If present, this is the time after which top up purchases are allowed for the prepaid plan. Will not be present for expired prepaid plans.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -5726,6 +5730,28 @@
         "eligibleForStreamingServiceTaxRate": {
           "description": "You must tell us if your app contains streaming products to correctly charge US state and local sales tax. Field only supported in United States.",
           "type": "boolean"
+        },
+        "streamingTaxType": {
+          "description": "To collect communications or amusement taxes in the United States, choose the appropriate tax category. By default Google will determine the collected rate based on the buyer ZIP code. [Learn more](https://support.google.com/googleplay/android-developer/answer/10463498#streaming_tax).",
+          "enum": [
+            "STREAMING_TAX_TYPE_UNSPECIFIED",
+            "STREAMING_TAX_TYPE_TELCO_VIDEO_RENTAL",
+            "STREAMING_TAX_TYPE_TELCO_VIDEO_SALES",
+            "STREAMING_TAX_TYPE_TELCO_VIDEO_MULTI_CHANNEL",
+            "STREAMING_TAX_TYPE_TELCO_AUDIO_RENTAL",
+            "STREAMING_TAX_TYPE_TELCO_AUDIO_SALES",
+            "STREAMING_TAX_TYPE_TELCO_AUDIO_MULTI_CHANNEL"
+          ],
+          "enumDescriptions": [
+            "No telecommunications tax collected.",
+            "US-specific telecommunications tax tier for video streaming, on demand, rentals / subscriptions / pay-per-view.",
+            "US-specific telecommunications tax tier for video streaming of pre-recorded content like movies, tv shows.",
+            "US-specific telecommunications tax tier for video streaming of multi-channel programming.",
+            "US-specific telecommunications tax tier for audio streaming, rental / subscription.",
+            "US-specific telecommunications tax tier for audio streaming, sale / permanent download.",
+            "US-specific telecommunications tax tier for multi channel audio streaming like radio."
+          ],
+          "type": "string"
         },
         "taxTier": {
           "description": "Tax tier to specify reduced tax rate. Developers who sell digital news, magazines, newspapers, books, or audiobooks in various regions may be eligible for reduced tax rates. [Learn more](https://support.google.com/googleplay/android-developer/answer/10463498).",

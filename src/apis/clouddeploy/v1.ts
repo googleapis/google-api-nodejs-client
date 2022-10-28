@@ -292,7 +292,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$DeliveryPipeline {
     /**
-     * User annotations. These attributes can only be set and used by the user, and not by Google Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.
+     * User annotations. These attributes can only be set and used by the user, and not by Google Cloud Deploy.
      */
     annotations?: {[key: string]: string} | null;
     /**
@@ -373,6 +373,19 @@ export namespace clouddeploy_v1 {
      * Output only. Additional information about the deploy failure, if available.
      */
     failureMessage?: string | null;
+    /**
+     * Output only. Metadata containing information about the deploy job run.
+     */
+    metadata?: Schema$DeployJobRunMetadata;
+  }
+  /**
+   * DeployJobRunMetadata surfaces information associated with a `DeployJobRun` to the user.
+   */
+  export interface Schema$DeployJobRunMetadata {
+    /**
+     * Output only. The name of the Cloud Run Service that is associated with a `DeployJobRun`.
+     */
+    cloudRun?: Schema$CloudRunMetadata;
   }
   /**
    * Deployment job composition.
@@ -531,6 +544,39 @@ export namespace clouddeploy_v1 {
      * Output only. Information specific to a verify `JobRun`.
      */
     verifyJobRun?: Schema$VerifyJobRun;
+  }
+  /**
+   * Payload proto for "clouddeploy.googleapis.com/jobrun_notification" Platform Log event that describes the failure to send JobRun resource update Pub/Sub notification.
+   */
+  export interface Schema$JobRunNotificationEvent {
+    /**
+     * The name of the `JobRun`.
+     */
+    jobRun?: string | null;
+    /**
+     * Debug message for when a notification fails to send.
+     */
+    message?: string | null;
+    /**
+     * Unique identifier of the `DeliveryPipeline`.
+     */
+    pipelineUid?: string | null;
+    /**
+     * Unique identifier of the `Release`.
+     */
+    releaseUid?: string | null;
+    /**
+     * Unique identifier of the `Rollout`.
+     */
+    rolloutUid?: string | null;
+    /**
+     * ID of the `Target`.
+     */
+    targetId?: string | null;
+    /**
+     * Type of this notification, e.g. for a Pub/Sub failure.
+     */
+    type?: string | null;
   }
   /**
    * The response object from `ListDeliveryPipelines`.

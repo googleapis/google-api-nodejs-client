@@ -2501,6 +2501,160 @@
             }
           }
         },
+        "searchAds360Links": {
+          "methods": {
+            "create": {
+              "description": "Creates a SearchAds360Link.",
+              "flatPath": "v1alpha/properties/{propertiesId}/searchAds360Links",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.searchAds360Links.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Example format: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/searchAds360Links",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaSearchAds360Link"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaSearchAds360Link"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a SearchAds360Link on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/searchAds360Links/{searchAds360LinksId}",
+              "httpMethod": "DELETE",
+              "id": "analyticsadmin.properties.searchAds360Links.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the SearchAds360Link to delete. Example format: properties/1234/SearchAds360Links/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/searchAds360Links/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "get": {
+              "description": "Look up a single SearchAds360Link",
+              "flatPath": "v1alpha/properties/{propertiesId}/searchAds360Links/{searchAds360LinksId}",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.searchAds360Links.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the SearchAds360Link to get. Example format: properties/1234/SearchAds360Link/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/searchAds360Links/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaSearchAds360Link"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "list": {
+              "description": "Lists all SearchAds360Links on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/searchAds360Links",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.searchAds360Links.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListSearchAds360Links` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSearchAds360Links` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Example format: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/searchAds360Links",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates a SearchAds360Link on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/searchAds360Links/{searchAds360LinksId}",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.properties.searchAds360Links.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. The resource name for this SearchAds360Link resource. Format: properties/{propertyId}/searchAds360Links/{linkId} Note: linkId is not the Search Ads 360 advertiser ID",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/searchAds360Links/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The list of fields to be updated. Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaSearchAds360Link"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaSearchAds360Link"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            }
+          }
+        },
         "userLinks": {
           "methods": {
             "audit": {
@@ -2802,7 +2956,7 @@
       }
     }
   },
-  "revision": "20220920",
+  "revision": "20221027",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -3997,6 +4151,10 @@
           "$ref": "GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal",
           "description": "A snapshot of a DisplayVideo360AdvertiserLinkProposal resource in change history."
         },
+        "expandedDataSet": {
+          "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSet",
+          "description": "A snapshot of an ExpandedDataSet resource in change history."
+        },
         "firebaseLink": {
           "$ref": "GoogleAnalyticsAdminV1alphaFirebaseLink",
           "description": "A snapshot of a FirebaseLink resource in change history."
@@ -4016,6 +4174,10 @@
         "property": {
           "$ref": "GoogleAnalyticsAdminV1alphaProperty",
           "description": "A snapshot of a Property resource in change history."
+        },
+        "searchAds360Link": {
+          "$ref": "GoogleAnalyticsAdminV1alphaSearchAds360Link",
+          "description": "A snapshot of a SearchAds360Link resource in change history."
         }
       },
       "type": "object"
@@ -4506,6 +4668,149 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaExpandedDataSet": {
+      "description": "A resource message representing a GA4 ExpandedDataSet.",
+      "id": "GoogleAnalyticsAdminV1alphaExpandedDataSet",
+      "properties": {
+        "dataCollectionStartTime": {
+          "description": "Output only. Time when expanded data set began (or will begin) collecing data.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. The description of the ExpandedDataSet. Max 50 chars.",
+          "type": "string"
+        },
+        "dimensionFilterExpression": {
+          "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpression",
+          "description": "Immutable. A logical expression of ExpandedDataSet filters applied to dimension included in the ExpandedDataSet. This filter is used to reduce the number of rows and thus the change of encountering `other row`."
+        },
+        "dimensionNames": {
+          "description": "Immutable. The list of dimensions included in the ExpandedDataSet. See the [API Dimensions](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#dimensions) for the list of dimension names.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "displayName": {
+          "description": "Required. The display name of the ExpandedDataSet. Max 200 chars.",
+          "type": "string"
+        },
+        "metricNames": {
+          "description": "Immutable. The list of metrics included in the ExpandedDataSet. See the [API Metrics](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#metrics) for the list of dimension names.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. The resource name for this ExpandedDataSet resource. Format: properties/{property_id}/expandedDataSets/{expanded_data_set}",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaExpandedDataSetFilter": {
+      "description": "A specific filter for a single dimension",
+      "id": "GoogleAnalyticsAdminV1alphaExpandedDataSetFilter",
+      "properties": {
+        "fieldName": {
+          "description": "Required. The dimension name to filter.",
+          "type": "string"
+        },
+        "inListFilter": {
+          "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSetFilterInListFilter",
+          "description": "A filter for a string dimension that matches a particular list of options."
+        },
+        "stringFilter": {
+          "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSetFilterStringFilter",
+          "description": "A filter for a string-type dimension that matches a particular pattern."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpression": {
+      "description": "A logical expression of EnhancedDataSet dimension filters.",
+      "id": "GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpression",
+      "properties": {
+        "andGroup": {
+          "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpressionList",
+          "description": "A list of expressions to be AND’ed together. It must contain a ExpandedDataSetFilterExpression with either not_expression or dimension_filter. This must be set for the top level ExpandedDataSetFilterExpression."
+        },
+        "filter": {
+          "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSetFilter",
+          "description": "A filter on a single dimension. This cannot be set on the top level ExpandedDataSetFilterExpression."
+        },
+        "notExpression": {
+          "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpression",
+          "description": "A filter expression to be NOT'ed (i.e., inverted, complemented). It must include a dimension_filter. This cannot be set on the top level ExpandedDataSetFilterExpression."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpressionList": {
+      "description": "A list of ExpandedDataSet filter expressions.",
+      "id": "GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpressionList",
+      "properties": {
+        "filterExpressions": {
+          "description": "A list of ExpandedDataSet filter expressions.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpression"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaExpandedDataSetFilterInListFilter": {
+      "description": "A filter for a string dimension that matches a particular list of options.",
+      "id": "GoogleAnalyticsAdminV1alphaExpandedDataSetFilterInListFilter",
+      "properties": {
+        "caseSensitive": {
+          "description": "Optional. If true, the match is case-sensitive. If false, the match is case-insensitive. Must be true.",
+          "type": "boolean"
+        },
+        "values": {
+          "description": "Required. The list of possible string values to match against. Must be non-empty.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaExpandedDataSetFilterStringFilter": {
+      "description": "A filter for a string-type dimension that matches a particular pattern.",
+      "id": "GoogleAnalyticsAdminV1alphaExpandedDataSetFilterStringFilter",
+      "properties": {
+        "caseSensitive": {
+          "description": "Optional. If true, the match is case-sensitive. If false, the match is case-insensitive. Must be true when match_type is EXACT. Must be false when match_type is CONTAINS.",
+          "type": "boolean"
+        },
+        "matchType": {
+          "description": "Required. The match type for the string filter.",
+          "enum": [
+            "MATCH_TYPE_UNSPECIFIED",
+            "EXACT",
+            "CONTAINS"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "Exact match of the string value.",
+            "Contains the string value."
+          ],
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. The string value to be matched against.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaFirebaseLink": {
       "description": "A link between a GA4 property and a Firebase project.",
       "id": "GoogleAnalyticsAdminV1alphaFirebaseLink",
@@ -4911,6 +5216,24 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponse": {
+      "description": "Response message for ListSearchAds360Links RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "searchAds360Links": {
+          "description": "List of SearchAds360Links.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaSearchAds360Link"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaListUserLinksResponse": {
       "description": "Response message for ListUserLinks RPC.",
       "id": "GoogleAnalyticsAdminV1alphaListUserLinksResponse",
@@ -5275,6 +5598,43 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaSearchAds360Link": {
+      "description": "A link between a GA4 property and a Search Ads 360 entity.",
+      "id": "GoogleAnalyticsAdminV1alphaSearchAds360Link",
+      "properties": {
+        "adsPersonalizationEnabled": {
+          "description": "Enables personalized advertising features with this integration. If this field is not set on create, it will be defaulted to true.",
+          "type": "boolean"
+        },
+        "advertiserDisplayName": {
+          "description": "Output only. The display name of the Search Ads 360 Advertiser. Allows users to easily identify the linked resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "advertiserId": {
+          "description": "Immutable. This field represents the Advertiser ID of the Search Ads 360 Advertiser. that has been linked.",
+          "type": "string"
+        },
+        "campaignDataSharingEnabled": {
+          "description": "Immutable. Enables the import of campaign data from Search Ads 360 into the GA4 property. After link creation, this can only be updated from the Search Ads 360 product. If this field is not set on create, it will be defaulted to true.",
+          "type": "boolean"
+        },
+        "costDataSharingEnabled": {
+          "description": "Immutable. Enables the import of cost data from Search Ads 360 to the GA4 property. This can only be enabled if campaign_data_sharing_enabled is enabled. After link creation, this can only be updated from the Search Ads 360 product. If this field is not set on create, it will be defaulted to true.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Output only. The resource name for this SearchAds360Link resource. Format: properties/{propertyId}/searchAds360Links/{linkId} Note: linkId is not the Search Ads 360 advertiser ID",
+          "readOnly": true,
+          "type": "string"
+        },
+        "siteStatsSharingEnabled": {
+          "description": "Enables export of site stats with this integration. If this field is not set on create, it will be defaulted to true.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsRequest": {
       "description": "Request message for SearchChangeHistoryEvents RPC.",
       "id": "GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsRequest",
@@ -5347,7 +5707,9 @@
               "DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL",
               "SEARCH_ADS_360_LINK",
               "DATA_STREAM",
-              "ATTRIBUTION_SETTINGS"
+              "ATTRIBUTION_SETTINGS",
+              "EXPANDED_DATA_SET",
+              "CHANNEL_GROUPING"
             ],
             "enumDescriptions": [
               "Resource type unknown or not specified.",
@@ -5365,7 +5727,9 @@
               "DisplayVideo360AdvertiserLinkProposal resource",
               "SearchAds360Link resource",
               "DataStream resource",
-              "AttributionSettings resource"
+              "AttributionSettings resource",
+              "ExpandedDataSet resource",
+              "ChannelGrouping resource"
             ],
             "type": "string"
           },

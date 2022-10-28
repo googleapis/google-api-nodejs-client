@@ -567,6 +567,10 @@ export namespace translate_v3beta1 {
      */
     glossaryConfig?: Schema$TranslateTextGlossaryConfig;
     /**
+     * Optional. is_translate_native_pdf_only field for external customers. If true, the page limit of online native pdf translation is 300 and only native pdf pages will be translated.
+     */
+    isTranslateNativePdfOnly?: boolean | null;
+    /**
      * Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter. See https://cloud.google.com/translate/docs/advanced/labels for more information.
      */
     labels?: {[key: string]: string} | null;
@@ -2104,6 +2108,7 @@ export namespace translate_v3beta1 {
      *       //   "documentInputConfig": {},
      *       //   "documentOutputConfig": {},
      *       //   "glossaryConfig": {},
+     *       //   "isTranslateNativePdfOnly": false,
      *       //   "labels": {},
      *       //   "model": "my_model",
      *       //   "sourceLanguageCode": "my_sourceLanguageCode",

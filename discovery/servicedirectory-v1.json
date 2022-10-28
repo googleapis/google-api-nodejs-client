@@ -883,7 +883,7 @@
       }
     }
   },
-  "revision": "20220907",
+  "revision": "20221020",
   "rootUrl": "https://servicedirectory.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -941,6 +941,11 @@
           "description": "Optional. Service Directory rejects values outside of `[0, 65535]`.",
           "format": "int32",
           "type": "integer"
+        },
+        "uid": {
+          "description": "Output only. The globally unique identifier of the endpoint in the UUID4 format.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1111,6 +1116,11 @@
         "name": {
           "description": "Immutable. The resource name for the namespace in the format `projects/*/locations/*/namespaces/*`.",
           "type": "string"
+        },
+        "uid": {
+          "description": "Output only. The globally unique identifier of the namespace in the UUID4 format.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1186,6 +1196,11 @@
         },
         "name": {
           "description": "Immutable. The resource name for the service in the format `projects/*/locations/*/namespaces/*/services/*`.",
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. The globally unique identifier of the service in the UUID4 format.",
+          "readOnly": true,
           "type": "string"
         }
       },

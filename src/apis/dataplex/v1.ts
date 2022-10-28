@@ -575,6 +575,85 @@ export namespace dataplex_v1 {
     engine?: string | null;
   }
   /**
+   * These messages contain information about the execution of a datascan. The monitored resource is 'DataScan'
+   */
+  export interface Schema$GoogleCloudDataplexV1DataScanEvent {
+    /**
+     * Data profile result for data profile type data scan.
+     */
+    dataProfile?: Schema$GoogleCloudDataplexV1DataScanEventDataProfileResult;
+    /**
+     * Data quality result for data quality type data scan.
+     */
+    dataQuality?: Schema$GoogleCloudDataplexV1DataScanEventDataQualityResult;
+    /**
+     * The data source of the data scan
+     */
+    dataSource?: string | null;
+    /**
+     * The time when the data scan job finished.
+     */
+    endTime?: string | null;
+    /**
+     * The identifier of the specific data scan job this log entry is for.
+     */
+    jobId?: string | null;
+    /**
+     * The message describing the data scan job event.
+     */
+    message?: string | null;
+    /**
+     * The scope of the data scan (e.g. full, incremental).
+     */
+    scope?: string | null;
+    /**
+     * A version identifier of the spec which was used to execute this job.
+     */
+    specVersion?: string | null;
+    /**
+     * The time when the data scan job started to run.
+     */
+    startTime?: string | null;
+    /**
+     * The status of the data scan job.
+     */
+    state?: string | null;
+    /**
+     * The trigger type of the data scan job.
+     */
+    trigger?: string | null;
+    /**
+     * The type of the data scan.
+     */
+    type?: string | null;
+  }
+  /**
+   * Data profile result for data scan job.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataScanEventDataProfileResult {
+    /**
+     * The count of rows processed in the data scan job.
+     */
+    rowCount?: string | null;
+  }
+  /**
+   * Data quality result for data scan job.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataScanEventDataQualityResult {
+    /**
+     * The result of each dimension for data quality result. The key of the map is the name of the dimension. The value is the bool value depicting whether the dimension result was pass or not.
+     */
+    dimensionPassed?: {[key: string]: boolean} | null;
+    /**
+     * Whether the data quality result was pass or not.
+     */
+    passed?: boolean | null;
+    /**
+     * The count of rows processed in the data scan job.
+     */
+    rowCount?: string | null;
+  }
+  /**
    * The payload associated with Discovery data processing.
    */
   export interface Schema$GoogleCloudDataplexV1DiscoveryEvent {
@@ -1352,6 +1431,10 @@ export namespace dataplex_v1 {
      */
     eventSucceeded?: boolean | null;
     /**
+     * If the session is associated with an environment with fast startup enabled, and was created before being assigned to a user.
+     */
+    fastStartupEnabled?: boolean | null;
+    /**
      * The log message.
      */
     message?: string | null;
@@ -1375,10 +1458,6 @@ export namespace dataplex_v1 {
      * The information about the user that created the session. It will be the email address of the user.
      */
     userId?: string | null;
-    /**
-     * If the session is a warm pooled session.
-     */
-    warmPoolEnabled?: boolean | null;
   }
   /**
    * Execution details of the query.
@@ -1496,6 +1575,10 @@ export namespace dataplex_v1 {
      * Output only. The relative resource name of the task, of the form: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/ tasks/{task_id\}.
      */
     name?: string | null;
+    /**
+     * Config related to running scheduled Notebooks.
+     */
+    notebook?: Schema$GoogleCloudDataplexV1TaskNotebookTaskConfig;
     /**
      * Config related to running custom Spark tasks.
      */
@@ -1622,6 +1705,27 @@ export namespace dataplex_v1 {
      * Optional. The Cloud VPC sub-network in which the job is run.
      */
     subNetwork?: string | null;
+  }
+  /**
+   * Config for running scheduled notebooks.
+   */
+  export interface Schema$GoogleCloudDataplexV1TaskNotebookTaskConfig {
+    /**
+     * Optional. Cloud Storage URIs of archives to be extracted into the working directory of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and .zip.
+     */
+    archiveUris?: string[] | null;
+    /**
+     * Optional. Cloud Storage URIs of files to be placed in the working directory of each executor.
+     */
+    fileUris?: string[] | null;
+    /**
+     * Optional. Infrastructure specification for the execution.
+     */
+    infrastructureSpec?: Schema$GoogleCloudDataplexV1TaskInfrastructureSpec;
+    /**
+     * Required. Path to input notebook. This can be the Cloud Storage URI of the notebook file or the path to a Notebook Content. The execution args are accessible as environment variables (TASK_key=value).
+     */
+    notebook?: string | null;
   }
   /**
    * User-specified config for running a Spark task.
@@ -1883,7 +1987,7 @@ export namespace dataplex_v1 {
      */
     condition?: Schema$GoogleTypeExpr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. members can have the following values: allUsers: A special identifier that represents anyone who is on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone who is authenticated with a Google account or a service account. user:{emailid\}: An email address that represents a specific Google account. For example, alice@example.com . serviceAccount:{emailid\}: An email address that represents a Google service account. For example, my-other-app@appspot.gserviceaccount.com. serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]: An identifier for a Kubernetes service account (https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, my-project.svc.id.goog[my-namespace/my-kubernetes-sa]. group:{emailid\}: An email address that represents a Google group. For example, admins@example.com. deleted:user:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a user that has been recently deleted. For example, alice@example.com?uid=123456789012345678901. If the user is recovered, this value reverts to user:{emailid\} and the recovered user retains the role in the binding. deleted:serviceAccount:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901. If the service account is undeleted, this value reverts to serviceAccount:{emailid\} and the undeleted service account retains the role in the binding. deleted:group:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, admins@example.com?uid=123456789012345678901. If the group is recovered, this value reverts to group:{emailid\} and the recovered group retains the role in the binding. domain:{domain\}: The G Suite domain (primary) that represents all the users of that domain. For example, google.com or example.com.
+     * Specifies the principals requesting access for a Google Cloud resource. members can have the following values: allUsers: A special identifier that represents anyone who is on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. user:{emailid\}: An email address that represents a specific Google account. For example, alice@example.com . serviceAccount:{emailid\}: An email address that represents a Google service account. For example, my-other-app@appspot.gserviceaccount.com. serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]: An identifier for a Kubernetes service account (https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, my-project.svc.id.goog[my-namespace/my-kubernetes-sa]. group:{emailid\}: An email address that represents a Google group. For example, admins@example.com. deleted:user:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a user that has been recently deleted. For example, alice@example.com?uid=123456789012345678901. If the user is recovered, this value reverts to user:{emailid\} and the recovered user retains the role in the binding. deleted:serviceAccount:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901. If the service account is undeleted, this value reverts to serviceAccount:{emailid\} and the undeleted service account retains the role in the binding. deleted:group:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, admins@example.com?uid=123456789012345678901. If the group is recovered, this value reverts to group:{emailid\} and the recovered group retains the role in the binding. domain:{domain\}: The G Suite domain (primary) that represents all the users of that domain. For example, google.com or example.com.
      */
     members?: string[] | null;
     /**
@@ -8007,6 +8111,7 @@ export namespace dataplex_v1 {
      *       //   "executionStatus": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "notebook": {},
      *       //   "spark": {},
      *       //   "state": "my_state",
      *       //   "triggerSpec": {},
@@ -8303,6 +8408,7 @@ export namespace dataplex_v1 {
      *   //   "executionStatus": {},
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "notebook": {},
      *   //   "spark": {},
      *   //   "state": "my_state",
      *   //   "triggerSpec": {},
@@ -8738,6 +8844,7 @@ export namespace dataplex_v1 {
      *       //   "executionStatus": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "notebook": {},
      *       //   "spark": {},
      *       //   "state": "my_state",
      *       //   "triggerSpec": {},

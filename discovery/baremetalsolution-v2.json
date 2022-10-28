@@ -263,6 +263,62 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "disableInteractiveSerialConsole": {
+                  "description": "Disable the interactive serial console feature on an instance.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:disableInteractiveSerialConsole",
+                  "httpMethod": "POST",
+                  "id": "baremetalsolution.projects.locations.instances.disableInteractiveSerialConsole",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:disableInteractiveSerialConsole",
+                  "request": {
+                    "$ref": "DisableInteractiveSerialConsoleRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "enableInteractiveSerialConsole": {
+                  "description": "Enable the interactive serial console feature on an instance.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:enableInteractiveSerialConsole",
+                  "httpMethod": "POST",
+                  "id": "baremetalsolution.projects.locations.instances.enableInteractiveSerialConsole",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:enableInteractiveSerialConsole",
+                  "request": {
+                    "$ref": "EnableInteractiveSerialConsoleRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Get details about a single server.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}",
@@ -559,7 +615,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "The list of fields to update. The only currently supported fields are: `labels`, `reservations`",
+                      "description": "The list of fields to update. The only currently supported fields are: `labels`, `reservations`, `vrf.vlan_attachments`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -839,7 +895,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "Output only. The name of the provisioning config.",
+                      "description": "Output only. The system-generated name of the provisioning config. This follows the UUID format.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/provisioningConfigs/[^/]+$",
                       "required": true,
@@ -926,6 +982,104 @@
                   "path": "v2/{+parent}/provisioningQuotas",
                   "response": {
                     "$ref": "ListProvisioningQuotasResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "sshKeys": {
+              "methods": {
+                "create": {
+                  "description": "Register a public SSH key in the specified project for use with the interactive serial console feature.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/sshKeys",
+                  "httpMethod": "POST",
+                  "id": "baremetalsolution.projects.locations.sshKeys.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent containing the SSH keys.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "sshKeyId": {
+                      "description": "Required. The ID to use for the key, which will become the final component of the key's resource name. This value must match the regex: [a-zA-Z0-9@.\\-_]{1,64}",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/sshKeys",
+                  "request": {
+                    "$ref": "SSHKey"
+                  },
+                  "response": {
+                    "$ref": "SSHKey"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a public SSH key registered in the specified project.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/sshKeys/{sshKeysId}",
+                  "httpMethod": "DELETE",
+                  "id": "baremetalsolution.projects.locations.sshKeys.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the SSH key to delete. Currently, the only valid value for the location is \"global\".",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/sshKeys/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists the public SSH keys registered for the specified project. These SSH keys are used only for the interactive serial console feature.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/sshKeys",
+                  "httpMethod": "GET",
+                  "id": "baremetalsolution.projects.locations.sshKeys.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of items to return.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The next_page_token value returned from a previous List request, if any.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent containing the SSH keys. Currently, the only valid value for the location is \"global\".",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/sshKeys",
+                  "response": {
+                    "$ref": "ListSSHKeysResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1129,6 +1283,152 @@
                       ]
                     }
                   }
+                },
+                "snapshots": {
+                  "methods": {
+                    "create": {
+                      "description": "Takes a snapshot of a boot volume. Returns INVALID_ARGUMENT if called for a non-boot volume.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}/snapshots",
+                      "httpMethod": "POST",
+                      "id": "baremetalsolution.projects.locations.volumes.snapshots.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The volume to snapshot.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/volumes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+parent}/snapshots",
+                      "request": {
+                        "$ref": "VolumeSnapshot"
+                      },
+                      "response": {
+                        "$ref": "VolumeSnapshot"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a volume snapshot. Returns INVALID_ARGUMENT if called for a non-boot volume.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}/snapshots/{snapshotsId}",
+                      "httpMethod": "DELETE",
+                      "id": "baremetalsolution.projects.locations.volumes.snapshots.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the snapshot to delete.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/volumes/[^/]+/snapshots/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}",
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Returns the specified snapshot resource. Returns INVALID_ARGUMENT if called for a non-boot volume.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}/snapshots/{snapshotsId}",
+                      "httpMethod": "GET",
+                      "id": "baremetalsolution.projects.locations.volumes.snapshots.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the snapshot.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/volumes/[^/]+/snapshots/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}",
+                      "response": {
+                        "$ref": "VolumeSnapshot"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Retrieves the list of snapshots for the specified volume. Returns a response with an empty list of snapshots if called for a non-boot volume.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}/snapshots",
+                      "httpMethod": "GET",
+                      "id": "baremetalsolution.projects.locations.volumes.snapshots.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Requested page size. The server might return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "A token identifying a page of results from the server.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Parent value for ListVolumesRequest.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/volumes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+parent}/snapshots",
+                      "response": {
+                        "$ref": "ListVolumeSnapshotsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "restoreVolumeSnapshot": {
+                      "description": "Uses the specified snapshot to restore its parent volume. Returns INVALID_ARGUMENT if called for a non-boot volume.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}/snapshots/{snapshotsId}:restoreVolumeSnapshot",
+                      "httpMethod": "POST",
+                      "id": "baremetalsolution.projects.locations.volumes.snapshots.restoreVolumeSnapshot",
+                      "parameterOrder": [
+                        "volumeSnapshot"
+                      ],
+                      "parameters": {
+                        "volumeSnapshot": {
+                          "description": "Required. Name of the snapshot which will be used to restore its parent volume.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/volumes/[^/]+/snapshots/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+volumeSnapshot}:restoreVolumeSnapshot",
+                      "request": {
+                        "$ref": "RestoreVolumeSnapshotRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -1137,7 +1437,7 @@
       }
     }
   },
-  "revision": "20220829",
+  "revision": "20221017",
   "rootUrl": "https://baremetalsolution.googleapis.com/",
   "schemas": {
     "AllowedClient": {
@@ -1204,6 +1504,24 @@
           "type": "boolean"
         }
       },
+      "type": "object"
+    },
+    "DisableInteractiveSerialConsoleRequest": {
+      "description": "Message for disabling the interactive serial console on an instance.",
+      "id": "DisableInteractiveSerialConsoleRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "Empty": {
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
+      "id": "Empty",
+      "properties": {},
+      "type": "object"
+    },
+    "EnableInteractiveSerialConsoleRequest": {
+      "description": "Message for enabling the interactive serial console on an instance.",
+      "id": "EnableInteractiveSerialConsoleRequest",
+      "properties": {},
       "type": "object"
     },
     "FetchInstanceProvisioningSettingsResponse": {
@@ -1356,13 +1674,21 @@
             "STATE_UNSPECIFIED",
             "PROVISIONING",
             "RUNNING",
-            "DELETED"
+            "DELETED",
+            "UPDATING",
+            "STARTING",
+            "STOPPING",
+            "SHUTDOWN"
           ],
           "enumDescriptions": [
             "The server is in an unknown state.",
             "The server is being provisioned.",
             "The server is running.",
-            "The server has been deleted."
+            "The server has been deleted.",
+            "The server is being updated.",
+            "The server is starting.",
+            "The server is stopping.",
+            "The server is shutdown."
           ],
           "readOnly": true,
           "type": "string"
@@ -1646,6 +1972,49 @@
       },
       "type": "object"
     },
+    "ListSSHKeysResponse": {
+      "description": "Message for response of ListSSHKeys.",
+      "id": "ListSSHKeysResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "sshKeys": {
+          "description": "The SSH keys registered in the project.",
+          "items": {
+            "$ref": "SSHKey"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListVolumeSnapshotsResponse": {
+      "description": "Response message containing the list of volume snapshots.",
+      "id": "ListVolumeSnapshotsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token identifying a page of results from the server.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "volumeSnapshots": {
+          "description": "The list of snapshots.",
+          "items": {
+            "$ref": "VolumeSnapshot"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListVolumesResponse": {
       "description": "Response message containing the list of storage volumes.",
       "id": "ListVolumesResponse",
@@ -1848,6 +2217,11 @@
           "description": "The cidr of the Network.",
           "type": "string"
         },
+        "gatewayIp": {
+          "description": "Output only. Gateway ip address.",
+          "readOnly": true,
+          "type": "string"
+        },
         "id": {
           "description": "An identifier for the `Network`, generated by the backend.",
           "type": "string"
@@ -1908,13 +2282,15 @@
             "STATE_UNSPECIFIED",
             "PROVISIONING",
             "PROVISIONED",
-            "DEPROVISIONING"
+            "DEPROVISIONING",
+            "UPDATING"
           ],
           "enumDescriptions": [
             "The Network is in an unknown state.",
             "The Network is provisioning.",
             "The Network has been provisioned.",
-            "The Network is being deprovisioned."
+            "The Network is being deprovisioned.",
+            "The Network is being updated."
           ],
           "type": "string"
         },
@@ -2360,6 +2736,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "customId": {
+          "description": "Optional. The user-defined identifier of the provisioning config.",
+          "type": "string"
+        },
         "email": {
           "description": "Email provided to send a confirmation with provisioning config to. Deprecated in favour of email field in request messages.",
           "type": "string"
@@ -2380,7 +2760,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The name of the provisioning config.",
+          "description": "Output only. The system-generated name of the provisioning config. This follows the UUID format.",
           "readOnly": true,
           "type": "string"
         },
@@ -2529,6 +2909,28 @@
         "sizeGib": {
           "description": "New Volume size, in GiB.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RestoreVolumeSnapshotRequest": {
+      "description": "Message for restoring a volume snapshot.",
+      "id": "RestoreVolumeSnapshotRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "SSHKey": {
+      "description": "An SSH key, used for authorizing with the interactive serial console feature.",
+      "id": "SSHKey",
+      "properties": {
+        "name": {
+          "description": "Output only. The name of this SSH key. Currently, the only valid value for the location is \"global\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "publicKey": {
+          "description": "The public SSH key. This must be in OpenSSH .authorized_keys format.",
           "type": "string"
         }
       },
@@ -2779,12 +3181,14 @@
           "enum": [
             "VOLUME_PERFORMANCE_TIER_UNSPECIFIED",
             "VOLUME_PERFORMANCE_TIER_SHARED",
-            "VOLUME_PERFORMANCE_TIER_DEDICATED"
+            "VOLUME_PERFORMANCE_TIER_ASSIGNED",
+            "VOLUME_PERFORMANCE_TIER_HT"
           ],
           "enumDescriptions": [
             "Value is not specified.",
             "Regular volumes, shared aggregates.",
-            "Dedicated (assigned) aggregates."
+            "Assigned aggregates.",
+            "High throughput aggregates."
           ],
           "type": "string"
         },
@@ -2851,13 +3255,15 @@
             "STATE_UNSPECIFIED",
             "CREATING",
             "READY",
-            "DELETING"
+            "DELETING",
+            "UPDATING"
           ],
           "enumDescriptions": [
             "The storage volume is in an unknown state.",
             "The storage volume is being created.",
             "The storage volume is ready for use.",
-            "The storage volume has been requested to be deleted."
+            "The storage volume has been requested to be deleted.",
+            "The storage volume is being updated."
           ],
           "type": "string"
         },
@@ -2921,12 +3327,14 @@
           "enum": [
             "VOLUME_PERFORMANCE_TIER_UNSPECIFIED",
             "VOLUME_PERFORMANCE_TIER_SHARED",
-            "VOLUME_PERFORMANCE_TIER_DEDICATED"
+            "VOLUME_PERFORMANCE_TIER_ASSIGNED",
+            "VOLUME_PERFORMANCE_TIER_HT"
           ],
           "enumDescriptions": [
             "Value is not specified.",
             "Regular volumes, shared aggregates.",
-            "Dedicated (assigned) aggregates."
+            "Assigned aggregates.",
+            "High throughput aggregates."
           ],
           "type": "string"
         },
@@ -2969,6 +3377,52 @@
         },
         "userNote": {
           "description": "User note field, it can be used by customers to add additional information for the BMS Ops team .",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VolumeSnapshot": {
+      "description": "A snapshot of a volume. Only boot volumes can have snapshots.",
+      "id": "VolumeSnapshot",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The creation time of the snapshot.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "The description of the snapshot.",
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. An identifier for the snapshot, generated by the backend.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the snapshot.",
+          "type": "string"
+        },
+        "storageVolume": {
+          "description": "Output only. The name of the volume which this snapshot belongs to.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. The type of the snapshot which indicates whether it was scheduled or manual/ad-hoc.",
+          "enum": [
+            "SNAPSHOT_TYPE_UNSPECIFIED",
+            "AD_HOC",
+            "SCHEDULED"
+          ],
+          "enumDescriptions": [
+            "Type is not specified.",
+            "Snapshot was taken manually by user.",
+            "Snapshot was taken automatically as a part of a snapshot schedule."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },

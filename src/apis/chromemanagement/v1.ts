@@ -352,6 +352,35 @@ export namespace chromemanagement_v1 {
     serialNumber?: string | null;
   }
   /**
+   * Boot performance report of a device. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceBootMode](https://chromeenterprise.google/policies/#ReportDeviceBootMode) * Data Collection Frequency: On every boot up event * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: Yes * Reported for affiliated users only: N/A
+   */
+  export interface Schema$GoogleChromeManagementV1BootPerformanceReport {
+    /**
+     * Total time to boot up.
+     */
+    bootUpDuration?: string | null;
+    /**
+     * The timestamp when power came on.
+     */
+    bootUpTime?: string | null;
+    /**
+     * Timestamp when the report was collected.
+     */
+    reportTime?: string | null;
+    /**
+     * Total time since shutdown start to power off.
+     */
+    shutdownDuration?: string | null;
+    /**
+     * The shutdown reason.
+     */
+    shutdownReason?: string | null;
+    /**
+     * The timestamp when shutdown.
+     */
+    shutdownTime?: string | null;
+  }
+  /**
    * Describes a browser version and its install count.
    */
   export interface Schema$GoogleChromeManagementV1BrowserVersion {
@@ -388,6 +417,10 @@ export namespace chromemanagement_v1 {
      * Output only. Whether the app or extension is in a published state in the Chrome Web Store.
      */
     isCwsHosted?: boolean | null;
+    /**
+     * Output only. Whether an app supports policy for extensions.
+     */
+    isExtensionPolicySupported?: boolean | null;
     /**
      * Output only. Whether the app is only for Kiosk mode on ChromeOS devices
      */
@@ -1144,6 +1177,10 @@ export namespace chromemanagement_v1 {
      * Output only. Battery reports collected periodically.
      */
     batteryStatusReport?: Schema$GoogleChromeManagementV1BatteryStatusReport[];
+    /**
+     * Output only. Boot performance reports of the device.
+     */
+    bootPerformanceReport?: Schema$GoogleChromeManagementV1BootPerformanceReport[];
     /**
      * Output only. Information regarding CPU specs for the device.
      */
@@ -3106,6 +3143,7 @@ export namespace chromemanagement_v1 {
      *   //   "audioStatusReport": [],
      *   //   "batteryInfo": [],
      *   //   "batteryStatusReport": [],
+     *   //   "bootPerformanceReport": [],
      *   //   "cpuInfo": [],
      *   //   "cpuStatusReport": [],
      *   //   "customer": "my_customer",

@@ -157,11 +157,11 @@ export namespace apigeeregistry_v1 {
      */
     name?: string | null;
     /**
-     * The recommended deployment of the API. Format: `apis/{api\}/deployments/{deployment\}`
+     * The recommended deployment of the API. Format: `projects/{project\}/locations/{location\}/apis/{api\}/deployments/{deployment\}`
      */
     recommendedDeployment?: string | null;
     /**
-     * The recommended version of the API. Format: `apis/{api\}/versions/{version\}`
+     * The recommended version of the API. Format: `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}`
      */
     recommendedVersion?: string | null;
     /**

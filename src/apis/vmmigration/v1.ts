@@ -100,7 +100,7 @@ export namespace vmmigration_v1 {
   }
 
   /**
-   * VM Migration API
+   * Migrate to Virtual Machines API
    *
    * Use the Migrate to Virtual Machines API to programmatically migrate workloads.
    *

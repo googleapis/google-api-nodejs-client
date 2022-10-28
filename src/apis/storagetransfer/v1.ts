@@ -2550,7 +2550,7 @@ export namespace storagetransfer_v1 {
     }
 
     /**
-     * Attempts to start a new TransferOperation for the current TransferJob. A TransferJob has a maximum of one active TransferOperation. If this method is called while a TransferOperation is active, an error will be returned.
+     * Starts a new operation for the specified transfer job. A `TransferJob` has a maximum of one active `TransferOperation`. If this method is called while a `TransferOperation` is active, an error is returned.
      * @example
      * ```js
      * // Before running the sample:

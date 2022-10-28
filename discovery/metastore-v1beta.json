@@ -1467,7 +1467,7 @@
       }
     }
   },
-  "revision": "20220908",
+  "revision": "20221012",
   "rootUrl": "https://metastore.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1549,10 +1549,12 @@
           "description": "The type of the backend metastore.",
           "enum": [
             "METASTORE_TYPE_UNSPECIFIED",
+            "BIGQUERY",
             "DATAPROC_METASTORE"
           ],
           "enumDescriptions": [
             "The metastore type is not set.",
+            "The backend metastore is BigQuery.",
             "The backend metastore is Dataproc Metastore."
           ],
           "type": "string"
@@ -1657,7 +1659,7 @@
           "type": "string"
         },
         "subnetwork": {
-          "description": "The subnetwork of the customer project from which an IP address is reserved and used as the Dataproc Metastore service's endpoint. It is accessible to hosts in the subnet and to all hosts in a subnet in the same region and same network. There must be at least one IP address available in the subnet's primary range. The subnet is specified in the following form:`projects/{project_number}/regions/{region_id}/subnetworks/{subnetwork_id}",
+          "description": "Immutable. The subnetwork of the customer project from which an IP address is reserved and used as the Dataproc Metastore service's endpoint. It is accessible to hosts in the subnet and to all hosts in a subnet in the same region and same network. There must be at least one IP address available in the subnet's primary range. The subnet is specified in the following form:`projects/{project_number}/regions/{region_id}/subnetworks/{subnetwork_id}",
           "type": "string"
         }
       },
@@ -2651,7 +2653,7 @@
         },
         "networkConfig": {
           "$ref": "NetworkConfig",
-          "description": "Immutable. The configuration specifying the network settings for the Dataproc Metastore service."
+          "description": "The configuration specifying the network settings for the Dataproc Metastore service."
         },
         "port": {
           "description": "The TCP port at which the metastore service is reached. Default: 9083.",
@@ -2701,6 +2703,10 @@
           "description": "Output only. Additional information about the current state of the metastore service, if available.",
           "readOnly": true,
           "type": "string"
+        },
+        "telemetryConfig": {
+          "$ref": "TelemetryConfig",
+          "description": "The configuration specifying telemetry settings for the Dataproc Metastore service. If unspecified defaults to JSON."
         },
         "tier": {
           "description": "The tier of the service.",
@@ -2768,6 +2774,26 @@
         },
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TelemetryConfig": {
+      "description": "Telemetry Configuration for the Dataproc Metastore service.",
+      "id": "TelemetryConfig",
+      "properties": {
+        "logFormat": {
+          "enum": [
+            "LOG_FORMAT_UNSPECIFIED",
+            "LEGACY",
+            "JSON"
+          ],
+          "enumDescriptions": [
+            "The LOG_FORMAT is not set.",
+            "Logging output uses the legacy textPayload format.",
+            "Logging output uses the jsonPayload format."
+          ],
           "type": "string"
         }
       },

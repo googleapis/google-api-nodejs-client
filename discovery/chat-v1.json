@@ -1,4 +1,13 @@
 {
+  "auth": {
+    "oauth2": {
+      "scopes": {
+        "https://www.googleapis.com/auth/chat.memberships": {
+          "description": "View, add, and remove members from conversations in Google Chat"
+        }
+      }
+    }
+  },
   "basePath": "",
   "baseUrl": "https://chat.googleapis.com/",
   "batchPath": "batch",
@@ -107,8 +116,28 @@
             "parent"
           ],
           "parameters": {
+            "messageId": {
+              "description": "Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).",
+              "location": "query",
+              "type": "string"
+            },
+            "messageReplyOption": {
+              "description": "Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.",
+              "enum": [
+                "MESSAGE_REPLY_OPTION_UNSPECIFIED",
+                "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD",
+                "REPLY_MESSAGE_OR_FAIL"
+              ],
+              "enumDescriptions": [
+                "Default. Starts a thread.",
+                "Creates the message as a reply to the thread specified by thread ID or thread_key. If it fails, the message starts a new thread instead.",
+                "Creates the message as a reply to the thread specified by thread ID or thread_key. If it fails, a NOT_FOUND error is returned instead."
+              ],
+              "location": "query",
+              "type": "string"
+            },
             "parent": {
-              "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAAAAAAAA",
+              "description": "Required. The resource name of the space in which to create a message. Format: spaces/{space}",
               "location": "path",
               "pattern": "^dms/[^/]+$",
               "required": true,
@@ -120,7 +149,7 @@
               "type": "string"
             },
             "threadKey": {
-              "description": "Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.",
+              "description": "Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).",
               "location": "query",
               "type": "string"
             }
@@ -142,8 +171,28 @@
             "parent"
           ],
           "parameters": {
+            "messageId": {
+              "description": "Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).",
+              "location": "query",
+              "type": "string"
+            },
+            "messageReplyOption": {
+              "description": "Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.",
+              "enum": [
+                "MESSAGE_REPLY_OPTION_UNSPECIFIED",
+                "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD",
+                "REPLY_MESSAGE_OR_FAIL"
+              ],
+              "enumDescriptions": [
+                "Default. Starts a thread.",
+                "Creates the message as a reply to the thread specified by thread ID or thread_key. If it fails, the message starts a new thread instead.",
+                "Creates the message as a reply to the thread specified by thread ID or thread_key. If it fails, a NOT_FOUND error is returned instead."
+              ],
+              "location": "query",
+              "type": "string"
+            },
             "parent": {
-              "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAAAAAAAA",
+              "description": "Required. The resource name of the space in which to create a message. Format: spaces/{space}",
               "location": "path",
               "pattern": "^dms/[^/]+$",
               "required": true,
@@ -155,7 +204,7 @@
               "type": "string"
             },
             "threadKey": {
-              "description": "Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.",
+              "description": "Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).",
               "location": "query",
               "type": "string"
             }
@@ -181,8 +230,28 @@
                 "parent"
               ],
               "parameters": {
+                "messageId": {
+                  "description": "Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).",
+                  "location": "query",
+                  "type": "string"
+                },
+                "messageReplyOption": {
+                  "description": "Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.",
+                  "enum": [
+                    "MESSAGE_REPLY_OPTION_UNSPECIFIED",
+                    "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD",
+                    "REPLY_MESSAGE_OR_FAIL"
+                  ],
+                  "enumDescriptions": [
+                    "Default. Starts a thread.",
+                    "Creates the message as a reply to the thread specified by thread ID or thread_key. If it fails, the message starts a new thread instead.",
+                    "Creates the message as a reply to the thread specified by thread ID or thread_key. If it fails, a NOT_FOUND error is returned instead."
+                  ],
+                  "location": "query",
+                  "type": "string"
+                },
                 "parent": {
-                  "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAAAAAAAA",
+                  "description": "Required. The resource name of the space in which to create a message. Format: spaces/{space}",
                   "location": "path",
                   "pattern": "^dms/[^/]+/conversations/[^/]+$",
                   "required": true,
@@ -194,7 +263,7 @@
                   "type": "string"
                 },
                 "threadKey": {
-                  "description": "Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.",
+                  "description": "Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).",
                   "location": "query",
                   "type": "string"
                 }
@@ -249,8 +318,28 @@
             "parent"
           ],
           "parameters": {
+            "messageId": {
+              "description": "Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).",
+              "location": "query",
+              "type": "string"
+            },
+            "messageReplyOption": {
+              "description": "Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.",
+              "enum": [
+                "MESSAGE_REPLY_OPTION_UNSPECIFIED",
+                "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD",
+                "REPLY_MESSAGE_OR_FAIL"
+              ],
+              "enumDescriptions": [
+                "Default. Starts a thread.",
+                "Creates the message as a reply to the thread specified by thread ID or thread_key. If it fails, the message starts a new thread instead.",
+                "Creates the message as a reply to the thread specified by thread ID or thread_key. If it fails, a NOT_FOUND error is returned instead."
+              ],
+              "location": "query",
+              "type": "string"
+            },
             "parent": {
-              "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAAAAAAAA",
+              "description": "Required. The resource name of the space in which to create a message. Format: spaces/{space}",
               "location": "path",
               "pattern": "^rooms/[^/]+$",
               "required": true,
@@ -262,7 +351,7 @@
               "type": "string"
             },
             "threadKey": {
-              "description": "Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.",
+              "description": "Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).",
               "location": "query",
               "type": "string"
             }
@@ -284,8 +373,28 @@
             "parent"
           ],
           "parameters": {
+            "messageId": {
+              "description": "Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).",
+              "location": "query",
+              "type": "string"
+            },
+            "messageReplyOption": {
+              "description": "Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.",
+              "enum": [
+                "MESSAGE_REPLY_OPTION_UNSPECIFIED",
+                "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD",
+                "REPLY_MESSAGE_OR_FAIL"
+              ],
+              "enumDescriptions": [
+                "Default. Starts a thread.",
+                "Creates the message as a reply to the thread specified by thread ID or thread_key. If it fails, the message starts a new thread instead.",
+                "Creates the message as a reply to the thread specified by thread ID or thread_key. If it fails, a NOT_FOUND error is returned instead."
+              ],
+              "location": "query",
+              "type": "string"
+            },
             "parent": {
-              "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAAAAAAAA",
+              "description": "Required. The resource name of the space in which to create a message. Format: spaces/{space}",
               "location": "path",
               "pattern": "^rooms/[^/]+$",
               "required": true,
@@ -297,7 +406,7 @@
               "type": "string"
             },
             "threadKey": {
-              "description": "Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.",
+              "description": "Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).",
               "location": "query",
               "type": "string"
             }
@@ -323,8 +432,28 @@
                 "parent"
               ],
               "parameters": {
+                "messageId": {
+                  "description": "Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).",
+                  "location": "query",
+                  "type": "string"
+                },
+                "messageReplyOption": {
+                  "description": "Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.",
+                  "enum": [
+                    "MESSAGE_REPLY_OPTION_UNSPECIFIED",
+                    "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD",
+                    "REPLY_MESSAGE_OR_FAIL"
+                  ],
+                  "enumDescriptions": [
+                    "Default. Starts a thread.",
+                    "Creates the message as a reply to the thread specified by thread ID or thread_key. If it fails, the message starts a new thread instead.",
+                    "Creates the message as a reply to the thread specified by thread ID or thread_key. If it fails, a NOT_FOUND error is returned instead."
+                  ],
+                  "location": "query",
+                  "type": "string"
+                },
                 "parent": {
-                  "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAAAAAAAA",
+                  "description": "Required. The resource name of the space in which to create a message. Format: spaces/{space}",
                   "location": "path",
                   "pattern": "^rooms/[^/]+/conversations/[^/]+$",
                   "required": true,
@@ -336,7 +465,7 @@
                   "type": "string"
                 },
                 "threadKey": {
-                  "description": "Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.",
+                  "description": "Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).",
                   "location": "query",
                   "type": "string"
                 }
@@ -378,20 +507,20 @@
           }
         },
         "list": {
-          "description": "Lists spaces the caller is a member of. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).",
+          "description": "Lists spaces the caller is a member of. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts). ",
           "flatPath": "v1/spaces",
           "httpMethod": "GET",
           "id": "chat.spaces.list",
           "parameterOrder": [],
           "parameters": {
             "pageSize": {
-              "description": "Optional. Requested page size. The value is capped at 1000. Server may return fewer results than requested. If unspecified, server will default to 100.",
+              "description": "Optional. The maximum number of spaces to return. The service may return fewer than this value. If unspecified, at most 100 spaces are returned. The maximum value is 1000; values above 1000 are coerced to 1000. Negative values return an INVALID_ARGUMENT error.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "pageToken": {
-              "description": "Optional. A token identifying a page of results the server should return.",
+              "description": "Optional. A page token, received from a previous list spaces call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided must match the call that provided the page token.",
               "location": "query",
               "type": "string"
             }
@@ -410,8 +539,28 @@
             "parent"
           ],
           "parameters": {
+            "messageId": {
+              "description": "Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).",
+              "location": "query",
+              "type": "string"
+            },
+            "messageReplyOption": {
+              "description": "Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.",
+              "enum": [
+                "MESSAGE_REPLY_OPTION_UNSPECIFIED",
+                "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD",
+                "REPLY_MESSAGE_OR_FAIL"
+              ],
+              "enumDescriptions": [
+                "Default. Starts a thread.",
+                "Creates the message as a reply to the thread specified by thread ID or thread_key. If it fails, the message starts a new thread instead.",
+                "Creates the message as a reply to the thread specified by thread ID or thread_key. If it fails, a NOT_FOUND error is returned instead."
+              ],
+              "location": "query",
+              "type": "string"
+            },
             "parent": {
-              "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAAAAAAAA",
+              "description": "Required. The resource name of the space in which to create a message. Format: spaces/{space}",
               "location": "path",
               "pattern": "^spaces/[^/]+$",
               "required": true,
@@ -423,7 +572,7 @@
               "type": "string"
             },
             "threadKey": {
-              "description": "Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.",
+              "description": "Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).",
               "location": "query",
               "type": "string"
             }
@@ -460,10 +609,13 @@
               "path": "v1/{+name}",
               "response": {
                 "$ref": "Membership"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chat.memberships"
+              ]
             },
             "list": {
-              "description": "Lists human memberships in a space. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).",
+              "description": "Lists human memberships in a space for joined members. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).",
               "flatPath": "v1/spaces/{spacesId}/members",
               "httpMethod": "GET",
               "id": "chat.spaces.members.list",
@@ -472,13 +624,13 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "Requested page size. The value is capped at 1000. Server may return fewer results than requested. If unspecified, server will default to 100.",
+                  "description": "The maximum number of memberships to return. The service may return fewer than this value. If unspecified, at most 100 memberships are returned. The maximum value is 1000; values above 1000 are coerced to 1000. Negative values return an INVALID_ARGUMENT error.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "A token identifying a page of results the server should return.",
+                  "description": "A page token, received from a previous list memberships call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided must match the call that provided the page token.",
                   "location": "query",
                   "type": "string"
                 },
@@ -493,14 +645,17 @@
               "path": "v1/{+parent}/members",
               "response": {
                 "$ref": "ListMembershipsResponse"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chat.memberships"
+              ]
             }
           }
         },
         "messages": {
           "methods": {
             "create": {
-              "description": "Creates a message. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).",
+              "description": "Creates a message. For example usage, see [Create a message](https://developers.google.com/chat/api/guides/crudl/messages#create_a_message). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts). Supports [user authentication](https://developers.google.com/chat/api/guides/auth/users) as part of the [Google Workspace Developer Preview Program](https://developers.google.com/workspace/preview), which grants early access to certain features. [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.messages` or `chat.messages.create` authorization scope.",
               "flatPath": "v1/spaces/{spacesId}/messages",
               "httpMethod": "POST",
               "id": "chat.spaces.messages.create",
@@ -508,8 +663,28 @@
                 "parent"
               ],
               "parameters": {
+                "messageId": {
+                  "description": "Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).",
+                  "location": "query",
+                  "type": "string"
+                },
+                "messageReplyOption": {
+                  "description": "Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.",
+                  "enum": [
+                    "MESSAGE_REPLY_OPTION_UNSPECIFIED",
+                    "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD",
+                    "REPLY_MESSAGE_OR_FAIL"
+                  ],
+                  "enumDescriptions": [
+                    "Default. Starts a thread.",
+                    "Creates the message as a reply to the thread specified by thread ID or thread_key. If it fails, the message starts a new thread instead.",
+                    "Creates the message as a reply to the thread specified by thread ID or thread_key. If it fails, a NOT_FOUND error is returned instead."
+                  ],
+                  "location": "query",
+                  "type": "string"
+                },
                 "parent": {
-                  "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAAAAAAAA",
+                  "description": "Required. The resource name of the space in which to create a message. Format: spaces/{space}",
                   "location": "path",
                   "pattern": "^spaces/[^/]+$",
                   "required": true,
@@ -521,7 +696,7 @@
                   "type": "string"
                 },
                 "threadKey": {
-                  "description": "Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` instead of thread.name. (Setting thread.name has no effect.) The first message with a given `threadKey` starts a new thread. Subsequent messages with the same `threadKey` post into the same thread.",
+                  "description": "Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).",
                   "location": "query",
                   "type": "string"
                 }
@@ -535,7 +710,7 @@
               }
             },
             "delete": {
-              "description": "Deletes a message. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).",
+              "description": "Deletes a message. For example usage, see [Delete a message](https://developers.google.com/chat/api/guides/crudl/messages#delete_a_message). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts). Supports [user authentication](https://developers.google.com/chat/api/guides/auth/users) as part of the [Google Workspace Developer Preview Program](https://developers.google.com/workspace/preview), which grants early access to certain features. [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.messages` authorization scope.",
               "flatPath": "v1/spaces/{spacesId}/messages/{messagesId}",
               "httpMethod": "DELETE",
               "id": "chat.spaces.messages.delete",
@@ -557,7 +732,7 @@
               }
             },
             "get": {
-              "description": "Returns a message. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).",
+              "description": "Returns a message. For example usage, see [Read a message](https://developers.google.com/chat/api/guides/crudl/messages#read_a_message). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [Service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts). Supports [user authentication](https://developers.google.com/chat/api/guides/auth/users) as part of the [Google Workspace Developer Preview Program](https://developers.google.com/workspace/preview), which grants early access to certain features. [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.messages` or `chat.messages.readonly` authorization scope. Note: Might return a message from a blocked member or space.",
               "flatPath": "v1/spaces/{spacesId}/messages/{messagesId}",
               "httpMethod": "GET",
               "id": "chat.spaces.messages.get",
@@ -566,7 +741,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Resource name of the message to be retrieved, in the form \"spaces/*/messages/*\". Example: spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB",
+                  "description": "Required. Resource name of the message to retrieve. Format: spaces/{space}/messages/{message} If the message begins with `client-`, then it has a custom name assigned by a Chat app that created it with the Chat REST API. That Chat app (but not others) can pass the custom name to get, update, or delete the message. To learn more, see [create and name a message] (https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).",
                   "location": "path",
                   "pattern": "^spaces/[^/]+/messages/[^/]+$",
                   "required": true,
@@ -579,7 +754,7 @@
               }
             },
             "update": {
-              "description": "Updates a message. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).",
+              "description": "Updates a message. For example usage, see [Update a message](https://developers.google.com/chat/api/guides/crudl/messages#update_a_message). Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).",
               "flatPath": "v1/spaces/{spacesId}/messages/{messagesId}",
               "httpMethod": "PUT",
               "id": "chat.spaces.messages.update",
@@ -587,6 +762,11 @@
                 "name"
               ],
               "parameters": {
+                "allowMissing": {
+                  "description": "Optional. If `true` and the message is not found, a new message is created and `updateMask` is ignored. The specified message ID must be [client-assigned](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message) or the request fails.",
+                  "location": "query",
+                  "type": "boolean"
+                },
                 "name": {
                   "description": "Resource name in the form `spaces/*/messages/*`. Example: `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`",
                   "location": "path",
@@ -642,7 +822,7 @@
       }
     }
   },
-  "revision": "20220917",
+  "revision": "20221025",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -894,7 +1074,7 @@
       "type": "object"
     },
     "CardAction": {
-      "description": "A card action is the action associated with the card. For an invoice card, a typical action would be: delete invoice, email invoice or open the invoice in browser.",
+      "description": "A card action is the action associated with the card. For an invoice card, a typical action would be: delete invoice, email invoice or open the invoice in browser. Not supported by Google Chat apps.",
       "id": "CardAction",
       "properties": {
         "actionLabel": {
@@ -1380,11 +1560,11 @@
       "type": "object"
     },
     "GoogleAppsCardV1Card": {
-      "description": "A card is a UI element that can contain UI widgets such as text and images. For more information, see Cards . For example, the following JSON creates a card that has a header with the name, position, icons, and link for a contact, followed by a section with contact information like email and phone number. ``` { \"header\": { \"title\": \"Sasha\", \"subtitle\": \"Software Engineer\", \"imageStyle\": \"ImageStyle.AVATAR\", \"imageUrl\": \"https://example.com/sasha.png\", \"imageAltText\": \"Avatar for Sasha\" }, \"sections\" : [ { \"header\": \"Contact Info\", \"widgets\": [ { \"decorated_text\": { \"icon\": { \"knownIcon\": \"EMAIL\" }, \"content\": \"sasha@example.com\" } }, { \"decoratedText\": { \"icon\": { \"knownIcon\": \"PERSON\" }, \"content\": \"Online\" } }, { \"decoratedText\": { \"icon\": { \"knownIcon\": \"PHONE\" }, \"content\": \"+1 (555) 555-1234\" } }, { \"buttons\": [ { \"textButton\": { \"text\": \"Share\", }, \"onClick\": { \"openLink\": { \"url\": \"https://example.com/share\" } } }, { \"textButton\": { \"text\": \"Edit\", }, \"onClick\": { \"action\": { \"function\": \"goToView\", \"parameters\": [ { \"key\": \"viewType\", \"value\": \"EDIT\" } ], \"loadIndicator\": \"LoadIndicator.SPINNER\" } } } ] } ], \"collapsible\": true, \"uncollapsibleWidgetsCount\": 3 } ], \"cardActions\": [ { \"actionLabel\": \"Send Feedback\", \"onClick\": { \"openLink\": { \"url\": \"https://example.com/feedback\" } } } ], \"name\": \"contact-card-K3wB6arF2H9L\" } ```",
+      "description": "Cards support a defined layout, interactive UI elements like buttons, and rich media like images. Use cards to present detailed information, gather information from users, and guide users to take a next step. In Google Chat, cards appear in several places: - As stand-alone messages. - Accompanying a text message, just beneath the text message. - As a [dialog](https://developers.google.com/chat/how-tos/dialogs). The following example JSON creates a \"contact card\" that features: - A header with the contact's name, job title, avatar picture. - A section with the contact information, including formatted text. - Buttons that users can click to share the contact or see more or less info. ![Example contact card](/chat/images/card_api_reference.png) ``` { \"cardsV2\": [ { \"cardId\": \"unique-card-id\", \"card\": { \"header\": { \"title\": \"Sasha\", \"subtitle\": \"Software Engineer\", \"imageUrl\": \"https://developers.google.com/chat/images/quickstart-app-avatar.png\", \"imageType\": \"CIRCLE\", \"imageAltText\": \"Avatar for Sasha\", }, \"sections\": [ { \"header\": \"Contact Info\", \"collapsible\": true, \"uncollapsibleWidgetsCount\": 1, \"widgets\": [ { \"decoratedText\": { \"startIcon\": { \"knownIcon\": \"EMAIL\", }, \"text\": \"sasha@example.com\", } }, { \"decoratedText\": { \"startIcon\": { \"knownIcon\": \"PERSON\", }, \"text\": \"Online\", }, }, { \"decoratedText\": { \"startIcon\": { \"knownIcon\": \"PHONE\", }, \"text\": \"+1 (555) 555-1234\", } }, { \"buttonList\": { \"buttons\": [ { \"text\": \"Share\", \"onClick\": { \"openLink\": { \"url\": \"https://example.com/share\", } } }, { \"text\": \"Edit\", \"onClick\": { \"action\": { \"function\": \"goToView\", \"parameters\": [ { \"key\": \"viewType\", \"value\": \"EDIT\", } ], } } }, ], } }, ], }, ], }, } ], } ```",
       "id": "GoogleAppsCardV1Card",
       "properties": {
         "cardActions": {
-          "description": "The card's actions. Actions are added to the card's generated toolbar menu. For example, the following JSON constructs a card action menu with Settings and Send Feedback options: ``` \"card_actions\": [ { \"actionLabel\": \"Settings\", \"onClick\": { \"action\": { \"functionName\": \"goToView\", \"parameters\": [ { \"key\": \"viewType\", \"value\": \"SETTING\" } ], \"loadIndicator\": \"LoadIndicator.SPINNER\" } } }, { \"actionLabel\": \"Send Feedback\", \"onClick\": { \"openLink\": { \"url\": \"https://example.com/feedback\" } } } ] ```",
+          "description": "The card's actions. Actions are added to the card's generated toolbar menu. Not supported by Google Chat apps. For example, the following JSON constructs a card action menu with Settings and Send Feedback options: ``` \"card_actions\": [ { \"actionLabel\": \"Settings\", \"onClick\": { \"action\": { \"functionName\": \"goToView\", \"parameters\": [ { \"key\": \"viewType\", \"value\": \"SETTING\" } ], \"loadIndicator\": \"LoadIndicator.SPINNER\" } } }, { \"actionLabel\": \"Send Feedback\", \"onClick\": { \"openLink\": { \"url\": \"https://example.com/feedback\" } } } ] ```",
           "items": {
             "$ref": "GoogleAppsCardV1CardAction"
           },
@@ -1431,7 +1611,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1CardAction": {
-      "description": "A card action is the action associated with the card. For example, an invoice card might include actions such as delete invoice, email invoice, or open the invoice in a browser.",
+      "description": "A card action is the action associated with the card. For example, an invoice card might include actions such as delete invoice, email invoice, or open the invoice in a browser. Not supported by Google Chat apps.",
       "id": "GoogleAppsCardV1CardAction",
       "properties": {
         "actionLabel": {
@@ -2350,7 +2530,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "Continuation token to retrieve the next page of results. It will be empty for the last page of results.",
+          "description": "A token that can be sent as `pageToken` to retrieve the next page of results. If empty, there are no subsequent pages.",
           "type": "string"
         }
       },
@@ -2360,7 +2540,7 @@
       "id": "ListSpacesResponse",
       "properties": {
         "nextPageToken": {
-          "description": "Continuation token to retrieve the next page of results. It will be empty for the last page of results. Tokens expire in an hour. An error is thrown if an expired token is passed.",
+          "description": "A token that can be sent as `pageToken` to retrieve the next page of results. If empty, there are no subsequent pages.",
           "type": "string"
         },
         "spaces": {
@@ -2477,18 +2657,22 @@
           "type": "array"
         },
         "cards": {
-          "description": "Rich, formatted and interactive cards that can be used to display UI elements such as: formatted texts, buttons, clickable images. Cards are normally displayed below the plain-text body of the message.",
+          "description": "Deprecated: Use `cards_v2` instead. Rich, formatted and interactive cards that can be used to display UI elements such as: formatted texts, buttons, clickable images. Cards are normally displayed below the plain-text body of the message.",
           "items": {
             "$ref": "Card"
           },
           "type": "array"
         },
         "cardsV2": {
-          "description": "Richly formatted and interactive cards that display UI elements and editable widgets, such as: - Formatted text - Buttons - Clickable images - Checkboxes - Radio buttons - Input widgets. Cards are usually displayed below the text-body of a Chat message, but can situationally appear other places, such as [dialogs](https://developers.google.com/chat/how-tos/dialogs). The `cardId` is a unique identifier among cards in the same message and for identifying user input values. Currently supported widgets include: - `TextParagraph` - `DecoratedText` - `Image` - `ButtonList`",
+          "description": "Richly formatted and interactive cards that display UI elements and editable widgets, such as: - Formatted text - Buttons - Clickable images - Checkboxes - Radio buttons - Input widgets. Cards are usually displayed below the text-body of a Chat message, but can situationally appear other places, such as [dialogs](https://developers.google.com/chat/how-tos/dialogs). The `cardId` is a unique identifier among cards in the same message and for identifying user input values. Currently supported widgets include: - `TextParagraph` - `DecoratedText` - `Image` - `ButtonList` - `Divider`",
           "items": {
             "$ref": "CardWithId"
           },
           "type": "array"
+        },
+        "clientAssignedMessageId": {
+          "description": "A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).",
+          "type": "string"
         },
         "createTime": {
           "description": "Output only. The time at which the message was created in Google Chat server.",
@@ -2527,7 +2711,7 @@
         },
         "space": {
           "$ref": "Space",
-          "description": "The space the message belongs to."
+          "description": "The space the message belongs to. When accessed with [user authentication](https://developers.google.com/chat/api/guides/auth/users), only the name of the Space is populated."
         },
         "text": {
           "description": "Plain-text body of the message. The first link to an image, video, web page, or other preview-able item generates a preview chip.",
@@ -2535,7 +2719,12 @@
         },
         "thread": {
           "$ref": "Thread",
-          "description": "The thread the message belongs to."
+          "description": "The thread the message belongs to. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread)."
+        },
+        "threadReply": {
+          "description": "Output only. When `true`, the message is a response in a reply thread. When `false`, the message is visible in the space's top-level conversation as either the first message of a thread or a message with no threaded replies. If the space doesn't support reply in threads, this field is always `false`.",
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -2654,8 +2843,25 @@
           "$ref": "SpaceDetails",
           "description": "Details about the space including description and rules."
         },
+        "spaceThreadingState": {
+          "description": "Output only. The threading state in the Chat space.",
+          "enum": [
+            "SPACE_THREADING_STATE_UNSPECIFIED",
+            "THREADED_MESSAGES",
+            "GROUPED_MESSAGES",
+            "UNTHREADED_MESSAGES"
+          ],
+          "enumDescriptions": [
+            "Reserved.",
+            "Named spaces that support message threads. When users respond to a message, they can reply in-thread, which keeps their response in the context of the original message.",
+            "Named spaces where the conversation is organized by topic. Topics and their replies are grouped together.",
+            "Direct messages (DMs) between two people and group conversations between 3 or more people."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "threaded": {
-          "description": "Output only. Whether messages are threaded in this space.",
+          "description": "Output only. Deprecated: Use `spaceThreadingState` instead. Whether messages are threaded in this space.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -2763,7 +2969,11 @@
       "id": "Thread",
       "properties": {
         "name": {
-          "description": "Resource name, in the form \"spaces/*/threads/*\". Example: spaces/AAAAAAAAAAA/threads/TTTTTTTTTTT",
+          "description": "Resource name of the thread. Example: spaces/{space}/threads/{thread}",
+          "type": "string"
+        },
+        "threadKey": {
+          "description": "Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread). For other requests, this is an output only field.",
           "type": "string"
         }
       },
@@ -2821,7 +3031,7 @@
           "type": "boolean"
         },
         "name": {
-          "description": "Resource name for a Google Chat user. Represents a [person](https://developers.google.com/people/api/rest/v1/people#Person) in the People API or a [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Admin SDK Directory API. Formatted as: `users/{user}`",
+          "description": "Resource name for a Google Chat user. For human users, represents a person in the People API or a user in the Admin SDK Directory API. Format: `users/{user}`",
           "type": "string"
         },
         "type": {

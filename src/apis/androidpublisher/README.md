@@ -2,7 +2,7 @@
 
 # androidpublisher
 
-> Lets Android application developers access their Google Play accounts.
+> Lets Android application developers access their Google Play accounts. At a high level, the expected workflow is to &quot;insert&quot; an Edit, make changes as necessary, and then &quot;commit&quot; it.
 
 ## Installation
 

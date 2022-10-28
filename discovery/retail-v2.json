@@ -133,7 +133,7 @@
                       "type": "string"
                     },
                     "deviceType": {
-                      "description": "The device type context for completion suggestions. It is useful to apply different suggestions on different device types, e.g. `DESKTOP`, `MOBILE`. If it is empty, the suggestions are across all device types. Supported formats: * `UNKNOWN_DEVICE_TYPE` * `DESKTOP` * `MOBILE` * A customized string starts with `OTHER_`, e.g. `OTHER_IPHONE`.",
+                      "description": "The device type context for completion suggestions. We recommend that you leave this field empty. It can apply different suggestions on different device types, e.g. `DESKTOP`, `MOBILE`. If it is empty, the suggestions are across all device types. Supported formats: * `UNKNOWN_DEVICE_TYPE` * `DESKTOP` * `MOBILE` * A customized string starts with `OTHER_`, e.g. `OTHER_IPHONE`.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1490,6 +1490,16 @@
                           "required": true,
                           "type": "string"
                         },
+                        "prebuiltRule": {
+                          "description": "The prebuilt rule name that can convert a specific type of raw_json. For example: \"default_schema/v1.0\"",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "rawJson": {
+                          "description": "An arbitrary serialized JSON string that contains necessary information that can comprise a user event. When this field is specified, the user_event field will be ignored. Note: line-delimited JSON is not supported, a single JSON only.",
+                          "location": "query",
+                          "type": "string"
+                        },
                         "uri": {
                           "description": "The URL including cgi-parameters but excluding the hash fragment with a length limit of 5,000 characters. This is often more useful than the referer URL, because many browsers only send the domain for 3rd party requests.",
                           "location": "query",
@@ -1770,7 +1780,7 @@
       }
     }
   },
-  "revision": "20220908",
+  "revision": "20221024",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -1871,7 +1881,7 @@
       "type": "object"
     },
     "GoogleCloudRetailLoggingImportErrorContext": {
-      "description": "The error payload that is populated on LRO import APIs. Including: \"google.cloud.retail.v2.ProductService.ImportProducts\" \"google.cloud.retail.v2.EventService.ImportUserEvents\"",
+      "description": "The error payload that is populated on LRO import APIs, including \"google.cloud.retail.v2.ProductService.ImportProducts\" and \"google.cloud.retail.v2.EventService.ImportUserEvents\".",
       "id": "GoogleCloudRetailLoggingImportErrorContext",
       "properties": {
         "catalogItem": {
@@ -2133,16 +2143,30 @@
       "id": "GoogleCloudRetailV2CatalogAttribute",
       "properties": {
         "dynamicFacetableOption": {
-          "description": "If DYNAMIC_FACETABLE_ENABLED, attribute values are available for dynamic facet. Could only be DYNAMIC_FACETABLE_DISABLED if CatalogAttribute.indexable_option is INDEXABLE_DISABLED. Otherwise, an INVALID_ARGUMENT error is returned.",
+          "description": "If DYNAMIC_FACETABLE_ENABLED, attribute values are available for dynamic facet. Could only be DYNAMIC_FACETABLE_DISABLED if CatalogAttribute.indexable_option is INDEXABLE_DISABLED. Otherwise, an INVALID_ARGUMENT error is returned. Must be specified, otherwise throws INVALID_FORMAT error.",
           "enum": [
             "DYNAMIC_FACETABLE_OPTION_UNSPECIFIED",
             "DYNAMIC_FACETABLE_ENABLED",
             "DYNAMIC_FACETABLE_DISABLED"
           ],
           "enumDescriptions": [
-            "Value used when unset. Defaults to DYNAMIC_FACETABLE_ENABLED.",
+            "Value used when unset.",
             "Dynamic facetable option enabled for an attribute.",
             "Dynamic facetable option disabled for an attribute."
+          ],
+          "type": "string"
+        },
+        "exactSearchableOption": {
+          "description": "If EXACT_SEARCHABLE_ENABLED, attribute values will be exact searchable. This property only applies to textual custom attributes and requires indexable set to enabled to enable exact-searchable.",
+          "enum": [
+            "EXACT_SEARCHABLE_OPTION_UNSPECIFIED",
+            "EXACT_SEARCHABLE_ENABLED",
+            "EXACT_SEARCHABLE_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Value used when unset. Defaults to EXACT_SEARCHABLE_DISABLED.",
+            "Exact searchable option enabled for an attribute.",
+            "Exact searchable option disabled for an attribute."
           ],
           "type": "string"
         },
@@ -2152,14 +2176,14 @@
           "type": "boolean"
         },
         "indexableOption": {
-          "description": "When AttributesConfig.attribute_config_level is CATALOG_LEVEL_ATTRIBUTE_CONFIG, if INDEXABLE_ENABLED attribute values are indexed so that it can be filtered, faceted, or boosted in SearchService.Search.",
+          "description": "When AttributesConfig.attribute_config_level is CATALOG_LEVEL_ATTRIBUTE_CONFIG, if INDEXABLE_ENABLED attribute values are indexed so that it can be filtered, faceted, or boosted in SearchService.Search. Must be specified, otherwise throws INVALID_FORMAT error.",
           "enum": [
             "INDEXABLE_OPTION_UNSPECIFIED",
             "INDEXABLE_ENABLED",
             "INDEXABLE_DISABLED"
           ],
           "enumDescriptions": [
-            "Value used when unset. Defaults to INDEXABLE_ENABLED.",
+            "Value used when unset.",
             "Indexable option enabled for an attribute.",
             "Indexable option disabled for an attribute."
           ],
@@ -2170,14 +2194,14 @@
           "type": "string"
         },
         "searchableOption": {
-          "description": "When AttributesConfig.attribute_config_level is CATALOG_LEVEL_ATTRIBUTE_CONFIG, if SEARCHABLE_ENABLED, attribute values are searchable by text queries in SearchService.Search. If SEARCHABLE_ENABLED but attribute type is numerical, attribute values will not be searchable by text queries in SearchService.Search, as there are no text values associated to numerical attributes.",
+          "description": "When AttributesConfig.attribute_config_level is CATALOG_LEVEL_ATTRIBUTE_CONFIG, if SEARCHABLE_ENABLED, attribute values are searchable by text queries in SearchService.Search. If SEARCHABLE_ENABLED but attribute type is numerical, attribute values will not be searchable by text queries in SearchService.Search, as there are no text values associated to numerical attributes. Must be specified, otherwise throws INVALID_FORMAT error.",
           "enum": [
             "SEARCHABLE_OPTION_UNSPECIFIED",
             "SEARCHABLE_ENABLED",
             "SEARCHABLE_DISABLED"
           ],
           "enumDescriptions": [
-            "Value used when unset. Defaults to SEARCHABLE_DISABLED.",
+            "Value used when unset.",
             "Searchable option enabled for an attribute.",
             "Searchable option disabled for an attribute."
           ],
@@ -2892,7 +2916,7 @@
       "id": "GoogleCloudRetailV2PredictRequest",
       "properties": {
         "filter": {
-          "description": "Filter for restricting prediction results with a length limit of 5,000 characters. Accepts values for tags and the `filterOutOfStockItems` flag. * Tag expressions. Restricts predictions to products that match all of the specified tags. Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses, and must be separated from the tag values by a space. `-\"tagA\"` is also supported and is equivalent to `NOT \"tagA\"`. Tag values must be double quoted UTF-8 encoded strings with a size limit of 1,000 characters. Note: \"Recently viewed\" models don't support tag filtering at the moment. * filterOutOfStockItems. Restricts predictions to products that do not have a stockState value of OUT_OF_STOCK. Examples: * tag=(\"Red\" OR \"Blue\") tag=\"New-Arrival\" tag=(NOT \"promotional\") * filterOutOfStockItems tag=(-\"promotional\") * filterOutOfStockItems If your filter blocks all prediction results, the API will return generic (unfiltered) popular products. If you only want results strictly matching the filters, set `strictFiltering` to True in `PredictRequest.params` to receive empty results instead. Note that the API will never return items with storageStatus of \"EXPIRED\" or \"DELETED\" regardless of filter choices. If `filterSyntaxV2` is set to true under the `params` field, then attribute-based expressions are expected instead of the above described tag-based syntax. Examples: * (colors: ANY(\"Red\", \"Blue\")) AND NOT (categories: ANY(\"Phones\")) * (availability: ANY(\"IN_STOCK\")) AND (colors: ANY(\"Red\") OR categories: ANY(\"Phones\"))",
+          "description": "Filter for restricting prediction results with a length limit of 5,000 characters. Accepts values for tags and the `filterOutOfStockItems` flag. * Tag expressions. Restricts predictions to products that match all of the specified tags. Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses, and must be separated from the tag values by a space. `-\"tagA\"` is also supported and is equivalent to `NOT \"tagA\"`. Tag values must be double quoted UTF-8 encoded strings with a size limit of 1,000 characters. Note: \"Recently viewed\" models don't support tag filtering at the moment. * filterOutOfStockItems. Restricts predictions to products that do not have a stockState value of OUT_OF_STOCK. Examples: * tag=(\"Red\" OR \"Blue\") tag=\"New-Arrival\" tag=(NOT \"promotional\") * filterOutOfStockItems tag=(-\"promotional\") * filterOutOfStockItems If your filter blocks all prediction results, the API will return *no* results. If instead you want empty result sets to return generic (unfiltered) popular products, set `strictFiltering` to False in `PredictRequest.params`. Note that the API will never return items with storageStatus of \"EXPIRED\" or \"DELETED\" regardless of filter choices. If `filterSyntaxV2` is set to true under the `params` field, then attribute-based expressions are expected instead of the above described tag-based syntax. Examples: * (colors: ANY(\"Red\", \"Blue\")) AND NOT (categories: ANY(\"Phones\")) * (availability: ANY(\"IN_STOCK\")) AND (colors: ANY(\"Red\") OR categories: ANY(\"Phones\"))",
           "type": "string"
         },
         "labels": {
@@ -2915,7 +2939,7 @@
           "additionalProperties": {
             "type": "any"
           },
-          "description": "Additional domain specific parameters for the predictions. Allowed values: * `returnProduct`: Boolean. If set to true, the associated product object will be returned in the `results.metadata` field in the prediction response. * `returnScore`: Boolean. If set to true, the prediction 'score' corresponding to each returned product will be set in the `results.metadata` field in the prediction response. The given 'score' indicates the probability of an product being clicked/purchased given the user's context and history. * `strictFiltering`: Boolean. True by default. If set to false, the service will return generic (unfiltered) popular products instead of empty if your filter blocks all prediction results. * `priceRerankLevel`: String. Default empty. If set to be non-empty, then it needs to be one of {'no-price-reranking', 'low-price-reranking', 'medium-price-reranking', 'high-price-reranking'}. This gives request-level control and adjusts prediction results based on product price. * `diversityLevel`: String. Default empty. If set to be non-empty, then it needs to be one of {'no-diversity', 'low-diversity', 'medium-diversity', 'high-diversity', 'auto-diversity'}. This gives request-level control and adjusts prediction results based on product category. * `filterSyntaxV2`: Boolean. False by default. If set to true, the `filter` field is interpreteted according to the new, attribute-based syntax.",
+          "description": "Additional domain specific parameters for the predictions. Allowed values: * `returnProduct`: Boolean. If set to true, the associated product object will be returned in the `results.metadata` field in the prediction response. * `returnScore`: Boolean. If set to true, the prediction 'score' corresponding to each returned product will be set in the `results.metadata` field in the prediction response. The given 'score' indicates the probability of a product being clicked/purchased given the user's context and history. * `strictFiltering`: Boolean. True by default. If set to false, the service will return generic (unfiltered) popular products instead of empty if your filter blocks all prediction results. * `priceRerankLevel`: String. Default empty. If set to be non-empty, then it needs to be one of {'no-price-reranking', 'low-price-reranking', 'medium-price-reranking', 'high-price-reranking'}. This gives request-level control and adjusts prediction results based on product price. * `diversityLevel`: String. Default empty. If set to be non-empty, then it needs to be one of {'no-diversity', 'low-diversity', 'medium-diversity', 'high-diversity', 'auto-diversity'}. This gives request-level control and adjusts prediction results based on product category. * `filterSyntaxV2`: Boolean. False by default. If set to true, the `filter` field is interpreteted according to the new, attribute-based syntax.",
           "type": "object"
         },
         "userEvent": {
@@ -3938,7 +3962,7 @@
           "description": "Required. The facet key specification."
         },
         "limit": {
-          "description": "Maximum of facet values that should be returned for this facet. If unspecified, defaults to 20. The maximum allowed value is 300. Values above 300 will be coerced to 300. If this field is negative, an INVALID_ARGUMENT is returned.",
+          "description": "Maximum of facet values that should be returned for this facet. If unspecified, defaults to 50. The maximum allowed value is 300. Values above 300 will be coerced to 300. If this field is negative, an INVALID_ARGUMENT is returned.",
           "format": "int32",
           "type": "integer"
         }
@@ -4722,6 +4746,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudRetailV2alphaGcsOutputResult": {
+      "description": "A Gcs output result.",
+      "id": "GoogleCloudRetailV2alphaGcsOutputResult",
+      "properties": {
+        "outputUri": {
+          "description": "The uri of Gcs output",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2alphaImportCompletionDataResponse": {
       "description": "Response of the ImportCompletionDataRequest. If the long running operation is done, this message is returned by the google.longrunning.Operations.response field if the operation is successful.",
       "id": "GoogleCloudRetailV2alphaImportCompletionDataResponse",
@@ -5012,7 +5047,7 @@
       "id": "GoogleCloudRetailV2alphaModelPageOptimizationConfigPanel",
       "properties": {
         "candidates": {
-          "description": "Required. The candidates to consider on the panel. Limit = 10.",
+          "description": "Required. The candidates to consider on the panel.",
           "items": {
             "$ref": "GoogleCloudRetailV2alphaModelPageOptimizationConfigCandidate"
           },
@@ -5044,13 +5079,20 @@
       "type": "object"
     },
     "GoogleCloudRetailV2alphaOutputResult": {
-      "description": "Output result.",
+      "description": "Output result that stores the information about where the exported data is stored.",
       "id": "GoogleCloudRetailV2alphaOutputResult",
       "properties": {
         "bigqueryResult": {
-          "description": "Export result in BigQuery.",
+          "description": "The BigQuery location where the result is stored.",
           "items": {
             "$ref": "GoogleCloudRetailV2alphaBigQueryOutputResult"
+          },
+          "type": "array"
+        },
+        "gcsResult": {
+          "description": "The Google Cloud Storage location where the result is stored.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2alphaGcsOutputResult"
           },
           "type": "array"
         }
@@ -5348,6 +5390,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudRetailV2betaGcsOutputResult": {
+      "description": "A Gcs output result.",
+      "id": "GoogleCloudRetailV2betaGcsOutputResult",
+      "properties": {
+        "outputUri": {
+          "description": "The uri of Gcs output",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2betaImportCompletionDataResponse": {
       "description": "Response of the ImportCompletionDataRequest. If the long running operation is done, this message is returned by the google.longrunning.Operations.response field if the operation is successful.",
       "id": "GoogleCloudRetailV2betaImportCompletionDataResponse",
@@ -5593,13 +5646,20 @@
       "type": "object"
     },
     "GoogleCloudRetailV2betaOutputResult": {
-      "description": "Output result.",
+      "description": "Output result that stores the information about where the exported data is stored.",
       "id": "GoogleCloudRetailV2betaOutputResult",
       "properties": {
         "bigqueryResult": {
-          "description": "Export result in BigQuery.",
+          "description": "The BigQuery location where the result is stored.",
           "items": {
             "$ref": "GoogleCloudRetailV2betaBigQueryOutputResult"
+          },
+          "type": "array"
+        },
+        "gcsResult": {
+          "description": "The Google Cloud Storage location where the result is stored.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2betaGcsOutputResult"
           },
           "type": "array"
         }

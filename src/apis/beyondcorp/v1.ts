@@ -987,35 +987,6 @@ export namespace beyondcorp_v1 {
   /**
    * Represents the metadata of the long-running operation.
    */
-  export interface Schema$GoogleCloudBeyondcorpApplicationsV1alphaApplicationOperationMetadata {
-    /**
-     * Output only. The time the operation was created.
-     */
-    createTime?: string | null;
-    /**
-     * Output only. The time the operation finished running.
-     */
-    endTime?: string | null;
-    /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-     */
-    requestedCancellation?: boolean | null;
-    /**
-     * Output only. Human-readable status of the operation, if any.
-     */
-    statusMessage?: string | null;
-    /**
-     * Output only. Server-defined resource path for the target of the operation.
-     */
-    target?: string | null;
-    /**
-     * Output only. Name of the verb executed by the operation.
-     */
-    verb?: string | null;
-  }
-  /**
-   * Represents the metadata of the long-running operation.
-   */
   export interface Schema$GoogleCloudBeyondcorpClientconnectorservicesV1alphaClientConnectorServiceOperationMetadata {
     /**
      * Output only. API version used to start the operation.

@@ -1550,7 +1550,6 @@ export namespace drive_v2 {
      * - They can only be set on user and group permissions
      * - The date must be in the future
      * - The date cannot be more than a year in the future
-     * - The date can only be set on drive.permissions.update or drive.permissions.patch requests
      */
     expirationDate?: string | null;
     /**

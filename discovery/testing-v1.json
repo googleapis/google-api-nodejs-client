@@ -282,7 +282,7 @@
       }
     }
   },
-  "revision": "20220913",
+  "revision": "20221018",
   "rootUrl": "https://testing.googleapis.com/",
   "schemas": {
     "Account": {
@@ -1837,7 +1837,8 @@
             "MALFORMED_APP_BUNDLE",
             "NO_CODE_APK",
             "INVALID_INPUT_APK",
-            "INVALID_APK_PREVIEW_SDK"
+            "INVALID_APK_PREVIEW_SDK",
+            "MATRIX_TOO_LARGE"
           ],
           "enumDescriptions": [
             "Do not use. For proto versioning only.",
@@ -1874,7 +1875,8 @@
             "The iOS application bundle (.app) couldn't be processed.",
             "APK contains no code. See also https://developer.android.com/guide/topics/manifest/application-element.html#code",
             "Either the provided input APK path was malformed, the APK file does not exist, or the user does not have permission to access the APK file.",
-            "APK is built for a preview SDK which is unsupported"
+            "APK is built for a preview SDK which is unsupported",
+            "The matrix expanded to contain too many executions."
           ],
           "type": "string"
         },
