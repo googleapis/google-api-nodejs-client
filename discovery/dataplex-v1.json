@@ -2764,7 +2764,7 @@
       }
     }
   },
-  "revision": "20220818",
+  "revision": "20221021",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -3423,6 +3423,142 @@
             "Value was unspecified.",
             "Spark SQL Query."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataScanEvent": {
+      "description": "These messages contain information about the execution of a datascan. The monitored resource is 'DataScan'",
+      "id": "GoogleCloudDataplexV1DataScanEvent",
+      "properties": {
+        "dataProfile": {
+          "$ref": "GoogleCloudDataplexV1DataScanEventDataProfileResult",
+          "description": "Data profile result for data profile type data scan."
+        },
+        "dataQuality": {
+          "$ref": "GoogleCloudDataplexV1DataScanEventDataQualityResult",
+          "description": "Data quality result for data quality type data scan."
+        },
+        "dataSource": {
+          "description": "The data source of the data scan",
+          "type": "string"
+        },
+        "endTime": {
+          "description": "The time when the data scan job finished.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "jobId": {
+          "description": "The identifier of the specific data scan job this log entry is for.",
+          "type": "string"
+        },
+        "message": {
+          "description": "The message describing the data scan job event.",
+          "type": "string"
+        },
+        "scope": {
+          "description": "The scope of the data scan (e.g. full, incremental).",
+          "enum": [
+            "SCOPE_UNSPECIFIED",
+            "FULL",
+            "INCREMENTAL"
+          ],
+          "enumDescriptions": [
+            "An unspecified scope type.",
+            "Data scan runs on all of the data.",
+            "Data scan runs on incremental data."
+          ],
+          "type": "string"
+        },
+        "specVersion": {
+          "description": "A version identifier of the spec which was used to execute this job.",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "The time when the data scan job started to run.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "The status of the data scan job.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "STARTED",
+            "SUCCEEDED",
+            "FAILED",
+            "CANCELLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified job state.",
+            "Data scan started.",
+            "Data scan successfully completed.",
+            "Data scan was unsuccessful.",
+            "Data scan was cancelled."
+          ],
+          "type": "string"
+        },
+        "trigger": {
+          "description": "The trigger type of the data scan job.",
+          "enum": [
+            "TRIGGER_UNSPECIFIED",
+            "ON_DEMAND",
+            "SCHEDULE"
+          ],
+          "enumDescriptions": [
+            "An unspecified trigger type.",
+            "Data scan triggers on demand.",
+            "Data scan triggers as per schedule."
+          ],
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the data scan.",
+          "enum": [
+            "SCAN_TYPE_UNSPECIFIED",
+            "DATA_PROFILE",
+            "DATA_QUALITY"
+          ],
+          "enumDescriptions": [
+            "An unspecified data scan type.",
+            "Data scan for data profile.",
+            "Data scan for data quality."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataScanEventDataProfileResult": {
+      "description": "Data profile result for data scan job.",
+      "id": "GoogleCloudDataplexV1DataScanEventDataProfileResult",
+      "properties": {
+        "rowCount": {
+          "description": "The count of rows processed in the data scan job.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataScanEventDataQualityResult": {
+      "description": "Data quality result for data scan job.",
+      "id": "GoogleCloudDataplexV1DataScanEventDataQualityResult",
+      "properties": {
+        "dimensionPassed": {
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "description": "The result of each dimension for data quality result. The key of the map is the name of the dimension. The value is the bool value depicting whether the dimension result was pass or not.",
+          "type": "object"
+        },
+        "passed": {
+          "description": "Whether the data quality result was pass or not.",
+          "type": "boolean"
+        },
+        "rowCount": {
+          "description": "The count of rows processed in the data scan job.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -4693,6 +4829,10 @@
           "description": "The status of the event.",
           "type": "boolean"
         },
+        "fastStartupEnabled": {
+          "description": "If the session is associated with an environment with fast startup enabled, and was created before being assigned to a user.",
+          "type": "boolean"
+        },
         "message": {
           "description": "The log message.",
           "type": "string"
@@ -4731,10 +4871,6 @@
         "userId": {
           "description": "The information about the user that created the session. It will be the email address of the user.",
           "type": "string"
-        },
-        "warmPoolEnabled": {
-          "description": "If the session is a warm pooled session.",
-          "type": "boolean"
         }
       },
       "type": "object"
@@ -4925,6 +5061,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "notebook": {
+          "$ref": "GoogleCloudDataplexV1TaskNotebookTaskConfig",
+          "description": "Config related to running scheduled Notebooks."
+        },
         "spark": {
           "$ref": "GoogleCloudDataplexV1TaskSparkTaskConfig",
           "description": "Config related to running custom Spark tasks."
@@ -5100,6 +5240,35 @@
         },
         "subNetwork": {
           "description": "Optional. The Cloud VPC sub-network in which the job is run.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1TaskNotebookTaskConfig": {
+      "description": "Config for running scheduled notebooks.",
+      "id": "GoogleCloudDataplexV1TaskNotebookTaskConfig",
+      "properties": {
+        "archiveUris": {
+          "description": "Optional. Cloud Storage URIs of archives to be extracted into the working directory of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and .zip.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "fileUris": {
+          "description": "Optional. Cloud Storage URIs of files to be placed in the working directory of each executor.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "infrastructureSpec": {
+          "$ref": "GoogleCloudDataplexV1TaskInfrastructureSpec",
+          "description": "Optional. Infrastructure specification for the execution."
+        },
+        "notebook": {
+          "description": "Required. Path to input notebook. This can be the Cloud Storage URI of the notebook file or the path to a Notebook Content. The execution args are accessible as environment variables (TASK_key=value).",
           "type": "string"
         }
       },
@@ -5485,7 +5654,7 @@
           "description": "The condition that is associated with this binding.If the condition evaluates to true, then this binding applies to the current request.If the condition evaluates to false, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. members can have the following values: allUsers: A special identifier that represents anyone who is on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone who is authenticated with a Google account or a service account. user:{emailid}: An email address that represents a specific Google account. For example, alice@example.com . serviceAccount:{emailid}: An email address that represents a Google service account. For example, my-other-app@appspot.gserviceaccount.com. serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]: An identifier for a Kubernetes service account (https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, my-project.svc.id.goog[my-namespace/my-kubernetes-sa]. group:{emailid}: An email address that represents a Google group. For example, admins@example.com. deleted:user:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a user that has been recently deleted. For example, alice@example.com?uid=123456789012345678901. If the user is recovered, this value reverts to user:{emailid} and the recovered user retains the role in the binding. deleted:serviceAccount:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901. If the service account is undeleted, this value reverts to serviceAccount:{emailid} and the undeleted service account retains the role in the binding. deleted:group:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, admins@example.com?uid=123456789012345678901. If the group is recovered, this value reverts to group:{emailid} and the recovered group retains the role in the binding. domain:{domain}: The G Suite domain (primary) that represents all the users of that domain. For example, google.com or example.com.",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. members can have the following values: allUsers: A special identifier that represents anyone who is on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. user:{emailid}: An email address that represents a specific Google account. For example, alice@example.com . serviceAccount:{emailid}: An email address that represents a Google service account. For example, my-other-app@appspot.gserviceaccount.com. serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]: An identifier for a Kubernetes service account (https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, my-project.svc.id.goog[my-namespace/my-kubernetes-sa]. group:{emailid}: An email address that represents a Google group. For example, admins@example.com. deleted:user:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a user that has been recently deleted. For example, alice@example.com?uid=123456789012345678901. If the user is recovered, this value reverts to user:{emailid} and the recovered user retains the role in the binding. deleted:serviceAccount:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901. If the service account is undeleted, this value reverts to serviceAccount:{emailid} and the undeleted service account retains the role in the binding. deleted:group:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, admins@example.com?uid=123456789012345678901. If the group is recovered, this value reverts to group:{emailid} and the recovered group retains the role in the binding. domain:{domain}: The G Suite domain (primary) that represents all the users of that domain. For example, google.com or example.com.",
           "items": {
             "type": "string"
           },
