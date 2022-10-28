@@ -423,9 +423,40 @@
       }
     }
   },
-  "revision": "20220808",
+  "revision": "20221024",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
+    "AbuseDetected": {
+      "description": "A generic alert for abusive user activity occurring with a customer.",
+      "id": "AbuseDetected",
+      "properties": {
+        "additionalDetails": {
+          "$ref": "EntityList",
+          "description": "List of abusive users/entities to be displayed in a table in the alert."
+        },
+        "alertDescriptor": {
+          "description": "Displayed after Customer abuse detected - {alert_descriptor}. If missing, alert name will be displayed as Customer abuse detected.",
+          "type": "string"
+        },
+        "nextSteps": {
+          "description": "Customizable text to display in the next steps section of the alert. Will be parsed as HTML to allow new paragraphs and hyperlinks.",
+          "type": "string"
+        },
+        "product": {
+          "description": "Product that the abuse is originating from.",
+          "type": "string"
+        },
+        "subAlertId": {
+          "description": "Unique identifier of each alert that is onboarded.",
+          "type": "string"
+        },
+        "summary": {
+          "description": "Customizable text to display in the summary section of the alert. Will be parsed as HTML to allow new paragraphs and hyperlinks.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AccountSuspensionDetails": {
       "description": "Details about why an account is receiving an account suspension warning.",
       "id": "AccountSuspensionDetails",
@@ -1109,6 +1140,53 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "Entity": {
+      "description": "Individual entity affected by, or related to, an alert.",
+      "id": "Entity",
+      "properties": {
+        "link": {
+          "description": "Link to a Security Investigation Tool search based on this entity, if available.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Human-readable name of this entity, such as an email address, file ID, or device name.",
+          "type": "string"
+        },
+        "values": {
+          "description": "Extra values beyond name. The order of values should align with headers in EntityList.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EntityList": {
+      "description": "EntityList stores entities in a format that can be translated to a table in the Alert Center UI.",
+      "id": "EntityList",
+      "properties": {
+        "entities": {
+          "description": "List of entities affected by the alert.",
+          "items": {
+            "$ref": "Entity"
+          },
+          "type": "array"
+        },
+        "headers": {
+          "description": "Headers of the values in entities. If no value is defined in Entity, this field should be empty.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Name of the key detail used to display this entity list.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GmailMessageInfo": {
