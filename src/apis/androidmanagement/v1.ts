@@ -1922,7 +1922,7 @@ export namespace androidmanagement_v1 {
      */
     accountTypesWithManagementDisabled?: string[] | null;
     /**
-     * Whether camera is disabled.
+     * If true, the camera is disabled on the personal profile.
      */
     cameraDisabled?: boolean | null;
     /**
@@ -1938,7 +1938,7 @@ export namespace androidmanagement_v1 {
      */
     personalPlayStoreMode?: string | null;
     /**
-     * Whether screen capture is disabled.
+     * If true, screen capture is disabled for all users.
      */
     screenCaptureDisabled?: boolean | null;
   }
@@ -2079,7 +2079,7 @@ export namespace androidmanagement_v1 {
      */
     installUnknownSourcesAllowed?: boolean | null;
     /**
-     * Whether the keyguard is disabled.
+     * If true, this disables the Lock Screen (https://source.android.com/docs/core/display/multi_display/lock-screen) for primary and/or secondary displays.
      */
     keyguardDisabled?: boolean | null;
     /**
@@ -2304,7 +2304,7 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$PolicyEnforcementRule {
     /**
-     * An action to block access to apps and data on a fully managed device or in a work profile. This action also triggers a user-facing notification with information (where possible) on how to correct the compliance issue. Note: wipeAction must also be specified.
+     * An action to block access to apps and data on a company owned device or in a work profile. This action also triggers a user-facing notification with information (where possible) on how to correct the compliance issue. Note: wipeAction must also be specified.
      */
     blockAction?: Schema$BlockAction;
     /**
@@ -2312,7 +2312,7 @@ export namespace androidmanagement_v1 {
      */
     settingName?: string | null;
     /**
-     * An action to reset a fully managed device or delete a work profile. Note: blockAction must also be specified.
+     * An action to reset a company owned device or delete a work profile. Note: blockAction must also be specified.
      */
     wipeAction?: Schema$WipeAction;
   }
@@ -2860,7 +2860,7 @@ export namespace androidmanagement_v1 {
     value?: string | null;
   }
   /**
-   * An action to reset a fully managed device or delete a work profile. Note: blockAction must also be specified.
+   * An action to reset a company owned device or delete a work profile. Note: blockAction must also be specified.
    */
   export interface Schema$WipeAction {
     /**
@@ -3862,7 +3862,7 @@ export namespace androidmanagement_v1 {
     }
 
     /**
-     * Deletes a device. This operation wipes the device.
+     * Deletes a device. This operation wipes the device. Deleted devices do not show up in enterprises.devices.list calls and a 404 is returned from enterprises.devices.get.
      * @example
      * ```js
      * // Before running the sample:
@@ -3991,7 +3991,7 @@ export namespace androidmanagement_v1 {
     }
 
     /**
-     * Gets a device.
+     * Gets a device. Deleted devices will respond with a 404 error.
      * @example
      * ```js
      * // Before running the sample:
@@ -4302,7 +4302,7 @@ export namespace androidmanagement_v1 {
     }
 
     /**
-     * Lists devices for a given enterprise.
+     * Lists devices for a given enterprise. Deleted devices are not returned in the response.
      * @example
      * ```js
      * // Before running the sample:

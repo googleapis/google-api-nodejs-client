@@ -314,7 +314,7 @@
         "devices": {
           "methods": {
             "delete": {
-              "description": "Deletes a device. This operation wipes the device.",
+              "description": "Deletes a device. This operation wipes the device. Deleted devices do not show up in enterprises.devices.list calls and a 404 is returned from enterprises.devices.get.",
               "flatPath": "v1/enterprises/{enterprisesId}/devices/{devicesId}",
               "httpMethod": "DELETE",
               "id": "androidmanagement.enterprises.devices.delete",
@@ -360,7 +360,7 @@
               ]
             },
             "get": {
-              "description": "Gets a device.",
+              "description": "Gets a device. Deleted devices will respond with a 404 error.",
               "flatPath": "v1/enterprises/{enterprisesId}/devices/{devicesId}",
               "httpMethod": "GET",
               "id": "androidmanagement.enterprises.devices.get",
@@ -413,7 +413,7 @@
               ]
             },
             "list": {
-              "description": "Lists devices for a given enterprise.",
+              "description": "Lists devices for a given enterprise. Deleted devices are not returned in the response.",
               "flatPath": "v1/enterprises/{enterprisesId}/devices",
               "httpMethod": "GET",
               "id": "androidmanagement.enterprises.devices.list",
@@ -1065,7 +1065,7 @@
       }
     }
   },
-  "revision": "20220912",
+  "revision": "20221017",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -4065,7 +4065,7 @@
           "type": "array"
         },
         "cameraDisabled": {
-          "description": "Whether camera is disabled.",
+          "description": "If true, the camera is disabled on the personal profile.",
           "type": "boolean"
         },
         "maxDaysWithWorkOff": {
@@ -4097,7 +4097,7 @@
           "type": "string"
         },
         "screenCaptureDisabled": {
-          "description": "Whether screen capture is disabled.",
+          "description": "If true, screen capture is disabled for all users.",
           "type": "boolean"
         }
       },
@@ -4326,7 +4326,7 @@
           "type": "boolean"
         },
         "keyguardDisabled": {
-          "description": "Whether the keyguard is disabled.",
+          "description": "If true, this disables the Lock Screen (https://source.android.com/docs/core/display/multi_display/lock-screen) for primary and/or secondary displays.",
           "type": "boolean"
         },
         "keyguardDisabledFeatures": {
@@ -4675,7 +4675,7 @@
       "properties": {
         "blockAction": {
           "$ref": "BlockAction",
-          "description": "An action to block access to apps and data on a fully managed device or in a work profile. This action also triggers a user-facing notification with information (where possible) on how to correct the compliance issue. Note: wipeAction must also be specified."
+          "description": "An action to block access to apps and data on a company owned device or in a work profile. This action also triggers a user-facing notification with information (where possible) on how to correct the compliance issue. Note: wipeAction must also be specified."
         },
         "settingName": {
           "description": "The top-level policy to enforce. For example, applications or passwordPolicies.",
@@ -4683,7 +4683,7 @@
         },
         "wipeAction": {
           "$ref": "WipeAction",
-          "description": "An action to reset a fully managed device or delete a work profile. Note: blockAction must also be specified."
+          "description": "An action to reset a company owned device or delete a work profile. Note: blockAction must also be specified."
         }
       },
       "type": "object"
@@ -5527,7 +5527,7 @@
       "type": "object"
     },
     "WipeAction": {
-      "description": "An action to reset a fully managed device or delete a work profile. Note: blockAction must also be specified.",
+      "description": "An action to reset a company owned device or delete a work profile. Note: blockAction must also be specified.",
       "id": "WipeAction",
       "properties": {
         "preserveFrp": {
