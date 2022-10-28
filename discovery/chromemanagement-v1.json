@@ -631,7 +631,7 @@
       }
     }
   },
-  "revision": "20220919",
+  "revision": "20221025",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -972,6 +972,56 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementV1BootPerformanceReport": {
+      "description": "Boot performance report of a device. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceBootMode](https://chromeenterprise.google/policies/#ReportDeviceBootMode) * Data Collection Frequency: On every boot up event * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: Yes * Reported for affiliated users only: N/A",
+      "id": "GoogleChromeManagementV1BootPerformanceReport",
+      "properties": {
+        "bootUpDuration": {
+          "description": "Total time to boot up.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "bootUpTime": {
+          "description": "The timestamp when power came on.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "reportTime": {
+          "description": "Timestamp when the report was collected.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "shutdownDuration": {
+          "description": "Total time since shutdown start to power off.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "shutdownReason": {
+          "description": "The shutdown reason.",
+          "enum": [
+            "SHUTDOWN_REASON_UNSPECIFIED",
+            "USER_REQUEST",
+            "SYSTEM_UPDATE",
+            "LOW_BATTERY",
+            "OTHER"
+          ],
+          "enumDescriptions": [
+            "Shutdown reason is not specified.",
+            "User initiated.",
+            "System update initiated.",
+            "Shutdown due to low battery.",
+            "Shutdown due to other reasons."
+          ],
+          "type": "string"
+        },
+        "shutdownTime": {
+          "description": "The timestamp when shutdown.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementV1BrowserVersion": {
       "description": "Describes a browser version and its install count.",
       "id": "GoogleChromeManagementV1BrowserVersion",
@@ -1050,6 +1100,11 @@
         },
         "isCwsHosted": {
           "description": "Output only. Whether the app or extension is in a published state in the Chrome Web Store.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isExtensionPolicySupported": {
+          "description": "Output only. Whether an app supports policy for extensions.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -2262,6 +2317,14 @@
           "description": "Output only. Battery reports collected periodically.",
           "items": {
             "$ref": "GoogleChromeManagementV1BatteryStatusReport"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "bootPerformanceReport": {
+          "description": "Output only. Boot performance reports of the device.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1BootPerformanceReport"
           },
           "readOnly": true,
           "type": "array"
