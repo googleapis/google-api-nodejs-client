@@ -396,7 +396,7 @@
               "type": "string"
             },
             "includeChildOrgunits": {
-              "description": "Return devices from all child orgunits, as well as the specified org unit. If this is set to true 'orgUnitPath' must be provided.",
+              "description": "Return devices from all child orgunits, as well as the specified org unit. If this is set to true, 'orgUnitPath' must be provided.",
               "location": "query",
               "type": "boolean"
             },
@@ -784,6 +784,231 @@
       "resources": {
         "chrome": {
           "resources": {
+            "printServers": {
+              "methods": {
+                "batchCreatePrintServers": {
+                  "description": "Creates multiple print servers.",
+                  "flatPath": "admin/directory/v1/customers/{customersId}/chrome/printServers:batchCreatePrintServers",
+                  "httpMethod": "POST",
+                  "id": "admin.customers.chrome.printServers.batchCreatePrintServers",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The [unique ID](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id}`",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "admin/directory/v1/{+parent}/chrome/printServers:batchCreatePrintServers",
+                  "request": {
+                    "$ref": "BatchCreatePrintServersRequest"
+                  },
+                  "response": {
+                    "$ref": "BatchCreatePrintServersResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/admin.chrome.printers"
+                  ]
+                },
+                "batchDeletePrintServers": {
+                  "description": "Deletes multiple print servers.",
+                  "flatPath": "admin/directory/v1/customers/{customersId}/chrome/printServers:batchDeletePrintServers",
+                  "httpMethod": "POST",
+                  "id": "admin.customers.chrome.printServers.batchDeletePrintServers",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The [unique ID](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{customer.id}`",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "admin/directory/v1/{+parent}/chrome/printServers:batchDeletePrintServers",
+                  "request": {
+                    "$ref": "BatchDeletePrintServersRequest"
+                  },
+                  "response": {
+                    "$ref": "BatchDeletePrintServersResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/admin.chrome.printers"
+                  ]
+                },
+                "create": {
+                  "description": "Creates a print server.",
+                  "flatPath": "admin/directory/v1/customers/{customersId}/chrome/printServers",
+                  "httpMethod": "POST",
+                  "id": "admin.customers.chrome.printServers.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The [unique ID](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id}`",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "admin/directory/v1/{+parent}/chrome/printServers",
+                  "request": {
+                    "$ref": "PrintServer"
+                  },
+                  "response": {
+                    "$ref": "PrintServer"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/admin.chrome.printers"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a print server.",
+                  "flatPath": "admin/directory/v1/customers/{customersId}/chrome/printServers/{printServersId}",
+                  "httpMethod": "DELETE",
+                  "id": "admin.customers.chrome.printServers.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the print server to be deleted. Format: `customers/{customer.id}/chrome/printServers/{print_server.id}`",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+/chrome/printServers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "admin/directory/v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/admin.chrome.printers"
+                  ]
+                },
+                "get": {
+                  "description": "Returns a print server's configuration.",
+                  "flatPath": "admin/directory/v1/customers/{customersId}/chrome/printServers/{printServersId}",
+                  "httpMethod": "GET",
+                  "id": "admin.customers.chrome.printServers.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The [unique ID](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id}`",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+/chrome/printServers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "admin/directory/v1/{+name}",
+                  "response": {
+                    "$ref": "PrintServer"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/admin.chrome.printers",
+                    "https://www.googleapis.com/auth/admin.chrome.printers.readonly"
+                  ]
+                },
+                "list": {
+                  "description": "Lists print server configurations.",
+                  "flatPath": "admin/directory/v1/customers/{customersId}/chrome/printServers",
+                  "httpMethod": "GET",
+                  "id": "admin.customers.chrome.printServers.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Search query in [Common Expression Language syntax](https://github.com/google/cel-spec). Supported filters are `display_name`, `description`, and `uri`. Example: `printServer.displayName=='marketing-queue'`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Sort order for results. Supported values are `display_name`, `description`, or `create_time`. Default order is ascending, but descending order can be returned by appending \"desc\" to the `order_by` field. For instance, `orderBy=='description desc'` returns the print servers sorted by description in descending order.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orgUnitId": {
+                      "description": "If `org_unit_id` is present in the request, only print servers owned or inherited by the organizational unit (OU) are returned. If the `PrintServer` resource's `org_unit_id` matches the one in the request, the OU owns the server. If `org_unit_id` is not specified in the request, all print servers are returned or filtered against.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of objects to return (default `100`, max `100`). The service might return fewer than this value.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A generated token to paginate results (the `next_page_token` from a previous call).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The [unique ID](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id}`",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "admin/directory/v1/{+parent}/chrome/printServers",
+                  "response": {
+                    "$ref": "ListPrintServersResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/admin.chrome.printers",
+                    "https://www.googleapis.com/auth/admin.chrome.printers.readonly"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a print server's configuration.",
+                  "flatPath": "admin/directory/v1/customers/{customersId}/chrome/printServers/{printServersId}",
+                  "httpMethod": "PATCH",
+                  "id": "admin.customers.chrome.printServers.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. Resource name of the print server. Leave empty when creating. Format: `customers/{customer.id}/printServers/{print_server.id}`",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+/chrome/printServers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "The list of fields to update. Some fields are read-only and cannot be updated. Values for unspecified fields are patched.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "admin/directory/v1/{+name}",
+                  "request": {
+                    "$ref": "PrintServer"
+                  },
+                  "response": {
+                    "$ref": "PrintServer"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/admin.chrome.printers"
+                  ]
+                }
+              }
+            },
             "printers": {
               "methods": {
                 "batchCreatePrinters": {
@@ -4405,7 +4630,7 @@
       }
     }
   },
-  "revision": "20220913",
+  "revision": "20221020",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -4544,6 +4769,40 @@
       },
       "type": "object"
     },
+    "BatchCreatePrintServersRequest": {
+      "description": "Request to add multiple new print servers in a batch.",
+      "id": "BatchCreatePrintServersRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. A list of `PrintServer` resources to be created (max `50` per batch).",
+          "items": {
+            "$ref": "CreatePrintServerRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchCreatePrintServersResponse": {
+      "id": "BatchCreatePrintServersResponse",
+      "properties": {
+        "failures": {
+          "description": "A list of create failures. `PrintServer` IDs are not populated, as print servers were not created.",
+          "items": {
+            "$ref": "PrintServerFailureInfo"
+          },
+          "type": "array"
+        },
+        "printServers": {
+          "description": "A list of successfully created print servers with their IDs populated.",
+          "items": {
+            "$ref": "PrintServer"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "BatchCreatePrintersRequest": {
       "description": "Request for adding new printers in batch.",
       "id": "BatchCreatePrintersRequest",
@@ -4573,6 +4832,40 @@
           "description": "A list of successfully created printers with their IDs populated.",
           "items": {
             "$ref": "Printer"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchDeletePrintServersRequest": {
+      "description": "Request to delete multiple existing print servers in a batch.",
+      "id": "BatchDeletePrintServersRequest",
+      "properties": {
+        "printServerIds": {
+          "description": "A list of print server IDs that should be deleted (max `100` per batch).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchDeletePrintServersResponse": {
+      "id": "BatchDeletePrintServersResponse",
+      "properties": {
+        "failedPrintServers": {
+          "description": "A list of update failures.",
+          "items": {
+            "$ref": "PrintServerFailureInfo"
+          },
+          "type": "array"
+        },
+        "printServerIds": {
+          "description": "A list of print server IDs that were successfully deleted.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -4902,7 +5195,7 @@
       "id": "ChromeOsDevice",
       "properties": {
         "activeTimeRanges": {
-          "description": "List of active time ranges (Read-only).",
+          "description": "A list of active time ranges (Read-only).",
           "items": {
             "properties": {
               "activeTime": {
@@ -5013,7 +5306,7 @@
           "items": {
             "properties": {
               "cpuTemperatureInfo": {
-                "description": "List of CPU temperature samples.",
+                "description": "A list of CPU temperature samples.",
                 "items": {
                   "properties": {
                     "label": {
@@ -5048,7 +5341,7 @@
           "type": "array"
         },
         "deviceFiles": {
-          "description": "List of device files to download (Read-only)",
+          "description": "A list of device files to download (Read-only)",
           "items": {
             "properties": {
               "createTime": {
@@ -5211,9 +5504,9 @@
           "type": "string"
         },
         "recentUsers": {
-          "description": "List of recent device users, in descending order, by last login time.",
+          "description": "A list of recent device users, in descending order, by last login time.",
           "items": {
-            "description": "List of recent device users, in descending order, by last login time.",
+            "description": "A list of recent device users, in descending order, by last login time.",
             "properties": {
               "email": {
                 "description": "The user's email address. This is only present if the user type is `USER_TYPE_MANAGED`.",
@@ -5229,7 +5522,7 @@
           "type": "array"
         },
         "screenshotFiles": {
-          "description": "List of screenshot files to download. Type is always \"SCREENSHOT_FILE\". (Read-only)",
+          "description": "A list of screenshot files to download. Type is always \"SCREENSHOT_FILE\". (Read-only)",
           "items": {
             "properties": {
               "createTime": {
@@ -5331,7 +5624,7 @@
       "type": "object"
     },
     "ChromeOsDeviceAction": {
-      "description": "The data regarding an action to update the status of a Chrome OS device.",
+      "description": "Data about an update to the status of a Chrome OS device.",
       "id": "ChromeOsDeviceAction",
       "properties": {
         "action": {
@@ -5354,7 +5647,7 @@
       "id": "ChromeOsDevices",
       "properties": {
         "chromeosdevices": {
-          "description": "List of Chrome OS Device objects.",
+          "description": "A list of Chrome OS Device objects.",
           "items": {
             "$ref": "ChromeOsDevice"
           },
@@ -5390,6 +5683,21 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CreatePrintServerRequest": {
+      "description": "Request for adding a new print server.",
+      "id": "CreatePrintServerRequest",
+      "properties": {
+        "parent": {
+          "description": "Required. The [unique ID](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id}`",
+          "type": "string"
+        },
+        "printServer": {
+          "$ref": "PrintServer",
+          "description": "Required. A print server to create. If you want to place the print server under a specific organizational unit (OU), then populate the `org_unit_id`. Otherwise the print server is created under the root OU. The `org_unit_id` can be retrieved using the [Directory API](https://developers.google.com/admin-sdk/directory/v1/guides/manage-org-units)."
         }
       },
       "type": "object"
@@ -5683,7 +5991,7 @@
       "id": "DomainAliases",
       "properties": {
         "domainAliases": {
-          "description": "List of domain alias objects.",
+          "description": "A list of domain alias objects.",
           "items": {
             "$ref": "DomainAlias"
           },
@@ -5710,7 +6018,7 @@
           "type": "string"
         },
         "domainAliases": {
-          "description": "List of domain alias objects. (Read-only)",
+          "description": "A list of domain alias objects. (Read-only)",
           "items": {
             "$ref": "DomainAlias"
           },
@@ -5749,7 +6057,7 @@
       "id": "Domains2",
       "properties": {
         "domains": {
-          "description": "List of domain objects.",
+          "description": "A list of domain objects.",
           "items": {
             "$ref": "Domains"
           },
@@ -5921,7 +6229,7 @@
           "type": "boolean"
         },
         "aliases": {
-          "description": "Read-only. A list of a group's alias email addresses. To add, update, or remove a group's aliases, use the `groups.aliases` methods. If edited in a group's POST or PUT request, the edit is ignored.",
+          "description": "Read-only. The list of a group's alias email addresses. To add, update, or remove a group's aliases, use the `groups.aliases` methods. If edited in a group's POST or PUT request, the edit is ignored.",
           "items": {
             "type": "string"
           },
@@ -5963,7 +6271,7 @@
           "type": "string"
         },
         "nonEditableAliases": {
-          "description": "Read-only. A list of the group's non-editable alias email addresses that are outside of the account's primary domain or subdomains. These are functioning email addresses used by the group. This is a read-only property returned in the API's response for a group. If edited in a group's POST or PUT request, the edit is ignored.",
+          "description": "Read-only. The list of the group's non-editable alias email addresses that are outside of the account's primary domain or subdomains. These are functioning email addresses used by the group. This is a read-only property returned in the API's response for a group. If edited in a group's POST or PUT request, the edit is ignored.",
           "items": {
             "type": "string"
           },
@@ -6007,7 +6315,7 @@
           "type": "string"
         },
         "groups": {
-          "description": "List of group objects.",
+          "description": "A list of group objects.",
           "items": {
             "$ref": "Group"
           },
@@ -6021,6 +6329,23 @@
         "nextPageToken": {
           "description": "Token used to access next page of this result.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListPrintServersResponse": {
+      "id": "ListPrintServersResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` in a request to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "printServers": {
+          "description": "List of print servers.",
+          "items": {
+            "$ref": "PrintServer"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -6114,7 +6439,7 @@
           "type": "string"
         },
         "members": {
-          "description": "List of member objects.",
+          "description": "A list of member objects.",
           "items": {
             "$ref": "Member"
           },
@@ -6217,7 +6542,7 @@
           "type": "string"
         },
         "email": {
-          "description": "List of owner's email addresses. If your application needs the current list of user emails, use the [get](/admin-sdk/directory/v1/reference/mobiledevices/get.html) method. For additional information, see the [retrieve a user](/admin-sdk/directory/v1/guides/manage-users#get_user) method.",
+          "description": "The list of the owner's email addresses. If your application needs the current list of user emails, use the [get](/admin-sdk/directory/v1/reference/mobiledevices/get.html) method. For additional information, see the [retrieve a user](/admin-sdk/directory/v1/guides/manage-users#get_user) method.",
           "items": {
             "type": "string"
           },
@@ -6279,7 +6604,7 @@
           "type": "string"
         },
         "name": {
-          "description": "List of the owner's user names. If your application needs the current list of device owner names, use the [get](/admin-sdk/directory/v1/reference/mobiledevices/get.html) method. For more information about retrieving mobile device user information, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-users#get_user).",
+          "description": "The list of the owner's user names. If your application needs the current list of device owner names, use the [get](/admin-sdk/directory/v1/reference/mobiledevices/get.html) method. For more information about retrieving mobile device user information, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-users#get_user).",
           "items": {
             "type": "string"
           },
@@ -6294,7 +6619,7 @@
           "type": "string"
         },
         "otherAccountsInfo": {
-          "description": "List of accounts added on device (Read-only)",
+          "description": "The list of accounts added on device (Read-only)",
           "items": {
             "type": "string"
           },
@@ -6376,7 +6701,7 @@
           "type": "string"
         },
         "mobiledevices": {
-          "description": "List of Mobile Device objects.",
+          "description": "A list of Mobile Device objects.",
           "items": {
             "$ref": "MobileDevice"
           },
@@ -6451,7 +6776,7 @@
           "type": "string"
         },
         "organizationUnits": {
-          "description": "List of organizational unit objects.",
+          "description": "A list of organizational unit objects.",
           "items": {
             "$ref": "OrgUnit"
           },
@@ -6480,7 +6805,7 @@
             "The update state is unspecified.",
             "There is an update pending but it hasn't started.",
             "The pending update is being downloaded.",
-            "The device is ready to install the update, but it just needs to reboot."
+            "The device is ready to install the update, but must reboot."
           ],
           "type": "string"
         },
@@ -6498,6 +6823,104 @@
         },
         "updateTime": {
           "description": "Date and time of the last successful OS update.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PrintServer": {
+      "description": "Configuration for a print server.",
+      "id": "PrintServer",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Time when the print server was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Editable. Description of the print server (as shown in the Admin console).",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Editable. Display name of the print server (as shown in the Admin console).",
+          "type": "string"
+        },
+        "id": {
+          "description": "Immutable. ID of the print server. Leave empty when creating.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. Resource name of the print server. Leave empty when creating. Format: `customers/{customer.id}/printServers/{print_server.id}`",
+          "type": "string"
+        },
+        "orgUnitId": {
+          "description": "ID of the organization unit (OU) that owns this print server. This value can only be set when the print server is initially created. If it's not populated, the print server is placed under the root OU. The `org_unit_id` can be retrieved using the [Directory API](/admin-sdk/directory/reference/rest/v1/orgunits).",
+          "type": "string"
+        },
+        "uri": {
+          "description": "Editable. Print server URI.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PrintServerFailureInfo": {
+      "description": "Info about failures",
+      "id": "PrintServerFailureInfo",
+      "properties": {
+        "errorCode": {
+          "description": "Canonical code for why the update failed to apply.",
+          "enum": [
+            "OK",
+            "CANCELLED",
+            "UNKNOWN",
+            "INVALID_ARGUMENT",
+            "DEADLINE_EXCEEDED",
+            "NOT_FOUND",
+            "ALREADY_EXISTS",
+            "PERMISSION_DENIED",
+            "UNAUTHENTICATED",
+            "RESOURCE_EXHAUSTED",
+            "FAILED_PRECONDITION",
+            "ABORTED",
+            "OUT_OF_RANGE",
+            "UNIMPLEMENTED",
+            "INTERNAL",
+            "UNAVAILABLE",
+            "DATA_LOSS"
+          ],
+          "enumDescriptions": [
+            "Not an error; returned on success. HTTP Mapping: 200 OK",
+            "The operation was cancelled, typically by the caller. HTTP Mapping: 499 Client Closed Request",
+            "Unknown error. For example, this error may be returned when a `Status` value received from another address space belongs to an error space that is not known in this address space. Also errors raised by APIs that do not return enough error information may be converted to this error. HTTP Mapping: 500 Internal Server Error",
+            "The client specified an invalid argument. Note that this differs from `FAILED_PRECONDITION`. `INVALID_ARGUMENT` indicates arguments that are problematic regardless of the state of the system (e.g., a malformed file name). HTTP Mapping: 400 Bad Request",
+            "The deadline expired before the operation could complete. For operations that change the state of the system, this error may be returned even if the operation has completed successfully. For example, a successful response from a server could have been delayed long enough for the deadline to expire. HTTP Mapping: 504 Gateway Timeout",
+            "Some requested entity (e.g., file or directory) was not found. Note to server developers: if a request is denied for an entire class of users, such as gradual feature rollout or undocumented allowlist, `NOT_FOUND` may be used. If a request is denied for some users within a class of users, such as user-based access control, `PERMISSION_DENIED` must be used. HTTP Mapping: 404 Not Found",
+            "The entity that a client attempted to create (e.g., file or directory) already exists. HTTP Mapping: 409 Conflict",
+            "The caller does not have permission to execute the specified operation. `PERMISSION_DENIED` must not be used for rejections caused by exhausting some resource (use `RESOURCE_EXHAUSTED` instead for those errors). `PERMISSION_DENIED` must not be used if the caller can not be identified (use `UNAUTHENTICATED` instead for those errors). This error code does not imply the request is valid or the requested entity exists or satisfies other pre-conditions. HTTP Mapping: 403 Forbidden",
+            "The request does not have valid authentication credentials for the operation. HTTP Mapping: 401 Unauthorized",
+            "Some resource has been exhausted, perhaps a per-user quota, or perhaps the entire file system is out of space. HTTP Mapping: 429 Too Many Requests",
+            "The operation was rejected because the system is not in a state required for the operation's execution. For example, the directory to be deleted is non-empty, an rmdir operation is applied to a non-directory, etc. Service implementors can use the following guidelines to decide between `FAILED_PRECONDITION`, `ABORTED`, and `UNAVAILABLE`: (a) Use `UNAVAILABLE` if the client can retry just the failing call. (b) Use `ABORTED` if the client should retry at a higher level. For example, when a client-specified test-and-set fails, indicating the client should restart a read-modify-write sequence. (c) Use `FAILED_PRECONDITION` if the client should not retry until the system state has been explicitly fixed. For example, if an \"rmdir\" fails because the directory is non-empty, `FAILED_PRECONDITION` should be returned since the client should not retry unless the files are deleted from the directory. HTTP Mapping: 400 Bad Request",
+            "The operation was aborted, typically due to a concurrency issue such as a sequencer check failure or transaction abort. See the guidelines above for deciding between `FAILED_PRECONDITION`, `ABORTED`, and `UNAVAILABLE`. HTTP Mapping: 409 Conflict",
+            "The operation was attempted past the valid range. E.g., seeking or reading past end-of-file. Unlike `INVALID_ARGUMENT`, this error indicates a problem that may be fixed if the system state changes. For example, a 32-bit file system will generate `INVALID_ARGUMENT` if asked to read at an offset that is not in the range [0,2^32-1], but it will generate `OUT_OF_RANGE` if asked to read from an offset past the current file size. There is a fair bit of overlap between `FAILED_PRECONDITION` and `OUT_OF_RANGE`. We recommend using `OUT_OF_RANGE` (the more specific error) when it applies so that callers who are iterating through a space can easily look for an `OUT_OF_RANGE` error to detect when they are done. HTTP Mapping: 400 Bad Request",
+            "The operation is not implemented or is not supported/enabled in this service. HTTP Mapping: 501 Not Implemented",
+            "Internal errors. This means that some invariants expected by the underlying system have been broken. This error code is reserved for serious errors. HTTP Mapping: 500 Internal Server Error",
+            "The service is currently unavailable. This is most likely a transient condition, which can be corrected by retrying with a backoff. Note that it is not always safe to retry non-idempotent operations. See the guidelines above for deciding between `FAILED_PRECONDITION`, `ABORTED`, and `UNAVAILABLE`. HTTP Mapping: 503 Service Unavailable",
+            "Unrecoverable data loss or corruption. HTTP Mapping: 500 Internal Server Error"
+          ],
+          "type": "string"
+        },
+        "errorMessage": {
+          "description": "Failure reason message.",
+          "type": "string"
+        },
+        "printServer": {
+          "$ref": "PrintServer",
+          "description": "Failed print server."
+        },
+        "printServerId": {
+          "description": "ID of a failed print server.",
           "type": "string"
         }
       },
@@ -6931,7 +7354,7 @@
           "type": "string"
         },
         "schemas": {
-          "description": "List of UserSchema objects.",
+          "description": "A list of UserSchema objects.",
           "items": {
             "$ref": "Schema"
           },
@@ -7011,7 +7434,7 @@
       "id": "User",
       "properties": {
         "addresses": {
-          "description": "A list of the user's addresses. The maximum allowed data size for this field is 10Kb.",
+          "description": "The list of the user's addresses. The maximum allowed data size for this field is 10Kb.",
           "type": "any"
         },
         "agreedToTerms": {
@@ -7020,7 +7443,7 @@
           "type": "boolean"
         },
         "aliases": {
-          "description": "Output only. A list of the user's alias email addresses.",
+          "description": "Output only. The list of the user's alias email addresses.",
           "items": {
             "type": "string"
           },
@@ -7059,7 +7482,7 @@
           "type": "string"
         },
         "emails": {
-          "description": "A list of the user's email addresses. The maximum allowed data size for this field is 10Kb.",
+          "description": "The list of the user's email addresses. The maximum allowed data size for this field is 10Kb.",
           "type": "any"
         },
         "etag": {
@@ -7068,7 +7491,7 @@
           "type": "string"
         },
         "externalIds": {
-          "description": "A list of external IDs for the user, such as an employee or network ID. The maximum allowed data size for this field is 2Kb.",
+          "description": "The list of external IDs for the user, such as an employee or network ID. The maximum allowed data size for this field is 2Kb.",
           "type": "any"
         },
         "gender": {
@@ -7084,7 +7507,7 @@
           "type": "string"
         },
         "ims": {
-          "description": "The user's Instant Messenger (IM) accounts. A user account can have multiple ims properties. But, only one of these ims properties can be the primary IM contact. The maximum allowed data size for this field is 2Kb.",
+          "description": "The list of the user's Instant Messenger (IM) accounts. A user account can have multiple ims properties. But, only one of these ims properties can be the primary IM contact. The maximum allowed data size for this field is 2Kb.",
           "type": "any"
         },
         "includeInGlobalAddressList": {
@@ -7121,7 +7544,7 @@
           "type": "boolean"
         },
         "keywords": {
-          "description": "The user's keywords. The maximum allowed data size for this field is 1Kb.",
+          "description": "The list of the user's keywords. The maximum allowed data size for this field is 1Kb.",
           "type": "any"
         },
         "kind": {
@@ -7154,7 +7577,7 @@
           "description": "Holds the given and family names of the user, and the read-only `fullName` value. The maximum number of characters in the `givenName` and in the `familyName` values is 60. In addition, name values support unicode/UTF-8 characters, and can contain spaces, letters (a-z), numbers (0-9), dashes (-), forward slashes (/), and periods (.). For more information about character usage rules, see the [administration help center](https://support.google.com/a/answer/9193374). Maximum allowed data size for this field is 1Kb."
         },
         "nonEditableAliases": {
-          "description": "Output only. List of the user's non-editable alias email addresses. These are typically outside the account's primary domain or sub-domain.",
+          "description": "Output only. The list of the user's non-editable alias email addresses. These are typically outside the account's primary domain or sub-domain.",
           "items": {
             "type": "string"
           },
@@ -7170,7 +7593,7 @@
           "type": "string"
         },
         "organizations": {
-          "description": "A list of organizations the user belongs to. The maximum allowed data size for this field is 10Kb.",
+          "description": "The list of organizations the user belongs to. The maximum allowed data size for this field is 10Kb.",
           "type": "any"
         },
         "password": {
@@ -7183,11 +7606,11 @@
           "type": "string"
         },
         "phones": {
-          "description": "A list of the user's phone numbers. The maximum allowed data size for this field is 1Kb.",
+          "description": "The list of the user's phone numbers. The maximum allowed data size for this field is 1Kb.",
           "type": "any"
         },
         "posixAccounts": {
-          "description": "A list of [POSIX](https://www.opengroup.org/austin/papers/posix_faq.html) account information for the user.",
+          "description": "The list of [POSIX](https://www.opengroup.org/austin/papers/posix_faq.html) account information for the user.",
           "type": "any"
         },
         "primaryEmail": {
@@ -7208,7 +7631,7 @@
           "type": "string"
         },
         "relations": {
-          "description": "A list of the user's relationships to other users. The maximum allowed data size for this field is 2Kb.",
+          "description": "The list of the user's relationships to other users. The maximum allowed data size for this field is 2Kb.",
           "type": "any"
         },
         "sshPublicKeys": {
@@ -7826,7 +8249,7 @@
           "type": "string"
         },
         "users": {
-          "description": "List of user objects.",
+          "description": "A list of user objects.",
           "items": {
             "$ref": "User"
           },
@@ -7860,7 +8283,7 @@
       "type": "object"
     },
     "VerificationCodes": {
-      "description": "JSON response template for List verification codes operation in Directory API.",
+      "description": "JSON response template for list verification codes operation in Directory API.",
       "id": "VerificationCodes",
       "properties": {
         "etag": {
