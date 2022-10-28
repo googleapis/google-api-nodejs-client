@@ -133,7 +133,7 @@ export namespace androiddeviceprovisioning_v1 {
    */
   export interface Schema$ClaimDeviceRequest {
     /**
-     * Required. The ID of the customer for whom the device is being claimed.
+     * The ID of the customer for whom the device is being claimed.
      */
     customerId?: string | null;
     /**
@@ -144,6 +144,14 @@ export namespace androiddeviceprovisioning_v1 {
      * Optional. The metadata to attach to the device.
      */
     deviceMetadata?: Schema$DeviceMetadata;
+    /**
+     * The Google Workspace customer ID.
+     */
+    googleWorkspaceCustomerId?: string | null;
+    /**
+     * Optional. Must and can only be set for Chrome OS devices.
+     */
+    preProvisioningToken?: string | null;
     /**
      * Required. The section type of the device's provisioning record.
      */
@@ -187,6 +195,10 @@ export namespace androiddeviceprovisioning_v1 {
      * Required. The name of the company. For example _XYZ Corp_. Displayed to the company's employees in the zero-touch enrollment portal.
      */
     companyName?: string | null;
+    /**
+     * Output only. The Google Workspace account associated with this customer. Only used for customer Companies.
+     */
+    googleWorkspaceAccount?: Schema$GoogleWorkspaceAccount;
     /**
      * Input only. The preferred locale of the customer represented as a BCP47 language code. This field is validated on input and requests containing unsupported language codes will be rejected. Supported language codes: Arabic (ar) Chinese (Hong Kong) (zh-HK) Chinese (Simplified) (zh-CN) Chinese (Traditional) (zh-TW) Czech (cs) Danish (da) Dutch (nl) English (UK) (en-GB) English (US) (en-US) Filipino (fil) Finnish (fi) French (fr) German (de) Hebrew (iw) Hindi (hi) Hungarian (hu) Indonesian (id) Italian (it) Japanese (ja) Korean (ko) Norwegian (Bokmal) (no) Polish (pl) Portuguese (Brazil) (pt-BR) Portuguese (Portugal) (pt-PT) Russian (ru) Spanish (es) Spanish (Latin America) (es-419) Swedish (sv) Thai (th) Turkish (tr) Ukrainian (uk) Vietnamese (vi)
      */
@@ -338,7 +350,7 @@ export namespace androiddeviceprovisioning_v1 {
     device?: Schema$DeviceReference;
   }
   /**
-   * An Android device registered for zero-touch enrollment.
+   * An Android or Chrome OS device registered for zero-touch enrollment.
    */
   export interface Schema$Device {
     /**
@@ -375,7 +387,11 @@ export namespace androiddeviceprovisioning_v1 {
      */
     additionalService?: string | null;
     /**
-     * The ID of the Customer that purchased the device.
+     * The ID of the Google Workspace account that owns the Chrome OS device.
+     */
+    googleWorkspaceCustomerId?: string | null;
+    /**
+     * The ID of the Customer that purchased the Android device.
      */
     ownerCompanyId?: string | null;
     /**
@@ -400,11 +416,19 @@ export namespace androiddeviceprovisioning_v1 {
    */
   export interface Schema$DeviceIdentifier {
     /**
+     * An identifier provided by OEMs, carried through the production and sales process. Only applicable to Chrome OS devices.
+     */
+    chromeOsAttestedDeviceId?: string | null;
+    /**
+     * The type of the device
+     */
+    deviceType?: string | null;
+    /**
      * The device’s IMEI number. Validated on input.
      */
     imei?: string | null;
     /**
-     * The device manufacturer’s name. Matches the device's built-in value returned from `android.os.Build.MANUFACTURER`. Allowed values are listed in [manufacturers](/zero-touch/resources/manufacturer-names#manufacturers-names).
+     * The device manufacturer’s name. Matches the device's built-in value returned from `android.os.Build.MANUFACTURER`. Allowed values are listed in [Android manufacturers](/zero-touch/resources/manufacturer-names#manufacturers-names).
      */
     manufacturer?: string | null;
     /**
@@ -412,7 +436,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     meid?: string | null;
     /**
-     * The device model's name. Matches the device's built-in value returned from `android.os.Build.MODEL`. Allowed values are listed in [models](/zero-touch/resources/manufacturer-names#model-names).
+     * The device model's name. Allowed values are listed in [Android models](/zero-touch/resources/manufacturer-names#model-names) and [Chrome OS models](https://support.google.com/chrome/a/answer/10130175?hl=en#identify_compatible).
      */
     model?: string | null;
     /**
@@ -455,7 +479,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     processingStatus?: string | null;
     /**
-     * The processing progress of the operation. Measured as a number from 0 to 100. A value of 10O doesnt always mean the operation completed—check for the inclusion of a `done` field.
+     * The processing progress of the operation. Measured as a number from 0 to 100. A value of 10O doesn't always mean the operation completed—check for the inclusion of a `done` field.
      */
     progress?: number | null;
   }
@@ -532,9 +556,13 @@ export namespace androiddeviceprovisioning_v1 {
    */
   export interface Schema$FindDevicesByOwnerRequest {
     /**
-     * Required. The list of customer IDs to search for.
+     * The list of customer IDs to search for.
      */
     customerId?: string[] | null;
+    /**
+     * The list of IDs of Google Workspace accounts to search for.
+     */
+    googleWorkspaceCustomerId?: string[] | null;
     /**
      * Required. The maximum number of devices to show in a page of results. Must be between 1 and 100 inclusive.
      */
@@ -564,6 +592,19 @@ export namespace androiddeviceprovisioning_v1 {
      * The total count of items in the list irrespective of pagination.
      */
     totalSize?: number | null;
+  }
+  /**
+   * A Google Workspace customer.
+   */
+  export interface Schema$GoogleWorkspaceAccount {
+    /**
+     * Required. The customer ID.
+     */
+    customerId?: string | null;
+    /**
+     * Output only. The pre-provisioning tokens previously used to claim devices.
+     */
+    preProvisioningTokens?: string[] | null;
   }
   /**
    * Response message of all customers related to this partner.
@@ -667,7 +708,7 @@ export namespace androiddeviceprovisioning_v1 {
    */
   export interface Schema$PartnerClaim {
     /**
-     * Required. The ID of the customer for whom the device is being claimed.
+     * The ID of the customer for whom the device is being claimed.
      */
     customerId?: string | null;
     /**
@@ -678,6 +719,14 @@ export namespace androiddeviceprovisioning_v1 {
      * Required. The metadata to attach to the device at claim.
      */
     deviceMetadata?: Schema$DeviceMetadata;
+    /**
+     * The Google Workspace customer ID.
+     */
+    googleWorkspaceCustomerId?: string | null;
+    /**
+     * Optional. Must and can only be set for Chrome OS devices.
+     */
+    preProvisioningToken?: string | null;
     /**
      * Required. The section type of the device's provisioning record.
      */
@@ -713,7 +762,7 @@ export namespace androiddeviceprovisioning_v1 {
    */
   export interface Schema$PerDeviceStatusInBatch {
     /**
-     * If processing succeeds, the device ID of the device.
+     * If processing succeeds, the device ID of the Android device.
      */
     deviceId?: string | null;
     /**
@@ -2851,6 +2900,7 @@ export namespace androiddeviceprovisioning_v1 {
      *   //   "adminEmails": [],
      *   //   "companyId": "my_companyId",
      *   //   "companyName": "my_companyName",
+     *   //   "googleWorkspaceAccount": {},
      *   //   "languageCode": "my_languageCode",
      *   //   "name": "my_name",
      *   //   "ownerEmails": [],
@@ -3164,6 +3214,8 @@ export namespace androiddeviceprovisioning_v1 {
      *       //   "customerId": "my_customerId",
      *       //   "deviceIdentifier": {},
      *       //   "deviceMetadata": {},
+     *       //   "googleWorkspaceCustomerId": "my_googleWorkspaceCustomerId",
+     *       //   "preProvisioningToken": "my_preProvisioningToken",
      *       //   "sectionType": "my_sectionType"
      *       // }
      *     },
@@ -3600,6 +3652,7 @@ export namespace androiddeviceprovisioning_v1 {
      *       // request body parameters
      *       // {
      *       //   "customerId": [],
+     *       //   "googleWorkspaceCustomerId": [],
      *       //   "limit": "my_limit",
      *       //   "pageToken": "my_pageToken",
      *       //   "sectionType": "my_sectionType"
@@ -3847,7 +3900,7 @@ export namespace androiddeviceprovisioning_v1 {
     }
 
     /**
-     * Updates reseller metadata associated with the device.
+     * Updates reseller metadata associated with the device. Android devices only.
      * @example
      * ```js
      * // Before running the sample:
@@ -4267,7 +4320,7 @@ export namespace androiddeviceprovisioning_v1 {
     }
 
     /**
-     * Updates the reseller metadata attached to a batch of devices. This method updates devices asynchronously and returns an `Operation` that can be used to track progress. Read [Long‑running batch operations](/zero-touch/guides/how-it-works#operations).
+     * Updates the reseller metadata attached to a batch of devices. This method updates devices asynchronously and returns an `Operation` that can be used to track progress. Read [Long‑running batch operations](/zero-touch/guides/how-it-works#operations). Android Devices only.
      * @example
      * ```js
      * // Before running the sample:
