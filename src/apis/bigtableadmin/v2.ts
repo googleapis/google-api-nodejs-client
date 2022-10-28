@@ -228,6 +228,10 @@ export namespace bigtableadmin_v2 {
      */
     sizeBytes?: string | null;
     /**
+     * Output only. Name of the backup from which this backup was copied. If a backup is not created by copying a backup, this field will be empty. Values are of the form: projects//instances//backups/.
+     */
+    sourceBackup?: string | null;
+    /**
      * Required. Immutable. Name of the table from which this backup was created. This needs to be in the same instance as the backup. Values are of the form `projects/{project\}/instances/{instance\}/tables/{source_table\}`.
      */
     sourceTable?: string | null;
@@ -252,6 +256,10 @@ export namespace bigtableadmin_v2 {
      * Output only. This time that the backup was finished. Row data in the backup will be no newer than this timestamp.
      */
     endTime?: string | null;
+    /**
+     * Output only. Name of the backup from which this backup was copied. If a backup is not created by copying a backup, this field will be empty. Values are of the form: projects//instances//backups/.
+     */
+    sourceBackup?: string | null;
     /**
      * Output only. Name of the table the backup was created from.
      */
@@ -372,6 +380,40 @@ export namespace bigtableadmin_v2 {
      * Garbage collection rule specified as a protobuf. Must serialize to at most 500 bytes. NOTE: Garbage collection executes opportunistically in the background, and so it's possible for reads to return a cell even if it matches the active GC expression for its family.
      */
     gcRule?: Schema$GcRule;
+  }
+  /**
+   * Metadata type for the google.longrunning.Operation returned by CopyBackup.
+   */
+  export interface Schema$CopyBackupMetadata {
+    /**
+     * The name of the backup being created through the copy operation. Values are of the form `projects//instances//clusters//backups/`.
+     */
+    name?: string | null;
+    /**
+     * The progress of the CopyBackup operation.
+     */
+    progress?: Schema$OperationProgress;
+    /**
+     * Information about the source backup that is being copied from.
+     */
+    sourceBackupInfo?: Schema$BackupInfo;
+  }
+  /**
+   * The request for CopyBackup.
+   */
+  export interface Schema$CopyBackupRequest {
+    /**
+     * Required. The id of the new backup. The `backup_id` along with `parent` are combined as {parent\}/backups/{backup_id\} to create the full backup name, of the form: `projects/{project\}/instances/{instance\}/clusters/{cluster\}/backups/{backup_id\}`. This string must be between 1 and 50 characters in length and match the regex _a-zA-Z0-9*.
+     */
+    backupId?: string | null;
+    /**
+     * Required. Required. The expiration time of the copied backup with microsecond granularity that must be at least 6 hours and at most 30 days from the time the request is received. Once the `expire_time` has passed, Cloud Bigtable will delete the backup and free the resources used by the backup.
+     */
+    expireTime?: string | null;
+    /**
+     * Required. The source backup to be copied from. The source backup needs to be in READY state for it to be copied. Copying a copied backup is not allowed. Once CopyBackup is in progress, the source backup cannot be deleted or cleaned up on expiration until CopyBackup is finished. Values are of the form: `projects//instances//clusters//backups/`.
+     */
+    sourceBackup?: string | null;
   }
   /**
    * Metadata type for the operation returned by CreateBackup.
@@ -5074,6 +5116,156 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
+     * Copy a Cloud Bigtable backup to a new backup in the destination cluster located in the destination instance and project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.clusters.backups.copy({
+     *     // Required. The name of the destination cluster that will contain the backup copy. The cluster must already exists. Values are of the form: `projects/{project\}/instances/{instance\}/clusters/{cluster\}`.
+     *     parent: 'projects/my-project/instances/my-instance/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backupId": "my_backupId",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "sourceBackup": "my_sourceBackup"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    copy(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Copy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    copy(
+      params?: Params$Resource$Projects$Instances$Clusters$Backups$Copy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    copy(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Copy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    copy(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Copy,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    copy(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Copy,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    copy(callback: BodyResponseCallback<Schema$Operation>): void;
+    copy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Clusters$Backups$Copy
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Clusters$Backups$Copy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Clusters$Backups$Copy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/backups:copy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Starts creating a new Cloud Bigtable Backup. The returned backup long-running operation can be used to track creation of the backup. The metadata field type is CreateBackupMetadata. The response field type is Backup, if successful. Cancelling the returned operation will stop the creation and delete the backup.
      * @example
      * ```js
@@ -5120,6 +5312,7 @@ export namespace bigtableadmin_v2 {
      *       //   "expireTime": "my_expireTime",
      *       //   "name": "my_name",
      *       //   "sizeBytes": "my_sizeBytes",
+     *       //   "sourceBackup": "my_sourceBackup",
      *       //   "sourceTable": "my_sourceTable",
      *       //   "startTime": "my_startTime",
      *       //   "state": "my_state"
@@ -5408,6 +5601,7 @@ export namespace bigtableadmin_v2 {
      *   //   "expireTime": "my_expireTime",
      *   //   "name": "my_name",
      *   //   "sizeBytes": "my_sizeBytes",
+     *   //   "sourceBackup": "my_sourceBackup",
      *   //   "sourceTable": "my_sourceTable",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state"
@@ -5848,6 +6042,7 @@ export namespace bigtableadmin_v2 {
      *       //   "expireTime": "my_expireTime",
      *       //   "name": "my_name",
      *       //   "sizeBytes": "my_sizeBytes",
+     *       //   "sourceBackup": "my_sourceBackup",
      *       //   "sourceTable": "my_sourceTable",
      *       //   "startTime": "my_startTime",
      *       //   "state": "my_state"
@@ -5863,6 +6058,7 @@ export namespace bigtableadmin_v2 {
      *   //   "expireTime": "my_expireTime",
      *   //   "name": "my_name",
      *   //   "sizeBytes": "my_sizeBytes",
+     *   //   "sourceBackup": "my_sourceBackup",
      *   //   "sourceTable": "my_sourceTable",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state"
@@ -6265,6 +6461,18 @@ export namespace bigtableadmin_v2 {
     }
   }
 
+  export interface Params$Resource$Projects$Instances$Clusters$Backups$Copy
+    extends StandardParameters {
+    /**
+     * Required. The name of the destination cluster that will contain the backup copy. The cluster must already exists. Values are of the form: `projects/{project\}/instances/{instance\}/clusters/{cluster\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CopyBackupRequest;
+  }
   export interface Params$Resource$Projects$Instances$Clusters$Backups$Create
     extends StandardParameters {
     /**

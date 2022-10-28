@@ -999,6 +999,38 @@
               "resources": {
                 "backups": {
                   "methods": {
+                    "copy": {
+                      "description": "Copy a Cloud Bigtable backup to a new backup in the destination cluster located in the destination instance and project.",
+                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/clusters/{clustersId}/backups:copy",
+                      "httpMethod": "POST",
+                      "id": "bigtableadmin.projects.instances.clusters.backups.copy",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The name of the destination cluster that will contain the backup copy. The cluster must already exists. Values are of the form: `projects/{project}/instances/{instance}/clusters/{cluster}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/clusters/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+parent}/backups:copy",
+                      "request": {
+                        "$ref": "CopyBackupRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigtable.admin",
+                        "https://www.googleapis.com/auth/bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "create": {
                       "description": "Starts creating a new Cloud Bigtable Backup. The returned backup long-running operation can be used to track creation of the backup. The metadata field type is CreateBackupMetadata. The response field type is Backup, if successful. Cancelling the returned operation will stop the creation and delete the backup.",
                       "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/clusters/{clustersId}/backups",
@@ -1892,7 +1924,7 @@
       }
     }
   },
-  "revision": "20220914",
+  "revision": "20221018",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -2034,6 +2066,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "sourceBackup": {
+          "description": "Output only. Name of the backup from which this backup was copied. If a backup is not created by copying a backup, this field will be empty. Values are of the form: projects//instances//backups/.",
+          "readOnly": true,
+          "type": "string"
+        },
         "sourceTable": {
           "description": "Required. Immutable. Name of the table from which this backup was created. This needs to be in the same instance as the backup. Values are of the form `projects/{project}/instances/{instance}/tables/{source_table}`.",
           "type": "string"
@@ -2074,6 +2111,11 @@
         "endTime": {
           "description": "Output only. This time that the backup was finished. Row data in the backup will be no newer than this timestamp.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sourceBackup": {
+          "description": "Output only. Name of the backup from which this backup was copied. If a backup is not created by copying a backup, this field will be empty. Values are of the form: projects//instances//backups/.",
           "readOnly": true,
           "type": "string"
         },
@@ -2265,6 +2307,45 @@
         "gcRule": {
           "$ref": "GcRule",
           "description": "Garbage collection rule specified as a protobuf. Must serialize to at most 500 bytes. NOTE: Garbage collection executes opportunistically in the background, and so it's possible for reads to return a cell even if it matches the active GC expression for its family."
+        }
+      },
+      "type": "object"
+    },
+    "CopyBackupMetadata": {
+      "description": "Metadata type for the google.longrunning.Operation returned by CopyBackup.",
+      "id": "CopyBackupMetadata",
+      "properties": {
+        "name": {
+          "description": "The name of the backup being created through the copy operation. Values are of the form `projects//instances//clusters//backups/`.",
+          "type": "string"
+        },
+        "progress": {
+          "$ref": "OperationProgress",
+          "description": "The progress of the CopyBackup operation."
+        },
+        "sourceBackupInfo": {
+          "$ref": "BackupInfo",
+          "description": "Information about the source backup that is being copied from."
+        }
+      },
+      "type": "object"
+    },
+    "CopyBackupRequest": {
+      "description": "The request for CopyBackup.",
+      "id": "CopyBackupRequest",
+      "properties": {
+        "backupId": {
+          "description": "Required. The id of the new backup. The `backup_id` along with `parent` are combined as {parent}/backups/{backup_id} to create the full backup name, of the form: `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup_id}`. This string must be between 1 and 50 characters in length and match the regex _a-zA-Z0-9*.",
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Required. Required. The expiration time of the copied backup with microsecond granularity that must be at least 6 hours and at most 30 days from the time the request is received. Once the `expire_time` has passed, Cloud Bigtable will delete the backup and free the resources used by the backup.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "sourceBackup": {
+          "description": "Required. The source backup to be copied from. The source backup needs to be in READY state for it to be copied. Copying a copied backup is not allowed. Once CopyBackup is in progress, the source backup cannot be deleted or cleaned up on expiration until CopyBackup is finished. Values are of the form: `projects//instances//clusters//backups/`.",
+          "type": "string"
         }
       },
       "type": "object"
