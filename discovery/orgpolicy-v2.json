@@ -488,7 +488,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Immutable. Name of the constraint. This is unique within the organization. Format of the name should be * `organizations/{organization_id}/customConstraints/{custom_constraint_id}` Example : \"organizations/123/customConstraints/custom.createOnlyE2TypeVms\"",
+                  "description": "Immutable. Name of the constraint. This is unique within the organization. Format of the name should be * `organizations/{organization_id}/customConstraints/{custom_constraint_id}` Example : \"organizations/123/customConstraints/custom.createOnlyE2TypeVms\" The max length is 70 characters and the min length is 1. Note that the prefix \"organizations/{organization_id}/customConstraints/\" is not counted.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/customConstraints/[^/]+$",
                   "required": true,
@@ -897,7 +897,7 @@
       }
     }
   },
-  "revision": "20220919",
+  "revision": "20221026",
   "rootUrl": "https://orgpolicy.googleapis.com/",
   "schemas": {
     "GoogleCloudOrgpolicyV2AlternatePolicySpec": {
@@ -996,15 +996,15 @@
           "type": "string"
         },
         "condition": {
-          "description": "Org policy condition/expression. For example: `resource.instanceName.matches(\"[production|test]_.*_(\\d)+\")'` or, `resource.management.auto_upgrade == true`",
+          "description": "Org policy condition/expression. For example: `resource.instanceName.matches(\"[production|test]_.*_(\\d)+\")'` or, `resource.management.auto_upgrade == true` The max length of the condition is 1000 characters.",
           "type": "string"
         },
         "description": {
-          "description": "Detailed information about this custom policy constraint.",
+          "description": "Detailed information about this custom policy constraint. The max length of the description is 2000 characters.",
           "type": "string"
         },
         "displayName": {
-          "description": "One line display name for the UI.",
+          "description": "One line display name for the UI. The max length of the display_name is 200 characters.",
           "type": "string"
         },
         "methodTypes": {
@@ -1020,14 +1020,14 @@
               "Unspecified. Will results in user error.",
               "Constraint applied when creating the resource.",
               "Constraint applied when updating the resource.",
-              "Constraint applied when deleting the resource."
+              "Constraint applied when deleting the resource. Not supported yet."
             ],
             "type": "string"
           },
           "type": "array"
         },
         "name": {
-          "description": "Immutable. Name of the constraint. This is unique within the organization. Format of the name should be * `organizations/{organization_id}/customConstraints/{custom_constraint_id}` Example : \"organizations/123/customConstraints/custom.createOnlyE2TypeVms\"",
+          "description": "Immutable. Name of the constraint. This is unique within the organization. Format of the name should be * `organizations/{organization_id}/customConstraints/{custom_constraint_id}` Example : \"organizations/123/customConstraints/custom.createOnlyE2TypeVms\" The max length is 70 characters and the min length is 1. Note that the prefix \"organizations/{organization_id}/customConstraints/\" is not counted.",
           "type": "string"
         },
         "resourceTypes": {
