@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtubeanalytics-v1.0.0...youtubeanalytics-v2.0.0) (2022-11-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+
+### Bug Fixes
+
+* update camel case for youtube analytics to allow publishing ([19a2150](https://github.com/googleapis/google-api-nodejs-client/commit/19a2150bb92429fa0c4b7192bfb9ef79b1cabd3a))
+* **youtubeAnalytics:** update the API ([fbacc30](https://github.com/googleapis/google-api-nodejs-client/commit/fbacc309c643a92b439f49a36e9a953e5d865e7e))
+* **youtubeAnalytics:** update the API ([3f2573c](https://github.com/googleapis/google-api-nodejs-client/commit/3f2573cffb5019d4a6569e1e830103714c2f0d46))
+
 ## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtubeAnalytics-v0.2.2...youtubeAnalytics-v1.0.0) (2022-10-28)
 
 
