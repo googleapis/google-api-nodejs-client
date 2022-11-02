@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [109.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v109.0.0...googleapis-v109.0.1) (2022-11-02)
+
+
+### Bug Fixes
+
+* update camel case for youtube analytics to allow publishing ([19a2150](https://github.com/googleapis/google-api-nodejs-client/commit/19a2150bb92429fa0c4b7192bfb9ef79b1cabd3a))
+
 ## [109.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v108.0.1...googleapis-v109.0.0) (2022-10-28)
 
 
