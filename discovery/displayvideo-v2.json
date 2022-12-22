@@ -265,7 +265,7 @@
               "type": "string"
             },
             "pageSize": {
-              "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.",
+              "description": "Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -551,7 +551,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.",
+                  "description": "Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -1097,7 +1097,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+                  "description": "Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -1535,7 +1535,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+                  "description": "Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -2496,7 +2496,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+                  "description": "Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -2553,7 +2553,7 @@
         "lineItems": {
           "methods": {
             "bulkEditAssignedTargetingOptions": {
-              "description": "Bulk edits targeting options under multiple line items. The operation will delete the assigned targeting options provided in BulkEditAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditAssignedTargetingOptionsRequest.create_requests .",
+              "description": "Bulk edits targeting options under multiple line items. The operation will delete the assigned targeting options provided in BulkEditAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditAssignedTargetingOptionsRequest.create_requests. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkUpdate * UpdateLineItem * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption",
               "flatPath": "v2/advertisers/{advertisersId}/lineItems:bulkEditAssignedTargetingOptions",
               "httpMethod": "POST",
               "id": "displayvideo.advertisers.lineItems.bulkEditAssignedTargetingOptions",
@@ -2636,21 +2636,24 @@
               ]
             },
             "bulkUpdate": {
-              "description": "Updates multiple line items.",
+              "description": "Updates multiple line items. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditAssignedTargetingOptions * UpdateLineItem * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption",
               "flatPath": "v2/advertisers/{advertisersId}/lineItems:bulkUpdate",
               "httpMethod": "POST",
               "id": "displayvideo.advertisers.lineItems.bulkUpdate",
               "parameterOrder": [
-                "advertisersId"
+                "advertiserId"
               ],
               "parameters": {
-                "advertisersId": {
+                "advertiserId": {
+                  "description": "Required. The ID of the advertiser this line item belongs to.",
+                  "format": "int64",
                   "location": "path",
+                  "pattern": "^[^/]+$",
                   "required": true,
                   "type": "string"
                 }
               },
-              "path": "v2/advertisers/{advertisersId}/lineItems:bulkUpdate",
+              "path": "v2/advertisers/{+advertiserId}/lineItems:bulkUpdate",
               "request": {
                 "$ref": "BulkUpdateLineItemsRequest"
               },
@@ -2726,7 +2729,7 @@
               ]
             },
             "duplicate": {
-              "description": "Duplicates a line item. Returns the newly created line item id if successful.",
+              "description": "Duplicates a line item. Returns the ID of the created line item if successful.",
               "flatPath": "v2/advertisers/{advertisersId}/lineItems/{lineItemsId}:duplicate",
               "httpMethod": "POST",
               "id": "displayvideo.advertisers.lineItems.duplicate",
@@ -2855,7 +2858,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+                  "description": "Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -2875,7 +2878,7 @@
               ]
             },
             "patch": {
-              "description": "Updates an existing line item. Returns the updated line item if successful. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditLineItemAssignedTargetingOptions * UpdateLineItem * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption",
+              "description": "Updates an existing line item. Returns the updated line item if successful. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditAssignedTargetingOptions * BulkUpdateLineItems * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption",
               "flatPath": "v2/advertisers/{advertisersId}/lineItems/{lineItemsId}",
               "httpMethod": "PATCH",
               "id": "displayvideo.advertisers.lineItems.patch",
@@ -2925,7 +2928,7 @@
                 "assignedTargetingOptions": {
                   "methods": {
                     "create": {
-                      "description": "Assigns a targeting option to a line item. Returns the assigned targeting option if successful. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditLineItemAssignedTargetingOptions * UpdateLineItem * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption",
+                      "description": "Assigns a targeting option to a line item. Returns the assigned targeting option if successful. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditAssignedTargetingOptions * BulkUpdate * UpdateLineItem * DeleteLineItemAssignedTargetingOption",
                       "flatPath": "v2/advertisers/{advertisersId}/lineItems/{lineItemsId}/targetingTypes/{targetingTypesId}/assignedTargetingOptions",
                       "httpMethod": "POST",
                       "id": "displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.create",
@@ -3067,7 +3070,7 @@
                       ]
                     },
                     "delete": {
-                      "description": "Deletes an assigned targeting option from a line item. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditLineItemAssignedTargetingOptions * UpdateLineItem * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption",
+                      "description": "Deletes an assigned targeting option from a line item. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditAssignedTargetingOptions * BulkUpdate * UpdateLineItem * CreateLineItemAssignedTargetingOption",
                       "flatPath": "v2/advertisers/{advertisersId}/lineItems/{lineItemsId}/targetingTypes/{targetingTypesId}/assignedTargetingOptions/{assignedTargetingOptionsId}",
                       "httpMethod": "DELETE",
                       "id": "displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.delete",
@@ -3620,7 +3623,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "Requested page size. Must be between `1` and `100`. Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+                  "description": "Requested page size. Must be between `1` and `200`. Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -3836,7 +3839,7 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+                      "description": "Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -4029,7 +4032,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.",
+                  "description": "Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -4213,7 +4216,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "Requested page size. Must be between `1` and `100`. Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+                  "description": "Requested page size. Must be between `1` and `200`. Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -5126,7 +5129,7 @@
               "type": "string"
             },
             "pageSize": {
-              "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+              "description": "Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -5235,7 +5238,7 @@
               "type": "string"
             },
             "pageSize": {
-              "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+              "description": "Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -5454,7 +5457,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+                  "description": "Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -5541,7 +5544,7 @@
               "type": "string"
             },
             "pageSize": {
-              "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+              "description": "Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -5680,7 +5683,7 @@
               "type": "string"
             },
             "pageSize": {
-              "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+              "description": "Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -5888,7 +5891,7 @@
               "type": "string"
             },
             "pageSize": {
-              "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+              "description": "Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -6037,7 +6040,7 @@
               "type": "string"
             },
             "pageSize": {
-              "description": "Requested page size. Must be between `1` and `100`. If unspecified or greater than `100` will default to `100`.",
+              "description": "Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -6243,7 +6246,7 @@
               "type": "string"
             },
             "pageSize": {
-              "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.",
+              "description": "Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -6616,7 +6619,7 @@
               "type": "string"
             },
             "pageSize": {
-              "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.",
+              "description": "Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -6837,7 +6840,7 @@
               "type": "string"
             },
             "pageSize": {
-              "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.",
+              "description": "Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -6962,7 +6965,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+                  "description": "Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -7707,7 +7710,7 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+                      "description": "Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -8062,7 +8065,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+                  "description": "Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -8431,7 +8434,7 @@
               "type": "string"
             },
             "pageSize": {
-              "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.",
+              "description": "Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -8488,7 +8491,7 @@
       }
     }
   },
-  "revision": "20221027",
+  "revision": "20221208",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -8662,6 +8665,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "billingConfig": {
+          "$ref": "AdvertiserBillingConfig",
+          "description": "Billing related settings of the advertiser."
+        },
         "creativeConfig": {
           "$ref": "AdvertiserCreativeConfig",
           "description": "Required. Creative related settings of the advertiser."
@@ -8740,6 +8747,18 @@
         "thirdPartyOnlyConfig": {
           "$ref": "ThirdPartyOnlyConfig",
           "description": "The configuration for advertisers that use third-party ad servers only."
+        }
+      },
+      "type": "object"
+    },
+    "AdvertiserBillingConfig": {
+      "description": "Billing related settings of an advertiser.",
+      "id": "AdvertiserBillingConfig",
+      "properties": {
+        "billingProfileId": {
+          "description": "The ID of a billing profile assigned to the advertiser. This field will default to the default billing profile ID of the advertiser's parent partner if a value is not provided.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -9141,6 +9160,11 @@
         },
         "assignedTargetingOptionId": {
           "description": "Output only. The unique ID of the assigned targeting option. The ID is only unique within a given resource and targeting type. It may be reused in other contexts.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "assignedTargetingOptionIdAlias": {
+          "description": "Output only. An alias for the assigned_targeting_option_id. This value can be used in place of `assignedTargetingOptionId` when retrieving or deleting existing targeting. This field will only be supported for all assigned targeting options of the following targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY` This field is also supported for line item assigned targeting options of the following targeting types: * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION`",
           "readOnly": true,
           "type": "string"
         },
@@ -12755,18 +12779,17 @@
       "id": "DuplicateLineItemRequest",
       "properties": {
         "targetDisplayName": {
-          "description": "The display name of the resulting line item. Must be UTF-8 encoded with a maximum size of 240 bytes.",
+          "description": "The display name of the new line item. Must be UTF-8 encoded with a maximum size of 240 bytes.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "DuplicateLineItemResponse": {
-      "description": "Response message for LineItemService.DuplicateLineItem.",
       "id": "DuplicateLineItemResponse",
       "properties": {
         "duplicateLineItemId": {
-          "description": "The ID of the successfully created line item.",
+          "description": "The ID of the created line item.",
           "format": "int64",
           "type": "string"
         }
@@ -14075,7 +14098,10 @@
             "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIDEO_SEQUENCE",
             "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_AUDIO",
             "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_REACH",
-            "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_SIMPLE"
+            "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_SIMPLE",
+            "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE_OVER_THE_TOP",
+            "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_REACH_OVER_THE_TOP",
+            "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_SIMPLE_OVER_THE_TOP"
           ],
           "enumDescriptions": [
             "Type value is not specified or is unknown in this version. Line items of this type and their targeting cannot be created or updated using the API.",
@@ -14092,7 +14118,10 @@
             "YouTube video ads that show a story in a particular sequence using a mix of formats. Line items of this type and their targeting cannot be created or updated using the API.",
             "YouTube audio ads. Line items of this type and their targeting cannot be created or updated using the API.",
             "YouTube video ads that optimize reaching more unique users at lower cost. May include bumper ads, skippable in-stream ads, or a mix of types. Line items of this type and their targeting cannot be created or updated using the API.",
-            "Default YouTube video ads. Line items of this type and their targeting cannot be created or updated using the API."
+            "Default YouTube video ads. Line items of this type and their targeting cannot be created or updated using the API.",
+            "Connected TV youTube video ads (up to 15 seconds) that cannot be skipped. Line items of this type and their targeting cannot be created or updated using the API.",
+            "Connected TV youTube video ads that optimize reaching more unique users at lower cost. May include bumper ads, skippable in-stream ads, or a mix of types. Line items of this type and their targeting cannot be created or updated using the API.",
+            "Connected TV default YouTube video ads. Only include in-stream ad-format. Line items of this type and their targeting cannot be created or updated using the API."
           ],
           "type": "string"
         },
@@ -14950,7 +14979,7 @@
           "description": "Required. The start and end date settings of the budget segment. They are resolved relative to the parent advertiser's time zone. * When creating a new budget segment, both `start_date` and `end_date` must be in the future. * An existing budget segment with a `start_date` in the past has a mutable `end_date` but an immutable `start_date`. * `end_date` must be the `start_date` or later, both before the year 2037."
         },
         "description": {
-          "description": "The budget segment description. It can be used to enter Purchase Order information for each budget segment and have that information printed on the invoices. Must be UTF-8 encoded with a length of no more than 80 characters.",
+          "description": "The budget segment description. It can be used to enter Purchase Order information for each budget segment and have that information printed on the invoices. Must be UTF-8 encoded.",
           "type": "string"
         }
       },
@@ -15935,7 +15964,10 @@
             "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIDEO_SEQUENCE",
             "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_AUDIO",
             "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_REACH",
-            "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_SIMPLE"
+            "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_SIMPLE",
+            "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE_OVER_THE_TOP",
+            "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_REACH_OVER_THE_TOP",
+            "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_SIMPLE_OVER_THE_TOP"
           ],
           "enumDescriptions": [
             "Type value is not specified or is unknown in this version. Line items of this type and their targeting cannot be created or updated using the API.",
@@ -15952,7 +15984,10 @@
             "YouTube video ads that show a story in a particular sequence using a mix of formats. Line items of this type and their targeting cannot be created or updated using the API.",
             "YouTube audio ads. Line items of this type and their targeting cannot be created or updated using the API.",
             "YouTube video ads that optimize reaching more unique users at lower cost. May include bumper ads, skippable in-stream ads, or a mix of types. Line items of this type and their targeting cannot be created or updated using the API.",
-            "Default YouTube video ads. Line items of this type and their targeting cannot be created or updated using the API."
+            "Default YouTube video ads. Line items of this type and their targeting cannot be created or updated using the API.",
+            "Connected TV youTube video ads (up to 15 seconds) that cannot be skipped. Line items of this type and their targeting cannot be created or updated using the API.",
+            "Connected TV youTube video ads that optimize reaching more unique users at lower cost. May include bumper ads, skippable in-stream ads, or a mix of types. Line items of this type and their targeting cannot be created or updated using the API.",
+            "Connected TV default YouTube video ads. Only include in-stream ad-format. Line items of this type and their targeting cannot be created or updated using the API."
           ],
           "type": "string"
         },
@@ -16003,7 +16038,7 @@
         },
         "targetingExpansion": {
           "$ref": "TargetingExpansionConfig",
-          "description": "The [targeting expansion](https://support.google.com/displayvideo/answer/10191558) settings of the line item. This config is only applicable when eligible audience list targeting is assigned to the line item."
+          "description": "The [targeting expansion](//support.google.com/displayvideo/answer/10191558) settings of the line item. This config is only applicable when eligible audience list targeting is assigned to the line item. Beginning November 7, 2022, these settings may represent the [optimized targeting feature](//support.google.com/displayvideo/answer/12060859) in place of targeting expansion. This feature will be rolled out to all partners by November 9, 2022."
         },
         "updateTime": {
           "description": "Output only. The timestamp when the line item was last updated. Assigned by the system.",
@@ -18318,7 +18353,7 @@
           "description": "Search terms for geo region targeting options. Can only be used when targeting_type is `TARGETING_TYPE_GEO_REGION`."
         },
         "pageSize": {
-          "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+          "description": "Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
           "format": "int32",
           "type": "integer"
         },
@@ -18529,15 +18564,15 @@
       "type": "object"
     },
     "TargetingExpansionConfig": {
-      "description": "Settings that control the targeting expansion of the line item. Targeting expansion allows the line item to reach a larger audience based on the original audience list and the targeting expansion level.",
+      "description": "Settings that control the targeting expansion of the line item. Targeting expansion allows the line item to reach a larger audience based on the original audience list and the targeting expansion level. Beginning November 7, 2022, these settings may represent the [optimized targeting feature](//support.google.com/displayvideo/answer/12060859) in place of targeting expansion. This feature will be rolled out to all partners by November 9, 2022.",
       "id": "TargetingExpansionConfig",
       "properties": {
         "excludeFirstPartyAudience": {
-          "description": "Required. Whether to exclude first party audiences from targeting. Similar audiences of the excluded first party lists will not be excluded. Only applicable when a first-party audience is positively targeted (directly or included in a combined audience), otherwise this selection will be ignored.",
+          "description": "Required. Whether to exclude first-party audiences from use in targeting expansion or optimized targeting. Similar audiences of the excluded first-party lists will not be excluded. Only applicable when a first-party audience is positively targeted (directly or included in a combined audience), otherwise this selection will be ignored.",
           "type": "boolean"
         },
         "targetingExpansionLevel": {
-          "description": "Required. Magnitude of expansion for applicable targeting under this line item.",
+          "description": "Required. Magnitude of expansion for applicable targeting under this line item. Beginning November 7, 2022, the behavior of this field will change in the following ways with the replacement of targeting expansion with [optimized targeting](//support.google.com/displayvideo/answer/12060859): * This field will represent the optimized targeting checkbox, with a `NO_EXPANSION` value representing optimized targeting turned off and a `LEAST_EXPANSION` value representing optimized targeting turned on. * `NO_EXPANSION` will be the default value for the field and will be automatically assigned if you do not set the field. * If you set the field to any value other than `NO_EXPANSION`, it will automatically be set to `LEAST_EXPANSION`.",
           "enum": [
             "TARGETING_EXPANSION_LEVEL_UNSPECIFIED",
             "NO_EXPANSION",
