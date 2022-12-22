@@ -876,7 +876,7 @@
       }
     }
   },
-  "revision": "20221014",
+  "revision": "20221208",
   "rootUrl": "https://cloudtasks.googleapis.com/",
   "schemas": {
     "AcknowledgeTaskRequest": {
@@ -1025,7 +1025,7 @@
       "type": "object"
     },
     "BufferTaskRequest": {
-      "description": "LINT.IfChange Request message for BufferTask.",
+      "description": "Request message for BufferTask.",
       "id": "BufferTaskRequest",
       "properties": {
         "body": {
