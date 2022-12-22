@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v6.0.0...displayvideo-v7.0.0) (2022-12-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* **displayvideo:** This release has breaking changes.
+
+### Features
+
+* **displayvideo:** update the API ([9c560c7](https://github.com/googleapis/google-api-nodejs-client/commit/9c560c7618bb493df8a788afb637121051eef09a))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v5.0.3...displayvideo-v6.0.0) (2022-10-28)
 
 
