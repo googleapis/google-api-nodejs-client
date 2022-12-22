@@ -2061,6 +2061,37 @@ export namespace cloudsearch_v1 {
     slackDataImageUrlHeight?: number | null;
   }
   /**
+   * An Attribute is a piece of data attached an Item. Attributes are opaque to the Starbox and have no effect on, nor are they effected by, message storage, indexing, or search.
+   */
+  export interface Schema$Attribute {
+    /**
+     * The name of the attribute. Required - If a write is attempted with an empty string, the server will return an error.
+     */
+    name?: string | null;
+    value?: Schema$CaribouAttributeValue;
+  }
+  /**
+   * An attribute was deleted from some (subset of the) messages in this thread.
+   */
+  export interface Schema$AttributeRemoved {
+    attributeId?: string | null;
+    messageKeys?: Schema$MultiKey[];
+  }
+  export interface Schema$Attributes {
+    attribute?: Schema$Attribute[];
+  }
+  /**
+   * An attribute was added to some (subset of the) messages in this thread.
+   */
+  export interface Schema$AttributeSet {
+    attributeId?: string | null;
+    /**
+     * The serialized attribute_value as persisted in the storage layer. The application is responsible for deserializing it to an Attribute.Value if appropriate.
+     */
+    attributeValue?: string | null;
+    messageKeys?: Schema$MultiKey[];
+  }
+  /**
    * Represents the settings for Cloud audit logging
    */
   export interface Schema$AuditLoggingSettings {
@@ -2320,10 +2351,6 @@ export namespace cloudsearch_v1 {
      */
     calendarEventId?: string | null;
     /**
-     * Configuration for the chat for this conference.
-     */
-    chatConfig?: Schema$ChatConfig;
-    /**
      * The current co-activity session, or unset if there is none in progress. A co-activity session can be initiated by devices in JOINED state . Initiator of the co-activity is expected to populate this field to start the session. Once clients detect that the co-activity has finished, any JOINED device can clear this field to end the co-activity session. In the case of switching activities, the initiator of the new activity merely needs to override this with the new co-activity data, and all connected clients are expected to handle the transition gracefully.
      */
     coActivity?: Schema$CoActivity;
@@ -2339,10 +2366,6 @@ export namespace cloudsearch_v1 {
      * Output only. The maximum number of devices that may be in the joined state simultaneously in this conference. This can be used by clients to guess whether it will be possible to join, but the only way to know is to try to join. It can also be used to inform users about the limit that is in effect. This limit is normally set when the conference is created and not changed during the lifetime of the conference. But there are some cases where it may change, so clients should be aware that the information may be stale.
      */
     maxJoinedDevices?: number | null;
-    /**
-     * Output only. Information about the media backend for the currently ongoing conference in the meeting space. The media backend information will only be filled in for clients that are supposed to present the information. The information should be displayed in a debug panel and is only intended for internal debugging purposes. If the string is empty nothing should be displayed about the media backend.
-     */
-    mediaBackendInfo?: string | null;
     /**
      * Output only. The name or description of the organization or domain that the organizer belongs to. The expected use of this in clients is to present messages like "John Doe (outside of Google.com) is trying to join this call", where "Google.com" is the organization name. The field will be empty if the organization name could not be determined, possibly because of a backend error.
      */
@@ -2486,23 +2509,23 @@ export namespace cloudsearch_v1 {
      */
     title?: string | null;
   }
+  export interface Schema$CaribouAttributeValue {
+    /**
+     * Tags 1 through 15 are reserved for the most commonly used fields.
+     */
+    booleanValue?: boolean | null;
+    intValue?: number | null;
+    longValue?: string | null;
+    /**
+     * Generally, applications should avoid storing raw bytes and instead store structured data as protocol buffer extensions. This both reduces the amount of ad-hoc attribute parsing code as well as eliminates an intermediate copy of the data when deserializing the value. The rawByteValue field is mainly provided for compatibility with attributes stored before the introduction of the Attribute.Value.
+     */
+    rawByteValue?: string | null;
+    stringValue?: string | null;
+  }
   /**
    * Actions handled by Chat Clients.
    */
   export interface Schema$ChatClientActionMarkup {}
-  /**
-   * Configuration of the in meeting chat.
-   */
-  export interface Schema$ChatConfig {
-    /**
-     * The Type of chat this Conference is currently using.
-     */
-    chatType?: string | null;
-    /**
-     * The configuration of Google Chat when selected.
-     */
-    googleChatConfig?: Schema$GoogleChatConfig;
-  }
   /**
    * Metadata used as inputs to the localization that is performed on Dynamite-originated messages that are incompatible with Hangouts clients. See go/localization-of-system-messages for more details.
    */
@@ -2640,6 +2663,27 @@ export namespace cloudsearch_v1 {
     requiredConsistencyTimestampUsec?: string | null;
   }
   /**
+   * Represents the context of the client on behalf of which a HistoryRecord is produced. The ClientContext message can be used to hold context about the service client (e.g. the internal server making fusebox requests) or the user client (e.g. the IP address of the end user).
+   */
+  export interface Schema$ClientContext {
+    /**
+     * The client operation to which this history record belongs. The notion of a client operation is provided to keep track of client operations which might span multiple transactions in the lower level.
+     */
+    clientOperationId?: string | null;
+    /**
+     * E.g. "pinto", "imap", "bigtop", "upload"
+     */
+    clientType?: string | null;
+    /**
+     * Contains information about the session which created this history record. This will be empty if the history record was generated by an internal request.
+     */
+    sessionContext?: Schema$SessionContext;
+    /**
+     * Textual representation of the user's IP address, if available.
+     */
+    userIp?: string | null;
+  }
+  /**
    * Principal associated with a Cloud Principal representing third party user.
    */
   export interface Schema$CloudPrincipalProto {
@@ -2647,6 +2691,19 @@ export namespace cloudsearch_v1 {
      * Format: "{identity-pool\}:{subject\}#" Details: go/cloud-principal-identifiers
      */
     id?: string | null;
+  }
+  /**
+   * ClusterInfo contains clustering related information for a particular thread that would be sent as part of the conversation view. Today, this information would be used by iOS notification server to identify whether the thread belongs to a cluster. If the thread belongs to a grouped cluster, it would identify whether the cluster is throttled.
+   */
+  export interface Schema$ClusterInfo {
+    /**
+     * IDs of the highest priority clusters to which the thread belongs to. If this field is not present, the thread does not belong to any cluster and would be shown in the inbox, unclustered.
+     */
+    clusterId?: string[] | null;
+    /**
+     * If the thread belongs to a grouped cluster and all of those clusters are throttled, then this field is set to true.
+     */
+    throttled?: boolean | null;
   }
   /**
    * Metadata about a co-activity session.
@@ -3324,6 +3381,16 @@ export namespace cloudsearch_v1 {
     type?: string | null;
   }
   /**
+   * This is the proto for holding message level scoring information. This data is used for logging in query-api server and for testing purposes.
+   */
+  export interface Schema$DynamiteMessagesScoringInfo {
+    finalScore?: number | null;
+    freshnessScore?: number | null;
+    joinedSpaceAffinityScore?: number | null;
+    messageAgeInDays?: number | null;
+    topicalityScore?: number | null;
+  }
+  /**
    * This is the proto for holding space level scoring information. This data is used for logging in query-api server and for testing purposes.
    */
   export interface Schema$DynamiteSpacesScoringInfo {
@@ -3506,6 +3573,10 @@ export namespace cloudsearch_v1 {
      */
     count?: number | null;
     /**
+     * Filter to be passed in the search request if the corresponding bucket is selected.
+     */
+    filter?: Schema$Filter;
+    /**
      * Percent of results that match the bucket value. The returned value is between (0-100], and is rounded down to an integer if fractional. If the value is not explicitly returned, it represents a percentage value that rounds to 0. Percentages are returned for all searches, but are an estimate. Because percentages are always returned, you should render percentages instead of counts.
      */
     percentage?: number | null;
@@ -3515,6 +3586,10 @@ export namespace cloudsearch_v1 {
    * Specifies operators to return facet results for. There will be one FacetResult for every source_name/object_type/operator_name combination.
    */
   export interface Schema$FacetOptions {
+    /**
+     * If set, describes integer faceting options for the given integer property. The corresponding integer property in the schema should be marked isFacetable. The number of buckets returned would be minimum of this and num_facet_buckets.
+     */
+    integerFacetingOptions?: Schema$IntegerFacetingOptions;
     /**
      * Maximum number of facet buckets that should be returned for this facet. Defaults to 10. Maximum value is 100.
      */
@@ -3571,6 +3646,14 @@ export namespace cloudsearch_v1 {
     valueFilter?: Schema$ValueFilter;
   }
   /**
+   * A filter was created.
+   */
+  export interface Schema$FilterCreated {}
+  /**
+   * A filter was deleted.
+   */
+  export interface Schema$FilterDeleted {}
+  /**
    * Filter options to be applied on query.
    */
   export interface Schema$FilterOptions {
@@ -3584,12 +3667,39 @@ export namespace cloudsearch_v1 {
     objectType?: string | null;
   }
   /**
+   * HistoryRecord for changes associated with a filter, namely: FILTER_CREATED FILTER_DELETED
+   */
+  export interface Schema$FilterUpdate {
+    filterCreated?: Schema$FilterCreated;
+    filterDeleted?: Schema$FilterDeleted;
+    filterId?: string | null;
+  }
+  /**
    * A persistent (sticky) footer that is added to the bottom of the card.
    */
   export interface Schema$FixedFooter {
     buttons?: Schema$Button[];
     primaryButton?: Schema$TextButton;
     secondaryButton?: Schema$TextButton;
+  }
+  export interface Schema$Folder {
+    /**
+     * Folder mapping id.
+     */
+    id?: string | null;
+    /**
+     * One for each copy of the message in the IMAP folder.
+     */
+    message?: Schema$ImapsyncFolderAttributeFolderMessage[];
+  }
+  /**
+   * This is the content of //imapsync/folder attribute.
+   */
+  export interface Schema$FolderAttribute {
+    /**
+     * List of all IMAP folders where the message presents.
+     */
+    folder?: Schema$Folder[];
   }
   export interface Schema$FormAction {
     /**
@@ -3645,6 +3755,91 @@ export namespace cloudsearch_v1 {
      * This property indicates the freshness level of the object in the index. If set, this property must be a top-level property within the property definitions and it must be a timestamp type or date type. Otherwise, the Indexing API uses updateTime as the freshness indicator. The maximum length is 256 characters. When a property is used to calculate freshness, the value defaults to 2 years from the current time.
      */
     freshnessProperty?: string | null;
+  }
+  /**
+   * The Item message is the read interface for user data (traditionally referred to as a "message", such as a mail message or a chat message, but generalized to encompass other types such as tasks) and stored in Tingle. Each Item is associated with a single Thread. An Item contains three classes of data. (1): Item "fields" are common to items of all message types (e.g. mail, chat, task, etc.) and are identified by the ItemFieldSpec.FetchType enum when fetching Items. (2): Item "attributes" represent data associated with an Item that is stored on behalf of the client but to which the fusebox and storage layers are otherwise agnostic. (3): Item "parts" are application-defined protocol buffers that affect how the Item is indexed. Item parts are referenced as extensions to the ItemParts message. By default the application specifies the index terms associated with an Item part. For performance sensitive applications, the storage layer can be modified to understand and index data types natively.
+   */
+  export interface Schema$FuseboxItem {
+    attributes?: Schema$Attributes;
+    /**
+     * The creation time of the Item in micro seconds.
+     */
+    creationTimeMicroseconds?: string | null;
+    history?: Schema$History;
+    /**
+     * The key is used to refer to an item. Note that every field of the MultiKey is unique to the Item, and thus the Item can be looked up by any of the fields.
+     */
+    itemKey?: Schema$MultiKey;
+    labels?: Schema$Labels;
+    /**
+     * The modification time of the Item in micro seconds. Modifications to the message include label addition, deletion, etc.
+     */
+    lastModificationTimeUs?: string | null;
+    /**
+     * go/lockpicker Locker counterpart of references.
+     */
+    lockerReferences?: Schema$References;
+    matchInfo?: Schema$MatchInfo;
+    /**
+     * Type-specific data are represented as extensions to the ItemParts message.
+     */
+    parts?: Schema$ItemParts;
+    /**
+     * The read timestamp at which this item was read. This is a temporary field used to check if two items streamed during dual reading were read at the same timestamp. This will be populated by Fusebox RPCs. "DO NOT USE UNLESS YOU TALK TO FUSEBOX TEAM (gmail-fusebox@)".
+     */
+    readTs?: string | null;
+    /**
+     * References to attachments, video attachments in Youtube and Hangout messages.
+     */
+    references?: Schema$References;
+    /**
+     * The snippet is a brief bit of text describing this item.
+     */
+    snippet?: string | null;
+    /**
+     * The key of the Thread with which this Item is associated.
+     */
+    threadKey?: Schema$MultiKey;
+    /**
+     * A base64 encoded and encrypted string generated from the Gaia Id and the thread id. Used to generate the permalink for this thread, exposed from Gmail API.
+     */
+    threadLocator?: string | null;
+    triggers?: Schema$Triggers;
+    /**
+     * The latest history operation id that resulted in a mutation of the item.
+     */
+    version?: string | null;
+  }
+  /**
+   * In the context of a search, the MatchInfo contains information about which Items matched the query.
+   */
+  export interface Schema$FuseboxItemThreadMatchInfo {
+    /**
+     * If SearchQuery.Options.Clustering is present, the query will be treated as a cluster query, and this field may be populated with the cluster ID of the cluster to which this thread belongs, if any. The cluster ID will be a label on the message.
+     */
+    clusterId?: string | null;
+    /**
+     * The server id of the last item that matched the query. This is always set, regardless of the compute_matching_items_per_thread option. This is the value by which search results are sorted, in descending (i.e. newest first) order.
+     */
+    lastMatchingItemId?: string | null;
+    /**
+     * The MultiKey of the last item that matched the query. This is always set, regardless of the compute_matching_items_per_thread option. This is the value by which search results are sorted, in descending (i.e. newest first) order.
+     */
+    lastMatchingItemKey?: Schema$MultiKey;
+    /**
+     * If SearchQuery.Options.compute_matching_items_per_thread, this field will contain the keys of all items that matched the query, in ascending order. Note that this option requires extra computation.
+     */
+    matchingItemKey?: Schema$MultiKey[];
+    /**
+     * The rank of this ItemThread in the result set of the query. This rank may be used to sort ItemThreads in proper order. Ranks are specific to a query, and stable for a given query at a specific time.
+     */
+    rank?: Schema$Rank;
+  }
+  /**
+   * If the Value field is not set this means the pref did not exist.
+   */
+  export interface Schema$FuseboxPrefUpdatePreState {
+    value?: string | null;
   }
   export interface Schema$GaiaGroupProto {
     groupId?: string | null;
@@ -3747,15 +3942,6 @@ export namespace cloudsearch_v1 {
     openCreatedDraftActionMarkup?: Schema$OpenCreatedDraftActionMarkup;
     taskAction?: Schema$TaskActionMarkup;
     updateDraftActionMarkup?: Schema$UpdateDraftActionMarkup;
-  }
-  /**
-   * Configuration of the Google Chat in Meet.
-   */
-  export interface Schema$GoogleChatConfig {
-    /**
-     * ID of the Chat group.
-     */
-    chatGroupId?: string | null;
   }
   /**
    * The markup for developers to specify the contents of a contextual AddOn.
@@ -4190,6 +4376,33 @@ export namespace cloudsearch_v1 {
     searchText?: string | null;
   }
   /**
+   * The most recent history records associated with the item.
+   */
+  export interface Schema$History {
+    record?: Schema$HistoryRecord[];
+  }
+  export interface Schema$HistoryRecord {
+    /**
+     * This will almost always be set, but there are corner cases in which the information is not available, and thus applications must handle its absence appropriately.
+     */
+    clientContext?: Schema$ClientContext;
+    filterUpdate?: Schema$FilterUpdate;
+    imapUpdate?: Schema$ImapUpdate;
+    labelUpdate?: Schema$LabelUpdate;
+    prefUpdate?: Schema$PrefUpdate;
+    /**
+     * Each HistoryRecord has a unique id. Ids are monotonically increasing, and not necessarily contiguous.
+     */
+    recordId?: string | null;
+    threadUpdate?: Schema$ThreadUpdate;
+    /**
+     * This will almost always be set, but there are corner cases in which the information is not available, and thus applications must handle its absence appropriately.
+     */
+    transactionContext?: Schema$TransactionContext;
+    txnDebugInfo?: Schema$TransactionDebugInfo;
+    type?: string | null;
+  }
+  /**
    * Actions handled by individual host apps.
    */
   export interface Schema$HostAppActionMarkup {
@@ -4343,6 +4556,66 @@ export namespace cloudsearch_v1 {
     onClick?: Schema$OnClick;
     text?: string | null;
   }
+  export interface Schema$ImapSessionContext {
+    app?: string | null;
+    /**
+     * User agent information
+     */
+    deviceType?: string | null;
+    /**
+     * As agreed with Bond team, this holds the fingerprint of any "aguid" or "guid" provided by the ID command. The fingerprint should be calculated by fingerprint2011. Note that not all clients will provide aguid or guid through ID command.
+     */
+    guidFingerprint?: string | null;
+    os?: string | null;
+    osVersion?: Schema$OsVersion;
+    possiblyTrimmedModel?: Schema$PossiblyTrimmedModel;
+  }
+  /**
+   * Message delete history record extension that exports //imapsync/folder attribute of deleted messages which have ^is label.
+   */
+  export interface Schema$ImapSyncDelete {
+    /**
+     * Contains the value of //imapsync/folder attribute of deleted message.
+     */
+    mappings?: Schema$FolderAttribute;
+    msgId?: string | null;
+  }
+  export interface Schema$ImapsyncFolderAttributeFolderMessage {
+    /**
+     * Flags of the message. Represents unseen and flagged state.
+     */
+    flags?: Schema$ImapsyncFolderAttributeFolderMessageFlags;
+    /**
+     * UID of the message.
+     */
+    uid?: string | null;
+  }
+  export interface Schema$ImapsyncFolderAttributeFolderMessageFlags {
+    /**
+     * Flagged state of the message.
+     */
+    flagged?: boolean | null;
+    /**
+     * Seen state of the message.
+     */
+    seen?: boolean | null;
+  }
+  export interface Schema$ImapUidsReassign {
+    /**
+     * Label
+     */
+    labelId?: string | null;
+    /**
+     * The message Ids
+     */
+    messageId?: string[] | null;
+  }
+  /**
+   * HistoryRecord for changes associated with IMAP, namely: IMAP_UIDS_REASSIGN
+   */
+  export interface Schema$ImapUpdate {
+    imapUidsReassign?: Schema$ImapUidsReassign;
+  }
   /**
    * Annotation metadata to display system messages for incoming webhook events. Next Tag: 7
    */
@@ -4413,6 +4686,15 @@ export namespace cloudsearch_v1 {
     mimeType?: string | null;
   }
   /**
+   * Used to specify integer faceting options.
+   */
+  export interface Schema$IntegerFacetingOptions {
+    /**
+     * Buckets for given integer values should be in strictly ascending order. For example, if values supplied are (1,5,10,100), the following facet buckets will be formed {<1, [1,5), [5-10), [10-100), \>=100\}.
+     */
+    integerBuckets?: string[] | null;
+  }
+  /**
    * Used to provide a search operator for integer properties. This is optional. Search operators let users restrict the query to specific fields relevant to the type of item being searched.
    */
   export interface Schema$IntegerOperatorOptions {
@@ -4433,6 +4715,10 @@ export namespace cloudsearch_v1 {
    * The options for integer properties.
    */
   export interface Schema$IntegerPropertyOptions {
+    /**
+     * If set, describes integer faceting options for the given integer property. The corresponding integer property should be marked isFacetable.
+     */
+    integerFacetingOptions?: Schema$IntegerFacetingOptions;
     /**
      * The maximum value of the property. The minimum and maximum values for the property are used to rank results according to the ordered ranking. Indexing requests with values greater than the maximum are accepted and ranked with the same weight as items indexed with the maximum value.
      */
@@ -4677,6 +4963,10 @@ export namespace cloudsearch_v1 {
     updateTime?: string | null;
   }
   /**
+   * Container for type-specific extensions of an Item. This protobuf is defined in a separate file to allow types to reference/extend the message without depending on other fusebox protobufs. See items.proto.
+   */
+  export interface Schema$ItemParts {}
+  /**
    * This contains item's status and any errors.
    */
   export interface Schema$ItemStatus {
@@ -4705,6 +4995,54 @@ export namespace cloudsearch_v1 {
      * The structured data object that should conform to a registered object definition in the schema for the data source.
      */
     object?: Schema$StructuredDataObject;
+  }
+  /**
+   * An ItemThread is an ordered list of Items. An ItemThread corresponds to a "conversation" in the context of mail. An Item belongs to exactly one ItemThread.
+   */
+  export interface Schema$ItemThread {
+    clusterInfo?: Schema$ClusterInfo;
+    /**
+     * The Items in the ItemThread. In the context of a search, the list of Items may be a subset of those that logically belong to the ItemThread. The details of which items are included are available in the ItemThreadView returned in the overall rpc response.
+     */
+    item?: Schema$FuseboxItem[];
+    /**
+     * The server id of the last item returned in the ItemThread. This can be deduced from the [item] list but is provided for convenience. When manually constructing an ItemThreadViewSpec to perform operations on the ItemThread, this value can be used as the [high_item_id_watermark].
+     */
+    lastItemId?: string | null;
+    matchInfo?: Schema$FuseboxItemThreadMatchInfo;
+    /**
+     * A snippet summarizing the thread. This field is only populated for searches.
+     */
+    snippet?: string | null;
+    /**
+     * The MultiKey that identifies this thread. This value never changes, i.e. remains constant across modifications to the thread, including addition, relabeling, or deletion of contained Items. As such, the thread key may not necessarily correspond to the key of an contained Item. Legacy note: The "server_id" of the thread key is equivalent to the notion of the "original thread id" in the CSS API.
+     */
+    threadKey?: Schema$MultiKey;
+    /**
+     * A base64 encoded and encrypted string generated from the Gaia Id and the thread id. Used to generate the permalink for this thread, exposed from Gmail API.
+     */
+    threadLocator?: string | null;
+    /**
+     * Next available id : 10
+     */
+    topicState?: Schema$TopicState;
+    /**
+     * The latest history operation id that resulted in a mutation of any item in the thread.
+     */
+    version?: string | null;
+  }
+  /**
+   * Identifies a jobsetted server as a target for Trigger dispatch.
+   */
+  export interface Schema$JobsettedServerSpec {
+    /**
+     * E.g. "gateway", "stubby" etc. Leave unset to use the default unnamed port.
+     */
+    portName?: string | null;
+    /**
+     * E.g. "satellite-server", "bigtop-sync", etc.
+     */
+    serverName?: string | null;
   }
   export interface Schema$KeyValue {
     /**
@@ -4739,6 +5077,64 @@ export namespace cloudsearch_v1 {
      */
     topLabel?: string | null;
   }
+  /**
+   * A label was added to some (subset of the) messages in this thread.
+   */
+  export interface Schema$LabelAdded {
+    labelId?: string | null;
+    labelName?: string | null;
+    messageKeys?: Schema$MultiKey[];
+    syncId?: number | null;
+  }
+  /**
+   * A label was created.
+   */
+  export interface Schema$LabelCreated {}
+  /**
+   * A label was deleted.
+   */
+  export interface Schema$LabelDeleted {}
+  /**
+   * A label was removed from some (subset of the) messages in this thread.
+   */
+  export interface Schema$LabelRemoved {
+    labelId?: string | null;
+    labelName?: string | null;
+    messageKeys?: Schema$MultiKey[];
+    syncId?: number | null;
+  }
+  /**
+   * A label was renamed.
+   */
+  export interface Schema$LabelRenamed {
+    oldCanonicalName?: string | null;
+  }
+  export interface Schema$Labels {
+    /**
+     * The display name of the labels. This is populated (instead of the id) when the request fetch_spec has LABEL_DISPLAY_NAMES.
+     */
+    displayName?: string[] | null;
+    /**
+     * The ids of the labels attached to the Item, e.g. "^i", "^x_1"
+     */
+    id?: string[] | null;
+  }
+  /**
+   * HistoryRecord for changes associated with a label, namely: LABEL_CREATED LABEL_DELETED LABEL_RENAMED LABEL_UPDATED
+   */
+  export interface Schema$LabelUpdate {
+    canonicalName?: string | null;
+    labelCreated?: Schema$LabelCreated;
+    labelDeleted?: Schema$LabelDeleted;
+    labelId?: string | null;
+    labelRenamed?: Schema$LabelRenamed;
+    labelUpdated?: Schema$LabelUpdated;
+    syncId?: number | null;
+  }
+  /**
+   * A label pref was updated outside of a rename, create, or delete.
+   */
+  export interface Schema$LabelUpdated {}
   /**
    * The language configuration for the session.
    */
@@ -4850,6 +5246,12 @@ export namespace cloudsearch_v1 {
      */
     nextPageToken?: string | null;
     unmappedIdentities?: Schema$UnmappedIdentity[];
+  }
+  export interface Schema$MatchInfo {
+    /**
+     * Reference keys for image attachments that matches search query.
+     */
+    matchingImageReferenceKey?: string[] | null;
   }
   /**
    * Matched range of a snippet [start, end).
@@ -5170,6 +5572,10 @@ export namespace cloudsearch_v1 {
      */
     retentionSettings?: Schema$AppsDynamiteSharedRetentionSettings;
     /**
+     * Used by clients to correctly log format type for message creation due to complexity with client side optimistic update (see go/content-metric-post-send-logging for details). Currently, only set by server in the message or topic creation path.
+     */
+    richTextFormattingType?: string | null;
+    /**
      * A client-specified string that can be used to uniquely identify a message in a space, in lieu of `id.message_id`.
      */
     secondaryMessageKey?: string | null;
@@ -5191,6 +5597,18 @@ export namespace cloudsearch_v1 {
     uploadMetadata?: Schema$UploadMetadata[];
   }
   /**
+   * A message was added. Specifying id and initial labels.
+   */
+  export interface Schema$MessageAdded {
+    attributeIds?: string[] | null;
+    labelIds?: string[] | null;
+    messageKey?: Schema$MultiKey;
+    /**
+     * Note that there can be fewer sync ids than label ids.
+     */
+    syncIds?: number[] | null;
+  }
+  /**
    * Stores tombstone message attributes: go/tombstone-message-attributes-overview
    */
   export interface Schema$MessageAttributes {
@@ -5198,6 +5616,16 @@ export namespace cloudsearch_v1 {
      * If true: message is a tombstone in the client. Default false.
      */
     isTombstone?: boolean | null;
+  }
+  /**
+   * Some (subset of the) messages in this thread were deleted.
+   */
+  export interface Schema$MessageDeleted {
+    /**
+     * Value of coproc's message delete history record extension that exports /imapsync/folder attribute of deleted messages which have ^is label.
+     */
+    imapSyncMappings?: Schema$ImapSyncDelete[];
+    messageKeys?: Schema$MultiKey[];
   }
   /**
    * Primary key for Message resource.
@@ -5237,6 +5665,10 @@ export namespace cloudsearch_v1 {
   export interface Schema$MessageProps {
     babelProps?: Schema$BabelMessageProps;
   }
+  /**
+   * This is proto2's version of MessageSet.
+   */
+  export interface Schema$MessageSet {}
   /**
    * Metadata of a matched search result.
    */
@@ -5286,6 +5718,19 @@ export namespace cloudsearch_v1 {
      * The list of displayed properties for the metaline. The maximum number of properties is 5.
      */
     properties?: Schema$DisplayedProperty[];
+  }
+  /**
+   * A union-like type for identifiying an object in storage. MultiKeys contain multiple key fields, each in a separate key space. At least one key field must be set. More than one key field may be set as long as all key values refer to the same object. All objects in storage have unique server_id keys. All MultiKeys returned from storage to storage clients will always have the server_id field set. When creating an object, if a MultiKey without a server_id is supplied to storage, the storage system will auto-assign a server ID to the new object. For all other storage requests (i.e. those not creating new objects), clients may omit server_id (as long as they supply another key). Instead of server ids, clients can specify string based client_assigned_perm_id keys. Mail message drafts are a prime example of these kinds of objects. Each time a user saves a new version of a draft, the storage system needs to create a new object with the updated draft content and needs to delete the object containing the old content. The new object gets a new SERVER_ID but should get the same CLIENT_ASSIGNED_PERM_ID as the now-deleted object containing the old content. Carrying forward the perm ID allows it to be used to consistently refer to the same logical object across revisions. These perm IDs save sync clients from having to deal with changing object IDs. For example, assume there's a mail message in storage with SERVER_ID = 123 and CLIENT_ASSIGNED_PERM_ID = "foo". The following are all valid ways of addressing the object using MultiKeys: 1) MultiKey { server_id = 123 \} 2) MultiKey { server_id = 123, client_assigned_perm_id = "foo" \} 3) MultiKey { client_assigned_perm_id = "foo" \} Multikeys are never serialized in the storage. The individual keys are extracted and processed separately. Both the integer ids as well as string ids are indexed for efficient retrieval using the same fields in the backend. See go/tingle-multikeys for more information on background and motivation.
+   */
+  export interface Schema$MultiKey {
+    /**
+     * A client-assigned string based key.
+     */
+    clientAssignedPermId?: string | null;
+    /**
+     * A server-assigned ID. This ID must be used only by Gmail and is constructed using millesecond ts << 20 + randomness. The ID affects the sort order of the index.
+     */
+    serverId?: string | null;
   }
   /**
    * A person's name.
@@ -5445,6 +5890,11 @@ export namespace cloudsearch_v1 {
      * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
+  }
+  export interface Schema$OsVersion {
+    majorVersion?: number | null;
+    minorVersion?: number | null;
+    tertiaryVersion?: number | null;
   }
   export interface Schema$OtrChatMessageEvent {
     expirationTimestampUsec?: string | null;
@@ -5622,10 +6072,39 @@ export namespace cloudsearch_v1 {
     items?: Schema$Item[];
   }
   /**
+   * This message contains either the device model, or a prefix of the device model (AKA a trimmed device model). The "is_trimmed" field indicates which one it is.
+   */
+  export interface Schema$PossiblyTrimmedModel {
+    isTrimmed?: boolean | null;
+    model?: string | null;
+  }
+  /**
    * See http://s/?fileprint=//depot/google3/security/authentication/postini/auth_token.proto
    */
   export interface Schema$PostiniUserProto {
     postiniUserId?: string | null;
+  }
+  /**
+   * PREF_DELETED
+   */
+  export interface Schema$PrefDeleted {}
+  /**
+   * HistoryRecord for changes associated with prefs, namely: PREF_WRITTEN PREF_DELETED
+   */
+  export interface Schema$PrefUpdate {
+    /**
+     * Name of the affected preference.
+     */
+    name?: string | null;
+    prefDeleted?: Schema$PrefDeleted;
+    prefWritten?: Schema$PrefWritten;
+    preState?: Schema$FuseboxPrefUpdatePreState;
+  }
+  /**
+   * PREF_WRITTEN
+   */
+  export interface Schema$PrefWritten {
+    value?: string | null;
   }
   /**
    * Presenter contains information about which device is currently presenting as well as which device requested the presenter to be set.
@@ -5643,6 +6122,18 @@ export namespace cloudsearch_v1 {
      * The device resource name of the currently presenting device.
      */
     presenterDeviceId?: string | null;
+  }
+  /**
+   * State of the thread previous to the update. This really just describes the label state of all messages before the update.
+   */
+  export interface Schema$PreState {
+    labelIds?: string[] | null;
+    messageKey?: Schema$MultiKey;
+    /**
+     * Note that there can be fewer sync ids than label ids.
+     */
+    syncIds?: number[] | null;
+    threadKey?: Schema$MultiKey;
   }
   /**
    * Reference to a user, group, or domain.
@@ -5775,7 +6266,7 @@ export namespace cloudsearch_v1 {
     zwiebackSession?: Schema$ZwiebackSessionProto;
   }
   /**
-   * Private message information specific to a given user.
+   * Private message information specific to a given user. DEPRECATED: Use the privateMessageViewer field in CreateMessageInfo instead.
    */
   export interface Schema$PrivateMessageInfo {
     /**
@@ -6135,6 +6626,19 @@ export namespace cloudsearch_v1 {
     uploadMetadata?: Schema$UploadMetadata[];
   }
   /**
+   * The rank contains a tuple of numbers which may be used as a general sort order. The rank should be treated as an ordered set of numbers, where the ordering is done in descending order of the most significant rank member. For example, given the following ranks described as (primary, secondary): (1,1), (1,2), (2,2) (2,1) The descending rank-order is: (2,2) \> (2,1) \> (1,2) \> (1,1)
+   */
+  export interface Schema$Rank {
+    /**
+     * The primary rank is the most significant rank member. This rank element should always be present. Items with higher primary rank are always considered of higher rank than those of lower primary rank.
+     */
+    primary?: string | null;
+    /**
+     * The secondary rank may be used to rank items of identical primary rank. This rank element should always be present.
+     */
+    secondary?: string | null;
+  }
+  /**
    * Principal associated with a given RBAC role. This principal is used by Sphinx Provisioning Service for RBAC (go/cedi-auth) provisionable (go/sphinx-rbacz-design).
    */
   export interface Schema$RbacRoleProto {
@@ -6234,6 +6738,26 @@ export namespace cloudsearch_v1 {
      * Recording session's state information.
      */
     sessionStateInfo?: Schema$SessionStateInfo;
+  }
+  /**
+   * All fields in this proto are now columns in spanner see google3/storage/slice/production/gmail/user_data_tables.pi for documentation.
+   */
+  export interface Schema$Reference {
+    blobId?: string | null;
+    contentType?: string | null;
+    hash?: string | null;
+    /**
+     * LINT.IfChange
+     */
+    key?: string | null;
+    /**
+     * LINT.ThenChange(//depot/google3/storage/slice/production/gmail/ user_data_tables.pi)
+     */
+    name?: string | null;
+    size?: string | null;
+  }
+  export interface Schema$References {
+    references?: Schema$Reference[];
   }
   export interface Schema$RenameEvent {
     newName?: string | null;
@@ -6445,6 +6969,15 @@ export namespace cloudsearch_v1 {
      * Opaque, server-assigned ID of the Roster.
      */
     id?: string | null;
+  }
+  /**
+   * Options for Triggers dispatched via RPC.
+   */
+  export interface Schema$RpcOptions {
+    /**
+     * The RPC's request extensions (i.e. RPC::request_extensions(), a.k.a. the Stubby side channel) will be merged with the specified [request_extensions]. When Triggers are batched, the RPC's request extensions will be merged with all of the [request_extensions] of the Triggers in the batch. Note that merging of request extensions follows standard protocol buffer semantics; values of singular fields override previous values, and values of repeated fields are appended (In the case of Triggers, Triggers with later fire times will be merged after Triggers with earlier fire times in the same batch). It is not advised to specify extensions with repeated fields on batchable Triggers.
+     */
+    requestExtensions?: Schema$MessageSet;
   }
   /**
    * Message containing a string that is safe to use in URL contexts in DOM APIs and HTML documents, where the URL context does not refer to a resource that loads code.
@@ -6793,6 +7326,32 @@ export namespace cloudsearch_v1 {
      * The value associated with this item which will be sent back to app scripts. Client should use as a form input value.
      */
     value?: string | null;
+  }
+  export interface Schema$SessionContext {
+    /**
+     * Time at which this activity's session was authenticated, in seconds since the epoch.
+     */
+    authTime?: string | null;
+    /**
+     * Gaia ID of the authenticated user when delegate access is active. In such sessions the main gaia ID is that of the delegator, i.e. the account being accessed.
+     */
+    delegateUserId?: string | null;
+    /**
+     * Device User Session ID, see go/dusi.
+     */
+    dusi?: string | null;
+    /**
+     * Imap session context for Bond/Gmail integration
+     */
+    imapSessionContext?: Schema$ImapSessionContext;
+    /**
+     * OAuth login ID.
+     */
+    oauthLoginId?: number | null;
+    /**
+     * The devconsole project ID of the developer who authenticated with OAuth.
+     */
+    oauthProjectId?: string | null;
   }
   /**
    * A session event is something that happens to the streaming session in a conference.
@@ -7275,6 +7834,10 @@ export namespace cloudsearch_v1 {
      */
     deletionPolicyUrl?: string | null;
     /**
+     * Link to GWM page of the app. May be empty.
+     */
+    gwmUrl?: string | null;
+    /**
      * Link to the privacy policy webpage for the bot. May be empty.
      */
     privacyPolicyUrl?: string | null;
@@ -7401,6 +7964,52 @@ export namespace cloudsearch_v1 {
     values?: string[] | null;
   }
   /**
+   * The ThreadKey was set on some (subset of the) messages in this thread.
+   */
+  export interface Schema$ThreadKeySet {
+    /**
+     * Messages on which the thread_key was changed.
+     */
+    messageKeys?: Schema$MultiKey[];
+    /**
+     * The new thread_key for this thread
+     */
+    newThreadKey?: Schema$MultiKey;
+  }
+  /**
+   * HistoryRecord for changes associated with a thread, namely: MESSAGE_ADDED MESSAGE_DELETED LABEL_ADDED LABEL_REMOVED ATTRIBUTE_SET ATTRIBUTE_REMOVED THREAD_KEY_SET All label_ids refer to the (unchanging) value as defined by the Label.id field in labels.proto. In particular, it is *not* the canonical_name.
+   */
+  export interface Schema$ThreadUpdate {
+    attributeRemoved?: Schema$AttributeRemoved;
+    attributeSet?: Schema$AttributeSet;
+    labelAdded?: Schema$LabelAdded;
+    labelRemoved?: Schema$LabelRemoved;
+    /**
+     * Indicates the record id of the last operation that modified this thread.
+     */
+    lastHistoryRecordId?: string | null;
+    messageAdded?: Schema$MessageAdded;
+    messageDeleted?: Schema$MessageDeleted;
+    /**
+     * The first non-empty thread-key on any message in the thread (including deleted messages). This field has been introduced to maintain backward compatibility for clients that are not subthread aware.
+     */
+    originalThreadKey?: Schema$MultiKey;
+    /**
+     * The PreStates of all messages before the transaction. These are suppressed if the client requested that prestates not be included in the output of the GetHistoryRequest.
+     */
+    preState?: Schema$PreState[];
+    /**
+     * Affected thread
+     */
+    threadKey?: Schema$MultiKey;
+    threadKeySet?: Schema$ThreadKeySet;
+    /**
+     * Thread PLID
+     */
+    threadLocator?: string | null;
+    topicStateUpdate?: Schema$TopicStateUpdate;
+  }
+  /**
    * Used to provide a search operator for timestamp properties. This is optional. Search operators let users restrict the query to specific fields relevant to the type of item being searched.
    */
   export interface Schema$TimestampOperatorOptions {
@@ -7463,6 +8072,43 @@ export namespace cloudsearch_v1 {
     topicId?: string | null;
   }
   /**
+   * State of an topic thread as maintained within Tingle.
+   */
+  export interface Schema$TopicState {
+    /**
+     * Map of label =\> count of topic constituent messages with label These only contain counts of labels that are relevant for topic normalization/denormalization. Eg. If a topic thread has 5 constituents, 4 of which are in inbox, this will contain ^i =\> 4. Some labels of interest are archive, inbox, trash, spam, etc.
+     */
+    labelIdMessageCount?: {[key: string]: number} | null;
+    /**
+     * Number of constituents for this entity.
+     */
+    numConstituents?: number | null;
+  }
+  export interface Schema$TopicStateUpdate {
+    topicState?: Schema$TopicState;
+  }
+  /**
+   * Storage information pertaining to the transaction with which a HistoryRecord is associated.
+   */
+  export interface Schema$TransactionContext {
+    /**
+     * The last HistoryRecord of the transaction. Note that this may correspond to a record that is filtered by Tingle (and thus not returned to the client). See http://b/9513464.
+     */
+    endingRecordId?: string | null;
+    /**
+     * The first HistoryRecord of the transaction. Note that this may be a record of type INTERNAL.
+     */
+    startingRecordId?: string | null;
+    /**
+     * The microsecond timestamp of the transaction.
+     */
+    writeTimestampUs?: string | null;
+  }
+  /**
+   * HistoryRecord for debug info associated with the transaction, namely: TXN_DEBUG_INFO TODO(b/143845917) This is a short-term workaround for unblocking fusebox writes migration. Clean up the code or land a long-term solution after the rollout. go/diff-to-historyrecord
+   */
+  export interface Schema$TransactionDebugInfo {}
+  /**
    * Information about a transcription session.
    */
   export interface Schema$TranscriptionSessionInfo {
@@ -7479,6 +8125,76 @@ export namespace cloudsearch_v1 {
    * Transient generic data that will not be saved on the server.
    */
   export interface Schema$TransientData {}
+  export interface Schema$Trigger {
+    /**
+     * Each dispatcher should use an enum to for the actions that it supports. If a dispatcher has only one action, this does not need to be set. (It can be expanded later, defining the default behaviour as type 0.) For purposes such as batching, the type of a trigger is (dispatcher, action_type).
+     */
+    actionType?: number | null;
+    /**
+     * Maximum possible delay in micros that can be tolerated so triggers can be batched, which makes processing more efficient compared to firing triggers individually. Note that the actual fire time will be somewhere in the timerange interval [fire_time_us, fire_time_us + batch_time_us).
+     */
+    batchTimeUs?: string | null;
+    /**
+     * Which server should interpret action_type.
+     */
+    dispatcher?: string | null;
+    /**
+     * Must be set for DISPATCHER_STUBBY_DISPATCHER.
+     */
+    dispatchId?: number | null;
+    /**
+     * Earliest time to fire at in microseconds. The actual time that the trigger will fire will be in the timerange: [fire_time_us, fire_time_us + batch_time_us).
+     */
+    fireTimeUs?: string | null;
+    /**
+     * Must be set for DISPATCHER_JOBSETTED_PRIMARY.
+     */
+    jobsettedServerSpec?: Schema$JobsettedServerSpec;
+    /**
+     * The trigger key, if applicable.
+     */
+    key?: string | null;
+    rpcOptions?: Schema$RpcOptions;
+    /**
+     * The slice_fire_time_us is automatically computed and stored as part of the trigger write. It represents the exact fire time at which the trigger will be queued to fire and will satisfy fire_time_us < slice_fire_time_us <= fire_time_us + batch_time_us Triggers have an index row in the slice trigger index with the row prefix matching this time. Note that this field is internal to gmail_cp and is ignored if set by external clients when adding / updating triggers.
+     */
+    sliceFireTimeUs?: string | null;
+    /**
+     * Trigger action to perform. This should always be set.
+     */
+    triggerAction?: Schema$TriggerAction;
+    /**
+     * The TriggerKey will uniquely determine a trigger within a given context. A context is a single message for message triggers or a single account for account triggers.
+     */
+    triggerKey?: Schema$TriggerKey;
+  }
+  export interface Schema$TriggerAction {
+    action?: string | null;
+    /**
+     * Clients should use extensions on the Trigger message instead.
+     */
+    data?: string | null;
+    dataInt?: string | null;
+  }
+  /**
+   * A TriggerKey (type + instance_id) uniquely identifies a trigger within a message for a message-trigger and within an account for an account-trigger.
+   */
+  export interface Schema$TriggerKey {
+    /**
+     * Identifier to distinguish multiple Triggers of the same type (per message or per account).
+     */
+    instanceId?: string | null;
+    /**
+     * A non-empty string that identifies the type of Trigger. Triggers of the same type may be batched together. The universe of values for the type field should be finite as it is used as a stats key.
+     */
+    type?: string | null;
+  }
+  export interface Schema$Triggers {
+    /**
+     * A list of triggers.
+     */
+    triggers?: Schema$Trigger[];
+  }
   /**
    * Message containing a string that is safe to use in all URL contexts in DOM APIs and HTML documents; even where the referred-to resource is interpreted as code, e.g., as the src of a script element.
    */
@@ -7646,6 +8362,10 @@ export namespace cloudsearch_v1 {
      */
     dlpMetricsMetadata?: Schema$AppsDynamiteSharedDlpMetricsMetadata;
     /**
+     * The timestamp of the most recent virus scan completed (in microseconds).
+     */
+    latestVirusScanTimestamp?: string | null;
+    /**
      * A copy of the LocalId in Annotation. This field is supposed to be filled by server only.
      */
     localId?: string | null;
@@ -7698,10 +8418,6 @@ export namespace cloudsearch_v1 {
      * Dimensions of the image: width.
      */
     intImageWidth?: number | null;
-    /**
-     * NEXT TAG : 18
-     */
-    linkType?: string | null;
     /**
      * Mime type of the content (Currently mapped from Page Render Service ItemType) Note that this is not necessarily the mime type of the http resource. For example a text/html from youtube or vimeo may actually be classified as a video type. Then we shall mark it as video/x since we don't know exactly what type of video it is.
      */
