@@ -790,7 +790,7 @@ export namespace firestore_v1beta1 {
      */
     documents?: Schema$Document[];
     /**
-     * The next page token.
+     * A token to retrieve the next page of documents. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
   }
@@ -2717,24 +2717,24 @@ export namespace firestore_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.list({
-     *     // Required. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`.
+     *     // Optional. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`. This is optional, and when not provided, Firestore will list documents from all collections under the provided `parent`.
      *     collectionId: 'placeholder-value',
      *     // The list of field paths in the mask. See Document.fields for a field path syntax reference.
      *     'mask.fieldPaths': 'placeholder-value',
-     *     // The order to sort results by. For example: `priority desc, name`.
+     *     // Optional. The optional ordering of the documents to return. For example: `priority desc, __name__ desc`. This mirrors the `ORDER BY` used in Firestore queries but in a string representation. When absent, documents are ordered based on `__name__ ASC`.
      *     orderBy: 'placeholder-value',
-     *     // The maximum number of documents to return.
+     *     // Optional. The maximum number of documents to return in a single response. Firestore may return fewer than this value.
      *     pageSize: 'placeholder-value',
-     *     // The `next_page_token` value returned from a previous List request, if any.
+     *     // Optional. A page token, received from a previous `ListDocuments` response. Provide this to retrieve the subsequent page. When paginating, all other parameters (with the exception of `page_size`) must match the values set in the request that generated the page token.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent resource name. In the format: `projects/{project_id\}/databases/{database_id\}/documents` or `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      *     parent:
      *       'projects/my-project/databases/my-database/documents/my-document/.*',
-     *     // Reads documents as they were at the given time. This may not be older than 270 seconds.
+     *     // Perform the read at the provided time. This may not be older than 270 seconds.
      *     readTime: 'placeholder-value',
-     *     // If the list should show missing documents. A missing document is a document that does not exist but has sub-documents. These documents will be returned with a key but will not have fields, Document.create_time, or Document.update_time set. Requests with `show_missing` may not specify `where` or `order_by`.
+     *     // If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.
      *     showMissing: 'placeholder-value',
-     *     // Reads documents in a transaction.
+     *     // Perform the read as part of an already active transaction.
      *     transaction: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3024,23 +3024,23 @@ export namespace firestore_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.listDocuments({
-     *     // Required. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`.
+     *     // Optional. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`. This is optional, and when not provided, Firestore will list documents from all collections under the provided `parent`.
      *     collectionId: 'placeholder-value',
      *     // The list of field paths in the mask. See Document.fields for a field path syntax reference.
      *     'mask.fieldPaths': 'placeholder-value',
-     *     // The order to sort results by. For example: `priority desc, name`.
+     *     // Optional. The optional ordering of the documents to return. For example: `priority desc, __name__ desc`. This mirrors the `ORDER BY` used in Firestore queries but in a string representation. When absent, documents are ordered based on `__name__ ASC`.
      *     orderBy: 'placeholder-value',
-     *     // The maximum number of documents to return.
+     *     // Optional. The maximum number of documents to return in a single response. Firestore may return fewer than this value.
      *     pageSize: 'placeholder-value',
-     *     // The `next_page_token` value returned from a previous List request, if any.
+     *     // Optional. A page token, received from a previous `ListDocuments` response. Provide this to retrieve the subsequent page. When paginating, all other parameters (with the exception of `page_size`) must match the values set in the request that generated the page token.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent resource name. In the format: `projects/{project_id\}/databases/{database_id\}/documents` or `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      *     parent: 'projects/my-project/databases/my-database/documents',
-     *     // Reads documents as they were at the given time. This may not be older than 270 seconds.
+     *     // Perform the read at the provided time. This may not be older than 270 seconds.
      *     readTime: 'placeholder-value',
-     *     // If the list should show missing documents. A missing document is a document that does not exist but has sub-documents. These documents will be returned with a key but will not have fields, Document.create_time, or Document.update_time set. Requests with `show_missing` may not specify `where` or `order_by`.
+     *     // If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.
      *     showMissing: 'placeholder-value',
-     *     // Reads documents in a transaction.
+     *     // Perform the read as part of an already active transaction.
      *     transaction: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4298,7 +4298,7 @@ export namespace firestore_v1beta1 {
   export interface Params$Resource$Projects$Databases$Documents$List
     extends StandardParameters {
     /**
-     * Required. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`.
+     * Optional. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`. This is optional, and when not provided, Firestore will list documents from all collections under the provided `parent`.
      */
     collectionId?: string;
     /**
@@ -4306,15 +4306,15 @@ export namespace firestore_v1beta1 {
      */
     'mask.fieldPaths'?: string[];
     /**
-     * The order to sort results by. For example: `priority desc, name`.
+     * Optional. The optional ordering of the documents to return. For example: `priority desc, __name__ desc`. This mirrors the `ORDER BY` used in Firestore queries but in a string representation. When absent, documents are ordered based on `__name__ ASC`.
      */
     orderBy?: string;
     /**
-     * The maximum number of documents to return.
+     * Optional. The maximum number of documents to return in a single response. Firestore may return fewer than this value.
      */
     pageSize?: number;
     /**
-     * The `next_page_token` value returned from a previous List request, if any.
+     * Optional. A page token, received from a previous `ListDocuments` response. Provide this to retrieve the subsequent page. When paginating, all other parameters (with the exception of `page_size`) must match the values set in the request that generated the page token.
      */
     pageToken?: string;
     /**
@@ -4322,15 +4322,15 @@ export namespace firestore_v1beta1 {
      */
     parent?: string;
     /**
-     * Reads documents as they were at the given time. This may not be older than 270 seconds.
+     * Perform the read at the provided time. This may not be older than 270 seconds.
      */
     readTime?: string;
     /**
-     * If the list should show missing documents. A missing document is a document that does not exist but has sub-documents. These documents will be returned with a key but will not have fields, Document.create_time, or Document.update_time set. Requests with `show_missing` may not specify `where` or `order_by`.
+     * If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.
      */
     showMissing?: boolean;
     /**
-     * Reads documents in a transaction.
+     * Perform the read as part of an already active transaction.
      */
     transaction?: string;
   }
@@ -4349,7 +4349,7 @@ export namespace firestore_v1beta1 {
   export interface Params$Resource$Projects$Databases$Documents$Listdocuments
     extends StandardParameters {
     /**
-     * Required. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`.
+     * Optional. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`. This is optional, and when not provided, Firestore will list documents from all collections under the provided `parent`.
      */
     collectionId?: string;
     /**
@@ -4357,15 +4357,15 @@ export namespace firestore_v1beta1 {
      */
     'mask.fieldPaths'?: string[];
     /**
-     * The order to sort results by. For example: `priority desc, name`.
+     * Optional. The optional ordering of the documents to return. For example: `priority desc, __name__ desc`. This mirrors the `ORDER BY` used in Firestore queries but in a string representation. When absent, documents are ordered based on `__name__ ASC`.
      */
     orderBy?: string;
     /**
-     * The maximum number of documents to return.
+     * Optional. The maximum number of documents to return in a single response. Firestore may return fewer than this value.
      */
     pageSize?: number;
     /**
-     * The `next_page_token` value returned from a previous List request, if any.
+     * Optional. A page token, received from a previous `ListDocuments` response. Provide this to retrieve the subsequent page. When paginating, all other parameters (with the exception of `page_size`) must match the values set in the request that generated the page token.
      */
     pageToken?: string;
     /**
@@ -4373,15 +4373,15 @@ export namespace firestore_v1beta1 {
      */
     parent?: string;
     /**
-     * Reads documents as they were at the given time. This may not be older than 270 seconds.
+     * Perform the read at the provided time. This may not be older than 270 seconds.
      */
     readTime?: string;
     /**
-     * If the list should show missing documents. A missing document is a document that does not exist but has sub-documents. These documents will be returned with a key but will not have fields, Document.create_time, or Document.update_time set. Requests with `show_missing` may not specify `where` or `order_by`.
+     * If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.
      */
     showMissing?: boolean;
     /**
-     * Reads documents in a transaction.
+     * Perform the read as part of an already active transaction.
      */
     transaction?: string;
   }
