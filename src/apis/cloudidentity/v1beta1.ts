@@ -423,6 +423,10 @@ export namespace cloudidentity_v1beta1 {
      */
     buildNumber?: string | null;
     /**
+     * List of the clients the device is reporting to.
+     */
+    clientTypes?: string[] | null;
+    /**
      * Output only. Represents whether the Device is compromised.
      */
     compromisedState?: string | null;
@@ -454,6 +458,10 @@ export namespace cloudidentity_v1beta1 {
      * Output only. Attributes specific to Endpoint Verification devices.
      */
     endpointVerificationSpecificAttributes?: Schema$EndpointVerificationSpecificAttributes;
+    /**
+     * Host name of the device.
+     */
+    hostname?: string | null;
     /**
      * Output only. IMEI number of device if GSM device; empty otherwise.
      */
@@ -3024,6 +3032,7 @@ export namespace cloudidentity_v1beta1 {
      *   //   "bootloaderVersion": "my_bootloaderVersion",
      *   //   "brand": "my_brand",
      *   //   "buildNumber": "my_buildNumber",
+     *   //   "clientTypes": [],
      *   //   "compromisedState": "my_compromisedState",
      *   //   "createTime": "my_createTime",
      *   //   "deviceId": "my_deviceId",
@@ -3032,6 +3041,7 @@ export namespace cloudidentity_v1beta1 {
      *   //   "enabledUsbDebugging": false,
      *   //   "encryptionState": "my_encryptionState",
      *   //   "endpointVerificationSpecificAttributes": {},
+     *   //   "hostname": "my_hostname",
      *   //   "imei": "my_imei",
      *   //   "kernelVersion": "my_kernelVersion",
      *   //   "lastSyncTime": "my_lastSyncTime",
