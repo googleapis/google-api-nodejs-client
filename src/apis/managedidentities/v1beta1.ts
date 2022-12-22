@@ -351,6 +351,28 @@ export namespace managedidentities_v1beta1 {
     updateTime?: string | null;
   }
   /**
+   * DomainJoinMachineRequest is the request message for DomainJoinMachine method
+   */
+  export interface Schema$DomainJoinMachineRequest {
+    /**
+     * Optional. OU name to which the VM needs to be domain joined. If the field is not provided, the VM is joined to the default OU which is created. The default OU for the domain join api is created as GCE Instances under the Cloud OU. Example - OU=GCE Instances,OU=Cloud,DC=ad,DC=test,DC=com If the field is provided, then the custom OU is searched for under GCE Instances OU. Example - if ou_name=test_ou then the VM is domain joined to the following OU: OU=test_ou,OU=GCE Instances,OU=Cloud,DC=ad,DC=test,DC=com if present. If OU is not present under GCE Instances, then error is returned.
+     */
+    ouName?: string | null;
+    /**
+     * Required. Full instance id token of compute engine VM to verify instance identity. More about this: https://cloud.google.com/compute/docs/instances/verifying-instance-identity#request_signature
+     */
+    vmIdToken?: string | null;
+  }
+  /**
+   * DomainJoinMachineResponse is the response message for DomainJoinMachine method
+   */
+  export interface Schema$DomainJoinMachineResponse {
+    /**
+     * The response is the offline domain join blob that is returned after running the djoin command. To correctly use the response of the API, please refer to the sample usage.
+     */
+    domainJoinBlob?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -2468,6 +2490,156 @@ export namespace managedidentities_v1beta1 {
     }
 
     /**
+     * DomainJoinMachine API joins a Compute Engine VM to the domain
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const managedidentities = google.managedidentities('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await managedidentities.projects.locations.global.domains.domainJoinMachine(
+     *       {
+     *         // Required. The domain resource name using the form: projects/{project_id\}/locations/global/domains/{domain_name\}
+     *         domain: 'projects/my-project/locations/global/domains/my-domain',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "ouName": "my_ouName",
+     *           //   "vmIdToken": "my_vmIdToken"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "domainJoinBlob": "my_domainJoinBlob"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    domainJoinMachine(
+      params: Params$Resource$Projects$Locations$Global$Domains$Domainjoinmachine,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    domainJoinMachine(
+      params?: Params$Resource$Projects$Locations$Global$Domains$Domainjoinmachine,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DomainJoinMachineResponse>;
+    domainJoinMachine(
+      params: Params$Resource$Projects$Locations$Global$Domains$Domainjoinmachine,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    domainJoinMachine(
+      params: Params$Resource$Projects$Locations$Global$Domains$Domainjoinmachine,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DomainJoinMachineResponse>,
+      callback: BodyResponseCallback<Schema$DomainJoinMachineResponse>
+    ): void;
+    domainJoinMachine(
+      params: Params$Resource$Projects$Locations$Global$Domains$Domainjoinmachine,
+      callback: BodyResponseCallback<Schema$DomainJoinMachineResponse>
+    ): void;
+    domainJoinMachine(
+      callback: BodyResponseCallback<Schema$DomainJoinMachineResponse>
+    ): void;
+    domainJoinMachine(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Domains$Domainjoinmachine
+        | BodyResponseCallback<Schema$DomainJoinMachineResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DomainJoinMachineResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DomainJoinMachineResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DomainJoinMachineResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Domains$Domainjoinmachine;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Domains$Domainjoinmachine;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://managedidentities.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+domain}:domainJoinMachine').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['domain'],
+        pathParams: ['domain'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DomainJoinMachineResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DomainJoinMachineResponse>(parameters);
+      }
+    }
+
+    /**
      * Enable Domain Migration
      * @example
      * ```js
@@ -4563,6 +4735,18 @@ export namespace managedidentities_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$DisableMigrationRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Global$Domains$Domainjoinmachine
+    extends StandardParameters {
+    /**
+     * Required. The domain resource name using the form: projects/{project_id\}/locations/global/domains/{domain_name\}
+     */
+    domain?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DomainJoinMachineRequest;
   }
   export interface Params$Resource$Projects$Locations$Global$Domains$Enablemigration
     extends StandardParameters {
