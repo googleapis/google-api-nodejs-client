@@ -936,6 +936,19 @@ export namespace chromemanagement_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for listing telemetry events for a customer.
+   */
+  export interface Schema$GoogleChromeManagementV1ListTelemetryEventsResponse {
+    /**
+     * Token to specify next page in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Telemetry events returned in the response.
+     */
+    telemetryEvents?: Schema$GoogleChromeManagementV1TelemetryEvent[];
+  }
+  /**
    * Memory information of a device. * This field has both telemetry and device information: - `totalRamBytes` - Device information - `availableRamBytes` - Telemetry information - `totalMemoryEncryption` - Device information * Data for this field is controlled via policy: [ReportDeviceMemoryInfo](https://chromeenterprise.google/policies/#ReportDeviceMemoryInfo) * Data Collection Frequency: - `totalRamBytes` - Only at upload - `availableRamBytes` - Every 10 minutes - `totalMemoryEncryption` - at device startup * Default Data Reporting Frequency: - `totalRamBytes` - 3 hours - `availableRamBytes` - 3 hours - `totalMemoryEncryption` - at device startup - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: only for `totalMemoryEncryption` * Reported for affiliated users only: N/A
    */
   export interface Schema$GoogleChromeManagementV1MemoryInfo {
@@ -1162,6 +1175,10 @@ export namespace chromemanagement_v1 {
     reportTime?: string | null;
   }
   /**
+   * `TelemetryAudioSevereUnderrunEvent` is triggered when a audio devices run out of buffer data for more than 5 seconds.
+   */
+  export interface Schema$GoogleChromeManagementV1TelemetryAudioSevereUnderrunEvent {}
+  /**
    * Telemetry data collected from a managed device.
    */
   export interface Schema$GoogleChromeManagementV1TelemetryDevice {
@@ -1253,6 +1270,95 @@ export namespace chromemanagement_v1 {
      * Output only. Information on Thunderbolt bus.
      */
     thunderboltInfo?: Schema$GoogleChromeManagementV1ThunderboltInfo[];
+  }
+  /**
+   * Information about a device associated with telemetry data.
+   */
+  export interface Schema$GoogleChromeManagementV1TelemetryDeviceInfo {
+    /**
+     * Output only. The unique Directory API ID of the device. This value is the same as the Admin Console's Directory API ID in the ChromeOS Devices tab.
+     */
+    deviceId?: string | null;
+    /**
+     * Output only. Organization unit ID of the device.
+     */
+    orgUnitId?: string | null;
+  }
+  /**
+   * Telemetry data reported by a managed device.
+   */
+  export interface Schema$GoogleChromeManagementV1TelemetryEvent {
+    /**
+     * Output only. Payload for audio severe underrun event. Present only when the `event_type` field is `AUDIO_SEVERE_UNDERRUN`.
+     */
+    audioSevereUnderrunEvent?: Schema$GoogleChromeManagementV1TelemetryAudioSevereUnderrunEvent;
+    /**
+     * Output only. Information about the device associated with the event.
+     */
+    device?: Schema$GoogleChromeManagementV1TelemetryDeviceInfo;
+    /**
+     * The event type of the current event.
+     */
+    eventType?: string | null;
+    /**
+     * Output only. Payload for HTTPS latency change event. Present only when `event_type` is `NETWORK_HTTPS_LATENCY_CHANGE`.
+     */
+    httpsLatencyChangeEvent?: Schema$GoogleChromeManagementV1TelemetryHttpsLatencyChangeEvent;
+    /**
+     * Output only. Resource name of the event.
+     */
+    name?: string | null;
+    /**
+     * Output only. Payload for network connection state change event. Present only when `event_type` is `NETWORK_CONNECTION_STATE_CHANGE`.
+     */
+    networkConnectionStateChangeEvent?: Schema$GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent;
+    /**
+     * Timestamp that represents when the event was reported.
+     */
+    reportTime?: string | null;
+    /**
+     * Output only. Information about the user associated with the event.
+     */
+    user?: Schema$GoogleChromeManagementV1TelemetryUserInfo;
+  }
+  /**
+   * Https latency routine is run periodically and `TelemetryHttpsLatencyChangeEvent` is triggered if a latency problem was detected or if the device has recovered from a latency problem..
+   */
+  export interface Schema$GoogleChromeManagementV1TelemetryHttpsLatencyChangeEvent {
+    /**
+     * HTTPS latency routine data that triggered the event.
+     */
+    httpsLatencyRoutineData?: Schema$GoogleChromeManagementV1HttpsLatencyRoutineData;
+    /**
+     * Current HTTPS latency state.
+     */
+    httpsLatencyState?: string | null;
+  }
+  /**
+   * `TelemetryNetworkConnectionStateChangeEvent` is triggered on network connection state changes.
+   */
+  export interface Schema$GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent {
+    /**
+     * Current connection state of the network.
+     */
+    connectionState?: string | null;
+    /**
+     * Unique identifier of the network.
+     */
+    guid?: string | null;
+  }
+  /**
+   * Information about a user associated with telemetry data.
+   */
+  export interface Schema$GoogleChromeManagementV1TelemetryUserInfo {
+    /**
+     * Output only. User's email.
+     */
+    email?: string | null;
+    /**
+     * Output only. Organization unit ID of the user.
+     */
+    orgUnitId?: string | null;
   }
   /**
    * Thunderbolt bus info. * This field provides device information, which is static and will not change over time. * Data for this field is controlled via policy: [ReportDeviceSecurityStatus](https://chromeenterprise.google/policies/#ReportDeviceSecurityStatus) * Data Collection Frequency: At device startup * Default Data Reporting Frequency: At device startup - Policy Controlled: No * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: Yes * Reported for affiliated users only: N/A
@@ -3090,9 +3196,11 @@ export namespace chromemanagement_v1 {
   export class Resource$Customers$Telemetry {
     context: APIRequestContext;
     devices: Resource$Customers$Telemetry$Devices;
+    events: Resource$Customers$Telemetry$Events;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.devices = new Resource$Customers$Telemetry$Devices(this.context);
+      this.events = new Resource$Customers$Telemetry$Events(this.context);
     }
   }
 
@@ -3437,6 +3545,187 @@ export namespace chromemanagement_v1 {
     pageSize?: number;
     /**
      * Token to specify next page in the list.
+     */
+    pageToken?: string;
+    /**
+     * Required. Customer id or "my_customer" to use the customer associated to the account making the request.
+     */
+    parent?: string;
+    /**
+     * Required. Read mask to specify which fields to return.
+     */
+    readMask?: string;
+  }
+
+  export class Resource$Customers$Telemetry$Events {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * List telemetry events.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.telemetry.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.telemetry.events.list({
+     *     // Optional. Only include resources that match the filter. Supported filter fields: * device_id * user_id * device_org_unit_id * user_org_unit_id * timestamp * event_type
+     *     filter: 'placeholder-value',
+     *     // Optional. Maximum number of results to return. Default value is 100. Maximum value is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Token to specify next page in the list.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Customer id or "my_customer" to use the customer associated to the account making the request.
+     *     parent: 'customers/my-customer',
+     *     // Required. Read mask to specify which fields to return.
+     *     readMask: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "telemetryEvents": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Customers$Telemetry$Events$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Customers$Telemetry$Events$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChromeManagementV1ListTelemetryEventsResponse>;
+    list(
+      params: Params$Resource$Customers$Telemetry$Events$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Telemetry$Events$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryEventsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryEventsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Telemetry$Events$List,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryEventsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryEventsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Telemetry$Events$List
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryEventsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryEventsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryEventsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChromeManagementV1ListTelemetryEventsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Telemetry$Events$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Telemetry$Events$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/telemetry/events').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1ListTelemetryEventsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1ListTelemetryEventsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Customers$Telemetry$Events$List
+    extends StandardParameters {
+    /**
+     * Optional. Only include resources that match the filter. Supported filter fields: * device_id * user_id * device_org_unit_id * user_org_unit_id * timestamp * event_type
+     */
+    filter?: string;
+    /**
+     * Optional. Maximum number of results to return. Default value is 100. Maximum value is 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Token to specify next page in the list.
      */
     pageToken?: string;
     /**

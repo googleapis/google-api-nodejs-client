@@ -625,13 +625,64 @@
                   ]
                 }
               }
+            },
+            "events": {
+              "methods": {
+                "list": {
+                  "description": "List telemetry events.",
+                  "flatPath": "v1/customers/{customersId}/telemetry/events",
+                  "httpMethod": "GET",
+                  "id": "chromemanagement.customers.telemetry.events.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Only include resources that match the filter. Supported filter fields: * device_id * user_id * device_org_unit_id * user_org_unit_id * timestamp * event_type",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Maximum number of results to return. Default value is 100. Maximum value is 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Token to specify next page in the list.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Customer id or \"my_customer\" to use the customer associated to the account making the request.",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "readMask": {
+                      "description": "Required. Read mask to specify which fields to return.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/telemetry/events",
+                  "response": {
+                    "$ref": "GoogleChromeManagementV1ListTelemetryEventsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.telemetry.readonly"
+                  ]
+                }
+              }
             }
           }
         }
       }
     }
   },
-  "revision": "20221025",
+  "revision": "20221208",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -1922,6 +1973,24 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementV1ListTelemetryEventsResponse": {
+      "description": "Response message for listing telemetry events for a customer.",
+      "id": "GoogleChromeManagementV1ListTelemetryEventsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token to specify next page in the list.",
+          "type": "string"
+        },
+        "telemetryEvents": {
+          "description": "Telemetry events returned in the response.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1TelemetryEvent"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementV1MemoryInfo": {
       "description": "Memory information of a device. * This field has both telemetry and device information: - `totalRamBytes` - Device information - `availableRamBytes` - Telemetry information - `totalMemoryEncryption` - Device information * Data for this field is controlled via policy: [ReportDeviceMemoryInfo](https://chromeenterprise.google/policies/#ReportDeviceMemoryInfo) * Data Collection Frequency: - `totalRamBytes` - Only at upload - `availableRamBytes` - Every 10 minutes - `totalMemoryEncryption` - at device startup * Default Data Reporting Frequency: - `totalRamBytes` - 3 hours - `availableRamBytes` - 3 hours - `totalMemoryEncryption` - at device startup - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: only for `totalMemoryEncryption` * Reported for affiliated users only: N/A",
       "id": "GoogleChromeManagementV1MemoryInfo",
@@ -2293,6 +2362,12 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementV1TelemetryAudioSevereUnderrunEvent": {
+      "description": "`TelemetryAudioSevereUnderrunEvent` is triggered when a audio devices run out of buffer data for more than 5 seconds.",
+      "id": "GoogleChromeManagementV1TelemetryAudioSevereUnderrunEvent",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleChromeManagementV1TelemetryDevice": {
       "description": "Telemetry data collected from a managed device.",
       "id": "GoogleChromeManagementV1TelemetryDevice",
@@ -2445,6 +2520,158 @@
           },
           "readOnly": true,
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TelemetryDeviceInfo": {
+      "description": "Information about a device associated with telemetry data.",
+      "id": "GoogleChromeManagementV1TelemetryDeviceInfo",
+      "properties": {
+        "deviceId": {
+          "description": "Output only. The unique Directory API ID of the device. This value is the same as the Admin Console's Directory API ID in the ChromeOS Devices tab.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "orgUnitId": {
+          "description": "Output only. Organization unit ID of the device.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TelemetryEvent": {
+      "description": "Telemetry data reported by a managed device.",
+      "id": "GoogleChromeManagementV1TelemetryEvent",
+      "properties": {
+        "audioSevereUnderrunEvent": {
+          "$ref": "GoogleChromeManagementV1TelemetryAudioSevereUnderrunEvent",
+          "description": "Output only. Payload for audio severe underrun event. Present only when the `event_type` field is `AUDIO_SEVERE_UNDERRUN`.",
+          "readOnly": true
+        },
+        "device": {
+          "$ref": "GoogleChromeManagementV1TelemetryDeviceInfo",
+          "description": "Output only. Information about the device associated with the event.",
+          "readOnly": true
+        },
+        "eventType": {
+          "description": "The event type of the current event.",
+          "enum": [
+            "EVENT_TYPE_UNSPECIFIED",
+            "AUDIO_SEVERE_UNDERRUN",
+            "NETWORK_CONNECTION_STATE_CHANGE",
+            "USB_ADDED",
+            "USB_REMOVED",
+            "NETWORK_HTTPS_LATENCY_CHANGE"
+          ],
+          "enumDescriptions": [
+            "Event type unknown.",
+            "Triggered when a audio devices run out of buffer data for more than 5 seconds.",
+            "Triggered immediately on any changes to a network connection.",
+            "Triggered when USB devices are added.",
+            "Triggered when USB devices are removed.",
+            "Triggered when a new HTTPS latency problem was detected or the device has recovered form an existing HTTPS latency problem."
+          ],
+          "type": "string"
+        },
+        "httpsLatencyChangeEvent": {
+          "$ref": "GoogleChromeManagementV1TelemetryHttpsLatencyChangeEvent",
+          "description": "Output only. Payload for HTTPS latency change event. Present only when `event_type` is `NETWORK_HTTPS_LATENCY_CHANGE`.",
+          "readOnly": true
+        },
+        "name": {
+          "description": "Output only. Resource name of the event.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "networkConnectionStateChangeEvent": {
+          "$ref": "GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent",
+          "description": "Output only. Payload for network connection state change event. Present only when `event_type` is `NETWORK_CONNECTION_STATE_CHANGE`.",
+          "readOnly": true
+        },
+        "reportTime": {
+          "description": "Timestamp that represents when the event was reported.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "user": {
+          "$ref": "GoogleChromeManagementV1TelemetryUserInfo",
+          "description": "Output only. Information about the user associated with the event.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TelemetryHttpsLatencyChangeEvent": {
+      "description": "Https latency routine is run periodically and `TelemetryHttpsLatencyChangeEvent` is triggered if a latency problem was detected or if the device has recovered from a latency problem..",
+      "id": "GoogleChromeManagementV1TelemetryHttpsLatencyChangeEvent",
+      "properties": {
+        "httpsLatencyRoutineData": {
+          "$ref": "GoogleChromeManagementV1HttpsLatencyRoutineData",
+          "description": "HTTPS latency routine data that triggered the event."
+        },
+        "httpsLatencyState": {
+          "description": "Current HTTPS latency state.",
+          "enum": [
+            "HTTPS_LATENCY_STATE_UNSPECIFIED",
+            "RECOVERY",
+            "PROBLEM"
+          ],
+          "enumDescriptions": [
+            "HTTPS latency state is unspecified.",
+            "HTTPS latency recovered from a problem.",
+            "HTTPS latency problem."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent": {
+      "description": "`TelemetryNetworkConnectionStateChangeEvent` is triggered on network connection state changes.",
+      "id": "GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent",
+      "properties": {
+        "connectionState": {
+          "description": "Current connection state of the network.",
+          "enum": [
+            "NETWORK_CONNECTION_STATE_UNSPECIFIED",
+            "ONLINE",
+            "CONNECTED",
+            "PORTAL",
+            "CONNECTING",
+            "NOT_CONNECTED"
+          ],
+          "enumDescriptions": [
+            "Network connection state unspecified.",
+            "The network is connected and internet connectivity is available.",
+            "The network is connected and not in a detected portal state, but internet connectivity may not be available.",
+            "The network is connected but a portal state was detected. Internet connectivity may be limited.",
+            "The network is in the process of connecting.",
+            "The network is not connected."
+          ],
+          "type": "string"
+        },
+        "guid": {
+          "description": "Unique identifier of the network.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TelemetryUserInfo": {
+      "description": "Information about a user associated with telemetry data.",
+      "id": "GoogleChromeManagementV1TelemetryUserInfo",
+      "properties": {
+        "email": {
+          "description": "Output only. User's email.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "orgUnitId": {
+          "description": "Output only. Organization unit ID of the user.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
