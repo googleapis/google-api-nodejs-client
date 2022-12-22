@@ -750,7 +750,7 @@
             "backups": {
               "methods": {
                 "copy": {
-                  "description": "Starts copying a Cloud Spanner Backup. The returned backup long-running operation will have a name of the format `projects//instances//backups//operations/` and can be used to track copying of the backup. The operation is associated with the destination backup. The metadata field type is CopyBackupMetadata. The response field type is Backup, if successful. Cancelling the returned operation will stop the copying and delete the backup. Concurrent CopyBackup requests can run on the same source backup.",
+                  "description": "Starts copying a Cloud Spanner Backup. The returned backup long-running operation will have a name of the format `projects//instances//backups//operations/` and can be used to track copying of the backup. The operation is associated with the destination backup. The metadata field type is CopyBackupMetadata. The response field type is Backup, if successful. Cancelling the returned operation will stop the copying and delete the destination backup. Concurrent CopyBackup requests can run on the same source backup.",
                   "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/backups:copy",
                   "httpMethod": "POST",
                   "id": "spanner.projects.instances.backups.copy",
@@ -2402,7 +2402,7 @@
       }
     }
   },
-  "revision": "20221018",
+  "revision": "20221213",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -2436,7 +2436,7 @@
         },
         "encryptionInfo": {
           "$ref": "EncryptionInfo",
-          "description": "Output only. Output only. The encryption information for the backup. .",
+          "description": "Output only. The encryption information for the backup.",
           "readOnly": true
         },
         "expireTime": {
@@ -2724,7 +2724,7 @@
             "Unspecified. Do not use.",
             "This is the default option for CopyBackup when encryption_config is not specified. For example, if the source backup is using `Customer_Managed_Encryption`, the backup will be using the same Cloud KMS key as the source backup.",
             "Use Google default encryption.",
-            "Use customer managed encryption. If specified, `kms_key_name` must contain a valid Cloud KMS key."
+            "Use customer managed encryption. If specified, either `kms_key_name` or `kms_key_names` must contain valid Cloud KMS key(s)."
           ],
           "type": "string"
         },
@@ -2850,6 +2850,11 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "protoDescriptors": {
+          "description": "Optional. Proto descriptors used by CREATE/ALTER PROTO BUNDLE statements in 'extra_statements' above. Contains a protobuf-serialized [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto). To generate it, [install](https://grpc.io/docs/protoc-installation/) and run `protoc` with --include_imports and --descriptor_set_out. For example, to generate for moon/shot/app.proto, run \"\"\" $protoc --proto_path=/app_path --proto_path=/lib_path \\ --include_imports \\ --descriptor_set_out=descriptors.data \\ moon/shot/app.proto \"\"\" For more details, see protobuffer [self description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).",
+          "format": "byte",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3346,6 +3351,11 @@
       "description": "The response for GetDatabaseDdl.",
       "id": "GetDatabaseDdlResponse",
       "properties": {
+        "protoDescriptors": {
+          "description": "Proto descriptors stored in the database. Contains a protobuf-serialized [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto). For more details, see protobuffer [self description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).",
+          "format": "byte",
+          "type": "string"
+        },
         "statements": {
           "description": "A list of formatted DDL statements defining the schema of the database specified in the request.",
           "items": {
@@ -5129,7 +5139,9 @@
             "ARRAY",
             "STRUCT",
             "NUMERIC",
-            "JSON"
+            "JSON",
+            "PROTO",
+            "ENUM"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -5143,8 +5155,14 @@
             "Encoded as `list`, where the list elements are represented according to array_element_type.",
             "Encoded as `list`, where list element `i` is represented according to [struct_type.fields[i]][google.spanner.v1.StructType.fields].",
             "Encoded as `string`, in decimal format or scientific notation format. Decimal format: `[+-]Digits[.[Digits]]` or `+-.Digits` Scientific notation: `[+-]Digits[.[Digits]][ExponentIndicator[+-]Digits]` or `+-.Digits[ExponentIndicator[+-]Digits]` (ExponentIndicator is `\"e\"` or `\"E\"`)",
-            "Encoded as a JSON-formatted `string` as described in RFC 7159. The following rules are applied when parsing JSON input: - Whitespace characters are not preserved. - If a JSON object has duplicate keys, only the first key is preserved. - Members of a JSON object are not guaranteed to have their order preserved. - JSON array elements will have their order preserved."
+            "Encoded as a JSON-formatted `string` as described in RFC 7159. The following rules are applied when parsing JSON input: - Whitespace characters are not preserved. - If a JSON object has duplicate keys, only the first key is preserved. - Members of a JSON object are not guaranteed to have their order preserved. - JSON array elements will have their order preserved.",
+            "Encoded as a base64-encoded `string`, as described in RFC 4648, section 4.",
+            "Encoded as `string`, in decimal format."
           ],
+          "type": "string"
+        },
+        "protoTypeFqn": {
+          "description": "If code == PROTO or code == ENUM, then `proto_type_fqn` is the fully qualified name of the proto type representing the proto/enum definition.",
           "type": "string"
         },
         "structType": {
@@ -5212,6 +5230,11 @@
       "properties": {
         "operationId": {
           "description": "If empty, the new update request is assigned an automatically-generated operation ID. Otherwise, `operation_id` is used to construct the name of the resulting Operation. Specifying an explicit operation ID simplifies determining whether the statements were executed in the event that the UpdateDatabaseDdl call is replayed, or the return value is otherwise lost: the database and `operation_id` fields can be combined to form the name of the resulting longrunning.Operation: `/operations/`. `operation_id` should be unique within the database, and must be a valid identifier: `a-z*`. Note that automatically-generated operation IDs always begin with an underscore. If the named operation already exists, UpdateDatabaseDdl returns `ALREADY_EXISTS`.",
+          "type": "string"
+        },
+        "protoDescriptors": {
+          "description": "Optional. Proto descriptors used by CREATE/ALTER PROTO BUNDLE statements. Contains a protobuf-serialized [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto). To generate it, [install](https://grpc.io/docs/protoc-installation/) and run `protoc` with --include_imports and --descriptor_set_out. For example, to generate for moon/shot/app.proto, run \"\"\" $protoc --proto_path=/app_path --proto_path=/lib_path \\ --include_imports \\ --descriptor_set_out=descriptors.data \\ moon/shot/app.proto \"\"\" For more details, see protobuffer [self description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).",
+          "format": "byte",
           "type": "string"
         },
         "statements": {
