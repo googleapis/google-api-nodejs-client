@@ -102,7 +102,7 @@ export namespace playintegrity_v1 {
   /**
    * Google Play Integrity API
    *
-   * Play Integrity
+   * The Play Integrity API helps you check that you&#39;re interacting with your genuine app on a genuine Android device powered by Google Play services. The Play Integrity API has replaced SafetyNet Attestation and Android Device Verification.
    *
    * @example
    * ```js
