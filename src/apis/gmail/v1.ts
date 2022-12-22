@@ -162,6 +162,65 @@ export namespace gmail_v1 {
     removeLabelIds?: string[] | null;
   }
   /**
+   * [Beta](https://workspace.google.com/terms/service-terms/index.html). The client-side encryption (CSE) configuration for the email address of an authenticated user. Gmail uses CSE configurations to save drafts of client-side encrypted email messages, and to sign and send encrypted email messages.
+   */
+  export interface Schema$CseIdentity {
+    /**
+     * The email address for the sending identity. The email address must be the primary email address of the authenticated user.
+     */
+    emailAddress?: string | null;
+    /**
+     * If a key pair is associated, the identifier of the key pair, CseKeyPair.
+     */
+    primaryKeyPairId?: string | null;
+  }
+  /**
+   * [Beta](https://workspace.google.com/terms/service-terms/index.html). A client-side encryption S/MIME key pair, which is comprised of a public key, its certificate chain, and metadata for its paired private key. Gmail uses the key pair to complete the following tasks: - Sign outgoing client-side encrypted messages. - Save and reopen drafts of client-side encrypted messages. - Save and reopen sent messages. - Decrypt incoming or archived S/MIME messages.
+   */
+  export interface Schema$CseKeyPair {
+    /**
+     * Output only. If a key pair is set to `DISABLED`, the time that the key pair's state changed from `ENABLED` to `DISABLED`. This field is present only when the key pair is in state `DISABLED`.
+     */
+    disableTime?: string | null;
+    /**
+     * Output only. The current state of the key pair.
+     */
+    enablementState?: string | null;
+    /**
+     * Output only. The immutable ID for the client-side encryption S/MIME key pair.
+     */
+    keyPairId?: string | null;
+    /**
+     * Output only. The public key and its certificate chain, in [PEM](https://en.wikipedia.org/wiki/Privacy-Enhanced_Mail) format.
+     */
+    pem?: string | null;
+    /**
+     * Input only. The public key and its certificate chain. The chain must be in [PKCS#7](https://en.wikipedia.org/wiki/PKCS_7) format and use PEM encoding and ASCII armor.
+     */
+    pkcs7?: string | null;
+    /**
+     * Metadata for instances of this key pair's private key.
+     */
+    privateKeyMetadata?: Schema$CsePrivateKeyMetadata[];
+    /**
+     * Output only. The email address identities that are specified on the leaf certificate.
+     */
+    subjectEmailAddresses?: string[] | null;
+  }
+  /**
+   * Metadata for a private key instance.
+   */
+  export interface Schema$CsePrivateKeyMetadata {
+    /**
+     * Metadata for a private key instance managed by an external key access control list service.
+     */
+    kaclsKeyMetadata?: Schema$KaclsKeyMetadata;
+    /**
+     * Output only. The immutable ID for the private key metadata instance.
+     */
+    privateKeyMetadataId?: string | null;
+  }
+  /**
    * Settings for a delegate. Delegates can read, send, and delete messages, as well as view and add contacts, for the delegator's account. See "Set up mail delegation" for more information about delegates.
    */
   export interface Schema$Delegate {
@@ -175,6 +234,10 @@ export namespace gmail_v1 {
     verificationStatus?: string | null;
   }
   /**
+   * Requests to turn off a client-side encryption key pair.
+   */
+  export interface Schema$DisableCseKeyPairRequest {}
+  /**
    * A draft email in the user's mailbox.
    */
   export interface Schema$Draft {
@@ -187,6 +250,10 @@ export namespace gmail_v1 {
      */
     message?: Schema$Message;
   }
+  /**
+   * Requests to turn on a client-side encryption key pair.
+   */
+  export interface Schema$EnableCseKeyPairRequest {}
   /**
    * Resource definition for Gmail filters. Filters apply to specific messages instead of an entire email thread.
    */
@@ -346,6 +413,19 @@ export namespace gmail_v1 {
     maxFolderSize?: number | null;
   }
   /**
+   * Metadata for private keys managed by an external key access control list service. For details about managing key access, see [Google Workspace CSE API Reference](https://developers.google.com/workspace/cse/reference).
+   */
+  export interface Schema$KaclsKeyMetadata {
+    /**
+     * Opaque data generated and used by the key access control list service. Maximum size: 8 KiB.
+     */
+    kaclsData?: string | null;
+    /**
+     * The URI of the key access control list service that manages the private key.
+     */
+    kaclsUri?: string | null;
+  }
+  /**
    * Labels are used to categorize messages and threads within the user's mailbox. The maximum number of labels supported for a user's mailbox is 10,000.
    */
   export interface Schema$Label {
@@ -408,6 +488,26 @@ export namespace gmail_v1 {
      * The language to display Gmail in, formatted as an RFC 3066 Language Tag (for example `en-GB`, `fr` or `ja` for British English, French, or Japanese respectively). The set of languages supported by Gmail evolves over time, so please refer to the "Language" dropdown in the Gmail settings for all available options, as described in the language settings help article. A table of sample values is also provided in the Managing Language Settings guide Not all Gmail clients can display the same set of languages. In the case that a user's display language is not available for use on a particular client, said client automatically chooses to display in the closest supported variant (or a reasonable default).
      */
     displayLanguage?: string | null;
+  }
+  export interface Schema$ListCseIdentitiesResponse {
+    /**
+     * One page of the list of CSE identities configured for the user.
+     */
+    cseIdentities?: Schema$CseIdentity[];
+    /**
+     * Pagination token to be passed to a subsequent ListCseIdentities call in order to retrieve the next page of identities. If this value is not returned or is the empty string, then no further pages remain.
+     */
+    nextPageToken?: string | null;
+  }
+  export interface Schema$ListCseKeyPairsResponse {
+    /**
+     * One page of the list of CSE key pairs installed for the user.
+     */
+    cseKeyPairs?: Schema$CseKeyPair[];
+    /**
+     * Pagination token to be passed to a subsequent ListCseKeyPairs call in order to retrieve the next page of key pairs. If this value is not returned, then no further pages remain.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * Response for the ListDelegates method.
@@ -630,6 +730,10 @@ export namespace gmail_v1 {
      */
     removeLabelIds?: string[] | null;
   }
+  /**
+   * Request to obliterate a CSE key pair.
+   */
+  export interface Schema$ObliterateCseKeyPairRequest {}
   /**
    * POP settings for an account.
    */
@@ -5503,12 +5607,14 @@ export namespace gmail_v1 {
 
   export class Resource$Users$Settings {
     context: APIRequestContext;
+    cse: Resource$Users$Settings$Cse;
     delegates: Resource$Users$Settings$Delegates;
     filters: Resource$Users$Settings$Filters;
     forwardingAddresses: Resource$Users$Settings$Forwardingaddresses;
     sendAs: Resource$Users$Settings$Sendas;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.cse = new Resource$Users$Settings$Cse(this.context);
       this.delegates = new Resource$Users$Settings$Delegates(this.context);
       this.filters = new Resource$Users$Settings$Filters(this.context);
       this.forwardingAddresses =
@@ -7007,6 +7113,1745 @@ export namespace gmail_v1 {
      * Request body metadata
      */
     requestBody?: Schema$VacationSettings;
+  }
+
+  export class Resource$Users$Settings$Cse {
+    context: APIRequestContext;
+    identities: Resource$Users$Settings$Cse$Identities;
+    keypairs: Resource$Users$Settings$Cse$Keypairs;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.identities = new Resource$Users$Settings$Cse$Identities(
+        this.context
+      );
+      this.keypairs = new Resource$Users$Settings$Cse$Keypairs(this.context);
+    }
+  }
+
+  export class Resource$Users$Settings$Cse$Identities {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates and configures a client-side encryption identity that's authorized to send mail from the user account. Google publishes the S/MIME certificate to a shared domain-wide directory so that people within a Google Workspace organization can encrypt and send mail to the identity. [Beta](https://workspace.google.com/terms/service-terms/index.html).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.cse.identities.create({
+     *     // The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "emailAddress": "my_emailAddress",
+     *       //   "primaryKeyPairId": "my_primaryKeyPairId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "primaryKeyPairId": "my_primaryKeyPairId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Users$Settings$Cse$Identities$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Users$Settings$Cse$Identities$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CseIdentity>;
+    create(
+      params: Params$Resource$Users$Settings$Cse$Identities$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Users$Settings$Cse$Identities$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$CseIdentity>,
+      callback: BodyResponseCallback<Schema$CseIdentity>
+    ): void;
+    create(
+      params: Params$Resource$Users$Settings$Cse$Identities$Create,
+      callback: BodyResponseCallback<Schema$CseIdentity>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$CseIdentity>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Cse$Identities$Create
+        | BodyResponseCallback<Schema$CseIdentity>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CseIdentity>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CseIdentity>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CseIdentity> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Cse$Identities$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Settings$Cse$Identities$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/settings/cse/identities'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CseIdentity>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CseIdentity>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a client-side encryption identity. The authenticated user can no longer use the identity to send encrypted messages. You cannot restore the identity after you delete it. Instead, use the CreateCseIdentity method to create another identity with the same configuration. [Beta](https://workspace.google.com/terms/service-terms/index.html).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.cse.identities.delete({
+     *     // The primary email address associated with the client-side encryption identity configuration that's removed.
+     *     cseEmailAddress: 'placeholder-value',
+     *     // The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Users$Settings$Cse$Identities$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Users$Settings$Cse$Identities$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Users$Settings$Cse$Identities$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Users$Settings$Cse$Identities$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Users$Settings$Cse$Identities$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Cse$Identities$Delete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Cse$Identities$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Settings$Cse$Identities$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/gmail/v1/users/{userId}/settings/cse/identities/{cseEmailAddress}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['userId', 'cseEmailAddress'],
+        pathParams: ['cseEmailAddress', 'userId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a client-side encryption identity configuration. [Beta](https://workspace.google.com/terms/service-terms/index.html).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.cse.identities.get({
+     *     // The primary email address associated with the client-side encryption identity configuration that's retrieved.
+     *     cseEmailAddress: 'placeholder-value',
+     *     // The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "primaryKeyPairId": "my_primaryKeyPairId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Users$Settings$Cse$Identities$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Users$Settings$Cse$Identities$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CseIdentity>;
+    get(
+      params: Params$Resource$Users$Settings$Cse$Identities$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Users$Settings$Cse$Identities$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$CseIdentity>,
+      callback: BodyResponseCallback<Schema$CseIdentity>
+    ): void;
+    get(
+      params: Params$Resource$Users$Settings$Cse$Identities$Get,
+      callback: BodyResponseCallback<Schema$CseIdentity>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$CseIdentity>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Cse$Identities$Get
+        | BodyResponseCallback<Schema$CseIdentity>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CseIdentity>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CseIdentity>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CseIdentity> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Cse$Identities$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Settings$Cse$Identities$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/gmail/v1/users/{userId}/settings/cse/identities/{cseEmailAddress}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['userId', 'cseEmailAddress'],
+        pathParams: ['cseEmailAddress', 'userId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CseIdentity>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CseIdentity>(parameters);
+      }
+    }
+
+    /**
+     * Lists the client-side encrypted identities for an authenticated user. [Beta](https://workspace.google.com/terms/service-terms/index.html).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.cse.identities.list({
+     *     // The number of identities to return. If not provided, the page size will default to 20 entries.
+     *     pageSize: 'placeholder-value',
+     *     // Pagination token indicating which page of identities to return. If the token is not supplied, then the API will return the first page of results.
+     *     pageToken: 'placeholder-value',
+     *     // The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cseIdentities": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Users$Settings$Cse$Identities$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Users$Settings$Cse$Identities$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListCseIdentitiesResponse>;
+    list(
+      params: Params$Resource$Users$Settings$Cse$Identities$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Users$Settings$Cse$Identities$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCseIdentitiesResponse>,
+      callback: BodyResponseCallback<Schema$ListCseIdentitiesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Users$Settings$Cse$Identities$List,
+      callback: BodyResponseCallback<Schema$ListCseIdentitiesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListCseIdentitiesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Cse$Identities$List
+        | BodyResponseCallback<Schema$ListCseIdentitiesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCseIdentitiesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCseIdentitiesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCseIdentitiesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Cse$Identities$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Settings$Cse$Identities$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/settings/cse/identities'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListCseIdentitiesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListCseIdentitiesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Associates a different key pair with an existing client-side encryption identity. The updated key pair must validate against Google's [S/MIME certificate profiles](https://support.google.com/a/answer/7300887). [Beta](https://workspace.google.com/terms/service-terms/index.html).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.cse.identities.patch({
+     *     // The email address of the client-side encryption identity to update.
+     *     emailAddress: 'placeholder-value',
+     *     // The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "emailAddress": "my_emailAddress",
+     *       //   "primaryKeyPairId": "my_primaryKeyPairId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "emailAddress": "my_emailAddress",
+     *   //   "primaryKeyPairId": "my_primaryKeyPairId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Users$Settings$Cse$Identities$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Users$Settings$Cse$Identities$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CseIdentity>;
+    patch(
+      params: Params$Resource$Users$Settings$Cse$Identities$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Users$Settings$Cse$Identities$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$CseIdentity>,
+      callback: BodyResponseCallback<Schema$CseIdentity>
+    ): void;
+    patch(
+      params: Params$Resource$Users$Settings$Cse$Identities$Patch,
+      callback: BodyResponseCallback<Schema$CseIdentity>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$CseIdentity>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Cse$Identities$Patch
+        | BodyResponseCallback<Schema$CseIdentity>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CseIdentity>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CseIdentity>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CseIdentity> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Cse$Identities$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Settings$Cse$Identities$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/gmail/v1/users/{userId}/settings/cse/identities/{emailAddress}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['userId', 'emailAddress'],
+        pathParams: ['emailAddress', 'userId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CseIdentity>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CseIdentity>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Users$Settings$Cse$Identities$Create
+    extends StandardParameters {
+    /**
+     * The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     */
+    userId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CseIdentity;
+  }
+  export interface Params$Resource$Users$Settings$Cse$Identities$Delete
+    extends StandardParameters {
+    /**
+     * The primary email address associated with the client-side encryption identity configuration that's removed.
+     */
+    cseEmailAddress?: string;
+    /**
+     * The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     */
+    userId?: string;
+  }
+  export interface Params$Resource$Users$Settings$Cse$Identities$Get
+    extends StandardParameters {
+    /**
+     * The primary email address associated with the client-side encryption identity configuration that's retrieved.
+     */
+    cseEmailAddress?: string;
+    /**
+     * The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     */
+    userId?: string;
+  }
+  export interface Params$Resource$Users$Settings$Cse$Identities$List
+    extends StandardParameters {
+    /**
+     * The number of identities to return. If not provided, the page size will default to 20 entries.
+     */
+    pageSize?: number;
+    /**
+     * Pagination token indicating which page of identities to return. If the token is not supplied, then the API will return the first page of results.
+     */
+    pageToken?: string;
+    /**
+     * The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     */
+    userId?: string;
+  }
+  export interface Params$Resource$Users$Settings$Cse$Identities$Patch
+    extends StandardParameters {
+    /**
+     * The email address of the client-side encryption identity to update.
+     */
+    emailAddress?: string;
+    /**
+     * The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     */
+    userId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CseIdentity;
+  }
+
+  export class Resource$Users$Settings$Cse$Keypairs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates and uploads a client-side encryption S/MIME public key certificate chain and private key metadata for the authenticated user. [Beta](https://workspace.google.com/terms/service-terms/index.html).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.cse.keypairs.create({
+     *     // The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "disableTime": "my_disableTime",
+     *       //   "enablementState": "my_enablementState",
+     *       //   "keyPairId": "my_keyPairId",
+     *       //   "pem": "my_pem",
+     *       //   "pkcs7": "my_pkcs7",
+     *       //   "privateKeyMetadata": [],
+     *       //   "subjectEmailAddresses": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "disableTime": "my_disableTime",
+     *   //   "enablementState": "my_enablementState",
+     *   //   "keyPairId": "my_keyPairId",
+     *   //   "pem": "my_pem",
+     *   //   "pkcs7": "my_pkcs7",
+     *   //   "privateKeyMetadata": [],
+     *   //   "subjectEmailAddresses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Users$Settings$Cse$Keypairs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Users$Settings$Cse$Keypairs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CseKeyPair>;
+    create(
+      params: Params$Resource$Users$Settings$Cse$Keypairs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Users$Settings$Cse$Keypairs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$CseKeyPair>,
+      callback: BodyResponseCallback<Schema$CseKeyPair>
+    ): void;
+    create(
+      params: Params$Resource$Users$Settings$Cse$Keypairs$Create,
+      callback: BodyResponseCallback<Schema$CseKeyPair>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$CseKeyPair>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Cse$Keypairs$Create
+        | BodyResponseCallback<Schema$CseKeyPair>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CseKeyPair>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CseKeyPair>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CseKeyPair> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Cse$Keypairs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Settings$Cse$Keypairs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/settings/cse/keypairs'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CseKeyPair>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CseKeyPair>(parameters);
+      }
+    }
+
+    /**
+     * Turns off a client-side encryption key pair. The authenticated user can no longer use the key pair to decrypt incoming CSE message texts or sign outgoing CSE mail. To regain access, use the EnableCseKeyPair to turn on the key pair. After 30 days, you can permanently delete the key pair by using the ObliterateCseKeyPair method. [Beta](https://workspace.google.com/terms/service-terms/index.html).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.cse.keypairs.disable({
+     *     // The identifier of the key pair to turn off.
+     *     keyPairId: 'placeholder-value',
+     *     // The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "disableTime": "my_disableTime",
+     *   //   "enablementState": "my_enablementState",
+     *   //   "keyPairId": "my_keyPairId",
+     *   //   "pem": "my_pem",
+     *   //   "pkcs7": "my_pkcs7",
+     *   //   "privateKeyMetadata": [],
+     *   //   "subjectEmailAddresses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    disable(
+      params: Params$Resource$Users$Settings$Cse$Keypairs$Disable,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    disable(
+      params?: Params$Resource$Users$Settings$Cse$Keypairs$Disable,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CseKeyPair>;
+    disable(
+      params: Params$Resource$Users$Settings$Cse$Keypairs$Disable,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    disable(
+      params: Params$Resource$Users$Settings$Cse$Keypairs$Disable,
+      options: MethodOptions | BodyResponseCallback<Schema$CseKeyPair>,
+      callback: BodyResponseCallback<Schema$CseKeyPair>
+    ): void;
+    disable(
+      params: Params$Resource$Users$Settings$Cse$Keypairs$Disable,
+      callback: BodyResponseCallback<Schema$CseKeyPair>
+    ): void;
+    disable(callback: BodyResponseCallback<Schema$CseKeyPair>): void;
+    disable(
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Cse$Keypairs$Disable
+        | BodyResponseCallback<Schema$CseKeyPair>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CseKeyPair>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CseKeyPair>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CseKeyPair> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Cse$Keypairs$Disable;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Settings$Cse$Keypairs$Disable;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}:disable'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['userId', 'keyPairId'],
+        pathParams: ['keyPairId', 'userId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CseKeyPair>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CseKeyPair>(parameters);
+      }
+    }
+
+    /**
+     * Turns on a client-side encryption key pair that was turned off. The key pair becomes active again for any associated client-side encryption identities. [Beta](https://workspace.google.com/terms/service-terms/index.html).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.cse.keypairs.enable({
+     *     // The identifier of the key pair to turn on.
+     *     keyPairId: 'placeholder-value',
+     *     // The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "disableTime": "my_disableTime",
+     *   //   "enablementState": "my_enablementState",
+     *   //   "keyPairId": "my_keyPairId",
+     *   //   "pem": "my_pem",
+     *   //   "pkcs7": "my_pkcs7",
+     *   //   "privateKeyMetadata": [],
+     *   //   "subjectEmailAddresses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    enable(
+      params: Params$Resource$Users$Settings$Cse$Keypairs$Enable,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    enable(
+      params?: Params$Resource$Users$Settings$Cse$Keypairs$Enable,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CseKeyPair>;
+    enable(
+      params: Params$Resource$Users$Settings$Cse$Keypairs$Enable,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    enable(
+      params: Params$Resource$Users$Settings$Cse$Keypairs$Enable,
+      options: MethodOptions | BodyResponseCallback<Schema$CseKeyPair>,
+      callback: BodyResponseCallback<Schema$CseKeyPair>
+    ): void;
+    enable(
+      params: Params$Resource$Users$Settings$Cse$Keypairs$Enable,
+      callback: BodyResponseCallback<Schema$CseKeyPair>
+    ): void;
+    enable(callback: BodyResponseCallback<Schema$CseKeyPair>): void;
+    enable(
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Cse$Keypairs$Enable
+        | BodyResponseCallback<Schema$CseKeyPair>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CseKeyPair>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CseKeyPair>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CseKeyPair> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Cse$Keypairs$Enable;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Settings$Cse$Keypairs$Enable;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}:enable'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['userId', 'keyPairId'],
+        pathParams: ['keyPairId', 'userId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CseKeyPair>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CseKeyPair>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves an existing client-side encryption key pair. [Beta](https://workspace.google.com/terms/service-terms/index.html).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.cse.keypairs.get({
+     *     // The identifier of the key pair to retrieve.
+     *     keyPairId: 'placeholder-value',
+     *     // The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "disableTime": "my_disableTime",
+     *   //   "enablementState": "my_enablementState",
+     *   //   "keyPairId": "my_keyPairId",
+     *   //   "pem": "my_pem",
+     *   //   "pkcs7": "my_pkcs7",
+     *   //   "privateKeyMetadata": [],
+     *   //   "subjectEmailAddresses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Users$Settings$Cse$Keypairs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Users$Settings$Cse$Keypairs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CseKeyPair>;
+    get(
+      params: Params$Resource$Users$Settings$Cse$Keypairs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Users$Settings$Cse$Keypairs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$CseKeyPair>,
+      callback: BodyResponseCallback<Schema$CseKeyPair>
+    ): void;
+    get(
+      params: Params$Resource$Users$Settings$Cse$Keypairs$Get,
+      callback: BodyResponseCallback<Schema$CseKeyPair>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$CseKeyPair>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Cse$Keypairs$Get
+        | BodyResponseCallback<Schema$CseKeyPair>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CseKeyPair>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CseKeyPair>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CseKeyPair> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Cse$Keypairs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Settings$Cse$Keypairs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['userId', 'keyPairId'],
+        pathParams: ['keyPairId', 'userId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CseKeyPair>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CseKeyPair>(parameters);
+      }
+    }
+
+    /**
+     * Lists client-side encryption key pairs for an authenticated user. [Beta](https://workspace.google.com/terms/service-terms/index.html).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://mail.google.com/',
+     *       'https://www.googleapis.com/auth/gmail.modify',
+     *       'https://www.googleapis.com/auth/gmail.readonly',
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.cse.keypairs.list({
+     *     // The number of key pairs to return. If not provided, the page size will default to 20 entries.
+     *     pageSize: 'placeholder-value',
+     *     // Pagination token indicating which page of key pairs to return. If the token is not supplied, then the API will return the first page of results.
+     *     pageToken: 'placeholder-value',
+     *     // The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cseKeyPairs": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Users$Settings$Cse$Keypairs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Users$Settings$Cse$Keypairs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListCseKeyPairsResponse>;
+    list(
+      params: Params$Resource$Users$Settings$Cse$Keypairs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Users$Settings$Cse$Keypairs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCseKeyPairsResponse>,
+      callback: BodyResponseCallback<Schema$ListCseKeyPairsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Users$Settings$Cse$Keypairs$List,
+      callback: BodyResponseCallback<Schema$ListCseKeyPairsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListCseKeyPairsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Cse$Keypairs$List
+        | BodyResponseCallback<Schema$ListCseKeyPairsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCseKeyPairsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCseKeyPairsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCseKeyPairsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Cse$Keypairs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Settings$Cse$Keypairs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/settings/cse/keypairs'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListCseKeyPairsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListCseKeyPairsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a client-side encryption key pair permanently and immediately. You can only permanently delete key pairs that have been turned off for more than 30 days. To turn off a key pair, use the DisableCseKeyPair method. Gmail can't restore or decrypt any messages that were encrypted by an obliterated key. Authenticated users and Google Workspace administrators lose access to reading the encrypted messages. [Beta](https://workspace.google.com/terms/service-terms/index.html).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gmail = google.gmail('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/gmail.settings.basic',
+     *       'https://www.googleapis.com/auth/gmail.settings.sharing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmail.users.settings.cse.keypairs.obliterate({
+     *     // The identifier of the key pair to obliterate.
+     *     keyPairId: 'placeholder-value',
+     *     // The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    obliterate(
+      params: Params$Resource$Users$Settings$Cse$Keypairs$Obliterate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    obliterate(
+      params?: Params$Resource$Users$Settings$Cse$Keypairs$Obliterate,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    obliterate(
+      params: Params$Resource$Users$Settings$Cse$Keypairs$Obliterate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    obliterate(
+      params: Params$Resource$Users$Settings$Cse$Keypairs$Obliterate,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    obliterate(
+      params: Params$Resource$Users$Settings$Cse$Keypairs$Obliterate,
+      callback: BodyResponseCallback<void>
+    ): void;
+    obliterate(callback: BodyResponseCallback<void>): void;
+    obliterate(
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Cse$Keypairs$Obliterate
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Cse$Keypairs$Obliterate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Settings$Cse$Keypairs$Obliterate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gmail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}:obliterate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['userId', 'keyPairId'],
+        pathParams: ['keyPairId', 'userId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Users$Settings$Cse$Keypairs$Create
+    extends StandardParameters {
+    /**
+     * The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     */
+    userId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CseKeyPair;
+  }
+  export interface Params$Resource$Users$Settings$Cse$Keypairs$Disable
+    extends StandardParameters {
+    /**
+     * The identifier of the key pair to turn off.
+     */
+    keyPairId?: string;
+    /**
+     * The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     */
+    userId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DisableCseKeyPairRequest;
+  }
+  export interface Params$Resource$Users$Settings$Cse$Keypairs$Enable
+    extends StandardParameters {
+    /**
+     * The identifier of the key pair to turn on.
+     */
+    keyPairId?: string;
+    /**
+     * The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     */
+    userId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EnableCseKeyPairRequest;
+  }
+  export interface Params$Resource$Users$Settings$Cse$Keypairs$Get
+    extends StandardParameters {
+    /**
+     * The identifier of the key pair to retrieve.
+     */
+    keyPairId?: string;
+    /**
+     * The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     */
+    userId?: string;
+  }
+  export interface Params$Resource$Users$Settings$Cse$Keypairs$List
+    extends StandardParameters {
+    /**
+     * The number of key pairs to return. If not provided, the page size will default to 20 entries.
+     */
+    pageSize?: number;
+    /**
+     * Pagination token indicating which page of key pairs to return. If the token is not supplied, then the API will return the first page of results.
+     */
+    pageToken?: string;
+    /**
+     * The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     */
+    userId?: string;
+  }
+  export interface Params$Resource$Users$Settings$Cse$Keypairs$Obliterate
+    extends StandardParameters {
+    /**
+     * The identifier of the key pair to obliterate.
+     */
+    keyPairId?: string;
+    /**
+     * The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
+     */
+    userId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ObliterateCseKeyPairRequest;
   }
 
   export class Resource$Users$Settings$Delegates {

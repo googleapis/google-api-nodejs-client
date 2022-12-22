@@ -1633,6 +1633,401 @@
             }
           },
           "resources": {
+            "cse": {
+              "resources": {
+                "identities": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates and configures a client-side encryption identity that's authorized to send mail from the user account. Google publishes the S/MIME certificate to a shared domain-wide directory so that people within a Google Workspace organization can encrypt and send mail to the identity. [Beta](https://workspace.google.com/terms/service-terms/index.html).",
+                      "flatPath": "gmail/v1/users/{userId}/settings/cse/identities",
+                      "httpMethod": "POST",
+                      "id": "gmail.users.settings.cse.identities.create",
+                      "parameterOrder": [
+                        "userId"
+                      ],
+                      "parameters": {
+                        "userId": {
+                          "default": "me",
+                          "description": "The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "gmail/v1/users/{userId}/settings/cse/identities",
+                      "request": {
+                        "$ref": "CseIdentity"
+                      },
+                      "response": {
+                        "$ref": "CseIdentity"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/gmail.settings.basic",
+                        "https://www.googleapis.com/auth/gmail.settings.sharing"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a client-side encryption identity. The authenticated user can no longer use the identity to send encrypted messages. You cannot restore the identity after you delete it. Instead, use the CreateCseIdentity method to create another identity with the same configuration. [Beta](https://workspace.google.com/terms/service-terms/index.html).",
+                      "flatPath": "gmail/v1/users/{userId}/settings/cse/identities/{cseEmailAddress}",
+                      "httpMethod": "DELETE",
+                      "id": "gmail.users.settings.cse.identities.delete",
+                      "parameterOrder": [
+                        "userId",
+                        "cseEmailAddress"
+                      ],
+                      "parameters": {
+                        "cseEmailAddress": {
+                          "description": "The primary email address associated with the client-side encryption identity configuration that's removed.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "userId": {
+                          "default": "me",
+                          "description": "The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "gmail/v1/users/{userId}/settings/cse/identities/{cseEmailAddress}",
+                      "scopes": [
+                        "https://www.googleapis.com/auth/gmail.settings.basic",
+                        "https://www.googleapis.com/auth/gmail.settings.sharing"
+                      ]
+                    },
+                    "get": {
+                      "description": "Retrieves a client-side encryption identity configuration. [Beta](https://workspace.google.com/terms/service-terms/index.html).",
+                      "flatPath": "gmail/v1/users/{userId}/settings/cse/identities/{cseEmailAddress}",
+                      "httpMethod": "GET",
+                      "id": "gmail.users.settings.cse.identities.get",
+                      "parameterOrder": [
+                        "userId",
+                        "cseEmailAddress"
+                      ],
+                      "parameters": {
+                        "cseEmailAddress": {
+                          "description": "The primary email address associated with the client-side encryption identity configuration that's retrieved.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "userId": {
+                          "default": "me",
+                          "description": "The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "gmail/v1/users/{userId}/settings/cse/identities/{cseEmailAddress}",
+                      "response": {
+                        "$ref": "CseIdentity"
+                      },
+                      "scopes": [
+                        "https://mail.google.com/",
+                        "https://www.googleapis.com/auth/gmail.modify",
+                        "https://www.googleapis.com/auth/gmail.readonly",
+                        "https://www.googleapis.com/auth/gmail.settings.basic",
+                        "https://www.googleapis.com/auth/gmail.settings.sharing"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists the client-side encrypted identities for an authenticated user. [Beta](https://workspace.google.com/terms/service-terms/index.html).",
+                      "flatPath": "gmail/v1/users/{userId}/settings/cse/identities",
+                      "httpMethod": "GET",
+                      "id": "gmail.users.settings.cse.identities.list",
+                      "parameterOrder": [
+                        "userId"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "default": "20",
+                          "description": "The number of identities to return. If not provided, the page size will default to 20 entries.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Pagination token indicating which page of identities to return. If the token is not supplied, then the API will return the first page of results.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "userId": {
+                          "default": "me",
+                          "description": "The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "gmail/v1/users/{userId}/settings/cse/identities",
+                      "response": {
+                        "$ref": "ListCseIdentitiesResponse"
+                      },
+                      "scopes": [
+                        "https://mail.google.com/",
+                        "https://www.googleapis.com/auth/gmail.modify",
+                        "https://www.googleapis.com/auth/gmail.readonly",
+                        "https://www.googleapis.com/auth/gmail.settings.basic",
+                        "https://www.googleapis.com/auth/gmail.settings.sharing"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Associates a different key pair with an existing client-side encryption identity. The updated key pair must validate against Google's [S/MIME certificate profiles](https://support.google.com/a/answer/7300887). [Beta](https://workspace.google.com/terms/service-terms/index.html).",
+                      "flatPath": "gmail/v1/users/{userId}/settings/cse/identities/{emailAddress}",
+                      "httpMethod": "PATCH",
+                      "id": "gmail.users.settings.cse.identities.patch",
+                      "parameterOrder": [
+                        "userId",
+                        "emailAddress"
+                      ],
+                      "parameters": {
+                        "emailAddress": {
+                          "description": "The email address of the client-side encryption identity to update.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "userId": {
+                          "default": "me",
+                          "description": "The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "gmail/v1/users/{userId}/settings/cse/identities/{emailAddress}",
+                      "request": {
+                        "$ref": "CseIdentity"
+                      },
+                      "response": {
+                        "$ref": "CseIdentity"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/gmail.settings.basic",
+                        "https://www.googleapis.com/auth/gmail.settings.sharing"
+                      ]
+                    }
+                  }
+                },
+                "keypairs": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates and uploads a client-side encryption S/MIME public key certificate chain and private key metadata for the authenticated user. [Beta](https://workspace.google.com/terms/service-terms/index.html).",
+                      "flatPath": "gmail/v1/users/{userId}/settings/cse/keypairs",
+                      "httpMethod": "POST",
+                      "id": "gmail.users.settings.cse.keypairs.create",
+                      "parameterOrder": [
+                        "userId"
+                      ],
+                      "parameters": {
+                        "userId": {
+                          "default": "me",
+                          "description": "The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "gmail/v1/users/{userId}/settings/cse/keypairs",
+                      "request": {
+                        "$ref": "CseKeyPair"
+                      },
+                      "response": {
+                        "$ref": "CseKeyPair"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/gmail.settings.basic",
+                        "https://www.googleapis.com/auth/gmail.settings.sharing"
+                      ]
+                    },
+                    "disable": {
+                      "description": "Turns off a client-side encryption key pair. The authenticated user can no longer use the key pair to decrypt incoming CSE message texts or sign outgoing CSE mail. To regain access, use the EnableCseKeyPair to turn on the key pair. After 30 days, you can permanently delete the key pair by using the ObliterateCseKeyPair method. [Beta](https://workspace.google.com/terms/service-terms/index.html).",
+                      "flatPath": "gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}:disable",
+                      "httpMethod": "POST",
+                      "id": "gmail.users.settings.cse.keypairs.disable",
+                      "parameterOrder": [
+                        "userId",
+                        "keyPairId"
+                      ],
+                      "parameters": {
+                        "keyPairId": {
+                          "description": "The identifier of the key pair to turn off.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "userId": {
+                          "default": "me",
+                          "description": "The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}:disable",
+                      "request": {
+                        "$ref": "DisableCseKeyPairRequest"
+                      },
+                      "response": {
+                        "$ref": "CseKeyPair"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/gmail.settings.basic",
+                        "https://www.googleapis.com/auth/gmail.settings.sharing"
+                      ]
+                    },
+                    "enable": {
+                      "description": "Turns on a client-side encryption key pair that was turned off. The key pair becomes active again for any associated client-side encryption identities. [Beta](https://workspace.google.com/terms/service-terms/index.html).",
+                      "flatPath": "gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}:enable",
+                      "httpMethod": "POST",
+                      "id": "gmail.users.settings.cse.keypairs.enable",
+                      "parameterOrder": [
+                        "userId",
+                        "keyPairId"
+                      ],
+                      "parameters": {
+                        "keyPairId": {
+                          "description": "The identifier of the key pair to turn on.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "userId": {
+                          "default": "me",
+                          "description": "The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}:enable",
+                      "request": {
+                        "$ref": "EnableCseKeyPairRequest"
+                      },
+                      "response": {
+                        "$ref": "CseKeyPair"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/gmail.settings.basic",
+                        "https://www.googleapis.com/auth/gmail.settings.sharing"
+                      ]
+                    },
+                    "get": {
+                      "description": "Retrieves an existing client-side encryption key pair. [Beta](https://workspace.google.com/terms/service-terms/index.html).",
+                      "flatPath": "gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}",
+                      "httpMethod": "GET",
+                      "id": "gmail.users.settings.cse.keypairs.get",
+                      "parameterOrder": [
+                        "userId",
+                        "keyPairId"
+                      ],
+                      "parameters": {
+                        "keyPairId": {
+                          "description": "The identifier of the key pair to retrieve.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "userId": {
+                          "default": "me",
+                          "description": "The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}",
+                      "response": {
+                        "$ref": "CseKeyPair"
+                      },
+                      "scopes": [
+                        "https://mail.google.com/",
+                        "https://www.googleapis.com/auth/gmail.modify",
+                        "https://www.googleapis.com/auth/gmail.readonly",
+                        "https://www.googleapis.com/auth/gmail.settings.basic",
+                        "https://www.googleapis.com/auth/gmail.settings.sharing"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists client-side encryption key pairs for an authenticated user. [Beta](https://workspace.google.com/terms/service-terms/index.html).",
+                      "flatPath": "gmail/v1/users/{userId}/settings/cse/keypairs",
+                      "httpMethod": "GET",
+                      "id": "gmail.users.settings.cse.keypairs.list",
+                      "parameterOrder": [
+                        "userId"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "default": "20",
+                          "description": "The number of key pairs to return. If not provided, the page size will default to 20 entries.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Pagination token indicating which page of key pairs to return. If the token is not supplied, then the API will return the first page of results.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "userId": {
+                          "default": "me",
+                          "description": "The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "gmail/v1/users/{userId}/settings/cse/keypairs",
+                      "response": {
+                        "$ref": "ListCseKeyPairsResponse"
+                      },
+                      "scopes": [
+                        "https://mail.google.com/",
+                        "https://www.googleapis.com/auth/gmail.modify",
+                        "https://www.googleapis.com/auth/gmail.readonly",
+                        "https://www.googleapis.com/auth/gmail.settings.basic",
+                        "https://www.googleapis.com/auth/gmail.settings.sharing"
+                      ]
+                    },
+                    "obliterate": {
+                      "description": "Deletes a client-side encryption key pair permanently and immediately. You can only permanently delete key pairs that have been turned off for more than 30 days. To turn off a key pair, use the DisableCseKeyPair method. Gmail can't restore or decrypt any messages that were encrypted by an obliterated key. Authenticated users and Google Workspace administrators lose access to reading the encrypted messages. [Beta](https://workspace.google.com/terms/service-terms/index.html).",
+                      "flatPath": "gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}:obliterate",
+                      "httpMethod": "POST",
+                      "id": "gmail.users.settings.cse.keypairs.obliterate",
+                      "parameterOrder": [
+                        "userId",
+                        "keyPairId"
+                      ],
+                      "parameters": {
+                        "keyPairId": {
+                          "description": "The identifier of the key pair to obliterate.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "userId": {
+                          "default": "me",
+                          "description": "The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}:obliterate",
+                      "request": {
+                        "$ref": "ObliterateCseKeyPairRequest"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/gmail.settings.basic",
+                        "https://www.googleapis.com/auth/gmail.settings.sharing"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
             "delegates": {
               "methods": {
                 "create": {
@@ -2682,7 +3077,7 @@
       }
     }
   },
-  "revision": "20220404",
+  "revision": "20221219",
   "rootUrl": "https://gmail.googleapis.com/",
   "schemas": {
     "AutoForwarding": {
@@ -2758,6 +3153,94 @@
       },
       "type": "object"
     },
+    "CseIdentity": {
+      "description": "[Beta](https://workspace.google.com/terms/service-terms/index.html). The client-side encryption (CSE) configuration for the email address of an authenticated user. Gmail uses CSE configurations to save drafts of client-side encrypted email messages, and to sign and send encrypted email messages.",
+      "id": "CseIdentity",
+      "properties": {
+        "emailAddress": {
+          "description": "The email address for the sending identity. The email address must be the primary email address of the authenticated user.",
+          "type": "string"
+        },
+        "primaryKeyPairId": {
+          "description": "If a key pair is associated, the identifier of the key pair, CseKeyPair.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CseKeyPair": {
+      "description": "[Beta](https://workspace.google.com/terms/service-terms/index.html). A client-side encryption S/MIME key pair, which is comprised of a public key, its certificate chain, and metadata for its paired private key. Gmail uses the key pair to complete the following tasks: - Sign outgoing client-side encrypted messages. - Save and reopen drafts of client-side encrypted messages. - Save and reopen sent messages. - Decrypt incoming or archived S/MIME messages.",
+      "id": "CseKeyPair",
+      "properties": {
+        "disableTime": {
+          "description": "Output only. If a key pair is set to `DISABLED`, the time that the key pair's state changed from `ENABLED` to `DISABLED`. This field is present only when the key pair is in state `DISABLED`.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "enablementState": {
+          "description": "Output only. The current state of the key pair.",
+          "enum": [
+            "stateUnspecified",
+            "enabled",
+            "disabled"
+          ],
+          "enumDescriptions": [
+            "The current state of the key pair is not set. The key pair is neither turned on nor turned off.",
+            "The key pair is turned on. For any email messages that this key pair encrypts, Gmail decrypts the messages and signs any outgoing mail with the private key. To turn on a key pair, use the EnableCseKeyPair method.",
+            "The key pair is turned off. Authenticated users cannot decrypt email messages nor sign outgoing messages. If a key pair is turned off for more than 30 days, you can permanently delete it. To turn off a key pair, use the DisableCseKeyPair method."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "keyPairId": {
+          "description": "Output only. The immutable ID for the client-side encryption S/MIME key pair.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "pem": {
+          "description": "Output only. The public key and its certificate chain, in [PEM](https://en.wikipedia.org/wiki/Privacy-Enhanced_Mail) format.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "pkcs7": {
+          "description": "Input only. The public key and its certificate chain. The chain must be in [PKCS#7](https://en.wikipedia.org/wiki/PKCS_7) format and use PEM encoding and ASCII armor.",
+          "type": "string"
+        },
+        "privateKeyMetadata": {
+          "description": "Metadata for instances of this key pair's private key.",
+          "items": {
+            "$ref": "CsePrivateKeyMetadata"
+          },
+          "type": "array"
+        },
+        "subjectEmailAddresses": {
+          "description": "Output only. The email address identities that are specified on the leaf certificate.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CsePrivateKeyMetadata": {
+      "description": "Metadata for a private key instance.",
+      "id": "CsePrivateKeyMetadata",
+      "properties": {
+        "kaclsKeyMetadata": {
+          "$ref": "KaclsKeyMetadata",
+          "description": "Metadata for a private key instance managed by an external key access control list service."
+        },
+        "privateKeyMetadataId": {
+          "description": "Output only. The immutable ID for the private key metadata instance.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Delegate": {
       "description": "Settings for a delegate. Delegates can read, send, and delete messages, as well as view and add contacts, for the delegator's account. See \"Set up mail delegation\" for more information about delegates.",
       "id": "Delegate",
@@ -2787,6 +3270,12 @@
       },
       "type": "object"
     },
+    "DisableCseKeyPairRequest": {
+      "description": "Requests to turn off a client-side encryption key pair.",
+      "id": "DisableCseKeyPairRequest",
+      "properties": {},
+      "type": "object"
+    },
     "Draft": {
       "description": "A draft email in the user's mailbox.",
       "id": "Draft",
@@ -2805,6 +3294,12 @@
           "description": "The message content of the draft."
         }
       },
+      "type": "object"
+    },
+    "EnableCseKeyPairRequest": {
+      "description": "Requests to turn on a client-side encryption key pair.",
+      "id": "EnableCseKeyPairRequest",
+      "properties": {},
       "type": "object"
     },
     "Filter": {
@@ -3063,6 +3558,21 @@
       },
       "type": "object"
     },
+    "KaclsKeyMetadata": {
+      "description": "Metadata for private keys managed by an external key access control list service. For details about managing key access, see [Google Workspace CSE API Reference](https://developers.google.com/workspace/cse/reference).",
+      "id": "KaclsKeyMetadata",
+      "properties": {
+        "kaclsData": {
+          "description": "Opaque data generated and used by the key access control list service. Maximum size: 8 KiB.",
+          "type": "string"
+        },
+        "kaclsUri": {
+          "description": "The URI of the key access control list service that manages the private key.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Label": {
       "description": "Labels are used to categorize messages and threads within the user's mailbox. The maximum number of labels supported for a user's mailbox is 10,000.",
       "id": "Label",
@@ -3183,6 +3693,40 @@
       "properties": {
         "displayLanguage": {
           "description": "The language to display Gmail in, formatted as an RFC 3066 Language Tag (for example `en-GB`, `fr` or `ja` for British English, French, or Japanese respectively). The set of languages supported by Gmail evolves over time, so please refer to the \"Language\" dropdown in the Gmail settings for all available options, as described in the language settings help article. A table of sample values is also provided in the Managing Language Settings guide Not all Gmail clients can display the same set of languages. In the case that a user's display language is not available for use on a particular client, said client automatically chooses to display in the closest supported variant (or a reasonable default).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListCseIdentitiesResponse": {
+      "id": "ListCseIdentitiesResponse",
+      "properties": {
+        "cseIdentities": {
+          "description": "One page of the list of CSE identities configured for the user.",
+          "items": {
+            "$ref": "CseIdentity"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Pagination token to be passed to a subsequent ListCseIdentities call in order to retrieve the next page of identities. If this value is not returned or is the empty string, then no further pages remain.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListCseKeyPairsResponse": {
+      "id": "ListCseKeyPairsResponse",
+      "properties": {
+        "cseKeyPairs": {
+          "description": "One page of the list of CSE key pairs installed for the user.",
+          "items": {
+            "$ref": "CseKeyPair"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Pagination token to be passed to a subsequent ListCseKeyPairs call in order to retrieve the next page of key pairs. If this value is not returned, then no further pages remain.",
           "type": "string"
         }
       },
@@ -3526,6 +4070,12 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "ObliterateCseKeyPairRequest": {
+      "description": "Request to obliterate a CSE key pair.",
+      "id": "ObliterateCseKeyPairRequest",
+      "properties": {},
       "type": "object"
     },
     "PopSettings": {
