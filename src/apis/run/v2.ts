@@ -138,7 +138,7 @@ export namespace run_v2 {
     useDefault?: boolean | null;
   }
   /**
-   * Represents a specific Cloud SQL instance.
+   * Represents a set of Cloud SQL instances. Each one will be available under /cloudsql/[instance]. Visit https://cloud.google.com/sql/docs/mysql/connect-run for more information on how to connect Cloud SQL and Cloud Run.
    */
   export interface Schema$GoogleCloudRunV2CloudSqlInstance {
     /**
@@ -208,7 +208,7 @@ export namespace run_v2 {
      */
     livenessProbe?: Schema$GoogleCloudRunV2Probe;
     /**
-     * Name of the container specified as a DNS_LABEL.
+     * Name of the container specified as a DNS_LABEL (RFC 1123).
      */
     name?: string | null;
     /**
@@ -316,7 +316,7 @@ export namespace run_v2 {
      */
     job?: string | null;
     /**
-     * KRM-style labels for the resource. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels Cloud Run will populate some labels with 'run.googleapis.com' or 'serving.knative.dev' namespaces. Those labels are read-only, and user changes will not be preserved.
+     * KRM-style labels for the resource. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -390,11 +390,11 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2ExecutionTemplate {
     /**
-     * KRM-style annotations for the resource.
+     * KRM-style annotations for the resource. Cloud Run API v2 does not support annotations with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system annotations in v1 now have a corresponding field in v2 ExecutionTemplate.
      */
     annotations?: {[key: string]: string} | null;
     /**
-     * KRM-style labels for the resource.
+     * KRM-style labels for the resource. Cloud Run API v2 does not support labels with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system labels in v1 now have a corresponding field in v2 ExecutionTemplate.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -409,6 +409,19 @@ export namespace run_v2 {
      * Required. Describes the task(s) that will be created when executing an execution.
      */
     template?: Schema$GoogleCloudRunV2TaskTemplate;
+  }
+  /**
+   * GRPCAction describes an action involving a GRPC port.
+   */
+  export interface Schema$GoogleCloudRunV2GRPCAction {
+    /**
+     * Port number of the gRPC service. Number must be in the range 1 to 65535. If not specified, defaults to 8080.
+     */
+    port?: number | null;
+    /**
+     * Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC.
+     */
+    service?: string | null;
   }
   /**
    * HTTPGetAction describes an action based on HTTP Get requests.
@@ -437,11 +450,11 @@ export namespace run_v2 {
     value?: string | null;
   }
   /**
-   * Job represents the configuration of a single job. A job an immutable resource that references a container image which is run to completion.
+   * Job represents the configuration of a single job, which references a container image that is run to completion.
    */
   export interface Schema$GoogleCloudRunV2Job {
     /**
-     * KRM-style annotations for the resource. Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. Cloud Run will populate some annotations using 'run.googleapis.com' or 'serving.knative.dev' namespaces. This field follows Kubernetes annotations' namespacing, limits, and rules. More info: https://kubernetes.io/docs/user-guide/annotations
+     * KRM-style annotations for the resource. Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. Cloud Run API v2 does not support annotations with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system annotations in v1 now have a corresponding field in v2 Job. This field follows Kubernetes annotations' namespacing, limits, and rules. More info: https://kubernetes.io/docs/user-guide/annotations
      */
     annotations?: {[key: string]: string} | null;
     /**
@@ -489,7 +502,7 @@ export namespace run_v2 {
      */
     generation?: string | null;
     /**
-     * KRM-style labels for the resource. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels Cloud Run will populate some labels with 'run.googleapis.com' or 'serving.knative.dev' namespaces. Those labels are read-only, and user changes will not be preserved.
+     * KRM-style labels for the resource. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels Cloud Run API v2 does not support labels with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system labels in v1 now have a corresponding field in v2 Job.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -607,7 +620,11 @@ export namespace run_v2 {
      */
     failureThreshold?: number | null;
     /**
-     * HTTPGet specifies the http request to perform. Exactly one of HTTPGet or TCPSocket must be specified.
+     * GRPC specifies an action involving a gRPC port. Exactly one of httpGet, tcpSocket, or grpc must be specified.
+     */
+    grpc?: Schema$GoogleCloudRunV2GRPCAction;
+    /**
+     * HTTPGet specifies the http request to perform. Exactly one of httpGet, tcpSocket, or grpc must be specified.
      */
     httpGet?: Schema$GoogleCloudRunV2HTTPGetAction;
     /**
@@ -619,7 +636,7 @@ export namespace run_v2 {
      */
     periodSeconds?: number | null;
     /**
-     * TCPSocket specifies an action involving a TCP port. Exactly one of HTTPGet or TCPSocket must be specified.
+     * TCPSocket specifies an action involving a TCP port. Exactly one of httpGet, tcpSocket, or grpc must be specified.
      */
     tcpSocket?: Schema$GoogleCloudRunV2TCPSocketAction;
     /**
@@ -636,7 +653,7 @@ export namespace run_v2 {
      */
     cpuIdle?: boolean | null;
     /**
-     * Only memory and CPU are supported. Note: The only supported values for CPU are '1', '2', and '4'. Setting 4 CPU requires at least 2Gi of memory. The values of the map is string form of the 'quantity' k8s type: https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
+     * Only memory and CPU are supported. Note: The only supported values for CPU are '1', '2', '4', and '8'. Setting 4 CPU requires at least 2Gi of memory. The values of the map is string form of the 'quantity' k8s type: https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
      */
     limits?: {[key: string]: string} | null;
   }
@@ -669,6 +686,14 @@ export namespace run_v2 {
      */
     encryptionKey?: string | null;
     /**
+     * The action to take if the encryption key is revoked.
+     */
+    encryptionKeyRevocationAction?: string | null;
+    /**
+     * If encryption_key_revocation_action is SHUTDOWN, the duration before shutting down all instances. The minimum increment is 1 hour.
+     */
+    encryptionKeyShutdownDuration?: string | null;
+    /**
      * Output only. A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.
      */
     etag?: string | null;
@@ -685,7 +710,7 @@ export namespace run_v2 {
      */
     generation?: string | null;
     /**
-     * KRM-style labels for the resource. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels Cloud Run will populate some labels with 'run.googleapis.com' or 'serving.knative.dev' namespaces. Those labels are read-only, and user changes will not be preserved.
+     * KRM-style labels for the resource. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -763,7 +788,7 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2RevisionTemplate {
     /**
-     * KRM-style annotations for the resource.
+     * KRM-style annotations for the resource. Cloud Run API v2 does not support annotations with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system annotations in v1 now have a corresponding field in v2 RevisionTemplate.
      */
     annotations?: {[key: string]: string} | null;
     /**
@@ -779,7 +804,7 @@ export namespace run_v2 {
      */
     executionEnvironment?: string | null;
     /**
-     * KRM-style labels for the resource.
+     * KRM-style labels for the resource. Cloud Run API v2 does not support labels with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system labels in v1 now have a corresponding field in v2 RevisionTemplate.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -833,7 +858,7 @@ export namespace run_v2 {
      */
     secret?: string | null;
     /**
-     * The Cloud Secret Manager secret version. Can be 'latest' for the latest value or an integer for a specific version.
+     * The Cloud Secret Manager secret version. Can be 'latest' for the latest version, an integer for a specific version, or a version alias.
      */
     version?: string | null;
   }
@@ -859,7 +884,7 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2Service {
     /**
-     * Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. Cloud Run will populate some annotations using 'run.googleapis.com' or 'serving.knative.dev' namespaces. This field follows Kubernetes annotations' namespacing, limits, and rules. More info: https://kubernetes.io/docs/user-guide/annotations
+     * Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. Cloud Run API v2 does not support annotations with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system annotations in v1 now have a corresponding field in v2 Service. This field follows Kubernetes annotations' namespacing, limits, and rules. More info: https://kubernetes.io/docs/user-guide/annotations
      */
     annotations?: {[key: string]: string} | null;
     /**
@@ -911,7 +936,7 @@ export namespace run_v2 {
      */
     ingress?: string | null;
     /**
-     * Map of string keys and values that can be used to organize and categorize objects. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels Cloud Run will populate some labels with 'run.googleapis.com' or 'serving.knative.dev' namespaces. Those labels are read-only, and user changes will not be preserved.
+     * Map of string keys and values that can be used to organize and categorize objects. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels Cloud Run API v2 does not support labels with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system labels in v1 now have a corresponding field in v2 Service.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -1032,17 +1057,13 @@ export namespace run_v2 {
      */
     job?: string | null;
     /**
-     * KRM-style labels for the resource. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels Cloud Run will populate some labels with 'run.googleapis.com' or 'serving.knative.dev' namespaces. Those labels are read-only, and user changes will not be preserved.
+     * KRM-style labels for the resource. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels
      */
     labels?: {[key: string]: string} | null;
     /**
      * Output only. Result of the last attempt of this Task.
      */
     lastAttemptResult?: Schema$GoogleCloudRunV2TaskAttemptResult;
-    /**
-     * Set the launch stage to a preview stage on write to allow use of preview features in that stage. On read, describes whether the resource uses preview features. Launch Stages are defined at [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages).
-     */
-    launchStage?: string | null;
     /**
      * Number of retries allowed per Task, before marking this Task failed.
      */
@@ -1210,7 +1231,7 @@ export namespace run_v2 {
      */
     path?: string | null;
     /**
-     * The Cloud Secret Manager secret version. Can be 'latest' for the latest value or an integer for a specific version.
+     * The Cloud Secret Manager secret version. Can be 'latest' for the latest value, or an integer or a secret alias for a specific version.
      */
     version?: string | null;
   }
@@ -1249,7 +1270,7 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2VpcAccess {
     /**
-     * VPC Access connector name. Format: projects/{project\}/locations/{location\}/connectors/{connector\}
+     * VPC Access connector name. Format: projects/{project\}/locations/{location\}/connectors/{connector\}, where {project\} can be project id or number.
      */
     connector?: string | null;
     /**
@@ -1468,7 +1489,7 @@ export namespace run_v2 {
     }
 
     /**
-     * Create a Job.
+     * Creates a Job.
      * @example
      * ```js
      * // Before running the sample:
@@ -1496,7 +1517,7 @@ export namespace run_v2 {
      *   const res = await run.projects.locations.jobs.create({
      *     // Required. The unique identifier for the Job. The name of the job becomes {parent\}/jobs/{job_id\}.
      *     jobId: 'placeholder-value',
-     *     // Required. The location and project in which this Job should be created. Format: projects/{project\}/locations/{location\}
+     *     // Required. The location and project in which this Job should be created. Format: projects/{project\}/locations/{location\}, where {project\} can be project id or number.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Indicates that the request should be validated and default values populated, without persisting the request or creating any resources.
      *     validateOnly: 'placeholder-value',
@@ -1667,7 +1688,7 @@ export namespace run_v2 {
      *   const res = await run.projects.locations.jobs.delete({
      *     // A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.
      *     etag: 'placeholder-value',
-     *     // Required. The full name of the Job. Format: projects/{project\}/locations/{location\}/jobs/{job\}
+     *     // Required. The full name of the Job. Format: projects/{project\}/locations/{location\}/jobs/{job\}, where {project\} can be project id or number.
      *     name: 'projects/my-project/locations/my-location/jobs/my-job',
      *     // Indicates that the request should be validated without actually deleting any resources.
      *     validateOnly: 'placeholder-value',
@@ -1806,7 +1827,7 @@ export namespace run_v2 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.jobs.get({
-     *     // Required. The full name of the Job. Format: projects/{project\}/locations/{location\}/jobs/{job\}
+     *     // Required. The full name of the Job. Format: projects/{project\}/locations/{location\}/jobs/{job\}, where {project\} can be project id or number.
      *     name: 'projects/my-project/locations/my-location/jobs/my-job',
      *   });
      *   console.log(res.data);
@@ -1931,7 +1952,7 @@ export namespace run_v2 {
     }
 
     /**
-     * Get the IAM Access Control policy currently in effect for the given Job. This result does not include any inherited policies.
+     * Gets the IAM Access Control policy currently in effect for the given Job. This result does not include any inherited policies.
      * @example
      * ```js
      * // Before running the sample:
@@ -2070,7 +2091,7 @@ export namespace run_v2 {
     }
 
     /**
-     * List Jobs.
+     * Lists Jobs.
      * @example
      * ```js
      * // Before running the sample:
@@ -2100,7 +2121,7 @@ export namespace run_v2 {
      *     pageSize: 'placeholder-value',
      *     // A page token received from a previous call to ListJobs. All other parameters must match.
      *     pageToken: 'placeholder-value',
-     *     // Required. The location and project to list resources on. Format: projects/{project\}/locations/{location\}
+     *     // Required. The location and project to list resources on. Format: projects/{project\}/locations/{location\}, where {project\} can be project id or number.
      *     parent: 'projects/my-project/locations/my-location',
      *     // If true, returns deleted (but unexpired) resources along with active ones.
      *     showDeleted: 'placeholder-value',
@@ -2409,7 +2430,7 @@ export namespace run_v2 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.jobs.run({
-     *     // Required. The full name of the Job. Format: projects/{project\}/locations/{location\}/jobs/{job\}
+     *     // Required. The full name of the Job. Format: projects/{project\}/locations/{location\}/jobs/{job\}, where {project\} can be project id or number.
      *     name: 'projects/my-project/locations/my-location/jobs/my-job',
      *
      *     // Request body metadata
@@ -2829,7 +2850,7 @@ export namespace run_v2 {
      */
     jobId?: string;
     /**
-     * Required. The location and project in which this Job should be created. Format: projects/{project\}/locations/{location\}
+     * Required. The location and project in which this Job should be created. Format: projects/{project\}/locations/{location\}, where {project\} can be project id or number.
      */
     parent?: string;
     /**
@@ -2849,7 +2870,7 @@ export namespace run_v2 {
      */
     etag?: string;
     /**
-     * Required. The full name of the Job. Format: projects/{project\}/locations/{location\}/jobs/{job\}
+     * Required. The full name of the Job. Format: projects/{project\}/locations/{location\}/jobs/{job\}, where {project\} can be project id or number.
      */
     name?: string;
     /**
@@ -2860,7 +2881,7 @@ export namespace run_v2 {
   export interface Params$Resource$Projects$Locations$Jobs$Get
     extends StandardParameters {
     /**
-     * Required. The full name of the Job. Format: projects/{project\}/locations/{location\}/jobs/{job\}
+     * Required. The full name of the Job. Format: projects/{project\}/locations/{location\}/jobs/{job\}, where {project\} can be project id or number.
      */
     name?: string;
   }
@@ -2886,7 +2907,7 @@ export namespace run_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The location and project to list resources on. Format: projects/{project\}/locations/{location\}
+     * Required. The location and project to list resources on. Format: projects/{project\}/locations/{location\}, where {project\} can be project id or number.
      */
     parent?: string;
     /**
@@ -2917,7 +2938,7 @@ export namespace run_v2 {
   export interface Params$Resource$Projects$Locations$Jobs$Run
     extends StandardParameters {
     /**
-     * Required. The full name of the Job. Format: projects/{project\}/locations/{location\}/jobs/{job\}
+     * Required. The full name of the Job. Format: projects/{project\}/locations/{location\}/jobs/{job\}, where {project\} can be project id or number.
      */
     name?: string;
 
@@ -2962,7 +2983,7 @@ export namespace run_v2 {
     }
 
     /**
-     * Delete an Execution.
+     * Deletes an Execution.
      * @example
      * ```js
      * // Before running the sample:
@@ -2990,7 +3011,7 @@ export namespace run_v2 {
      *   const res = await run.projects.locations.jobs.executions.delete({
      *     // A system-generated fingerprint for this version of the resource. This may be used to detect modification conflict during updates.
      *     etag: 'placeholder-value',
-     *     // Required. The name of the Execution to delete. Format: projects/{project\}/locations/{location\}/jobs/{job\}/executions/{execution\}
+     *     // Required. The name of the Execution to delete. Format: projects/{project\}/locations/{location\}/jobs/{job\}/executions/{execution\}, where {project\} can be project id or number.
      *     name: 'projects/my-project/locations/my-location/jobs/my-job/executions/my-execution',
      *     // Indicates that the request should be validated without actually deleting any resources.
      *     validateOnly: 'placeholder-value',
@@ -3104,7 +3125,7 @@ export namespace run_v2 {
     }
 
     /**
-     * Gets information about a Execution.
+     * Gets information about an Execution.
      * @example
      * ```js
      * // Before running the sample:
@@ -3130,7 +3151,7 @@ export namespace run_v2 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.jobs.executions.get({
-     *     // Required. The full name of the Execution. Format: projects/{project\}/locations/{location\}/jobs/{job\}/executions/{execution\}
+     *     // Required. The full name of the Execution. Format: projects/{project\}/locations/{location\}/jobs/{job\}/executions/{execution\}, where {project\} can be project id or number.
      *     name: 'projects/my-project/locations/my-location/jobs/my-job/executions/my-execution',
      *   });
      *   console.log(res.data);
@@ -3257,7 +3278,7 @@ export namespace run_v2 {
     }
 
     /**
-     * List Executions from a Job.
+     * Lists Executions from a Job.
      * @example
      * ```js
      * // Before running the sample:
@@ -3287,7 +3308,7 @@ export namespace run_v2 {
      *     pageSize: 'placeholder-value',
      *     // A page token received from a previous call to ListExecutions. All other parameters must match.
      *     pageToken: 'placeholder-value',
-     *     // Required. The Execution from which the Executions should be listed. To list all Executions across Jobs, use "-" instead of Job name. Format: projects/{project\}/locations/{location\}/jobs/{job\}
+     *     // Required. The Execution from which the Executions should be listed. To list all Executions across Jobs, use "-" instead of Job name. Format: projects/{project\}/locations/{location\}/jobs/{job\}, where {project\} can be project id or number.
      *     parent: 'projects/my-project/locations/my-location/jobs/my-job',
      *     // If true, returns deleted (but unexpired) resources along with active ones.
      *     showDeleted: 'placeholder-value',
@@ -3409,7 +3430,7 @@ export namespace run_v2 {
      */
     etag?: string;
     /**
-     * Required. The name of the Execution to delete. Format: projects/{project\}/locations/{location\}/jobs/{job\}/executions/{execution\}
+     * Required. The name of the Execution to delete. Format: projects/{project\}/locations/{location\}/jobs/{job\}/executions/{execution\}, where {project\} can be project id or number.
      */
     name?: string;
     /**
@@ -3420,7 +3441,7 @@ export namespace run_v2 {
   export interface Params$Resource$Projects$Locations$Jobs$Executions$Get
     extends StandardParameters {
     /**
-     * Required. The full name of the Execution. Format: projects/{project\}/locations/{location\}/jobs/{job\}/executions/{execution\}
+     * Required. The full name of the Execution. Format: projects/{project\}/locations/{location\}/jobs/{job\}/executions/{execution\}, where {project\} can be project id or number.
      */
     name?: string;
   }
@@ -3435,7 +3456,7 @@ export namespace run_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The Execution from which the Executions should be listed. To list all Executions across Jobs, use "-" instead of Job name. Format: projects/{project\}/locations/{location\}/jobs/{job\}
+     * Required. The Execution from which the Executions should be listed. To list all Executions across Jobs, use "-" instead of Job name. Format: projects/{project\}/locations/{location\}/jobs/{job\}, where {project\} can be project id or number.
      */
     parent?: string;
     /**
@@ -3500,7 +3521,6 @@ export namespace run_v2 {
      *   //   "job": "my_job",
      *   //   "labels": {},
      *   //   "lastAttemptResult": {},
-     *   //   "launchStage": "my_launchStage",
      *   //   "maxRetries": 0,
      *   //   "name": "my_name",
      *   //   "observedGeneration": "my_observedGeneration",
@@ -3611,7 +3631,7 @@ export namespace run_v2 {
     }
 
     /**
-     * List Tasks from an Execution of a Job.
+     * Lists Tasks from an Execution of a Job.
      * @example
      * ```js
      * // Before running the sample:
@@ -4272,9 +4292,9 @@ export namespace run_v2 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.create({
-     *     // Required. The location and project in which this service should be created. Format: projects/{project\}/locations/{location\} Only lowercase characters, digits, and hyphens.
+     *     // Required. The location and project in which this service should be created. Format: projects/{project\}/locations/{location\}, where {project\} can be project id or number. Only lowercase characters, digits, and hyphens.
      *     parent: 'projects/my-project/locations/my-location',
-     *     // Required. The unique identifier for the Service. It must begin with letter, and may not end with hyphen; must contain fewer than 50 characters. The name of the service becomes {parent\}/services/{service_id\}.
+     *     // Required. The unique identifier for the Service. It must begin with letter, and cannot end with hyphen; must contain fewer than 50 characters. The name of the service becomes {parent\}/services/{service_id\}.
      *     serviceId: 'placeholder-value',
      *     // Indicates that the request should be validated and default values populated, without persisting the request or creating any resources.
      *     validateOnly: 'placeholder-value',
@@ -4453,7 +4473,7 @@ export namespace run_v2 {
      *   const res = await run.projects.locations.services.delete({
      *     // A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.
      *     etag: 'placeholder-value',
-     *     // Required. The full name of the Service. Format: projects/{project\}/locations/{location\}/services/{service\}
+     *     // Required. The full name of the Service. Format: projects/{project\}/locations/{location\}/services/{service\}, where {project\} can be project id or number.
      *     name: 'projects/my-project/locations/my-location/services/my-service',
      *     // Indicates that the request should be validated without actually deleting any resources.
      *     validateOnly: 'placeholder-value',
@@ -4592,7 +4612,7 @@ export namespace run_v2 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.get({
-     *     // Required. The full name of the Service. Format: projects/{project\}/locations/{location\}/services/{service\}
+     *     // Required. The full name of the Service. Format: projects/{project\}/locations/{location\}/services/{service\}, where {project\} can be project id or number.
      *     name: 'projects/my-project/locations/my-location/services/my-service',
      *   });
      *   console.log(res.data);
@@ -4724,7 +4744,7 @@ export namespace run_v2 {
     }
 
     /**
-     * Get the IAM Access Control policy currently in effect for the given Cloud Run Service. This result does not include any inherited policies.
+     * Gets the IAM Access Control policy currently in effect for the given Cloud Run Service. This result does not include any inherited policies.
      * @example
      * ```js
      * // Before running the sample:
@@ -4863,7 +4883,7 @@ export namespace run_v2 {
     }
 
     /**
-     * List Services.
+     * Lists Services.
      * @example
      * ```js
      * // Before running the sample:
@@ -4893,7 +4913,7 @@ export namespace run_v2 {
      *     pageSize: 'placeholder-value',
      *     // A page token received from a previous call to ListServices. All other parameters must match.
      *     pageToken: 'placeholder-value',
-     *     // Required. The location and project to list resources on. Location must be a valid GCP region, and may not be the "-" wildcard. Format: projects/{project\}/locations/{location\}
+     *     // Required. The location and project to list resources on. Location must be a valid Google Cloud region, and cannot be the "-" wildcard. Format: projects/{project\}/locations/{location\}, where {project\} can be project id or number.
      *     parent: 'projects/my-project/locations/my-location',
      *     // If true, returns deleted (but unexpired) resources along with active ones.
      *     showDeleted: 'placeholder-value',
@@ -5480,11 +5500,11 @@ export namespace run_v2 {
   export interface Params$Resource$Projects$Locations$Services$Create
     extends StandardParameters {
     /**
-     * Required. The location and project in which this service should be created. Format: projects/{project\}/locations/{location\} Only lowercase characters, digits, and hyphens.
+     * Required. The location and project in which this service should be created. Format: projects/{project\}/locations/{location\}, where {project\} can be project id or number. Only lowercase characters, digits, and hyphens.
      */
     parent?: string;
     /**
-     * Required. The unique identifier for the Service. It must begin with letter, and may not end with hyphen; must contain fewer than 50 characters. The name of the service becomes {parent\}/services/{service_id\}.
+     * Required. The unique identifier for the Service. It must begin with letter, and cannot end with hyphen; must contain fewer than 50 characters. The name of the service becomes {parent\}/services/{service_id\}.
      */
     serviceId?: string;
     /**
@@ -5504,7 +5524,7 @@ export namespace run_v2 {
      */
     etag?: string;
     /**
-     * Required. The full name of the Service. Format: projects/{project\}/locations/{location\}/services/{service\}
+     * Required. The full name of the Service. Format: projects/{project\}/locations/{location\}/services/{service\}, where {project\} can be project id or number.
      */
     name?: string;
     /**
@@ -5515,7 +5535,7 @@ export namespace run_v2 {
   export interface Params$Resource$Projects$Locations$Services$Get
     extends StandardParameters {
     /**
-     * Required. The full name of the Service. Format: projects/{project\}/locations/{location\}/services/{service\}
+     * Required. The full name of the Service. Format: projects/{project\}/locations/{location\}/services/{service\}, where {project\} can be project id or number.
      */
     name?: string;
   }
@@ -5541,7 +5561,7 @@ export namespace run_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The location and project to list resources on. Location must be a valid GCP region, and may not be the "-" wildcard. Format: projects/{project\}/locations/{location\}
+     * Required. The location and project to list resources on. Location must be a valid Google Cloud region, and cannot be the "-" wildcard. Format: projects/{project\}/locations/{location\}, where {project\} can be project id or number.
      */
     parent?: string;
     /**
@@ -5601,7 +5621,7 @@ export namespace run_v2 {
     }
 
     /**
-     * Delete a Revision.
+     * Deletes a Revision.
      * @example
      * ```js
      * // Before running the sample:
@@ -5782,6 +5802,8 @@ export namespace run_v2 {
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
      *   //   "encryptionKey": "my_encryptionKey",
+     *   //   "encryptionKeyRevocationAction": "my_encryptionKeyRevocationAction",
+     *   //   "encryptionKeyShutdownDuration": "my_encryptionKeyShutdownDuration",
      *   //   "etag": "my_etag",
      *   //   "executionEnvironment": "my_executionEnvironment",
      *   //   "expireTime": "my_expireTime",
@@ -5899,7 +5921,7 @@ export namespace run_v2 {
     }
 
     /**
-     * List Revisions from a given Service, or from a given location.
+     * Lists Revisions from a given Service, or from a given location.
      * @example
      * ```js
      * // Before running the sample:
