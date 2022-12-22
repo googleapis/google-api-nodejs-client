@@ -35,9 +35,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace metastore_v1alpha {
+export namespace metastore_v1 {
   export interface Options extends GlobalOptions {
-    version: 'v1alpha';
+    version: 'v1';
   }
 
   interface StandardParameters {
@@ -107,11 +107,12 @@ export namespace metastore_v1alpha {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const metastore = google.metastore('v1alpha');
+   * const metastore = google.metastore('v1');
    * ```
    */
   export class Metastore {
     context: APIRequestContext;
+    operations: Resource$Operations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -120,23 +121,11 @@ export namespace metastore_v1alpha {
         google,
       };
 
+      this.operations = new Resource$Operations(this.context);
       this.projects = new Resource$Projects(this.context);
     }
   }
 
-  /**
-   * Request message for DataprocMetastore.AlterMetadataResourceLocation.
-   */
-  export interface Schema$AlterMetadataResourceLocationRequest {
-    /**
-     * Required. The new location URI for the metadata resource.
-     */
-    locationUri?: string | null;
-    /**
-     * Required. The relative metadata resource name in the following format.databases/{database_id\} or databases/{database_id\}/tables/{table_id\} or databases/{database_id\}/tables/{table_id\}/partitions/{partition_id\}
-     */
-    resourceName?: string | null;
-  }
   /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.If there are AuditConfigs for both allServices and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
@@ -162,23 +151,6 @@ export namespace metastore_v1alpha {
      * The log type that this config enables.
      */
     logType?: string | null;
-  }
-  /**
-   * Configuration information for the auxiliary service versions.
-   */
-  export interface Schema$AuxiliaryVersionConfig {
-    /**
-     * A mapping of Hive metastore configuration key-value pairs to apply to the auxiliary Hive metastore (configured in hive-site.xml) in addition to the primary version's overrides. If keys are present in both the auxiliary version's overrides and the primary version's overrides, the value from the auxiliary version's overrides takes precedence.
-     */
-    configOverrides?: {[key: string]: string} | null;
-    /**
-     * Output only. The network configuration contains the endpoint URI(s) of the auxiliary Hive metastore service.
-     */
-    networkConfig?: Schema$NetworkConfig;
-    /**
-     * The Hive metastore version of the auxiliary service. It must be less than the primary Hive metastore service's version.
-     */
-    version?: string | null;
   }
   /**
    * Represents a backend metastore for the federation.
@@ -244,6 +216,10 @@ export namespace metastore_v1alpha {
     role?: string | null;
   }
   /**
+   * The request message for Operations.CancelOperation.
+   */
+  export interface Schema$CancelOperationRequest {}
+  /**
    * Contains information of the customer's network configurations.
    */
   export interface Schema$Consumer {
@@ -276,24 +252,6 @@ export namespace metastore_v1alpha {
      * Optional. The type of the database dump. If unspecified, defaults to MYSQL.
      */
     type?: string | null;
-  }
-  /**
-   * Specifies how metastore metadata should be integrated with the Data Catalog service.
-   */
-  export interface Schema$DataCatalogConfig {
-    /**
-     * Defines whether the metastore metadata should be synced to Data Catalog. The default value is to disable syncing metastore metadata to Data Catalog.
-     */
-    enabled?: boolean | null;
-  }
-  /**
-   * Specifies how metastore metadata should be integrated with the Dataplex service.
-   */
-  export interface Schema$DataplexConfig {
-    /**
-     * A reference to the Lake resources that this metastore service is attached to. The key is the lake resource name. Example: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
-     */
-    lakeResources?: {[key: string]: Schema$Lake} | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -396,17 +354,9 @@ export namespace metastore_v1alpha {
    */
   export interface Schema$HiveMetastoreConfig {
     /**
-     * A mapping of Hive metastore version to the auxiliary version configuration. When specified, a secondary Hive metastore service is created along with the primary service. All auxiliary versions must be less than the service's primary version. The key is the auxiliary service name and it must match the regular expression a-z?. This means that the first character must be a lowercase letter, and all the following characters must be hyphens, lowercase letters, or digits, except the last character, which cannot be a hyphen.
-     */
-    auxiliaryVersions?: {[key: string]: Schema$AuxiliaryVersionConfig} | null;
-    /**
      * A mapping of Hive metastore configuration key-value pairs to apply to the Hive metastore (configured in hive-site.xml). The mappings override system defaults (some keys cannot be overridden). These overrides are also applied to auxiliary versions and can be further customized in the auxiliary version's AuxiliaryVersionConfig.
      */
     configOverrides?: {[key: string]: string} | null;
-    /**
-     * The protocol to use for the metastore service endpoint. If unspecified, defaults to THRIFT.
-     */
-    endpointProtocol?: string | null;
     /**
      * Information used to configure the Hive metastore service as a service principal in a Kerberos realm. To disable Kerberos, use the UpdateService method and specify this field's path (hive_metastore_config.kerberos_config) in the request's update_mask while omitting this field from the request's service.
      */
@@ -445,15 +395,6 @@ export namespace metastore_v1alpha {
      * A Kerberos principal that exists in the both the keytab the KDC to authenticate as. A typical principal is of the form primary/instance@REALM, but there is no exact format.
      */
     principal?: string | null;
-  }
-  /**
-   * Represents a Lake resource
-   */
-  export interface Schema$Lake {
-    /**
-     * The Lake resource name. Example: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}
-     */
-    name?: string | null;
   }
   /**
    * Response message for DataprocMetastore.ListBackups.
@@ -655,19 +596,6 @@ export namespace metastore_v1alpha {
     updateTime?: string | null;
   }
   /**
-   * Specifies how metastore metadata should be integrated with external services.
-   */
-  export interface Schema$MetadataIntegration {
-    /**
-     * The integration config for the Data Catalog service.
-     */
-    dataCatalogConfig?: Schema$DataCatalogConfig;
-    /**
-     * The integration config for the Dataplex service.
-     */
-    dataplexConfig?: Schema$DataplexConfig;
-  }
-  /**
    * The metadata management activities of the metastore service.
    */
   export interface Schema$MetadataManagementActivity {
@@ -679,23 +607,6 @@ export namespace metastore_v1alpha {
      * Output only. The latest restores of the metastore service.
      */
     restores?: Schema$Restore[];
-  }
-  /**
-   * Request message for DataprocMetastore.MoveTableToDatabase.
-   */
-  export interface Schema$MoveTableToDatabaseRequest {
-    /**
-     * Required. The name of the database where the table resides.
-     */
-    dbName?: string | null;
-    /**
-     * Required. The name of the database where the table should be moved.
-     */
-    destinationDbName?: string | null;
-    /**
-     * Required. The name of the table to be moved.
-     */
-    tableName?: string | null;
   }
   /**
    * Network configuration for the Dataproc Metastore service.
@@ -784,42 +695,6 @@ export namespace metastore_v1alpha {
      * Specifies the format of the policy.Valid values are 0, 1, and 3. Requests that specify an invalid value are rejected.Any operation that affects conditional role bindings must specify version 3. This requirement applies to the following operations: Getting a policy that includes a conditional role binding Adding a conditional role binding to a policy Changing a conditional role binding in a policy Removing any role binding, with or without a condition, from a policy that includes conditionsImportant: If you use IAM Conditions, you must include the etag field whenever you call setIamPolicy. If you omit this field, then IAM allows you to overwrite a version 3 policy with a version 1 policy, and all of the conditions in the version 3 policy are lost.If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
-  }
-  /**
-   * Request message for DataprocMetastore.QueryMetadata.
-   */
-  export interface Schema$QueryMetadataRequest {
-    /**
-     * Required. A read-only SQL query to execute against the metadata database. The query cannot change or mutate the data.
-     */
-    query?: string | null;
-  }
-  /**
-   * Response message for DataprocMetastore.QueryMetadata.
-   */
-  export interface Schema$QueryMetadataResponse {
-    /**
-     * The manifest URI is link to a JSON instance in Cloud Storage. This instance manifests immediately along with QueryMetadataResponse. The content of the URI is not retriable until the long-running operation query against the metadata finishes.
-     */
-    resultManifestUri?: string | null;
-  }
-  /**
-   * Request message for DataprocMetastore.RemoveIamPolicy.
-   */
-  export interface Schema$RemoveIamPolicyRequest {
-    /**
-     * Optional. Removes IAM policy attached to database or table asynchronously when it is set. The default is false.
-     */
-    asynchronous?: boolean | null;
-  }
-  /**
-   * Response message for DataprocMetastore.RemoveIamPolicy.
-   */
-  export interface Schema$RemoveIamPolicyResponse {
-    /**
-     * True if the policy is successfully removed.
-     */
-    success?: boolean | null;
   }
   /**
    * The details of a metadata restore operation.
@@ -912,10 +787,6 @@ export namespace metastore_v1alpha {
      * The one hour maintenance window of the metastore service. This specifies when the service can be restarted for maintenance purposes in UTC time. Maintenance window is not needed for services with the SPANNER database type.
      */
     maintenanceWindow?: Schema$MaintenanceWindow;
-    /**
-     * The setting that defines how metastore metadata should be integrated with external services and systems.
-     */
-    metadataIntegration?: Schema$MetadataIntegration;
     /**
      * Output only. The metadata management activities of the metastore service.
      */
@@ -1023,6 +894,156 @@ export namespace metastore_v1alpha {
     permissions?: string[] | null;
   }
 
+  export class Resource$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns google.rpc.Code.UNIMPLEMENTED. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to Code.CANCELLED.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/metastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const metastore = google.metastore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await metastore.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'operations/.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
+      params?: Params$Resource$Operations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Cancel
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Operations$Cancel
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelOperationRequest;
+  }
+
   export class Resource$Projects {
     context: APIRequestContext;
     locations: Resource$Projects$Locations;
@@ -1061,7 +1082,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1158,7 +1179,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1191,7 +1212,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1296,7 +1317,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}/locations').replace(
+            url: (rootUrl + '/v1/{+name}/locations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1366,7 +1387,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1484,7 +1505,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+parent}/federations').replace(
+            url: (rootUrl + '/v1/{+parent}/federations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1520,7 +1541,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1619,7 +1640,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -1652,7 +1673,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1754,7 +1775,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1787,7 +1808,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1887,7 +1908,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+resource}:getIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1923,7 +1944,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2031,7 +2052,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+parent}/federations').replace(
+            url: (rootUrl + '/v1/{+parent}/federations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2067,7 +2088,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2185,7 +2206,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -2218,7 +2239,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2325,7 +2346,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+resource}:setIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2361,7 +2382,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2473,7 +2494,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+resource}:testIamPermissions').replace(
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2633,7 +2654,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2724,7 +2745,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -2757,7 +2778,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2854,7 +2875,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -2887,7 +2908,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2992,7 +3013,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}/operations').replace(
+            url: (rootUrl + '/v1/{+name}/operations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3053,161 +3074,14 @@ export namespace metastore_v1alpha {
   export class Resource$Projects$Locations$Services {
     context: APIRequestContext;
     backups: Resource$Projects$Locations$Services$Backups;
-    databases: Resource$Projects$Locations$Services$Databases;
     metadataImports: Resource$Projects$Locations$Services$Metadataimports;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.backups = new Resource$Projects$Locations$Services$Backups(
         this.context
       );
-      this.databases = new Resource$Projects$Locations$Services$Databases(
-        this.context
-      );
       this.metadataImports =
         new Resource$Projects$Locations$Services$Metadataimports(this.context);
-    }
-
-    /**
-     * Alter metadata resource location. The metadata resource can be a database, table, or partition. This functionality only updates the parent directory for the respective metadata resource and does not transfer any existing data to the new location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/metastore.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await metastore.projects.locations.services.alterLocation({
-     *     // Required. The relative resource name of the metastore service to mutate metadata, in the following format:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
-     *     service: 'projects/my-project/locations/my-location/services/my-service',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "locationUri": "my_locationUri",
-     *       //   "resourceName": "my_resourceName"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    alterLocation(
-      params: Params$Resource$Projects$Locations$Services$Alterlocation,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    alterLocation(
-      params?: Params$Resource$Projects$Locations$Services$Alterlocation,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    alterLocation(
-      params: Params$Resource$Projects$Locations$Services$Alterlocation,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    alterLocation(
-      params: Params$Resource$Projects$Locations$Services$Alterlocation,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    alterLocation(
-      params: Params$Resource$Projects$Locations$Services$Alterlocation,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    alterLocation(callback: BodyResponseCallback<Schema$Operation>): void;
-    alterLocation(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Services$Alterlocation
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Services$Alterlocation;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Services$Alterlocation;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+service}:alterLocation').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['service'],
-        pathParams: ['service'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
     }
 
     /**
@@ -3223,7 +3097,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3256,7 +3130,6 @@ export namespace metastore_v1alpha {
      *       //   "hiveMetastoreConfig": {},
      *       //   "labels": {},
      *       //   "maintenanceWindow": {},
-     *       //   "metadataIntegration": {},
      *       //   "metadataManagementActivity": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
@@ -3352,7 +3225,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+parent}/services').replace(
+            url: (rootUrl + '/v1/{+parent}/services').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3388,7 +3261,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3487,7 +3360,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -3520,7 +3393,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3628,7 +3501,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+service}:exportMetadata').replace(
+            url: (rootUrl + '/v1/{+service}:exportMetadata').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3664,7 +3537,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3693,7 +3566,6 @@ export namespace metastore_v1alpha {
      *   //   "hiveMetastoreConfig": {},
      *   //   "labels": {},
      *   //   "maintenanceWindow": {},
-     *   //   "metadataIntegration": {},
      *   //   "metadataManagementActivity": {},
      *   //   "name": "my_name",
      *   //   "network": "my_network",
@@ -3777,7 +3649,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -3810,7 +3682,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3908,7 +3780,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+resource}:getIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3944,7 +3816,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4052,7 +3924,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+parent}/services').replace(
+            url: (rootUrl + '/v1/{+parent}/services').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4076,150 +3948,6 @@ export namespace metastore_v1alpha {
     }
 
     /**
-     * Move a table to another database.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/metastore.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await metastore.projects.locations.services.moveTableToDatabase({
-     *     // Required. The relative resource name of the metastore service to mutate metadata, in the following format:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
-     *     service: 'projects/my-project/locations/my-location/services/my-service',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "dbName": "my_dbName",
-     *       //   "destinationDbName": "my_destinationDbName",
-     *       //   "tableName": "my_tableName"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    moveTableToDatabase(
-      params: Params$Resource$Projects$Locations$Services$Movetabletodatabase,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    moveTableToDatabase(
-      params?: Params$Resource$Projects$Locations$Services$Movetabletodatabase,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    moveTableToDatabase(
-      params: Params$Resource$Projects$Locations$Services$Movetabletodatabase,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    moveTableToDatabase(
-      params: Params$Resource$Projects$Locations$Services$Movetabletodatabase,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    moveTableToDatabase(
-      params: Params$Resource$Projects$Locations$Services$Movetabletodatabase,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    moveTableToDatabase(callback: BodyResponseCallback<Schema$Operation>): void;
-    moveTableToDatabase(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Services$Movetabletodatabase
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Services$Movetabletodatabase;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Services$Movetabletodatabase;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+service}:moveTableToDatabase').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['service'],
-        pathParams: ['service'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-    /**
      * Updates the parameters of a single service.
      * @example
      * ```js
@@ -4232,7 +3960,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4265,7 +3993,6 @@ export namespace metastore_v1alpha {
      *       //   "hiveMetastoreConfig": {},
      *       //   "labels": {},
      *       //   "maintenanceWindow": {},
-     *       //   "metadataIntegration": {},
      *       //   "metadataManagementActivity": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
@@ -4361,7 +4088,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -4382,294 +4109,6 @@ export namespace metastore_v1alpha {
     }
 
     /**
-     * Query DPMS metadata.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/metastore.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await metastore.projects.locations.services.queryMetadata({
-     *     // Required. The relative resource name of the metastore service to query metadata, in the following format:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
-     *     service: 'projects/my-project/locations/my-location/services/my-service',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "query": "my_query"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    queryMetadata(
-      params: Params$Resource$Projects$Locations$Services$Querymetadata,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    queryMetadata(
-      params?: Params$Resource$Projects$Locations$Services$Querymetadata,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    queryMetadata(
-      params: Params$Resource$Projects$Locations$Services$Querymetadata,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    queryMetadata(
-      params: Params$Resource$Projects$Locations$Services$Querymetadata,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    queryMetadata(
-      params: Params$Resource$Projects$Locations$Services$Querymetadata,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    queryMetadata(callback: BodyResponseCallback<Schema$Operation>): void;
-    queryMetadata(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Services$Querymetadata
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Services$Querymetadata;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Services$Querymetadata;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+service}:queryMetadata').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['service'],
-        pathParams: ['service'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-    /**
-     * Removes the attached IAM policies for a resource
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/metastore.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await metastore.projects.locations.services.removeIamPolicy({
-     *     // Required. The relative resource name of the dataplane resource to remove IAM policy, in the following form:projects/{project_id\}/locations/{location_id\}/services/{service_id\}/databases/{database_id\} or projects/{project_id\}/locations/{location_id\}/services/{service_id\}/databases/{database_id\}/tables/{table_id\}.
-     *     resource:
-     *       'projects/my-project/locations/my-location/services/my-service/.*',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "asynchronous": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "success": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    removeIamPolicy(
-      params: Params$Resource$Projects$Locations$Services$Removeiampolicy,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    removeIamPolicy(
-      params?: Params$Resource$Projects$Locations$Services$Removeiampolicy,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$RemoveIamPolicyResponse>;
-    removeIamPolicy(
-      params: Params$Resource$Projects$Locations$Services$Removeiampolicy,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    removeIamPolicy(
-      params: Params$Resource$Projects$Locations$Services$Removeiampolicy,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RemoveIamPolicyResponse>,
-      callback: BodyResponseCallback<Schema$RemoveIamPolicyResponse>
-    ): void;
-    removeIamPolicy(
-      params: Params$Resource$Projects$Locations$Services$Removeiampolicy,
-      callback: BodyResponseCallback<Schema$RemoveIamPolicyResponse>
-    ): void;
-    removeIamPolicy(
-      callback: BodyResponseCallback<Schema$RemoveIamPolicyResponse>
-    ): void;
-    removeIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Services$Removeiampolicy
-        | BodyResponseCallback<Schema$RemoveIamPolicyResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$RemoveIamPolicyResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$RemoveIamPolicyResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$RemoveIamPolicyResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Services$Removeiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Services$Removeiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+resource}:removeIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$RemoveIamPolicyResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$RemoveIamPolicyResponse>(parameters);
-      }
-    }
-
-    /**
      * Restores a service from a backup.
      * @example
      * ```js
@@ -4682,7 +4121,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4789,7 +4228,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+service}:restore').replace(
+            url: (rootUrl + '/v1/{+service}:restore').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4825,7 +4264,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4930,7 +4369,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+resource}:setIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4966,7 +4405,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5075,7 +4514,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+resource}:testIamPermissions').replace(
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -5099,18 +4538,6 @@ export namespace metastore_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Services$Alterlocation
-    extends StandardParameters {
-    /**
-     * Required. The relative resource name of the metastore service to mutate metadata, in the following format:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
-     */
-    service?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$AlterMetadataResourceLocationRequest;
-  }
   export interface Params$Resource$Projects$Locations$Services$Create
     extends StandardParameters {
     /**
@@ -5195,18 +4622,6 @@ export namespace metastore_v1alpha {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$Movetabletodatabase
-    extends StandardParameters {
-    /**
-     * Required. The relative resource name of the metastore service to mutate metadata, in the following format:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
-     */
-    service?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$MoveTableToDatabaseRequest;
-  }
   export interface Params$Resource$Projects$Locations$Services$Patch
     extends StandardParameters {
     /**
@@ -5226,30 +4641,6 @@ export namespace metastore_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$Service;
-  }
-  export interface Params$Resource$Projects$Locations$Services$Querymetadata
-    extends StandardParameters {
-    /**
-     * Required. The relative resource name of the metastore service to query metadata, in the following format:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
-     */
-    service?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$QueryMetadataRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Services$Removeiampolicy
-    extends StandardParameters {
-    /**
-     * Required. The relative resource name of the dataplane resource to remove IAM policy, in the following form:projects/{project_id\}/locations/{location_id\}/services/{service_id\}/databases/{database_id\} or projects/{project_id\}/locations/{location_id\}/services/{service_id\}/databases/{database_id\}/tables/{table_id\}.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$RemoveIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Services$Restore
     extends StandardParameters {
@@ -5307,7 +4698,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5423,7 +4814,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+parent}/backups').replace(
+            url: (rootUrl + '/v1/{+parent}/backups').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -5459,7 +4850,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5559,7 +4950,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -5592,7 +4983,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5691,7 +5082,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -5724,7 +5115,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5824,7 +5215,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+resource}:getIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -5860,7 +5251,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5966,7 +5357,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+parent}/backups').replace(
+            url: (rootUrl + '/v1/{+parent}/backups').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6002,7 +5393,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6109,7 +5500,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+resource}:setIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6129,153 +5520,6 @@ export namespace metastore_v1alpha {
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-    /**
-     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/metastore.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await metastore.projects.locations.services.backups.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/services/my-service/backups/my-backup',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Services$Backups$Testiampermissions,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    testIamPermissions(
-      params?: Params$Resource$Projects$Locations$Services$Backups$Testiampermissions,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Services$Backups$Testiampermissions,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Services$Backups$Testiampermissions,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Services$Backups$Testiampermissions,
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Services$Backups$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Services$Backups$Testiampermissions;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Services$Backups$Testiampermissions;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+resource}:testIamPermissions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
   }
@@ -6364,966 +5608,6 @@ export namespace metastore_v1alpha {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Services$Backups$Testiampermissions
-    extends StandardParameters {
-    /**
-     * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$TestIamPermissionsRequest;
-  }
-
-  export class Resource$Projects$Locations$Services$Databases {
-    context: APIRequestContext;
-    tables: Resource$Projects$Locations$Services$Databases$Tables;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.tables = new Resource$Projects$Locations$Services$Databases$Tables(
-        this.context
-      );
-    }
-
-    /**
-     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/metastore.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await metastore.projects.locations.services.databases.getIamPolicy({
-     *       // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
-     *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/services/my-service/databases/my-database',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Services$Databases$Getiampolicy,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    getIamPolicy(
-      params?: Params$Resource$Projects$Locations$Services$Databases$Getiampolicy,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Services$Databases$Getiampolicy,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Services$Databases$Getiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Services$Databases$Getiampolicy,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Services$Databases$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Services$Databases$Getiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Services$Databases$Getiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+resource}:getIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-    /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/metastore.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await metastore.projects.locations.services.databases.setIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/services/my-service/databases/my-database',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "policy": {},
-     *         //   "updateMask": "my_updateMask"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Services$Databases$Setiampolicy,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    setIamPolicy(
-      params?: Params$Resource$Projects$Locations$Services$Databases$Setiampolicy,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Services$Databases$Setiampolicy,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Services$Databases$Setiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Services$Databases$Setiampolicy,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Services$Databases$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Services$Databases$Setiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Services$Databases$Setiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+resource}:setIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-    /**
-     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/metastore.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await metastore.projects.locations.services.databases.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/services/my-service/databases/my-database',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Services$Databases$Testiampermissions,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    testIamPermissions(
-      params?: Params$Resource$Projects$Locations$Services$Databases$Testiampermissions,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Services$Databases$Testiampermissions,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Services$Databases$Testiampermissions,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Services$Databases$Testiampermissions,
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Services$Databases$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Services$Databases$Testiampermissions;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Services$Databases$Testiampermissions;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+resource}:testIamPermissions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Services$Databases$Getiampolicy
-    extends StandardParameters {
-    /**
-     * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
-     */
-    'options.requestedPolicyVersion'?: number;
-    /**
-     * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Services$Databases$Setiampolicy
-    extends StandardParameters {
-    /**
-     * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SetIamPolicyRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Services$Databases$Testiampermissions
-    extends StandardParameters {
-    /**
-     * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$TestIamPermissionsRequest;
-  }
-
-  export class Resource$Projects$Locations$Services$Databases$Tables {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/metastore.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await metastore.projects.locations.services.databases.tables.getIamPolicy({
-     *       // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
-     *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/services/my-service/databases/my-database/tables/my-table',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Services$Databases$Tables$Getiampolicy,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    getIamPolicy(
-      params?: Params$Resource$Projects$Locations$Services$Databases$Tables$Getiampolicy,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Services$Databases$Tables$Getiampolicy,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Services$Databases$Tables$Getiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Services$Databases$Tables$Getiampolicy,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Services$Databases$Tables$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Services$Databases$Tables$Getiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Services$Databases$Tables$Getiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+resource}:getIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-    /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/metastore.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await metastore.projects.locations.services.databases.tables.setIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/services/my-service/databases/my-database/tables/my-table',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "policy": {},
-     *         //   "updateMask": "my_updateMask"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Services$Databases$Tables$Setiampolicy,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    setIamPolicy(
-      params?: Params$Resource$Projects$Locations$Services$Databases$Tables$Setiampolicy,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Services$Databases$Tables$Setiampolicy,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Services$Databases$Tables$Setiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Services$Databases$Tables$Setiampolicy,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Services$Databases$Tables$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Services$Databases$Tables$Setiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Services$Databases$Tables$Setiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+resource}:setIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-    /**
-     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/metastore.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await metastore.projects.locations.services.databases.tables.testIamPermissions(
-     *       {
-     *         // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *         resource:
-     *           'projects/my-project/locations/my-location/services/my-service/databases/my-database/tables/my-table',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "permissions": []
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Services$Databases$Tables$Testiampermissions,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    testIamPermissions(
-      params?: Params$Resource$Projects$Locations$Services$Databases$Tables$Testiampermissions,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Services$Databases$Tables$Testiampermissions,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Services$Databases$Tables$Testiampermissions,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Services$Databases$Tables$Testiampermissions,
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Services$Databases$Tables$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Services$Databases$Tables$Testiampermissions;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Services$Databases$Tables$Testiampermissions;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+resource}:testIamPermissions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Services$Databases$Tables$Getiampolicy
-    extends StandardParameters {
-    /**
-     * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
-     */
-    'options.requestedPolicyVersion'?: number;
-    /**
-     * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Services$Databases$Tables$Setiampolicy
-    extends StandardParameters {
-    /**
-     * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SetIamPolicyRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Services$Databases$Tables$Testiampermissions
-    extends StandardParameters {
-    /**
-     * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$TestIamPermissionsRequest;
-  }
 
   export class Resource$Projects$Locations$Services$Metadataimports {
     context: APIRequestContext;
@@ -7344,7 +5628,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7461,7 +5745,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+parent}/metadataImports').replace(
+            url: (rootUrl + '/v1/{+parent}/metadataImports').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -7497,7 +5781,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7597,7 +5881,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -7630,7 +5914,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7741,7 +6025,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+parent}/metadataImports').replace(
+            url: (rootUrl + '/v1/{+parent}/metadataImports').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -7777,7 +6061,7 @@ export namespace metastore_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const metastore = google.metastore('v1alpha');
+     * const metastore = google.metastore('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7895,7 +6179,7 @@ export namespace metastore_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options

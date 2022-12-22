@@ -125,6 +125,19 @@ export namespace metastore_v1beta {
   }
 
   /**
+   * Request message for DataprocMetastore.AlterMetadataResourceLocation.
+   */
+  export interface Schema$AlterMetadataResourceLocationRequest {
+    /**
+     * Required. The new location URI for the metadata resource.
+     */
+    locationUri?: string | null;
+    /**
+     * Required. The relative metadata resource name in the following format.databases/{database_id\} or databases/{database_id\}/tables/{table_id\} or databases/{database_id\}/tables/{table_id\}/partitions/{partition_id\}
+     */
+    resourceName?: string | null;
+  }
+  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.If there are AuditConfigs for both allServices and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -176,7 +189,7 @@ export namespace metastore_v1beta {
      */
     metastoreType?: string | null;
     /**
-     * The relative resource name of the metastore that is being federated. The formats of the relative resource names for the currently supported metastores are listed below: Dataplex: projects/{project_id\}/locations/{location\}/lakes/{lake_id\} BigQuery: projects/{project_id\} Dataproc Metastore: projects/{project_id\}/locations/{location\}/services/{service_id\}
+     * The relative resource name of the metastore that is being federated. The formats of the relative resource names for the currently supported metastores are listed below: Dataplex projects/{project_id\}/locations/{location\}/lakes/{lake_id\} BigQuery projects/{project_id\} Dataproc Metastore projects/{project_id\}/locations/{location\}/services/{service_id\}
      */
     name?: string | null;
   }
@@ -239,7 +252,7 @@ export namespace metastore_v1beta {
      */
     endpointUri?: string | null;
     /**
-     * Immutable. The subnetwork of the customer project from which an IP address is reserved and used as the Dataproc Metastore service's endpoint. It is accessible to hosts in the subnet and to all hosts in a subnet in the same region and same network. There must be at least one IP address available in the subnet's primary range. The subnet is specified in the following form:`projects/{project_number\}/regions/{region_id\}/subnetworks/{subnetwork_id\}
+     * Immutable. The subnetwork of the customer project from which an IP address is reserved and used as the Dataproc Metastore service's endpoint. It is accessible to hosts in the subnet and to all hosts in a subnet in the same region and same network. There must be at least one IP address available in the subnet's primary range. The subnet is specified in the following form:projects/{project_number\}/regions/{region_id\}/subnetworks/{subnetwork_id\}
      */
     subnetwork?: string | null;
   }
@@ -668,6 +681,23 @@ export namespace metastore_v1beta {
     restores?: Schema$Restore[];
   }
   /**
+   * Request message for DataprocMetastore.MoveTableToDatabase.
+   */
+  export interface Schema$MoveTableToDatabaseRequest {
+    /**
+     * Required. The name of the database where the table resides.
+     */
+    dbName?: string | null;
+    /**
+     * Required. The name of the database where the table should be moved.
+     */
+    destinationDbName?: string | null;
+    /**
+     * Required. The name of the table to be moved.
+     */
+    tableName?: string | null;
+  }
+  /**
    * Network configuration for the Dataproc Metastore service.
    */
   export interface Schema$NetworkConfig {
@@ -756,15 +786,38 @@ export namespace metastore_v1beta {
     version?: number | null;
   }
   /**
+   * Request message for DataprocMetastore.QueryMetadata.
+   */
+  export interface Schema$QueryMetadataRequest {
+    /**
+     * Required. A read-only SQL query to execute against the metadata database. The query cannot change or mutate the data.
+     */
+    query?: string | null;
+  }
+  /**
+   * Response message for DataprocMetastore.QueryMetadata.
+   */
+  export interface Schema$QueryMetadataResponse {
+    /**
+     * The manifest URI is link to a JSON instance in Cloud Storage. This instance manifests immediately along with QueryMetadataResponse. The content of the URI is not retriable until the long-running operation query against the metadata finishes.
+     */
+    resultManifestUri?: string | null;
+  }
+  /**
    * Request message for DataprocMetastore.RemoveIamPolicy.
    */
-  export interface Schema$RemoveIamPolicyRequest {}
+  export interface Schema$RemoveIamPolicyRequest {
+    /**
+     * Optional. Removes IAM policy attached to database or table asynchronously when it is set. The default is false.
+     */
+    asynchronous?: boolean | null;
+  }
   /**
    * Response message for DataprocMetastore.RemoveIamPolicy.
    */
   export interface Schema$RemoveIamPolicyResponse {
     /**
-     * whether related policies are removed
+     * True if the policy is successfully removed.
      */
     success?: boolean | null;
   }
@@ -946,6 +999,9 @@ export namespace metastore_v1beta {
    * Telemetry Configuration for the Dataproc Metastore service.
    */
   export interface Schema$TelemetryConfig {
+    /**
+     * The output format of the Dataproc Metastore service's logs.
+     */
     logFormat?: string | null;
   }
   /**
@@ -3012,6 +3068,149 @@ export namespace metastore_v1beta {
     }
 
     /**
+     * Alter metadata resource location. The metadata resource can be a database, table, or partition. This functionality only updates the parent directory for the respective metadata resource and does not transfer any existing data to the new location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/metastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const metastore = google.metastore('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await metastore.projects.locations.services.alterLocation({
+     *     // Required. The relative resource name of the metastore service to mutate metadata, in the following format:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
+     *     service: 'projects/my-project/locations/my-location/services/my-service',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "locationUri": "my_locationUri",
+     *       //   "resourceName": "my_resourceName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    alterLocation(
+      params: Params$Resource$Projects$Locations$Services$Alterlocation,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    alterLocation(
+      params?: Params$Resource$Projects$Locations$Services$Alterlocation,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    alterLocation(
+      params: Params$Resource$Projects$Locations$Services$Alterlocation,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    alterLocation(
+      params: Params$Resource$Projects$Locations$Services$Alterlocation,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    alterLocation(
+      params: Params$Resource$Projects$Locations$Services$Alterlocation,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    alterLocation(callback: BodyResponseCallback<Schema$Operation>): void;
+    alterLocation(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Alterlocation
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Alterlocation;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Alterlocation;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+service}:alterLocation').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['service'],
+        pathParams: ['service'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Creates a metastore service in a project and location.
      * @example
      * ```js
@@ -3877,6 +4076,150 @@ export namespace metastore_v1beta {
     }
 
     /**
+     * Move a table to another database.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/metastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const metastore = google.metastore('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await metastore.projects.locations.services.moveTableToDatabase({
+     *     // Required. The relative resource name of the metastore service to mutate metadata, in the following format:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
+     *     service: 'projects/my-project/locations/my-location/services/my-service',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dbName": "my_dbName",
+     *       //   "destinationDbName": "my_destinationDbName",
+     *       //   "tableName": "my_tableName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    moveTableToDatabase(
+      params: Params$Resource$Projects$Locations$Services$Movetabletodatabase,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    moveTableToDatabase(
+      params?: Params$Resource$Projects$Locations$Services$Movetabletodatabase,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    moveTableToDatabase(
+      params: Params$Resource$Projects$Locations$Services$Movetabletodatabase,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    moveTableToDatabase(
+      params: Params$Resource$Projects$Locations$Services$Movetabletodatabase,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    moveTableToDatabase(
+      params: Params$Resource$Projects$Locations$Services$Movetabletodatabase,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    moveTableToDatabase(callback: BodyResponseCallback<Schema$Operation>): void;
+    moveTableToDatabase(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Movetabletodatabase
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Movetabletodatabase;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Movetabletodatabase;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+service}:moveTableToDatabase').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['service'],
+        pathParams: ['service'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Updates the parameters of a single service.
      * @example
      * ```js
@@ -4039,6 +4382,148 @@ export namespace metastore_v1beta {
     }
 
     /**
+     * Query DPMS metadata.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/metastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const metastore = google.metastore('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await metastore.projects.locations.services.queryMetadata({
+     *     // Required. The relative resource name of the metastore service to query metadata, in the following format:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
+     *     service: 'projects/my-project/locations/my-location/services/my-service',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "query": "my_query"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    queryMetadata(
+      params: Params$Resource$Projects$Locations$Services$Querymetadata,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    queryMetadata(
+      params?: Params$Resource$Projects$Locations$Services$Querymetadata,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    queryMetadata(
+      params: Params$Resource$Projects$Locations$Services$Querymetadata,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    queryMetadata(
+      params: Params$Resource$Projects$Locations$Services$Querymetadata,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    queryMetadata(
+      params: Params$Resource$Projects$Locations$Services$Querymetadata,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    queryMetadata(callback: BodyResponseCallback<Schema$Operation>): void;
+    queryMetadata(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Querymetadata
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Querymetadata;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Querymetadata;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+service}:queryMetadata').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['service'],
+        pathParams: ['service'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Removes the attached IAM policies for a resource
      * @example
      * ```js
@@ -4072,7 +4557,9 @@ export namespace metastore_v1beta {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {}
+     *       // {
+     *       //   "asynchronous": false
+     *       // }
      *     },
      *   });
      *   console.log(res.data);
@@ -4612,6 +5099,18 @@ export namespace metastore_v1beta {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Services$Alterlocation
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of the metastore service to mutate metadata, in the following format:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
+     */
+    service?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AlterMetadataResourceLocationRequest;
+  }
   export interface Params$Resource$Projects$Locations$Services$Create
     extends StandardParameters {
     /**
@@ -4696,6 +5195,18 @@ export namespace metastore_v1beta {
      */
     parent?: string;
   }
+  export interface Params$Resource$Projects$Locations$Services$Movetabletodatabase
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of the metastore service to mutate metadata, in the following format:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
+     */
+    service?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MoveTableToDatabaseRequest;
+  }
   export interface Params$Resource$Projects$Locations$Services$Patch
     extends StandardParameters {
     /**
@@ -4715,6 +5226,18 @@ export namespace metastore_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$Service;
+  }
+  export interface Params$Resource$Projects$Locations$Services$Querymetadata
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of the metastore service to query metadata, in the following format:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
+     */
+    service?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$QueryMetadataRequest;
   }
   export interface Params$Resource$Projects$Locations$Services$Removeiampolicy
     extends StandardParameters {
