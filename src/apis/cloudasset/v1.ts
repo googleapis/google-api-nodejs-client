@@ -206,6 +206,95 @@ export namespace cloudasset_v1 {
     moveAnalysis?: Schema$MoveAnalysis[];
   }
   /**
+   * The response message for AssetService.AnalyzeOrgPolicies.
+   */
+  export interface Schema$AnalyzeOrgPoliciesResponse {
+    /**
+     * The definition of the constraint in the request.
+     */
+    constraint?: Schema$AnalyzerOrgPolicyConstraint;
+    /**
+     * The page token to fetch the next page for AnalyzeOrgPoliciesResponse.org_policy_results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The organization policies under the AnalyzeOrgPoliciesRequest.scope with the AnalyzeOrgPoliciesRequest.constraint.
+     */
+    orgPolicyResults?: Schema$OrgPolicyResult[];
+  }
+  /**
+   * The response message for AssetService.AnalyzeOrgPolicyGovernedAssets.
+   */
+  export interface Schema$AnalyzeOrgPolicyGovernedAssetsResponse {
+    /**
+     * The definition of the constraint in the request.
+     */
+    constraint?: Schema$AnalyzerOrgPolicyConstraint;
+    /**
+     * The list of the analyzed governed assets.
+     */
+    governedAssets?: Schema$GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedAsset[];
+    /**
+     * The page token to fetch the next page for AnalyzeOrgPolicyGovernedAssetsResponse.governed_assets.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * The response message for AssetService.AnalyzeOrgPolicyGovernedContainers.
+   */
+  export interface Schema$AnalyzeOrgPolicyGovernedContainersResponse {
+    /**
+     * The definition of the constraint in the request.
+     */
+    constraint?: Schema$AnalyzerOrgPolicyConstraint;
+    /**
+     * The list of the analyzed governed containers.
+     */
+    governedContainers?: Schema$GoogleCloudAssetV1GovernedContainer[];
+    /**
+     * The page token to fetch the next page for AnalyzeOrgPolicyGovernedContainersResponse.governed_containers.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * This organization policy message is a modified version of the one defined in the OrgPolicy system. This message contains several fields defined in the original organization policy with some new fields for analysis purpose.
+   */
+  export interface Schema$AnalyzerOrgPolicy {
+    /**
+     * The [full resource name] (https://cloud.google.com/asset-inventory/docs/resource-name-format) of an organization/folder/project resource where this organization policy applies to. For any user defined org policies, this field has the same value as the [attached_resource] field. Only for default policy, this field has the different value.
+     */
+    appliedResource?: string | null;
+    /**
+     * The [full resource name] (https://cloud.google.com/asset-inventory/docs/resource-name-format) of an organization/folder/project resource where this organization policy is set. Notice that some type of constraints are defined with default policy. This field will be empty for them.
+     */
+    attachedResource?: string | null;
+    /**
+     * If `inherit_from_parent` is true, Rules set higher up in the hierarchy (up to the closest root) are inherited and present in the effective policy. If it is false, then no rules are inherited, and this policy becomes the effective root for evaluation.
+     */
+    inheritFromParent?: boolean | null;
+    /**
+     * Ignores policies set above this resource and restores the default behavior of the constraint at this resource. This field can be set in policies for either list or boolean constraints. If set, `rules` must be empty and `inherit_from_parent` must be set to false.
+     */
+    reset?: boolean | null;
+    /**
+     * List of rules for this organization policy.
+     */
+    rules?: Schema$GoogleCloudAssetV1Rule[];
+  }
+  /**
+   * The organization policy constraint definition.
+   */
+  export interface Schema$AnalyzerOrgPolicyConstraint {
+    /**
+     * The definition of the custom constraint.
+     */
+    customConstraint?: Schema$GoogleCloudAssetV1CustomConstraint;
+    /**
+     * The definition of the canned constraint defined by Google.
+     */
+    googleDefinedConstraint?: Schema$GoogleCloudAssetV1Constraint;
+  }
+  /**
    * An asset in Google Cloud. An asset can be any resource in the Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), a resource outside the Google Cloud resource hierarchy (such as Google Kubernetes Engine clusters and objects), or a policy (e.g. Cloud IAM policy), or a relationship (e.g. an INSTANCE_TO_INSTANCEGROUP relationship). See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.
    */
   export interface Schema$Asset {
@@ -575,6 +664,77 @@ export namespace cloudasset_v1 {
     resources?: Schema$GoogleCloudAssetV1Resource[];
   }
   /**
+   * Represents a GCP asset(resource or IAM policy) governed by the organization policies of the AnalyzeOrgPolicyGovernedAssetsRequest.constraint.
+   */
+  export interface Schema$GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedAsset {
+    /**
+     * The consolidated policy for the analyzed asset. The consolidated policy is computed by merging and evaluating AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset.policy_bundle. The evaluation will respect the organization policy [hierarchy rules](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-hierarchy).
+     */
+    consolidatedPolicy?: Schema$AnalyzerOrgPolicy;
+    /**
+     * An IAM policy governed by the organization policies of the AnalyzeOrgPolicyGovernedAssetsRequest.constraint.
+     */
+    governedIamPolicy?: Schema$GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedIamPolicy;
+    /**
+     * A GCP resource governed by the organization policies of the AnalyzeOrgPolicyGovernedAssetsRequest.constraint.
+     */
+    governedResource?: Schema$GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedResource;
+    /**
+     * The ordered list of all organization policies from the AnalyzeOrgPoliciesResponse.OrgPolicyResult.consolidated_policy.attached_resource to the scope specified in the request. If the constraint is defined with default policy, it will also appear in the list.
+     */
+    policyBundle?: Schema$AnalyzerOrgPolicy[];
+  }
+  /**
+   * The IAM policies governed by the organization policies of the AnalyzeOrgPolicyGovernedAssetsRequest.constraint.
+   */
+  export interface Schema$GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedIamPolicy {
+    /**
+     * The full resource name of the resource associated with this IAM policy. Example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Cloud Asset Inventory Resource Name Format](https://cloud.google.com/asset-inventory/docs/resource-name-format) for more information.
+     */
+    attachedResource?: string | null;
+    /**
+     * The folder(s) that this IAM policy belongs to, in the form of folders/{FOLDER_NUMBER\}. This field is available when the IAM policy belongs(directly or cascadingly) to one or more folders.
+     */
+    folders?: string[] | null;
+    /**
+     * The organization that this IAM policy belongs to, in the form of organizations/{ORGANIZATION_NUMBER\}. This field is available when the IAM policy belongs(directly or cascadingly) to an organization.
+     */
+    organization?: string | null;
+    /**
+     * The IAM policy directly set on the given resource.
+     */
+    policy?: Schema$Policy;
+    /**
+     * The project that this IAM policy belongs to, in the form of projects/{PROJECT_NUMBER\}. This field is available when the IAM policy belongs to a project.
+     */
+    project?: string | null;
+  }
+  /**
+   * The GCP resources governed by the organization policies of the AnalyzeOrgPolicyGovernedAssetsRequest.constraint.
+   */
+  export interface Schema$GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedResource {
+    /**
+     * The folder(s) that this resource belongs to, in the form of folders/{FOLDER_NUMBER\}. This field is available when the resource belongs(directly or cascadingly) to one or more folders.
+     */
+    folders?: string[] | null;
+    /**
+     * The [full resource name] (https://cloud.google.com/asset-inventory/docs/resource-name-format) of the GCP resource.
+     */
+    fullResourceName?: string | null;
+    /**
+     * The organization that this resource belongs to, in the form of organizations/{ORGANIZATION_NUMBER\}. This field is available when the resource belongs(directly or cascadingly) to an organization.
+     */
+    organization?: string | null;
+    /**
+     * The [full resource name] (https://cloud.google.com/asset-inventory/docs/resource-name-format) of the parent of AnalyzeOrgPolicyGovernedAssetsResponse.GovernedResource.full_resource_name.
+     */
+    parent?: string | null;
+    /**
+     * The project that this resource belongs to, in the form of projects/{PROJECT_NUMBER\}. This field is available when the resource belongs to a project.
+     */
+    project?: string | null;
+  }
+  /**
    * A BigQuery destination.
    */
   export interface Schema$GoogleCloudAssetV1BigQueryDestination {
@@ -594,6 +754,72 @@ export namespace cloudasset_v1 {
      * Optional. Specifies the action that occurs if the destination table or partition already exists. The following values are supported: * WRITE_TRUNCATE: If the table or partition already exists, BigQuery overwrites the entire table or all the partitions data. * WRITE_APPEND: If the table or partition already exists, BigQuery appends the data to the table or the latest partition. * WRITE_EMPTY: If the table already exists and contains data, an error is returned. The default value is WRITE_APPEND. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Details are at https://cloud.google.com/bigquery/docs/loading-data-local#appending_to_or_overwriting_a_table_using_a_local_file.
      */
     writeDisposition?: string | null;
+  }
+  /**
+   * A `Constraint` that is either enforced or not. For example a constraint `constraints/compute.disableSerialPortAccess`. If it is enforced on a VM instance, serial port connections will not be opened to that instance.
+   */
+  export interface Schema$GoogleCloudAssetV1BooleanConstraint {}
+  /**
+   * The definition of a constraint.
+   */
+  export interface Schema$GoogleCloudAssetV1Constraint {
+    /**
+     * Defines this constraint as being a BooleanConstraint.
+     */
+    booleanConstraint?: Schema$GoogleCloudAssetV1BooleanConstraint;
+    /**
+     * The evaluation behavior of this constraint in the absence of 'Policy'.
+     */
+    constraintDefault?: string | null;
+    /**
+     * Detailed description of what this `Constraint` controls as well as how and where it is enforced.
+     */
+    description?: string | null;
+    /**
+     * The human readable name of the constraint.
+     */
+    displayName?: string | null;
+    /**
+     * Defines this constraint as being a ListConstraint.
+     */
+    listConstraint?: Schema$GoogleCloudAssetV1ListConstraint;
+    /**
+     * The unique name of the constraint. Format of the name should be * `constraints/{constraint_name\}` For example, `constraints/compute.disableSerialPortAccess`.
+     */
+    name?: string | null;
+  }
+  /**
+   * The definition of a custom constraint.
+   */
+  export interface Schema$GoogleCloudAssetV1CustomConstraint {
+    /**
+     * Allow or deny type.
+     */
+    actionType?: string | null;
+    /**
+     * Organization policy condition/expression. For example: `resource.instanceName.matches("[production|test]_.*_(\d)+")'` or, `resource.management.auto_upgrade == true`
+     */
+    condition?: string | null;
+    /**
+     * Detailed information about this custom policy constraint.
+     */
+    description?: string | null;
+    /**
+     * One line display name for the UI.
+     */
+    displayName?: string | null;
+    /**
+     * All the operations being applied for this constraint.
+     */
+    methodTypes?: string[] | null;
+    /**
+     * Name of the constraint. This is unique within the organization. Format of the name should be * `organizations/{organization_id\}/customConstraints/{custom_constraint_id\}` Example : "organizations/123/customConstraints/custom.createOnlyE2TypeVms"
+     */
+    name?: string | null;
+    /**
+     * The Resource Instance type on which this policy applies to. Format will be of the form : "/" Example: * `compute.googleapis.com/Instance`.
+     */
+    resourceTypes?: string[] | null;
   }
   /**
    * A directional edge.
@@ -616,6 +842,27 @@ export namespace cloudasset_v1 {
      * Required. The uri of the Cloud Storage object. It's the same uri that is used by gsutil. Example: "gs://bucket_name/object_name". See [Viewing and Editing Object Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata) for more information. If the specified Cloud Storage object already exists and there is no [hold](https://cloud.google.com/storage/docs/object-holds), it will be overwritten with the analysis result.
      */
     uri?: string | null;
+  }
+  /**
+   * The organization/folder/project resource governed by organization policies of AnalyzeOrgPolicyGovernedContainersRequest.constraint.
+   */
+  export interface Schema$GoogleCloudAssetV1GovernedContainer {
+    /**
+     * The consolidated organization policy for the analyzed resource. The consolidated organization policy is computed by merging and evaluating AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer.policy_bundle. The evaluation will respect the organization policy [hierarchy rules](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-hierarchy).
+     */
+    consolidatedPolicy?: Schema$AnalyzerOrgPolicy;
+    /**
+     * The [full resource name] (https://cloud.google.com/asset-inventory/docs/resource-name-format) of an organization/folder/project resource.
+     */
+    fullResourceName?: string | null;
+    /**
+     * The [full resource name] (https://cloud.google.com/asset-inventory/docs/resource-name-format) of the parent of AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer.full_resource_name.
+     */
+    parent?: string | null;
+    /**
+     * The ordered list of all organization policies from the AnalyzeOrgPoliciesResponse.OrgPolicyResult.consolidated_policy.attached_resource. to the scope specified in the request. If the constraint is defined with default policy, it will also appear in the list.
+     */
+    policyBundle?: Schema$AnalyzerOrgPolicy[];
   }
   /**
    * An identity under analysis.
@@ -642,6 +889,19 @@ export namespace cloudasset_v1 {
      * Only the identities that match one of the following conditions will be presented: - The identity_selector, if it is specified in request; - Otherwise, identities reachable from the policy binding's members.
      */
     identities?: Schema$GoogleCloudAssetV1Identity[];
+  }
+  /**
+   * A `Constraint` that allows or disallows a list of string values, which are configured by an Organization's policy administrator with a `Policy`.
+   */
+  export interface Schema$GoogleCloudAssetV1ListConstraint {
+    /**
+     * Indicates whether values grouped into categories can be used in `Policy.allowed_values` and `Policy.denied_values`. For example, `"in:Python"` would match any value in the 'Python' group.
+     */
+    supportsIn?: boolean | null;
+    /**
+     * Indicates whether subtrees of Cloud Resource Manager resource hierarchy can be used in `Policy.allowed_values` and `Policy.denied_values`. For example, `"under:folders/123"` would match any resource under the 'folders/123' folder.
+     */
+    supportsUnder?: boolean | null;
   }
   /**
    * An asset in Google Cloud. An asset can be any resource in the Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), a resource outside the Google Cloud resource hierarchy (such as Google Kubernetes Engine clusters and objects), or a policy (e.g. Cloud IAM policy). See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.
@@ -777,6 +1037,23 @@ export namespace cloudasset_v1 {
     version?: string | null;
   }
   /**
+   * BigQuery destination.
+   */
+  export interface Schema$GoogleCloudAssetV1QueryAssetsOutputConfigBigQueryDestination {
+    /**
+     * Required. The BigQuery dataset where the query results will be saved. It has the format of "projects/{projectId\}/datasets/{datasetId\}".
+     */
+    dataset?: string | null;
+    /**
+     * Required. The BigQuery table where the query results will be saved. If this table does not exist, a new table with the given name will be created.
+     */
+    table?: string | null;
+    /**
+     * Specifies the action that occurs if the destination table or partition already exists. The following values are supported: * WRITE_TRUNCATE: If the table or partition already exists, BigQuery overwrites the entire table or all the partitions data. * WRITE_APPEND: If the table or partition already exists, BigQuery appends the data to the table or the latest partition. * WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result. The default value is WRITE_EMPTY.
+     */
+    writeDisposition?: string | null;
+  }
+  /**
    * A Google Cloud resource under analysis.
    */
   export interface Schema$GoogleCloudAssetV1Resource {
@@ -788,6 +1065,44 @@ export namespace cloudasset_v1 {
      * The [full resource name](https://cloud.google.com/asset-inventory/docs/resource-name-format)
      */
     fullResourceName?: string | null;
+  }
+  /**
+   * Represents a rule defined in an organization policy
+   */
+  export interface Schema$GoogleCloudAssetV1Rule {
+    /**
+     * Setting this to true means that all values are allowed. This field can be set only in Policies for list constraints.
+     */
+    allowAll?: boolean | null;
+    /**
+     * The evaluating condition for this rule.
+     */
+    condition?: Schema$Expr;
+    /**
+     * Setting this to true means that all values are denied. This field can be set only in Policies for list constraints.
+     */
+    denyAll?: boolean | null;
+    /**
+     * If `true`, then the `Policy` is enforced. If `false`, then any configuration is acceptable. This field can be set only in Policies for boolean constraints.
+     */
+    enforce?: boolean | null;
+    /**
+     * List of values to be used for this PolicyRule. This field can be set only in Policies for list constraints.
+     */
+    values?: Schema$GoogleCloudAssetV1StringValues;
+  }
+  /**
+   * The string values for the list constraints.
+   */
+  export interface Schema$GoogleCloudAssetV1StringValues {
+    /**
+     * List of values allowed at this resource.
+     */
+    allowedValues?: string[] | null;
+    /**
+     * List of values denied at this resource.
+     */
+    deniedValues?: string[] | null;
   }
   /**
    * Used in `policy_type` to specify how `boolean_policy` will behave at this resource.
@@ -877,7 +1192,7 @@ export namespace cloudasset_v1 {
      */
     description?: string | null;
     /**
-     * Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{access_policy\}/accessLevels/{access_level\}`. The maximum length of the `access_level` component is 50 characters.
+     * Resource name for the `AccessLevel`. Format: `accessPolicies/{access_policy\}/accessLevels/{access_level\}`. The `access_level` component must begin with a letter, followed by alphanumeric characters or `_`. Its maximum length is 50 characters. After you create an `AccessLevel`, you cannot change its `name`.
      */
     name?: string | null;
     /**
@@ -1141,7 +1456,7 @@ export namespace cloudasset_v1 {
      */
     description?: string | null;
     /**
-     * Required. Resource name for the ServicePerimeter. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{access_policy\}/servicePerimeters/{service_perimeter\}`
+     * Resource name for the `ServicePerimeter`. Format: `accessPolicies/{access_policy\}/servicePerimeters/{service_perimeter\}`. The `service_perimeter` component must begin with a letter, followed by alphanumeric characters or `_`. After you create a `ServicePerimeter`, you cannot change its `name`.
      */
     name?: string | null;
     /**
@@ -1534,6 +1849,19 @@ export namespace cloudasset_v1 {
     outputResourceEdges?: boolean | null;
   }
   /**
+   * The organization policy result to the query.
+   */
+  export interface Schema$OrgPolicyResult {
+    /**
+     * The consolidated organization policy for the analyzed resource. The consolidated organization policy is computed by merging and evaluating AnalyzeOrgPoliciesResponse.policy_bundle. The evaluation will respect the organization policy [hierarchy rules](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-hierarchy).
+     */
+    consolidatedPolicy?: Schema$AnalyzerOrgPolicy;
+    /**
+     * The ordered list of all organization policies from the AnalyzeOrgPoliciesResponse.OrgPolicyResult.consolidated_policy.attached_resource. to the scope specified in the request. If the constraint is defined with default policy, it will also appear in the list.
+     */
+    policyBundle?: Schema$AnalyzerOrgPolicy[];
+  }
+  /**
    * Operating system information for the VM.
    */
   export interface Schema$OsInfo {
@@ -1645,6 +1973,77 @@ export namespace cloudasset_v1 {
     topic?: string | null;
   }
   /**
+   * Output configuration query assets.
+   */
+  export interface Schema$QueryAssetsOutputConfig {
+    /**
+     * BigQuery destination where the query results will be saved.
+     */
+    bigqueryDestination?: Schema$GoogleCloudAssetV1QueryAssetsOutputConfigBigQueryDestination;
+  }
+  /**
+   * QueryAssets request.
+   */
+  export interface Schema$QueryAssetsRequest {
+    /**
+     * Optional. Reference to the query job, which is from the `QueryAssetsResponse` of previous `QueryAssets` call.
+     */
+    jobReference?: string | null;
+    /**
+     * Optional. Destination where the query results will be saved. When this field is specified, the query results won't be saved in the [QueryAssetsResponse.query_result]. Instead [QueryAssetsResponse.output_config] will be set. Meanwhile, [QueryAssetsResponse.job_reference] will be set and can be used to check the status of the query job when passed to a following [QueryAssets] API call.
+     */
+    outputConfig?: Schema$QueryAssetsOutputConfig;
+    /**
+     * Optional. The maximum number of rows to return in the results. Responses are limited to 10 MB and 1000 rows. By default, the maximum row count is 1000. When the byte or row count limit is reached, the rest of the query results will be paginated. The field will be ignored when [output_config] is specified.
+     */
+    pageSize?: number | null;
+    /**
+     * Optional. A page token received from previous `QueryAssets`. The field will be ignored when [output_config] is specified.
+     */
+    pageToken?: string | null;
+    /**
+     * Optional. Queries cloud assets as they appeared at the specified point in time.
+     */
+    readTime?: string | null;
+    /**
+     * Optional. [start_time] is required. [start_time] must be less than [end_time] Defaults [end_time] to now if [start_time] is set and [end_time] isn't. Maximum permitted time range is 7 days.
+     */
+    readTimeWindow?: Schema$TimeWindow;
+    /**
+     * Optional. A SQL statement that's compatible with [BigQuery Standard SQL](http://cloud/bigquery/docs/reference/standard-sql/enabling-standard-sql).
+     */
+    statement?: string | null;
+    /**
+     * Optional. Specifies the maximum amount of time that the client is willing to wait for the query to complete. By default, this limit is 5 min for the first query, and 1 minute for the following queries. If the query is complete, the `done` field in the `QueryAssetsResponse` is true, otherwise false. Like BigQuery [jobs.query API](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/query#queryrequest) The call is not guaranteed to wait for the specified timeout; it typically returns after around 200 seconds (200,000 milliseconds), even if the query is not complete. The field will be ignored when [output_config] is specified.
+     */
+    timeout?: string | null;
+  }
+  /**
+   * QueryAssets response.
+   */
+  export interface Schema$QueryAssetsResponse {
+    /**
+     * The query response, which can be either an `error` or a valid `response`. If `done` == `false` and the query result is being saved in a output, the output_config field will be set. If `done` == `true`, exactly one of `error`, `query_result` or `output_config` will be set.
+     */
+    done?: boolean | null;
+    /**
+     * Error status.
+     */
+    error?: Schema$Status;
+    /**
+     * Reference to a query job.
+     */
+    jobReference?: string | null;
+    /**
+     * Output configuration which indicates instead of being returned in API response on the fly, the query result will be saved in a specific output.
+     */
+    outputConfig?: Schema$QueryAssetsOutputConfig;
+    /**
+     * Result of the query.
+     */
+    queryResult?: Schema$QueryResult;
+  }
+  /**
    * The query content.
    */
   export interface Schema$QueryContent {
@@ -1652,6 +2051,27 @@ export namespace cloudasset_v1 {
      * An IAM Policy Analysis query, which could be used in the AssetService.AnalyzeIamPolicy rpc or the AssetService.AnalyzeIamPolicyLongrunning rpc.
      */
     iamPolicyAnalysisQuery?: Schema$IamPolicyAnalysisQuery;
+  }
+  /**
+   * Execution results of the query. The result is formatted as rows represented by BigQuery compatible [schema]. When pagination is necessary, it will contains the page token to retrieve the results of following pages.
+   */
+  export interface Schema$QueryResult {
+    /**
+     * Token to retrieve the next page of the results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Each row hold a query result in the format of `Struct`.
+     */
+    rows?: Array<{[key: string]: any}> | null;
+    /**
+     * Describes the format of the [rows].
+     */
+    schema?: Schema$TableSchema;
+    /**
+     * Total rows of the whole query results.
+     */
+    totalRows?: string | null;
   }
   /**
    * An asset identifier in Google Cloud which contains its name, type and ancestors. An asset can be any resource in the Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), a resource outside the Google Cloud resource hierarchy (such as Google Kubernetes Engine clusters and objects), or a policy (e.g. Cloud IAM policy). See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.
@@ -1993,6 +2413,36 @@ export namespace cloudasset_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * A field in TableSchema.
+   */
+  export interface Schema$TableFieldSchema {
+    /**
+     * The field name. The name must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_), and must start with a letter or underscore. The maximum length is 128 characters.
+     */
+    field?: string | null;
+    /**
+     * Describes the nested schema fields if the type property is set to RECORD.
+     */
+    fields?: Schema$TableFieldSchema[];
+    /**
+     * The field mode. Possible values include NULLABLE, REQUIRED and REPEATED. The default value is NULLABLE.
+     */
+    mode?: string | null;
+    /**
+     * The field data type. Possible values include * STRING * BYTES * INTEGER * FLOAT * BOOLEAN * TIMESTAMP * DATE * TIME * DATETIME * GEOGRAPHY, * NUMERIC, * BIGNUMERIC, * RECORD (where RECORD indicates that the field contains a nested schema).
+     */
+    type?: string | null;
+  }
+  /**
+   * BigQuery Compatible table schema.
+   */
+  export interface Schema$TableSchema {
+    /**
+     * Describes the fields in a table.
+     */
+    fields?: Schema$TableFieldSchema[];
   }
   /**
    * An asset in Google Cloud and its temporal metadata, including the time window when it was observed and its status during that window.
@@ -4623,6 +5073,446 @@ export namespace cloudasset_v1 {
     }
 
     /**
+     * Analyzes organization policies under a scope.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudasset.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudasset = google.cloudasset('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudasset.analyzeOrgPolicies({
+     *     // Required. The name of the constraint to analyze organization policies for. The response only contains analyzed organization policies for the provided constraint.
+     *     constraint: 'placeholder-value',
+     *     // The expression to filter AnalyzeOrgPoliciesResponse.org_policy_results. The only supported field is `consolidated_policy.attached_resource`, and the only supported operator is `=`. Example: consolidated_policy.attached_resource="//cloudresourcemanager.googleapis.com/folders/001" will return the org policy results of"folders/001".
+     *     filter: 'placeholder-value',
+     *     // The maximum number of items to return per page. If unspecified, AnalyzeOrgPoliciesResponse.org_policy_results will contain 20 items with a maximum of 200.
+     *     pageSize: 'placeholder-value',
+     *     // The pagination token to retrieve the next page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The organization to scope the request. Only organization policies within the scope will be analyzed. * organizations/{ORGANIZATION_NUMBER\} (e.g., "organizations/123456")
+     *     scope: '[^/]+/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "constraint": {},
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "orgPolicyResults": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    analyzeOrgPolicies(
+      params: Params$Resource$V1$Analyzeorgpolicies,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    analyzeOrgPolicies(
+      params?: Params$Resource$V1$Analyzeorgpolicies,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AnalyzeOrgPoliciesResponse>;
+    analyzeOrgPolicies(
+      params: Params$Resource$V1$Analyzeorgpolicies,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    analyzeOrgPolicies(
+      params: Params$Resource$V1$Analyzeorgpolicies,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AnalyzeOrgPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$AnalyzeOrgPoliciesResponse>
+    ): void;
+    analyzeOrgPolicies(
+      params: Params$Resource$V1$Analyzeorgpolicies,
+      callback: BodyResponseCallback<Schema$AnalyzeOrgPoliciesResponse>
+    ): void;
+    analyzeOrgPolicies(
+      callback: BodyResponseCallback<Schema$AnalyzeOrgPoliciesResponse>
+    ): void;
+    analyzeOrgPolicies(
+      paramsOrCallback?:
+        | Params$Resource$V1$Analyzeorgpolicies
+        | BodyResponseCallback<Schema$AnalyzeOrgPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnalyzeOrgPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnalyzeOrgPoliciesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AnalyzeOrgPoliciesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1$Analyzeorgpolicies;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Analyzeorgpolicies;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+scope}:analyzeOrgPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['scope'],
+        pathParams: ['scope'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AnalyzeOrgPoliciesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AnalyzeOrgPoliciesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Analyzes organization policies governed assets (GCP resources or policies) under a scope. This RPC supports custom constraints and the following 10 canned constraints: * storage.uniformBucketLevelAccess * iam.disableServiceAccountKeyCreation * iam.allowedPolicyMemberDomains * compute.vmExternalIpAccess * appengine.enforceServiceAccountActAsCheck * gcp.resourceLocations * compute.trustedImageProjects * compute.skipDefaultNetworkCreation * compute.requireOsLogin * compute.disableNestedVirtualization This RPC only returns either resources of types supported by [searchable asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types), or IAM policies.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudasset.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudasset = google.cloudasset('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudasset.analyzeOrgPolicyGovernedAssets({
+     *     // Required. The name of the constraint to analyze governed assets for. The analysis only contains analyzed organization policies for the provided constraint.
+     *     constraint: 'placeholder-value',
+     *     // The expression to filter the governed assets in result. The only supported fields for governed resources are `governed_resource.project` and `governed_resource.folders`. The only supported fields for governed iam policies are `governed_iam_policy.project` and `governed_iam_policy.folders`. The only supported operator is `=`. Example 1: governed_resource.project="projects/12345678" filter will return all governed resources under projects/12345678 including the project ifself, if applicable. Example 2: governed_iam_policy.folders="folders/12345678" filter will return all governed iam policies under folders/12345678, if applicable.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of items to return per page. If unspecified, AnalyzeOrgPolicyGovernedAssetsResponse.governed_assets will contain 100 items with a maximum of 200.
+     *     pageSize: 'placeholder-value',
+     *     // The pagination token to retrieve the next page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The organization to scope the request. Only organization policies within the scope will be analyzed. The output assets will also be limited to the ones governed by those in-scope organization policies. * organizations/{ORGANIZATION_NUMBER\} (e.g., "organizations/123456")
+     *     scope: '[^/]+/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "constraint": {},
+     *   //   "governedAssets": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    analyzeOrgPolicyGovernedAssets(
+      params: Params$Resource$V1$Analyzeorgpolicygovernedassets,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    analyzeOrgPolicyGovernedAssets(
+      params?: Params$Resource$V1$Analyzeorgpolicygovernedassets,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AnalyzeOrgPolicyGovernedAssetsResponse>;
+    analyzeOrgPolicyGovernedAssets(
+      params: Params$Resource$V1$Analyzeorgpolicygovernedassets,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    analyzeOrgPolicyGovernedAssets(
+      params: Params$Resource$V1$Analyzeorgpolicygovernedassets,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AnalyzeOrgPolicyGovernedAssetsResponse>,
+      callback: BodyResponseCallback<Schema$AnalyzeOrgPolicyGovernedAssetsResponse>
+    ): void;
+    analyzeOrgPolicyGovernedAssets(
+      params: Params$Resource$V1$Analyzeorgpolicygovernedassets,
+      callback: BodyResponseCallback<Schema$AnalyzeOrgPolicyGovernedAssetsResponse>
+    ): void;
+    analyzeOrgPolicyGovernedAssets(
+      callback: BodyResponseCallback<Schema$AnalyzeOrgPolicyGovernedAssetsResponse>
+    ): void;
+    analyzeOrgPolicyGovernedAssets(
+      paramsOrCallback?:
+        | Params$Resource$V1$Analyzeorgpolicygovernedassets
+        | BodyResponseCallback<Schema$AnalyzeOrgPolicyGovernedAssetsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnalyzeOrgPolicyGovernedAssetsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnalyzeOrgPolicyGovernedAssetsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AnalyzeOrgPolicyGovernedAssetsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1$Analyzeorgpolicygovernedassets;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Analyzeorgpolicygovernedassets;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+scope}:analyzeOrgPolicyGovernedAssets'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['scope'],
+        pathParams: ['scope'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AnalyzeOrgPolicyGovernedAssetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AnalyzeOrgPolicyGovernedAssetsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Analyzes organization policies governed containers (projects, folders or organization) under a scope.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudasset.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudasset = google.cloudasset('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudasset.analyzeOrgPolicyGovernedContainers({
+     *     // Required. The name of the constraint to analyze governed containers for. The analysis only contains organization policies for the provided constraint.
+     *     constraint: 'placeholder-value',
+     *     // The expression to filter the governed containers in result. The only supported field is `parent`, and the only supported operator is `=`. Example: parent="//cloudresourcemanager.googleapis.com/folders/001" will return all containers under "folders/001".
+     *     filter: 'placeholder-value',
+     *     // The maximum number of items to return per page. If unspecified, AnalyzeOrgPolicyGovernedContainersResponse.governed_containers will contain 100 items with a maximum of 200.
+     *     pageSize: 'placeholder-value',
+     *     // The pagination token to retrieve the next page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The organization to scope the request. Only organization policies within the scope will be analyzed. The output containers will also be limited to the ones governed by those in-scope organization policies. * organizations/{ORGANIZATION_NUMBER\} (e.g., "organizations/123456")
+     *     scope: '[^/]+/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "constraint": {},
+     *   //   "governedContainers": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    analyzeOrgPolicyGovernedContainers(
+      params: Params$Resource$V1$Analyzeorgpolicygovernedcontainers,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    analyzeOrgPolicyGovernedContainers(
+      params?: Params$Resource$V1$Analyzeorgpolicygovernedcontainers,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AnalyzeOrgPolicyGovernedContainersResponse>;
+    analyzeOrgPolicyGovernedContainers(
+      params: Params$Resource$V1$Analyzeorgpolicygovernedcontainers,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    analyzeOrgPolicyGovernedContainers(
+      params: Params$Resource$V1$Analyzeorgpolicygovernedcontainers,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AnalyzeOrgPolicyGovernedContainersResponse>,
+      callback: BodyResponseCallback<Schema$AnalyzeOrgPolicyGovernedContainersResponse>
+    ): void;
+    analyzeOrgPolicyGovernedContainers(
+      params: Params$Resource$V1$Analyzeorgpolicygovernedcontainers,
+      callback: BodyResponseCallback<Schema$AnalyzeOrgPolicyGovernedContainersResponse>
+    ): void;
+    analyzeOrgPolicyGovernedContainers(
+      callback: BodyResponseCallback<Schema$AnalyzeOrgPolicyGovernedContainersResponse>
+    ): void;
+    analyzeOrgPolicyGovernedContainers(
+      paramsOrCallback?:
+        | Params$Resource$V1$Analyzeorgpolicygovernedcontainers
+        | BodyResponseCallback<Schema$AnalyzeOrgPolicyGovernedContainersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnalyzeOrgPolicyGovernedContainersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnalyzeOrgPolicyGovernedContainersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AnalyzeOrgPolicyGovernedContainersResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1$Analyzeorgpolicygovernedcontainers;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Analyzeorgpolicygovernedcontainers;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+scope}:analyzeOrgPolicyGovernedContainers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['scope'],
+        pathParams: ['scope'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AnalyzeOrgPolicyGovernedContainersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AnalyzeOrgPolicyGovernedContainersResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Batch gets the update history of assets that overlap a time window. For IAM_POLICY content, this API outputs history when the asset and its attached IAM POLICY both exist. This can create gaps in the output history. Otherwise, this API outputs history with asset in both non-delete or deleted status. If a specified asset does not exist, this API returns an INVALID_ARGUMENT error.
      * @example
      * ```js
@@ -4911,6 +5801,158 @@ export namespace cloudasset_v1 {
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Issue a job that queries assets using a SQL statement compatible with [BigQuery Standard SQL](http://cloud/bigquery/docs/reference/standard-sql/enabling-standard-sql). If the query execution finishes within timeout and there's no pagination, the full query results will be returned in the `QueryAssetsResponse`. Otherwise, full query results can be obtained by issuing extra requests with the `job_reference` from the a previous `QueryAssets` call. Note, the query result has approximately 10 GB limitation enforced by BigQuery https://cloud.google.com/bigquery/docs/best-practices-performance-output, queries return larger results will result in errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudasset.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudasset = google.cloudasset('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudasset.queryAssets({
+     *     // Required. The relative name of the root asset. This can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345"), or a folder number (such as "folders/123"). Only assets belonging to the `parent` will be returned.
+     *     parent: '[^/]+/[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "jobReference": "my_jobReference",
+     *       //   "outputConfig": {},
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "readTime": "my_readTime",
+     *       //   "readTimeWindow": {},
+     *       //   "statement": "my_statement",
+     *       //   "timeout": "my_timeout"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "jobReference": "my_jobReference",
+     *   //   "outputConfig": {},
+     *   //   "queryResult": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    queryAssets(
+      params: Params$Resource$V1$Queryassets,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    queryAssets(
+      params?: Params$Resource$V1$Queryassets,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$QueryAssetsResponse>;
+    queryAssets(
+      params: Params$Resource$V1$Queryassets,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    queryAssets(
+      params: Params$Resource$V1$Queryassets,
+      options: MethodOptions | BodyResponseCallback<Schema$QueryAssetsResponse>,
+      callback: BodyResponseCallback<Schema$QueryAssetsResponse>
+    ): void;
+    queryAssets(
+      params: Params$Resource$V1$Queryassets,
+      callback: BodyResponseCallback<Schema$QueryAssetsResponse>
+    ): void;
+    queryAssets(
+      callback: BodyResponseCallback<Schema$QueryAssetsResponse>
+    ): void;
+    queryAssets(
+      paramsOrCallback?:
+        | Params$Resource$V1$Queryassets
+        | BodyResponseCallback<Schema$QueryAssetsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$QueryAssetsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$QueryAssetsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$QueryAssetsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$V1$Queryassets;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Queryassets;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:queryAssets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$QueryAssetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$QueryAssetsResponse>(parameters);
       }
     }
 
@@ -5298,6 +6340,75 @@ export namespace cloudasset_v1 {
      */
     view?: string;
   }
+  export interface Params$Resource$V1$Analyzeorgpolicies
+    extends StandardParameters {
+    /**
+     * Required. The name of the constraint to analyze organization policies for. The response only contains analyzed organization policies for the provided constraint.
+     */
+    constraint?: string;
+    /**
+     * The expression to filter AnalyzeOrgPoliciesResponse.org_policy_results. The only supported field is `consolidated_policy.attached_resource`, and the only supported operator is `=`. Example: consolidated_policy.attached_resource="//cloudresourcemanager.googleapis.com/folders/001" will return the org policy results of"folders/001".
+     */
+    filter?: string;
+    /**
+     * The maximum number of items to return per page. If unspecified, AnalyzeOrgPoliciesResponse.org_policy_results will contain 20 items with a maximum of 200.
+     */
+    pageSize?: number;
+    /**
+     * The pagination token to retrieve the next page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The organization to scope the request. Only organization policies within the scope will be analyzed. * organizations/{ORGANIZATION_NUMBER\} (e.g., "organizations/123456")
+     */
+    scope?: string;
+  }
+  export interface Params$Resource$V1$Analyzeorgpolicygovernedassets
+    extends StandardParameters {
+    /**
+     * Required. The name of the constraint to analyze governed assets for. The analysis only contains analyzed organization policies for the provided constraint.
+     */
+    constraint?: string;
+    /**
+     * The expression to filter the governed assets in result. The only supported fields for governed resources are `governed_resource.project` and `governed_resource.folders`. The only supported fields for governed iam policies are `governed_iam_policy.project` and `governed_iam_policy.folders`. The only supported operator is `=`. Example 1: governed_resource.project="projects/12345678" filter will return all governed resources under projects/12345678 including the project ifself, if applicable. Example 2: governed_iam_policy.folders="folders/12345678" filter will return all governed iam policies under folders/12345678, if applicable.
+     */
+    filter?: string;
+    /**
+     * The maximum number of items to return per page. If unspecified, AnalyzeOrgPolicyGovernedAssetsResponse.governed_assets will contain 100 items with a maximum of 200.
+     */
+    pageSize?: number;
+    /**
+     * The pagination token to retrieve the next page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The organization to scope the request. Only organization policies within the scope will be analyzed. The output assets will also be limited to the ones governed by those in-scope organization policies. * organizations/{ORGANIZATION_NUMBER\} (e.g., "organizations/123456")
+     */
+    scope?: string;
+  }
+  export interface Params$Resource$V1$Analyzeorgpolicygovernedcontainers
+    extends StandardParameters {
+    /**
+     * Required. The name of the constraint to analyze governed containers for. The analysis only contains organization policies for the provided constraint.
+     */
+    constraint?: string;
+    /**
+     * The expression to filter the governed containers in result. The only supported field is `parent`, and the only supported operator is `=`. Example: parent="//cloudresourcemanager.googleapis.com/folders/001" will return all containers under "folders/001".
+     */
+    filter?: string;
+    /**
+     * The maximum number of items to return per page. If unspecified, AnalyzeOrgPolicyGovernedContainersResponse.governed_containers will contain 100 items with a maximum of 200.
+     */
+    pageSize?: number;
+    /**
+     * The pagination token to retrieve the next page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The organization to scope the request. Only organization policies within the scope will be analyzed. The output containers will also be limited to the ones governed by those in-scope organization policies. * organizations/{ORGANIZATION_NUMBER\} (e.g., "organizations/123456")
+     */
+    scope?: string;
+  }
   export interface Params$Resource$V1$Batchgetassetshistory
     extends StandardParameters {
     /**
@@ -5335,6 +6446,17 @@ export namespace cloudasset_v1 {
      * Request body metadata
      */
     requestBody?: Schema$ExportAssetsRequest;
+  }
+  export interface Params$Resource$V1$Queryassets extends StandardParameters {
+    /**
+     * Required. The relative name of the root asset. This can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345"), or a folder number (such as "folders/123"). Only assets belonging to the `parent` will be returned.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$QueryAssetsRequest;
   }
   export interface Params$Resource$V1$Searchalliampolicies
     extends StandardParameters {
