@@ -672,7 +672,7 @@ export namespace chromepolicy_v1 {
      */
     policySchemaFilter?: string | null;
     /**
-     * Required. The key of the target resource on which the policies should be resolved. The target resource must point to an Org Unit.
+     * Required. The key of the target resource on which the policies should be resolved.
      */
     policyTargetKey?: Schema$GoogleChromePolicyVersionsV1PolicyTargetKey;
   }

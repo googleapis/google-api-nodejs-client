@@ -557,7 +557,7 @@
       }
     }
   },
-  "revision": "20221021",
+  "revision": "20221212",
   "rootUrl": "https://chromepolicy.googleapis.com/",
   "schemas": {
     "ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle": {
@@ -1290,7 +1290,7 @@
         },
         "policyTargetKey": {
           "$ref": "GoogleChromePolicyVersionsV1PolicyTargetKey",
-          "description": "Required. The key of the target resource on which the policies should be resolved. The target resource must point to an Org Unit."
+          "description": "Required. The key of the target resource on which the policies should be resolved."
         }
       },
       "type": "object"
