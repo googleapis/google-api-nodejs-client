@@ -346,7 +346,6 @@ import {
 } from './identitytoolkit';
 import {VERSIONS as idsVersions, ids} from './ids';
 import {VERSIONS as indexingVersions, indexing} from './indexing';
-import {VERSIONS as integrationsVersions, integrations} from './integrations';
 import {VERSIONS as jobsVersions, jobs} from './jobs';
 import {VERSIONS as kgsearchVersions, kgsearch} from './kgsearch';
 import {VERSIONS as languageVersions, language} from './language';
@@ -773,7 +772,6 @@ export const APIS: APIList = {
   identitytoolkit: identitytoolkitVersions,
   ids: idsVersions,
   indexing: indexingVersions,
-  integrations: integrationsVersions,
   jobs: jobsVersions,
   kgsearch: kgsearchVersions,
   language: languageVersions,
@@ -1034,7 +1032,6 @@ export class GeneratedAPIs {
   identitytoolkit = identitytoolkit;
   ids = ids;
   indexing = indexing;
-  integrations = integrations;
   jobs = jobs;
   kgsearch = kgsearch;
   language = language;
