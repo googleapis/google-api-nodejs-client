@@ -307,6 +307,23 @@ export namespace storagetransfer_v1 {
     errorLogEntries?: Schema$ErrorLogEntry[];
   }
   /**
+   * Specifies the Event-driven transfer options. Event-driven transfers listen to an event stream to transfer updated files.
+   */
+  export interface Schema$EventStream {
+    /**
+     * Specifies the data and time at which Storage Transfer Service stops listening for events from this stream. After this time, any transfers in progress will complete, but no new transfers are initiated.
+     */
+    eventStreamExpirationTime?: string | null;
+    /**
+     * Specifies the date and time that Storage Transfer Service starts listening for events from this stream. If no start time is specified or start time is in the past, Storage Transfer Service starts listening immediately.
+     */
+    eventStreamStartTime?: string | null;
+    /**
+     * Required. Specifies a unique name of the resource such as AWS SQS ARN in the form 'arn:aws:sqs:region:account_id:queue_name', or Pub/Sub subscription resource name in the form 'projects/{project\}/subscriptions/{sub\}'.
+     */
+    name?: string | null;
+  }
+  /**
    * In a GcsData resource, an object's name is the Cloud Storage object's name and its "last modification time" refers to the object's `updated` property of Cloud Storage objects, which changes when the content or the metadata of the object is updated.
    */
   export interface Schema$GcsData {
@@ -724,6 +741,10 @@ export namespace storagetransfer_v1 {
      * A description provided by the user for the job. Its max length is 1024 bytes when Unicode-encoded.
      */
     description?: string | null;
+    /**
+     * Specifies the event stream for the transfer job for event-driven transfers. When EventStream is specified, the Schedule fields are ignored.
+     */
+    eventStream?: Schema$EventStream;
     /**
      * Output only. The time that the transfer job was last modified.
      */
@@ -1878,6 +1899,7 @@ export namespace storagetransfer_v1 {
      *       //   "creationTime": "my_creationTime",
      *       //   "deletionTime": "my_deletionTime",
      *       //   "description": "my_description",
+     *       //   "eventStream": {},
      *       //   "lastModificationTime": "my_lastModificationTime",
      *       //   "latestOperationName": "my_latestOperationName",
      *       //   "loggingConfig": {},
@@ -1897,6 +1919,7 @@ export namespace storagetransfer_v1 {
      *   //   "creationTime": "my_creationTime",
      *   //   "deletionTime": "my_deletionTime",
      *   //   "description": "my_description",
+     *   //   "eventStream": {},
      *   //   "lastModificationTime": "my_lastModificationTime",
      *   //   "latestOperationName": "my_latestOperationName",
      *   //   "loggingConfig": {},
@@ -2164,6 +2187,7 @@ export namespace storagetransfer_v1 {
      *   //   "creationTime": "my_creationTime",
      *   //   "deletionTime": "my_deletionTime",
      *   //   "description": "my_description",
+     *   //   "eventStream": {},
      *   //   "lastModificationTime": "my_lastModificationTime",
      *   //   "latestOperationName": "my_latestOperationName",
      *   //   "loggingConfig": {},
@@ -2448,6 +2472,7 @@ export namespace storagetransfer_v1 {
      *   //   "creationTime": "my_creationTime",
      *   //   "deletionTime": "my_deletionTime",
      *   //   "description": "my_description",
+     *   //   "eventStream": {},
      *   //   "lastModificationTime": "my_lastModificationTime",
      *   //   "latestOperationName": "my_latestOperationName",
      *   //   "loggingConfig": {},

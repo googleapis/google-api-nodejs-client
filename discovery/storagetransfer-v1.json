@@ -632,7 +632,7 @@
       }
     }
   },
-  "revision": "20221019",
+  "revision": "20221212",
   "rootUrl": "https://storagetransfer.googleapis.com/",
   "schemas": {
     "AgentPool": {
@@ -891,6 +891,27 @@
             "$ref": "ErrorLogEntry"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EventStream": {
+      "description": "Specifies the Event-driven transfer options. Event-driven transfers listen to an event stream to transfer updated files.",
+      "id": "EventStream",
+      "properties": {
+        "eventStreamExpirationTime": {
+          "description": "Specifies the data and time at which Storage Transfer Service stops listening for events from this stream. After this time, any transfers in progress will complete, but no new transfers are initiated.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "eventStreamStartTime": {
+          "description": "Specifies the date and time that Storage Transfer Service starts listening for events from this stream. If no start time is specified or start time is in the past, Storage Transfer Service starts listening immediately.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Specifies a unique name of the resource such as AWS SQS ARN in the form 'arn:aws:sqs:region:account_id:queue_name', or Pub/Sub subscription resource name in the form 'projects/{project}/subscriptions/{sub}'.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1609,6 +1630,10 @@
           "description": "A description provided by the user for the job. Its max length is 1024 bytes when Unicode-encoded.",
           "type": "string"
         },
+        "eventStream": {
+          "$ref": "EventStream",
+          "description": "Specifies the event stream for the transfer job for event-driven transfers. When EventStream is specified, the Schedule fields are ignored."
+        },
         "lastModificationTime": {
           "description": "Output only. The time that the transfer job was last modified.",
           "format": "google-datetime",
@@ -1719,7 +1744,8 @@
             "SUCCESS",
             "FAILED",
             "ABORTED",
-            "QUEUED"
+            "QUEUED",
+            "SUSPENDING"
           ],
           "enumDescriptions": [
             "Zero is an illegal value.",
@@ -1728,7 +1754,8 @@
             "Completed successfully.",
             "Terminated due to an unrecoverable failure.",
             "Aborted by the user.",
-            "Temporarily delayed by the system. No user action is required."
+            "Temporarily delayed by the system. No user action is required.",
+            "The operation is suspending and draining the ongoing work to completion."
           ],
           "type": "string"
         },
