@@ -125,6 +125,10 @@ export namespace vmmigration_v1 {
   }
 
   /**
+   * AdaptingOSStep contains specific step details.
+   */
+  export interface Schema$AdaptingOSStep {}
+  /**
    * Request message for 'AddGroupMigration' request.
    */
   export interface Schema$AddGroupMigrationRequest {
@@ -224,6 +228,35 @@ export namespace vmmigration_v1 {
      * Output only. The time the state was last updated.
      */
     stateTime?: string | null;
+    /**
+     * Output only. The clone steps list representing its progress.
+     */
+    steps?: Schema$CloneStep[];
+  }
+  /**
+   * CloneStep holds information about the clone step progress.
+   */
+  export interface Schema$CloneStep {
+    /**
+     * Adapting OS step.
+     */
+    adaptingOs?: Schema$AdaptingOSStep;
+    /**
+     * The time the step has ended.
+     */
+    endTime?: string | null;
+    /**
+     * Instantiating migrated VM step.
+     */
+    instantiatingMigratedVm?: Schema$InstantiatingMigratedVMStep;
+    /**
+     * Preparing VM disks step.
+     */
+    preparingVmDisks?: Schema$PreparingVMDisksStep;
+    /**
+     * The time the step has started.
+     */
+    startTime?: string | null;
   }
   /**
    * ComputeEngineTargetDefaults is a collection of details for creating a VM in a target Compute Engine project.
@@ -359,7 +392,7 @@ export namespace vmmigration_v1 {
      */
     networkTags?: string[] | null;
     /**
-     * The GCP target project ID or project name.
+     * The Google Cloud target project ID or project name.
      */
     project?: string | null;
     /**
@@ -440,9 +473,71 @@ export namespace vmmigration_v1 {
      * Output only. The time the state was last updated.
      */
     stateTime?: string | null;
+    /**
+     * Output only. The cutover steps list representing its progress.
+     */
+    steps?: Schema$CutoverStep[];
   }
   /**
-   * DatacenterConnector message describes a connector between the Source and GCP, which is installed on a vmware datacenter (an OVA vm installed by the user) to connect the Datacenter to GCP and support vm migration data transfer.
+   * CutoverStep holds information about the cutover step progress.
+   */
+  export interface Schema$CutoverStep {
+    /**
+     * The time the step has ended.
+     */
+    endTime?: string | null;
+    /**
+     * Final sync step.
+     */
+    finalSync?: Schema$ReplicationCycle;
+    /**
+     * Instantiating migrated VM step.
+     */
+    instantiatingMigratedVm?: Schema$InstantiatingMigratedVMStep;
+    /**
+     * Preparing VM disks step.
+     */
+    preparingVmDisks?: Schema$PreparingVMDisksStep;
+    /**
+     * A replication cycle prior cutover step.
+     */
+    previousReplicationCycle?: Schema$ReplicationCycle;
+    /**
+     * Shutting down VM step.
+     */
+    shuttingDownSourceVm?: Schema$ShuttingDownSourceVMStep;
+    /**
+     * The time the step has started.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * CycleStep holds information about a step progress.
+   */
+  export interface Schema$CycleStep {
+    /**
+     * The time the cycle step has ended.
+     */
+    endTime?: string | null;
+    /**
+     * Initializing replication step.
+     */
+    initializingReplication?: Schema$InitializingReplicationStep;
+    /**
+     * Post processing step.
+     */
+    postProcessing?: Schema$PostProcessingStep;
+    /**
+     * Replicating step.
+     */
+    replicating?: Schema$ReplicatingStep;
+    /**
+     * The time the cycle step has started.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * DatacenterConnector message describes a connector between the Source and Google Cloud, which is installed on a vmware datacenter (an OVA vm installed by the user) to connect the Datacenter to Google Cloud and support vm migration data transfer.
    */
   export interface Schema$DatacenterConnector {
     /**
@@ -458,7 +553,7 @@ export namespace vmmigration_v1 {
      */
     availableVersions?: Schema$AvailableUpdates;
     /**
-     * Output only. The communication channel between the datacenter connector and GCP.
+     * Output only. The communication channel between the datacenter connector and Google Cloud.
      */
     bucket?: string | null;
     /**
@@ -552,6 +647,14 @@ export namespace vmmigration_v1 {
      */
     updateTime?: string | null;
   }
+  /**
+   * InitializingReplicationStep contains specific step details.
+   */
+  export interface Schema$InitializingReplicationStep {}
+  /**
+   * InstantiatingMigratedVMStep contains specific step details.
+   */
+  export interface Schema$InstantiatingMigratedVMStep {}
   /**
    * Describes a URL link.
    */
@@ -964,6 +1067,14 @@ export namespace vmmigration_v1 {
    */
   export interface Schema$PauseMigrationRequest {}
   /**
+   * PostProcessingStep contains specific step details.
+   */
+  export interface Schema$PostProcessingStep {}
+  /**
+   * PreparingVMDisksStep contains specific step details.
+   */
+  export interface Schema$PreparingVMDisksStep {}
+  /**
    * Request message for 'RemoveMigration' request.
    */
   export interface Schema$RemoveGroupMigrationRequest {
@@ -973,17 +1084,66 @@ export namespace vmmigration_v1 {
     migratingVm?: string | null;
   }
   /**
+   * ReplicatingStep contains specific step details.
+   */
+  export interface Schema$ReplicatingStep {
+    /**
+     * The source disks replication rate for the last 30 minutes in bytes per second.
+     */
+    lastThirtyMinutesAverageBytesPerSecond?: string | null;
+    /**
+     * The source disks replication rate for the last 2 minutes in bytes per second.
+     */
+    lastTwoMinutesAverageBytesPerSecond?: string | null;
+    /**
+     * Replicated bytes in the step.
+     */
+    replicatedBytes?: string | null;
+    /**
+     * Total bytes to be handled in the step.
+     */
+    totalBytes?: string | null;
+  }
+  /**
    * ReplicationCycle contains information about the current replication cycle status.
    */
   export interface Schema$ReplicationCycle {
     /**
-     * The current progress in percentage of this cycle.
+     * The cycle's ordinal number.
+     */
+    cycleNumber?: number | null;
+    /**
+     * The time the replication cycle has ended.
+     */
+    endTime?: string | null;
+    /**
+     * Provides details on the state of the cycle in case of an error.
+     */
+    error?: Schema$Status;
+    /**
+     * The identifier of the ReplicationCycle.
+     */
+    name?: string | null;
+    /**
+     * The current progress in percentage of this cycle. Was replaced by 'steps' field, which breaks down the cycle progression more accurately.
      */
     progressPercent?: number | null;
     /**
      * The time the replication cycle has started.
      */
     startTime?: string | null;
+    /**
+     * State of the ReplicationCycle.
+     */
+    state?: string | null;
+    /**
+     * The cycle's steps list representing its progress.
+     */
+    steps?: Schema$CycleStep[];
+    /**
+     * The accumulated duration the replication cycle was paused.
+     */
+    totalPauseDuration?: string | null;
   }
   /**
    * ReplicationSync contain information about the last replica sync to the cloud.
@@ -1028,6 +1188,10 @@ export namespace vmmigration_v1 {
      */
     values?: string[] | null;
   }
+  /**
+   * ShuttingDownSourceVMStep contains specific step details.
+   */
+  export interface Schema$ShuttingDownSourceVMStep {}
   /**
    * Source message describes a specific vm migration Source resource. It contains the source environment information.
    */
@@ -6765,7 +6929,8 @@ export namespace vmmigration_v1 {
      *         //   "error": {},
      *         //   "name": "my_name",
      *         //   "state": "my_state",
-     *         //   "stateTime": "my_stateTime"
+     *         //   "stateTime": "my_stateTime",
+     *         //   "steps": []
      *         // }
      *       },
      *     });
@@ -6914,7 +7079,8 @@ export namespace vmmigration_v1 {
      *   //   "error": {},
      *   //   "name": "my_name",
      *   //   "state": "my_state",
-     *   //   "stateTime": "my_stateTime"
+     *   //   "stateTime": "my_stateTime",
+     *   //   "steps": []
      *   // }
      * }
      *
@@ -7413,7 +7579,8 @@ export namespace vmmigration_v1 {
      *           //   "progressPercent": 0,
      *           //   "state": "my_state",
      *           //   "stateMessage": "my_stateMessage",
-     *           //   "stateTime": "my_stateTime"
+     *           //   "stateTime": "my_stateTime",
+     *           //   "steps": []
      *           // }
      *         },
      *       }
@@ -7565,7 +7732,8 @@ export namespace vmmigration_v1 {
      *   //   "progressPercent": 0,
      *   //   "state": "my_state",
      *   //   "stateMessage": "my_stateMessage",
-     *   //   "stateTime": "my_stateTime"
+     *   //   "stateTime": "my_stateTime",
+     *   //   "steps": []
      *   // }
      * }
      *
@@ -7912,8 +8080,15 @@ export namespace vmmigration_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "cycleNumber": 0,
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "name": "my_name",
      *   //   "progressPercent": 0,
-     *   //   "startTime": "my_startTime"
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "steps": [],
+     *   //   "totalPauseDuration": "my_totalPauseDuration"
      *   // }
      * }
      *
