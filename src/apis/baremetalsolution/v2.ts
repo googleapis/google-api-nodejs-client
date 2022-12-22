@@ -301,6 +301,10 @@ export namespace baremetalsolution_v2 {
      * Input only. List of Volumes to attach to this Instance on creation. This field won't be populated in Get/List responses.
      */
     volumes?: Schema$Volume[];
+    /**
+     * The workload profile for the instance.
+     */
+    workloadProfile?: string | null;
   }
   /**
    * Configuration parameters for a new instance.
@@ -1337,6 +1341,10 @@ export namespace baremetalsolution_v2 {
      * The storage type for this volume.
      */
     storageType?: string | null;
+    /**
+     * The workload profile for the volume.
+     */
+    workloadProfile?: string | null;
   }
   /**
    * Configuration parameters for a new volume.
@@ -1996,7 +2004,8 @@ export namespace baremetalsolution_v2 {
      *       //   "pod": "my_pod",
      *       //   "state": "my_state",
      *       //   "updateTime": "my_updateTime",
-     *       //   "volumes": []
+     *       //   "volumes": [],
+     *       //   "workloadProfile": "my_workloadProfile"
      *       // }
      *     },
      *   });
@@ -2587,7 +2596,8 @@ export namespace baremetalsolution_v2 {
      *   //   "pod": "my_pod",
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime",
-     *   //   "volumes": []
+     *   //   "volumes": [],
+     *   //   "workloadProfile": "my_workloadProfile"
      *   // }
      * }
      *
@@ -2875,7 +2885,8 @@ export namespace baremetalsolution_v2 {
      *       //   "pod": "my_pod",
      *       //   "state": "my_state",
      *       //   "updateTime": "my_updateTime",
-     *       //   "volumes": []
+     *       //   "volumes": [],
+     *       //   "workloadProfile": "my_workloadProfile"
      *       // }
      *     },
      *   });
@@ -6463,7 +6474,8 @@ export namespace baremetalsolution_v2 {
      *   //   "snapshotReservationDetail": {},
      *   //   "snapshotSchedulePolicy": "my_snapshotSchedulePolicy",
      *   //   "state": "my_state",
-     *   //   "storageType": "my_storageType"
+     *   //   "storageType": "my_storageType",
+     *   //   "workloadProfile": "my_workloadProfile"
      *   // }
      * }
      *
@@ -6753,7 +6765,8 @@ export namespace baremetalsolution_v2 {
      *       //   "snapshotReservationDetail": {},
      *       //   "snapshotSchedulePolicy": "my_snapshotSchedulePolicy",
      *       //   "state": "my_state",
-     *       //   "storageType": "my_storageType"
+     *       //   "storageType": "my_storageType",
+     *       //   "workloadProfile": "my_workloadProfile"
      *       // }
      *     },
      *   });
