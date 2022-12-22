@@ -262,6 +262,15 @@ export namespace cloudbuild_v1beta1 {
     createTime?: string | null;
   }
   /**
+   * Message for response of creating repositories in batch.
+   */
+  export interface Schema$BatchCreateRepositoriesResponse {
+    /**
+     * Repository resources created.
+     */
+    repositories?: Schema$Repository[];
+  }
+  /**
    * / BitbucketServerConnectedRepository represents a connected Bitbucket Server / repository.
    */
   export interface Schema$BitbucketServerConnectedRepository {
@@ -447,7 +456,7 @@ export namespace cloudbuild_v1beta1 {
    */
   export interface Schema$BuildOptions {
     /**
-     * Requested disk size for the VM that runs the build. Note that this is *NOT* "disk free"; some of the space will be used by the operating system and build utilities. Also note that this is the minimum disk size that will be allocated for the build -- the build may run with a larger disk than requested. At present, the maximum disk size is 1000GB; builds that request more than the maximum are rejected with an error.
+     * Requested disk size for the VM that runs the build. Note that this is *NOT* "disk free"; some of the space will be used by the operating system and build utilities. Also note that this is the minimum disk size that will be allocated for the build -- the build may run with a larger disk than requested. At present, the maximum disk size is 2000GB; builds that request more than the maximum are rejected with an error.
      */
     diskSizeGb?: string | null;
     /**
@@ -1086,6 +1095,35 @@ export namespace cloudbuild_v1beta1 {
      * Artifact Registry repository, in the form "https://$REGION-python.pkg.dev/$PROJECT/$REPOSITORY" Files in the workspace matching any path pattern will be uploaded to Artifact Registry with this location as a prefix.
      */
     repository?: string | null;
+  }
+  /**
+   * A repository associated to a parent connection.
+   */
+  export interface Schema$Repository {
+    /**
+     * Allows clients to store small amounts of arbitrary data.
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
+     * Output only. Server assigned timestamp for when the connection was created.
+     */
+    createTime?: string | null;
+    /**
+     * This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
+     * Immutable. Resource name of the repository, in the format `projects/x/locations/x/connections/x/repositories/x`.
+     */
+    name?: string | null;
+    /**
+     * Required. Git Clone HTTPS URI.
+     */
+    remoteUri?: string | null;
+    /**
+     * Output only. Server assigned timestamp for when the connection was updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * Location of the source in a Google Cloud Source Repository.
