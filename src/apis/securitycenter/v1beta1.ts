@@ -256,6 +256,10 @@ export namespace securitycenter_v1beta1 {
      * The additional taxonomy group within findings from a given source.
      */
     findingCategory?: string | null;
+    /**
+     * Full resource name of the finding.
+     */
+    name?: string | null;
   }
   /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
@@ -347,11 +351,11 @@ export namespace securitycenter_v1beta1 {
     sourcePort?: number | null;
   }
   /**
-   * Representa a single contact's email address
+   * The email address of a contact.
    */
   export interface Schema$Contact {
     /**
-     * An email address e.g. "person123@company.com"
+     * An email address. For example, "`person123@company.com`".
      */
     email?: string | null;
   }
@@ -654,6 +658,10 @@ export namespace securitycenter_v1beta1 {
      */
     externalUri?: string | null;
     /**
+     * File associated with the finding.
+     */
+    files?: Schema$File[];
+    /**
      * The class of the finding.
      */
     findingClass?: string | null;
@@ -665,6 +673,10 @@ export namespace securitycenter_v1beta1 {
      * Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
      */
     indicator?: Schema$Indicator;
+    /**
+     * Kernel Rootkit signature.
+     */
+    kernelRootkit?: Schema$KernelRootkit;
     /**
      * Kubernetes resources associated with the finding.
      */
@@ -726,7 +738,7 @@ export namespace securitycenter_v1beta1 {
      */
     state?: string | null;
     /**
-     * Represents vulnerability specific fields like cve, cvss scores etc. CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)
+     * Represents vulnerability-specific fields like CVE and CVSS scores. CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)
      */
     vulnerability?: Schema$Vulnerability;
   }
@@ -846,7 +858,7 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$GoogleCloudSecuritycenterV1BigQueryExport {
     /**
-     * Output only. The time at which the big query export was created. This field is set by the server and will be ignored if provided on export on creation.
+     * Output only. The time at which the BigQuery export was created. This field is set by the server and will be ignored if provided on export on creation.
      */
     createTime?: string | null;
     /**
@@ -862,7 +874,7 @@ export namespace securitycenter_v1beta1 {
      */
     filter?: string | null;
     /**
-     * Output only. Email address of the user who last edited the big query export. This field is set by the server and will be ignored if provided on export creation or update.
+     * Output only. Email address of the user who last edited the BigQuery export. This field is set by the server and will be ignored if provided on export creation or update.
      */
     mostRecentEditor?: string | null;
     /**
@@ -870,11 +882,11 @@ export namespace securitycenter_v1beta1 {
      */
     name?: string | null;
     /**
-     * Output only. The service account that needs permission to create table, upload data to the big query dataset.
+     * Output only. The service account that needs permission to create table and upload data to the BigQuery dataset.
      */
     principal?: string | null;
     /**
-     * Output only. The most recent time at which the big export was updated. This field is set by the server and will be ignored if provided on export creation or update.
+     * Output only. The most recent time at which the BigQuery export was updated. This field is set by the server and will be ignored if provided on export creation or update.
      */
     updateTime?: string | null;
   }
@@ -895,7 +907,7 @@ export namespace securitycenter_v1beta1 {
      */
     role?: Schema$Role;
     /**
-     * Represents the subjects(s) bound to the role. Not always available for PATCH requests.
+     * Represents one or more subjects that are bound to the role. Not always available for PATCH requests.
      */
     subjects?: Schema$Subject[];
   }
@@ -970,7 +982,7 @@ export namespace securitycenter_v1beta1 {
      */
     externalUid?: string | null;
     /**
-     * External System Name e.g. jira, demisto, etc. e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira` `folders/1234/sources/5678/findings/123456/externalSystems/jira` `projects/1234/sources/5678/findings/123456/externalSystems/jira`
+     * Full resource name of the external system, for example: "organizations/1234/sources/5678/findings/123456/externalSystems/jira", "folders/1234/sources/5678/findings/123456/externalSystems/jira", "projects/1234/sources/5678/findings/123456/externalSystems/jira"
      */
     name?: string | null;
     /**
@@ -1216,9 +1228,17 @@ export namespace securitycenter_v1beta1 {
      */
     name?: string | null;
     /**
+     * Apply resource_value only to resources that match resource_type. resource_type will be checked with "AND" of other resources. E.g. "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
+     */
+    resourceType?: string | null;
+    /**
      * Required. Resource value level this expression represents
      */
     resourceValue?: string | null;
+    /**
+     * Project or folder to scope this config to. For example, "project/456" would apply this config only to resources in "project/456" scope will be checked with "AND" of other resources.
+     */
+    scope?: string | null;
     /**
      * Required. Tag values combined with AND to check against. Values in the form "tagValues/123" E.g. [ "tagValues/123", "tagValues/456", "tagValues/789" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      */
@@ -1356,7 +1376,7 @@ export namespace securitycenter_v1beta1 {
     role?: string | null;
   }
   /**
-   * Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
+   * Represents what's commonly known as an _indicator of compromise_ (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. For more information, see [Indicator of compromise](https://en.wikipedia.org/wiki/Indicator_of_compromise).
    */
   export interface Schema$Indicator {
     /**
@@ -1364,7 +1384,7 @@ export namespace securitycenter_v1beta1 {
      */
     domains?: string[] | null;
     /**
-     * List of ip addresses associated to the Finding.
+     * The list of IP addresses that are associated with the finding.
      */
     ipAddresses?: string[] | null;
     /**
@@ -1377,7 +1397,48 @@ export namespace securitycenter_v1beta1 {
     uris?: string[] | null;
   }
   /**
-   * Kubernetes related attributes.
+   * Kernel mode rootkit signatures.
+   */
+  export interface Schema$KernelRootkit {
+    /**
+     * Rootkit name when available.
+     */
+    name?: string | null;
+    /**
+     * True when unexpected modifications of kernel code memory are present.
+     */
+    unexpectedCodeModification?: boolean | null;
+    /**
+     * True when `ftrace` points are present with callbacks pointing to regions that are not in the expected kernel or module code range.
+     */
+    unexpectedFtraceHandler?: boolean | null;
+    /**
+     * True when interrupt handlers that are are not in the expected kernel or module code regions are present.
+     */
+    unexpectedInterruptHandler?: boolean | null;
+    /**
+     * True when kernel code pages that are not in the expected kernel or module code regions are present.
+     */
+    unexpectedKernelCodePages?: boolean | null;
+    /**
+     * True when `kprobe` points are present with callbacks pointing to regions that are not in the expected kernel or module code range.
+     */
+    unexpectedKprobeHandler?: boolean | null;
+    /**
+     * True when unexpected processes in the scheduler run queue are present. Such processes are in the run queue, but not in the process task list.
+     */
+    unexpectedProcessesInRunqueue?: boolean | null;
+    /**
+     * True when unexpected modifications of kernel read-only data memory are present.
+     */
+    unexpectedReadOnlyDataModification?: boolean | null;
+    /**
+     * True when system call handlers that are are not in the expected kernel or module code regions are present.
+     */
+    unexpectedSystemCallHandler?: boolean | null;
+  }
+  /**
+   * Kubernetes-related attributes.
    */
   export interface Schema$Kubernetes {
     /**
