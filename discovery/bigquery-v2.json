@@ -1710,7 +1710,7 @@
       }
     }
   },
-  "revision": "20221015",
+  "revision": "20221209",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -2891,11 +2891,13 @@
           "items": {
             "enum": [
               "TARGET_TYPE_UNSPECIFIED",
-              "VIEWS"
+              "VIEWS",
+              "ROUTINES"
             ],
             "enumDescriptions": [
               "Do not use. You must set a target type explicitly.",
-              "This entry applies to views in the dataset."
+              "This entry applies to views in the dataset.",
+              "This entry applies to routines in the dataset."
             ],
             "type": "string"
           },
@@ -4920,7 +4922,7 @@
           "type": "string"
         },
         "routines": {
-          "description": "Routines in the requested dataset. Unless read_mask is set in the request, only the following fields are populated: etag, project_id, dataset_id, routine_id, routine_type, creation_time, last_modified_time, and language.",
+          "description": "Routines in the requested dataset. Unless read_mask is set in the request, only the following fields are populated: etag, project_id, dataset_id, routine_id, routine_type, creation_time, last_modified_time, language, and remote_function_options.",
           "items": {
             "$ref": "Routine"
           },
@@ -4961,6 +4963,10 @@
     "MaterializedViewDefinition": {
       "id": "MaterializedViewDefinition",
       "properties": {
+        "allow_non_incremental_definition": {
+          "description": "[Optional] Allow non incremental materialized view definition. The default value is \"false\".",
+          "type": "boolean"
+        },
         "enableRefresh": {
           "description": "[Optional] [TrustedTester] Enable automatic refresh of the materialized view when the base table is updated. The default value is \"true\".",
           "type": "boolean"
@@ -5118,7 +5124,9 @@
             "DNN_LINEAR_COMBINED_CLASSIFIER",
             "DNN_LINEAR_COMBINED_REGRESSOR",
             "AUTOENCODER",
-            "ARIMA_PLUS"
+            "ARIMA_PLUS",
+            "RANDOM_FOREST_REGRESSOR",
+            "RANDOM_FOREST_CLASSIFIER"
           ],
           "enumDescriptions": [
             "",
@@ -5138,7 +5146,9 @@
             "Wide-and-deep classifier model.",
             "Wide-and-deep regressor model.",
             "Autoencoder model.",
-            "New name for the ARIMA model."
+            "New name for the ARIMA model.",
+            "Random Forest regressor model.",
+            "Random Forest classifier model."
           ],
           "readOnly": true,
           "type": "string"
@@ -5810,7 +5820,7 @@
           "type": "array"
         },
         "language": {
-          "description": "Optional. Defaults to \"SQL\".",
+          "description": "Optional. Defaults to \"SQL\" if remote_function_options field is absent, not set otherwise.",
           "enum": [
             "LANGUAGE_UNSPECIFIED",
             "SQL",
@@ -5837,7 +5847,7 @@
         },
         "returnTableType": {
           "$ref": "StandardSqlTableType",
-          "description": "Optional. Can be set only if routine_type = \"TABLE_VALUED_FUNCTION\". If absent, the return table type is inferred from definition_body at query time in each query that references this routine. If present, then the columns in the evaluated table result will be cast to match the column types specificed in return table type, at query time."
+          "description": "Optional. Can be set only if routine_type = \"TABLE_VALUED_FUNCTION\". If absent, the return table type is inferred from definition_body at query time in each query that references this routine. If present, then the columns in the evaluated table result will be cast to match the column types specified in return table type, at query time."
         },
         "returnType": {
           "$ref": "StandardSqlDataType",
@@ -6131,7 +6141,7 @@
           "type": "array"
         },
         "mainFileUri": {
-          "description": "The main file URI of the Spark application. Exactly one of the definition_body field and the main_file_uri field must be set.",
+          "description": "The main file/jar URI of the Spark application. Exactly one of the definition_body field and the main_file_uri field must be set for Python. Exactly one of main_class and main_file_uri field should be set for Java/Scala language type.",
           "type": "string"
         },
         "properties": {

@@ -2383,7 +2383,7 @@ export namespace bigquery_v2 {
      */
     nextPageToken?: string | null;
     /**
-     * Routines in the requested dataset. Unless read_mask is set in the request, only the following fields are populated: etag, project_id, dataset_id, routine_id, routine_type, creation_time, last_modified_time, and language.
+     * Routines in the requested dataset. Unless read_mask is set in the request, only the following fields are populated: etag, project_id, dataset_id, routine_id, routine_type, creation_time, last_modified_time, language, and remote_function_options.
      */
     routines?: Schema$Routine[];
   }
@@ -2410,6 +2410,10 @@ export namespace bigquery_v2 {
     legacyLocationId?: string | null;
   }
   export interface Schema$MaterializedViewDefinition {
+    /**
+     * [Optional] Allow non incremental materialized view definition. The default value is "false".
+     */
+    allow_non_incremental_definition?: boolean | null;
     /**
      * [Optional] [TrustedTester] Enable automatic refresh of the materialized view when the base table is updated. The default value is "true".
      */
@@ -2952,7 +2956,7 @@ export namespace bigquery_v2 {
      */
     importedLibraries?: string[] | null;
     /**
-     * Optional. Defaults to "SQL".
+     * Optional. Defaults to "SQL" if remote_function_options field is absent, not set otherwise.
      */
     language?: string | null;
     /**
@@ -2964,7 +2968,7 @@ export namespace bigquery_v2 {
      */
     remoteFunctionOptions?: Schema$RemoteFunctionOptions;
     /**
-     * Optional. Can be set only if routine_type = "TABLE_VALUED_FUNCTION". If absent, the return table type is inferred from definition_body at query time in each query that references this routine. If present, then the columns in the evaluated table result will be cast to match the column types specificed in return table type, at query time.
+     * Optional. Can be set only if routine_type = "TABLE_VALUED_FUNCTION". If absent, the return table type is inferred from definition_body at query time in each query that references this routine. If present, then the columns in the evaluated table result will be cast to match the column types specified in return table type, at query time.
      */
     returnTableType?: Schema$StandardSqlTableType;
     /**
@@ -3174,7 +3178,7 @@ export namespace bigquery_v2 {
      */
     jarUris?: string[] | null;
     /**
-     * The main file URI of the Spark application. Exactly one of the definition_body field and the main_file_uri field must be set.
+     * The main file/jar URI of the Spark application. Exactly one of the definition_body field and the main_file_uri field must be set for Python. Exactly one of main_class and main_file_uri field should be set for Java/Scala language type.
      */
     mainFileUri?: string | null;
     /**
