@@ -313,6 +313,10 @@ export namespace tagmanager_v2 {
      */
     publicId?: string | null;
     /**
+     * List of server-side container URLs for the Container. If multiple URLs are provided, all URL paths must match. @mutable tagmanager.accounts.containers.create @mutable tagmanager.accounts.containers.update
+     */
+    taggingServerUrls?: string[] | null;
+    /**
      * All Tag IDs that refer to this Container.
      */
     tagIds?: string[] | null;
@@ -2344,6 +2348,7 @@ export namespace tagmanager_v2 {
      *   //   "publicId": "my_publicId",
      *   //   "tagIds": [],
      *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "taggingServerUrls": [],
      *   //   "usageContext": []
      *   // }
      * }
@@ -2484,6 +2489,7 @@ export namespace tagmanager_v2 {
      *       //   "publicId": "my_publicId",
      *       //   "tagIds": [],
      *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "taggingServerUrls": [],
      *       //   "usageContext": []
      *       // }
      *     },
@@ -2503,6 +2509,7 @@ export namespace tagmanager_v2 {
      *   //   "publicId": "my_publicId",
      *   //   "tagIds": [],
      *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "taggingServerUrls": [],
      *   //   "usageContext": []
      *   // }
      * }
@@ -2768,6 +2775,7 @@ export namespace tagmanager_v2 {
      *   //   "publicId": "my_publicId",
      *   //   "tagIds": [],
      *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "taggingServerUrls": [],
      *   //   "usageContext": []
      *   // }
      * }
@@ -3051,6 +3059,7 @@ export namespace tagmanager_v2 {
      *   //   "publicId": "my_publicId",
      *   //   "tagIds": [],
      *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "taggingServerUrls": [],
      *   //   "usageContext": []
      *   // }
      * }
@@ -3202,6 +3211,7 @@ export namespace tagmanager_v2 {
      *   //   "publicId": "my_publicId",
      *   //   "tagIds": [],
      *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "taggingServerUrls": [],
      *   //   "usageContext": []
      *   // }
      * }
@@ -3483,6 +3493,7 @@ export namespace tagmanager_v2 {
      *       //   "publicId": "my_publicId",
      *       //   "tagIds": [],
      *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "taggingServerUrls": [],
      *       //   "usageContext": []
      *       // }
      *     },
@@ -3502,6 +3513,7 @@ export namespace tagmanager_v2 {
      *   //   "publicId": "my_publicId",
      *   //   "tagIds": [],
      *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "taggingServerUrls": [],
      *   //   "usageContext": []
      *   // }
      * }

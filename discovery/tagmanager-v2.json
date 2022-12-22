@@ -3710,7 +3710,7 @@
       }
     }
   },
-  "revision": "20221026",
+  "revision": "20221130",
   "rootUrl": "https://tagmanager.googleapis.com/",
   "schemas": {
     "Account": {
@@ -4237,6 +4237,13 @@
         "tagManagerUrl": {
           "description": "Auto generated link to the tag manager UI",
           "type": "string"
+        },
+        "taggingServerUrls": {
+          "description": "List of server-side container URLs for the Container. If multiple URLs are provided, all URL paths must match. @mutable tagmanager.accounts.containers.create @mutable tagmanager.accounts.containers.update",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "usageContext": {
           "annotations": {
