@@ -142,6 +142,36 @@ export namespace networkmanagement_v1beta1 {
     resourceUri?: string | null;
   }
   /**
+   * Wrapper for app engine service version attributes.
+   */
+  export interface Schema$AppEngineVersionEndpoint {
+    /**
+     * An [App Engine](https://cloud.google.com/appengine) [service version](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions) name.
+     */
+    uri?: string | null;
+  }
+  /**
+   * For display only. Metadata associated with an App Engine version.
+   */
+  export interface Schema$AppEngineVersionInfo {
+    /**
+     * Name of an App Engine version.
+     */
+    displayName?: string | null;
+    /**
+     * App Engine execution environment for a version.
+     */
+    environment?: string | null;
+    /**
+     * Runtime of the App Engine version.
+     */
+    runtime?: string | null;
+    /**
+     * URI of an App Engine version.
+     */
+    uri?: string | null;
+  }
+  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -217,6 +247,40 @@ export namespace networkmanagement_v1beta1 {
      * Latest successfully deployed version id of the Cloud Function.
      */
     versionId?: string | null;
+  }
+  /**
+   * Wrapper for Cloud Run revision attributes.
+   */
+  export interface Schema$CloudRunRevisionEndpoint {
+    /**
+     * A [Cloud Run](https://cloud.google.com/run) [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get) URI. The format is: projects/{project\}/locations/{location\}/revisions/{revision\}
+     */
+    uri?: string | null;
+  }
+  /**
+   * For display only. Metadata associated with a Cloud Run revision.
+   */
+  export interface Schema$CloudRunRevisionInfo {
+    /**
+     * Name of a Cloud Run revision.
+     */
+    displayName?: string | null;
+    /**
+     * Location in which this revision is deployed.
+     */
+    location?: string | null;
+    /**
+     * ID of Cloud Run Service this revision belongs to.
+     */
+    serviceName?: string | null;
+    /**
+     * URI of Cloud Run service this revision belongs to.
+     */
+    serviceUri?: string | null;
+    /**
+     * URI of a Cloud Run revision.
+     */
+    uri?: string | null;
   }
   /**
    * For display only. Metadata associated with a Cloud SQL instance.
@@ -344,9 +408,17 @@ export namespace networkmanagement_v1beta1 {
    */
   export interface Schema$Endpoint {
     /**
+     * An [App Engine](https://cloud.google.com/appengine) [service version](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions).
+     */
+    appEngineVersion?: Schema$AppEngineVersionEndpoint;
+    /**
      * A [Cloud Function](https://cloud.google.com/functions).
      */
     cloudFunction?: Schema$CloudFunctionEndpoint;
+    /**
+     * A [Cloud Run](https://cloud.google.com/run) [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get)
+     */
+    cloudRunRevision?: Schema$CloudRunRevisionEndpoint;
     /**
      * A [Cloud SQL](https://cloud.google.com/sql) instance URI.
      */
@@ -985,6 +1057,10 @@ export namespace networkmanagement_v1beta1 {
      */
     abort?: Schema$AbortInfo;
     /**
+     * Display information of an App Engine service version.
+     */
+    appEngineVersion?: Schema$AppEngineVersionInfo;
+    /**
      * This is a step that leads to the final state Drop.
      */
     causesDrop?: boolean | null;
@@ -992,6 +1068,10 @@ export namespace networkmanagement_v1beta1 {
      * Display information of a Cloud Function.
      */
     cloudFunction?: Schema$CloudFunctionInfo;
+    /**
+     * Display information of a Cloud Run revision.
+     */
+    cloudRunRevision?: Schema$CloudRunRevisionInfo;
     /**
      * Display information of a Cloud SQL instance.
      */
