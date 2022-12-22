@@ -3,7 +3,6 @@
   "skip": [
     "https://codecov.io/gh/googleapis/",
     "www.googleapis.com",
-    "david-dm.org/+",
     "img.shields.io"
   ],
   "silent": true,
