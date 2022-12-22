@@ -156,6 +156,19 @@ export namespace datamigration_v1 {
     vpcNetwork?: string | null;
   }
   /**
+   * Request message for 'ApplyConversionWorkspace' request.
+   */
+  export interface Schema$ApplyConversionWorkspaceRequest {
+    /**
+     * Fully qualified (Uri) name of the destination connection profile.
+     */
+    connectionProfile?: string | null;
+    /**
+     * Filter which entities to apply. Leaving this field empty will apply all of the entities. Supports Google AIP 160 based filtering.
+     */
+    filter?: string | null;
+  }
+  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -182,6 +195,47 @@ export namespace datamigration_v1 {
     logType?: string | null;
   }
   /**
+   * Execution log of a background job.
+   */
+  export interface Schema$BackgroundJobLogEntry {
+    /**
+     * Job completion comment, such as how many entities were seeded, how many warnings were found during conversion and similar information.
+     */
+    completionComment?: string | null;
+    /**
+     * Job completion state, i.e. the final state after the job completed.
+     */
+    completionState?: string | null;
+    /**
+     * The timestamp when the background job was finished.
+     */
+    finishTime?: string | null;
+    /**
+     * The background job log entry id
+     */
+    id?: string | null;
+    /**
+     * Import rules job details
+     */
+    importRulesJobDetails?: Schema$ImportRulesJobDetails;
+    /**
+     * The type of job that was executed.
+     */
+    jobType?: string | null;
+    /**
+     * Whether the client requested the conversion workspace to be committed after a successful completion of the job.
+     */
+    requestAutocommit?: boolean | null;
+    /**
+     * Seed job details
+     */
+    seedJobDetails?: Schema$SeedJobDetails;
+    /**
+     * The timestamp when the background job was started.
+     */
+    startTime?: string | null;
+  }
+  /**
    * Associates `members`, or principals, with a `role`.
    */
   export interface Schema$Binding {
@@ -206,6 +260,10 @@ export namespace datamigration_v1 {
    * Specifies required connection parameters, and, optionally, the parameters required to create a Cloud SQL destination database instance.
    */
   export interface Schema$CloudSqlConnectionProfile {
+    /**
+     * Output only. The Cloud SQL database instance's additional (outgoing) public IP. Used when the Cloud SQL database availability type is REGIONAL (i.e. multiple zones / highly available).
+     */
+    additionalPublicIp?: string | null;
     /**
      * Output only. The Cloud SQL instance ID that this connection profile is associated with.
      */
@@ -235,6 +293,10 @@ export namespace datamigration_v1 {
      * [default: ON] If you enable this setting, Cloud SQL checks your available storage every 30 seconds. If the available storage falls below a threshold size, Cloud SQL automatically adds additional storage capacity. If the available storage repeatedly falls below the threshold size, Cloud SQL continues to add storage until it reaches the maximum of 30 TB.
      */
     autoStorageIncrease?: boolean | null;
+    /**
+     * Optional. Availability type. Potential values: * `ZONAL`: The instance serves data from only one zone. Outages in that zone affect data availability. * `REGIONAL`: The instance can serve data from more than one zone in a region (it is highly available).
+     */
+    availabilityType?: string | null;
     /**
      * The KMS key name used for the csql instance.
      */
@@ -272,6 +334,10 @@ export namespace datamigration_v1 {
      */
     rootPasswordSet?: boolean | null;
     /**
+     * Optional. The Google Cloud Platform zone where the failover Cloud SQL database instance is located. Used when the Cloud SQL database availability type is REGIONAL (i.e. multiple zones / highly available).
+     */
+    secondaryZone?: string | null;
+    /**
      * The Database Migration Service source connection profile ID, in the format: `projects/my_project_name/locations/us-central1/connectionProfiles/connection_profile_ID`
      */
     sourceId?: string | null;
@@ -291,6 +357,92 @@ export namespace datamigration_v1 {
      * The Google Cloud Platform zone where your Cloud SQL database instance is located.
      */
     zone?: string | null;
+  }
+  /**
+   * Column is not used as an independent entity, it is retrieved as part of a Table entity.
+   */
+  export interface Schema$ColumnEntity {
+    /**
+     * Is the column of array type
+     */
+    array?: boolean | null;
+    /**
+     * If the column is array, of which length
+     */
+    arrayLength?: number | null;
+    /**
+     * Is the column auto-generated/identity
+     */
+    autoGenerated?: boolean | null;
+    /**
+     * Charset override - instead of table level charset
+     */
+    charset?: string | null;
+    /**
+     * Collation override - instead of table level collation
+     */
+    collation?: string | null;
+    /**
+     * Comment associated with the column
+     */
+    comment?: string | null;
+    /**
+     * Custom engine specific features
+     */
+    customFeatures?: {[key: string]: any} | null;
+    /**
+     * Column data type
+     */
+    dataType?: string | null;
+    /**
+     * Default value of the column
+     */
+    defaultValue?: string | null;
+    /**
+     * Column fractional second precision - used for timestamp based datatypes
+     */
+    fractionalSecondsPrecision?: number | null;
+    /**
+     * Column length - e.g. varchar (50)
+     */
+    length?: string | null;
+    /**
+     * Column name
+     */
+    name?: string | null;
+    /**
+     * Is the column nullable
+     */
+    nullable?: boolean | null;
+    /**
+     * Column order in the table
+     */
+    ordinalPosition?: number | null;
+    /**
+     * Column precision - when relevant
+     */
+    precision?: number | null;
+    /**
+     * Column scale - when relevant
+     */
+    scale?: number | null;
+    /**
+     * Specifies the list of values allowed in the column. List is empty if set values is not required
+     */
+    setValues?: string[] | null;
+    /**
+     * Is the column a UDT
+     */
+    udt?: boolean | null;
+  }
+  /**
+   * Request message for 'CommitConversionWorkspace' request.
+   */
+  export interface Schema$CommitConversionWorkspaceRequest {
+    /**
+     * Optional name of the commit.
+     */
+    commitName?: string | null;
   }
   /**
    * A connection profile definition.
@@ -329,6 +481,10 @@ export namespace datamigration_v1 {
      */
     name?: string | null;
     /**
+     * An Oracle database connection profile.
+     */
+    oracle?: Schema$OracleConnectionProfile;
+    /**
      * A PostgreSQL database connection profile.
      */
     postgresql?: Schema$PostgreSqlConnectionProfile;
@@ -346,6 +502,180 @@ export namespace datamigration_v1 {
     updateTime?: string | null;
   }
   /**
+   * Constraint is not used as an independent entity, it is retrieved as part of another entity such as Table or View.
+   */
+  export interface Schema$ConstraintEntity {
+    /**
+     * Custom engine specific features
+     */
+    customFeatures?: {[key: string]: any} | null;
+    /**
+     * The name of the table constraint
+     */
+    name?: string | null;
+    /**
+     * Reference Columns which may be associated with the constraint. eg: if the constraint is a FOREIGN_KEY, this represents the list of full names of referenced columns by the foreign key.
+     */
+    referenceColumns?: string[] | null;
+    /**
+     * Reference table which may be associated with the constraint. eg: if the constraint is a FOREIGN_KEY, this represents the list of full name of the referenced table by the foreign key.
+     */
+    referenceTable?: string | null;
+    /**
+     * Table columns used as part of the Constraint for e.g. primary key constraint should list the columns which constitutes the key
+     */
+    tableColumns?: string[] | null;
+    /**
+     * Table which is associated with the constraint. In case the constraint is defined on a table, this field is left empty as this information is stored in parent_name. However, if constraint is defined on a view, this field stores the table name on which the view is defined.
+     */
+    tableName?: string | null;
+    /**
+     * Type of constraint - e.g. unique, primary key, foreign key (currently only primary key is supported)
+     */
+    type?: string | null;
+  }
+  /**
+   * The main conversion workspace resource entity.
+   */
+  export interface Schema$ConversionWorkspace {
+    /**
+     * Output only. The timestamp when the workspace resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The destination engine details.
+     */
+    destination?: Schema$DatabaseEngineInfo;
+    /**
+     * The display name for the workspace
+     */
+    displayName?: string | null;
+    /**
+     * A generic list of settings for the workspace. The settings are database pair dependant and can indicate default behavior for the mapping rules engine or turn on or off specific features. Such examples can be: convert_foreign_key_to_interleave=true, skip_triggers=false, ignore_non_table_synonyms=true
+     */
+    globalSettings?: {[key: string]: string} | null;
+    /**
+     * Output only. Whether the workspace has uncommitted changes (changes which were made after the workspace was committed)
+     */
+    hasUncommittedChanges?: boolean | null;
+    /**
+     * Output only. The latest commit id
+     */
+    latestCommitId?: string | null;
+    /**
+     * Output only. The timestamp when the workspace was committed.
+     */
+    latestCommitTime?: string | null;
+    /**
+     * Full name of the workspace resource, in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
+     */
+    name?: string | null;
+    /**
+     * Required. The source engine details.
+     */
+    source?: Schema$DatabaseEngineInfo;
+    /**
+     * Output only. The timestamp when the workspace resource was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * A conversion workspace's version.
+   */
+  export interface Schema$ConversionWorkspaceInfo {
+    /**
+     * The commit ID of the conversion workspace.
+     */
+    commitId?: string | null;
+    /**
+     * The resource name (URI) of the conversion workspace.
+     */
+    name?: string | null;
+  }
+  /**
+   * Request message for 'ConvertConversionWorkspace' request.
+   */
+  export interface Schema$ConvertConversionWorkspaceRequest {
+    /**
+     * Should the conversion workspace be committed automatically after the conversion.
+     */
+    autoCommit?: boolean | null;
+    /**
+     * Filter the entities to convert. Leaving this field empty will convert all of the entities. Supports Google AIP-160 style filtering.
+     */
+    filter?: string | null;
+  }
+  /**
+   * The type and version of a source or destination DB.
+   */
+  export interface Schema$DatabaseEngineInfo {
+    /**
+     * Required. Engine Type.
+     */
+    engine?: string | null;
+    /**
+     * Required. Engine named version, for e.g. 12.c.1
+     */
+    version?: string | null;
+  }
+  /**
+   * The base entity type for all the database related entities The message contains the entity name, the name of its parent, its type and the specific details per its type
+   */
+  export interface Schema$DatabaseEntity {
+    /**
+     * Function
+     */
+    databaseFunction?: Schema$FunctionEntity;
+    /**
+     * Package
+     */
+    databasePackage?: Schema$PackageEntity;
+    /**
+     * The type of the database entity (table, view, index, ...).
+     */
+    entityType?: string | null;
+    /**
+     * Details about entity mappings. For source tree entities, this holds the draft entities which were generated by the mapping rules. For draft tree entities, this holds the source entities which were converted to form the draft entity. Destination entities will have no mapping details.
+     */
+    mappings?: Schema$EntityMapping[];
+    /**
+     * The full name of the parent entity (e.g. schema name).
+     */
+    parentEntity?: string | null;
+    /**
+     * Schema.
+     */
+    schema?: Schema$SchemaEntity;
+    /**
+     * Sequence
+     */
+    sequence?: Schema$SequenceEntity;
+    /**
+     * The short name (e.g. table name) of the entity.
+     */
+    shortName?: string | null;
+    /**
+     * Stored Procedure
+     */
+    storedProcedure?: Schema$StoredProcedureEntity;
+    /**
+     * Synonym
+     */
+    synonym?: Schema$SynonymEntity;
+    /**
+     * Table.
+     */
+    table?: Schema$TableEntity;
+    /**
+     * The type of tree the entity belongs to.
+     */
+    tree?: string | null;
+    /**
+     * View
+     */
+    view?: Schema$ViewEntity;
+  }
+  /**
    * A message defining the database engine and provider.
    */
   export interface Schema$DatabaseType {
@@ -357,6 +687,28 @@ export namespace datamigration_v1 {
      * The database provider.
      */
     provider?: string | null;
+  }
+  /**
+   * Response message for 'DescribeConversionWorkspaceRevisions' request.
+   */
+  export interface Schema$DescribeConversionWorkspaceRevisionsResponse {
+    /**
+     * The list of conversion workspace revisions.
+     */
+    revisions?: Schema$ConversionWorkspace[];
+  }
+  /**
+   * Response message for 'DescribeDatabaseEntities' request.
+   */
+  export interface Schema$DescribeDatabaseEntitiesResponse {
+    /**
+     * The list of database entities for the conversion workspace.
+     */
+    databaseEntities?: Schema$DatabaseEntity[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * Dump flag definition.
@@ -385,6 +737,40 @@ export namespace datamigration_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * Details of the mappings of a database entity.
+   */
+  export interface Schema$EntityMapping {
+    /**
+     * Target entity full name. The draft entity can also include a column, index or constraint using the same naming notation schema.table.column
+     */
+    draftEntity?: string | null;
+    /**
+     * Entity mapping log entries. Multiple rules can be effective and contribute changes to a converted entity such as, a rule can handle the entity name, another rule can handle an entity type. In addition, rules which did not change the entity are also logged along the with the reason preventing them to do so.
+     */
+    mappingLog?: Schema$EntityMappingLogEntry[];
+    /**
+     * Source entity full name. The source entity can also be a column, index or constraint using the same naming notation schema.table.column
+     */
+    sourceEntity?: string | null;
+  }
+  /**
+   * A single record of a rule which was used for a mapping.
+   */
+  export interface Schema$EntityMappingLogEntry {
+    /**
+     * Comment.
+     */
+    mappingComment?: string | null;
+    /**
+     * Which rule caused it.
+     */
+    ruleId?: string | null;
+    /**
+     * Rule revision id
+     */
+    ruleRevisionId?: string | null;
+  }
+  /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
@@ -404,6 +790,44 @@ export namespace datamigration_v1 {
      * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
+  }
+  /**
+   * Forward SSH Tunnel connectivity.
+   */
+  export interface Schema$ForwardSshTunnelConnectivity {
+    /**
+     * Required. Hostname for the SSH tunnel.
+     */
+    hostname?: string | null;
+    /**
+     * Input only. SSH password.
+     */
+    password?: string | null;
+    /**
+     * Port for the SSH tunnel, default value is 22.
+     */
+    port?: number | null;
+    /**
+     * Input only. SSH private key.
+     */
+    privateKey?: string | null;
+    /**
+     * Required. Username for the SSH tunnel.
+     */
+    username?: string | null;
+  }
+  /**
+   * Function's parent is a schema.
+   */
+  export interface Schema$FunctionEntity {
+    /**
+     * Custom engine specific features
+     */
+    customFeatures?: {[key: string]: any} | null;
+    /**
+     * The SQL code which creates the function
+     */
+    sqlCode?: string | null;
   }
   /**
    * Request message for 'GenerateSshScript' request.
@@ -460,6 +884,61 @@ export namespace datamigration_v1 {
     verb?: string | null;
   }
   /**
+   * Request message for 'ImportMappingRules' request.
+   */
+  export interface Schema$ImportMappingRulesRequest {
+    /**
+     * Should the conversion workspace be committed automatically after the import operation.
+     */
+    autoCommit?: boolean | null;
+    /**
+     * One or more rules files
+     */
+    rulesFiles?: Schema$RulesFile[];
+    /**
+     * The format of the rules content file.
+     */
+    rulesFormat?: string | null;
+  }
+  /**
+   * Details regarding an Import Rules background job
+   */
+  export interface Schema$ImportRulesJobDetails {
+    /**
+     * The requested file format
+     */
+    fileFormat?: string | null;
+    /**
+     * File names used for the import rules job
+     */
+    files?: string[] | null;
+  }
+  /**
+   * Index is not used as an independent entity, it is retrieved as part of a Table entity.
+   */
+  export interface Schema$IndexEntity {
+    /**
+     * Custom engine specific features
+     */
+    customFeatures?: {[key: string]: any} | null;
+    /**
+     * The name of the index
+     */
+    name?: string | null;
+    /**
+     * Table columns used as part of the Index for e.g. B-TREE index should list the columns which constitutes the index.
+     */
+    tableColumns?: string[] | null;
+    /**
+     * Type of index - e.g. B-TREE
+     */
+    type?: string | null;
+    /**
+     * boolean value indicating whether the index is unique
+     */
+    unique?: boolean | null;
+  }
+  /**
    * Response message for 'ListConnectionProfiles' request.
    */
   export interface Schema$ListConnectionProfilesResponse {
@@ -467,6 +946,23 @@ export namespace datamigration_v1 {
      * The response list of connection profiles.
      */
     connectionProfiles?: Schema$ConnectionProfile[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response message for 'ListConversionWorkspaces' request.
+   */
+  export interface Schema$ListConversionWorkspacesResponse {
+    /**
+     * The list of conversion workspace objects.
+     */
+    conversionWorkspaces?: Schema$ConversionWorkspace[];
     /**
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
@@ -520,6 +1016,23 @@ export namespace datamigration_v1 {
     operations?: Schema$Operation[];
   }
   /**
+   * Response message for 'ListPrivateConnections' request.
+   */
+  export interface Schema$ListPrivateConnectionsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of private connections.
+     */
+    privateConnections?: Schema$PrivateConnection[];
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * A resource that represents Google Cloud Platform location.
    */
   export interface Schema$Location {
@@ -558,6 +1071,10 @@ export namespace datamigration_v1 {
    */
   export interface Schema$MigrationJob {
     /**
+     * The conversion workspace used by the migration.
+     */
+    conversionWorkspace?: Schema$ConversionWorkspaceInfo;
+    /**
      * Output only. The timestamp when the migration job resource was created. A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
      */
     createTime?: string | null;
@@ -593,6 +1110,10 @@ export namespace datamigration_v1 {
      * Output only. The error details in case of state FAILED.
      */
     error?: Schema$Status;
+    /**
+     * This field can be used to select the entities to migrate as part of the migration job. It uses AIP-160 notation to select a subset of the entities configured on the associated conversion-workspace. This field should not be set on migration-jobs that are not associated with a conversion workspace.
+     */
+    filter?: string | null;
     /**
      * The resource labels for migration job to use to annotate any related underlying resources such as Compute Engine VMs. An object containing a list of "key": "value" pairs. Example: `{ "name": "wrench", "mass": "1.3kg", "count": "3" \}`.
      */
@@ -714,6 +1235,64 @@ export namespace datamigration_v1 {
     response?: {[key: string]: any} | null;
   }
   /**
+   * Specifies connection parameters required specifically for Oracle databases.
+   */
+  export interface Schema$OracleConnectionProfile {
+    /**
+     * Required. Database service for the Oracle connection.
+     */
+    databaseService?: string | null;
+    /**
+     * Forward SSH tunnel connectivity.
+     */
+    forwardSshConnectivity?: Schema$ForwardSshTunnelConnectivity;
+    /**
+     * Required. The IP or hostname of the source Oracle database.
+     */
+    host?: string | null;
+    /**
+     * Required. Input only. The password for the user that Database Migration Service will be using to connect to the database. This field is not returned on request, and the value is encrypted when stored in Database Migration Service.
+     */
+    password?: string | null;
+    /**
+     * Output only. Indicates whether a new password is included in the request.
+     */
+    passwordSet?: boolean | null;
+    /**
+     * Required. The network port of the source Oracle database.
+     */
+    port?: number | null;
+    /**
+     * Private connectivity.
+     */
+    privateConnectivity?: Schema$PrivateConnectivity;
+    /**
+     * Static Service IP connectivity.
+     */
+    staticServiceIpConnectivity?: Schema$StaticServiceIpConnectivity;
+    /**
+     * Required. The username that Database Migration Service will use to connect to the database. The value is encrypted when stored in Database Migration Service.
+     */
+    username?: string | null;
+  }
+  /**
+   * Package's parent is a schema.
+   */
+  export interface Schema$PackageEntity {
+    /**
+     * Custom engine specific features
+     */
+    customFeatures?: {[key: string]: any} | null;
+    /**
+     * The SQL code which creates the package body. If the package specification has cursors or subprograms, then the package body is mandatory.
+     */
+    packageBody?: string | null;
+    /**
+     * The SQL code which creates the package
+     */
+    packageSqlCode?: string | null;
+  }
+  /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
@@ -763,9 +1342,17 @@ export namespace datamigration_v1 {
      */
     port?: number | null;
     /**
+     * Private service connect connectivity.
+     */
+    privateServiceConnectConnectivity?: Schema$PrivateServiceConnectConnectivity;
+    /**
      * SSL configuration for the destination to connect to the source database.
      */
     ssl?: Schema$SslConfig;
+    /**
+     * Static ip connectivity data (default, no additional details needed).
+     */
+    staticIpConnectivity?: Schema$StaticIpConnectivity;
     /**
      * Required. The username that Database Migration Service will use to connect to the database. The value is encrypted when stored in Database Migration Service.
      */
@@ -795,6 +1382,61 @@ export namespace datamigration_v1 {
      * Output only. The private IP address for the Instance. This is the connection endpoint for an end-user application.
      */
     privateIp?: string | null;
+  }
+  /**
+   * The PrivateConnection resource is used to establish private connectivity with the customer's network.
+   */
+  export interface Schema$PrivateConnection {
+    /**
+     * Output only. The create time of the resource.
+     */
+    createTime?: string | null;
+    /**
+     * The private connection display name.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. The error details in case of state FAILED.
+     */
+    error?: Schema$Status;
+    /**
+     * The resource labels for private connections to use to annotate any related underlying resources such as Compute Engine VMs. An object containing a list of "key": "value" pairs. Example: `{ "name": "wrench", "mass": "1.3kg", "count": "3" \}`.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * The resource's name.
+     */
+    name?: string | null;
+    /**
+     * Output only. The state of the Private Connection.
+     */
+    state?: string | null;
+    /**
+     * Output only. The last update time of the resource.
+     */
+    updateTime?: string | null;
+    /**
+     * VPC Peering Config.
+     */
+    vpcPeeringConfig?: Schema$VpcPeeringConfig;
+  }
+  /**
+   * Private Connectivity.
+   */
+  export interface Schema$PrivateConnectivity {
+    /**
+     * Required. The resource name (URI) of the private connection.
+     */
+    privateConnection?: string | null;
+  }
+  /**
+   * Private Service Connect connectivity (https://cloud.google.com/vpc/docs/private-service-connect#benefits-services)
+   */
+  export interface Schema$PrivateServiceConnectConnectivity {
+    /**
+     * Required. A service attachment that exposes a database, and has the following format: projects/{project\}/regions/{region\}/serviceAttachments/{service_attachment_name\}
+     */
+    serviceAttachment?: string | null;
   }
   /**
    * Request message for 'PromoteMigrationJob' request.
@@ -828,6 +1470,100 @@ export namespace datamigration_v1 {
      * The name of the VPC to peer with the Cloud SQL private network.
      */
     vpc?: string | null;
+  }
+  /**
+   * Request message for 'RollbackConversionWorkspace' request.
+   */
+  export interface Schema$RollbackConversionWorkspaceRequest {}
+  /**
+   * Details of a single rules file
+   */
+  export interface Schema$RulesFile {
+    /**
+     * The text content of the rules that needs to be converted
+     */
+    rulesContent?: string | null;
+    /**
+     * The filename of the rules that needs to be converted. This is used mainly so future logs of the import rules job will contain this detail and can therefore be searched by it later
+     */
+    rulesSourceFilename?: string | null;
+  }
+  /**
+   * Schema typically has no parent entity, but can have a parent entity DatabaseInstance (for database engines which supports it). For some database engines the term schema and user can be used interchangeably when they refer to a namespace or a collection of other database entities. Can store additional information which is schema specific.
+   */
+  export interface Schema$SchemaEntity {
+    /**
+     * Custom engine specific features
+     */
+    customFeatures?: {[key: string]: any} | null;
+  }
+  /**
+   * Response message for 'SearchBackgroundJobs' request.
+   */
+  export interface Schema$SearchBackgroundJobsResponse {
+    /**
+     * The list of conversion workspace mapping rules.
+     */
+    jobs?: Schema$BackgroundJobLogEntry[];
+  }
+  /**
+   * Request message for 'SeedConversionWorkspace' request.
+   */
+  export interface Schema$SeedConversionWorkspaceRequest {
+    /**
+     * Should the conversion workspace be committed automatically after the seed operation.
+     */
+    autoCommit?: boolean | null;
+    /**
+     * Fully qualified (Uri) name of the destination connection profile.
+     */
+    destinationConnectionProfile?: string | null;
+    /**
+     * Fully qualified (Uri) name of the source connection profile.
+     */
+    sourceConnectionProfile?: string | null;
+  }
+  /**
+   * Details regarding a Seed background job
+   */
+  export interface Schema$SeedJobDetails {
+    /**
+     * The connection profile which was used for the seed job
+     */
+    connectionProfile?: string | null;
+  }
+  /**
+   * Sequence's parent is a schema.
+   */
+  export interface Schema$SequenceEntity {
+    /**
+     * Indicates number of entries to cache / precreate
+     */
+    cache?: string | null;
+    /**
+     * Custom engine specific features
+     */
+    customFeatures?: {[key: string]: any} | null;
+    /**
+     * Indicates whether the sequence value should cycle through
+     */
+    cycle?: boolean | null;
+    /**
+     * Increment value for the sequence
+     */
+    increment?: string | null;
+    /**
+     * Maximum number for the sequence represented as bytes to accommodate large numbers
+     */
+    maxValue?: string | null;
+    /**
+     * Minimum number for the sequence represented as bytes to accommodate large numbers
+     */
+    minValue?: string | null;
+    /**
+     * Start number for the sequence represented as bytes to accommodate large numbers
+     */
+    startValue?: string | null;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -923,6 +1659,10 @@ export namespace datamigration_v1 {
    */
   export interface Schema$StaticIpConnectivity {}
   /**
+   * Static IP address connectivity configured on service project.
+   */
+  export interface Schema$StaticServiceIpConnectivity {}
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -944,6 +1684,65 @@ export namespace datamigration_v1 {
    */
   export interface Schema$StopMigrationJobRequest {}
   /**
+   * Stored procedure's parent is a schema.
+   */
+  export interface Schema$StoredProcedureEntity {
+    /**
+     * Custom engine specific features
+     */
+    customFeatures?: {[key: string]: any} | null;
+    /**
+     * The SQL code which creates the stored procedure
+     */
+    sqlCode?: string | null;
+  }
+  /**
+   * Synonym's parent is a schema.
+   */
+  export interface Schema$SynonymEntity {
+    /**
+     * Custom engine specific features
+     */
+    customFeatures?: {[key: string]: any} | null;
+    /**
+     * The name of the entity for which the synonym is being created (the source)
+     */
+    sourceEntity?: string | null;
+    /**
+     * The type of the entity for which the synonym is being created (usually a table or a sequence)
+     */
+    sourceType?: string | null;
+  }
+  /**
+   * Table's parent is a schema.
+   */
+  export interface Schema$TableEntity {
+    /**
+     * Table Columns.
+     */
+    columns?: Schema$ColumnEntity[];
+    /**
+     * Comment associated with the table
+     */
+    comment?: string | null;
+    /**
+     * Table Constraints.
+     */
+    constraints?: Schema$ConstraintEntity[];
+    /**
+     * Custom engine specific features
+     */
+    customFeatures?: {[key: string]: any} | null;
+    /**
+     * Table Indices.
+     */
+    indices?: Schema$IndexEntity[];
+    /**
+     * Table triggers.
+     */
+    triggers?: Schema$TriggerEntity[];
+  }
+  /**
    * Request message for `TestIamPermissions` method.
    */
   export interface Schema$TestIamPermissionsRequest {
@@ -960,6 +1759,31 @@ export namespace datamigration_v1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
+  }
+  /**
+   * Trigger is not used as an independent entity, it is retrieved as part of a Table entity.
+   */
+  export interface Schema$TriggerEntity {
+    /**
+     * Custom engine specific features
+     */
+    customFeatures?: {[key: string]: any} | null;
+    /**
+     * The name of the trigger
+     */
+    name?: string | null;
+    /**
+     * The SQL code which creates the trigger
+     */
+    sqlCode?: string | null;
+    /**
+     * The DML, DDL, or database events that fires the trigger, e.g. INSERT, UPDATE
+     */
+    triggeringEvents?: string[] | null;
+    /**
+     * Indicates when the trigger fires, e.g. BEFORE STATEMENT, AFTER EACH ROW
+     */
+    triggerType?: string | null;
   }
   /**
    * The username/password for a database user. Used for specifying initial users at cluster creation time.
@@ -982,6 +1806,23 @@ export namespace datamigration_v1 {
    * Request message for 'VerifyMigrationJob' request.
    */
   export interface Schema$VerifyMigrationJobRequest {}
+  /**
+   * View's parent is a schema.
+   */
+  export interface Schema$ViewEntity {
+    /**
+     * View Constraints.
+     */
+    constraints?: Schema$ConstraintEntity[];
+    /**
+     * Custom engine specific features
+     */
+    customFeatures?: {[key: string]: any} | null;
+    /**
+     * The SQL code which creates the view.
+     */
+    sqlCode?: string | null;
+  }
   /**
    * VM creation configuration message
    */
@@ -1009,6 +1850,19 @@ export namespace datamigration_v1 {
     vmZone?: string | null;
   }
   /**
+   * The VPC Peering configuration is used to create VPC peering with the consumer's VPC.
+   */
+  export interface Schema$VpcPeeringConfig {
+    /**
+     * Required. A free subnet for peering. (CIDR of /29)
+     */
+    subnet?: string | null;
+    /**
+     * Required. Fully qualified name of the VPC DMS will peer to.
+     */
+    vpcName?: string | null;
+  }
+  /**
    * The details of the VPC where the source database is located in Google Cloud. We will use this information to set up the VPC peering connection between Cloud SQL and this VPC.
    */
   export interface Schema$VpcPeeringConnectivity {
@@ -1030,18 +1884,24 @@ export namespace datamigration_v1 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     connectionProfiles: Resource$Projects$Locations$Connectionprofiles;
+    conversionWorkspaces: Resource$Projects$Locations$Conversionworkspaces;
     migrationJobs: Resource$Projects$Locations$Migrationjobs;
     operations: Resource$Projects$Locations$Operations;
+    privateConnections: Resource$Projects$Locations$Privateconnections;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.connectionProfiles =
         new Resource$Projects$Locations$Connectionprofiles(this.context);
+      this.conversionWorkspaces =
+        new Resource$Projects$Locations$Conversionworkspaces(this.context);
       this.migrationJobs = new Resource$Projects$Locations$Migrationjobs(
         this.context
       );
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
+      this.privateConnections =
+        new Resource$Projects$Locations$Privateconnections(this.context);
     }
 
     /**
@@ -1384,6 +2244,10 @@ export namespace datamigration_v1 {
      *     parent: 'projects/my-project/locations/my-location',
      *     // A unique id used to identify the request. If the server receives two requests with the same id, then the second request will be ignored. It is recommended to always set this value to a UUID. The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      *     requestId: 'placeholder-value',
+     *     // Optional. Create the connection profile without validating it. The default is false. Only supported for Oracle connection profiles.
+     *     skipValidation: 'placeholder-value',
+     *     // Optional. Only validate the connection profile, but don't create any resources. The default is false. Only supported for Oracle connection profiles.
+     *     validateOnly: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -1397,6 +2261,7 @@ export namespace datamigration_v1 {
      *       //   "labels": {},
      *       //   "mysql": {},
      *       //   "name": "my_name",
+     *       //   "oracle": {},
      *       //   "postgresql": {},
      *       //   "provider": "my_provider",
      *       //   "state": "my_state",
@@ -1687,6 +2552,7 @@ export namespace datamigration_v1 {
      *   //   "labels": {},
      *   //   "mysql": {},
      *   //   "name": "my_name",
+     *   //   "oracle": {},
      *   //   "postgresql": {},
      *   //   "provider": "my_provider",
      *   //   "state": "my_state",
@@ -2106,8 +2972,12 @@ export namespace datamigration_v1 {
      *     name: 'projects/my-project/locations/my-location/connectionProfiles/my-connectionProfile',
      *     // A unique id used to identify the request. If the server receives two requests with the same id, then the second request will be ignored. It is recommended to always set this value to a UUID. The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      *     requestId: 'placeholder-value',
+     *     // Optional. Update the connection profile without validating it. The default is false. Only supported for Oracle connection profiles.
+     *     skipValidation: 'placeholder-value',
      *     // Required. Field mask is used to specify the fields to be overwritten in the connection profile resource by the update.
      *     updateMask: 'placeholder-value',
+     *     // Optional. Only validate the connection profile, but don't update any resources. The default is false. Only supported for Oracle connection profiles.
+     *     validateOnly: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -2121,6 +2991,7 @@ export namespace datamigration_v1 {
      *       //   "labels": {},
      *       //   "mysql": {},
      *       //   "name": "my_name",
+     *       //   "oracle": {},
      *       //   "postgresql": {},
      *       //   "provider": "my_provider",
      *       //   "state": "my_state",
@@ -2540,6 +3411,14 @@ export namespace datamigration_v1 {
      * A unique id used to identify the request. If the server receives two requests with the same id, then the second request will be ignored. It is recommended to always set this value to a UUID. The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      */
     requestId?: string;
+    /**
+     * Optional. Create the connection profile without validating it. The default is false. Only supported for Oracle connection profiles.
+     */
+    skipValidation?: boolean;
+    /**
+     * Optional. Only validate the connection profile, but don't create any resources. The default is false. Only supported for Oracle connection profiles.
+     */
+    validateOnly?: boolean;
 
     /**
      * Request body metadata
@@ -2613,9 +3492,17 @@ export namespace datamigration_v1 {
      */
     requestId?: string;
     /**
+     * Optional. Update the connection profile without validating it. The default is false. Only supported for Oracle connection profiles.
+     */
+    skipValidation?: boolean;
+    /**
      * Required. Field mask is used to specify the fields to be overwritten in the connection profile resource by the update.
      */
     updateMask?: string;
+    /**
+     * Optional. Only validate the connection profile, but don't update any resources. The default is false. Only supported for Oracle connection profiles.
+     */
+    validateOnly?: boolean;
 
     /**
      * Request body metadata
@@ -2645,6 +3532,2285 @@ export namespace datamigration_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Conversionworkspaces {
+    context: APIRequestContext;
+    mappingRules: Resource$Projects$Locations$Conversionworkspaces$Mappingrules;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.mappingRules =
+        new Resource$Projects$Locations$Conversionworkspaces$Mappingrules(
+          this.context
+        );
+    }
+
+    /**
+     * Apply draft tree onto a specific destination database
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datamigration = google.datamigration('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datamigration.projects.locations.conversionWorkspaces.apply(
+     *     {
+     *       // Required. Name of the conversion workspace resource to apply draft to destination for. in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
+     *       name: 'projects/my-project/locations/my-location/conversionWorkspaces/my-conversionWorkspace',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "connectionProfile": "my_connectionProfile",
+     *         //   "filter": "my_filter"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    apply(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Apply,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    apply(
+      params?: Params$Resource$Projects$Locations$Conversionworkspaces$Apply,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    apply(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Apply,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    apply(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Apply,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    apply(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Apply,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    apply(callback: BodyResponseCallback<Schema$Operation>): void;
+    apply(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversionworkspaces$Apply
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversionworkspaces$Apply;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversionworkspaces$Apply;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:apply').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Marks all the data in the conversion workspace as committed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datamigration = google.datamigration('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await datamigration.projects.locations.conversionWorkspaces.commit({
+     *       // Required. Name of the conversion workspace resource to commit.
+     *       name: 'projects/my-project/locations/my-location/conversionWorkspaces/my-conversionWorkspace',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "commitName": "my_commitName"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    commit(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Commit,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    commit(
+      params?: Params$Resource$Projects$Locations$Conversionworkspaces$Commit,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    commit(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Commit,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    commit(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Commit,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    commit(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Commit,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    commit(callback: BodyResponseCallback<Schema$Operation>): void;
+    commit(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversionworkspaces$Commit
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversionworkspaces$Commit;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversionworkspaces$Commit;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:commit').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Creates a draft tree schema for the destination database.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datamigration = google.datamigration('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await datamigration.projects.locations.conversionWorkspaces.convert({
+     *       // Name of the conversion workspace resource to convert in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
+     *       name: 'projects/my-project/locations/my-location/conversionWorkspaces/my-conversionWorkspace',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "autoCommit": false,
+     *         //   "filter": "my_filter"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    convert(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Convert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    convert(
+      params?: Params$Resource$Projects$Locations$Conversionworkspaces$Convert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    convert(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Convert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    convert(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Convert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    convert(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Convert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    convert(callback: BodyResponseCallback<Schema$Operation>): void;
+    convert(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversionworkspaces$Convert
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversionworkspaces$Convert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversionworkspaces$Convert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:convert').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Creates a new conversion workspace in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datamigration = google.datamigration('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await datamigration.projects.locations.conversionWorkspaces.create({
+     *       // Required. The ID of the conversion workspace to create.
+     *       conversionWorkspaceId: 'placeholder-value',
+     *       // Required. The parent, which owns this collection of conversion workspaces.
+     *       parent: 'projects/my-project/locations/my-location',
+     *       // A unique id used to identify the request. If the server receives two requests with the same id, then the second request will be ignored. It is recommended to always set this value to a UUID. The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *       requestId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "destination": {},
+     *         //   "displayName": "my_displayName",
+     *         //   "globalSettings": {},
+     *         //   "hasUncommittedChanges": false,
+     *         //   "latestCommitId": "my_latestCommitId",
+     *         //   "latestCommitTime": "my_latestCommitTime",
+     *         //   "name": "my_name",
+     *         //   "source": {},
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Conversionworkspaces$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversionworkspaces$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversionworkspaces$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversionworkspaces$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/conversionWorkspaces').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single conversion workspace.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datamigration = google.datamigration('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await datamigration.projects.locations.conversionWorkspaces.delete({
+     *       // Required. Name of the conversion workspace resource to delete.
+     *       name: 'projects/my-project/locations/my-location/conversionWorkspaces/my-conversionWorkspace',
+     *       // A unique id used to identify the request. If the server receives two requests with the same id, then the second request will be ignored. It is recommended to always set this value to a UUID. The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *       requestId: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Conversionworkspaces$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversionworkspaces$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversionworkspaces$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversionworkspaces$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a list of committed revisions of a specific conversion workspace.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datamigration = google.datamigration('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await datamigration.projects.locations.conversionWorkspaces.describeConversionWorkspaceRevisions(
+     *       {
+     *         // Optional filter to request a specific commit id
+     *         commitId: 'placeholder-value',
+     *         // Required. Name of the conversion workspace resource whose revisions are listed. in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
+     *         conversionWorkspace:
+     *           'projects/my-project/locations/my-location/conversionWorkspaces/my-conversionWorkspace',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "revisions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    describeConversionWorkspaceRevisions(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Describeconversionworkspacerevisions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    describeConversionWorkspaceRevisions(
+      params?: Params$Resource$Projects$Locations$Conversionworkspaces$Describeconversionworkspacerevisions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DescribeConversionWorkspaceRevisionsResponse>;
+    describeConversionWorkspaceRevisions(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Describeconversionworkspacerevisions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    describeConversionWorkspaceRevisions(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Describeconversionworkspacerevisions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DescribeConversionWorkspaceRevisionsResponse>,
+      callback: BodyResponseCallback<Schema$DescribeConversionWorkspaceRevisionsResponse>
+    ): void;
+    describeConversionWorkspaceRevisions(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Describeconversionworkspacerevisions,
+      callback: BodyResponseCallback<Schema$DescribeConversionWorkspaceRevisionsResponse>
+    ): void;
+    describeConversionWorkspaceRevisions(
+      callback: BodyResponseCallback<Schema$DescribeConversionWorkspaceRevisionsResponse>
+    ): void;
+    describeConversionWorkspaceRevisions(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversionworkspaces$Describeconversionworkspacerevisions
+        | BodyResponseCallback<Schema$DescribeConversionWorkspaceRevisionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DescribeConversionWorkspaceRevisionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DescribeConversionWorkspaceRevisionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DescribeConversionWorkspaceRevisionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversionworkspaces$Describeconversionworkspacerevisions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversionworkspaces$Describeconversionworkspacerevisions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+conversionWorkspace}:describeConversionWorkspaceRevisions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['conversionWorkspace'],
+        pathParams: ['conversionWorkspace'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DescribeConversionWorkspaceRevisionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DescribeConversionWorkspaceRevisionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Use this method to describe the database entities tree for a specific conversion workspace and a specific tree type. The DB Entities are not a resource like conversion workspace or mapping rule, and they can not be created, updated or deleted like one. Instead they are simple data objects describing the structure of the client database.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datamigration = google.datamigration('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await datamigration.projects.locations.conversionWorkspaces.describeDatabaseEntities(
+     *       {
+     *         // Request a specific commit id. If not specified, the entities from the latest commit are returned.
+     *         commitId: 'placeholder-value',
+     *         // Required. Name of the conversion workspace resource whose DB entities are described in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
+     *         conversionWorkspace:
+     *           'projects/my-project/locations/my-location/conversionWorkspaces/my-conversionWorkspace',
+     *         // Filter the returned entities based on AIP-160 standard
+     *         filter: 'placeholder-value',
+     *         // The maximum number of entities to return. The service may return fewer than this value.
+     *         pageSize: 'placeholder-value',
+     *         // The nextPageToken value received in the previous call to conversionWorkspace.describeDatabaseEntities, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to conversionWorkspace.describeDatabaseEntities must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // The tree to fetch
+     *         tree: 'placeholder-value',
+     *         // Whether to retrieve the latest committed version of the entities or the latest version. This field is ignored if a specific commit_id is specified.
+     *         uncommitted: 'placeholder-value',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "databaseEntities": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    describeDatabaseEntities(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Describedatabaseentities,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    describeDatabaseEntities(
+      params?: Params$Resource$Projects$Locations$Conversionworkspaces$Describedatabaseentities,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DescribeDatabaseEntitiesResponse>;
+    describeDatabaseEntities(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Describedatabaseentities,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    describeDatabaseEntities(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Describedatabaseentities,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DescribeDatabaseEntitiesResponse>,
+      callback: BodyResponseCallback<Schema$DescribeDatabaseEntitiesResponse>
+    ): void;
+    describeDatabaseEntities(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Describedatabaseentities,
+      callback: BodyResponseCallback<Schema$DescribeDatabaseEntitiesResponse>
+    ): void;
+    describeDatabaseEntities(
+      callback: BodyResponseCallback<Schema$DescribeDatabaseEntitiesResponse>
+    ): void;
+    describeDatabaseEntities(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversionworkspaces$Describedatabaseentities
+        | BodyResponseCallback<Schema$DescribeDatabaseEntitiesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DescribeDatabaseEntitiesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DescribeDatabaseEntitiesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DescribeDatabaseEntitiesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversionworkspaces$Describedatabaseentities;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversionworkspaces$Describedatabaseentities;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+conversionWorkspace}:describeDatabaseEntities'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['conversionWorkspace'],
+        pathParams: ['conversionWorkspace'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DescribeDatabaseEntitiesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DescribeDatabaseEntitiesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets details of a single conversion workspace.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datamigration = google.datamigration('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datamigration.projects.locations.conversionWorkspaces.get({
+     *     // Required. Name of the conversion workspace resource to get.
+     *     name: 'projects/my-project/locations/my-location/conversionWorkspaces/my-conversionWorkspace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "destination": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "globalSettings": {},
+     *   //   "hasUncommittedChanges": false,
+     *   //   "latestCommitId": "my_latestCommitId",
+     *   //   "latestCommitTime": "my_latestCommitTime",
+     *   //   "name": "my_name",
+     *   //   "source": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Conversionworkspaces$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ConversionWorkspace>;
+    get(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ConversionWorkspace>,
+      callback: BodyResponseCallback<Schema$ConversionWorkspace>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Get,
+      callback: BodyResponseCallback<Schema$ConversionWorkspace>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ConversionWorkspace>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversionworkspaces$Get
+        | BodyResponseCallback<Schema$ConversionWorkspace>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ConversionWorkspace>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ConversionWorkspace>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ConversionWorkspace>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversionworkspaces$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversionworkspaces$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ConversionWorkspace>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ConversionWorkspace>(parameters);
+      }
+    }
+
+    /**
+     * Lists conversion workspaces in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datamigration = google.datamigration('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datamigration.projects.locations.conversionWorkspaces.list({
+     *     // A filter expression that filters conversion workspaces listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, \>, or <. For example, list conversion workspaces created this year by specifying **createTime %gt; 2020-01-01T00:00:00.000000000Z.** You can also filter nested fields. For example, you could specify **source.version = "12.c.1"** to select all conversion workspaces with source database version equal to 12.c.1
+     *     filter: 'placeholder-value',
+     *     // The maximum number of conversion workspaces to return. The service may return fewer than this value. If unspecified, at most 50 sets will be returned.
+     *     pageSize: 'placeholder-value',
+     *     // The nextPageToken value received in the previous call to conversionWorkspaces.list, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to conversionWorkspaces.list must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which owns this collection of conversion workspaces.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversionWorkspaces": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Conversionworkspaces$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListConversionWorkspacesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListConversionWorkspacesResponse>,
+      callback: BodyResponseCallback<Schema$ListConversionWorkspacesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$List,
+      callback: BodyResponseCallback<Schema$ListConversionWorkspacesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListConversionWorkspacesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversionworkspaces$List
+        | BodyResponseCallback<Schema$ListConversionWorkspacesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListConversionWorkspacesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListConversionWorkspacesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListConversionWorkspacesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversionworkspaces$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversionworkspaces$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/conversionWorkspaces').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListConversionWorkspacesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListConversionWorkspacesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the parameters of a single conversion workspace.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datamigration = google.datamigration('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datamigration.projects.locations.conversionWorkspaces.patch(
+     *     {
+     *       // Full name of the workspace resource, in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
+     *       name: 'projects/my-project/locations/my-location/conversionWorkspaces/my-conversionWorkspace',
+     *       // A unique id used to identify the request. If the server receives two requests with the same id, then the second request will be ignored. It is recommended to always set this value to a UUID. The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *       requestId: 'placeholder-value',
+     *       // Required. Field mask is used to specify the fields to be overwritten in the conversion workspace resource by the update.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "destination": {},
+     *         //   "displayName": "my_displayName",
+     *         //   "globalSettings": {},
+     *         //   "hasUncommittedChanges": false,
+     *         //   "latestCommitId": "my_latestCommitId",
+     *         //   "latestCommitTime": "my_latestCommitTime",
+     *         //   "name": "my_name",
+     *         //   "source": {},
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Conversionworkspaces$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversionworkspaces$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversionworkspaces$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversionworkspaces$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Rollbacks a conversion workspace to the last committed spanshot.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datamigration = google.datamigration('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await datamigration.projects.locations.conversionWorkspaces.rollback({
+     *       // Required. Name of the conversion workspace resource to rollback to.
+     *       name: 'projects/my-project/locations/my-location/conversionWorkspaces/my-conversionWorkspace',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    rollback(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Rollback,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    rollback(
+      params?: Params$Resource$Projects$Locations$Conversionworkspaces$Rollback,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    rollback(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Rollback,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    rollback(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Rollback,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rollback(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Rollback,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rollback(callback: BodyResponseCallback<Schema$Operation>): void;
+    rollback(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversionworkspaces$Rollback
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversionworkspaces$Rollback;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversionworkspaces$Rollback;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:rollback').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Use this method to search/list the background jobs for a specific conversion workspace. The background jobs are not a resource like conversion workspace or mapping rule, and they can not be created, updated or deleted like one. Instead they are a way to expose the data plane jobs log.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datamigration = google.datamigration('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await datamigration.projects.locations.conversionWorkspaces.searchBackgroundJobs(
+     *       {
+     *         // Optional. If supplied, will only return jobs that completed until (not including) the given timestamp.
+     *         completedUntilTime: 'placeholder-value',
+     *         // Required. Name of the conversion workspace resource whos jobs are listed. in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
+     *         conversionWorkspace:
+     *           'projects/my-project/locations/my-location/conversionWorkspaces/my-conversionWorkspace',
+     *         // Optional. The maximum number of jobs to return. The service may return fewer than this value. If unspecified, at most 100 jobs will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     *         maxSize: 'placeholder-value',
+     *         // Optional. Whether or not to return just the most recent job per job type
+     *         returnMostRecentPerJobType: 'placeholder-value',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "jobs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchBackgroundJobs(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Searchbackgroundjobs,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchBackgroundJobs(
+      params?: Params$Resource$Projects$Locations$Conversionworkspaces$Searchbackgroundjobs,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchBackgroundJobsResponse>;
+    searchBackgroundJobs(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Searchbackgroundjobs,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchBackgroundJobs(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Searchbackgroundjobs,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchBackgroundJobsResponse>,
+      callback: BodyResponseCallback<Schema$SearchBackgroundJobsResponse>
+    ): void;
+    searchBackgroundJobs(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Searchbackgroundjobs,
+      callback: BodyResponseCallback<Schema$SearchBackgroundJobsResponse>
+    ): void;
+    searchBackgroundJobs(
+      callback: BodyResponseCallback<Schema$SearchBackgroundJobsResponse>
+    ): void;
+    searchBackgroundJobs(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversionworkspaces$Searchbackgroundjobs
+        | BodyResponseCallback<Schema$SearchBackgroundJobsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchBackgroundJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchBackgroundJobsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchBackgroundJobsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversionworkspaces$Searchbackgroundjobs;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversionworkspaces$Searchbackgroundjobs;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+conversionWorkspace}:searchBackgroundJobs'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['conversionWorkspace'],
+        pathParams: ['conversionWorkspace'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchBackgroundJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchBackgroundJobsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Imports a snapshot of the source database into the conversion workspace.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datamigration = google.datamigration('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datamigration.projects.locations.conversionWorkspaces.seed({
+     *     // Name of the conversion workspace resource to seed with new database structure. in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
+     *     name: 'projects/my-project/locations/my-location/conversionWorkspaces/my-conversionWorkspace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "autoCommit": false,
+     *       //   "destinationConnectionProfile": "my_destinationConnectionProfile",
+     *       //   "sourceConnectionProfile": "my_sourceConnectionProfile"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    seed(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Seed,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    seed(
+      params?: Params$Resource$Projects$Locations$Conversionworkspaces$Seed,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    seed(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Seed,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    seed(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Seed,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    seed(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Seed,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    seed(callback: BodyResponseCallback<Schema$Operation>): void;
+    seed(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversionworkspaces$Seed
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversionworkspaces$Seed;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversionworkspaces$Seed;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:seed').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Conversionworkspaces$Apply
+    extends StandardParameters {
+    /**
+     * Required. Name of the conversion workspace resource to apply draft to destination for. in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ApplyConversionWorkspaceRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Conversionworkspaces$Commit
+    extends StandardParameters {
+    /**
+     * Required. Name of the conversion workspace resource to commit.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CommitConversionWorkspaceRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Conversionworkspaces$Convert
+    extends StandardParameters {
+    /**
+     * Name of the conversion workspace resource to convert in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ConvertConversionWorkspaceRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Conversionworkspaces$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID of the conversion workspace to create.
+     */
+    conversionWorkspaceId?: string;
+    /**
+     * Required. The parent, which owns this collection of conversion workspaces.
+     */
+    parent?: string;
+    /**
+     * A unique id used to identify the request. If the server receives two requests with the same id, then the second request will be ignored. It is recommended to always set this value to a UUID. The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ConversionWorkspace;
+  }
+  export interface Params$Resource$Projects$Locations$Conversionworkspaces$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the conversion workspace resource to delete.
+     */
+    name?: string;
+    /**
+     * A unique id used to identify the request. If the server receives two requests with the same id, then the second request will be ignored. It is recommended to always set this value to a UUID. The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Conversionworkspaces$Describeconversionworkspacerevisions
+    extends StandardParameters {
+    /**
+     * Optional filter to request a specific commit id
+     */
+    commitId?: string;
+    /**
+     * Required. Name of the conversion workspace resource whose revisions are listed. in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
+     */
+    conversionWorkspace?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Conversionworkspaces$Describedatabaseentities
+    extends StandardParameters {
+    /**
+     * Request a specific commit id. If not specified, the entities from the latest commit are returned.
+     */
+    commitId?: string;
+    /**
+     * Required. Name of the conversion workspace resource whose DB entities are described in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
+     */
+    conversionWorkspace?: string;
+    /**
+     * Filter the returned entities based on AIP-160 standard
+     */
+    filter?: string;
+    /**
+     * The maximum number of entities to return. The service may return fewer than this value.
+     */
+    pageSize?: number;
+    /**
+     * The nextPageToken value received in the previous call to conversionWorkspace.describeDatabaseEntities, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to conversionWorkspace.describeDatabaseEntities must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * The tree to fetch
+     */
+    tree?: string;
+    /**
+     * Whether to retrieve the latest committed version of the entities or the latest version. This field is ignored if a specific commit_id is specified.
+     */
+    uncommitted?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Conversionworkspaces$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the conversion workspace resource to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Conversionworkspaces$List
+    extends StandardParameters {
+    /**
+     * A filter expression that filters conversion workspaces listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, \>, or <. For example, list conversion workspaces created this year by specifying **createTime %gt; 2020-01-01T00:00:00.000000000Z.** You can also filter nested fields. For example, you could specify **source.version = "12.c.1"** to select all conversion workspaces with source database version equal to 12.c.1
+     */
+    filter?: string;
+    /**
+     * The maximum number of conversion workspaces to return. The service may return fewer than this value. If unspecified, at most 50 sets will be returned.
+     */
+    pageSize?: number;
+    /**
+     * The nextPageToken value received in the previous call to conversionWorkspaces.list, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to conversionWorkspaces.list must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of conversion workspaces.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Conversionworkspaces$Patch
+    extends StandardParameters {
+    /**
+     * Full name of the workspace resource, in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
+     */
+    name?: string;
+    /**
+     * A unique id used to identify the request. If the server receives two requests with the same id, then the second request will be ignored. It is recommended to always set this value to a UUID. The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the conversion workspace resource by the update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ConversionWorkspace;
+  }
+  export interface Params$Resource$Projects$Locations$Conversionworkspaces$Rollback
+    extends StandardParameters {
+    /**
+     * Required. Name of the conversion workspace resource to rollback to.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RollbackConversionWorkspaceRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Conversionworkspaces$Searchbackgroundjobs
+    extends StandardParameters {
+    /**
+     * Optional. If supplied, will only return jobs that completed until (not including) the given timestamp.
+     */
+    completedUntilTime?: string;
+    /**
+     * Required. Name of the conversion workspace resource whos jobs are listed. in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
+     */
+    conversionWorkspace?: string;
+    /**
+     * Optional. The maximum number of jobs to return. The service may return fewer than this value. If unspecified, at most 100 jobs will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     */
+    maxSize?: number;
+    /**
+     * Optional. Whether or not to return just the most recent job per job type
+     */
+    returnMostRecentPerJobType?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Conversionworkspaces$Seed
+    extends StandardParameters {
+    /**
+     * Name of the conversion workspace resource to seed with new database structure. in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SeedConversionWorkspaceRequest;
+  }
+
+  export class Resource$Projects$Locations$Conversionworkspaces$Mappingrules {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Imports the mapping rules for a given conversion workspace. Supports various formats of external rules files.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datamigration = google.datamigration('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await datamigration.projects.locations.conversionWorkspaces.mappingRules.import(
+     *       {
+     *         // Required. Name of the conversion workspace resource to import the rules to in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
+     *         parent:
+     *           'projects/my-project/locations/my-location/conversionWorkspaces/my-conversionWorkspace',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "autoCommit": false,
+     *           //   "rulesFiles": [],
+     *           //   "rulesFormat": "my_rulesFormat"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    import(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
+      params?: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    import(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Import,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Import,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(callback: BodyResponseCallback<Schema$Operation>): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Import
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/mappingRules:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Import
+    extends StandardParameters {
+    /**
+     * Required. Name of the conversion workspace resource to import the rules to in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ImportMappingRulesRequest;
   }
 
   export class Resource$Projects$Locations$Migrationjobs {
@@ -2691,6 +5857,7 @@ export namespace datamigration_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "conversionWorkspace": {},
      *       //   "createTime": "my_createTime",
      *       //   "destination": "my_destination",
      *       //   "destinationDatabase": {},
@@ -2700,6 +5867,7 @@ export namespace datamigration_v1 {
      *       //   "duration": "my_duration",
      *       //   "endTime": "my_endTime",
      *       //   "error": {},
+     *       //   "filter": "my_filter",
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "phase": "my_phase",
@@ -3131,6 +6299,7 @@ export namespace datamigration_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "conversionWorkspace": {},
      *   //   "createTime": "my_createTime",
      *   //   "destination": "my_destination",
      *   //   "destinationDatabase": {},
@@ -3140,6 +6309,7 @@ export namespace datamigration_v1 {
      *   //   "duration": "my_duration",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "filter": "my_filter",
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "phase": "my_phase",
@@ -3567,6 +6737,7 @@ export namespace datamigration_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "conversionWorkspace": {},
      *       //   "createTime": "my_createTime",
      *       //   "destination": "my_destination",
      *       //   "destinationDatabase": {},
@@ -3576,6 +6747,7 @@ export namespace datamigration_v1 {
      *       //   "duration": "my_duration",
      *       //   "endTime": "my_endTime",
      *       //   "error": {},
+     *       //   "filter": "my_filter",
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "phase": "my_phase",
@@ -5599,5 +8771,650 @@ export namespace datamigration_v1 {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Privateconnections {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new private connection in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datamigration = google.datamigration('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datamigration.projects.locations.privateConnections.create({
+     *     // Required. The parent that owns the collection of PrivateConnections.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Required. The private connection identifier.
+     *     privateConnectionId: 'placeholder-value',
+     *     // Optional. A unique id used to identify the request. If the server receives two requests with the same id, then the second request will be ignored. It is recommended to always set this value to a UUID. The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "error": {},
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "vpcPeeringConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Privateconnections$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Privateconnections$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Privateconnections$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Privateconnections$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Privateconnections$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateconnections$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateconnections$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateconnections$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/privateConnections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single Database Migration Service private connection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datamigration = google.datamigration('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datamigration.projects.locations.privateConnections.delete({
+     *     // Required. The name of the private connection to delete.
+     *     name: 'projects/my-project/locations/my-location/privateConnections/my-privateConnection',
+     *     // Optional. A unique id used to identify the request. If the server receives two requests with the same id, then the second request will be ignored. It is recommended to always set this value to a UUID. The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *     requestId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Privateconnections$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Privateconnections$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Privateconnections$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Privateconnections$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Privateconnections$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateconnections$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateconnections$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateconnections$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single private connection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datamigration = google.datamigration('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datamigration.projects.locations.privateConnections.get({
+     *     // Required. The name of the private connection to get.
+     *     name: 'projects/my-project/locations/my-location/privateConnections/my-privateConnection',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "error": {},
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "vpcPeeringConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Privateconnections$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Privateconnections$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PrivateConnection>;
+    get(
+      params: Params$Resource$Projects$Locations$Privateconnections$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Privateconnections$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$PrivateConnection>,
+      callback: BodyResponseCallback<Schema$PrivateConnection>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Privateconnections$Get,
+      callback: BodyResponseCallback<Schema$PrivateConnection>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$PrivateConnection>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateconnections$Get
+        | BodyResponseCallback<Schema$PrivateConnection>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PrivateConnection>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PrivateConnection>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PrivateConnection>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateconnections$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateconnections$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PrivateConnection>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PrivateConnection>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a list of private connections in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datamigration = google.datamigration('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datamigration.projects.locations.privateConnections.list({
+     *     // A filter expression that filters private connections listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, \>, or <. For example, list private connections created this year by specifying **createTime %gt; 2021-01-01T00:00:00.000000000Z**.
+     *     filter: 'placeholder-value',
+     *     // Order by fields for the result.
+     *     orderBy: 'placeholder-value',
+     *     // Maximum number of private connections to return. If unspecified, at most 50 private connections that will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Page token received from a previous `ListPrivateConnections` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPrivateConnections` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent that owns the collection of private connections.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "privateConnections": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Privateconnections$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Privateconnections$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListPrivateConnectionsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Privateconnections$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Privateconnections$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPrivateConnectionsResponse>,
+      callback: BodyResponseCallback<Schema$ListPrivateConnectionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Privateconnections$List,
+      callback: BodyResponseCallback<Schema$ListPrivateConnectionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListPrivateConnectionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateconnections$List
+        | BodyResponseCallback<Schema$ListPrivateConnectionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPrivateConnectionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPrivateConnectionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListPrivateConnectionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateconnections$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateconnections$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/privateConnections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListPrivateConnectionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListPrivateConnectionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Privateconnections$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent that owns the collection of PrivateConnections.
+     */
+    parent?: string;
+    /**
+     * Required. The private connection identifier.
+     */
+    privateConnectionId?: string;
+    /**
+     * Optional. A unique id used to identify the request. If the server receives two requests with the same id, then the second request will be ignored. It is recommended to always set this value to a UUID. The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PrivateConnection;
+  }
+  export interface Params$Resource$Projects$Locations$Privateconnections$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the private connection to delete.
+     */
+    name?: string;
+    /**
+     * Optional. A unique id used to identify the request. If the server receives two requests with the same id, then the second request will be ignored. It is recommended to always set this value to a UUID. The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Privateconnections$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the private connection to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Privateconnections$List
+    extends StandardParameters {
+    /**
+     * A filter expression that filters private connections listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, \>, or <. For example, list private connections created this year by specifying **createTime %gt; 2021-01-01T00:00:00.000000000Z**.
+     */
+    filter?: string;
+    /**
+     * Order by fields for the result.
+     */
+    orderBy?: string;
+    /**
+     * Maximum number of private connections to return. If unspecified, at most 50 private connections that will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Page token received from a previous `ListPrivateConnections` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPrivateConnections` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent that owns the collection of private connections.
+     */
+    parent?: string;
   }
 }
