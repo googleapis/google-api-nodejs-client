@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudkms-v5.0.0...cloudkms-v5.0.1) (2022-12-22)
+
+
+### Bug Fixes
+
+* **cloudkms:** update the API ([a68ee93](https://github.com/googleapis/google-api-nodejs-client/commit/a68ee9385f543309f4f357b4ff8308e3287a2f4a))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudkms-v4.1.2...cloudkms-v5.0.0) (2022-10-28)
 
 

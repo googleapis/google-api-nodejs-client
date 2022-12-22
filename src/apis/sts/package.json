@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/sts",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "sts",
   "main": "build/index.js",
   "types": "build/index.d.ts",

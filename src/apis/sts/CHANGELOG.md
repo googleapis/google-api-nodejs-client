@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v3.0.0...sts-v3.1.0) (2022-12-22)
+
+
+### Features
+
+* **sts:** update the API ([6329c89](https://github.com/googleapis/google-api-nodejs-client/commit/6329c89747d9e6e8a31804cac232ba231e5ce56b))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v2.1.8...sts-v3.0.0) (2022-10-28)
 
 

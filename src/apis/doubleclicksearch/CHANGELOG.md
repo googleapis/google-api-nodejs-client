@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/doubleclicksearch-v1.0.0...doubleclicksearch-v2.0.0) (2022-12-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* **doubleclicksearch:** This release has breaking changes.
+
+### Features
+
+* **doubleclicksearch:** update the API ([8df689c](https://github.com/googleapis/google-api-nodejs-client/commit/8df689c853a1bade2b15a5639d4f512121c11a6d))
+
 ## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/doubleclicksearch-v0.4.2...doubleclicksearch-v1.0.0) (2022-10-28)
 
 
