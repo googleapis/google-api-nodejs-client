@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20220922",
+  "revision": "20221117",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -651,6 +651,40 @@
         },
         "resourceUri": {
           "description": "URI of the resource that caused the abort.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AppEngineVersionEndpoint": {
+      "description": "Wrapper for app engine service version attributes.",
+      "id": "AppEngineVersionEndpoint",
+      "properties": {
+        "uri": {
+          "description": "An [App Engine](https://cloud.google.com/appengine) [service version](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions) name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AppEngineVersionInfo": {
+      "description": "For display only. Metadata associated with an App Engine version.",
+      "id": "AppEngineVersionInfo",
+      "properties": {
+        "displayName": {
+          "description": "Name of an App Engine version.",
+          "type": "string"
+        },
+        "environment": {
+          "description": "App Engine execution environment for a version.",
+          "type": "string"
+        },
+        "runtime": {
+          "description": "Runtime of the App Engine version.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI of an App Engine version.",
           "type": "string"
         }
       },
@@ -762,6 +796,44 @@
         "versionId": {
           "description": "Latest successfully deployed version id of the Cloud Function.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudRunRevisionEndpoint": {
+      "description": "Wrapper for Cloud Run revision attributes.",
+      "id": "CloudRunRevisionEndpoint",
+      "properties": {
+        "uri": {
+          "description": "A [Cloud Run](https://cloud.google.com/run) [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get) URI. The format is: projects/{project}/locations/{location}/revisions/{revision}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudRunRevisionInfo": {
+      "description": "For display only. Metadata associated with a Cloud Run revision.",
+      "id": "CloudRunRevisionInfo",
+      "properties": {
+        "displayName": {
+          "description": "Name of a Cloud Run revision.",
+          "type": "string"
+        },
+        "location": {
+          "description": "Location in which this revision is deployed.",
+          "type": "string"
+        },
+        "serviceName": {
+          "description": "ID of Cloud Run Service this revision belongs to.",
+          "type": "string"
+        },
+        "serviceUri": {
+          "description": "URI of Cloud Run service this revision belongs to.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI of a Cloud Run revision.",
           "type": "string"
         }
       },
@@ -894,9 +966,9 @@
             "Target is a Google API.",
             "Target is a Google Kubernetes Engine cluster master.",
             "Target is a Cloud SQL instance.",
-            "Target is a published service using [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-services).",
-            "Target is all Google APIs using [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-apis).",
-            "Target is VPC-SC using [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-apis)."
+            "Target is a published service that uses [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-services).",
+            "Target is all Google APIs that use [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-apis).",
+            "Target is a VPC-SC that uses [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-apis)."
           ],
           "type": "string"
         }
@@ -922,6 +994,7 @@
             "NO_EXTERNAL_ADDRESS",
             "UNKNOWN_INTERNAL_ADDRESS",
             "FORWARDING_RULE_MISMATCH",
+            "FORWARDING_RULE_REGION_MISMATCH",
             "FORWARDING_RULE_NO_INSTANCES",
             "FIREWALL_BLOCKING_LOAD_BALANCER_BACKEND_HEALTH_CHECK",
             "INSTANCE_NOT_RUNNING",
@@ -933,6 +1006,7 @@
             "DROPPED_INSIDE_GKE_SERVICE",
             "DROPPED_INSIDE_CLOUD_SQL_SERVICE",
             "GOOGLE_MANAGED_SERVICE_NO_PEERING",
+            "GKE_PSC_ENDPOINT_MISSING",
             "CLOUD_SQL_INSTANCE_NO_IP_ADDRESS",
             "GKE_CONTROL_PLANE_REGION_MISMATCH",
             "PUBLIC_GKE_CONTROL_PLANE_TO_PRIVATE_DESTINATION",
@@ -943,8 +1017,8 @@
             "CLOUD_FUNCTION_NOT_ACTIVE",
             "VPC_CONNECTOR_NOT_SET",
             "VPC_CONNECTOR_NOT_RUNNING",
-            "FORWARDING_RULE_REGION_MISMATCH",
-            "PSC_CONNECTION_NOT_ACCEPTED"
+            "PSC_CONNECTION_NOT_ACCEPTED",
+            "CLOUD_RUN_REVISION_NOT_READY"
           ],
           "enumDescriptions": [
             "Cause is unspecified.",
@@ -959,6 +1033,7 @@
             "Instance with only an internal IP address tries to access external hosts, but Cloud NAT is not enabled in the subnet, unless special configurations on a VM allow this connection.",
             "Destination internal address cannot be resolved to a known target. If this is a shared VPC scenario, verify if the service project ID is provided as test input. Otherwise, verify if the IP address is being used in the project.",
             "Forwarding rule's protocol and ports do not match the packet header.",
+            "Packet could be dropped because it was sent from a different region to a regional forwarding without global access.",
             "Forwarding rule does not have backends configured.",
             "Firewalls block the health check probes to the backends and cause the backends to be unavailable for traffic from the load balancer. For more details, see [Health check firewall rules](https://cloud.google.com/load-balancing/docs/health-checks#firewall_rules).",
             "Packet is sent from or to a Compute Engine instance that is not in a running state.",
@@ -970,6 +1045,7 @@
             "Packet was dropped inside Google Kubernetes Engine Service.",
             "Packet was dropped inside Cloud SQL Service.",
             "Packet was dropped because there is no peering between the originating network and the Google Managed Services Network.",
+            "Packet was dropped because the GKE cluster uses Private Service Connect (PSC), but the PSC endpoint is not found in the project.",
             "Packet was dropped because the Cloud SQL instance has neither a private nor a public IP address.",
             "Packet was dropped because a GKE cluster private endpoint is unreachable from a region different from the cluster's region.",
             "Packet sent from a public GKE cluster control plane to a private IP address.",
@@ -980,8 +1056,8 @@
             "Packet could be dropped because the Cloud Function is not in an active status.",
             "Packet could be dropped because no VPC connector is set.",
             "Packet could be dropped because the VPC connector is not in a running state.",
-            "Packet could be dropped because it was sent from a different region to a regional forwarding without global access.",
-            "Privte Service Connect (PSC) connection is not in accepted state."
+            "The Private Service Connect endpoint is in a project that is not approved to connect to the service.",
+            "Packet sent from a Cloud Run revision that is not ready."
           ],
           "type": "string"
         },
@@ -1013,9 +1089,17 @@
       "description": "Source or destination of the Connectivity Test.",
       "id": "Endpoint",
       "properties": {
+        "appEngineVersion": {
+          "$ref": "AppEngineVersionEndpoint",
+          "description": "An [App Engine](https://cloud.google.com/appengine) [service version](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions)."
+        },
         "cloudFunction": {
           "$ref": "CloudFunctionEndpoint",
           "description": "A [Cloud Function](https://cloud.google.com/functions)."
+        },
+        "cloudRunRevision": {
+          "$ref": "CloudRunRevisionEndpoint",
+          "description": "A [Cloud Run](https://cloud.google.com/run) [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get)"
         },
         "cloudSqlInstance": {
           "description": "A [Cloud SQL](https://cloud.google.com/sql) instance URI.",
@@ -1969,6 +2053,10 @@
           "$ref": "AbortInfo",
           "description": "Display information of the final state \"abort\" and reason."
         },
+        "appEngineVersion": {
+          "$ref": "AppEngineVersionInfo",
+          "description": "Display information of an App Engine service version."
+        },
         "causesDrop": {
           "description": "This is a step that leads to the final state Drop.",
           "type": "boolean"
@@ -1976,6 +2064,10 @@
         "cloudFunction": {
           "$ref": "CloudFunctionInfo",
           "description": "Display information of a Cloud Function."
+        },
+        "cloudRunRevision": {
+          "$ref": "CloudRunRevisionInfo",
+          "description": "Display information of a Cloud Run revision."
         },
         "cloudSqlInstance": {
           "$ref": "CloudSQLInstanceInfo",
@@ -2043,6 +2135,8 @@
             "START_FROM_GKE_MASTER",
             "START_FROM_CLOUD_SQL_INSTANCE",
             "START_FROM_CLOUD_FUNCTION",
+            "START_FROM_APP_ENGINE_VERSION",
+            "START_FROM_CLOUD_RUN_REVISION",
             "APPLY_INGRESS_FIREWALL_RULE",
             "APPLY_EGRESS_FIREWALL_RULE",
             "APPLY_ROUTE",
@@ -2070,6 +2164,8 @@
             "Initial state: packet originating from a Google Kubernetes Engine cluster master. A GKEMasterInfo is populated with starting instance information.",
             "Initial state: packet originating from a Cloud SQL instance. A CloudSQLInstanceInfo is populated with starting instance information.",
             "Initial state: packet originating from a Cloud Function. A CloudFunctionInfo is populated with starting function information.",
+            "Initial state: packet originating from an App Engine service version. An AppEngineVersionInfo is populated with starting version information.",
+            "Initial state: packet originating from a Cloud Run revision. A CloudRunRevisionInfo is populated with starting revision information.",
             "Config checking state: verify ingress firewall rule.",
             "Config checking state: verify egress firewall rule.",
             "Config checking state: verify route.",
