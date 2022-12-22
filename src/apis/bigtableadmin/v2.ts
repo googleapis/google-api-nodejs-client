@@ -380,6 +380,27 @@ export namespace bigtableadmin_v2 {
      * Garbage collection rule specified as a protobuf. Must serialize to at most 500 bytes. NOTE: Garbage collection executes opportunistically in the background, and so it's possible for reads to return a cell even if it matches the active GC expression for its family.
      */
     gcRule?: Schema$GcRule;
+    /**
+     * Only available with STATS_VIEW, this includes summary statistics about column family contents. For statistics over an entire table, see TableStats above.
+     */
+    stats?: Schema$ColumnFamilyStats;
+  }
+  /**
+   * Approximate statistics related to a single column family within a table. This information may change rapidly, interpreting these values at a point in time may already preset out-of-date information. Everything below is approximate, unless otherwise specified.
+   */
+  export interface Schema$ColumnFamilyStats {
+    /**
+     * How many cells are present per column qualifier in this column family, averaged over all rows containing any column in the column family. e.g. For column family "family" in a table with 3 rows: * A row with 3 cells in "family:col" and 1 cell in "other:col" (3 cells / 1 column in "family") * A row with 1 cell in "family:col", 7 cells in "family:other_col", and 7 cells in "other:data" (8 cells / 2 columns in "family") * A row with 3 cells in "other:col" (0 columns in "family", "family" not present) would report (3 + 8 + 0)/(1 + 2 + 0) = 3.66 in this field.
+     */
+    averageCellsPerColumn?: number | null;
+    /**
+     * How many column qualifiers are present in this column family, averaged over all rows in the table. e.g. For column family "family" in a table with 3 rows: * A row with cells in "family:col" and "other:col" (1 column in "family") * A row with cells in "family:col", "family:other_col", and "other:data" (2 columns in "family") * A row with cells in "other:col" (0 columns in "family", "family" not present) would report (1 + 2 + 0)/3 = 1.5 in this field.
+     */
+    averageColumnsPerRow?: number | null;
+    /**
+     * How much space the data in the column family occupies. This is roughly how many bytes would be needed to read the contents of the entire column family (e.g. by streaming all contents out).
+     */
+    logicalDataBytes?: string | null;
   }
   /**
    * Metadata type for the google.longrunning.Operation returned by CopyBackup.
@@ -1128,21 +1149,29 @@ export namespace bigtableadmin_v2 {
      */
     clusterStates?: {[key: string]: Schema$ClusterState} | null;
     /**
-     * The column families configured for this table, mapped by column family ID. Views: `SCHEMA_VIEW`, `FULL`
+     * The column families configured for this table, mapped by column family ID. Views: `SCHEMA_VIEW`, `STATS_VIEW`, `FULL`
      */
     columnFamilies?: {[key: string]: Schema$ColumnFamily} | null;
+    /**
+     * Set to true to make the table protected against data loss. i.e. deleting the following resources through Admin APIs are prohibited: - The table. - The column families in the table. - The instance containing the table. Note one can still delete the data stored in the table through Data APIs.
+     */
+    deletionProtection?: boolean | null;
     /**
      * Immutable. The granularity (i.e. `MILLIS`) at which timestamps are stored in this table. Timestamps not matching the granularity will be rejected. If unspecified at creation time, the value will be set to `MILLIS`. Views: `SCHEMA_VIEW`, `FULL`.
      */
     granularity?: string | null;
     /**
-     * The unique name of the table. Values are of the form `projects/{project\}/instances/{instance\}/tables/_a-zA-Z0-9*`. Views: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`
+     * The unique name of the table. Values are of the form `projects/{project\}/instances/{instance\}/tables/_a-zA-Z0-9*`. Views: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `STATS_VIEW`, `FULL`
      */
     name?: string | null;
     /**
      * Output only. If this table was restored from another data source (e.g. a backup), this field will be populated with information about the restore.
      */
     restoreInfo?: Schema$RestoreInfo;
+    /**
+     * Only available with STATS_VIEW, this includes summary statistics about the entire table contents. For statistics about a specific column family, see ColumnFamilyStats in the mapped ColumnFamily collection above.
+     */
+    stats?: Schema$TableStats;
   }
   /**
    * Progress info for copying a table's data to the new cluster.
@@ -1157,6 +1186,27 @@ export namespace bigtableadmin_v2 {
      */
     estimatedSizeBytes?: string | null;
     state?: string | null;
+  }
+  /**
+   * Approximate statistics related to a table. These statistics are calculated infrequently, while simultaneously, data in the table can change rapidly. Thus the values reported here (e.g. row count) are very likely out-of date, even the instant they are received in this API. Thus, only treat these values as approximate. IMPORTANT: Everything below is approximate, unless otherwise specified.
+   */
+  export interface Schema$TableStats {
+    /**
+     * How many cells are present per column (column family, column qualifier) combinations, averaged over all columns in all rows in the table. e.g. A table with 2 rows: * A row with 3 cells in "family:col" and 1 cell in "other:col" (4 cells / 2 columns) * A row with 1 cell in "family:col", 7 cells in "family:other_col", and 7 cells in "other:data" (15 cells / 3 columns) would report (4 + 15)/(2 + 3) = 3.8 in this field.
+     */
+    averageCellsPerColumn?: number | null;
+    /**
+     * How many (column family, column qualifier) combinations are present per row in the table, averaged over all rows in the table. e.g. A table with 2 rows: * A row with cells in "family:col" and "other:col" (2 distinct columns) * A row with cells in "family:col", "family:other_col", and "other:data" (3 distinct columns) would report (2 + 3)/2 = 2.5 in this field.
+     */
+    averageColumnsPerRow?: number | null;
+    /**
+     * This is roughly how many bytes would be needed to read the entire table (e.g. by streaming all contents out).
+     */
+    logicalDataBytes?: string | null;
+    /**
+     * How many rows are in the table.
+     */
+    rowCount?: string | null;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -1243,6 +1293,23 @@ export namespace bigtableadmin_v2 {
      * The time at which the original request was received.
      */
     requestTime?: string | null;
+  }
+  /**
+   * Metadata type for the operation returned by UpdateTable.
+   */
+  export interface Schema$UpdateTableMetadata {
+    /**
+     * If set, the time at which this operation finished or was canceled.
+     */
+    endTime?: string | null;
+    /**
+     * The name of the table being updated.
+     */
+    name?: string | null;
+    /**
+     * The time at which this operation started.
+     */
+    startTime?: string | null;
   }
 
   export class Resource$Operations {
@@ -6972,9 +7039,11 @@ export namespace bigtableadmin_v2 {
      *   // {
      *   //   "clusterStates": {},
      *   //   "columnFamilies": {},
+     *   //   "deletionProtection": false,
      *   //   "granularity": "my_granularity",
      *   //   "name": "my_name",
-     *   //   "restoreInfo": {}
+     *   //   "restoreInfo": {},
+     *   //   "stats": {}
      *   // }
      * }
      *
@@ -7542,9 +7611,11 @@ export namespace bigtableadmin_v2 {
      *   // {
      *   //   "clusterStates": {},
      *   //   "columnFamilies": {},
+     *   //   "deletionProtection": false,
      *   //   "granularity": "my_granularity",
      *   //   "name": "my_name",
-     *   //   "restoreInfo": {}
+     *   //   "restoreInfo": {},
+     *   //   "stats": {}
      *   // }
      * }
      *
@@ -7982,9 +8053,11 @@ export namespace bigtableadmin_v2 {
      *   // {
      *   //   "clusterStates": {},
      *   //   "columnFamilies": {},
+     *   //   "deletionProtection": false,
      *   //   "granularity": "my_granularity",
      *   //   "name": "my_name",
-     *   //   "restoreInfo": {}
+     *   //   "restoreInfo": {},
+     *   //   "stats": {}
      *   // }
      * }
      *
@@ -8082,7 +8155,160 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * Create a new table by restoring from a completed backup. The new table must be in the same project as the instance containing the backup. The returned table long-running operation can be used to track the progress of the operation, and to cancel it. The metadata field type is RestoreTableMetadata. The response type is Table, if successful.
+     * Updates a specified table.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.table',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.tables.patch({
+     *     // The unique name of the table. Values are of the form `projects/{project\}/instances/{instance\}/tables/_a-zA-Z0-9*`. Views: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `STATS_VIEW`, `FULL`
+     *     name: 'projects/my-project/instances/my-instance/tables/my-table',
+     *     // Required. The list of fields to update. A mask specifying which fields (e.g. `change_stream_config`) in the `table` field should be updated. This mask is relative to the `table` field, not to the request message. The wildcard (*) path is currently not supported. Currently UpdateTable is only supported for the following fields: * `change_stream_config` * `change_stream_config.retention_period` * `deletion_protection` If `column_families` is set in `update_mask`, it will return an UNIMPLEMENTED error.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterStates": {},
+     *       //   "columnFamilies": {},
+     *       //   "deletionProtection": false,
+     *       //   "granularity": "my_granularity",
+     *       //   "name": "my_name",
+     *       //   "restoreInfo": {},
+     *       //   "stats": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Instances$Tables$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Instances$Tables$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Instances$Tables$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Instances$Tables$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Instances$Tables$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Tables$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Tables$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Tables$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Create a new table by restoring from a completed backup. The returned table long-running operation can be used to track the progress of the operation, and to cancel it. The metadata field type is RestoreTableMetadata. The response type is Table, if successful.
      * @example
      * ```js
      * // Before running the sample:
@@ -8114,7 +8340,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.restore({
-     *     // Required. The name of the instance in which to create the restored table. This instance must be in the same project as the source backup. Values are of the form `projects//instances/`.
+     *     // Required. The name of the instance in which to create the restored table. Values are of the form `projects//instances/`.
      *     parent: 'projects/my-project/instances/my-instance',
      *
      *     // Request body metadata
@@ -8786,10 +9012,26 @@ export namespace bigtableadmin_v2 {
      */
     requestBody?: Schema$ModifyColumnFamiliesRequest;
   }
+  export interface Params$Resource$Projects$Instances$Tables$Patch
+    extends StandardParameters {
+    /**
+     * The unique name of the table. Values are of the form `projects/{project\}/instances/{instance\}/tables/_a-zA-Z0-9*`. Views: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `STATS_VIEW`, `FULL`
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to update. A mask specifying which fields (e.g. `change_stream_config`) in the `table` field should be updated. This mask is relative to the `table` field, not to the request message. The wildcard (*) path is currently not supported. Currently UpdateTable is only supported for the following fields: * `change_stream_config` * `change_stream_config.retention_period` * `deletion_protection` If `column_families` is set in `update_mask`, it will return an UNIMPLEMENTED error.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Table;
+  }
   export interface Params$Resource$Projects$Instances$Tables$Restore
     extends StandardParameters {
     /**
-     * Required. The name of the instance in which to create the restored table. This instance must be in the same project as the source backup. Values are of the form `projects//instances/`.
+     * Required. The name of the instance in which to create the restored table. Values are of the form `projects//instances/`.
      */
     parent?: string;
 
