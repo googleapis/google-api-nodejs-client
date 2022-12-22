@@ -156,6 +156,10 @@ export namespace androiddeviceprovisioning_v1 {
      * Required. The section type of the device's provisioning record.
      */
     sectionType?: string | null;
+    /**
+     * Optional. Must and can only be set when DeviceProvisioningSectionType is SECTION_TYPE_SIM_LOCK. The unique identifier of the SimLock profile (go/simlock/profiles).
+     */
+    simlockProfileId?: string | null;
   }
   /**
    * Response message containing device id of the claim.
@@ -391,7 +395,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     googleWorkspaceCustomerId?: string | null;
     /**
-     * The ID of the Customer that purchased the Android device.
+     * The ID of the Customer that purchased the device.
      */
     ownerCompanyId?: string | null;
     /**
@@ -436,7 +440,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     meid?: string | null;
     /**
-     * The device model's name. Allowed values are listed in [Android models](/zero-touch/resources/manufacturer-names#model-names) and [Chrome OS models](https://support.google.com/chrome/a/answer/10130175?hl=en#identify_compatible).
+     * The device model's name. Allowed values are listed in [Android models](/zero-touch/resources/manufacturer-names#model-names) and [Chrome OS models](https://support.google.com/chrome/a/answer/10130175#identify_compatible).
      */
     model?: string | null;
     /**
@@ -762,7 +766,7 @@ export namespace androiddeviceprovisioning_v1 {
    */
   export interface Schema$PerDeviceStatusInBatch {
     /**
-     * If processing succeeds, the device ID of the Android device.
+     * If processing succeeds, the device ID of the device.
      */
     deviceId?: string | null;
     /**
@@ -3216,7 +3220,8 @@ export namespace androiddeviceprovisioning_v1 {
      *       //   "deviceMetadata": {},
      *       //   "googleWorkspaceCustomerId": "my_googleWorkspaceCustomerId",
      *       //   "preProvisioningToken": "my_preProvisioningToken",
-     *       //   "sectionType": "my_sectionType"
+     *       //   "sectionType": "my_sectionType",
+     *       //   "simlockProfileId": "my_simlockProfileId"
      *       // }
      *     },
      *   });

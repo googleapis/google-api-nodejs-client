@@ -825,7 +825,7 @@
       }
     }
   },
-  "revision": "20221026",
+  "revision": "20221203",
   "rootUrl": "https://androiddeviceprovisioning.googleapis.com/",
   "schemas": {
     "ClaimDeviceRequest": {
@@ -865,6 +865,11 @@
             "SIM-lock section type.",
             "Zero-touch enrollment section type."
           ],
+          "type": "string"
+        },
+        "simlockProfileId": {
+          "description": "Optional. Must and can only be set when DeviceProvisioningSectionType is SECTION_TYPE_SIM_LOCK. The unique identifier of the SimLock profile (go/simlock/profiles).",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -1187,7 +1192,7 @@
           "type": "string"
         },
         "ownerCompanyId": {
-          "description": "The ID of the Customer that purchased the Android device.",
+          "description": "The ID of the Customer that purchased the device.",
           "format": "int64",
           "type": "string"
         },
@@ -1259,7 +1264,7 @@
           "type": "string"
         },
         "model": {
-          "description": "The device model's name. Allowed values are listed in [Android models](/zero-touch/resources/manufacturer-names#model-names) and [Chrome OS models](https://support.google.com/chrome/a/answer/10130175?hl=en#identify_compatible).",
+          "description": "The device model's name. Allowed values are listed in [Android models](/zero-touch/resources/manufacturer-names#model-names) and [Chrome OS models](https://support.google.com/chrome/a/answer/10130175#identify_compatible).",
           "type": "string"
         },
         "serialNumber": {
@@ -1723,7 +1728,7 @@
       "id": "PerDeviceStatusInBatch",
       "properties": {
         "deviceId": {
-          "description": "If processing succeeds, the device ID of the Android device.",
+          "description": "If processing succeeds, the device ID of the device.",
           "format": "int64",
           "type": "string"
         },
