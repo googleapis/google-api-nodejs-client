@@ -1932,7 +1932,7 @@
       }
     }
   },
-  "revision": "20221025",
+  "revision": "20221101",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {
@@ -2355,6 +2355,29 @@
           "readOnly": true,
           "type": "string"
         },
+        "clientTypes": {
+          "description": "List of the clients the device is reporting to.",
+          "items": {
+            "enum": [
+              "CLIENT_TYPE_UNSPECIFIED",
+              "DRIVE_FS",
+              "FUNDAMENTAL",
+              "ENDPOINT_VERIFICATION",
+              "WINDOWS_ADVANCED",
+              "GOOGLE_CREDENTIALS_PROVIDER_FOR_WINDOWS"
+            ],
+            "enumDescriptions": [
+              "Default value",
+              "Managed by DriveFS",
+              "Management type for every secure device",
+              "Managed by Endpoint Verification",
+              "Managed by Windows",
+              "Managed by Google credential provider for windows"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
         "compromisedState": {
           "description": "Output only. Represents whether the Device is compromised.",
           "enum": [
@@ -2436,6 +2459,10 @@
           "$ref": "EndpointVerificationSpecificAttributes",
           "description": "Output only. Attributes specific to Endpoint Verification devices.",
           "readOnly": true
+        },
+        "hostname": {
+          "description": "Host name of the device.",
+          "type": "string"
         },
         "imei": {
           "description": "Output only. IMEI number of device if GSM device; empty otherwise.",
