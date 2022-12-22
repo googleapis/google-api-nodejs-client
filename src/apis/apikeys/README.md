@@ -4,6 +4,15 @@
 
 > Manages the API keys associated with developer projects.
 
+## Support status
+**Note**: Google provides multiple libraries for this service. This library is in
+maintenance mode, and will continue to be made available for users who have
+existing applications. If you're building a new application, or modernizing a
+legacy application, please use [@google-cloud/apikeys](https://www.npmjs.com/package/@google-cloud/apikeys) instead.
+The [@google-cloud/apikeys](https://www.npmjs.com/package/@google-cloud/apikeys) library is faster, easier to use, and better maintained.
+
+To learn more, see [Client Libraries Explained](https://cloud.google.com/apis/docs/client-libraries-explained).
+
 ## Installation
 
 ```sh
