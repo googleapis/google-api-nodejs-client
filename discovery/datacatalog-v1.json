@@ -1953,7 +1953,7 @@
       }
     }
   },
-  "revision": "20221017",
+  "revision": "20221025",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -2185,6 +2185,10 @@
         },
         "description": {
           "description": "Optional. Description of the column. Default value is an empty string. The description must be a UTF-8 string with the maximum size of 2000 bytes.",
+          "type": "string"
+        },
+        "gcRule": {
+          "description": "Optional. Garbage collection policy for the column or column family. Applies to systems like Cloud Bigtable.",
           "type": "string"
         },
         "mode": {
