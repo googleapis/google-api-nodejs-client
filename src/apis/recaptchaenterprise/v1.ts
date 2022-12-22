@@ -102,7 +102,7 @@ export namespace recaptchaenterprise_v1 {
   /**
    * reCAPTCHA Enterprise API
    *
-   *
+   * Help protect your website from fraudulent activity, spam, and abuse without creating friction.
    *
    * @example
    * ```js
@@ -132,6 +132,27 @@ export namespace recaptchaenterprise_v1 {
      * Labels for this request.
      */
     labels?: string[] | null;
+  }
+  /**
+   * Information about account verification, used for identity verification.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1AccountVerificationInfo {
+    /**
+     * Endpoints that can be used for identity verification.
+     */
+    endpoints?: Schema$GoogleCloudRecaptchaenterpriseV1EndpointVerificationInfo[];
+    /**
+     * Language code preference for the verification message, set as a IETF BCP 47 language code.
+     */
+    languageCode?: string | null;
+    /**
+     * Output only. Result of the latest account verification challenge.
+     */
+    latestVerificationResult?: string | null;
+    /**
+     * Username of the account that is being verified. Deprecated. Customers should now provide the hashed account ID field in Event.
+     */
+    username?: string | null;
   }
   /**
    * Settings specific to keys that can be used by Android apps.
@@ -176,6 +197,10 @@ export namespace recaptchaenterprise_v1 {
      */
     accountDefenderAssessment?: Schema$GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment;
     /**
+     * Account verification information for identity verification. The assessment event must include a token and site key to use this feature.
+     */
+    accountVerification?: Schema$GoogleCloudRecaptchaenterpriseV1AccountVerificationInfo;
+    /**
      * The event being assessed.
      */
     event?: Schema$GoogleCloudRecaptchaenterpriseV1Event;
@@ -216,6 +241,27 @@ export namespace recaptchaenterprise_v1 {
      * Count of nocaptchas (successful verification without a challenge) plus submitted challenge solutions that were correct and resulted in verification.
      */
     passedCount?: string | null;
+  }
+  /**
+   * Information about a verification endpoint that can be used for 2FA.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1EndpointVerificationInfo {
+    /**
+     * Email address for which to trigger a verification request.
+     */
+    emailAddress?: string | null;
+    /**
+     * Output only. Timestamp of the last successful verification for the endpoint, if any.
+     */
+    lastVerificationTime?: string | null;
+    /**
+     * Phone number for which to trigger a verification request. Should be given in E.164 format.
+     */
+    phoneNumber?: string | null;
+    /**
+     * Output only. Token to provide to the client to trigger endpoint verification. It must be used within 15 minutes.
+     */
+    requestToken?: string | null;
   }
   export interface Schema$GoogleCloudRecaptchaenterpriseV1Event {
     /**
@@ -360,7 +406,12 @@ export namespace recaptchaenterprise_v1 {
   /**
    * The migrate key request message.
    */
-  export interface Schema$GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest {}
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest {
+    /**
+     * Optional. If true, skips the billing check. A reCAPTCHA Enterprise key or migrated key behaves differently than a reCAPTCHA (non-Enterprise version) key when you reach a quota limit (see https://cloud.google.com/recaptcha-enterprise/quotas#quota_limit). To avoid any disruption of your usage, we check that a billing account is present. If your usage of reCAPTCHA is under the free quota, you can safely skip the billing check and proceed with the migration. See https://cloud.google.com/recaptcha-enterprise/docs/billing-information.
+     */
+    skipBillingCheck?: boolean | null;
+  }
   /**
    * Private password leak verification info.
    */
@@ -499,6 +550,10 @@ export namespace recaptchaenterprise_v1 {
      */
     action?: string | null;
     /**
+     * The name of the Android package with which the token was generated (Android keys only).
+     */
+    androidPackageName?: string | null;
+    /**
      * The timestamp corresponding to the generation of the token.
      */
     createTime?: string | null;
@@ -510,6 +565,10 @@ export namespace recaptchaenterprise_v1 {
      * Reason associated with the response when valid = false.
      */
     invalidReason?: string | null;
+    /**
+     * The ID of the iOS bundle with which the token was generated (iOS keys only).
+     */
+    iosBundleId?: string | null;
     /**
      * Whether the provided user response token is valid. When valid = false, the reason could be specified in invalid_reason or it could also be due to a user failing to solve a challenge or a sitekey mismatch (i.e the sitekey used to generate the token was different than the one specified in the assessment).
      */
@@ -764,6 +823,7 @@ export namespace recaptchaenterprise_v1 {
      *       // request body parameters
      *       // {
      *       //   "accountDefenderAssessment": {},
+     *       //   "accountVerification": {},
      *       //   "event": {},
      *       //   "name": "my_name",
      *       //   "privatePasswordLeakVerification": {},
@@ -777,6 +837,7 @@ export namespace recaptchaenterprise_v1 {
      *   // Example response
      *   // {
      *   //   "accountDefenderAssessment": {},
+     *   //   "accountVerification": {},
      *   //   "event": {},
      *   //   "name": "my_name",
      *   //   "privatePasswordLeakVerification": {},
@@ -1663,7 +1724,9 @@ export namespace recaptchaenterprise_v1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {}
+     *       // {
+     *       //   "skipBillingCheck": false
+     *       // }
      *     },
      *   });
      *   console.log(res.data);

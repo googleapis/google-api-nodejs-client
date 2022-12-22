@@ -2,7 +2,7 @@
 
 # recaptchaenterprise
 
-> 
+> Help protect your website from fraudulent activity, spam, and abuse without creating friction.
 
 ## Support status
 **Note**: Google provides multiple libraries for this service. This library is in
