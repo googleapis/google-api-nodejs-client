@@ -595,7 +595,7 @@
       }
     }
   },
-  "revision": "20221020",
+  "revision": "20221212",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest": {
@@ -678,12 +678,14 @@
           "enum": [
             "RESTRICTION_TYPE_UNSPECIFIED",
             "ALLOW_ALL_GCP_RESOURCES",
-            "ALLOW_COMPLIANT_RESOURCES"
+            "ALLOW_COMPLIANT_RESOURCES",
+            "APPEND_COMPLIANT_RESOURCES"
           ],
           "enumDescriptions": [
             "Unknown restriction type.",
             "Allow the use all of all gcp products, irrespective of the compliance posture. This effectively removes gcp.restrictServiceUsage OrgPolicy on the AssuredWorkloads Folder.",
-            "Based on Workload's compliance regime, allowed list changes. See - https://cloud.google.com/assured-workloads/docs/supported-products for the list of supported resources."
+            "Based on Workload's compliance regime, allowed list changes. See - https://cloud.google.com/assured-workloads/docs/supported-products for the list of supported resources.",
+            "Similar to ALLOW_COMPLIANT_RESOURCES but adds the list of compliant resources to the existing list of compliant resources. Effective org-policy of the Folder is considered to ensure there is no disruption to the existing customer workflows."
           ],
           "type": "string"
         }
@@ -922,7 +924,8 @@
             "CA_REGIONS_AND_SUPPORT",
             "ITAR",
             "AU_REGIONS_AND_US_SUPPORT",
-            "ASSURED_WORKLOADS_FOR_PARTNERS"
+            "ASSURED_WORKLOADS_FOR_PARTNERS",
+            "ISR_REGIONS"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -937,7 +940,8 @@
             "Assured Workloads For Canada Regions and Support controls",
             "International Traffic in Arms Regulations",
             "Assured Workloads for Australia Regions and Support controls Available for public preview consumption. Don't create production workloads.",
-            "Assured Workloads for Partners;"
+            "Assured Workloads for Partners;",
+            "Assured Workloads for Israel"
           ],
           "type": "string"
         },
@@ -1015,14 +1019,16 @@
           "type": "string"
         },
         "partner": {
-          "description": "Optional. Compliance Regime associated with this workload.",
+          "description": "Optional. Partner regime associated with this workload.",
           "enum": [
             "PARTNER_UNSPECIFIED",
-            "LOCAL_CONTROLS_BY_S3NS"
+            "LOCAL_CONTROLS_BY_S3NS",
+            "SOVEREIGN_CONTROLS_BY_T_SYSTEMS"
           ],
           "enumDescriptions": [
-            "Unknown partner regime/controls.",
-            "S3NS regime/controls."
+            "",
+            "Enum representing S3NS partner.",
+            "Enum representing T_SYSTEM partner."
           ],
           "type": "string"
         },

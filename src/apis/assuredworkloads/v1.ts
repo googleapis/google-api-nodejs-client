@@ -189,6 +189,23 @@ export namespace assuredworkloads_v1 {
     workloads?: Schema$GoogleCloudAssuredworkloadsV1Workload[];
   }
   /**
+   * Request of updating permission settings for a partner workload.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1MutatePartnerPermissionsRequest {
+    /**
+     * Optional. The etag of the workload. If this is provided, it must match the server's etag.
+     */
+    etag?: string | null;
+    /**
+     * Required. The partner permissions to be updated.
+     */
+    partnerPermissions?: Schema$GoogleCloudAssuredworkloadsV1WorkloadPartnerPermissions;
+    /**
+     * Required. The list of fields to be updated. E.g. update_mask { paths: "partner_permissions.data_logs_viewer"\}
+     */
+    updateMask?: string | null;
+  }
+  /**
    * Request for restricting list of available resources in Workload environment.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesRequest {
@@ -379,7 +396,7 @@ export namespace assuredworkloads_v1 {
      */
     name?: string | null;
     /**
-     * Optional. Compliance Regime associated with this workload.
+     * Optional. Partner regime associated with this workload.
      */
     partner?: string | null;
     /**
@@ -424,6 +441,23 @@ export namespace assuredworkloads_v1 {
      * Required. Input only. Immutable. [next_rotation_time] will be advanced by this period when the Key Management Service automatically rotates a key. Must be at least 24 hours and at most 876,000 hours.
      */
     rotationPeriod?: string | null;
+  }
+  /**
+   * Permissions granted to the AW Partner SA account for the customer workload
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1WorkloadPartnerPermissions {
+    /**
+     * Allow partner to view data and logs
+     */
+    dataLogsViewer?: boolean | null;
+    /**
+     * Allow partner to monitor folder and remediate violations
+     */
+    remediateFolderViolations?: boolean | null;
+    /**
+     * Allow partner to approve or reject Service Access requests
+     */
+    serviceAccessApprover?: boolean | null;
   }
   /**
    * Represent the resources that are children of this Workload.
@@ -1475,6 +1509,175 @@ export namespace assuredworkloads_v1 {
     }
 
     /**
+     * Update the permissions settings for an existing partner workload. For force updates don't set etag field in the Workload. Only one update operation per workload can be in progress.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const assuredworkloads = google.assuredworkloads('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await assuredworkloads.organizations.locations.workloads.mutatePartnerPermissions(
+     *       {
+     *         // Required. The `name` field is used to identify the workload. Format: organizations/{org_id\}/locations/{location_id\}/workloads/{workload_id\}
+     *         name: 'organizations/my-organization/locations/my-location/workloads/my-workload',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "etag": "my_etag",
+     *           //   "partnerPermissions": {},
+     *           //   "updateMask": "my_updateMask"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billingAccount": "my_billingAccount",
+     *   //   "complianceRegime": "my_complianceRegime",
+     *   //   "complianceStatus": {},
+     *   //   "compliantButDisallowedServices": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "enableSovereignControls": false,
+     *   //   "etag": "my_etag",
+     *   //   "kajEnrollmentState": "my_kajEnrollmentState",
+     *   //   "kmsSettings": {},
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "partner": "my_partner",
+     *   //   "provisionedResourcesParent": "my_provisionedResourcesParent",
+     *   //   "resourceSettings": [],
+     *   //   "resources": [],
+     *   //   "saaEnrollmentResponse": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    mutatePartnerPermissions(
+      params: Params$Resource$Organizations$Locations$Workloads$Mutatepartnerpermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    mutatePartnerPermissions(
+      params?: Params$Resource$Organizations$Locations$Workloads$Mutatepartnerpermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1Workload>;
+    mutatePartnerPermissions(
+      params: Params$Resource$Organizations$Locations$Workloads$Mutatepartnerpermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    mutatePartnerPermissions(
+      params: Params$Resource$Organizations$Locations$Workloads$Mutatepartnerpermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1Workload>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1Workload>
+    ): void;
+    mutatePartnerPermissions(
+      params: Params$Resource$Organizations$Locations$Workloads$Mutatepartnerpermissions,
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1Workload>
+    ): void;
+    mutatePartnerPermissions(
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1Workload>
+    ): void;
+    mutatePartnerPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Workloads$Mutatepartnerpermissions
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1Workload>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1Workload>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1Workload>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1Workload>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Workloads$Mutatepartnerpermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Workloads$Mutatepartnerpermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:mutatePartnerPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1Workload>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1Workload>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates an existing workload. Currently allows updating of workload display_name and labels. For force updates don't set etag field in the Workload. Only one update operation per workload can be in progress.
      * @example
      * ```js
@@ -1854,6 +2057,18 @@ export namespace assuredworkloads_v1 {
      * Required. Parent Resource to list workloads from. Must be of the form `organizations/{org_id\}/locations/{location\}`.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Workloads$Mutatepartnerpermissions
+    extends StandardParameters {
+    /**
+     * Required. The `name` field is used to identify the workload. Format: organizations/{org_id\}/locations/{location_id\}/workloads/{workload_id\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAssuredworkloadsV1MutatePartnerPermissionsRequest;
   }
   export interface Params$Resource$Organizations$Locations$Workloads$Patch
     extends StandardParameters {
