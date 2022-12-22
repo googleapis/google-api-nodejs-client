@@ -1416,6 +1416,8 @@
             "$ref": "Cuepoint"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/youtube",
+            "https://www.googleapis.com/auth/youtube.force-ssl",
             "https://www.googleapis.com/auth/youtubepartner"
           ]
         },
@@ -3829,7 +3831,7 @@
       }
     }
   },
-  "revision": "20221026",
+  "revision": "20221220",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
