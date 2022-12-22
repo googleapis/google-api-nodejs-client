@@ -483,7 +483,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{access_policy}/accessLevels/{access_level}`. The maximum length of the `access_level` component is 50 characters.",
+                  "description": "Resource name for the `AccessLevel`. Format: `accessPolicies/{access_policy}/accessLevels/{access_level}`. The `access_level` component must begin with a letter, followed by alphanumeric characters or `_`. Its maximum length is 50 characters. After you create an `AccessLevel`, you cannot change its `name`.",
                   "location": "path",
                   "pattern": "^accessPolicies/[^/]+/accessLevels/[^/]+$",
                   "required": true,
@@ -558,6 +558,158 @@
               },
               "response": {
                 "$ref": "TestIamPermissionsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
+        "authorizedOrgsDescs": {
+          "methods": {
+            "create": {
+              "description": "Creates a authorized orgs desc. The long-running operation from this RPC has a successful status after the authorized orgs desc propagates to long-lasting storage. If a authorized orgs desc contains errors, an error response is returned for the first error encountered. The name of this `AuthorizedOrgsDesc` will be assigned during creation.",
+              "flatPath": "v1/accessPolicies/{accessPoliciesId}/authorizedOrgsDescs",
+              "httpMethod": "POST",
+              "id": "accesscontextmanager.accessPolicies.authorizedOrgsDescs.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Resource name for the access policy which owns this Authorized Orgs Desc. Format: `accessPolicies/{policy_id}`",
+                  "location": "path",
+                  "pattern": "^accessPolicies/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/authorizedOrgsDescs",
+              "request": {
+                "$ref": "AuthorizedOrgsDesc"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a authorized orgs desc based on the resource name. The long-running operation from this RPC has a successful status after the authorized orgs desc is removed from long-lasting storage.",
+              "flatPath": "v1/accessPolicies/{accessPoliciesId}/authorizedOrgsDescs/{authorizedOrgsDescsId}",
+              "httpMethod": "DELETE",
+              "id": "accesscontextmanager.accessPolicies.authorizedOrgsDescs.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Resource name for the Authorized Orgs Desc. Format: `accessPolicies/{policy_id}/authorizedOrgsDesc/{authorized_orgs_desc_id}`",
+                  "location": "path",
+                  "pattern": "^accessPolicies/[^/]+/authorizedOrgsDescs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Gets a authorized orgs desc based on the resource name.",
+              "flatPath": "v1/accessPolicies/{accessPoliciesId}/authorizedOrgsDescs/{authorizedOrgsDescsId}",
+              "httpMethod": "GET",
+              "id": "accesscontextmanager.accessPolicies.authorizedOrgsDescs.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Resource name for the Authorized Orgs Desc. Format: `accessPolicies/{policy_id}/authorizedOrgsDescs/{authorized_orgs_descs_id}`",
+                  "location": "path",
+                  "pattern": "^accessPolicies/[^/]+/authorizedOrgsDescs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "AuthorizedOrgsDesc"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Lists all authorized orgs descs for an access policy.",
+              "flatPath": "v1/accessPolicies/{accessPoliciesId}/authorizedOrgsDescs",
+              "httpMethod": "GET",
+              "id": "accesscontextmanager.accessPolicies.authorizedOrgsDescs.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Number of Authorized Orgs Descs to include in the list. Default 100.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Next page token for the next batch of Authorized Orgs Desc instances. Defaults to the first page of results.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Resource name for the access policy to list Authorized Orgs Desc from. Format: `accessPolicies/{policy_id}`",
+                  "location": "path",
+                  "pattern": "^accessPolicies/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/authorizedOrgsDescs",
+              "response": {
+                "$ref": "ListAuthorizedOrgsDescsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "patch": {
+              "description": "Updates a authorized orgs desc. The long-running operation from this RPC has a successful status after the authorized orgs desc propagates to long-lasting storage. If a authorized orgs desc contains errors, an error response is returned for the first error encountered. Only the organization list in `AuthorizedOrgsDesc` can be updated. The name, authorization_type, asset_type and authorization_direction cannot be updated.",
+              "flatPath": "v1/accessPolicies/{accessPoliciesId}/authorizedOrgsDescs/{authorizedOrgsDescsId}",
+              "httpMethod": "PATCH",
+              "id": "accesscontextmanager.accessPolicies.authorizedOrgsDescs.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Assigned by the server during creation. The last segment has an arbitrary length and has only URI unreserved characters (as defined by [RFC 3986 Section 2.3](https://tools.ietf.org/html/rfc3986#section-2.3)). Should not be specified by the client during creation. Example: \"accessPolicies/122256/authorizedOrgs/b3-BhcX_Ud5N\"",
+                  "location": "path",
+                  "pattern": "^accessPolicies/[^/]+/authorizedOrgsDescs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. Mask to control which fields get updated. Must be non-empty.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "AuthorizedOrgsDesc"
+              },
+              "response": {
+                "$ref": "Operation"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -719,7 +871,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Resource name for the ServicePerimeter. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{access_policy}/servicePerimeters/{service_perimeter}`",
+                  "description": "Resource name for the `ServicePerimeter`. Format: `accessPolicies/{access_policy}/servicePerimeters/{service_perimeter}`. The `service_perimeter` component must begin with a letter, followed by alphanumeric characters or `_`. After you create a `ServicePerimeter`, you cannot change its `name`.",
                   "location": "path",
                   "pattern": "^accessPolicies/[^/]+/servicePerimeters/[^/]+$",
                   "required": true,
@@ -1083,7 +1235,7 @@
       }
     }
   },
-  "revision": "20220914",
+  "revision": "20221218",
   "rootUrl": "https://accesscontextmanager.googleapis.com/",
   "schemas": {
     "AccessContextManagerOperationMetadata": {
@@ -1109,7 +1261,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{access_policy}/accessLevels/{access_level}`. The maximum length of the `access_level` component is 50 characters.",
+          "description": "Resource name for the `AccessLevel`. Format: `accessPolicies/{access_policy}/accessLevels/{access_level}`. The `access_level` component must begin with a letter, followed by alphanumeric characters or `_`. Its maximum length is 50 characters. After you create an `AccessLevel`, you cannot change its `name`.",
           "type": "string"
         },
         "title": {
@@ -1211,6 +1363,64 @@
             "Data reads. Example: CloudSQL Users list"
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AuthorizedOrgsDesc": {
+      "description": "`AuthorizedOrgsDesc` is a resource that contains a list of organizations for a authorization type and asset type and its authorization direction.",
+      "id": "AuthorizedOrgsDesc",
+      "properties": {
+        "assetType": {
+          "description": "The asset type of this authorized orgs desc. e.g. device, credential strength.",
+          "enum": [
+            "ASSET_TYPE_UNSPECIFIED",
+            "ASSET_TYPE_DEVICE",
+            "ASSET_TYPE_CREDENTIAL_STRENGTH"
+          ],
+          "enumDescriptions": [
+            "No asset type specified.",
+            "Device asset type.",
+            "credential strength asset type."
+          ],
+          "type": "string"
+        },
+        "authorizationDirection": {
+          "description": "Authorization direction of this authorization relationship. i.e. Whether to allow specified orgs to evaluate this org's traffic, or allow specified orgs' traffic to be evaluated by this org. Orgs specified as `AUTHORIZATION_DIRECTION_TO` in this AuthorizedOrgsDesc[com.google.identity.accesscontextmanager.v1.AuthorizedOrgsDesc] must also specify this org as the `AUTHORIZATION_DIRECTION_FROM` in their own AuthorizedOrgsDesc in order for this relationship to take effect. Orgs specified as `AUTHORIZATION_DIRECTION_FROM` in this AuthorizedOrgsDesc[com.google.identity.accesscontextmanager.v1.AuthorizedOrgsDesc] must also specify this org as the `AUTHORIZATION_DIRECTION_TO` in their own AuthorizedOrgsDesc in order for this relationship to take effect.",
+          "enum": [
+            "AUTHORIZATION_DIRECTION_UNSPECIFIED",
+            "AUTHORIZATION_DIRECTION_TO",
+            "AUTHORIZATION_DIRECTION_FROM"
+          ],
+          "enumDescriptions": [
+            "No direction specified.",
+            "Specified orgs will evaluate traffic.",
+            "Specified orgs' traffic will be evaluated."
+          ],
+          "type": "string"
+        },
+        "authorizationType": {
+          "description": "The authorization type of this authorized orgs desc. e.g.authorization, troubleshooting or logging.",
+          "enum": [
+            "AUTHORIZATION_TYPE_UNSPECIFIED",
+            "AUTHORIZATION_TYPE_TRUST"
+          ],
+          "enumDescriptions": [
+            "No authorization type specified.",
+            "This authorization relationship is \"trust\"."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Assigned by the server during creation. The last segment has an arbitrary length and has only URI unreserved characters (as defined by [RFC 3986 Section 2.3](https://tools.ietf.org/html/rfc3986#section-2.3)). Should not be specified by the client during creation. Example: \"accessPolicies/122256/authorizedOrgs/b3-BhcX_Ud5N\"",
+          "type": "string"
+        },
+        "orgs": {
+          "description": "The list of organization ids in this AuthorizedOrgsDesc.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1689,6 +1899,24 @@
       },
       "type": "object"
     },
+    "ListAuthorizedOrgsDescsResponse": {
+      "description": "A response to `ListAuthorizedOrgsDescsRequest`.",
+      "id": "ListAuthorizedOrgsDescsResponse",
+      "properties": {
+        "authorizedOrgsDescs": {
+          "description": "List of the Authorized Orgs Desc instances.",
+          "items": {
+            "$ref": "AuthorizedOrgsDesc"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The pagination token to retrieve the next page of results. If the value is empty, no further results remain.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListGcpUserAccessBindingsResponse": {
       "description": "Response of ListGcpUserAccessBindings.",
       "id": "ListGcpUserAccessBindingsResponse",
@@ -1934,7 +2162,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. Resource name for the ServicePerimeter. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{access_policy}/servicePerimeters/{service_perimeter}`",
+          "description": "Resource name for the `ServicePerimeter`. Format: `accessPolicies/{access_policy}/servicePerimeters/{service_perimeter}`. The `service_perimeter` component must begin with a letter, followed by alphanumeric characters or `_`. After you create a `ServicePerimeter`, you cannot change its `name`.",
           "type": "string"
         },
         "perimeterType": {
@@ -1944,7 +2172,7 @@
             "PERIMETER_TYPE_BRIDGE"
           ],
           "enumDescriptions": [
-            "Regular Perimeter.",
+            "Regular Perimeter. When no value is specified, the perimeter uses this type.",
             "Perimeter Bridge."
           ],
           "type": "string"
