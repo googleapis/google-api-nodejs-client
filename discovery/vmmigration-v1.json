@@ -1972,9 +1972,15 @@
       }
     }
   },
-  "revision": "20221017",
+  "revision": "20221213",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
+    "AdaptingOSStep": {
+      "description": "AdaptingOSStep contains specific step details.",
+      "id": "AdaptingOSStep",
+      "properties": {},
+      "type": "object"
+    },
     "AddGroupMigrationRequest": {
       "description": "Request message for 'AddGroupMigration' request.",
       "id": "AddGroupMigrationRequest",
@@ -2129,6 +2135,43 @@
           "description": "Output only. The time the state was last updated.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "steps": {
+          "description": "Output only. The clone steps list representing its progress.",
+          "items": {
+            "$ref": "CloneStep"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CloneStep": {
+      "description": "CloneStep holds information about the clone step progress.",
+      "id": "CloneStep",
+      "properties": {
+        "adaptingOs": {
+          "$ref": "AdaptingOSStep",
+          "description": "Adapting OS step."
+        },
+        "endTime": {
+          "description": "The time the step has ended.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "instantiatingMigratedVm": {
+          "$ref": "InstantiatingMigratedVMStep",
+          "description": "Instantiating migrated VM step."
+        },
+        "preparingVmDisks": {
+          "$ref": "PreparingVMDisksStep",
+          "description": "Preparing VM disks step."
+        },
+        "startTime": {
+          "description": "The time the step has started.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
@@ -2366,7 +2409,7 @@
           "type": "array"
         },
         "project": {
-          "description": "The GCP target project ID or project name.",
+          "description": "The Google Cloud target project ID or project name.",
           "type": "string"
         },
         "secureBoot": {
@@ -2507,12 +2550,86 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "steps": {
+          "description": "Output only. The cutover steps list representing its progress.",
+          "items": {
+            "$ref": "CutoverStep"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CutoverStep": {
+      "description": "CutoverStep holds information about the cutover step progress.",
+      "id": "CutoverStep",
+      "properties": {
+        "endTime": {
+          "description": "The time the step has ended.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "finalSync": {
+          "$ref": "ReplicationCycle",
+          "description": "Final sync step."
+        },
+        "instantiatingMigratedVm": {
+          "$ref": "InstantiatingMigratedVMStep",
+          "description": "Instantiating migrated VM step."
+        },
+        "preparingVmDisks": {
+          "$ref": "PreparingVMDisksStep",
+          "description": "Preparing VM disks step."
+        },
+        "previousReplicationCycle": {
+          "$ref": "ReplicationCycle",
+          "description": "A replication cycle prior cutover step."
+        },
+        "shuttingDownSourceVm": {
+          "$ref": "ShuttingDownSourceVMStep",
+          "description": "Shutting down VM step."
+        },
+        "startTime": {
+          "description": "The time the step has started.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CycleStep": {
+      "description": "CycleStep holds information about a step progress.",
+      "id": "CycleStep",
+      "properties": {
+        "endTime": {
+          "description": "The time the cycle step has ended.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "initializingReplication": {
+          "$ref": "InitializingReplicationStep",
+          "description": "Initializing replication step."
+        },
+        "postProcessing": {
+          "$ref": "PostProcessingStep",
+          "description": "Post processing step."
+        },
+        "replicating": {
+          "$ref": "ReplicatingStep",
+          "description": "Replicating step."
+        },
+        "startTime": {
+          "description": "The time the cycle step has started.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
     },
     "DatacenterConnector": {
-      "description": "DatacenterConnector message describes a connector between the Source and GCP, which is installed on a vmware datacenter (an OVA vm installed by the user) to connect the Datacenter to GCP and support vm migration data transfer.",
+      "description": "DatacenterConnector message describes a connector between the Source and Google Cloud, which is installed on a vmware datacenter (an OVA vm installed by the user) to connect the Datacenter to Google Cloud and support vm migration data transfer.",
       "id": "DatacenterConnector",
       "properties": {
         "applianceInfrastructureVersion": {
@@ -2531,7 +2648,7 @@
           "readOnly": true
         },
         "bucket": {
-          "description": "Output only. The communication channel between the datacenter connector and GCP.",
+          "description": "Output only. The communication channel between the datacenter connector and Google Cloud.",
           "readOnly": true,
           "type": "string"
         },
@@ -2666,6 +2783,18 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "InitializingReplicationStep": {
+      "description": "InitializingReplicationStep contains specific step details.",
+      "id": "InitializingReplicationStep",
+      "properties": {},
+      "type": "object"
+    },
+    "InstantiatingMigratedVMStep": {
+      "description": "InstantiatingMigratedVMStep contains specific step details.",
+      "id": "InstantiatingMigratedVMStep",
+      "properties": {},
       "type": "object"
     },
     "Link": {
@@ -3314,6 +3443,18 @@
       "properties": {},
       "type": "object"
     },
+    "PostProcessingStep": {
+      "description": "PostProcessingStep contains specific step details.",
+      "id": "PostProcessingStep",
+      "properties": {},
+      "type": "object"
+    },
+    "PreparingVMDisksStep": {
+      "description": "PreparingVMDisksStep contains specific step details.",
+      "id": "PreparingVMDisksStep",
+      "properties": {},
+      "type": "object"
+    },
     "RemoveGroupMigrationRequest": {
       "description": "Request message for 'RemoveMigration' request.",
       "id": "RemoveGroupMigrationRequest",
@@ -3325,18 +3466,93 @@
       },
       "type": "object"
     },
+    "ReplicatingStep": {
+      "description": "ReplicatingStep contains specific step details.",
+      "id": "ReplicatingStep",
+      "properties": {
+        "lastThirtyMinutesAverageBytesPerSecond": {
+          "description": "The source disks replication rate for the last 30 minutes in bytes per second.",
+          "format": "int64",
+          "type": "string"
+        },
+        "lastTwoMinutesAverageBytesPerSecond": {
+          "description": "The source disks replication rate for the last 2 minutes in bytes per second.",
+          "format": "int64",
+          "type": "string"
+        },
+        "replicatedBytes": {
+          "description": "Replicated bytes in the step.",
+          "format": "int64",
+          "type": "string"
+        },
+        "totalBytes": {
+          "description": "Total bytes to be handled in the step.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ReplicationCycle": {
       "description": "ReplicationCycle contains information about the current replication cycle status.",
       "id": "ReplicationCycle",
       "properties": {
+        "cycleNumber": {
+          "description": "The cycle's ordinal number.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "endTime": {
+          "description": "The time the replication cycle has ended.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "error": {
+          "$ref": "Status",
+          "description": "Provides details on the state of the cycle in case of an error."
+        },
+        "name": {
+          "description": "The identifier of the ReplicationCycle.",
+          "type": "string"
+        },
         "progressPercent": {
-          "description": "The current progress in percentage of this cycle.",
+          "description": "The current progress in percentage of this cycle. Was replaced by 'steps' field, which breaks down the cycle progression more accurately.",
           "format": "int32",
           "type": "integer"
         },
         "startTime": {
           "description": "The time the replication cycle has started.",
           "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "State of the ReplicationCycle.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "RUNNING",
+            "PAUSED",
+            "FAILED",
+            "SUCCEEDED"
+          ],
+          "enumDescriptions": [
+            "The state is unknown. This is used for API compatibility only and is not used by the system.",
+            "The replication cycle is running.",
+            "The replication cycle is paused.",
+            "The replication cycle finished with errors.",
+            "The replication cycle finished successfully."
+          ],
+          "type": "string"
+        },
+        "steps": {
+          "description": "The cycle's steps list representing its progress.",
+          "items": {
+            "$ref": "CycleStep"
+          },
+          "type": "array"
+        },
+        "totalPauseDuration": {
+          "description": "The accumulated duration the replication cycle was paused.",
+          "format": "google-duration",
           "type": "string"
         }
       },
@@ -3406,6 +3622,12 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "ShuttingDownSourceVMStep": {
+      "description": "ShuttingDownSourceVMStep contains specific step details.",
+      "id": "ShuttingDownSourceVMStep",
+      "properties": {},
       "type": "object"
     },
     "Source": {

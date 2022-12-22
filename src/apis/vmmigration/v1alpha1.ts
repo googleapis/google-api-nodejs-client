@@ -125,6 +125,19 @@ export namespace vmmigration_v1alpha1 {
   }
 
   /**
+   * Message describing AWS Credentials using access key id and secret.
+   */
+  export interface Schema$AccessKeyCredentials {
+    /**
+     * AWS access key ID.
+     */
+    accessKeyId?: string | null;
+    /**
+     * Input only. AWS secret access key.
+     */
+    secretAccessKey?: string | null;
+  }
+  /**
    * AdaptingOSStep contains specific step details.
    */
   export interface Schema$AdaptingOSStep {}
@@ -183,6 +196,167 @@ export namespace vmmigration_v1alpha1 {
      * The newest deployable version of the appliance. The current appliance can't be updated into this version, and the owner must manually deploy this OVA to a new appliance.
      */
     newDeployableAppliance?: Schema$ApplianceVersion;
+  }
+  /**
+   * AwsSecurityGroup describes a security group of an AWS VM.
+   */
+  export interface Schema$AwsSecurityGroup {
+    /**
+     * The AWS security group id.
+     */
+    id?: string | null;
+    /**
+     * The AWS security group name.
+     */
+    name?: string | null;
+  }
+  /**
+   * AwsSourceDetails message describes a specific source details for the AWS source type.
+   */
+  export interface Schema$AwsSourceDetails {
+    /**
+     * AWS Credentials using access key id and secret.
+     */
+    accessKeyCreds?: Schema$AccessKeyCredentials;
+    /**
+     * AWS access key ID.
+     */
+    accessKeyId?: string | null;
+    /**
+     * Immutable. The AWS region that the source VMs will be migrated from.
+     */
+    awsRegion?: string | null;
+    /**
+     * Output only. Provides details on the state of the Source in case of an error.
+     */
+    error?: Schema$Status;
+    /**
+     * AWS security group names to limit the scope of the source inventory.
+     */
+    inventorySecurityGroupNames?: string[] | null;
+    /**
+     * AWS resource tags to limit the scope of the source inventory.
+     */
+    inventoryTagList?: Schema$Tag[];
+    /**
+     * Deprecated: AWS resource tags to limit the scope of the source inventory. Use inventory_tag_list instead.
+     */
+    inventoryTags?: {[key: string]: string} | null;
+    /**
+     * User specified tags to add to every M2VM generated resource in AWS. These tags will be set in addition to the default tags that are set as part of the migration process. The tags must not begin with the reserved prefix `m2vm`.
+     */
+    migrationResourcesUserTags?: {[key: string]: string} | null;
+    /**
+     * Output only. The source's public IP. All communication initiated by this source will originate from this IP.
+     */
+    publicIp?: string | null;
+    /**
+     * Input only. AWS secret access key.
+     */
+    secretAccessKey?: string | null;
+    /**
+     * Output only. State of the source as determined by the health check.
+     */
+    state?: string | null;
+  }
+  /**
+   * Represent the source AWS VM details.
+   */
+  export interface Schema$AwsSourceVmDetails {
+    /**
+     * The total size of the disks being migrated in bytes.
+     */
+    committedStorageBytes?: string | null;
+    /**
+     * The firmware type of the source VM.
+     */
+    firmware?: string | null;
+  }
+  /**
+   * AwsVmDetails describes a VM in AWS.
+   */
+  export interface Schema$AwsVmDetails {
+    /**
+     * The CPU architecture.
+     */
+    architecture?: string | null;
+    /**
+     * The VM Boot Option.
+     */
+    bootOption?: string | null;
+    /**
+     * The total size of the storage allocated to the VM in MB.
+     */
+    committedStorageMb?: string | null;
+    /**
+     * The number of cpus the VM has.
+     */
+    cpuCount?: number | null;
+    /**
+     * The number of disks the VM has.
+     */
+    diskCount?: number | null;
+    /**
+     * The display name of the VM. Note that this value is not necessarily unique.
+     */
+    displayName?: string | null;
+    /**
+     * The instance type of the VM.
+     */
+    instanceType?: string | null;
+    /**
+     * The memory size of the VM in MB.
+     */
+    memoryMb?: number | null;
+    /**
+     * The VM's OS.
+     */
+    osDescription?: string | null;
+    /**
+     * Output only. The power state of the VM at the moment list was taken.
+     */
+    powerState?: string | null;
+    /**
+     * The security groups the VM belongs to.
+     */
+    securityGroups?: Schema$AwsSecurityGroup[];
+    /**
+     * The descriptive name of the AWS's source this VM is connected to.
+     */
+    sourceDescription?: string | null;
+    /**
+     * The id of the AWS's source this VM is connected to.
+     */
+    sourceId?: string | null;
+    /**
+     * The tags of the VM.
+     */
+    tags?: {[key: string]: string} | null;
+    /**
+     * The virtualization type.
+     */
+    virtualizationType?: string | null;
+    /**
+     * The VM ID in AWS.
+     */
+    vmId?: string | null;
+    /**
+     * The VPC ID the VM belongs to.
+     */
+    vpcId?: string | null;
+    /**
+     * The AWS zone of the VM.
+     */
+    zone?: string | null;
+  }
+  /**
+   * AWSVmsDetails describes VMs in AWS.
+   */
+  export interface Schema$AwsVmsDetails {
+    /**
+     * The details of the AWS VMs.
+     */
+    details?: Schema$AwsVmDetails[];
   }
   /**
    * Request message for 'CancelCloneJob' request.
@@ -400,7 +574,7 @@ export namespace vmmigration_v1alpha1 {
      */
     networkTags?: string[] | null;
     /**
-     * The GCP target project ID or project name.
+     * The Google Cloud target project ID or project name.
      */
     project?: string | null;
     /**
@@ -558,7 +732,7 @@ export namespace vmmigration_v1alpha1 {
     startTime?: string | null;
   }
   /**
-   * DatacenterConnector message describes a connector between the Source and GCP, which is installed on a vmware datacenter (an OVA vm installed by the user) to connect the Datacenter to GCP and support vm migration data transfer.
+   * DatacenterConnector message describes a connector between the Source and Google Cloud, which is installed on a vmware datacenter (an OVA vm installed by the user) to connect the Datacenter to Google Cloud and support vm migration data transfer.
    */
   export interface Schema$DatacenterConnector {
     /**
@@ -574,7 +748,7 @@ export namespace vmmigration_v1alpha1 {
      */
     availableVersions?: Schema$AvailableUpdates;
     /**
-     * Output only. The communication channel between the datacenter connector and GCP.
+     * Output only. The communication channel between the datacenter connector and Google Cloud.
      */
     bucket?: string | null;
     /**
@@ -626,6 +800,10 @@ export namespace vmmigration_v1alpha1 {
    * Response message for fetchInventory.
    */
   export interface Schema$FetchInventoryResponse {
+    /**
+     * The description of the VMs in a Source of type AWS.
+     */
+    awsVms?: Schema$AwsVmsDetails;
     /**
      * Output only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
@@ -911,6 +1089,10 @@ export namespace vmmigration_v1alpha1 {
    */
   export interface Schema$MigratingVm {
     /**
+     * Output only. Details of the VM from an AWS source.
+     */
+    awsSourceVmDetails?: Schema$AwsSourceVmDetails;
+    /**
      * Details of the target VM in Compute Engine.
      */
     computeEngineTargetDefaults?: Schema$ComputeEngineTargetDefaults;
@@ -979,7 +1161,7 @@ export namespace vmmigration_v1alpha1 {
      */
     stateTime?: string | null;
     /**
-     * The default configuration of the target VM that will be created in GCP as a result of the migration. Deprecated: Use compute_engine_target_defaults instead.
+     * The default configuration of the target VM that will be created in Google Cloud as a result of the migration. Deprecated: Use compute_engine_target_defaults instead.
      */
     targetDefaults?: Schema$TargetVMDetails;
     /**
@@ -1158,7 +1340,7 @@ export namespace vmmigration_v1alpha1 {
      */
     progress?: number | null;
     /**
-     * The current progress in percentage of this cycle.
+     * The current progress in percentage of this cycle. Was replaced by 'steps' field, which breaks down the cycle progression more accurately.
      */
     progressPercent?: number | null;
     /**
@@ -1166,7 +1348,7 @@ export namespace vmmigration_v1alpha1 {
      */
     startTime?: string | null;
     /**
-     * State of the MigratingVm.
+     * State of the ReplicationCycle.
      */
     state?: string | null;
     /**
@@ -1230,6 +1412,10 @@ export namespace vmmigration_v1alpha1 {
    */
   export interface Schema$Source {
     /**
+     * AWS type source details.
+     */
+    aws?: Schema$AwsSourceDetails;
+    /**
      * Output only. The create time timestamp.
      */
     createTime?: string | null;
@@ -1278,6 +1464,19 @@ export namespace vmmigration_v1alpha1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Tag is an AWS tag representation.
+   */
+  export interface Schema$Tag {
+    /**
+     * Key of tag.
+     */
+    key?: string | null;
+    /**
+     * Value of tag.
+     */
+    value?: string | null;
   }
   /**
    * TargetProject message represents a target Compute Engine project for a migration or a clone.
@@ -3713,6 +3912,7 @@ export namespace vmmigration_v1alpha1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "aws": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "error": {},
@@ -3998,6 +4198,7 @@ export namespace vmmigration_v1alpha1 {
      *
      *   // Example response
      *   // {
+     *   //   "awsVms": {},
      *   //   "nextPageToken": "my_nextPageToken",
      *   //   "updateTime": "my_updateTime",
      *   //   "vmwareVms": {}
@@ -4137,6 +4338,7 @@ export namespace vmmigration_v1alpha1 {
      *
      *   // Example response
      *   // {
+     *   //   "aws": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "error": {},
@@ -4415,6 +4617,7 @@ export namespace vmmigration_v1alpha1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "aws": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "error": {},
@@ -5500,6 +5703,7 @@ export namespace vmmigration_v1alpha1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "awsSourceVmDetails": {},
      *       //   "computeEngineTargetDefaults": {},
      *       //   "computeEngineVmDefaults": {},
      *       //   "createTime": "my_createTime",
@@ -5936,6 +6140,7 @@ export namespace vmmigration_v1alpha1 {
      *
      *   // Example response
      *   // {
+     *   //   "awsSourceVmDetails": {},
      *   //   "computeEngineTargetDefaults": {},
      *   //   "computeEngineVmDefaults": {},
      *   //   "createTime": "my_createTime",
@@ -6232,6 +6437,7 @@ export namespace vmmigration_v1alpha1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "awsSourceVmDetails": {},
      *       //   "computeEngineTargetDefaults": {},
      *       //   "computeEngineVmDefaults": {},
      *       //   "createTime": "my_createTime",
