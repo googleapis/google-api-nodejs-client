@@ -823,7 +823,7 @@
       }
     }
   },
-  "revision": "20221016",
+  "revision": "20221202",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
@@ -848,7 +848,7 @@
             "Pipeline (load/export) jobs from the project will use the reservation.",
             "Query jobs from the project will use the reservation.",
             "BigQuery ML jobs that use services external to BigQuery for model training. These jobs will not utilize idle slots from other reservations.",
-            "Background jobs that BigQuery runs for the customers in the background. This is a preview feature."
+            "Background jobs that BigQuery runs for the customers in the background."
           ],
           "type": "string"
         },

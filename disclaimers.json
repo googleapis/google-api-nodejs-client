@@ -12,6 +12,10 @@
     "package": "@google-cloud/notebooks"
   },
   {
+    "api": "notebooks",
+    "package": "@google-cloud/notebooks"
+  },
+  {
     "api": "apigateway",
     "package": "@google-cloud/api-gateway"
   },
@@ -58,6 +62,10 @@
   {
     "api": "binaryauthorization",
     "package": "@google-cloud/binary-authorization"
+  },
+  {
+    "api": "cloudbuild",
+    "package": "@google-cloud/cloudbuild"
   },
   {
     "api": "cloudbuild",
@@ -124,6 +132,10 @@
     "package": "@google-cloud/datastream"
   },
   {
+    "api": "clouddebugger",
+    "package": "@google-cloud/debug-agent"
+  },
+  {
     "api": "clouddeploy",
     "package": "@google-cloud/deploy"
   },
@@ -136,8 +148,16 @@
     "package": "@google-cloud/dialogflow-cx"
   },
   {
+    "api": "dialogflow",
+    "package": "@google-cloud/dialogflow-cx"
+  },
+  {
     "api": "dns",
     "package": "@google-cloud/dns"
+  },
+  {
+    "api": "documentai",
+    "package": "@google-cloud/documentai"
   },
   {
     "api": "documentai",
@@ -160,7 +180,7 @@
     "package": "@google-cloud/eventarc"
   },
   {
-    "api": "publishing",
+    "api": "eventarcpublishing",
     "package": "@google-cloud/eventarc-publishing"
   },
   {
@@ -178,6 +198,10 @@
   {
     "api": "cloudfunctions",
     "package": "@google-cloud/functions"
+  },
+  {
+    "api": "gameservices",
+    "package": "@google-cloud/game-servers"
   },
   {
     "api": "gameservices",
@@ -212,6 +236,10 @@
     "package": "@google-cloud/compute"
   },
   {
+    "api": "compute",
+    "package": "@google-cloud/compute"
+  },
+  {
     "api": "containeranalysis",
     "package": "@google-cloud/containeranalysis"
   },
@@ -240,12 +268,24 @@
     "package": "@google-cloud/iot"
   },
   {
+    "api": "cloudiot",
+    "package": "@google-cloud/iot"
+  },
+  {
     "api": "kms",
     "package": "@google-cloud/kms"
   },
   {
     "api": "container",
     "package": "@google-cloud/container"
+  },
+  {
+    "api": "container",
+    "package": "@google-cloud/container"
+  },
+  {
+    "api": "livestream",
+    "package": "@google-cloud/livestream"
   },
   {
     "api": "livestream",
@@ -344,6 +384,14 @@
     "package": "@google-cloud/retail"
   },
   {
+    "api": "retail",
+    "package": "@google-cloud/retail"
+  },
+  {
+    "api": "cloudscheduler",
+    "package": "@google-cloud/scheduler"
+  },
+  {
     "api": "cloudscheduler",
     "package": "@google-cloud/scheduler"
   },
@@ -356,8 +404,16 @@
     "package": "@google-cloud/security-center"
   },
   {
+    "api": "securitycenter",
+    "package": "@google-cloud/security-center"
+  },
+  {
     "api": "servicecontrol",
     "package": "@google-cloud/service-control"
+  },
+  {
+    "api": "servicedirectory",
+    "package": "@google-cloud/service-directory"
   },
   {
     "api": "servicedirectory",
@@ -384,16 +440,16 @@
     "package": "@google-cloud/speech"
   },
   {
-    "api": "clouddebugger",
-    "package": "@google-cloud/debug-agent"
-  },
-  {
     "api": "monitoring",
     "package": "@google-cloud/monitoring"
   },
   {
     "api": "storage-api",
     "package": "@google-cloud/storage"
+  },
+  {
+    "api": "storagetransfer",
+    "package": "@google-cloud/storage-transfer"
   },
   {
     "api": "storagetransfer",
@@ -412,8 +468,16 @@
     "package": "@google-cloud/text-to-speech"
   },
   {
+    "api": "texttospeech",
+    "package": "@google-cloud/text-to-speech"
+  },
+  {
     "api": "tpu",
     "package": "@google-cloud/tpu"
+  },
+  {
+    "api": "transcoder",
+    "package": "@google-cloud/video-transcoder"
   },
   {
     "api": "transcoder",
@@ -424,8 +488,16 @@
     "package": "@google-cloud/translate"
   },
   {
+    "api": "translate",
+    "package": "@google-cloud/translate"
+  },
+  {
     "api": "aiplatform",
     "package": "@google-cloud/aiplatform"
+  },
+  {
+    "api": "videointelligence",
+    "package": "@google-cloud/video-intelligence"
   },
   {
     "api": "videointelligence",
@@ -452,8 +524,24 @@
     "package": "@google-cloud/workflows"
   },
   {
-    "api": "analyticshub",
+    "api": "workflows",
+    "package": "@google-cloud/workflows"
+  },
+  {
+    "api": "google",
+    "package": "@google-cloud/bigquery-datapolicies"
+  },
+  {
+    "api": "bigquerydatapolicy",
     "package": "@google-cloud/bigquery-data-exchange"
+  },
+  {
+    "api": "gkemulticloud",
+    "package": "@google-cloud/gkemulticloud"
+  },
+  {
+    "api": "apikeys",
+    "package": "@google-cloud/apikeys"
   },
   {
     "api": "apigeeregistry",
@@ -464,27 +552,35 @@
     "package": "@google/area120-tables"
   },
   {
+    "api": "area120tables",
+    "package": "@google/area120-tables"
+  },
+  {
     "api": "baremetalsolution",
     "package": "@google-cloud/bare-metal-solution"
   },
   {
-    "api": "google",
+    "api": "batch",
+    "package": "@google-cloud/batch"
+  },
+  {
+    "api": "beyondcorp",
     "package": "@google-cloud/appconnections"
   },
   {
-    "api": "google",
+    "api": "beyondcorp",
     "package": "@google-cloud/appconnectors"
   },
   {
-    "api": "google",
+    "api": "beyondcorp",
     "package": "@google-cloud/appgateways"
   },
   {
-    "api": "google",
+    "api": "beyondcorp",
     "package": "@google-cloud/clientconnectorservices"
   },
   {
-    "api": "google",
+    "api": "analyticshub",
     "package": "@google-cloud/clientgateways"
   },
   {
@@ -508,6 +604,14 @@
     "package": "@google-cloud/dataform"
   },
   {
+    "api": "discoveryengine",
+    "package": "@google-cloud/discoveryengine"
+  },
+  {
+    "api": "contentwarehouse",
+    "package": "@google-cloud/contentwarehouse"
+  },
+  {
     "api": "connectgateway",
     "package": "@google-cloud/gke-connect-gateway"
   },
@@ -516,8 +620,24 @@
     "package": "@google-analytics/admin"
   },
   {
+    "api": "analyticsadmin",
+    "package": "@google-analytics/admin"
+  },
+  {
     "api": "analyticsdata",
     "package": "@google-analytics/data"
+  },
+  {
+    "api": "analyticsdata",
+    "package": "@google-analytics/data"
+  },
+  {
+    "api": "routes",
+    "package": "@googlemaps/routing"
+  },
+  {
+    "api": "google",
+    "package": "@google-cloud/iam"
   },
   {
     "api": "lifesciences",
@@ -536,6 +656,10 @@
     "package": "@google-cloud/private-catalog"
   },
   {
+    "api": "publicca",
+    "package": "@google-cloud/publicca"
+  },
+  {
     "api": "run",
     "package": "@google-cloud/run"
   },
@@ -546,5 +670,9 @@
   {
     "api": "stitcher",
     "package": "@google-cloud/video-stitcher"
+  },
+  {
+    "api": "vmwareengine",
+    "package": "@google-cloud/vmwareengine"
   }
 ]
