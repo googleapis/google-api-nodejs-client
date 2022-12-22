@@ -235,9 +235,6 @@ export namespace chat_v1 {
      */
     thumbnailUri?: string | null;
   }
-  /**
-   * A reference to the data of an attachment.
-   */
   export interface Schema$AttachmentDataRef {
     /**
      * The resource name of the attachment data. This is used with the media API to download the attachment data.
@@ -525,9 +522,13 @@ export namespace chat_v1 {
    */
   export interface Schema$GoogleAppsCardV1Action {
     /**
-     * Apps Script function to invoke when the containing element is clicked/activated.
+     * A custom function to invoke when the containing element is clicked or othrwise activated. For example usage, see [Create interactive cards](https://developers.google.com/chat/how-tos/cards-onclick).
      */
     function?: string | null;
+    /**
+     * Optional. Required when opening a [dialog](https://developers.google.com/chat/how-tos/dialogs). What to do in response to an interaction with a user, such as a user clicking button on a card message. If unspecified, the app responds by executing an `action` - like opening a link or running a function - as normal. By specifying an `interaction`, the app can respond in special interactive ways. For example, by setting `interaction` to `OPEN_DIALOG`, the app can open a [dialog](https://developers.google.com/chat/how-tos/dialogs). When specified, a loading indicator is not shown. Supported by Chat apps, but not Google Workspace Add-ons. If specified for an add-on, the entire card is stripped and nothing is shown in the client.
+     */
+    interaction?: string | null;
     /**
      * Specifies the loading indicator that the action displays while making the call to the action.
      */
@@ -537,12 +538,12 @@ export namespace chat_v1 {
      */
     parameters?: Schema$GoogleAppsCardV1ActionParameter[];
     /**
-     * Indicates whether form values persist after the action. The default value is `false`. If `true`, form values remain after the action is triggered. When using [LoadIndicator.NONE](https://developers.google.com/workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) for actions, `persist_values` = `true`is recommended, as it ensures that any changes made by the user after form or on change actions are sent to the server are not overwritten by the response. If `false`, the form values are cleared when the action is triggered. When `persist_values` is set to `false`, it is strongly recommended that the card use [LoadIndicator.SPINNER](https://developers.google.com/workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) for all actions, as this locks the UI to ensure no changes are made by the user while the action is being processed. Not supported by Google Chat apps.
+     * Indicates whether form values persist after the action. The default value is `false`. If `true`, form values remain after the action is triggered. When using [LoadIndicator.NONE](https://developers.google.com/workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) for actions, `persist_values` = `true`is recommended, as it ensures that any changes made by the user after form or on change actions are sent to the server are not overwritten by the response. If `false`, the form values are cleared when the action is triggered. When `persist_values` is set to `false`, it is strongly recommended that the card use [LoadIndicator.SPINNER](https://developers.google.com/workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) for all actions, as this locks the UI to ensure no changes are made by the user while the action is being processed. Not supported by Chat apps.
      */
     persistValues?: boolean | null;
   }
   /**
-   * List of string parameters to supply when the action method is invoked. For example, consider three snooze buttons: snooze now, snooze 1 day, snooze next week. You might use action method = snooze(), passing the snooze type and snooze time in the list of string parameters.
+   * List of string parameters to supply when the action method is invoked. For example, consider three snooze buttons: snooze now, snooze 1 day, snooze next week. You might use action method = snooze(), passing the snooze type and snooze time in the list of string parameters. To learn more, see [CommonEventObject](https://developers.google.com/chat/api/reference/rest/v1/Event#commoneventobject).
    */
   export interface Schema$GoogleAppsCardV1ActionParameter {
     /**
@@ -555,7 +556,7 @@ export namespace chat_v1 {
     value?: string | null;
   }
   /**
-   * Represents the complete border style applied to widgets.
+   * Represents the complete border style applied to items in a widget.
    */
   export interface Schema$GoogleAppsCardV1BorderStyle {
     /**
@@ -572,31 +573,31 @@ export namespace chat_v1 {
     type?: string | null;
   }
   /**
-   * A button. Can be a text button or an image button.
+   * A text, icon, or text + icon button that users can click. To make an image a clickable button, specify an Image (not an ImageComponent) and set an `onClick` action.
    */
   export interface Schema$GoogleAppsCardV1Button {
     /**
-     * The alternative text used for accessibility. Has no effect when an icon is set; use `icon.alt_text` instead.
+     * The alternative text used for accessibility. Set descriptive text that lets users know what the button does. For example, if a button opens a hyperlink, you might write: "Opens a new browser tab and navigates to the Google Chat developer documentation at https://developers.google.com/chat". Has no effect when an icon is set; use `icon.alt_text` instead.
      */
     altText?: string | null;
     /**
-     * If set, the button is filled with a solid background.
+     * If set, the button is filled with a solid background color and the font color changes to maintain contrast with the background color. For example, setting a blue background will likely result in white text. If unset, the image background is white and the font color is blue. For red, green and blue, the value of each field is a `float` number that can be expressed in either of two ways: as a number between 0 and 255 divided by 255 (153/255) or as a value between 0 and 1 (0.6). 0 represents the absence of a color and 1 or 255/255 represent the full presence of that color on the RGB scale. Optionally set alpha, which sets a level of transparency using this equation: ``` pixel color = alpha * (this color) + (1.0 - alpha) * (background color) ``` For alpha, a value of 1 corresponds with a solid color, and a value of 0 corresponds with a completely transparent color. For example, the following color represents a half transparent red: ``` "color": { "red": 1, "green": 0, "blue": 0, "alpha": 0.5 \} ```
      */
     color?: Schema$Color;
     /**
-     * If `true`, the button is displayed in a disabled state and doesn't respond to user actions.
+     * If `true`, the button is displayed in an inactive state and doesn't respond to user actions.
      */
     disabled?: boolean | null;
     /**
-     * The icon image.
+     * The icon image. If both `icon` and `text` are set, then the icon appears in place of the text. Support for both an icon and text is coming soon.
      */
     icon?: Schema$GoogleAppsCardV1Icon;
     /**
-     * The action to perform when the button is clicked.
+     * The action to perform when the button is clicked, such as opening a hyperlink or running a custom function.
      */
     onClick?: Schema$GoogleAppsCardV1OnClick;
     /**
-     * The text of the button.
+     * The text displayed inside the button.
      */
     text?: string | null;
   }
@@ -610,40 +611,40 @@ export namespace chat_v1 {
     buttons?: Schema$GoogleAppsCardV1Button[];
   }
   /**
-   * Cards support a defined layout, interactive UI elements like buttons, and rich media like images. Use cards to present detailed information, gather information from users, and guide users to take a next step. In Google Chat, cards appear in several places: - As stand-alone messages. - Accompanying a text message, just beneath the text message. - As a [dialog](https://developers.google.com/chat/how-tos/dialogs). The following example JSON creates a "contact card" that features: - A header with the contact's name, job title, avatar picture. - A section with the contact information, including formatted text. - Buttons that users can click to share the contact or see more or less info. ![Example contact card](/chat/images/card_api_reference.png) ``` { "cardsV2": [ { "cardId": "unique-card-id", "card": { "header": { "title": "Sasha", "subtitle": "Software Engineer", "imageUrl": "https://developers.google.com/chat/images/quickstart-app-avatar.png", "imageType": "CIRCLE", "imageAltText": "Avatar for Sasha", \}, "sections": [ { "header": "Contact Info", "collapsible": true, "uncollapsibleWidgetsCount": 1, "widgets": [ { "decoratedText": { "startIcon": { "knownIcon": "EMAIL", \}, "text": "sasha@example.com", \} \}, { "decoratedText": { "startIcon": { "knownIcon": "PERSON", \}, "text": "Online", \}, \}, { "decoratedText": { "startIcon": { "knownIcon": "PHONE", \}, "text": "+1 (555) 555-1234", \} \}, { "buttonList": { "buttons": [ { "text": "Share", "onClick": { "openLink": { "url": "https://example.com/share", \} \} \}, { "text": "Edit", "onClick": { "action": { "function": "goToView", "parameters": [ { "key": "viewType", "value": "EDIT", \} ], \} \} \}, ], \} \}, ], \}, ], \}, \} ], \} ```
+   * Cards support a defined layout, interactive UI elements like buttons, and rich media like images. Use cards to present detailed information, gather information from users, and guide users to take a next step. In Google Chat, cards appear in several places: - As stand-alone messages. - Accompanying a text message, just beneath the text message. - As a [dialog](https://developers.google.com/chat/how-tos/dialogs). The following example JSON creates a "contact card" that features: - A header with the contact's name, job title, avatar picture. - A section with the contact information, including formatted text. - Buttons that users can click to share the contact or see more or less info. ![Example contact card](https://developers.google.com/chat/images/card_api_reference.png) ``` { "cardsV2": [ { "cardId": "unique-card-id", "card": { "header": { "title": "Sasha", "subtitle": "Software Engineer", "imageUrl": "https://developers.google.com/chat/images/quickstart-app-avatar.png", "imageType": "CIRCLE", "imageAltText": "Avatar for Sasha", \}, "sections": [ { "header": "Contact Info", "collapsible": true, "uncollapsibleWidgetsCount": 1, "widgets": [ { "decoratedText": { "startIcon": { "knownIcon": "EMAIL", \}, "text": "sasha@example.com", \} \}, { "decoratedText": { "startIcon": { "knownIcon": "PERSON", \}, "text": "Online", \}, \}, { "decoratedText": { "startIcon": { "knownIcon": "PHONE", \}, "text": "+1 (555) 555-1234", \} \}, { "buttonList": { "buttons": [ { "text": "Share", "onClick": { "openLink": { "url": "https://example.com/share", \} \} \}, { "text": "Edit", "onClick": { "action": { "function": "goToView", "parameters": [ { "key": "viewType", "value": "EDIT", \} ], \} \} \}, ], \} \}, ], \}, ], \}, \} ], \} ```
    */
   export interface Schema$GoogleAppsCardV1Card {
     /**
-     * The card's actions. Actions are added to the card's generated toolbar menu. Not supported by Google Chat apps. For example, the following JSON constructs a card action menu with Settings and Send Feedback options: ``` "card_actions": [ { "actionLabel": "Settings", "onClick": { "action": { "functionName": "goToView", "parameters": [ { "key": "viewType", "value": "SETTING" \} ], "loadIndicator": "LoadIndicator.SPINNER" \} \} \}, { "actionLabel": "Send Feedback", "onClick": { "openLink": { "url": "https://example.com/feedback" \} \} \} ] ```
+     * The card's actions. Actions are added to the card's toolbar menu. Because Chat app cards have no toolbar, `cardActions[]` is not supported by Chat apps. For example, the following JSON constructs a card action menu with Settings and Send Feedback options: ``` "card_actions": [ { "actionLabel": "Settings", "onClick": { "action": { "functionName": "goToView", "parameters": [ { "key": "viewType", "value": "SETTING" \} ], "loadIndicator": "LoadIndicator.SPINNER" \} \} \}, { "actionLabel": "Send Feedback", "onClick": { "openLink": { "url": "https://example.com/feedback" \} \} \} ] ```
      */
     cardActions?: Schema$GoogleAppsCardV1CardAction[];
     /**
-     * The `peekCardHeader` display style for. Not supported by Google Chat apps.
+     * In Google Workspace add-ons, sets the display properties of the `peekCardHeader`. Not supported by Chat apps.
      */
     displayStyle?: string | null;
     /**
-     * The fixed footer shown at the bottom of this card.
+     * The fixed footer shown at the bottom of this card. Setting `fixedFooter` without specifying a `primaryButton` or a `secondaryButton` causes an error. Chat apps support `fixedFooter` in [dialogs](https://developers.google.com/chat/how-tos/dialogs), but not in [card messages](https://developers.google.com/chat/api/guides/message-formats/cards).
      */
     fixedFooter?: Schema$GoogleAppsCardV1CardFixedFooter;
     /**
-     * The header of the card. A header usually contains a title and an image.
+     * The header of the card. A header usually contains a leading image and a title. Headers always appear at the top of a card.
      */
     header?: Schema$GoogleAppsCardV1CardHeader;
     /**
-     * Name of the card. Used as a card identifier in card navigation.
+     * Name of the card. Used as a card identifier in card navigation. Because Chat apps don't support card navigation, they ignore this field.
      */
     name?: string | null;
     /**
-     * When displaying contextual content, the peek card header acts as a placeholder so that the user can navigate forward between the homepage cards and the contextual cards. Not supported by Google Chat apps.
+     * When displaying contextual content, the peek card header acts as a placeholder so that the user can navigate forward between the homepage cards and the contextual cards. Not supported by Chat apps.
      */
     peekCardHeader?: Schema$GoogleAppsCardV1CardHeader;
     /**
-     * Sections are separated by a line divider.
+     * Contains a collection of widgets. Each section has its own, optional header. Sections are visually separated by a line divider.
      */
     sections?: Schema$GoogleAppsCardV1Section[];
   }
   /**
-   * A card action is the action associated with the card. For example, an invoice card might include actions such as delete invoice, email invoice, or open the invoice in a browser. Not supported by Google Chat apps.
+   * A card action is the action associated with the card. For example, an invoice card might include actions such as delete invoice, email invoice, or open the invoice in a browser. Not supported by Chat apps.
    */
   export interface Schema$GoogleAppsCardV1CardAction {
     /**
@@ -656,7 +657,7 @@ export namespace chat_v1 {
     onClick?: Schema$GoogleAppsCardV1OnClick;
   }
   /**
-   * A persistent (sticky) footer that is added to the bottom of the card.
+   * A persistent (sticky) footer that that appears at the bottom of the card. Setting `fixedFooter` without specifying a `primaryButton` or a `secondaryButton` causes an error. Chat apps support `fixedFooter` in [dialogs](https://developers.google.com/chat/how-tos/dialogs), but not in [card messages](https://developers.google.com/chat/api/guides/message-formats/cards).
    */
   export interface Schema$GoogleAppsCardV1CardFixedFooter {
     /**
@@ -677,15 +678,15 @@ export namespace chat_v1 {
      */
     imageAltText?: string | null;
     /**
-     * The image's type.
+     * The shape used to crop the image.
      */
     imageType?: string | null;
     /**
-     * The URL of the image in the card header.
+     * The HTTPS URL of the image in the card header.
      */
     imageUrl?: string | null;
     /**
-     * The subtitle of the card header.
+     * The subtitle of the card header. If specified, appears on its own line below the `title`.
      */
     subtitle?: string | null;
     /**
@@ -694,19 +695,19 @@ export namespace chat_v1 {
     title?: string | null;
   }
   /**
-   * The widget that lets users to specify a date and time. Not supported by Google Chat apps.
+   * Lets users specify a date, a time, or both a date and a time. Accepts text input from users, but features an interactive date and time selector that helps users enter correctly-formatted dates and times. If users enter a date or time incorrectly, the widget shows an error that prompts users to enter the correct format. Not supported by Chat apps. Support by Chat apps coming soon.
    */
   export interface Schema$GoogleAppsCardV1DateTimePicker {
     /**
-     * The label for the field that displays to the user.
+     * The text that prompts users to enter a date, time, or datetime. Specify text that helps the user enter the information your app needs. For example, if users are setting an appointment, then a label like "Appointment date" or "Appointment date and time" might work well.
      */
     label?: string | null;
     /**
-     * The name of the text input that's used in `formInput`, and uniquely identifies this input.
+     * The name by which the datetime picker is identified in a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs).
      */
     name?: string | null;
     /**
-     * Triggered when the user clicks Save or Clear from the date/time picker dialog. This is only triggered if the value changed as a result of the Save/Clear operation.
+     * Triggered when the user clicks **Save** or **Clear** from the datetime picker interface.
      */
     onChangeAction?: Schema$GoogleAppsCardV1Action;
     /**
@@ -714,11 +715,11 @@ export namespace chat_v1 {
      */
     timezoneOffsetDate?: number | null;
     /**
-     * The type of the date/time picker.
+     * What kind of date and time input the datetime picker supports.
      */
     type?: string | null;
     /**
-     * The value to display as the default value before user input or previous user input. It is represented in milliseconds (Epoch time). For `DATE_AND_TIME` type, the full epoch value is used. For `DATE_ONLY` type, only date of the epoch time is used. For `TIME_ONLY` type, only time of the epoch time is used. For example, you can set epoch time to `3 * 60 * 60 * 1000` to represent 3am.
+     * The value displayed as the default value before user input or previous user input, represented in milliseconds ([Epoch time](https://en.wikipedia.org/wiki/Unix_time)). For `DATE_AND_TIME` type, the full epoch value is used. For `DATE_ONLY` type, only date of the epoch time is used. For `TIME_ONLY` type, only time of the epoch time is used. For example, to represent 3:00 AM, set epoch time to `3 * 60 * 60 * 1000`.
      */
     valueMsEpoch?: string | null;
   }
@@ -727,7 +728,7 @@ export namespace chat_v1 {
    */
   export interface Schema$GoogleAppsCardV1DecoratedText {
     /**
-     * The formatted text label that shows below the main text.
+     * The text that appears below `text`. Always truncates. Supports simple formatting. See Text formatting for formatting details.
      */
     bottomLabel?: string | null;
     /**
@@ -735,15 +736,15 @@ export namespace chat_v1 {
      */
     button?: Schema$GoogleAppsCardV1Button;
     /**
-     * An icon displayed after the text.
+     * An icon displayed after the text. Supports [standard](https://developers.google.com/chat/api/guides/message-formats/cards#builtinicons) and [custom](https://developers.google.com/chat/api/guides/message-formats/cards#customicons) icons.
      */
     endIcon?: Schema$GoogleAppsCardV1Icon;
     /**
-     * Deprecated in favor of start_icon.
+     * Deprecated in favor of `startIcon`.
      */
     icon?: Schema$GoogleAppsCardV1Icon;
     /**
-     * Only the top and bottom label and content region are clickable.
+     * When users click on `topLabel` or `bottomLabel`, this action triggers.
      */
     onClick?: Schema$GoogleAppsCardV1OnClick;
     /**
@@ -751,28 +752,28 @@ export namespace chat_v1 {
      */
     startIcon?: Schema$GoogleAppsCardV1Icon;
     /**
-     * A switch widget can be clicked to change its state or trigger an action.
+     * A switch widget can be clicked to change its state and trigger an action. Currently supported in [dialogs](https://developers.google.com/chat/how-tos/dialogs). Support for [card messages](https://developers.google.com/chat/api/guides/message-formats/cards) is coming soon.
      */
     switchControl?: Schema$GoogleAppsCardV1SwitchControl;
     /**
-     * Required. The main widget formatted text. See Text formatting for details.
+     * Required. The primary text. Supports simple formatting. See Text formatting for formatting details.
      */
     text?: string | null;
     /**
-     * The formatted text label that shows above the main text.
+     * The text that appears above `text`. Always truncates. Supports simple formatting. See Text formatting for formatting details.
      */
     topLabel?: string | null;
     /**
-     * The wrap text setting. If `true`, the text is wrapped and displayed in multiline. Otherwise, the text is truncated.
+     * The wrap text setting. If `true`, the text wraps and displays on multiple lines. Otherwise, the text is truncated. Only applies to `text`, not `topLabel` and `bottomLabel`.
      */
     wrapText?: boolean | null;
   }
   /**
-   * A divider that appears in between widgets.
+   * Displays a divider between widgets, a horizontal line. For example, the following JSON creates a divider: ``` "divider": { \} ```
    */
   export interface Schema$GoogleAppsCardV1Divider {}
   /**
-   * Represents a Grid widget that displays items in a configurable grid layout.
+   * Displays a grid with a collection of items. A grid supports any number of columns and items. The number of rows is determined by items divided by columns. A grid with 10 items and 2 columns has 5 rows. A grid with 11 items and 2 columns has 6 rows. Currently supported in [dialogs](https://developers.google.com/chat/how-tos/dialogs). Support for [card messages](https://developers.google.com/chat/api/guides/message-formats/cards) is coming soon. For example, the following JSON creates a 2 column grid with a single item: ``` "grid": { "title": "A fine collection of items", "numColumns": 2, "borderStyle": { "type": "STROKE", "cornerRadius": 4.0 \}, "items": [ "image": { "imageUri": "https://www.example.com/image.png", "cropStyle": { "type": "SQUARE" \}, "borderStyle": { "type": "STROKE" \} \}, "title": "An item", "textAlignment": "CENTER" ], "onClick": { "openLink": { "url":"https://www.example.com" \} \} \} ```
    */
   export interface Schema$GoogleAppsCardV1Grid {
     /**
@@ -817,21 +818,20 @@ export namespace chat_v1 {
      */
     subtitle?: string | null;
     /**
-     * The horizontal alignment of the grid item's text.
-     */
-    textAlignment?: string | null;
-    /**
      * The grid item's title.
      */
     title?: string | null;
   }
+  /**
+   * An icon displayed in a widget on a card. Supports [standard](https://developers.google.com/chat/api/guides/message-formats/cards) and [custom](https://developers.google.com/chat/api/guides/message-formats/cards#customicons) icons.
+   */
   export interface Schema$GoogleAppsCardV1Icon {
     /**
-     * The description of the icon, used for accessibility. The default value is provided if you don't specify one.
+     * Optional. A description of the icon used for accessibility. If unspecified, a default value is provided. As a best practice, you should set a helpful description. For example, if an icon displays a user's account portrait, you could describe it as "A user's account portrait." If the icon displays in a Button, this alt text takes precedence and overwrites the button's alt text, so you should write alt text for the button: Set descriptive text that lets users know what the button does. For example, if a button opens a hyperlink, you might write: "Opens a new browser tab and navigates to the Google Chat developer documentation at https://developers.google.com/chat".
      */
     altText?: string | null;
     /**
-     * The icon specified by a URL.
+     * Display a custom icon hosted at an HTTPS URL. For example: ``` "iconUrl": "https://developers.google.com/chat/images/quickstart-app-avatar.png" ``` Supported file types include `.png` and `.jpg`.
      */
     iconUrl?: string | null;
     /**
@@ -839,7 +839,7 @@ export namespace chat_v1 {
      */
     imageType?: string | null;
     /**
-     * The icon specified by the string name of a list of known icons.
+     * Display one of the standard icons provided by Google Workspace. For example, to display an airplane icon, specify `AIRPLANE`. For a bus, specify `BUS`. For a full list of supported icons, see [standard icons](https://developers.google.com/chat/api/guides/message-formats/cards).
      */
     knownIcon?: string | null;
   }
@@ -852,11 +852,11 @@ export namespace chat_v1 {
      */
     altText?: string | null;
     /**
-     * An image URL.
+     * The `https` URL that hosts the image. For example: ``` https://developers.google.com/chat/images/quickstart-app-avatar.png ```
      */
     imageUrl?: string | null;
     /**
-     * The action triggered by an `onClick` event.
+     * When a user clicks on the image, the click triggers this action.
      */
     onClick?: Schema$GoogleAppsCardV1OnClick;
   }
@@ -882,11 +882,11 @@ export namespace chat_v1 {
     imageUri?: string | null;
   }
   /**
-   * Represents the crop style applied to an image.
+   * Represents the crop style applied to an image. For example, here's how to apply a 16 by 9 aspect ratio: ``` cropStyle { "type": "RECTANGLE_CUSTOM", "aspectRatio": 16/9 \} ```
    */
   export interface Schema$GoogleAppsCardV1ImageCropStyle {
     /**
-     * The aspect ratio to use if the crop type is `RECTANGLE_CUSTOM`.
+     * The aspect ratio to use if the crop type is `RECTANGLE_CUSTOM`. For example, here's how to apply a 16 by 9 aspect ratio: ``` cropStyle { "type": "RECTANGLE_CUSTOM", "aspectRatio": 16/9 \} ```
      */
     aspectRatio?: number | null;
     /**
@@ -895,7 +895,7 @@ export namespace chat_v1 {
     type?: string | null;
   }
   /**
-   * Represents the response to an `onClick` event.
+   * Represents how to respond when users click an interactive element on a card, such as a button.
    */
   export interface Schema$GoogleAppsCardV1OnClick {
     /**
@@ -903,7 +903,7 @@ export namespace chat_v1 {
      */
     action?: Schema$GoogleAppsCardV1Action;
     /**
-     * A new card is pushed to the card stack after clicking if specified.
+     * A new card is pushed to the card stack after clicking if specified. Supported by Google Workspace Add-ons, but not Chat apps.
      */
     card?: Schema$GoogleAppsCardV1Card;
     /**
@@ -933,145 +933,145 @@ export namespace chat_v1 {
     url?: string | null;
   }
   /**
-   * A section contains a collection of widgets that are rendered vertically in the order that they are specified. Across all platforms, cards have a narrow fixed width, so there is currently no need for layout properties, for example, float.
+   * A section contains a collection of widgets that are rendered vertically in the order that they are specified.
    */
   export interface Schema$GoogleAppsCardV1Section {
     /**
-     * Indicates whether this section is collapsible. If a section is collapsible, the description must be given.
+     * Indicates whether this section is collapsible. Collapsible sections hide some or all widgets, but users can expand the section to reveal the hidden widgets by clicking **Show more**. Users can hide the widgets again by clicking **Show less**. To determine which widgets are hidden, specify `uncollapsibleWidgetsCount`.
      */
     collapsible?: boolean | null;
     /**
-     * The header of the section. Formatted text is supported.
+     * Text that appears at the top of a section. Supports [simple HTML formatted text](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
      */
     header?: string | null;
     /**
-     * The number of uncollapsible widgets. For example, when a section contains five widgets and the `uncollapsibleWidgetsCount` is set to `2`, the first two widgets are always shown and the last three are collapsed as default. The `uncollapsibleWidgetsCount` is taken into account only when `collapsible` is `true`.
+     * The number of uncollapsible widgets which remain visible even when a section is collapsed. For example, when a section contains five widgets and the `uncollapsibleWidgetsCount` is set to `2`, the first two widgets are always shown and the last three are collapsed by default. The `uncollapsibleWidgetsCount` is taken into account only when `collapsible` is `true`.
      */
     uncollapsibleWidgetsCount?: number | null;
     /**
-     * A section must contain at least 1 widget.
+     * All the widgets in the section. Must contain at least 1 widget.
      */
     widgets?: Schema$GoogleAppsCardV1Widget[];
   }
   /**
-   * A widget that creates a UI item with options for users to select. For example, a dropdown menu.
+   * A widget that creates a UI item with options for users to select. For example, a dropdown menu or check list. Chat apps receive and can process the value of entered text during form input events. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs). When you need to collect data from users that matches options you set, use a selection input. To collect abstract data from users, use the text input widget instead. Only supported in [dialogs](https://developers.google.com/chat/how-tos/dialogs). Support for [card messages](https://developers.google.com/chat/api/guides/message-formats/cards) coming soon.
    */
   export interface Schema$GoogleAppsCardV1SelectionInput {
     /**
-     * An array of the selected items.
+     * An array of the selected items. For example, all the selected check boxes.
      */
     items?: Schema$GoogleAppsCardV1SelectionItem[];
     /**
-     * The label displayed ahead of the switch control.
+     * The text that appears above the selection input field in the user interface. Specify text that helps the user enter the information your app needs. For example, if users are selecting the urgency of a work ticket from a drop-down menu, the label might be "Urgency" or "Select urgency".
      */
     label?: string | null;
     /**
-     * The name of the text input which is used in `formInput`.
+     * The name by which the selection input is identified in a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs).
      */
     name?: string | null;
     /**
-     * If specified, the form is submitted when the selection changes. If not specified, you must specify a separate button.
+     * If specified, the form is submitted when the selection changes. If not specified, you must specify a separate button that submits the form. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs).
      */
     onChangeAction?: Schema$GoogleAppsCardV1Action;
     /**
-     * The type of the selection.
+     * The way that an option appears to users. Different options support different types of interactions. For example, users can enable multiple check boxes, but can only select one value from a dropdown menu. Each selection input supports one type of selection. Mixing check boxes and switches, for example, is not supported.
      */
     type?: string | null;
   }
   /**
-   * A selectable item in the switch control.
+   * A selectable item in a selection input, such as a check box or a switch.
    */
   export interface Schema$GoogleAppsCardV1SelectionItem {
     /**
-     * If more than one item is selected for `RADIO_BUTTON` and `DROPDOWN`, the first selected item is treated as selected and the ones after are ignored.
+     * When `true`, more than one item is selected. If more than one item is selected for radio buttons and dropdown menus, the first selected item is received and the ones after are ignored.
      */
     selected?: boolean | null;
     /**
-     * The text to be displayed.
+     * The text displayed to users.
      */
     text?: string | null;
     /**
-     * The value associated with this item. The client should use this as a form input value.
+     * The value associated with this item. The client should use this as a form input value. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs).
      */
     value?: string | null;
   }
   /**
-   * A suggestion item.
+   * One suggested value that users can enter in a text input field.
    */
   export interface Schema$GoogleAppsCardV1SuggestionItem {
     /**
-     * The suggested autocomplete result.
+     * The value of a suggested input to a text input field. This is equivalent to what users would enter themselves.
      */
     text?: string | null;
   }
   /**
-   * A container wrapping elements necessary for showing suggestion items used in text input autocomplete.
+   * Suggested values that users can enter. These values appear when users click inside the text input field. As users type, the suggested values dynamically filter to match what the users have typed. For example, a text input field for programming language might suggest Java, JavaScript, Python, and C++. When users start typing "Jav", the list of suggestions filters to show just Java and JavaScript. Suggested values help guide users to enter values that your app can make sense of. When referring to JavaScript, some users might enter "javascript" and others "java script". Suggesting "JavaScript" can standardize how users interact with your app. When specified, `TextInput.type` is always `SINGLE_LINE`, even if it is set to `MULTIPLE_LINE`.
    */
   export interface Schema$GoogleAppsCardV1Suggestions {
     /**
-     * A list of suggestions used for autocomplete recommendations.
+     * A list of suggestions used for autocomplete recommendations in text input fields.
      */
     items?: Schema$GoogleAppsCardV1SuggestionItem[];
   }
   /**
-   * Either a toggle-style switch or a checkbox.
+   * Either a toggle-style switch or a checkbox inside a `decoratedText` widget. Only supported on the `decoratedText` widget. Currently supported in [dialogs](https://developers.google.com/chat/how-tos/dialogs). Support for [card messages](https://developers.google.com/chat/api/guides/message-formats/cards) is coming soon.
    */
   export interface Schema$GoogleAppsCardV1SwitchControl {
     /**
-     * The control type, either switch or checkbox.
+     * How the switch appears in the user interface.
      */
     controlType?: string | null;
     /**
-     * The name of the switch widget that's used in `formInput`.
+     * The name by which the switch widget is identified in a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs).
      */
     name?: string | null;
     /**
-     * The action when the switch state is changed.
+     * The action to perform when the switch state is changed, such as what function to run.
      */
     onChangeAction?: Schema$GoogleAppsCardV1Action;
     /**
-     * If the switch is selected.
+     * When `true`, the switch is selected.
      */
     selected?: boolean | null;
     /**
-     * The value is what is passed back in the callback.
+     * The value entered by a user, returned as part of a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs).
      */
     value?: string | null;
   }
   /**
-   * A text input is a UI item where users can input text. A text input can also have an onChange action and suggestions.
+   * A field in which users can enter text. Supports suggestions and on-change actions. Chat apps receive and can process the value of entered text during form input events. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs). When you need to collect abstract data from users, use a text input. To collect defined data from users, use the selection input widget instead. Only supported in [dialogs](https://developers.google.com/chat/how-tos/dialogs). Support for [card messages](https://developers.google.com/chat/api/guides/message-formats/cards) coming soon.
    */
   export interface Schema$GoogleAppsCardV1TextInput {
     /**
-     * The refresh function that returns suggestions based on the user's input text. If the callback is not specified, autocomplete is done in client side based on the initial suggestion items.
+     * Optional. Specify what action to take when the text input field provides suggestions to users who interact with it. If unspecified, the suggestions are set by `initialSuggestions` and are processed by the client. If specified, the app takes the action specified here, such as running a custom function. Supported by Google Workspace Add-ons, but not Chat apps. Support by Chat apps coming soon.
      */
     autoCompleteAction?: Schema$GoogleAppsCardV1Action;
     /**
-     * The hint text.
+     * Text that appears inside the text input field meant to assist users by prompting them to enter a certain value. This text is not visible after users begin typing. Required if `label` is unspecified. Otherwise, optional.
      */
     hintText?: string | null;
     /**
-     * The initial suggestions made before any user input.
+     * Suggested values that users can enter. These values appear when users click inside the text input field. As users type, the suggested values dynamically filter to match what the users have typed. For example, a text input field for programming language might suggest Java, JavaScript, Python, and C++. When users start typing "Jav", the list of suggestions filters to show just Java and JavaScript. Suggested values help guide users to enter values that your app can make sense of. When referring to JavaScript, some users might enter "javascript" and others "java script". Suggesting "JavaScript" can standardize how users interact with your app. When specified, `TextInput.type` is always `SINGLE_LINE`, even if it is set to `MULTIPLE_LINE`.
      */
     initialSuggestions?: Schema$GoogleAppsCardV1Suggestions;
     /**
-     * At least one of label and hintText must be specified.
+     * The text that appears above the text input field in the user interface. Specify text that helps the user enter the information your app needs. For example, if you are asking someone's name, but specifically need their surname, write "surname" instead of "name". Required if `hintText` is unspecified. Otherwise, optional.
      */
     label?: string | null;
     /**
-     * The name of the text input which is used in `formInput`.
+     * The name by which the text input is identified in a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs).
      */
     name?: string | null;
     /**
-     * The onChange action, for example, invoke a function.
+     * What to do when a change occurs in the text input field. Examples of changes include a user adding to the field, or deleting text. Examples of actions to take include running a custom function or opening a [dialog](https://developers.google.com/chat/how-tos/dialogs) in Google Chat.
      */
     onChangeAction?: Schema$GoogleAppsCardV1Action;
     /**
-     * The style of the text, for example, a single line or multiple lines.
+     * How a text input field appears in the user interface. For example, whether the field is single or multi-line.
      */
     type?: string | null;
     /**
-     * The default value when there is no input from the user.
+     * The value entered by a user, returned as part of a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs).
      */
     value?: string | null;
   }
@@ -1085,47 +1085,43 @@ export namespace chat_v1 {
     text?: string | null;
   }
   /**
-   * A widget is a UI element that presents texts, images, etc.
+   * Each card is made up of widgets. A widget is a composite object that can represent one of text, images, buttons, and other object types.
    */
   export interface Schema$GoogleAppsCardV1Widget {
     /**
-     * A list of buttons. For example, the following JSON creates two buttons. The first is a filled text button and the second is an image button that opens a link: ``` "buttonList": { "buttons": [ "button": { "text": "Edit", "Color": { "Red": 255 "Green": 255 "Blue": 255 \} "disabled": true \}, "button": { "icon": { "knownIcon": "INVITE" "altText": "check calendar" \}, "onClick": { "openLink": { "url": "https://example.com/calendar" \} \} \}, ] \} ```
+     * A list of buttons. For example, the following JSON creates two buttons. The first is a blue text button and the second is an image button that opens a link: ``` "buttonList": { "buttons": [ "button": { "text": "Edit", "color": { "red": 0, "green": 0, "blue": 1, "alpha": 1 \} "disabled": true \}, "button": { "icon": { "knownIcon": "INVITE" "altText": "check calendar" \}, "onClick": { "openLink": { "url": "https://example.com/calendar" \} \} \}, ] \} ```
      */
     buttonList?: Schema$GoogleAppsCardV1ButtonList;
     /**
-     * Displays a selection/input widget for date/time. For example, the following JSON creates a date/time picker for an appointment time: ``` "date_time_picker": { "name": "appointment_time", "label": "Book your appointment at:", "type": "DateTimePickerType.DATE_AND_TIME", "valueMsEpoch": "796435200000" \} ```
+     * Displays a selection/input widget for date, time, or date and time. Not supported by Chat apps. Support by Chat apps is coming soon. For example, the following JSON creates a datetime picker to schedule an appointment: ``` "date_time_picker": { "name": "appointment_time", "label": "Book your appointment at:", "type": "DateTimePickerType.DATE_AND_TIME", "valueMsEpoch": "796435200000" \} ```
      */
     dateTimePicker?: Schema$GoogleAppsCardV1DateTimePicker;
     /**
-     * Displays a decorated text item in this widget. For example, the following JSON creates a decorated text widget showing email address: ``` "decoratedText": { "icon": { "knownIcon": "EMAIL" \}, "topLabel": "Email Address", "content": "sasha@example.com", "bottomLabel": "This is a new Email address!", "switchWidget": { "name": "has_send_welcome_email_to_sasha", "selected": false, "controlType": "ControlType.CHECKBOX" \} \} ```
+     * Displays a decorated text item. For example, the following JSON creates a decorated text widget showing email address: ``` "decoratedText": { "icon": { "knownIcon": "EMAIL" \}, "topLabel": "Email Address", "text": "sasha@example.com", "bottomLabel": "This is a new Email address!", "switchWidget": { "name": "has_send_welcome_email_to_sasha", "selected": false, "controlType": "ControlType.CHECKBOX" \} \} ```
      */
     decoratedText?: Schema$GoogleAppsCardV1DecoratedText;
     /**
-     * Displays a divider. For example, the following JSON creates a divider: ``` "divider": { \} ```
+     * Displays a horizontal line divider between widgets. For example, the following JSON creates a divider: ``` "divider": { \} ```
      */
     divider?: Schema$GoogleAppsCardV1Divider;
     /**
-     * Displays a grid with a collection of items. For example, the following JSON creates a 2 column grid with a single item: ``` "grid": { "title": "A fine collection of items", "numColumns": 2, "borderStyle": { "type": "STROKE", "cornerRadius": 4.0 \}, "items": [ "image": { "imageUri": "https://www.example.com/image.png", "cropStyle": { "type": "SQUARE" \}, "borderStyle": { "type": "STROKE" \} \}, "title": "An item", "textAlignment": "CENTER" ], "onClick": { "openLink": { "url":"https://www.example.com" \} \} \} ```
+     * Displays a grid with a collection of items. A grid supports any number of columns and items. The number of rows is determined by the upper bounds of the number items divided by the number of columns. A grid with 10 items and 2 columns has 5 rows. A grid with 11 items and 2 columns has 6 rows. Currently supported in [dialogs](https://developers.google.com/chat/how-tos/dialogs). Support for [card messages](https://developers.google.com/chat/api/guides/message-formats/cards) is coming soon. For example, the following JSON creates a 2 column grid with a single item: ``` "grid": { "title": "A fine collection of items", "numColumns": 2, "borderStyle": { "type": "STROKE", "cornerRadius": 4.0 \}, "items": [ "image": { "imageUri": "https://www.example.com/image.png", "cropStyle": { "type": "SQUARE" \}, "borderStyle": { "type": "STROKE" \} \}, "title": "An item", "textAlignment": "CENTER" ], "onClick": { "openLink": { "url":"https://www.example.com" \} \} \} ```
      */
     grid?: Schema$GoogleAppsCardV1Grid;
     /**
-     * The horizontal alignment of this widget.
-     */
-    horizontalAlignment?: string | null;
-    /**
-     * Displays an image in this widget. For example, the following JSON creates an image with alternative text: ``` "image": { "imageUrl": "https://example.com/sasha.png" "altText": "Avatar for Sasha" \} ```
+     * Displays an image. For example, the following JSON creates an image with alternative text: ``` "image": { "imageUrl": "https://developers.google.com/chat/images/quickstart-app-avatar.png" "altText": "Chat app avatar" \} ```
      */
     image?: Schema$GoogleAppsCardV1Image;
     /**
-     * Displays a switch control in this widget. For example, the following JSON creates a dropdown selection for size: ``` "switchControl": { "name": "size", "label": "Size" "type": "SelectionType.DROPDOWN", "items": [ { "text": "S", "value": "small", "selected": false \}, { "text": "M", "value": "medium", "selected": true \}, { "text": "L", "value": "large", "selected": false \}, { "text": "XL", "value": "extra_large", "selected": false \} ] \} ```
+     * Displays a selection control that lets users select items. Selection controls can be check boxes, radio buttons, switches, or dropdown menus. Currently supported in [dialogs](https://developers.google.com/chat/how-tos/dialogs). Support for [card messages](https://developers.google.com/chat/api/guides/message-formats/cards) is coming soon. For example, the following JSON creates a dropdown menu that lets users choose a size: ``` "selectionInput": { "name": "size", "label": "Size" "type": "SelectionType.DROPDOWN", "items": [ { "text": "S", "value": "small", "selected": false \}, { "text": "M", "value": "medium", "selected": true \}, { "text": "L", "value": "large", "selected": false \}, { "text": "XL", "value": "extra_large", "selected": false \} ] \} ```
      */
     selectionInput?: Schema$GoogleAppsCardV1SelectionInput;
     /**
-     * Displays a text input in this widget. For example, the following JSON creates a text input for mail address: ``` "textInput": { "name": "mailing_address", "label": "Mailing Address" \} ``` As another example, the following JSON creates a text input for programming language with static suggestions: ``` "textInput": { "name": "preferred_programing_language", "label": "Preferred Language", "initialSuggestions": { "items": [ { "text": "C++" \}, { "text": "Java" \}, { "text": "JavaScript" \}, { "text": "Python" \} ] \} \} ```
+     * Displays a text box that users can type into. Currently supported in [dialogs](https://developers.google.com/chat/how-tos/dialogs). Support for [card messages](https://developers.google.com/chat/api/guides/message-formats/cards) is coming soon. For example, the following JSON creates a text input for an email address: ``` "textInput": { "name": "mailing_address", "label": "Mailing Address" \} ``` As another example, the following JSON creates a text input for a programming language with static suggestions: ``` "textInput": { "name": "preferred_programing_language", "label": "Preferred Language", "initialSuggestions": { "items": [ { "text": "C++" \}, { "text": "Java" \}, { "text": "JavaScript" \}, { "text": "Python" \} ] \} \} ```
      */
     textInput?: Schema$GoogleAppsCardV1TextInput;
     /**
-     * Displays a text paragraph in this widget. For example, the following JSON creates a bolded text: ``` "textParagraph": { "text": " *bold text*" \} ```
+     * Displays a text paragraph. Supports [simple HTML formatted text](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting). For example, the following JSON creates a bolded text: ``` "textParagraph": { "text": " *bold text*" \} ```
      */
     textParagraph?: Schema$GoogleAppsCardV1TextParagraph;
   }
@@ -1439,7 +1435,7 @@ export namespace chat_v1 {
    */
   export interface Schema$Space {
     /**
-     * The space's display name. For direct messages between humans, this field might be empty.
+     * The space's display name. Required when [creating a space](https://developers.google.com/chat/api/reference/rest/v1/spaces/create). For direct messages, this field may be empty.
      */
     displayName?: string | null;
     /**
@@ -2283,7 +2279,10 @@ export namespace chat_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.messages',
+     *       'https://www.googleapis.com/auth/chat.messages.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3047,7 +3046,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Returns a space. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
+     * Returns a space. Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts). Supports [user authentication](https://developers.google.com/chat/api/guides/auth/users) as part of the [Google Workspace Developer Preview Program](https://developers.google.com/workspace/preview), which grants early access to certain features. [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.spaces` or `chat.spaces.readonly` authorization scope.
      * @example
      * ```js
      * // Before running the sample:
@@ -3064,7 +3063,10 @@ export namespace chat_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.spaces',
+     *       'https://www.googleapis.com/auth/chat.spaces.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3178,7 +3180,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Lists spaces the caller is a member of. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
+     * Lists spaces the caller is a member of. Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts). Supports [user authentication](https://developers.google.com/chat/api/guides/auth/users) as part of the [Google Workspace Developer Preview Program](https://developers.google.com/workspace/preview), which grants early access to certain features. [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.spaces` or `chat.spaces.readonly` authorization scope. Lists spaces visible to the caller or authenticated user. Group chats and DMs aren't listed until the first message is sent.
      * @example
      * ```js
      * // Before running the sample:
@@ -3195,7 +3197,10 @@ export namespace chat_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.spaces',
+     *       'https://www.googleapis.com/auth/chat.spaces.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3206,7 +3211,7 @@ export namespace chat_v1 {
      *   const res = await chat.spaces.list({
      *     // Optional. The maximum number of spaces to return. The service may return fewer than this value. If unspecified, at most 100 spaces are returned. The maximum value is 1000; values above 1000 are coerced to 1000. Negative values return an INVALID_ARGUMENT error.
      *     pageSize: 'placeholder-value',
-     *     // Optional. A page token, received from a previous list spaces call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided must match the call that provided the page token.
+     *     // Optional. A page token, received from a previous list spaces call. Provide this to retrieve the subsequent page. When paginating, the filter value should match the call that provided the page token. Passing a different value may lead to unexpected results.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3499,7 +3504,7 @@ export namespace chat_v1 {
      */
     pageSize?: number;
     /**
-     * Optional. A page token, received from a previous list spaces call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided must match the call that provided the page token.
+     * Optional. A page token, received from a previous list spaces call. Provide this to retrieve the subsequent page. When paginating, the filter value should match the call that provided the page token. Passing a different value may lead to unexpected results.
      */
     pageToken?: string;
   }
@@ -3538,7 +3543,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Returns a membership. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
+     * [Developer Preview](https://developers.google.com/workspace/preview): Returns a membership. Requires [authentication](https://developers.google.com/chat/api/guides/auth/). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts). Supports [user authentication](https://developers.google.com/chat/api/guides/auth/users) as part of the [Google Workspace Developer Preview Program](https://developers.google.com/workspace/preview), which grants early access to certain features. [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.memberships` or `chat.memberships.readonly` authorization scope.
      * @example
      * ```js
      * // Before running the sample:
@@ -3555,7 +3560,10 @@ export namespace chat_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/chat.memberships'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.memberships',
+     *       'https://www.googleapis.com/auth/chat.memberships.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3668,7 +3676,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Lists human memberships in a space for joined members. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
+     * [Developer Preview](https://developers.google.com/workspace/preview): Lists memberships in a space. Requires [authentication](https://developers.google.com/chat/api/guides/auth/). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts). Supports [user authentication](https://developers.google.com/chat/api/guides/auth/users) as part of the [Google Workspace Developer Preview Program](https://developers.google.com/workspace/preview), which grants early access to certain features. [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.memberships` or `chat.memberships.readonly` authorization scope.
      * @example
      * ```js
      * // Before running the sample:
@@ -3685,7 +3693,10 @@ export namespace chat_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/chat.memberships'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.memberships',
+     *       'https://www.googleapis.com/auth/chat.memberships.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3696,7 +3707,7 @@ export namespace chat_v1 {
      *   const res = await chat.spaces.members.list({
      *     // The maximum number of memberships to return. The service may return fewer than this value. If unspecified, at most 100 memberships are returned. The maximum value is 1000; values above 1000 are coerced to 1000. Negative values return an INVALID_ARGUMENT error.
      *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous list memberships call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided must match the call that provided the page token.
+     *     // A page token, received from a previous list memberships call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided should match the call that provided the page token. Passing different values to the other parameters may lead to unexpected results.
      *     pageToken: 'placeholder-value',
      *     // Required. The resource name of the space for which to fetch a membership list. Format: spaces/{space\}
      *     parent: 'spaces/my-space',
@@ -3821,7 +3832,7 @@ export namespace chat_v1 {
      */
     pageSize?: number;
     /**
-     * A page token, received from a previous list memberships call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided must match the call that provided the page token.
+     * A page token, received from a previous list memberships call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided should match the call that provided the page token. Passing different values to the other parameters may lead to unexpected results.
      */
     pageToken?: string;
     /**
@@ -3839,7 +3850,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Creates a message. For example usage, see [Create a message](https://developers.google.com/chat/api/guides/crudl/messages#create_a_message). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts). Supports [user authentication](https://developers.google.com/chat/api/guides/auth/users) as part of the [Google Workspace Developer Preview Program](https://developers.google.com/workspace/preview), which grants early access to certain features. [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.messages` or `chat.messages.create` authorization scope.
+     * Creates a message. For example usage, see [Create a message](https://developers.google.com/chat/api/guides/crudl/messages#create_a_message). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts). Supports [user authentication](https://developers.google.com/chat/api/guides/auth/users) as part of the [Google Workspace Developer Preview Program](https://developers.google.com/workspace/preview), which grants early access to certain features. [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.messages` or `chat.messages.create` authorization scope. Because Chat provides authentication for [webhooks](https://developers.google.com/chat/how-tos/webhooks) as part of the URL that's generated when a webhook is registered, webhooks can create messages without a service account or user authentication.
      * @example
      * ```js
      * // Before running the sample:
@@ -3856,7 +3867,10 @@ export namespace chat_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.messages',
+     *       'https://www.googleapis.com/auth/chat.messages.create',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4035,7 +4049,7 @@ export namespace chat_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: ['https://www.googleapis.com/auth/chat.messages'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4159,7 +4173,10 @@ export namespace chat_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.messages',
+     *       'https://www.googleapis.com/auth/chat.messages.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4285,7 +4302,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Updates a message. For example usage, see [Update a message](https://developers.google.com/chat/api/guides/crudl/messages#update_a_message). Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
+     * Updates a message. For example usage, see [Update a message](https://developers.google.com/chat/api/guides/crudl/messages#update_a_message). Requires [authentication](https://developers.google.com/chat/api/guides/auth/). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts). Supports [user authentication](https://developers.google.com/chat/api/guides/auth/users) as part of the [Google Workspace Developer Preview Program](https://developers.google.com/workspace/preview), which grants early access to certain features. [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.messages` authorization scope.
      * @example
      * ```js
      * // Before running the sample:
@@ -4302,7 +4319,179 @@ export namespace chat_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: ['https://www.googleapis.com/auth/chat.messages'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.spaces.messages.patch({
+     *     // Optional. If `true` and the message is not found, a new message is created and `updateMask` is ignored. The specified message ID must be [client-assigned](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message) or the request fails.
+     *     allowMissing: 'placeholder-value',
+     *     // Resource name in the form `spaces/x/messages/x`. Example: `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`
+     *     name: 'spaces/my-space/messages/my-message',
+     *     // Required. The field paths to update. Separate multiple values with commas. Currently supported field paths: - text - cards (Requires [service account authentication](/chat/api/guides/auth/service-accounts).) - cards_v2
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "actionResponse": {},
+     *       //   "annotations": [],
+     *       //   "argumentText": "my_argumentText",
+     *       //   "attachment": [],
+     *       //   "cards": [],
+     *       //   "cardsV2": [],
+     *       //   "clientAssignedMessageId": "my_clientAssignedMessageId",
+     *       //   "createTime": "my_createTime",
+     *       //   "fallbackText": "my_fallbackText",
+     *       //   "lastUpdateTime": "my_lastUpdateTime",
+     *       //   "matchedUrl": {},
+     *       //   "name": "my_name",
+     *       //   "sender": {},
+     *       //   "slashCommand": {},
+     *       //   "space": {},
+     *       //   "text": "my_text",
+     *       //   "thread": {},
+     *       //   "threadReply": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actionResponse": {},
+     *   //   "annotations": [],
+     *   //   "argumentText": "my_argumentText",
+     *   //   "attachment": [],
+     *   //   "cards": [],
+     *   //   "cardsV2": [],
+     *   //   "clientAssignedMessageId": "my_clientAssignedMessageId",
+     *   //   "createTime": "my_createTime",
+     *   //   "fallbackText": "my_fallbackText",
+     *   //   "lastUpdateTime": "my_lastUpdateTime",
+     *   //   "matchedUrl": {},
+     *   //   "name": "my_name",
+     *   //   "sender": {},
+     *   //   "slashCommand": {},
+     *   //   "space": {},
+     *   //   "text": "my_text",
+     *   //   "thread": {},
+     *   //   "threadReply": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Spaces$Messages$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Spaces$Messages$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Message>;
+    patch(
+      params: Params$Resource$Spaces$Messages$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Spaces$Messages$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
+    patch(
+      params: Params$Resource$Spaces$Messages$Patch,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Message>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Spaces$Messages$Patch
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Spaces$Messages$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Spaces$Messages$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Message>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Message>(parameters);
+      }
+    }
+
+    /**
+     * Updates a message. For example usage, see [Update a message](https://developers.google.com/chat/api/guides/crudl/messages#update_a_message). Requires [authentication](https://developers.google.com/chat/api/guides/auth/). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts). Supports [user authentication](https://developers.google.com/chat/api/guides/auth/users) as part of the [Google Workspace Developer Preview Program](https://developers.google.com/workspace/preview), which grants early access to certain features. [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.messages` authorization scope.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chat.messages'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4498,6 +4687,26 @@ export namespace chat_v1 {
      * Required. Resource name of the message to retrieve. Format: spaces/{space\}/messages/{message\} If the message begins with `client-`, then it has a custom name assigned by a Chat app that created it with the Chat REST API. That Chat app (but not others) can pass the custom name to get, update, or delete the message. To learn more, see [create and name a message] (https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
      */
     name?: string;
+  }
+  export interface Params$Resource$Spaces$Messages$Patch
+    extends StandardParameters {
+    /**
+     * Optional. If `true` and the message is not found, a new message is created and `updateMask` is ignored. The specified message ID must be [client-assigned](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message) or the request fails.
+     */
+    allowMissing?: boolean;
+    /**
+     * Resource name in the form `spaces/x/messages/x`. Example: `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`
+     */
+    name?: string;
+    /**
+     * Required. The field paths to update. Separate multiple values with commas. Currently supported field paths: - text - cards (Requires [service account authentication](/chat/api/guides/auth/service-accounts).) - cards_v2
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Message;
   }
   export interface Params$Resource$Spaces$Messages$Update
     extends StandardParameters {
