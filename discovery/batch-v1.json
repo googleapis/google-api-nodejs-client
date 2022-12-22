@@ -483,97 +483,6 @@
                 }
               }
             },
-            "nodes": {
-              "methods": {
-                "getIamPolicy": {
-                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/nodes/{nodesId}:getIamPolicy",
-                  "httpMethod": "GET",
-                  "id": "batch.projects.locations.nodes.getIamPolicy",
-                  "parameterOrder": [
-                    "resource"
-                  ],
-                  "parameters": {
-                    "options.requestedPolicyVersion": {
-                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
-                      "format": "int32",
-                      "location": "query",
-                      "type": "integer"
-                    },
-                    "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/nodes/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+resource}:getIamPolicy",
-                  "response": {
-                    "$ref": "Policy"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "setIamPolicy": {
-                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/nodes/{nodesId}:setIamPolicy",
-                  "httpMethod": "POST",
-                  "id": "batch.projects.locations.nodes.setIamPolicy",
-                  "parameterOrder": [
-                    "resource"
-                  ],
-                  "parameters": {
-                    "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/nodes/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+resource}:setIamPolicy",
-                  "request": {
-                    "$ref": "SetIamPolicyRequest"
-                  },
-                  "response": {
-                    "$ref": "Policy"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "testIamPermissions": {
-                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/nodes/{nodesId}:testIamPermissions",
-                  "httpMethod": "POST",
-                  "id": "batch.projects.locations.nodes.testIamPermissions",
-                  "parameterOrder": [
-                    "resource"
-                  ],
-                  "parameters": {
-                    "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/nodes/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+resource}:testIamPermissions",
-                  "request": {
-                    "$ref": "TestIamPermissionsRequest"
-                  },
-                  "response": {
-                    "$ref": "TestIamPermissionsResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                }
-              }
-            },
             "operations": {
               "methods": {
                 "cancel": {
@@ -728,104 +637,13 @@
                   ]
                 }
               }
-            },
-            "tasks": {
-              "methods": {
-                "getIamPolicy": {
-                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/tasks/{tasksId}:getIamPolicy",
-                  "httpMethod": "GET",
-                  "id": "batch.projects.locations.tasks.getIamPolicy",
-                  "parameterOrder": [
-                    "resource"
-                  ],
-                  "parameters": {
-                    "options.requestedPolicyVersion": {
-                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
-                      "format": "int32",
-                      "location": "query",
-                      "type": "integer"
-                    },
-                    "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/tasks/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+resource}:getIamPolicy",
-                  "response": {
-                    "$ref": "Policy"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "setIamPolicy": {
-                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/tasks/{tasksId}:setIamPolicy",
-                  "httpMethod": "POST",
-                  "id": "batch.projects.locations.tasks.setIamPolicy",
-                  "parameterOrder": [
-                    "resource"
-                  ],
-                  "parameters": {
-                    "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/tasks/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+resource}:setIamPolicy",
-                  "request": {
-                    "$ref": "SetIamPolicyRequest"
-                  },
-                  "response": {
-                    "$ref": "Policy"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "testIamPermissions": {
-                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/tasks/{tasksId}:testIamPermissions",
-                  "httpMethod": "POST",
-                  "id": "batch.projects.locations.tasks.testIamPermissions",
-                  "parameterOrder": [
-                    "resource"
-                  ],
-                  "parameters": {
-                    "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/tasks/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+resource}:testIamPermissions",
-                  "request": {
-                    "$ref": "TestIamPermissionsRequest"
-                  },
-                  "response": {
-                    "$ref": "TestIamPermissionsResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                }
-              }
             }
           }
         }
       }
     }
   },
-  "revision": "20221017",
+  "revision": "20221212",
   "rootUrl": "https://batch.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -907,16 +725,20 @@
       "type": "object"
     },
     "AgentMetadata": {
-      "description": "AgentMetadata never changes for a single instance of VM agent.",
+      "description": "VM Agent Metadata.",
       "id": "AgentMetadata",
       "properties": {
         "creationTime": {
-          "description": "When the VM agent started.",
+          "description": "When the VM agent started. Use agent_startup_time instead.",
           "format": "google-datetime",
           "type": "string"
         },
         "creator": {
           "description": "Full name of the entity that created this vm. For MIG, this path is: projects/{project}/regions/{region}/InstanceGroupManagers/{igm} The value is retrieved from the vm metadata key of \"created-by\".",
+          "type": "string"
+        },
+        "imageVersion": {
+          "description": "image version for the VM that this agent is installed on.",
           "type": "string"
         },
         "instance": {
@@ -927,6 +749,10 @@
           "description": "GCP instance ID (go/instance-id).",
           "format": "uint64",
           "type": "string"
+        },
+        "instancePreemptionNoticeReceived": {
+          "description": "If the GCP instance has received preemption notice.",
+          "type": "boolean"
         },
         "osRelease": {
           "additionalProperties": {
@@ -1002,6 +828,28 @@
         "taskStatus": {
           "$ref": "TaskStatus",
           "description": "The status of the Task. If we need agent specific fields we should fork the public TaskStatus into an agent specific one. Or add them below."
+        }
+      },
+      "type": "object"
+    },
+    "AgentTimingInfo": {
+      "description": "VM timing information",
+      "id": "AgentTimingInfo",
+      "properties": {
+        "agentStartupTime": {
+          "description": "Agent startup time",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "bootTime": {
+          "description": "Boot timestamp of the VM OS",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "scriptStartupTime": {
+          "description": "Startup time of the Batch VM script.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1194,11 +1042,11 @@
           "type": "string"
         },
         "password": {
-          "description": "Optional password for logging in to a docker registry. If password matches \"projects/*/secrets/*/versions/*\" then Batch will read the password from the Secret Manager;",
+          "description": "Optional password for logging in to a docker registry. If password matches `projects/*/secrets/*/versions/*` then Batch will read the password from the Secret Manager;",
           "type": "string"
         },
         "username": {
-          "description": "Optional username for logging in to a docker registry. If username matches \"projects/*/secrets/*/versions/*\" then Batch will read the username from the Secret Manager.",
+          "description": "Optional username for logging in to a docker registry. If username matches `projects/*/secrets/*/versions/*` then Batch will read the username from the Secret Manager.",
           "type": "string"
         },
         "volumes": {
@@ -1249,6 +1097,17 @@
       "description": "An Environment describes a collection of environment variables to set when executing Tasks.",
       "id": "Environment",
       "properties": {
+        "encryptedVariables": {
+          "$ref": "KMSEnvMap",
+          "description": "An encrypted JSON dictionary where the key/value pairs correspond to environment variable names and their values."
+        },
+        "secretVariables": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "A map of environment variable names to Secret Manager secret names. The VM will access the named secrets to set the value of each environment variable.",
+          "type": "object"
+        },
         "variables": {
           "additionalProperties": {
             "type": "string"
@@ -1520,6 +1379,20 @@
       },
       "type": "object"
     },
+    "KMSEnvMap": {
+      "id": "KMSEnvMap",
+      "properties": {
+        "cipherText": {
+          "description": "The value of the cipherText response from the `encrypt` method.",
+          "type": "string"
+        },
+        "keyName": {
+          "description": "The name of the KMS key that will be used to decrypt the cipher text.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "LifecyclePolicy": {
       "description": "LifecyclePolicy describes how to deal with task failures based on different conditions.",
       "id": "LifecyclePolicy",
@@ -1786,7 +1659,7 @@
       "id": "NetworkInterface",
       "properties": {
         "network": {
-          "description": "The URL of the network resource.",
+          "description": "The URL of an existing network resource. You can specify the network as a full or partial URL. For example, the following are all valid URLs: https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network} projects/{project}/global/networks/{network} global/networks/{network}",
           "type": "string"
         },
         "noExternalIpAddress": {
@@ -1794,7 +1667,7 @@
           "type": "boolean"
         },
         "subnetwork": {
-          "description": "The URL of the Subnetwork resource.",
+          "description": "The URL of an existing subnetwork resource in the network. You can specify the subnetwork as a full or partial URL. For example, the following are all valid URLs: https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork} projects/{project}/regions/{region}/subnetworks/{subnetwork} regions/{region}/subnetworks/{subnetwork}",
           "type": "string"
         }
       },
@@ -1932,6 +1805,10 @@
           "$ref": "AgentInfo",
           "description": "Agent info."
         },
+        "agentTimingInfo": {
+          "$ref": "AgentTimingInfo",
+          "description": "Agent timing info."
+        },
         "metadata": {
           "$ref": "AgentMetadata",
           "description": "Agent metadata."
@@ -1943,6 +1820,16 @@
       "description": "Response to ReportAgentStateRequest.",
       "id": "ReportAgentStateResponse",
       "properties": {
+        "defaultReportInterval": {
+          "description": "Default report interval override",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "minReportInterval": {
+          "description": "Minimum report interval override",
+          "format": "google-duration",
+          "type": "string"
+        },
         "tasks": {
           "description": "Tasks assigned to the agent",
           "items": {
@@ -2197,7 +2084,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Environment variables to set before running the Task. You can set up to 100 environments.",
+          "description": "Deprecated: please use environment(non-plural) instead.",
           "type": "object"
         },
         "lifecyclePolicies": {

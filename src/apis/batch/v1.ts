@@ -176,17 +176,21 @@ export namespace batch_v1 {
     tasks?: Schema$AgentTaskInfo[];
   }
   /**
-   * AgentMetadata never changes for a single instance of VM agent.
+   * VM Agent Metadata.
    */
   export interface Schema$AgentMetadata {
     /**
-     * When the VM agent started.
+     * When the VM agent started. Use agent_startup_time instead.
      */
     creationTime?: string | null;
     /**
      * Full name of the entity that created this vm. For MIG, this path is: projects/{project\}/regions/{region\}/InstanceGroupManagers/{igm\} The value is retrieved from the vm metadata key of "created-by".
      */
     creator?: string | null;
+    /**
+     * image version for the VM that this agent is installed on.
+     */
+    imageVersion?: string | null;
     /**
      * GCP instance name (go/instance-name).
      */
@@ -195,6 +199,10 @@ export namespace batch_v1 {
      * GCP instance ID (go/instance-id).
      */
     instanceId?: string | null;
+    /**
+     * If the GCP instance has received preemption notice.
+     */
+    instancePreemptionNoticeReceived?: boolean | null;
     /**
      * parsed contents of /etc/os-release
      */
@@ -249,6 +257,23 @@ export namespace batch_v1 {
      * The status of the Task. If we need agent specific fields we should fork the public TaskStatus into an agent specific one. Or add them below.
      */
     taskStatus?: Schema$TaskStatus;
+  }
+  /**
+   * VM timing information
+   */
+  export interface Schema$AgentTimingInfo {
+    /**
+     * Agent startup time
+     */
+    agentStartupTime?: string | null;
+    /**
+     * Boot timestamp of the VM OS
+     */
+    bootTime?: string | null;
+    /**
+     * Startup time of the Batch VM script.
+     */
+    scriptStartupTime?: string | null;
   }
   /**
    * A Job's resource allocation policy describes when, where, and how compute resources should be allocated for the Job.
@@ -387,11 +412,11 @@ export namespace batch_v1 {
      */
     options?: string | null;
     /**
-     * Optional password for logging in to a docker registry. If password matches "projects/x/secrets/x/versions/x" then Batch will read the password from the Secret Manager;
+     * Optional password for logging in to a docker registry. If password matches `projects/x/secrets/x/versions/x` then Batch will read the password from the Secret Manager;
      */
     password?: string | null;
     /**
-     * Optional username for logging in to a docker registry. If username matches "projects/x/secrets/x/versions/x" then Batch will read the username from the Secret Manager.
+     * Optional username for logging in to a docker registry. If username matches `projects/x/secrets/x/versions/x` then Batch will read the username from the Secret Manager.
      */
     username?: string | null;
     /**
@@ -432,6 +457,14 @@ export namespace batch_v1 {
    * An Environment describes a collection of environment variables to set when executing Tasks.
    */
   export interface Schema$Environment {
+    /**
+     * An encrypted JSON dictionary where the key/value pairs correspond to environment variable names and their values.
+     */
+    encryptedVariables?: Schema$KMSEnvMap;
+    /**
+     * A map of environment variable names to Secret Manager secret names. The VM will access the named secrets to set the value of each environment variable.
+     */
+    secretVariables?: {[key: string]: string} | null;
     /**
      * A map of environment variable names to values.
      */
@@ -609,6 +642,16 @@ export namespace batch_v1 {
      */
     taskGroups?: {[key: string]: Schema$TaskGroupStatus} | null;
   }
+  export interface Schema$KMSEnvMap {
+    /**
+     * The value of the cipherText response from the `encrypt` method.
+     */
+    cipherText?: string | null;
+    /**
+     * The name of the KMS key that will be used to decrypt the cipher text.
+     */
+    keyName?: string | null;
+  }
   /**
    * LifecyclePolicy describes how to deal with task failures based on different conditions.
    */
@@ -748,7 +791,7 @@ export namespace batch_v1 {
    */
   export interface Schema$NetworkInterface {
     /**
-     * The URL of the network resource.
+     * The URL of an existing network resource. You can specify the network as a full or partial URL. For example, the following are all valid URLs: https://www.googleapis.com/compute/v1/projects/{project\}/global/networks/{network\} projects/{project\}/global/networks/{network\} global/networks/{network\}
      */
     network?: string | null;
     /**
@@ -756,7 +799,7 @@ export namespace batch_v1 {
      */
     noExternalIpAddress?: boolean | null;
     /**
-     * The URL of the Subnetwork resource.
+     * The URL of an existing subnetwork resource in the network. You can specify the subnetwork as a full or partial URL. For example, the following are all valid URLs: https://www.googleapis.com/compute/v1/projects/{project\}/regions/{region\}/subnetworks/{subnetwork\} projects/{project\}/regions/{region\}/subnetworks/{subnetwork\} regions/{region\}/subnetworks/{subnetwork\}
      */
     subnetwork?: string | null;
   }
@@ -870,6 +913,10 @@ export namespace batch_v1 {
      */
     agentInfo?: Schema$AgentInfo;
     /**
+     * Agent timing info.
+     */
+    agentTimingInfo?: Schema$AgentTimingInfo;
+    /**
      * Agent metadata.
      */
     metadata?: Schema$AgentMetadata;
@@ -878,6 +925,14 @@ export namespace batch_v1 {
    * Response to ReportAgentStateRequest.
    */
   export interface Schema$ReportAgentStateResponse {
+    /**
+     * Default report interval override
+     */
+    defaultReportInterval?: string | null;
+    /**
+     * Minimum report interval override
+     */
+    minReportInterval?: string | null;
     /**
      * Tasks assigned to the agent
      */
@@ -1078,7 +1133,7 @@ export namespace batch_v1 {
      */
     environment?: Schema$Environment;
     /**
-     * Environment variables to set before running the Task. You can set up to 100 environments.
+     * Deprecated: please use environment(non-plural) instead.
      */
     environments?: {[key: string]: string} | null;
     /**
@@ -1171,19 +1226,15 @@ export namespace batch_v1 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     jobs: Resource$Projects$Locations$Jobs;
-    nodes: Resource$Projects$Locations$Nodes;
     operations: Resource$Projects$Locations$Operations;
     state: Resource$Projects$Locations$State;
-    tasks: Resource$Projects$Locations$Tasks;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.jobs = new Resource$Projects$Locations$Jobs(this.context);
-      this.nodes = new Resource$Projects$Locations$Nodes(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
       this.state = new Resource$Projects$Locations$State(this.context);
-      this.tasks = new Resource$Projects$Locations$Tasks(this.context);
     }
 
     /**
@@ -2890,469 +2941,6 @@ export namespace batch_v1 {
     parent?: string;
   }
 
-  export class Resource$Projects$Locations$Nodes {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/batch.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const batch = google.batch('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await batch.projects.locations.nodes.getIamPolicy({
-     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/locations/my-location/nodes/my-node',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Nodes$Getiampolicy,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    getIamPolicy(
-      params?: Params$Resource$Projects$Locations$Nodes$Getiampolicy,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Nodes$Getiampolicy,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Nodes$Getiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Nodes$Getiampolicy,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Nodes$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Nodes$Getiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Nodes$Getiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://batch.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-    /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/batch.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const batch = google.batch('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await batch.projects.locations.nodes.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/locations/my-location/nodes/my-node',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "policy": {},
-     *       //   "updateMask": "my_updateMask"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Nodes$Setiampolicy,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    setIamPolicy(
-      params?: Params$Resource$Projects$Locations$Nodes$Setiampolicy,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Nodes$Setiampolicy,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Nodes$Setiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Nodes$Setiampolicy,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Nodes$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Nodes$Setiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Nodes$Setiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://batch.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-    /**
-     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/batch.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const batch = google.batch('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await batch.projects.locations.nodes.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/locations/my-location/nodes/my-node',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "permissions": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Nodes$Testiampermissions,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    testIamPermissions(
-      params?: Params$Resource$Projects$Locations$Nodes$Testiampermissions,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Nodes$Testiampermissions,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Nodes$Testiampermissions,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Nodes$Testiampermissions,
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Nodes$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Nodes$Testiampermissions;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Nodes$Testiampermissions;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://batch.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Nodes$Getiampolicy
-    extends StandardParameters {
-    /**
-     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     */
-    'options.requestedPolicyVersion'?: number;
-    /**
-     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Nodes$Setiampolicy
-    extends StandardParameters {
-    /**
-     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SetIamPolicyRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Nodes$Testiampermissions
-    extends StandardParameters {
-    /**
-     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$TestIamPermissionsRequest;
-  }
-
   export class Resource$Projects$Locations$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -3972,6 +3560,7 @@ export namespace batch_v1 {
      *       // request body parameters
      *       // {
      *       //   "agentInfo": {},
+     *       //   "agentTimingInfo": {},
      *       //   "metadata": {}
      *       // }
      *     },
@@ -3980,6 +3569,8 @@ export namespace batch_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "defaultReportInterval": "my_defaultReportInterval",
+     *   //   "minReportInterval": "my_minReportInterval",
      *   //   "tasks": []
      *   // }
      * }
@@ -4094,468 +3685,5 @@ export namespace batch_v1 {
      * Request body metadata
      */
     requestBody?: Schema$ReportAgentStateRequest;
-  }
-
-  export class Resource$Projects$Locations$Tasks {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/batch.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const batch = google.batch('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await batch.projects.locations.tasks.getIamPolicy({
-     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/locations/my-location/tasks/my-task',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Tasks$Getiampolicy,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    getIamPolicy(
-      params?: Params$Resource$Projects$Locations$Tasks$Getiampolicy,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Tasks$Getiampolicy,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Tasks$Getiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Tasks$Getiampolicy,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Tasks$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Tasks$Getiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Tasks$Getiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://batch.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-    /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/batch.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const batch = google.batch('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await batch.projects.locations.tasks.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/locations/my-location/tasks/my-task',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "policy": {},
-     *       //   "updateMask": "my_updateMask"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Tasks$Setiampolicy,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    setIamPolicy(
-      params?: Params$Resource$Projects$Locations$Tasks$Setiampolicy,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Tasks$Setiampolicy,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Tasks$Setiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Tasks$Setiampolicy,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Tasks$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Tasks$Setiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Tasks$Setiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://batch.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-    /**
-     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/batch.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const batch = google.batch('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await batch.projects.locations.tasks.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/locations/my-location/tasks/my-task',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "permissions": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Tasks$Testiampermissions,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    testIamPermissions(
-      params?: Params$Resource$Projects$Locations$Tasks$Testiampermissions,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Tasks$Testiampermissions,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Tasks$Testiampermissions,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Tasks$Testiampermissions,
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Tasks$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Tasks$Testiampermissions;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Tasks$Testiampermissions;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://batch.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Tasks$Getiampolicy
-    extends StandardParameters {
-    /**
-     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     */
-    'options.requestedPolicyVersion'?: number;
-    /**
-     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Tasks$Setiampolicy
-    extends StandardParameters {
-    /**
-     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SetIamPolicyRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Tasks$Testiampermissions
-    extends StandardParameters {
-    /**
-     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$TestIamPermissionsRequest;
   }
 }
