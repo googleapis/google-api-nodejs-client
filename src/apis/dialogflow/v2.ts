@@ -3093,6 +3093,10 @@ export namespace dialogflow_v2 {
      */
     automatedAgentReplyType?: string | null;
     /**
+     * The unique identifier of the current Dialogflow CX conversation page. Format: `projects//locations//agents//flows//pages/`.
+     */
+    cxCurrentPage?: string | null;
+    /**
      * Response of the Dialogflow Sessions.DetectIntent call.
      */
     detectIntentResponse?: Schema$GoogleCloudDialogflowV2DetectIntentResponse;
@@ -4541,7 +4545,7 @@ export namespace dialogflow_v2 {
     webhookSource?: string | null;
   }
   /**
-   * The sentiment, such as positive/negative feeling or association, for a unit of analysis, such as the query text.
+   * The sentiment, such as positive/negative feeling or association, for a unit of analysis, such as the query text. See: https://cloud.google.com/natural-language/docs/basics#interpreting_sentiment_analysis_values for how to interpret the result.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1Sentiment {
     /**
@@ -4963,6 +4967,10 @@ export namespace dialogflow_v2 {
      * The resource name of the evaluation. Format: `projects//conversationModels//evaluations/`
      */
     name?: string | null;
+    /**
+     * Output only. Human eval template in csv format. It tooks real-world conversations provided through input dataset, generates example suggestions for customer to verify quality of the model. For Smart Reply, the generated csv file contains columns of Context, (Suggestions,Q1,Q2)*3, Actual reply. Context contains at most 10 latest messages in the conversation prior to the current suggestion. Q1: "Would you send it as the next message of agent?" Evaluated based on whether the suggest is appropriate to be sent by agent in current context. Q2: "Does the suggestion move the conversation closer to resolution?" Evaluated based on whether the suggestion provide solutions, or answers customer's question or collect information from customer to resolve the customer's issue. Actual reply column contains the actual agent reply sent in the context.
+     */
+    rawHumanEvalTemplateCsv?: string | null;
     /**
      * Output only. Only available when model is for smart reply.
      */
@@ -7011,6 +7019,10 @@ export namespace dialogflow_v2 {
      */
     name?: string | null;
     /**
+     * Optional. Obfuscated user id that should be associated with the created participant. You can specify a user id as follows: 1. If you set this field in CreateParticipantRequest or UpdateParticipantRequest, Dialogflow adds the obfuscated user id with the participant. 2. If you set this field in AnalyzeContent or StreamingAnalyzeContent, Dialogflow will update Participant.obfuscated_external_user_id. Dialogflow returns an error if you try to add a user id for a non-END_USER participant. Dialogflow uses this user id for billing and measurement purposes. For example, Dialogflow determines whether a user in one conversation returned in a later conversation. Note: * Please never pass raw user ids to Dialogflow. Always obfuscate your user id first. * Dialogflow only accepts a UTF-8 encoded string, e.g., a hex digest of a hash function like SHA-512. * The length of the user id must be <= 256 characters.
+     */
+    obfuscatedExternalUserId?: string | null;
+    /**
      * Immutable. The role this participant plays in the conversation. This field must be set during participant creation and is then immutable.
      */
     role?: string | null;
@@ -7186,7 +7198,7 @@ export namespace dialogflow_v2 {
     nextPageToken?: string | null;
   }
   /**
-   * The sentiment, such as positive/negative feeling or association, for a unit of analysis, such as the query text.
+   * The sentiment, such as positive/negative feeling or association, for a unit of analysis, such as the query text. See: https://cloud.google.com/natural-language/docs/basics#interpreting_sentiment_analysis_values for how to interpret the result.
    */
   export interface Schema$GoogleCloudDialogflowV2Sentiment {
     /**
@@ -7340,6 +7352,10 @@ export namespace dialogflow_v2 {
    * Configures speech transcription for ConversationProfile.
    */
   export interface Schema$GoogleCloudDialogflowV2SpeechToTextConfig {
+    /**
+     * Which Speech model to select. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then a default model is used. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model) for more details.
+     */
+    model?: string | null;
     /**
      * The speech model used in speech to text. `SPEECH_MODEL_VARIANT_UNSPECIFIED`, `USE_BEST_AVAILABLE` will be treated as `USE_ENHANCED`. It can be overridden in AnalyzeContentRequest and StreamingAnalyzeContentRequest request. If enhanced model variant is specified and an enhanced version of the specified model for the language does not exist, then it would emit an error.
      */
@@ -22046,6 +22062,7 @@ export namespace dialogflow_v2 {
      *   //   "displayName": "my_displayName",
      *   //   "evaluationConfig": {},
      *   //   "name": "my_name",
+     *   //   "rawHumanEvalTemplateCsv": "my_rawHumanEvalTemplateCsv",
      *   //   "smartReplyMetrics": {}
      *   // }
      * }
@@ -24562,6 +24579,7 @@ export namespace dialogflow_v2 {
      *       // {
      *       //   "documentsMetadataFilters": {},
      *       //   "name": "my_name",
+     *       //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
      *       //   "role": "my_role",
      *       //   "sipRecordingMediaLabel": "my_sipRecordingMediaLabel"
      *       // }
@@ -24573,6 +24591,7 @@ export namespace dialogflow_v2 {
      *   // {
      *   //   "documentsMetadataFilters": {},
      *   //   "name": "my_name",
+     *   //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
      *   //   "role": "my_role",
      *   //   "sipRecordingMediaLabel": "my_sipRecordingMediaLabel"
      *   // }
@@ -24718,6 +24737,7 @@ export namespace dialogflow_v2 {
      *   // {
      *   //   "documentsMetadataFilters": {},
      *   //   "name": "my_name",
+     *   //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
      *   //   "role": "my_role",
      *   //   "sipRecordingMediaLabel": "my_sipRecordingMediaLabel"
      *   // }
@@ -25007,6 +25027,7 @@ export namespace dialogflow_v2 {
      *       // {
      *       //   "documentsMetadataFilters": {},
      *       //   "name": "my_name",
+     *       //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
      *       //   "role": "my_role",
      *       //   "sipRecordingMediaLabel": "my_sipRecordingMediaLabel"
      *       // }
@@ -25018,6 +25039,7 @@ export namespace dialogflow_v2 {
      *   // {
      *   //   "documentsMetadataFilters": {},
      *   //   "name": "my_name",
+     *   //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
      *   //   "role": "my_role",
      *   //   "sipRecordingMediaLabel": "my_sipRecordingMediaLabel"
      *   // }
@@ -41094,6 +41116,7 @@ export namespace dialogflow_v2 {
      *   //   "displayName": "my_displayName",
      *   //   "evaluationConfig": {},
      *   //   "name": "my_name",
+     *   //   "rawHumanEvalTemplateCsv": "my_rawHumanEvalTemplateCsv",
      *   //   "smartReplyMetrics": {}
      *   // }
      * }
@@ -43639,6 +43662,7 @@ export namespace dialogflow_v2 {
      *         // {
      *         //   "documentsMetadataFilters": {},
      *         //   "name": "my_name",
+     *         //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
      *         //   "role": "my_role",
      *         //   "sipRecordingMediaLabel": "my_sipRecordingMediaLabel"
      *         // }
@@ -43650,6 +43674,7 @@ export namespace dialogflow_v2 {
      *   // {
      *   //   "documentsMetadataFilters": {},
      *   //   "name": "my_name",
+     *   //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
      *   //   "role": "my_role",
      *   //   "sipRecordingMediaLabel": "my_sipRecordingMediaLabel"
      *   // }
@@ -43796,6 +43821,7 @@ export namespace dialogflow_v2 {
      *   // {
      *   //   "documentsMetadataFilters": {},
      *   //   "name": "my_name",
+     *   //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
      *   //   "role": "my_role",
      *   //   "sipRecordingMediaLabel": "my_sipRecordingMediaLabel"
      *   // }
@@ -44090,6 +44116,7 @@ export namespace dialogflow_v2 {
      *         // {
      *         //   "documentsMetadataFilters": {},
      *         //   "name": "my_name",
+     *         //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
      *         //   "role": "my_role",
      *         //   "sipRecordingMediaLabel": "my_sipRecordingMediaLabel"
      *         // }
@@ -44101,6 +44128,7 @@ export namespace dialogflow_v2 {
      *   // {
      *   //   "documentsMetadataFilters": {},
      *   //   "name": "my_name",
+     *   //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
      *   //   "role": "my_role",
      *   //   "sipRecordingMediaLabel": "my_sipRecordingMediaLabel"
      *   // }
