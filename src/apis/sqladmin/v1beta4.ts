@@ -743,6 +743,9 @@ export namespace sqladmin_v1beta4 {
    * Database instance export context.
    */
   export interface Schema$ExportContext {
+    /**
+     * Options for exporting BAK files (SQL Server-only)
+     */
     bakExportOptions?: {stripeCount?: number; striped?: boolean} | null;
     /**
      * Options for exporting data as CSV. `MySQL` and `PostgreSQL` instances only.
@@ -1414,7 +1417,7 @@ export namespace sqladmin_v1beta4 {
      */
     minLength?: number | null;
     /**
-     * Minimum interval after which the password can be changed. This flag is only supported for PostgresSQL.
+     * Minimum interval after which the password can be changed. This flag is only supported for PostgreSQL.
      */
     passwordChangeInterval?: string | null;
     /**

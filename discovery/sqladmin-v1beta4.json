@@ -1921,7 +1921,7 @@
       }
     }
   },
-  "revision": "20221017",
+  "revision": "20221209",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2312,6 +2312,7 @@
             "MYSQL_8_0_28",
             "MYSQL_8_0_29",
             "MYSQL_8_0_30",
+            "MYSQL_8_0_31",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
             "SQLSERVER_2019_EXPRESS",
@@ -2340,6 +2341,7 @@
             "The database major version is MySQL 8.0 and the minor version is 28.",
             "The database major version is MySQL 8.0 and the minor version is 29.",
             "The database major version is MySQL 8.0 and the minor version is 30.",
+            "The database major version is MySQL 8.0 and the minor version is 31.",
             "The database version is SQL Server 2019 Standard.",
             "The database version is SQL Server 2019 Enterprise.",
             "The database version is SQL Server 2019 Express.",
@@ -2498,6 +2500,7 @@
             "MYSQL_8_0_28",
             "MYSQL_8_0_29",
             "MYSQL_8_0_30",
+            "MYSQL_8_0_31",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
             "SQLSERVER_2019_EXPRESS",
@@ -2526,6 +2529,7 @@
             "The database major version is MySQL 8.0 and the minor version is 28.",
             "The database major version is MySQL 8.0 and the minor version is 29.",
             "The database major version is MySQL 8.0 and the minor version is 30.",
+            "The database major version is MySQL 8.0 and the minor version is 31.",
             "The database version is SQL Server 2019 Standard.",
             "The database version is SQL Server 2019 Enterprise.",
             "The database version is SQL Server 2019 Express.",
@@ -2863,12 +2867,15 @@
       "id": "ExportContext",
       "properties": {
         "bakExportOptions": {
+          "description": "Options for exporting BAK files (SQL Server-only)",
           "properties": {
             "stripeCount": {
+              "description": "Option for specifying how many stripes to use for the export. If blank, and the value of the striped field is true, the number of stripes is automatically chosen.",
               "format": "int32",
               "type": "integer"
             },
             "striped": {
+              "description": "Whether or not the export should be striped.",
               "type": "boolean"
             }
           },
@@ -3027,6 +3034,7 @@
               "MYSQL_8_0_28",
               "MYSQL_8_0_29",
               "MYSQL_8_0_30",
+              "MYSQL_8_0_31",
               "SQLSERVER_2019_STANDARD",
               "SQLSERVER_2019_ENTERPRISE",
               "SQLSERVER_2019_EXPRESS",
@@ -3055,6 +3063,7 @@
               "The database major version is MySQL 8.0 and the minor version is 28.",
               "The database major version is MySQL 8.0 and the minor version is 29.",
               "The database major version is MySQL 8.0 and the minor version is 30.",
+              "The database major version is MySQL 8.0 and the minor version is 31.",
               "The database version is SQL Server 2019 Standard.",
               "The database version is SQL Server 2019 Enterprise.",
               "The database version is SQL Server 2019 Express.",
@@ -3196,6 +3205,7 @@
               "type": "object"
             },
             "striped": {
+              "description": "Whether or not the backup set being restored is striped. Applies only to Cloud SQL for SQL Server.",
               "type": "boolean"
             }
           },
@@ -3959,7 +3969,7 @@
           "type": "integer"
         },
         "passwordChangeInterval": {
-          "description": "Minimum interval after which the password can be changed. This flag is only supported for PostgresSQL.",
+          "description": "Minimum interval after which the password can be changed. This flag is only supported for PostgreSQL.",
           "format": "google-duration",
           "type": "string"
         },
