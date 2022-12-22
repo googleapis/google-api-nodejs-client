@@ -2437,6 +2437,8 @@ export namespace blogger_v3 {
      *     blogId: 'placeholder-value',
      *
      *     pageId: 'placeholder-value',
+     *     // Move to Trash if possible
+     *     useTrash: 'placeholder-value',
      *   });
      *   console.log(res.data);
      * }
@@ -3600,6 +3602,10 @@ export namespace blogger_v3 {
      *
      */
     pageId?: string;
+    /**
+     * Move to Trash if possible
+     */
+    useTrash?: boolean;
   }
   export interface Params$Resource$Pages$Get extends StandardParameters {
     /**
@@ -3908,6 +3914,8 @@ export namespace blogger_v3 {
      *     blogId: 'placeholder-value',
      *
      *     postId: 'placeholder-value',
+     *     // Move to Trash if possible
+     *     useTrash: 'placeholder-value',
      *   });
      *   console.log(res.data);
      * }
@@ -4538,6 +4546,8 @@ export namespace blogger_v3 {
      *     orderBy: 'placeholder-value',
      *
      *     pageToken: 'placeholder-value',
+     *     // Sort direction applied to post list.
+     *     sortOption: 'placeholder-value',
      *
      *     startDate: 'placeholder-value',
      *
@@ -5464,6 +5474,10 @@ export namespace blogger_v3 {
      *
      */
     postId?: string;
+    /**
+     * Move to Trash if possible
+     */
+    useTrash?: boolean;
   }
   export interface Params$Resource$Posts$Get extends StandardParameters {
     /**
@@ -5565,6 +5579,10 @@ export namespace blogger_v3 {
      *
      */
     pageToken?: string;
+    /**
+     * Sort direction applied to post list.
+     */
+    sortOption?: string;
     /**
      *
      */
