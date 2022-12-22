@@ -127,6 +127,104 @@ export namespace cloudbilling_v1beta {
   }
 
   /**
+   * Specifies the regions for Cache Fill.
+   */
+  export interface Schema$CacheFillRegions {
+    /**
+     * The destination region for cache fill.
+     */
+    destinationRegion?: string | null;
+    /**
+     * The source region for cache fill.
+     */
+    sourceRegion?: string | null;
+  }
+  /**
+   * Specifies usage for Cloud CDN egress.
+   */
+  export interface Schema$CloudCdnEgressWorkload {
+    /**
+     * The destination for the cache egress charges.
+     */
+    cacheEgressDestination?: string | null;
+    /**
+     * Cache egress usage. The rate of data cache egressed in the destination. For example : units such as "GiBy/s" or "TBy/mo".
+     */
+    cacheEgressRate?: Schema$Usage;
+  }
+  /**
+   * Specifies usage for Cloud CDN resources.
+   */
+  export interface Schema$CloudCdnWorkload {
+    /**
+     * The source service for the cache fill.
+     */
+    cacheFillOriginService?: string | null;
+    /**
+     * Cache fill usage. The rate of data transferred between cache fill regions. For example: units such as "GiBy/s" or "TBy/mo".
+     */
+    cacheFillRate?: Schema$Usage;
+    /**
+     * The regions where data is transferred from Google data locations into Google global cache servers. The SKU prices for cache fill across services are the same.
+     */
+    cacheFillRegions?: Schema$CacheFillRegions;
+    /**
+     * Cache look up requests. This is specified to indicate the number of requests. For example: units such as "1/s".
+     */
+    cacheLookUpRate?: Schema$Usage;
+  }
+  /**
+   * The interconnect egress only includes the Interconnect Egress. Please use the standard egress traffic interface to specify your standard egress usage.
+   */
+  export interface Schema$CloudInterconnectEgressWorkload {
+    /**
+     * Data egress usage. This usage applies when you move or copy data from one Google Cloud service to another service. Expected units such as "GiBy/s, By/s, etc."
+     */
+    egressRate?: Schema$Usage;
+    /**
+     * Locations in the [Interconnect connection location table](https://cloud.google.com/vpc/network-pricing#interconnect-pricing). This is the interconnect egress charges.
+     */
+    interconnectConnectionLocation?: string | null;
+  }
+  /**
+   * Specifies usage for Cloud Interconnect resources.
+   */
+  export interface Schema$CloudInterconnectWorkload {
+    /**
+     * VLAN attachment used for interconnect.
+     */
+    interconnectAttachments?: Schema$VlanAttachment[];
+    /**
+     * Vlan attachment type.
+     */
+    interconnectType?: string | null;
+    /**
+     * Interconnect circuit link type.
+     */
+    linkType?: string | null;
+    /**
+     * Interconnect usage. This is specified as a unitless quantity which indicates the number of circuit provisioned in interconnect.
+     */
+    provisionedLinkCount?: Schema$Usage;
+  }
+  /**
+   * Specification of a network type. Network egress within Google Cloud applies when you move or copy data from one Cloud Storage bucket to another or when another Google Cloud service accesses data in your Cloud Storage bucket.This includes the network egress within Google Cloud and the general network usage.
+   */
+  export interface Schema$CloudStorageEgressWorkload {
+    /**
+     * Where the data is sent to.
+     */
+    destinationContinent?: string | null;
+    /**
+     * Egress usage rate. This usage applies when you move or copy data from one Cloud Storage bucket to another or when another Google Cloud service accesses data in your Cloud Storage bucket. Expected units such as "GiBy/s, By/s, ..."
+     */
+    egressRate?: Schema$Usage;
+    /**
+     * Where the data comes from.
+     */
+    sourceContinent?: string | null;
+  }
+  /**
    * Specifies usage of Cloud Storage resources.
    */
   export interface Schema$CloudStorageWorkload {
@@ -168,7 +266,7 @@ export namespace cloudbilling_v1beta {
    */
   export interface Schema$Commitment {
     /**
-     * Required. A name for this commitment. All commitments in a CostScenario must have unique names. Each name must be a maximum of 32 characters.
+     * Required. A name for this commitment. All commitments in a CostScenario must have unique names. Each name may be at most 128 characters long.
      */
     name?: string | null;
     /**
@@ -446,6 +544,23 @@ export namespace cloudbilling_v1beta {
     machineType?: string | null;
   }
   /**
+   * Specify Premium Tier Internet egress networking.
+   */
+  export interface Schema$PremiumTierEgressWorkload {
+    /**
+     * Where the data is sent to.
+     */
+    destinationContinent?: string | null;
+    /**
+     * Premium Tier egress usage. Expected units such as "GiBy/s, By/s, etc."
+     */
+    egressRate?: Schema$Usage;
+    /**
+     * Which [region](https://cloud.google.com/compute/docs/regions-zones) the egress data comes from.
+     */
+    sourceRegion?: string | null;
+  }
+  /**
    * The price of a SKU at a point int time.
    */
   export interface Schema$Price {
@@ -506,7 +621,7 @@ export namespace cloudbilling_v1beta {
    */
   export interface Schema$ScenarioConfig {
     /**
-     * Time frame for the estimate. Workloads must specify usage for this duration. Duration must be at least 1 hour (3,600 seconds) and at most 10 years (315,360,000 seconds). The calculations for years and months are based on a 730-hour (2,628,000-second) month.
+     * Time frame for the estimate. Workloads must specify usage for this duration. Duration must be at least 1 hour (3,600 seconds) and at most 10 years (315,360,000 seconds). The calculations for years and months are based on a 730-hour (2,628,000-second) month. For durations longer than one month (2,628,000 seconds), the duration is rounded up to the next month, so the estimate shows you the costs for full months. For example, a duration of 3,232,800 seconds (roughly 5 weeks) is rounded up to 2 months.
      */
     estimateDuration?: string | null;
   }
@@ -570,6 +685,19 @@ export namespace cloudbilling_v1beta {
     usageUnit?: string | null;
   }
   /**
+   * Specify Standard Tier Internet egress networking.
+   */
+  export interface Schema$StandardTierEgressWorkload {
+    /**
+     * Standard tier egress usage. Expected units such as "GiBy/s, By/s, etc."
+     */
+    egressRate?: Schema$Usage;
+    /**
+     * Which [region](https://cloud.google.com/compute/docs/regions-zones) the egress data comes from.
+     */
+    sourceRegion?: string | null;
+  }
+  /**
    * An amount of usage over a time frame.
    */
   export interface Schema$Usage {
@@ -583,7 +711,7 @@ export namespace cloudbilling_v1beta {
    */
   export interface Schema$UsageRateTimeline {
     /**
-     * The unit for the usage rate in each timeline entry. The supported units are a subset of [The Unified Code for Units of Measure](https://ucum.org/ucum.html) standard: * **Time units (TIME-UNIT)** * `s` second * `min` minute * `h` hour * `d` day * `wk` week * `mo` month * `yr` year * `ms` millisecond * `us` microsecond * `ns` nanosecond * **Basic storage units (BASIC-STORAGE-UNIT)** * `bit` bit * `By` byte * **Count units (COUNT-UNIT)** * `count` count * **Prefixes (PREFIX)** * `k` kilo (10^3) * `M` mega (10^6) * `G` giga (10^9) * `T` tera (10^12) * `P` peta (10^15) * `Ki` kibi (2^10) * `Mi` mebi (2^20) * `Gi` gibi (2^30) * `Ti` tebi (2^40) * `Pi` pebi (2^50) **Grammar** The grammar also includes these connectors: * `/` division or ratio (as an infix operator). For example: `kBy/{email\}` or `MiBy/10ms`. * `.` multiplication or composition (as an infix operator). For example: `GBy.d` or `k{watt\}.h`. The grammar for a unit is as follows: ``` Expression = Component { "." Component \} { "/" Component \} ; Component = ( [ PREFIX ] UNIT | "%" ) [ Annotation ] | Annotation | "1" ; UNIT = TIME-UNIT | STORAGE-UNIT | DATA-UNIT | COUNT-UNIT Annotation = "{" NAME "\}" ; ``` Examples: * Request per second: `1/s` or `{requests\}/s` * GibiBytes: `GiBy` * GibiBytes * seconds: `GiBy.s`
+     * The unit for the usage rate in each timeline entry. If you provide an incorrect unit for an instance, the correct unit is provided in the error message. The supported units are a subset of [The Unified Code for Units of Measure](https://ucum.org/ucum.html) standard: * **Time units (TIME-UNIT)** * `s` second * `min` minute * `h` hour * `d` day * `wk` week * `mo` month * `yr` year * `ms` millisecond * `us` microsecond * `ns` nanosecond * **Basic storage units (BASIC-STORAGE-UNIT)** * `bit` bit * `By` byte * **Count units (COUNT-UNIT)** * `count` count * **Prefixes (PREFIX)** * `k` kilo (10^3) * `M` mega (10^6) * `G` giga (10^9) * `T` tera (10^12) * `P` peta (10^15) * `Ki` kibi (2^10) * `Mi` mebi (2^20) * `Gi` gibi (2^30) * `Ti` tebi (2^40) * `Pi` pebi (2^50) **Grammar** The grammar also includes these connectors: * `/` division or ratio (as an infix operator). For example: `kBy/{email\}` or `MiBy/10ms`. * `.` multiplication or composition (as an infix operator). For example: `GBy.d` or `k{watt\}.h`. The grammar for a unit is as follows: ``` Expression = Component { "." Component \} { "/" Component \} ; Component = ( [ PREFIX ] UNIT | "%" ) [ Annotation ] | Annotation | "1" ; UNIT = TIME-UNIT | STORAGE-UNIT | DATA-UNIT | COUNT-UNIT Annotation = "{" NAME "\}" ; ``` Examples: * Request per second: `1/s` or `{requests\}/s` * GibiBytes: `GiBy` * GibiBytes * seconds: `GiBy.s`
      */
     unit?: string | null;
     /**
@@ -603,6 +731,19 @@ export namespace cloudbilling_v1beta {
      * The usage rate.
      */
     usageRate?: number | null;
+  }
+  /**
+   * VLAN attachment for cloud interconnect.
+   */
+  export interface Schema$VlanAttachment {
+    /**
+     * Capacities in the [pricing table](https://cloud.google.com/vpc/network-pricing#interconnect-pricing) Examples of capacity are: 50/100/200/300/400/500-Mbps, 1/2/5/10/20/50-Gbps.
+     */
+    bandwidth?: string | null;
+    /**
+     * VLAN usage. This is specified as a unitless quantity which indicates the number of VLAN attachment used in interconnect.
+     */
+    vlanCount?: Schema$Usage;
   }
   /**
    * Specifies a resource-based committed use discount (CUD).
@@ -638,6 +779,26 @@ export namespace cloudbilling_v1beta {
    */
   export interface Schema$Workload {
     /**
+     * Usage on Google Cloud CDN Egress.
+     */
+    cloudCdnEgressWorkload?: Schema$CloudCdnEgressWorkload;
+    /**
+     * Usage on Google Cloud CDN.
+     */
+    cloudCdnWorkload?: Schema$CloudCdnWorkload;
+    /**
+     * Usage on Google Cloud Interconnect Egress.
+     */
+    cloudInterconnectEgressWorkload?: Schema$CloudInterconnectEgressWorkload;
+    /**
+     * Usage on Google Cloud Interconnect.
+     */
+    cloudInterconnectWorkload?: Schema$CloudInterconnectWorkload;
+    /**
+     * Usage on a cloud storage egress.
+     */
+    cloudStorageEgressWorkload?: Schema$CloudStorageEgressWorkload;
+    /**
      * Usage on Google Cloud Storage.
      */
     cloudStorageWorkload?: Schema$CloudStorageWorkload;
@@ -646,9 +807,17 @@ export namespace cloudbilling_v1beta {
      */
     computeVmWorkload?: Schema$ComputeVmWorkload;
     /**
-     * Required. A name for this workload. All workloads in a `CostScenario` must have a unique `name`. Each `name` must be a maximum of 32 characters.
+     * Required. A name for this workload. All workloads in a `CostScenario` must have a unique `name`. Each `name` may be at most 128 characters long.
      */
     name?: string | null;
+    /**
+     * Usage on Premium Tier Internet Egress.
+     */
+    premiumTierEgressWorkload?: Schema$PremiumTierEgressWorkload;
+    /**
+     * Usage on Standard Tier Internet Egress.
+     */
+    standardTierEgressWorkload?: Schema$StandardTierEgressWorkload;
   }
   /**
    * Estimated cost for a workload.

@@ -170,9 +170,256 @@
       }
     }
   },
-  "revision": "20220914",
+  "revision": "20221206",
   "rootUrl": "https://cloudbilling.googleapis.com/",
   "schemas": {
+    "CacheFillRegions": {
+      "description": "Specifies the regions for Cache Fill.",
+      "id": "CacheFillRegions",
+      "properties": {
+        "destinationRegion": {
+          "description": "The destination region for cache fill.",
+          "enum": [
+            "CACHE_FILL_DESTINATION_REGION_UNSPECIFIED",
+            "CACHE_FILL_DESTINATION_REGION_ASIA_PACIFIC",
+            "CACHE_FILL_DESTINATION_REGION_EUROPE",
+            "CACHE_FILL_DESTINATION_REGION_NORTH_AMERICA",
+            "CACHE_FILL_DESTINATION_REGION_OCEANIA",
+            "CACHE_FILL_DESTINATION_REGION_SOUTH_AMERICA",
+            "CACHE_FILL_DESTINATION_REGION_CHINA",
+            "CACHE_FILL_DESTINATION_REGION_OTHERS"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Asia Pacific.",
+            "Europe",
+            "North America.",
+            "Oceania.",
+            "South America.",
+            "China.",
+            "Others."
+          ],
+          "type": "string"
+        },
+        "sourceRegion": {
+          "description": "The source region for cache fill.",
+          "enum": [
+            "CACHE_FILL_SOURCE_REGION_UNSPECIFIED",
+            "CACHE_FILL_REGION_ASIA_PACIFIC",
+            "CACHE_FILL_SOURCE_REGION_EUROPE",
+            "CACHE_FILL_SOURCE_REGION_NORTH_AMERICA",
+            "CACHE_FILL_SOURCE_REGION_OCEANIA",
+            "CACHE_FILL_SOURCE_REGION_SOUTH_AMERICA"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Asia Pacific.",
+            "Europe",
+            "North America.",
+            "Oceania.",
+            "South America."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudCdnEgressWorkload": {
+      "description": "Specifies usage for Cloud CDN egress.",
+      "id": "CloudCdnEgressWorkload",
+      "properties": {
+        "cacheEgressDestination": {
+          "description": "The destination for the cache egress charges.",
+          "enum": [
+            "CACHE_EGRESS_DESTINATION_UNSPECIFIED",
+            "CACHE_EGRESS_DESTINATION_ASIA_PACIFIC",
+            "CACHE_EGRESS_DESTINATION_CHINA",
+            "CACHE_EGRESS_DESTINATION_EUROPE",
+            "CACHE_EGRESS_DESTINATION_NORTH_AMERICA",
+            "CACHE_EGRESS_DESTINATION_OCEANIA",
+            "CACHE_EGRESS_DESTINATION_LATIN_AMERICA",
+            "CACHE_EGRESS_DESTINATION_OTHER_DESTINATIONS"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Asia Pacific.",
+            "China.",
+            "Europe.",
+            "North America.",
+            "Oceania including Australia, New Zealand, and surrounding Pacific Ocean islands such as Papua New Guinea and Fiji. This region excludes Hawaii.",
+            "Latin America (Including the Caribbean, South America and Central America.)",
+            "All other destinations (including Africa and Antarctica)"
+          ],
+          "type": "string"
+        },
+        "cacheEgressRate": {
+          "$ref": "Usage",
+          "description": "Cache egress usage. The rate of data cache egressed in the destination. For example : units such as \"GiBy/s\" or \"TBy/mo\"."
+        }
+      },
+      "type": "object"
+    },
+    "CloudCdnWorkload": {
+      "description": "Specifies usage for Cloud CDN resources.",
+      "id": "CloudCdnWorkload",
+      "properties": {
+        "cacheFillOriginService": {
+          "description": "The source service for the cache fill.",
+          "enum": [
+            "CACHE_FILL_ORIGIN_SERVICE_UNSPECIFIED",
+            "CACHE_FILL_ORIGIN_SERVICE_GOOGLE_CLOUD_STORAGE_BUCKET",
+            "CACHE_FILL_ORIGIN_SERVICE_BACKEND_SERVICE"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Origin service is Google Cloud Storage.",
+            "Origin service is backend service, such as Compute VMs, external backend, etc."
+          ],
+          "type": "string"
+        },
+        "cacheFillRate": {
+          "$ref": "Usage",
+          "description": "Cache fill usage. The rate of data transferred between cache fill regions. For example: units such as \"GiBy/s\" or \"TBy/mo\"."
+        },
+        "cacheFillRegions": {
+          "$ref": "CacheFillRegions",
+          "description": "The regions where data is transferred from Google data locations into Google global cache servers. The SKU prices for cache fill across services are the same."
+        },
+        "cacheLookUpRate": {
+          "$ref": "Usage",
+          "description": "Cache look up requests. This is specified to indicate the number of requests. For example: units such as \"1/s\"."
+        }
+      },
+      "type": "object"
+    },
+    "CloudInterconnectEgressWorkload": {
+      "description": "The interconnect egress only includes the Interconnect Egress. Please use the standard egress traffic interface to specify your standard egress usage.",
+      "id": "CloudInterconnectEgressWorkload",
+      "properties": {
+        "egressRate": {
+          "$ref": "Usage",
+          "description": "Data egress usage. This usage applies when you move or copy data from one Google Cloud service to another service. Expected units such as \"GiBy/s, By/s, etc.\""
+        },
+        "interconnectConnectionLocation": {
+          "description": "Locations in the [Interconnect connection location table](https://cloud.google.com/vpc/network-pricing#interconnect-pricing). This is the interconnect egress charges.",
+          "enum": [
+            "INTERCONNECT_CONNECTION_LOCATION_UNSPECIFIED",
+            "INTERCONNECT_CONNECTION_LOCATION_ASIA",
+            "INTERCONNECT_CONNECTION_LOCATION_EUROPE",
+            "INTERCONNECT_CONNECTION_LOCATION_NORTH_AMERICA",
+            "INTERCONNECT_CONNECTION_LOCATION_SOUTH_AMERICA",
+            "INTERCONNECT_CONNECTION_LOCATION_AUSTRALIA"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Asia.",
+            "Europe.",
+            "North America.",
+            "South America.",
+            "Australia."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudInterconnectWorkload": {
+      "description": "Specifies usage for Cloud Interconnect resources.",
+      "id": "CloudInterconnectWorkload",
+      "properties": {
+        "interconnectAttachments": {
+          "description": "VLAN attachment used for interconnect.",
+          "items": {
+            "$ref": "VlanAttachment"
+          },
+          "type": "array"
+        },
+        "interconnectType": {
+          "description": "Vlan attachment type.",
+          "enum": [
+            "INTERCONNECT_TYPE_UNSPECIFIED",
+            "INTERCONNECT_TYPE_DEDICATED",
+            "INTERCONNECT_TYPE_PARTNER"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Type is dedicated.",
+            "Type is partner."
+          ],
+          "type": "string"
+        },
+        "linkType": {
+          "description": "Interconnect circuit link type.",
+          "enum": [
+            "LINK_TYPE_UNSPECIFIED",
+            "LINK_TYPE_ETHERNET_10G_LR",
+            "LINK_TYPE_ETHERNET_100G_LR"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Link type is 10 gbps.",
+            "Link type is 100 gbps."
+          ],
+          "type": "string"
+        },
+        "provisionedLinkCount": {
+          "$ref": "Usage",
+          "description": "Interconnect usage. This is specified as a unitless quantity which indicates the number of circuit provisioned in interconnect."
+        }
+      },
+      "type": "object"
+    },
+    "CloudStorageEgressWorkload": {
+      "description": "Specification of a network type. Network egress within Google Cloud applies when you move or copy data from one Cloud Storage bucket to another or when another Google Cloud service accesses data in your Cloud Storage bucket.This includes the network egress within Google Cloud and the general network usage.",
+      "id": "CloudStorageEgressWorkload",
+      "properties": {
+        "destinationContinent": {
+          "description": "Where the data is sent to.",
+          "enum": [
+            "DESTINATION_CONTINENT_UNSPECIFIED",
+            "DESTINATION_CONTINENT_ASIA_PACIFIC",
+            "DESTINATION_CONTINENT_AUTRALIA",
+            "DESTINATION_CONTINENT_EUROPE",
+            "DESTINATION_CONTINENT_NORTH_AMERICA",
+            "DESTINATION_CONTINENT_SOUTH_AMERICA"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Asia Pacific.",
+            "Australia.",
+            "Europe.",
+            "North America.",
+            "South America"
+          ],
+          "type": "string"
+        },
+        "egressRate": {
+          "$ref": "Usage",
+          "description": "Egress usage rate. This usage applies when you move or copy data from one Cloud Storage bucket to another or when another Google Cloud service accesses data in your Cloud Storage bucket. Expected units such as \"GiBy/s, By/s, ...\""
+        },
+        "sourceContinent": {
+          "description": "Where the data comes from.",
+          "enum": [
+            "SOURCE_CONTINENT_UNSPECIFIED",
+            "SOURCE_CONTINENT_ASIA_PACIFIC",
+            "SOURCE_CONTINENT_AUSTRALIA",
+            "SOURCE_CONTINENT_EUROPE",
+            "SOURCE_CONTINENT_NORTH_AMERICA",
+            "SOURCE_CONTINENT_SOUTH_AMERICA"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Asia Pacific.",
+            "Australia.",
+            "Europe.",
+            "North America.",
+            "South America."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CloudStorageWorkload": {
       "description": "Specifies usage of Cloud Storage resources.",
       "id": "CloudStorageWorkload",
@@ -217,7 +464,7 @@
       "id": "Commitment",
       "properties": {
         "name": {
-          "description": "Required. A name for this commitment. All commitments in a CostScenario must have unique names. Each name must be a maximum of 32 characters.",
+          "description": "Required. A name for this commitment. All commitments in a CostScenario must have unique names. Each name may be at most 128 characters long.",
           "type": "string"
         },
         "vmResourceBasedCud": {
@@ -578,6 +825,55 @@
       },
       "type": "object"
     },
+    "PremiumTierEgressWorkload": {
+      "description": "Specify Premium Tier Internet egress networking.",
+      "id": "PremiumTierEgressWorkload",
+      "properties": {
+        "destinationContinent": {
+          "description": "Where the data is sent to.",
+          "enum": [
+            "DESTINATION_CONTINENT_UNSPECIFIED",
+            "DESTINATION_CONTINENT_ASIA_PACIFIC",
+            "DESTINATION_CONTINENT_AFRICA",
+            "DESTINATION_CONTINENT_NORTH_AMERICA",
+            "DESTINATION_CONTINENT_AUTRALIA",
+            "DESTINATION_CONTINENT_CENTRAL_AMERICA",
+            "DESTINATION_CONTINENT_CHINA",
+            "DESTINATION_CONTINENT_EASTERN_EUROPE",
+            "DESTINATION_CONTINENT_WESTERN_EUROPE",
+            "DESTINATION_CONTINENT_EMEA",
+            "DESTINATION_CONTINENT_INDIA",
+            "DESTINATION_CONTINENT_MIDDLE_EAST",
+            "DESTINATION_CONTINENT_SOUTH_AMERICA"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Asia Pacific.",
+            "Africa.",
+            "North America.",
+            "Australia.",
+            "Central America.",
+            "China.",
+            "Eastern Europe.",
+            "Western Europe.",
+            "Other regions in Europe, Middle East and Africa.",
+            "India",
+            "Middle East.",
+            "South America."
+          ],
+          "type": "string"
+        },
+        "egressRate": {
+          "$ref": "Usage",
+          "description": "Premium Tier egress usage. Expected units such as \"GiBy/s, By/s, etc.\""
+        },
+        "sourceRegion": {
+          "description": "Which [region](https://cloud.google.com/compute/docs/regions-zones) the egress data comes from.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Price": {
       "description": "The price of a SKU at a point int time.",
       "id": "Price",
@@ -652,7 +948,7 @@
       "id": "ScenarioConfig",
       "properties": {
         "estimateDuration": {
-          "description": "Time frame for the estimate. Workloads must specify usage for this duration. Duration must be at least 1 hour (3,600 seconds) and at most 10 years (315,360,000 seconds). The calculations for years and months are based on a 730-hour (2,628,000-second) month.",
+          "description": "Time frame for the estimate. Workloads must specify usage for this duration. Duration must be at least 1 hour (3,600 seconds) and at most 10 years (315,360,000 seconds). The calculations for years and months are based on a 730-hour (2,628,000-second) month. For durations longer than one month (2,628,000 seconds), the duration is rounded up to the next month, so the estimate shows you the costs for full months. For example, a duration of 3,232,800 seconds (roughly 5 weeks) is rounded up to 2 months.",
           "format": "google-duration",
           "type": "string"
         }
@@ -734,6 +1030,21 @@
       },
       "type": "object"
     },
+    "StandardTierEgressWorkload": {
+      "description": "Specify Standard Tier Internet egress networking.",
+      "id": "StandardTierEgressWorkload",
+      "properties": {
+        "egressRate": {
+          "$ref": "Usage",
+          "description": "Standard tier egress usage. Expected units such as \"GiBy/s, By/s, etc.\""
+        },
+        "sourceRegion": {
+          "description": "Which [region](https://cloud.google.com/compute/docs/regions-zones) the egress data comes from.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Usage": {
       "description": "An amount of usage over a time frame.",
       "id": "Usage",
@@ -750,7 +1061,7 @@
       "id": "UsageRateTimeline",
       "properties": {
         "unit": {
-          "description": "The unit for the usage rate in each timeline entry. The supported units are a subset of [The Unified Code for Units of Measure](https://ucum.org/ucum.html) standard: * **Time units (TIME-UNIT)** * `s` second * `min` minute * `h` hour * `d` day * `wk` week * `mo` month * `yr` year * `ms` millisecond * `us` microsecond * `ns` nanosecond * **Basic storage units (BASIC-STORAGE-UNIT)** * `bit` bit * `By` byte * **Count units (COUNT-UNIT)** * `count` count * **Prefixes (PREFIX)** * `k` kilo (10^3) * `M` mega (10^6) * `G` giga (10^9) * `T` tera (10^12) * `P` peta (10^15) * `Ki` kibi (2^10) * `Mi` mebi (2^20) * `Gi` gibi (2^30) * `Ti` tebi (2^40) * `Pi` pebi (2^50) **Grammar** The grammar also includes these connectors: * `/` division or ratio (as an infix operator). For example: `kBy/{email}` or `MiBy/10ms`. * `.` multiplication or composition (as an infix operator). For example: `GBy.d` or `k{watt}.h`. The grammar for a unit is as follows: ``` Expression = Component { \".\" Component } { \"/\" Component } ; Component = ( [ PREFIX ] UNIT | \"%\" ) [ Annotation ] | Annotation | \"1\" ; UNIT = TIME-UNIT | STORAGE-UNIT | DATA-UNIT | COUNT-UNIT Annotation = \"{\" NAME \"}\" ; ``` Examples: * Request per second: `1/s` or `{requests}/s` * GibiBytes: `GiBy` * GibiBytes * seconds: `GiBy.s`",
+          "description": "The unit for the usage rate in each timeline entry. If you provide an incorrect unit for an instance, the correct unit is provided in the error message. The supported units are a subset of [The Unified Code for Units of Measure](https://ucum.org/ucum.html) standard: * **Time units (TIME-UNIT)** * `s` second * `min` minute * `h` hour * `d` day * `wk` week * `mo` month * `yr` year * `ms` millisecond * `us` microsecond * `ns` nanosecond * **Basic storage units (BASIC-STORAGE-UNIT)** * `bit` bit * `By` byte * **Count units (COUNT-UNIT)** * `count` count * **Prefixes (PREFIX)** * `k` kilo (10^3) * `M` mega (10^6) * `G` giga (10^9) * `T` tera (10^12) * `P` peta (10^15) * `Ki` kibi (2^10) * `Mi` mebi (2^20) * `Gi` gibi (2^30) * `Ti` tebi (2^40) * `Pi` pebi (2^50) **Grammar** The grammar also includes these connectors: * `/` division or ratio (as an infix operator). For example: `kBy/{email}` or `MiBy/10ms`. * `.` multiplication or composition (as an infix operator). For example: `GBy.d` or `k{watt}.h`. The grammar for a unit is as follows: ``` Expression = Component { \".\" Component } { \"/\" Component } ; Component = ( [ PREFIX ] UNIT | \"%\" ) [ Annotation ] | Annotation | \"1\" ; UNIT = TIME-UNIT | STORAGE-UNIT | DATA-UNIT | COUNT-UNIT Annotation = \"{\" NAME \"}\" ; ``` Examples: * Request per second: `1/s` or `{requests}/s` * GibiBytes: `GiBy` * GibiBytes * seconds: `GiBy.s`",
           "type": "string"
         },
         "usageRateTimelineEntries": {
@@ -775,6 +1086,51 @@
           "description": "The usage rate.",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "VlanAttachment": {
+      "description": "VLAN attachment for cloud interconnect.",
+      "id": "VlanAttachment",
+      "properties": {
+        "bandwidth": {
+          "description": "Capacities in the [pricing table](https://cloud.google.com/vpc/network-pricing#interconnect-pricing) Examples of capacity are: 50/100/200/300/400/500-Mbps, 1/2/5/10/20/50-Gbps.",
+          "enum": [
+            "BANDWIDTH_UNSPECIFIED",
+            "BANDWIDTH_BPS_50M",
+            "BANDWIDTH_BPS_100M",
+            "BANDWIDTH_BPS_200M",
+            "BANDWIDTH_BPS_300M",
+            "BANDWIDTH_BPS_400M",
+            "BANDWIDTH_BPS_500M",
+            "BANDWIDTH_BPS_1G",
+            "BANDWIDTH_BPS_2G",
+            "BANDWIDTH_BPS_5G",
+            "BANDWIDTH_BPS_10G",
+            "BANDWIDTH_BPS_20G",
+            "BANDWIDTH_BPS_50G"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "50 Mbit/s",
+            "100 Mbit/s",
+            "200 Mbit/s",
+            "300 Mbit/s",
+            "400 Mbit/s",
+            "500 Mbit/s",
+            "1 Gbit/s",
+            "2 Gbit/s",
+            "5 Gbit/s",
+            "10 Gbit/s",
+            "20 Gbit/s",
+            "50 Gbit/s"
+          ],
+          "type": "string"
+        },
+        "vlanCount": {
+          "$ref": "Usage",
+          "description": "VLAN usage. This is specified as a unitless quantity which indicates the number of VLAN attachment used in interconnect."
         }
       },
       "type": "object"
@@ -826,6 +1182,26 @@
       "description": "Specifies usage on a single Google Cloud product over a time frame. Each Google Cloud product has its own message, containing specific product configuration parameters of the product usage amounts along each dimension in which the product is billed.",
       "id": "Workload",
       "properties": {
+        "cloudCdnEgressWorkload": {
+          "$ref": "CloudCdnEgressWorkload",
+          "description": "Usage on Google Cloud CDN Egress."
+        },
+        "cloudCdnWorkload": {
+          "$ref": "CloudCdnWorkload",
+          "description": "Usage on Google Cloud CDN."
+        },
+        "cloudInterconnectEgressWorkload": {
+          "$ref": "CloudInterconnectEgressWorkload",
+          "description": "Usage on Google Cloud Interconnect Egress."
+        },
+        "cloudInterconnectWorkload": {
+          "$ref": "CloudInterconnectWorkload",
+          "description": "Usage on Google Cloud Interconnect."
+        },
+        "cloudStorageEgressWorkload": {
+          "$ref": "CloudStorageEgressWorkload",
+          "description": "Usage on a cloud storage egress."
+        },
         "cloudStorageWorkload": {
           "$ref": "CloudStorageWorkload",
           "description": "Usage on Google Cloud Storage."
@@ -835,8 +1211,16 @@
           "description": "Usage of a Google Compute Engine Virtual Machine."
         },
         "name": {
-          "description": "Required. A name for this workload. All workloads in a `CostScenario` must have a unique `name`. Each `name` must be a maximum of 32 characters.",
+          "description": "Required. A name for this workload. All workloads in a `CostScenario` must have a unique `name`. Each `name` may be at most 128 characters long.",
           "type": "string"
+        },
+        "premiumTierEgressWorkload": {
+          "$ref": "PremiumTierEgressWorkload",
+          "description": "Usage on Premium Tier Internet Egress."
+        },
+        "standardTierEgressWorkload": {
+          "$ref": "StandardTierEgressWorkload",
+          "description": "Usage on Standard Tier Internet Egress."
         }
       },
       "type": "object"
