@@ -133,10 +133,14 @@ export namespace tpu_v2alpha1 {
      */
     name?: string | null;
     /**
-     * the accelerator type.
+     * The accelerator type.
      */
     type?: string | null;
   }
+  /**
+   * Further data for the accepted state.
+   */
+  export interface Schema$AcceptedData {}
   /**
    * An access config attached to the TPU worker.
    */
@@ -146,6 +150,10 @@ export namespace tpu_v2alpha1 {
      */
     externalIp?: string | null;
   }
+  /**
+   * Further data for the active state.
+   */
+  export interface Schema$ActiveData {}
   /**
    * A node-attached disk resource. Next ID: 8;
    */
@@ -160,9 +168,30 @@ export namespace tpu_v2alpha1 {
     sourceDisk?: string | null;
   }
   /**
+   * BestEffort tier definition.
+   */
+  export interface Schema$BestEffort {}
+  /**
+   * Further data for the creating state.
+   */
+  export interface Schema$CreatingData {}
+  /**
+   * Further data for the deleting state.
+   */
+  export interface Schema$DeletingData {}
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * Further data for the failed state.
+   */
+  export interface Schema$FailedData {
+    /**
+     * The error that caused the queued resource to enter the FAILED state.
+     */
+    error?: Schema$Status;
+  }
   /**
    * Request for GenerateServiceIdentity.
    */
@@ -197,6 +226,19 @@ export namespace tpu_v2alpha1 {
      * The guest attributes for the TPU workers.
      */
     guestAttributes?: Schema$GuestAttributes[];
+  }
+  /**
+   * Guaranteed tier definition.
+   */
+  export interface Schema$Guaranteed {
+    /**
+     * Optional. Defines the minimum duration of the guarantee. If specified, the requested resources will only be provisioned if they can be allocated for at least the given duration.
+     */
+    minDuration?: string | null;
+    /**
+     * Optional. Specifies the request should be scheduled on reserved capacity.
+     */
+    reserved?: boolean | null;
   }
   /**
    * A guest attributes.
@@ -236,6 +278,19 @@ export namespace tpu_v2alpha1 {
      * The list of guest attributes entries.
      */
     items?: Schema$GuestAttributesEntry[];
+  }
+  /**
+   * Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive). The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time.
+   */
+  export interface Schema$Interval {
+    /**
+     * Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.
+     */
+    endTime?: string | null;
+    /**
+     * Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.
+     */
+    startTime?: string | null;
   }
   /**
    * Response for ListAcceleratorTypes.
@@ -296,6 +351,23 @@ export namespace tpu_v2alpha1 {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$Operation[];
+  }
+  /**
+   * Response for ListQueuedResources.
+   */
+  export interface Schema$ListQueuedResourcesResponse {
+    /**
+     * The next page token or empty if none.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The listed queued resources.
+     */
+    queuedResources?: Schema$QueuedResource[];
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response for ListRuntimeVersions.
@@ -438,6 +510,10 @@ export namespace tpu_v2alpha1 {
      */
     networkEndpoints?: Schema$NetworkEndpoint[];
     /**
+     * Output only. The qualified name of the QueuedResource that requested this Node.
+     */
+    queuedResource?: string | null;
+    /**
      * Required. The runtime version running in the Node.
      */
     runtimeVersion?: string | null;
@@ -465,6 +541,23 @@ export namespace tpu_v2alpha1 {
      * Tags to apply to the TPU Node. Tags are used to identify valid sources or targets for network firewalls.
      */
     tags?: string[] | null;
+  }
+  /**
+   * Details of the TPU node(s) being requested. Users can request either a single node or multiple nodes. NodeSpec provides the specification for node(s) to be created.
+   */
+  export interface Schema$NodeSpec {
+    /**
+     * Required. The node.
+     */
+    node?: Schema$Node;
+    /**
+     * The unqualified resource name. Should follow the ^[A-Za-z0-9_.~+%-]+$ regex format. This is only specified when requesting a single node. In case of multi-node requests, multi_node_params must be populated instead. It's an error to specify both node_id and multi_node_params.
+     */
+    nodeId?: string | null;
+    /**
+     * Required. The parent resource name.
+     */
+    parent?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -523,6 +616,105 @@ export namespace tpu_v2alpha1 {
      * Name of the verb executed by the operation.
      */
     verb?: string | null;
+  }
+  /**
+   * Further data for the provisioning state.
+   */
+  export interface Schema$ProvisioningData {}
+  /**
+   * A QueuedResource represents a request for resources that will be placed in a queue and fulfilled when the necessary resources are available.
+   */
+  export interface Schema$QueuedResource {
+    /**
+     * The BestEffort tier.
+     */
+    bestEffort?: Schema$BestEffort;
+    /**
+     * The Guaranteed tier
+     */
+    guaranteed?: Schema$Guaranteed;
+    /**
+     * Output only. Immutable. The name of the QueuedResource.
+     */
+    name?: string | null;
+    /**
+     * The queueing policy of the QueuedRequest.
+     */
+    queueingPolicy?: Schema$QueueingPolicy;
+    /**
+     * Output only. State of the QueuedResource request
+     */
+    state?: Schema$QueuedResourceState;
+    /**
+     * Defines a TPU resource.
+     */
+    tpu?: Schema$Tpu;
+  }
+  /**
+   * QueuedResourceState defines the details of the QueuedResource request.
+   */
+  export interface Schema$QueuedResourceState {
+    /**
+     * Further data for the accepted state.
+     */
+    acceptedData?: Schema$AcceptedData;
+    /**
+     * Further data for the active state.
+     */
+    activeData?: Schema$ActiveData;
+    /**
+     * Further data for the creating state.
+     */
+    creatingData?: Schema$CreatingData;
+    /**
+     * Further data for the deleting state.
+     */
+    deletingData?: Schema$DeletingData;
+    /**
+     * Further data for the failed state.
+     */
+    failedData?: Schema$FailedData;
+    /**
+     * Further data for the provisioning state.
+     */
+    provisioningData?: Schema$ProvisioningData;
+    /**
+     * State of the QueuedResource request.
+     */
+    state?: string | null;
+    /**
+     * Further data for the suspended state.
+     */
+    suspendedData?: Schema$SuspendedData;
+    /**
+     * Further data for the suspending state.
+     */
+    suspendingData?: Schema$SuspendingData;
+  }
+  /**
+   * Defines the policy of the QueuedRequest.
+   */
+  export interface Schema$QueueingPolicy {
+    /**
+     * A relative time after which resources may be created.
+     */
+    validAfterDuration?: string | null;
+    /**
+     * An absolute time at which resources may be created.
+     */
+    validAfterTime?: string | null;
+    /**
+     * An absolute time interval within which resources may be created.
+     */
+    validInterval?: Schema$Interval;
+    /**
+     * A relative time after which resources should not be created. If the request cannot be fulfilled by this time the request will be failed.
+     */
+    validUntilDuration?: string | null;
+    /**
+     * An absolute time after which resources should not be created. If the request cannot be fulfilled by this time the request will be failed.
+     */
+    validUntilTime?: string | null;
   }
   /**
    * A runtime version that a Node can be configured with.
@@ -616,6 +808,14 @@ export namespace tpu_v2alpha1 {
    */
   export interface Schema$StopNodeRequest {}
   /**
+   * Further data for the suspended state.
+   */
+  export interface Schema$SuspendedData {}
+  /**
+   * Further data for the suspending state.
+   */
+  export interface Schema$SuspendingData {}
+  /**
    * A Symptom instance.
    */
   export interface Schema$Symptom {
@@ -636,6 +836,15 @@ export namespace tpu_v2alpha1 {
      */
     workerId?: string | null;
   }
+  /**
+   * Details of the TPU resource(s) being requested.
+   */
+  export interface Schema$Tpu {
+    /**
+     * The TPU node(s) being requested.
+     */
+    nodeSpec?: Schema$NodeSpec[];
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -651,6 +860,7 @@ export namespace tpu_v2alpha1 {
     acceleratorTypes: Resource$Projects$Locations$Acceleratortypes;
     nodes: Resource$Projects$Locations$Nodes;
     operations: Resource$Projects$Locations$Operations;
+    queuedResources: Resource$Projects$Locations$Queuedresources;
     runtimeVersions: Resource$Projects$Locations$Runtimeversions;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -659,6 +869,9 @@ export namespace tpu_v2alpha1 {
       );
       this.nodes = new Resource$Projects$Locations$Nodes(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
+        this.context
+      );
+      this.queuedResources = new Resource$Projects$Locations$Queuedresources(
         this.context
       );
       this.runtimeVersions = new Resource$Projects$Locations$Runtimeversions(
@@ -1492,6 +1705,7 @@ export namespace tpu_v2alpha1 {
      *       //   "name": "my_name",
      *       //   "networkConfig": {},
      *       //   "networkEndpoints": [],
+     *       //   "queuedResource": "my_queuedResource",
      *       //   "runtimeVersion": "my_runtimeVersion",
      *       //   "schedulingConfig": {},
      *       //   "serviceAccount": {},
@@ -1785,6 +1999,7 @@ export namespace tpu_v2alpha1 {
      *   //   "name": "my_name",
      *   //   "networkConfig": {},
      *   //   "networkEndpoints": [],
+     *   //   "queuedResource": "my_queuedResource",
      *   //   "runtimeVersion": "my_runtimeVersion",
      *   //   "schedulingConfig": {},
      *   //   "serviceAccount": {},
@@ -2217,6 +2432,7 @@ export namespace tpu_v2alpha1 {
      *       //   "name": "my_name",
      *       //   "networkConfig": {},
      *       //   "networkEndpoints": [],
+     *       //   "queuedResource": "my_queuedResource",
      *       //   "runtimeVersion": "my_runtimeVersion",
      *       //   "schedulingConfig": {},
      *       //   "serviceAccount": {},
@@ -3435,6 +3651,624 @@ export namespace tpu_v2alpha1 {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Queuedresources {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a QueuedResource TPU instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tpu = google.tpu('v2alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tpu.projects.locations.queuedResources.create({
+     *     // Required. The parent resource name.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // The unqualified resource name. Should follow the ^[A-Za-z0-9_.~+%-]+$ regex format.
+     *     queuedResourceId: 'placeholder-value',
+     *     // Idempotent request UUID.
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bestEffort": {},
+     *       //   "guaranteed": {},
+     *       //   "name": "my_name",
+     *       //   "queueingPolicy": {},
+     *       //   "state": {},
+     *       //   "tpu": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Queuedresources$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Queuedresources$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Queuedresources$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Queuedresources$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Queuedresources$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queuedresources$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queuedresources$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Queuedresources$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha1/{+parent}/queuedResources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a QueuedResource TPU instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tpu = google.tpu('v2alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tpu.projects.locations.queuedResources.delete({
+     *     // Required. The resource name.
+     *     name: 'projects/my-project/locations/my-location/queuedResources/my-queuedResource',
+     *     // Idempotent request UUID.
+     *     requestId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Queuedresources$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Queuedresources$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Queuedresources$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Queuedresources$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Queuedresources$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queuedresources$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queuedresources$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Queuedresources$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a queued resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tpu = google.tpu('v2alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tpu.projects.locations.queuedResources.get({
+     *     // Required. The resource name.
+     *     name: 'projects/my-project/locations/my-location/queuedResources/my-queuedResource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bestEffort": {},
+     *   //   "guaranteed": {},
+     *   //   "name": "my_name",
+     *   //   "queueingPolicy": {},
+     *   //   "state": {},
+     *   //   "tpu": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Queuedresources$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Queuedresources$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$QueuedResource>;
+    get(
+      params: Params$Resource$Projects$Locations$Queuedresources$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Queuedresources$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$QueuedResource>,
+      callback: BodyResponseCallback<Schema$QueuedResource>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Queuedresources$Get,
+      callback: BodyResponseCallback<Schema$QueuedResource>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$QueuedResource>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queuedresources$Get
+        | BodyResponseCallback<Schema$QueuedResource>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$QueuedResource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$QueuedResource>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$QueuedResource> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queuedresources$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Queuedresources$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$QueuedResource>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$QueuedResource>(parameters);
+      }
+    }
+
+    /**
+     * Lists queued resources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tpu = google.tpu('v2alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await tpu.projects.locations.queuedResources.list({
+     *     // The maximum number of items to return.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value returned from a previous List request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "queuedResources": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Queuedresources$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Queuedresources$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListQueuedResourcesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Queuedresources$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Queuedresources$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListQueuedResourcesResponse>,
+      callback: BodyResponseCallback<Schema$ListQueuedResourcesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Queuedresources$List,
+      callback: BodyResponseCallback<Schema$ListQueuedResourcesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListQueuedResourcesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queuedresources$List
+        | BodyResponseCallback<Schema$ListQueuedResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListQueuedResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListQueuedResourcesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListQueuedResourcesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queuedresources$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Queuedresources$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha1/{+parent}/queuedResources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListQueuedResourcesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListQueuedResourcesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Queuedresources$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource name.
+     */
+    parent?: string;
+    /**
+     * The unqualified resource name. Should follow the ^[A-Za-z0-9_.~+%-]+$ regex format.
+     */
+    queuedResourceId?: string;
+    /**
+     * Idempotent request UUID.
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$QueuedResource;
+  }
+  export interface Params$Resource$Projects$Locations$Queuedresources$Delete
+    extends StandardParameters {
+    /**
+     * Required. The resource name.
+     */
+    name?: string;
+    /**
+     * Idempotent request UUID.
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Queuedresources$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Queuedresources$List
+    extends StandardParameters {
+    /**
+     * The maximum number of items to return.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from a previous List request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource name.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Runtimeversions {
