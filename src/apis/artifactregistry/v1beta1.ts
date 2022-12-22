@@ -403,6 +403,10 @@ export namespace artifactregistry_v1beta1 {
      */
     name?: string | null;
     /**
+     * Output only. If set, the repository satisfies physical zone separation.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Output only. The size, in bytes, of all artifact storage in this repository. Repositories that are generally available or in public preview use this to calculate storage costs.
      */
     sizeBytes?: string | null;
@@ -1029,6 +1033,7 @@ export namespace artifactregistry_v1beta1 {
      *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "satisfiesPzs": false,
      *       //   "sizeBytes": "my_sizeBytes",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -1312,6 +1317,7 @@ export namespace artifactregistry_v1beta1 {
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "satisfiesPzs": false,
      *   //   "sizeBytes": "my_sizeBytes",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -1731,6 +1737,7 @@ export namespace artifactregistry_v1beta1 {
      *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "satisfiesPzs": false,
      *       //   "sizeBytes": "my_sizeBytes",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -1746,6 +1753,7 @@ export namespace artifactregistry_v1beta1 {
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "satisfiesPzs": false,
      *   //   "sizeBytes": "my_sizeBytes",
      *   //   "updateTime": "my_updateTime"
      *   // }
