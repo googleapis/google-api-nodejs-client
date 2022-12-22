@@ -35,7 +35,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/pqc6_FFI8R5V0mO3Ezlrf52ddCQ\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/2TMpck7GTrbcyLtBRwI3Q7B24jA\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -228,7 +228,7 @@
             },
             "spaces": {
               "default": "drive",
-              "description": "A comma-separated list of spaces to query within the user corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.",
+              "description": "A comma-separated list of spaces to query within the corpora. Supported values are 'drive' and 'appDataFolder'.",
               "location": "query",
               "type": "string"
             },
@@ -335,7 +335,7 @@
             },
             "spaces": {
               "default": "drive",
-              "description": "A comma-separated list of spaces to query within the user corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.",
+              "description": "A comma-separated list of spaces to query within the corpora. Supported values are 'drive' and 'appDataFolder'.",
               "location": "query",
               "type": "string"
             },
@@ -404,7 +404,7 @@
     "comments": {
       "methods": {
         "create": {
-          "description": "Creates a new comment on a file.",
+          "description": "Creates a comment on a file.",
           "httpMethod": "POST",
           "id": "drive.comments.create",
           "parameterOrder": [
@@ -585,7 +585,7 @@
     "drives": {
       "methods": {
         "create": {
-          "description": "Creates a new shared drive.",
+          "description": "Creates a shared drive.",
           "httpMethod": "POST",
           "id": "drive.drives.create",
           "parameterOrder": [
@@ -869,7 +869,7 @@
           ]
         },
         "create": {
-          "description": "Creates a new file.",
+          "description": "Creates a file.",
           "httpMethod": "POST",
           "id": "drive.files.create",
           "mediaUpload": {
@@ -1216,7 +1216,7 @@
             },
             "spaces": {
               "default": "drive",
-              "description": "A comma-separated list of spaces to query within the corpus. Supported values are 'drive' and 'appDataFolder'.",
+              "description": "A comma-separated list of spaces to query within the corpora. Supported values are 'drive' and 'appDataFolder'.",
               "location": "query",
               "type": "string"
             },
@@ -1796,7 +1796,7 @@
     "replies": {
       "methods": {
         "create": {
-          "description": "Creates a new reply to a comment.",
+          "description": "Creates a reply to a comment.",
           "httpMethod": "POST",
           "id": "drive.replies.create",
           "parameterOrder": [
@@ -2312,7 +2312,7 @@
       }
     }
   },
-  "revision": "20221002",
+  "revision": "20221219",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -3045,7 +3045,7 @@
               "type": "boolean"
             },
             "canReadRevisions": {
-              "description": "Whether the current user can read the revisions resource of this file. For a shared drive item, whether revisions of non-folder descendants of this item, or this item itself if it is not a folder, can be read.",
+              "description": "Whether the current user can read the revisions resource of this file. For a shared drive item, whether revisions of non-folder descendants of this item, or this item itself if it isn't a folder, can be read.",
               "type": "boolean"
             },
             "canReadTeamDrive": {
@@ -3087,7 +3087,7 @@
           "description": "Additional information about the content of the file. These fields are never populated in responses.",
           "properties": {
             "indexableText": {
-              "description": "Text to be indexed for the file to improve fullText queries. This is limited to 128KB in length and may contain HTML elements.",
+              "description": "Text to be indexed for the file to improve fullText queries. This is limited to 128 KB in length and may contain HTML elements. For more information, see Manage file metadata.",
               "type": "string"
             },
             "thumbnail": {
@@ -3154,7 +3154,7 @@
           "type": "string"
         },
         "fullFileExtension": {
-          "description": "The full file extension extracted from the name field. May contain multiple concatenated extensions, such as \"tar.gz\". This is only available for files with binary content in Google Drive.\nThis is automatically updated when the name field changes, however it is not cleared if the new name does not contain a valid extension.",
+          "description": "The full file extension extracted from the name field. May contain multiple concatenated extensions, such as \"tar.gz\". This is only available for files with binary content in Google Drive.\nThis is automatically updated when the name field changes, however it isn't cleared if the new name does not contain a valid extension.",
           "type": "string"
         },
         "hasAugmentedPermissions": {
@@ -3413,11 +3413,11 @@
           "type": "string"
         },
         "sha1Checksum": {
-          "description": "The SHA1 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.",
+          "description": "The SHA1 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it isn't populated for Docs Editors or shortcut files.",
           "type": "string"
         },
         "sha256Checksum": {
-          "description": "The SHA256 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.",
+          "description": "The SHA256 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it isn't populated for Docs Editors or shortcut files.",
           "type": "string"
         },
         "shared": {
