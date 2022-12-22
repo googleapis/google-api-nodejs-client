@@ -125,9 +125,117 @@ export namespace contactcenterinsights_v1 {
   }
 
   /**
+   * Selector of all available annotators and phrase matchers to run.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelector {
+    /**
+     * The issue model to run. If not provided, the most recently deployed topic model will be used. The provided issue model will only be used for inference if the issue model is deployed and if run_issue_model_annotator is set to true. If more than one issue model is provided, only the first provided issue model will be used for inference.
+     */
+    issueModels?: string[] | null;
+    /**
+     * The list of phrase matchers to run. If not provided, all active phrase matchers will be used. If inactive phrase matchers are provided, they will not be used. Phrase matchers will be run only if run_phrase_matcher_annotator is set to true. Format: projects/{project\}/locations/{location\}/phraseMatchers/{phrase_matcher\}
+     */
+    phraseMatchers?: string[] | null;
+    /**
+     * Whether to run the entity annotator.
+     */
+    runEntityAnnotator?: boolean | null;
+    /**
+     * Whether to run the intent annotator.
+     */
+    runIntentAnnotator?: boolean | null;
+    /**
+     * Whether to run the interruption annotator.
+     */
+    runInterruptionAnnotator?: boolean | null;
+    /**
+     * Whether to run the issue model annotator. A model should have already been deployed for this to take effect.
+     */
+    runIssueModelAnnotator?: boolean | null;
+    /**
+     * Whether to run the active phrase matcher annotator(s).
+     */
+    runPhraseMatcherAnnotator?: boolean | null;
+    /**
+     * Whether to run the sentiment annotator.
+     */
+    runSentimentAnnotator?: boolean | null;
+    /**
+     * Whether to run the silence annotator.
+     */
+    runSilenceAnnotator?: boolean | null;
+  }
+  /**
+   * The metadata for a bulk analyze conversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsMetadata {
+    /**
+     * The number of requested analyses that have completed successfully so far.
+     */
+    completedAnalysesCount?: number | null;
+    /**
+     * The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * The number of requested analyses that have failed so far.
+     */
+    failedAnalysesCount?: number | null;
+    /**
+     * The original request for bulk analyze.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsRequest;
+    /**
+     * Total number of analyses requested. Computed by the number of conversations returned by `filter` multiplied by `analysis_percentage` in the request.
+     */
+    totalRequestedAnalysesCount?: number | null;
+  }
+  /**
+   * The request to analyze conversations in bulk.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsRequest {
+    /**
+     * Required. Percentage of selected conversation to analyze, between [0, 100].
+     */
+    analysisPercentage?: number | null;
+    /**
+     * To select the annotators to run and the phrase matchers to use (if any). If not specified, all annotators will be run.
+     */
+    annotatorSelector?: Schema$GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelector;
+    /**
+     * Required. Filter used to select the subset of conversations to analyze.
+     */
+    filter?: string | null;
+    /**
+     * Required. The parent resource to create analyses in.
+     */
+    parent?: string | null;
+  }
+  /**
+   * The response for a bulk analyze conversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsResponse {
+    /**
+     * Count of failed analyses.
+     */
+    failedAnalysisCount?: number | null;
+    /**
+     * Count of successful analyses.
+     */
+    successfulAnalysisCount?: number | null;
+  }
+  /**
    * Metadata for a create analysis operation.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1CreateAnalysisOperationMetadata {
+    /**
+     * Output only. The annotator selector used for the analysis (if any).
+     */
+    annotatorSelector?: Schema$GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelector;
     /**
      * Output only. The Conversation that this Analysis Operation belongs to.
      */
@@ -295,6 +403,79 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataResponse {}
   /**
+   * The metadata for an IngestConversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1IngestConversationsMetadata {
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Partial errors during ingest operation that might cause the operation output to be incomplete.
+     */
+    partialErrors?: Schema$GoogleRpcStatus[];
+    /**
+     * Output only. The original request for ingest.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequest;
+  }
+  /**
+   * The request to ingest conversations.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequest {
+    /**
+     * Configuration that applies to all conversations.
+     */
+    conversationConfig?: Schema$GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestConversationConfig;
+    /**
+     * A cloud storage bucket source.
+     */
+    gcsSource?: Schema$GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestGcsSource;
+    /**
+     * Required. The parent resource for new conversations.
+     */
+    parent?: string | null;
+    /**
+     * Configuration for when `source` contains conversation transcripts.
+     */
+    transcriptObjectConfig?: Schema$GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestTranscriptObjectConfig;
+  }
+  /**
+   * Configuration that applies to all conversations.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestConversationConfig {
+    /**
+     * An opaque, user-specified string representing the human agent who handled the conversations.
+     */
+    agentId?: string | null;
+  }
+  /**
+   * Configuration for Cloud Storage bucket sources.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestGcsSource {
+    /**
+     * Required. The Cloud Storage bucket containing source objects.
+     */
+    bucketUri?: string | null;
+  }
+  /**
+   * Configuration for processing transcript objects.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestTranscriptObjectConfig {
+    /**
+     * Required. The medium transcript objects represent.
+     */
+    medium?: string | null;
+  }
+  /**
+   * The response to an IngestConversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1IngestConversationsResponse {}
+  /**
    * The issue model resource.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1IssueModel {
@@ -310,6 +491,10 @@ export namespace contactcenterinsights_v1 {
      * Configs for the input data that used to create the issue model.
      */
     inputDataConfig?: Schema$GoogleCloudContactcenterinsightsV1alpha1IssueModelInputDataConfig;
+    /**
+     * Output only. Number of issues in this issue model.
+     */
+    issueCount?: string | null;
     /**
      * Immutable. The resource name of the issue model. Format: projects/{project\}/locations/{location\}/issueModels/{issue_model\}
      */
@@ -421,6 +606,10 @@ export namespace contactcenterinsights_v1 {
      */
     analysisResult?: Schema$GoogleCloudContactcenterinsightsV1AnalysisResult;
     /**
+     * To select the annotators to run and the phrase matchers to use (if any). If not specified, all annotators will be run.
+     */
+    annotatorSelector?: Schema$GoogleCloudContactcenterinsightsV1AnnotatorSelector;
+    /**
      * Output only. The time at which the analysis was created, which occurs when the long-running operation completes.
      */
     createTime?: string | null;
@@ -495,6 +684,47 @@ export namespace contactcenterinsights_v1 {
     wordIndex?: number | null;
   }
   /**
+   * Selector of all available annotators and phrase matchers to run.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1AnnotatorSelector {
+    /**
+     * The issue model to run. If not provided, the most recently deployed topic model will be used. The provided issue model will only be used for inference if the issue model is deployed and if run_issue_model_annotator is set to true. If more than one issue model is provided, only the first provided issue model will be used for inference.
+     */
+    issueModels?: string[] | null;
+    /**
+     * The list of phrase matchers to run. If not provided, all active phrase matchers will be used. If inactive phrase matchers are provided, they will not be used. Phrase matchers will be run only if run_phrase_matcher_annotator is set to true. Format: projects/{project\}/locations/{location\}/phraseMatchers/{phrase_matcher\}
+     */
+    phraseMatchers?: string[] | null;
+    /**
+     * Whether to run the entity annotator.
+     */
+    runEntityAnnotator?: boolean | null;
+    /**
+     * Whether to run the intent annotator.
+     */
+    runIntentAnnotator?: boolean | null;
+    /**
+     * Whether to run the interruption annotator.
+     */
+    runInterruptionAnnotator?: boolean | null;
+    /**
+     * Whether to run the issue model annotator. A model should have already been deployed for this to take effect.
+     */
+    runIssueModelAnnotator?: boolean | null;
+    /**
+     * Whether to run the active phrase matcher annotator(s).
+     */
+    runPhraseMatcherAnnotator?: boolean | null;
+    /**
+     * Whether to run the sentiment annotator.
+     */
+    runSentimentAnnotator?: boolean | null;
+    /**
+     * Whether to run the silence annotator.
+     */
+    runSilenceAnnotator?: boolean | null;
+  }
+  /**
    * The feedback that the customer has about a certain answer in the conversation.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1AnswerFeedback {
@@ -539,6 +769,69 @@ export namespace contactcenterinsights_v1 {
      * Article URI.
      */
     uri?: string | null;
+  }
+  /**
+   * The metadata for a bulk analyze conversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsMetadata {
+    /**
+     * The number of requested analyses that have completed successfully so far.
+     */
+    completedAnalysesCount?: number | null;
+    /**
+     * The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * The number of requested analyses that have failed so far.
+     */
+    failedAnalysesCount?: number | null;
+    /**
+     * The original request for bulk analyze.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequest;
+    /**
+     * Total number of analyses requested. Computed by the number of conversations returned by `filter` multiplied by `analysis_percentage` in the request.
+     */
+    totalRequestedAnalysesCount?: number | null;
+  }
+  /**
+   * The request to analyze conversations in bulk.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequest {
+    /**
+     * Required. Percentage of selected conversation to analyze, between [0, 100].
+     */
+    analysisPercentage?: number | null;
+    /**
+     * To select the annotators to run and the phrase matchers to use (if any). If not specified, all annotators will be run.
+     */
+    annotatorSelector?: Schema$GoogleCloudContactcenterinsightsV1AnnotatorSelector;
+    /**
+     * Required. Filter used to select the subset of conversations to analyze.
+     */
+    filter?: string | null;
+    /**
+     * Required. The parent resource to create analyses in.
+     */
+    parent?: string | null;
+  }
+  /**
+   * The response for a bulk analyze conversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsResponse {
+    /**
+     * Count of failed analyses.
+     */
+    failedAnalysisCount?: number | null;
+    /**
+     * Count of successful analyses.
+     */
+    successfulAnalysisCount?: number | null;
   }
   /**
    * Response of querying an issue model's statistics.
@@ -648,6 +941,10 @@ export namespace contactcenterinsights_v1 {
      * Data specifying an interruption.
      */
     interruptionData?: Schema$GoogleCloudContactcenterinsightsV1InterruptionData;
+    /**
+     * Data specifying an issue match.
+     */
+    issueMatchData?: Schema$GoogleCloudContactcenterinsightsV1IssueMatchData;
     /**
      * Data specifying a phrase match.
      */
@@ -892,6 +1189,10 @@ export namespace contactcenterinsights_v1 {
    * Metadata for a create analysis operation.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1CreateAnalysisOperationMetadata {
+    /**
+     * Output only. The annotator selector used for the analysis (if any).
+     */
+    annotatorSelector?: Schema$GoogleCloudContactcenterinsightsV1AnnotatorSelector;
     /**
      * Output only. The Conversation that this Analysis Operation belongs to.
      */
@@ -1191,6 +1492,79 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1HoldData {}
   /**
+   * The metadata for an IngestConversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1IngestConversationsMetadata {
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Partial errors during ingest operation that might cause the operation output to be incomplete.
+     */
+    partialErrors?: Schema$GoogleRpcStatus[];
+    /**
+     * Output only. The original request for ingest.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1IngestConversationsRequest;
+  }
+  /**
+   * The request to ingest conversations.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1IngestConversationsRequest {
+    /**
+     * Configuration that applies to all conversations.
+     */
+    conversationConfig?: Schema$GoogleCloudContactcenterinsightsV1IngestConversationsRequestConversationConfig;
+    /**
+     * A cloud storage bucket source.
+     */
+    gcsSource?: Schema$GoogleCloudContactcenterinsightsV1IngestConversationsRequestGcsSource;
+    /**
+     * Required. The parent resource for new conversations.
+     */
+    parent?: string | null;
+    /**
+     * Configuration for when `source` contains conversation transcripts.
+     */
+    transcriptObjectConfig?: Schema$GoogleCloudContactcenterinsightsV1IngestConversationsRequestTranscriptObjectConfig;
+  }
+  /**
+   * Configuration that applies to all conversations.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1IngestConversationsRequestConversationConfig {
+    /**
+     * An opaque, user-specified string representing the human agent who handled the conversations.
+     */
+    agentId?: string | null;
+  }
+  /**
+   * Configuration for Cloud Storage bucket sources.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1IngestConversationsRequestGcsSource {
+    /**
+     * Required. The Cloud Storage bucket containing source objects.
+     */
+    bucketUri?: string | null;
+  }
+  /**
+   * Configuration for processing transcript objects.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1IngestConversationsRequestTranscriptObjectConfig {
+    /**
+     * Required. The medium transcript objects represent.
+     */
+    medium?: string | null;
+  }
+  /**
+   * The response to an IngestConversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1IngestConversationsResponse {}
+  /**
    * The data for an intent. Represents a detected intent in the conversation, for example MAKES_PROMISE.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1Intent {
@@ -1233,6 +1607,10 @@ export namespace contactcenterinsights_v1 {
      */
     name?: string | null;
     /**
+     * Output only. Resource names of the sample representative utterances that match to this issue.
+     */
+    sampleUtterances?: string[] | null;
+    /**
      * Output only. The most recent time that this issue was updated.
      */
     updateTime?: string | null;
@@ -1255,6 +1633,15 @@ export namespace contactcenterinsights_v1 {
     score?: number | null;
   }
   /**
+   * The data for an issue match annotation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1IssueMatchData {
+    /**
+     * Information about the issue's assignment.
+     */
+    issueAssignment?: Schema$GoogleCloudContactcenterinsightsV1IssueAssignment;
+  }
+  /**
    * The issue model resource.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1IssueModel {
@@ -1270,6 +1657,10 @@ export namespace contactcenterinsights_v1 {
      * Configs for the input data that used to create the issue model.
      */
     inputDataConfig?: Schema$GoogleCloudContactcenterinsightsV1IssueModelInputDataConfig;
+    /**
+     * Output only. Number of issues in this issue model.
+     */
+    issueCount?: string | null;
     /**
      * Immutable. The resource name of the issue model. Format: projects/{project\}/locations/{location\}/issueModels/{issue_model\}
      */
@@ -1622,6 +2013,10 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1SettingsAnalysisConfig {
     /**
+     * To select the annotators to run and the phrase matchers to use (if any). If not specified, all annotators will be run.
+     */
+    annotatorSelector?: Schema$GoogleCloudContactcenterinsightsV1AnnotatorSelector;
+    /**
      * Percentage of conversations created using Dialogflow runtime integration to analyze automatically, between [0, 100].
      */
     runtimeIntegrationAnalysisPercentage?: number | null;
@@ -1723,7 +2118,7 @@ export namespace contactcenterinsights_v1 {
      */
     updateTime?: string | null;
     /**
-     * String with specific view properties.
+     * String with specific view properties, must be non-empty.
      */
     value?: string | null;
   }
@@ -2157,6 +2552,160 @@ export namespace contactcenterinsights_v1 {
       this.analyses = new Resource$Projects$Locations$Conversations$Analyses(
         this.context
       );
+    }
+
+    /**
+     * Analyzes multiple conversations in a single request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const contactcenterinsights = google.contactcenterinsights('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await contactcenterinsights.projects.locations.conversations.bulkAnalyze({
+     *       // Required. The parent resource to create analyses in.
+     *       parent: 'projects/my-project/locations/my-location',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "analysisPercentage": {},
+     *         //   "annotatorSelector": {},
+     *         //   "filter": "my_filter",
+     *         //   "parent": "my_parent"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    bulkAnalyze(
+      params: Params$Resource$Projects$Locations$Conversations$Bulkanalyze,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulkAnalyze(
+      params?: Params$Resource$Projects$Locations$Conversations$Bulkanalyze,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    bulkAnalyze(
+      params: Params$Resource$Projects$Locations$Conversations$Bulkanalyze,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkAnalyze(
+      params: Params$Resource$Projects$Locations$Conversations$Bulkanalyze,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkAnalyze(
+      params: Params$Resource$Projects$Locations$Conversations$Bulkanalyze,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkAnalyze(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkAnalyze(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversations$Bulkanalyze
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversations$Bulkanalyze;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversations$Bulkanalyze;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/conversations:bulkAnalyze').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
     }
 
     /**
@@ -2784,6 +3333,159 @@ export namespace contactcenterinsights_v1 {
     }
 
     /**
+     * Imports conversations and processes them according to the user's configuration.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const contactcenterinsights = google.contactcenterinsights('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await contactcenterinsights.projects.locations.conversations.ingest({
+     *       // Required. The parent resource for new conversations.
+     *       parent: 'projects/my-project/locations/my-location',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "conversationConfig": {},
+     *         //   "gcsSource": {},
+     *         //   "parent": "my_parent",
+     *         //   "transcriptObjectConfig": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    ingest(
+      params: Params$Resource$Projects$Locations$Conversations$Ingest,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    ingest(
+      params?: Params$Resource$Projects$Locations$Conversations$Ingest,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ingest(
+      params: Params$Resource$Projects$Locations$Conversations$Ingest,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    ingest(
+      params: Params$Resource$Projects$Locations$Conversations$Ingest,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    ingest(
+      params: Params$Resource$Projects$Locations$Conversations$Ingest,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    ingest(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    ingest(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversations$Ingest
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversations$Ingest;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Conversations$Ingest;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/conversations:ingest').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Lists conversations.
      * @example
      * ```js
@@ -3117,6 +3819,18 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Conversations$Bulkanalyze
+    extends StandardParameters {
+    /**
+     * Required. The parent resource to create analyses in.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequest;
+  }
   export interface Params$Resource$Projects$Locations$Conversations$Calculatestats
     extends StandardParameters {
     /**
@@ -3165,6 +3879,18 @@ export namespace contactcenterinsights_v1 {
      * The level of details of the conversation. Default is `FULL`.
      */
     view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Conversations$Ingest
+    extends StandardParameters {
+    /**
+     * Required. The parent resource for new conversations.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1IngestConversationsRequest;
   }
   export interface Params$Resource$Projects$Locations$Conversations$List
     extends StandardParameters {
@@ -3250,6 +3976,7 @@ export namespace contactcenterinsights_v1 {
      *           // request body parameters
      *           // {
      *           //   "analysisResult": {},
+     *           //   "annotatorSelector": {},
      *           //   "createTime": "my_createTime",
      *           //   "name": "my_name",
      *           //   "requestTime": "my_requestTime"
@@ -3537,6 +4264,7 @@ export namespace contactcenterinsights_v1 {
      *   // Example response
      *   // {
      *   //   "analysisResult": {},
+     *   //   "annotatorSelector": {},
      *   //   "createTime": "my_createTime",
      *   //   "name": "my_name",
      *   //   "requestTime": "my_requestTime"
@@ -4203,6 +4931,7 @@ export namespace contactcenterinsights_v1 {
      *         //   "createTime": "my_createTime",
      *         //   "displayName": "my_displayName",
      *         //   "inputDataConfig": {},
+     *         //   "issueCount": "my_issueCount",
      *         //   "name": "my_name",
      *         //   "state": "my_state",
      *         //   "trainingStats": {},
@@ -4647,6 +5376,7 @@ export namespace contactcenterinsights_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "inputDataConfig": {},
+     *   //   "issueCount": "my_issueCount",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "trainingStats": {},
@@ -4930,6 +5660,7 @@ export namespace contactcenterinsights_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
      *       //   "inputDataConfig": {},
+     *       //   "issueCount": "my_issueCount",
      *       //   "name": "my_name",
      *       //   "state": "my_state",
      *       //   "trainingStats": {},
@@ -4944,6 +5675,7 @@ export namespace contactcenterinsights_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "inputDataConfig": {},
+     *   //   "issueCount": "my_issueCount",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "trainingStats": {},
@@ -5288,6 +6020,136 @@ export namespace contactcenterinsights_v1 {
     }
 
     /**
+     * Deletes an issue.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const contactcenterinsights = google.contactcenterinsights('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await contactcenterinsights.projects.locations.issueModels.issues.delete({
+     *       // Required. The name of the issue to delete.
+     *       name: 'projects/my-project/locations/my-location/issueModels/my-issueModel/issues/my-issue',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Issuemodels$Issues$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Issuemodels$Issues$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Issuemodels$Issues$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Issuemodels$Issues$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Issuemodels$Issues$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Issuemodels$Issues$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Issuemodels$Issues$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Issuemodels$Issues$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
      * Gets an issue.
      * @example
      * ```js
@@ -5325,6 +6187,7 @@ export namespace contactcenterinsights_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
+     *   //   "sampleUtterances": [],
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -5610,6 +6473,7 @@ export namespace contactcenterinsights_v1 {
      *         //   "createTime": "my_createTime",
      *         //   "displayName": "my_displayName",
      *         //   "name": "my_name",
+     *         //   "sampleUtterances": [],
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
@@ -5621,6 +6485,7 @@ export namespace contactcenterinsights_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
+     *   //   "sampleUtterances": [],
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -5725,6 +6590,13 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Issuemodels$Issues$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the issue to delete.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Issuemodels$Issues$Get
     extends StandardParameters {
     /**
