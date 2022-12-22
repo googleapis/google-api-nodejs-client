@@ -294,6 +294,10 @@ export namespace serviceusage_v1 {
      */
     jwtAudience?: string | null;
     /**
+     * Deprecated, do not use.
+     */
+    minDeadline?: number | null;
+    /**
      * The number of seconds to wait for the completion of a long running operation. The default is no deadline.
      */
     operationDeadline?: number | null;
@@ -383,6 +387,68 @@ export namespace serviceusage_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * Details about how and where to publish client libraries.
+   */
+  export interface Schema$ClientLibrarySettings {
+    /**
+     * Settings for C++ client libraries.
+     */
+    cppSettings?: Schema$CppSettings;
+    /**
+     * Settings for .NET client libraries.
+     */
+    dotnetSettings?: Schema$DotnetSettings;
+    /**
+     * Settings for Go client libraries.
+     */
+    goSettings?: Schema$GoSettings;
+    /**
+     * Settings for legacy Java features, supported in the Service YAML.
+     */
+    javaSettings?: Schema$JavaSettings;
+    /**
+     * Launch stage of this version of the API.
+     */
+    launchStage?: string | null;
+    /**
+     * Settings for Node client libraries.
+     */
+    nodeSettings?: Schema$NodeSettings;
+    /**
+     * Settings for PHP client libraries.
+     */
+    phpSettings?: Schema$PhpSettings;
+    /**
+     * Settings for Python client libraries.
+     */
+    pythonSettings?: Schema$PythonSettings;
+    /**
+     * When using transport=rest, the client request will encode enums as numbers rather than strings.
+     */
+    restNumericEnums?: boolean | null;
+    /**
+     * Settings for Ruby client libraries.
+     */
+    rubySettings?: Schema$RubySettings;
+    /**
+     * Version of the API to apply these settings to.
+     */
+    version?: string | null;
+  }
+  /**
+   * Required information for every language.
+   */
+  export interface Schema$CommonLanguageSettings {
+    /**
+     * The destination where API teams want this client library to be published.
+     */
+    destinations?: string[] | null;
+    /**
+     * Link to automatically generated reference documentation. Example: https://cloud.google.com/nodejs/docs/reference/asset/latest
+     */
+    referenceDocsUri?: string | null;
+  }
+  /**
    * `Context` defines which contexts an API requests. Example: context: rules: - selector: "*" requested: - google.rpc.context.ProjectContext - google.rpc.context.OriginContext The above specifies that all methods in the API request `google.rpc.context.ProjectContext` and `google.rpc.context.OriginContext`. Available context types are defined in package `google.rpc.context`. This also provides mechanism to allowlist any protobuf message extension that can be sent in grpc metadata using “x-goog-ext--bin” and “x-goog-ext--jspb” format. For example, list any service specific protobuf types that can appear in grpc metadata as follows in your yaml file: Example: context: rules: - selector: "google.example.library.v1.LibraryService.CreateBook" allowed_request_extensions: - google.foo.v1.NewExtension allowed_response_extensions: - google.foo.v1.NewExtension You can also specify extension ID instead of fully qualified extension name here.
    */
   export interface Schema$Context {
@@ -417,13 +483,22 @@ export namespace serviceusage_v1 {
     selector?: string | null;
   }
   /**
-   * Selects and configures the service controller used by the service. The service controller handles two things: - **What is allowed:** for each API request, Chemist checks the project status, activation status, abuse status, billing status, service status, location restrictions, VPC Service Controls, SuperQuota, and other policies. - **What has happened:** for each API response, Chemist reports the telemetry data to analytics, auditing, billing, eventing, logging, monitoring, sawmill, and tracing. Chemist also accepts telemetry data not associated with API traffic, such as billing metrics. Example: control: environment: servicecontrol.googleapis.com
+   * Selects and configures the service controller used by the service. Example: control: environment: servicecontrol.googleapis.com
    */
   export interface Schema$Control {
     /**
      * The service controller environment to use. If empty, no control plane feature (like quota and billing) will be enabled. The recommended value for most services is servicecontrol.googleapis.com
      */
     environment?: string | null;
+  }
+  /**
+   * Settings for C++ client libraries.
+   */
+  export interface Schema$CppSettings {
+    /**
+     * Some settings.
+     */
+    common?: Schema$CommonLanguageSettings;
   }
   /**
    * Metadata message that provides information such as progress, partial failures, and similar information on each GetOperation call of LRO returned by CreateAdminQuotaPolicy.
@@ -541,6 +616,15 @@ export namespace serviceusage_v1 {
     selector?: string | null;
   }
   /**
+   * Settings for Dotnet client libraries.
+   */
+  export interface Schema$DotnetSettings {
+    /**
+     * Some settings.
+     */
+    common?: Schema$CommonLanguageSettings;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -574,6 +658,10 @@ export namespace serviceusage_v1 {
    * `Endpoint` describes a network address of a service that serves a set of APIs. It is commonly known as a service endpoint. A service may expose any number of service endpoints, and all service endpoints share the same service definition, such as quota limits and monitoring metrics. Example: type: google.api.Service name: library-example.googleapis.com endpoints: # Declares network address `https://library-example.googleapis.com` # for service `library-example.googleapis.com`. The `https` scheme # is implicit for all service endpoints. Other schemes may be # supported in the future. - name: library-example.googleapis.com allow_cors: false - name: content-staging-library-example.googleapis.com # Allows HTTP OPTIONS calls to be passed to the API frontend, for it # to decide whether the subsequent cross-origin request is allowed # to proceed. allow_cors: true
    */
   export interface Schema$Endpoint {
+    /**
+     * Unimplemented. Dot not use. DEPRECATED: This field is no longer supported. Instead of using aliases, please specify multiple google.api.Endpoint for each of the intended aliases. Additional names that this endpoint will be hosted on.
+     */
+    aliases?: string[] | null;
     /**
      * Allowing [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing), aka cross-domain traffic, would allow the backends served from this endpoint to receive and respond to HTTP OPTIONS requests. The response will be used by the browser to determine whether the subsequent cross-origin request is allowed to proceed.
      */
@@ -776,6 +864,10 @@ export namespace serviceusage_v1 {
      */
     producerProjectId?: string | null;
     /**
+     * Settings for [Google Cloud Client libraries](https://cloud.google.com/apis/docs/cloud-client-libraries) generated from APIs defined as protocol buffers.
+     */
+    publishing?: Schema$Publishing;
+    /**
      * Quota configuration.
      */
     quota?: Schema$Quota;
@@ -906,6 +998,15 @@ export namespace serviceusage_v1 {
     usage?: Schema$Usage;
   }
   /**
+   * Settings for Go client libraries.
+   */
+  export interface Schema$GoSettings {
+    /**
+     * Some settings.
+     */
+    common?: Schema$CommonLanguageSettings;
+  }
+  /**
    * Defines the HTTP configuration for an API service. It contains a list of HttpRule, each specifying the mapping of an RPC method to one or more HTTP REST API methods.
    */
   export interface Schema$Http {
@@ -1001,6 +1102,23 @@ export namespace serviceusage_v1 {
      * The overrides that were created from the imported data.
      */
     overrides?: Schema$QuotaOverride[];
+  }
+  /**
+   * Settings for Java client libraries.
+   */
+  export interface Schema$JavaSettings {
+    /**
+     * Some settings.
+     */
+    common?: Schema$CommonLanguageSettings;
+    /**
+     * The package name to use in Java. Clobbers the java_package option set in the protobuf. This should be used **only** by APIs who have already set the language_settings.java.package_name" field in gapic.yaml. API teams should use the protobuf java_package option where possible. Example of a YAML configuration:: publishing: java_settings: library_package: com.google.cloud.pubsub.v1
+     */
+    libraryPackage?: string | null;
+    /**
+     * Configure the Java class name to use instead of the service's for its corresponding generated GAPIC client. Keys are fully-qualified service names as they appear in the protobuf (including the full the language_settings.java.interface_names" field in gapic.yaml. API teams should otherwise use the service name as it appears in the protobuf. Example of a YAML configuration:: publishing: java_settings: service_class_names: - google.pubsub.v1.Publisher: TopicAdmin - google.pubsub.v1.Subscriber: SubscriptionAdmin
+     */
+    serviceClassNames?: {[key: string]: string} | null;
   }
   /**
    * Specifies a location to extract JWT from an API request.
@@ -1114,6 +1232,27 @@ export namespace serviceusage_v1 {
     monitoredResource?: string | null;
   }
   /**
+   * Describes settings to use when generating API methods that use the long-running operation pattern. All default values below are from those used in the client library generators (e.g. [Java](https://github.com/googleapis/gapic-generator-java/blob/04c2faa191a9b5a10b92392fe8482279c4404803/src/main/java/com/google/api/generator/gapic/composer/common/RetrySettingsComposer.java)).
+   */
+  export interface Schema$LongRunning {
+    /**
+     * Initial delay after which the first poll request will be made. Default value: 5 seconds.
+     */
+    initialPollDelay?: string | null;
+    /**
+     * Maximum time between two subsequent poll requests. Default value: 45 seconds.
+     */
+    maxPollDelay?: string | null;
+    /**
+     * Multiplier to gradually increase delay between subsequent polls until it reaches max_poll_delay. Default value: 1.5.
+     */
+    pollDelayMultiplier?: number | null;
+    /**
+     * Total polling timeout. Default value: 5 minutes.
+     */
+    totalPollTimeout?: string | null;
+  }
+  /**
    * Method represents a method of an API interface.
    */
   export interface Schema$Method {
@@ -1145,6 +1284,19 @@ export namespace serviceusage_v1 {
      * The source syntax of this method.
      */
     syntax?: string | null;
+  }
+  /**
+   * Describes the generator configuration for a method.
+   */
+  export interface Schema$MethodSettings {
+    /**
+     * Describes settings to use for long-running operations when generating API methods for RPCs. Complements RPCs that use the annotations in google/longrunning/operations.proto. Example of a YAML configuration:: publishing: method_behavior: - selector: CreateAdDomain long_running: initial_poll_delay: seconds: 60 # 1 minute poll_delay_multiplier: 1.5 max_poll_delay: seconds: 360 # 6 minutes total_poll_timeout: seconds: 54000 # 90 minutes
+     */
+    longRunning?: Schema$LongRunning;
+    /**
+     * The fully qualified name of the method, for which the options below apply. This is used to find the method to apply the options.
+     */
+    selector?: string | null;
   }
   /**
    * Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type's existing data unusable.
@@ -1294,6 +1446,15 @@ export namespace serviceusage_v1 {
     monitoredResource?: string | null;
   }
   /**
+   * Settings for Node client libraries.
+   */
+  export interface Schema$NodeSettings {
+    /**
+     * Some settings.
+     */
+    common?: Schema$CommonLanguageSettings;
+  }
+  /**
    * OAuth scopes are a way to define data and permissions on data. For example, there are scopes defined for "Read-only access to Google Calendar" and "Access to Cloud Platform". Users can consent to a scope for an application, giving it permission to access that data on their behalf. OAuth scope specifications should be fairly coarse grained; a user will need to see and understand the text description of what your scope means. In most cases: use one or at most two OAuth scopes for an entire family of products. If your product has multiple APIs, you should probably be sharing the OAuth scope across all of those APIs. When you need finer grained OAuth consent screens: talk with your product management about how developers will use them in practice. Please note that even though each of the canonical scopes is enough for a request to be accepted and passed to the backend, a request can still fail due to the backend requiring additional scopes or permissions.
    */
   export interface Schema$OAuthRequirements {
@@ -1365,6 +1526,65 @@ export namespace serviceusage_v1 {
      * Subpages of this page. The order of subpages specified here will be honored in the generated docset.
      */
     subpages?: Schema$Page[];
+  }
+  /**
+   * Settings for Php client libraries.
+   */
+  export interface Schema$PhpSettings {
+    /**
+     * Some settings.
+     */
+    common?: Schema$CommonLanguageSettings;
+  }
+  /**
+   * This message configures the settings for publishing [Google Cloud Client libraries](https://cloud.google.com/apis/docs/cloud-client-libraries) generated from the service config.
+   */
+  export interface Schema$Publishing {
+    /**
+     * Used as a tracking tag when collecting data about the APIs developer relations artifacts like docs, packages delivered to package managers, etc. Example: "speech".
+     */
+    apiShortName?: string | null;
+    /**
+     * GitHub teams to be added to CODEOWNERS in the directory in GitHub containing source code for the client libraries for this API.
+     */
+    codeownerGithubTeams?: string[] | null;
+    /**
+     * A prefix used in sample code when demarking regions to be included in documentation.
+     */
+    docTagPrefix?: string | null;
+    /**
+     * Link to product home page. Example: https://cloud.google.com/asset-inventory/docs/overview
+     */
+    documentationUri?: string | null;
+    /**
+     * GitHub label to apply to issues and pull requests opened for this API.
+     */
+    githubLabel?: string | null;
+    /**
+     * Client library settings. If the same version string appears multiple times in this list, then the last one wins. Settings from earlier settings with the same version string are discarded.
+     */
+    librarySettings?: Schema$ClientLibrarySettings[];
+    /**
+     * A list of API method settings, e.g. the behavior for methods that use the long-running operation pattern.
+     */
+    methodSettings?: Schema$MethodSettings[];
+    /**
+     * Link to a place that API users can report issues. Example: https://issuetracker.google.com/issues/new?component=190865&template=1161103
+     */
+    newIssueUri?: string | null;
+    /**
+     * For whom the client library is being published.
+     */
+    organization?: string | null;
+  }
+  /**
+   * Settings for Python client libraries.
+   */
+  export interface Schema$PythonSettings {
+    /**
+     * Some settings.
+     */
+    common?: Schema$CommonLanguageSettings;
   }
   /**
    * Quota configuration helps to achieve fairness and budgeting in service usage. The metric based quota configuration works this way: - The service configuration defines a set of metrics. - For API calls, the quota.metric_rules maps methods to metrics with corresponding costs. - The quota.limits defines limits on the metrics, which will be used for quota checks at runtime. An example quota configuration in yaml format: quota: limits: - name: apiWriteQpsPerProject metric: library.googleapis.com/write_calls unit: "1/min/{project\}" # rate limit for consumer projects values: STANDARD: 10000 (The metric rules bind all methods to the read_calls metric, except for the UpdateBook and DeleteBook methods. These two methods are mapped to the write_calls metric, with the UpdateBook method consuming at twice rate as the DeleteBook method.) metric_rules: - selector: "*" metric_costs: library.googleapis.com/read_calls: 1 - selector: google.example.library.v1.LibraryService.UpdateBook metric_costs: library.googleapis.com/write_calls: 2 - selector: google.example.library.v1.LibraryService.DeleteBook metric_costs: library.googleapis.com/write_calls: 1 Corresponding Metric definition: metrics: - name: library.googleapis.com/read_calls display_name: Read requests metric_kind: DELTA value_type: INT64 - name: library.googleapis.com/write_calls display_name: Write requests metric_kind: DELTA value_type: INT64
@@ -1452,6 +1672,15 @@ export namespace serviceusage_v1 {
      * The limit unit of the limit to which this override applies. An example unit would be: `1/{project\}/{region\}` Note that `{project\}` and `{region\}` are not placeholders in this example; the literal characters `{` and `\}` occur in the string.
      */
     unit?: string | null;
+  }
+  /**
+   * Settings for Ruby client libraries.
+   */
+  export interface Schema$RubySettings {
+    /**
+     * Some settings.
+     */
+    common?: Schema$CommonLanguageSettings;
   }
   /**
    * Service identity for a service. This is the identity that service producer should use to access consumer resources.
