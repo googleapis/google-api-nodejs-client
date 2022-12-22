@@ -491,7 +491,7 @@
                   "type": "string"
                 },
                 "name": {
-                  "description": "This field should contain the name of the enterprise config resource. For example: \"projects/{$project_id}/githubEnterpriseConfigs/{$config_id}\"",
+                  "description": "This field should contain the name of the enterprise config resource. For example: \"projects/{$project_id}/locations/{$location_id}/githubEnterpriseConfigs/{$config_id}\"",
                   "location": "path",
                   "pattern": "^projects/[^/]+/githubEnterpriseConfigs/[^/]+$",
                   "required": true,
@@ -526,7 +526,7 @@
                   "type": "string"
                 },
                 "name": {
-                  "description": "This field should contain the name of the enterprise config resource. For example: \"projects/{$project_id}/githubEnterpriseConfigs/{$config_id}\"",
+                  "description": "This field should contain the name of the enterprise config resource. For example: \"projects/{$project_id}/locations/{$location_id}/githubEnterpriseConfigs/{$config_id}\"",
                   "location": "path",
                   "pattern": "^projects/[^/]+/githubEnterpriseConfigs/[^/]+$",
                   "required": true,
@@ -586,7 +586,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Optional. The full resource name for the GitHubEnterpriseConfig For example: \"projects/{$project_id}/githubEnterpriseConfigs/{$config_id}\"",
+                  "description": "Optional. The full resource name for the GitHubEnterpriseConfig For example: \"projects/{$project_id}/locations/{$location_id}/githubEnterpriseConfigs/{$config_id}\"",
                   "location": "path",
                   "pattern": "^projects/[^/]+/githubEnterpriseConfigs/[^/]+$",
                   "required": true,
@@ -1389,7 +1389,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "This field should contain the name of the enterprise config resource. For example: \"projects/{$project_id}/githubEnterpriseConfigs/{$config_id}\"",
+                      "description": "This field should contain the name of the enterprise config resource. For example: \"projects/{$project_id}/locations/{$location_id}/githubEnterpriseConfigs/{$config_id}\"",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/githubEnterpriseConfigs/[^/]+$",
                       "required": true,
@@ -1424,7 +1424,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "This field should contain the name of the enterprise config resource. For example: \"projects/{$project_id}/githubEnterpriseConfigs/{$config_id}\"",
+                      "description": "This field should contain the name of the enterprise config resource. For example: \"projects/{$project_id}/locations/{$location_id}/githubEnterpriseConfigs/{$config_id}\"",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/githubEnterpriseConfigs/[^/]+$",
                       "required": true,
@@ -1484,7 +1484,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Optional. The full resource name for the GitHubEnterpriseConfig For example: \"projects/{$project_id}/githubEnterpriseConfigs/{$config_id}\"",
+                      "description": "Optional. The full resource name for the GitHubEnterpriseConfig For example: \"projects/{$project_id}/locations/{$location_id}/githubEnterpriseConfigs/{$config_id}\"",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/githubEnterpriseConfigs/[^/]+$",
                       "required": true,
@@ -1752,7 +1752,7 @@
                   ]
                 },
                 "run": {
-                  "description": "Runs a `BuildTrigger` at a particular source revision. To run a regional or global trigger, use the POST request that includes the location endpoint in the path. The POST request that does not include the location endpoint in the path can only be used when running global triggers.",
+                  "description": "Runs a `BuildTrigger` at a particular source revision. To run a regional or global trigger, use the POST request that includes the location endpoint in the path (ex. v1/projects/{projectId}/locations/{region}/triggers/{triggerId}:run). The POST request that does not include the location endpoint in the path can only be used when running global triggers.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/triggers/{triggersId}:run",
                   "httpMethod": "POST",
                   "id": "cloudbuild.projects.locations.triggers.run",
@@ -2186,7 +2186,7 @@
               ]
             },
             "run": {
-              "description": "Runs a `BuildTrigger` at a particular source revision. To run a regional or global trigger, use the POST request that includes the location endpoint in the path. The POST request that does not include the location endpoint in the path can only be used when running global triggers.",
+              "description": "Runs a `BuildTrigger` at a particular source revision. To run a regional or global trigger, use the POST request that includes the location endpoint in the path (ex. v1/projects/{projectId}/locations/{region}/triggers/{triggerId}:run). The POST request that does not include the location endpoint in the path can only be used when running global triggers.",
               "flatPath": "v1/projects/{projectId}/triggers/{triggerId}:run",
               "httpMethod": "POST",
               "id": "cloudbuild.projects.triggers.run",
@@ -2295,7 +2295,7 @@
       }
     }
   },
-  "revision": "20221020",
+  "revision": "20221219",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ApprovalConfig": {
@@ -2944,7 +2944,7 @@
       "id": "BuildOptions",
       "properties": {
         "diskSizeGb": {
-          "description": "Requested disk size for the VM that runs the build. Note that this is *NOT* \"disk free\"; some of the space will be used by the operating system and build utilities. Also note that this is the minimum disk size that will be allocated for the build -- the build may run with a larger disk than requested. At present, the maximum disk size is 1000GB; builds that request more than the maximum are rejected with an error.",
+          "description": "Requested disk size for the VM that runs the build. Note that this is *NOT* \"disk free\"; some of the space will be used by the operating system and build utilities. Also note that this is the minimum disk size that will be allocated for the build -- the build may run with a larger disk than requested. At present, the maximum disk size is 2000GB; builds that request more than the maximum are rejected with an error.",
           "format": "int64",
           "type": "string"
         },
@@ -3311,6 +3311,10 @@
         "pubsubConfig": {
           "$ref": "PubsubConfig",
           "description": "PubsubConfig describes the configuration of a trigger that creates a build whenever a Pub/Sub message is published."
+        },
+        "repositoryEventConfig": {
+          "$ref": "RepositoryEventConfig",
+          "description": "The configuration of a trigger that creates a build whenever an event from Repo API is received."
         },
         "resourceName": {
           "description": "The `Trigger` name with format: `projects/{project}/locations/{location}/triggers/{trigger}`, where {trigger} is a unique identifier generated by the service.",
@@ -3712,7 +3716,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Optional. The full resource name for the GitHubEnterpriseConfig For example: \"projects/{$project_id}/githubEnterpriseConfigs/{$config_id}\"",
+          "description": "Optional. The full resource name for the GitHubEnterpriseConfig For example: \"projects/{$project_id}/locations/{$location_id}/githubEnterpriseConfigs/{$config_id}\"",
           "type": "string"
         },
         "peeredNetwork": {
@@ -3778,7 +3782,7 @@
       "id": "GitHubEventsConfig",
       "properties": {
         "enterpriseConfigResourceName": {
-          "description": "Optional. The resource name of the github enterprise config that should be applied to this installation. For example: \"projects/{$project_id}/githubEnterpriseConfigs/{$config_id}\"",
+          "description": "Optional. The resource name of the github enterprise config that should be applied to this installation. For example: \"projects/{$project_id}/locations/{$location_id}/githubEnterpriseConfigs/{$config_id}\"",
           "type": "string"
         },
         "installationId": {
@@ -4014,50 +4018,6 @@
         },
         "uri": {
           "description": "The URI of the repo. Either uri or repository can be specified and is required.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleDevtoolsCloudbuildV2OperationMetadata": {
-      "description": "Represents the metadata of the long-running operation.",
-      "id": "GoogleDevtoolsCloudbuildV2OperationMetadata",
-      "properties": {
-        "apiVersion": {
-          "description": "Output only. API version used to start the operation.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "createTime": {
-          "description": "Output only. The time the operation was created.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "endTime": {
-          "description": "Output only. The time the operation finished running.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "requestedCancellation": {
-          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "statusMessage": {
-          "description": "Output only. Human-readable status of the operation, if any.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "target": {
-          "description": "Output only. Server-defined resource path for the target of the operation.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "verb": {
-          "description": "Output only. Name of the verb executed by the operation.",
-          "readOnly": true,
           "type": "string"
         }
       },
@@ -4333,6 +4293,10 @@
         },
         "peeredNetwork": {
           "description": "Required. Immutable. The network definition that the workers are peered to. If this section is left empty, the workers will be peered to `WorkerPool.project_id` on the service producer network. Must be in the format `projects/{project}/global/networks/{network}`, where `{project}` is a project number, such as `12345`, and `{network}` is the name of a VPC network in the project. See [Understanding network configuration options](https://cloud.google.com/build/docs/private-pools/set-up-private-pool-environment)",
+          "type": "string"
+        },
+        "peeredNetworkIpRange": {
+          "description": "Immutable. Subnet IP range within the peered network. This is specified in CIDR notation. The IP and prefix size are both optional. If unspecified, the default value for IP is blank (will use an automatic value from the peered network), and the prefix size will default to 24 bits. e.g. `192.168.0.0/30` would specify a subnet mask of 192.168.0.0 with a prefix size of 30 bits. `192.168.0.0` would specify a subnet mask of 192.168.0.0 with a prefix size of 24 bits (the default prefix size). `/16` would specify a prefix size of 16 bits, with an unspecified IP.",
           "type": "string"
         }
       },
@@ -4751,6 +4715,42 @@
       },
       "type": "object"
     },
+    "RepositoryEventConfig": {
+      "description": "The configuration of a trigger that creates a build whenever an event from Repo API is received.",
+      "id": "RepositoryEventConfig",
+      "properties": {
+        "pullRequest": {
+          "$ref": "PullRequestFilter",
+          "description": "Filter to match changes in pull requests."
+        },
+        "push": {
+          "$ref": "PushFilter",
+          "description": "Filter to match changes in refs like branches, tags."
+        },
+        "repository": {
+          "description": "The resource name of the Repo API resource.",
+          "type": "string"
+        },
+        "repositoryType": {
+          "description": "Output only. The type of the SCM vendor the repository points to.",
+          "enum": [
+            "REPOSITORY_TYPE_UNSPECIFIED",
+            "GITHUB",
+            "GITHUB_ENTERPRISE",
+            "GITLAB_ENTERPRISE"
+          ],
+          "enumDescriptions": [
+            "If unspecified, RepositoryType defaults to GITHUB.",
+            "The SCM repo is GITHUB.",
+            "The SCM repo is GITHUB Enterprise.",
+            "The SCM repo is GITLAB Enterprise."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Results": {
       "description": "Artifacts created by the build pipeline.",
       "id": "Results",
@@ -4840,50 +4840,6 @@
         },
         "triggerId": {
           "description": "Required. ID of the trigger.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "RunWorkflowCustomOperationMetadata": {
-      "description": "Represents the custom metadata of the RunWorkflow long-running operation.",
-      "id": "RunWorkflowCustomOperationMetadata",
-      "properties": {
-        "apiVersion": {
-          "description": "Output only. API version used to start the operation.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "createTime": {
-          "description": "Output only. The time the operation was created.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "endTime": {
-          "description": "Output only. The time the operation finished running.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "pipelineRunId": {
-          "description": "Output only. ID of the pipeline run created by RunWorkflow.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "requestedCancellation": {
-          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "target": {
-          "description": "Output only. Server-defined resource path for the target of the operation.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "verb": {
-          "description": "Output only. Name of the verb executed by the operation.",
-          "readOnly": true,
           "type": "string"
         }
       },
