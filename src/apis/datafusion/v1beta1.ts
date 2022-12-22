@@ -132,6 +132,10 @@ export namespace datafusion_v1beta1 {
      * The type of an accelator for a CDF instance.
      */
     acceleratorType?: string | null;
+    /**
+     * The state of the accelerator.
+     */
+    state?: string | null;
   }
   /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
@@ -317,6 +321,10 @@ export namespace datafusion_v1beta1 {
      * Option to enable Stackdriver Monitoring.
      */
     enableStackdriverMonitoring?: boolean | null;
+    /**
+     * Option to enable zone separation.
+     */
+    enableZoneSeparation?: boolean | null;
     /**
      * Option to enable and pass metadata for event publishing.
      */
@@ -548,6 +556,10 @@ export namespace datafusion_v1beta1 {
    * Represents the metadata of a long-running operation.
    */
   export interface Schema$OperationMetadata {
+    /**
+     * Map to hold any additional status info for the operation If there is an accelerator being enabled/disabled/deleted, this will be populated with accelerator name as key and status as ENABLING, DISABLING or DELETING
+     */
+    additionalStatus?: {[key: string]: string} | null;
     /**
      * API version used to start the operation.
      */
@@ -1226,6 +1238,7 @@ export namespace datafusion_v1beta1 {
      *       //   "enableRbac": false,
      *       //   "enableStackdriverLogging": false,
      *       //   "enableStackdriverMonitoring": false,
+     *       //   "enableZoneSeparation": false,
      *       //   "eventPublishConfig": {},
      *       //   "gcsBucket": "my_gcsBucket",
      *       //   "labels": {},
@@ -1525,6 +1538,7 @@ export namespace datafusion_v1beta1 {
      *   //   "enableRbac": false,
      *   //   "enableStackdriverLogging": false,
      *   //   "enableStackdriverMonitoring": false,
+     *   //   "enableZoneSeparation": false,
      *   //   "eventPublishConfig": {},
      *   //   "gcsBucket": "my_gcsBucket",
      *   //   "labels": {},
@@ -1960,6 +1974,7 @@ export namespace datafusion_v1beta1 {
      *       //   "enableRbac": false,
      *       //   "enableStackdriverLogging": false,
      *       //   "enableStackdriverMonitoring": false,
+     *       //   "enableZoneSeparation": false,
      *       //   "eventPublishConfig": {},
      *       //   "gcsBucket": "my_gcsBucket",
      *       //   "labels": {},

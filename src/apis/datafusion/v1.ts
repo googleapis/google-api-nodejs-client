@@ -133,7 +133,7 @@ export namespace datafusion_v1 {
      */
     acceleratorType?: string | null;
     /**
-     * The state of the accelerator
+     * The state of the accelerator.
      */
     state?: string | null;
   }
@@ -308,6 +308,10 @@ export namespace datafusion_v1 {
      * Option to enable Stackdriver Monitoring.
      */
     enableStackdriverMonitoring?: boolean | null;
+    /**
+     * Option to enable granular zone separation.
+     */
+    enableZoneSeparation?: boolean | null;
     /**
      * Option to enable and pass metadata for event publishing.
      */
@@ -1027,6 +1031,7 @@ export namespace datafusion_v1 {
      *       //   "enableRbac": false,
      *       //   "enableStackdriverLogging": false,
      *       //   "enableStackdriverMonitoring": false,
+     *       //   "enableZoneSeparation": false,
      *       //   "eventPublishConfig": {},
      *       //   "gcsBucket": "my_gcsBucket",
      *       //   "labels": {},
@@ -1326,6 +1331,7 @@ export namespace datafusion_v1 {
      *   //   "enableRbac": false,
      *   //   "enableStackdriverLogging": false,
      *   //   "enableStackdriverMonitoring": false,
+     *   //   "enableZoneSeparation": false,
      *   //   "eventPublishConfig": {},
      *   //   "gcsBucket": "my_gcsBucket",
      *   //   "labels": {},
@@ -1761,6 +1767,7 @@ export namespace datafusion_v1 {
      *       //   "enableRbac": false,
      *       //   "enableStackdriverLogging": false,
      *       //   "enableStackdriverMonitoring": false,
+     *       //   "enableZoneSeparation": false,
      *       //   "eventPublishConfig": {},
      *       //   "gcsBucket": "my_gcsBucket",
      *       //   "labels": {},
