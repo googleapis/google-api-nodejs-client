@@ -143,7 +143,7 @@ export namespace spanner_v1 {
      */
     databaseDialect?: string | null;
     /**
-     * Output only. Output only. The encryption information for the backup. .
+     * Output only. The encryption information for the backup.
      */
     encryptionInfo?: Schema$EncryptionInfo;
     /**
@@ -442,6 +442,10 @@ export namespace spanner_v1 {
      * Optional. A list of DDL statements to run inside the newly created database. Statements can create tables, indexes, etc. These statements execute atomically with the creation of the database: if there is an error in any statement, the database is not created.
      */
     extraStatements?: string[] | null;
+    /**
+     * Optional. Proto descriptors used by CREATE/ALTER PROTO BUNDLE statements in 'extra_statements' above. Contains a protobuf-serialized [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto). To generate it, [install](https://grpc.io/docs/protoc-installation/) and run `protoc` with --include_imports and --descriptor_set_out. For example, to generate for moon/shot/app.proto, run """ $protoc --proto_path=/app_path --proto_path=/lib_path \ --include_imports \ --descriptor_set_out=descriptors.data \ moon/shot/app.proto """ For more details, see protobuffer [self description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).
+     */
+    protoDescriptors?: string | null;
   }
   /**
    * Metadata type for the operation returned by CreateInstanceConfig.
@@ -789,6 +793,10 @@ export namespace spanner_v1 {
    * The response for GetDatabaseDdl.
    */
   export interface Schema$GetDatabaseDdlResponse {
+    /**
+     * Proto descriptors stored in the database. Contains a protobuf-serialized [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto). For more details, see protobuffer [self description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).
+     */
+    protoDescriptors?: string | null;
     /**
      * A list of formatted DDL statements defining the schema of the database specified in the request.
      */
@@ -2031,6 +2039,10 @@ export namespace spanner_v1 {
      */
     code?: string | null;
     /**
+     * If code == PROTO or code == ENUM, then `proto_type_fqn` is the fully qualified name of the proto type representing the proto/enum definition.
+     */
+    protoTypeFqn?: string | null;
+    /**
      * If code == STRUCT, then `struct_type` provides type information for the struct's fields.
      */
     structType?: Schema$StructType;
@@ -2072,6 +2084,10 @@ export namespace spanner_v1 {
      * If empty, the new update request is assigned an automatically-generated operation ID. Otherwise, `operation_id` is used to construct the name of the resulting Operation. Specifying an explicit operation ID simplifies determining whether the statements were executed in the event that the UpdateDatabaseDdl call is replayed, or the return value is otherwise lost: the database and `operation_id` fields can be combined to form the name of the resulting longrunning.Operation: `/operations/`. `operation_id` should be unique within the database, and must be a valid identifier: `a-z*`. Note that automatically-generated operation IDs always begin with an underscore. If the named operation already exists, UpdateDatabaseDdl returns `ALREADY_EXISTS`.
      */
     operationId?: string | null;
+    /**
+     * Optional. Proto descriptors used by CREATE/ALTER PROTO BUNDLE statements. Contains a protobuf-serialized [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto). To generate it, [install](https://grpc.io/docs/protoc-installation/) and run `protoc` with --include_imports and --descriptor_set_out. For example, to generate for moon/shot/app.proto, run """ $protoc --proto_path=/app_path --proto_path=/lib_path \ --include_imports \ --descriptor_set_out=descriptors.data \ moon/shot/app.proto """ For more details, see protobuffer [self description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).
+     */
+    protoDescriptors?: string | null;
     /**
      * Required. DDL statements to be applied to the database.
      */
@@ -5195,7 +5211,7 @@ export namespace spanner_v1 {
     }
 
     /**
-     * Starts copying a Cloud Spanner Backup. The returned backup long-running operation will have a name of the format `projects//instances//backups//operations/` and can be used to track copying of the backup. The operation is associated with the destination backup. The metadata field type is CopyBackupMetadata. The response field type is Backup, if successful. Cancelling the returned operation will stop the copying and delete the backup. Concurrent CopyBackup requests can run on the same source backup.
+     * Starts copying a Cloud Spanner Backup. The returned backup long-running operation will have a name of the format `projects//instances//backups//operations/` and can be used to track copying of the backup. The operation is associated with the destination backup. The metadata field type is CopyBackupMetadata. The response field type is Backup, if successful. Cancelling the returned operation will stop the copying and delete the destination backup. Concurrent CopyBackup requests can run on the same source backup.
      * @example
      * ```js
      * // Before running the sample:
@@ -7440,7 +7456,8 @@ export namespace spanner_v1 {
      *       //   "createStatement": "my_createStatement",
      *       //   "databaseDialect": "my_databaseDialect",
      *       //   "encryptionConfig": {},
-     *       //   "extraStatements": []
+     *       //   "extraStatements": [],
+     *       //   "protoDescriptors": "my_protoDescriptors"
      *       // }
      *     },
      *   });
@@ -7850,6 +7867,7 @@ export namespace spanner_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "protoDescriptors": "my_protoDescriptors",
      *   //   "statements": []
      *   // }
      * }
@@ -8849,6 +8867,7 @@ export namespace spanner_v1 {
      *       // request body parameters
      *       // {
      *       //   "operationId": "my_operationId",
+     *       //   "protoDescriptors": "my_protoDescriptors",
      *       //   "statements": []
      *       // }
      *     },
