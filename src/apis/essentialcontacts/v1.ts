@@ -146,19 +146,19 @@ export namespace essentialcontacts_v1 {
    */
   export interface Schema$GoogleCloudEssentialcontactsV1Contact {
     /**
-     * Required. The email address to send notifications to. This does not need to be a Google account.
+     * Required. The email address to send notifications to. The email address does not need to be a Google Account.
      */
     email?: string | null;
     /**
-     * The preferred language for notifications, as a ISO 639-1 language code. See [Supported languages](https://cloud.google.com/resource-manager/docs/managing-notification-contacts#supported-languages) for a list of supported languages.
+     * Required. The preferred language for notifications, as a ISO 639-1 language code. See [Supported languages](https://cloud.google.com/resource-manager/docs/managing-notification-contacts#supported-languages) for a list of supported languages.
      */
     languageTag?: string | null;
     /**
-     * The identifier for the contact. Format: {resource_type\}/{resource_id\}/contacts/{contact_id\}
+     * Output only. The identifier for the contact. Format: {resource_type\}/{resource_id\}/contacts/{contact_id\}
      */
     name?: string | null;
     /**
-     * The categories of notifications that the contact will receive communications for.
+     * Required. The categories of notifications that the contact will receive communications for.
      */
     notificationCategorySubscriptions?: string[] | null;
     /**
@@ -959,7 +959,7 @@ export namespace essentialcontacts_v1 {
      *
      *   // Do the magic
      *   const res = await essentialcontacts.folders.contacts.patch({
-     *     // The identifier for the contact. Format: {resource_type\}/{resource_id\}/contacts/{contact_id\}
+     *     // Output only. The identifier for the contact. Format: {resource_type\}/{resource_id\}/contacts/{contact_id\}
      *     name: 'folders/my-folder/contacts/my-contact',
      *     // Optional. The update mask applied to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *     updateMask: 'placeholder-value',
@@ -1294,7 +1294,7 @@ export namespace essentialcontacts_v1 {
   export interface Params$Resource$Folders$Contacts$Patch
     extends StandardParameters {
     /**
-     * The identifier for the contact. Format: {resource_type\}/{resource_id\}/contacts/{contact_id\}
+     * Output only. The identifier for the contact. Format: {resource_type\}/{resource_id\}/contacts/{contact_id\}
      */
     name?: string;
     /**
@@ -2078,7 +2078,7 @@ export namespace essentialcontacts_v1 {
      *
      *   // Do the magic
      *   const res = await essentialcontacts.organizations.contacts.patch({
-     *     // The identifier for the contact. Format: {resource_type\}/{resource_id\}/contacts/{contact_id\}
+     *     // Output only. The identifier for the contact. Format: {resource_type\}/{resource_id\}/contacts/{contact_id\}
      *     name: 'organizations/my-organization/contacts/my-contact',
      *     // Optional. The update mask applied to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *     updateMask: 'placeholder-value',
@@ -2413,7 +2413,7 @@ export namespace essentialcontacts_v1 {
   export interface Params$Resource$Organizations$Contacts$Patch
     extends StandardParameters {
     /**
-     * The identifier for the contact. Format: {resource_type\}/{resource_id\}/contacts/{contact_id\}
+     * Output only. The identifier for the contact. Format: {resource_type\}/{resource_id\}/contacts/{contact_id\}
      */
     name?: string;
     /**
@@ -3197,7 +3197,7 @@ export namespace essentialcontacts_v1 {
      *
      *   // Do the magic
      *   const res = await essentialcontacts.projects.contacts.patch({
-     *     // The identifier for the contact. Format: {resource_type\}/{resource_id\}/contacts/{contact_id\}
+     *     // Output only. The identifier for the contact. Format: {resource_type\}/{resource_id\}/contacts/{contact_id\}
      *     name: 'projects/my-project/contacts/my-contact',
      *     // Optional. The update mask applied to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *     updateMask: 'placeholder-value',
@@ -3532,7 +3532,7 @@ export namespace essentialcontacts_v1 {
   export interface Params$Resource$Projects$Contacts$Patch
     extends StandardParameters {
     /**
-     * The identifier for the contact. Format: {resource_type\}/{resource_id\}/contacts/{contact_id\}
+     * Output only. The identifier for the contact. Format: {resource_type\}/{resource_id\}/contacts/{contact_id\}
      */
     name?: string;
     /**
