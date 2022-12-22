@@ -450,6 +450,15 @@ export namespace androidenterprise_v1 {
     variableSet?: Schema$VariableSet[];
   }
   /**
+   * Response message for create enrollment token.
+   */
+  export interface Schema$CreateEnrollmentTokenResponse {
+    /**
+     * Enrollment token.
+     */
+    enrollmentToken?: string | null;
+  }
+  /**
    * A Devices resource represents a mobile device managed by the EMM and belonging to a specific enterprise user.
    */
   export interface Schema$Device {
@@ -2677,6 +2686,147 @@ export namespace androidenterprise_v1 {
     }
 
     /**
+     * Returns a token for device enrollment. The DPC can encode this token within the QR/NFC/zero-touch enrollment payload or fetch it before calling the on-device API to authenticate the user. The token can be generated for each device or reused across multiple devices.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.enterprises.createEnrollmentToken({
+     *     // Whether it’s a dedicated device or a knowledge worker device.
+     *     deviceType: 'placeholder-value',
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enrollmentToken": "my_enrollmentToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    createEnrollmentToken(
+      params: Params$Resource$Enterprises$Createenrollmenttoken,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createEnrollmentToken(
+      params?: Params$Resource$Enterprises$Createenrollmenttoken,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CreateEnrollmentTokenResponse>;
+    createEnrollmentToken(
+      params: Params$Resource$Enterprises$Createenrollmenttoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    createEnrollmentToken(
+      params: Params$Resource$Enterprises$Createenrollmenttoken,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreateEnrollmentTokenResponse>,
+      callback: BodyResponseCallback<Schema$CreateEnrollmentTokenResponse>
+    ): void;
+    createEnrollmentToken(
+      params: Params$Resource$Enterprises$Createenrollmenttoken,
+      callback: BodyResponseCallback<Schema$CreateEnrollmentTokenResponse>
+    ): void;
+    createEnrollmentToken(
+      callback: BodyResponseCallback<Schema$CreateEnrollmentTokenResponse>
+    ): void;
+    createEnrollmentToken(
+      paramsOrCallback?:
+        | Params$Resource$Enterprises$Createenrollmenttoken
+        | BodyResponseCallback<Schema$CreateEnrollmentTokenResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CreateEnrollmentTokenResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CreateEnrollmentTokenResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CreateEnrollmentTokenResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Enterprises$Createenrollmenttoken;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Enterprises$Createenrollmenttoken;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidenterprise.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/createEnrollmentToken'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CreateEnrollmentTokenResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CreateEnrollmentTokenResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Returns a unique token to access an embeddable UI. To generate a web UI, pass the generated token into the managed Google Play javascript API. Each token may only be used to start one UI session. See the javascript API documentation for further information.
      * @example
      * ```js
@@ -3661,7 +3811,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Do the magic
      *   const res = await androidenterprise.enterprises.pullNotificationSet({
-     *     // The request mode for pulling notifications. Specifying waitForNotifications will cause the request to block and wait until one or more notifications are present, or return an empty notification list if no notifications are present after some time. Speciying returnImmediately will cause the request to immediately return the pending notifications, or an empty list if no notifications are present. If omitted, defaults to waitForNotifications.
+     *     // The request mode for pulling notifications. Specifying waitForNotifications will cause the request to block and wait until one or more notifications are present, or return an empty notification list if no notifications are present after some time. Specifying returnImmediately will cause the request to immediately return the pending notifications, or an empty list if no notifications are present. If omitted, defaults to waitForNotifications.
      *     requestMode: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4329,6 +4479,17 @@ export namespace androidenterprise_v1 {
      */
     enterpriseToken?: string;
   }
+  export interface Params$Resource$Enterprises$Createenrollmenttoken
+    extends StandardParameters {
+    /**
+     * Whether it’s a dedicated device or a knowledge worker device.
+     */
+    deviceType?: string;
+    /**
+     * The ID of the enterprise.
+     */
+    enterpriseId?: string;
+  }
   export interface Params$Resource$Enterprises$Createwebtoken
     extends StandardParameters {
     /**
@@ -4393,7 +4554,7 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Enterprises$Pullnotificationset
     extends StandardParameters {
     /**
-     * The request mode for pulling notifications. Specifying waitForNotifications will cause the request to block and wait until one or more notifications are present, or return an empty notification list if no notifications are present after some time. Speciying returnImmediately will cause the request to immediately return the pending notifications, or an empty list if no notifications are present. If omitted, defaults to waitForNotifications.
+     * The request mode for pulling notifications. Specifying waitForNotifications will cause the request to block and wait until one or more notifications are present, or return an empty notification list if no notifications are present after some time. Specifying returnImmediately will cause the request to immediately return the pending notifications, or an empty list if no notifications are present. If omitted, defaults to waitForNotifications.
      */
     requestMode?: string;
   }

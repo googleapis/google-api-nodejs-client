@@ -383,6 +383,45 @@
             "https://www.googleapis.com/auth/androidenterprise"
           ]
         },
+        "createEnrollmentToken": {
+          "description": "Returns a token for device enrollment. The DPC can encode this token within the QR/NFC/zero-touch enrollment payload or fetch it before calling the on-device API to authenticate the user. The token can be generated for each device or reused across multiple devices.",
+          "flatPath": "androidenterprise/v1/enterprises/{enterpriseId}/createEnrollmentToken",
+          "httpMethod": "POST",
+          "id": "androidenterprise.enterprises.createEnrollmentToken",
+          "parameterOrder": [
+            "enterpriseId"
+          ],
+          "parameters": {
+            "deviceType": {
+              "description": "Whether it’s a dedicated device or a knowledge worker device.",
+              "enum": [
+                "unknown",
+                "dedicatedDevice",
+                "knowledgeWorker"
+              ],
+              "enumDescriptions": [
+                "This value is unused",
+                "This device is a dedicated device.",
+                "This device is required to have an authenticated user."
+              ],
+              "location": "query",
+              "type": "string"
+            },
+            "enterpriseId": {
+              "description": "The ID of the enterprise.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidenterprise/v1/enterprises/{enterpriseId}/createEnrollmentToken",
+          "response": {
+            "$ref": "CreateEnrollmentTokenResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidenterprise"
+          ]
+        },
         "createWebToken": {
           "description": "Returns a unique token to access an embeddable UI. To generate a web UI, pass the generated token into the managed Google Play javascript API. Each token may only be used to start one UI session. See the javascript API documentation for further information.",
           "flatPath": "androidenterprise/v1/enterprises/{enterpriseId}/createWebToken",
@@ -575,7 +614,7 @@
           "parameterOrder": [],
           "parameters": {
             "requestMode": {
-              "description": "The request mode for pulling notifications. Specifying waitForNotifications will cause the request to block and wait until one or more notifications are present, or return an empty notification list if no notifications are present after some time. Speciying returnImmediately will cause the request to immediately return the pending notifications, or an empty list if no notifications are present. If omitted, defaults to waitForNotifications.",
+              "description": "The request mode for pulling notifications. Specifying waitForNotifications will cause the request to block and wait until one or more notifications are present, or return an empty notification list if no notifications are present after some time. Specifying returnImmediately will cause the request to immediately return the pending notifications, or an empty list if no notifications are present. If omitted, defaults to waitForNotifications.",
               "enum": [
                 "waitForNotifications",
                 "returnImmediately"
@@ -2610,7 +2649,7 @@
       }
     }
   },
-  "revision": "20221025",
+  "revision": "20221214",
   "rootUrl": "https://androidenterprise.googleapis.com/",
   "schemas": {
     "Administrator": {
@@ -3095,6 +3134,17 @@
             "$ref": "VariableSet"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CreateEnrollmentTokenResponse": {
+      "description": "Response message for create enrollment token.",
+      "id": "CreateEnrollmentTokenResponse",
+      "properties": {
+        "enrollmentToken": {
+          "description": "Enrollment token.",
+          "type": "string"
         }
       },
       "type": "object"
