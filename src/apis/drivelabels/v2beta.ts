@@ -1334,10 +1334,6 @@ export namespace drivelabels_v2beta {
      */
     name?: string | null;
     /**
-     * Output only. A URI referring to the policy that created this Lock.
-     */
-    policyUri?: string | null;
-    /**
      * Output only. This LabelLock's state.
      */
     state?: string | null;
@@ -3473,7 +3469,7 @@ export namespace drivelabels_v2beta {
     }
 
     /**
-     * Lists the Locks on a Label.
+     * Lists the LabelLocks on a Label.
      * @example
      * ```js
      * // Before running the sample:
@@ -4623,7 +4619,7 @@ export namespace drivelabels_v2beta {
     }
 
     /**
-     * Lists the Locks on a Label.
+     * Lists the LabelLocks on a Label.
      * @example
      * ```js
      * // Before running the sample:

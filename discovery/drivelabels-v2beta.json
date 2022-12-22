@@ -432,7 +432,7 @@
         "locks": {
           "methods": {
             "list": {
-              "description": "Lists the Locks on a Label.",
+              "description": "Lists the LabelLocks on a Label.",
               "flatPath": "v2beta/labels/{labelsId}/locks",
               "httpMethod": "GET",
               "id": "drivelabels.labels.locks.list",
@@ -652,7 +652,7 @@
             "locks": {
               "methods": {
                 "list": {
-                  "description": "Lists the Locks on a Label.",
+                  "description": "Lists the LabelLocks on a Label.",
                   "flatPath": "v2beta/labels/{labelsId}/revisions/{revisionsId}/locks",
                   "httpMethod": "GET",
                   "id": "drivelabels.labels.revisions.locks.list",
@@ -888,7 +888,7 @@
       }
     }
   },
-  "revision": "20221026",
+  "revision": "20221214",
   "rootUrl": "https://drivelabels.googleapis.com/",
   "schemas": {
     "GoogleAppsDriveLabelsV2betaBadgeColors": {
@@ -2380,11 +2380,6 @@
         },
         "name": {
           "description": "Output only. Resource name of this LabelLock.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "policyUri": {
-          "description": "Output only. A URI referring to the policy that created this Lock.",
           "readOnly": true,
           "type": "string"
         },
