@@ -177,6 +177,23 @@ export namespace cloudchannel_v1 {
     eventType?: string | null;
   }
   /**
+   * The definition of a report column. Specifies the data properties in the corresponding position of the report rows.
+   */
+  export interface Schema$GoogleCloudChannelV1alpha1Column {
+    /**
+     * The unique name of the column (for example, customer_domain, channel_partner, customer_cost). You can use column IDs in RunReportJobRequest.filter. To see all reports and their columns, call CloudChannelReportsService.ListReports.
+     */
+    columnId?: string | null;
+    /**
+     * The type of the values for this column.
+     */
+    dataType?: string | null;
+    /**
+     * The column's display name.
+     */
+    displayName?: string | null;
+  }
+  /**
    * Commitment settings for commitment-based offers.
    */
   export interface Schema$GoogleCloudChannelV1alpha1CommitmentSettings {
@@ -205,6 +222,27 @@ export namespace cloudchannel_v1 {
      * Type of event which happened on the customer.
      */
     eventType?: string | null;
+  }
+  /**
+   * A representation of usage or invoice date ranges.
+   */
+  export interface Schema$GoogleCloudChannelV1alpha1DateRange {
+    /**
+     * The latest invoice date (exclusive). If your product uses monthly invoices, and this value is not the beginning of a month, this will adjust the date to the first day of the following month.
+     */
+    invoiceEndDate?: Schema$GoogleTypeDate;
+    /**
+     * The earliest invoice date (inclusive). If your product uses monthly invoices, and this value is not the beginning of a month, this will adjust the date to the first day of the given month.
+     */
+    invoiceStartDate?: Schema$GoogleTypeDate;
+    /**
+     * The latest usage date time (exclusive). If you use time groupings (daily, weekly, etc), each group uses midnight to midnight (Pacific time). The usage end date is rounded down to include all usage from the specified date. We recommend that clients pass `usage_start_date_time` in Pacific time.
+     */
+    usageEndDateTime?: Schema$GoogleTypeDateTime;
+    /**
+     * The earliest usage date time (inclusive). If you use time groupings (daily, weekly, etc), each group uses midnight to midnight (Pacific time). The usage start date is rounded down to include all usage from the specified date. We recommend that clients pass `usage_start_date_time` in Pacific time.
+     */
+    usageStartDateTime?: Schema$GoogleTypeDateTime;
   }
   /**
    * An entitlement is a representation of a customer's ability to use a service.
@@ -372,6 +410,91 @@ export namespace cloudchannel_v1 {
      * If true and enable_renewal = true, the unit (for example seats or licenses) will be set to the number of active units at renewal time.
      */
     resizeUnitCount?: boolean | null;
+  }
+  /**
+   * The ID and description of a report that was used to generate report data. For example, "GCP Daily Spend", "Google Workspace License Activity", etc.
+   */
+  export interface Schema$GoogleCloudChannelV1alpha1Report {
+    /**
+     * The list of columns included in the report. This defines the schema of the report results.
+     */
+    columns?: Schema$GoogleCloudChannelV1alpha1Column[];
+    /**
+     * A description of other aspects of the report, such as the products it supports.
+     */
+    description?: string | null;
+    /**
+     * A human-readable name for this report.
+     */
+    displayName?: string | null;
+    /**
+     * Required. The report's resource name. Specifies the account and report used to generate report data. The report_id identifier is a UID (for example, `613bf59q`). Name uses the format: accounts/{account_id\}/reports/{report_id\}
+     */
+    name?: string | null;
+  }
+  /**
+   * The result of a RunReportJob operation. Contains the name to use in FetchReportResultsRequest.report_job and the status of the operation.
+   */
+  export interface Schema$GoogleCloudChannelV1alpha1ReportJob {
+    /**
+     * Required. The resource name of a report job. Name uses the format: `accounts/{account_id\}/reportJobs/{report_job_id\}`
+     */
+    name?: string | null;
+    /**
+     * The current status of report generation.
+     */
+    reportStatus?: Schema$GoogleCloudChannelV1alpha1ReportStatus;
+  }
+  /**
+   * The features describing the data. Returned by CloudChannelReportsService.RunReportJob and CloudChannelReportsService.FetchReportResults.
+   */
+  export interface Schema$GoogleCloudChannelV1alpha1ReportResultsMetadata {
+    /**
+     * The date range of reported usage.
+     */
+    dateRange?: Schema$GoogleCloudChannelV1alpha1DateRange;
+    /**
+     * The usage dates immediately preceding `date_range` with the same duration. Use this to calculate trending usage and costs. This is only populated if you request trending data. For example, if `date_range` is July 1-15, `preceding_date_range` will be June 16-30.
+     */
+    precedingDateRange?: Schema$GoogleCloudChannelV1alpha1DateRange;
+    /**
+     * Details of the completed report.
+     */
+    report?: Schema$GoogleCloudChannelV1alpha1Report;
+    /**
+     * The total number of rows of data in the final report.
+     */
+    rowCount?: string | null;
+  }
+  /**
+   * Status of a report generation process.
+   */
+  export interface Schema$GoogleCloudChannelV1alpha1ReportStatus {
+    /**
+     * The report generation's completion time.
+     */
+    endTime?: string | null;
+    /**
+     * The report generation's start time.
+     */
+    startTime?: string | null;
+    /**
+     * The current state of the report generation process.
+     */
+    state?: string | null;
+  }
+  /**
+   * Response message for CloudChannelReportsService.RunReportJob.
+   */
+  export interface Schema$GoogleCloudChannelV1alpha1RunReportJobResponse {
+    /**
+     * Pass `report_job.name` to FetchReportResultsRequest.report_job to retrieve the report's results.
+     */
+    reportJob?: Schema$GoogleCloudChannelV1alpha1ReportJob;
+    /**
+     * The metadata for the report's results (display name, columns, row count, and date range). If you view this before the operation finishes, you may see incomplete data.
+     */
+    reportMetadata?: Schema$GoogleCloudChannelV1alpha1ReportResultsMetadata;
   }
   /**
    * Represents information which resellers will get as part of notification from Pub/Sub.
@@ -637,6 +760,23 @@ export namespace cloudchannel_v1 {
     primaryDomain?: string | null;
   }
   /**
+   * The definition of a report column. Specifies the data properties in the corresponding position of the report rows.
+   */
+  export interface Schema$GoogleCloudChannelV1Column {
+    /**
+     * The unique name of the column (for example, customer_domain, channel_partner, customer_cost). You can use column IDs in RunReportJobRequest.filter. To see all reports and their columns, call CloudChannelReportsService.ListReports.
+     */
+    columnId?: string | null;
+    /**
+     * The type of the values for this column.
+     */
+    dataType?: string | null;
+    /**
+     * The column's display name.
+     */
+    displayName?: string | null;
+  }
+  /**
    * Commitment settings for commitment-based offers.
    */
   export interface Schema$GoogleCloudChannelV1CommitmentSettings {
@@ -652,6 +792,23 @@ export namespace cloudchannel_v1 {
      * Output only. Commitment start timestamp.
      */
     startTime?: string | null;
+  }
+  /**
+   * Specifies the override to conditionally apply.
+   */
+  export interface Schema$GoogleCloudChannelV1ConditionalOverride {
+    /**
+     * Required. Information about the applied override's adjustment.
+     */
+    adjustment?: Schema$GoogleCloudChannelV1RepricingAdjustment;
+    /**
+     * Required. The RebillingBasis to use for the applied override. Shows the relative cost based on your repricing costs.
+     */
+    rebillingBasis?: string | null;
+    /**
+     * Required. Specifies the condition which, if met, will apply the override.
+     */
+    repricingCondition?: Schema$GoogleCloudChannelV1RepricingCondition;
   }
   /**
    * Represents the constraints for buying the Offer.
@@ -805,6 +962,27 @@ export namespace cloudchannel_v1 {
     updateTime?: string | null;
   }
   /**
+   * A representation of usage or invoice date ranges.
+   */
+  export interface Schema$GoogleCloudChannelV1DateRange {
+    /**
+     * The latest invoice date (exclusive). If your product uses monthly invoices, and this value is not the beginning of a month, this will adjust the date to the first day of the following month.
+     */
+    invoiceEndDate?: Schema$GoogleTypeDate;
+    /**
+     * The earliest invoice date (inclusive). If your product uses monthly invoices, and this value is not the beginning of a month, this will adjust the date to the first day of the given month.
+     */
+    invoiceStartDate?: Schema$GoogleTypeDate;
+    /**
+     * The latest usage date time (exclusive). If you use time groupings (daily, weekly, etc), each group uses midnight to midnight (Pacific time). The usage end date is rounded down to include all usage from the specified date. We recommend that clients pass `usage_start_date_time` in Pacific time.
+     */
+    usageEndDateTime?: Schema$GoogleTypeDateTime;
+    /**
+     * The earliest usage date time (inclusive). If you use time groupings (daily, weekly, etc), each group uses midnight to midnight (Pacific time). The usage start date is rounded down to include all usage from the specified date. We recommend that clients pass `usage_start_date_time` in Pacific time.
+     */
+    usageStartDateTime?: Schema$GoogleTypeDateTime;
+  }
+  /**
    * Required Edu Attributes
    */
   export interface Schema$GoogleCloudChannelV1EduData {
@@ -886,6 +1064,36 @@ export namespace cloudchannel_v1 {
      * Type of event which happened on the entitlement.
      */
     eventType?: string | null;
+  }
+  /**
+   * Request message for CloudChannelReportsService.FetchReportResults.
+   */
+  export interface Schema$GoogleCloudChannelV1FetchReportResultsRequest {
+    /**
+     * Optional. Requested page size of the report. The server may return fewer results than requested. If you don't specify a page size, the server uses a sensible default (may change over time). The maximum value is 30,000; the server will change larger values to 30,000.
+     */
+    pageSize?: number | null;
+    /**
+     * Optional. A token that specifies a page of results beyond the first page. Obtained through FetchReportResultsResponse.next_page_token of the previous CloudChannelReportsService.FetchReportResults call.
+     */
+    pageToken?: string | null;
+  }
+  /**
+   * Response message for CloudChannelReportsService.FetchReportResults. Contains a tabular representation of the report results.
+   */
+  export interface Schema$GoogleCloudChannelV1FetchReportResultsResponse {
+    /**
+     * Pass this token to FetchReportResultsRequest.page_token to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The metadata for the report results (display name, columns, row count, and date ranges).
+     */
+    reportMetadata?: Schema$GoogleCloudChannelV1ReportResultsMetadata;
+    /**
+     * The report's lists of values. Each row follows the settings and ordering of the columns from `report_metadata`.
+     */
+    rows?: Schema$GoogleCloudChannelV1Row[];
   }
   /**
    * Request message for CloudChannelService.ImportCustomer
@@ -1032,6 +1240,19 @@ export namespace cloudchannel_v1 {
      * The list of SKUs requested.
      */
     purchasableSkus?: Schema$GoogleCloudChannelV1PurchasableSku[];
+  }
+  /**
+   * Response message for CloudChannelReportsService.ListReports.
+   */
+  export interface Schema$GoogleCloudChannelV1ListReportsResponse {
+    /**
+     * Pass this token to FetchReportResultsRequest.page_token to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The reports available to the partner.
+     */
+    reports?: Schema$GoogleCloudChannelV1Report[];
   }
   /**
    * Response message for ListSkus.
@@ -1189,6 +1410,10 @@ export namespace cloudchannel_v1 {
      * Constraints on transacting the Offer.
      */
     constraints?: Schema$GoogleCloudChannelV1Constraints;
+    /**
+     * The deal code of the offer to get a special promotion or discount.
+     */
+    dealCode?: string | null;
     /**
      * Output only. End of the Offer validity time.
      */
@@ -1509,6 +1734,107 @@ export namespace cloudchannel_v1 {
     resizeUnitCount?: boolean | null;
   }
   /**
+   * The ID and description of a report that was used to generate report data. For example, "GCP Daily Spend", "Google Workspace License Activity", etc.
+   */
+  export interface Schema$GoogleCloudChannelV1Report {
+    /**
+     * The list of columns included in the report. This defines the schema of the report results.
+     */
+    columns?: Schema$GoogleCloudChannelV1Column[];
+    /**
+     * A description of other aspects of the report, such as the products it supports.
+     */
+    description?: string | null;
+    /**
+     * A human-readable name for this report.
+     */
+    displayName?: string | null;
+    /**
+     * Required. The report's resource name. Specifies the account and report used to generate report data. The report_id identifier is a UID (for example, `613bf59q`). Name uses the format: accounts/{account_id\}/reports/{report_id\}
+     */
+    name?: string | null;
+  }
+  /**
+   * The result of a RunReportJob operation. Contains the name to use in FetchReportResultsRequest.report_job and the status of the operation.
+   */
+  export interface Schema$GoogleCloudChannelV1ReportJob {
+    /**
+     * Required. The resource name of a report job. Name uses the format: `accounts/{account_id\}/reportJobs/{report_job_id\}`
+     */
+    name?: string | null;
+    /**
+     * The current status of report generation.
+     */
+    reportStatus?: Schema$GoogleCloudChannelV1ReportStatus;
+  }
+  /**
+   * The features describing the data. Returned by CloudChannelReportsService.RunReportJob and CloudChannelReportsService.FetchReportResults.
+   */
+  export interface Schema$GoogleCloudChannelV1ReportResultsMetadata {
+    /**
+     * The date range of reported usage.
+     */
+    dateRange?: Schema$GoogleCloudChannelV1DateRange;
+    /**
+     * The usage dates immediately preceding `date_range` with the same duration. Use this to calculate trending usage and costs. This is only populated if you request trending data. For example, if `date_range` is July 1-15, `preceding_date_range` will be June 16-30.
+     */
+    precedingDateRange?: Schema$GoogleCloudChannelV1DateRange;
+    /**
+     * Details of the completed report.
+     */
+    report?: Schema$GoogleCloudChannelV1Report;
+    /**
+     * The total number of rows of data in the final report.
+     */
+    rowCount?: string | null;
+  }
+  /**
+   * Status of a report generation process.
+   */
+  export interface Schema$GoogleCloudChannelV1ReportStatus {
+    /**
+     * The report generation's completion time.
+     */
+    endTime?: string | null;
+    /**
+     * The report generation's start time.
+     */
+    startTime?: string | null;
+    /**
+     * The current state of the report generation process.
+     */
+    state?: string | null;
+  }
+  /**
+   * A single report value.
+   */
+  export interface Schema$GoogleCloudChannelV1ReportValue {
+    /**
+     * A value of type `google.type.DateTime` (year, month, day, hour, minute, second, and UTC offset or timezone.)
+     */
+    dateTimeValue?: Schema$GoogleTypeDateTime;
+    /**
+     * A value of type `google.type.Date` (year, month, day).
+     */
+    dateValue?: Schema$GoogleTypeDate;
+    /**
+     * A value of type `google.type.Decimal`, representing non-integer numeric values.
+     */
+    decimalValue?: Schema$GoogleTypeDecimal;
+    /**
+     * A value of type `int`.
+     */
+    intValue?: string | null;
+    /**
+     * A value of type `google.type.Money` (currency code, whole units, decimal units).
+     */
+    moneyValue?: Schema$GoogleTypeMoney;
+    /**
+     * A value of type `string`.
+     */
+    stringValue?: string | null;
+  }
+  /**
    * A type that represents the various adjustments you can apply to a bill.
    */
   export interface Schema$GoogleCloudChannelV1RepricingAdjustment {
@@ -1516,6 +1842,15 @@ export namespace cloudchannel_v1 {
      * Flat markup or markdown on an entire bill.
      */
     percentageAdjustment?: Schema$GoogleCloudChannelV1PercentageAdjustment;
+  }
+  /**
+   * Represents the various repricing conditions you can use for a conditional override.
+   */
+  export interface Schema$GoogleCloudChannelV1RepricingCondition {
+    /**
+     * SKU Group condition for override.
+     */
+    skuGroupCondition?: Schema$GoogleCloudChannelV1SkuGroupCondition;
   }
   /**
    * Configuration for repricing a Google bill over a period of time.
@@ -1529,6 +1864,10 @@ export namespace cloudchannel_v1 {
      * Applies the repricing configuration at the channel partner level. This is the only supported value for ChannelPartnerRepricingConfig.
      */
     channelPartnerGranularity?: Schema$GoogleCloudChannelV1RepricingConfigChannelPartnerGranularity;
+    /**
+     * The conditional overrides to apply for this configuration. If you list multiple overrides, only the first valid override is used. If you don't list any overrides, the API uses the normal adjustment and rebilling basis.
+     */
+    conditionalOverrides?: Schema$GoogleCloudChannelV1ConditionalOverride[];
     /**
      * Required. The YearMonth when these adjustments activate. The Day field needs to be "0" since we only accept YearMonth repricing boundaries.
      */
@@ -1556,6 +1895,45 @@ export namespace cloudchannel_v1 {
     entitlement?: string | null;
   }
   /**
+   * A row of report values.
+   */
+  export interface Schema$GoogleCloudChannelV1Row {
+    /**
+     * The list of values in the row.
+     */
+    values?: Schema$GoogleCloudChannelV1ReportValue[];
+  }
+  /**
+   * Request message for CloudChannelReportsService.RunReportJob.
+   */
+  export interface Schema$GoogleCloudChannelV1RunReportJobRequest {
+    /**
+     * Optional. The range of usage or invoice dates to include in the result.
+     */
+    dateRange?: Schema$GoogleCloudChannelV1DateRange;
+    /**
+     * Optional. A structured string that defines conditions on dimension columns to restrict the report output. Filters support logical operators (AND, OR, NOT) and conditional operators (=, !=, <, \>, <=, and \>=) using `column_id` as keys. For example: `(customer:"accounts/C123abc/customers/S456def" OR customer:"accounts/C123abc/customers/S789ghi") AND invoice_start_date.year \>= 2022`
+     */
+    filter?: string | null;
+    /**
+     * Optional. The BCP-47 language code, such as "en-US". If specified, the response is localized to the corresponding language code if the original data sources support it. Default is "en-US".
+     */
+    languageCode?: string | null;
+  }
+  /**
+   * Response message for CloudChannelReportsService.RunReportJob.
+   */
+  export interface Schema$GoogleCloudChannelV1RunReportJobResponse {
+    /**
+     * Pass `report_job.name` to FetchReportResultsRequest.report_job to retrieve the report's results.
+     */
+    reportJob?: Schema$GoogleCloudChannelV1ReportJob;
+    /**
+     * The metadata for the report's results (display name, columns, row count, and date range). If you view this before the operation finishes, you may see incomplete data.
+     */
+    reportMetadata?: Schema$GoogleCloudChannelV1ReportResultsMetadata;
+  }
+  /**
    * Represents a product's purchasable Stock Keeping Unit (SKU). SKUs represent the different variations of the product. For example, Google Workspace Business Standard and Google Workspace Business Plus are Google Workspace product SKUs.
    */
   export interface Schema$GoogleCloudChannelV1Sku {
@@ -1571,6 +1949,15 @@ export namespace cloudchannel_v1 {
      * Product the SKU is associated with.
      */
     product?: Schema$GoogleCloudChannelV1Product;
+  }
+  /**
+   * A condition that applies the override if a line item SKU is found in the SKU group.
+   */
+  export interface Schema$GoogleCloudChannelV1SkuGroupCondition {
+    /**
+     * Specifies a SKU group (https://cloud.google.com/skus/sku-groups). Resource name of SKU group. Format: accounts/{account\}/skuGroups/{sku_group\}. Example: "accounts/C01234/skuGroups/3d50fd57-3157-4577-a5a9-a219b8490041".
+     */
+    skuGroup?: string | null;
   }
   /**
    * Request message for CloudChannelService.StartPaidService.
@@ -1835,6 +2222,47 @@ export namespace cloudchannel_v1 {
     year?: number | null;
   }
   /**
+   * Represents civil time (or occasionally physical time). This type can represent a civil time in one of a few possible ways: * When utc_offset is set and time_zone is unset: a civil time on a calendar day with a particular offset from UTC. * When time_zone is set and utc_offset is unset: a civil time on a calendar day in a particular time zone. * When neither time_zone nor utc_offset is set: a civil time on a calendar day in local time. The date is relative to the Proleptic Gregorian Calendar. If year, month, or day are 0, the DateTime is considered not to have a specific year, month, or day respectively. This type may also be used to represent a physical time if all the date and time fields are set and either case of the `time_offset` oneof is set. Consider using `Timestamp` message for physical time instead. If your use case also would like to store the user's timezone, that can be done in another field. This type is more flexible than some applications may want. Make sure to document and validate your application's limitations.
+   */
+  export interface Schema$GoogleTypeDateTime {
+    /**
+     * Optional. Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a datetime without a day.
+     */
+    day?: number | null;
+    /**
+     * Optional. Hours of day in 24 hour format. Should be from 0 to 23, defaults to 0 (midnight). An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     */
+    hours?: number | null;
+    /**
+     * Optional. Minutes of hour of day. Must be from 0 to 59, defaults to 0.
+     */
+    minutes?: number | null;
+    /**
+     * Optional. Month of year. Must be from 1 to 12, or 0 if specifying a datetime without a month.
+     */
+    month?: number | null;
+    /**
+     * Optional. Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999, defaults to 0.
+     */
+    nanos?: number | null;
+    /**
+     * Optional. Seconds of minutes of the time. Must normally be from 0 to 59, defaults to 0. An API may allow the value 60 if it allows leap-seconds.
+     */
+    seconds?: number | null;
+    /**
+     * Time zone.
+     */
+    timeZone?: Schema$GoogleTypeTimeZone;
+    /**
+     * UTC offset. Must be whole seconds, between -18 hours and +18 hours. For example, a UTC offset of -4:00 would be represented as { seconds: -14400 \}.
+     */
+    utcOffset?: string | null;
+    /**
+     * Optional. Year of date. Must be from 1 to 9999, or 0 if specifying a datetime without a year.
+     */
+    year?: number | null;
+  }
+  /**
    * A representation of a decimal value, such as 2.5. Clients may convert values into language-native decimal formats, such as Java's BigDecimal or Python's decimal.Decimal. [BigDecimal]: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/math/BigDecimal.html [decimal.Decimal]: https://docs.python.org/3/library/decimal.html
    */
   export interface Schema$GoogleTypeDecimal {
@@ -1909,12 +2337,27 @@ export namespace cloudchannel_v1 {
      */
     sublocality?: string | null;
   }
+  /**
+   * Represents a time zone from the [IANA Time Zone Database](https://www.iana.org/time-zones).
+   */
+  export interface Schema$GoogleTypeTimeZone {
+    /**
+     * IANA Time Zone Database time zone, e.g. "America/New_York".
+     */
+    id?: string | null;
+    /**
+     * Optional. IANA Time Zone Database version number, e.g. "2019a".
+     */
+    version?: string | null;
+  }
 
   export class Resource$Accounts {
     context: APIRequestContext;
     channelPartnerLinks: Resource$Accounts$Channelpartnerlinks;
     customers: Resource$Accounts$Customers;
     offers: Resource$Accounts$Offers;
+    reportJobs: Resource$Accounts$Reportjobs;
+    reports: Resource$Accounts$Reports;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.channelPartnerLinks = new Resource$Accounts$Channelpartnerlinks(
@@ -1922,6 +2365,8 @@ export namespace cloudchannel_v1 {
       );
       this.customers = new Resource$Accounts$Customers(this.context);
       this.offers = new Resource$Accounts$Offers(this.context);
+      this.reportJobs = new Resource$Accounts$Reportjobs(this.context);
+      this.reports = new Resource$Accounts$Reports(this.context);
     }
 
     /**
@@ -9211,6 +9656,7 @@ export namespace cloudchannel_v1 {
      *   // Example response
      *   // {
      *   //   "constraints": {},
+     *   //   "dealCode": "my_dealCode",
      *   //   "endTime": "my_endTime",
      *   //   "marketingInfo": {},
      *   //   "name": "my_name",
@@ -9922,6 +10368,506 @@ export namespace cloudchannel_v1 {
      * Required. The resource name of the reseller account from which to list Offers. Parent uses the format: accounts/{account_id\}.
      */
     parent?: string;
+  }
+
+  export class Resource$Accounts$Reportjobs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves data generated by CloudChannelReportsService.RunReportJob.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudchannel = google.cloudchannel('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.reports.usage.readonly'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudchannel.accounts.reportJobs.fetchReportResults({
+     *     // Required. The report job created by CloudChannelReportsService.RunReportJob. Report_job uses the format: accounts/{account_id\}/reportJobs/{report_job_id\}
+     *     reportJob: 'accounts/my-account/reportJobs/my-reportJob',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "reportMetadata": {},
+     *   //   "rows": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchReportResults(
+      params: Params$Resource$Accounts$Reportjobs$Fetchreportresults,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetchReportResults(
+      params?: Params$Resource$Accounts$Reportjobs$Fetchreportresults,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudChannelV1FetchReportResultsResponse>;
+    fetchReportResults(
+      params: Params$Resource$Accounts$Reportjobs$Fetchreportresults,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchReportResults(
+      params: Params$Resource$Accounts$Reportjobs$Fetchreportresults,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1FetchReportResultsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1FetchReportResultsResponse>
+    ): void;
+    fetchReportResults(
+      params: Params$Resource$Accounts$Reportjobs$Fetchreportresults,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1FetchReportResultsResponse>
+    ): void;
+    fetchReportResults(
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1FetchReportResultsResponse>
+    ): void;
+    fetchReportResults(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Reportjobs$Fetchreportresults
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1FetchReportResultsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1FetchReportResultsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1FetchReportResultsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudChannelV1FetchReportResultsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Reportjobs$Fetchreportresults;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Reportjobs$Fetchreportresults;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudchannel.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+reportJob}:fetchReportResults').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['reportJob'],
+        pathParams: ['reportJob'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudChannelV1FetchReportResultsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudChannelV1FetchReportResultsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Reportjobs$Fetchreportresults
+    extends StandardParameters {
+    /**
+     * Required. The report job created by CloudChannelReportsService.RunReportJob. Report_job uses the format: accounts/{account_id\}/reportJobs/{report_job_id\}
+     */
+    reportJob?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudChannelV1FetchReportResultsRequest;
+  }
+
+  export class Resource$Accounts$Reports {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the reports that RunReportJob can run. These reports include an ID, a description, and the list of columns that will be in the result.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudchannel = google.cloudchannel('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.reports.usage.readonly'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudchannel.accounts.reports.list({
+     *     // Optional. The BCP-47 language code, such as "en-US". If specified, the response is localized to the corresponding language code if the original data sources support it. Default is "en-US".
+     *     languageCode: 'placeholder-value',
+     *     // Optional. Requested page size of the report. The server might return fewer results than requested. If unspecified, returns 20 reports. The maximum value is 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A token that specifies a page of results beyond the first page. Obtained through ListReportsResponse.next_page_token of the previous CloudChannelReportsService.ListReports call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the partner account to list available reports for. Parent uses the format: accounts/{account_id\}
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "reports": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Accounts$Reports$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Accounts$Reports$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListReportsResponse>;
+    list(
+      params: Params$Resource$Accounts$Reports$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Reports$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListReportsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1ListReportsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Reports$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1ListReportsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1ListReportsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Reports$List
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListReportsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListReportsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListReportsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudChannelV1ListReportsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Reports$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Reports$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudchannel.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/reports').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudChannelV1ListReportsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudChannelV1ListReportsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Begins generation of data for a given report. The report identifier is a UID (for example, `613bf59q`). Possible error codes: * PERMISSION_DENIED: The user doesn't have access to this report. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The report identifier was not found. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The Operation metadata contains an instance of OperationMetadata. To get the results of report generation, call CloudChannelReportsService.FetchReportResults with the RunReportJobResponse.report_job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudchannel = google.cloudchannel('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.reports.usage.readonly'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudchannel.accounts.reports.run({
+     *     // Required. The report's resource name. Specifies the account and report used to generate report data. The report_id identifier is a UID (for example, `613bf59q`). Name uses the format: accounts/{account_id\}/reports/{report_id\}
+     *     name: 'accounts/my-account/reports/my-report',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dateRange": {},
+     *       //   "filter": "my_filter",
+     *       //   "languageCode": "my_languageCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    run(
+      params: Params$Resource$Accounts$Reports$Run,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    run(
+      params?: Params$Resource$Accounts$Reports$Run,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    run(
+      params: Params$Resource$Accounts$Reports$Run,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    run(
+      params: Params$Resource$Accounts$Reports$Run,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    run(
+      params: Params$Resource$Accounts$Reports$Run,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    run(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    run(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Reports$Run
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Reports$Run;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Reports$Run;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudchannel.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:run').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Reports$List
+    extends StandardParameters {
+    /**
+     * Optional. The BCP-47 language code, such as "en-US". If specified, the response is localized to the corresponding language code if the original data sources support it. Default is "en-US".
+     */
+    languageCode?: string;
+    /**
+     * Optional. Requested page size of the report. The server might return fewer results than requested. If unspecified, returns 20 reports. The maximum value is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token that specifies a page of results beyond the first page. Obtained through ListReportsResponse.next_page_token of the previous CloudChannelReportsService.ListReports call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the partner account to list available reports for. Parent uses the format: accounts/{account_id\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Accounts$Reports$Run
+    extends StandardParameters {
+    /**
+     * Required. The report's resource name. Specifies the account and report used to generate report data. The report_id identifier is a UID (for example, `613bf59q`). Name uses the format: accounts/{account_id\}/reports/{report_id\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudChannelV1RunReportJobRequest;
   }
 
   export class Resource$Operations {
